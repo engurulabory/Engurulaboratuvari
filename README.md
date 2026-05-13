@@ -1,31 +1,43 @@
-Feyzi Engin Ağır
+# Feyzi Engin Ağır
 
-Strategy & production at Engürü Maya
-Culture · Ethical Technology · Trustworthy AI Governance
+**Engürü Maya’da Strateji ve Üretim**  
 
-I work on strategic production, product framing and governance-oriented AI concepts within Engürü Maya.
+Etik Teknoloji · Güvenilir Yapay Zeka Yönetişimi · Kültür Merkezli Ürün Stratejisi
 
-Engürü Maya develops culture-rooted, ethics-centered and commercially ready product cores for trustworthy artificial intelligence, decision safety and institutional alignment.
+Engürü Maya bünyesinde stratejik üretim, ürün çerçeveleme ve yönetişim odaklı yapay zeka konseptleri üzerinde çalışıyorum.
 
-Focus Areas
+Engürü Maya; güvenilir yapay zeka, karar güvenliği ve kurumsal uyum için kültüre dayalı, etik merkezli ve ticari kullanıma hazır ürün çekirdekleri geliştirir.
 
-* Trustworthy AI governance
-* Ethical technology
-* Culture-centered product strategy
-* Decision safety
-* Revenue Cores
-* Institutional readiness
+## Odak Alanları
 
-Current Work
+- Güvenilir Yapay Zeka Yönetişimi
 
-* Engürü Lab Revenue Cores Portal
-* Engürü Maya Corporate Web
-* MayaShield™
-* Maya Trust
-* MİZAN
-* Safety Decision Layer for LLMs
-* Creator Deal Desk
+- Etik Teknoloji
 
-Web
+- Kültür Merkezli Ürün Stratejisi
 
-engurumaya.com
+- Karar Güvenliği
+
+- Gelir Çekirdekleri
+
+- Kurumsal Hazırlık
+
+## Mevcut Çalışmalar
+
+- Engürü Lab Revenue Cores Portal
+
+- Engürü Maya Kurumsal Web Sitesi
+
+- MayaShield™
+
+- Maya Trust
+
+- MİZAN
+
+- LLM için Güvenlik Karar Katmanı
+
+- Creator Deal Desk
+
+## Web
+
+[engurumaya.com](https://engurumaya.com)
