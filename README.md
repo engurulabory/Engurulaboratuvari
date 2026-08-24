@@ -1,43 +1,36 @@
-# Feyzi Engin Ağır
+# ENGÜRÜ LAB™ / ENGÜRÜ LABORY™
 
-**Engürü Maya’da Strateji ve Üretim**  
+**Ürün hakikati, çekirdek haritası ve doğrulanmış yayın karargâhı.**
 
-Etik Teknoloji · Güvenilir Yapay Zeka Yönetişimi · Kültür Merkezli Ürün Stratejisi
+Bu depo Engürü Lab ürün portföyünün ve Engürü Labory çalışma haritasının canonical koordinasyon yüzeyidir.
 
-Engürü Maya bünyesinde stratejik üretim, ürün çerçeveleme ve yönetişim odaklı yapay zeka konseptleri üzerinde çalışıyorum.
+## Ana ilke
 
-Engürü Maya; güvenilir yapay zeka, karar güvenliği ve kurumsal uyum için kültüre dayalı, etik merkezli ve ticari kullanıma hazır ürün çekirdekleri geliştirir.
+**GitHub = ürün hakikati.**  
+**engurulab.com = doğrulanmış ürün vitrini.**
 
-## Odak Alanları
+Bir fikir, repo veya taslak tek başına aktif ürün sayılmaz. Kamuya açık ürün iddiası; repository truth, Evidence, DoneCheck™, Verified Finish, Repository Steward™ tutarlılığı ve gerekli yerde Human Threshold™ ile desteklenmelidir.
 
-- Güvenilir Yapay Zeka Yönetişimi
+## Çalışma hattı
 
-- Etik Teknoloji
+`Product repositories → ENGÜRÜ PRODUCT & CORE MAP™ → Repository Order Pass™ → verified product registry → Readdy/site render → browser evidence → DoneCheck™ → Human Threshold → Verified publication`
 
-- Kültür Merkezli Ürün Stratejisi
+## Başlangıç belgeleri
 
-- Karar Güvenliği
+- `governance/ENGURU_PRODUCT_CORE_MAP.md`
+- `governance/REPOSITORY_ORDER_PASS.md`
+- `site/ENGURULAB_SITE_BRIDGE.md`
+- `site/product-registry.json`
+- `WORKLIST.md`
 
-- Gelir Çekirdekleri
+## Kilit güvenlik sınırı
 
-- Kurumsal Hazırlık
+Product & Core Map tamamlanmadan büyük repo taşıma, silme, birleştirme, yeniden adlandırma veya ürün emekliliği yapılmaz.
 
-## Mevcut Çalışmalar
+## Mevcut yayın
 
-- Engürü Lab Revenue Cores Portal
+`engurulab.com` şu anda Readdy üzerinden yayındadır ve migration tamamlanana kadar legacy canlı yüzey olarak korunur. Yeni katalog doğrulanmadan mevcut site körlemesine boşaltılmaz veya yönlendirilmez.
 
-- Engürü Maya Kurumsal Web Sitesi
+## Governance uyumu
 
-- MayaShield™
-
-- Maya Trust
-
-- MİZAN
-
-- LLM için Güvenlik Karar Katmanı
-
-- Creator Deal Desk
-
-## Web
-
-[engurumaya.com](https://engurumaya.com)
+Bu repo mevcut ENGÜRÜ Labory Control Plane™ ve `ENGURU_LABORY_CONTROL_PLANE_V1` sözleşmesini referans alır; mevcut canonical contract Human Threshold kararı olmadan kopyalanmaz veya taşınmaz.
