@@ -1,0 +1,25 @@
+{
+  "schemaVersion":"1.0",
+  "state":"HOLD",
+  "designScoreBefore":94,
+  "designScoreAfter":100,
+  "operationalScoreNow":82,
+  "targetOperationalScore":100,
+  "roles":[
+    {"name":"Repository Scout","score":98,"state":"PASS","gap":"Full organization visibility depends on connector access; inaccessible visible repos remain HOLD."},
+    {"name":"Product Registrar","score":99,"state":"PASS","gap":"Known-unregistered assets still require canonical placement decisions."},
+    {"name":"Dependency Mapper","score":97,"state":"PASS","gap":"Cross-repo graph exists conceptually but should become continuously machine-refreshed."},
+    {"name":"Evidence Keeper","score":98,"state":"PASS","gap":"Evidence freshness automation is not yet deployed 24/7."},
+    {"name":"Quality & Test Keeper","score":100,"state":"PASS_DESIGN","gap":"New role; runtime test orchestration evidence pending."},
+    {"name":"Maintenance Foreman","score":97,"state":"PASS","gap":"Automated prioritized maintenance queue execution is not yet deployed."},
+    {"name":"Repository Security Guard","score":95,"state":"HOLD_RUNTIME","gap":"Continuous secret/config/dependency security scanning needs deployed runtime evidence."},
+    {"name":"Release Custodian","score":98,"state":"PASS","gap":"Release mirror refresh/retirement decisions remain Human Threshold."},
+    {"name":"Drift & Duplicate Inspector","score":98,"state":"PASS","gap":"Continuous digest-based drift scan awaits 24/7 runtime."},
+    {"name":"Archive Curator","score":100,"state":"PASS_DESIGN","gap":"Correctly recommendation-only; destructive archive/delete remains Human Threshold."},
+    {"name":"Site Registry Keeper","score":96,"state":"HOLD_EXTERNAL","gap":"Site publication bridge/runtime is not fully commissioned."},
+    {"name":"Runtime & Recovery Keeper","score":100,"state":"PASS_DESIGN","gap":"New role; durable scheduler and 24-hour evidence are pending."}
+  ],
+  "designVerdict":"PASS — team responsibility coverage is end-to-end after adding Quality & Test Keeper and Runtime & Recovery Keeper.",
+  "operationalVerdict":"HOLD — 24/7 deployed execution, recovery evidence, continuous security scanning and external site synchronization are not yet proven.",
+  "nextAction":"Deploy durable Steward scheduler, record 24 consecutive hourly cycles, verify continuous security/test/maintenance loops, then recalculate operational score."
+}
