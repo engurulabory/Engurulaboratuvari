@@ -1,81 +1,91 @@
 # ENGÜRÜ PRODUCT & CORE MAP™
 
 ## State
-HOLD — discovery in progress.
+HOLD — accessible repository inventory is now enumerated; embedded-core/dependency/evidence discovery remains open.
 
 This map is the canonical inventory surface for Engürü Lab products, shared cores, governance layers, infrastructure, experiments and archives.
 
 ## Locked rule
-No large repository move, delete, merge, rename or product retirement may occur before this map is completed and reviewed through Human Threshold™.
+No large repository move, delete, merge, rename or product retirement may occur before this map reaches PASS and consequential actions pass Human Threshold™.
 
 ## Classification
-Every discovered asset must be classified as one of:
-
 - PRODUCT — independent user-facing/sellable product
-- CORE — reusable capability used by one or more products
+- CORE — reusable capability
+- PRODUCT_CORE — independent economic/operational product with reusable core role
 - GOVERNANCE — authority, evidence, language or verification layer
-- INFRASTRUCTURE — deployment, billing, auth, data, tooling or platform support
-- EXPERIMENT — not yet promoted to product/core status
-- ARCHIVE — historical reference; not active product truth
+- CONTROL_PLANE — Labory portfolio/governance coordination surface
+- INFRASTRUCTURE — deployment, billing, auth, data or platform support
+- RELEASE_MIRROR — release/distribution surface, not canonical product source
+- EXPERIMENT — not yet promoted
+- ARCHIVE — historical reference
+- UNKNOWN_REVIEW — purpose/status not yet evidenced
 
-## Required fields
-For every mapped asset record:
+## Accessible repository inventory — 2026-08-25
+Canonical machine-readable source: `governance/repository-inventory.json`.
 
-- canonicalName
-- assetType
-- repository
-- canonicalPath
-- currentState: PASS | HOLD | BLOCKED
-- productState: research | development | verified | retired
-- owners / execution surface
-- dependencies
-- governance links
-- evidence path
-- production URL if any
-- lastVerifiedAt
-- duplicate / overlap notes
-- Steward recommendation
-- Human Threshold required: yes/no
+1. `engurulabory/Engurulaboratuvari` — CONTROL_PLANE — ACTIVE
+2. `engurulabory/enguru-website-factory` — PRODUCT — ENGÜRÜ Builder™ — ACTIVE
+3. `engurulabory/enguru-builder-release` — RELEASE_MIRROR — REVIEW
+4. `engurulabory/donecheck` — PRODUCT — DoneCheck™ — ACTIVE
+5. `engurulabory/donecheck-core-foundation` — CORE — ACTIVE
+6. `engurulabory/shift-core-api` — PRODUCT_CORE — Shift Core™ — ACTIVE
+7. `engurulabory/artist-manager-ai` — PRODUCT — ACTIVE
+8. `engurulabory/autonomous-economic-core` — PRODUCT_CORE — AEC — ACTIVE
+9. `engurulabory/adil-pay-kanit-web` — UNKNOWN_REVIEW — HOLD
 
-## Confirmed starting points
-These are discovery anchors, not a final map:
+## Control-plane placement finding
+Repository Steward™ and Labory Operating Contract™ currently exist inside `engurulabory/enguru-website-factory` even though their scope is cross-product Labory governance.
 
-- ENGÜRÜ Builder™ — engurulabory/enguru-website-factory
-- Shift Core™ — engurulabory/shift-core-api
-- Artist Manager AI™ — engurulabory/artist-manager-ai
-- DoneCheck™ — engurulabory/donecheck
-- DoneCheck Core Foundation — engurulabory/donecheck-core-foundation
-- ENGÜRÜ Lab / Labory control surface — engurulabory/Engurulaboratuvari
+Current action:
+- central Steward runtime is now staged in this Labory repository at `steward/`;
+- Builder copies remain untouched as compatibility/protected references until map/dependency review is complete;
+- no destructive move has been performed.
 
-## Existing governance contract to preserve
-Canonical Labory operating contract currently lives at:
+## Builder boundary
+ENGÜRÜ Builder™ should retain:
+- Builder product runtime and UI/UX;
+- Builder-specific domain logic and flows;
+- product-local `.enguru/labory-manifest.json`;
+- adapter/reference to canonical Labory governance;
+- Builder-specific evidence, tests, deployment and release truth.
 
+Builder should not remain the long-term canonical home of cross-product Labory control-plane policy.
+
+## Labory boundary
+ENGÜRÜ Labory should own:
+- Product & Core Map™;
+- Repository Order Pass™;
+- Repository Steward™ canonical runtime;
+- portfolio/product registry;
+- Labory operating/control-plane contract after compatibility migration is verified;
+- cross-product governance pointers and repository health state;
+- site/catalog bridge and verified publication inventory.
+
+## Existing governance contract transition
+Current production reference remains:
 `engurulabory/enguru-website-factory/packages/labory-operating-contract/index.mjs`
 
-Principle ID:
-`ENGURU_LABORY_CONTROL_PLANE_V1`
+Principle ID: `ENGURU_LABORY_CONTROL_PLANE_V1`
 
-Until a later Human Threshold decision says otherwise, this map must reference that contract rather than duplicate or replace it.
+Do not change Builder's canonical pointer until the Labory copy, manifests and tests are verified together. This is a controlled migration, not a blind move.
 
-## Discovery pass
-Repository Steward™ must:
-
-1. enumerate accessible Engürü repositories;
-2. identify product, core, governance, infrastructure and archive assets;
-3. detect duplicates, forks, stale names and embedded cores;
-4. trace dependency relationships;
-5. locate evidence / DoneCheck / Verified Finish records;
-6. separate historical ideas from current product truth;
-7. mark unresolved claims HOLD;
-8. produce a proposed canonical topology;
-9. request Human Threshold only for consequential moves, merges, deletions, renames or retirements.
+## Remaining discovery pass
+Repository Steward™ must still:
+1. find embedded cores across product repositories;
+2. map dependencies and canonical paths;
+3. locate DoneCheck / evidence / Verified Finish records;
+4. detect duplicates, stale names and overlapping capabilities;
+5. classify `adil-pay-kanit-web`;
+6. verify Builder release-mirror relationship;
+7. audit product-local Labory manifests;
+8. produce final canonical topology.
 
 ## Acceptance gate
 Map may move to PASS only when:
-
-- accessible repositories have been inventoried;
-- known products and shared cores have canonical records;
+- accessible repositories are inventoried;
+- known products/shared cores have canonical records;
+- embedded-core and dependency discovery is complete;
 - duplicate/overlap report is complete;
 - repository-order recommendations are evidence-linked;
 - no unresolved destructive action is auto-approved;
-- DoneCheck verifies map completeness against the declared inventory scope.
+- DoneCheck verifies completeness against declared scope.
