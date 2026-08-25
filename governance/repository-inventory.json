@@ -1,0 +1,17 @@
+{
+  "inventoryVersion": "0.1",
+  "state": "HOLD",
+  "scope": "accessible engurulabory repositories discovered through connected GitHub account",
+  "repositories": [
+    {"repository":"engurulabory/Engurulaboratuvari","classification":"CONTROL_PLANE","state":"ACTIVE","notes":"Labory portfolio/control repository candidate"},
+    {"repository":"engurulabory/enguru-website-factory","classification":"PRODUCT","product":"ENGURU Builder","state":"ACTIVE","notes":"Contains product execution plus transitional embedded Labory governance copies"},
+    {"repository":"engurulabory/enguru-builder-release","classification":"RELEASE_MIRROR","product":"ENGURU Builder","state":"REVIEW","notes":"Keep separate until release relationship is fully mapped"},
+    {"repository":"engurulabory/donecheck","classification":"PRODUCT","product":"DoneCheck","state":"ACTIVE"},
+    {"repository":"engurulabory/donecheck-core-foundation","classification":"CORE","product":"DoneCheck Core Foundation","state":"ACTIVE"},
+    {"repository":"engurulabory/shift-core-api","classification":"PRODUCT_CORE","product":"Shift Core","state":"ACTIVE"},
+    {"repository":"engurulabory/artist-manager-ai","classification":"PRODUCT","product":"Artist Manager AI","state":"ACTIVE"},
+    {"repository":"engurulabory/autonomous-economic-core","classification":"PRODUCT_CORE","product":"Autonomous Economic Core","state":"ACTIVE"},
+    {"repository":"engurulabory/adil-pay-kanit-web","classification":"UNKNOWN_REVIEW","state":"HOLD","notes":"Purpose and canonical status require evidence before classification"}
+  ],
+  "lockedRule": "No destructive repository move, delete, merge, rename or retirement before Product & Core Map PASS and Human Threshold where required."
+}
