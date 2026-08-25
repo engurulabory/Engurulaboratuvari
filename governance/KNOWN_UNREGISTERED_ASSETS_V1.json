@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.0",
+  "state": "HOLD",
+  "assets": [
+    {
+      "canonicalName": "ENGÜRÜ LAB • ASTRO MODE",
+      "assetType": "PRODUCT_CORE",
+      "registrationState": "KNOWN_UNREGISTERED_PRODUCT_CORE",
+      "repository": null,
+      "canonicalPath": null,
+      "currentState": "HOLD",
+      "canonicalOwner": "ENGÜRÜ Lab / unresolved repository placement",
+      "evidenceState": "Prior product/core design material exists outside current canonical GitHub repository inventory.",
+      "stewardRecommendation": "REGISTER_IN_PRODUCT_CORE_MAP; DETERMINE_CANONICAL_REPOSITORY_AND_PATH; DO_NOT_INVENT_OR_MOVE_IMPLEMENTATION_WITHOUT_EVIDENCE",
+      "humanThresholdRequired": true
+    }
+  ]
+}
