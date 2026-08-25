@@ -1,0 +1,19 @@
+name = "enguru-labory-steward"
+main = "worker.js"
+compatibility_date = "2026-08-25"
+workers_dev = true
+
+[triggers]
+crons = ["0 * * * *"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "enguru-labory-steward"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+[vars]
+EXPECTED_REPOSITORIES = "engurulabory/Engurulaboratuvari,engurulabory/enguru-website-factory,engurulabory/enguru-builder-release,engurulabory/donecheck,engurulabory/donecheck-core-foundation,engurulabory/shift-core-api,engurulabory/artist-manager-ai,engurulabory/autonomous-economic-core,engurulabory/adil-pay-kanit-web,engurulabory/readdy-fbdccc,engurulabory/enguru-maya-corporate-web,engurulabory/enguru-lab-revenue-cores-portal"
+
+# Secrets must never be committed:
+# wrangler secret put GITHUB_TOKEN
+# wrangler secret put STEWARD_CONTROL_TOKEN
