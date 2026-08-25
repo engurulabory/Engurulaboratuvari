@@ -1,7 +1,7 @@
 # ENGÜRÜ LAB™ — WORKLIST
 
 ## Target
-Rebuild engurulab.com from verified GitHub product truth while preserving current Readdy publication until replacement is proven.
+Build ENGÜRÜ Labory as the verified product/control-plane surface and rebuild engurulab.com from repository truth while preserving current Readdy publication until replacement is proven.
 
 ## P0 — Foundation
 - [x] Establish `engurulabory/Engurulaboratuvari` as Lab portfolio/control repository candidate.
@@ -9,31 +9,37 @@ Rebuild engurulab.com from verified GitHub product truth while preserving curren
 - [x] Add Repository Order Pass™.
 - [x] Add GitHub ↔ Readdy Site Bridge contract.
 - [x] Add fail-closed public product registry.
-- [ ] Review this foundation through Human Threshold and merge.
+- [x] Add central Repository Steward™ runtime + tests.
+- [ ] Merge foundation after final branch review.
 
 ## P1 — Steward Discovery
 Owner: Repository Steward™
 
-- [ ] Enumerate all accessible Engürü repositories.
-- [ ] Identify products, shared cores, governance, infrastructure, experiments and archives.
-- [ ] Find embedded cores that are not separate repositories.
+- [x] Enumerate accessible Engürü repositories: 9 repositories recorded.
+- [x] Record initial product/core/control-plane/release/unknown classifications.
+- [x] Identify cross-product Steward/Control Plane placement drift inside Builder.
+- [ ] Find all embedded cores not represented as separate repositories.
 - [ ] Map dependencies and canonical paths.
-- [ ] Record DoneCheck / evidence / Verified Finish paths.
+- [ ] Record DoneCheck / evidence / Verified Finish paths per product.
 - [ ] Detect duplicates, stale names, dead concepts and overlapping capabilities.
+- [ ] Classify `adil-pay-kanit-web` with evidence.
+- [ ] Verify `enguru-builder-release` relationship to canonical Builder.
 - [ ] Compare GitHub truth with current engurulab.com claims.
-- [ ] Produce Product & Core Map v1.
+- [ ] Produce Product & Core Map v1 PASS candidate.
 
-Gate: Product & Core Map remains HOLD until declared inventory scope is complete.
+Gate: Product & Core Map remains HOLD until declared inventory/dependency scope is complete.
 
 ## P2 — Repository Order Pass
 Owner: Repository Steward™ + Repository Security Guard™
 
-- [ ] Audit README and repository purpose.
+- [x] Define Labory vs Product repository boundary.
+- [x] Stage canonical Steward runtime in Labory without deleting Builder copy.
+- [ ] Audit README and repository purpose across all repositories.
 - [ ] Audit `.enguru/labory-manifest.json` where applicable.
 - [ ] Verify canonical Labory contract linkage.
 - [ ] Verify security/secrets posture.
 - [ ] Classify proposed repository actions as SAFE_AUTO / REVIEW / HUMAN_THRESHOLD.
-- [ ] Produce non-destructive order plan.
+- [ ] Produce final non-destructive order plan.
 
 Gate: no major move/delete/merge/rename before map PASS.
 
@@ -55,50 +61,33 @@ Owner: Site execution plane + Aesthetic Motor + Language Governance™
 
 - [ ] Preserve current live site as legacy reference until cutover.
 - [ ] Rebuild information architecture around registry states.
-- [ ] Implement Verified Products.
-- [ ] Implement In Development.
-- [ ] Implement Core Technologies.
-- [ ] Implement Research / Archive.
-- [ ] Implement Trust & Evidence.
-- [ ] Remove old hard-coded 15 Revenue Core claim from replacement build.
-- [ ] Replace Menajer Zekî references with current canonical product truth only if map confirms.
-- [ ] Apply TR/EN coverage.
-- [ ] Apply ENGÜRÜ Aesthetic governance.
+- [ ] Implement Verified Products / In Development / Core Technologies / Research-Archive / Trust-Evidence.
+- [ ] Remove unsupported hard-coded product-count claims.
+- [ ] Apply TR/EN coverage and ENGÜRÜ Aesthetic governance.
 
 ## P5 — GitHub → Readdy Data Connection
-Preferred path:
-
-- [ ] expose validated registry through a stable JSON/HTTP endpoint or supported Readdy data source;
-- [ ] make Readdy render from that feed;
-- [ ] record registry digest in deployment evidence;
+- [ ] expose validated registry through stable JSON/HTTP or supported Readdy data source;
+- [ ] render from verified feed and record registry digest;
 - [ ] fail publication when schema/verification gate fails.
 
-Fallback/transitional path:
-
-- [ ] generate Readdy-ready catalog payload from registry;
-- [ ] apply through authenticated Readdy workflow;
-- [ ] browser-verify rendered claims against registry digest.
-
-Gate: Readdy authenticated integration is HOLD until an actual supported write/deploy channel is available.
+Gate: authenticated Readdy integration remains HOLD until supported write/deploy channel is verified.
 
 ## P6 — Cutover
 Owner: DoneCheck™ + Human Threshold
 
-- [ ] Verify replacement site on staging/preview.
-- [ ] Compare product count, state, names and claims against registry.
-- [ ] Browser QA desktop/mobile TR/EN.
-- [ ] Verify links, auth, purchase/trial claims and production URLs where present.
-- [ ] Security review.
-- [ ] Human visual acceptance.
-- [ ] Point engurulab.com to replacement publication only after PASS.
-- [ ] Preserve rollback path.
+- [ ] staging/preview verification;
+- [ ] product/state/name/claim comparison against registry;
+- [ ] desktop/mobile TR/EN browser QA;
+- [ ] security review;
+- [ ] Human visual acceptance;
+- [ ] DNS/publication cutover only after PASS with rollback preserved.
 
 ## P7 — Continuous Operation
 - [ ] Product Verified Finish updates registry eligibility.
-- [ ] Steward detects drift between repositories and catalog.
+- [ ] Steward detects repository/catalog drift.
 - [ ] Site publication checks registry before release.
 - [ ] DoneCheck verifies each catalog release.
 - [ ] Human Threshold remains mandatory for consequential public/commercial claims.
 
 ## Final acceptance
-`Repository truth → Map PASS → Registry PASS → Site build PASS → Browser evidence → DoneCheck PASS → Human Threshold → Verified publication`
+`Repository truth → Map PASS → Repository Order PASS → Registry PASS → Site build PASS → Browser evidence → DoneCheck PASS → Human Threshold → Verified publication`
