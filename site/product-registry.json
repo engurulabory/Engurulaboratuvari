@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "0.1.0",
+  "registryState": "HOLD",
+  "generatedBy": "Repository Steward™",
+  "sourceOfTruth": "ENGÜRÜ PRODUCT & CORE MAP™",
+  "publicationPolicy": "verified-only",
+  "legacySite": {
+    "url": "https://engurulab.com",
+    "surface": "Readdy",
+    "state": "LIVE_LEGACY",
+    "migrationState": "HOLD",
+    "note": "Current public catalog is preserved until replacement registry and Readdy rendering pass verification."
+  },
+  "products": [
+    {
+      "productId": "enguru-builder",
+      "productName": "ENGÜRÜ Builder™",
+      "repository": "engurulabory/enguru-website-factory",
+      "classification": "PRODUCT",
+      "productState": "development",
+      "publicationState": "HOLD",
+      "evidenceState": "HOLD",
+      "publicVisible": false
+    },
+    {
+      "productId": "shift-core",
+      "productName": "Shift Core™",
+      "repository": "engurulabory/shift-core-api",
+      "classification": "PRODUCT",
+      "productState": "development",
+      "publicationState": "HOLD",
+      "evidenceState": "HOLD",
+      "publicVisible": false
+    },
+    {
+      "productId": "artist-manager-ai",
+      "productName": "Artist Manager AI™",
+      "repository": "engurulabory/artist-manager-ai",
+      "classification": "PRODUCT",
+      "productState": "development",
+      "publicationState": "HOLD",
+      "evidenceState": "HOLD",
+      "publicVisible": false
+    },
+    {
+      "productId": "donecheck",
+      "productName": "DoneCheck™",
+      "repository": "engurulabory/donecheck",
+      "classification": "PRODUCT",
+      "productState": "development",
+      "publicationState": "HOLD",
+      "evidenceState": "HOLD",
+      "publicVisible": false
+    }
+  ],
+  "cores": [],
+  "experiments": [],
+  "archives": [],
+  "publicationGate": {
+    "requires": [
+      "canonicalProductRecord",
+      "repositoryVerified",
+      "laboryManifestValidWhereApplicable",
+      "productStateVerified",
+      "doneCheckEvidence",
+      "verifiedFinishEvidence",
+      "productionUrlWhenApplicable",
+      "humanThresholdClear",
+      "stewardRegistryConsistency"
+    ],
+    "failClosed": true
+  }
+}

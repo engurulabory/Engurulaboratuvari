@@ -1,0 +1,23 @@
+import assert from 'node:assert/strict';
+import { STEWARD_CYCLE, STEWARD_SCOPES, classifyWorkItem, inspectRepositoryOrder, inspectWorkspaceHealth, planSafeMaintenance, closeoutRepository } from './index.mjs';
+
+assert.deepEqual(STEWARD_CYCLE, ['YOKLAMA','TERTIP','DUZEN','TEMIZLIK','SADELESTIRME','BAKIM','ONARIM','KAPANIS','YENIDEN_HAZIR']);
+assert.equal(STEWARD_SCOPES.LABORY, 'ENGURU_LABORY');
+assert.equal(classifyWorkItem({ active:true }), 'ACTIVE');
+assert.equal(classifyWorkItem({ mergeReady:true }), 'MERGE_CANDIDATE');
+assert.equal(classifyWorkItem({ dependencyOpen:true }), 'HOLD');
+assert.equal(classifyWorkItem({ protectedReference:true }), 'PROTECTED_REFERENCE');
+assert.equal(inspectRepositoryOrder({ files:['README.md'] }).status, 'PASS');
+const junk = inspectRepositoryOrder({ files:['tmp/cache.tmp'] });
+assert.equal(junk.status, 'HOLD');
+assert.equal(inspectRepositoryOrder({ contents:[{path:'x',content:'<<<<<<< HEAD\na\n=======\nb\n>>>>>>> branch'}] }).status, 'BLOCKED');
+const health = inspectWorkspaceHealth({ scope:STEWARD_SCOPES.LABORY, files:['README.md'], workItems:[{active:true},{protectedReference:true}] });
+assert.equal(health.status, 'PASS');
+const maintenance = planSafeMaintenance({ findings:junk.findings });
+assert.equal(maintenance.status, 'PASS');
+assert.equal(maintenance.safeActions[0].action, 'DELETE_OBVIOUS_JUNK');
+assert.equal(planSafeMaintenance({ mergedBranches:['feature/old'] }).status, 'HOLD');
+assert.equal(closeoutRepository({ mapPass:false }).status, 'HOLD');
+assert.equal(closeoutRepository({ mapPass:true }).status, 'READY_AGAIN');
+assert.equal(closeoutRepository({ mapPass:true, evidencePreserved:false }).status, 'BLOCKED');
+console.log('repository-steward: PASS');
