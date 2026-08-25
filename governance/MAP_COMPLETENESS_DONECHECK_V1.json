@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-25",
+  "declaredRepositoryScope": 9,
+  "state": "HOLD",
+  "claim": "Accessible GitHub repository discovery and applicable fleet manifest alignment are complete, but at least one known product/core concept remains outside canonical GitHub registration.",
+  "criteria": [
+    {"id":"C1","criterion":"All 9 accessible repositories inventoried","status":"PASS","evidence":"governance/ENGURU_PRODUCT_CORE_MAP_V1.json"},
+    {"id":"C2","criterion":"Canonical owner recorded for each accessible repository","status":"PASS","evidence":"governance/ENGURU_PRODUCT_CORE_MAP_V1.json"},
+    {"id":"C3","criterion":"Dependency and evidence paths recorded","status":"PASS","evidence":"governance/ENGURU_PRODUCT_CORE_MAP_V1.json"},
+    {"id":"C4","criterion":"Intentional dual-repo and overlap relationships classified","status":"PASS","evidence":"governance/OVERLAP_AND_ORDER_REPORT_V1.md"},
+    {"id":"C5","criterion":"Applicable active product/core surfaces carry Labory manifest","status":"PASS","evidence":"6/6 applicable surfaces: Builder, Shift Core, Artist Manager AI, AEC, DoneCheck, DoneCheck Core Foundation"},
+    {"id":"C6","criterion":"Non-applicable repository surfaces are explicitly classified","status":"PASS","evidence":"Labory CONTROL_PLANE; Builder Release RELEASE_MIRROR; Adil Pay Kanıt Web EXPERIMENT/HOLD"},
+    {"id":"C7","criterion":"Known product/core concepts outside repository inventory are registered or explicitly held","status":"HOLD","evidence":"Astro Mode is known from prior ENGÜRÜ LAB product/core design material but no canonical GitHub repository/path record was found."},
+    {"id":"C8","criterion":"No destructive repository migration is auto-approved before map completeness","status":"PASS","evidence":"Repository Order Pass locked rule remains in force."}
+  ],
+  "fleetAlignment": {
+    "applicable": 6,
+    "aligned": 6,
+    "status": "PASS"
+  },
+  "blockingGap": {
+    "asset": "ENGÜRÜ LAB • ASTRO MODE",
+    "classification": "KNOWN_UNREGISTERED_PRODUCT_CORE",
+    "status": "HOLD",
+    "requiredAction": "Create a canonical Labory inventory record and determine canonical repository/path ownership before OS-R0 PASS. Do not invent or move code without evidence."
+  },
+  "nextAction": "Register Astro Mode in Product & Core Map as a known unregistered product/core; then rerun Map Completeness DoneCheck. Canonical Labory Operating Contract migration remains a post-map controlled migration."
+}
