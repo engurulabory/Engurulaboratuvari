@@ -33,6 +33,24 @@ Canonical machine-readable source: `governance/repository-inventory.json`.
 8. `engurulabory/autonomous-economic-core` — PRODUCT_CORE — AEC — ACTIVE
 9. `engurulabory/adil-pay-kanit-web` — UNKNOWN_REVIEW — HOLD
 
+## Shared core registration — 2026-08-30
+
+### ENGÜRÜ CLOSED-LOOP PRODUCTION CORE™ v0.1
+Classification: CORE / GOVERNANCE-RUNTIME BRIDGE
+Canonical specification: `governance/ENGURU_CLOSED_LOOP_PRODUCTION_CORE_V0_1.md`
+State: DESIGN LOCKED / IMPLEMENTATION HOLD
+
+Purpose:
+`INTENT → TASK CONTRACT → SUCCESS CRITERIA → EXECUTE → OBSERVE → COLLECT EVIDENCE → VERIFY → CORRECT/RETRY → DONECHECK™ → HUMAN THRESHOLD™ WHEN REQUIRED → VERIFIED FINISH`
+
+Initial consumers:
+- ENGÜRÜ Builder™ — adapter target;
+- Autonomous Economic Core™ — adapter target;
+- ENGÜRÜ Lab / Repository Steward™ — canonical control-plane consumer;
+- ENGÜRÜ Verified Business OS™ — future consumer after multi-surface proof.
+
+Ownership rule: Labory owns the shared contract; product repositories keep domain logic, product-local evidence and observation adapters. No product logic move/delete is authorized by this registration.
+
 ## Control-plane placement finding
 Repository Steward™ and Labory Operating Contract™ currently exist inside `engurulabory/enguru-website-factory` even though their scope is cross-product Labory governance.
 
@@ -59,7 +77,8 @@ ENGÜRÜ Labory should own:
 - portfolio/product registry;
 - Labory operating/control-plane contract after compatibility migration is verified;
 - cross-product governance pointers and repository health state;
-- site/catalog bridge and verified publication inventory.
+- site/catalog bridge and verified publication inventory;
+- ENGÜRÜ CLOSED-LOOP PRODUCTION CORE™ canonical specification and version governance.
 
 ## Existing governance contract transition
 Current production reference remains:
@@ -78,7 +97,8 @@ Repository Steward™ must still:
 5. classify `adil-pay-kanit-web`;
 6. verify Builder release-mirror relationship;
 7. audit product-local Labory manifests;
-8. produce final canonical topology.
+8. produce final canonical topology;
+9. verify Closed-Loop Core adapters do not duplicate product-local logic.
 
 ## Acceptance gate
 Map may move to PASS only when:
