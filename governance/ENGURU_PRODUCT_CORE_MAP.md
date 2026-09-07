@@ -11,6 +11,7 @@ No large repository move, delete, merge, rename or product retirement may occur 
 ## Classification
 - PRODUCT — independent user-facing/sellable product
 - CORE — reusable capability
+- CORE_WORKER — non-product autonomous/semi-autonomous worker that operates across control-plane surfaces and product/core adapters
 - PRODUCT_CORE — independent economic/operational product with reusable core role
 - GOVERNANCE — authority, evidence, language or verification layer
 - CONTROL_PLANE — Labory portfolio/governance coordination surface
@@ -32,6 +33,38 @@ Canonical machine-readable source: `governance/repository-inventory.json`.
 7. `engurulabory/artist-manager-ai` — PRODUCT — ACTIVE
 8. `engurulabory/autonomous-economic-core` — PRODUCT_CORE — AEC — ACTIVE
 9. `engurulabory/adil-pay-kanit-web` — UNKNOWN_REVIEW — HOLD
+
+## Core worker registration — 2026-09-07
+
+### Repository Steward™
+Classification: CORE_WORKER / CONTROL-PLANE WORKER
+Canonical home: `engurulabory/Engurulaboratuvari/steward/`
+Canonical contract: `steward/STEWARD_CORE_WORKER_CONTRACT_V1.md`
+State: ACTIVE CORE WORKER / GOVERNANCE PLACEMENT LOCKED
+
+Repository Steward™ is not a product and must not become product-owned runtime truth.
+
+Operating surface:
+`LAB HOME → PRODUCT REGISTRY → PRODUCT REPOSITORIES → SHARED CORES → EVIDENCE / DONECHECK → REPOSITORY HEALTH → WORKLIST → HUMAN THRESHOLD WHEN REQUIRED`
+
+Steward may:
+- inspect Labory home/control-plane state;
+- traverse registered products and cores through manifests/adapters;
+- compare canonical ownership, dependency, evidence, CI/test, security and lifecycle state;
+- perform bounded, reversible maintenance when explicitly permitted;
+- register drift, HOLD/BLOCKED states and next actions;
+- return destructive or authority-changing actions to Human Threshold™.
+
+Steward may not:
+- become embedded as canonical product logic;
+- silently mutate product behavior or product policy;
+- archive/delete/rename/merge repositories;
+- rewrite history;
+- change visibility;
+- delete protected branches;
+- cut over production sources/deployments without Human Threshold™.
+
+Product boundary rule: product repositories may contain only a Steward adapter, manifest, evidence hook or pointer. The canonical Steward runtime and governance contract remain in Labory.
 
 ## Shared core registration — 2026-08-30
 
@@ -55,8 +88,9 @@ Ownership rule: Labory owns the shared contract; product repositories keep domai
 Repository Steward™ and Labory Operating Contract™ currently exist inside `engurulabory/enguru-website-factory` even though their scope is cross-product Labory governance.
 
 Current action:
-- central Steward runtime is now staged in this Labory repository at `steward/`;
-- Builder copies remain untouched as compatibility/protected references until map/dependency review is complete;
+- canonical Steward runtime is this Labory repository at `steward/`;
+- Builder copies remain compatibility/protected references until dependency review is complete;
+- long-term Builder state should be adapter/pointer only;
 - no destructive move has been performed.
 
 ## Builder boundary
@@ -64,16 +98,18 @@ ENGÜRÜ Builder™ should retain:
 - Builder product runtime and UI/UX;
 - Builder-specific domain logic and flows;
 - product-local `.enguru/labory-manifest.json`;
+- Steward adapter/pointer, not canonical Steward runtime;
 - adapter/reference to canonical Labory governance;
-- Builder-specific evidence, tests, deployment and release truth.
+- Builder-specific evidence, tests, deployment and release truth;
+- Builder Reference Loop Adapter™ for ENGÜRÜ CLOSED-LOOP PRODUCTION CORE™.
 
-Builder should not remain the long-term canonical home of cross-product Labory control-plane policy.
+Builder should not remain the long-term canonical home of cross-product Labory control-plane policy or Repository Steward™.
 
 ## Labory boundary
 ENGÜRÜ Labory should own:
 - Product & Core Map™;
 - Repository Order Pass™;
-- Repository Steward™ canonical runtime;
+- Repository Steward™ canonical CORE_WORKER runtime and contract;
 - portfolio/product registry;
 - Labory operating/control-plane contract after compatibility migration is verified;
 - cross-product governance pointers and repository health state;
@@ -98,12 +134,13 @@ Repository Steward™ must still:
 6. verify Builder release-mirror relationship;
 7. audit product-local Labory manifests;
 8. produce final canonical topology;
-9. verify Closed-Loop Core adapters do not duplicate product-local logic.
+9. verify Closed-Loop Core adapters do not duplicate product-local logic;
+10. verify product-local Steward copies can be reduced to adapters/pointers without breaking tests or evidence.
 
 ## Acceptance gate
 Map may move to PASS only when:
 - accessible repositories are inventoried;
-- known products/shared cores have canonical records;
+- known products/shared cores/core workers have canonical records;
 - embedded-core and dependency discovery is complete;
 - duplicate/overlap report is complete;
 - repository-order recommendations are evidence-linked;
