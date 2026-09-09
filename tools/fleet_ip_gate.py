@@ -7,19 +7,33 @@ from pathlib import Path
 ROOT = Path.cwd()
 MANIFEST = ROOT / ".enguru" / "ip-model-trust.json"
 VALID_CLASSES = {f"T{i}" for i in range(6)}
-SECRET_PATTERNS = {
+KNOWN_SECRET_PATTERNS = {
     "private_key": re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
     "github_token": re.compile(r"\b(?:ghp|gho|ghu|ghs|ghr)_[A-Za-z0-9]{20,}\b"),
     "openai_key": re.compile(r"\bsk-[A-Za-z0-9_-]{20,}\b"),
     "aws_access_key": re.compile(r"\bAKIA[0-9A-Z]{16}\b"),
-    "generic_secret_assignment": re.compile(r"(?i)\b(?:api[_-]?key|access[_-]?token|secret|password|passwd|pwd)\b\s*[:=]\s*[\"']?(?!<SECRET>|REDACTED|CHANGE_ME|\$\{|process\.env)[A-Za-z0-9_./+\-=]{12,}"),
 }
+SECRET_NAME = r"(?:api[_-]?key|access[_-]?token|secret|password|passwd|pwd)"
+QUOTED_SECRET = re.compile(
+    rf"(?i)\b{SECRET_NAME}\b\s*[:=]\s*([\"'])(?!<SECRET>|REDACTED|CHANGE_ME)([^\"'\n]{{12,}})\1"
+)
+DOTENV_SECRET = re.compile(
+    rf"(?im)^\s*(?:export\s+)?[A-Z0-9_]*{SECRET_NAME}[A-Z0-9_]*\s*=\s*(?!<SECRET>|REDACTED|CHANGE_ME|\$\{{)([^\s#]{{12,}})\s*(?:#.*)?$"
+)
 SKIP_DIRS = {".git", "node_modules", ".next", "dist", "build", "coverage", ".venv", "venv"}
 MAX_BYTES = 1_000_000
 
 def fail(reason: str, evidence=None) -> int:
-    print(json.dumps({"gate":"ENGURU_IP_MODEL_TRUST_FLEET_V1","state":"BLOCKED","reason":reason,"evidence":evidence or []}, ensure_ascii=False))
+    print(json.dumps({"gate":"ENGURU_IP_MODEL_TRUST_FLEET_V1_1","state":"BLOCKED","reason":reason,"evidence":evidence or []}, ensure_ascii=False))
     return 3
+
+def secret_hits(path: Path, text: str) -> list[str]:
+    hits = [name for name, pattern in KNOWN_SECRET_PATTERNS.items() if pattern.search(text)]
+    if QUOTED_SECRET.search(text): hits.append("hardcoded_quoted_secret")
+    name = path.name.lower()
+    if (name == ".env" or name.startswith(".env.") or path.suffix.lower() == ".env") and DOTENV_SECRET.search(text):
+        hits.append("dotenv_secret_assignment")
+    return sorted(set(hits))
 
 def main() -> int:
     if not MANIFEST.exists(): return fail("missing_manifest")
@@ -39,10 +53,10 @@ def main() -> int:
             text=path.read_text(encoding="utf-8")
         except (UnicodeDecodeError, OSError): continue
         rel=str(path.relative_to(ROOT))
-        for name, pattern in SECRET_PATTERNS.items():
-            if pattern.search(text): hits.append({"path":rel,"pattern":name})
+        for pattern_name in secret_hits(path, text):
+            hits.append({"path":rel,"pattern":pattern_name})
     if hits: return fail("secret_zero_violation", hits[:50])
-    print(json.dumps({"gate":"ENGURU_IP_MODEL_TRUST_FLEET_V1","state":"PASS","repository":data["repository"],"defaultIpClass":data["defaultIpClass"],"filesScanned":"repository_text_files","secretZero":"PASS"}, ensure_ascii=False))
+    print(json.dumps({"gate":"ENGURU_IP_MODEL_TRUST_FLEET_V1_1","state":"PASS","repository":data["repository"],"defaultIpClass":data["defaultIpClass"],"filesScanned":"repository_text_files","secretZero":"PASS"}, ensure_ascii=False))
     return 0
 
 if __name__ == "__main__": sys.exit(main())
