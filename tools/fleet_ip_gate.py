@@ -18,6 +18,7 @@ QUOTED_SECRET = re.compile(rf"(?i)\b{SECRET_NAME}\b\s*[:=]\s*([\"'])(?!<SECRET>|
 DOTENV_SECRET = re.compile(rf"(?im)^\s*(?:export\s+)?[A-Z0-9_]*{SECRET_NAME}[A-Z0-9_]*\s*=\s*(?!<SECRET>|REDACTED|CHANGE_ME|\$\{{)([^\s#]{{12,}})\s*(?:#.*)?$")
 SYMBOLIC_ENV_NAME = re.compile(r"^[A-Z][A-Z0-9_]{5,}$")
 NON_PROD_GENERIC_DIRS = {"test", "tests", "__tests__", "docs", "examples", "fixtures", "fixture"}
+TEST_FILE_MARKERS = (".test.", ".spec.", "_test.", "_spec.")
 ENV_EXAMPLE_SUFFIXES = (".example", ".sample", ".template")
 SKIP_DIRS = {".git", "node_modules", ".next", "dist", "build", "coverage", ".venv", "venv"}
 MAX_BYTES = 1_000_000
@@ -27,7 +28,8 @@ def fail(reason: str, evidence=None) -> int:
     return 3
 
 def is_fixture_surface(path: Path) -> bool:
-    return any(part.lower() in NON_PROD_GENERIC_DIRS for part in path.parts)
+    name = path.name.lower()
+    return any(part.lower() in NON_PROD_GENERIC_DIRS for part in path.parts) or any(marker in name for marker in TEST_FILE_MARKERS)
 
 def is_real_env_file(path: Path) -> bool:
     name = path.name.lower()
