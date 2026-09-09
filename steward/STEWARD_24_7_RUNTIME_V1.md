@@ -1,54 +1,45 @@
-# ENGÜRÜ LABORY STEWARD™ — 24/7 RUNTIME CONTRACT v1
+# ENGÜRÜ LABORY STEWARD™ — DURABLE RUNTIME CONTRACT v1.1
 
 ## Objective
-Run Steward independently of a user's device and continuously maintain observable repository health.
+Keep Labory repository truth, security, topology and evidence current without depending on the user's device.
 
-## Required cycles
-### Hourly
-- discover newly visible repositories;
-- compare inventory digest with previous cycle;
-- check active product manifest presence/alignment;
-- check open HOLD/BLOCKED findings;
-- run lightweight security/config drift checks;
-- record cycle evidence.
+## Cadence
+### On every pull request and push to main
+Run the complete Labory Final Gate:
+- System Truth / Product-Core Map / Registry consistency;
+- IP & Model Trust tests;
+- Secret Zero / Fleet Gate;
+- Repository Steward tests;
+- repository hygiene and conflict-marker checks.
 
-### Daily
-- dependency/canonical-owner drift review;
-- stale documentation and dead-link review;
-- release/source provenance review;
-- product health summary;
-- maintenance queue prioritization.
-
-### Weekly
-- duplicate/overlap review;
-- archive candidate review;
-- deep security posture review;
-- 100-scorecard recalculation;
-- Map Completeness DoneCheck refresh.
-
-## Scheduler strategy
-Preferred durable scheduler: existing zero-cost Cloudflare Worker/Cron pattern already proven in the ENGÜRÜ environment, with GitHub API access scoped to read/write only what Steward needs.
-
-GitHub Actions may be used as a secondary/verification runner when account billing/Actions availability is confirmed. Absence of Actions runs must never be treated as PASS evidence.
-
-## Write discipline
-Routine cycles may only auto-write SAFE_AUTO artifacts such as inventories, health ledgers, issues, reports, manifests and repair branches. Destructive operations remain Human Threshold.
-
-## Evidence per cycle
-Each cycle records:
-- startedAt / finishedAt;
-- inventory count and digest;
-- new/changed/missing assets;
-- manifest alignment result;
-- security findings count;
-- health PASS/HOLD/BLOCKED counts;
-- maintenance actions opened/completed;
-- runtime/scheduler identity;
-- errors/retries;
+### Approximately every 3 days
+Run the same gate as a scheduled Steward cycle and inspect:
+- newly visible or missing repositories;
+- stale Product/Core Map records;
+- registry drift;
+- release-mirror drift;
+- security/config drift;
+- unresolved HOLD/BLOCKED findings;
 - next action.
 
-## Failure behavior
-Scheduler or API failure → HOLD, bounded retry, evidence record. Never silently skip and never manufacture a green state.
+### Manual
+`workflow_dispatch` may run the Steward cycle at any time before a consequential decision.
 
-## 24/7 PASS gate
-24/7 operational continuity is PASS only after deployed durable runtime evidence demonstrates repeated successful cycles across at least 24 consecutive hourly windows. Architecture/documentation alone is not runtime PASS.
+## Why this cadence
+Labory repository governance does not require hourly polling. PR/push gates protect changes immediately; the periodic cycle detects external drift with lower operational complexity.
+
+## Write discipline
+The scheduled cycle is read-only by default. SAFE_AUTO changes are proposed through a branch/PR. Repository delete/rename/merge/archive, publication, payment, legal and other high-impact actions remain Human Threshold™.
+
+## Evidence
+GitHub Actions run history is the durable scheduler evidence. Each run must expose PASS/HOLD/BLOCKED through logs and job state. Missing or failed runs never count as PASS.
+
+## Failure behavior
+Any failed security, consistency or Steward check → HOLD/BLOCKED. The next action is repair through an isolated branch; no silent bypass.
+
+## Runtime PASS gate
+Runtime readiness is PASS when:
+1. PR/push Final Gate is green on canonical main;
+2. manual/scheduled Steward cycle has at least one green commissioning run;
+3. schedule remains enabled;
+4. Human Threshold™ accepts Step 1 closure.
