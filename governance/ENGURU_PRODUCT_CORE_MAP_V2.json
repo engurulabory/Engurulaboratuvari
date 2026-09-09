@@ -2,7 +2,7 @@
   "schemaVersion": "2.0",
   "generatedAt": "2026-09-09",
   "state": "HOLD",
-  "scope": "8 currently accessible engurulabory repositories plus explicit historical/unregistered assets",
+  "scope": "8 currently accessible engurulabory repositories plus explicit planned products",
   "lockedRule": "No destructive repository move, delete, merge, rename or retirement before map PASS and Human Threshold where required.",
   "records": [
     {"repository":"engurulabory/Engurulaboratuvari","canonicalName":"ENGÜRÜ Labory Control Plane","assetType":"CONTROL_PLANE","owner":"ENGÜRÜ Labory","state":"PASS","role":"Canonical governance, Product/Core Map, Repository Order, Steward, Security Fleet, system truth."},
@@ -12,28 +12,36 @@
     {"repository":"engurulabory/donecheck-core-foundation","canonicalName":"DoneCheck™ Controlled Development Source","assetType":"CORE","owner":"DoneCheck controlled development","state":"PASS","role":"Canonical controlled development source."},
     {"repository":"engurulabory/donecheck","canonicalName":"DoneCheck™ Public Working Core","assetType":"PRODUCT_CORE","owner":"DoneCheck public release","state":"PASS","role":"Public/open-source release; provenance-linked to controlled source."},
     {"repository":"engurulabory/shift-core-api","canonicalName":"Shift Core™","assetType":"PRODUCT_CORE","owner":"Shift Core execution plane","state":"HOLD","role":"Bounded-shift task acceptance/rollback execution; independent from DoneCheck."},
-    {"repository":"engurulabory/artist-manager-ai","canonicalName":"Artist Manager AI™","assetType":"PRODUCT","owner":"Artist Manager AI execution plane","state":"HOLD","role":"Product execution surface; promotion to verified public product requires runtime evidence."}
+    {"repository":"engurulabory/artist-manager-ai","canonicalName":"Artist Manager AI™","assetType":"PRODUCT","owner":"Artist Manager AI execution plane","state":"HOLD","role":"Second planned production product after ENGÜRÜ Builder; verified release requires runtime evidence."}
   ],
-  "historicalOrUnresolved": [
-    {"asset":"engurulabory/adil-pay-kanit-web","classification":"HISTORICAL_REPOSITORY_RECORD","state":"HOLD","action":"Retain record; determine current accessibility/status with evidence before archive/delete/reclassification."},
-    {"asset":"ENGÜRÜ LAB • ASTRO MODE","classification":"KNOWN_UNREGISTERED_CONCEPT","state":"HOLD","action":"Keep as concept record; resolve canonical ownership/path only when real implementation evidence exists."}
+  "plannedProducts": [
+    {"asset":"ENGÜRÜ LAB • ASTRO MODE","assetType":"PLANNED_PRODUCT","state":"PLANNED","productionOrder":"AFTER_ARTIST_MANAGER","canonicalRepository":null,"rule":"Do not create or move implementation until Labory foundation and Astra acceptance are PASS; assign canonical repository when production starts."},
+    {"asset":"Adil Pay","knownRepositoryRecord":"engurulabory/adil-pay-kanit-web","assetType":"PLANNED_PRODUCT","state":"PLANNED","productionOrder":"AFTER_ARTIST_MANAGER","canonicalRepository":null,"rule":"The earlier repository record is retained as evidence; productization starts only after Labory foundation and Astra acceptance are PASS, then canonical source ownership is explicitly assigned."}
   ],
   "currentTopology": {
     "controlPlane": ["Engurulaboratuvari"],
     "products": ["enguru-website-factory","artist-manager-ai"],
+    "plannedProducts": ["ENGÜRÜ LAB • ASTRO MODE","Adil Pay"],
     "productCores": ["autonomous-economic-core","donecheck","shift-core-api"],
     "cores": ["donecheck-core-foundation"],
     "releaseMirrors": ["enguru-builder-release"]
   },
+  "productionSequence": [
+    "LABORY_FOUNDATION_VERIFIED_FINISH",
+    "ASTRA_MAC_RUNTIME",
+    "ASTRA_ACCEPTANCE_TEST",
+    "ENGURU_BUILDER",
+    "ARTIST_MANAGER_AI",
+    "ASTRO_MODE_AND_ADIL_PAY_QUEUE"
+  ],
   "acceptance": {
     "currentInventoryAligned": true,
     "canonicalRolesRecorded": true,
-    "historicalAssetsExplicit": true,
-    "unregisteredConceptsExplicit": true,
+    "plannedProductsExplicit": true,
     "securityFleetComplete": false,
     "stewardDriftCheckCurrent": false,
     "operationalSimplicityVerified": false,
     "mapState": "HOLD"
   },
-  "nextAction": "Close Security Fleet v1.2 across all governed repositories, refresh Steward drift evidence, then run Map/Repository Order DoneCheck against this v2 snapshot."
+  "nextAction": "Finish ENGÜRÜ Labory Control Plane: close Security Fleet, Steward drift evidence, repository order and operational simplicity; only then begin Astra Mac runtime and acceptance testing."
 }
