@@ -20,20 +20,48 @@ QUOTED_SECRET = re.compile(
 DOTENV_SECRET = re.compile(
     rf"(?im)^\s*(?:export\s+)?[A-Z0-9_]*{SECRET_NAME}[A-Z0-9_]*\s*=\s*(?!<SECRET>|REDACTED|CHANGE_ME|\$\{{)([^\s#]{{12,}})\s*(?:#.*)?$"
 )
+SYMBOLIC_ENV_NAME = re.compile(r"^[A-Z][A-Z0-9_]{5,}$")
+NON_PROD_GENERIC_DIRS = {"test", "tests", "__tests__", "docs", "examples", "fixtures", "fixture"}
+ENV_EXAMPLE_SUFFIXES = (".example", ".sample", ".template")
 SKIP_DIRS = {".git", "node_modules", ".next", "dist", "build", "coverage", ".venv", "venv"}
 MAX_BYTES = 1_000_000
 
+
 def fail(reason: str, evidence=None) -> int:
-    print(json.dumps({"gate":"ENGURU_IP_MODEL_TRUST_FLEET_V1_1","state":"BLOCKED","reason":reason,"evidence":evidence or []}, ensure_ascii=False))
+    print(json.dumps({"gate":"ENGURU_IP_MODEL_TRUST_FLEET_V1_2","state":"BLOCKED","reason":reason,"evidence":evidence or []}, ensure_ascii=False))
     return 3
 
-def secret_hits(path: Path, text: str) -> list[str]:
-    hits = [name for name, pattern in KNOWN_SECRET_PATTERNS.items() if pattern.search(text)]
-    if QUOTED_SECRET.search(text): hits.append("hardcoded_quoted_secret")
+
+def is_fixture_surface(path: Path) -> bool:
+    return any(part.lower() in NON_PROD_GENERIC_DIRS for part in path.parts)
+
+
+def is_real_env_file(path: Path) -> bool:
     name = path.name.lower()
-    if (name == ".env" or name.startswith(".env.") or path.suffix.lower() == ".env") and DOTENV_SECRET.search(text):
+    if any(name.endswith(suffix) for suffix in ENV_EXAMPLE_SUFFIXES):
+        return False
+    return name == ".env" or name.startswith(".env.") or path.suffix.lower() == ".env"
+
+
+def secret_hits(path: Path, text: str) -> list[str]:
+    # Known credential formats are always fail-closed, including tests/docs/examples.
+    hits = [name for name, pattern in KNOWN_SECRET_PATTERNS.items() if pattern.search(text)]
+
+    # Generic literals are only treated as leaks on production/source surfaces.
+    if not is_fixture_surface(path):
+        for match in QUOTED_SECRET.finditer(text):
+            value = match.group(2).strip()
+            if SYMBOLIC_ENV_NAME.fullmatch(value):
+                continue
+            hits.append("hardcoded_quoted_secret")
+            break
+
+    # Example/sample/template env files document names/placeholders and are not secrets.
+    if is_real_env_file(path) and DOTENV_SECRET.search(text):
         hits.append("dotenv_secret_assignment")
+
     return sorted(set(hits))
+
 
 def main() -> int:
     if not MANIFEST.exists(): return fail("missing_manifest")
@@ -56,7 +84,7 @@ def main() -> int:
         for pattern_name in secret_hits(path, text):
             hits.append({"path":rel,"pattern":pattern_name})
     if hits: return fail("secret_zero_violation", hits[:50])
-    print(json.dumps({"gate":"ENGURU_IP_MODEL_TRUST_FLEET_V1_1","state":"PASS","repository":data["repository"],"defaultIpClass":data["defaultIpClass"],"filesScanned":"repository_text_files","secretZero":"PASS"}, ensure_ascii=False))
+    print(json.dumps({"gate":"ENGURU_IP_MODEL_TRUST_FLEET_V1_2","state":"PASS","repository":data["repository"],"defaultIpClass":data["defaultIpClass"],"filesScanned":"repository_text_files","secretZero":"PASS"}, ensure_ascii=False))
     return 0
 
 if __name__ == "__main__": sys.exit(main())
