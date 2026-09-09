@@ -93,9 +93,11 @@
     {"coreId":"shift-core","coreName":"Shift Core™","repository":"engurulabory/shift-core-api","classification":"PRODUCT_CORE","state":"HOLD","publicVisible":false}
   ],
   "cores": [
-    {"coreId":"donecheck-core-foundation","coreName":"DoneCheck™ Controlled Development Source","repository":"engurulabory/donecheck-core-foundation","classification":"CORE","state":"PASS","publicVisible":false},
-    {"coreId":"closed-loop-production-core","coreName":"ENGÜRÜ CLOSED-LOOP PRODUCTION CORE™ v0.1","repository":"engurulabory/Engurulaboratuvari","path":"governance/ENGURU_CLOSED_LOOP_PRODUCTION_CORE_V0_1.md","classification":"CORE","state":"PASS","publicVisible":false,"legacyAliases":["Akıllı Üretim Çekirdeği"]},
-    {"coreId":"language-governance","coreName":"ENGÜRÜ Language Governance™","repository":"engurulabory/Engurulaboratuvari","path":"governance/ENGURU_CLOSED_LOOP_PRODUCTION_CORE_V0_1.md","classification":"GOVERNANCE","state":"PASS","publicVisible":false,"legacyAliases":["Karar ve Dil Rehberi"]}
+    {"coreId":"donecheck-core-foundation","coreName":"DoneCheck™ Controlled Development Source","repository":"engurulabory/donecheck-core-foundation","classification":"CORE","state":"PASS","publicVisible":false}
+  ],
+  "internalCapabilities": [
+    {"capabilityId":"closed-loop-production-core","capabilityName":"ENGÜRÜ CLOSED-LOOP PRODUCTION CORE™ v0.1","classification":"CORE_CAPABILITY","canonicalPath":"governance/ENGURU_CLOSED_LOOP_PRODUCTION_CORE_V0_1.md","state":"PASS","publicVisible":false,"legacyAliases":["Akıllı Üretim Çekirdeği"]},
+    {"capabilityId":"language-governance","capabilityName":"ENGÜRÜ Language Governance™","classification":"GOVERNANCE_CAPABILITY","canonicalPath":"governance/ENGURU_CLOSED_LOOP_PRODUCTION_CORE_V0_1.md","state":"PASS","publicVisible":false,"legacyAliases":["Karar ve Dil Rehberi"]}
   ],
   "releaseMirrors": [
     {"id":"enguru-builder-release","repository":"engurulabory/enguru-builder-release","classification":"RELEASE_MIRROR","state":"HOLD","source":"engurulabory/enguru-website-factory","publicVisible":false}
