@@ -30,7 +30,8 @@ class GateTests(unittest.TestCase):
         self.assertEqual(result["reason"], "RESTRICTED_CLASS")
 
     def test_secret_zero_blocks_even_public_class(self):
-        result = gate.decision("local-self-hosted", "T0", "api_key=abcdefghijklmnop")
+        synthetic_secret = "api_key=" + ("a" * 16)
+        result = gate.decision("local-self-hosted", "T0", synthetic_secret)
         self.assertEqual(result["state"], "BLOCKED")
         self.assertEqual(result["reason"], "SECRET_ZERO_RULE")
 

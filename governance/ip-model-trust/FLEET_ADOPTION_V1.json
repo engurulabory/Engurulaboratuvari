@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.0",
+  "state": "HOLD",
+  "policy": "ENGURU_IP_MODEL_TRUST_GATE_V1",
+  "scope": "8 currently accessible ENGURU Labory repositories",
+  "requiredControls": ["manifest", "secret_zero_scan", "ci_gate", "human_threshold_for_t4_cloud"],
+  "repositories": [
+    {"repository":"engurulabory/Engurulaboratuvari","defaultIpClass":"T3","adoption":"IN_PROGRESS"},
+    {"repository":"engurulabory/enguru-website-factory","defaultIpClass":"T4","adoption":"PENDING"},
+    {"repository":"engurulabory/autonomous-economic-core","defaultIpClass":"T4","adoption":"PENDING"},
+    {"repository":"engurulabory/donecheck-core-foundation","defaultIpClass":"T4","adoption":"PENDING"},
+    {"repository":"engurulabory/donecheck","defaultIpClass":"T3","adoption":"PENDING"},
+    {"repository":"engurulabory/shift-core-api","defaultIpClass":"T3","adoption":"PENDING"},
+    {"repository":"engurulabory/artist-manager-ai","defaultIpClass":"T3","adoption":"PENDING"},
+    {"repository":"engurulabory/enguru-builder-release","defaultIpClass":"T3","adoption":"PENDING"}
+  ],
+  "passCondition": "every currently accessible governed repository has merged manifest + green fleet CI"
+}
