@@ -1,36 +1,32 @@
 # ENGÜRÜ LAB™ / ENGÜRÜ LABORY™
 
-**Ürün hakikati, çekirdek haritası ve doğrulanmış yayın karargâhı.**
+**Canonical control plane for product truth, reusable cores, evidence, security and verified publication.**
 
-Bu depo Engürü Lab ürün portföyünün ve Engürü Labory çalışma haritasının canonical koordinasyon yüzeyidir.
+## STATE
+**HOLD — Step 1: ENGÜRÜ Labory Verified Finish.**
 
-## Ana ilke
+A PASS is issued only when repository truth, Product/Core Map, Repository Order, Security Fleet, Steward, operational simplicity, DoneCheck™ and Human Threshold™ are evidence-backed.
 
-**GitHub = ürün hakikati.**  
-**engurulab.com = doğrulanmış ürün vitrini.**
+## Start here
+1. `governance/ENGURU_SYSTEM_TRUTH_V1.json` — single machine-readable system truth.
+2. `governance/ENGURU_PRODUCT_CORE_MAP_V2.json` — current products, cores, release mirrors and planned products.
+3. `site/product-registry.json` — publication-facing registry derived from the map.
+4. `WORKLIST.md` — locked execution order and remaining work.
+5. `evidence/LABORY_FINAL_READINESS_V1.json` — current final-gate evidence.
 
-Bir fikir, repo veya taslak tek başına aktif ürün sayılmaz. Kamuya açık ürün iddiası; repository truth, Evidence, DoneCheck™, Verified Finish, Repository Steward™ tutarlılığı ve gerekli yerde Human Threshold™ ile desteklenmelidir.
+## Daily view
+**Products / Cores / Evidence / Archive**
 
-## Çalışma hattı
+Governance, Security, Steward and DoneCheck™ operate behind these surfaces.
 
-`Product repositories → ENGÜRÜ PRODUCT & CORE MAP™ → Repository Order Pass™ → verified product registry → Readdy/site render → browser evidence → DoneCheck™ → Human Threshold → Verified publication`
+## Verified flow
+`Repository Truth → Product/Core Map → Repository Order → Security Fleet → Steward → Evidence → DoneCheck™ → Human Threshold™ → Verified Finish`
 
-## Başlangıç belgeleri
+## Locked execution order
+`Labory Verified Finish → Astra Mac Runtime → Astra Acceptance Test → ENGÜRÜ Builder™ → Artist Manager AI™ → Astro Mode / Adil Pay`
 
-- `governance/ENGURU_PRODUCT_CORE_MAP.md`
-- `governance/REPOSITORY_ORDER_PASS.md`
-- `site/ENGURULAB_SITE_BRIDGE.md`
-- `site/product-registry.json`
-- `WORKLIST.md`
+## Safety boundary
+High-impact move/delete/merge/rename, publication, payment and other irreversible actions remain Human Threshold™ decisions. Secret Zero™ and IP & Model Trust Gate™ are fail-closed.
 
-## Kilit güvenlik sınırı
-
-Product & Core Map tamamlanmadan büyük repo taşıma, silme, birleştirme, yeniden adlandırma veya ürün emekliliği yapılmaz.
-
-## Mevcut yayın
-
-`engurulab.com` şu anda Readdy üzerinden yayındadır ve migration tamamlanana kadar legacy canlı yüzey olarak korunur. Yeni katalog doğrulanmadan mevcut site körlemesine boşaltılmaz veya yönlendirilmez.
-
-## Governance uyumu
-
-Bu repo mevcut ENGÜRÜ Labory Control Plane™ ve `ENGURU_LABORY_CONTROL_PLANE_V1` sözleşmesini referans alır; mevcut canonical contract Human Threshold kararı olmadan kopyalanmaz veya taşınmaz.
+## Public surface
+`engurulab.com` remains the legacy Readdy publication until repository-truth replacement and cutover evidence are PASS.
