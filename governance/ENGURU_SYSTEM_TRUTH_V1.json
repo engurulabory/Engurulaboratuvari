@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "1.0",
+  "generatedAt": "2026-09-09",
+  "authority": "ENGÜRÜ Labory Control Plane",
+  "state": "HOLD",
+  "truthRule": "A system-level PASS requires current repository inventory, explicit product/core ownership, security fleet evidence, Steward evidence, operational simplicity criteria and DoneCheck/Human Threshold closure.",
+  "currentAccessibleRepositoryCount": 8,
+  "currentAccessibleRepositories": [
+    "engurulabory/Engurulaboratuvari",
+    "engurulabory/enguru-website-factory",
+    "engurulabory/enguru-builder-release",
+    "engurulabory/autonomous-economic-core",
+    "engurulabory/donecheck-core-foundation",
+    "engurulabory/donecheck",
+    "engurulabory/shift-core-api",
+    "engurulabory/artist-manager-ai"
+  ],
+  "historicalOrUnresolved": [
+    {
+      "asset": "engurulabory/adil-pay-kanit-web",
+      "state": "HOLD",
+      "reason": "Present in 2026-08-25 inventory but not present in the current accessible repository set; retain historical record and require evidence before archive/delete/reclassification."
+    },
+    {
+      "asset": "ENGÜRÜ LAB • ASTRO MODE",
+      "state": "HOLD",
+      "classification": "KNOWN_UNREGISTERED_CONCEPT",
+      "reason": "Known concept without verified canonical GitHub repository/path ownership; no code move or repository creation is authorized by this record."
+    }
+  ],
+  "systemDomains": {
+    "architecture": {"target": 100, "state": "PASS", "criterion": "Canonical control plane + bounded product execution planes + reusable shared governance."},
+    "governanceEvidence": {"target": 100, "state": "PASS", "criterion": "State → claim → evidence → next action; DoneCheck and Human Threshold retained."},
+    "productCoreSeparation": {"target": 100, "state": "HOLD", "criterion": "Every active asset has exactly one canonical owner/type; transitional control-plane copies reduce to adapters when evidence permits."},
+    "repositoryOrder": {"target": 100, "state": "HOLD", "criterion": "Current inventory equals accessible repository truth; stale/historical assets are explicit and non-destructive."},
+    "security": {"target": 100, "state": "HOLD", "criterion": "All governed repos adopt pinned IP & Model Trust Fleet and produce green evidence; real secret findings remain fail-closed."},
+    "automationSteward": {"target": 100, "state": "HOLD", "criterion": "Steward inventories, detects drift, proposes safe metadata fixes, and requires Human Threshold for destructive/high-impact actions."},
+    "operationalSimplicity": {"target": 100, "state": "HOLD", "criterion": "A human can answer Products / Cores / Runtime / Evidence / State from one canonical surface without traversing duplicate governance layers."}
+  },
+  "acceptanceSequence": [
+    "Repository Truth",
+    "Product & Core Map",
+    "Repository Order",
+    "Security Fleet",
+    "Steward Drift Check",
+    "Operational Simplicity",
+    "DoneCheck",
+    "Human Threshold",
+    "Verified Finish"
+  ]
+}
