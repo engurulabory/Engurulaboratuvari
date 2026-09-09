@@ -1,20 +1,38 @@
 {
-  "schemaVersion": "1.0",
+  "schemaVersion": "1.1",
   "generatedAt": "2026-09-09",
   "state": "HOLD",
-  "claim": "ENGÜRÜ Labory repository has been structurally hardened and is awaiting exact-PR CI evidence before Verified Finish.",
+  "claim": "ENGÜRÜ Labory repository hardening is structurally PASS on PR #16 exact head; final system closure remains HOLD only for platform-level required status checks, first scheduled Steward commissioning evidence, fleet-wide product-repo adoption, and Human Threshold™ closure.",
+  "exactPrEvidence": {
+    "pullRequest": 16,
+    "headSha": "c324680ab4682179ba2eb4fb2a932c2e0d9137c6",
+    "laboryFinalGateRunId": 34371413490,
+    "laboryFinalGateJobId": 102533288143
+  },
   "gates": {
     "repositoryTruth": "PASS",
     "productCoreMapV2": "PASS",
     "registryConsistency": "PASS",
     "repositoryOrder": "PASS",
     "operationalSimplicity": "PASS",
-    "securityFleetV1_2": "HOLD",
-    "ipModelTrustTests": "HOLD",
-    "stewardTests": "HOLD",
-    "laboryFinalGateCI": "HOLD",
-    "scheduledStewardCommissioning": "HOLD",
+    "securityFleetV1_2": "PASS",
+    "ipModelTrustTests": "PASS",
+    "stewardTests": "PASS",
+    "laboryFinalGateCI": "PASS",
+    "mainProtectionPrRequired": "PASS",
+    "mainProtectionDeletionBlocked": "PASS",
+    "mainProtectionForcePushBlocked": "PASS",
+    "mainProtectionRequiredStatusChecks": "HOLD",
+    "scheduledStewardConfigured": "PASS",
+    "scheduledStewardFirstObservedRun": "HOLD",
+    "fleetWideProductRepoAdoption": "HOLD",
     "humanThreshold": "HOLD"
+  },
+  "currentPlatformGap": {
+    "rulesetId": 22452401,
+    "rulesetName": "main-protection",
+    "finding": "Ruleset is active and requires pull requests, blocks deletion and non-fast-forward updates, but does not currently require named status checks before merge.",
+    "requiredTarget": ["ENGURU Labory Final Gate / labory-final-gate", "IP Model Trust Gate / test-gate", "IP Model Trust Fleet / fleet-gate"]
   },
   "evidencePaths": [
     "governance/ENGURU_SYSTEM_TRUTH_V1.json",
@@ -25,5 +43,5 @@
     "steward/tests.mjs",
     ".github/workflows/labory-final-gate.yml"
   ],
-  "nextAction": "Obtain green GitHub Actions evidence for PR #16 head, then update this record from observed CI results."
+  "nextAction": "Merge PR #16 after the updated exact head is green; then require the three named status checks in main-protection and observe one scheduled/manual Steward cycle before ENGURU_LABORY_VERIFIED_FINISH Human Threshold closure."
 }
