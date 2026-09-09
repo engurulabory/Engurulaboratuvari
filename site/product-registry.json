@@ -1,11 +1,12 @@
 {
-  "schemaVersion": "1.1",
+  "schemaVersion": "1.2",
   "registryState": "HOLD",
   "generatedBy": "Repository Steward™",
   "sourceOfTruth": "governance/ENGURU_PRODUCT_CORE_MAP_V2.json",
   "legacyAlignmentRef": "site/LEGACY_PRODUCT_ALIGNMENT_V1.json",
+  "trustProductizationRef": "governance/ENGURU_TRUST_PRODUCTIZATION_V1.md",
   "publicationPolicy": "verified-only",
-  "catalogRule": "The public site renders canonical products, planned products, core technologies and archive/research as separate classes. Product counts never include cores, release mirrors or archived legacy concepts.",
+  "catalogRule": "The public site renders canonical products, planned products, product candidates, core technologies and archive/research as separate classes. Product counts never include candidates, cores, release mirrors or archived legacy concepts.",
   "legacySite": {
     "url": "https://engurulab.com",
     "surface": "Readdy",
@@ -61,30 +62,37 @@
     }
   ],
   "plannedProducts": [
+    {"productId":"astro-mode","productName":"ENGÜRÜ LAB • ASTRO MODE","publicTitleTR":"ENGÜRÜ LAB • ASTRO MODE","publicTitleEN":"ENGÜRÜ LAB • ASTRO MODE","classification":"PLANNED_PRODUCT","state":"PLANNED","publicVisible":false,"canonicalRepository":null,"productionOrder":"AFTER_ARTIST_MANAGER","legacyAliases":["AstroMode"]},
+    {"productId":"adil-pay","productName":"Adil Pay","publicTitleTR":"Adil Pay","publicTitleEN":"Adil Pay","classification":"PLANNED_PRODUCT","state":"PLANNED","publicVisible":false,"canonicalRepository":null,"knownRepositoryRecord":"engurulabory/adil-pay-kanit-web","productionOrder":"AFTER_ARTIST_MANAGER","legacyAliases":[]}
+  ],
+  "productCandidates": [
     {
-      "productId": "astro-mode",
-      "productName": "ENGÜRÜ LAB • ASTRO MODE",
-      "publicTitleTR": "ENGÜRÜ LAB • ASTRO MODE",
-      "publicTitleEN": "ENGÜRÜ LAB • ASTRO MODE",
-      "classification": "PLANNED_PRODUCT",
-      "state": "PLANNED",
-      "publicVisible": false,
-      "canonicalRepository": null,
-      "productionOrder": "AFTER_ARTIST_MANAGER",
-      "legacyAliases": ["AstroMode"]
+      "productId":"mayashield",
+      "productName":"MayaShield™",
+      "classification":"PRODUCT_CANDIDATE",
+      "state":"HOLD",
+      "publicVisible":false,
+      "canonicalRepository":null,
+      "productizationOrder":"AFTER_ARTIST_MANAGER",
+      "candidatePurposeTR":"AI/model kullanımı sırasında kurum bilgisini, fikrî mülkiyeti ve hassas bağlamı koruyan güvenlik ürünü adayı.",
+      "candidatePurposeEN":"A security product candidate for protecting organizational information, intellectual property and sensitive context during AI/model use.",
+      "reuseContract":["IP & Model Trust Gate™","Secret Zero™","Security Fleet™","Human Threshold™","DoneCheck™","Evidence"],
+      "entryGate":["productIntake","demandProof","runtimeContract","securityReuseEvidence"],
+      "ctaState":"HOLD"
     },
     {
-      "productId": "adil-pay",
-      "productName": "Adil Pay",
-      "publicTitleTR": "Adil Pay",
-      "publicTitleEN": "Adil Pay",
-      "classification": "PLANNED_PRODUCT",
-      "state": "PLANNED",
-      "publicVisible": false,
-      "canonicalRepository": null,
-      "knownRepositoryRecord": "engurulabory/adil-pay-kanit-web",
-      "productionOrder": "AFTER_ARTIST_MANAGER",
-      "legacyAliases": []
+      "productId":"safety-decision-layer",
+      "productName":"Safety Decision Layer™",
+      "classification":"DEVELOPER_PRODUCT_CANDIDATE",
+      "state":"HOLD",
+      "publicVisible":false,
+      "canonicalRepository":null,
+      "productizationOrder":"AFTER_MAYASHIELD_DEMAND_PROOF",
+      "candidatePurposeTR":"AI ajanı veya uygulama eylemleri için policy, risk ve authority kararı üreten gelecekteki API/SDK ürünü adayı.",
+      "candidatePurposeEN":"A future API/SDK product candidate that produces policy, risk and authority decisions for AI-agent or application actions.",
+      "reuseContract":["MİZAN™","Human Threshold™","IP & Model Trust Gate™","Policy/Evidence patterns"],
+      "entryGate":["mayashieldFieldEvidence","developerDemandProof","apiContract","reuseEvidence"],
+      "ctaState":"HOLD"
     }
   ],
   "productCores": [
@@ -97,7 +105,10 @@
   ],
   "internalCapabilities": [
     {"capabilityId":"closed-loop-production-core","capabilityName":"ENGÜRÜ CLOSED-LOOP PRODUCTION CORE™ v0.1","classification":"CORE_CAPABILITY","canonicalPath":"governance/ENGURU_CLOSED_LOOP_PRODUCTION_CORE_V0_1.md","state":"PASS","publicVisible":false,"legacyAliases":["Akıllı Üretim Çekirdeği"]},
-    {"capabilityId":"language-governance","capabilityName":"ENGÜRÜ Language Governance™","classification":"GOVERNANCE_CAPABILITY","canonicalPath":"governance/ENGURU_CLOSED_LOOP_PRODUCTION_CORE_V0_1.md","state":"PASS","publicVisible":false,"legacyAliases":["Karar ve Dil Rehberi"]}
+    {"capabilityId":"language-governance","capabilityName":"ENGÜRÜ Language Governance™","classification":"GOVERNANCE_CAPABILITY","canonicalPath":"governance/ENGURU_CLOSED_LOOP_PRODUCTION_CORE_V0_1.md","state":"PASS","publicVisible":false,"legacyAliases":["Karar ve Dil Rehberi"]},
+    {"capabilityId":"trustspine","capabilityName":"TRUSTSPINE™","classification":"TRUST_BACKBONE_CAPABILITY","canonicalPath":"governance/ENGURU_TRUST_PRODUCTIZATION_V1.md","state":"HOLD","publicVisible":false},
+    {"capabilityId":"mizan","capabilityName":"MİZAN™","classification":"GOVERNANCE_CAPABILITY","canonicalPath":"governance/ENGURU_TRUST_PRODUCTIZATION_V1.md","state":"HOLD","publicVisible":false},
+    {"capabilityId":"maya-trust","capabilityName":"Maya Trust™","classification":"ASSURANCE_SURFACE","canonicalPath":"governance/ENGURU_TRUST_PRODUCTIZATION_V1.md","state":"HOLD","publicVisible":false}
   ],
   "releaseMirrors": [
     {"id":"enguru-builder-release","repository":"engurulabory/enguru-builder-release","classification":"RELEASE_MIRROR","state":"HOLD","source":"engurulabory/enguru-website-factory","publicVisible":false}
@@ -107,7 +118,7 @@
     "publicVisible": false,
     "rule": "Archived legacy concepts remain evidence/history and are not counted as active or planned products unless re-entered through canonical product intake."
   },
-  "publicSections": ["Verified Products", "In Development", "Planned Products", "Core Technologies", "Research / Archive", "Trust & Evidence"],
+  "publicSections": ["Verified Products", "In Development", "Planned Products", "Product Candidates", "Core Technologies", "Research / Archive", "Trust & Evidence"],
   "publicationGate": {
     "requires": ["canonicalProductRecord","repositoryVerified","productStateVerified","doneCheckEvidence","verifiedFinishEvidence","productionUrlWhenApplicable","humanThresholdClear","stewardRegistryConsistency"],
     "failClosed": true
