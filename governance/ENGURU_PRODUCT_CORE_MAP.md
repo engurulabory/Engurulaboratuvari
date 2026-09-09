@@ -51,6 +51,28 @@ Initial consumers:
 
 Ownership rule: Labory owns the shared contract; product repositories keep domain logic, product-local evidence and observation adapters. No product logic move/delete is authorized by this registration.
 
+## Shared governance registration — 2026-09-09
+
+### ENGÜRÜ IP & MODEL TRUST GATE™ v1.0
+Classification: GOVERNANCE / SECURITY ENFORCEMENT CORE
+Canonical policy: `governance/ip-model-trust/POLICY.md`
+Canonical registry: `governance/ip-model-trust/MODEL_REGISTRY.json`
+Executable gate: `tools/ip_model_trust_gate.py`
+CI evidence surface: `.github/workflows/ip-model-trust-gate.yml`
+State: IMPLEMENTED / CI VERIFICATION PENDING
+
+Purpose:
+`ASSET CLASSIFICATION → MODEL TRUST CHECK → CONTEXT MINIMIZATION → SANITIZATION → ACCESS DECISION → SESSION EVIDENCE → OUTPUT VERIFICATION → HUMAN THRESHOLD™ → VERIFIED FINISH`
+
+Initial consumers:
+- ENGÜRÜ Builder™ — model/agent preflight;
+- Autonomous Economic Core™ — strategy/revenue context preflight;
+- ZEKÜ PRIME — specialist worker context allocation;
+- Repository Steward™ — provider/policy drift audit;
+- DoneCheck™ — decision-envelope evidence input.
+
+Ownership rule: Labory owns the canonical policy, registry and enforcement contract. Product repositories consume the gate through adapters; they do not fork policy semantics without an explicit governance decision.
+
 ## Control-plane placement finding
 Repository Steward™ and Labory Operating Contract™ currently exist inside `engurulabory/enguru-website-factory` even though their scope is cross-product Labory governance.
 
@@ -78,7 +100,8 @@ ENGÜRÜ Labory should own:
 - Labory operating/control-plane contract after compatibility migration is verified;
 - cross-product governance pointers and repository health state;
 - site/catalog bridge and verified publication inventory;
-- ENGÜRÜ CLOSED-LOOP PRODUCTION CORE™ canonical specification and version governance.
+- ENGÜRÜ CLOSED-LOOP PRODUCTION CORE™ canonical specification and version governance;
+- ENGÜRÜ IP & MODEL TRUST GATE™ canonical policy, registry and enforcement contract.
 
 ## Existing governance contract transition
 Current production reference remains:
@@ -98,7 +121,8 @@ Repository Steward™ must still:
 6. verify Builder release-mirror relationship;
 7. audit product-local Labory manifests;
 8. produce final canonical topology;
-9. verify Closed-Loop Core adapters do not duplicate product-local logic.
+9. verify Closed-Loop Core adapters do not duplicate product-local logic;
+10. verify IP & Model Trust Gate provider registry freshness and product adapter coverage.
 
 ## Acceptance gate
 Map may move to PASS only when:

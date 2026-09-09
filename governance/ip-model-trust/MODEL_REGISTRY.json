@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "default_policy": {
+    "unknown_provider": "BLOCKED",
+    "unknown_model": "HOLD",
+    "max_cloud_ip_class": "T2",
+    "restricted_class": "T5"
+  },
+  "providers": {
+    "local-self-hosted": {
+      "policy_status": "PASS",
+      "trust_level": "A",
+      "deployment": "local",
+      "max_ip_class": "T4",
+      "human_threshold_classes": ["T4"],
+      "notes": "Local runtime; secrets remain blocked by Secret Zero Rule™."
+    },
+    "openai-cloud": {
+      "policy_status": "HOLD",
+      "trust_level": "C",
+      "deployment": "cloud",
+      "max_ip_class": "T2",
+      "human_threshold_classes": ["T3", "T4"],
+      "notes": "Provider terms must be re-verified before widening access."
+    },
+    "anthropic-cloud": {
+      "policy_status": "HOLD",
+      "trust_level": "C",
+      "deployment": "cloud",
+      "max_ip_class": "T2",
+      "human_threshold_classes": ["T3", "T4"],
+      "notes": "Provider terms must be re-verified before widening access."
+    },
+    "github-cloud-agent": {
+      "policy_status": "HOLD",
+      "trust_level": "C",
+      "deployment": "cloud",
+      "max_ip_class": "T2",
+      "human_threshold_classes": ["T3", "T4"],
+      "notes": "Repository permission scope and provider terms must be verified before widening access."
+    },
+    "other-cloud": {
+      "policy_status": "HOLD",
+      "trust_level": "D",
+      "deployment": "cloud",
+      "max_ip_class": "T1",
+      "human_threshold_classes": ["T2", "T3", "T4"],
+      "notes": "Fail-closed generic external provider profile."
+    }
+  }
+}
