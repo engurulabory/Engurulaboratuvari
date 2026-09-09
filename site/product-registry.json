@@ -1,35 +1,111 @@
 {
-  "schemaVersion": "1.0",
+  "schemaVersion": "1.1",
   "registryState": "HOLD",
   "generatedBy": "Repository Steward™",
   "sourceOfTruth": "governance/ENGURU_PRODUCT_CORE_MAP_V2.json",
+  "legacyAlignmentRef": "site/LEGACY_PRODUCT_ALIGNMENT_V1.json",
   "publicationPolicy": "verified-only",
+  "catalogRule": "The public site renders canonical products, planned products, core technologies and archive/research as separate classes. Product counts never include cores, release mirrors or archived legacy concepts.",
   "legacySite": {
     "url": "https://engurulab.com",
     "surface": "Readdy",
     "state": "LIVE_LEGACY",
     "migrationState": "HOLD",
-    "note": "Legacy surface remains until repository-truth replacement is verified."
+    "observedCatalogState": "STALE",
+    "note": "Legacy surface remains live until an ENGÜRÜ Builder replacement is generated from this registry and passes browser QA, DoneCheck and Human Threshold."
   },
   "products": [
-    {"productId":"enguru-builder","productName":"ENGÜRÜ Builder™","repository":"engurulabory/enguru-website-factory","classification":"PRODUCT","productState":"development","publicationState":"HOLD","evidenceState":"HOLD","publicVisible":false,"productionOrder":1},
-    {"productId":"artist-manager-ai","productName":"Artist Manager AI™","repository":"engurulabory/artist-manager-ai","classification":"PRODUCT","productState":"development","publicationState":"HOLD","evidenceState":"HOLD","publicVisible":false,"productionOrder":2}
+    {
+      "productId": "enguru-builder",
+      "productName": "ENGÜRÜ Builder™",
+      "publicTitleTR": "ENGÜRÜ Builder™",
+      "publicTitleEN": "ENGÜRÜ Builder™",
+      "shortDescriptionTR": "Onaylanmış bir fikri planlama, üretim, test, kanıt ve yayın zinciriyle web ürününe dönüştüren doğrulama odaklı üretim sistemi.",
+      "shortDescriptionEN": "An evidence-driven production system that turns an approved idea into a web product through planning, build, testing, evidence and publication gates.",
+      "publicCopyState": "DRAFT",
+      "repository": "engurulabory/enguru-website-factory",
+      "classification": "PRODUCT",
+      "productState": "development",
+      "publicationState": "HOLD",
+      "evidenceState": "HOLD",
+      "publicVisible": false,
+      "productionUrl": null,
+      "evidenceRef": null,
+      "lastVerifiedAt": null,
+      "pricingState": "UNVERIFIED",
+      "ctaState": "HOLD",
+      "productionOrder": 1,
+      "legacyAliases": []
+    },
+    {
+      "productId": "artist-manager-ai",
+      "productName": "Artist Manager AI™",
+      "publicTitleTR": "Artist Manager AI™",
+      "publicTitleEN": "Artist Manager AI™",
+      "shortDescriptionTR": "Sanatçılar ve menajerler için sanatçı, konser, eser, gelir, fırsat, belge ve platform analitiğini tek çalışma alanında yöneten kariyer kontrol masası.",
+      "shortDescriptionEN": "A career control desk for artists and managers covering artists, concerts, works, revenue, opportunities, documents and platform analytics in one workspace.",
+      "publicCopyState": "DRAFT",
+      "repository": "engurulabory/artist-manager-ai",
+      "classification": "PRODUCT",
+      "productState": "development",
+      "publicationState": "HOLD",
+      "evidenceState": "HOLD",
+      "publicVisible": false,
+      "productionUrl": null,
+      "evidenceRef": "README.md",
+      "lastVerifiedAt": null,
+      "pricingState": "UNVERIFIED",
+      "ctaState": "HOLD",
+      "productionOrder": 2,
+      "legacyAliases": ["Menajer Zekî"]
+    }
   ],
   "plannedProducts": [
-    {"productId":"astro-mode","productName":"ENGÜRÜ LAB • ASTRO MODE","classification":"PLANNED_PRODUCT","state":"PLANNED","canonicalRepository":null,"productionOrder":"AFTER_ARTIST_MANAGER"},
-    {"productId":"adil-pay","productName":"Adil Pay","classification":"PLANNED_PRODUCT","state":"PLANNED","canonicalRepository":null,"knownRepositoryRecord":"engurulabory/adil-pay-kanit-web","productionOrder":"AFTER_ARTIST_MANAGER"}
+    {
+      "productId": "astro-mode",
+      "productName": "ENGÜRÜ LAB • ASTRO MODE",
+      "publicTitleTR": "ENGÜRÜ LAB • ASTRO MODE",
+      "publicTitleEN": "ENGÜRÜ LAB • ASTRO MODE",
+      "classification": "PLANNED_PRODUCT",
+      "state": "PLANNED",
+      "publicVisible": false,
+      "canonicalRepository": null,
+      "productionOrder": "AFTER_ARTIST_MANAGER",
+      "legacyAliases": ["AstroMode"]
+    },
+    {
+      "productId": "adil-pay",
+      "productName": "Adil Pay",
+      "publicTitleTR": "Adil Pay",
+      "publicTitleEN": "Adil Pay",
+      "classification": "PLANNED_PRODUCT",
+      "state": "PLANNED",
+      "publicVisible": false,
+      "canonicalRepository": null,
+      "knownRepositoryRecord": "engurulabory/adil-pay-kanit-web",
+      "productionOrder": "AFTER_ARTIST_MANAGER",
+      "legacyAliases": []
+    }
   ],
   "productCores": [
-    {"coreId":"autonomous-economic-core","coreName":"AUTONOMOUS ECONOMIC CORE™","repository":"engurulabory/autonomous-economic-core","classification":"PRODUCT_CORE","state":"HOLD"},
-    {"coreId":"donecheck","coreName":"DoneCheck™ Public Working Core","repository":"engurulabory/donecheck","classification":"PRODUCT_CORE","state":"PASS"},
-    {"coreId":"shift-core","coreName":"Shift Core™","repository":"engurulabory/shift-core-api","classification":"PRODUCT_CORE","state":"HOLD"}
+    {"coreId":"autonomous-economic-core","coreName":"AUTONOMOUS ECONOMIC CORE™","repository":"engurulabory/autonomous-economic-core","classification":"PRODUCT_CORE","state":"HOLD","publicVisible":false},
+    {"coreId":"donecheck","coreName":"DoneCheck™ Public Working Core","repository":"engurulabory/donecheck","classification":"PRODUCT_CORE","state":"PASS","publicVisible":false},
+    {"coreId":"shift-core","coreName":"Shift Core™","repository":"engurulabory/shift-core-api","classification":"PRODUCT_CORE","state":"HOLD","publicVisible":false}
   ],
   "cores": [
-    {"coreId":"donecheck-core-foundation","coreName":"DoneCheck™ Controlled Development Source","repository":"engurulabory/donecheck-core-foundation","classification":"CORE","state":"PASS"}
+    {"coreId":"donecheck-core-foundation","coreName":"DoneCheck™ Controlled Development Source","repository":"engurulabory/donecheck-core-foundation","classification":"CORE","state":"PASS","publicVisible":false},
+    {"coreId":"closed-loop-production-core","coreName":"ENGÜRÜ CLOSED-LOOP PRODUCTION CORE™ v0.1","repository":"engurulabory/Engurulaboratuvari","path":"governance/ENGURU_CLOSED_LOOP_PRODUCTION_CORE_V0_1.md","classification":"CORE","state":"PASS","publicVisible":false,"legacyAliases":["Akıllı Üretim Çekirdeği"]},
+    {"coreId":"language-governance","coreName":"ENGÜRÜ Language Governance™","repository":"engurulabory/Engurulaboratuvari","path":"governance/ENGURU_CLOSED_LOOP_PRODUCTION_CORE_V0_1.md","classification":"GOVERNANCE","state":"PASS","publicVisible":false,"legacyAliases":["Karar ve Dil Rehberi"]}
   ],
   "releaseMirrors": [
-    {"id":"enguru-builder-release","repository":"engurulabory/enguru-builder-release","classification":"RELEASE_MIRROR","state":"HOLD","source":"engurulabory/enguru-website-factory"}
+    {"id":"enguru-builder-release","repository":"engurulabory/enguru-builder-release","classification":"RELEASE_MIRROR","state":"HOLD","source":"engurulabory/enguru-website-factory","publicVisible":false}
   ],
+  "legacyArchive": {
+    "source": "site/LEGACY_PRODUCT_ALIGNMENT_V1.json",
+    "publicVisible": false,
+    "rule": "Archived legacy concepts remain evidence/history and are not counted as active or planned products unless re-entered through canonical product intake."
+  },
+  "publicSections": ["Verified Products", "In Development", "Planned Products", "Core Technologies", "Research / Archive", "Trust & Evidence"],
   "publicationGate": {
     "requires": ["canonicalProductRecord","repositoryVerified","productStateVerified","doneCheckEvidence","verifiedFinishEvidence","productionUrlWhenApplicable","humanThresholdClear","stewardRegistryConsistency"],
     "failClosed": true
