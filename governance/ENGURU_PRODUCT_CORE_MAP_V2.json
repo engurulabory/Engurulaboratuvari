@@ -1,8 +1,8 @@
 {
-  "schemaVersion": "2.0",
+  "schemaVersion": "2.1",
   "generatedAt": "2026-09-09",
   "state": "HOLD",
-  "scope": "8 currently accessible engurulabory repositories plus explicit planned products",
+  "scope": "8 currently accessible engurulabory repositories plus explicit planned products and trust product candidates",
   "lockedRule": "No destructive repository move, delete, merge, rename or retirement before map PASS and Human Threshold where required.",
   "records": [
     {"repository":"engurulabory/Engurulaboratuvari","canonicalName":"ENGÜRÜ Labory Control Plane","assetType":"CONTROL_PLANE","owner":"ENGÜRÜ Labory","state":"PASS","role":"Canonical governance, Product/Core Map, Repository Order, Steward, Security Fleet, system truth."},
@@ -18,12 +18,23 @@
     {"asset":"ENGÜRÜ LAB • ASTRO MODE","assetType":"PLANNED_PRODUCT","state":"PLANNED","productionOrder":"AFTER_ARTIST_MANAGER","canonicalRepository":null,"rule":"Do not create or move implementation until Labory foundation and Astra acceptance are PASS; assign canonical repository when production starts."},
     {"asset":"Adil Pay","knownRepositoryRecord":"engurulabory/adil-pay-kanit-web","assetType":"PLANNED_PRODUCT","state":"PLANNED","productionOrder":"AFTER_ARTIST_MANAGER","canonicalRepository":null,"rule":"The earlier repository record is retained as evidence; productization starts only after Labory foundation and Astra acceptance are PASS, then canonical source ownership is explicitly assigned."}
   ],
+  "productCandidates": [
+    {"asset":"MayaShield™","assetType":"PRODUCT_CANDIDATE","state":"HOLD","canonicalRepository":null,"productizationOrder":"AFTER_ARTIST_MANAGER","reuseContract":"IP & Model Trust Gate + Secret Zero + Security Fleet + Human Threshold + DoneCheck + Evidence","rule":"Prepare intake and demand proof before creating a product repository or public sellable surface."},
+    {"asset":"Safety Decision Layer™","assetType":"DEVELOPER_PRODUCT_CANDIDATE","state":"HOLD","canonicalRepository":null,"productizationOrder":"AFTER_MAYASHIELD_DEMAND_PROOF","reuseContract":"MİZAN + Human Threshold + IP & Model Trust Gate + policy/evidence patterns","rule":"Independent API/SDK productization opens only after developer-demand and reuse evidence."}
+  ],
+  "trustCapabilities": [
+    {"asset":"TRUSTSPINE™","assetType":"TRUST_BACKBONE_CAPABILITY","state":"HOLD","canonicalPath":"governance/ENGURU_TRUST_PRODUCTIZATION_V1.md","role":"Connect Language Governance, IP Trust, Security, DoneCheck, Evidence, MİZAN, Human Threshold and Verified Finish."},
+    {"asset":"MİZAN™","assetType":"GOVERNANCE_CAPABILITY","state":"HOLD","canonicalPath":"governance/ENGURU_TRUST_PRODUCTIZATION_V1.md","role":"Evaluation and threshold logic that produces decision input for Human Threshold."},
+    {"asset":"Maya Trust™","assetType":"ASSURANCE_SURFACE","state":"HOLD","canonicalPath":"governance/ENGURU_TRUST_PRODUCTIZATION_V1.md","role":"Future public trust/evidence presentation surface; not a standalone SaaS at this stage."}
+  ],
   "currentTopology": {
     "controlPlane": ["Engurulaboratuvari"],
     "products": ["enguru-website-factory","artist-manager-ai"],
     "plannedProducts": ["ENGÜRÜ LAB • ASTRO MODE","Adil Pay"],
+    "productCandidates": ["MayaShield™","Safety Decision Layer™"],
     "productCores": ["autonomous-economic-core","donecheck","shift-core-api"],
     "cores": ["donecheck-core-foundation"],
+    "trustCapabilities": ["TRUSTSPINE™","MİZAN™","Maya Trust™"],
     "releaseMirrors": ["enguru-builder-release"]
   },
   "productionSequence": [
@@ -32,16 +43,19 @@
     "ASTRA_ACCEPTANCE_TEST",
     "ENGURU_BUILDER",
     "ARTIST_MANAGER_AI",
+    "TRUST_PRODUCT_CANDIDATE_INTAKE",
     "ASTRO_MODE_AND_ADIL_PAY_QUEUE"
   ],
   "acceptance": {
     "currentInventoryAligned": true,
     "canonicalRolesRecorded": true,
     "plannedProductsExplicit": true,
+    "trustProductCandidatesExplicit": true,
+    "trustCapabilitiesExplicit": true,
     "securityFleetComplete": false,
     "stewardDriftCheckCurrent": false,
     "operationalSimplicityVerified": false,
     "mapState": "HOLD"
   },
-  "nextAction": "Finish ENGÜRÜ Labory Control Plane: close Security Fleet, Steward drift evidence, repository order and operational simplicity; only then begin Astra Mac runtime and acceptance testing."
+  "nextAction": "Finish ENGÜRÜ Labory Verified Finish and Astra acceptance; then complete ENGÜRÜ Builder and Artist Manager AI before opening MayaShield product intake/demand proof."
 }
