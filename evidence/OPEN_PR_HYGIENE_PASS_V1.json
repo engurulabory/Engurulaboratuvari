@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.0",
+  "name": "ENGÜRÜ OPEN PR HYGIENE PASS™",
+  "observedAt": "2026-09-09T22:54:00+03:00",
+  "scope": "Open pull requests only. Merged/closed pull requests remain historical evidence.",
+  "state": "PASS",
+  "classification": {
+    "KEEP": [
+      "engurulabory/enguru-website-factory#187",
+      "engurulabory/enguru-website-factory#166"
+    ],
+    "HOLD": [
+      "engurulabory/enguru-website-factory#181",
+      "engurulabory/enguru-website-factory#177",
+      "engurulabory/enguru-website-factory#175",
+      "engurulabory/enguru-website-factory#169",
+      "engurulabory/shift-core-api#50",
+      "engurulabory/artist-manager-ai#44"
+    ],
+    "CLOSE_SUPERSEDED": [
+      "engurulabory/Engurulaboratuvari#11",
+      "engurulabory/enguru-website-factory#186",
+      "engurulabory/enguru-website-factory#172",
+      "engurulabory/enguru-website-factory#165",
+      "engurulabory/autonomous-economic-core#3"
+    ],
+    "MERGE": []
+  },
+  "actions": {
+    "closedSupersededCount": 5,
+    "remainingOpenCountAfterCleanup": 8,
+    "historyPreserved": true,
+    "destructiveHistoryCleanup": false
+  },
+  "truthBoundary": [
+    "KEEP means active canonical candidate, not PASS.",
+    "HOLD means intentionally deferred with no merge authorization.",
+    "CLOSE_SUPERSEDED preserves PR history and closes only the active work surface.",
+    "MERGE requires its own evidence and required checks; hygiene alone never authorizes merge."
+  ],
+  "nextAction": "Observe first real scheduled Steward run event, then proceed to Human Threshold only after scheduled evidence is PASS."
+}
