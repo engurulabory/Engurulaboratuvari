@@ -1,0 +1,39 @@
+name: IP Model Trust Gate
+
+on:
+  push:
+    branches: [main, "feature/ip-model-trust-gate-v1"]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate registry JSON
+        run: python -m json.tool governance/ip-model-trust/MODEL_REGISTRY.json >/dev/null
+
+      - name: Run enforcement tests
+        run: python -m unittest discover -s tests -p 'test_ip_model_trust_gate.py' -v
+
+      - name: Smoke test — public cloud context
+        run: python tools/ip_model_trust_gate.py --provider openai-cloud --ip-class T0 --text 'public documentation'
+
+      - name: Smoke test — restricted content must fail closed
+        run: |
+          set +e
+          python tools/ip_model_trust_gate.py --provider local-self-hosted --ip-class T5 --text 'restricted'
+          code=$?
+          set -e
+          test "$code" -eq 3
