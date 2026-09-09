@@ -1,73 +1,37 @@
 {
-  "schemaVersion": "0.1.0",
+  "schemaVersion": "1.0",
   "registryState": "HOLD",
   "generatedBy": "Repository Steward™",
-  "sourceOfTruth": "ENGÜRÜ PRODUCT & CORE MAP™",
+  "sourceOfTruth": "governance/ENGURU_PRODUCT_CORE_MAP_V2.json",
   "publicationPolicy": "verified-only",
   "legacySite": {
     "url": "https://engurulab.com",
     "surface": "Readdy",
     "state": "LIVE_LEGACY",
     "migrationState": "HOLD",
-    "note": "Current public catalog is preserved until replacement registry and Readdy rendering pass verification."
+    "note": "Legacy surface remains until repository-truth replacement is verified."
   },
   "products": [
-    {
-      "productId": "enguru-builder",
-      "productName": "ENGÜRÜ Builder™",
-      "repository": "engurulabory/enguru-website-factory",
-      "classification": "PRODUCT",
-      "productState": "development",
-      "publicationState": "HOLD",
-      "evidenceState": "HOLD",
-      "publicVisible": false
-    },
-    {
-      "productId": "shift-core",
-      "productName": "Shift Core™",
-      "repository": "engurulabory/shift-core-api",
-      "classification": "PRODUCT",
-      "productState": "development",
-      "publicationState": "HOLD",
-      "evidenceState": "HOLD",
-      "publicVisible": false
-    },
-    {
-      "productId": "artist-manager-ai",
-      "productName": "Artist Manager AI™",
-      "repository": "engurulabory/artist-manager-ai",
-      "classification": "PRODUCT",
-      "productState": "development",
-      "publicationState": "HOLD",
-      "evidenceState": "HOLD",
-      "publicVisible": false
-    },
-    {
-      "productId": "donecheck",
-      "productName": "DoneCheck™",
-      "repository": "engurulabory/donecheck",
-      "classification": "PRODUCT",
-      "productState": "development",
-      "publicationState": "HOLD",
-      "evidenceState": "HOLD",
-      "publicVisible": false
-    }
+    {"productId":"enguru-builder","productName":"ENGÜRÜ Builder™","repository":"engurulabory/enguru-website-factory","classification":"PRODUCT","productState":"development","publicationState":"HOLD","evidenceState":"HOLD","publicVisible":false,"productionOrder":1},
+    {"productId":"artist-manager-ai","productName":"Artist Manager AI™","repository":"engurulabory/artist-manager-ai","classification":"PRODUCT","productState":"development","publicationState":"HOLD","evidenceState":"HOLD","publicVisible":false,"productionOrder":2}
   ],
-  "cores": [],
-  "experiments": [],
-  "archives": [],
+  "plannedProducts": [
+    {"productId":"astro-mode","productName":"ENGÜRÜ LAB • ASTRO MODE","classification":"PLANNED_PRODUCT","state":"PLANNED","canonicalRepository":null,"productionOrder":"AFTER_ARTIST_MANAGER"},
+    {"productId":"adil-pay","productName":"Adil Pay","classification":"PLANNED_PRODUCT","state":"PLANNED","canonicalRepository":null,"knownRepositoryRecord":"engurulabory/adil-pay-kanit-web","productionOrder":"AFTER_ARTIST_MANAGER"}
+  ],
+  "productCores": [
+    {"coreId":"autonomous-economic-core","coreName":"AUTONOMOUS ECONOMIC CORE™","repository":"engurulabory/autonomous-economic-core","classification":"PRODUCT_CORE","state":"HOLD"},
+    {"coreId":"donecheck","coreName":"DoneCheck™ Public Working Core","repository":"engurulabory/donecheck","classification":"PRODUCT_CORE","state":"PASS"},
+    {"coreId":"shift-core","coreName":"Shift Core™","repository":"engurulabory/shift-core-api","classification":"PRODUCT_CORE","state":"HOLD"}
+  ],
+  "cores": [
+    {"coreId":"donecheck-core-foundation","coreName":"DoneCheck™ Controlled Development Source","repository":"engurulabory/donecheck-core-foundation","classification":"CORE","state":"PASS"}
+  ],
+  "releaseMirrors": [
+    {"id":"enguru-builder-release","repository":"engurulabory/enguru-builder-release","classification":"RELEASE_MIRROR","state":"HOLD","source":"engurulabory/enguru-website-factory"}
+  ],
   "publicationGate": {
-    "requires": [
-      "canonicalProductRecord",
-      "repositoryVerified",
-      "laboryManifestValidWhereApplicable",
-      "productStateVerified",
-      "doneCheckEvidence",
-      "verifiedFinishEvidence",
-      "productionUrlWhenApplicable",
-      "humanThresholdClear",
-      "stewardRegistryConsistency"
-    ],
+    "requires": ["canonicalProductRecord","repositoryVerified","productStateVerified","doneCheckEvidence","verifiedFinishEvidence","productionUrlWhenApplicable","humanThresholdClear","stewardRegistryConsistency"],
     "failClosed": true
   }
 }
