@@ -1,0 +1,40 @@
+name: ENGURU Labory Final Gate
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '17 5 */3 * *'
+
+permissions:
+  contents: read
+
+jobs:
+  labory-final-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: System truth / order / simplicity
+        run: python tools/labory_final_gate.py
+
+      - name: IP & Model Trust tests
+        run: python -m unittest discover -s tests -p 'test_ip_model_trust_gate.py' -v
+
+      - name: Secret Zero / Fleet Gate v1.2
+        run: python tools/fleet_ip_gate.py
+
+      - name: Repository Steward tests
+        run: node steward/tests.mjs
+
+      - name: Final state
+        run: echo 'ENGURU LABORY REPOSITORY FINAL GATE = PASS' >> "$GITHUB_STEP_SUMMARY"
