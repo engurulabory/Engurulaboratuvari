@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""ENGÜRÜ LABORY FINAL GATE™ — structural truth, order and simplicity validator."""
+"""ENGÜRÜ LABORY FINAL GATE™ — structural truth, order, site alignment and simplicity validator."""
 from __future__ import annotations
 
 import json
@@ -20,6 +20,8 @@ REQUIRED = [
     "steward/tests.mjs",
     "steward/LABORY_100_SCORECARD_V1.json",
     "site/product-registry.json",
+    "site/LEGACY_PRODUCT_ALIGNMENT_V1.json",
+    "site/ENGURULAB_PRODUCT_ALIGNMENT.md",
     "tools/ip_model_trust_gate.py",
     "tools/fleet_ip_gate.py",
 ]
@@ -35,6 +37,7 @@ LOCKED_PLAN = [
 ]
 
 PLANNED = {"ENGÜRÜ LAB • ASTRO MODE", "Adil Pay"}
+LEGACY_DECISIONS = {"KEEP", "RENAME", "CORE", "ARCHIVE", "PLANNED"}
 
 
 def load(path: str):
@@ -56,6 +59,7 @@ def main() -> int:
     truth = load("governance/ENGURU_SYSTEM_TRUTH_V1.json")
     product_map = load("governance/ENGURU_PRODUCT_CORE_MAP_V2.json")
     registry = load("site/product-registry.json")
+    legacy_alignment = load("site/LEGACY_PRODUCT_ALIGNMENT_V1.json")
     scorecard = load("steward/LABORY_100_SCORECARD_V1.json")
     trust = load(".enguru/ip-model-trust.json")
 
@@ -91,6 +95,29 @@ def main() -> int:
 
     if registry.get("sourceOfTruth") != "governance/ENGURU_PRODUCT_CORE_MAP_V2.json":
         findings.append({"code":"REGISTRY_SOURCE_NOT_V2"})
+    if registry.get("schemaVersion") != "1.1":
+        findings.append({"code":"REGISTRY_SCHEMA_NOT_1_1"})
+    if registry.get("legacyAlignmentRef") != "site/LEGACY_PRODUCT_ALIGNMENT_V1.json":
+        findings.append({"code":"LEGACY_ALIGNMENT_REFERENCE_DRIFT"})
+
+    legacy_items = legacy_alignment.get("items", [])
+    if len(legacy_items) != 15:
+        findings.append({"code":"LEGACY_ITEM_COUNT_DRIFT","actual":len(legacy_items)})
+    invalid_decisions = sorted({x.get("decision") for x in legacy_items} - LEGACY_DECISIONS)
+    if invalid_decisions:
+        findings.append({"code":"INVALID_LEGACY_DECISION","values":invalid_decisions})
+    legacy_by_name = {x.get("legacyName"): x for x in legacy_items}
+    if legacy_by_name.get("Menajer Zekî", {}).get("canonicalTarget") != "Artist Manager AI™" or legacy_by_name.get("Menajer Zekî", {}).get("decision") != "RENAME":
+        findings.append({"code":"ARTIST_MANAGER_LEGACY_IDENTITY_DRIFT"})
+    if legacy_by_name.get("AstroMode", {}).get("canonicalTarget") != "ENGÜRÜ LAB • ASTRO MODE" or legacy_by_name.get("AstroMode", {}).get("decision") != "PLANNED":
+        findings.append({"code":"ASTRO_MODE_LEGACY_IDENTITY_DRIFT"})
+
+    product_ids = {x.get("productId") for x in registry.get("products", [])}
+    if product_ids != {"enguru-builder", "artist-manager-ai"}:
+        findings.append({"code":"CANONICAL_PRODUCT_SET_DRIFT","actual":sorted(product_ids)})
+    artist = next((x for x in registry.get("products", []) if x.get("productId") == "artist-manager-ai"), {})
+    if "Menajer Zekî" not in artist.get("legacyAliases", []):
+        findings.append({"code":"ARTIST_MANAGER_ALIAS_MISSING"})
 
     dimensions = scorecard.get("dimensions", [])
     if len(dimensions) != 10 or sum(int(x.get("weight", 0)) for x in dimensions) != 100:
@@ -132,9 +159,12 @@ def main() -> int:
         "state":"PASS",
         "repositoryCount":len(repos),
         "plannedProducts":sorted(PLANNED),
+        "canonicalProducts":sorted(product_ids),
+        "legacyAlignmentItems":len(legacy_items),
         "scorecardWeight":100,
         "systemTruth":"PASS",
         "mapRegistryConsistency":"PASS",
+        "siteProductAlignment":"PASS",
         "repositoryHygiene":"PASS",
         "operationalSimplicity":"PASS"
     }, ensure_ascii=False, indent=2))

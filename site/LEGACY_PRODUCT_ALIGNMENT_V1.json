@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0",
+  "generatedAt": "2026-09-09",
+  "sourceSite": "https://engurulab.com",
+  "sourceSiteState": "LIVE_LEGACY",
+  "canonicalMap": "governance/ENGURU_PRODUCT_CORE_MAP_V2.json",
+  "decisionVocabulary": ["KEEP", "RENAME", "CORE", "ARCHIVE", "PLANNED"],
+  "publicationRule": "Only canonical PRODUCT records with evidence-backed publication eligibility may appear as active/sellable products on the replacement site.",
+  "items": [
+    {"legacyOrder":1,"legacyName":"MayaShield™","decision":"CORE","canonicalTarget":null,"evidenceState":"HOLD","note":"Retain as an internal security/governance concept; exact canonical core mapping is not yet evidence-backed. Exclude from public product count."},
+    {"legacyOrder":2,"legacyName":"Safety Decision Layer for LLM","decision":"CORE","canonicalTarget":null,"evidenceState":"HOLD","note":"Retain as an internal governance concept; likely overlaps trust/human-threshold enforcement, but exact identity is not proven. Exclude from public product count."},
+    {"legacyOrder":3,"legacyName":"TRUSTSPINE™","decision":"CORE","canonicalTarget":null,"evidenceState":"HOLD","note":"Retain as internal governance architecture concept pending canonical ownership decision. Exclude from public product count."},
+    {"legacyOrder":4,"legacyName":"MİZAN","decision":"CORE","canonicalTarget":null,"evidenceState":"HOLD","note":"Retain as governance/human-threshold concept pending exact canonical mapping. Exclude from public product count."},
+    {"legacyOrder":5,"legacyName":"Maya Trust","decision":"CORE","canonicalTarget":null,"evidenceState":"HOLD","note":"Retain as internal trust-governance concept pending exact canonical mapping. Exclude from public product count."},
+    {"legacyOrder":6,"legacyName":"Executive Decision Core™","decision":"ARCHIVE","canonicalTarget":null,"evidenceState":"HOLD","note":"Not present in the current canonical Product/Core Map. Preserve as legacy research/idea evidence until a future intake decision."},
+    {"legacyOrder":7,"legacyName":"NİZAM.AI","decision":"ARCHIVE","canonicalTarget":null,"evidenceState":"HOLD","note":"Not present in the current canonical Product/Core Map. Preserve as legacy research/idea evidence until a future intake decision."},
+    {"legacyOrder":8,"legacyName":"Akıllı Üretim Çekirdeği","decision":"CORE","canonicalTarget":"ENGÜRÜ CLOSED-LOOP PRODUCTION CORE™ v0.1","evidenceState":"PASS","evidenceRef":"governance/ENGURU_CLOSED_LOOP_PRODUCTION_CORE_V0_1.md","note":"Treat as legacy public wording for the production-loop core family, not as a standalone sellable product."},
+    {"legacyOrder":9,"legacyName":"Güvenlik Postası / SafetyMail","decision":"ARCHIVE","canonicalTarget":null,"evidenceState":"HOLD","note":"Not present in the current canonical Product/Core Map. Preserve as legacy research/idea evidence until a future intake decision."},
+    {"legacyOrder":10,"legacyName":"Reklam Ajansı 01","decision":"ARCHIVE","canonicalTarget":null,"evidenceState":"HOLD","note":"Not present in the current canonical Product/Core Map. Preserve as legacy research/idea evidence until a future intake decision."},
+    {"legacyOrder":11,"legacyName":"Creator Deal Desk","decision":"ARCHIVE","canonicalTarget":"Artist Manager AI™","evidenceState":"HOLD","note":"Scope overlaps Artist Manager AI opportunities, contacts, income and document workflows, but exact product identity is not proven. Preserve as legacy concept; do not publish as a separate product."},
+    {"legacyOrder":12,"legacyName":"Karar ve Dil Rehberi","decision":"CORE","canonicalTarget":"ENGÜRÜ Language Governance™","evidenceState":"PASS","evidenceRef":"governance/ENGURU_CLOSED_LOOP_PRODUCTION_CORE_V0_1.md","note":"Retain as internal governance capability, not as a standalone sellable product."},
+    {"legacyOrder":13,"legacyName":"Menajer Zekî","decision":"RENAME","canonicalTarget":"Artist Manager AI™","evidenceState":"PASS","canonicalRepository":"engurulabory/artist-manager-ai","note":"Legacy product name superseded by the canonical product name Artist Manager AI™."},
+    {"legacyOrder":14,"legacyName":"AstroMode","decision":"PLANNED","canonicalTarget":"ENGÜRÜ LAB • ASTRO MODE","evidenceState":"PASS","note":"Canonical planned product. Remains non-sellable until productization and Verified Finish."},
+    {"legacyOrder":15,"legacyName":"CTO-01","decision":"ARCHIVE","canonicalTarget":null,"evidenceState":"HOLD","note":"Not present in the current canonical planned-product queue. Preserve as legacy research/idea evidence until a future intake decision."}
+  ],
+  "summary": {
+    "legacyItemCount": 15,
+    "keep": 0,
+    "rename": 1,
+    "core": 7,
+    "archive": 6,
+    "planned": 1,
+    "activeSellableFromLegacyList": 0
+  }
+}
