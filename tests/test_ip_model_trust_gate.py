@@ -8,6 +8,11 @@ spec = importlib.util.spec_from_file_location("ip_model_trust_gate", MODULE_PATH
 gate = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(gate)
 
+FLEET_MODULE_PATH = ROOT / "tools" / "fleet_ip_gate.py"
+fleet_spec = importlib.util.spec_from_file_location("fleet_ip_gate", FLEET_MODULE_PATH)
+fleet_gate = importlib.util.module_from_spec(fleet_spec)
+fleet_spec.loader.exec_module(fleet_gate)
+
 
 class GateTests(unittest.TestCase):
     def test_t0_cloud_passes(self):
@@ -42,6 +47,19 @@ class GateTests(unittest.TestCase):
     def test_placeholder_is_not_secret(self):
         result = gate.decision("local-self-hosted", "T1", "api_key=<SECRET>")
         self.assertEqual(result["state"], "PASS")
+
+    def test_fleet_generic_secret_literal_in_source_is_blocked(self):
+        hits = fleet_gate.secret_hits(Path("src/config.ts"), "secret = 'synthetic-secret-value'")
+        self.assertIn("hardcoded_quoted_secret", hits)
+
+    def test_fleet_generic_secret_literal_in_test_filename_is_allowed(self):
+        hits = fleet_gate.secret_hits(Path("src/config.test.ts"), "secret = 'synthetic-secret-value'")
+        self.assertNotIn("hardcoded_quoted_secret", hits)
+
+    def test_fleet_known_credential_format_is_blocked_even_in_test_filename(self):
+        synthetic_github_token = "ghp_" + ("A" * 24)
+        hits = fleet_gate.secret_hits(Path("src/config.test.ts"), synthetic_github_token)
+        self.assertIn("github_token", hits)
 
 
 if __name__ == "__main__":
