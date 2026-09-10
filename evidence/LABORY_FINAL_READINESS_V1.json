@@ -1,13 +1,18 @@
 {
-  "schemaVersion": "1.1",
-  "generatedAt": "2026-09-09",
+  "schemaVersion": "1.2",
+  "generatedAt": "2026-09-10",
   "state": "HOLD",
-  "claim": "ENGÜRÜ Labory repository hardening is structurally PASS on PR #16 exact head; final system closure remains HOLD only for platform-level required status checks, first scheduled Steward commissioning evidence, fleet-wide product-repo adoption, and Human Threshold™ closure.",
-  "exactPrEvidence": {
-    "pullRequest": 16,
-    "headSha": "c324680ab4682179ba2eb4fb2a932c2e0d9137c6",
-    "laboryFinalGateRunId": 34371413490,
-    "laboryFinalGateJobId": 102533288143
+  "claim": "ENGÜRÜ Labory structural hardening remains PASS, while system closure is HOLD for Shift Core final production-acceptance/provenance closure, complete required-status-check protection, one observed Steward reconciliation cycle, fleet-wide product-repo adoption, repository hygiene and Human Threshold™ closure.",
+  "exactEvidence": {
+    "laboryAuditClosureMainSha": "d75c8eeb8066e120574150c61431d07830bde626",
+    "donecheckMainSha": "e343eb0160d03856f02033a244f0a5400e657288",
+    "donecheckMainCiRunId": 34419662723,
+    "aecMainSha": "6777a6ea568caf1834eb2896b3ec2319b62caa8e",
+    "aecMainTestRunId": 34419673427,
+    "shiftCorePullRequest": 53,
+    "shiftCoreHeadSha": "8366ce42267ddfb476b553ca078c138e97e1ef0d",
+    "shiftCoreProductionAcceptanceRunId": 34419969931,
+    "repositoryHygieneIssue": 22
   },
   "gates": {
     "repositoryTruth": "PASS",
@@ -22,26 +27,44 @@
     "mainProtectionPrRequired": "PASS",
     "mainProtectionDeletionBlocked": "PASS",
     "mainProtectionForcePushBlocked": "PASS",
-    "mainProtectionRequiredStatusChecks": "HOLD",
+    "mainProtectionRequiredStatusChecks": "PARTIAL_PASS",
+    "mainProtectionRequiredStatusCheckContexts": ["labory-final-gate"],
+    "shiftCoreDependencyAudit": "PASS",
+    "shiftCoreSourceGates": "PASS",
+    "shiftCoreDockerProductionAcceptance": "PASS",
+    "shiftCoreSupabaseCleanReset": "HOLD",
+    "shiftCoreReleaseEvidence": "HOLD",
     "scheduledStewardConfigured": "PASS",
     "scheduledStewardFirstObservedRun": "HOLD",
     "fleetWideProductRepoAdoption": "HOLD",
+    "repositoryHygiene": "HOLD",
     "humanThreshold": "HOLD"
   },
   "currentPlatformGap": {
     "rulesetId": 22452401,
     "rulesetName": "main-protection",
-    "finding": "Ruleset is active and requires pull requests, blocks deletion and non-fast-forward updates, but does not currently require named status checks before merge.",
-    "requiredTarget": ["ENGURU Labory Final Gate / labory-final-gate", "IP Model Trust Gate / test-gate", "IP Model Trust Fleet / fleet-gate"]
+    "finding": "Ruleset is active, requires pull requests, blocks deletion/non-fast-forward updates, and now requires `labory-final-gate`; the IP Model Trust Gate and IP Model Trust Fleet contexts are not yet required before merge.",
+    "currentRequired": ["labory-final-gate"],
+    "remainingRequiredTarget": ["test-gate", "fleet-gate"]
+  },
+  "currentRuntimeGap": {
+    "finding": "DoneCheck and AEC exact-main technical regressions are closed. Shift Core dependency advisories are remediated; full production acceptance remains HOLD until Supabase clean-reset and downstream release evidence finish and the canonical lock/provenance state is merged and re-verified on main."
+  },
+  "currentStewardGap": {
+    "finding": "Steward schedule is configured, but no verified scheduled reconciliation event is present in the inspected workflow history. A real drift detection/reconciliation evidence cycle is still required."
+  },
+  "currentHygieneGap": {
+    "finding": "Accidental audit branches `audit/verified-external-audit-sync-2` through `-8` are tracked in issue #22. Each must be compared against main and deleted only if it contains zero unique work."
   },
   "evidencePaths": [
     "governance/ENGURU_SYSTEM_TRUTH_V1.json",
     "governance/ENGURU_PRODUCT_CORE_MAP_V2.json",
+    "evidence/VERIFIED_EXTERNAL_AUDIT_CLOSURE_V1.json",
     "site/product-registry.json",
     "tools/labory_final_gate.py",
     "tools/fleet_ip_gate.py",
     "steward/tests.mjs",
     ".github/workflows/labory-final-gate.yml"
   ],
-  "nextAction": "Merge PR #16 after the updated exact head is green; then require the three named status checks in main-protection and observe one scheduled/manual Steward cycle before ENGURU_LABORY_VERIFIED_FINISH Human Threshold closure."
+  "nextAction": "Finish Shift Core PR #53 full production acceptance and merge only on green evidence; verify exact-main; then complete the remaining two required status checks, one observed Steward reconciliation cycle, repository hygiene/fleet adoption, and Human Threshold before ENGURU_LABORY_VERIFIED_FINISH."
 }
