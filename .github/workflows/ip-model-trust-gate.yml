@@ -2,7 +2,7 @@ name: IP Model Trust Gate
 
 on:
   push:
-    branches: [main, "feature/ip-model-trust-gate-v1"]
+    branches: [main, "feature/ip-model-trust-gate-v1", "feature/capability-agent-authority-contract-v1"]
   pull_request:
     branches: [main]
 
@@ -24,8 +24,14 @@ jobs:
       - name: Validate registry JSON
         run: python -m json.tool governance/ip-model-trust/MODEL_REGISTRY.json >/dev/null
 
-      - name: Run enforcement tests
+      - name: Validate capability authority schema JSON
+        run: python -m json.tool governance/ip-model-trust/CAPABILITY_AGENT_AUTHORITY.schema.json >/dev/null
+
+      - name: Run IP/model trust enforcement tests
         run: python -m unittest discover -s tests -p 'test_ip_model_trust_gate.py' -v
+
+      - name: Run capability/agent authority adversarial tests
+        run: python -m unittest discover -s tests -p 'test_capability_agent_authority_gate.py' -v
 
       - name: Smoke test — public cloud context
         run: python tools/ip_model_trust_gate.py --provider openai-cloud --ip-class T0 --text 'public documentation'

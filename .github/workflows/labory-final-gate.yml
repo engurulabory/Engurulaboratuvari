@@ -30,6 +30,9 @@ jobs:
       - name: IP & Model Trust tests
         run: python -m unittest discover -s tests -p 'test_ip_model_trust_gate.py' -v
 
+      - name: Capability & Agent Authority adversarial tests
+        run: python -m unittest discover -s tests -p 'test_capability_agent_authority_gate.py' -v
+
       - name: Secret Zero / Fleet Gate v1.2
         run: python tools/fleet_ip_gate.py
 

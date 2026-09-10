@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://enguru.example/schemas/capability-agent-authority-v0.1.schema.json",
+  "title": "ENGURU Capability & Agent Authority Contract v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion","actor","task","capabilities","authority","delegation","credentials","risk","verification","humanThreshold","finalState"],
+  "properties": {
+    "schemaVersion": {"const": "0.1"},
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id","type","authorityLevel"],
+      "properties": {
+        "id": {"type": "string","minLength": 1},
+        "type": {"enum": ["model","agent","worker","human","service"]},
+        "parentId": {"type": ["string","null"]},
+        "authorityLevel": {"enum": ["L0","L1","L2","L3","L4","L5"]}
+      }
+    },
+    "task": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id","scope","successCriteria"],
+      "properties": {
+        "id": {"type": "string","minLength": 1},
+        "scope": {"type": "array","items":{"type":"string"},"minItems":1,"uniqueItems":true},
+        "successCriteria": {"type": "array","items":{"type":"string"},"minItems":1}
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["detected","approved"],
+      "properties": {
+        "detected": {"type":"array","items":{"type":"string"},"uniqueItems":true},
+        "approved": {"type":"array","items":{"type":"string"},"uniqueItems":true}
+      }
+    },
+    "authority": {
+      "type":"object",
+      "additionalProperties": false,
+      "required":["requestedLevel","explicitGrant","allowedActions","forbiddenActions","policyCeiling"],
+      "properties":{
+        "requestedLevel":{"enum":["L0","L1","L2","L3","L4","L5"]},
+        "explicitGrant":{"type":"boolean"},
+        "allowedActions":{"type":"array","items":{"type":"string"},"uniqueItems":true},
+        "forbiddenActions":{"type":"array","items":{"type":"string"},"uniqueItems":true},
+        "policyCeiling":{"enum":["L0","L1","L2","L3","L4","L5"]}
+      }
+    },
+    "delegation": {
+      "type":"object",
+      "additionalProperties": false,
+      "required":["allowed","depth","maxDepth","transferableAuthority"],
+      "properties":{
+        "allowed":{"type":"boolean"},
+        "depth":{"type":"integer","minimum":0},
+        "maxDepth":{"type":"integer","minimum":0},
+        "transferableAuthority":{"const":false}
+      }
+    },
+    "credentials": {
+      "type":"object",
+      "additionalProperties": false,
+      "required":["inheritance","approvedCredentials"],
+      "properties":{
+        "inheritance":{"const":false},
+        "approvedCredentials":{"type":"array","items":{"type":"string"},"uniqueItems":true}
+      }
+    },
+    "risk": {
+      "type":"object",
+      "additionalProperties": false,
+      "required":["blastRadius","reversible","externalEffect","financial","legal"],
+      "properties":{
+        "blastRadius":{"enum":["local","repository","organization","production","financial","public","legal"]},
+        "reversible":{"type":"boolean"},
+        "externalEffect":{"type":"boolean"},
+        "financial":{"type":"boolean"},
+        "legal":{"type":"boolean"}
+      }
+    },
+    "verification": {
+      "type":"object",
+      "additionalProperties": false,
+      "required":["evidenceRequired","evidenceRefs","independentVerifierRequired","actorIsFinalVerifier"],
+      "properties":{
+        "evidenceRequired":{"const":true},
+        "evidenceRefs":{"type":"array","items":{"type":"string"}},
+        "independentVerifierRequired":{"type":"boolean"},
+        "actorIsFinalVerifier":{"type":"boolean"}
+      }
+    },
+    "humanThreshold": {
+      "type":"object",
+      "additionalProperties": false,
+      "required":["required","approved","reason"],
+      "properties":{
+        "required":{"type":"boolean"},
+        "approved":{"type":"boolean"},
+        "reason":{"type":["string","null"]}
+      }
+    },
+    "autonomyWindow": {
+      "type":["object","null"],
+      "additionalProperties": false,
+      "required":["active","remainingActions"],
+      "properties":{
+        "active":{"type":"boolean"},
+        "remainingActions":{"type":"integer","minimum":0}
+      }
+    },
+    "selfModification": {
+      "type":"object",
+      "additionalProperties": false,
+      "required":["requested","touchesGovernance"],
+      "properties":{
+        "requested":{"type":"boolean"},
+        "touchesGovernance":{"type":"boolean"}
+      }
+    },
+    "finalState": {
+      "type":"object",
+      "additionalProperties": false,
+      "required":["state","reason","nextAction"],
+      "properties":{
+        "state":{"enum":["PASS","HOLD","BLOCKED","UNEVALUATED"]},
+        "reason":{"type":["string","null"]},
+        "nextAction":{"type":["string","null"]}
+      }
+    }
+  }
+}
