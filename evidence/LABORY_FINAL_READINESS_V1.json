@@ -1,14 +1,20 @@
 {
-  "schemaVersion": "1.5",
+  "schemaVersion": "1.6",
   "generatedAt": "2026-09-10",
   "state": "HOLD",
-  "claim": "ENGÜRÜ Labory structural hardening remains PASS. DoneCheck and AEC exact-main technical regressions are closed. Fleet adoption is PASS across all 8 accessible governed repositories. Shift Core runtime production acceptance is PASS, while checked-in canonical release provenance remains HOLD. Repository hygiene has zero content drift, with physical branch-name deletion remaining administrative. System closure remains HOLD for Shift provenance, complete required-status-check protection, one observed Steward reconciliation cycle and Human Threshold™ closure.",
+  "claim": "ENGÜRÜ Labory structural hardening remains PASS. Current accessible repository truth is 9, while the governed fleet remains 8 repositories with fleet adoption PASS. Repository Steward completed and merged a real reconciliation cycle in PR #26, resolving the stale inventory-count claim. Shift Core runtime production acceptance is PASS while checked-in canonical release provenance remains HOLD. Builder release-mirror source provenance is stale and remains HOLD. Repository hygiene has zero content drift, with physical branch-name deletion remaining administrative/Human Threshold.",
   "exactEvidence": {
     "laboryVerifiedBaselineSha": "599f5012302c17167e9bde54a58b993be17b31ea",
-    "laboryBaselineMeaning": "The recorded SHA is the exact-main evidence baseline that this readiness record was built from; subsequent governance-only merges do not invalidate it when their own PR and push gates pass.",
-    "laboryBaselineIpModelTrustRunId": 34422630920,
-    "laboryBaselineFleetRunId": 34422630918,
-    "laboryBaselineFinalGateRunId": 34422630888,
+    "laboryBaselineMeaning": "The recorded SHA is the exact-main evidence baseline that this readiness record was built from; subsequent governance-only merges remain separately evidence-gated.",
+    "currentReconciledMainSha": "078b7c3b09b1a5ca68564f6f1a3fe1b53f2ef6eb",
+    "stewardReconciliationEvidence": "evidence/STEWARD_RECONCILIATION_2026-09-10.json",
+    "stewardReconciliationPullRequest": 26,
+    "stewardReconciliationPrHeadSha": "e020ae7f4764360c11fd2061e6cb2c0badd92f09",
+    "stewardReconciliationFinalGateRunId": 34440791267,
+    "stewardReconciliationIpModelTrustRunId": 34440791206,
+    "stewardReconciliationFleetRunId": 34440791238,
+    "accessibleRepositoryCount": 9,
+    "governedFleetRepositoryCount": 8,
     "donecheckMainSha": "e343eb0160d03856f02033a244f0a5400e657288",
     "donecheckMainCiRunId": 34419662723,
     "aecMainSha": "6777a6ea568caf1834eb2896b3ec2319b62caa8e",
@@ -20,20 +26,24 @@
     "shiftCoreRefreshedBundleArtifactId": 10130908911,
     "shiftCoreRefreshedBundleDigest": "sha256:e57cd04efd9c9b14ba72580f0352b4552d67cbc5b606855af71899bfc35c8680",
     "shiftCoreCurrentPrHeadSha": "3ff1ad73ebb45714e342eb6884b4d09c93ab66aa",
+    "builderReleaseMirrorRecordedSourceSha": "39b5ff98b3ae517fea066cd3d58773f88052c45e",
+    "builderObservedMainShaAtReconciliation": "b151fe0208320dd673ffc5dcc3d7749057aca686",
     "fleetAdoptionLedger": "governance/ip-model-trust/FLEET_ADOPTION_V1.json",
     "repositoryHygieneIssue": 22,
     "repositoryHygieneAlignmentBaselineSha": "630da1ebb5bc2457032924126f4cc59a90ba0441"
   },
   "gates": {
-    "repositoryTruth": "PASS",
-    "productCoreMapV2": "PASS",
-    "registryConsistency": "PASS",
+    "repositoryTruth": "PASS_RECONCILED_9_ACCESSIBLE_8_GOVERNED",
+    "productCoreMapV2": "PASS_RECONCILED_INVENTORY",
+    "registryConsistency": "PASS_GOVERNED_SCOPE",
     "repositoryOrder": "PASS",
     "operationalSimplicity": "PASS",
     "securityFleetV1_2": "PASS",
-    "fleetWideProductRepoAdoption": "PASS",
+    "fleetWideProductRepoAdoption": "PASS_8_OF_8_GOVERNED",
+    "accessibleExperimentRecordAdilPay": "HOLD_OUTSIDE_GOVERNED_FLEET",
     "ipModelTrustTests": "PASS",
     "stewardTests": "PASS",
+    "stewardObservedReconciliationCycle": "PASS",
     "laboryFinalGateCI": "PASS",
     "mainProtectionPrRequired": "PASS",
     "mainProtectionDeletionBlocked": "PASS",
@@ -46,11 +56,11 @@
     "shiftCoreSupabaseCleanReset": "PASS",
     "shiftCoreReleaseEvidence": "PASS",
     "shiftCoreCanonicalProvenancePersisted": "HOLD",
+    "builderReleaseMirrorProvenance": "HOLD",
     "scheduledStewardConfigured": "PASS",
-    "scheduledStewardFirstObservedRun": "HOLD",
     "repositoryHygieneUniqueWork": "PASS",
     "repositoryHygieneRefAlignment": "PASS",
-    "repositoryHygienePhysicalDeletion": "HOLD",
+    "repositoryHygienePhysicalDeletion": "HOLD_ADMIN_HUMAN_THRESHOLD",
     "humanThreshold": "HOLD"
   },
   "currentPlatformGap": {
@@ -61,14 +71,17 @@
     "remainingRequiredTarget": ["test-gate", "fleet-gate"]
   },
   "currentShiftGap": {
-    "finding": "Latest safe PR-head Production Acceptance run 34421019243 proves source gates, dependency audit, Docker acceptance, Supabase clean reset and release evidence. Quality run 34421019255 fails at npm ci because the checked-in lockfile remains stale. Artifact 10130908911 is the verified refreshed bundle and must be persisted byte-for-byte through an authorized source-write path without weakening CI permissions."
+    "finding": "Runtime/security acceptance is green, but the checked-in lockfile/SBOM/checksum/release-manifest provenance bundle remains unsynchronized. PR #53 stays HOLD until canonical source provenance is persisted and all gates rerun green."
   },
-  "currentStewardGap": {
-    "finding": "Steward schedule is configured, but no verified scheduled reconciliation event is present in the inspected workflow history. A real drift detection/reconciliation evidence cycle is still required."
+  "currentBuilderReleaseGap": {
+    "finding": "enguru-builder-release/HANDOFF_META.json records Builder sourceSha 39b5ff98b3ae517fea066cd3d58773f88052c45e while reconciliation observed Builder main b151fe0208320dd673ffc5dcc3d7749057aca686. Refresh only through the normal source-to-release handoff path, then record parity evidence."
+  },
+  "currentStewardState": {
+    "finding": "A real evidence-bound Repository Steward reconciliation cycle completed in PR #26 and merged to main at 078b7c3b09b1a5ca68564f6f1a3fe1b53f2ef6eb. It correctly detected 9 accessible repositories versus 8 governed fleet participants, release-mirror provenance drift and Adil Pay experiment status without destructive action."
   },
   "currentHygieneGap": {
-    "finding": "Branches audit/verified-external-audit-sync-2 through -8 were each proved ahead_by=0 and all seven refs were fast-forward aligned to a verified canonical main baseline. Content drift is zero. Physical deletion of the branch names remains administrative because this connection exposes no delete-ref action."
+    "finding": "Branches audit/verified-external-audit-sync-2 through -8 have zero unique content drift after alignment. Physical deletion of branch names remains administrative/Human Threshold and does not block repository content truth."
   },
-  "evidencePaths": ["governance/ENGURU_SYSTEM_TRUTH_V1.json","governance/ENGURU_PRODUCT_CORE_MAP_V2.json","governance/ip-model-trust/FLEET_ADOPTION_V1.json","evidence/VERIFIED_EXTERNAL_AUDIT_CLOSURE_V1.json","site/product-registry.json","tools/labory_final_gate.py","tools/fleet_ip_gate.py","steward/tests.mjs",".github/workflows/labory-final-gate.yml"],
-  "nextAction": "Persist the verified Shift release-integrity bundle without weakening CI permissions; rerun PR #53 and merge only on full green evidence; exact-main verify; then complete remaining required status checks, one observed Steward reconciliation cycle and Human Threshold. Physical deletion of already-aligned orphan branch names is cosmetic/admin cleanup and does not block content truth."
+  "evidencePaths": ["governance/ENGURU_SYSTEM_TRUTH_V1.json","governance/ENGURU_PRODUCT_CORE_MAP_V2.json","governance/ip-model-trust/FLEET_ADOPTION_V1.json","evidence/STEWARD_RECONCILIATION_2026-09-10.json","evidence/VERIFIED_EXTERNAL_AUDIT_CLOSURE_V1.json","site/product-registry.json","tools/labory_final_gate.py","tools/fleet_ip_gate.py","steward/tests.mjs",".github/workflows/labory-final-gate.yml"],
+  "nextAction": "Close Shift Core PR #53 canonical provenance, then refresh Builder source-to-release mirror provenance through the normal handoff path. Keep adil-pay-kanit-web outside governed fleet as EXPERIMENT_EVIDENCE_RECORD/HOLD. Complete remaining named required status checks and Human Threshold. Physical deletion of already-aligned audit branch names is administrative cleanup only."
 }
