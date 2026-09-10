@@ -1,10 +1,13 @@
 {
-  "schemaVersion": "1.3",
+  "schemaVersion": "1.4",
   "generatedAt": "2026-09-10",
   "state": "HOLD",
-  "claim": "ENGÜRÜ Labory structural hardening remains PASS. DoneCheck and AEC exact-main technical regressions are closed. Shift Core runtime production acceptance is PASS, while checked-in canonical release provenance remains HOLD. System closure also remains HOLD for complete required-status-check protection, one observed Steward reconciliation cycle, fleet-wide product-repo adoption, repository hygiene and Human Threshold™ closure.",
+  "claim": "ENGÜRÜ Labory structural hardening remains PASS. DoneCheck and AEC exact-main technical regressions are closed. Fleet adoption is PASS across all 8 accessible governed repositories. Shift Core runtime production acceptance is PASS, while checked-in canonical release provenance remains HOLD. Repository hygiene has zero content drift, with physical branch-name deletion remaining administrative. System closure remains HOLD for Shift provenance, complete required-status-check protection, one observed Steward reconciliation cycle and Human Threshold™ closure.",
   "exactEvidence": {
-    "laboryAuditClosureMainSha": "d75c8eeb8066e120574150c61431d07830bde626",
+    "laboryCanonicalMainSha": "630da1ebb5bc2457032924126f4cc59a90ba0441",
+    "laboryMainIpModelTrustRunId": 34421328694,
+    "laboryMainFleetRunId": 34421328700,
+    "laboryMainFinalGateRunId": 34421328701,
     "donecheckMainSha": "e343eb0160d03856f02033a244f0a5400e657288",
     "donecheckMainCiRunId": 34419662723,
     "aecMainSha": "6777a6ea568caf1834eb2896b3ec2319b62caa8e",
@@ -14,7 +17,9 @@
     "shiftCoreProductionAcceptanceRunId": 34419969931,
     "shiftCoreRefreshedBundleArtifact": "GitHub Actions artifact: package-lock.json + release/v0.1.0-rc.2/release-manifest.json + SHA256SUMS + supply-chain/sbom.cdx.json",
     "shiftCoreCurrentPrHeadSha": "3ff1ad73ebb45714e342eb6884b4d09c93ab66aa",
-    "repositoryHygieneIssue": 22
+    "fleetAdoptionLedger": "governance/ip-model-trust/FLEET_ADOPTION_V1.json",
+    "repositoryHygieneIssue": 22,
+    "repositoryHygieneAlignedMainSha": "630da1ebb5bc2457032924126f4cc59a90ba0441"
   },
   "gates": {
     "repositoryTruth": "PASS",
@@ -23,6 +28,7 @@
     "repositoryOrder": "PASS",
     "operationalSimplicity": "PASS",
     "securityFleetV1_2": "PASS",
+    "fleetWideProductRepoAdoption": "PASS",
     "ipModelTrustTests": "PASS",
     "stewardTests": "PASS",
     "laboryFinalGateCI": "PASS",
@@ -39,8 +45,9 @@
     "shiftCoreCanonicalProvenancePersisted": "HOLD",
     "scheduledStewardConfigured": "PASS",
     "scheduledStewardFirstObservedRun": "HOLD",
-    "fleetWideProductRepoAdoption": "HOLD",
-    "repositoryHygiene": "HOLD",
+    "repositoryHygieneUniqueWork": "PASS",
+    "repositoryHygieneRefAlignment": "PASS",
+    "repositoryHygienePhysicalDeletion": "HOLD",
     "humanThreshold": "HOLD"
   },
   "currentPlatformGap": {
@@ -57,8 +64,8 @@
     "finding": "Steward schedule is configured, but no verified scheduled reconciliation event is present in the inspected workflow history. A real drift detection/reconciliation evidence cycle is still required."
   },
   "currentHygieneGap": {
-    "finding": "Accidental audit branches `audit/verified-external-audit-sync-2` through `-8` are tracked in issue #22. Each must be compared against main and deleted only if it contains zero unique work."
+    "finding": "Branches audit/verified-external-audit-sync-2 through -8 were each proved ahead_by=0 and all seven refs were fast-forward aligned to canonical main SHA 630da1ebb5bc2457032924126f4cc59a90ba0441. Content drift is zero. Physical deletion of the branch names remains administrative because this connection exposes no delete-ref action."
   },
-  "evidencePaths": ["governance/ENGURU_SYSTEM_TRUTH_V1.json","governance/ENGURU_PRODUCT_CORE_MAP_V2.json","evidence/VERIFIED_EXTERNAL_AUDIT_CLOSURE_V1.json","site/product-registry.json","tools/labory_final_gate.py","tools/fleet_ip_gate.py","steward/tests.mjs",".github/workflows/labory-final-gate.yml"],
-  "nextAction": "Persist the verified Shift release-integrity bundle without weakening CI permissions; rerun PR #53 and merge only on full green evidence; exact-main verify; then complete remaining status checks, one observed Steward reconciliation cycle, repository hygiene/fleet adoption and Human Threshold before ENGURU_LABORY_VERIFIED_FINISH."
+  "evidencePaths": ["governance/ENGURU_SYSTEM_TRUTH_V1.json","governance/ENGURU_PRODUCT_CORE_MAP_V2.json","governance/ip-model-trust/FLEET_ADOPTION_V1.json","evidence/VERIFIED_EXTERNAL_AUDIT_CLOSURE_V1.json","site/product-registry.json","tools/labory_final_gate.py","tools/fleet_ip_gate.py","steward/tests.mjs",".github/workflows/labory-final-gate.yml"],
+  "nextAction": "Persist the verified Shift release-integrity bundle without weakening CI permissions; rerun PR #53 and merge only on full green evidence; exact-main verify; then complete remaining required status checks, one observed Steward reconciliation cycle and Human Threshold. Physical deletion of already-aligned orphan branch names is cosmetic/admin cleanup and does not block content truth."
 }
