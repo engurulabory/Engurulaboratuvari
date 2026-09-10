@@ -1,18 +1,21 @@
 {
-  "schemaVersion": "1.0",
-  "state": "HOLD",
+  "schemaVersion": "1.1",
+  "generatedAt": "2026-09-10",
+  "state": "PASS",
   "policy": "ENGURU_IP_MODEL_TRUST_GATE_V1",
   "scope": "8 currently accessible ENGURU Labory repositories",
   "requiredControls": ["manifest", "secret_zero_scan", "ci_gate", "human_threshold_for_t4_cloud"],
   "repositories": [
-    {"repository":"engurulabory/Engurulaboratuvari","defaultIpClass":"T3","adoption":"IN_PROGRESS"},
-    {"repository":"engurulabory/enguru-website-factory","defaultIpClass":"T4","adoption":"PENDING"},
-    {"repository":"engurulabory/autonomous-economic-core","defaultIpClass":"T4","adoption":"PENDING"},
-    {"repository":"engurulabory/donecheck-core-foundation","defaultIpClass":"T4","adoption":"PENDING"},
-    {"repository":"engurulabory/donecheck","defaultIpClass":"T3","adoption":"PENDING"},
-    {"repository":"engurulabory/shift-core-api","defaultIpClass":"T3","adoption":"PENDING"},
-    {"repository":"engurulabory/artist-manager-ai","defaultIpClass":"T3","adoption":"PENDING"},
-    {"repository":"engurulabory/enguru-builder-release","defaultIpClass":"T3","adoption":"PENDING"}
+    {"repository":"engurulabory/Engurulaboratuvari","defaultIpClass":"T3","adoption":"PASS","mainSha":"630da1ebb5bc2457032924126f4cc59a90ba0441","fleetRunId":34421328700},
+    {"repository":"engurulabory/enguru-website-factory","defaultIpClass":"T4","adoption":"PASS","mainSha":"b151fe0208320dd673ffc5dcc3d7749057aca686","fleetRunId":34398739762},
+    {"repository":"engurulabory/autonomous-economic-core","defaultIpClass":"T4","adoption":"PASS","mainSha":"6777a6ea568caf1834eb2896b3ec2319b62caa8e","fleetRunId":34419673380},
+    {"repository":"engurulabory/donecheck-core-foundation","defaultIpClass":"T4","adoption":"PASS","mainSha":"36acd08fff2be5e83ee23beaa5944386424ac560","fleetRunId":34393074767},
+    {"repository":"engurulabory/donecheck","defaultIpClass":"T3","adoption":"PASS","mainSha":"e343eb0160d03856f02033a244f0a5400e657288","fleetRunId":34419662754},
+    {"repository":"engurulabory/shift-core-api","defaultIpClass":"T3","adoption":"PASS","mainSha":"98099f2dd89de593dd171caccf12aac41b3ab8ed","fleetRunId":34393100629},
+    {"repository":"engurulabory/artist-manager-ai","defaultIpClass":"T3","adoption":"PASS","mainSha":"330b993876319ff3dd22443dadec7d903c4844f8","fleetRunId":34393111152},
+    {"repository":"engurulabory/enguru-builder-release","defaultIpClass":"T3","adoption":"PASS","mainSha":"ce41f160cf6f0669128ccbba040ae222ed2ea348","fleetRunId":34393123668}
   ],
-  "passCondition": "every currently accessible governed repository has merged manifest + green fleet CI"
+  "evidenceRule": "PASS requires a merged repository manifest, pinned read-only fleet workflow, and successful fleet run on the recorded main SHA for every currently accessible governed repository.",
+  "passCondition": "every currently accessible governed repository has merged manifest + green fleet CI",
+  "verdict": "PASS"
 }
