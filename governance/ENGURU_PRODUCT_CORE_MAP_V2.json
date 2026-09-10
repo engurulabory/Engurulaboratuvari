@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "2.3",
+  "schemaVersion": "2.4",
   "generatedAt": "2026-09-10",
   "state": "HOLD",
   "scope": "8 currently accessible engurulabory repositories plus explicit planned products and trust product candidates",
@@ -37,15 +37,7 @@
     "trustCapabilities": ["TRUSTSPINE™","MİZAN™","Maya Trust™"],
     "releaseMirrors": ["enguru-builder-release"]
   },
-  "productionSequence": [
-    "LABORY_FOUNDATION_VERIFIED_FINISH",
-    "ASTRA_MAC_RUNTIME",
-    "ASTRA_ACCEPTANCE_TEST",
-    "ENGURU_BUILDER",
-    "ARTIST_MANAGER_AI",
-    "TRUST_PRODUCT_CANDIDATE_INTAKE",
-    "ASTRO_MODE_AND_ADIL_PAY_QUEUE"
-  ],
+  "productionSequence": ["LABORY_FOUNDATION_VERIFIED_FINISH","ASTRA_MAC_RUNTIME","ASTRA_ACCEPTANCE_TEST","ENGURU_BUILDER","ARTIST_MANAGER_AI","TRUST_PRODUCT_CANDIDATE_INTAKE","ASTRO_MODE_AND_ADIL_PAY_QUEUE"],
   "acceptance": {
     "currentInventoryAligned": true,
     "canonicalRolesRecorded": true,
@@ -53,20 +45,25 @@
     "trustProductCandidatesExplicit": true,
     "trustCapabilitiesExplicit": true,
     "securityFleetComplete": true,
+    "fleetWideProductRepoAdoption": true,
     "stewardDriftCheckCurrent": false,
     "operationalSimplicityVerified": true,
     "requiredStatusChecks": "PARTIAL_PASS",
     "requiredStatusCheckContexts": ["labory-final-gate"],
     "shiftRuntimeAcceptance": "PASS",
     "shiftCanonicalProvenance": "HOLD",
-    "repositoryHygiene": "HOLD",
+    "repositoryHygieneUniqueWork": "PASS",
+    "repositoryHygieneRefAlignment": "PASS",
+    "repositoryHygienePhysicalDeletion": "HOLD",
     "humanThreshold": "HOLD",
     "mapState": "HOLD"
   },
   "evidenceRefs": {
     "verifiedExternalAuditClosure": "evidence/VERIFIED_EXTERNAL_AUDIT_CLOSURE_V1.json",
     "shiftRuntimeAcceptanceRun": 34419969931,
-    "repositoryHygieneDebt": "issue:22"
+    "fleetAdoptionLedger": "governance/ip-model-trust/FLEET_ADOPTION_V1.json",
+    "repositoryHygieneDebt": "issue:22",
+    "hygieneAlignedMainSha": "630da1ebb5bc2457032924126f4cc59a90ba0441"
   },
-  "nextAction": "Persist Shift Core's verified release-integrity bundle through an authorized source-write path, rerun PR #53 and exact-main verify after merge; observe one real Steward reconciliation cycle; require the remaining named Labory status checks; close repository hygiene/fleet adoption and Human Threshold; then run ENGURU_LABORY_VERIFIED_FINISH."
+  "nextAction": "Persist Shift Core's verified release-integrity bundle through an authorized source-write path, rerun PR #53 and exact-main verify after merge; observe one real Steward reconciliation cycle; require the remaining named Labory status checks; physically delete the already-aligned orphan branch names when an authorized delete-ref path is available; then run DoneCheck + Human Threshold for ENGURU_LABORY_VERIFIED_FINISH."
 }
