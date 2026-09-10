@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://enguru.example/schemas/enguru-hikmet-core-v0.1.schema.json",
+  "title": "ENGURU HIKMET CORE v0.1 Gate Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "intent",
+    "reality",
+    "perseverance",
+    "mizan",
+    "responsibility",
+    "consequence",
+    "learning",
+    "human_threshold_required",
+    "overall_verdict"
+  ],
+  "properties": {
+    "intent": {"$ref": "#/$defs/gate"},
+    "reality": {"$ref": "#/$defs/gate"},
+    "perseverance": {"$ref": "#/$defs/gate"},
+    "mizan": {"$ref": "#/$defs/gate"},
+    "responsibility": {"$ref": "#/$defs/gate"},
+    "consequence": {"$ref": "#/$defs/gate"},
+    "learning": {"$ref": "#/$defs/gate"},
+    "human_threshold_required": {"type": "boolean"},
+    "overall_verdict": {"$ref": "#/$defs/verdict"}
+  },
+  "$defs": {
+    "verdict": {
+      "type": "string",
+      "enum": ["PASS", "HOLD", "BLOCKED"]
+    },
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "claim", "evidence", "next_action", "verdict"],
+      "properties": {
+        "state": {"type": "string", "minLength": 1},
+        "claim": {"type": "string", "minLength": 1},
+        "evidence": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "next_action": {"type": "string"},
+        "verdict": {"$ref": "#/$defs/verdict"}
+      }
+    }
+  }
+}
