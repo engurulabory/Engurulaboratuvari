@@ -1,0 +1,36 @@
+name: ENGURU Hikmet Core Gate
+
+on:
+  pull_request:
+    paths:
+      - "governance/ENGURU_HIKMET_CORE_V0_1.md"
+      - "governance/ENGURU_HIKMET_CORE_V0_1.schema.json"
+      - "tools/hikmet_core.py"
+      - "tests/test_hikmet_core.py"
+      - ".github/workflows/hikmet-core-gate.yml"
+  push:
+    branches: [main]
+    paths:
+      - "governance/ENGURU_HIKMET_CORE_V0_1.md"
+      - "governance/ENGURU_HIKMET_CORE_V0_1.schema.json"
+      - "tools/hikmet_core.py"
+      - "tests/test_hikmet_core.py"
+      - ".github/workflows/hikmet-core-gate.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  hikmet-core:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run Hikmet Core tests
+        run: python -m unittest tests/test_hikmet_core.py -v
