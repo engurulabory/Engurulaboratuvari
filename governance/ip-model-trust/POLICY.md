@@ -23,12 +23,34 @@ Asset Classification → Model Trust Check → Context Minimization → Sanitiza
 6. Provider/model güven seviyesi beyana göre değil `MODEL_REGISTRY.json` içindeki doğrulanmış sınıra göre uygulanır.
 7. Sağlayıcı şartı doğrulanmamışsa `policy_status=HOLD` kalır ve gate daha dar olan sınırı uygular.
 8. Her karar makinece kaydedilebilir bir Decision Envelope üretmelidir.
+9. Yeni model/tool/connector/agent capability kazanımı otomatik authority artışı doğurmaz.
+10. Delegation otomatik authority transferi değildir; credential inheritance varsayılanı DENY'dır.
+11. Governance, verification, DoneCheck™ veya Human Threshold™ kurallarını değiştirme girişimi ayrı external authority gerektirir.
+12. Capability ve delegation kararları `CAPABILITY_AGENT_AUTHORITY_POLICY.md` ve kapalı `CAPABILITY_AGENT_AUTHORITY.schema.json` sözleşmesine göre fail-closed uygulanır.
+
+## Capability & Agent Authority extension
+Canonical policy: `governance/ip-model-trust/CAPABILITY_AGENT_AUTHORITY_POLICY.md`
+
+Machine-readable contract: `governance/ip-model-trust/CAPABILITY_AGENT_AUTHORITY.schema.json`
+
+Executable gate: `tools/capability_agent_authority_gate.py`
+
+Adversarial tests: `tests/test_capability_agent_authority_gate.py`
+
+Kilit ilkeler:
+- Capability ≠ Authority.
+- Delegation ≠ Authority Transfer.
+- No Transitive Authority™.
+- Credential Non-Inheritance™.
+- New capability → detect → classify → evidence → authority decision.
+- Critical/irreversible action → Human Threshold™.
+- Verified-learning governance; autonomous authority escalation yoktur.
 
 ## Fail-closed
 Belirsizlikte izin genişletilmez. Gate `HOLD` veya `BLOCKED` döndürür.
 
 ## Human Threshold™
-Şu durumlarda insan kararı gerekir: T4 dış model kullanımı, yeni provider ekleme, provider güven seviyesini yükseltme, güvenlik istisnası, irreversible publish/payment/legal action, veri ihlali değerlendirmesi.
+Şu durumlarda insan kararı gerekir: T4 dış model kullanımı, yeni provider ekleme, provider güven seviyesini yükseltme, güvenlik istisnası, irreversible publish/payment/legal action, veri ihlali değerlendirmesi, privileged actor oluşturma, kritik capability/authority escalation ve governance mutation.
 
 ## DoneCheck™ kabul ölçütleri
 - policy schema doğrulanır,
@@ -36,5 +58,11 @@ Belirsizlikte izin genişletilmez. Gate `HOLD` veya `BLOCKED` döndürür.
 - T5 daima BLOCKED,
 - T4 cloud varsayılanı BLOCKED/HOLD,
 - T0/T1 uygun sağlayıcıyla PASS,
+- capability escalation explicit grant olmadan PASS olamaz,
+- transitive authority ve credential inheritance BLOCKED olur,
+- delegation depth ihlali BLOCKED olur,
+- governance self-modification BLOCKED olur,
+- irreversible/critical action Human Threshold™ olmadan PASS olamaz,
+- independent verification gereken durumda actor kendi final verifier'ı olamaz,
 - karar nedeni ve next action üretilir,
 - CI testleri yeşildir.
