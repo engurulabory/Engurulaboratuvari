@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0",
+  "generatedAt": "2026-09-10",
+  "state": "HOLD",
+  "authority": "Repository Steward™",
+  "claim": "The governed 8-repository fleet remains structurally healthy, but current accessible repository truth is 9 because engurulabory/adil-pay-kanit-web is visible again as a minimal evidence/experiment repository. Canonical inventory documents that still say 8 accessible repositories are therefore stale. No destructive action is authorized.",
+  "inventory": {
+    "accessibleCount": 9,
+    "governedFleetCount": 8,
+    "repositories": [
+      {"repository":"engurulabory/Engurulaboratuvari","role":"CONTROL_PLANE","state":"PASS_WITH_OPEN_GATES","finding":"Current Labory Final Gate on main succeeded; final system state remains HOLD for documented open gates."},
+      {"repository":"engurulabory/enguru-website-factory","role":"PRODUCT","state":"KEEP_REPAIR","finding":"Canonical Builder source. Product-local Labory manifest exists; transitional cross-product governance copies remain explicit migration debt."},
+      {"repository":"engurulabory/enguru-builder-release","role":"RELEASE_MIRROR","state":"HOLD","finding":"Release mirror boundary is explicit, but HANDOFF_META sourceSha 39b5ff98... does not match current Builder main b151fe02...; provenance refresh remains required before treating the mirror as current."},
+      {"repository":"engurulabory/donecheck","role":"PRODUCT_CORE","state":"PASS","finding":"Exact-main CI evidence is green; Labory manifest exists. Controlled-source to public-release provenance remains a portfolio documentation obligation."},
+      {"repository":"engurulabory/donecheck-core-foundation","role":"CORE","state":"PASS","finding":"Governed fleet adoption is green; canonical controlled-development role remains explicit."},
+      {"repository":"engurulabory/shift-core-api","role":"PRODUCT_CORE","state":"HOLD_CANONICAL_PROVENANCE_ONLY","finding":"PR #53 is open. Runtime/security production acceptance is green, while checked-in lockfile/SBOM/checksum/release-manifest provenance remains the merge blocker."},
+      {"repository":"engurulabory/artist-manager-ai","role":"PRODUCT","state":"KEEP_REPAIR","finding":"Governed fleet adoption and Labory alignment manifest are present; verified release still requires runtime evidence."},
+      {"repository":"engurulabory/autonomous-economic-core","role":"PRODUCT_CORE","state":"PASS_TECHNICAL_HOLD_ECONOMIC_FINALITY","finding":"Exact-main technical tests are green; Verified Banked Net Value remains separately evidence-gated."},
+      {"repository":"engurulabory/adil-pay-kanit-web","role":"EXPERIMENT_EVIDENCE_RECORD","state":"HOLD","finding":"Repository is public and currently contains only a 119-byte README. No .enguru manifest, CI, evidence structure or active runtime was found. It must not be counted as an active governed product; retain as evidence record until productization or Human Threshold archive decision."}
+    ]
+  },
+  "driftFindings": [
+    {"code":"ACCESSIBLE_INVENTORY_DRIFT","severity":"HOLD","evidence":"Connector inventory reports 9 accessible repositories while ENGURU_SYSTEM_TRUTH_V1 and ENGURU_PRODUCT_CORE_MAP_V2 state 8 accessible repositories."},
+    {"code":"BUILDER_RELEASE_MIRROR_STALE_SOURCE_SHA","severity":"HOLD","evidence":"enguru-builder-release/HANDOFF_META.json records Builder sourceSha 39b5ff98b3ae517fea066cd3d58773f88052c45e while current enguru-website-factory main is b151fe0208320dd673ffc5dcc3d7749057aca686."},
+    {"code":"LABORY_CONTRACT_TRANSITION_DEBT","severity":"HOLD","evidence":"Multiple product manifests still point canonicalContract to engurulabory/enguru-website-factory/packages/labory-operating-contract/index.mjs as a compatibility source; migration to the Labory control plane remains intentionally gated."},
+    {"code":"ADIL_PAY_MINIMAL_EXPERIMENT","severity":"HOLD","evidence":"adil-pay-kanit-web contains only README.md and has no governed runtime baseline."},
+    {"code":"ORPHAN_AUDIT_BRANCH_NAMES","severity":"HOLD_ADMIN","evidence":"Issue #22 records seven aligned zero-unique-work audit branch names; physical deletion remains Human Threshold/admin work."}
+  ],
+  "health": {
+    "canonicalRoleOwner": "PASS_WITH_ONE_EXPERIMENT_RECORD_GAP",
+    "readmeManifest": "HOLD",
+    "ciTestEvidence": "PASS_GOVERNED_FLEET_WITH_PRODUCT_SPECIFIC_HOLDS",
+    "duplicateGovernanceDrift": "HOLD_TRANSITIONAL",
+    "releaseMirror": "HOLD_STALE_SOURCE_SHA",
+    "staleRootFiles": "NO_DESTRUCTIVE_CANDIDATE_PROVEN",
+    "repositoryOrder": "HOLD_INVENTORY_SYNC"
+  },
+  "safeActionsApplied": [
+    "Created this evidence-bound reconciliation record on a protected repair branch.",
+    "Preserved all repositories, branches, visibility, history, deployment sources and production cutovers unchanged."
+  ],
+  "humanThreshold": [
+    "Physical deletion of audit/verified-external-audit-sync-2 through -8 after final authorized ref check.",
+    "Any archive/delete/rename/merge/visibility change for adil-pay-kanit-web or any other repository.",
+    "Any production source/deployment cutover or release-mirror retirement."
+  ],
+  "nextAction": "Synchronize ENGURU_SYSTEM_TRUTH_V1, ENGURU_PRODUCT_CORE_MAP_V2 and LABORY_FINAL_READINESS_V1 to distinguish 9 accessible repositories from the 8-repository governed fleet; retain adil-pay-kanit-web as EXPERIMENT_EVIDENCE_RECORD/HOLD. Then refresh Builder release-mirror provenance only through its normal handoff path, close Shift PR #53 canonical provenance, and run DoneCheck against the reconciled inventory."
+}
