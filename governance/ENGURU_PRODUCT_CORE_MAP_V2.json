@@ -1,6 +1,6 @@
 {
-  "schemaVersion": "2.1",
-  "generatedAt": "2026-09-09",
+  "schemaVersion": "2.3",
+  "generatedAt": "2026-09-10",
   "state": "HOLD",
   "scope": "8 currently accessible engurulabory repositories plus explicit planned products and trust product candidates",
   "lockedRule": "No destructive repository move, delete, merge, rename or retirement before map PASS and Human Threshold where required.",
@@ -8,10 +8,10 @@
     {"repository":"engurulabory/Engurulaboratuvari","canonicalName":"ENGÜRÜ Labory Control Plane","assetType":"CONTROL_PLANE","owner":"ENGÜRÜ Labory","state":"PASS","role":"Canonical governance, Product/Core Map, Repository Order, Steward, Security Fleet, system truth."},
     {"repository":"engurulabory/enguru-website-factory","canonicalName":"ENGÜRÜ Builder™","assetType":"PRODUCT","owner":"Builder execution plane","state":"HOLD","role":"Canonical Builder product source; transitional cross-product governance copies are migration debt, not canonical ownership."},
     {"repository":"engurulabory/enguru-builder-release","canonicalName":"ENGÜRÜ Builder Release Mirror","assetType":"RELEASE_MIRROR","owner":"Builder distribution surface","state":"HOLD","role":"Release/handoff mirror only; never product source of truth."},
-    {"repository":"engurulabory/autonomous-economic-core","canonicalName":"AUTONOMOUS ECONOMIC CORE™","assetType":"PRODUCT_CORE","owner":"AEC economic execution plane","state":"HOLD","role":"Economic orchestration/runtime; economic finality remains evidence-gated."},
+    {"repository":"engurulabory/autonomous-economic-core","canonicalName":"AUTONOMOUS ECONOMIC CORE™","assetType":"PRODUCT_CORE","owner":"AEC economic execution plane","state":"HOLD","role":"Economic orchestration/runtime. Exact-main technical tests are PASS; Verified Banked Net Value remains evidence-gated."},
     {"repository":"engurulabory/donecheck-core-foundation","canonicalName":"DoneCheck™ Controlled Development Source","assetType":"CORE","owner":"DoneCheck controlled development","state":"PASS","role":"Canonical controlled development source."},
-    {"repository":"engurulabory/donecheck","canonicalName":"DoneCheck™ Public Working Core","assetType":"PRODUCT_CORE","owner":"DoneCheck public release","state":"PASS","role":"Public/open-source release; provenance-linked to controlled source."},
-    {"repository":"engurulabory/shift-core-api","canonicalName":"Shift Core™","assetType":"PRODUCT_CORE","owner":"Shift Core execution plane","state":"HOLD","role":"Bounded-shift task acceptance/rollback execution; independent from DoneCheck."},
+    {"repository":"engurulabory/donecheck","canonicalName":"DoneCheck™ Public Working Core","assetType":"PRODUCT_CORE","owner":"DoneCheck public release","state":"PASS","role":"Public/open-source release; exact-main CI and IP Model Trust are green after PR #5; provenance remains linked to controlled source."},
+    {"repository":"engurulabory/shift-core-api","canonicalName":"Shift Core™","assetType":"PRODUCT_CORE","owner":"Shift Core execution plane","state":"HOLD","technicalState":"PASS_RUNTIME_HOLD_CANONICAL_PROVENANCE","role":"Bounded-shift task acceptance/rollback execution. Run 34419969931 proves source gates, 503 tests/coverage, zero-vulnerability dependency audit, Docker acceptance, Supabase clean reset and release evidence. The refreshed lockfile/SBOM/SHA256SUMS/release-manifest bundle must still be persisted through an authorized source-write path and re-verified before PR #53 can merge."},
     {"repository":"engurulabory/artist-manager-ai","canonicalName":"Artist Manager AI™","assetType":"PRODUCT","owner":"Artist Manager AI execution plane","state":"HOLD","role":"Second planned production product after ENGÜRÜ Builder; verified release requires runtime evidence."}
   ],
   "plannedProducts": [
@@ -52,10 +52,21 @@
     "plannedProductsExplicit": true,
     "trustProductCandidatesExplicit": true,
     "trustCapabilitiesExplicit": true,
-    "securityFleetComplete": false,
+    "securityFleetComplete": true,
     "stewardDriftCheckCurrent": false,
-    "operationalSimplicityVerified": false,
+    "operationalSimplicityVerified": true,
+    "requiredStatusChecks": "PARTIAL_PASS",
+    "requiredStatusCheckContexts": ["labory-final-gate"],
+    "shiftRuntimeAcceptance": "PASS",
+    "shiftCanonicalProvenance": "HOLD",
+    "repositoryHygiene": "HOLD",
+    "humanThreshold": "HOLD",
     "mapState": "HOLD"
   },
-  "nextAction": "Finish ENGÜRÜ Labory Verified Finish and Astra acceptance; then complete ENGÜRÜ Builder and Artist Manager AI before opening MayaShield product intake/demand proof."
+  "evidenceRefs": {
+    "verifiedExternalAuditClosure": "evidence/VERIFIED_EXTERNAL_AUDIT_CLOSURE_V1.json",
+    "shiftRuntimeAcceptanceRun": 34419969931,
+    "repositoryHygieneDebt": "issue:22"
+  },
+  "nextAction": "Persist Shift Core's verified release-integrity bundle through an authorized source-write path, rerun PR #53 and exact-main verify after merge; observe one real Steward reconciliation cycle; require the remaining named Labory status checks; close repository hygiene/fleet adoption and Human Threshold; then run ENGURU_LABORY_VERIFIED_FINISH."
 }
