@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.2",
+  "schemaVersion": "1.3",
   "generatedAt": "2026-09-10",
   "authority": "ENGÜRÜ Labory Control Plane",
   "state": "HOLD",
@@ -18,7 +18,7 @@
   "currentTechnicalEvidence": {
     "donecheck": {"state":"PASS","mainSha":"e343eb0160d03856f02033a244f0a5400e657288","mainCiRunId":34419662723,"note":"Exact-main CI and IP Model Trust passed after PR #5."},
     "autonomousEconomicCore": {"state":"PASS_TECHNICAL_HOLD_ECONOMIC_FINALITY","mainSha":"6777a6ea568caf1834eb2896b3ec2319b62caa8e","mainTestRunId":34419673427,"note":"Exact-main tests passed after PR #9; Verified Banked Net Value remains separately evidence-gated."},
-    "shiftCore": {"state":"HOLD","pullRequest":53,"headSha":"8366ce42267ddfb476b553ca078c138e97e1ef0d","productionAcceptanceRunId":34419969931,"note":"Source gates, dependency audit and Docker acceptance are green; Supabase clean-reset and downstream release evidence must complete before merge."}
+    "shiftCore": {"state":"PASS_RUNTIME_HOLD_CANONICAL_PROVENANCE","pullRequest":53,"verifiedHeadSha":"8366ce42267ddfb476b553ca078c138e97e1ef0d","productionAcceptanceRunId":34419969931,"note":"Source gates, 503 tests/coverage, dependency audit with zero vulnerabilities, Docker acceptance, Supabase clean reset and release evidence all passed. The refreshed lockfile/SBOM/SHA256SUMS/release-manifest bundle exists as GitHub Actions evidence, but checked-in canonical provenance remains unsynchronized. A temporary workflow self-write path was rejected by the repository security preflight and removed."}
   },
   "plannedProducts": [
     {"asset":"ENGÜRÜ LAB • ASTRO MODE","state":"PLANNED","note":"Productization is intentionally deferred until Labory foundation and Astra acceptance are PASS."},
@@ -29,11 +29,12 @@
     "governanceEvidence": {"target":100,"state":"PASS","criterion":"State → claim → evidence → next action; DoneCheck and Human Threshold retained."},
     "productCoreSeparation": {"target":100,"state":"PASS","criterion":"Every active asset has one recorded canonical owner/type; transitional control-plane copies remain explicit migration debt rather than duplicate authority."},
     "repositoryOrder": {"target":100,"state":"PASS","criterion":"Current inventory equals accessible repository truth; planned products are explicit and do not distort active repository truth."},
-    "security": {"target":100,"state":"PASS","criterion":"Security Fleet and IP Model Trust structure are in place; current Shift dependency advisories were remediated and audit is green on PR #53."},
+    "security": {"target":100,"state":"PASS","criterion":"Security Fleet and IP Model Trust structure are in place; Shift dependency advisories are remediated and the security preflight correctly blocks workflow repository mutation."},
     "automationSteward": {"target":100,"state":"HOLD","criterion":"Steward inventories, detects drift, proposes safe metadata fixes, and requires Human Threshold for destructive/high-impact actions; one real observed reconciliation cycle is still required."},
     "operationalSimplicity": {"target":100,"state":"PASS","criterion":"Canonical map + system truth + readiness evidence provide one bounded control surface; remaining complexity is evidence closure, not topology ambiguity."},
     "branchProtection": {"target":100,"state":"HOLD","criterion":"Main protection is active and `labory-final-gate` is required; IP Model Trust Gate and Fleet Gate are not yet both required status checks."},
-    "repositoryHygiene": {"target":100,"state":"HOLD","criterion":"Orphan audit branches are tracked in issue #22 and require zero-unique-work verification before deletion."}
+    "repositoryHygiene": {"target":100,"state":"HOLD","criterion":"Orphan audit branches are tracked in issue #22 and require zero-unique-work verification before deletion."},
+    "shiftCanonicalProvenance": {"target":100,"state":"HOLD","criterion":"Persist the verified refreshed package-lock/SBOM/checksum/manifest bundle through an authorized source-write path without granting CI repository mutation permission; then rerun and merge PR #53 only on green evidence."}
   },
   "lockedExecutionPlan": [
     {"step":1,"name":"ENGURU_LABORY_VERIFIED_FINISH","exit":"Repository truth + Product/Core Map + Repository Order + Security Fleet + Steward + Operational Simplicity + DoneCheck/Human Threshold all PASS."},
@@ -44,18 +45,6 @@
     {"step":6,"name":"ARTIST_MANAGER_AI","exit":"Second production product reaches Verified Finish."},
     {"step":7,"name":"PLANNED_PRODUCT_QUEUE","exit":"Astro Mode and Adil Pay enter productization in controlled order after prior product gates."}
   ],
-  "acceptanceSequence": [
-    "Repository Truth",
-    "Product & Core Map",
-    "Repository Order",
-    "Security Fleet",
-    "Steward Drift Check",
-    "Operational Simplicity",
-    "Required Status Checks",
-    "Repository Hygiene",
-    "DoneCheck",
-    "Human Threshold",
-    "Verified Finish"
-  ],
-  "nextAction": "Close Shift Core PR #53 with full production acceptance and exact-main verification; then observe one real Steward reconciliation cycle, require the two remaining named status checks, close repository hygiene/fleet adoption, and run DoneCheck + Human Threshold for ENGURU_LABORY_VERIFIED_FINISH."
+  "acceptanceSequence": ["Repository Truth","Product & Core Map","Repository Order","Security Fleet","Shift Canonical Provenance","Steward Drift Check","Operational Simplicity","Required Status Checks","Repository Hygiene","DoneCheck","Human Threshold","Verified Finish"],
+  "nextAction": "Persist Shift Core's already-verified refreshed release-integrity bundle through an authorized source update path, rerun PR #53 gates, merge and exact-main verify; then complete Steward observed reconciliation, remaining required status checks, repository hygiene/fleet adoption and Human Threshold before ENGURU_LABORY_VERIFIED_FINISH."
 }
