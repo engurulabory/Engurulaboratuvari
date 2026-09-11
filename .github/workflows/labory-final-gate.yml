@@ -36,6 +36,9 @@ jobs:
       - name: ENGURU Billing Core tests
         run: python -m unittest discover -s tests -p 'test_billing_core.py' -v
 
+      - name: PARK adapter mock tests
+        run: python -m unittest discover -s tests -p 'test_park_mock.py' -v
+
       - name: Secret Zero / Fleet Gate v1.2
         run: python tools/fleet_ip_gate.py
 
