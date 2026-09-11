@@ -42,6 +42,12 @@ jobs:
       - name: ENGURU Billing v1 tests
         run: python -m unittest discover -s tests -p 'test_billing_v1.py' -v
 
+      - name: Billing persistent store tests
+        run: python -m unittest discover -s tests -p 'test_billing_persistent_store.py' -v
+
+      - name: Monthly Maya billing mail tests
+        run: python -m unittest discover -s tests -p 'test_monthly_maya_mail.py' -v
+
       - name: Secret Zero / Fleet Gate v1.2
         run: python tools/fleet_ip_gate.py
 
