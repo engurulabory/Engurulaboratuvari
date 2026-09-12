@@ -1,7 +1,7 @@
 # ENGÜRÜ LABORY ORDER & TRUTH RECONCILIATION PASS™ — 2026-09-12
 
 ## STATE
-HOLD — canonical truth and Shift provenance are reconciled; Builder release mirror parity is merged and exact-main CI is still running; physical stale-branch deletion is tooling-blocked.
+HOLD — canonical truth, Shift provenance and Builder release provenance are reconciled and PASS; physical stale-branch deletion remains tooling-blocked administrative cleanup.
 
 ## CLAIM
 The ENGÜRÜ Labory architecture is correctly placed. Current debt is limited to freshness/hygiene closure rather than architectural relocation.
@@ -44,7 +44,7 @@ Release PR #10 merged to:
 `6ebb683bb5e95897ef2a76b8fc623468e4ccb68f`
 
 `HANDOFF_META.sourceSha` now equals the Builder source SHA.
-Exact-main Fleet run `34676872690` is the remaining evidence gate while it completes.
+Exact-main Fleet run `34676872690` — completed / success.
 
 ## OPEN PR CLASSIFICATION
 
@@ -99,7 +99,5 @@ ENGÜRÜ Labory
 No new framework, governance family or repository is required.
 
 ## NEXT ACTION
-1. Confirm Builder release exact-main Fleet run success.
-2. Mark Builder release provenance PASS in System Truth / Product Core Map.
-3. Merge this reconciliation PR after Labory CI is green.
-4. Delete aligned stale branches later through an authorized delete-ref path.
+1. Merge this reconciliation PR after Labory CI is green.
+2. Delete aligned stale branches later through an authorized delete-ref path.
