@@ -1,0 +1,19 @@
+{
+  "name": "ENGURU Billing Core v1.0 DoneCheck Acceptance Pack",
+  "state": "HOLD",
+  "criteria": [
+    {"id":"BILL-01","claim":"Verified payment is required before invoice issuance","evidence":"unit-test"},
+    {"id":"BILL-02","claim":"Taxpayer routing selects e-Fatura or e-Arsiv correctly","evidence":"unit-test"},
+    {"id":"BILL-03","claim":"INTERNET sales use INT series","evidence":"portal-proof+unit-test"},
+    {"id":"BILL-04","claim":"Duplicate orders cannot create a second invoice","evidence":"unit-test"},
+    {"id":"BILL-05","claim":"Provider failure blocks customer delivery","evidence":"unit-test"},
+    {"id":"BILL-06","claim":"Customer delivery evidence is required","evidence":"unit-test"},
+    {"id":"BILL-07","claim":"Accounting delivery has an independent evidence id","evidence":"unit-test"},
+    {"id":"BILL-08","claim":"Monthly reporting is derived from evidence records","evidence":"unit-test"},
+    {"id":"BILL-09","claim":"Refund/cancellation follows an explicit state machine","evidence":"unit-test"},
+    {"id":"BILL-10","claim":"Retry policy is bounded","evidence":"unit-test"},
+    {"id":"BILL-11","claim":"UBL factory enforces series contract","evidence":"unit-test"},
+    {"id":"BILL-12","claim":"Live PARK auth and first controlled invoice succeed","evidence":"production-proof","state":"HOLD"}
+  ],
+  "passRule": "All unit/CI criteria PASS and BILL-12 production proof PASS before VERIFIED FINISH."
+}

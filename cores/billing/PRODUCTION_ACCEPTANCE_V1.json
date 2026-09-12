@@ -1,0 +1,35 @@
+{
+  "name": "ENGURU Billing Core Production Acceptance Manifest",
+  "version": "1.0",
+  "state": "HOLD",
+  "lockedRule": "No VERIFIED FINISH before live fiscal proof.",
+  "preProduction": {
+    "foundationCi": "PASS",
+    "parkIndependentCore": "PASS",
+    "internetSeries": "INT",
+    "normalSeries": "EGR",
+    "einvoiceSeries": "ENG",
+    "persistentEvidenceStore": "REQUIRED_PASS",
+    "monthlyManagementReport": "REQUIRED_PASS",
+    "accountingDeliveryContract": "PASS",
+    "refundCancelStateMachine": "PASS",
+    "boundedRetry": "PASS",
+    "ublContract": "PASS"
+  },
+  "liveAcceptance": [
+    "PARK production authentication succeeds",
+    "Account/customer identity matches ENGURU Maya",
+    "Taxpayer lookup succeeds",
+    "One controlled INTERNET e-Arsiv invoice is issued with INT series",
+    "Provider/GIB status is verified",
+    "Official PDF and XML are retrievable",
+    "Customer delivery evidence exists",
+    "Accounting delivery evidence exists",
+    "Evidence record persists",
+    "Monthly management report can include the invoice",
+    "Retry/idempotency duplicate scenario passes",
+    "Refund/cancellation scenario is validated",
+    "Human Threshold approves live fiscal issuance"
+  ],
+  "finalRule": "PASS only when every liveAcceptance item has evidence."
+}

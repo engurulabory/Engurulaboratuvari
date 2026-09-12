@@ -33,6 +33,21 @@ jobs:
       - name: Capability & Agent Authority adversarial tests
         run: python -m unittest discover -s tests -p 'test_capability_agent_authority_gate.py' -v
 
+      - name: ENGURU Billing Core tests
+        run: python -m unittest discover -s tests -p 'test_billing_core.py' -v
+
+      - name: PARK adapter mock tests
+        run: python -m unittest discover -s tests -p 'test_park_mock.py' -v
+
+      - name: ENGURU Billing v1 tests
+        run: python -m unittest discover -s tests -p 'test_billing_v1.py' -v
+
+      - name: Billing persistent store tests
+        run: python -m unittest discover -s tests -p 'test_billing_persistent_store.py' -v
+
+      - name: Monthly Maya billing mail tests
+        run: python -m unittest discover -s tests -p 'test_monthly_maya_mail.py' -v
+
       - name: Secret Zero / Fleet Gate v1.2
         run: python tools/fleet_ip_gate.py
 
