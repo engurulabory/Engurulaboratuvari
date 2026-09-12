@@ -12,6 +12,7 @@ class ParkSoapTransport(Protocol):
 class ParkEndpointTruth:
     efatura_service: str
     earchive_service: str
+    account_identity_action: str | None = None
 
 
 class ParkAdapter:
