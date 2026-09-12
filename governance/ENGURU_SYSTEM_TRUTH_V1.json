@@ -45,14 +45,14 @@
       "mainSha": "5ac8eaa1abc9ccf70b6b93e6eb191743ef25af01",
       "productionAcceptanceRunId": 34445179244,
       "qualityRunId": 34445179219,
-      "ipModelTrustRunId": 34445179204,
-      "note": "PR #53 merged. Exact-main Production Acceptance, Quality and IP Model Trust Fleet all completed successfully."
+      "fleetRunId": 34445179204,
+      "note": "PR #53 merged; canonical provenance bundle is checked in on exact main and all three exact-main gates succeeded."
     }
   },
   "fleetEvidence": {
     "state": "PASS",
     "ledger": "governance/ip-model-trust/FLEET_ADOPTION_V1.json",
-    "criterion": "All 8 currently accessible repositories are governed fleet participants with merged IP manifests, pinned read-only fleet CI and recorded fleet evidence. No ninth accessible experiment repository is currently visible to the connected GitHub inventory."
+    "criterion": "All 8 currently accessible governed fleet repositories have merged IP manifests, pinned read-only fleet CI, and successful fleet evidence on recorded main SHAs."
   },
   "accessibleExperimentRecords": [],
   "plannedProducts": [
@@ -64,8 +64,8 @@
     {
       "asset": "Adil Pay",
       "state": "PLANNED",
-      "knownRepositoryRecord": null,
-      "note": "No currently accessible canonical repository is registered. Assign canonical source ownership only when productization starts."
+      "note": "Planned product; canonical source ownership will be assigned when productization starts.",
+      "lastKnownRepositoryRecord": "engurulabory/adil-pay-kanit-web"
     }
   ],
   "systemDomains": {
@@ -87,7 +87,7 @@
     "repositoryOrder": {
       "target": 100,
       "state": "PASS",
-      "criterion": "Current accessible inventory is 8 repositories and all 8 are governed fleet participants."
+      "criterion": "Current accessible inventory and governed fleet are aligned at 8 repositories."
     },
     "security": {
       "target": 100,
@@ -97,7 +97,7 @@
     "fleetAdoption": {
       "target": 100,
       "state": "PASS",
-      "criterion": "8/8 currently accessible repositories have manifests, pinned read-only fleet workflows and successful fleet evidence on recorded main SHAs."
+      "criterion": "8/8 currently accessible governed fleet repositories have manifests, pinned read-only fleet workflows and successful fleet evidence."
     },
     "automationSteward": {
       "target": 100,
@@ -116,18 +116,18 @@
     },
     "repositoryHygiene": {
       "target": 100,
-      "state": "HOLD_PHYSICAL_DELETE_ONLY",
-      "criterion": "All seven accidental audit branches were proved ahead_by=0 and fast-forward aligned to canonical main. No content drift remains; physical deletion of branch names awaits an authorized delete-ref path."
+      "state": "HOLD_DELETE_REF_TOOLING_ONLY",
+      "criterion": "Audit sync branches -2…-8 and merged Verified Agent Operating Core branch are ahead_by=0; physical deletion is authorized but unavailable in the current connector tool surface."
     },
     "shiftCanonicalProvenance": {
       "target": 100,
       "state": "PASS",
-      "criterion": "PR #53 merged to exact-main 5ac8eaa1abc9ccf70b6b93e6eb191743ef25af01; Production Acceptance, Quality and IP Model Trust Fleet all succeeded on that SHA."
+      "criterion": "PR #53 merged to exact main 5ac8eaa1...; Production Acceptance, Quality Gate and Fleet Gate succeeded."
     },
     "builderReleaseMirrorProvenance": {
       "target": 100,
       "state": "HOLD_PR_10",
-      "criterion": "Builder release mirror refresh is implemented in enguru-builder-release PR #10 from canonical Builder main 827b4f11fe32c28e775130ab716743bf3382dc90; merge awaits CI/parity evidence."
+      "criterion": "Release mirror parity refresh is prepared in enguru-builder-release PR #10 from Builder main 827b4f11...; merge only after CI/parity PASS."
     }
   },
   "lockedExecutionPlan": [
@@ -184,8 +184,17 @@
     "Verified Finish"
   ],
   "evidenceRefs": {
-    "latestStewardReconciliation": "evidence/STEWARD_RECONCILIATION_2026-09-10.json",
+    "latestStewardReconciliation": "evidence/STEWARD_ORDER_TRUTH_RECONCILIATION_2026-09-12.json",
     "latestReconciliationMergeSha": "078b7c3b09b1a5ca68564f6f1a3fe1b53f2ef6eb"
   },
-  "nextAction": "Verify enguru-builder-release PR #10 CI/parity and merge only on PASS. Then refresh this Labory reconciliation evidence. Physical deletion of already-aligned stale branch names remains administrative cleanup because the connected GitHub tool exposes no delete-ref action."
+  "nextAction": "Verify and merge enguru-builder-release PR #10 on PASS, merge this reconciliation, then physically delete proven ahead_by=0 stale refs when delete-ref tooling is available.",
+  "historicalRepositoryRecords": [
+    {
+      "repository": "engurulabory/adil-pay-kanit-web",
+      "asset": "Adil Pay",
+      "state": "NOT_CURRENTLY_ACCESSIBLE",
+      "classification": "HISTORICAL_EXPERIMENT_EVIDENCE_RECORD",
+      "note": "Previously inventoried; not present in the currently accessible GitHub installation inventory on 2026-09-12. No deletion/archive claim is made without evidence."
+    }
+  ]
 }
