@@ -111,6 +111,27 @@ Principle ID: `ENGURU_LABORY_CONTROL_PLANE_V1`
 
 Do not change Builder's canonical pointer until the Labory copy, manifests and tests are verified together. This is a controlled migration, not a blind move.
 
+## Shared operating architecture registration — 2026-09-12
+
+### ENGÜRÜ VERIFIED AGENT OPERATING CORE™ v0.1
+Classification: CORE / GOVERNANCE-RUNTIME OPERATING ARCHITECTURE
+Canonical specification: `governance/ENGURU_VERIFIED_AGENT_OPERATING_CORE_V0_1.md`
+State: VISION LOCKED / IMPLEMENTATION HOLD
+
+Purpose:
+`TASK CONTRACT → CAPABILITY CONTRACT → AGENT RUNTIME → CLOSED-LOOP PRODUCTION CORE™ → EVIDENCE → DONECHECK™ → HUMAN THRESHOLD™ → VERIFIED FINISH → VERIFIED LEARNING`
+
+Initial application positioning:
+- ENGÜRÜ Builder™ — product/application consumer;
+- Repository Steward™ — control-plane worker consumer;
+- Autonomous Economic Core™ — economic/operational application consumer;
+- ZEKÜ PRIME — agent operating application/foundation consumer;
+- future agentic products — reuse/extend/adapter consumers.
+
+Architecture rule: this layer composes existing canonical cores; it does not replace or duplicate them. Models/providers remain replaceable execution engines. Domain logic remains product-local. Shared contracts, bounded capability, evidence acceptance and verified-learning semantics remain Labory-governed.
+
+Ownership rule: Labory owns the upper operating contract and version governance. Product repositories retain domain logic, local runtime integration, adapters and product-local evidence. No large migration, move, delete or rename is authorized by vision lock alone.
+
 ## Remaining discovery pass
 Repository Steward™ must still:
 1. find embedded cores across product repositories;
