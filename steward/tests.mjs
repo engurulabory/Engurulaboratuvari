@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict';
 import { STEWARD_CYCLE, STEWARD_SCOPES, classifyWorkItem, inspectRepositoryOrder, inspectWorkspaceHealth, planSafeMaintenance, closeoutRepository } from './index.mjs';
+import { governanceEnvelope } from './governance-envelope.mjs';
+import { assessSimplification } from './simplification-assessor.mjs';
 
 assert.deepEqual(STEWARD_CYCLE, ['YOKLAMA','TERTIP','DUZEN','TEMIZLIK','SADELESTIRME','BAKIM','ONARIM','KAPANIS','YENIDEN_HAZIR']);
 assert.equal(STEWARD_SCOPES.LABORY, 'ENGURU_LABORY');
@@ -20,4 +22,13 @@ assert.equal(planSafeMaintenance({ mergedBranches:['feature/old'] }).status, 'HO
 assert.equal(closeoutRepository({ mapPass:false }).status, 'HOLD');
 assert.equal(closeoutRepository({ mapPass:true }).status, 'READY_AGAIN');
 assert.equal(closeoutRepository({ mapPass:true, evidencePreserved:false }).status, 'BLOCKED');
+const envelope = governanceEnvelope({ state:'PASS', claim:'Steward decision is evidenced.', evidence:[{source:'unit-test'}], nextAction:'Preserve verified state.' });
+assert.equal(envelope.state, 'PASS');
+assert.throws(() => governanceEnvelope({ state:'PASS', claim:'x', evidence:[], nextAction:'y' }), /EVIDENCE_REQUIRED/);
+const simplificationHold = assessSimplification({ candidates:[{id:'duplicate-a'},{id:'protected-a'}], protectedReferences:['protected-a'] });
+assert.equal(simplificationHold.state, 'HOLD');
+assert.equal(simplificationHold.evidence[0].beforeCount, 2);
+assert.equal(simplificationHold.evidence[0].projectedAfterCount, 1);
+const simplificationPass = assessSimplification({ candidates:[{id:'protected-a'}], protectedReferences:['protected-a'] });
+assert.equal(simplificationPass.state, 'PASS');
 console.log('repository-steward: PASS');
