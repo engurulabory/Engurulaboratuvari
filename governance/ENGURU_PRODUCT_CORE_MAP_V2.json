@@ -28,9 +28,9 @@
       "canonicalName": "ENGÜRÜ Builder Release Mirror",
       "assetType": "RELEASE_MIRROR",
       "owner": "Builder distribution surface",
-      "state": "HOLD",
+      "state": "PASS",
       "fleetParticipation": "GOVERNED",
-      "role": "Release mirror only. Provenance refresh from Builder main 827b4f11... is prepared in PR #10 and awaits CI/parity verification + merge."
+      "role": "Release mirror only. Provenance refreshed from Builder source 827b4f11fe32c28e775130ab716743bf3382dc90 and merged to exact-main 6ebb683bb5e95897ef2a76b8fc623468e4ccb68f; 60/60 allowlist parity verified and exact-main Fleet run 34676872690 succeeded."
     },
     {
       "repository": "engurulabory/autonomous-economic-core",
@@ -224,7 +224,7 @@
     ],
     "shiftRuntimeAcceptance": "PASS",
     "shiftCanonicalProvenance": "PASS",
-    "builderReleaseMirrorProvenance": "HOLD_PR_10",
+    "builderReleaseMirrorProvenance": "PASS",
     "repositoryHygieneUniqueWork": "PASS",
     "repositoryHygieneRefAlignment": "PASS",
     "repositoryHygienePhysicalDeletion": "HOLD_DELETE_REF_TOOLING_ONLY",
@@ -242,7 +242,10 @@
     "shiftExactMainSha": "5ac8eaa1abc9ccf70b6b93e6eb191743ef25af01",
     "shiftProductionAcceptanceRun": 34445179244,
     "shiftQualityRun": 34445179219,
-    "builderReleaseRefreshPr": 10
+    "builderReleaseRefreshPr": 10,
+    "builderReleaseMirrorMainSha": "6ebb683bb5e95897ef2a76b8fc623468e4ccb68f",
+    "builderReleaseMirrorFleetRun": 34676872690,
+    "builderSourceSha": "827b4f11fe32c28e775130ab716743bf3382dc90"
   },
-  "nextAction": "Verify and merge Builder Release PR #10, merge Labory truth reconciliation, then complete physical stale-ref deletion when delete-ref tooling is available."
+  "nextAction": "Merge Labory truth reconciliation after green CI. Physical stale-ref deletion remains administrative cleanup blocked by unavailable delete-ref tooling."
 }
