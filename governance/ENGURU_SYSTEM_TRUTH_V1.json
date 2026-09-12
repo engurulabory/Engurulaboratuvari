@@ -126,8 +126,8 @@
     },
     "builderReleaseMirrorProvenance": {
       "target": 100,
-      "state": "HOLD_PR_10",
-      "criterion": "Release mirror parity refresh is prepared in enguru-builder-release PR #10 from Builder main 827b4f11...; merge only after CI/parity PASS."
+      "state": "PASS",
+      "criterion": "enguru-builder-release PR #10 merged to exact-main 6ebb683bb5e95897ef2a76b8fc623468e4ccb68f from Builder source 827b4f11fe32c28e775130ab716743bf3382dc90; 60/60 manifest allowlist files match and exact-main Fleet run 34676872690 completed successfully."
     }
   },
   "lockedExecutionPlan": [
@@ -185,9 +185,12 @@
   ],
   "evidenceRefs": {
     "latestStewardReconciliation": "evidence/STEWARD_ORDER_TRUTH_RECONCILIATION_2026-09-12.json",
-    "latestReconciliationMergeSha": "078b7c3b09b1a5ca68564f6f1a3fe1b53f2ef6eb"
+    "latestReconciliationMergeSha": "078b7c3b09b1a5ca68564f6f1a3fe1b53f2ef6eb",
+    "builderReleaseMirrorMainSha": "6ebb683bb5e95897ef2a76b8fc623468e4ccb68f",
+    "builderReleaseMirrorFleetRun": 34676872690,
+    "builderSourceSha": "827b4f11fe32c28e775130ab716743bf3382dc90"
   },
-  "nextAction": "Verify and merge enguru-builder-release PR #10 on PASS, merge this reconciliation, then physically delete proven ahead_by=0 stale refs when delete-ref tooling is available.",
+  "nextAction": "Complete Labory reconciliation CI and merge on PASS. Physical deletion of already-aligned stale branch names remains administrative cleanup blocked only by the connected GitHub tool lacking delete-ref.",
   "historicalRepositoryRecords": [
     {
       "repository": "engurulabory/adil-pay-kanit-web",
