@@ -30,7 +30,7 @@
       "owner": "Builder distribution surface",
       "state": "PASS",
       "fleetParticipation": "GOVERNED",
-      "role": "Release mirror only. Provenance refreshed from Builder source 827b4f11fe32c28e775130ab716743bf3382dc90 and merged to exact-main 6ebb683bb5e95897ef2a76b8fc623468e4ccb68f; 60/60 allowlist parity verified and exact-main Fleet run 34676872690 succeeded."
+      "role": "Release/handoff mirror only; never product source of truth. Refreshed from Builder main 827b4f11... with 60/60 manifest-allowlisted file parity; PR #10 merged to exact main 6ebb683b... and Fleet CI succeeded."
     },
     {
       "repository": "engurulabory/autonomous-economic-core",
@@ -245,7 +245,9 @@
     "builderReleaseRefreshPr": 10,
     "builderReleaseMirrorMainSha": "6ebb683bb5e95897ef2a76b8fc623468e4ccb68f",
     "builderReleaseMirrorFleetRun": 34676872690,
-    "builderSourceSha": "827b4f11fe32c28e775130ab716743bf3382dc90"
+    "builderSourceSha": "827b4f11fe32c28e775130ab716743bf3382dc90",
+    "builderReleaseMainSha": "6ebb683bb5e95897ef2a76b8fc623468e4ccb68f",
+    "builderReleaseFleetRun": 34676872690
   },
-  "nextAction": "Merge Labory truth reconciliation after green CI. Physical stale-ref deletion remains administrative cleanup blocked by unavailable delete-ref tooling."
+  "nextAction": "Merge Labory truth reconciliation on green gates; physical stale-ref deletion remains tooling-only cleanup."
 }
