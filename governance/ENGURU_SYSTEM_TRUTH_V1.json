@@ -1,57 +1,206 @@
 {
-  "schemaVersion": "1.5",
-  "generatedAt": "2026-09-10",
+  "schemaVersion": "1.6",
+  "generatedAt": "2026-09-12",
   "authority": "ENGÜRÜ Labory Control Plane",
   "state": "HOLD",
   "truthRule": "A system-level PASS requires current repository inventory, explicit product/core ownership, security fleet evidence, Steward evidence, operational simplicity criteria and DoneCheck/Human Threshold closure. Structural or historical PASS never overrides current exact-main evidence.",
-  "currentAccessibleRepositoryCount": 9,
+  "currentAccessibleRepositoryCount": 8,
   "currentGovernedFleetRepositoryCount": 8,
-  "currentAccessibleRepositories": ["engurulabory/Engurulaboratuvari","engurulabory/enguru-website-factory","engurulabory/enguru-builder-release","engurulabory/autonomous-economic-core","engurulabory/donecheck-core-foundation","engurulabory/donecheck","engurulabory/shift-core-api","engurulabory/artist-manager-ai","engurulabory/adil-pay-kanit-web"],
-  "governedFleetRepositories": ["engurulabory/Engurulaboratuvari","engurulabory/enguru-website-factory","engurulabory/enguru-builder-release","engurulabory/autonomous-economic-core","engurulabory/donecheck-core-foundation","engurulabory/donecheck","engurulabory/shift-core-api","engurulabory/artist-manager-ai"],
+  "currentAccessibleRepositories": [
+    "engurulabory/Engurulaboratuvari",
+    "engurulabory/enguru-website-factory",
+    "engurulabory/enguru-builder-release",
+    "engurulabory/autonomous-economic-core",
+    "engurulabory/donecheck-core-foundation",
+    "engurulabory/donecheck",
+    "engurulabory/shift-core-api",
+    "engurulabory/artist-manager-ai"
+  ],
+  "governedFleetRepositories": [
+    "engurulabory/Engurulaboratuvari",
+    "engurulabory/enguru-website-factory",
+    "engurulabory/enguru-builder-release",
+    "engurulabory/autonomous-economic-core",
+    "engurulabory/donecheck-core-foundation",
+    "engurulabory/donecheck",
+    "engurulabory/shift-core-api",
+    "engurulabory/artist-manager-ai"
+  ],
   "currentTechnicalEvidence": {
-    "donecheck": {"state":"PASS","mainSha":"e343eb0160d03856f02033a244f0a5400e657288","mainCiRunId":34419662723,"note":"Exact-main CI and IP Model Trust passed after PR #5."},
-    "autonomousEconomicCore": {"state":"PASS_TECHNICAL_HOLD_ECONOMIC_FINALITY","mainSha":"6777a6ea568caf1834eb2896b3ec2319b62caa8e","mainTestRunId":34419673427,"note":"Exact-main tests passed after PR #9; Verified Banked Net Value remains separately evidence-gated."},
-    "shiftCore": {"state":"PASS_RUNTIME_HOLD_CANONICAL_PROVENANCE","pullRequest":53,"verifiedHeadSha":"8366ce42267ddfb476b553ca078c138e97e1ef0d","productionAcceptanceRunId":34419969931,"note":"Source gates, 503 tests/coverage, dependency audit with zero vulnerabilities, Docker acceptance, Supabase clean reset and release evidence all passed. The refreshed lockfile/SBOM/SHA256SUMS/release-manifest bundle exists as GitHub Actions evidence, but checked-in canonical provenance remains unsynchronized."}
+    "donecheck": {
+      "state": "PASS",
+      "mainSha": "e343eb0160d03856f02033a244f0a5400e657288",
+      "mainCiRunId": 34419662723,
+      "note": "Exact-main CI and IP Model Trust passed after PR #5."
+    },
+    "autonomousEconomicCore": {
+      "state": "PASS_TECHNICAL_HOLD_ECONOMIC_FINALITY",
+      "mainSha": "6777a6ea568caf1834eb2896b3ec2319b62caa8e",
+      "mainTestRunId": 34419673427,
+      "note": "Exact-main tests passed after PR #9; Verified Banked Net Value remains separately evidence-gated."
+    },
+    "shiftCore": {
+      "state": "PASS",
+      "pullRequest": 53,
+      "mainSha": "5ac8eaa1abc9ccf70b6b93e6eb191743ef25af01",
+      "productionAcceptanceRunId": 34445179244,
+      "qualityRunId": 34445179219,
+      "fleetRunId": 34445179204,
+      "note": "PR #53 merged; canonical provenance bundle is checked in on exact main and all three exact-main gates succeeded."
+    }
   },
   "fleetEvidence": {
-    "state":"PASS",
-    "ledger":"governance/ip-model-trust/FLEET_ADOPTION_V1.json",
-    "criterion":"All 8 governed fleet repositories have merged IP manifests, pinned read-only fleet CI, and successful fleet evidence on recorded main SHAs. The ninth accessible repository, adil-pay-kanit-web, remains outside governed fleet adoption as EXPERIMENT_EVIDENCE_RECORD/HOLD."
+    "state": "PASS",
+    "ledger": "governance/ip-model-trust/FLEET_ADOPTION_V1.json",
+    "criterion": "All 8 currently accessible governed fleet repositories have merged IP manifests, pinned read-only fleet CI, and successful fleet evidence on recorded main SHAs."
   },
-  "accessibleExperimentRecords": [
-    {"repository":"engurulabory/adil-pay-kanit-web","asset":"Adil Pay","state":"HOLD","classification":"EXPERIMENT_EVIDENCE_RECORD","note":"Accessible public repository with minimal README only; no .enguru manifest, governed CI, evidence structure or active runtime. It is visible inventory truth but not an active governed product."}
-  ],
+  "accessibleExperimentRecords": [],
   "plannedProducts": [
-    {"asset":"ENGÜRÜ LAB • ASTRO MODE","state":"PLANNED","note":"Productization is intentionally deferred until Labory foundation and Astra acceptance are PASS."},
-    {"asset":"Adil Pay","state":"PLANNED","knownRepositoryRecord":"engurulabory/adil-pay-kanit-web","note":"The accessible repository remains an experiment/evidence record. Canonical product ownership is assigned only when productization starts."}
+    {
+      "asset": "ENGÜRÜ LAB • ASTRO MODE",
+      "state": "PLANNED",
+      "note": "Productization is intentionally deferred until Labory foundation and Astra acceptance are PASS."
+    },
+    {
+      "asset": "Adil Pay",
+      "state": "PLANNED",
+      "note": "Planned product; canonical source ownership will be assigned when productization starts.",
+      "lastKnownRepositoryRecord": "engurulabory/adil-pay-kanit-web"
+    }
   ],
   "systemDomains": {
-    "architecture": {"target":100,"state":"PASS","criterion":"Canonical control plane + bounded product execution planes + reusable shared governance."},
-    "governanceEvidence": {"target":100,"state":"PASS","criterion":"State → claim → evidence → next action; DoneCheck and Human Threshold retained."},
-    "productCoreSeparation": {"target":100,"state":"PASS","criterion":"Every governed active asset has one recorded canonical owner/type; adil-pay-kanit-web is explicitly separated as an experiment/evidence record; transitional control-plane copies remain migration debt rather than duplicate authority."},
-    "repositoryOrder": {"target":100,"state":"PASS","criterion":"Current accessible inventory is 9 repositories, governed fleet is 8 repositories, and the difference is explicitly classified rather than hidden."},
-    "security": {"target":100,"state":"PASS","criterion":"Security Fleet and IP Model Trust structure are in place; Shift dependency advisories are remediated and the security preflight correctly blocks workflow repository mutation."},
-    "fleetAdoption": {"target":100,"state":"PASS","criterion":"8/8 governed fleet repositories have manifests, pinned read-only fleet workflows and successful fleet evidence on recorded main SHAs; adil-pay-kanit-web is not counted as governed fleet."},
-    "automationSteward": {"target":100,"state":"PASS_OBSERVED_RECONCILIATION","criterion":"Repository Steward produced and merged an evidence-bound real reconciliation cycle in PR #26, detected accessible-inventory drift and release-mirror provenance drift without destructive action."},
-    "operationalSimplicity": {"target":100,"state":"PASS","criterion":"Canonical map + system truth + readiness evidence distinguish accessible inventory, governed fleet and experiment records without topology ambiguity."},
-    "branchProtection": {"target":100,"state":"HOLD","criterion":"Main protection is active and `labory-final-gate` is required; IP Model Trust Gate and Fleet Gate are not yet both required status checks."},
-    "repositoryHygiene": {"target":100,"state":"HOLD_PHYSICAL_DELETE_ONLY","criterion":"All seven accidental audit branches were proved ahead_by=0 and fast-forward aligned to canonical main. No content drift remains; physical deletion of branch names awaits an authorized delete-ref path."},
-    "shiftCanonicalProvenance": {"target":100,"state":"HOLD","criterion":"Persist the verified refreshed package-lock/SBOM/checksum/manifest bundle through an authorized source-write path without granting CI repository mutation permission; then rerun and merge PR #53 only on green evidence."},
-    "builderReleaseMirrorProvenance": {"target":100,"state":"HOLD","criterion":"Refresh enguru-builder-release through the normal handoff path so HANDOFF_META sourceSha matches the intended current Builder source, then verify source-to-release parity evidence."}
+    "architecture": {
+      "target": 100,
+      "state": "PASS",
+      "criterion": "Canonical control plane + bounded product execution planes + reusable shared governance."
+    },
+    "governanceEvidence": {
+      "target": 100,
+      "state": "PASS",
+      "criterion": "State → claim → evidence → next action; DoneCheck and Human Threshold retained."
+    },
+    "productCoreSeparation": {
+      "target": 100,
+      "state": "PASS",
+      "criterion": "Every currently accessible governed asset has one recorded canonical owner/type; transitional control-plane copies remain migration debt rather than duplicate authority."
+    },
+    "repositoryOrder": {
+      "target": 100,
+      "state": "PASS",
+      "criterion": "Current accessible inventory and governed fleet are aligned at 8 repositories."
+    },
+    "security": {
+      "target": 100,
+      "state": "PASS",
+      "criterion": "Security Fleet and IP Model Trust structure are in place; Shift dependency advisories are remediated and the security preflight correctly blocks workflow repository mutation."
+    },
+    "fleetAdoption": {
+      "target": 100,
+      "state": "PASS",
+      "criterion": "8/8 currently accessible governed fleet repositories have manifests, pinned read-only fleet workflows and successful fleet evidence."
+    },
+    "automationSteward": {
+      "target": 100,
+      "state": "PASS_OBSERVED_RECONCILIATION",
+      "criterion": "Repository Steward produced and merged an evidence-bound real reconciliation cycle in PR #26, detected accessible-inventory drift and release-mirror provenance drift without destructive action."
+    },
+    "operationalSimplicity": {
+      "target": 100,
+      "state": "PASS",
+      "criterion": "Canonical map + system truth + readiness evidence distinguish accessible inventory, governed fleet and experiment records without topology ambiguity."
+    },
+    "branchProtection": {
+      "target": 100,
+      "state": "HOLD",
+      "criterion": "Main protection is active and `labory-final-gate` is required; IP Model Trust Gate and Fleet Gate are not yet both required status checks."
+    },
+    "repositoryHygiene": {
+      "target": 100,
+      "state": "HOLD_DELETE_REF_TOOLING_ONLY",
+      "criterion": "Audit sync branches -2…-8 and merged Verified Agent Operating Core branch are ahead_by=0; physical deletion is authorized but unavailable in the current connector tool surface."
+    },
+    "shiftCanonicalProvenance": {
+      "target": 100,
+      "state": "PASS",
+      "criterion": "PR #53 merged to exact main 5ac8eaa1...; Production Acceptance, Quality Gate and Fleet Gate succeeded."
+    },
+    "builderReleaseMirrorProvenance": {
+      "target": 100,
+      "state": "PASS",
+      "criterion": "Builder release mirror refreshed from Builder main 827b4f11...; 60/60 manifest-allowlisted files match, HANDOFF_META sourceSha is exact, PR #10 merged to 6ebb683b..., and exact-main Fleet CI run 34676872690 succeeded."
+    }
   },
   "lockedExecutionPlan": [
-    {"step":1,"name":"ENGURU_LABORY_VERIFIED_FINISH","exit":"Repository truth + Product/Core Map + Repository Order + Security Fleet + Steward + Operational Simplicity + DoneCheck/Human Threshold all PASS."},
-    {"step":2,"name":"ASTRA_MAC_RUNTIME","exit":"Astra is installed/available on Mac and can operate against the approved Enguru workspace with intended permissions."},
-    {"step":3,"name":"ASTRA_ACCEPTANCE_TEST","exit":"Astra completes representative read/build/test/evidence tasks without violating IP, repository-order or Human Threshold rules."},
-    {"step":4,"name":"PRODUCT_PRODUCTION_START","exit":"Astra acceptance PASS unlocks production."},
-    {"step":5,"name":"ENGURU_BUILDER","exit":"First production product reaches Verified Finish."},
-    {"step":6,"name":"ARTIST_MANAGER_AI","exit":"Second production product reaches Verified Finish."},
-    {"step":7,"name":"PLANNED_PRODUCT_QUEUE","exit":"Astro Mode and Adil Pay enter productization in controlled order after prior product gates."}
+    {
+      "step": 1,
+      "name": "ENGURU_LABORY_VERIFIED_FINISH",
+      "exit": "Repository truth + Product/Core Map + Repository Order + Security Fleet + Steward + Operational Simplicity + DoneCheck/Human Threshold all PASS."
+    },
+    {
+      "step": 2,
+      "name": "ASTRA_MAC_RUNTIME",
+      "exit": "Astra is installed/available on Mac and can operate against the approved Enguru workspace with intended permissions."
+    },
+    {
+      "step": 3,
+      "name": "ASTRA_ACCEPTANCE_TEST",
+      "exit": "Astra completes representative read/build/test/evidence tasks without violating IP, repository-order or Human Threshold rules."
+    },
+    {
+      "step": 4,
+      "name": "PRODUCT_PRODUCTION_START",
+      "exit": "Astra acceptance PASS unlocks production."
+    },
+    {
+      "step": 5,
+      "name": "ENGURU_BUILDER",
+      "exit": "First production product reaches Verified Finish."
+    },
+    {
+      "step": 6,
+      "name": "ARTIST_MANAGER_AI",
+      "exit": "Second production product reaches Verified Finish."
+    },
+    {
+      "step": 7,
+      "name": "PLANNED_PRODUCT_QUEUE",
+      "exit": "Astro Mode and Adil Pay enter productization in controlled order after prior product gates."
+    }
   ],
-  "acceptanceSequence": ["Repository Truth","Product & Core Map","Repository Order","Security Fleet","Fleet Adoption","Shift Canonical Provenance","Builder Release Mirror Provenance","Steward Drift Check","Operational Simplicity","Required Status Checks","Repository Hygiene","DoneCheck","Human Threshold","Verified Finish"],
+  "acceptanceSequence": [
+    "Repository Truth",
+    "Product & Core Map",
+    "Repository Order",
+    "Security Fleet",
+    "Fleet Adoption",
+    "Shift Canonical Provenance",
+    "Builder Release Mirror Provenance",
+    "Steward Drift Check",
+    "Operational Simplicity",
+    "Required Status Checks",
+    "Repository Hygiene",
+    "DoneCheck",
+    "Human Threshold",
+    "Verified Finish"
+  ],
   "evidenceRefs": {
-    "latestStewardReconciliation":"evidence/STEWARD_RECONCILIATION_2026-09-10.json",
-    "latestReconciliationMergeSha":"078b7c3b09b1a5ca68564f6f1a3fe1b53f2ef6eb"
+    "latestStewardReconciliation": "evidence/STEWARD_ORDER_TRUTH_RECONCILIATION_2026-09-12.json",
+    "latestReconciliationMergeSha": "078b7c3b09b1a5ca68564f6f1a3fe1b53f2ef6eb",
+    "builderReleaseMirrorMainSha": "6ebb683bb5e95897ef2a76b8fc623468e4ccb68f",
+    "builderReleaseMirrorFleetRun": 34676872690,
+    "builderSourceSha": "827b4f11fe32c28e775130ab716743bf3382dc90",
+    "builderReleaseRefreshPr": 10,
+    "builderReleaseMainSha": "6ebb683bb5e95897ef2a76b8fc623468e4ccb68f",
+    "builderReleaseFleetRun": 34676872690
   },
-  "nextAction": "Close Shift Core PR #53 canonical provenance and refresh Builder source-to-release mirror provenance through its normal handoff path. Keep adil-pay-kanit-web as EXPERIMENT_EVIDENCE_RECORD/HOLD. Physical deletion of already-aligned audit branch names remains Human Threshold/admin cleanup."
+  "nextAction": "Merge this Labory reconciliation on green gates. Physical deletion of proven ahead_by=0 stale refs remains tooling-only cleanup because the current connector exposes no delete-ref mutation.",
+  "historicalRepositoryRecords": [
+    {
+      "repository": "engurulabory/adil-pay-kanit-web",
+      "asset": "Adil Pay",
+      "state": "NOT_CURRENTLY_ACCESSIBLE",
+      "classification": "HISTORICAL_EXPERIMENT_EVIDENCE_RECORD",
+      "note": "Previously inventoried; not present in the currently accessible GitHub installation inventory on 2026-09-12. No deletion/archive claim is made without evidence."
+    }
+  ]
 }

@@ -1,53 +1,212 @@
 {
-  "schemaVersion": "2.5",
-  "generatedAt": "2026-09-10",
+  "schemaVersion": "2.6",
+  "generatedAt": "2026-09-12",
   "state": "HOLD",
-  "scope": "9 currently accessible engurulabory repositories: 8 governed fleet participants plus 1 experiment/evidence record; planned products and trust product candidates remain explicit.",
+  "scope": "8 currently accessible engurulabory repositories; all 8 are governed fleet participants. Historical inaccessible experiment records remain separate from current inventory.",
   "lockedRule": "No destructive repository move, delete, merge, rename or retirement before map PASS and Human Threshold where required.",
   "records": [
-    {"repository":"engurulabory/Engurulaboratuvari","canonicalName":"ENGÜRÜ Labory Control Plane","assetType":"CONTROL_PLANE","owner":"ENGÜRÜ Labory","state":"PASS","fleetParticipation":"GOVERNED","role":"Canonical governance, Product/Core Map, Repository Order, Repository Steward™, Security Fleet, system truth."},
-    {"repository":"engurulabory/enguru-website-factory","canonicalName":"ENGÜRÜ Builder™","assetType":"PRODUCT","owner":"Builder execution plane","state":"HOLD","fleetParticipation":"GOVERNED","role":"Canonical Builder product source; transitional cross-product governance copies are migration debt, not canonical ownership."},
-    {"repository":"engurulabory/enguru-builder-release","canonicalName":"ENGÜRÜ Builder Release Mirror","assetType":"RELEASE_MIRROR","owner":"Builder distribution surface","state":"HOLD","fleetParticipation":"GOVERNED","role":"Release/handoff mirror only; never product source of truth. Current HANDOFF_META source SHA trails current Builder main and must be refreshed through normal handoff provenance."},
-    {"repository":"engurulabory/autonomous-economic-core","canonicalName":"AUTONOMOUS ECONOMIC CORE™","assetType":"PRODUCT_CORE","owner":"AEC economic execution plane","state":"HOLD","fleetParticipation":"GOVERNED","role":"Economic orchestration/runtime. Exact-main technical tests are PASS; Verified Banked Net Value remains evidence-gated."},
-    {"repository":"engurulabory/donecheck-core-foundation","canonicalName":"DoneCheck™ Controlled Development Source","assetType":"CORE","owner":"DoneCheck controlled development","state":"PASS","fleetParticipation":"GOVERNED","role":"Canonical controlled development source."},
-    {"repository":"engurulabory/donecheck","canonicalName":"DoneCheck™ Public Working Core","assetType":"PRODUCT_CORE","owner":"DoneCheck public release","state":"PASS","fleetParticipation":"GOVERNED","role":"Public/open-source release; exact-main CI and IP Model Trust are green; provenance remains linked to controlled source."},
-    {"repository":"engurulabory/shift-core-api","canonicalName":"Shift Core™","assetType":"PRODUCT_CORE","owner":"Shift Core execution plane","state":"HOLD","fleetParticipation":"GOVERNED","technicalState":"PASS_RUNTIME_HOLD_CANONICAL_PROVENANCE","role":"Bounded-shift task acceptance/rollback execution. Runtime/security production acceptance is green; checked-in lockfile/SBOM/checksum/release-manifest provenance remains PR #53 merge blocker."},
-    {"repository":"engurulabory/artist-manager-ai","canonicalName":"Artist Manager AI™","assetType":"PRODUCT","owner":"Artist Manager AI execution plane","state":"HOLD","fleetParticipation":"GOVERNED","role":"Second planned production product after ENGÜRÜ Builder; verified release requires runtime evidence."},
-    {"repository":"engurulabory/adil-pay-kanit-web","canonicalName":"Adil Pay Experiment Evidence Record","assetType":"EXPERIMENT_EVIDENCE_RECORD","owner":"Unpromoted experiment record","state":"HOLD","fleetParticipation":"OUTSIDE_GOVERNED_FLEET","role":"Accessible public repository containing only a minimal README. No .enguru manifest, governed CI, evidence structure or active runtime. Retain as inventory truth/evidence record until controlled productization or Human Threshold archive decision."}
+    {
+      "repository": "engurulabory/Engurulaboratuvari",
+      "canonicalName": "ENGÜRÜ Labory Control Plane",
+      "assetType": "CONTROL_PLANE",
+      "owner": "ENGÜRÜ Labory",
+      "state": "PASS",
+      "fleetParticipation": "GOVERNED",
+      "role": "Canonical governance, Product/Core Map, Repository Order, Repository Steward™, Security Fleet, system truth."
+    },
+    {
+      "repository": "engurulabory/enguru-website-factory",
+      "canonicalName": "ENGÜRÜ Builder™",
+      "assetType": "PRODUCT",
+      "owner": "Builder execution plane",
+      "state": "HOLD",
+      "fleetParticipation": "GOVERNED",
+      "role": "Canonical Builder product source; transitional cross-product governance copies are migration debt, not canonical ownership."
+    },
+    {
+      "repository": "engurulabory/enguru-builder-release",
+      "canonicalName": "ENGÜRÜ Builder Release Mirror",
+      "assetType": "RELEASE_MIRROR",
+      "owner": "Builder distribution surface",
+      "state": "PASS",
+      "fleetParticipation": "GOVERNED",
+      "role": "Release/handoff mirror only; never product source of truth. Refreshed from Builder main 827b4f11... with 60/60 manifest-allowlisted file parity; PR #10 merged to exact main 6ebb683b... and Fleet CI succeeded."
+    },
+    {
+      "repository": "engurulabory/autonomous-economic-core",
+      "canonicalName": "AUTONOMOUS ECONOMIC CORE™",
+      "assetType": "PRODUCT_CORE",
+      "owner": "AEC economic execution plane",
+      "state": "HOLD",
+      "fleetParticipation": "GOVERNED",
+      "role": "Economic orchestration/runtime. Exact-main technical tests are PASS; Verified Banked Net Value remains evidence-gated."
+    },
+    {
+      "repository": "engurulabory/donecheck-core-foundation",
+      "canonicalName": "DoneCheck™ Controlled Development Source",
+      "assetType": "CORE",
+      "owner": "DoneCheck controlled development",
+      "state": "PASS",
+      "fleetParticipation": "GOVERNED",
+      "role": "Canonical controlled development source."
+    },
+    {
+      "repository": "engurulabory/donecheck",
+      "canonicalName": "DoneCheck™ Public Working Core",
+      "assetType": "PRODUCT_CORE",
+      "owner": "DoneCheck public release",
+      "state": "PASS",
+      "fleetParticipation": "GOVERNED",
+      "role": "Public/open-source release; exact-main CI and IP Model Trust are green; provenance remains linked to controlled source."
+    },
+    {
+      "repository": "engurulabory/shift-core-api",
+      "canonicalName": "Shift Core™",
+      "assetType": "PRODUCT_CORE",
+      "owner": "Shift Core execution plane",
+      "state": "PASS",
+      "fleetParticipation": "GOVERNED",
+      "technicalState": "PASS",
+      "role": "Bounded-shift task acceptance/rollback execution. PR #53 merged; canonical provenance is checked in and exact-main Production Acceptance, Quality Gate and Fleet Gate are green."
+    },
+    {
+      "repository": "engurulabory/artist-manager-ai",
+      "canonicalName": "Artist Manager AI™",
+      "assetType": "PRODUCT",
+      "owner": "Artist Manager AI execution plane",
+      "state": "HOLD",
+      "fleetParticipation": "GOVERNED",
+      "role": "Second planned production product after ENGÜRÜ Builder; verified release requires runtime evidence."
+    }
   ],
   "governedFleet": {
     "count": 8,
     "state": "PASS",
-    "repositories": ["engurulabory/Engurulaboratuvari","engurulabory/enguru-website-factory","engurulabory/enguru-builder-release","engurulabory/autonomous-economic-core","engurulabory/donecheck-core-foundation","engurulabory/donecheck","engurulabory/shift-core-api","engurulabory/artist-manager-ai"],
+    "repositories": [
+      "engurulabory/Engurulaboratuvari",
+      "engurulabory/enguru-website-factory",
+      "engurulabory/enguru-builder-release",
+      "engurulabory/autonomous-economic-core",
+      "engurulabory/donecheck-core-foundation",
+      "engurulabory/donecheck",
+      "engurulabory/shift-core-api",
+      "engurulabory/artist-manager-ai"
+    ],
     "rule": "Fleet adoption claims apply only to governed participants; accessible experiment/evidence repositories are not silently counted as governed."
   },
   "plannedProducts": [
-    {"asset":"ENGÜRÜ LAB • ASTRO MODE","assetType":"PLANNED_PRODUCT","state":"PLANNED","productionOrder":"AFTER_ARTIST_MANAGER","canonicalRepository":null,"rule":"Do not create or move implementation until Labory foundation and Astra acceptance are PASS; assign canonical repository when production starts."},
-    {"asset":"Adil Pay","knownRepositoryRecord":"engurulabory/adil-pay-kanit-web","assetType":"PLANNED_PRODUCT","state":"PLANNED","productionOrder":"AFTER_ARTIST_MANAGER","canonicalRepository":null,"rule":"Current repository remains EXPERIMENT_EVIDENCE_RECORD/HOLD; productization assigns explicit canonical source ownership only when production starts."}
+    {
+      "asset": "ENGÜRÜ LAB • ASTRO MODE",
+      "assetType": "PLANNED_PRODUCT",
+      "state": "PLANNED",
+      "productionOrder": "AFTER_ARTIST_MANAGER",
+      "canonicalRepository": null,
+      "rule": "Do not create or move implementation until Labory foundation and Astra acceptance are PASS; assign canonical repository when production starts."
+    },
+    {
+      "asset": "Adil Pay",
+      "assetType": "PLANNED_PRODUCT",
+      "state": "PLANNED",
+      "productionOrder": "AFTER_ARTIST_MANAGER",
+      "canonicalRepository": null,
+      "rule": "Last-known experiment repository is not currently accessible. Assign canonical source ownership when productization starts; do not infer deletion/archive.",
+      "lastKnownRepositoryRecord": "engurulabory/adil-pay-kanit-web"
+    }
   ],
   "productCandidates": [
-    {"asset":"MayaShield™","assetType":"PRODUCT_CANDIDATE","state":"HOLD","canonicalRepository":null,"productizationOrder":"AFTER_ARTIST_MANAGER","reuseContract":"IP & Model Trust Gate + Secret Zero + Security Fleet + Human Threshold + DoneCheck + Evidence","rule":"Prepare intake and demand proof before creating a product repository or public sellable surface."},
-    {"asset":"Safety Decision Layer™","assetType":"DEVELOPER_PRODUCT_CANDIDATE","state":"HOLD","canonicalRepository":null,"productizationOrder":"AFTER_MAYASHIELD_DEMAND_PROOF","reuseContract":"MİZAN + Human Threshold + IP & Model Trust Gate + policy/evidence patterns","rule":"Independent API/SDK productization opens only after developer-demand and reuse evidence."}
+    {
+      "asset": "MayaShield™",
+      "assetType": "PRODUCT_CANDIDATE",
+      "state": "HOLD",
+      "canonicalRepository": null,
+      "productizationOrder": "AFTER_ARTIST_MANAGER",
+      "reuseContract": "IP & Model Trust Gate + Secret Zero + Security Fleet + Human Threshold + DoneCheck + Evidence",
+      "rule": "Prepare intake and demand proof before creating a product repository or public sellable surface."
+    },
+    {
+      "asset": "Safety Decision Layer™",
+      "assetType": "DEVELOPER_PRODUCT_CANDIDATE",
+      "state": "HOLD",
+      "canonicalRepository": null,
+      "productizationOrder": "AFTER_MAYASHIELD_DEMAND_PROOF",
+      "reuseContract": "MİZAN + Human Threshold + IP & Model Trust Gate + policy/evidence patterns",
+      "rule": "Independent API/SDK productization opens only after developer-demand and reuse evidence."
+    }
   ],
   "trustCapabilities": [
-    {"asset":"TRUSTSPINE™","assetType":"TRUST_BACKBONE_CAPABILITY","state":"HOLD","canonicalPath":"governance/ENGURU_TRUST_PRODUCTIZATION_V1.md","role":"Connect Language Governance, IP Trust, Security, DoneCheck, Evidence, MİZAN, Human Threshold and Verified Finish."},
-    {"asset":"MİZAN™","assetType":"GOVERNANCE_CAPABILITY","state":"HOLD","canonicalPath":"governance/ENGURU_TRUST_PRODUCTIZATION_V1.md","role":"Evaluation and threshold logic that produces decision input for Human Threshold."},
-    {"asset":"Maya Trust™","assetType":"ASSURANCE_SURFACE","state":"HOLD","canonicalPath":"governance/ENGURU_TRUST_PRODUCTIZATION_V1.md","role":"Future public trust/evidence presentation surface; not a standalone SaaS at this stage."}
+    {
+      "asset": "TRUSTSPINE™",
+      "assetType": "TRUST_BACKBONE_CAPABILITY",
+      "state": "HOLD",
+      "canonicalPath": "governance/ENGURU_TRUST_PRODUCTIZATION_V1.md",
+      "role": "Connect Language Governance, IP Trust, Security, DoneCheck, Evidence, MİZAN, Human Threshold and Verified Finish."
+    },
+    {
+      "asset": "MİZAN™",
+      "assetType": "GOVERNANCE_CAPABILITY",
+      "state": "HOLD",
+      "canonicalPath": "governance/ENGURU_TRUST_PRODUCTIZATION_V1.md",
+      "role": "Evaluation and threshold logic that produces decision input for Human Threshold."
+    },
+    {
+      "asset": "Maya Trust™",
+      "assetType": "ASSURANCE_SURFACE",
+      "state": "HOLD",
+      "canonicalPath": "governance/ENGURU_TRUST_PRODUCTIZATION_V1.md",
+      "role": "Future public trust/evidence presentation surface; not a standalone SaaS at this stage."
+    }
   ],
   "currentTopology": {
-    "controlPlane": ["Engurulaboratuvari"],
-    "products": ["enguru-website-factory","artist-manager-ai"],
-    "plannedProducts": ["ENGÜRÜ LAB • ASTRO MODE","Adil Pay"],
-    "experimentEvidenceRecords": ["adil-pay-kanit-web"],
-    "productCandidates": ["MayaShield™","Safety Decision Layer™"],
-    "productCores": ["autonomous-economic-core","donecheck","shift-core-api"],
-    "cores": ["donecheck-core-foundation"],
-    "trustCapabilities": ["TRUSTSPINE™","MİZAN™","Maya Trust™"],
-    "releaseMirrors": ["enguru-builder-release"]
+    "controlPlane": [
+      "Engurulaboratuvari"
+    ],
+    "products": [
+      "enguru-website-factory",
+      "artist-manager-ai"
+    ],
+    "plannedProducts": [
+      "ENGÜRÜ LAB • ASTRO MODE",
+      "Adil Pay"
+    ],
+    "experimentEvidenceRecords": [],
+    "productCandidates": [
+      "MayaShield™",
+      "Safety Decision Layer™"
+    ],
+    "productCores": [
+      "autonomous-economic-core",
+      "donecheck",
+      "shift-core-api"
+    ],
+    "cores": [
+      "donecheck-core-foundation"
+    ],
+    "trustCapabilities": [
+      "TRUSTSPINE™",
+      "MİZAN™",
+      "Maya Trust™"
+    ],
+    "releaseMirrors": [
+      "enguru-builder-release"
+    ],
+    "historicalExperimentEvidenceRecords": [
+      "engurulabory/adil-pay-kanit-web"
+    ],
+    "sharedOperatingArchitecture": [
+      "ENGÜRÜ VERIFIED AGENT OPERATING CORE™"
+    ]
   },
-  "productionSequence": ["LABORY_FOUNDATION_VERIFIED_FINISH","ASTRA_MAC_RUNTIME","ASTRA_ACCEPTANCE_TEST","ENGURU_BUILDER","ARTIST_MANAGER_AI","TRUST_PRODUCT_CANDIDATE_INTAKE","ASTRO_MODE_AND_ADIL_PAY_QUEUE"],
+  "productionSequence": [
+    "LABORY_FOUNDATION_VERIFIED_FINISH",
+    "ASTRA_MAC_RUNTIME",
+    "ASTRA_ACCEPTANCE_TEST",
+    "ENGURU_BUILDER",
+    "ARTIST_MANAGER_AI",
+    "TRUST_PRODUCT_CANDIDATE_INTAKE",
+    "ASTRO_MODE_AND_ADIL_PAY_QUEUE"
+  ],
   "acceptance": {
-    "accessibleRepositoryCount": 9,
+    "accessibleRepositoryCount": 8,
     "governedFleetRepositoryCount": 8,
     "currentInventoryAligned": true,
     "canonicalRolesRecorded": true,
@@ -60,13 +219,15 @@
     "stewardDriftCheckCurrent": true,
     "operationalSimplicityVerified": true,
     "requiredStatusChecks": "PARTIAL_PASS",
-    "requiredStatusCheckContexts": ["labory-final-gate"],
+    "requiredStatusCheckContexts": [
+      "labory-final-gate"
+    ],
     "shiftRuntimeAcceptance": "PASS",
-    "shiftCanonicalProvenance": "HOLD",
-    "builderReleaseMirrorProvenance": "HOLD",
+    "shiftCanonicalProvenance": "PASS",
+    "builderReleaseMirrorProvenance": "PASS",
     "repositoryHygieneUniqueWork": "PASS",
     "repositoryHygieneRefAlignment": "PASS",
-    "repositoryHygienePhysicalDeletion": "HOLD",
+    "repositoryHygienePhysicalDeletion": "HOLD_DELETE_REF_TOOLING_ONLY",
     "humanThreshold": "HOLD",
     "mapState": "HOLD"
   },
@@ -74,10 +235,19 @@
     "verifiedExternalAuditClosure": "evidence/VERIFIED_EXTERNAL_AUDIT_CLOSURE_V1.json",
     "stewardReconciliation": "evidence/STEWARD_RECONCILIATION_2026-09-10.json",
     "stewardReconciliationMergeSha": "078b7c3b09b1a5ca68564f6f1a3fe1b53f2ef6eb",
-    "shiftRuntimeAcceptanceRun": 34419969931,
+    "shiftRuntimeAcceptanceRun": 34445179244,
     "fleetAdoptionLedger": "governance/ip-model-trust/FLEET_ADOPTION_V1.json",
     "repositoryHygieneDebt": "issue:22",
-    "hygieneAlignedMainSha": "630da1ebb5bc2457032924126f4cc59a90ba0441"
+    "hygieneAlignedMainSha": "630da1ebb5bc2457032924126f4cc59a90ba0441",
+    "shiftExactMainSha": "5ac8eaa1abc9ccf70b6b93e6eb191743ef25af01",
+    "shiftProductionAcceptanceRun": 34445179244,
+    "shiftQualityRun": 34445179219,
+    "builderReleaseRefreshPr": 10,
+    "builderReleaseMirrorMainSha": "6ebb683bb5e95897ef2a76b8fc623468e4ccb68f",
+    "builderReleaseMirrorFleetRun": 34676872690,
+    "builderSourceSha": "827b4f11fe32c28e775130ab716743bf3382dc90",
+    "builderReleaseMainSha": "6ebb683bb5e95897ef2a76b8fc623468e4ccb68f",
+    "builderReleaseFleetRun": 34676872690
   },
-  "nextAction": "Close Shift Core PR #53 canonical provenance and refresh Builder source-to-release mirror provenance through the normal handoff path. Keep adil-pay-kanit-web as EXPERIMENT_EVIDENCE_RECORD/HOLD. Physical deletion of already-aligned orphan branch names remains Human Threshold/admin cleanup."
+  "nextAction": "Merge Labory truth reconciliation on green gates; physical stale-ref deletion remains tooling-only cleanup."
 }

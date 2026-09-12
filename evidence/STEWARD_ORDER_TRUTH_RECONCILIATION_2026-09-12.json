@@ -1,0 +1,41 @@
+{
+  "state": "HOLD_ADMIN_ONLY",
+  "generatedAt": "2026-09-12",
+  "liveRepositoryCount": 8,
+  "governedFleetCount": 8,
+  "shiftCore": {
+    "state": "PASS",
+    "mainSha": "5ac8eaa1abc9ccf70b6b93e6eb191743ef25af01",
+    "productionAcceptanceRunId": 34445179244,
+    "qualityRunId": 34445179219,
+    "fleetRunId": 34445179204
+  },
+  "builderReleaseMirror": {
+    "state": "PASS",
+    "sourceSha": "827b4f11fe32c28e775130ab716743bf3382dc90",
+    "releaseMainSha": "6ebb683bb5e95897ef2a76b8fc623468e4ccb68f",
+    "manifestAllowlistFileCount": 60,
+    "parityMismatches": 0,
+    "exactMainFleetRunId": 34676872690
+  },
+  "openPrClassification": {
+    "active": [
+      "Engurulaboratuvari#31",
+      "artist-manager-ai#44",
+      "enguru-website-factory#187",
+      "enguru-website-factory#177",
+      "enguru-website-factory#175",
+      "enguru-website-factory#169",
+      "enguru-website-factory#166"
+    ],
+    "superseded": [
+      "shift-core-api#50",
+      "enguru-website-factory#181"
+    ],
+    "close": []
+  },
+  "branchHygiene": {
+    "state": "BLOCKED_TOOLING_ONLY",
+    "note": "Aligned stale audit branches have no unique content drift. Connected GitHub tooling exposes no delete-ref/delete-branch action."
+  }
+}

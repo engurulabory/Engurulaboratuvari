@@ -14,10 +14,10 @@ A later step cannot manufacture PASS for an earlier gate.
 
 # STEP 1 — ENGÜRÜ LABORY VERIFIED FINISH — CURRENT PRIORITY
 
-**STATE:** HOLD — structural hardening and Repository Steward™ reconciliation are PASS. Final closure awaits the two canonical provenance debts recorded below.
+**STATE:** HOLD — structural hardening and Repository Steward™ reconciliation are PASS. Final closure awaits Labory reconciliation CI and administrative stale-branch cleanup.
 
 ## A. Repository Truth
-- [x] Current accessible GitHub scope recorded: **9 repositories**.
+- [x] Current accessible GitHub scope recorded: **8 repositories**.
 - [x] Current governed fleet scope recorded: **8 repositories**.
 - [x] One canonical System Truth: `governance/ENGURU_SYSTEM_TRUTH_V1.json`.
 - [x] Product/Core Map v2 aligned to current scope.
@@ -59,26 +59,28 @@ A later step cannot manufacture PASS for an earlier gate.
 ## F. Evidence / DoneCheck™
 - [x] Structural hardening evidence PASS.
 - [x] Repository Steward™ reconciliation evidence PASS.
-- [ ] Shift Core™ PR #53 canonical checked-in provenance bundle.
-- [ ] Builder source → release mirror provenance parity evidence.
+- [x] Shift Core™ PR #53 canonical checked-in provenance bundle — merged; exact-main gates PASS.
+- [x] Builder source → release mirror provenance parity evidence — 60/60 allowlist parity; PR #10 merged; exact-main Fleet PASS.
 - [ ] Human Threshold™ confirms Labory Step 1 closure after technical debt closure.
 
 ## G. Open Technical Debt — CANONICAL ORDER
 
-1. **SHIFT CORE™ — PR #53 canonical provenance closure**
-   - Runtime / security / production acceptance: **PASS**
-   - HOLD: lockfile + SBOM + checksum + release manifest must persist as one canonical checked-in provenance bundle.
-   - Exit: CI full green → merge → exact-main verification.
+1. **SHIFT CORE™ — PR #53 canonical provenance closure — PASS**
+   - Merge: `5ac8eaa1abc9ccf70b6b93e6eb191743ef25af01`
+   - Production Acceptance: `34445179244` — success
+   - Quality Gate: `34445179219` — success
+   - IP Model Trust Fleet: `34445179204` — success
 
-2. **ENGÜRÜ Builder™ — release mirror provenance refresh**
-   - Builder source workspace: **PASS TO WORK**
-   - HOLD: `enguru-builder-release/HANDOFF_META` source SHA is stale.
-   - Exit: normal source → release handoff path → Builder main provenance refresh → parity evidence.
+2. **ENGÜRÜ Builder™ — release mirror provenance refresh — PASS**
+   - Builder source: `827b4f11fe32c28e775130ab716743bf3382dc90`
+   - 60/60 manifest allowlist parity verified.
+   - Release exact-main: `6ebb683bb5e95897ef2a76b8fc623468e4ccb68f`
+   - Exact-main Fleet run: `34676872690` — success
 
-3. **Repository Hygiene — administrative Human Threshold™**
+3. **Repository Hygiene — administrative cleanup**
    - `audit/verified-external-audit-sync-2` … `-8`: zero unique content drift.
-   - Physical branch-name deletion is administrative cleanup.
-   - This item does not alter current technical truth or block product execution.
+   - Physical branch-name deletion is administrative cleanup; connected GitHub tooling currently exposes no delete-ref action.
+   - This item does not alter current technical truth or block product execution. STATE — BLOCKED_TOOLING_ONLY.
 
 ## STEP 1 EXIT
 `Repository Truth PASS → Product/Core Map PASS → Repository Order PASS → Security PASS → Steward PASS → Simplicity PASS → Provenance Debts PASS → Evidence PASS → DoneCheck PASS → Human Threshold → ENGÜRÜ LABORY VERIFIED FINISH`
