@@ -1,4 +1,69 @@
 {
-  "state": "HOLD",
-  "note": "Reconciliation evidence prepared; full canonical update is being applied through the isolated Steward branch."
+  "schemaVersion": "1.0",
+  "generatedAt": "2026-09-12",
+  "pass": "ENGÜRÜ LABORY ORDER & TRUTH RECONCILIATION PASS™",
+  "state": "PASS_WITH_ADMIN_CLEANUP_BLOCKED",
+  "claim": "Canonical architecture is sound; repository truth, Shift provenance, Builder release provenance and PR hygiene have been reconciled. Remaining stale branch deletion is administrative and blocked only by missing delete-ref tooling.",
+  "repositoryInventory": {
+    "currentlyAccessibleCount": 8,
+    "governedFleetCount": 8,
+    "historicalNotCurrentlyAccessible": [
+      "engurulabory/adil-pay-kanit-web"
+    ]
+  },
+  "shiftCanonicalProvenance": {
+    "state": "PASS",
+    "pr": 53,
+    "mainSha": "5ac8eaa1abc9ccf70b6b93e6eb191743ef25af01",
+    "runs": [
+      34445179244,
+      34445179219,
+      34445179204
+    ]
+  },
+  "builderReleaseProvenance": {
+    "state": "PASS",
+    "sourceMainSha": "827b4f11fe32c28e775130ab716743bf3382dc90",
+    "releasePr": 10,
+    "releaseMainSha": "6ebb683bb5e95897ef2a76b8fc623468e4ccb68f",
+    "fleetRunId": 34676872690,
+    "allowlistedFiles": 60,
+    "parity": "60/60",
+    "refreshedFiles": [
+      "products/enguru-builder/package.json",
+      "products/enguru-builder/product-pass-ui.mjs",
+      "products/enguru-builder/server.mjs"
+    ]
+  },
+  "prHygiene": {
+    "closed": [
+      "shift-core-api#50 — CLOSE — stale P1-B/P1-C governance queue",
+      "enguru-website-factory#181 — SUPERSEDED — Verified Business OS canonical placement moved to Labory control plane"
+    ],
+    "activePreserved": [
+      "Engurulaboratuvari#31",
+      "artist-manager-ai#44",
+      "enguru-website-factory#187",
+      "enguru-website-factory#177",
+      "enguru-website-factory#175",
+      "enguru-website-factory#169",
+      "enguru-website-factory#166"
+    ]
+  },
+  "staleBranchCandidates": {
+    "state": "BLOCKED_DELETE_REF_TOOLING_ONLY",
+    "humanThresholdApproved": true,
+    "verifiedAheadByZero": [
+      "audit/verified-external-audit-sync-2",
+      "audit/verified-external-audit-sync-3",
+      "audit/verified-external-audit-sync-4",
+      "audit/verified-external-audit-sync-5",
+      "audit/verified-external-audit-sync-6",
+      "audit/verified-external-audit-sync-7",
+      "audit/verified-external-audit-sync-8",
+      "governance/verified-agent-operating-core-v0-1"
+    ],
+    "blocker": "Current GitHub connector exposes no delete-ref/delete-branch mutation."
+  },
+  "nextAction": "Run Labory CI on this reconciliation branch and merge only on PASS. Branch-name deletion can be completed later through an authorized delete-ref path without reopening architecture."
 }
