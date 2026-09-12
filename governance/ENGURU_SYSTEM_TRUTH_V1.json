@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.6",
+  "schemaVersion": "1.7",
   "generatedAt": "2026-09-12",
   "authority": "ENGÜRÜ Labory Control Plane",
   "state": "HOLD",
@@ -86,8 +86,8 @@
     },
     "repositoryOrder": {
       "target": 100,
-      "state": "PASS",
-      "criterion": "Current accessible inventory and governed fleet are aligned at 8 repositories."
+      "state": "PASS_WITH_SCOPE_SEPARATION",
+      "criterion": "Account-visible inventory is 12 by human screen evidence; connector-accessible governed inventory is 8/8. The four out-of-scope repositories are explicitly classified without being silently counted as governed."
     },
     "security": {
       "target": 100,
@@ -193,7 +193,7 @@
     "builderReleaseMainSha": "6ebb683bb5e95897ef2a76b8fc623468e4ccb68f",
     "builderReleaseFleetRun": 34676872690
   },
-  "nextAction": "Merge this Labory reconciliation on green gates. Physical deletion of proven ahead_by=0 stale refs remains tooling-only cleanup because the current connector exposes no delete-ref mutation.",
+  "nextAction": "Keep 8 governed repositories canonical. Archive/retire only the two extra repositories classified ARCHIVE/RETIRE after authorized repository-level tooling or final human content check. Preserve the two KEEP repositories until source authority is verified. Stale branch physical deletion remains tooling-only cleanup.",
   "historicalRepositoryRecords": [
     {
       "repository": "engurulabory/adil-pay-kanit-web",
@@ -201,6 +201,52 @@
       "state": "NOT_CURRENTLY_ACCESSIBLE",
       "classification": "HISTORICAL_EXPERIMENT_EVIDENCE_RECORD",
       "note": "Previously inventoried; not present in the currently accessible GitHub installation inventory on 2026-09-12. No deletion/archive claim is made without evidence."
+    }
+  ],
+  "accountVisibleRepositoryCount": 12,
+  "connectorAccessibleRepositoryCount": 8,
+  "accountVisibleRepositoryEvidence": {
+    "source": "HUMAN_SCREENSHOT_2026-09-12",
+    "note": "GitHub account repositories screen shows 12 repositories. Connected GitHub tool can inspect 8 governed repositories; four additional account-visible repositories are outside current connector scope."
+  },
+  "accountVisibleRepositories": [
+    "engurulabory/enguru-website-factory",
+    "engurulabory/shift-core-api",
+    "engurulabory/autonomous-economic-core",
+    "engurulabory/Engurulaboratuvari",
+    "engurulabory/artist-manager-ai",
+    "engurulabory/donecheck-core-foundation",
+    "engurulabory/enguru-builder-release",
+    "engurulabory/donecheck",
+    "engurulabory/readdy-fbdccc",
+    "engurulabory/adil-pay-kanit-web",
+    "engurulabory/enguru-maya-kurumsal-web",
+    "engurulabory/enguru-lab-gelir-çekirdek-portal"
+  ],
+  "outsideConnectorScopeRepositories": [
+    {
+      "repository": "engurulabory/readdy-fbdccc",
+      "classification": "RETIRE",
+      "state": "REVIEW_REQUIRED_PRIVATE_UNREADABLE",
+      "note": "Account-visible private repository; connector cannot inspect content. Retire only after final human content check."
+    },
+    {
+      "repository": "engurulabory/adil-pay-kanit-web",
+      "classification": "ARCHIVE",
+      "state": "ARCHIVE_CANDIDATE",
+      "note": "Public repository contains only a 119-byte README; no active runtime/governance evidence."
+    },
+    {
+      "repository": "engurulabory/enguru-maya-kurumsal-web",
+      "classification": "KEEP",
+      "state": "KEEP_UNTIL_SOURCE_AUTHORITY_VERIFIED",
+      "note": "Account-visible private corporate-web repository; connector cannot inspect content. Do not delete until source authority for engurumaya.com is verified."
+    },
+    {
+      "repository": "engurulabory/enguru-lab-gelir-çekirdek-portal",
+      "classification": "KEEP",
+      "state": "KEEP_UNTIL_PORTAL_AUTHORITY_VERIFIED",
+      "note": "Account-visible private Engürü Lab portal repository; connector cannot inspect content. Do not delete until portal source authority is verified."
     }
   ]
 }
