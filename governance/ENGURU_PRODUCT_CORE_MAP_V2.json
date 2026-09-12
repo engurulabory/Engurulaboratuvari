@@ -1,8 +1,8 @@
 {
-  "schemaVersion": "2.6",
+  "schemaVersion": "2.7",
   "generatedAt": "2026-09-12",
   "state": "HOLD",
-  "scope": "8 currently accessible engurulabory repositories; all 8 are governed fleet participants. Historical inaccessible experiment records remain separate from current inventory.",
+  "scope": "12 account-visible repositories by human screen evidence; 8 connector-accessible governed repositories; 4 additional account-visible repositories remain outside the current connector/governed scope.",
   "lockedRule": "No destructive repository move, delete, merge, rename or retirement before map PASS and Human Threshold where required.",
   "records": [
     {
@@ -229,7 +229,9 @@
     "repositoryHygieneRefAlignment": "PASS",
     "repositoryHygienePhysicalDeletion": "HOLD_DELETE_REF_TOOLING_ONLY",
     "humanThreshold": "HOLD",
-    "mapState": "HOLD"
+    "mapState": "HOLD",
+    "accountVisibleRepositoryCount": 12,
+    "connectorAccessibleRepositoryCount": 8
   },
   "evidenceRefs": {
     "verifiedExternalAuditClosure": "evidence/VERIFIED_EXTERNAL_AUDIT_CLOSURE_V1.json",
@@ -249,5 +251,17 @@
     "builderReleaseMainSha": "6ebb683bb5e95897ef2a76b8fc623468e4ccb68f",
     "builderReleaseFleetRun": 34676872690
   },
-  "nextAction": "Merge Labory truth reconciliation on green gates; physical stale-ref deletion remains tooling-only cleanup."
+  "nextAction": "Keep the 8 governed canonical repositories. Preserve the two KEEP repositories until source authority is verified. Apply ARCHIVE/RETIRE actions only when repository-level settings access is available.",
+  "physicalInventory": {
+    "accountVisibleCount": 12,
+    "connectorAccessibleCount": 8,
+    "governedCount": 8,
+    "evidenceSource": "HUMAN_SCREENSHOT_2026-09-12",
+    "classifications": {
+      "engurulabory/readdy-fbdccc": "RETIRE",
+      "engurulabory/adil-pay-kanit-web": "ARCHIVE",
+      "engurulabory/enguru-maya-kurumsal-web": "KEEP",
+      "engurulabory/enguru-lab-gelir-çekirdek-portal": "KEEP"
+    }
+  }
 }
