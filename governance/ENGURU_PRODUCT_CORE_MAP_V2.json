@@ -2,7 +2,7 @@
   "schemaVersion": "2.6",
   "generatedAt": "2026-09-12",
   "state": "HOLD",
-  "scope": "8 currently accessible engurulabory repositories; all 8 are governed fleet participants. Planned products and trust product candidates remain explicit without inventing inaccessible repository ownership.",
+  "scope": "8 currently accessible engurulabory repositories; all 8 are governed fleet participants. Historical inaccessible experiment records remain separate from current inventory.",
   "lockedRule": "No destructive repository move, delete, merge, rename or retirement before map PASS and Human Threshold where required.",
   "records": [
     {
@@ -30,7 +30,7 @@
       "owner": "Builder distribution surface",
       "state": "HOLD",
       "fleetParticipation": "GOVERNED",
-      "role": "Release/handoff mirror only; never product source of truth. Provenance refresh is implemented in PR #10 and awaits CI/parity evidence before merge."
+      "role": "Release mirror only. Provenance refresh from Builder main 827b4f11... is prepared in PR #10 and awaits CI/parity verification + merge."
     },
     {
       "repository": "engurulabory/autonomous-economic-core",
@@ -67,7 +67,7 @@
       "state": "PASS",
       "fleetParticipation": "GOVERNED",
       "technicalState": "PASS",
-      "role": "Bounded-shift task acceptance/rollback execution. PR #53 is merged; exact-main Production Acceptance, Quality and IP Model Trust Fleet are green."
+      "role": "Bounded-shift task acceptance/rollback execution. PR #53 merged; canonical provenance is checked in and exact-main Production Acceptance, Quality Gate and Fleet Gate are green."
     },
     {
       "repository": "engurulabory/artist-manager-ai",
@@ -109,7 +109,8 @@
       "state": "PLANNED",
       "productionOrder": "AFTER_ARTIST_MANAGER",
       "canonicalRepository": null,
-      "rule": "No currently accessible canonical repository is registered. Assign canonical source ownership only when productization starts."
+      "rule": "Last-known experiment repository is not currently accessible. Assign canonical source ownership when productization starts; do not infer deletion/archive.",
+      "lastKnownRepositoryRecord": "engurulabory/adil-pay-kanit-web"
     }
   ],
   "productCandidates": [
@@ -187,6 +188,12 @@
     ],
     "releaseMirrors": [
       "enguru-builder-release"
+    ],
+    "historicalExperimentEvidenceRecords": [
+      "engurulabory/adil-pay-kanit-web"
+    ],
+    "sharedOperatingArchitecture": [
+      "ENGÜRÜ VERIFIED AGENT OPERATING CORE™"
     ]
   },
   "productionSequence": [
@@ -220,7 +227,7 @@
     "builderReleaseMirrorProvenance": "HOLD_PR_10",
     "repositoryHygieneUniqueWork": "PASS",
     "repositoryHygieneRefAlignment": "PASS",
-    "repositoryHygienePhysicalDeletion": "BLOCKED_TOOLING",
+    "repositoryHygienePhysicalDeletion": "HOLD_DELETE_REF_TOOLING_ONLY",
     "humanThreshold": "HOLD",
     "mapState": "HOLD"
   },
@@ -231,7 +238,11 @@
     "shiftRuntimeAcceptanceRun": 34445179244,
     "fleetAdoptionLedger": "governance/ip-model-trust/FLEET_ADOPTION_V1.json",
     "repositoryHygieneDebt": "issue:22",
-    "hygieneAlignedMainSha": "630da1ebb5bc2457032924126f4cc59a90ba0441"
+    "hygieneAlignedMainSha": "630da1ebb5bc2457032924126f4cc59a90ba0441",
+    "shiftExactMainSha": "5ac8eaa1abc9ccf70b6b93e6eb191743ef25af01",
+    "shiftProductionAcceptanceRun": 34445179244,
+    "shiftQualityRun": 34445179219,
+    "builderReleaseRefreshPr": 10
   },
-  "nextAction": "Verify and merge Builder release mirror PR #10 only on green CI/parity; then sync exact-main provenance. Physical deletion of aligned stale branches remains tooling-blocked administrative cleanup."
+  "nextAction": "Verify and merge Builder Release PR #10, merge Labory truth reconciliation, then complete physical stale-ref deletion when delete-ref tooling is available."
 }
