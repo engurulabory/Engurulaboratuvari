@@ -30,7 +30,10 @@ class ParkAdapter:
         return session_id
 
     def account_identity(self) -> str:
-        result = self.transport.call("efatura", "AccountIdentity", {})
+        action = self.endpoints.account_identity_action
+        if not action:
+            raise BillingError("PARK account identity action is not provider-confirmed")
+        result = self.transport.call(self.endpoints.efatura_service, action, {})
         identity = result.get("legal_name")
         if not identity:
             raise BillingError("PARK account identity proof is inconclusive")
