@@ -20,8 +20,8 @@ They must never be committed to Git, printed to logs, or copied into evidence.
 ## Live proof sequence
 
 1. Authenticate against the PARK production API.
-2. Receive an access token.
-3. Keep the token only in runtime memory/cache for its validity period.
+2. Receive the PARK SESSION_ID documented by the provider integration protocol.
+3. Keep the session only in runtime memory/cache for its validity period.
 4. Call a read-only account/customer identity endpoint.
 5. Verify that the returned legal account belongs to ENGÜRÜ Maya.
 6. Run a read-only taxpayer lookup.
@@ -31,14 +31,14 @@ They must never be committed to Git, printed to logs, or copied into evidence.
    - HTTP/result status
    - account-match PASS/HOLD
    - taxpayer-query PASS/HOLD
-   - no credentials or tokens
+   - no credentials or session identifiers
 
 ## PASS criteria
 - Authentication succeeds.
-- A valid token is returned.
+- A valid SESSION_ID is returned.
 - Account/customer identity matches ENGÜRÜ Maya.
 - Read-only taxpayer lookup succeeds.
-- No secret or token leakage is observed.
+- No secret or session identifier leakage is observed.
 
 ## HOLD
 - Endpoint mismatch.
