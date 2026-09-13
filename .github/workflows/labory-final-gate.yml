@@ -7,7 +7,7 @@ on:
     branches: [main]
   workflow_dispatch:
   schedule:
-    - cron: '17 5 */3 * *'
+    - cron: '17 5 * * *'
 
 permissions:
   contents: read
@@ -51,7 +51,7 @@ jobs:
       - name: Secret Zero / Fleet Gate v1.2
         run: python tools/fleet_ip_gate.py
 
-      - name: Repository Steward tests
+      - name: Repository Steward v1.1 tests
         run: node steward/tests.mjs
 
       - name: Final state
