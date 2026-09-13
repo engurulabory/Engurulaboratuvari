@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.1",
+  "name": "REPOSITORY STEWARD Worker Hardening Pass",
+  "workerClass": "CORE_WORKER",
+  "scopes": ["ENGURU_LABORY", "ENGURU_PRODUCT", "ENGURU_CORE"],
+  "cycle": ["YOKLAMA","TERTIP","DUZEN","TEMIZLIK","SADELESTIRME","BAKIM","ONARIM","KAPANIS","YENIDEN_HAZIR"],
+  "assessors": [
+    "repository-baseline",
+    "evidence-freshness",
+    "dependency-provenance-graph",
+    "repair-reverify-loop",
+    "self-health",
+    "daily-scorecard"
+  ],
+  "dailyCare": {
+    "fullCycle": true,
+    "reportAlways": true,
+    "quietPass": "PASS / no material drift"
+  },
+  "incidentWatch": {
+    "rule": "Attempt SAFE_AUTO repair first; notify only when unresolved, BLOCKED, or HUMAN_THRESHOLD is required."
+  },
+  "authorityBoundary": {
+    "safeAuto": ["inspect","test","record evidence","small reversible repair","repair branch or PR"],
+    "humanThreshold": ["repository archive/delete/rename/merge","visibility change","history rewrite","branch deletion","production source or deployment cutover","money","secrets/account authority","legal certification"]
+  },
+  "truthRule": "Scores summarize health but never replace PASS/HOLD/BLOCKED evidence."
+}
