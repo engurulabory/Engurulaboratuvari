@@ -1,5 +1,9 @@
-export const STEWARD_VERSION = '1.0.0';
-export const STEWARD_SCOPES = Object.freeze({ LABORY: 'ENGURU_LABORY', PRODUCT: 'ENGURU_PRODUCT' });
+export const STEWARD_VERSION = '1.1.0';
+export const STEWARD_SCOPES = Object.freeze({
+  LABORY: 'ENGURU_LABORY',
+  PRODUCT: 'ENGURU_PRODUCT',
+  CORE: 'ENGURU_CORE'
+});
 export const STEWARD_CYCLE = Object.freeze(['YOKLAMA','TERTIP','DUZEN','TEMIZLIK','SADELESTIRME','BAKIM','ONARIM','KAPANIS','YENIDEN_HAZIR']);
 
 const JUNK_PATTERNS = [/(^|\/)\.DS_Store$/,/(^|\/)Thumbs\.db$/,/(^|\/).*\.tmp$/,/(^|\/).*\.swp$/,/(^|\/)npm-debug\.log$/];
@@ -27,6 +31,9 @@ export function inspectRepositoryOrder({ files=[], contents=[] } = {}) {
 }
 
 export function inspectWorkspaceHealth({ scope=STEWARD_SCOPES.PRODUCT, files=[], contents=[], workItems=[] } = {}) {
+  if (!Object.values(STEWARD_SCOPES).includes(scope)) {
+    return { scope, cycle:STEWARD_CYCLE, status:'BLOCKED', reason:'INVALID_STEWARD_SCOPE' };
+  }
   const repository = inspectRepositoryOrder({ files, contents });
   const classified = workItems.map((item)=>({ ...item, stewardState: classifyWorkItem(item) }));
   const unresolved = classified.filter((item)=>['HOLD','OBSOLETE_SUPERSEDED'].includes(item.stewardState));
@@ -64,3 +71,14 @@ export function closeoutRepository({ clean=true, maintenanceVerified=true, evide
   if (!clean || !maintenanceVerified) return { status:'HOLD', reason: !clean ? 'REPOSITORY_NOT_CLEAN' : 'MAINTENANCE_NOT_VERIFIED' };
   return { status:'READY_AGAIN', cycle:STEWARD_CYCLE };
 }
+
+export {
+  STEWARD_ASSESSOR_VERSION,
+  DEFAULT_EVIDENCE_TTL_HOURS,
+  assessRepositoryBaseline,
+  assessEvidenceFreshness,
+  buildDependencyProvenanceGraph,
+  verifyRepairLoop,
+  assessSelfHealth,
+  buildDailyScorecard
+} from './worker-hardening.mjs';

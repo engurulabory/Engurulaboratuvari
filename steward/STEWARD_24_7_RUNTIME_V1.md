@@ -1,7 +1,14 @@
-# ENGÜRÜ LABORY STEWARD™ — DURABLE RUNTIME CONTRACT v1.1
+# ENGÜRÜ LABORY STEWARD™ — DURABLE RUNTIME CONTRACT v1.2
 
 ## Objective
-Keep Labory repository truth, security, topology and evidence current without depending on the user's device.
+Keep Labory repository truth, products, cores, security, topology, provenance and evidence current without depending on the user's device.
+
+## Native scopes
+- `ENGURU_LABORY` — control plane and portfolio truth.
+- `ENGURU_PRODUCT` — user-facing/product execution planes.
+- `ENGURU_CORE` — reusable cores and cross-product core workers.
+
+Repository Steward™ is itself a `CORE_WORKER`; it moves across all three scopes.
 
 ## Cadence
 ### On every pull request and push to main
@@ -12,54 +19,78 @@ Run the complete Labory Final Gate:
 - Repository Steward tests;
 - repository hygiene and conflict-marker checks.
 
-### Every third calendar day — scheduled Labory care cycle
-Canonical GitHub schedule: `17 5 */3 * *` (05:17 UTC; approximately 08:17 Europe/Istanbul while UTC+3 applies).
+### Daily — full Labory care cycle
+Canonical GitHub schedule: `17 5 * * *` (05:17 UTC; approximately 08:17 Europe/Istanbul while UTC+3 applies).
 
-This is the full EngürüLabory care cycle, not a simple heartbeat:
-`YOKLAMA → TERTİP → DÜZEN → TEMİZLİK → SADELEŞTİRME → BAKIM → ONARIM → KAPANIŞ → YENİDEN HAZIR`
+Daily cycle:
+`YOKLAMA → TERTIP → DUZEN → TEMIZLIK → SADELESTIRME → BAKIM → ONARIM → KAPANIS → YENIDEN_HAZIR`
 
-Run the complete gate and inspect:
+Inspect:
 - newly visible or missing repositories;
-- stale Product/Core Map records;
-- registry drift;
-- release-mirror drift;
-- security/config drift;
+- canonical owner/role drift;
+- README and `.enguru` manifest baseline;
+- CI/test/evidence health;
+- evidence freshness;
+- dependency/provenance graph;
+- release-mirror parity;
+- duplicate/governance drift;
+- stale root files and hygiene;
 - unresolved HOLD/BLOCKED findings;
-- next action.
+- Steward self-health;
+- daily Worker Health + Portfolio Health scorecard.
+
+### Incident behavior
+Immediate PR/push gates protect changes as they happen. Between daily care cycles, an incident watch may inspect for new material HOLD/BLOCKED conditions. It attempts only SAFE_AUTO, reversible repair first. It notifies the user only when the issue remains unresolved, is BLOCKED, or requires Human Threshold™.
 
 ### Manual
 `workflow_dispatch` may run the Steward cycle at any time before a consequential decision.
 
-## Why this cadence
-Labory repository governance does not require a full cleanup every hour. PR/push gates protect changes immediately; the three-day care cycle catches accumulated drift, stale work, hygiene debt and maintenance needs without creating unnecessary churn.
+## Finding-to-repair closed loop
+`DISCOVER FINDING → CLASSIFY → PLAN → SAFE REPAIR → REVERIFY → EVIDENCE → DONECHECK → CLOSE → READY_AGAIN`
 
-An hourly runtime/heartbeat may still be used by the independent commissioning worker to prove reachability and continuity. Heartbeat frequency and full maintenance frequency are intentionally separate.
+A repair is not complete until verification returns PASS and evidence is recorded.
+
+## Evidence freshness
+Evidence used for consequential PASS must satisfy an explicit freshness window. Default Steward TTL is 36 hours unless the domain contract is stricter. Stale evidence produces HOLD; it is refreshed only where required.
 
 ## Write discipline
-The scheduled cycle is read-only by default. SAFE_AUTO changes are proposed through a branch/PR. Repository delete/rename/merge/archive, publication, payment, legal and other high-impact actions remain Human Threshold™.
+Routine cycles are read-only by default. SAFE_AUTO changes use isolated branch/PR paths and remain small/reversible. Repository archive/delete/rename/merge, visibility change, history rewrite, branch deletion, production source/deployment cutover, money, secrets/account authority and legal certification remain Human Threshold™.
 
-## Evidence
-GitHub Actions run history is the durable scheduler evidence. Each run must expose PASS/HOLD/BLOCKED through logs and job state. Missing or failed runs never count as PASS.
+## Daily report
+Every daily care cycle emits:
+- Worker Health Score;
+- Portfolio Health Score;
+- repositories scanned;
+- repairs applied;
+- PASS/HOLD/BLOCKED counts;
+- Human Threshold count;
+- STATE → CLAIM → EVIDENCE → NEXT ACTION.
+
+No material drift: short `PASS / no material drift` report.
+Unresolved issue: immediate bounded alert with exact evidence and next action.
 
 ## Failure behavior
-Any failed security, consistency or Steward check → HOLD/BLOCKED. The next action is repair through an isolated branch; no silent bypass.
+Any failed security, consistency, freshness, provenance, self-health or Steward check → HOLD/BLOCKED. No silent bypass and no manufactured green state.
 
 ## Runtime PASS gate
 Runtime readiness is PASS when:
 1. PR/push Final Gate is green on canonical main;
-2. manual/scheduled Steward cycle has at least one green commissioning run;
-3. schedule remains enabled;
-4. Human Threshold™ accepts Step 1 closure.
+2. daily schedule is enabled and a real scheduled run is green;
+3. CORE/PRODUCT/LABORY scopes are machine-tested;
+4. at least one real finding-to-repair-to-reverify loop is evidenced;
+5. self-health is PASS;
+6. Human Threshold accepts any remaining consequential closure.
 
+## 100 operational proof
+100/100 requires evidence-backed PASS for:
+- full fleet visibility;
+- canonical owner/role truth;
+- PRODUCT + CORE + CONTROL_PLANE coverage;
+- machine-readable baseline/freshness/provenance assessors;
+- daily durable runtime;
+- finding-to-repair closed loop;
+- self-health;
+- daily scorecard;
+- Human Threshold discipline.
 
-## Steward 100 operational proof targets
-Steward reaches operational 100 only when all three are evidence-backed:
-
-1. **FULL FLEET VISIBILITY** — account-visible repository truth and connector/runtime discovery are reconciled without hidden repositories.
-2. **DURABLE SCHEDULED RUNTIME** — PR/push gates remain immediate and the three-day Labory care cycle runs successfully on schedule with durable run evidence.
-3. **FINDING-TO-REPAIR CLOSED LOOP** — a real finding is detected, classified, routed through SAFE_AUTO/REVIEW/HUMAN_THRESHOLD, repaired in an isolated branch/PR when authorized, verified, evidenced and closed.
-
-Completion chain:
-`DISCOVER FINDING → CLASSIFY → PLAN → REPAIR → TEST → EVIDENCE → DONECHECK → CLOSE → READY_AGAIN`
-
-No synthetic/demo-only run may satisfy this proof.
+Scores summarize health; they never replace gate truth.
