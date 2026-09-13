@@ -1,17 +1,34 @@
 {
-  "schemaVersion": "1.0",
+  "schemaVersion": "1.1",
   "targetScore": 100,
-  "dimensions": [
-    {"name":"Inventory & discovery","weight":15,"pass":"All accessible repositories plus known inaccessible/unregistered assets are continuously recorded."},
-    {"name":"Canonical ownership & topology","weight":15,"pass":"Every asset has unambiguous type, owner, canonical path and dependency relation."},
-    {"name":"Fleet governance alignment","weight":10,"pass":"All applicable active products/cores carry valid Labory manifests and governance pointers."},
-    {"name":"Evidence & DoneCheck coverage","weight":10,"pass":"Each active product exposes evidence/verification/Verified Finish paths or explicit HOLD."},
-    {"name":"Product health & maintenance","weight":10,"pass":"Health checks, maintenance backlog and unresolved degradation are current."},
-    {"name":"Security posture","weight":15,"pass":"Secret scanning/config posture/security findings are continuously checked and material risks are closed or HOLD/BLOCKED."},
-    {"name":"Release & provenance integrity","weight":10,"pass":"Source vs release mirrors are explicit; provenance and rollback are preserved."},
-    {"name":"Cleanliness & duplication control","weight":5,"pass":"Stale, duplicate, dead and orphaned assets are identified and intentionally resolved/held."},
-    {"name":"New-product intake readiness","weight":5,"pass":"Unknown future repositories enter a fail-closed intake workflow automatically without control-plane redesign."},
-    {"name":"24/7 operational continuity","weight":5,"pass":"A durable scheduler/runner continuously executes discovery, health and security loops with observable evidence."}
-  ],
-  "verdictRule": "100 requires evidence-backed PASS on every dimension. Missing runtime evidence remains HOLD; scores never replace gate truth."
+  "workerScore": {
+    "meaning": "Measures Repository Steward worker capability independently from portfolio health.",
+    "dimensions": [
+      {"name":"Scope coverage","weight":10,"pass":"LABORY, PRODUCT and CORE are native machine-tested scopes."},
+      {"name":"Machine-readable assessors","weight":15,"pass":"Baseline, freshness, provenance/dependency, repair/reverify, self-health and scorecard assessors are executable."},
+      {"name":"Evidence freshness","weight":10,"pass":"Stale consequential evidence is detected and produces HOLD."},
+      {"name":"Dependency & provenance graph","weight":15,"pass":"Invalid edges, duplicate canonical ownership and stale source-to-release provenance are detected."},
+      {"name":"Closed-loop repair","weight":15,"pass":"Finding → repair → reverify → evidence is enforced before closure."},
+      {"name":"Self-health","weight":10,"pass":"Scheduler, discovery, assessor and write-boundary health plus run freshness are measured."},
+      {"name":"Daily durable runtime","weight":10,"pass":"Daily scheduled care runs with observable evidence."},
+      {"name":"Human Threshold discipline","weight":10,"pass":"Destructive/high-impact actions cannot be SAFE_AUTO."},
+      {"name":"Daily reporting","weight":5,"pass":"Worker and portfolio scores plus PASS/HOLD/BLOCKED and repair counts are emitted."}
+    ]
+  },
+  "portfolioScore": {
+    "meaning": "Measures current Engurulabory portfolio health; it may change every run.",
+    "dimensions": [
+      {"name":"Inventory & discovery","weight":15},
+      {"name":"Canonical ownership & topology","weight":15},
+      {"name":"Fleet governance alignment","weight":10},
+      {"name":"Evidence & DoneCheck coverage","weight":10},
+      {"name":"Product/core health & maintenance","weight":10},
+      {"name":"Security posture","weight":15},
+      {"name":"Release & provenance integrity","weight":10},
+      {"name":"Cleanliness & duplication control","weight":5},
+      {"name":"New-product intake readiness","weight":5},
+      {"name":"Operational continuity","weight":5}
+    ]
+  },
+  "verdictRule": "100 requires evidence-backed PASS on every applicable gate. Scores summarize health and never replace gate truth."
 }
