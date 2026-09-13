@@ -1,6 +1,18 @@
 {
   "schemaVersion": "1.1",
   "targetScore": 100,
+  "dimensions": [
+    {"name":"Inventory & discovery","weight":15,"pass":"All accessible repositories plus known inaccessible/unregistered assets are continuously recorded."},
+    {"name":"Canonical ownership & topology","weight":15,"pass":"Every asset has unambiguous type, owner, canonical path and dependency relation."},
+    {"name":"Fleet governance alignment","weight":10,"pass":"All applicable active products/cores carry valid Labory manifests and governance pointers."},
+    {"name":"Evidence & DoneCheck coverage","weight":10,"pass":"Each active product/core exposes evidence, verification and Verified Finish paths or explicit HOLD."},
+    {"name":"Product/core health & maintenance","weight":10,"pass":"Health checks, maintenance backlog and unresolved degradation are current."},
+    {"name":"Security posture","weight":15,"pass":"Secret/config/dependency posture is checked and material risks are closed or HOLD/BLOCKED."},
+    {"name":"Release & provenance integrity","weight":10,"pass":"Source vs release mirrors are explicit; provenance and rollback are preserved."},
+    {"name":"Cleanliness & duplication control","weight":5,"pass":"Stale, duplicate, dead and orphaned assets are identified and intentionally resolved/held."},
+    {"name":"New-product intake readiness","weight":5,"pass":"Unknown future repositories enter a fail-closed intake workflow automatically."},
+    {"name":"Operational continuity","weight":5,"pass":"Daily durable care and incident detection execute with observable evidence."}
+  ],
   "workerScore": {
     "meaning": "Measures Repository Steward worker capability independently from portfolio health.",
     "dimensions": [
@@ -16,19 +28,7 @@
     ]
   },
   "portfolioScore": {
-    "meaning": "Measures current Engurulabory portfolio health; it may change every run.",
-    "dimensions": [
-      {"name":"Inventory & discovery","weight":15},
-      {"name":"Canonical ownership & topology","weight":15},
-      {"name":"Fleet governance alignment","weight":10},
-      {"name":"Evidence & DoneCheck coverage","weight":10},
-      {"name":"Product/core health & maintenance","weight":10},
-      {"name":"Security posture","weight":15},
-      {"name":"Release & provenance integrity","weight":10},
-      {"name":"Cleanliness & duplication control","weight":5},
-      {"name":"New-product intake readiness","weight":5},
-      {"name":"Operational continuity","weight":5}
-    ]
+    "meaning": "Uses the canonical 100-point dimensions above to summarize current Engurulabory portfolio health."
   },
   "verdictRule": "100 requires evidence-backed PASS on every applicable gate. Scores summarize health and never replace gate truth."
 }
