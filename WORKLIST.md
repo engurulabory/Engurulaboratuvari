@@ -108,13 +108,13 @@ A later step cannot manufacture PASS for an earlier gate.
 
 # AEC/KârMatik — ENGÜRÜ AEC SWARM ECONOMY™ — FIELD PROOF TRACK
 
-**STATE:** HOLD — unattended Mac field runtime scheduling is proven; final technical closure requires login/restart persistence proof, then one real external economic run through BANKED evidence.
+**STATE:** HOLD — Mac Field Runtime is VERIFIED PASS; remaining closure is the real external economic run through delivery, settlement and BANKED evidence.
 
 ## CURRENT SCORECARD — 2026-09-14
 
-- **v1.1 Technical / Product Readiness:** **98/100**
-- **Execution Readiness:** **98/100**
-- **Verified Finisher / End-to-End Closure:** **82/100**
+- **v1.1 Technical / Product Readiness:** **100/100**
+- **Execution Readiness:** **99/100**
+- **Verified Finisher / End-to-End Closure:** **84/100**
 - **Economic Finality:** **HOLD**
 
 Scoring rule: repository architecture, runtime, evidence and specialist commissioning can raise technical readiness; only real external delivery, settlement and banked evidence can close Verified Finisher.
@@ -156,14 +156,14 @@ Scoring rule: repository architecture, runtime, evidence and specialist commissi
 - [x] Validate plist syntax: `plutil ...: OK`.
 - [x] Bootstrap launchd service.
 - [x] Trigger one manual launchd run.
-- [ ] Verify launchd stdout/stderr log contents directly.
+- [x] Verify launchd stdout/stderr log contents directly: stdout repeatedly records **state=PASS**; stderr is clear.
 - [x] Verify `runtime/field-runtime-latest.json` updates from launchd execution: **PASS**.
 - [x] Verify service survives Terminal close.
-- [ ] Verify RunAtLoad / login restart behavior.
-- [x] Verify 15-minute scheduled repeat: `run interval = 900 seconds`, `runs = 3`, `last exit code = 0`.
-- [ ] Record final Mac Runtime Finish evidence → DoneCheck™ after restart persistence + direct log check.
+- [x] Verify RunAtLoad / login restart behavior: service reloaded after Mac restart, `runs = 1`, `last exit code = 0`.
+- [x] Verify 15-minute scheduled repeat: `run interval = 900 seconds`, repeated successful runs observed.
+- [x] Record Mac Runtime Finish evidence → DoneCheck™: **VERIFIED PASS**.
 
-**Observed launchd state:** periodic job is loaded and healthy; `state = not running` between executions is expected for a finite scheduled job.
+**Observed launchd state:** periodic job is loaded and healthy; `state = not running` between executions is expected for a finite scheduled job. **MAC FIELD RUNTIME FINISH — VERIFIED PASS.**
 
 ### E. LIVE PAID OPPORTUNITY HUNT
 - [ ] Run unattended read-only opportunity scan from Mac runtime.
@@ -190,9 +190,9 @@ Scoring rule: repository architecture, runtime, evidence and specialist commissi
 
 `Mac auto-runtime PASS → scheduled opportunity hunt PASS → one qualified task → specialist execution → DoneCheck PASS → delivery accepted → EARNED → SETTLED → invoice/accounting when applicable → BANKED → VBNV ≥ €0.01 → Human Threshold → VERIFIED FINISH`
 
-**CLOSURE:** **82/100** — unattended scheduling is proven; login/restart persistence and all real-money closure gates remain open.
+**CLOSURE:** **84/100** — Mac technical field runtime is fully verified; all remaining closure points are real-world opportunity, delivery, settlement and BANKED economic evidence.
 
-**EXECUTION READINESS:** **98/100** — canonical runtime, tests, specialist, launchd scheduling and evidence path are proven on Mac; remaining technical work is restart persistence + direct log check, followed by real external opportunity execution.
+**EXECUTION READINESS:** **99/100** — canonical runtime, tests, specialist, launchd scheduling, Terminal-independent operation, restart persistence and evidence path are proven on Mac. The next gate is real external opportunity execution.
 
 ---
 
