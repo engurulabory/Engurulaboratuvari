@@ -103,6 +103,32 @@ A later step cannot manufacture PASS for an earlier gate.
 ## STEP 1 EXIT
 `Repository Truth PASS → Product/Core Map PASS → Repository Order PASS → Security PASS → Steward PASS → Simplicity PASS → Provenance Debts PASS → Evidence PASS → DoneCheck PASS → Human Threshold → ENGÜRÜ LABORY VERIFIED FINISH`
 
+
+---
+
+# AEC/KârMatik — ENGÜRÜ AEC SWARM ECONOMY™ — FIELD PROOF TRACK
+
+**STATE:** HOLD — architecture integration is active; real economic finality requires external banked evidence.
+
+## AEC SWARM P0 — €0,01 VERIFIED BANKED PROOF
+- [x] Canonical product core: `engurulabory/autonomous-economic-core`.
+- [x] 600 worker slots defined as capacity, not a revenue target.
+- [x] Execution path locked: `Opportunity → Economic Gate → Swarm Router → Worker → Validation → Delivery → Earned → Settled → Banked → Evidence`.
+- [x] Six swarm classes locked: Code / Research / Data / QA / Monitor / Machine Product.
+- [x] Scale ladder locked: `€0.01 → €1/day → €10/day → €50/day → €120/day`.
+- [ ] Select one independent real opportunity that passes zero-capital, policy, eligibility and payout gates.
+- [ ] Execute one controlled task and validate the output.
+- [ ] Complete permitted delivery and external acceptance.
+- [ ] Record EARNED evidence.
+- [ ] Record SETTLED evidence.
+- [ ] Record approved-account / BANKED receipt evidence.
+- [ ] Reconcile direct costs and prove **Verified Banked Net Value™ ≥ €0.01**.
+- [ ] DoneCheck™ → Human Threshold™ → Verified Finish.
+
+**LOCKED KPI:** `Verified Banked Net Value™ / day`.
+
+Scaling permission follows real observed VBNV. Available worker capacity may remain idle when qualified economic demand is absent.
+
 ---
 
 # STEP 2 — ASTRA MAC RUNTIME — PASS
