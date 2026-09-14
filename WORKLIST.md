@@ -127,6 +127,10 @@ A later step cannot manufacture PASS for an earlier gate.
 
 **LOCKED KPI:** `Verified Banked Net Value™ / day`.
 
+**LOCKED OPERATING FOCUS:** First produce **$5/day sustainable Verified Banked Net Value™**; then scale only the revenue line that has already produced verified banked value.
+
+Field ladder: `€0.01 VBNV proof → $1/day → $5/day sustainable VBNV → evidence-backed scaling`.
+
 Scaling permission follows real observed VBNV. Available worker capacity may remain idle when qualified economic demand is absent.
 
 ---
