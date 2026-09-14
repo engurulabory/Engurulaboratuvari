@@ -108,30 +108,89 @@ A later step cannot manufacture PASS for an earlier gate.
 
 # AEC/KârMatik — ENGÜRÜ AEC SWARM ECONOMY™ — FIELD PROOF TRACK
 
-**STATE:** HOLD — architecture integration is active; real economic finality requires external banked evidence.
+**STATE:** HOLD — technical field runtime is active on Mac; Verified Finish still requires scheduled unattended operation plus one real external economic run through BANKED evidence.
+
+## CURRENT SCORECARD — 2026-09-14
+
+- **v1.1 Technical / Product Readiness:** **96/100**
+- **Execution Readiness:** **94/100**
+- **Verified Finisher / End-to-End Closure:** **78/100**
+- **Economic Finality:** **HOLD**
+
+Scoring rule: repository architecture, runtime, evidence and specialist commissioning can raise technical readiness; only real external delivery, settlement and banked evidence can close Verified Finisher.
 
 ## AEC SWARM P0 — €0,01 VERIFIED BANKED PROOF
+
+### A. Canonical / Runtime Foundation
 - [x] Canonical product core: `engurulabory/autonomous-economic-core`.
+- [x] Canonical main cloned to Mac under `~/Enguru/Cores/AEC/autonomous-economic-core`.
+- [x] Python 3.12 installed and verified on Mac.
+- [x] Local test suite PASS: **162 tests / OK**.
+- [x] Mac field runtime wrapper exists: `scripts/run_field_runtime.py`.
+- [x] Local runtime state is isolated from Git truth via `runtime/` ignore policy.
+- [x] Child runtime import path is hardened for direct / launchd execution.
+- [x] Local Mac Field Runtime manual execution: **PASS**.
+- [x] Runtime evidence written to `runtime/field-runtime-latest.json`.
+- [x] Runtime/log directories prepared: `runtime/logs` + `~/Library/LaunchAgents`.
+
+### B. Specialist / Evidence
+- [x] Research & Verification Specialist Adapter™ v1 merged.
+- [x] Live public-web commissioning completed with real HTTPS sources.
+- [x] Canonical repository alignment completed.
+- [x] Research & Verification Specialist™ **L3 VERIFIED PASS**.
+- [x] Structured evidence → SHA-256 → DoneCheck path tested.
+- [x] Human Threshold™ boundaries preserved.
+
+### C. Swarm / Economic Discipline
 - [x] 600 worker slots defined as capacity, not a revenue target.
 - [x] Execution path locked: `Opportunity → Economic Gate → Swarm Router → Worker → Validation → Delivery → Earned → Settled → Banked → Evidence`.
 - [x] Six swarm classes locked: Code / Research / Data / QA / Monitor / Machine Product.
-- [x] Scale ladder locked: `€0.01 → €1/day → €10/day → €50/day → €120/day`.
-- [ ] Select one independent real opportunity that passes zero-capital, policy, eligibility and payout gates.
-- [ ] Execute one controlled task and validate the output.
+- [x] First active field specialist locked: **Research + Data Verification**.
+- [x] Locked KPI: `Verified Banked Net Value™ / day`.
+- [x] Locked operating focus: first **$5/day sustainable VBNV**, then scale only bank-verified revenue lines.
+- [x] Field ladder locked: `€0.01 VBNV proof → $1/day → $5/day sustainable VBNV → evidence-backed scaling`.
+
+### D. MAC FIELD RUNTIME FINISH — CURRENT NEXT ACTION
+- [ ] Render `deploy/macos/com.enguru.aec.field.plist` with exact Mac paths and Python 3.12 path.
+- [ ] Install plist into `~/Library/LaunchAgents/com.enguru.aec.field.plist`.
+- [ ] Validate plist syntax.
+- [ ] Bootstrap launchd service.
+- [ ] Trigger one manual launchd run.
+- [ ] Verify launchd stdout/stderr logs.
+- [ ] Verify `runtime/field-runtime-latest.json` updates from launchd execution.
+- [ ] Verify service survives Terminal close.
+- [ ] Verify RunAtLoad / login restart behavior.
+- [ ] Verify 15-minute scheduled repeat.
+- [ ] Record Mac Runtime Finish evidence → DoneCheck™.
+
+### E. LIVE PAID OPPORTUNITY HUNT
+- [ ] Run unattended read-only opportunity scan from Mac runtime.
+- [ ] Select one independent real opportunity passing zero-capital, policy, eligibility and payout gates.
+- [ ] Complete any required account / registration / KYC step only through Human Threshold™.
+- [ ] Produce authenticated live candidate shortlist.
+- [ ] Promote only one fully qualified candidate to execution.
+- [ ] Execute one controlled Research / Data Verification task.
+- [ ] DoneCheck™ the deliverable.
 - [ ] Complete permitted delivery and external acceptance.
-- [ ] Record EARNED evidence.
-- [ ] Record SETTLED evidence.
-- [ ] Record approved-account / BANKED receipt evidence.
-- [ ] Reconcile direct costs and prove **Verified Banked Net Value™ ≥ €0.01**.
-- [ ] DoneCheck™ → Human Threshold™ → Verified Finish.
 
-**LOCKED KPI:** `Verified Banked Net Value™ / day`.
+### F. ECONOMIC FINALITY / VERIFIED FINISH
+- [ ] Record **EARNED** evidence.
+- [ ] Record **SETTLED** evidence.
+- [ ] Trigger required invoice / accounting path when legally applicable.
+- [ ] Record approved-account / **BANKED** receipt evidence.
+- [ ] Reconcile direct costs.
+- [ ] Prove **Verified Banked Net Value™ ≥ €0.01**.
+- [ ] DoneCheck™ → Human Threshold™ → **Verified Finish**.
+- [ ] Promote operating target to **$1/day** only after first VBNV proof.
+- [ ] Promote operating target to **$5/day sustainable VBNV** only after repeated banked evidence.
 
-**LOCKED OPERATING FOCUS:** First produce **$5/day sustainable Verified Banked Net Value™**; then scale only the revenue line that has already produced verified banked value.
+## FINISHER EXIT CONTRACT
 
-Field ladder: `€0.01 VBNV proof → $1/day → $5/day sustainable VBNV → evidence-backed scaling`.
+`Mac auto-runtime PASS → scheduled opportunity hunt PASS → one qualified task → specialist execution → DoneCheck PASS → delivery accepted → EARNED → SETTLED → invoice/accounting when applicable → BANKED → VBNV ≥ €0.01 → Human Threshold → VERIFIED FINISH`
 
-Scaling permission follows real observed VBNV. Available worker capacity may remain idle when qualified economic demand is absent.
+**CLOSURE:** **78/100** — technical chain is largely complete; unattended scheduling and all real-money closure gates remain open.
+
+**EXECUTION READINESS:** **94/100** — canonical runtime, tests, specialist and evidence path are proven on Mac; remaining work is launchd activation plus real external opportunity execution.
 
 ---
 
