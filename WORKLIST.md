@@ -108,13 +108,13 @@ A later step cannot manufacture PASS for an earlier gate.
 
 # AEC/KârMatik — ENGÜRÜ AEC SWARM ECONOMY™ — FIELD PROOF TRACK
 
-**STATE:** HOLD — technical field runtime is active on Mac; Verified Finish still requires scheduled unattended operation plus one real external economic run through BANKED evidence.
+**STATE:** HOLD — unattended Mac field runtime scheduling is proven; final technical closure requires login/restart persistence proof, then one real external economic run through BANKED evidence.
 
 ## CURRENT SCORECARD — 2026-09-14
 
-- **v1.1 Technical / Product Readiness:** **96/100**
-- **Execution Readiness:** **94/100**
-- **Verified Finisher / End-to-End Closure:** **78/100**
+- **v1.1 Technical / Product Readiness:** **98/100**
+- **Execution Readiness:** **98/100**
+- **Verified Finisher / End-to-End Closure:** **82/100**
 - **Economic Finality:** **HOLD**
 
 Scoring rule: repository architecture, runtime, evidence and specialist commissioning can raise technical readiness; only real external delivery, settlement and banked evidence can close Verified Finisher.
@@ -151,17 +151,19 @@ Scoring rule: repository architecture, runtime, evidence and specialist commissi
 - [x] Field ladder locked: `€0.01 VBNV proof → $1/day → $5/day sustainable VBNV → evidence-backed scaling`.
 
 ### D. MAC FIELD RUNTIME FINISH — CURRENT NEXT ACTION
-- [ ] Render `deploy/macos/com.enguru.aec.field.plist` with exact Mac paths and Python 3.12 path.
-- [ ] Install plist into `~/Library/LaunchAgents/com.enguru.aec.field.plist`.
-- [ ] Validate plist syntax.
-- [ ] Bootstrap launchd service.
-- [ ] Trigger one manual launchd run.
-- [ ] Verify launchd stdout/stderr logs.
-- [ ] Verify `runtime/field-runtime-latest.json` updates from launchd execution.
-- [ ] Verify service survives Terminal close.
+- [x] Render `deploy/macos/com.enguru.aec.field.plist` with exact Mac paths and Python 3.12 path.
+- [x] Install plist into `~/Library/LaunchAgents/com.enguru.aec.field.plist`.
+- [x] Validate plist syntax: `plutil ...: OK`.
+- [x] Bootstrap launchd service.
+- [x] Trigger one manual launchd run.
+- [ ] Verify launchd stdout/stderr log contents directly.
+- [x] Verify `runtime/field-runtime-latest.json` updates from launchd execution: **PASS**.
+- [x] Verify service survives Terminal close.
 - [ ] Verify RunAtLoad / login restart behavior.
-- [ ] Verify 15-minute scheduled repeat.
-- [ ] Record Mac Runtime Finish evidence → DoneCheck™.
+- [x] Verify 15-minute scheduled repeat: `run interval = 900 seconds`, `runs = 3`, `last exit code = 0`.
+- [ ] Record final Mac Runtime Finish evidence → DoneCheck™ after restart persistence + direct log check.
+
+**Observed launchd state:** periodic job is loaded and healthy; `state = not running` between executions is expected for a finite scheduled job.
 
 ### E. LIVE PAID OPPORTUNITY HUNT
 - [ ] Run unattended read-only opportunity scan from Mac runtime.
@@ -188,9 +190,9 @@ Scoring rule: repository architecture, runtime, evidence and specialist commissi
 
 `Mac auto-runtime PASS → scheduled opportunity hunt PASS → one qualified task → specialist execution → DoneCheck PASS → delivery accepted → EARNED → SETTLED → invoice/accounting when applicable → BANKED → VBNV ≥ €0.01 → Human Threshold → VERIFIED FINISH`
 
-**CLOSURE:** **78/100** — technical chain is largely complete; unattended scheduling and all real-money closure gates remain open.
+**CLOSURE:** **82/100** — unattended scheduling is proven; login/restart persistence and all real-money closure gates remain open.
 
-**EXECUTION READINESS:** **94/100** — canonical runtime, tests, specialist and evidence path are proven on Mac; remaining work is launchd activation plus real external opportunity execution.
+**EXECUTION READINESS:** **98/100** — canonical runtime, tests, specialist, launchd scheduling and evidence path are proven on Mac; remaining technical work is restart persistence + direct log check, followed by real external opportunity execution.
 
 ---
 
