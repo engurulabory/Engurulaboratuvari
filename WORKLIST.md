@@ -238,3 +238,40 @@ Second production product after Builder.
 - Adil Pay
 
 Canonical repository ownership is assigned when each product enters production.
+
+
+---
+
+# ENGÜRÜ YAYIN MOTORU™ — IMPLEMENTATION TRACK
+
+**STATE:** PASS TO IMPLEMENTATION — Foundation specification merged; executable core not yet built.
+
+Canonical foundation:
+- `governance/publish-engine/ENGURU_PUBLISH_ENGINE_FOUNDATION_V0_1.md`
+- `governance/publish-engine/SITE_MANIFEST_SCHEMA_V0_1.json`
+- `governance/publish-engine/ACCEPTANCE_TEST_MATRIX_V0_1.md`
+
+Planned canonical repository:
+- `engurulabory/enguru-publish-engine`
+
+Locked delivery model:
+`GitHub source of truth → executable core → local tests → CI → controlled field proof → DoneCheck™ → verified release → Mac local install at ~/Enguru/Cores/PublishEngine`
+
+Implementation gates:
+- [ ] Create independent private repository.
+- [ ] Add Labory manifest / security baseline.
+- [ ] Implement state machine + registry + source/build/artifact gates.
+- [ ] Implement Terminal Cockpit.
+- [ ] Implement Cloudflare adapter.
+- [ ] Implement Zero-Cost Guard™.
+- [ ] Implement Evidence Receipt + rollback contract.
+- [ ] Run local test suite.
+- [ ] Run CI / security gates.
+- [ ] Controlled field site: VERIFIED LIVE.
+- [ ] Rollback and re-verify: VERIFIED LIVE.
+- [ ] DoneCheck™ field PASS.
+- [ ] Produce verified release.
+- [ ] Install verified release on Mac local runtime.
+
+Rule:
+Mac is the final execution surface, not the canonical development authority.
