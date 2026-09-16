@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "enguru.publish.site-manifest/v0.1",
+  "title": "ENGÜRÜ YAYIN MOTORU™ Site Manifest v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "site", "source", "build", "publication", "verification", "cost", "governance"],
+  "properties": {
+    "schema": {
+      "const": "enguru.publish.site/v0.1"
+    },
+    "site": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "domain"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]{1,62}$"
+        },
+        "domain": {
+          "type": "string",
+          "minLength": 3
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "repository", "branch"],
+      "properties": {
+        "provider": {
+          "enum": ["github"]
+        },
+        "repository": {
+          "type": "string",
+          "pattern": "^[^/]+/[^/]+$"
+        },
+        "branch": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "build": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["command", "output"],
+      "properties": {
+        "command": {
+          "type": "string",
+          "minLength": 1
+        },
+        "output": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "publication": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "mode"],
+      "properties": {
+        "provider": {
+          "enum": ["cloudflare"]
+        },
+        "mode": {
+          "enum": ["pages", "workers-static-assets"]
+        },
+        "project": {
+          "type": "string"
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["httpsRequired", "expectedStatus", "sourceParityRequired"],
+      "properties": {
+        "httpsRequired": {
+          "const": true
+        },
+        "expectedStatus": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 599
+        },
+        "healthPath": {
+          "type": "string",
+          "default": "/"
+        },
+        "sourceParityRequired": {
+          "const": true
+        }
+      }
+    },
+    "cost": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["automaticPaidUpgradeAllowed", "incrementalHostingTarget"],
+      "properties": {
+        "automaticPaidUpgradeAllowed": {
+          "const": false
+        },
+        "incrementalHostingTarget": {
+          "const": "EUR_0"
+        }
+      }
+    },
+    "governance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["humanThresholdForProduction", "humanThresholdForRollback", "rollbackRequired"],
+      "properties": {
+        "humanThresholdForProduction": {
+          "const": true
+        },
+        "humanThresholdForRollback": {
+          "const": true
+        },
+        "rollbackRequired": {
+          "const": true
+        }
+      }
+    }
+  }
+}
