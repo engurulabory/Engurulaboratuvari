@@ -209,19 +209,20 @@ class SharedAIRuntime:
         return True, "PASS"
 
     def _prepare_context(self, request: RequestEnvelope) -> RequestEnvelope:
-        if not request.context_messages and not request.steering_instruction:
-            return request
-
         compacted = compact_context(
             list(request.context_messages),
             verified_facts=request.known_truths,
-        )
+        ) if request.context_messages else ""
         parts = []
         if compacted:
             parts.append(f"CONTEXT:{compacted}")
         if request.steering_instruction.strip():
             parts.append(f"CURRENT_STEERING:{request.steering_instruction.strip()}")
-
+        output_instruction = self.formatter.instruction(request)
+        if output_instruction:
+            parts.append(output_instruction)
+        if not parts:
+            return request
         return replace(
             request,
             behavior_instruction="\n".join(parts),
