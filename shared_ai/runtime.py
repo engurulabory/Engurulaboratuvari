@@ -181,8 +181,7 @@ class SharedAIRuntime:
 
         return replace(
             request,
-            behavior_instruction="
-".join(parts),
+            behavior_instruction="\\n".join(parts),
             context_compacted=bool(compacted),
         )
 
