@@ -62,7 +62,7 @@ A later step cannot manufacture PASS for an earlier gate.
 - [x] Shift Core™ PR #53 canonical checked-in provenance bundle — merged; exact-main gates PASS.
 - [x] Historical Builder source → release mirror parity evidence — PR #10 merged; exact-main Fleet PASS for source `827b4f11fe32c28e775130ab716743bf3382dc90`.
 - [x] Current Builder source → release mirror parity reconciled: Builder `88d00d025945fb170ddd88c5bd97c1f5a69ef999` → release main `fc17cbbf913bb46cc7289db3a9e7b583eb4a7e7f`; `HANDOFF_META.json` records 94/94 parity, `refreshRequired=false`, `canonicalParityVerified=true`.
-- [ ] Human Threshold™ confirms Labory Step 1 closure after current technical debt closure.
+- [ ] **[HOLD — HUMAN THRESHOLD]** Human Threshold™ confirms Labory Step 1 closure after remaining technical/external gates close.
 
 ## G. Open Technical Debt — CANONICAL ORDER
 
@@ -89,13 +89,13 @@ A later step cannot manufacture PASS for an earlier gate.
 3. **ENGÜRÜ Billing Core™ / PARK — production read-only proof — HOLD / HUMAN THRESHOLD**
    - Authority: `Builder → ENGÜRÜ Billing Core™ → PARK → GİB`.
    - Required production secrets/config remain runtime-only and must never enter Git or evidence.
-   - [ ] Configure `PARK_API_USERNAME`, `PARK_API_PASSWORD`, `PARK_API_BASE_URL`, `PARK_API_VERSION` in the approved local/runtime secret store.
-   - [ ] Live production authentication returns a valid `SESSION_ID`.
-   - [ ] Read-only account identity proves the legal account belongs to ENGÜRÜ Maya.
-   - [ ] Read-only taxpayer lookup succeeds.
-   - [ ] Record redacted evidence only; no credential, token, session identifier, full tax identifier, or personal data leakage.
-   - [ ] DoneCheck™ read-only triple → PASS.
-   - [ ] Stop at Human Threshold™ before the first controlled fiscal write / invoice.
+   - [ ] **[HOLD — LOCAL SECRET / MAC RUNTIME]** Configure `PARK_API_USERNAME`, `PARK_API_PASSWORD`, `PARK_API_BASE_URL`, `PARK_API_VERSION` in the approved local/runtime secret store.
+   - [ ] **[FIELD PROOF — READ ONLY]** Live production authentication returns a valid `SESSION_ID`.
+   - [ ] **[FIELD PROOF — READ ONLY]** Read-only account identity proves the legal account belongs to ENGÜRÜ Maya.
+   - [ ] **[FIELD PROOF — READ ONLY]** Read-only taxpayer lookup succeeds.
+   - [ ] **[FIELD PROOF — EVIDENCE]** Record redacted evidence only; no credential, token, session identifier, full tax identifier, or personal data leakage.
+   - [ ] **[HOLD — DEPENDS ON LIVE PROOF]** DoneCheck™ read-only triple → PASS.
+   - [ ] **[HOLD — HUMAN THRESHOLD]** Stop at Human Threshold™ before the first controlled fiscal write / invoice.
 
 4. **Repository Hygiene — administrative cleanup**
    - `audit/verified-external-audit-sync-2` … `-8`: zero unique content drift.
@@ -108,14 +108,14 @@ A later step cannot manufacture PASS for an earlier gate.
 - [x] `engurulabory/enguru-publish-engine` recorded as **CORE / GOVERNANCE_INTAKE**.
 - [x] `engurulabory/zeku-finance-prime` recorded as **PRODUCT / GOVERNANCE_INTAKE**.
 - [x] Existing governed fleet remains **8**; accessibility does not manufacture governance PASS.
-- [ ] Publish Engine: governance PR #10 merged; T4 trust manifest + pinned Fleet workflow + PR-head Fleet PASS. Await observable exact-main push Fleet evidence before promotion.
-- [ ] ZEKÜ: governance PR #13 merged; Labory PRODUCT manifest + T4 trust manifest + pinned Fleet workflow + PR-head Fleet PASS. Await observable exact-main push Fleet evidence before promotion.
+- [x] Publish Engine: exact-main Fleet evidence observed on main `3719c720674a145c5a77b6d8e89267b72b5b310d`; `ENGURU IP Model Trust Fleet` push run SUCCESS.
+- [x] ZEKÜ: exact-main Fleet evidence observed on main `4be0746db95feac21fa321a1a57937ee53ba7733`; `ENGURU IP Model Trust Fleet` push run SUCCESS.
 
 ## G.6 FINAL THREE GATES — LOCKED
 
-1. [ ] **Governance intake exact-main Fleet evidence** — Publish Engine main `3719c720...` and ZEKÜ main `4be0746d...`; merged manifests/workflows + PR-head Fleet PASS are proven, exact-main push-run evidence remains unobservable through the current connector wrapper.
-2. [ ] **Branch protection required checks** — require `IP Model Trust Gate` + `IP Model Trust Fleet` alongside `labory-final-gate`; current connector exposes no ruleset mutation action.
-3. [ ] **PARK read-only production proof** — runtime credentials → live auth → ENGÜRÜ Maya identity → taxpayer lookup → redacted evidence → DoneCheck read-only PASS; stop before first fiscal write at Human Threshold™.
+1. [x] **Governance intake exact-main Fleet evidence** — Publish Engine main `3719c720674a145c5a77b6d8e89267b72b5b310d` and ZEKÜ main `4be0746db95feac21fa321a1a57937ee53ba7733`; exact-main Fleet push runs observed SUCCESS.
+2. [ ] **[HOLD — ADMIN/TOOLING] Branch protection required checks** — active ruleset currently requires only `labory-final-gate`; adding `IP Model Trust Gate` + `IP Model Trust Fleet` requires repository administration not exposed by the connected GitHub integration.
+3. [ ] **[HOLD / FIELD PROOF] PARK read-only production proof** — runtime credentials → live auth → ENGÜRÜ Maya identity → taxpayer lookup → redacted evidence → DoneCheck read-only PASS; stop before first fiscal write at Human Threshold™.
 
 Canonical closeout evidence: `evidence/LABORY_FINAL_THREE_GATES_2026-09-18.md`
 
@@ -185,25 +185,25 @@ Scoring rule: repository architecture, runtime, evidence and specialist commissi
 **Observed launchd state:** periodic job is loaded and healthy; `state = not running` between executions is expected for a finite scheduled job. **MAC FIELD RUNTIME FINISH — VERIFIED PASS.**
 
 ### E. LIVE PAID OPPORTUNITY HUNT
-- [ ] Run unattended read-only opportunity scan from Mac runtime.
-- [ ] Select one independent real opportunity passing zero-capital, policy, eligibility and payout gates.
-- [ ] Complete any required account / registration / KYC step only through Human Threshold™.
-- [ ] Produce authenticated live candidate shortlist.
-- [ ] Promote only one fully qualified candidate to execution.
-- [ ] Execute one controlled Research / Data Verification task.
-- [ ] DoneCheck™ the deliverable.
-- [ ] Complete permitted delivery and external acceptance.
+- [ ] **[FIELD PROOF]** Run unattended read-only opportunity scan from Mac runtime.
+- [ ] **[FIELD PROOF]** Select one independent real opportunity passing zero-capital, policy, eligibility and payout gates.
+- [ ] **[HOLD — HUMAN THRESHOLD / FIELD PROOF]** Complete any required account / registration / KYC step only through Human Threshold™.
+- [ ] **[FIELD PROOF]** Produce authenticated live candidate shortlist.
+- [ ] **[FIELD PROOF]** Promote only one fully qualified candidate to execution.
+- [ ] **[FIELD PROOF]** Execute one controlled Research / Data Verification task.
+- [ ] **[FIELD PROOF]** DoneCheck™ the deliverable.
+- [ ] **[FIELD PROOF]** Complete permitted delivery and external acceptance.
 
 ### F. ECONOMIC FINALITY / VERIFIED FINISH
-- [ ] Record **EARNED** evidence.
-- [ ] Record **SETTLED** evidence.
-- [ ] Trigger required invoice / accounting path when legally applicable.
-- [ ] Record approved-account / **BANKED** receipt evidence.
-- [ ] Reconcile direct costs.
-- [ ] Prove **Verified Banked Net Value™ ≥ €0.01**.
-- [ ] DoneCheck™ → Human Threshold™ → **Verified Finish**.
-- [ ] Promote operating target to **$1/day** only after first VBNV proof.
-- [ ] Promote operating target to **$5/day sustainable VBNV** only after repeated banked evidence.
+- [ ] **[FIELD PROOF]** Record **EARNED** evidence.
+- [ ] **[FIELD PROOF]** Record **SETTLED** evidence.
+- [ ] **[FIELD PROOF]** Trigger required invoice / accounting path when legally applicable.
+- [ ] **[FIELD PROOF]** Record approved-account / **BANKED** receipt evidence.
+- [ ] **[FIELD PROOF]** Reconcile direct costs.
+- [ ] **[FIELD PROOF]** Prove **Verified Banked Net Value™ ≥ €0.01**.
+- [ ] **[HOLD — HUMAN THRESHOLD / FIELD PROOF]** DoneCheck™ → Human Threshold™ → **Verified Finish**.
+- [ ] **[FIELD PROOF]** Promote operating target to **$1/day** only after first VBNV proof.
+- [ ] **[FIELD PROOF]** Promote operating target to **$5/day sustainable VBNV** only after repeated banked evidence.
 
 ## FINISHER EXIT CONTRACT
 
@@ -263,7 +263,7 @@ Canonical repository ownership is assigned when each product enters production.
 
 # ENGÜRÜ YAYIN MOTORU™ — IMPLEMENTATION TRACK
 
-**STATE:** PASS TO IMPLEMENTATION — Foundation specification merged; executable core not yet built.
+**STATE:** TECHNICAL CORE PASS / FIELD HOLD — canonical Publish Engine repo, executable core, CI, Multi-Site Engine, Terminal Cockpit and Internal Field Preflight are implemented; provider commissioning + controlled live/rollback proof remain.
 
 Canonical foundation:
 - `governance/publish-engine/ENGURU_PUBLISH_ENGINE_FOUNDATION_V0_1.md`
@@ -277,20 +277,20 @@ Locked delivery model:
 `GitHub source of truth → executable core → local tests → CI → controlled field proof → DoneCheck™ → verified release → Mac local install at ~/Enguru/Cores/PublishEngine`
 
 Implementation gates:
-- [ ] Create independent private repository.
-- [ ] Add Labory manifest / security baseline.
-- [ ] Implement state machine + registry + source/build/artifact gates.
-- [ ] Implement Terminal Cockpit.
-- [ ] Implement Cloudflare adapter.
-- [ ] Implement Zero-Cost Guard™.
-- [ ] Implement Evidence Receipt + rollback contract.
-- [ ] Run local test suite.
-- [ ] Run CI / security gates.
-- [ ] Controlled field site: VERIFIED LIVE.
-- [ ] Rollback and re-verify: VERIFIED LIVE.
-- [ ] DoneCheck™ field PASS.
-- [ ] Produce verified release.
-- [ ] Install verified release on Mac local runtime.
+- [x] Create independent private repository. — reconciled from canonical `engurulabory/enguru-publish-engine` main; implementation/tests/CI evidence present.
+- [x] Add Labory manifest / security baseline. — reconciled from canonical `engurulabory/enguru-publish-engine` main; implementation/tests/CI evidence present.
+- [x] Implement state machine + registry + source/build/artifact gates. — reconciled from canonical `engurulabory/enguru-publish-engine` main; implementation/tests/CI evidence present.
+- [x] Implement Terminal Cockpit. — reconciled from canonical `engurulabory/enguru-publish-engine` main; implementation/tests/CI evidence present.
+- [x] Implement Cloudflare adapter. — reconciled from canonical `engurulabory/enguru-publish-engine` main; implementation/tests/CI evidence present.
+- [x] Implement Zero-Cost Guard™. — reconciled from canonical `engurulabory/enguru-publish-engine` main; implementation/tests/CI evidence present.
+- [x] Implement Evidence Receipt + rollback contract. — reconciled from canonical `engurulabory/enguru-publish-engine` main; implementation/tests/CI evidence present.
+- [x] Run local test suite. — reconciled from canonical `engurulabory/enguru-publish-engine` main; implementation/tests/CI evidence present.
+- [x] Run CI / security gates. — reconciled from canonical `engurulabory/enguru-publish-engine` main; implementation/tests/CI evidence present.
+- [ ] **[FIELD PROOF / MAC]** Controlled field site: VERIFIED LIVE.
+- [ ] **[FIELD PROOF / MAC]** Rollback and re-verify: VERIFIED LIVE.
+- [ ] **[HOLD — DEPENDS ON FIELD PROOF]** DoneCheck™ field PASS.
+- [ ] **[OPEN — DEPENDS ON FIELD PROOF]** Produce verified release.
+- [ ] **[OPEN — MAC / DEPENDS ON VERIFIED RELEASE]** Install verified release on Mac local runtime.
 
 Rule:
 Mac is the final execution surface, not the canonical development authority.
@@ -300,19 +300,19 @@ Mac is the final execution surface, not the canonical development authority.
 
 ## SHARED AI INFRASTRUCTURE — FOUNDATION
 
-**STATE:** FOUNDATION — theoretical/technical package prepared; runtime commissioning remains HOLD.
+**STATE:** LOCAL RUNTIME + BEHAVIOR FINAL PASS / EXTERNAL PROVIDERS HOLD — foundation, local runtime and Behavior v0.7 are verified; external candidate providers remain uncommissioned.
 
 - [x] Provider-independent unified service contract defined.
 - [x] Fail-closed policy, capability registry, zero-cost guard and routing contract defined.
 - [x] Model lifecycle + controlled self-optimization boundary defined.
 - [x] Evidence contract and static acceptance matrix defined.
-- [ ] Run Shared AI static foundation gate.
+- [x] Run Shared AI static foundation gate — reconciled: deterministic foundation/offline gates and exact-main CI evidence PASS.
 - [x] Deterministic offline failure/failover suite — PR #51 CI PASS.
 - [x] Shared AI runtime service implementation + provider-independent router prepared.
 - [x] Local OpenAI-compatible adapter + HTTP contract tests prepared.
-- [ ] Commission local fallback on Mac with an approved local model.
-- [ ] Commission approved free providers one by one.
-- [ ] DoneCheck™ → Human Threshold™ before production activation.
+- [x] Commission local fallback on Mac with an approved local model — `local_runtime` / `qwen3:14b` ACTIVE; commissioning evidence PASS.
+- [ ] **[OPEN — PROVIDER COMMISSIONING]** Commission approved free external providers one by one; current registry candidates remain UNCOMMISSIONED.
+- [ ] **[HOLD — HUMAN THRESHOLD / DEPENDS ON PROVIDER COMMISSIONING]** DoneCheck™ → Human Threshold™ before broader external-provider production activation.
 
 **Locked invariant:** the system may learn, optimize and propose; it may not expand its own authority.
 
@@ -622,3 +622,33 @@ Acceptance:
 - [x] Each adopted technical mechanism has deterministic tests or reproducible evidence.
 - [x] Existing Human Threshold™, Secret Zero™, DoneCheck™, Language Governance and Repository Order remain intact.
 - [x] No new core created; reuse → extend → adapter remained sufficient.
+
+
+---
+
+## GLOBAL RECONCILIATION SNAPSHOT — 2026-09-18
+
+**STATE:** RECONCILED
+
+Full checkbox truth (including nested checklist items):
+- total: **308**
+- completed: **274**
+- open: **34**
+- completion: **89.0%**
+- stale items closed in this pass: **14**
+
+Deduplicated real remaining work packages: **6**
+1. PARK read-only production proof.
+2. Branch-protection administration.
+3. Labory Step 1 final Human Threshold.
+4. AEC/KârMatik real economic field proof.
+5. Publish Engine field finish.
+6. Shared AI external-provider commissioning.
+
+Certain remaining Mac Terminal work packages: **3**
+- PARK read-only live proof.
+- AEC/KârMatik field runtime / opportunity scan.
+- Publish Engine provider commissioning / live publish / rollback / final Mac install.
+
+Canonical reconciliation evidence:
+`evidence/GLOBAL_WORKLIST_RECONCILIATION_2026-09-18.md`
