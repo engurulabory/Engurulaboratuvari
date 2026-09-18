@@ -386,11 +386,11 @@ STATE → CLAIM → EVIDENCE → NEXT ACTION
 mevcut hakikat + gerekli fark
 
 ### A. Canonical Behavior Contract
-- [ ] Add `governance/shared-ai/BEHAVIOR.yaml`.
-- [ ] Add runtime behavior implementation in `shared_ai/behavior.py`.
-- [ ] Add deterministic behavior tests in `tests/test_shared_ai_behavior.py`.
-- [ ] Connect behavior preflight before routing.
-- [ ] Connect post-execution verification before final response.
+- [x] Add `governance/shared-ai/BEHAVIOR.yaml`.
+- [x] Add runtime behavior implementation in `shared_ai/behavior.py`.
+- [x] Add deterministic behavior tests in `tests/test_shared_ai_behavior.py`.
+- [x] Connect behavior preflight before routing.
+- [x] Connect post-execution verification before final response.
 - [ ] Provider/model may change; ENGÜRÜ behavior remains stable.
 - [ ] No hidden provider-specific behavior becomes canonical policy.
 
@@ -409,16 +409,16 @@ mevcut hakikat + gerekli fark
 - [ ] Preserve SECRET → local-only unless explicit governed authority changes.
 - [ ] Preserve cost ceiling / zero-cost default.
 - [ ] Detect Human Threshold before irreversible or authority-expanding action.
-- [ ] No unverified PASS.
-- [ ] Evidence failure cannot become PASS.
+- [x] No unverified PASS — empty output is HOLD.
+- [x] Evidence failure cannot become PASS — verification HOLD blocks PASS.
 - [ ] System may optimize behavior; it may not expand its own authority.
 
 ### D. Adaptive Reasoning
-- [ ] Add bounded reasoning effort classes: MINIMAL / STANDARD / DEEP.
+- [x] Add bounded reasoning effort classes: MINIMAL / STANDARD / DEEP.
 - [ ] Select reasoning effort from task complexity, uncertainty and consequence.
 - [ ] Permit re-planning after new tool evidence or contradiction.
 - [ ] Prevent endless self-reflection loops with explicit step / retry budgets.
-- [ ] Do not expose or depend on private chain-of-thought; store only safe decision/evidence summaries.
+- [x] Do not expose or depend on private chain-of-thought; store only safe decision/evidence summaries.
 - [ ] Preserve deterministic fast path for simple requests.
 
 ### E. Tool + Route Orchestration
@@ -447,14 +447,14 @@ mevcut hakikat + gerekli fark
 - [ ] Require explicit completion evidence for consequential actions.
 
 ### H. Verification + Correction
-- [ ] Verify task-specific success criteria, not merely provider HTTP success.
+- [x] Verify provider output at behavior boundary; deeper task-specific profiles remain queued.
 - [ ] Add factual/grounding verification profile.
 - [ ] Add structured-output/schema verification profile.
 - [ ] Add tool/action result verification profile.
 - [ ] Add contradiction and unsupported-claim checks.
 - [ ] Add bounded correction loop: VERIFY → CORRECT → REVERIFY.
 - [ ] Separate generator from verifier when task risk justifies it.
-- [ ] If verification remains unresolved → HOLD.
+- [x] If verification remains unresolved → HOLD.
 
 ### I. Output + User Experience
 - [ ] Format answer to user language, requested length and structure.
@@ -483,7 +483,7 @@ mevcut hakikat + gerekli fark
 - [ ] Provider swap must not change canonical governance behavior.
 
 ### L. Acceptance
-- [ ] Behavior contract machine-readable and versioned.
+- [x] Behavior contract machine-readable and versioned (`0.1`).
 - [ ] Runtime behavior implementation PASS.
 - [ ] Deterministic behavior tests PASS.
 - [ ] Existing Shared AI routing/security tests remain PASS.
