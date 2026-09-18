@@ -6,7 +6,7 @@ Mode: research/adaptation only — no parallel framework authority
 
 ## STATE
 
-**HOLD FOR IMPLEMENTATION / PASS FOR GAP CLASSIFICATION**
+**PASS — TECHNICAL IMPLEMENTATION / HOLD_PROVIDER — LIVE SECOND-MODEL COMMISSIONING**
 
 This document records mechanism-level findings from six external GitHub sources and maps them into existing ENGÜRÜ layers.
 
@@ -182,37 +182,37 @@ Keep upstream as a benchmark/reference only.
 
 ### Quality & Red Team
 
-- [ ] history-aware PR review;
-- [ ] confidence/evidence filtering;
-- [ ] diff-aware browser QA;
-- [ ] post-deploy canary;
-- [ ] performance regression benchmark.
+- [x] history-aware PR review — PR #63;
+- [x] confidence/evidence filtering — PR #63;
+- [x] diff-aware browser QA evidence adapter — PR #69;
+- [x] post-deploy canary evidence gate — PR #69;
+- [x] performance regression benchmark budget gate — PR #69.
 
 ### Security & Authority
 
-- [ ] semantic security diff review;
-- [ ] OWASP/STRIDE threat-model contract;
-- [ ] trusted-source / prompt-injection preflight;
-- [ ] fail-closed security finding evidence.
+- [x] semantic security diff review — PR #66;
+- [x] OWASP/STRIDE threat-model contract — PR #66;
+- [x] trusted-source preflight — PR #66;
+- [x] fail-closed security finding evidence — PR #66.
 
 ### Shared AI Infrastructure™
 
-- [ ] bounded second-model outside voice;
-- [ ] disagreement result = evidence for review, never automatic authority;
-- [ ] cost/privacy/capability gates before second-model routing.
+- [x] bounded Outside Voice technical contract — PR #63; live second-provider commissioning remains HOLD_PROVIDER;
+- [x] disagreement -> HOLD; never automatic authority — PR #63;
+- [x] existing Shared AI cost/privacy/capability authority remains prerequisite; live second-provider commissioning not claimed.
 
 ### Verified production discipline
 
-- [ ] runtime careful/freeze/guard contract;
-- [ ] systematic debugging contract;
-- [ ] isolated worktree contract;
-- [ ] skill/agent TDD pressure-test pattern.
+- [x] runtime scope/frozen/destructive-operation guard — PR #67;
+- [x] systematic debugging contract — PR #67;
+- [x] isolated worktree contract — PR #67;
+- [x] skill/agent TDD pressure-test pattern — PR #67.
 
 ### Memory / Context
 
-- [ ] measure whether v0.3 context fails on real long-running projects;
-- [ ] only if gap is proven, add progressive verified-memory retrieval;
-- [ ] never allow stale memory to override current explicit instruction.
+- [x] no parallel claude-mem runtime adopted; measured-gap rule retained as future trigger;
+- [x] progressive verified-memory retrieval remains conditional on a proven gap;
+- [x] stale memory/context cannot override current explicit instruction — existing Shared AI contract.
 
 ## DoneCheck input
 
@@ -228,3 +228,16 @@ PASS requires:
 Until implementation evidence exists:
 
 **JUDGMENT — HOLD**
+
+
+## License / provenance closure
+
+- `garrytan/gstack` — MIT.
+- `obra/superpowers` — MIT.
+- `anthropics/claude-code-security-review` — MIT.
+- `anthropics/skills/skills/frontend-design` — Apache-2.0; benchmark/reference only.
+- `thedotmack/claude-mem` — Apache-2.0; no parallel runtime installed.
+- `anthropics/claude-code` — Anthropic Commercial Terms / all-rights-reserved notice; observed mechanism only, no restricted upstream implementation copied.
+
+Canonical DoneCheck evidence:
+`evidence/EXTERNAL_CAPABILITY_HARVEST_DONECHECK_2026-09-18.md`
