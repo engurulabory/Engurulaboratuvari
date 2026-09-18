@@ -59,7 +59,7 @@ class RuntimeResult:
     path: tuple[str, ...]
     reason: str
     estimated_cost: float | None
-    behavior_evidence: dict[str, Any]
+    behavior_evidence: dict[str, Any] = field(default_factory=dict)
 
     def as_dict(self) -> dict[str, Any]:
         return {
