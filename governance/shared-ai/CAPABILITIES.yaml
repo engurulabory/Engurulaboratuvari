@@ -1,0 +1,59 @@
+schema_version: "0.1"
+registry_rule: "Capabilities are evidence-backed facts, never inferred from provider marketing alone."
+required_model_fields:
+  - provider
+  - model
+  - lifecycle_state
+  - capabilities
+  - context_window
+  - max_output
+  - privacy_class
+  - commercial_use_verified
+  - cost_verified
+  - local
+  - health
+  - last_verified
+capabilities:
+  text: {type: boolean}
+  vision: {type: boolean}
+  audio: {type: boolean}
+  tool_calling: {type: boolean}
+  structured_output: {type: boolean}
+  reasoning: {type: boolean}
+  responses_api: {type: boolean}
+  streaming: {type: boolean}
+lifecycle:
+  allowed:
+    - DISCOVERED
+    - UNVERIFIED
+    - BENCHMARKING
+    - CANDIDATE
+    - APPROVED
+    - ACTIVE
+    - DEGRADED
+    - DEPRECATED
+    - REMOVED
+  promotion_rule: "No model enters APPROVED/ACTIVE from automated discovery alone."
+learning:
+  observed_signals:
+    - success_rate
+    - verification_rate
+    - latency
+    - fallback_rate
+    - quota_pressure
+    - cost
+  may_auto_update:
+    - observed_health
+    - latency_statistics
+    - quota_observations
+    - benchmark_results
+  proposal_only:
+    - routing_priority
+    - model_promotion
+    - provider_promotion
+  human_threshold_required:
+    - privacy_class
+    - commercial_use_authority
+    - paid_authority
+    - production_default
+    - secret_external_egress
