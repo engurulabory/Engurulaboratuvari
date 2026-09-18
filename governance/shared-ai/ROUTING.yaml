@@ -1,0 +1,54 @@
+schema_version: "0.1"
+objective: "Choose the safest sufficient route within authority and cost, not the strongest model by default."
+preflight_order:
+  - identity_authority
+  - data_classification
+  - policy
+  - capability_match
+  - context_fit
+  - cost_ceiling
+  - quota
+  - health
+  - route
+
+routing:
+  hard_constraints_first: true
+  prefer:
+    - production_approved
+    - verification_success_rate
+    - cost
+    - latency
+    - remaining_quota
+  zero_cost_default: true
+  local_final_fallback: true
+
+retry:
+  max_attempts_per_provider: 2
+  retry_only:
+    - timeout
+    - transient_5xx
+    - explicit_retryable
+  never_blind_retry:
+    - policy_rejection
+    - privacy_rejection
+    - capability_mismatch
+    - context_overflow
+    - auth_failure
+
+circuit_breaker:
+  failure_threshold: 3
+  state_flow: [CLOSED, OPEN, HALF_OPEN, CLOSED]
+  rule: "OPEN providers are excluded until health re-check."
+
+fallback:
+  re_evaluate_policy: true
+  re_evaluate_capabilities: true
+  re_evaluate_context: true
+  re_evaluate_cost: true
+  prohibit_unchecked_cross_provider_prompt_forwarding: true
+
+self_optimization:
+  automatic_observation: true
+  automatic_proposal: true
+  automatic_authority_expansion: false
+  activation_requires_acceptance_evidence: true
