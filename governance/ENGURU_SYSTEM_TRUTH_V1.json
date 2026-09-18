@@ -1,10 +1,10 @@
 {
-  "schemaVersion": "1.8",
-  "generatedAt": "2026-09-12",
+  "schemaVersion": "1.9",
+  "generatedAt": "2026-09-18",
   "authority": "ENGÜRÜ Labory Control Plane",
   "state": "HOLD",
   "truthRule": "A system-level PASS requires current repository inventory, explicit product/core ownership, security fleet evidence, Steward evidence, operational simplicity criteria and DoneCheck/Human Threshold closure. Structural or historical PASS never overrides current exact-main evidence.",
-  "currentAccessibleRepositoryCount": 8,
+  "currentAccessibleRepositoryCount": 10,
   "currentGovernedFleetRepositoryCount": 8,
   "currentAccessibleRepositories": [
     "engurulabory/Engurulaboratuvari",
@@ -14,7 +14,9 @@
     "engurulabory/donecheck-core-foundation",
     "engurulabory/donecheck",
     "engurulabory/shift-core-api",
-    "engurulabory/artist-manager-ai"
+    "engurulabory/artist-manager-ai",
+    "engurulabory/zeku-finance-prime",
+    "engurulabory/enguru-publish-engine"
   ],
   "governedFleetRepositories": [
     "engurulabory/Engurulaboratuvari",
@@ -47,12 +49,22 @@
       "qualityRunId": 34445179219,
       "fleetRunId": 34445179204,
       "note": "PR #53 merged; canonical provenance bundle is checked in on exact main and all three exact-main gates succeeded."
+    },
+    "publishEngine": {
+      "state": "IMPLEMENTATION_HOLD_FLEET_ADOPTION",
+      "mainSha": "91c35efd6fd24ce0e515c2f977a83743cdf46516",
+      "note": "Canonical implementation exists with Labory manifest and internal field preflight; governed-fleet promotion is not claimed until Labory fleet/security acceptance is evidenced."
+    },
+    "zekuFinancePrime": {
+      "state": "SIMULATION_READY_HOLD_GOVERNANCE_INTAKE",
+      "mainSha": "c2ca3adb848e1098ceeefd0e4d64adb169c08800",
+      "note": "Canonical single-Mac local-only product exists with evidence/DoneCheck/Human Threshold boundaries; explicit Labory fleet adoption remains open."
     }
   },
   "fleetEvidence": {
-    "state": "PASS",
+    "state": "PASS_EXISTING_FLEET_HOLD_TWO_INTAKES",
     "ledger": "governance/ip-model-trust/FLEET_ADOPTION_V1.json",
-    "criterion": "All 8 currently accessible governed fleet repositories have merged IP manifests, pinned read-only fleet CI, and successful fleet evidence on recorded main SHAs."
+    "criterion": "The existing 8 governed repositories retain recorded fleet evidence. GitHub connector now exposes 10 repositories; Publish Engine and ZEKÜ are explicit governance-intake records and are not silently counted as governed."
   },
   "accessibleExperimentRecords": [],
   "plannedProducts": [
@@ -81,13 +93,13 @@
     },
     "productCoreSeparation": {
       "target": 100,
-      "state": "PASS",
-      "criterion": "Every currently accessible governed asset has one recorded canonical owner/type; transitional control-plane copies remain migration debt rather than duplicate authority."
+      "state": "PASS_WITH_INTAKE_HOLD",
+      "criterion": "All 10 connector-accessible repositories are explicitly classified as governed or governance-intake; no intake repository is promoted without evidence."
     },
     "repositoryOrder": {
       "target": 100,
       "state": "PASS_WITH_SCOPE_SEPARATION",
-      "criterion": "Account-visible inventory is 12 by human screen evidence; connector-accessible governed inventory is 8/8. The four out-of-scope repositories are explicitly classified without being silently counted as governed."
+      "criterion": "GitHub connector inventory is 10 repositories as of 2026-09-18: 8 governed + 2 governance intake. The earlier human account-visible total of 12 from 2026-09-12 is historical and not treated as a current total."
     },
     "security": {
       "target": 100,
@@ -96,8 +108,8 @@
     },
     "fleetAdoption": {
       "target": 100,
-      "state": "PASS",
-      "criterion": "8/8 currently accessible governed fleet repositories have manifests, pinned read-only fleet workflows and successful fleet evidence."
+      "state": "HOLD_TWO_INTAKE_REPOSITORIES",
+      "criterion": "8/8 existing governed repositories retain adoption evidence. Publish Engine and ZEKÜ require explicit Labory fleet/security acceptance before the governed count may change."
     },
     "automationSteward": {
       "target": 100,
@@ -107,7 +119,7 @@
     "operationalSimplicity": {
       "target": 100,
       "state": "PASS",
-      "criterion": "Canonical map + system truth + readiness evidence distinguish accessible inventory, governed fleet and experiment records without topology ambiguity."
+      "criterion": "Canonical map + system truth distinguish 10 connector-accessible repositories into 8 governed and 2 governance-intake assets without creating a new control plane."
     },
     "branchProtection": {
       "target": 100,
@@ -193,7 +205,7 @@
     "builderReleaseMainSha": "6ebb683bb5e95897ef2a76b8fc623468e4ccb68f",
     "builderReleaseFleetRun": 34676872690
   },
-  "nextAction": "Keep 8 governed repositories canonical. Archive/retire only the two extra repositories classified ARCHIVE/RETIRE after authorized repository-level tooling or final human content check. Preserve the two KEEP repositories until source authority is verified. Stale branch physical deletion remains tooling-only cleanup.",
+  "nextAction": "Keep 10 connector-accessible repositories explicit, retain the evidenced governed fleet at 8, and complete non-destructive governance intake for ENGÜRÜ YAYIN MOTORU™ and ZEKÜ FINANCE PRIME before changing fleet count. Execute the External Capability Harvest through existing ENGÜRÜ layers; create no parallel core or framework.",
   "historicalRepositoryRecords": [
     {
       "repository": "engurulabory/adil-pay-kanit-web",
@@ -204,10 +216,10 @@
     }
   ],
   "accountVisibleRepositoryCount": 12,
-  "connectorAccessibleRepositoryCount": 8,
+  "connectorAccessibleRepositoryCount": 10,
   "accountVisibleRepositoryEvidence": {
     "source": "HUMAN_SCREENSHOT_2026-09-12",
-    "note": "GitHub account repositories screen shows 12 repositories. Connected GitHub tool can inspect 8 governed repositories; four additional account-visible repositories are outside current connector scope."
+    "note": "A human screenshot on 2026-09-12 showed 12 account-visible repositories. On 2026-09-18 the connected GitHub tool can inspect 10 repositories. The current total account-visible count was not independently reverified, so 12 is retained only as historical evidence."
   },
   "accountVisibleRepositories": [
     "engurulabory/enguru-website-factory",
@@ -263,5 +275,27 @@
       "runtimeVerifiedFinish": "HOLD",
       "authorityInvariant": "The system may optimize itself; it may not expand its own authority."
     }
-  ]
+  ],
+  "governanceIntakeRepositories": [
+    {
+      "repository": "engurulabory/enguru-publish-engine",
+      "asset": "ENGÜRÜ YAYIN MOTORU™",
+      "assetType": "CORE",
+      "state": "HOLD_FLEET_ADOPTION_EVIDENCE",
+      "mainSha": "91c35efd6fd24ce0e515c2f977a83743cdf46516",
+      "evidence": "Canonical repository exists and .enguru/labory-manifest.json declares CORE, GitHub canonical truth, Mac-local execution and Human Threshold production/rollback boundaries.",
+      "nextAction": "Verify Labory security/fleet acceptance and exact-main evidence before promoting this repository into governedFleetRepositories."
+    },
+    {
+      "repository": "engurulabory/zeku-finance-prime",
+      "asset": "ZEKÜ FINANCE PRIME",
+      "assetType": "PRODUCT",
+      "state": "HOLD_GOVERNANCE_INTAKE",
+      "mainSha": "c2ca3adb848e1098ceeefd0e4d64adb169c08800",
+      "evidence": "Canonical local-only product truth, DoneCheck integration and Human Threshold real-money boundary are present; no .enguru/labory-manifest.json was found.",
+      "nextAction": "Add/verify Labory manifest plus fleet/security acceptance before governed-fleet promotion."
+    }
+  ],
+  "connectorInventoryObservedAt": "2026-09-18",
+  "accountVisibleRepositoryCountStatus": "HISTORICAL_2026-09-12_NOT_REVERIFIED"
 }
