@@ -55,3 +55,18 @@ Jev may classify, score or assess. It may not:
 - PASS → adapter may be adopted inside the existing lane.
 - HOLD → more evidence/provider commissioning required.
 - BLOCKED → adapter is removed; deterministic governance remains canonical.
+
+
+## Canonical execution route — locked
+
+Primary route:
+`Mac / ENGÜRÜ YAYIN MOTORU™ → governed provider adapter → Jev → Evidence → DoneCheck™`
+
+Vercel AI Gateway is not part of the canonical Jev execution architecture. It may be used only as a non-canonical external reference path if explicitly authorized for a separate experiment.
+
+The Jev adapter must inherit existing Publish Engine / Labory provider boundaries:
+- local credential handling;
+- no caller self-granted authority;
+- explicit cost/accounting evidence;
+- fail-closed HOLD on missing provider access;
+- Human Threshold™ before any consequential external side effect.
