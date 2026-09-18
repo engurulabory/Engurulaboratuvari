@@ -32,6 +32,8 @@ def req(**kw):
         required_capabilities=frozenset({"text"}),
         cost_ceiling=0.0,
         input="hello",
+        intent="complete the runtime test",
+        success_criteria=("verified result",),
     )
     base.update(kw)
     return RequestEnvelope(**base)
@@ -141,7 +143,9 @@ class HTTPServerTests(unittest.TestCase):
                 "data_class":"PUBLIC",
                 "required_capabilities":["text"],
                 "cost_ceiling":0,
-                "input":"hello"
+                "input":"hello",
+                "intent":"complete the runtime request",
+                "success_criteria":["verified result"]
             }).encode()
             request = urllib.request.Request(
                 f"http://127.0.0.1:{self.port}/v1/enguru/respond",

@@ -9,6 +9,8 @@ from shared_ai.verifier import IndependentVerifier
 VALID_DATA_CLASSES = {"PUBLIC", "INTERNAL", "CONFIDENTIAL", "SECRET"}
 VALID_REASONING_EFFORTS = {"MINIMAL", "STANDARD", "DEEP"}
 VALID_CONSEQUENCE_LEVELS = {"LOW", "MEDIUM", "HIGH"}
+VALID_REVERSIBILITY = {"REVERSIBLE", "EXTERNAL_REVERSIBLE", "IRREVERSIBLE"}
+VALID_GROUNDING_STATUS = {"CURRENT", "STALE", "CONFLICTING", "INCOMPLETE", "AMBIGUOUS", "UNKNOWN"}
 VALID_VERIFICATION_PROFILES = {"BASIC", "GROUNDED", "STRUCTURED", "ACTION"}
 VALID_CAPABILITIES = {
     "text",
@@ -50,7 +52,7 @@ class BehaviorVerdict:
 
 
 class BehaviorEngine:
-    version = "0.2"
+    version = "0.3"
     max_corrections = 1
 
     @staticmethod
@@ -122,6 +124,40 @@ class BehaviorEngine:
         if getattr(request, "resume_from", None) and not getattr(request, "context_id", None):
             return BehaviorVerdict("HOLD", "invalid_resume_state", plan.reasoning_effort)
 
+        intent = str(getattr(request, "intent", "")).strip()
+        criteria = tuple(getattr(request, "success_criteria", tuple()))
+        if not intent:
+            return BehaviorVerdict("HOLD", "missing_intent", plan.reasoning_effort)
+        if not criteria:
+            return BehaviorVerdict("HOLD", "missing_success_criteria", plan.reasoning_effort)
+        if not bool(getattr(request, "critical_context_complete", True)):
+            return BehaviorVerdict("HOLD", "missing_critical_context", plan.reasoning_effort)
+
+        grounding_status = str(getattr(request, "grounding_status", "CURRENT")).upper()
+        if grounding_status not in VALID_GROUNDING_STATUS:
+            return BehaviorVerdict("HOLD", "invalid_grounding_status", plan.reasoning_effort)
+        if grounding_status != "CURRENT":
+            return BehaviorVerdict(
+                "HOLD", f"grounding_{grounding_status.lower()}", plan.reasoning_effort
+            )
+
+        if bool(getattr(request, "freshness_required", False)) and not tuple(
+            getattr(request, "authoritative_provenance", tuple())
+        ):
+            return BehaviorVerdict(
+                "HOLD", "authoritative_current_source_required", plan.reasoning_effort
+            )
+
+        reversibility = str(getattr(request, "reversibility", "REVERSIBLE")).upper()
+        if reversibility not in VALID_REVERSIBILITY:
+            return BehaviorVerdict("HOLD", "invalid_reversibility", plan.reasoning_effort)
+        if reversibility == "IRREVERSIBLE" and not bool(
+            getattr(request, "human_approval", False)
+        ):
+            return BehaviorVerdict(
+                "HOLD", "human_threshold_required", plan.reasoning_effort
+            )
+
         if plan.verification_profile == "GROUNDED" and not tuple(
             getattr(request, "provenance", tuple())
         ):
@@ -184,6 +220,11 @@ class BehaviorEngine:
             "tool_selected": getattr(request, "requested_tool", None),
             "context_compacted": bool(getattr(request, "context_compacted", False)),
             "steering_applied": bool(getattr(request, "steering_instruction", "").strip()),
+            "intent_resolved": bool(str(getattr(request, "intent", "")).strip()),
+            "success_criteria_count": len(tuple(getattr(request, "success_criteria", tuple()))),
+            "grounding_status": str(getattr(request, "grounding_status", "CURRENT")).upper(),
+            "freshness_required": bool(getattr(request, "freshness_required", False)),
+            "reversibility": str(getattr(request, "reversibility", "REVERSIBLE")).upper(),
             "correction_attempts": correction_attempts,
             "private_chain_of_thought_stored": False,
         }

@@ -30,6 +30,8 @@ def request(**overrides):
         "required_capabilities": frozenset({"text"}),
         "cost_ceiling": 0.0,
         "input": "hello",
+        "intent": "complete the requested task",
+        "success_criteria": ("verified result",),
     }
     values.update(overrides)
     return RequestEnvelope(**values)
@@ -248,6 +250,8 @@ class FrontierBehaviorTests(unittest.TestCase):
             "required_capabilities": ["text"],
             "cost_ceiling": 0,
             "input": "do it",
+            "intent": "perform governed action",
+            "success_criteria": ["verified action"],
             "verification_profile": "ACTION",
             "tool_evidence": ["user-claimed-proof"],
         }
@@ -407,3 +411,114 @@ class FrontierBehaviorV03Tests(unittest.TestCase):
         })
         self.assertEqual(req.known_truths, tuple())
         self.assertEqual(req.tool_evidence, tuple())
+
+
+class PolishP1IntentGroundingGovernanceTests(unittest.TestCase):
+    def test_missing_intent_holds_before_provider(self):
+        adapter = FakeAdapter()
+        result = SharedAIRuntime([provider(adapter)]).execute(request(intent=""))
+        self.assertEqual(result.state, "HOLD")
+        self.assertEqual(result.reason, "missing_intent")
+        self.assertEqual(adapter.calls, 0)
+
+    def test_missing_success_criteria_holds(self):
+        result = SharedAIRuntime([provider()]).execute(request(success_criteria=tuple()))
+        self.assertEqual(result.state, "HOLD")
+        self.assertEqual(result.reason, "missing_success_criteria")
+
+    def test_missing_critical_context_holds(self):
+        result = SharedAIRuntime([provider()]).execute(
+            request(critical_context_complete=False)
+        )
+        self.assertEqual(result.state, "HOLD")
+        self.assertEqual(result.reason, "missing_critical_context")
+
+    def test_stale_conflicting_incomplete_ambiguous_unknown_grounding_hold(self):
+        expected = {
+            "STALE": "grounding_stale",
+            "CONFLICTING": "grounding_conflicting",
+            "INCOMPLETE": "grounding_incomplete",
+            "AMBIGUOUS": "grounding_ambiguous",
+            "UNKNOWN": "grounding_unknown",
+        }
+        for status, reason in expected.items():
+            with self.subTest(status=status):
+                result = SharedAIRuntime([provider()]).execute(
+                    request(grounding_status=status)
+                )
+                self.assertEqual(result.state, "HOLD")
+                self.assertEqual(result.reason, reason)
+
+    def test_freshness_requires_authoritative_current_source(self):
+        result = SharedAIRuntime([provider()]).execute(
+            request(freshness_required=True)
+        )
+        self.assertEqual(result.state, "HOLD")
+        self.assertEqual(result.reason, "authoritative_current_source_required")
+
+        result = SharedAIRuntime([provider()]).execute(
+            request(
+                freshness_required=True,
+                authoritative_provenance=("authority:current",),
+            )
+        )
+        self.assertEqual(result.state, "PASS")
+
+    def test_irreversible_action_requires_human_threshold_before_provider(self):
+        adapter = FakeAdapter()
+        result = SharedAIRuntime([provider(adapter)]).execute(
+            request(reversibility="IRREVERSIBLE")
+        )
+        self.assertEqual(result.state, "HOLD")
+        self.assertEqual(result.reason, "human_threshold_required")
+        self.assertEqual(adapter.calls, 0)
+
+    def test_external_reversible_action_can_continue(self):
+        result = SharedAIRuntime([provider()]).execute(
+            request(reversibility="EXTERNAL_REVERSIBLE")
+        )
+        self.assertEqual(result.state, "PASS")
+
+    def test_http_caller_cannot_self_grant_human_approval(self):
+        payload = {
+            "request_id": "p1-authority",
+            "task_type": "action",
+            "data_class": "INTERNAL",
+            "required_capabilities": ["text"],
+            "cost_ceiling": 0,
+            "input": "perform action",
+            "intent": "perform governed action",
+            "success_criteria": ["completed"],
+            "reversibility": "IRREVERSIBLE",
+            "human_approval": True,
+        }
+        req = RequestEnvelope.from_dict(payload)
+        self.assertFalse(req.human_approval)
+        result = SharedAIRuntime([provider()]).execute(req)
+        self.assertEqual(result.reason, "human_threshold_required")
+
+    def test_secret_remains_local_only(self):
+        remote = provider()
+        remote.name = "remote"
+        remote.local = False
+        result = SharedAIRuntime([remote]).execute(request(data_class="SECRET"))
+        self.assertEqual(result.state, "HOLD")
+        self.assertIn("remote:SKIP:secret_local_only", result.path)
+
+    def test_cost_ceiling_remains_fail_closed(self):
+        paid = provider()
+        paid.estimated_cost = 0.5
+        result = SharedAIRuntime([paid]).execute(request(cost_ceiling=0.0))
+        self.assertEqual(result.state, "HOLD")
+        self.assertIn("local_runtime:SKIP:cost", result.path)
+
+    def test_current_request_input_is_distinct_from_prior_context(self):
+        adapter = FakeAdapter(output="ok")
+        result = SharedAIRuntime([provider(adapter)]).execute(
+            request(
+                input="current request truth",
+                context_messages=("stale prior context",),
+            )
+        )
+        self.assertEqual(result.state, "PASS")
+        self.assertEqual(adapter.calls, 1)

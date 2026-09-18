@@ -404,20 +404,20 @@ mevcut hakikat + gerekli fark
 - [x] No hidden provider-specific behavior becomes canonical policy — behavior contract remains provider-independent.
 
 ### B. Understanding + Grounding
-- [ ] Resolve user intent and explicit success criteria before execution.
-- [ ] Separate current request truth from prior context/memory.
-- [ ] Detect missing critical context; ask only when materially required.
-- [ ] Prefer authoritative/current sources when freshness matters.
+- [x] Resolve user intent and explicit success criteria before execution.
+- [x] Separate current request truth from prior context/memory — current input/steering remains distinct from compacted prior context.
+- [x] Detect missing critical context; governed preflight HOLD prevents invented completion.
+- [x] Prefer authoritative/current sources when freshness matters — freshness gate requires authoritative provenance.
 - [x] Track provenance for externally grounded factual claims — GROUNDED profile + provenance evidence count implemented.
-- [ ] Detect stale, conflicting, incomplete or ambiguous grounding.
-- [ ] Unknown critical truth → HOLD, never invented completion.
+- [x] Detect stale, conflicting, incomplete or ambiguous grounding — non-current grounding HOLD.
+- [x] Unknown critical truth → HOLD, never invented completion.
 
 ### C. Classification + Governance
-- [ ] Classify task type, data class, consequence level and reversibility.
-- [ ] Resolve authority before tool/provider execution.
-- [ ] Preserve SECRET → local-only unless explicit governed authority changes.
-- [ ] Preserve cost ceiling / zero-cost default.
-- [ ] Detect Human Threshold before irreversible or authority-expanding action.
+- [x] Classify task type, data class, consequence level and reversibility.
+- [x] Resolve authority before tool/provider execution — irreversible actions stop at Human Threshold preflight.
+- [x] Preserve SECRET → local-only unless explicit governed authority changes.
+- [x] Preserve cost ceiling / zero-cost default.
+- [x] Detect Human Threshold before irreversible or authority-expanding action; caller cannot self-grant approval.
 - [x] No unverified PASS — empty output is HOLD.
 - [x] Evidence failure cannot become PASS — verification HOLD blocks PASS.
 - [x] System may optimize behavior; it may not expand its own authority — authority rejection never enters correction loop.
