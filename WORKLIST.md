@@ -652,3 +652,33 @@ Certain remaining Mac Terminal work packages: **3**
 
 Canonical reconciliation evidence:
 `evidence/GLOBAL_WORKLIST_RECONCILIATION_2026-09-18.md`
+
+---
+
+# JEV SYSTEM-ONE DECISION ADAPTER — EXPERIMENT
+
+**STATE:** HOLD / EXPERIMENT — benchmark harness and 100 canonical-derived fixtures are present; live Jev provider evidence is not yet available.
+
+Locked placement:
+`Quality & Red Team → Jev assessor adapter → DoneCheck™`
+
+- [x] No new Core/framework introduced.
+- [x] Jev authority boundary locked: assessor only.
+- [x] 100-case benchmark fixture exists at `evidence/jev/benchmark_states_v1.json`.
+- [x] Canonical verdict target recorded: `PASS / HOLD / BLOCKED`.
+- [x] Human Threshold™ target recorded per case.
+- [x] Critical false PASS = 0 enforced as blocking.
+- [x] Human Threshold miss = 0 enforced as blocking.
+- [x] Canonical agreement gate >= 95% implemented.
+- [x] Deterministic fallback required.
+- [x] CI regression test wired into Labory Final Gate.
+- [ ] **[HOLD_PROVIDER]** Run the same 100 cases against live Jev early-access API.
+- [ ] Record measured calibration, latency and cost against the comparison reasoning route.
+- [ ] Issue final experiment verdict: PASS → adopt; HOLD → more evidence; BLOCKED → remove adapter and retain deterministic governance.
+
+Important evidence note:
+The current 100 cases are canonical-derived reproducible Labory governance fixtures. They are not represented as 100 historical production observations.
+
+Canonical experiment contract:
+`governance/quality/JEV_EXPERIMENT_CONTRACT_V1.md`
+
