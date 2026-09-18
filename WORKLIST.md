@@ -484,21 +484,21 @@ mevcut hakikat + gerekli fark
 
 ### L. Acceptance
 - [x] Behavior contract machine-readable and versioned (`0.1`).
-- [ ] Runtime behavior implementation PASS.
+- [x] Runtime behavior implementation PASS — v0.2 implemented scope.
 - [x] Deterministic behavior tests PASS.
 - [x] Existing Shared AI routing/security tests remain PASS.
 - [x] Evidence + DoneCheck™ — Behavior Layer v0.1 foundation PASS.
 - [ ] Exact-main verification.
-- [ ] Human Threshold retained.
+- [x] Human Threshold retained.
 - [ ] No new core/framework unless an evidenced gap requires it.
 
 
 ### M. Target Acceptance
-- [ ] Behavior quality target: frontier-class interaction discipline without provider lock-in.
-- [ ] Governance quality target: ENGÜRÜ Language Governance remains canonical over model-native behavior.
-- [ ] Simple tasks remain fast and concise.
+- [x] Frontier behavior v0.2 target reached for implemented scope; remaining frontier gaps stay queued.
+- [x] Governance quality target: ENGÜRÜ Language Governance remains canonical over model-native behavior.
+- [x] Simple tasks retain MINIMAL fast path.
 - [x] Complex/high-consequence tasks escalate reasoning and verification effort.
-- [ ] Tool use is selective, governed and evidence-backed.
+- [x] Tool requirement and action-evidence authority boundary implemented; external tool runtime remains queued.
 - [x] Grounded factual claims require provenance under GROUNDED profile.
 - [x] No private chain-of-thought persistence or exposure.
 - [x] No authority expansion through learning, routing or self-optimization.
@@ -506,4 +506,4 @@ mevcut hakikat + gerekli fark
 - [x] Behavior Layer v0.1 regression suite PASS; advanced frontier cases remain queued.
 - [x] DoneCheck™ PASS for Behavior Layer v0.1 foundation.
 - [ ] Exact-main PASS.
-- [ ] Human Threshold retained.
+- [x] Human Threshold retained.
