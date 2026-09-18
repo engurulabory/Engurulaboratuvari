@@ -33,6 +33,30 @@ jobs:
       - name: Shared AI deterministic offline tests
         run: python -m unittest discover -s tests -p 'test_shared_ai_offline.py' -v
 
+      - name: Shared AI runtime tests
+        run: python -m unittest discover -s tests -p 'test_shared_ai_runtime.py' -v
+
+      - name: Shared AI runtime smoke
+        shell: bash
+        run: |
+          python -m shared_ai.http_server &
+          PID=$!
+          trap 'kill $PID 2>/dev/null || true' EXIT
+          for i in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8787/health > /tmp/shared-ai-health.json; then
+              break
+            fi
+            sleep 0.25
+          done
+          python - <<'PY'
+          import json
+          with open('/tmp/shared-ai-health.json', encoding='utf-8') as f:
+              data = json.load(f)
+          assert data["state"] == "PASS", data
+          assert data["runtime"] == "UP", data
+          print(json.dumps(data, ensure_ascii=False))
+          PY
+
       - name: IP & Model Trust tests
         run: python -m unittest discover -s tests -p 'test_ip_model_trust_gate.py' -v
 
