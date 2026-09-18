@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "2.7",
+  "schemaVersion": "2.8",
   "generatedAt": "2026-09-12",
   "state": "HOLD",
   "scope": "12 account-visible repositories by human screen evidence; 8 connector-accessible governed repositories; 4 additional account-visible repositories remain outside the current connector/governed scope.",
@@ -193,7 +193,8 @@
       "engurulabory/adil-pay-kanit-web"
     ],
     "sharedOperatingArchitecture": [
-      "ENGÜRÜ VERIFIED AGENT OPERATING CORE™"
+      "ENGÜRÜ VERIFIED AGENT OPERATING CORE™",
+      "ENGÜRÜ Shared AI Infrastructure™"
     ]
   },
   "productionSequence": [
@@ -263,5 +264,17 @@
       "engurulabory/enguru-maya-kurumsal-web": "KEEP",
       "engurulabory/enguru-lab-gelir-çekirdek-portal": "KEEP"
     }
-  }
+  },
+  "sharedInfrastructure": [
+    {
+      "asset": "ENGÜRÜ Shared AI Infrastructure™",
+      "assetType": "SHARED_AI_INFRASTRUCTURE",
+      "state": "FOUNDATION",
+      "canonicalPath": "governance/shared-ai/ARCHITECTURE.md",
+      "owner": "ENGÜRÜ Labory Control Plane",
+      "role": "Provider-independent shared AI service layer for governed products and agents.",
+      "authorityRule": "May optimize and propose; may not expand its own authority.",
+      "runtimeVerifiedFinish": "HOLD"
+    }
+  ]
 }

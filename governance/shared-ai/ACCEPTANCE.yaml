@@ -1,0 +1,67 @@
+schema_version: "0.1"
+architecture_target: 100
+truth_boundary:
+  theoretical_technical_foundation: PASS_WHEN_ALL_STATIC_GATES_PASS
+  runtime_verified_finish: HOLD_UNTIL_OBSERVED
+
+static_gates:
+  - id: single_interface
+    criterion: "All products integrate through one provider-independent service contract."
+  - id: policy_fail_closed
+    criterion: "Unknown privacy, commercial-use or cost metadata cannot produce execution PASS."
+  - id: no_direct_vendor_coupling
+    criterion: "Products do not require provider SDK/API contracts."
+  - id: capability_routing
+    criterion: "Routing requires explicit capability and context fit."
+  - id: zero_cost_guard
+    criterion: "Paid execution is impossible without explicit authority."
+  - id: secret_boundary
+    criterion: "SECRET defaults to local-only."
+  - id: bounded_retry
+    criterion: "Retries are bounded and policy/capability failures are never blindly retried."
+  - id: circuit_breaker
+    criterion: "Repeated provider failure produces temporary exclusion."
+  - id: local_fallback
+    criterion: "Architecture contains a provider-independent local fallback."
+  - id: evidence_contract
+    criterion: "Every execution has machine-readable route and verification evidence without requiring prompt retention."
+  - id: learning_boundary
+    criterion: "The system may learn/optimize/propose, but cannot expand its own authority."
+  - id: model_lifecycle
+    criterion: "Discovery cannot promote a model directly to production."
+  - id: human_threshold
+    criterion: "Privacy, commercial-use, paid authority, production-default and SECRET-egress changes require Human Threshold."
+  - id: offline_testability
+    criterion: "Architecture supports deterministic simulation of success/failure/fallback states before live credentials."
+  - id: optional_openai
+    criterion: "OpenAI API is optional, never a structural dependency."
+
+future_runtime_scenarios:
+  - success_200
+  - bad_request_400
+  - auth_401
+  - policy_403
+  - quota_429
+  - provider_500
+  - unavailable_503
+  - timeout
+  - network_loss
+  - malformed_json
+  - invalid_structured_output
+  - tool_call_mismatch
+  - context_overflow
+  - partial_stream_failure
+  - provider_degradation
+  - all_external_down
+  - local_fallback
+  - privacy_violation
+  - commercial_use_violation
+  - cost_violation
+  - duplicate_request
+  - retry_storm
+  - circuit_breaker
+  - restart_recovery
+
+donecheck:
+  static_foundation: "PASS only after all static gates are machine-checked."
+  runtime_verified_finish: "HOLD until live/offline runtime evidence exists."
