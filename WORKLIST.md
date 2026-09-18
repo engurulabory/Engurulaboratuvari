@@ -622,3 +622,33 @@ Acceptance:
 - [x] Each adopted technical mechanism has deterministic tests or reproducible evidence.
 - [x] Existing Human Threshold™, Secret Zero™, DoneCheck™, Language Governance and Repository Order remain intact.
 - [x] No new core created; reuse → extend → adapter remained sufficient.
+
+
+---
+
+## GLOBAL RECONCILIATION SNAPSHOT — 2026-09-18
+
+**STATE:** RECONCILED
+
+Full checkbox truth (including nested checklist items):
+- total: **308**
+- completed: **274**
+- open: **34**
+- completion: **89.0%**
+- stale items closed in this pass: **14**
+
+Deduplicated real remaining work packages: **6**
+1. PARK read-only production proof.
+2. Branch-protection administration.
+3. Labory Step 1 final Human Threshold.
+4. AEC/KârMatik real economic field proof.
+5. Publish Engine field finish.
+6. Shared AI external-provider commissioning.
+
+Certain remaining Mac Terminal work packages: **3**
+- PARK read-only live proof.
+- AEC/KârMatik field runtime / opportunity scan.
+- Publish Engine provider commissioning / live publish / rollback / final Mac install.
+
+Canonical reconciliation evidence:
+`evidence/GLOBAL_WORKLIST_RECONCILIATION_2026-09-18.md`
