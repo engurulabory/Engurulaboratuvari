@@ -3,6 +3,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any, Protocol
 
+from shared_ai.behavior import BehaviorEngine
+
 
 class ProviderAdapter(Protocol):
     def invoke(self, request: "RequestEnvelope") -> dict[str, Any]:
@@ -57,6 +59,7 @@ class RuntimeResult:
     path: tuple[str, ...]
     reason: str
     estimated_cost: float | None
+    behavior_evidence: dict[str, Any] = field(default_factory=dict)
 
     def as_dict(self) -> dict[str, Any]:
         return {
@@ -70,12 +73,14 @@ class RuntimeResult:
                 "reason": self.reason,
                 "estimated_cost": self.estimated_cost,
             },
+            "behavior_evidence": self.behavior_evidence,
         }
 
 
 class SharedAIRuntime:
-    def __init__(self, providers: list[ProviderRecord] | None = None) -> None:
+    def __init__(self, providers: list[ProviderRecord] | None = None, behavior: BehaviorEngine | None = None) -> None:
         self.providers = providers or []
+        self.behavior = behavior or BehaviorEngine()
 
     def register(self, provider: ProviderRecord) -> None:
         self.providers.append(provider)
@@ -99,6 +104,19 @@ class SharedAIRuntime:
     def execute(self, request: RequestEnvelope) -> RuntimeResult:
         attempts = 0
         path: list[str] = []
+        preflight = self.behavior.preflight(request)
+        if preflight.state != "PASS":
+            return RuntimeResult(
+                state=preflight.state,
+                output=None,
+                provider=None,
+                model=None,
+                attempts=0,
+                path=tuple(),
+                reason=preflight.reason,
+                estimated_cost=None,
+                behavior_evidence=self.behavior.evidence(preflight),
+            )
 
         for provider in self.providers:
             allowed, reason = self._eligible(request, provider)
@@ -110,15 +128,30 @@ class SharedAIRuntime:
                 attempts += 1
                 response = provider.adapter.invoke(request)
                 provider.failures = 0
+                output = response.get("output")
+                verification = self.behavior.verify(request, output)
+                if verification.state != "PASS":
+                    return RuntimeResult(
+                        state=verification.state,
+                        output=None,
+                        provider=provider.name,
+                        model=provider.model,
+                        attempts=attempts,
+                        path=tuple(path + [f"{provider.name}:PASS"]),
+                        reason=verification.reason,
+                        estimated_cost=provider.estimated_cost,
+                        behavior_evidence=self.behavior.evidence(preflight, verification),
+                    )
                 return RuntimeResult(
                     state="PASS",
-                    output=response.get("output"),
+                    output=output,
                     provider=provider.name,
                     model=provider.model,
                     attempts=attempts,
                     path=tuple(path + [f"{provider.name}:PASS"]),
                     reason="verified_execution",
                     estimated_cost=provider.estimated_cost,
+                    behavior_evidence=self.behavior.evidence(preflight, verification),
                 )
             except Exception as exc:
                 provider.failures += 1
@@ -136,4 +169,5 @@ class SharedAIRuntime:
             path=tuple(path),
             reason="no_safe_provider",
             estimated_cost=None,
+            behavior_evidence=self.behavior.evidence(preflight),
         )
