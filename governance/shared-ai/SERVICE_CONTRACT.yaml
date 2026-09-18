@@ -1,0 +1,44 @@
+schema_version: "0.1"
+service: "ENGURU_SHARED_AI_INFRASTRUCTURE"
+authority: "ENGÜRÜ Labory Control Plane"
+mode: "provider_independent"
+request:
+  required:
+    - request_id
+    - task_type
+    - data_class
+    - required_capabilities
+    - cost_ceiling
+  fields:
+    request_id: {type: string}
+    task_type: {type: string}
+    data_class:
+      enum: [PUBLIC, INTERNAL, CONFIDENTIAL, SECRET]
+    required_capabilities:
+      type: array
+      items: [text, vision, audio, tool_calling, structured_output, reasoning, streaming, long_context]
+    cost_ceiling:
+      type: number
+      minimum: 0
+      default: 0
+    context_tokens_estimate: {type: integer, minimum: 0}
+    latency_class:
+      enum: [BEST_EFFORT, INTERACTIVE, BATCH]
+    verification_profile: {type: string}
+response:
+  required:
+    - request_id
+    - state
+    - output
+    - route_evidence
+    - verification
+  state:
+    enum: [PASS, HOLD, BLOCKED]
+  route_evidence:
+    required: [provider, model, policy_verdict, attempts, estimated_cost]
+rules:
+  - "Products MUST NOT require a vendor-specific API contract."
+  - "Provider-specific features MUST be isolated behind adapters/capability checks."
+  - "Unknown critical metadata fails closed."
+  - "Cost ceiling MUST be enforced before execution."
+  - "SECRET data defaults to LOCAL_ONLY."
