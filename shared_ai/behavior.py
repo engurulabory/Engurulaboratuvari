@@ -3,6 +3,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
+from shared_ai.verifier import IndependentVerifier
+
 
 VALID_DATA_CLASSES = {"PUBLIC", "INTERNAL", "CONFIDENTIAL", "SECRET"}
 VALID_REASONING_EFFORTS = {"MINIMAL", "STANDARD", "DEEP"}
@@ -35,6 +37,9 @@ class BehaviorVerdict:
     state: str
     reason: str
     reasoning_effort: str
+    citations: tuple[str, ...] = tuple()
+    unsupported_claims: tuple[str, ...] = tuple()
+    contradictions: tuple[str, ...] = tuple()
 
     def as_dict(self) -> dict[str, Any]:
         return {
@@ -131,27 +136,26 @@ class BehaviorEngine:
 
     def verify(self, request: Any, output: Any) -> BehaviorVerdict:
         plan = self.plan(request)
-        if output is None:
-            return BehaviorVerdict("HOLD", "empty_output", plan.reasoning_effort)
-        if isinstance(output, str) and not output.strip():
-            return BehaviorVerdict("HOLD", "empty_output", plan.reasoning_effort)
-
-        if plan.verification_profile == "STRUCTURED" and not isinstance(output, (dict, list)):
-            return BehaviorVerdict(
-                "HOLD", "structured_output_required", plan.reasoning_effort
-            )
-
-        if plan.verification_profile == "GROUNDED" and not tuple(
-            getattr(request, "provenance", tuple())
-        ):
-            return BehaviorVerdict("HOLD", "missing_provenance", plan.reasoning_effort)
 
         if plan.verification_profile == "ACTION" and not tuple(
             getattr(request, "tool_evidence", tuple())
         ):
             return BehaviorVerdict("HOLD", "missing_action_evidence", plan.reasoning_effort)
 
-        return BehaviorVerdict("PASS", "verification_pass", plan.reasoning_effort)
+        report = IndependentVerifier().verify(
+            output=output,
+            verification_profile=plan.verification_profile,
+            provenance=tuple(getattr(request, "provenance", tuple())),
+            known_truths=tuple(getattr(request, "known_truths", tuple())),
+        )
+        return BehaviorVerdict(
+            report.state,
+            report.reason,
+            plan.reasoning_effort,
+            citations=report.citations,
+            unsupported_claims=report.unsupported_claims,
+            contradictions=report.contradictions,
+        )
 
     @staticmethod
     def correction_retryable(reason: str) -> bool:
@@ -181,4 +185,16 @@ class BehaviorEngine:
         if verification is not None:
             payload["verification"] = verification.state
             payload["verification_reason"] = verification.reason
+            payload["citation_count"] = len(verification.citations)
+            payload["unsupported_claim_count"] = len(verification.unsupported_claims)
+            payload["contradiction_count"] = len(verification.contradictions)
         return payload
+
+    @staticmethod
+    def render_citations(verdict: BehaviorVerdict | None) -> list[dict[str, Any]]:
+        if verdict is None:
+            return []
+        return [
+            {"index": index, "ref": ref}
+            for index, ref in enumerate(verdict.citations, start=1)
+        ]
