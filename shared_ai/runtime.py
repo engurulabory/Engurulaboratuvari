@@ -298,8 +298,7 @@ class SharedAIRuntime:
                         correction_attempts += 1
                         provider_request = replace(
                             active_request,
-                            behavior_instruction="
-".join(
+                            behavior_instruction="\n".join(
                                 part
                                 for part in [
                                     active_request.behavior_instruction,
