@@ -35,6 +35,14 @@ class RequestEnvelope:
     tool_evidence: tuple[str, ...] = tuple()
     behavior_instruction: str = ""
     context_compacted: bool = False
+    intent: str = ""
+    success_criteria: tuple[str, ...] = tuple()
+    critical_context_complete: bool = True
+    grounding_status: str = "CURRENT"
+    freshness_required: bool = False
+    authoritative_provenance: tuple[str, ...] = tuple()
+    reversibility: str = "REVERSIBLE"
+    human_approval: bool = False
 
     @classmethod
     def from_dict(cls, payload: dict[str, Any]) -> "RequestEnvelope":
@@ -77,6 +85,16 @@ class RequestEnvelope:
             tool_evidence=tuple(),
             behavior_instruction="",
             context_compacted=False,
+            intent=str(payload.get("intent", "")),
+            success_criteria=tuple(str(x) for x in payload.get("success_criteria", [])),
+            critical_context_complete=bool(payload.get("critical_context_complete", True)),
+            grounding_status=str(payload.get("grounding_status", "CURRENT")).upper(),
+            freshness_required=bool(payload.get("freshness_required", False)),
+            authoritative_provenance=tuple(
+                str(x) for x in payload.get("authoritative_provenance", [])
+            ),
+            reversibility=str(payload.get("reversibility", "REVERSIBLE")).upper(),
+            human_approval=False,
         )
 
 
@@ -181,7 +199,7 @@ class SharedAIRuntime:
 
         return replace(
             request,
-            behavior_instruction="\\n".join(parts),
+            behavior_instruction="\n".join(parts),
             context_compacted=bool(compacted),
         )
 
@@ -197,7 +215,7 @@ class SharedAIRuntime:
         tool_output = result.get("output")
         instruction = request.behavior_instruction
         tool_context = f"TOOL_RESULT[{request.requested_tool}]:{tool_output}"
-        instruction == "\n".join(part for part in [instruction, tool_context] if part)
+        instruction = "\n".join(part for part in [instruction, tool_context] if part)
 
         return (
             replace(
