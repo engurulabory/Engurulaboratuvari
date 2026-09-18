@@ -56,6 +56,7 @@ class RuntimeResult:
     attempts: int
     path: tuple[str, ...]
     reason: str
+    estimated_cost: float | None
 
     def as_dict(self) -> dict[str, Any]:
         return {
@@ -67,6 +68,7 @@ class RuntimeResult:
                 "attempts": self.attempts,
                 "fallback_path": list(self.path),
                 "reason": self.reason,
+                "estimated_cost": self.estimated_cost,
             },
         }
 
@@ -116,6 +118,7 @@ class SharedAIRuntime:
                     attempts=attempts,
                     path=tuple(path + [f"{provider.name}:PASS"]),
                     reason="verified_execution",
+                    estimated_cost=provider.estimated_cost,
                 )
             except Exception as exc:
                 provider.failures += 1
@@ -132,4 +135,5 @@ class SharedAIRuntime:
             attempts=attempts,
             path=tuple(path),
             reason="no_safe_provider",
+            estimated_cost=None,
         )
