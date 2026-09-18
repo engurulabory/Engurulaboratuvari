@@ -585,6 +585,17 @@ Layer placement:
 - **Context / Memory:** progressive verified-memory retrieval only if a measured gap remains.
 - **Aesthetic:** no new frontend skill; current Builder architecture remains authority.
 
+Implementation closure:
+
+- [x] **P1 Quality & Red Team** — history-aware PR review, confidence/evidence filtering, duplicate suppression and bounded Outside Voice contract; PR #63 merged.
+- [ ] **P2 Security & Authority** — semantic security review + STRIDE + OWASP + trusted-source gate; implementation candidate in current PR.
+- [ ] **P3 Production Discipline** — runtime guard + root-cause debugging + isolated-worktree/verification contract.
+- [ ] **P4 QA/Release adapters** — diff-aware browser QA + canary + benchmark contract; reuse Builder/Publish Engine surfaces, no duplicate browser engine.
+- [ ] **Final harvest evidence** — reconcile provenance/licenses, tests, Worklist and DoneCheck input.
+- [ ] **Outside Voice live commissioning** — only when a second independently governed provider/model is actually available; technical contract does not manufacture live independence.
+- [x] **claude-mem runtime decision** — no parallel daemon/runtime; progressive verified-memory retrieval remains conditional on measured gap.
+- [x] **frontend-design decision** — no parallel skill; existing Builder Aesthetic authority remains canonical.
+
 Acceptance:
 
 - [ ] No upstream framework becomes canonical authority.
