@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.11",
+  "schemaVersion": "1.12",
   "generatedAt": "2026-09-18",
   "authority": "ENGÜRÜ Labory Control Plane",
   "state": "HOLD",
@@ -105,12 +105,34 @@
       "evidence": "evidence/BUILDER_STEWARD_CLOSEOUT_2026-09-18.md"
     },
     "repositoryStewardSchedule": {
-      "state": "PASS_CANDIDATE_CI_REQUIRED",
+      "state": "PASS_MERGED_RUNNER_CI_WIRED",
       "cadence": "23 6 */3 * *",
       "mode": "READ_ONLY_SCHEDULED_CYCLE",
       "destructiveActionsAllowed": false,
       "workflow": ".github/workflows/steward-scheduled-cycle.yml",
-      "runner": "steward/run-scheduled-cycle.mjs"
+      "runner": "steward/run-scheduled-cycle.mjs",
+      "finalGateSmoke": true
+    },
+    "publishEngineGovernanceIntake": {
+      "state": "HOLD_EXACT_MAIN_FLEET_EVIDENCE",
+      "pullRequest": 10,
+      "mainSha": "3719c720674a145c5a77b6d8e89267b72b5b310d",
+      "prHeadFleetRunId": 35335074270,
+      "productCiRunId": 35335074204,
+      "manifest": "PASS",
+      "ipModelTrust": "PASS_T4",
+      "pinnedFleetWorkflow": "PASS",
+      "note": "Merged main contains governance controls. PR-head Fleet and product CI passed; exact-main push-run is not exposed by the current connector wrapper, so governed-fleet promotion is not claimed."
+    },
+    "zekuFinancePrimeGovernanceIntake": {
+      "state": "HOLD_EXACT_MAIN_FLEET_EVIDENCE",
+      "pullRequest": 13,
+      "mainSha": "4be0746db95feac21fa321a1a57937ee53ba7733",
+      "prHeadFleetRunId": 35335077542,
+      "manifest": "PASS_PRODUCT_LOCAL_ONLY",
+      "ipModelTrust": "PASS_T4",
+      "pinnedFleetWorkflow": "PASS",
+      "note": "Merged main contains Labory PRODUCT manifest and T4 fleet controls. PR-head Fleet passed; exact-main push-run is not exposed by the current connector wrapper, so governed-fleet promotion is not claimed."
     }
   },
   "fleetEvidence": {
@@ -160,13 +182,13 @@
     },
     "fleetAdoption": {
       "target": 100,
-      "state": "HOLD_TWO_INTAKE_REPOSITORIES",
-      "criterion": "8/8 existing governed repositories retain adoption evidence. Publish Engine and ZEKÜ require explicit Labory fleet/security acceptance before the governed count may change."
+      "state": "HOLD_EXACT_MAIN_EVIDENCE_TWO_REPOS",
+      "criterion": "Publish Engine and ZEKÜ now have merged manifests, T4 IP Model Trust controls, pinned Fleet workflows and successful PR-head Fleet runs. Promotion from governed 8 to 10 remains HOLD until exact-main push Fleet evidence is observed."
     },
     "automationSteward": {
       "target": 100,
-      "state": "PASS_SCHEDULED_READ_ONLY_CYCLE_CI_REQUIRED",
-      "criterion": "Repository Steward real reconciliation is proven and a read-only approximately-every-3-days scheduled cycle is defined with destructive actions disabled; exact-head CI must pass before canonical lock."
+      "state": "PASS_SCHEDULED_READ_ONLY_CYCLE",
+      "criterion": "Repository Steward has a merged read-only approximately-every-3-days workflow; the same scheduled runner is executed inside Labory Final Gate for deterministic CI proof. Destructive actions remain disabled."
     },
     "operationalSimplicity": {
       "target": 100,
@@ -175,8 +197,8 @@
     },
     "branchProtection": {
       "target": 100,
-      "state": "HOLD",
-      "criterion": "Main protection is active and `labory-final-gate` is required; IP Model Trust Gate and Fleet Gate are not yet both required status checks."
+      "state": "HOLD_ADMIN_CONFIGURATION",
+      "criterion": "Main protection requires labory-final-gate, but IP Model Trust Gate and IP Model Trust Fleet are not both required checks. Current connector exposes no branch-protection/ruleset mutation action."
     },
     "repositoryHygiene": {
       "target": 100,
@@ -257,7 +279,7 @@
     "builderReleaseMainSha": "fc17cbbf913bb46cc7289db3a9e7b583eb4a7e7f",
     "builderReleaseFleetRun": 35107500693
   },
-  "nextAction": "Close governance intake for ENGÜRÜ YAYIN MOTORU™ and ZEKÜ FINANCE PRIME with explicit trust manifests + fleet CI evidence. Then perform PARK read-only production proof under Human Threshold boundaries and run final Labory DoneCheck/Human Threshold.",
+  "nextAction": "Observe exact-main Fleet push evidence for Publish Engine and ZEKÜ, configure IP Model Trust Gate + IP Model Trust Fleet as required main checks, then perform PARK read-only production proof with runtime-only credentials. After those three gates, run final DoneCheck and Human Threshold.",
   "historicalRepositoryRecords": [
     {
       "repository": "engurulabory/adil-pay-kanit-web",
@@ -349,5 +371,22 @@
     }
   ],
   "connectorInventoryObservedAt": "2026-09-18",
-  "accountVisibleRepositoryCountStatus": "HISTORICAL_2026-09-12_NOT_REVERIFIED"
+  "accountVisibleRepositoryCountStatus": "HISTORICAL_2026-09-12_NOT_REVERIFIED",
+  "finalThreeGates": {
+    "evidence": "evidence/LABORY_FINAL_THREE_GATES_2026-09-18.md",
+    "gates": [
+      {
+        "name": "GOVERNANCE_INTAKE_EXACT_MAIN_FLEET",
+        "state": "HOLD_EVIDENCE"
+      },
+      {
+        "name": "BRANCH_PROTECTION_REQUIRED_CHECKS",
+        "state": "HOLD_ADMIN_CONFIGURATION"
+      },
+      {
+        "name": "PARK_READ_ONLY_PRODUCTION_PROOF",
+        "state": "HOLD_HUMAN_THRESHOLD_CREDENTIALS"
+      }
+    ]
+  }
 }
