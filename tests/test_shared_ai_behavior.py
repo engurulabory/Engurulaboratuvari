@@ -868,3 +868,122 @@ class PolishP3ExecutionObservationTests(unittest.TestCase):
             result.execution_evidence["completion_evidence"],
             ["receipt:456"],
         )
+
+
+class PolishP4OutputMultimodalTests(unittest.TestCase):
+    def test_requested_language_length_and_structure_reach_generation(self):
+        adapter = FakeAdapter(output="yanıt")
+        result = SharedAIRuntime([provider(adapter)]).execute(
+            request(
+                response_language="TR",
+                response_length="CONCISE",
+                response_structure="GOVERNED",
+            )
+        )
+        self.assertEqual(result.state, "PASS")
+        instruction = adapter.instructions[0]
+        self.assertIn("RESPONSE_LANGUAGE:TR", instruction)
+        self.assertIn("RESPONSE_LENGTH:CONCISE", instruction)
+        self.assertIn("RESPONSE_STRUCTURE:GOVERNED", instruction)
+
+    def test_governed_output_preserves_state_claim_evidence_next_action_order(self):
+        output = {
+            "answer": "claim-a",
+            "next_action": "do-next",
+            "facts": ["fact-a"],
+        }
+        result = SharedAIRuntime([provider(FakeAdapter(output=output))]).execute(
+            request(response_structure="GOVERNED")
+        )
+        self.assertEqual(result.state, "PASS")
+        keys = list(result.output.keys())
+        self.assertEqual(keys[:4], ["state", "claim", "evidence", "next_action"])
+        self.assertEqual(result.output["state"], "PASS")
+        self.assertEqual(result.output["claim"], "claim-a")
+        self.assertEqual(result.output["next_action"], "do-next")
+
+    def test_claim_types_are_kept_distinct(self):
+        output = {
+            "answer": "summary",
+            "facts": ["fact-a"],
+            "inferences": ["inference-a"],
+            "proposals": ["proposal-a"],
+            "uncertainties": ["uncertain-a"],
+        }
+        result = SharedAIRuntime([provider(FakeAdapter(output=output))]).execute(
+            request(response_structure="STRUCTURED")
+        )
+        self.assertEqual(result.state, "PASS")
+        self.assertEqual(result.output["facts"], ["fact-a"])
+        self.assertEqual(result.output["inferences"], ["inference-a"])
+        self.assertEqual(result.output["proposals"], ["proposal-a"])
+        self.assertEqual(result.output["uncertainties"], ["uncertain-a"])
+
+    def test_structured_output_is_machine_readable_when_requested(self):
+        result = SharedAIRuntime([provider(FakeAdapter(output="hello"))]).execute(
+            request(
+                response_language="EN",
+                response_length="CONCISE",
+                response_structure="STRUCTURED",
+            )
+        )
+        self.assertEqual(result.state, "PASS")
+        self.assertIsInstance(result.output, dict)
+        self.assertEqual(result.output["answer"], "hello")
+        self.assertEqual(result.output["language"], "EN")
+        self.assertEqual(result.output["length"], "CONCISE")
+        self.assertEqual(result.output["structure"], "STRUCTURED")
+
+    def test_technical_evidence_is_hidden_by_default_and_exposed_on_request(self):
+        hidden = SharedAIRuntime([provider(FakeAdapter(output="hello"))]).execute(
+            request(response_structure="STRUCTURED")
+        )
+        self.assertNotIn("technical_evidence", hidden.output)
+
+        exposed = SharedAIRuntime([provider(FakeAdapter(output="hello"))]).execute(
+            request(
+                response_structure="STRUCTURED",
+                include_technical_evidence=True,
+            )
+        )
+        self.assertIn("technical_evidence", exposed.output)
+        self.assertEqual(
+            exposed.output["technical_evidence"]["source_name"],
+            "local_runtime",
+        )
+
+    def test_plain_default_remains_backward_compatible(self):
+        result = SharedAIRuntime([provider(FakeAdapter(output="plain"))]).execute(
+            request()
+        )
+        self.assertEqual(result.output, "plain")
+
+    def test_multimodal_aliases_normalize_before_provider_routing(self):
+        p = provider(FakeAdapter(output="multi-ok"))
+        p.capabilities.update({"vision", "file", "audio"})
+        result = SharedAIRuntime([p]).execute(
+            request(
+                required_capabilities=frozenset(
+                    {"text", "image", "document", "speech"}
+                )
+            )
+        )
+        self.assertEqual(result.state, "PASS")
+        self.assertEqual(result.provider, "local_runtime")
+
+    def test_normalized_modality_still_requires_provider_support(self):
+        p = provider(FakeAdapter(output="never"))
+        result = SharedAIRuntime([p]).execute(
+            request(required_capabilities=frozenset({"image"}))
+        )
+        self.assertEqual(result.state, "HOLD")
+        self.assertIn("local_runtime:SKIP:capability", result.path)
+
+    def test_invalid_output_profile_holds_before_provider(self):
+        adapter = FakeAdapter(output="never")
+        result = SharedAIRuntime([provider(adapter)]).execute(
+            request(response_structure="UNKNOWN")
+        )
+        self.assertEqual(result.state, "HOLD")
+        self.assertEqual(result.reason, "invalid_response_structure")
+        self.assertEqual(adapter.calls, 0)

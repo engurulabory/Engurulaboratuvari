@@ -3,6 +3,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
+from shared_ai.capabilities import CANONICAL_CAPABILITIES
+from shared_ai.output import VALID_RESPONSE_LENGTHS, VALID_RESPONSE_STRUCTURES
 from shared_ai.verifier import IndependentVerifier
 
 
@@ -12,16 +14,7 @@ VALID_CONSEQUENCE_LEVELS = {"LOW", "MEDIUM", "HIGH"}
 VALID_REVERSIBILITY = {"REVERSIBLE", "EXTERNAL_REVERSIBLE", "IRREVERSIBLE"}
 VALID_GROUNDING_STATUS = {"CURRENT", "STALE", "CONFLICTING", "INCOMPLETE", "AMBIGUOUS", "UNKNOWN"}
 VALID_VERIFICATION_PROFILES = {"BASIC", "GROUNDED", "STRUCTURED", "ACTION"}
-VALID_CAPABILITIES = {
-    "text",
-    "vision",
-    "audio",
-    "tool_calling",
-    "structured_output",
-    "reasoning",
-    "streaming",
-    "long_context",
-}
+VALID_CAPABILITIES = set(CANONICAL_CAPABILITIES)
 STEP_BUDGETS = {"MINIMAL": 2, "STANDARD": 6, "DEEP": 12}
 
 
@@ -52,7 +45,7 @@ class BehaviorVerdict:
 
 
 class BehaviorEngine:
-    version = "0.3"
+    version = "0.7"
     max_corrections = 1
 
     @staticmethod
@@ -120,6 +113,14 @@ class BehaviorEngine:
 
         if plan.verification_profile not in VALID_VERIFICATION_PROFILES:
             return BehaviorVerdict("HOLD", "invalid_verification_profile", plan.reasoning_effort)
+
+        response_length = str(getattr(request, "response_length", "AUTO")).upper()
+        if response_length not in VALID_RESPONSE_LENGTHS:
+            return BehaviorVerdict("HOLD", "invalid_response_length", plan.reasoning_effort)
+
+        response_structure = str(getattr(request, "response_structure", "PLAIN")).upper()
+        if response_structure not in VALID_RESPONSE_STRUCTURES:
+            return BehaviorVerdict("HOLD", "invalid_response_structure", plan.reasoning_effort)
 
         if getattr(request, "resume_from", None) and not getattr(request, "context_id", None):
             return BehaviorVerdict("HOLD", "invalid_resume_state", plan.reasoning_effort)
@@ -229,6 +230,10 @@ class BehaviorEngine:
             "replan_count": int(getattr(request, "replan_count", 0)),
             "tool_plan_count": len(tuple(getattr(request, "tool_plan", tuple()))),
             "parallel_tools": bool(getattr(request, "parallel_tools", False)),
+            "response_language": str(getattr(request, "response_language", "AUTO")).upper(),
+            "response_length": str(getattr(request, "response_length", "AUTO")).upper(),
+            "response_structure": str(getattr(request, "response_structure", "PLAIN")).upper(),
+            "technical_evidence_requested": bool(getattr(request, "include_technical_evidence", False)),
             "correction_attempts": correction_attempts,
             "private_chain_of_thought_stored": False,
         }

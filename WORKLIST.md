@@ -466,16 +466,16 @@ mevcut hakikat + gerekli fark
 - [x] If verification remains unresolved → HOLD.
 
 ### I. Output + User Experience
-- [ ] Format answer to user language, requested length and structure.
-- [ ] Return concise answer first; expose technical evidence only when useful.
-- [ ] Preserve `state → claim → evidence → next action` for governed work.
-- [ ] Distinguish fact, inference, proposal and unresolved uncertainty.
+- [x] Format answer to requested language, length and structure through governed output profile.
+- [x] Return concise answer first for structured output; technical evidence is opt-in.
+- [x] Preserve `state → claim → evidence → next action` ordering for GOVERNED output.
+- [x] Distinguish fact, inference, proposal and unresolved uncertainty in machine-readable output.
 - [x] Surface machine-readable citations/provenance for GROUNDED outputs.
-- [ ] Support machine-readable structured output when requested.
+- [x] Support machine-readable STRUCTURED output when requested.
 - [x] Support mid-task steering state while preserving verified facts.
 
 ### J. Multimodal + Capability Discipline
-- [ ] Normalize text/image/file/audio capability requirements before routing.
+- [x] Normalize text/image/file/audio capability requirements before routing — image→vision, document→file, speech→audio.
 - [x] Block capability assumptions not supported by registry evidence — unknown capability HOLD + provider capability gate.
 - [x] Keep provider-specific multimodal features behind adapters.
 - [x] Reroute or HOLD on unsupported modality/capability.

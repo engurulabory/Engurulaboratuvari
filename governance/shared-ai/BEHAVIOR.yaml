@@ -1,4 +1,4 @@
-schema_version: "0.6"
+schema_version: "0.7"
 layer: "ENGURU_SHARED_AI_BEHAVIOR"
 role: "behavior layer inside ENGÜRÜ Shared AI Infrastructure™"
 new_core: false
@@ -73,6 +73,7 @@ multimodal:
   allowed_capabilities:
     - text
     - vision
+    - file
     - audio
     - tool_calling
     - structured_output
@@ -172,3 +173,27 @@ execution_observation:
     - tool_capability_mismatch
   side_effects_separate_from_generation: true
   consequential_completion_evidence_required: true
+
+
+output_discipline:
+  response_language: governed_request
+  response_length_allowed: [AUTO, CONCISE, STANDARD, DETAILED]
+  response_structure_allowed: [PLAIN, GOVERNED, STRUCTURED]
+  concise_answer_first: true
+  technical_evidence_default: hidden
+  governed_order: [STATE, CLAIM, EVIDENCE, NEXT_ACTION]
+  claim_types:
+    - fact
+    - inference
+    - proposal
+    - uncertainty
+  machine_readable_structured_output: true
+
+multimodal_normalization:
+  canonical: [text, vision, file, audio]
+  aliases:
+    image: vision
+    document: file
+    speech: audio
+  normalize_before_routing: true
+  unsupported_provider_capability: HOLD_OR_REROUTE

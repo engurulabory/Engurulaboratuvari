@@ -4,8 +4,10 @@ from dataclasses import dataclass, field, replace
 from typing import Any, Protocol
 
 from shared_ai.behavior import BehaviorEngine
+from shared_ai.capabilities import normalize_capabilities
 from shared_ai.context_state import compact_context
 from shared_ai.execution import ExecutionEnvelope, normalize_provider_response, normalize_tool_plan
+from shared_ai.output import GovernedFormatter
 from shared_ai.tool_runtime import ToolRegistry
 
 
@@ -48,6 +50,10 @@ class RequestEnvelope:
     parallel_tools: bool = False
     replan_count: int = 0
     latency_class: str = "STANDARD"
+    response_language: str = "AUTO"
+    response_length: str = "AUTO"
+    response_structure: str = "PLAIN"
+    include_technical_evidence: bool = False
 
     @classmethod
     def from_dict(cls, payload: dict[str, Any]) -> "RequestEnvelope":
@@ -55,9 +61,8 @@ class RequestEnvelope:
             request_id=str(payload["request_id"]),
             task_type=str(payload["task_type"]),
             data_class=str(payload["data_class"]).upper(),
-            required_capabilities=frozenset(
-                str(x).lower()
-                for x in payload.get("required_capabilities", ["text"])
+            required_capabilities=normalize_capabilities(
+                payload.get("required_capabilities", ["text"])
             ),
             cost_ceiling=float(payload.get("cost_ceiling", 0)),
             input=str(payload.get("input", "")),
@@ -107,6 +112,10 @@ class RequestEnvelope:
             parallel_tools=bool(payload.get("parallel_tools", False)),
             replan_count=0,
             latency_class=str(payload.get("latency_class", "STANDARD")).upper(),
+            response_language=str(payload.get("response_language", "AUTO")).upper(),
+            response_length=str(payload.get("response_length", "AUTO")).upper(),
+            response_structure=str(payload.get("response_structure", "PLAIN")).upper(),
+            include_technical_evidence=bool(payload.get("include_technical_evidence", False)),
         )
 
 
@@ -167,10 +176,12 @@ class SharedAIRuntime:
         providers: list[ProviderRecord] | None = None,
         behavior: BehaviorEngine | None = None,
         tools: ToolRegistry | None = None,
+        formatter: GovernedFormatter | None = None,
     ) -> None:
         self.providers = providers or []
         self.behavior = behavior or BehaviorEngine()
         self.tools = tools or ToolRegistry()
+        self.formatter = formatter or GovernedFormatter()
 
     def register(self, provider: ProviderRecord) -> None:
         self.providers.append(provider)
@@ -198,19 +209,20 @@ class SharedAIRuntime:
         return True, "PASS"
 
     def _prepare_context(self, request: RequestEnvelope) -> RequestEnvelope:
-        if not request.context_messages and not request.steering_instruction:
-            return request
-
         compacted = compact_context(
             list(request.context_messages),
             verified_facts=request.known_truths,
-        )
+        ) if request.context_messages else ""
         parts = []
         if compacted:
             parts.append(f"CONTEXT:{compacted}")
         if request.steering_instruction.strip():
             parts.append(f"CURRENT_STEERING:{request.steering_instruction.strip()}")
-
+        output_instruction = self.formatter.instruction(request)
+        if output_instruction:
+            parts.append(output_instruction)
+        if not parts:
+            return request
         return replace(
             request,
             behavior_instruction="\n".join(parts),
@@ -308,6 +320,10 @@ class SharedAIRuntime:
         return envelope.as_dict()
 
     def execute(self, request: RequestEnvelope) -> RuntimeResult:
+        request = replace(
+            request,
+            required_capabilities=normalize_capabilities(request.required_capabilities),
+        )
         attempts = 0
         path: list[str] = []
 
@@ -400,9 +416,32 @@ class SharedAIRuntime:
                             if correction_attempts
                             else f"{provider.name}:PASS"
                         )
+                        citations = tuple(self.behavior.render_citations(verification))
+                        execution_evidence = self._combine_execution(
+                            provider_execution=provider_execution,
+                            tool_execution=tool_execution,
+                            path=tuple(path + [label]),
+                            citations=citations,
+                            tool_evidence=active_request.tool_evidence,
+                            state="PASS",
+                            reason="verified_execution",
+                            latency_class=active_request.latency_class,
+                        )
+                        evidence_refs = tuple(active_request.tool_evidence) + tuple(
+                            str(item.get("ref"))
+                            for item in citations
+                            if item.get("ref")
+                        )
+                        formatted_output = self.formatter.format(
+                            request=active_request,
+                            output=output,
+                            state="PASS",
+                            evidence_refs=evidence_refs,
+                            technical_evidence=execution_evidence,
+                        )
                         return RuntimeResult(
                             state="PASS",
-                            output=output,
+                            output=formatted_output,
                             provider=provider.name,
                             model=provider.model,
                             attempts=attempts,
@@ -415,22 +454,9 @@ class SharedAIRuntime:
                                 verification,
                                 correction_attempts=correction_attempts,
                             ),
-                            citations=tuple(
-                                self.behavior.render_citations(verification)
-                            ),
+                            citations=citations,
                             tool_evidence=active_request.tool_evidence,
-                            execution_evidence=self._combine_execution(
-                                provider_execution=provider_execution,
-                                tool_execution=tool_execution,
-                                path=tuple(path + [label]),
-                                citations=tuple(
-                                    self.behavior.render_citations(verification)
-                                ),
-                                tool_evidence=active_request.tool_evidence,
-                                state="PASS",
-                                reason="verified_execution",
-                                latency_class=active_request.latency_class,
-                            ),
+                            execution_evidence=execution_evidence,
                         )
 
                     path.append(

@@ -16,7 +16,7 @@ request:
       enum: [PUBLIC, INTERNAL, CONFIDENTIAL, SECRET]
     required_capabilities:
       type: array
-      items: [text, vision, audio, tool_calling, structured_output, reasoning, streaming, long_context]
+      items: [text, vision, file, audio, tool_calling, structured_output, reasoning, streaming, long_context]
     cost_ceiling:
       type: number
       minimum: 0
@@ -40,6 +40,12 @@ request:
     steering_instruction: {type: string}
     requested_tool: {type: string}
     tool_input: {type: object}
+    response_language: {type: string, default: AUTO}
+    response_length:
+      enum: [AUTO, CONCISE, STANDARD, DETAILED]
+    response_structure:
+      enum: [PLAIN, GOVERNED, STRUCTURED]
+    include_technical_evidence: {type: boolean, default: false}
 response:
   required:
     - request_id
@@ -98,3 +104,10 @@ execution_evidence:
   rules:
     - "Consequential side effects require runtime-generated completion evidence."
     - "Text generation success MUST NOT erase or redefine side-effect completion state."
+
+
+output_discipline:
+  governed_order: [state, claim, evidence, next_action]
+  typed_claims: [facts, inferences, proposals, uncertainties]
+  technical_evidence_opt_in: true
+  structured_output_machine_readable: true
