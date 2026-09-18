@@ -275,3 +275,22 @@ Implementation gates:
 
 Rule:
 Mac is the final execution surface, not the canonical development authority.
+
+
+---
+
+## SHARED AI INFRASTRUCTURE — FOUNDATION
+
+**STATE:** FOUNDATION — theoretical/technical package prepared; runtime commissioning remains HOLD.
+
+- [x] Provider-independent unified service contract defined.
+- [x] Fail-closed policy, capability registry, zero-cost guard and routing contract defined.
+- [x] Model lifecycle + controlled self-optimization boundary defined.
+- [x] Evidence contract and static acceptance matrix defined.
+- [ ] Run Shared AI static foundation gate.
+- [ ] Run deterministic offline failure/failover suite.
+- [ ] Commission approved free providers one by one.
+- [ ] Commission local fallback.
+- [ ] DoneCheck™ → Human Threshold™ before production activation.
+
+**Locked invariant:** the system may learn, optimize and propose; it may not expand its own authority.
