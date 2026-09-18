@@ -1,0 +1,30 @@
+name: Repository Steward Scheduled Cycle
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 6 */3 * *'
+
+permissions:
+  contents: read
+
+jobs:
+  steward-read-only-cycle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact repository state
+        uses: actions/checkout@v4
+
+      - name: Run Repository Steward read-only cycle
+        run: node steward/run-scheduled-cycle.mjs | tee /tmp/steward-cycle.json
+
+      - name: Preserve cycle receipt in job summary
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo '## Repository Steward scheduled cycle'
+            echo '```json'
+            cat /tmp/steward-cycle.json 2>/dev/null || echo '{"state":"BLOCKED","reason":"receipt_missing"}'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
