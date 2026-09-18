@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.9",
+  "schemaVersion": "1.10",
   "generatedAt": "2026-09-18",
   "authority": "ENGÜRÜ Labory Control Plane",
   "state": "HOLD",
@@ -59,6 +59,39 @@
       "state": "SIMULATION_READY_HOLD_GOVERNANCE_INTAKE",
       "mainSha": "c2ca3adb848e1098ceeefd0e4d64adb169c08800",
       "note": "Canonical single-Mac local-only product exists with evidence/DoneCheck/Human Threshold boundaries; explicit Labory fleet adoption remains open."
+    },
+    "externalCapabilityHarvest": {
+      "state": "PASS_TECHNICAL_HOLD_LIVE_SECOND_PROVIDER",
+      "mainBaselineSha": "2c92d22a4ca4f7729046f322e3581e5d0e677cde",
+      "packages": [
+        {
+          "name": "Quality & Red Team PR Review",
+          "pr": 63,
+          "mergeSha": "1882a2ea76178e50fe676ae682ca98ffafa05f95",
+          "state": "PASS"
+        },
+        {
+          "name": "Security & Authority Semantic Review",
+          "pr": 66,
+          "mergeSha": "de2f83c1a1446cef295ed34625b2eeb7b3f68d9d",
+          "state": "PASS"
+        },
+        {
+          "name": "Verified Production Discipline",
+          "pr": 67,
+          "mergeSha": "17cdfe8e6a9e0b07ec3a7430b61e9573aa3f21dc",
+          "state": "PASS"
+        },
+        {
+          "name": "QA/Release Evidence Adapter",
+          "pr": 69,
+          "mergeSha": "2c92d22a4ca4f7729046f322e3581e5d0e677cde",
+          "state": "PASS"
+        }
+      ],
+      "evidence": "evidence/EXTERNAL_CAPABILITY_HARVEST_DONECHECK_2026-09-18.md",
+      "liveOutsideVoice": "HOLD_PROVIDER",
+      "note": "Selected external mechanisms were adapted through existing ENGURU layers; no parallel core/framework authority was introduced."
     }
   },
   "fleetEvidence": {
@@ -205,7 +238,7 @@
     "builderReleaseMainSha": "6ebb683bb5e95897ef2a76b8fc623468e4ccb68f",
     "builderReleaseFleetRun": 34676872690
   },
-  "nextAction": "Keep 10 connector-accessible repositories explicit, retain the evidenced governed fleet at 8, and complete non-destructive governance intake for ENGÜRÜ YAYIN MOTORU™ and ZEKÜ FINANCE PRIME before changing fleet count. Execute the External Capability Harvest through existing ENGÜRÜ layers; create no parallel core or framework.",
+  "nextAction": "Keep repository governance intake fail-closed. External Capability Harvest technical scope is PASS; live second-model Outside Voice remains HOLD_PROVIDER until an independently governed second provider/model is commissioned. Continue remaining Labory Verified Finish debts without reopening the harvest architecture.",
   "historicalRepositoryRecords": [
     {
       "repository": "engurulabory/adil-pay-kanit-web",
