@@ -296,3 +296,75 @@ Mac is the final execution surface, not the canonical development authority.
 - [ ] DoneCheck™ → Human Threshold™ before production activation.
 
 **Locked invariant:** the system may learn, optimize and propose; it may not expand its own authority.
+
+
+---
+
+## SHARED AI LOCAL RUNTIME COMMISSIONING — LOCKED
+
+**STATE:** IN_PROGRESS
+
+**Locked sequence:** Ollama → Qwen3:14b → Shared AI Runtime → Real Route → Fail-Closed Tests → Evidence → DoneCheck™ → Verify → Local Runtime ACTIVE → PASS.
+
+### 1. Mac / Ollama Truth
+- [x] Ollama installed.
+- [x] Ollama service running.
+- [x] `qwen3:14b` downloaded.
+- [x] Direct local inference PASS.
+- [x] `ENGURU_LOCAL_PASS` observed.
+
+### 2. Shared AI Runtime
+- [x] Enter canonical Labory repository.
+- [x] Configure local provider environment.
+- [x] Start `shared_ai.http_server`.
+- [x] `/health` PASS — observed `state=PASS`, `runtime=UP`, `active_providers=1`.
+
+### 3. Real Shared AI Route
+- [x] `/v1/enguru/respond` real call.
+- [x] `provider = local_runtime`.
+- [x] `model = qwen3:14b`.
+- [x] `cost = 0`.
+- [x] output = `ENGURU_SHARED_AI_PASS`.
+- [x] route evidence captured — `attempts=1`, `fallback_path=[local_runtime:PASS]`, `reason=verified_execution`.
+
+### 4. Fail-Closed Verification
+- [x] SECRET → local-only — live PASS via `local_runtime` / `qwen3:14b`.
+- [x] paid route → BLOCKED — deterministic offline gate PASS.
+- [x] unverified provider → BLOCKED/HOLD — privacy + commercial-use offline gates PASS.
+- [x] capability mismatch → safe HOLD — live HTTP 503, `attempts=0`, `local_runtime:SKIP:capability`.
+- [x] Ollama unavailable → safe HOLD — live HTTP 503, provider unavailable, no safe provider.
+- [x] recovery after restart → PASS — live `ENGURU_RECOVERY_PASS` via `local_runtime` / `qwen3:14b`.
+
+### 5. Evidence
+- [ ] health evidence.
+- [ ] real inference evidence.
+- [ ] provider/model evidence.
+- [ ] zero-cost evidence.
+- [ ] failover/recovery evidence.
+- [ ] no secret/token leakage.
+
+### 6. DoneCheck™
+- [ ] runtime UP.
+- [ ] model AVAILABLE.
+- [ ] Shared AI route PASS.
+- [ ] privacy boundary PASS.
+- [ ] zero-cost guard PASS.
+- [ ] recovery PASS.
+- [ ] evidence complete.
+
+### 7. Verify
+- [ ] rerun with canonical config.
+- [ ] reproducible result.
+- [ ] no Labory truth conflict.
+- [ ] provider/model registry current.
+- [ ] local runtime state = ACTIVE.
+
+### 8. Final
+- [ ] `Local Runtime ACTIVE — PASS`.
+- [ ] Worklist synchronized with evidence.
+- [ ] Evidence fixed to canonical record.
+- [ ] DoneCheck™ recorded.
+- [ ] local commissioning closed.
+- [ ] next provider = Cerebras.
+
+**Governance lock:** do not skip sequence; do not claim ACTIVE/PASS without observed evidence.
