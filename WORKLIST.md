@@ -372,7 +372,7 @@ Mac is the final execution surface, not the canonical development authority.
 
 ## SHARED AI BEHAVIOR LAYER — NEXT WORK
 
-**STATE:** QUEUED — start only after Local Runtime exact-main post-merge verification closes.
+**STATE:** IN_PROGRESS — Local Runtime exact-main closure is PASS; Behavior Layer implementation may proceed.
 
 **Governance role:** existing ENGÜRÜ Shared AI Infrastructure™ behavior layer. Not a new core.
 
@@ -491,3 +491,19 @@ mevcut hakikat + gerekli fark
 - [ ] Exact-main verification.
 - [ ] Human Threshold retained.
 - [ ] No new core/framework unless an evidenced gap requires it.
+
+
+### M. Target Acceptance
+- [ ] Behavior quality target: frontier-class interaction discipline without provider lock-in.
+- [ ] Governance quality target: ENGÜRÜ Language Governance remains canonical over model-native behavior.
+- [ ] Simple tasks remain fast and concise.
+- [ ] Complex/high-consequence tasks escalate reasoning and verification effort.
+- [ ] Tool use is selective, governed and evidence-backed.
+- [ ] Grounded factual claims preserve provenance when external sources are used.
+- [ ] No private chain-of-thought persistence or exposure.
+- [ ] No authority expansion through learning, routing or self-optimization.
+- [ ] Provider swap regression: same governed behavior across local/external providers.
+- [ ] Full behavior regression suite PASS.
+- [ ] DoneCheck™ PASS.
+- [ ] Exact-main PASS.
+- [ ] Human Threshold retained.
