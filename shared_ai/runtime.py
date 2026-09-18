@@ -5,6 +5,7 @@ from typing import Any, Protocol
 
 from shared_ai.behavior import BehaviorEngine
 from shared_ai.context_state import compact_context
+from shared_ai.execution import ExecutionEnvelope, normalize_provider_response, normalize_tool_plan
 from shared_ai.tool_runtime import ToolRegistry
 
 
@@ -33,6 +34,7 @@ class RequestEnvelope:
     tool_input: dict[str, Any] = field(default_factory=dict)
     known_truths: tuple[str, ...] = tuple()
     tool_evidence: tuple[str, ...] = tuple()
+    execution_evidence: dict[str, Any] = field(default_factory=dict)
     behavior_instruction: str = ""
     context_compacted: bool = False
     intent: str = ""
@@ -46,6 +48,7 @@ class RequestEnvelope:
     tool_plan: tuple[dict[str, Any], ...] = tuple()
     parallel_tools: bool = False
     replan_count: int = 0
+    latency_class: str = "STANDARD"
 
     @classmethod
     def from_dict(cls, payload: dict[str, Any]) -> "RequestEnvelope":
@@ -104,6 +107,7 @@ class RequestEnvelope:
             ),
             parallel_tools=bool(payload.get("parallel_tools", False)),
             replan_count=0,
+            latency_class=str(payload.get("latency_class", "STANDARD")).upper(),
         )
 
 
@@ -153,6 +157,7 @@ class RuntimeResult:
             "behavior_evidence": self.behavior_evidence,
             "citations": list(self.citations),
             "tool_evidence": list(self.tool_evidence),
+            "execution_evidence": self.execution_evidence,
         }
 
 
@@ -225,7 +230,11 @@ class SharedAIRuntime:
         if not steps:
             return request, None
 
-        result = self.tools.execute_plan(steps, parallel=request.parallel_tools)
+        result = self.tools.execute_plan(
+            steps,
+            parallel=request.parallel_tools,
+            human_approved=request.human_approval,
+        )
         if result["state"] != "PASS":
             return request, result
 
