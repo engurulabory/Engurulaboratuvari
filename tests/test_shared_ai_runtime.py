@@ -60,6 +60,8 @@ class RuntimeTests(unittest.TestCase):
         r = SharedAIRuntime([provider()]).execute(req())
         self.assertEqual(r.state, "PASS")
         self.assertEqual(r.provider, "p1")
+        self.assertEqual(r.estimated_cost, 0.0)
+        self.assertEqual(r.as_dict()["route_evidence"]["estimated_cost"], 0.0)
 
     def test_secret_uses_local_only(self):
         external = provider("external")
