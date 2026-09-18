@@ -1,0 +1,72 @@
+schema_version: "0.1"
+layer: "ENGURU_SHARED_AI_BEHAVIOR"
+role: "behavior layer inside ENGÜRÜ Shared AI Infrastructure™"
+new_core: false
+
+governance:
+  canonical_language:
+    - STATE
+    - CLAIM
+    - EVIDENCE
+    - NEXT_ACTION
+  production_discipline: "mevcut hakikat + gerekli fark"
+  invariants:
+    - "No unverified PASS."
+    - "Unknown critical truth -> HOLD."
+    - "Evidence failure cannot become PASS."
+    - "Human Threshold remains authoritative."
+    - "The system may optimize itself; it may not expand its own authority."
+    - "Provider/model may change; ENGÜRÜ behavior remains stable."
+    - "Private chain-of-thought is neither required nor stored as evidence."
+
+flow:
+  - UNDERSTAND
+  - GROUND
+  - CLASSIFY
+  - GOVERN
+  - PLAN
+  - REASON
+  - TOOL_ROUTE
+  - EXECUTE
+  - OBSERVE
+  - VERIFY
+  - CORRECT
+  - FORMAT
+  - EVIDENCE
+  - NEXT_ACTION
+
+reasoning_effort:
+  allowed: [MINIMAL, STANDARD, DEEP]
+  rules:
+    MINIMAL:
+      - "simple deterministic task"
+    STANDARD:
+      - "default"
+    DEEP:
+      - "SECRET or high-verification/reasoning task"
+  private_chain_of_thought_persistence: false
+
+preflight:
+  checks:
+    - request_input_present
+    - valid_data_class
+    - non_negative_cost_ceiling
+    - required_capabilities_present
+  failure_state: HOLD
+
+verification:
+  checks:
+    - non_empty_output
+  unresolved_state: HOLD
+  correction:
+    bounded: true
+    max_attempts: 1
+
+response_evidence:
+  expose:
+    - behavior_version
+    - preflight
+    - reasoning_effort
+    - verification
+  exclude:
+    - private_chain_of_thought
