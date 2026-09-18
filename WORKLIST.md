@@ -328,10 +328,10 @@ Mac is the final execution surface, not the canonical development authority.
 - [x] route evidence captured — `attempts=1`, `fallback_path=[local_runtime:PASS]`, `reason=verified_execution`.
 
 ### 4. Fail-Closed Verification
-- [ ] SECRET → local-only.
-- [ ] paid route → BLOCKED.
-- [ ] unverified provider → BLOCKED/HOLD.
-- [ ] capability mismatch → safe fallback/HOLD.
+- [x] SECRET → local-only — live PASS via `local_runtime` / `qwen3:14b`.
+- [x] paid route → BLOCKED — deterministic offline gate PASS.
+- [x] unverified provider → BLOCKED/HOLD — privacy + commercial-use offline gates PASS.
+- [x] capability mismatch → safe HOLD — live HTTP 503, `attempts=0`, `local_runtime:SKIP:capability`.
 - [ ] Ollama unavailable → safe HOLD.
 - [ ] recovery after restart → PASS.
 
