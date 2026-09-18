@@ -657,7 +657,7 @@ Canonical reconciliation evidence:
 
 # JEV SYSTEM-ONE DECISION ADAPTER — EXPERIMENT
 
-**STATE:** HOLD / EXPERIMENT — benchmark harness and 100 canonical-derived fixtures are present; live Jev provider evidence is not yet available.
+**STATE:** HOLD / EXPERIMENT — benchmark harness and 100 canonical-derived fixtures are present; live Jev provider evidence is not yet available. Primary execution route is ENGÜRÜ YAYIN MOTORU™ internal-first; Vercel AI Gateway is not part of the canonical Jev architecture.
 
 Locked placement:
 `Quality & Red Team → Jev assessor adapter → DoneCheck™`
@@ -672,7 +672,9 @@ Locked placement:
 - [x] Canonical agreement gate >= 95% implemented.
 - [x] Deterministic fallback required.
 - [x] CI regression test wired into Labory Final Gate.
-- [ ] **[HOLD_PROVIDER]** Run the same 100 cases against live Jev early-access API.
+- [x] Canonical route decision locked: Vercel is excluded from the main Jev architecture.
+- [x] Jev is queued as an internal provider adapter behind ENGÜRÜ YAYIN MOTORU™.
+- [ ] **[HOLD_PROVIDER]** Run the same 100 cases through ENGÜRÜ YAYIN MOTORU™ → Jev provider adapter once governed credentials/access exist.
 - [ ] Record measured calibration, latency and cost against the comparison reasoning route.
 - [ ] Issue final experiment verdict: PASS → adopt; HOLD → more evidence; BLOCKED → remove adapter and retain deterministic governance.
 
