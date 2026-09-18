@@ -314,18 +314,18 @@ Mac is the final execution surface, not the canonical development authority.
 - [x] `ENGURU_LOCAL_PASS` observed.
 
 ### 2. Shared AI Runtime
-- [ ] Enter canonical Labory repository.
-- [ ] Configure local provider environment.
-- [ ] Start `shared_ai.http_server`.
-- [ ] `/health` PASS.
+- [x] Enter canonical Labory repository.
+- [x] Configure local provider environment.
+- [x] Start `shared_ai.http_server`.
+- [x] `/health` PASS — observed `state=PASS`, `runtime=UP`, `active_providers=1`.
 
 ### 3. Real Shared AI Route
-- [ ] `/v1/enguru/respond` real call.
-- [ ] `provider = local_runtime`.
-- [ ] `model = qwen3:14b`.
-- [ ] `cost = 0`.
-- [ ] output = `ENGURU_SHARED_AI_PASS`.
-- [ ] route evidence captured.
+- [x] `/v1/enguru/respond` real call.
+- [x] `provider = local_runtime`.
+- [x] `model = qwen3:14b`.
+- [x] `cost = 0`.
+- [x] output = `ENGURU_SHARED_AI_PASS`.
+- [x] route evidence captured — `attempts=1`, `fallback_path=[local_runtime:PASS]`, `reason=verified_execution`.
 
 ### 4. Fail-Closed Verification
 - [ ] SECRET → local-only.
