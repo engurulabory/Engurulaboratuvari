@@ -7,15 +7,18 @@ from shared_ai.runtime import ProviderRecord, RequestEnvelope, SharedAIRuntime
 
 
 class FakeAdapter:
-    def __init__(self, output="ok", outputs=None):
+    def __init__(self, output="ok", outputs=None, error=None):
         self.output = output
         self.outputs = list(outputs) if outputs is not None else None
+        self.error = error
         self.calls = 0
         self.instructions = []
 
     def invoke(self, request):
         self.calls += 1
         self.instructions.append(getattr(request, "behavior_instruction", ""))
+        if self.error:
+            raise self.error
         if self.outputs is not None:
             index = min(self.calls - 1, len(self.outputs) - 1)
             return {"output": self.outputs[index]}
@@ -522,3 +525,162 @@ class PolishP1IntentGroundingGovernanceTests(unittest.TestCase):
         )
         self.assertEqual(result.state, "PASS")
         self.assertEqual(adapter.calls, 1)
+
+
+class PolishP2ReplanningMultiToolRecoveryTests(unittest.TestCase):
+    def test_sequential_multi_tool_plan_executes_in_order(self):
+        registry = ToolRegistry()
+        calls = []
+        registry.register(
+            ToolSpec("one", frozenset({"tool_calling"}), read_only=True),
+            lambda payload: calls.append("one") or "one-ok",
+        )
+        registry.register(
+            ToolSpec("two", frozenset({"tool_calling"}), read_only=True),
+            lambda payload: calls.append("two") or "two-ok",
+        )
+        p = provider(FakeAdapter(output="done"))
+        p.capabilities.add("tool_calling")
+        result = SharedAIRuntime([p], tools=registry).execute(
+            request(
+                verification_profile="ACTION",
+                required_capabilities=frozenset({"text", "tool_calling"}),
+                tool_plan=(
+                    {"name": "one", "payload": {}},
+                    {"name": "two", "payload": {}},
+                ),
+            )
+        )
+        self.assertEqual(result.state, "PASS")
+        self.assertEqual(calls, ["one", "two"])
+        self.assertEqual(result.tool_evidence, ("one:PASS", "two:PASS"))
+
+    def test_parallel_plan_only_allows_read_only_non_consequential_tools(self):
+        registry = ToolRegistry()
+        registry.register(
+            ToolSpec("a", frozenset({"tool_calling"}), read_only=True),
+            lambda payload: "a-ok",
+        )
+        registry.register(
+            ToolSpec("b", frozenset({"tool_calling"}), read_only=True),
+            lambda payload: "b-ok",
+        )
+        p = provider(FakeAdapter(output="done"))
+        p.capabilities.add("tool_calling")
+        result = SharedAIRuntime([p], tools=registry).execute(
+            request(
+                verification_profile="ACTION",
+                required_capabilities=frozenset({"text", "tool_calling"}),
+                parallel_tools=True,
+                tool_plan=(
+                    {"name": "a", "payload": {}},
+                    {"name": "b", "payload": {}},
+                ),
+            )
+        )
+        self.assertEqual(result.state, "PASS")
+        self.assertEqual(set(result.tool_evidence), {"a:PASS", "b:PASS"})
+
+    def test_parallel_plan_rejects_side_effecting_tool(self):
+        registry = ToolRegistry()
+        registry.register(
+            ToolSpec("write", frozenset({"tool_calling"}), read_only=False),
+            lambda payload: "write-ok",
+        )
+        p = provider(FakeAdapter(output="never"))
+        p.capabilities.add("tool_calling")
+        result = SharedAIRuntime([p], tools=registry).execute(
+            request(
+                verification_profile="ACTION",
+                required_capabilities=frozenset({"text", "tool_calling"}),
+                parallel_tools=True,
+                tool_plan=({"name": "write", "payload": {}},),
+            )
+        )
+        self.assertEqual(result.state, "HOLD")
+        self.assertEqual(result.reason, "parallel_side_effect_forbidden")
+
+    def test_tool_failure_re_evaluates_to_declared_fallback(self):
+        registry = ToolRegistry()
+        registry.register(
+            ToolSpec("broken", frozenset({"tool_calling"}), read_only=True),
+            lambda payload: (_ for _ in ()).throw(RuntimeError("down")),
+        )
+        registry.register(
+            ToolSpec("backup", frozenset({"tool_calling"}), read_only=True),
+            lambda payload: "backup-ok",
+        )
+        p = provider(FakeAdapter(output="done"))
+        p.capabilities.add("tool_calling")
+        result = SharedAIRuntime([p], tools=registry).execute(
+            request(
+                verification_profile="ACTION",
+                required_capabilities=frozenset({"text", "tool_calling"}),
+                tool_plan=(
+                    {
+                        "name": "broken",
+                        "payload": {},
+                        "fallbacks": ["backup"],
+                    },
+                ),
+            )
+        )
+        self.assertEqual(result.state, "PASS")
+        self.assertEqual(result.tool_evidence, ("backup:PASS",))
+
+    def test_human_threshold_tool_rejection_is_not_fallback(self):
+        registry = ToolRegistry()
+        registry.register(
+            ToolSpec(
+                "publish",
+                frozenset({"tool_calling"}),
+                read_only=False,
+                consequential=True,
+            ),
+            lambda payload: "published",
+        )
+        registry.register(
+            ToolSpec("backup", frozenset({"tool_calling"}), read_only=True),
+            lambda payload: "backup-ok",
+        )
+        p = provider(FakeAdapter(output="never"))
+        p.capabilities.add("tool_calling")
+        result = SharedAIRuntime([p], tools=registry).execute(
+            request(
+                verification_profile="ACTION",
+                required_capabilities=frozenset({"text", "tool_calling"}),
+                tool_plan=(
+                    {
+                        "name": "publish",
+                        "payload": {},
+                        "fallbacks": ["backup"],
+                    },
+                ),
+            )
+        )
+        self.assertEqual(result.state, "HOLD")
+        self.assertEqual(result.reason, "human_threshold_required")
+
+    def test_contradiction_triggers_one_bounded_replan(self):
+        adapter = FakeAdapter(
+            outputs=[
+                {"contradictions": ["a conflicts b"]},
+                "corrected",
+            ]
+        )
+        result = SharedAIRuntime([provider(adapter)]).execute(request())
+        self.assertEqual(result.state, "PASS")
+        self.assertEqual(result.attempts, 2)
+        self.assertEqual(adapter.calls, 2)
+        self.assertIn("contradiction_detected", adapter.instructions[1])
+
+    def test_provider_failure_routes_to_next_safe_provider(self):
+        bad = provider(FakeAdapter(output="unused"))
+        bad.name = "bad"
+        bad.adapter = FakeAdapter(error=RuntimeError("down"))
+        good = provider(FakeAdapter(output="ok"))
+        good.name = "good"
+        result = SharedAIRuntime([bad, good]).execute(request())
+        self.assertEqual(result.state, "PASS")
+        self.assertEqual(result.provider, "good")
+        self.assertIn("bad:ERROR:RuntimeError", result.path)

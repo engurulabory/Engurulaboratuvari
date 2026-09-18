@@ -425,7 +425,7 @@ mevcut hakikat + gerekli fark
 ### D. Adaptive Reasoning
 - [x] Add bounded reasoning effort classes: MINIMAL / STANDARD / DEEP.
 - [x] Select reasoning effort from task complexity, uncertainty and consequence.
-- [ ] Permit re-planning after new tool evidence or contradiction.
+- [x] Permit bounded re-planning after new tool evidence or contradiction — max one governed replan.
 - [x] Prevent endless self-reflection loops with explicit step / retry budgets — 2/6/12 step metadata + one correction attempt.
 - [x] Do not expose or depend on private chain-of-thought; store only safe decision/evidence summaries.
 - [x] Preserve deterministic fast path for simple requests — MINIMAL class retained.
@@ -433,9 +433,9 @@ mevcut hakikat + gerekli fark
 ### E. Tool + Route Orchestration
 - [x] Decide whether tools are needed before model execution when `tool_calling` capability is explicitly requested.
 - [x] Discover/load registered tools by declared capabilities; external connector discovery beyond registry remains out of scope.
-- [ ] Support sequential and parallel multi-tool plans when safe — single governed tool execution implemented in v0.3.
+- [x] Support sequential and parallel multi-tool plans when safe — parallel restricted to read-only non-consequential tools.
 - [x] Consequential tool execution stops at Human Threshold before side effect.
-- [ ] Re-evaluate route after provider/tool failure.
+- [x] Re-evaluate route after provider/tool failure — declared tool fallback + existing provider failover.
 - [x] Support bounded retry, fallback, circuit breaker and safe HOLD — existing route controls + bounded verification correction.
 - [x] Never blindly retry policy, privacy, authority or capability rejection.
 - [x] Keep product → direct provider prohibited.

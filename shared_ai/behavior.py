@@ -167,6 +167,7 @@ class BehaviorEngine:
             plan.verification_profile == "ACTION"
             and not tuple(getattr(request, "tool_evidence", tuple()))
             and not getattr(request, "requested_tool", None)
+            and not tuple(getattr(request, "tool_plan", tuple()))
         ):
             return BehaviorVerdict("HOLD", "missing_action_evidence", plan.reasoning_effort)
 
@@ -225,6 +226,9 @@ class BehaviorEngine:
             "grounding_status": str(getattr(request, "grounding_status", "CURRENT")).upper(),
             "freshness_required": bool(getattr(request, "freshness_required", False)),
             "reversibility": str(getattr(request, "reversibility", "REVERSIBLE")).upper(),
+            "replan_count": int(getattr(request, "replan_count", 0)),
+            "tool_plan_count": len(tuple(getattr(request, "tool_plan", tuple()))),
+            "parallel_tools": bool(getattr(request, "parallel_tools", False)),
             "correction_attempts": correction_attempts,
             "private_chain_of_thought_stored": False,
         }

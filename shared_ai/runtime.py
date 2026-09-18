@@ -43,6 +43,9 @@ class RequestEnvelope:
     authoritative_provenance: tuple[str, ...] = tuple()
     reversibility: str = "REVERSIBLE"
     human_approval: bool = False
+    tool_plan: tuple[dict[str, Any], ...] = tuple()
+    parallel_tools: bool = False
+    replan_count: int = 0
 
     @classmethod
     def from_dict(cls, payload: dict[str, Any]) -> "RequestEnvelope":
@@ -95,6 +98,12 @@ class RequestEnvelope:
             ),
             reversibility=str(payload.get("reversibility", "REVERSIBLE")).upper(),
             human_approval=False,
+            tool_plan=tuple(
+                dict(step) for step in payload.get("tool_plan", [])
+                if isinstance(step, dict)
+            ),
+            parallel_tools=bool(payload.get("parallel_tools", False)),
+            replan_count=0,
         )
 
 
@@ -203,25 +212,49 @@ class SharedAIRuntime:
             context_compacted=bool(compacted),
         )
 
-    def _run_tool(self, request: RequestEnvelope) -> tuple[RequestEnvelope, dict[str, Any] | None]:
-        if not request.requested_tool:
+    def _run_tools(
+        self, request: RequestEnvelope
+    ) -> tuple[RequestEnvelope, dict[str, Any] | None]:
+        steps = request.tool_plan
+        if not steps and request.requested_tool:
+            steps = ({
+                "name": request.requested_tool,
+                "payload": request.tool_input,
+                "fallbacks": [],
+            },)
+        if not steps:
             return request, None
 
-        result = self.tools.execute(request.requested_tool, request.tool_input)
+        result = self.tools.execute_plan(steps, parallel=request.parallel_tools)
         if result["state"] != "PASS":
             return request, result
 
-        evidence = (f"{request.requested_tool}:PASS",)
-        tool_output = result.get("output")
-        instruction = request.behavior_instruction
-        tool_context = f"TOOL_RESULT[{request.requested_tool}]:{tool_output}"
-        instruction = "\n".join(part for part in [instruction, tool_context] if part)
+        evidence = tuple(
+            f"{item['tool']}:PASS"
+            for item in result.get("results", ())
+            if item.get("state") == "PASS"
+        )
+        contexts = [
+            f"TOOL_RESULT[{item['tool']}]:{item.get('output')}"
+            for item in result.get("results", ())
+            if item.get("state") == "PASS"
+        ]
+        instruction = "\n".join(
+            part
+            for part in [
+                request.behavior_instruction,
+                *contexts,
+                "REPLAN_AFTER_TOOL_EVIDENCE",
+            ]
+            if part
+        )
 
         return (
             replace(
                 request,
                 tool_evidence=evidence,
                 behavior_instruction=instruction,
+                replan_count=min(request.replan_count + 1, 1),
             ),
             result,
         )
@@ -245,7 +278,7 @@ class SharedAIRuntime:
             )
 
         active_request = self._prepare_context(request)
-        active_request, tool_result = self._run_tool(active_request)
+        active_request, tool_result = self._run_tools(active_request)
 
         if tool_result is not None and tool_result["state"] != "PASS":
             return RuntimeResult(
@@ -254,7 +287,7 @@ class SharedAIRuntime:
                 provider=None,
                 model=None,
                 attempts=0,
-                path=(f"tool:{tool_result['tool']}:{tool_result['reason']}",),
+                path=(f"tool-plan:{tool_result['reason']}",),
                 reason=tool_result["reason"],
                 estimated_cost=None,
                 behavior_evidence=self.behavior.evidence(active_request, preflight),
@@ -268,6 +301,7 @@ class SharedAIRuntime:
                 continue
 
             correction_attempts = 0
+            replan_attempts = 0
             provider_request = active_request
 
             while True:
@@ -308,6 +342,29 @@ class SharedAIRuntime:
                     path.append(
                         f"{provider.name}:VERIFY_HOLD:{verification.reason}"
                     )
+
+                    if (
+                        verification.reason in {"contradiction_detected", "unsupported_claim"}
+                        and replan_attempts < 1
+                    ):
+                        replan_attempts += 1
+                        provider_request = replace(
+                            active_request,
+                            behavior_instruction="\n".join(
+                                part
+                                for part in [
+                                    active_request.behavior_instruction,
+                                    (
+                                        "Governed verification found "
+                                        f"{verification.reason}. Re-plan once using current "
+                                        "evidence and remove the contradiction/unsupported claim."
+                                    ),
+                                ]
+                                if part
+                            ),
+                            replan_count=min(active_request.replan_count + 1, 1),
+                        )
+                        continue
 
                     if (
                         correction_attempts < self.behavior.max_corrections
