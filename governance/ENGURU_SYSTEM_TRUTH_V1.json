@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.7",
+  "schemaVersion": "1.8",
   "generatedAt": "2026-09-12",
   "authority": "ENGÜRÜ Labory Control Plane",
   "state": "HOLD",
@@ -247,6 +247,21 @@
       "classification": "KEEP",
       "state": "KEEP_UNTIL_PORTAL_AUTHORITY_VERIFIED",
       "note": "Account-visible private Engürü Lab portal repository; connector cannot inspect content. Do not delete until portal source authority is verified."
+    }
+  ],
+  "currentTopology": {
+    "sharedOperatingArchitecture": [
+      "ENGÜRÜ Shared AI Infrastructure™"
+    ]
+  },
+  "sharedInfrastructure": [
+    {
+      "asset": "ENGÜRÜ Shared AI Infrastructure™",
+      "state": "FOUNDATION",
+      "canonicalPath": "governance/shared-ai/ARCHITECTURE.md",
+      "theoreticalTechnicalArchitecture": "PASS_PENDING_STATIC_GATE",
+      "runtimeVerifiedFinish": "HOLD",
+      "authorityInvariant": "The system may optimize itself; it may not expand its own authority."
     }
   ]
 }
