@@ -4,8 +4,10 @@ from dataclasses import dataclass, field, replace
 from typing import Any, Protocol
 
 from shared_ai.behavior import BehaviorEngine
+from shared_ai.capabilities import normalize_capabilities
 from shared_ai.context_state import compact_context
 from shared_ai.execution import ExecutionEnvelope, normalize_provider_response, normalize_tool_plan
+from shared_ai.output import GovernedFormatter
 from shared_ai.tool_runtime import ToolRegistry
 
 
@@ -48,6 +50,10 @@ class RequestEnvelope:
     parallel_tools: bool = False
     replan_count: int = 0
     latency_class: str = "STANDARD"
+    response_language: str = "AUTO"
+    response_length: str = "AUTO"
+    response_structure: str = "PLAIN"
+    include_technical_evidence: bool = False
 
     @classmethod
     def from_dict(cls, payload: dict[str, Any]) -> "RequestEnvelope":
@@ -55,9 +61,8 @@ class RequestEnvelope:
             request_id=str(payload["request_id"]),
             task_type=str(payload["task_type"]),
             data_class=str(payload["data_class"]).upper(),
-            required_capabilities=frozenset(
-                str(x).lower()
-                for x in payload.get("required_capabilities", ["text"])
+            required_capabilities=normalize_capabilities(
+                payload.get("required_capabilities", ["text"])
             ),
             cost_ceiling=float(payload.get("cost_ceiling", 0)),
             input=str(payload.get("input", "")),
@@ -107,6 +112,10 @@ class RequestEnvelope:
             parallel_tools=bool(payload.get("parallel_tools", False)),
             replan_count=0,
             latency_class=str(payload.get("latency_class", "STANDARD")).upper(),
+            response_language=str(payload.get("response_language", "AUTO")).upper(),
+            response_length=str(payload.get("response_length", "AUTO")).upper(),
+            response_structure=str(payload.get("response_structure", "PLAIN")).upper(),
+            include_technical_evidence=bool(payload.get("include_technical_evidence", False)),
         )
 
 
@@ -167,10 +176,12 @@ class SharedAIRuntime:
         providers: list[ProviderRecord] | None = None,
         behavior: BehaviorEngine | None = None,
         tools: ToolRegistry | None = None,
+        formatter: GovernedFormatter | None = None,
     ) -> None:
         self.providers = providers or []
         self.behavior = behavior or BehaviorEngine()
         self.tools = tools or ToolRegistry()
+        self.formatter = formatter or GovernedFormatter()
 
     def register(self, provider: ProviderRecord) -> None:
         self.providers.append(provider)
