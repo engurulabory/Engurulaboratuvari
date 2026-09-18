@@ -197,8 +197,7 @@ class SharedAIRuntime:
         tool_output = result.get("output")
         instruction = request.behavior_instruction
         tool_context = f"TOOL_RESULT[{request.requested_tool}]:{tool_output}"
-        instruction = "
-".join(part for part in [instruction, tool_context] if part)
+        instruction == "\n".join(part for part in [instruction, tool_context] if part)
 
         return (
             replace(
