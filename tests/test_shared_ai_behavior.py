@@ -1,6 +1,8 @@
 import unittest
 
 from shared_ai.behavior import BehaviorEngine
+from shared_ai.context_state import ContextEnvelope, apply_steering, compact_context
+from shared_ai.tool_runtime import ToolRegistry, ToolSpec
 from shared_ai.runtime import ProviderRecord, RequestEnvelope, SharedAIRuntime
 
 
@@ -254,3 +256,154 @@ class FrontierBehaviorTests(unittest.TestCase):
         verdict = BehaviorEngine().preflight(req)
         self.assertEqual(verdict.state, "HOLD")
         self.assertEqual(verdict.reason, "missing_action_evidence")
+
+
+class FrontierBehaviorV03Tests(unittest.TestCase):
+    def test_read_only_tool_executes_and_action_profile_verifies(self):
+        registry = ToolRegistry()
+        registry.register(
+            ToolSpec(
+                name="lookup",
+                capabilities=frozenset({"tool_calling"}),
+                read_only=True,
+                consequential=False,
+            ),
+            lambda payload: {"value": payload.get("value", "ok")},
+        )
+        p = provider(FakeAdapter(output="tool-backed"))
+        p.capabilities.add("tool_calling")
+        runtime = SharedAIRuntime([p], tools=registry)
+        result = runtime.execute(
+            request(
+                verification_profile="ACTION",
+                required_capabilities=frozenset({"text", "tool_calling"}),
+                requested_tool="lookup",
+                tool_input={"value": "verified"},
+            )
+        )
+        self.assertEqual(result.state, "PASS")
+        self.assertEqual(result.tool_evidence, ("lookup:PASS",))
+
+    def test_consequential_tool_requires_human_threshold(self):
+        registry = ToolRegistry()
+        registry.register(
+            ToolSpec(
+                name="publish",
+                capabilities=frozenset({"tool_calling"}),
+                read_only=False,
+                consequential=True,
+            ),
+            lambda payload: "published",
+        )
+        p = provider(FakeAdapter(output="never"))
+        p.capabilities.add("tool_calling")
+        runtime = SharedAIRuntime([p], tools=registry)
+        result = runtime.execute(
+            request(
+                verification_profile="ACTION",
+                required_capabilities=frozenset({"text", "tool_calling"}),
+                requested_tool="publish",
+            )
+        )
+        self.assertEqual(result.state, "HOLD")
+        self.assertEqual(result.reason, "human_threshold_required")
+
+    def test_unregistered_tool_holds(self):
+        p = provider(FakeAdapter(output="never"))
+        p.capabilities.add("tool_calling")
+        result = SharedAIRuntime([p]).execute(
+            request(
+                verification_profile="ACTION",
+                required_capabilities=frozenset({"text", "tool_calling"}),
+                requested_tool="missing",
+            )
+        )
+        self.assertEqual(result.state, "HOLD")
+        self.assertEqual(result.reason, "tool_not_registered")
+
+    def test_context_compaction_preserves_latest_instruction(self):
+        summary = compact_context(
+            ["old instruction", "new instruction"],
+            max_chars=80,
+            verified_facts=("fact-a",),
+        )
+        self.assertIn("LATEST:new instruction", summary)
+        self.assertLessEqual(len(summary), 80)
+
+    def test_mid_task_steering_increments_revision(self):
+        envelope = ContextEnvelope(
+            context_id="ctx-1",
+            revision=2,
+            summary="prior",
+            latest_instruction="old",
+            verified_facts=("fact-a",),
+        )
+        steered = apply_steering(envelope, "new direction")
+        self.assertEqual(steered.revision, 3)
+        self.assertEqual(steered.latest_instruction, "new direction")
+        self.assertEqual(steered.verified_facts, ("fact-a",))
+
+    def test_runtime_marks_compacted_context_and_steering(self):
+        result = SharedAIRuntime([provider()]).execute(
+            request(
+                context_messages=("old", "latest"),
+                steering_instruction="override now",
+            )
+        )
+        self.assertEqual(result.state, "PASS")
+        self.assertTrue(result.behavior_evidence["context_compacted"])
+        self.assertTrue(result.behavior_evidence["steering_applied"])
+
+    def test_grounded_claim_without_known_truth_holds_as_unsupported(self):
+        output = {"claims": ["claim-a"], "citations": ["source:a"]}
+        result = SharedAIRuntime([provider(FakeAdapter(output=output))]).execute(
+            request(
+                verification_profile="GROUNDED",
+                provenance=("source:a",),
+            )
+        )
+        self.assertEqual(result.state, "HOLD")
+        self.assertEqual(result.reason, "unsupported_claim")
+        self.assertEqual(result.behavior_evidence["unsupported_claim_count"], 1)
+
+    def test_grounded_known_claim_passes_and_renders_citation(self):
+        output = {"claims": ["claim-a"], "citations": ["source:a"]}
+        req = request(
+            verification_profile="GROUNDED",
+            provenance=("source:a",),
+            known_truths=("claim-a",),
+        )
+        result = SharedAIRuntime([provider(FakeAdapter(output=output))]).execute(req)
+        self.assertEqual(result.state, "PASS")
+        self.assertEqual(result.citations, ({"index": 1, "ref": "source:a"},))
+
+    def test_unknown_citation_holds(self):
+        output = {"claims": ["claim-a"], "citations": ["source:unknown"]}
+        req = request(
+            verification_profile="GROUNDED",
+            provenance=("source:a",),
+            known_truths=("claim-a",),
+        )
+        result = SharedAIRuntime([provider(FakeAdapter(output=output))]).execute(req)
+        self.assertEqual(result.state, "HOLD")
+        self.assertEqual(result.reason, "unknown_citation")
+
+    def test_explicit_contradiction_holds(self):
+        output = {"contradictions": ["claim-a conflicts with claim-b"]}
+        result = SharedAIRuntime([provider(FakeAdapter(output=output))]).execute(request())
+        self.assertEqual(result.state, "HOLD")
+        self.assertEqual(result.reason, "contradiction_detected")
+
+    def test_http_caller_cannot_inject_known_truths_or_tool_evidence(self):
+        req = RequestEnvelope.from_dict({
+            "request_id": "r-v03",
+            "task_type": "test",
+            "data_class": "INTERNAL",
+            "required_capabilities": ["text"],
+            "cost_ceiling": 0,
+            "input": "hello",
+            "known_truths": ["caller-truth"],
+            "tool_evidence": ["caller-tool-proof"],
+        })
+        self.assertEqual(req.known_truths, tuple())
+        self.assertEqual(req.tool_evidence, tuple())

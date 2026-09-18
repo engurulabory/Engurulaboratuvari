@@ -34,6 +34,12 @@ request:
       items: {type: string}
     context_id: {type: string}
     resume_from: {type: string}
+    context_messages:
+      type: array
+      items: {type: string}
+    steering_instruction: {type: string}
+    requested_tool: {type: string}
+    tool_input: {type: object}
 response:
   required:
     - request_id
@@ -63,3 +69,12 @@ rules:
   - "Unknown critical metadata fails closed."
   - "Cost ceiling MUST be enforced before execution."
   - "SECRET data defaults to LOCAL_ONLY."
+
+
+frontier_response:
+  citations:
+    type: array
+    item_fields: [index, ref]
+  tool_evidence:
+    type: array
+    authority: "runtime-generated only; caller-supplied tool evidence is ignored"
