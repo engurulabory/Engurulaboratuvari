@@ -381,7 +381,7 @@ Mac is the final execution surface, not the canonical development authority.
 
 ## SHARED AI BEHAVIOR LAYER — NEXT WORK
 
-**STATE:** BASELINE_LOCKED — Frontier Behavior v0.3 exact-main PASS; 96/100 internal engineering baseline locked. Remaining items are targeted frontier polish, not baseline blockers.
+**STATE:** FINAL_PASS — Shared AI Behavior v0.7 exact-main PASS; canonical Behavior Layer worklist 103/103 complete (100%).
 
 **Governance role:** existing ENGÜRÜ Shared AI Infrastructure™ behavior layer. Not a new core.
 
@@ -492,18 +492,18 @@ mevcut hakikat + gerekli fark
 - [x] Provider swap must not change canonical governance behavior — regression PASS on exact-main.
 
 ### L. Acceptance
-- [x] Behavior contract machine-readable and versioned (`0.3`).
-- [x] Runtime behavior implementation PASS — frontier v0.3 implemented scope.
+- [x] Behavior contract machine-readable and versioned (`0.7`).
+- [x] Runtime behavior implementation PASS — v0.7 + P1/P2/P3/P4 polish scope.
 - [x] Deterministic behavior tests PASS.
 - [x] Existing Shared AI routing/security tests remain PASS.
-- [x] Evidence + DoneCheck™ — v0.1 foundation + v0.2 + v0.3 frontier evidence PASS.
-- [x] Exact-main verification — canonical main `daf23e1ebdbbb381f46e82a62190de1edd2202c9`; post-merge push gates PASS.
+- [x] Evidence + DoneCheck™ — v0.1/v0.2/v0.3 + P1/P2/P3/P4 final behavior evidence PASS.
+- [x] Exact-main verification — canonical main `94cdbd88e3176dae28e7ba54ed24838e441b3c81`; post-merge push gates PASS.
 - [x] Human Threshold retained.
 - [x] No new core/framework introduced; Behavior remains inside existing Shared AI Infrastructure™.
 
 
 ### M. Target Acceptance
-- [x] Frontier Behavior v0.3 baseline reached; remaining frontier polish stays explicitly queued.
+- [x] Shared AI Behavior v0.7 final baseline reached; canonical Behavior polish worklist is complete.
 - [x] Governance quality target: ENGÜRÜ Language Governance remains canonical over model-native behavior.
 - [x] Simple tasks retain MINIMAL fast path.
 - [x] Complex/high-consequence tasks escalate reasoning and verification effort.
@@ -512,20 +512,29 @@ mevcut hakikat + gerekli fark
 - [x] No private chain-of-thought persistence or exposure.
 - [x] No authority expansion through learning, routing or self-optimization.
 - [x] Provider swap regression: same governed behavior across provider identities; exact-main PASS.
-- [x] Behavior Layer v0.1 + frontier v0.2/v0.3 regression suites PASS; only targeted polish remains queued.
-- [x] DoneCheck™ PASS for v0.1 foundation, v0.2 frontier scope and v0.3 frontier scope.
-- [x] Exact-main PASS — canonical main `daf23e1ebdbbb381f46e82a62190de1edd2202c9`.
+- [x] Behavior Layer v0.1/v0.2/v0.3 + P1/P2/P3/P4 regression suites PASS.
+- [x] DoneCheck™ PASS for foundation, frontier scopes and all four final polish packages.
+- [x] Exact-main PASS — canonical main `94cdbd88e3176dae28e7ba54ed24838e441b3c81`.
 - [x] Human Threshold retained.
 
 
 ### N. Locked Baseline
-- [x] Internal engineering baseline: **96/100**.
-- [x] This score is an internal design/engineering assessment, not an external industry benchmark.
-- [x] Canonical baseline SHA: `daf23e1ebdbbb381f46e82a62190de1edd2202c9`.
+- [x] Canonical Behavior Layer worklist baseline: **100/100** (103/103 checklist items complete).
+- [x] This 100/100 is an internal canonical-worklist completion score, not an external industry benchmark.
+- [x] Canonical final SHA: `94cdbd88e3176dae28e7ba54ed24838e441b3c81`.
 - [x] Exact-main push evidence: ENGURU Labory Final Gate SUCCESS; IP Model Trust Gate SUCCESS; IP Model Trust Fleet SUCCESS.
 - [x] ENGÜRÜ Language Governance remains canonical: `STATE → CLAIM → EVIDENCE → NEXT ACTION`.
 - [x] Production discipline remains canonical: `mevcut hakikat + gerekli fark`.
-- [x] Remaining unchecked items are explicit frontier polish and do not invalidate the 96/100 locked baseline.
+- [x] Behavior Layer has no unchecked checklist items; External Capability Harvest / Outside Voice commissioning remains a separate workstream and is not counted in this Behavior completion score.
+
+
+### O. Final Polish Closure
+- [x] P1 — Intent + Grounding + Governance — PR #62 — PASS.
+- [x] P2 — Replanning + Multi-tool + Route Recovery — PR #64 — PASS.
+- [x] P3 — Execution Envelope + Telemetry + Side-effect Evidence — PR #68 — PASS.
+- [x] P4 — Output Discipline + Structured Response + Multimodal Normalization — PR #71 — PASS.
+- [x] Final canonical Behavior worklist completion: **103/103 = 100%**.
+- [x] Final exact-main push evidence on `94cdbd88e3176dae28e7ba54ed24838e441b3c81`: ENGURU Labory Final Gate SUCCESS; IP Model Trust Gate SUCCESS; IP Model Trust Fleet SUCCESS.
 
 ---
 
