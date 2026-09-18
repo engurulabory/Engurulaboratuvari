@@ -1,0 +1,68 @@
+schema_version: "0.1"
+default_policy:
+  direct_product_access: false
+  unknown_critical_metadata: BLOCKED
+  paid_without_explicit_authority: BLOCKED
+  secret_external_egress: BLOCKED
+
+providers:
+  cerebras:
+    class: external
+    state: UNCOMMISSIONED
+    candidate: true
+    adapter: openai_compatible
+    production_approved: false
+    cost_verified: false
+    privacy_verified: false
+    commercial_use_verified: false
+  groq:
+    class: external
+    state: UNCOMMISSIONED
+    candidate: true
+    adapter: openai_compatible
+    production_approved: false
+    cost_verified: false
+    privacy_verified: false
+    commercial_use_verified: false
+  cloudflare_workers_ai:
+    class: external
+    state: UNCOMMISSIONED
+    candidate: true
+    adapter: provider_specific_or_openai_compatible
+    production_approved: false
+    cost_verified: false
+    privacy_verified: false
+    commercial_use_verified: false
+  gemini:
+    class: external
+    state: UNCOMMISSIONED
+    candidate: true
+    adapter: provider_specific
+    production_approved: false
+    cost_verified: false
+    privacy_verified: false
+    commercial_use_verified: false
+  openrouter:
+    class: external
+    state: UNCOMMISSIONED
+    candidate: true
+    adapter: openai_compatible
+    production_approved: false
+    cost_verified: false
+    privacy_verified: false
+    commercial_use_verified: false
+  local_runtime:
+    class: local
+    state: UNCOMMISSIONED
+    candidate: true
+    adapter: openai_compatible
+    production_approved: false
+    local: true
+    cost_verified: true
+    privacy_verified: true
+    commercial_use_verified: false
+
+optional_providers:
+  openai:
+    role: OPTIONAL
+    rule: "OpenAI API is not required for architecture operation; add only when an approved capability/value case exists."
