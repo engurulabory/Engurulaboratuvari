@@ -17,8 +17,8 @@ A later step cannot manufacture PASS for an earlier gate.
 **STATE:** HOLD — structural hardening and Repository Steward™ reconciliation are PASS. Final closure awaits current Builder release-mirror provenance refresh, durable Steward scheduling, and remaining administrative cleanup.
 
 ## A. Repository Truth
-- [x] Current accessible GitHub scope recorded: **8 repositories**.
-- [x] Current governed fleet scope recorded: **8 repositories**.
+- [x] Current accessible GitHub scope recorded: **10 repositories** — verified through connected GitHub on 2026-09-18.
+- [x] Current governed fleet scope recorded: **8 repositories** — unchanged; two new accessible repositories remain governance intake until fleet/security evidence exists.
 - [x] One canonical System Truth: `governance/ENGURU_SYSTEM_TRUTH_V1.json`.
 - [x] Product/Core Map v2 aligned to current scope.
 - [x] Astro Mode and Adil Pay recorded as planned products.
@@ -39,7 +39,7 @@ A later step cannot manufacture PASS for an earlier gate.
 - [x] Fleet Gate v1.2 precision adopted in Labory.
 - [x] T4 cloud disclosure requires Human Threshold™.
 - [x] Labory structural hardening PASS.
-- [x] Governed fleet scope reconciled: 8 repositories.
+- [x] Existing governed fleet scope reconciled: 8 repositories; Publish Engine + ZEKÜ are explicit governance intake and are not silently promoted.
 
 ## D. Steward
 - [x] Repository Steward™ runtime exists.
@@ -99,6 +99,15 @@ A later step cannot manufacture PASS for an earlier gate.
    - `audit/verified-external-audit-sync-2` … `-8`: zero unique content drift.
    - Physical branch-name deletion is administrative cleanup; connected GitHub tooling currently exposes no delete-ref action.
    - This item does not alter current technical truth or block product execution. STATE — BLOCKED_TOOLING_ONLY.
+
+## G.5 Repository Truth Intake — 2026-09-18
+
+- [x] Connected GitHub inventory reconciled from 8 to **10 accessible repositories**.
+- [x] `engurulabory/enguru-publish-engine` recorded as **CORE / GOVERNANCE_INTAKE**.
+- [x] `engurulabory/zeku-finance-prime` recorded as **PRODUCT / GOVERNANCE_INTAKE**.
+- [x] Existing governed fleet remains **8**; accessibility does not manufacture governance PASS.
+- [ ] Publish Engine: verify Labory security/fleet acceptance on exact main before promotion.
+- [ ] ZEKÜ: install/verify explicit Labory manifest/adoption + fleet/security evidence before promotion.
 
 ## STEP 1 EXIT
 `Repository Truth PASS → Product/Core Map PASS → Repository Order PASS → Security PASS → Steward PASS → Simplicity PASS → Provenance Debts PASS → Evidence PASS → DoneCheck PASS → Human Threshold → ENGÜRÜ LABORY VERIFIED FINISH`
@@ -517,3 +526,69 @@ mevcut hakikat + gerekli fark
 - [x] ENGÜRÜ Language Governance remains canonical: `STATE → CLAIM → EVIDENCE → NEXT ACTION`.
 - [x] Production discipline remains canonical: `mevcut hakikat + gerekli fark`.
 - [x] Remaining unchecked items are explicit frontier polish and do not invalidate the 96/100 locked baseline.
+
+---
+
+# EXTERNAL CAPABILITY HARVEST — 6 REPO GAP MAP
+
+**STATE:** QUEUED / NO NEW CORE — mechanism harvest only.
+
+Canonical analysis:
+- `docs/EXTERNAL_CAPABILITY_HARVEST_6_REPO_GAP_MAP.md`
+
+Locked rule:
+`reuse → extend → adapter → new core`
+
+Adoption order:
+
+1. **MUTLAKA AL — gstack mechanisms**
+   - second-model / outside-voice review;
+   - runtime careful/freeze/guard boundaries;
+   - diff-aware browser QA;
+   - canary + benchmark;
+   - CSO-style threat modelling.
+
+2. **MUTLAKA AL — Anthropic Claude Code code-review mechanisms**
+   - PR-diff review;
+   - history/blame-aware reasoning;
+   - high-signal/confidence filtering;
+   - exact evidence binding.
+
+3. **KESİN AL — Anthropic security-review mechanisms**
+   - semantic security diff review;
+   - trusted-source gate;
+   - OWASP/STRIDE-oriented security coverage;
+   - no provider-specific authority in canonical governance.
+
+4. **KESİN AL — Superpowers mechanisms**
+   - root-cause-first systematic debugging;
+   - TDD/eval discipline for skills/agents;
+   - isolated worktree execution;
+   - verification-before-completion.
+
+5. **ALSAK DA OLUR — claude-mem principles only**
+   - progressive retrieval;
+   - verified durable project memory.
+   - Do **not** install a parallel memory runtime while Shared AI context/compaction remains sufficient.
+
+6. **ALMAYALIM — Anthropic frontend-design as a parallel skill**
+   - already benchmarked in Builder;
+   - retain as reference only;
+   - existing Aesthetic / VX1 / Human Visual Authority remains canonical.
+
+Layer placement:
+
+- **Quality & Red Team:** PR review, history-aware review, diff-aware browser QA, canary, benchmark.
+- **Security & Authority:** semantic security review, OWASP/STRIDE, trusted-source gate.
+- **ENGÜRÜ Shared AI Infrastructure™:** bounded second-model outside voice; existing deterministic verifier stays canonical.
+- **Verified Agent Operating / Closed-Loop production discipline:** runtime guards, systematic debugging, worktree isolation, skill TDD.
+- **Context / Memory:** progressive verified-memory retrieval only if a measured gap remains.
+- **Aesthetic:** no new frontend skill; current Builder architecture remains authority.
+
+Acceptance:
+
+- [ ] No upstream framework becomes canonical authority.
+- [ ] License/provenance recorded for every adapted mechanism.
+- [ ] Each adopted mechanism has deterministic tests or reproducible field evidence.
+- [ ] Existing Human Threshold™, Secret Zero™, DoneCheck™, Language Governance and Repository Order remain intact.
+- [ ] No new core unless a measured gap survives reuse → extend → adapter.

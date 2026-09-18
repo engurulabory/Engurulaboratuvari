@@ -1,8 +1,8 @@
 {
-  "schemaVersion": "2.8",
-  "generatedAt": "2026-09-12",
+  "schemaVersion": "2.9",
+  "generatedAt": "2026-09-18",
   "state": "HOLD",
-  "scope": "12 account-visible repositories by human screen evidence; 8 connector-accessible governed repositories; 4 additional account-visible repositories remain outside the current connector/governed scope.",
+  "scope": "10 connector-accessible repositories verified on 2026-09-18: 8 governed + 2 governance intake. The 12 account-visible repository count is retained only as a 2026-09-12 historical human-screen observation and is not asserted as the current total.",
   "lockedRule": "No destructive repository move, delete, merge, rename or retirement before map PASS and Human Threshold where required.",
   "records": [
     {
@@ -77,11 +77,31 @@
       "state": "HOLD",
       "fleetParticipation": "GOVERNED",
       "role": "Second planned production product after ENGÜRÜ Builder; verified release requires runtime evidence."
+    },
+    {
+      "repository": "engurulabory/enguru-publish-engine",
+      "canonicalName": "ENGÜRÜ YAYIN MOTORU™",
+      "assetType": "CORE",
+      "owner": "Publish Engine execution plane",
+      "state": "HOLD",
+      "fleetParticipation": "GOVERNANCE_INTAKE",
+      "technicalState": "IMPLEMENTATION",
+      "role": "Canonical verified multi-site publication engine. GitHub is source of truth; Mac is local execution surface; provider publication remains adapter-bound and Human Threshold gated."
+    },
+    {
+      "repository": "engurulabory/zeku-finance-prime",
+      "canonicalName": "ZEKÜ FINANCE PRIME",
+      "assetType": "PRODUCT",
+      "owner": "ZEKÜ local financial execution plane",
+      "state": "HOLD",
+      "fleetParticipation": "GOVERNANCE_INTAKE",
+      "technicalState": "SIMULATION_READY_HUMAN_THRESHOLD_DEFERRED",
+      "role": "Canonical single-user, single-Mac local-only financial decision/execution product. Real-money authority remains Human Threshold gated; GitHub is temporary bootstrap infrastructure."
     }
   ],
   "governedFleet": {
     "count": 8,
-    "state": "PASS",
+    "state": "PASS_EXISTING_SCOPE_HOLD_INTAKE",
     "repositories": [
       "engurulabory/Engurulaboratuvari",
       "engurulabory/enguru-website-factory",
@@ -92,7 +112,7 @@
       "engurulabory/shift-core-api",
       "engurulabory/artist-manager-ai"
     ],
-    "rule": "Fleet adoption claims apply only to governed participants; accessible experiment/evidence repositories are not silently counted as governed."
+    "rule": "Fleet adoption claims apply only to the eight evidenced governed participants. The two current governance-intake repositories are explicit but are not counted until Labory fleet/security acceptance is verified."
   },
   "plannedProducts": [
     {
@@ -162,7 +182,8 @@
     ],
     "products": [
       "enguru-website-factory",
-      "artist-manager-ai"
+      "artist-manager-ai",
+      "zeku-finance-prime"
     ],
     "plannedProducts": [
       "ENGÜRÜ LAB • ASTRO MODE",
@@ -179,7 +200,8 @@
       "shift-core-api"
     ],
     "cores": [
-      "donecheck-core-foundation"
+      "donecheck-core-foundation",
+      "enguru-publish-engine"
     ],
     "trustCapabilities": [
       "TRUSTSPINE™",
@@ -207,7 +229,7 @@
     "ASTRO_MODE_AND_ADIL_PAY_QUEUE"
   ],
   "acceptance": {
-    "accessibleRepositoryCount": 8,
+    "accessibleRepositoryCount": 10,
     "governedFleetRepositoryCount": 8,
     "currentInventoryAligned": true,
     "canonicalRolesRecorded": true,
@@ -230,9 +252,11 @@
     "repositoryHygieneRefAlignment": "PASS",
     "repositoryHygienePhysicalDeletion": "HOLD_DELETE_REF_TOOLING_ONLY",
     "humanThreshold": "HOLD",
-    "mapState": "HOLD",
+    "mapState": "HOLD_TWO_GOVERNANCE_INTAKES",
     "accountVisibleRepositoryCount": 12,
-    "connectorAccessibleRepositoryCount": 8
+    "connectorAccessibleRepositoryCount": 10,
+    "governanceIntakeRepositoryCount": 2,
+    "accountVisibleRepositoryCountStatus": "HISTORICAL_2026-09-12_NOT_REVERIFIED"
   },
   "evidenceRefs": {
     "verifiedExternalAuditClosure": "evidence/VERIFIED_EXTERNAL_AUDIT_CLOSURE_V1.json",
@@ -252,10 +276,10 @@
     "builderReleaseMainSha": "6ebb683bb5e95897ef2a76b8fc623468e4ccb68f",
     "builderReleaseFleetRun": 34676872690
   },
-  "nextAction": "Keep the 8 governed canonical repositories. Preserve the two KEEP repositories until source authority is verified. Apply ARCHIVE/RETIRE actions only when repository-level settings access is available.",
+  "nextAction": "Keep the evidenced governed fleet at 8. Complete Publish Engine and ZEKÜ governance intake without redesign, then promote only on explicit fleet/security evidence. External capability harvesting must extend existing layers rather than create a parallel framework.",
   "physicalInventory": {
     "accountVisibleCount": 12,
-    "connectorAccessibleCount": 8,
+    "connectorAccessibleCount": 10,
     "governedCount": 8,
     "evidenceSource": "HUMAN_SCREENSHOT_2026-09-12",
     "classifications": {
@@ -263,7 +287,10 @@
       "engurulabory/adil-pay-kanit-web": "ARCHIVE",
       "engurulabory/enguru-maya-kurumsal-web": "KEEP",
       "engurulabory/enguru-lab-gelir-çekirdek-portal": "KEEP"
-    }
+    },
+    "governanceIntakeCount": 2,
+    "currentConnectorEvidenceSource": "GITHUB_CONNECTOR_2026-09-18",
+    "historicalAccountVisibleEvidenceSource": "HUMAN_SCREENSHOT_2026-09-12"
   },
   "sharedInfrastructure": [
     {
@@ -275,6 +302,30 @@
       "role": "Provider-independent shared AI service layer for governed products and agents.",
       "authorityRule": "May optimize and propose; may not expand its own authority.",
       "runtimeVerifiedFinish": "HOLD"
+    }
+  ],
+  "governanceIntake": [
+    {
+      "repository": "engurulabory/enguru-publish-engine",
+      "classification": "CORE",
+      "state": "HOLD_FLEET_ADOPTION_EVIDENCE",
+      "evidence": [
+        ".enguru/labory-manifest.json",
+        "main 91c35efd6fd24ce0e515c2f977a83743cdf46516"
+      ]
+    },
+    {
+      "repository": "engurulabory/zeku-finance-prime",
+      "classification": "PRODUCT",
+      "state": "HOLD_GOVERNANCE_INTAKE",
+      "evidence": [
+        "README canonical product boundary",
+        "DoneCheck/Human Threshold integration",
+        "main c2ca3adb848e1098ceeefd0e4d64adb169c08800"
+      ],
+      "missing": [
+        ".enguru/labory-manifest.json or equivalent explicit Labory adoption evidence"
+      ]
     }
   ]
 }
