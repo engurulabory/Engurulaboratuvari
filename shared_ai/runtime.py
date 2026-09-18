@@ -419,6 +419,18 @@ class SharedAIRuntime:
                                 self.behavior.render_citations(verification)
                             ),
                             tool_evidence=active_request.tool_evidence,
+                            execution_evidence=self._combine_execution(
+                                provider_execution=provider_execution,
+                                tool_execution=tool_execution,
+                                path=tuple(path + [label]),
+                                citations=tuple(
+                                    self.behavior.render_citations(verification)
+                                ),
+                                tool_evidence=active_request.tool_evidence,
+                                state="PASS",
+                                reason="verified_execution",
+                                latency_class=active_request.latency_class,
+                            ),
                         )
 
                     path.append(
@@ -489,8 +501,26 @@ class SharedAIRuntime:
                             self.behavior.render_citations(verification)
                         ),
                         tool_evidence=active_request.tool_evidence,
+                        execution_evidence=self._combine_execution(
+                            provider_execution=provider_execution,
+                            tool_execution=tool_execution,
+                            path=tuple(path),
+                            citations=tuple(
+                                self.behavior.render_citations(verification)
+                            ),
+                            tool_evidence=active_request.tool_evidence,
+                            state=verification.state,
+                            reason=verification.reason,
+                            latency_class=active_request.latency_class,
+                        ),
                     )
 
+                except TimeoutError:
+                    provider.failures += 1
+                    path.append(f"{provider.name}:TIMEOUT")
+                    if provider.failures >= 3:
+                        provider.circuit_open = True
+                    break
                 except Exception as exc:
                     provider.failures += 1
                     path.append(f"{provider.name}:ERROR:{type(exc).__name__}")
@@ -509,4 +539,14 @@ class SharedAIRuntime:
             estimated_cost=None,
             behavior_evidence=self.behavior.evidence(active_request, preflight),
             tool_evidence=active_request.tool_evidence,
+            execution_evidence=self._combine_execution(
+                provider_execution=None,
+                tool_execution=tool_execution,
+                path=tuple(path),
+                citations=tuple(),
+                tool_evidence=active_request.tool_evidence,
+                state="HOLD",
+                reason="no_safe_provider",
+                latency_class=active_request.latency_class,
+            ),
         )
