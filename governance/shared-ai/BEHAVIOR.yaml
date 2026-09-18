@@ -1,14 +1,10 @@
-schema_version: "0.1"
+schema_version: "0.2"
 layer: "ENGURU_SHARED_AI_BEHAVIOR"
 role: "behavior layer inside ENGÜRÜ Shared AI Infrastructure™"
 new_core: false
 
 governance:
-  canonical_language:
-    - STATE
-    - CLAIM
-    - EVIDENCE
-    - NEXT_ACTION
+  canonical_language: [STATE, CLAIM, EVIDENCE, NEXT_ACTION]
   production_discipline: "mevcut hakikat + gerekli fark"
   invariants:
     - "No unverified PASS."
@@ -35,38 +31,67 @@ flow:
   - EVIDENCE
   - NEXT_ACTION
 
-reasoning_effort:
-  allowed: [MINIMAL, STANDARD, DEEP]
-  rules:
-    MINIMAL:
-      - "simple deterministic task"
-    STANDARD:
-      - "default"
-    DEEP:
-      - "SECRET or high-verification/reasoning task"
+reasoning:
+  effort_classes: [MINIMAL, STANDARD, DEEP]
+  step_budget:
+    MINIMAL: 2
+    STANDARD: 6
+    DEEP: 12
+  selection_inputs:
+    - task_complexity
+    - uncertainty
+    - consequence_level
+    - data_class
+    - required_capabilities
   private_chain_of_thought_persistence: false
 
-preflight:
-  checks:
-    - request_input_present
-    - valid_data_class
-    - non_negative_cost_ceiling
-    - required_capabilities_present
-  failure_state: HOLD
+grounding:
+  provenance_required_for_profiles: [GROUNDED]
+  unknown_critical_truth: HOLD
+  stale_or_conflicting_truth: HOLD
+
+context:
+  resumable: true
+  require_context_id_when_resuming: true
+  current_instruction_overrides_stale_context: true
+  persist_private_chain_of_thought: false
+
+tool_route:
+  tool_required_when_capability_requested: tool_calling
+  provider_specific_policy_forbidden: true
+  direct_product_provider_access: false
 
 verification:
-  checks:
-    - non_empty_output
+  profiles: [BASIC, GROUNDED, STRUCTURED, ACTION]
   unresolved_state: HOLD
   correction:
     bounded: true
     max_attempts: 1
+    retryable_reasons: [empty_output, structured_output_required]
+
+multimodal:
+  allowed_capabilities:
+    - text
+    - vision
+    - audio
+    - tool_calling
+    - structured_output
+    - reasoning
+    - streaming
+    - long_context
+  unknown_capability: HOLD
 
 response_evidence:
   expose:
     - behavior_version
     - preflight
     - reasoning_effort
+    - step_budget
+    - verification_profile
     - verification
+    - provenance_count
+    - context_state
+    - tool_required
+    - correction_attempts
   exclude:
     - private_chain_of_thought
