@@ -5,6 +5,7 @@ from typing import Any, Protocol
 
 from shared_ai.behavior import BehaviorEngine
 from shared_ai.context_state import compact_context
+from shared_ai.execution import ExecutionEnvelope, normalize_provider_response, normalize_tool_plan
 from shared_ai.tool_runtime import ToolRegistry
 
 
@@ -46,6 +47,7 @@ class RequestEnvelope:
     tool_plan: tuple[dict[str, Any], ...] = tuple()
     parallel_tools: bool = False
     replan_count: int = 0
+    latency_class: str = "STANDARD"
 
     @classmethod
     def from_dict(cls, payload: dict[str, Any]) -> "RequestEnvelope":
@@ -104,6 +106,7 @@ class RequestEnvelope:
             ),
             parallel_tools=bool(payload.get("parallel_tools", False)),
             replan_count=0,
+            latency_class=str(payload.get("latency_class", "STANDARD")).upper(),
         )
 
 
@@ -137,6 +140,7 @@ class RuntimeResult:
     behavior_evidence: dict[str, Any] = field(default_factory=dict)
     citations: tuple[dict[str, Any], ...] = tuple()
     tool_evidence: tuple[str, ...] = tuple()
+    execution_evidence: dict[str, Any] = field(default_factory=dict)
 
     def as_dict(self) -> dict[str, Any]:
         return {
@@ -153,6 +157,7 @@ class RuntimeResult:
             "behavior_evidence": self.behavior_evidence,
             "citations": list(self.citations),
             "tool_evidence": list(self.tool_evidence),
+            "execution_evidence": self.execution_evidence,
         }
 
 
@@ -225,7 +230,11 @@ class SharedAIRuntime:
         if not steps:
             return request, None
 
-        result = self.tools.execute_plan(steps, parallel=request.parallel_tools)
+        result = self.tools.execute_plan(
+            steps,
+            parallel=request.parallel_tools,
+            human_approved=request.human_approval,
+        )
         if result["state"] != "PASS":
             return request, result
 
@@ -259,6 +268,45 @@ class SharedAIRuntime:
             result,
         )
 
+    @staticmethod
+    def _combine_execution(
+        *,
+        provider_execution: ExecutionEnvelope | None,
+        tool_execution: ExecutionEnvelope,
+        path: tuple[str, ...],
+        citations: tuple[dict[str, Any], ...],
+        tool_evidence: tuple[str, ...],
+        state: str,
+        reason: str,
+        latency_class: str,
+    ) -> dict[str, Any]:
+        observations = list(tool_execution.observations)
+        if provider_execution is not None:
+            observations.extend(provider_execution.observations)
+        if reason not in {"verified_execution", "no_safe_provider"}:
+            observations.append(reason)
+        refs = list(tool_evidence)
+        refs.extend(str(item.get("ref")) for item in citations if item.get("ref"))
+        envelope = ExecutionEnvelope(
+            state=state,
+            output=provider_execution.output if provider_execution is not None else None,
+            source_type="combined",
+            source_name=provider_execution.source_name if provider_execution is not None else None,
+            model=provider_execution.model if provider_execution is not None else None,
+            tools=tool_execution.tools,
+            route=path,
+            attempts=provider_execution.attempts if provider_execution is not None else 0,
+            latency_class=latency_class,
+            estimated_cost=(
+                provider_execution.estimated_cost if provider_execution is not None else None
+            ),
+            evidence_refs=tuple(refs),
+            observations=tuple(observations),
+            side_effect_state=tool_execution.side_effect_state,
+            completion_evidence=tool_execution.completion_evidence,
+        )
+        return envelope.as_dict()
+
     def execute(self, request: RequestEnvelope) -> RuntimeResult:
         attempts = 0
         path: list[str] = []
@@ -279,6 +327,10 @@ class SharedAIRuntime:
 
         active_request = self._prepare_context(request)
         active_request, tool_result = self._run_tools(active_request)
+        tool_execution = normalize_tool_plan(
+            tool_result,
+            latency_class=active_request.latency_class,
+        )
 
         if tool_result is not None and tool_result["state"] != "PASS":
             return RuntimeResult(
@@ -292,6 +344,16 @@ class SharedAIRuntime:
                 estimated_cost=None,
                 behavior_evidence=self.behavior.evidence(active_request, preflight),
                 tool_evidence=tuple(),
+                execution_evidence=self._combine_execution(
+                    provider_execution=None,
+                    tool_execution=tool_execution,
+                    path=(f"tool-plan:{tool_result['reason']}",),
+                    citations=tuple(),
+                    tool_evidence=tuple(),
+                    state="HOLD",
+                    reason=tool_result["reason"],
+                    latency_class=active_request.latency_class,
+                ),
             )
 
         for provider in self.providers:
@@ -309,7 +371,27 @@ class SharedAIRuntime:
                     attempts += 1
                     response = provider.adapter.invoke(provider_request)
                     provider.failures = 0
-                    output = response.get("output")
+                    provider_execution = normalize_provider_response(
+                        response,
+                        provider=provider.name,
+                        model=provider.model,
+                        attempts=attempts,
+                        latency_class=active_request.latency_class,
+                        estimated_cost=provider.estimated_cost,
+                        evidence_refs=active_request.tool_evidence,
+                    )
+                    if (
+                        provider_execution.state != "PASS"
+                        or "partial_output" in provider_execution.observations
+                    ):
+                        observation = (
+                            provider_execution.observations[0]
+                            if provider_execution.observations
+                            else "malformed_provider_response"
+                        )
+                        path.append(f"{provider.name}:OBSERVE:{observation}")
+                        break
+                    output = provider_execution.output
                     verification = self.behavior.verify(active_request, output)
 
                     if verification.state == "PASS":
@@ -337,6 +419,18 @@ class SharedAIRuntime:
                                 self.behavior.render_citations(verification)
                             ),
                             tool_evidence=active_request.tool_evidence,
+                            execution_evidence=self._combine_execution(
+                                provider_execution=provider_execution,
+                                tool_execution=tool_execution,
+                                path=tuple(path + [label]),
+                                citations=tuple(
+                                    self.behavior.render_citations(verification)
+                                ),
+                                tool_evidence=active_request.tool_evidence,
+                                state="PASS",
+                                reason="verified_execution",
+                                latency_class=active_request.latency_class,
+                            ),
                         )
 
                     path.append(
@@ -407,8 +501,26 @@ class SharedAIRuntime:
                             self.behavior.render_citations(verification)
                         ),
                         tool_evidence=active_request.tool_evidence,
+                        execution_evidence=self._combine_execution(
+                            provider_execution=provider_execution,
+                            tool_execution=tool_execution,
+                            path=tuple(path),
+                            citations=tuple(
+                                self.behavior.render_citations(verification)
+                            ),
+                            tool_evidence=active_request.tool_evidence,
+                            state=verification.state,
+                            reason=verification.reason,
+                            latency_class=active_request.latency_class,
+                        ),
                     )
 
+                except TimeoutError:
+                    provider.failures += 1
+                    path.append(f"{provider.name}:TIMEOUT")
+                    if provider.failures >= 3:
+                        provider.circuit_open = True
+                    break
                 except Exception as exc:
                     provider.failures += 1
                     path.append(f"{provider.name}:ERROR:{type(exc).__name__}")
@@ -427,4 +539,14 @@ class SharedAIRuntime:
             estimated_cost=None,
             behavior_evidence=self.behavior.evidence(active_request, preflight),
             tool_evidence=active_request.tool_evidence,
+            execution_evidence=self._combine_execution(
+                provider_execution=None,
+                tool_execution=tool_execution,
+                path=tuple(path),
+                citations=tuple(),
+                tool_evidence=active_request.tool_evidence,
+                state="HOLD",
+                reason="no_safe_provider",
+                latency_class=active_request.latency_class,
+            ),
         )

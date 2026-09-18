@@ -78,3 +78,23 @@ frontier_response:
   tool_evidence:
     type: array
     authority: "runtime-generated only; caller-supplied tool evidence is ignored"
+
+
+execution_evidence:
+  fields:
+    - state
+    - source_type
+    - source_name
+    - model
+    - tools
+    - route
+    - attempts
+    - latency_class
+    - estimated_cost
+    - evidence_refs
+    - observations
+    - side_effect_state
+    - completion_evidence
+  rules:
+    - "Consequential side effects require runtime-generated completion evidence."
+    - "Text generation success MUST NOT erase or redefine side-effect completion state."

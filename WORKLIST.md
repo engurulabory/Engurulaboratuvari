@@ -449,11 +449,11 @@ mevcut hakikat + gerekli fark
 - [x] Prevent stale context from overriding current explicit steering.
 
 ### G. Execution + Observation
-- [ ] Normalize model/tool output into one internal result envelope.
-- [ ] Record route, model, tools, attempts, latency class, cost and evidence refs.
-- [ ] Observe partial failure, malformed output, timeout and tool mismatch.
-- [ ] Treat external side effects separately from text-generation success.
-- [ ] Require explicit completion evidence for consequential actions.
+- [x] Normalize model/tool output into one internal execution envelope.
+- [x] Record route, model, tools, attempts, latency class, cost and evidence refs.
+- [x] Observe partial failure, malformed output, provider/tool timeout and tool capability mismatch.
+- [x] Treat external side effects separately from text-generation success.
+- [x] Require explicit runtime-generated completion evidence for consequential actions.
 
 ### H. Verification + Correction
 - [x] Verify provider output at behavior boundary; deeper task-specific profiles remain queued.

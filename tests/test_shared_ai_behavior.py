@@ -684,3 +684,187 @@ class PolishP2ReplanningMultiToolRecoveryTests(unittest.TestCase):
         self.assertEqual(result.state, "PASS")
         self.assertEqual(result.provider, "good")
         self.assertIn("bad:ERROR:RuntimeError", result.path)
+
+
+class PolishP3ExecutionObservationTests(unittest.TestCase):
+    def test_execution_envelope_records_route_model_tools_attempts_latency_cost_and_evidence(self):
+        registry = ToolRegistry()
+        registry.register(
+            ToolSpec("lookup", frozenset({"tool_calling"}), read_only=True),
+            lambda payload: "lookup-ok",
+        )
+        p = provider(FakeAdapter(output="done"))
+        p.capabilities.add("tool_calling")
+        result = SharedAIRuntime([p], tools=registry).execute(
+            request(
+                verification_profile="ACTION",
+                required_capabilities=frozenset({"text", "tool_calling"}),
+                requested_tool="lookup",
+                latency_class="LOW",
+            )
+        )
+        self.assertEqual(result.state, "PASS")
+        evidence = result.execution_evidence
+        self.assertEqual(evidence["source_name"], "local_runtime")
+        self.assertEqual(evidence["model"], "qwen3:14b")
+        self.assertEqual(evidence["tools"], ["lookup"])
+        self.assertEqual(evidence["attempts"], 1)
+        self.assertEqual(evidence["latency_class"], "LOW")
+        self.assertEqual(evidence["estimated_cost"], 0.0)
+        self.assertIn("lookup:PASS", evidence["evidence_refs"])
+        self.assertIn("local_runtime:PASS", evidence["route"])
+
+    def test_malformed_provider_response_is_observed_and_routes_to_next_provider(self):
+        class MalformedAdapter:
+            def invoke(self, request):
+                return "not-a-dict"
+
+        bad = provider(MalformedAdapter())
+        bad.name = "bad"
+        good = provider(FakeAdapter(output="ok"))
+        good.name = "good"
+        result = SharedAIRuntime([bad, good]).execute(request())
+        self.assertEqual(result.state, "PASS")
+        self.assertEqual(result.provider, "good")
+        self.assertIn("bad:OBSERVE:malformed_provider_response", result.path)
+
+    def test_partial_provider_output_is_observed_and_not_accepted(self):
+        class PartialAdapter:
+            def invoke(self, request):
+                return {"output": "half", "partial": True}
+
+        bad = provider(PartialAdapter())
+        bad.name = "partial"
+        good = provider(FakeAdapter(output="complete"))
+        good.name = "good"
+        result = SharedAIRuntime([bad, good]).execute(request())
+        self.assertEqual(result.state, "PASS")
+        self.assertEqual(result.provider, "good")
+        self.assertIn("partial:OBSERVE:partial_output", result.path)
+
+    def test_provider_timeout_is_observed_and_routes_to_next_provider(self):
+        bad = provider(FakeAdapter(error=TimeoutError("slow")))
+        bad.name = "slow"
+        good = provider(FakeAdapter(output="ok"))
+        good.name = "good"
+        result = SharedAIRuntime([bad, good]).execute(request())
+        self.assertEqual(result.state, "PASS")
+        self.assertEqual(result.provider, "good")
+        self.assertIn("slow:TIMEOUT", result.path)
+
+    def test_tool_capability_mismatch_holds_before_provider(self):
+        registry = ToolRegistry()
+        registry.register(
+            ToolSpec("lookup", frozenset({"tool_calling"}), read_only=True),
+            lambda payload: "ok",
+        )
+        p = provider(FakeAdapter(output="never"))
+        p.capabilities.add("tool_calling")
+        result = SharedAIRuntime([p], tools=registry).execute(
+            request(
+                verification_profile="ACTION",
+                required_capabilities=frozenset({"text", "tool_calling"}),
+                tool_plan=(
+                    {
+                        "name": "lookup",
+                        "payload": {},
+                        "required_capabilities": ["vision"],
+                    },
+                ),
+            )
+        )
+        self.assertEqual(result.state, "HOLD")
+        self.assertEqual(result.reason, "tool_capability_mismatch")
+        self.assertIn("tool_capability_mismatch", result.execution_evidence["observations"])
+
+    def test_consequential_action_without_completion_evidence_holds_after_side_effect(self):
+        registry = ToolRegistry()
+        registry.register(
+            ToolSpec(
+                "publish",
+                frozenset({"tool_calling"}),
+                read_only=False,
+                consequential=True,
+            ),
+            lambda payload: {"published": True},
+        )
+        p = provider(FakeAdapter(output="never"))
+        p.capabilities.add("tool_calling")
+        result = SharedAIRuntime([p], tools=registry).execute(
+            request(
+                verification_profile="ACTION",
+                required_capabilities=frozenset({"text", "tool_calling"}),
+                requested_tool="publish",
+                reversibility="IRREVERSIBLE",
+                human_approval=True,
+            )
+        )
+        self.assertEqual(result.state, "HOLD")
+        self.assertEqual(result.reason, "missing_completion_evidence")
+        self.assertEqual(result.execution_evidence["side_effect_state"], "COMPLETED")
+        self.assertEqual(result.execution_evidence["completion_evidence"], [])
+
+    def test_consequential_action_with_completion_evidence_is_separate_from_generation(self):
+        registry = ToolRegistry()
+        registry.register(
+            ToolSpec(
+                "publish",
+                frozenset({"tool_calling"}),
+                read_only=False,
+                consequential=True,
+            ),
+            lambda payload: {
+                "published": True,
+                "completion_evidence": ["receipt:123"],
+            },
+        )
+        p = provider(FakeAdapter(output="reported"))
+        p.capabilities.add("tool_calling")
+        result = SharedAIRuntime([p], tools=registry).execute(
+            request(
+                verification_profile="ACTION",
+                required_capabilities=frozenset({"text", "tool_calling"}),
+                requested_tool="publish",
+                reversibility="IRREVERSIBLE",
+                human_approval=True,
+            )
+        )
+        self.assertEqual(result.state, "PASS")
+        self.assertEqual(result.execution_evidence["side_effect_state"], "COMPLETED")
+        self.assertEqual(
+            result.execution_evidence["completion_evidence"],
+            ["receipt:123"],
+        )
+        self.assertTrue(result.execution_evidence["output_present"])
+
+    def test_side_effect_completion_survives_generation_failure(self):
+        registry = ToolRegistry()
+        registry.register(
+            ToolSpec(
+                "publish",
+                frozenset({"tool_calling"}),
+                read_only=False,
+                consequential=True,
+            ),
+            lambda payload: {
+                "published": True,
+                "completion_evidence": ["receipt:456"],
+            },
+        )
+        p = provider(FakeAdapter(error=RuntimeError("provider down")))
+        p.capabilities.add("tool_calling")
+        result = SharedAIRuntime([p], tools=registry).execute(
+            request(
+                verification_profile="ACTION",
+                required_capabilities=frozenset({"text", "tool_calling"}),
+                requested_tool="publish",
+                reversibility="IRREVERSIBLE",
+                human_approval=True,
+            )
+        )
+        self.assertEqual(result.state, "HOLD")
+        self.assertEqual(result.execution_evidence["side_effect_state"], "COMPLETED")
+        self.assertEqual(
+            result.execution_evidence["completion_evidence"],
+            ["receipt:456"],
+        )

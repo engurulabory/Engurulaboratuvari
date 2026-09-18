@@ -1,4 +1,4 @@
-schema_version: "0.5"
+schema_version: "0.6"
 layer: "ENGURU_SHARED_AI_BEHAVIOR"
 role: "behavior layer inside ENGÜRÜ Shared AI Infrastructure™"
 new_core: false
@@ -151,3 +151,24 @@ replanning_multitool_recovery:
     declared_only: true
     human_threshold_rejection_retryable: false
   provider_failure_route_re_evaluation: true
+
+
+execution_observation:
+  unified_internal_envelope: true
+  telemetry:
+    - route
+    - provider
+    - model
+    - tools
+    - attempts
+    - latency_class
+    - estimated_cost
+    - evidence_refs
+  observe:
+    - partial_output
+    - malformed_provider_response
+    - provider_timeout
+    - tool_timeout
+    - tool_capability_mismatch
+  side_effects_separate_from_generation: true
+  consequential_completion_evidence_required: true

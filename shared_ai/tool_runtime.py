@@ -35,30 +35,86 @@ class ToolRegistry:
         item = self._tools.get(name)
         return item[0] if item else None
 
-    def execute(self, name: str, payload: dict[str, Any]) -> dict[str, Any]:
+    def execute(
+        self,
+        name: str,
+        payload: dict[str, Any],
+        *,
+        human_approved: bool = False,
+        required_capabilities: frozenset[str] = frozenset(),
+    ) -> dict[str, Any]:
         if name not in self._tools:
             return {"state": "HOLD", "reason": "tool_not_registered", "tool": name}
         spec, handler = self._tools[name]
-        if spec.consequential:
+
+        if required_capabilities and not required_capabilities.issubset(spec.capabilities):
+            return {
+                "state": "HOLD",
+                "reason": "tool_capability_mismatch",
+                "tool": name,
+            }
+
+        if spec.consequential and not human_approved:
             return {
                 "state": "HOLD",
                 "reason": "human_threshold_required",
                 "tool": name,
+                "side_effect": False,
             }
+
         try:
             output = handler(payload)
+            if spec.consequential:
+                completion = tuple(
+                    str(x)
+                    for x in (
+                        output.get("completion_evidence", ())
+                        if isinstance(output, dict)
+                        else ()
+                    )
+                )
+                if not completion:
+                    return {
+                        "state": "HOLD",
+                        "reason": "missing_completion_evidence",
+                        "tool": name,
+                        "output": output,
+                        "read_only": spec.read_only,
+                        "side_effect": True,
+                        "completion_evidence": tuple(),
+                    }
+                return {
+                    "state": "PASS",
+                    "reason": "consequential_tool_executed",
+                    "tool": name,
+                    "output": output,
+                    "read_only": spec.read_only,
+                    "side_effect": True,
+                    "completion_evidence": completion,
+                }
+
             return {
                 "state": "PASS",
                 "reason": "tool_executed",
                 "tool": name,
                 "output": output,
                 "read_only": spec.read_only,
+                "side_effect": False,
+                "completion_evidence": tuple(),
+            }
+        except TimeoutError:
+            return {
+                "state": "HOLD",
+                "reason": "tool_timeout",
+                "tool": name,
+                "side_effect": False,
             }
         except Exception as exc:
             return {
                 "state": "HOLD",
                 "reason": f"tool_error:{type(exc).__name__}",
                 "tool": name,
+                "side_effect": False,
             }
 
     def execute_with_fallback(
@@ -66,15 +122,32 @@ class ToolRegistry:
         name: str,
         payload: dict[str, Any],
         fallbacks: tuple[str, ...] = tuple(),
+        *,
+        human_approved: bool = False,
+        required_capabilities: frozenset[str] = frozenset(),
     ) -> dict[str, Any]:
         candidates = (name,) + tuple(fallbacks)
         attempts = []
+        result: dict[str, Any] = {
+            "state": "HOLD",
+            "reason": "tool_not_registered",
+            "tool": name,
+        }
         for candidate in candidates:
-            result = self.execute(candidate, payload)
+            result = self.execute(
+                candidate,
+                payload,
+                human_approved=human_approved,
+                required_capabilities=required_capabilities,
+            )
             attempts.append(f"{candidate}:{result['reason']}")
             if result["state"] == "PASS":
                 return {**result, "attempts": tuple(attempts)}
-            if result["reason"] == "human_threshold_required":
+            if result["reason"] in {
+                "human_threshold_required",
+                "missing_completion_evidence",
+                "tool_capability_mismatch",
+            }:
                 return {**result, "attempts": tuple(attempts)}
         return {**result, "attempts": tuple(attempts)}
 
@@ -83,6 +156,7 @@ class ToolRegistry:
         steps: tuple[dict[str, Any], ...],
         *,
         parallel: bool = False,
+        human_approved: bool = False,
     ) -> dict[str, Any]:
         if not steps:
             return {"state": "PASS", "reason": "no_tools", "results": tuple()}
@@ -108,6 +182,10 @@ class ToolRegistry:
                         str(step["name"]),
                         dict(step.get("payload", {})),
                         tuple(str(x) for x in step.get("fallbacks", [])),
+                        human_approved=human_approved,
+                        required_capabilities=frozenset(
+                            str(x) for x in step.get("required_capabilities", [])
+                        ),
                     )
                     for step in steps
                 ]
@@ -119,6 +197,10 @@ class ToolRegistry:
                     str(step["name"]),
                     dict(step.get("payload", {})),
                     tuple(str(x) for x in step.get("fallbacks", [])),
+                    human_approved=human_approved,
+                    required_capabilities=frozenset(
+                        str(x) for x in step.get("required_capabilities", [])
+                    ),
                 )
                 results_list.append(result)
                 if result["state"] != "PASS":
