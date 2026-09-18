@@ -327,6 +327,10 @@ class SharedAIRuntime:
 
         active_request = self._prepare_context(request)
         active_request, tool_result = self._run_tools(active_request)
+        tool_execution = normalize_tool_plan(
+            tool_result,
+            latency_class=active_request.latency_class,
+        )
 
         if tool_result is not None and tool_result["state"] != "PASS":
             return RuntimeResult(
@@ -340,6 +344,16 @@ class SharedAIRuntime:
                 estimated_cost=None,
                 behavior_evidence=self.behavior.evidence(active_request, preflight),
                 tool_evidence=tuple(),
+                execution_evidence=self._combine_execution(
+                    provider_execution=None,
+                    tool_execution=tool_execution,
+                    path=(f"tool-plan:{tool_result['reason']}",),
+                    citations=tuple(),
+                    tool_evidence=tuple(),
+                    state="HOLD",
+                    reason=tool_result["reason"],
+                    latency_class=active_request.latency_class,
+                ),
             )
 
         for provider in self.providers:
