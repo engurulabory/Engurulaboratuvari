@@ -99,5 +99,8 @@ jobs:
       - name: Repository Steward v1.1 tests
         run: node steward/tests.mjs
 
+      - name: Repository Steward scheduled runner smoke
+        run: node steward/run-scheduled-cycle.mjs
+
       - name: Final state
         run: echo 'ENGURU LABORY REPOSITORY FINAL GATE = PASS' >> "$GITHUB_STEP_SUMMARY"
