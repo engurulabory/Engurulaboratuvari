@@ -24,7 +24,16 @@ request:
     context_tokens_estimate: {type: integer, minimum: 0}
     latency_class:
       enum: [BEST_EFFORT, INTERACTIVE, BATCH]
-    verification_profile: {type: string}
+    verification_profile:
+      enum: [BASIC, GROUNDED, STRUCTURED, ACTION]
+    consequence_level:
+      enum: [LOW, MEDIUM, HIGH]
+    uncertainty: {type: number, minimum: 0, maximum: 1}
+    provenance:
+      type: array
+      items: {type: string}
+    context_id: {type: string}
+    resume_from: {type: string}
 response:
   required:
     - request_id
@@ -36,6 +45,18 @@ response:
     enum: [PASS, HOLD, BLOCKED]
   route_evidence:
     required: [provider, model, policy_verdict, attempts, estimated_cost]
+  behavior_evidence:
+    fields:
+      - behavior_version
+      - preflight
+      - reasoning_effort
+      - step_budget
+      - verification_profile
+      - verification
+      - provenance_count
+      - context_state
+      - tool_required
+      - correction_attempts
 rules:
   - "Products MUST NOT require a vendor-specific API contract."
   - "Provider-specific features MUST be isolated behind adapters/capability checks."

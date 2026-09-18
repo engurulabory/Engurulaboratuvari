@@ -15,9 +15,13 @@ class LocalOpenAICompatibleAdapter:
         self.timeout_seconds = timeout_seconds
 
     def invoke(self, request: RequestEnvelope) -> dict:
+        messages = []
+        if request.behavior_instruction:
+            messages.append({"role": "system", "content": request.behavior_instruction})
+        messages.append({"role": "user", "content": request.input})
         body = json.dumps({
             "model": self.model,
-            "messages": [{"role": "user", "content": request.input}],
+            "messages": messages,
             "stream": False,
         }).encode("utf-8")
         req = urllib.request.Request(

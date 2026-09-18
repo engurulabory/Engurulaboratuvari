@@ -5,12 +5,18 @@ from shared_ai.runtime import ProviderRecord, RequestEnvelope, SharedAIRuntime
 
 
 class FakeAdapter:
-    def __init__(self, output="ok"):
+    def __init__(self, output="ok", outputs=None):
         self.output = output
+        self.outputs = list(outputs) if outputs is not None else None
         self.calls = 0
+        self.instructions = []
 
     def invoke(self, request):
         self.calls += 1
+        self.instructions.append(getattr(request, "behavior_instruction", ""))
+        if self.outputs is not None:
+            index = min(self.calls - 1, len(self.outputs) - 1)
+            return {"output": self.outputs[index]}
         return {"output": self.output}
 
 
@@ -106,3 +112,145 @@ class BehaviorEngineTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class FrontierBehaviorTests(unittest.TestCase):
+    def test_high_consequence_escalates_to_deep_with_budget(self):
+        req = request(consequence_level="HIGH")
+        engine = BehaviorEngine()
+        preflight = engine.preflight(req)
+        evidence = engine.evidence(req, preflight)
+        self.assertEqual(preflight.reasoning_effort, "DEEP")
+        self.assertEqual(evidence["step_budget"], 12)
+
+    def test_high_uncertainty_escalates_to_deep(self):
+        verdict = BehaviorEngine().preflight(request(uncertainty=0.75))
+        self.assertEqual(verdict.reasoning_effort, "DEEP")
+
+    def test_grounded_profile_requires_provenance_before_provider(self):
+        adapter = FakeAdapter()
+        result = SharedAIRuntime([provider(adapter)]).execute(
+            request(verification_profile="GROUNDED")
+        )
+        self.assertEqual(result.state, "HOLD")
+        self.assertEqual(result.reason, "missing_provenance")
+        self.assertEqual(adapter.calls, 0)
+
+    def test_grounded_profile_records_provenance(self):
+        result = SharedAIRuntime([provider()]).execute(
+            request(
+                verification_profile="GROUNDED",
+                provenance=("source:a", "source:b"),
+            )
+        )
+        self.assertEqual(result.state, "PASS")
+        self.assertEqual(result.behavior_evidence["provenance_count"], 2)
+
+    def test_resume_requires_context_id(self):
+        result = SharedAIRuntime([provider()]).execute(
+            request(resume_from="checkpoint-1")
+        )
+        self.assertEqual(result.state, "HOLD")
+        self.assertEqual(result.reason, "invalid_resume_state")
+
+    def test_resume_state_is_exposed_without_context_content(self):
+        result = SharedAIRuntime([provider()]).execute(
+            request(context_id="task-1", resume_from="checkpoint-1")
+        )
+        self.assertEqual(result.state, "PASS")
+        self.assertEqual(result.behavior_evidence["context_state"], "RESUMED")
+
+    def test_unknown_capability_holds_before_route(self):
+        result = SharedAIRuntime([provider()]).execute(
+            request(required_capabilities=frozenset({"telepathy"}))
+        )
+        self.assertEqual(result.state, "HOLD")
+        self.assertEqual(result.reason, "unknown_capability")
+
+    def test_multimodal_capability_still_requires_provider_support(self):
+        result = SharedAIRuntime([provider()]).execute(
+            request(required_capabilities=frozenset({"vision"}))
+        )
+        self.assertEqual(result.state, "HOLD")
+        self.assertIn("local_runtime:SKIP:capability", result.path)
+
+    def test_tool_requirement_is_behavior_metadata_not_authority(self):
+        req = request(required_capabilities=frozenset({"tool_calling"}))
+        engine = BehaviorEngine()
+        preflight = engine.preflight(req)
+        evidence = engine.evidence(req, preflight)
+        self.assertTrue(evidence["tool_required"])
+
+    def test_structured_verification_uses_one_bounded_correction(self):
+        adapter = FakeAdapter(outputs=["not-structured", {"ok": True}])
+        p = provider(adapter)
+        p.capabilities.add("structured_output")
+        result = SharedAIRuntime([p]).execute(
+            request(
+                verification_profile="STRUCTURED",
+                required_capabilities=frozenset({"structured_output"}),
+            )
+        )
+        self.assertEqual(result.state, "PASS")
+        self.assertEqual(result.attempts, 2)
+        self.assertEqual(result.behavior_evidence["correction_attempts"], 1)
+        self.assertEqual(adapter.calls, 2)
+        self.assertEqual(adapter.instructions[0], "")
+        self.assertIn("structured_output_required", adapter.instructions[1])
+
+    def test_correction_budget_stops_after_one_retry(self):
+        adapter = FakeAdapter(outputs=["bad", "still-bad", {"late": True}])
+        p = provider(adapter)
+        p.capabilities.add("structured_output")
+        result = SharedAIRuntime([p]).execute(
+            request(
+                verification_profile="STRUCTURED",
+                required_capabilities=frozenset({"structured_output"}),
+            )
+        )
+        self.assertEqual(result.state, "HOLD")
+        self.assertEqual(result.reason, "structured_output_required")
+        self.assertEqual(result.attempts, 2)
+        self.assertEqual(adapter.calls, 2)
+
+    def test_provider_authority_rejection_is_never_correction_retry(self):
+        adapter = FakeAdapter()
+        p = provider(adapter)
+        p.production_approved = False
+        result = SharedAIRuntime([p]).execute(request())
+        self.assertEqual(result.state, "HOLD")
+        self.assertEqual(adapter.calls, 0)
+        self.assertEqual(result.behavior_evidence["correction_attempts"], 0)
+
+    def test_provider_swap_preserves_canonical_behavior_evidence(self):
+        p1 = provider(FakeAdapter(output="same"))
+        p1.name = "provider_a"
+        p1.model = "model-a"
+        p2 = provider(FakeAdapter(output="same"))
+        p2.name = "provider_b"
+        p2.model = "model-b"
+
+        r1 = SharedAIRuntime([p1]).execute(request(consequence_level="MEDIUM"))
+        r2 = SharedAIRuntime([p2]).execute(request(consequence_level="MEDIUM"))
+
+        self.assertEqual(r1.state, "PASS")
+        self.assertEqual(r2.state, "PASS")
+        self.assertEqual(r1.behavior_evidence, r2.behavior_evidence)
+        self.assertNotEqual(r1.provider, r2.provider)
+
+    def test_http_payload_cannot_inject_internal_action_evidence(self):
+        payload = {
+            "request_id": "r-http",
+            "task_type": "action",
+            "data_class": "INTERNAL",
+            "required_capabilities": ["text"],
+            "cost_ceiling": 0,
+            "input": "do it",
+            "verification_profile": "ACTION",
+            "tool_evidence": ["user-claimed-proof"],
+        }
+        req = RequestEnvelope.from_dict(payload)
+        self.assertEqual(req.tool_evidence, tuple())
+        verdict = BehaviorEngine().preflight(req)
+        self.assertEqual(verdict.state, "HOLD")
+        self.assertEqual(verdict.reason, "missing_action_evidence")
