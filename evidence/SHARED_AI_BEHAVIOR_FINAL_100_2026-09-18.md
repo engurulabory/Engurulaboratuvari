@@ -2,7 +2,7 @@
 
 Date: 2026-09-18
 Canonical behavior version: v0.7
-Canonical final main: `94cdbd88e3176dae28e7ba54ed24838e441b3c81`
+Final behavior implementation main: `94cdbd88e3176dae28e7ba54ed24838e441b3c81`
 
 ## STATE
 FINAL PASS — canonical Shared AI Behavior Layer worklist complete.
@@ -19,7 +19,7 @@ FINAL PASS — canonical Shared AI Behavior Layer worklist complete.
 - P4 — Output Discipline + Structured Response + Multimodal Normalization — PR #71 — PASS
 
 ## Final Exact-main Evidence
-Canonical SHA `94cdbd88e3176dae28e7ba54ed24838e441b3c81`:
+Final behavior implementation SHA `94cdbd88e3176dae28e7ba54ed24838e441b3c81`:
 - ENGURU Labory Final Gate — SUCCESS
 - IP Model Trust Gate — SUCCESS
 - IP Model Trust Fleet — SUCCESS
@@ -42,3 +42,6 @@ External Capability Harvest and Outside Voice live commissioning are separate wo
 ## Verdict
 DoneCheck™ — PASS.
 Shared AI Behavior Layer canonical worklist — 100% FINAL.
+
+
+Documentation reconciliation note: later documentation-only merge(s) do not redefine the behavior implementation SHA. Their own post-merge exact-main gates must independently PASS.

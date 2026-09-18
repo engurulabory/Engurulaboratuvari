@@ -497,7 +497,7 @@ mevcut hakikat + gerekli fark
 - [x] Deterministic behavior tests PASS.
 - [x] Existing Shared AI routing/security tests remain PASS.
 - [x] Evidence + DoneCheck™ — v0.1/v0.2/v0.3 + P1/P2/P3/P4 final behavior evidence PASS.
-- [x] Exact-main verification — canonical main `94cdbd88e3176dae28e7ba54ed24838e441b3c81`; post-merge push gates PASS.
+- [x] Exact-main verification — final behavior implementation main validated; reconciliation merge also passed post-merge push gates.
 - [x] Human Threshold retained.
 - [x] No new core/framework introduced; Behavior remains inside existing Shared AI Infrastructure™.
 
@@ -514,14 +514,14 @@ mevcut hakikat + gerekli fark
 - [x] Provider swap regression: same governed behavior across provider identities; exact-main PASS.
 - [x] Behavior Layer v0.1/v0.2/v0.3 + P1/P2/P3/P4 regression suites PASS.
 - [x] DoneCheck™ PASS for foundation, frontier scopes and all four final polish packages.
-- [x] Exact-main PASS — canonical main `94cdbd88e3176dae28e7ba54ed24838e441b3c81`.
+- [x] Exact-main PASS — final behavior implementation and reconciliation merge both verified on main.
 - [x] Human Threshold retained.
 
 
 ### N. Locked Baseline
 - [x] Canonical Behavior Layer worklist baseline: **100/100** (103/103 checklist items complete).
 - [x] This 100/100 is an internal canonical-worklist completion score, not an external industry benchmark.
-- [x] Canonical final SHA: `94cdbd88e3176dae28e7ba54ed24838e441b3c81`.
+- [x] Canonical behavior implementation SHA: `94cdbd88e3176dae28e7ba54ed24838e441b3c81`; later reconciliation commits are documentation-only.
 - [x] Exact-main push evidence: ENGURU Labory Final Gate SUCCESS; IP Model Trust Gate SUCCESS; IP Model Trust Fleet SUCCESS.
 - [x] ENGÜRÜ Language Governance remains canonical: `STATE → CLAIM → EVIDENCE → NEXT ACTION`.
 - [x] Production discipline remains canonical: `mevcut hakikat + gerekli fark`.
@@ -534,7 +534,7 @@ mevcut hakikat + gerekli fark
 - [x] P3 — Execution Envelope + Telemetry + Side-effect Evidence — PR #68 — PASS.
 - [x] P4 — Output Discipline + Structured Response + Multimodal Normalization — PR #71 — PASS.
 - [x] Final canonical Behavior worklist completion: **103/103 = 100%**.
-- [x] Final exact-main push evidence on `94cdbd88e3176dae28e7ba54ed24838e441b3c81`: ENGURU Labory Final Gate SUCCESS; IP Model Trust Gate SUCCESS; IP Model Trust Fleet SUCCESS.
+- [x] Final behavior implementation exact-main push evidence: ENGURU Labory Final Gate SUCCESS; IP Model Trust Gate SUCCESS; IP Model Trust Fleet SUCCESS; final reconciliation exact-main also PASS.
 
 ---
 
