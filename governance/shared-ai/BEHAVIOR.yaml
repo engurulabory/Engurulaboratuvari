@@ -1,4 +1,4 @@
-schema_version: "0.3"
+schema_version: "0.4"
 layer: "ENGURU_SHARED_AI_BEHAVIOR"
 role: "behavior layer inside ENGÜRÜ Shared AI Infrastructure™"
 new_core: false
@@ -123,3 +123,17 @@ independent_verifier:
 citations:
   machine_readable_rendering: true
   require_known_provenance_for_grounded_profile: true
+
+
+intent_grounding_governance:
+  intent_required: true
+  success_criteria_required: true
+  critical_context_required: true
+  grounding_status_allowed: [CURRENT, STALE, CONFLICTING, INCOMPLETE, AMBIGUOUS, UNKNOWN]
+  non_current_grounding: HOLD
+  freshness_requires_authoritative_provenance: true
+  reversibility_allowed: [REVERSIBLE, EXTERNAL_REVERSIBLE, IRREVERSIBLE]
+  irreversible_requires_human_threshold: true
+  caller_supplied_human_approval_authority: false
+  secret_data_local_only: true
+  zero_cost_default: true
