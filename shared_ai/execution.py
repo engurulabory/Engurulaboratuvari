@@ -12,6 +12,7 @@ class ExecutionEnvelope:
     source_name: str | None
     model: str | None = None
     tools: tuple[str, ...] = tuple()
+    route: tuple[str, ...] = tuple()
     attempts: int = 0
     latency_class: str = "STANDARD"
     estimated_cost: float | None = None
@@ -28,6 +29,7 @@ class ExecutionEnvelope:
             "source_name": self.source_name,
             "model": self.model,
             "tools": list(self.tools),
+            "route": list(self.route),
             "attempts": self.attempts,
             "latency_class": self.latency_class,
             "estimated_cost": self.estimated_cost,
