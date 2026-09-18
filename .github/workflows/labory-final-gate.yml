@@ -27,6 +27,12 @@ jobs:
       - name: System truth / order / simplicity
         run: python tools/labory_final_gate.py
 
+      - name: Shared AI static foundation gate
+        run: python tools/shared_ai_foundation_gate.py
+
+      - name: Shared AI deterministic offline tests
+        run: python -m unittest discover -s tests -p 'test_shared_ai_offline.py' -v
+
       - name: IP & Model Trust tests
         run: python -m unittest discover -s tests -p 'test_ip_model_trust_gate.py' -v
 
