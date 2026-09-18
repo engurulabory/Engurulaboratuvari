@@ -302,7 +302,7 @@ Mac is the final execution surface, not the canonical development authority.
 
 ## SHARED AI LOCAL RUNTIME COMMISSIONING — LOCKED
 
-**STATE:** IN_PROGRESS
+**STATE:** PASS
 
 **Locked sequence:** Ollama → Qwen3:14b → Shared AI Runtime → Real Route → Fail-Closed Tests → Evidence → DoneCheck™ → Verify → Local Runtime ACTIVE → PASS.
 
@@ -336,35 +336,35 @@ Mac is the final execution surface, not the canonical development authority.
 - [x] recovery after restart → PASS — live `ENGURU_RECOVERY_PASS` via `local_runtime` / `qwen3:14b`.
 
 ### 5. Evidence
-- [ ] health evidence.
-- [ ] real inference evidence.
-- [ ] provider/model evidence.
-- [ ] zero-cost evidence.
-- [ ] failover/recovery evidence.
-- [ ] no secret/token leakage.
+- [x] health evidence.
+- [x] real inference evidence.
+- [x] provider/model evidence.
+- [x] zero-cost evidence — live `estimated_cost=0.0`.
+- [x] failover/recovery evidence.
+- [x] no secret/token leakage observed in captured commissioning outputs.
 
 ### 6. DoneCheck™
-- [ ] runtime UP.
-- [ ] model AVAILABLE.
-- [ ] Shared AI route PASS.
-- [ ] privacy boundary PASS.
-- [ ] zero-cost guard PASS.
-- [ ] recovery PASS.
-- [ ] evidence complete.
+- [x] runtime UP.
+- [x] model AVAILABLE.
+- [x] Shared AI route PASS.
+- [x] privacy boundary PASS.
+- [x] zero-cost guard PASS.
+- [x] recovery PASS.
+- [x] evidence complete.
 
 ### 7. Verify
-- [ ] rerun with canonical config.
-- [ ] reproducible result.
-- [ ] no Labory truth conflict.
-- [ ] provider/model registry current.
-- [ ] local runtime state = ACTIVE.
+- [x] rerun with canonical config — exact main `102b50b80fad64220e9825c41950e7c9250281c7`.
+- [x] reproducible result — exact `ENGURU_FINAL_VERIFY_PASS` observed.
+- [x] no Labory truth conflict observed.
+- [x] provider/model registry current — `local_runtime` / `qwen3:14b`.
+- [x] local runtime state = ACTIVE.
 
 ### 8. Final
-- [ ] `Local Runtime ACTIVE — PASS`.
-- [ ] Worklist synchronized with evidence.
-- [ ] Evidence fixed to canonical record.
-- [ ] DoneCheck™ recorded.
-- [ ] local commissioning closed.
-- [ ] next provider = Cerebras.
+- [x] `Local Runtime ACTIVE — PASS`.
+- [x] Worklist synchronized with evidence.
+- [x] Evidence fixed to canonical record.
+- [x] DoneCheck™ recorded.
+- [x] local commissioning closed.
+- [x] next provider = Cerebras.
 
 **Governance lock:** do not skip sequence; do not claim ACTIVE/PASS without observed evidence.
