@@ -320,6 +320,10 @@ class SharedAIRuntime:
         return envelope.as_dict()
 
     def execute(self, request: RequestEnvelope) -> RuntimeResult:
+        request = replace(
+            request,
+            required_capabilities=normalize_capabilities(request.required_capabilities),
+        )
         attempts = 0
         path: list[str] = []
 
@@ -412,9 +416,32 @@ class SharedAIRuntime:
                             if correction_attempts
                             else f"{provider.name}:PASS"
                         )
+                        citations = tuple(self.behavior.render_citations(verification))
+                        execution_evidence = self._combine_execution(
+                            provider_execution=provider_execution,
+                            tool_execution=tool_execution,
+                            path=tuple(path + [label]),
+                            citations=citations,
+                            tool_evidence=active_request.tool_evidence,
+                            state="PASS",
+                            reason="verified_execution",
+                            latency_class=active_request.latency_class,
+                        )
+                        evidence_refs = tuple(active_request.tool_evidence) + tuple(
+                            str(item.get("ref"))
+                            for item in citations
+                            if item.get("ref")
+                        )
+                        formatted_output = self.formatter.format(
+                            request=active_request,
+                            output=output,
+                            state="PASS",
+                            evidence_refs=evidence_refs,
+                            technical_evidence=execution_evidence,
+                        )
                         return RuntimeResult(
                             state="PASS",
-                            output=output,
+                            output=formatted_output,
                             provider=provider.name,
                             model=provider.model,
                             attempts=attempts,
@@ -427,22 +454,9 @@ class SharedAIRuntime:
                                 verification,
                                 correction_attempts=correction_attempts,
                             ),
-                            citations=tuple(
-                                self.behavior.render_citations(verification)
-                            ),
+                            citations=citations,
                             tool_evidence=active_request.tool_evidence,
-                            execution_evidence=self._combine_execution(
-                                provider_execution=provider_execution,
-                                tool_execution=tool_execution,
-                                path=tuple(path + [label]),
-                                citations=tuple(
-                                    self.behavior.render_citations(verification)
-                                ),
-                                tool_evidence=active_request.tool_evidence,
-                                state="PASS",
-                                reason="verified_execution",
-                                latency_class=active_request.latency_class,
-                            ),
+                            execution_evidence=execution_evidence,
                         )
 
                     path.append(
