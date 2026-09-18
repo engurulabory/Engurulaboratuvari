@@ -14,7 +14,7 @@ A later step cannot manufacture PASS for an earlier gate.
 
 # STEP 1 — ENGÜRÜ LABORY VERIFIED FINISH — CURRENT PRIORITY
 
-**STATE:** HOLD — structural hardening and Repository Steward™ reconciliation are PASS. Final closure awaits current Builder release-mirror provenance refresh, durable Steward scheduling, and remaining administrative cleanup.
+**STATE:** HOLD — structural hardening, Shared AI Behavior and External Capability Harvest are PASS. Builder release-mirror parity is current; durable Steward scheduling is implemented in this closeout package. Remaining Step 1 blockers are governance-intake closure plus PARK read-only production proof / final Human Threshold.
 
 ## A. Repository Truth
 - [x] Current accessible GitHub scope recorded: **10 repositories** — verified through connected GitHub on 2026-09-18.
@@ -46,7 +46,7 @@ A later step cannot manufacture PASS for an earlier gate.
 - [x] Steward tests exist.
 - [x] SAFE_AUTO / REVIEW / HUMAN_THRESHOLD separation exists.
 - [x] Repository Steward™ real reconciliation cycle PASS.
-- [ ] Durable scheduled cycle runs approximately every 3 days.
+- [x] Durable scheduled cycle defined approximately every 3 days — read-only GitHub Actions cycle (`23 6 */3 * *`), destructive actions disabled; PR CI required before canonical PASS.
 
 ## E. Operational Simplicity
 - [x] Daily surface reduced to **Products / Cores / Evidence / Archive**.
@@ -61,7 +61,7 @@ A later step cannot manufacture PASS for an earlier gate.
 - [x] Repository Steward™ reconciliation evidence PASS.
 - [x] Shift Core™ PR #53 canonical checked-in provenance bundle — merged; exact-main gates PASS.
 - [x] Historical Builder source → release mirror parity evidence — PR #10 merged; exact-main Fleet PASS for source `827b4f11fe32c28e775130ab716743bf3382dc90`.
-- [ ] Current Builder source → release mirror parity must be regenerated from canonical Builder main `9a2c69c00809b1b79032c954a6892dba94e710ed`.
+- [x] Current Builder source → release mirror parity reconciled: Builder `88d00d025945fb170ddd88c5bd97c1f5a69ef999` → release main `fc17cbbf913bb46cc7289db3a9e7b583eb4a7e7f`; `HANDOFF_META.json` records 94/94 parity, `refreshRequired=false`, `canonicalParityVerified=true`.
 - [ ] Human Threshold™ confirms Labory Step 1 closure after current technical debt closure.
 
 ## G. Open Technical Debt — CANONICAL ORDER
@@ -72,17 +72,19 @@ A later step cannot manufacture PASS for an earlier gate.
    - Quality Gate: `34445179219` — success
    - IP Model Trust Fleet: `34445179204` — success
 
-2. **ENGÜRÜ Builder™ — current release mirror provenance refresh — HOLD**
-   - Canonical Builder main: `9a2c69c00809b1b79032c954a6892dba94e710ed`.
-   - PR #219 merged: release allowlist now includes the three Field Telemetry runtime dependencies.
-   - Builder post-merge exact-main CI: PASS.
-   - Existing `enguru-builder-release` artifact remains based on older source `827b4f11fe32c28e775130ab716743bf3382dc90`.
-   - Stale mirror is fail-closed; it must not claim current canonical parity.
-   - [ ] Rebuild the full release artifact from current canonical manifest allowlist.
-   - [ ] Verify complete source → release blob parity.
-   - [ ] Update `HANDOFF_META.json` from generated artifact truth, including current `sourceSha` and PARK provider truth.
-   - [ ] Verify manifest / tree / artifact digest and secret exclusion.
-   - [ ] DoneCheck™ → PASS only after exact parity evidence exists.
+2. **ENGÜRÜ Builder™ — current release mirror provenance — PASS**
+   - Canonical Builder main: `88d00d025945fb170ddd88c5bd97c1f5a69ef999`.
+   - Release mirror main: `fc17cbbf913bb46cc7289db3a9e7b583eb4a7e7f`.
+   - `HANDOFF_META.json`: `sourceSha` and `targetSourceSha` both equal Builder main.
+   - Artifact truth: **94/94 manifest-allowlisted files match; 0 changed, 0 missing, 0 extra**.
+   - `canonicalParityVerified=true`; `refreshRequired=false`; `provenanceState=PASS_CANONICAL_ALLOWLIST_PARITY`.
+   - PARK truth remains correctly separate: `BILLING_CORE_PARK_FIELD_HOLD`.
+   - Release PR #13 merged; head Fleet run `35107500693` SUCCESS.
+   - [x] Release artifact current.
+   - [x] Complete source → release parity recorded.
+   - [x] `HANDOFF_META.json` current.
+   - [x] Secret/provider boundary remains fail-closed.
+   - [x] Provenance DoneCheck evidence recorded in `evidence/BUILDER_STEWARD_CLOSEOUT_2026-09-18.md`.
 
 3. **ENGÜRÜ Billing Core™ / PARK — production read-only proof — HOLD / HUMAN THRESHOLD**
    - Authority: `Builder → ENGÜRÜ Billing Core™ → PARK → GİB`.
@@ -234,7 +236,7 @@ Canonical execution truth:
 - PR #219 release telemetry dependency closure: merged.
 - Exact-main post-merge CI: PASS.
 - Builder canonical truth: PASS.
-- Release mirror exact refresh: HOLD — tracked in Step 1/G.2.
+- Release mirror exact refresh: PASS — current 94/94 parity tracked in Step 1/G.2.
 - PARK production read-only proof: HOLD / Human Threshold — tracked in Step 1/G.3.
 
 Local OSi HEAD should be rechecked against canonical main before the next local execution session.
