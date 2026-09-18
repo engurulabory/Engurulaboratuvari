@@ -372,7 +372,7 @@ Mac is the final execution surface, not the canonical development authority.
 
 ## SHARED AI BEHAVIOR LAYER — NEXT WORK
 
-**STATE:** IN_PROGRESS — Local Runtime exact-main closure is PASS; Behavior Layer implementation may proceed.
+**STATE:** BASELINE_LOCKED — Frontier Behavior v0.3 exact-main PASS; 96/100 internal engineering baseline locked. Remaining items are targeted frontier polish, not baseline blockers.
 
 **Governance role:** existing ENGÜRÜ Shared AI Infrastructure™ behavior layer. Not a new core.
 
@@ -391,7 +391,7 @@ mevcut hakikat + gerekli fark
 - [x] Add deterministic behavior tests in `tests/test_shared_ai_behavior.py`.
 - [x] Connect behavior preflight before routing.
 - [x] Connect post-execution verification before final response.
-- [x] Provider/model may change; ENGÜRÜ behavior remains stable — provider-swap regression added; CI pending.
+- [x] Provider/model may change; ENGÜRÜ behavior remains stable — provider-swap regression PASS on exact-main.
 - [x] No hidden provider-specific behavior becomes canonical policy — behavior contract remains provider-independent.
 
 ### B. Understanding + Grounding
@@ -434,7 +434,7 @@ mevcut hakikat + gerekli fark
 ### F. Context + State
 - [x] Define explicit conversation/task state envelope — `context_id` / `resume_from`.
 - [x] Preserve current explicit steering over stale context; verified facts retained in context envelope.
-- [x] Support resumable task state boundary — resume requires canonical `context_id`; compaction remains queued.
+- [x] Support resumable task state boundary — resume requires canonical `context_id`; deterministic compaction implemented in v0.3.
 - [x] Add deterministic context compaction boundary preserving latest instruction.
 - [x] Distinguish verified facts from transient context/steering in context envelope.
 - [x] Prevent stale context from overriding current explicit steering.
@@ -472,38 +472,48 @@ mevcut hakikat + gerekli fark
 - [x] Reroute or HOLD on unsupported modality/capability.
 
 ### K. Evaluation + Drift Control
-- [x] Add behavior regression suite independent of provider/model — frontier v0.2 cases added; CI pending.
+- [x] Add behavior regression suite independent of provider/model — frontier v0.2/v0.3 regressions PASS on exact-main.
 - [x] Add caller-evidence injection and stale-context/current-steering boundary tests.
-- [x] Add grounding/provenance regression tests; citation rendering remains queued.
+- [x] Add grounding/provenance regression tests + machine-readable citation rendering.
 - [x] Add tool-requirement + bounded correction + authority no-retry tests.
-- [x] Add state-resume boundary tests; long-context compaction remains queued.
+- [x] Add state-resume boundary tests + deterministic long-context compaction boundary.
 - [x] Existing empty/structured-output verification plus bounded correction cover malformed/partial output baseline.
 - [x] Add consequential-tool Human Threshold enforcement test.
 - [x] Add behavior drift evidence to DoneCheck™ — v0.3 evidence recorded.
-- [x] Provider swap must not change canonical governance behavior — regression added; CI pending.
+- [x] Provider swap must not change canonical governance behavior — regression PASS on exact-main.
 
 ### L. Acceptance
-- [x] Behavior contract machine-readable and versioned (`0.1`).
-- [x] Runtime behavior implementation PASS — v0.2 implemented scope.
+- [x] Behavior contract machine-readable and versioned (`0.3`).
+- [x] Runtime behavior implementation PASS — frontier v0.3 implemented scope.
 - [x] Deterministic behavior tests PASS.
 - [x] Existing Shared AI routing/security tests remain PASS.
-- [x] Evidence + DoneCheck™ — Behavior Layer v0.1 foundation PASS.
-- [ ] Exact-main verification — pending merge + post-merge push CI.
+- [x] Evidence + DoneCheck™ — v0.1 foundation + v0.2 + v0.3 frontier evidence PASS.
+- [x] Exact-main verification — canonical main `daf23e1ebdbbb381f46e82a62190de1edd2202c9`; post-merge push gates PASS.
 - [x] Human Threshold retained.
-- [ ] No new core/framework unless an evidenced gap requires it.
+- [x] No new core/framework introduced; Behavior remains inside existing Shared AI Infrastructure™.
 
 
 ### M. Target Acceptance
-- [x] Frontier behavior v0.2 target reached for implemented scope; remaining frontier gaps stay queued.
+- [x] Frontier Behavior v0.3 baseline reached; remaining frontier polish stays explicitly queued.
 - [x] Governance quality target: ENGÜRÜ Language Governance remains canonical over model-native behavior.
 - [x] Simple tasks retain MINIMAL fast path.
 - [x] Complex/high-consequence tasks escalate reasoning and verification effort.
-- [x] Tool requirement and action-evidence authority boundary implemented; external tool runtime remains queued.
+- [x] Registered tool runtime/discovery + action-evidence authority boundary implemented; unrestricted external connector execution remains out of scope.
 - [x] Grounded factual claims require provenance under GROUNDED profile.
 - [x] No private chain-of-thought persistence or exposure.
 - [x] No authority expansion through learning, routing or self-optimization.
-- [x] Provider swap regression: same governed behavior across provider identities; CI pending.
-- [x] Behavior Layer v0.1 regression suite PASS; advanced frontier cases remain queued.
-- [x] DoneCheck™ PASS for Behavior Layer v0.1 foundation.
-- [ ] Exact-main PASS — pending merge + post-merge push CI.
+- [x] Provider swap regression: same governed behavior across provider identities; exact-main PASS.
+- [x] Behavior Layer v0.1 + frontier v0.2/v0.3 regression suites PASS; only targeted polish remains queued.
+- [x] DoneCheck™ PASS for v0.1 foundation, v0.2 frontier scope and v0.3 frontier scope.
+- [x] Exact-main PASS — canonical main `daf23e1ebdbbb381f46e82a62190de1edd2202c9`.
 - [x] Human Threshold retained.
+
+
+### N. Locked Baseline
+- [x] Internal engineering baseline: **96/100**.
+- [x] This score is an internal design/engineering assessment, not an external industry benchmark.
+- [x] Canonical baseline SHA: `daf23e1ebdbbb381f46e82a62190de1edd2202c9`.
+- [x] Exact-main push evidence: ENGURU Labory Final Gate SUCCESS; IP Model Trust Gate SUCCESS; IP Model Trust Fleet SUCCESS.
+- [x] ENGÜRÜ Language Governance remains canonical: `STATE → CLAIM → EVIDENCE → NEXT ACTION`.
+- [x] Production discipline remains canonical: `mevcut hakikat + gerekli fark`.
+- [x] Remaining unchecked items are explicit frontier polish and do not invalidate the 96/100 locked baseline.
