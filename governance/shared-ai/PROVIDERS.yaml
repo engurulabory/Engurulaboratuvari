@@ -53,14 +53,14 @@ providers:
     commercial_use_verified: false
   local_runtime:
     class: local
-    state: UNCOMMISSIONED
+    state: ACTIVE
     candidate: true
     adapter: openai_compatible
-    production_approved: false
+    production_approved: true
     local: true
     cost_verified: true
     privacy_verified: true
-    commercial_use_verified: false
+    commercial_use_verified: true
 
 optional_providers:
   openai:
