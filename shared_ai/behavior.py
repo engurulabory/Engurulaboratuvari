@@ -127,8 +127,10 @@ class BehaviorEngine:
         ):
             return BehaviorVerdict("HOLD", "missing_provenance", plan.reasoning_effort)
 
-        if plan.verification_profile == "ACTION" and not tuple(
-            getattr(request, "tool_evidence", tuple())
+        if (
+            plan.verification_profile == "ACTION"
+            and not tuple(getattr(request, "tool_evidence", tuple()))
+            and not getattr(request, "requested_tool", None)
         ):
             return BehaviorVerdict("HOLD", "missing_action_evidence", plan.reasoning_effort)
 
@@ -179,6 +181,9 @@ class BehaviorEngine:
             "provenance_count": len(tuple(getattr(request, "provenance", tuple()))),
             "context_state": plan.context_state,
             "tool_required": plan.tool_required,
+            "tool_selected": getattr(request, "requested_tool", None),
+            "context_compacted": bool(getattr(request, "context_compacted", False)),
+            "steering_applied": bool(getattr(request, "steering_instruction", "").strip()),
             "correction_attempts": correction_attempts,
             "private_chain_of_thought_stored": False,
         }
