@@ -83,3 +83,47 @@ Admission rules:
 
 Action tag:
 **SAFE_AUTO — non-destructive implementation admission**
+
+
+---
+
+## 2026-09-18 — REPOSITORY TRUTH RECONCILIATION
+
+**STATE — PASS FOR CONNECTOR INVENTORY / HOLD FOR FLEET PROMOTION**
+
+Observed through the connected GitHub account:
+
+- connector-accessible repositories: **10**;
+- evidenced governed fleet: **8**;
+- governance-intake repositories: **2**.
+
+### ENGÜRÜ YAYIN MOTORU™
+
+- repository: `engurulabory/enguru-publish-engine`;
+- classification: **CORE**;
+- exact observed main: `91c35efd6fd24ce0e515c2f977a83743cdf46516`;
+- `.enguru/labory-manifest.json`: present;
+- canonical truth: GitHub;
+- execution surface: Mac local;
+- production/rollback: Human Threshold™;
+- fleet promotion: **HOLD** until Labory security/fleet acceptance evidence is explicit.
+
+The earlier “planned canonical implementation repository” admission is historical. The repository now exists; no new repository is required.
+
+### ZEKÜ FINANCE PRIME
+
+- repository: `engurulabory/zeku-finance-prime`;
+- classification: **PRODUCT**;
+- exact observed main: `c2ca3adb848e1098ceeefd0e4d64adb169c08800`;
+- runtime: single Mac / local-only;
+- DoneCheck™ and Human Threshold™ boundaries: present;
+- `.enguru/labory-manifest.json`: not found during this reconciliation;
+- fleet promotion: **HOLD** until explicit Labory manifest/adoption and fleet/security evidence are present.
+
+### Governing rule
+
+`accessible ≠ governed`.
+
+Neither repository may be silently added to the governed fleet count. Promotion requires evidence, not repository existence.
+
+Action tag: **SAFE_AUTO — truth reconciliation; fleet promotion remains HOLD**
