@@ -296,3 +296,75 @@ Mac is the final execution surface, not the canonical development authority.
 - [ ] DoneCheck™ → Human Threshold™ before production activation.
 
 **Locked invariant:** the system may learn, optimize and propose; it may not expand its own authority.
+
+
+---
+
+## SHARED AI LOCAL RUNTIME COMMISSIONING — LOCKED
+
+**STATE:** IN_PROGRESS
+
+**Locked sequence:** Ollama → Qwen3:14b → Shared AI Runtime → Real Route → Fail-Closed Tests → Evidence → DoneCheck™ → Verify → Local Runtime ACTIVE → PASS.
+
+### 1. Mac / Ollama Truth
+- [x] Ollama installed.
+- [x] Ollama service running.
+- [x] `qwen3:14b` downloaded.
+- [x] Direct local inference PASS.
+- [x] `ENGURU_LOCAL_PASS` observed.
+
+### 2. Shared AI Runtime
+- [ ] Enter canonical Labory repository.
+- [ ] Configure local provider environment.
+- [ ] Start `shared_ai.http_server`.
+- [ ] `/health` PASS.
+
+### 3. Real Shared AI Route
+- [ ] `/v1/enguru/respond` real call.
+- [ ] `provider = local_runtime`.
+- [ ] `model = qwen3:14b`.
+- [ ] `cost = 0`.
+- [ ] output = `ENGURU_SHARED_AI_PASS`.
+- [ ] route evidence captured.
+
+### 4. Fail-Closed Verification
+- [ ] SECRET → local-only.
+- [ ] paid route → BLOCKED.
+- [ ] unverified provider → BLOCKED/HOLD.
+- [ ] capability mismatch → safe fallback/HOLD.
+- [ ] Ollama unavailable → safe HOLD.
+- [ ] recovery after restart → PASS.
+
+### 5. Evidence
+- [ ] health evidence.
+- [ ] real inference evidence.
+- [ ] provider/model evidence.
+- [ ] zero-cost evidence.
+- [ ] failover/recovery evidence.
+- [ ] no secret/token leakage.
+
+### 6. DoneCheck™
+- [ ] runtime UP.
+- [ ] model AVAILABLE.
+- [ ] Shared AI route PASS.
+- [ ] privacy boundary PASS.
+- [ ] zero-cost guard PASS.
+- [ ] recovery PASS.
+- [ ] evidence complete.
+
+### 7. Verify
+- [ ] rerun with canonical config.
+- [ ] reproducible result.
+- [ ] no Labory truth conflict.
+- [ ] provider/model registry current.
+- [ ] local runtime state = ACTIVE.
+
+### 8. Final
+- [ ] `Local Runtime ACTIVE — PASS`.
+- [ ] Worklist synchronized with evidence.
+- [ ] Evidence fixed to canonical record.
+- [ ] DoneCheck™ recorded.
+- [ ] local commissioning closed.
+- [ ] next provider = Cerebras.
+
+**Governance lock:** do not skip sequence; do not claim ACTIVE/PASS without observed evidence.
