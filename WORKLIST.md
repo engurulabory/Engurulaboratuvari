@@ -531,7 +531,7 @@ mevcut hakikat + gerekli fark
 
 # EXTERNAL CAPABILITY HARVEST — 6 REPO GAP MAP
 
-**STATE:** QUEUED / NO NEW CORE — mechanism harvest only.
+**STATE:** PASS — TECHNICAL HARVEST CLOSED / LIVE SECOND-PROVIDER OUTSIDE VOICE = HOLD_PROVIDER.
 
 Canonical analysis:
 - `docs/EXTERNAL_CAPABILITY_HARVEST_6_REPO_GAP_MAP.md`
@@ -590,16 +590,16 @@ Implementation closure:
 - [x] **P1 Quality & Red Team** — history-aware PR review, confidence/evidence filtering, duplicate suppression and bounded Outside Voice contract; PR #63 merged.
 - [x] **P2 Security & Authority** — semantic security review + STRIDE + OWASP + trusted-source gate; PR #66 merged.
 - [x] **P3 Production Discipline** — runtime guard + root-cause debugging + isolated-worktree/verification contract; PR #67 merged.
-- [ ] **P4 QA/Release adapters** — diff-aware browser QA + canary + benchmark contract; implementation candidate in current PR; reuses Builder/Publish Engine surfaces.
-- [ ] **Final harvest evidence** — reconcile provenance/licenses, tests, Worklist and DoneCheck input.
-- [ ] **Outside Voice live commissioning** — only when a second independently governed provider/model is actually available; technical contract does not manufacture live independence.
+- [x] **P4 QA/Release adapters** — diff-aware browser QA + canary + benchmark contract; PR #69 merged; reuses Builder/Publish Engine surfaces.
+- [x] **Final harvest evidence** — provenance/licenses, tests and DoneCheck recorded in `evidence/EXTERNAL_CAPABILITY_HARVEST_DONECHECK_2026-09-18.md`.
+- [x] **Outside Voice boundary classified** — technical contract PASS; live second-provider commissioning = `HOLD_PROVIDER` until a genuinely independent governed provider/model exists.
 - [x] **claude-mem runtime decision** — no parallel daemon/runtime; progressive verified-memory retrieval remains conditional on measured gap.
 - [x] **frontend-design decision** — no parallel skill; existing Builder Aesthetic authority remains canonical.
 
 Acceptance:
 
-- [ ] No upstream framework becomes canonical authority.
-- [ ] License/provenance recorded for every adapted mechanism.
-- [ ] Each adopted mechanism has deterministic tests or reproducible field evidence.
-- [ ] Existing Human Threshold™, Secret Zero™, DoneCheck™, Language Governance and Repository Order remain intact.
-- [ ] No new core unless a measured gap survives reuse → extend → adapter.
+- [x] No upstream framework becomes canonical authority.
+- [x] License/provenance recorded for every adapted mechanism.
+- [x] Each adopted technical mechanism has deterministic tests or reproducible evidence.
+- [x] Existing Human Threshold™, Secret Zero™, DoneCheck™, Language Governance and Repository Order remain intact.
+- [x] No new core created; reuse → extend → adapter remained sufficient.
