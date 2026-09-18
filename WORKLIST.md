@@ -588,8 +588,8 @@ Layer placement:
 Implementation closure:
 
 - [x] **P1 Quality & Red Team** — history-aware PR review, confidence/evidence filtering, duplicate suppression and bounded Outside Voice contract; PR #63 merged.
-- [ ] **P2 Security & Authority** — semantic security review + STRIDE + OWASP + trusted-source gate; implementation candidate in current PR.
-- [ ] **P3 Production Discipline** — runtime guard + root-cause debugging + isolated-worktree/verification contract.
+- [x] **P2 Security & Authority** — semantic security review + STRIDE + OWASP + trusted-source gate; PR #66 merged.
+- [ ] **P3 Production Discipline** — runtime guard + root-cause debugging + isolated-worktree/verification contract; implementation candidate in current PR.
 - [ ] **P4 QA/Release adapters** — diff-aware browser QA + canary + benchmark contract; reuse Builder/Publish Engine surfaces, no duplicate browser engine.
 - [ ] **Final harvest evidence** — reconcile provenance/licenses, tests, Worklist and DoneCheck input.
 - [ ] **Outside Voice live commissioning** — only when a second independently governed provider/model is actually available; technical contract does not manufacture live independence.
