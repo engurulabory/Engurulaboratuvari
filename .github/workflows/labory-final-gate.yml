@@ -45,6 +45,9 @@ jobs:
       - name: Security & Authority review tests
         run: python -m unittest discover -s tests -p 'test_security_review.py' -v
 
+      - name: Verified production discipline tests
+        run: python -m unittest discover -s tests -p 'test_production_discipline.py' -v
+
       - name: Shared AI runtime smoke
         shell: bash
         run: |
