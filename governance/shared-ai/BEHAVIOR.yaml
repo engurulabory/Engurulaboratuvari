@@ -1,4 +1,4 @@
-schema_version: "0.2"
+schema_version: "0.3"
 layer: "ENGURU_SHARED_AI_BEHAVIOR"
 role: "behavior layer inside ENGÜRÜ Shared AI Infrastructure™"
 new_core: false
@@ -95,3 +95,31 @@ response_evidence:
     - correction_attempts
   exclude:
     - private_chain_of_thought
+
+
+tool_runtime:
+  discovery: true
+  registered_tools_only: true
+  consequential_tool: HUMAN_THRESHOLD
+  caller_supplied_tool_evidence_authority: false
+
+context_management:
+  compaction: true
+  resumable_state: true
+  latest_instruction_priority: true
+  mid_task_steering: true
+  preserve_verified_facts: true
+
+independent_verifier:
+  component_separate_from_generation: true
+  model_independence_claimed: false
+  checks:
+    - unsupported_claim
+    - contradiction
+    - unknown_citation
+    - structured_output
+    - action_evidence
+
+citations:
+  machine_readable_rendering: true
+  require_known_provenance_for_grounded_profile: true
