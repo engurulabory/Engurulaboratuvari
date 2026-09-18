@@ -34,7 +34,6 @@ class RequestEnvelope:
     tool_input: dict[str, Any] = field(default_factory=dict)
     known_truths: tuple[str, ...] = tuple()
     tool_evidence: tuple[str, ...] = tuple()
-    execution_evidence: dict[str, Any] = field(default_factory=dict)
     behavior_instruction: str = ""
     context_compacted: bool = False
     intent: str = ""
@@ -141,6 +140,7 @@ class RuntimeResult:
     behavior_evidence: dict[str, Any] = field(default_factory=dict)
     citations: tuple[dict[str, Any], ...] = tuple()
     tool_evidence: tuple[str, ...] = tuple()
+    execution_evidence: dict[str, Any] = field(default_factory=dict)
 
     def as_dict(self) -> dict[str, Any]:
         return {
