@@ -4,7 +4,7 @@ Date: 2026-09-18
 Canonical main at commissioning proof: `102b50b80fad64220e9825c41950e7c9250281c7`
 
 ## State
-IN_PROGRESS — Evidence complete; final Verify and registry activation pending.
+PASS — Local runtime commissioning verified and registry activation recorded.
 
 ## Runtime
 - Ollama installed and service available on macOS.
@@ -64,3 +64,31 @@ Final ACTIVE/PASS remains gated on:
 2. registry synchronization,
 3. no Labory truth conflict,
 4. DoneCheck final record.
+
+
+## Final Verify
+Observed on canonical main `102b50b80fad64220e9825c41950e7c9250281c7`:
+- health: `PASS`
+- runtime: `UP`
+- active providers: `1`
+- output: `ENGURU_FINAL_VERIFY_PASS`
+- provider: `local_runtime`
+- model: `qwen3:14b`
+- attempts: `1`
+- fallback path: `local_runtime:PASS`
+- reason: `verified_execution`
+- estimated cost: `0.0`
+
+## DoneCheck™
+- runtime UP: PASS
+- model AVAILABLE: PASS
+- Shared AI route: PASS
+- privacy boundary: PASS
+- zero-cost guard: PASS
+- recovery: PASS
+- evidence complete: PASS
+
+## Final State
+`Local Runtime ACTIVE — PASS`
+
+Next provider: `Cerebras`.
