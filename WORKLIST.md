@@ -479,7 +479,7 @@ mevcut hakikat + gerekli fark
 - [x] Add state-resume boundary tests; long-context compaction remains queued.
 - [x] Existing empty/structured-output verification plus bounded correction cover malformed/partial output baseline.
 - [x] Add consequential-tool Human Threshold enforcement test.
-- [ ] Add behavior drift evidence to DoneCheck™ after v0.3 CI PASS.
+- [x] Add behavior drift evidence to DoneCheck™ — v0.3 evidence recorded.
 - [x] Provider swap must not change canonical governance behavior — regression added; CI pending.
 
 ### L. Acceptance
@@ -488,7 +488,7 @@ mevcut hakikat + gerekli fark
 - [x] Deterministic behavior tests PASS.
 - [x] Existing Shared AI routing/security tests remain PASS.
 - [x] Evidence + DoneCheck™ — Behavior Layer v0.1 foundation PASS.
-- [ ] Exact-main verification.
+- [ ] Exact-main verification — pending merge + post-merge push CI.
 - [x] Human Threshold retained.
 - [ ] No new core/framework unless an evidenced gap requires it.
 
@@ -505,5 +505,5 @@ mevcut hakikat + gerekli fark
 - [x] Provider swap regression: same governed behavior across provider identities; CI pending.
 - [x] Behavior Layer v0.1 regression suite PASS; advanced frontier cases remain queued.
 - [x] DoneCheck™ PASS for Behavior Layer v0.1 foundation.
-- [ ] Exact-main PASS.
+- [ ] Exact-main PASS — pending merge + post-merge push CI.
 - [x] Human Threshold retained.
