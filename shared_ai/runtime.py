@@ -371,7 +371,27 @@ class SharedAIRuntime:
                     attempts += 1
                     response = provider.adapter.invoke(provider_request)
                     provider.failures = 0
-                    output = response.get("output")
+                    provider_execution = normalize_provider_response(
+                        response,
+                        provider=provider.name,
+                        model=provider.model,
+                        attempts=attempts,
+                        latency_class=active_request.latency_class,
+                        estimated_cost=provider.estimated_cost,
+                        evidence_refs=active_request.tool_evidence,
+                    )
+                    if (
+                        provider_execution.state != "PASS"
+                        or "partial_output" in provider_execution.observations
+                    ):
+                        observation = (
+                            provider_execution.observations[0]
+                            if provider_execution.observations
+                            else "malformed_provider_response"
+                        )
+                        path.append(f"{provider.name}:OBSERVE:{observation}")
+                        break
+                    output = provider_execution.output
                     verification = self.behavior.verify(active_request, output)
 
                     if verification.state == "PASS":
