@@ -368,3 +368,28 @@ Mac is the final execution surface, not the canonical development authority.
 - [x] next provider = Cerebras.
 
 **Governance lock:** do not skip sequence; do not claim ACTIVE/PASS without observed evidence.
+
+
+## SHARED AI BEHAVIOR LAYER — NEXT WORK
+
+**STATE:** QUEUED — start only after Local Runtime exact-main post-merge verification closes.
+
+**Locked behavior flow:**
+UNDERSTAND → GROUND → CLASSIFY → GOVERN → PLAN → ROUTE → EXECUTE → VERIFY → CORRECT → FORMAT → EVIDENCE → NEXT ACTION
+
+### Scope
+- [ ] Add canonical behavior contract inside existing Shared AI infrastructure; do not create a new core.
+- [ ] Add `governance/shared-ai/BEHAVIOR.yaml`.
+- [ ] Add runtime behavior implementation in `shared_ai/behavior.py`.
+- [ ] Add deterministic behavior tests in `tests/test_shared_ai_behavior.py`.
+- [ ] Connect behavior preflight before routing.
+- [ ] Connect behavior verification after execution.
+- [ ] Preserve `state → claim → evidence → next action`.
+- [ ] Preserve `mevcut hakikat + gerekli fark`.
+- [ ] No unverified PASS.
+- [ ] Unknown critical truth → HOLD.
+- [ ] Human Threshold remains authoritative.
+- [ ] System may optimize behavior; it may not expand its own authority.
+- [ ] Provider/model may change; ENGÜRÜ behavior remains stable.
+- [ ] Evidence + DoneCheck™.
+- [ ] Exact-main verification.
