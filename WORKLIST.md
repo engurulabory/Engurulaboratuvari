@@ -288,9 +288,11 @@ Mac is the final execution surface, not the canonical development authority.
 - [x] Model lifecycle + controlled self-optimization boundary defined.
 - [x] Evidence contract and static acceptance matrix defined.
 - [ ] Run Shared AI static foundation gate.
-- [ ] Run deterministic offline failure/failover suite.
+- [x] Deterministic offline failure/failover suite — PR #51 CI PASS.
+- [x] Shared AI runtime service implementation + provider-independent router prepared.
+- [x] Local OpenAI-compatible adapter + HTTP contract tests prepared.
+- [ ] Commission local fallback on Mac with an approved local model.
 - [ ] Commission approved free providers one by one.
-- [ ] Commission local fallback.
 - [ ] DoneCheck™ → Human Threshold™ before production activation.
 
 **Locked invariant:** the system may learn, optimize and propose; it may not expand its own authority.
