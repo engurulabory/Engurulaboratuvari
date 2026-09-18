@@ -7,15 +7,18 @@ from shared_ai.runtime import ProviderRecord, RequestEnvelope, SharedAIRuntime
 
 
 class FakeAdapter:
-    def __init__(self, output="ok", outputs=None):
+    def __init__(self, output="ok", outputs=None, error=None):
         self.output = output
         self.outputs = list(outputs) if outputs is not None else None
+        self.error = error
         self.calls = 0
         self.instructions = []
 
     def invoke(self, request):
         self.calls += 1
         self.instructions.append(getattr(request, "behavior_instruction", ""))
+        if self.error:
+            raise self.error
         if self.outputs is not None:
             index = min(self.calls - 1, len(self.outputs) - 1)
             return {"output": self.outputs[index]}
