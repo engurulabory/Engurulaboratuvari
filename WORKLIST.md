@@ -336,21 +336,21 @@ Mac is the final execution surface, not the canonical development authority.
 - [x] recovery after restart → PASS — live `ENGURU_RECOVERY_PASS` via `local_runtime` / `qwen3:14b`.
 
 ### 5. Evidence
-- [ ] health evidence.
-- [ ] real inference evidence.
-- [ ] provider/model evidence.
-- [ ] zero-cost evidence.
-- [ ] failover/recovery evidence.
-- [ ] no secret/token leakage.
+- [x] health evidence.
+- [x] real inference evidence.
+- [x] provider/model evidence.
+- [x] zero-cost evidence — live `estimated_cost=0.0`.
+- [x] failover/recovery evidence.
+- [x] no secret/token leakage observed in captured commissioning outputs.
 
 ### 6. DoneCheck™
-- [ ] runtime UP.
-- [ ] model AVAILABLE.
-- [ ] Shared AI route PASS.
-- [ ] privacy boundary PASS.
-- [ ] zero-cost guard PASS.
-- [ ] recovery PASS.
-- [ ] evidence complete.
+- [x] runtime UP.
+- [x] model AVAILABLE.
+- [x] Shared AI route PASS.
+- [x] privacy boundary PASS.
+- [x] zero-cost guard PASS.
+- [x] recovery PASS.
+- [x] evidence complete.
 
 ### 7. Verify
 - [ ] rerun with canonical config.
