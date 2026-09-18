@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "2.9",
+  "schemaVersion": "2.10",
   "generatedAt": "2026-09-18",
   "state": "HOLD",
   "scope": "10 connector-accessible repositories verified on 2026-09-18: 8 governed + 2 governance intake. The 12 account-visible repository count is retained only as a 2026-09-12 historical human-screen observation and is not asserted as the current total.",
@@ -30,7 +30,7 @@
       "owner": "Builder distribution surface",
       "state": "PASS",
       "fleetParticipation": "GOVERNED",
-      "role": "Release/handoff mirror only; never product source of truth. Refreshed from Builder main 827b4f11... with 60/60 manifest-allowlisted file parity; PR #10 merged to exact main 6ebb683b... and Fleet CI succeeded."
+      "role": "Release/handoff mirror only; never product source of truth. Current HANDOFF_META reflects Builder main 88d00d02... with 94/94 manifest-allowlisted parity on release main fc17cbbf...; refreshRequired=false and Fleet head run 35107500693 succeeded."
     },
     {
       "repository": "engurulabory/autonomous-economic-core",
@@ -276,7 +276,7 @@
     "builderReleaseMainSha": "6ebb683bb5e95897ef2a76b8fc623468e4ccb68f",
     "builderReleaseFleetRun": 34676872690
   },
-  "nextAction": "Keep the evidenced governed fleet at 8. Complete Publish Engine and ZEKÜ governance intake without redesign, then promote only on explicit fleet/security evidence. External capability harvesting must extend existing layers rather than create a parallel framework.",
+  "nextAction": "Close the two governance-intake repositories with explicit fleet security evidence; keep Builder release parity locked and provider commissioning separate.",
   "physicalInventory": {
     "accountVisibleCount": 12,
     "connectorAccessibleCount": 10,
@@ -327,5 +327,12 @@
         ".enguru/labory-manifest.json or equivalent explicit Labory adoption evidence"
       ]
     }
-  ]
+  ],
+  "evidence": {
+    "builderReleaseRefreshPr": 13,
+    "builderReleaseMirrorMainSha": "fc17cbbf913bb46cc7289db3a9e7b583eb4a7e7f",
+    "builderReleaseMirrorFleetRun": 35107500693,
+    "builderSourceSha": "88d00d025945fb170ddd88c5bd97c1f5a69ef999",
+    "builderReleaseMainSha": "fc17cbbf913bb46cc7289db3a9e7b583eb4a7e7f"
+  }
 }
