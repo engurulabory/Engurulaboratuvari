@@ -48,6 +48,9 @@ jobs:
       - name: Verified production discipline tests
         run: python -m unittest discover -s tests -p 'test_production_discipline.py' -v
 
+      - name: Release quality adapter tests
+        run: python -m unittest discover -s tests -p 'test_release_quality.py' -v
+
       - name: Shared AI runtime smoke
         shell: bash
         run: |
