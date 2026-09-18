@@ -42,6 +42,9 @@ jobs:
       - name: Quality & Red Team review tests
         run: python -m unittest discover -s tests -p 'test_quality_review.py' -v
 
+      - name: Jev System-One experiment gate tests
+        run: python -m unittest discover -s tests -p 'test_jev_experiment.py' -v
+
       - name: Security & Authority review tests
         run: python -m unittest discover -s tests -p 'test_security_review.py' -v
 
