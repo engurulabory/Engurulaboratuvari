@@ -485,9 +485,9 @@ mevcut hakikat + gerekli fark
 ### L. Acceptance
 - [x] Behavior contract machine-readable and versioned (`0.1`).
 - [ ] Runtime behavior implementation PASS.
-- [ ] Deterministic behavior tests PASS.
-- [ ] Existing Shared AI routing/security tests remain PASS.
-- [ ] Evidence + DoneCheck™.
+- [x] Deterministic behavior tests PASS.
+- [x] Existing Shared AI routing/security tests remain PASS.
+- [x] Evidence + DoneCheck™ — Behavior Layer v0.1 foundation PASS.
 - [ ] Exact-main verification.
 - [ ] Human Threshold retained.
 - [ ] No new core/framework unless an evidenced gap requires it.
@@ -503,7 +503,7 @@ mevcut hakikat + gerekli fark
 - [ ] No private chain-of-thought persistence or exposure.
 - [ ] No authority expansion through learning, routing or self-optimization.
 - [ ] Provider swap regression: same governed behavior across local/external providers.
-- [ ] Full behavior regression suite PASS.
-- [ ] DoneCheck™ PASS.
+- [x] Behavior Layer v0.1 regression suite PASS; advanced frontier cases remain queued.
+- [x] DoneCheck™ PASS for Behavior Layer v0.1 foundation.
 - [ ] Exact-main PASS.
 - [ ] Human Threshold retained.
