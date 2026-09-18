@@ -268,6 +268,45 @@ class SharedAIRuntime:
             result,
         )
 
+    @staticmethod
+    def _combine_execution(
+        *,
+        provider_execution: ExecutionEnvelope | None,
+        tool_execution: ExecutionEnvelope,
+        path: tuple[str, ...],
+        citations: tuple[dict[str, Any], ...],
+        tool_evidence: tuple[str, ...],
+        state: str,
+        reason: str,
+        latency_class: str,
+    ) -> dict[str, Any]:
+        observations = list(tool_execution.observations)
+        if provider_execution is not None:
+            observations.extend(provider_execution.observations)
+        if reason not in {"verified_execution", "no_safe_provider"}:
+            observations.append(reason)
+        refs = list(tool_evidence)
+        refs.extend(str(item.get("ref")) for item in citations if item.get("ref"))
+        envelope = ExecutionEnvelope(
+            state=state,
+            output=provider_execution.output if provider_execution is not None else None,
+            source_type="combined",
+            source_name=provider_execution.source_name if provider_execution is not None else None,
+            model=provider_execution.model if provider_execution is not None else None,
+            tools=tool_execution.tools,
+            route=path,
+            attempts=provider_execution.attempts if provider_execution is not None else 0,
+            latency_class=latency_class,
+            estimated_cost=(
+                provider_execution.estimated_cost if provider_execution is not None else None
+            ),
+            evidence_refs=tuple(refs),
+            observations=tuple(observations),
+            side_effect_state=tool_execution.side_effect_state,
+            completion_evidence=tool_execution.completion_evidence,
+        )
+        return envelope.as_dict()
+
     def execute(self, request: RequestEnvelope) -> RuntimeResult:
         attempts = 0
         path: list[str] = []
