@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://enguru.local/schemas/shared-ai-evidence-v0.1.json",
+  "title": "ENGÜRÜ Shared AI Infrastructure Evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "requestId",
+    "timestamp",
+    "taskType",
+    "dataClass",
+    "policyVerdict",
+    "provider",
+    "model",
+    "attempts",
+    "estimatedCost",
+    "verificationState",
+    "finalState"
+  ],
+  "properties": {
+    "requestId": {"type": "string", "minLength": 1},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "taskType": {"type": "string"},
+    "dataClass": {"enum": ["PUBLIC", "INTERNAL", "CONFIDENTIAL", "SECRET"]},
+    "policyVerdict": {"enum": ["PASS", "HOLD", "BLOCKED"]},
+    "provider": {"type": "string"},
+    "model": {"type": "string"},
+    "attempts": {"type": "integer", "minimum": 0},
+    "fallbackPath": {"type": "array", "items": {"type": "string"}},
+    "latencyMs": {"type": "integer", "minimum": 0},
+    "inputTokens": {"type": "integer", "minimum": 0},
+    "outputTokens": {"type": "integer", "minimum": 0},
+    "estimatedCost": {"type": "number", "minimum": 0},
+    "verificationState": {"enum": ["PASS", "HOLD", "BLOCKED"]},
+    "finalState": {"enum": ["PASS", "HOLD", "BLOCKED"]},
+    "contentStored": {"type": "boolean", "default": false},
+    "secretMaterialStored": {"const": false},
+    "evidenceDigest": {"type": "string"}
+  }
+}
