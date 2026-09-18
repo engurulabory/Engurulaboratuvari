@@ -1,4 +1,4 @@
-schema_version: "0.4"
+schema_version: "0.5"
 layer: "ENGURU_SHARED_AI_BEHAVIOR"
 role: "behavior layer inside ENGÜRÜ Shared AI Infrastructure™"
 new_core: false
@@ -137,3 +137,17 @@ intent_grounding_governance:
   caller_supplied_human_approval_authority: false
   secret_data_local_only: true
   zero_cost_default: true
+
+
+replanning_multitool_recovery:
+  max_replans: 1
+  contradiction_replan: true
+  unsupported_claim_replan: true
+  multi_tool:
+    sequential: true
+    parallel_read_only_only: true
+    parallel_side_effects: forbidden
+  tool_fallback:
+    declared_only: true
+    human_threshold_rejection_retryable: false
+  provider_failure_route_re_evaluation: true
