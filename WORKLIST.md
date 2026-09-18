@@ -14,7 +14,7 @@ A later step cannot manufacture PASS for an earlier gate.
 
 # STEP 1 — ENGÜRÜ LABORY VERIFIED FINISH — CURRENT PRIORITY
 
-**STATE:** HOLD — structural hardening, Shared AI Behavior and External Capability Harvest are PASS. Builder release-mirror parity is current; durable Steward scheduling is implemented in this closeout package. Remaining Step 1 blockers are governance-intake closure plus PARK read-only production proof / final Human Threshold.
+**STATE:** HOLD — all code-level Labory closeout work is complete except evidence/configuration gates. Exactly three closure gates remain: intake exact-main Fleet evidence, branch-protection required checks, and PARK production read-only proof / final Human Threshold.
 
 ## A. Repository Truth
 - [x] Current accessible GitHub scope recorded: **10 repositories** — verified through connected GitHub on 2026-09-18.
@@ -46,7 +46,7 @@ A later step cannot manufacture PASS for an earlier gate.
 - [x] Steward tests exist.
 - [x] SAFE_AUTO / REVIEW / HUMAN_THRESHOLD separation exists.
 - [x] Repository Steward™ real reconciliation cycle PASS.
-- [x] Durable scheduled cycle defined approximately every 3 days — read-only GitHub Actions cycle (`23 6 */3 * *`), destructive actions disabled; PR CI required before canonical PASS.
+- [x] Durable scheduled cycle defined approximately every 3 days — read-only GitHub Actions cycle (`23 6 */3 * *`), destructive actions disabled; scheduled runner is also executed by Labory Final Gate in this closeout PR.
 
 ## E. Operational Simplicity
 - [x] Daily surface reduced to **Products / Cores / Evidence / Archive**.
@@ -108,8 +108,16 @@ A later step cannot manufacture PASS for an earlier gate.
 - [x] `engurulabory/enguru-publish-engine` recorded as **CORE / GOVERNANCE_INTAKE**.
 - [x] `engurulabory/zeku-finance-prime` recorded as **PRODUCT / GOVERNANCE_INTAKE**.
 - [x] Existing governed fleet remains **8**; accessibility does not manufacture governance PASS.
-- [ ] Publish Engine: verify Labory security/fleet acceptance on exact main before promotion.
-- [ ] ZEKÜ: install/verify explicit Labory manifest/adoption + fleet/security evidence before promotion.
+- [ ] Publish Engine: governance PR #10 merged; T4 trust manifest + pinned Fleet workflow + PR-head Fleet PASS. Await observable exact-main push Fleet evidence before promotion.
+- [ ] ZEKÜ: governance PR #13 merged; Labory PRODUCT manifest + T4 trust manifest + pinned Fleet workflow + PR-head Fleet PASS. Await observable exact-main push Fleet evidence before promotion.
+
+## G.6 FINAL THREE GATES — LOCKED
+
+1. [ ] **Governance intake exact-main Fleet evidence** — Publish Engine main `3719c720...` and ZEKÜ main `4be0746d...`; merged manifests/workflows + PR-head Fleet PASS are proven, exact-main push-run evidence remains unobservable through the current connector wrapper.
+2. [ ] **Branch protection required checks** — require `IP Model Trust Gate` + `IP Model Trust Fleet` alongside `labory-final-gate`; current connector exposes no ruleset mutation action.
+3. [ ] **PARK read-only production proof** — runtime credentials → live auth → ENGÜRÜ Maya identity → taxpayer lookup → redacted evidence → DoneCheck read-only PASS; stop before first fiscal write at Human Threshold™.
+
+Canonical closeout evidence: `evidence/LABORY_FINAL_THREE_GATES_2026-09-18.md`
 
 ## STEP 1 EXIT
 `Repository Truth PASS → Product/Core Map PASS → Repository Order PASS → Security PASS → Steward PASS → Simplicity PASS → Provenance Debts PASS → Evidence PASS → DoneCheck PASS → Human Threshold → ENGÜRÜ LABORY VERIFIED FINISH`
