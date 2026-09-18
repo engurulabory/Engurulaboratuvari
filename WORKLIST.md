@@ -374,22 +374,120 @@ Mac is the final execution surface, not the canonical development authority.
 
 **STATE:** QUEUED — start only after Local Runtime exact-main post-merge verification closes.
 
-**Locked behavior flow:**
-UNDERSTAND → GROUND → CLASSIFY → GOVERN → PLAN → ROUTE → EXECUTE → VERIFY → CORRECT → FORMAT → EVIDENCE → NEXT ACTION
+**Governance role:** existing ENGÜRÜ Shared AI Infrastructure™ behavior layer. Not a new core.
 
-### Scope
-- [ ] Add canonical behavior contract inside existing Shared AI infrastructure; do not create a new core.
+**Canonical behavior flow:**
+UNDERSTAND → GROUND → CLASSIFY → GOVERN → PLAN → REASON → TOOL/ROUTE → EXECUTE → OBSERVE → VERIFY → CORRECT → FORMAT → EVIDENCE → NEXT ACTION
+
+**ENGÜRÜ Language Governance alignment:**
+STATE → CLAIM → EVIDENCE → NEXT ACTION
+
+**Production discipline:**
+mevcut hakikat + gerekli fark
+
+### A. Canonical Behavior Contract
 - [ ] Add `governance/shared-ai/BEHAVIOR.yaml`.
 - [ ] Add runtime behavior implementation in `shared_ai/behavior.py`.
 - [ ] Add deterministic behavior tests in `tests/test_shared_ai_behavior.py`.
 - [ ] Connect behavior preflight before routing.
-- [ ] Connect behavior verification after execution.
-- [ ] Preserve `state → claim → evidence → next action`.
-- [ ] Preserve `mevcut hakikat + gerekli fark`.
-- [ ] No unverified PASS.
-- [ ] Unknown critical truth → HOLD.
-- [ ] Human Threshold remains authoritative.
-- [ ] System may optimize behavior; it may not expand its own authority.
+- [ ] Connect post-execution verification before final response.
 - [ ] Provider/model may change; ENGÜRÜ behavior remains stable.
+- [ ] No hidden provider-specific behavior becomes canonical policy.
+
+### B. Understanding + Grounding
+- [ ] Resolve user intent and explicit success criteria before execution.
+- [ ] Separate current request truth from prior context/memory.
+- [ ] Detect missing critical context; ask only when materially required.
+- [ ] Prefer authoritative/current sources when freshness matters.
+- [ ] Track provenance for externally grounded factual claims.
+- [ ] Detect stale, conflicting, incomplete or ambiguous grounding.
+- [ ] Unknown critical truth → HOLD, never invented completion.
+
+### C. Classification + Governance
+- [ ] Classify task type, data class, consequence level and reversibility.
+- [ ] Resolve authority before tool/provider execution.
+- [ ] Preserve SECRET → local-only unless explicit governed authority changes.
+- [ ] Preserve cost ceiling / zero-cost default.
+- [ ] Detect Human Threshold before irreversible or authority-expanding action.
+- [ ] No unverified PASS.
+- [ ] Evidence failure cannot become PASS.
+- [ ] System may optimize behavior; it may not expand its own authority.
+
+### D. Adaptive Reasoning
+- [ ] Add bounded reasoning effort classes: MINIMAL / STANDARD / DEEP.
+- [ ] Select reasoning effort from task complexity, uncertainty and consequence.
+- [ ] Permit re-planning after new tool evidence or contradiction.
+- [ ] Prevent endless self-reflection loops with explicit step / retry budgets.
+- [ ] Do not expose or depend on private chain-of-thought; store only safe decision/evidence summaries.
+- [ ] Preserve deterministic fast path for simple requests.
+
+### E. Tool + Route Orchestration
+- [ ] Decide whether tools are needed before model execution.
+- [ ] Discover/load only relevant tools/capabilities for the task.
+- [ ] Support sequential and parallel tool plans when safe.
+- [ ] Re-evaluate policy after each consequential tool result.
+- [ ] Re-evaluate route after provider/tool failure.
+- [ ] Support bounded retry, fallback, circuit breaker and safe HOLD.
+- [ ] Never blindly retry policy, privacy, authority or capability rejection.
+- [ ] Keep product → direct provider prohibited.
+
+### F. Context + State
+- [ ] Define explicit conversation/task state envelope.
+- [ ] Preserve stable user intent across multi-step work.
+- [ ] Support resumable task state without replaying unnecessary context.
+- [ ] Add context compaction/summarization boundary for long sessions.
+- [ ] Distinguish durable project truth from transient conversation state.
+- [ ] Prevent stale memory/context from overriding current explicit instruction.
+
+### G. Execution + Observation
+- [ ] Normalize model/tool output into one internal result envelope.
+- [ ] Record route, model, tools, attempts, latency class, cost and evidence refs.
+- [ ] Observe partial failure, malformed output, timeout and tool mismatch.
+- [ ] Treat external side effects separately from text-generation success.
+- [ ] Require explicit completion evidence for consequential actions.
+
+### H. Verification + Correction
+- [ ] Verify task-specific success criteria, not merely provider HTTP success.
+- [ ] Add factual/grounding verification profile.
+- [ ] Add structured-output/schema verification profile.
+- [ ] Add tool/action result verification profile.
+- [ ] Add contradiction and unsupported-claim checks.
+- [ ] Add bounded correction loop: VERIFY → CORRECT → REVERIFY.
+- [ ] Separate generator from verifier when task risk justifies it.
+- [ ] If verification remains unresolved → HOLD.
+
+### I. Output + User Experience
+- [ ] Format answer to user language, requested length and structure.
+- [ ] Return concise answer first; expose technical evidence only when useful.
+- [ ] Preserve `state → claim → evidence → next action` for governed work.
+- [ ] Distinguish fact, inference, proposal and unresolved uncertainty.
+- [ ] Surface citations/provenance when external grounding was used.
+- [ ] Support machine-readable structured output when requested.
+- [ ] Support mid-task user steering without discarding already verified work.
+
+### J. Multimodal + Capability Discipline
+- [ ] Normalize text/image/file/audio capability requirements before routing.
+- [ ] Block capability assumptions not supported by registry evidence.
+- [ ] Keep provider-specific multimodal features behind adapters.
+- [ ] Reroute or HOLD on unsupported modality/capability.
+
+### K. Evaluation + Drift Control
+- [ ] Add behavior regression suite independent of provider/model.
+- [ ] Add adversarial prompt / instruction-conflict tests.
+- [ ] Add grounding/citation regression tests.
+- [ ] Add tool-choice and retry/fallback tests.
+- [ ] Add long-context/state-resume tests.
+- [ ] Add malformed/partial output tests.
+- [ ] Add Human Threshold enforcement tests.
+- [ ] Add behavior drift evidence to DoneCheck™.
+- [ ] Provider swap must not change canonical governance behavior.
+
+### L. Acceptance
+- [ ] Behavior contract machine-readable and versioned.
+- [ ] Runtime behavior implementation PASS.
+- [ ] Deterministic behavior tests PASS.
+- [ ] Existing Shared AI routing/security tests remain PASS.
 - [ ] Evidence + DoneCheck™.
 - [ ] Exact-main verification.
+- [ ] Human Threshold retained.
+- [ ] No new core/framework unless an evidenced gap requires it.
