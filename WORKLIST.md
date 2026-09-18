@@ -332,8 +332,8 @@ Mac is the final execution surface, not the canonical development authority.
 - [x] paid route → BLOCKED — deterministic offline gate PASS.
 - [x] unverified provider → BLOCKED/HOLD — privacy + commercial-use offline gates PASS.
 - [x] capability mismatch → safe HOLD — live HTTP 503, `attempts=0`, `local_runtime:SKIP:capability`.
-- [ ] Ollama unavailable → safe HOLD.
-- [ ] recovery after restart → PASS.
+- [x] Ollama unavailable → safe HOLD — live HTTP 503, provider unavailable, no safe provider.
+- [x] recovery after restart → PASS — live `ENGURU_RECOVERY_PASS` via `local_runtime` / `qwen3:14b`.
 
 ### 5. Evidence
 - [ ] health evidence.
