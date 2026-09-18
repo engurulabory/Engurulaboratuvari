@@ -250,6 +250,8 @@ class FrontierBehaviorTests(unittest.TestCase):
             "required_capabilities": ["text"],
             "cost_ceiling": 0,
             "input": "do it",
+            "intent": "perform governed action",
+            "success_criteria": ["verified action"],
             "verification_profile": "ACTION",
             "tool_evidence": ["user-claimed-proof"],
         }
