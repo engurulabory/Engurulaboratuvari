@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.10",
+  "schemaVersion": "1.11",
   "generatedAt": "2026-09-18",
   "authority": "ENGÜRÜ Labory Control Plane",
   "state": "HOLD",
@@ -92,6 +92,25 @@
       "evidence": "evidence/EXTERNAL_CAPABILITY_HARVEST_DONECHECK_2026-09-18.md",
       "liveOutsideVoice": "HOLD_PROVIDER",
       "note": "Selected external mechanisms were adapted through existing ENGURU layers; no parallel core/framework authority was introduced."
+    },
+    "builderReleaseMirror": {
+      "state": "PASS_CURRENT_PARITY",
+      "builderMainSha": "88d00d025945fb170ddd88c5bd97c1f5a69ef999",
+      "releaseMainSha": "fc17cbbf913bb46cc7289db3a9e7b583eb4a7e7f",
+      "fileCount": 94,
+      "parity": "94/94",
+      "refreshRequired": false,
+      "canonicalParityVerified": true,
+      "fleetRunId": 35107500693,
+      "evidence": "evidence/BUILDER_STEWARD_CLOSEOUT_2026-09-18.md"
+    },
+    "repositoryStewardSchedule": {
+      "state": "PASS_CANDIDATE_CI_REQUIRED",
+      "cadence": "23 6 */3 * *",
+      "mode": "READ_ONLY_SCHEDULED_CYCLE",
+      "destructiveActionsAllowed": false,
+      "workflow": ".github/workflows/steward-scheduled-cycle.yml",
+      "runner": "steward/run-scheduled-cycle.mjs"
     }
   },
   "fleetEvidence": {
@@ -146,8 +165,8 @@
     },
     "automationSteward": {
       "target": 100,
-      "state": "PASS_OBSERVED_RECONCILIATION",
-      "criterion": "Repository Steward produced and merged an evidence-bound real reconciliation cycle in PR #26, detected accessible-inventory drift and release-mirror provenance drift without destructive action."
+      "state": "PASS_SCHEDULED_READ_ONLY_CYCLE_CI_REQUIRED",
+      "criterion": "Repository Steward real reconciliation is proven and a read-only approximately-every-3-days scheduled cycle is defined with destructive actions disabled; exact-head CI must pass before canonical lock."
     },
     "operationalSimplicity": {
       "target": 100,
@@ -172,7 +191,7 @@
     "builderReleaseMirrorProvenance": {
       "target": 100,
       "state": "PASS",
-      "criterion": "Builder release mirror refreshed from Builder main 827b4f11...; 60/60 manifest-allowlisted files match, HANDOFF_META sourceSha is exact, PR #10 merged to 6ebb683b..., and exact-main Fleet CI run 34676872690 succeeded."
+      "criterion": "Builder main 88d00d02... is reflected in release HANDOFF_META on release main fc17cbbf... with 94/94 allowlist parity, refreshRequired=false and canonicalParityVerified=true; PARK commissioning remains a separate HOLD."
     }
   },
   "lockedExecutionPlan": [
@@ -231,14 +250,14 @@
   "evidenceRefs": {
     "latestStewardReconciliation": "evidence/STEWARD_ORDER_TRUTH_RECONCILIATION_2026-09-12.json",
     "latestReconciliationMergeSha": "078b7c3b09b1a5ca68564f6f1a3fe1b53f2ef6eb",
-    "builderReleaseMirrorMainSha": "6ebb683bb5e95897ef2a76b8fc623468e4ccb68f",
+    "builderReleaseMirrorMainSha": "fc17cbbf913bb46cc7289db3a9e7b583eb4a7e7f",
     "builderReleaseMirrorFleetRun": 34676872690,
-    "builderSourceSha": "827b4f11fe32c28e775130ab716743bf3382dc90",
-    "builderReleaseRefreshPr": 10,
-    "builderReleaseMainSha": "6ebb683bb5e95897ef2a76b8fc623468e4ccb68f",
-    "builderReleaseFleetRun": 34676872690
+    "builderSourceSha": "88d00d025945fb170ddd88c5bd97c1f5a69ef999",
+    "builderReleaseRefreshPr": 13,
+    "builderReleaseMainSha": "fc17cbbf913bb46cc7289db3a9e7b583eb4a7e7f",
+    "builderReleaseFleetRun": 35107500693
   },
-  "nextAction": "Keep repository governance intake fail-closed. External Capability Harvest technical scope is PASS; live second-model Outside Voice remains HOLD_PROVIDER until an independently governed second provider/model is commissioned. Continue remaining Labory Verified Finish debts without reopening the harvest architecture.",
+  "nextAction": "Close governance intake for ENGÜRÜ YAYIN MOTORU™ and ZEKÜ FINANCE PRIME with explicit trust manifests + fleet CI evidence. Then perform PARK read-only production proof under Human Threshold boundaries and run final Labory DoneCheck/Human Threshold.",
   "historicalRepositoryRecords": [
     {
       "repository": "engurulabory/adil-pay-kanit-web",
