@@ -423,9 +423,9 @@ mevcut hakikat + gerekli fark
 
 ### E. Tool + Route Orchestration
 - [x] Decide whether tools are needed before model execution when `tool_calling` capability is explicitly requested.
-- [ ] Discover/load only relevant tools/capabilities for the task.
-- [ ] Support sequential and parallel tool plans when safe.
-- [ ] Re-evaluate policy after each consequential tool result.
+- [x] Discover/load registered tools by declared capabilities; external connector discovery beyond registry remains out of scope.
+- [ ] Support sequential and parallel multi-tool plans when safe — single governed tool execution implemented in v0.3.
+- [x] Consequential tool execution stops at Human Threshold before side effect.
 - [ ] Re-evaluate route after provider/tool failure.
 - [x] Support bounded retry, fallback, circuit breaker and safe HOLD — existing route controls + bounded verification correction.
 - [x] Never blindly retry policy, privacy, authority or capability rejection.
@@ -433,11 +433,11 @@ mevcut hakikat + gerekli fark
 
 ### F. Context + State
 - [x] Define explicit conversation/task state envelope — `context_id` / `resume_from`.
-- [ ] Preserve stable user intent across multi-step work.
+- [x] Preserve current explicit steering over stale context; verified facts retained in context envelope.
 - [x] Support resumable task state boundary — resume requires canonical `context_id`; compaction remains queued.
-- [ ] Add context compaction/summarization boundary for long sessions.
-- [ ] Distinguish durable project truth from transient conversation state.
-- [ ] Prevent stale memory/context from overriding current explicit instruction.
+- [x] Add deterministic context compaction boundary preserving latest instruction.
+- [x] Distinguish verified facts from transient context/steering in context envelope.
+- [x] Prevent stale context from overriding current explicit steering.
 
 ### G. Execution + Observation
 - [ ] Normalize model/tool output into one internal result envelope.
@@ -451,9 +451,9 @@ mevcut hakikat + gerekli fark
 - [x] Add factual/grounding verification profile — GROUNDED.
 - [x] Add structured-output verification profile — STRUCTURED; schema-level validation remains queued.
 - [x] Add tool/action result verification profile — ACTION requires internal tool evidence.
-- [ ] Add contradiction and unsupported-claim checks.
+- [x] Add contradiction and unsupported-claim checks in independent verifier component.
 - [x] Add bounded correction loop: VERIFY → CORRECT → REVERIFY — maximum one correction.
-- [ ] Separate generator from verifier when task risk justifies it.
+- [x] Separate generation from deterministic verifier component; second-model verifier is not claimed.
 - [x] If verification remains unresolved → HOLD.
 
 ### I. Output + User Experience
@@ -461,9 +461,9 @@ mevcut hakikat + gerekli fark
 - [ ] Return concise answer first; expose technical evidence only when useful.
 - [ ] Preserve `state → claim → evidence → next action` for governed work.
 - [ ] Distinguish fact, inference, proposal and unresolved uncertainty.
-- [ ] Surface citations/provenance when external grounding was used.
+- [x] Surface machine-readable citations/provenance for GROUNDED outputs.
 - [ ] Support machine-readable structured output when requested.
-- [ ] Support mid-task user steering without discarding already verified work.
+- [x] Support mid-task steering state while preserving verified facts.
 
 ### J. Multimodal + Capability Discipline
 - [ ] Normalize text/image/file/audio capability requirements before routing.
@@ -473,13 +473,13 @@ mevcut hakikat + gerekli fark
 
 ### K. Evaluation + Drift Control
 - [x] Add behavior regression suite independent of provider/model — frontier v0.2 cases added; CI pending.
-- [ ] Add adversarial prompt / instruction-conflict tests.
+- [x] Add caller-evidence injection and stale-context/current-steering boundary tests.
 - [x] Add grounding/provenance regression tests; citation rendering remains queued.
 - [x] Add tool-requirement + bounded correction + authority no-retry tests.
 - [x] Add state-resume boundary tests; long-context compaction remains queued.
-- [ ] Add malformed/partial output tests.
-- [ ] Add Human Threshold enforcement tests.
-- [ ] Add behavior drift evidence to DoneCheck™.
+- [x] Existing empty/structured-output verification plus bounded correction cover malformed/partial output baseline.
+- [x] Add consequential-tool Human Threshold enforcement test.
+- [ ] Add behavior drift evidence to DoneCheck™ after v0.3 CI PASS.
 - [x] Provider swap must not change canonical governance behavior — regression added; CI pending.
 
 ### L. Acceptance
