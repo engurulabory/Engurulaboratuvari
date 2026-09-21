@@ -55,6 +55,22 @@ Required before execution:
 
 A divergent or dirty checkout produces HOLD.
 
+## Phase 2.5 — Runtime provenance discovery
+
+After exact-main sync and before the real task, fingerprint the installed Mac Engineer app/runtime:
+
+```bash
+python3 tools/mac_engineer_runtime_provenance.py
+```
+
+Default evidence:
+
+`~/Enguru/Evidence/MacEngineer/v0.6/package6-runtime-provenance.json`
+
+The tool records the installed app bundle identity, executable SHA-256, runtime files/metadata candidates, active Mac Engineer processes and any existing source/version signals. It does **not** invent provenance from app names.
+
+PASS requires an existing evidence-backed source/version signal matching the canonical GitHub HEAD. If no such signal exists, state remains `HOLD — RUNTIME_PROVENANCE_UNBOUND`.
+
 ## Phase 3 — Runtime identity
 
 The discovery evidence must identify the actual Mac Engineer execution surface.
@@ -183,4 +199,4 @@ Those facts require Mac-local Evidence.
 
 ## NEXT ACTION
 
-Merge Package 6 tooling after CI. On Mac, sync exact-main and run `python3 tools/mac_engineer_local_discovery.py`. Reconcile the discovered runtime identity before running the real-task commissioning sequence.
+On Mac, keep exact-main clean, run `python3 tools/mac_engineer_runtime_provenance.py`, reconcile only the reported provenance gap, then run the real-task commissioning sequence.

@@ -60,6 +60,9 @@ jobs:
       - name: Mac Engineer Package 6 commissioning contract tests
         run: python -m unittest discover -s tests -p 'test_mac_local_commissioning.py' -v
 
+      - name: Mac Engineer Package 6 provenance tool syntax
+        run: python -m py_compile tools/mac_engineer_runtime_provenance.py
+
       - name: Quality & Red Team review tests
         run: python -m unittest discover -s tests -p 'test_quality_review.py' -v
 
