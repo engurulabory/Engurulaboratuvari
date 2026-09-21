@@ -16,6 +16,8 @@ RUNTIME_ROOT = Path.home() / "Enguru" / "Runtime" / "MacEngineer"
 APP = Path.home() / "Applications" / "ENGÜRÜ Mac Engineer.app"
 EVIDENCE_ROOT = Path.home() / "Enguru" / "Evidence" / "MacEngineer" / "v0.6"
 BOOTSTRAP = ROOT / "tools" / "mac_engineer_bootstrap_product_source.py"
+SOURCE_REVIEW = ROOT / "tools" / "mac_engineer_source_intake_review.py"
+DELTA_REVIEW = ROOT / "tools" / "mac_engineer_delta_authority_review.py"
 
 
 def run(cmd: list[str], cwd: Path | None = None) -> tuple[int, str, str]:
@@ -154,7 +156,81 @@ def status() -> dict[str, Any]:
     }
 
 
+def refresh_bootstrap_evidence() -> tuple[bool, dict[str, Any]]:
+    evidence: dict[str, Any] = {}
+
+    source_proc = subprocess.run(
+        [sys.executable, str(SOURCE_REVIEW)],
+        cwd=str(ROOT),
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    evidence["source_review"] = {
+        "returncode": source_proc.returncode,
+        "stdout": source_proc.stdout[-12000:],
+        "stderr": source_proc.stderr[-12000:],
+    }
+    source_state = evidence_state(
+        "package6-source-intake-review.json"
+    )
+    evidence["source_review"]["evidence"] = source_state
+
+    expected_source_hold = (
+        source_state.get("state") == "HOLD"
+        and source_state.get("issues")
+        == ["RUNTIME_DELTA_AUTHORITY_REVIEW_REQUIRED"]
+    )
+    if source_proc.returncode not in {0, 2} or not (
+        source_state.get("state") == "PASS"
+        or expected_source_hold
+    ):
+        return False, evidence
+
+    delta_proc = subprocess.run(
+        [sys.executable, str(DELTA_REVIEW)],
+        cwd=str(ROOT),
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    evidence["delta_review"] = {
+        "returncode": delta_proc.returncode,
+        "stdout": delta_proc.stdout[-12000:],
+        "stderr": delta_proc.stderr[-12000:],
+        "evidence": evidence_state(
+            "package6-delta-authority-review.json"
+        ),
+    }
+    delta_state = evidence["delta_review"]["evidence"]
+    if (
+        delta_proc.returncode != 0
+        or delta_state.get("state") != "PASS"
+    ):
+        return False, evidence
+
+    return True, evidence
+
+
 def bootstrap_source(publish: bool) -> int:
+    if not publish:
+        ok, refreshed = refresh_bootstrap_evidence()
+        if not ok:
+            print(
+                json.dumps(
+                    {
+                        "state": "HOLD",
+                        "reason": (
+                            "BOOTSTRAP_EVIDENCE_REFRESH_FAILED"
+                        ),
+                        "refresh": refreshed,
+                    },
+                    ensure_ascii=False,
+                    indent=2,
+                )
+            )
+            return 2
+
     cmd = [sys.executable, str(BOOTSTRAP)]
     if publish:
         cmd.append("--publish")
