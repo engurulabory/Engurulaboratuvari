@@ -65,6 +65,28 @@ class MacEngineerSessionContinuityTests(unittest.TestCase):
         self.assertTrue(authorized)
         self.assertTrue(policy["authorized"])
 
+    def test_authorized_branch_remains_valid_for_merge_objective(self):
+        state = {
+            "currentObjective": "PRODUCT_PR_EXACT_HEAD_CI_MERGE",
+            "observedV06AlignmentPreparation": {
+                "branch": "feature/v06-version-branding-alignment",
+                "commit": "02b7cc3",
+                "baseMain": "3ac09bd",
+            },
+        }
+        product = {
+            "branch": "feature/v06-version-branding-alignment",
+            "head": "02b7cc3",
+            "origin_main": "3ac09bd",
+            "clean": True,
+        }
+        authorized, policy = authorized_product_working_branch(
+            state,
+            product,
+        )
+        self.assertTrue(authorized)
+        self.assertTrue(policy["authorized"])
+
     def test_unrecorded_product_branch_is_not_authorized(self):
         state = {
             "currentObjective": "PRODUCT_SOURCE_V0_6_ALIGNMENT_PUBLICATION",
