@@ -16,9 +16,13 @@
   "current": {
     "version": "v0.6",
     "state": "FIELD_CLOSEOUT_ACTIVE",
-    "activeObjective": "RUNTIME_APP_PROVENANCE_CLOSURE",
+    "activeObjective": "REAL_MAC_ENGINEERING_TASK",
     "productSourceSha": "28b901ab3303f4be3c7356b11218b62422f2da42",
-    "installedVersion": "0.6"
+    "installedVersion": "0.6",
+    "completed": [
+      "RUNTIME_APP_PROVENANCE_CLOSURE",
+      "ARCHIVE_DECISION"
+    ]
   },
   "versions": [
     {
