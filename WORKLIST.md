@@ -998,7 +998,13 @@ Evaluate under original ENGÜRÜ identity:
 - [x] Package 2C — VERIFIED FINAL / LOCKED.
 
 ## N. Exit Contract
-`Capability Matrix → Field Reality Audit → measured gap closure → Graphic/Illustration/Motion/Video/3D decisions → competitive benchmarks → efficiency evidence → Package 2C runtime binding → regression → Second Look → Evidence → Mandatory DoneCheck → Human Artistic Authority where applicable → Package 2C VERIFIED FINAL / LOCKED → Package 3 Persistent Working Memory`
+`Capability Matrix → Field Reality Audit → measured gap closure → Package 2C VERIFIED FINAL / LOCKED → Package 3 Persistent Working Memory → Package 4 Real Field Acceptance + Finished Ability™ → Package 5 GitHub Engineering Closeout → exact-main PASS → Package 6 Mac Local Final Commissioning → local runtime + real Mac task + restart/resume + recovery + local Evidence + Mandatory DoneCheck™ → ENGÜRÜ Mac Engineer™ v0.6 VERIFIED FINAL / LOCKED`
+
+**Canonical environment rule**
+- **GitHub = canonical source / version / CI / engineering Evidence.**
+- **Mac local = real runtime / user operating environment / final field Evidence.**
+- GitHub exact-main PASS closes engineering truth; it does **not** by itself certify the Mac-local product runtime.
+- Final v0.6 VERIFIED FINAL / LOCKED requires both GitHub engineering closure and Mac Local Final Commissioning PASS.
 
 
 ## O. v0.6 Minimal Governance Hardening Harvest — SCHEDULED, NO ROLLOUT CHANGE
@@ -1016,11 +1022,20 @@ Evaluate under original ENGÜRÜ identity:
 
 **Invariant:** specialization ≠ privilege escalation. Central Authority already exists and must not be duplicated.
 
-### Package 5 — Aggregate Evidence + Mandatory DoneCheck™ placement
-- [ ] **Aggregate Evidence Bundle:** reconcile v0.6 package evidence into one canonical closure surface; preserve exact source SHA/run refs and distinguish technical evidence from Human Threshold evidence.
-- [ ] **Locked field target reconciliation:** Operating Character **98–99+ field**; Architecture Foundations **97+ applied**; Engineering Foundations **98+**; Intellectual Depth **97+**; Finished Ability **98+**; Human-Centered Conversation **97+**; Persistent Working Memory **97+**; **critical failures = 0**. A target may PASS only from applicable evidence; unsupported scores remain HOLD.
-- [ ] **Final Mandatory DoneCheck™:** completion → real implementation/field evidence → regression → canonical truth → authority boundaries → evidence completeness → PASS / HOLD / BLOCKED.
-- [ ] **v0.6 closure:** exact-head PASS → merge → exact-main verification → **ENGÜRÜ Mac Engineer™ v0.6 VERIFIED FINAL / LOCKED**.
+### Package 5 — GitHub Engineering Closeout / Aggregate Evidence + Mandatory DoneCheck™
+- [ ] **Aggregate Evidence Bundle:** reconcile v0.6 package evidence into one canonical engineering-closure surface; preserve exact source SHA/run refs and distinguish GitHub technical evidence, Mac-local field evidence and Human Threshold evidence.
+- [ ] **Locked target reconciliation:** Operating Character **98–99+ field**; Architecture Foundations **97+ applied**; Engineering Foundations **98+**; Intellectual Depth **97+**; Finished Ability **98+**; Human-Centered Conversation **97+**; Persistent Working Memory **97+**; **critical failures = 0**. A target may PASS only from applicable evidence; unsupported scores remain HOLD.
+- [ ] **GitHub Engineering Mandatory DoneCheck™:** implementation → regression → canonical truth → authority boundaries → evidence completeness → PASS / HOLD / BLOCKED.
+- [ ] **GitHub Engineering Closeout:** exact-head PASS → merge → exact-main PASS → state **GITHUB_ENGINEERING_VERIFIED / MAC_COMMISSIONING_REQUIRED**.
 
+### Package 6 — Mac Local Final Commissioning
+- [ ] **Exact-main sync:** Mac working copy resolves to the exact canonical GitHub main SHA; dirty/divergent state is reconciled before commissioning.
+- [ ] **Local runtime boot:** Mac-local runtime starts from the canonical tree and required local providers/services report READY.
+- [ ] **Real Mac task:** one real engineering task is executed through the actual Mac Engineer path; health-only evidence is insufficient.
+- [ ] **Persistent continuity:** task checkpoint is written, runtime/process is restarted, and the same task resumes from verified persistent state without identity drift.
+- [ ] **Recovery field proof:** inject or observe one bounded recoverable failure → diagnose → smallest repair/recovery → reverify.
+- [ ] **Local Evidence bundle:** repo SHA, runtime status, task record, artifacts/diff, test results, restart/resume proof and recovery proof are recorded locally and referenced canonically.
+- [ ] **Mac Local Mandatory DoneCheck™:** work done? actually works? real Mac task? restart/resume? recovery? evidence? authority boundaries? critical failures = 0?
+- [ ] **v0.6 final closure:** GitHub engineering PASS + Mac local commissioning PASS → **ENGÜRÜ Mac Engineer™ v0.6 VERIFIED FINAL / LOCKED**.
 
-**Current single objective:** **Package 5 — Aggregate Evidence + Mandatory DoneCheck™**.
+**Current single objective:** **Package 5 — GitHub Engineering Closeout / Aggregate Evidence + Mandatory DoneCheck™**.
