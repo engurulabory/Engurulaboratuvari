@@ -49,13 +49,17 @@ def run(cmd: list[str], cwd: Path | None = None) -> dict[str, Any]:
 
 def write_fixture() -> None:
     FIXTURE.mkdir(parents=True, exist_ok=False)
+
     (FIXTURE / "calculator.py").write_text(
         "def add(a: int, b: int) -> int:\n"
-        "    # Commissioning fixture: one intentional bounded defect.\n"
-        "    return a - b\n",
+        "    return a + b\n",
         encoding="utf-8",
     )
-    (FIXTURE / "test_calculator.py").write_text(
+
+    tests = FIXTURE / "tests"
+    tests.mkdir(parents=True, exist_ok=True)
+    (tests / "__init__.py").write_text("", encoding="utf-8")
+    (tests / "test_calculator.py").write_text(
         "import unittest\n\n"
         "from calculator import add\n\n\n"
         "class CalculatorTests(unittest.TestCase):\n"
@@ -65,21 +69,35 @@ def write_fixture() -> None:
         "    unittest.main()\n",
         encoding="utf-8",
     )
-    (FIXTURE / "README.md").write_text(
-        "# ENGÜRÜ Mac Engineering™ v0.6 Field Fixture\n\n"
-        "Disposable commissioning repository. One intentional defect exists in "
-        "calculator.py. The commissioned engineer must discover it by running "
-        "the test, make the smallest correction, re-run the test, preserve a "
-        "diff, and attach Evidence to the durable task.\n",
+
+    (FIXTURE / "CURRENT_STATE.md").write_text(
+        "# CURRENT STATE\n\n"
+        "## VERIFIED EXECUTABLE BASELINE\n\n"
+        "This disposable field fixture intentionally lacks the current "
+        "ENGÜRÜ field revalidation block.\n",
         encoding="utf-8",
     )
+
+    (FIXTURE / "README.md").write_text(
+        "# ENGÜRÜ Mac Engineering™ v0.6 Field Fixture\n\n"
+        "Disposable commissioning repository for the already-verified "
+        "controlled canonical-state repair path. Tests begin PASS. "
+        "CURRENT_STATE.md begins stale by design. The commissioned "
+        "engineer must run the real test contract, reconcile canonical "
+        "CURRENT_STATE truth with the smallest reversible change, inspect "
+        "the diff, run regression, preserve Evidence, and leave the same "
+        "task resumable for restart verification.\n",
+        encoding="utf-8",
+    )
+
     MARKER.write_text(
         json.dumps(
             {
-                "schema": "enguru.mac-engineering.field-fixture/v1",
+                "schema": "enguru.mac-engineering.field-fixture/v2",
                 "task_id": TASK_ID,
                 "checkpoint_id": CHECKPOINT_ID,
                 "created_at": now(),
+                "scope": "V0_6_CONTROLLED_CANONICAL_STATE_REPAIR",
             },
             ensure_ascii=False,
             indent=2,
@@ -91,7 +109,7 @@ def write_fixture() -> None:
     steps = [
         ["git", "init", "-b", "main"],
         ["git", "add", "-A"],
-        ["git", "commit", "-m", "test: v0.6 Mac Engineering commissioning baseline"],
+        ["git", "commit", "-m", "test: v0.6 controlled repair field baseline"],
     ]
     for cmd in steps:
         result = run(cmd, cwd=FIXTURE)
@@ -120,6 +138,13 @@ def main() -> int:
         if FIXTURE.exists():
             if not MARKER.is_file():
                 raise FieldTaskError("EXISTING_FIXTURE_PATH_NOT_OWNED")
+            for generated in (
+                FIXTURE / "__pycache__",
+                FIXTURE / "tests" / "__pycache__",
+                FIXTURE / ".pytest_cache",
+            ):
+                if generated.is_dir():
+                    shutil.rmtree(generated)
             truth = fixture_truth()
             if not truth.get("clean"):
                 raise FieldTaskError(
@@ -132,14 +157,27 @@ def main() -> int:
         if not truth.get("clean"):
             raise FieldTaskError("FIXTURE_BASELINE_NOT_CLEAN")
 
-        failing = run(
-            ["python3", "-m", "unittest", "discover", "-v"],
+        baseline = run(
+            [
+                "python3",
+                "-m",
+                "unittest",
+                "discover",
+                "-s",
+                "tests",
+                "-v",
+            ],
             cwd=FIXTURE,
         )
-        if failing["pass"]:
-            raise FieldTaskError("INTENTIONAL_BASELINE_FAILURE_REQUIRED")
+        if not baseline["pass"]:
+            raise FieldTaskError("BASELINE_TEST_PASS_REQUIRED")
 
-        result_path = FIXTURE / "ENGURU_FIELD_RESULT.json"
+        current_state = (FIXTURE / "CURRENT_STATE.md").read_text(
+            encoding="utf-8"
+        )
+        if "ENGURU_CURRENT_REVALIDATION_START" in current_state:
+            raise FieldTaskError("STALE_CURRENT_STATE_REQUIRED")
+
         prompt = f"""ENGÜRÜ Mac Engineering™ v0.6 FIELD COMMISSIONING
 
 Use durable task ID: {TASK_ID}
@@ -149,52 +187,41 @@ Work only inside this repository:
 {FIXTURE}
 
 Objective:
-1. Inspect the repository.
-2. Run: python3 -m unittest discover -v
-3. Observe the real failing test.
-4. Diagnose the root cause.
-5. Make the smallest reversible engineering correction.
-6. Re-run the same test command until PASS.
-7. Show the exact git diff.
-8. Write {result_path} containing:
-   - task_id
-   - checkpoint_id
-   - baseline_head
-   - changed_files
-   - test_command
-   - test_state
-   - diff_summary
-   - evidence_refs
+1. Inspect the repository and verify its canonical git identity.
+2. Run the repository's real local test contract.
+3. Confirm tests PASS before repair.
+4. Reconcile CURRENT_STATE.md canonical state truth using the existing controlled safe-repair path.
+5. Apply only the smallest reversible difference.
+6. Inspect git status and the exact diff.
+7. Re-run regression and require PASS.
+8. Produce Evidence for baseline tests, changed file, diff, regression and final verdict.
 9. Preserve Human Threshold and stay inside this fixture. No network, no push, no commit, no other repository.
-10. Persist the task and create checkpoint {CHECKPOINT_ID} after the fix/test Evidence is attached.
-11. Leave the task resumable for a post-restart verification pass. Do not close the durable task as final yet.
+10. Persist task identity {TASK_ID} and checkpoint {CHECKPOINT_ID} after repair/test Evidence is attached.
+11. Leave the task resumable for post-restart verification; do not finalize v0.6 from this first pass.
 
-Return the task ID, checkpoint ID, changed file, test result and Evidence path.
+Use STATE → CLAIM → EVIDENCE → JUDGMENT/NEXT ACTION.
+Return task ID, checkpoint ID, changed file, regression result, Evidence reference and PASS / HOLD / BLOCKED.
 """
         resume_prompt = f"""ENGÜRÜ Mac Engineering™ v0.6 CONTINUITY VERIFICATION
 
-Resume the existing durable task:
+Resume the same durable task:
 task_id: {TASK_ID}
 checkpoint_id: {CHECKPOINT_ID}
 
-Re-read repository/runtime/task state after restart:
+Repository:
 {FIXTURE}
 
 Requirements:
-1. Resume the exact same task identity and checkpoint.
-2. Re-read git status and diff; do not rely on stale conversation state.
-3. Re-run: python3 -m unittest discover -v
-4. Verify the bounded correction still passes.
-5. Reconcile any drift before proceeding.
-6. Update {result_path} with:
-   - resumed_after_restart: true
-   - resumed_task_id
-   - resumed_checkpoint_id
-   - post_restart_test_state
-   - post_restart_evidence_refs
-7. Only after those checks, mark the task Verified Finish / PASS with Evidence.
+1. Re-read repository/runtime/task state after restart.
+2. Resume the exact same task identity and checkpoint.
+3. Re-read git status and CURRENT_STATE.md diff; do not rely on stale conversation state.
+4. Re-run the repository's real local test contract.
+5. Verify the controlled canonical-state repair remains correct.
+6. Reconcile any drift before proceeding.
+7. Produce post-restart Evidence with the same task/checkpoint identity.
+8. Only after those checks, mark this field task Verified Finish / PASS.
 
-Return exact task/checkpoint identity and post-restart test result.
+Return exact task/checkpoint identity, changed file and post-restart regression result.
 """
         EVIDENCE_ROOT.mkdir(parents=True, exist_ok=True)
         PROMPT_FILE.write_text(prompt, encoding="utf-8")
@@ -210,23 +237,28 @@ Return exact task/checkpoint identity and post-restart test result.
             "fixture": str(FIXTURE),
             "baseline_head": truth.get("head"),
             "baseline_clean": truth.get("clean"),
-            "intentional_failure": {
-                "observed": True,
-                "command": failing["cmd"],
-                "returncode": failing["returncode"],
-                "stdout": failing["stdout"],
-                "stderr": failing["stderr"],
+            "baseline_tests": {
+                "state": "PASS",
+                "command": baseline["cmd"],
+                "returncode": baseline["returncode"],
+                "stdout": baseline["stdout"],
+                "stderr": baseline["stderr"],
+            },
+            "repair_contract": {
+                "target": "CURRENT_STATE.md",
+                "stale_by_design": True,
+                "expected_path": "controlled_canonical_state_reconciliation",
             },
             "prompt_file": str(PROMPT_FILE),
             "resume_prompt_file": str(RESUME_PROMPT_FILE),
             "truth_boundary": (
-                "This prepares a real disposable Git repository with one observed "
-                "failing test. It does not claim that ENGÜRÜ Mac Engineering has "
-                "executed or fixed the task yet."
+                "This prepares a real disposable Git repository with passing tests "
+                "and one intentionally stale canonical-state document. It does not "
+                "claim that ENGÜRÜ Mac Engineering has executed the repair yet."
             ),
             "next_action": (
-                "Open the installed ENGÜRÜ Mac Engineer app and submit the exact "
-                "prompt from package6-real-task-prompt.txt."
+                "Refresh the installed app/runtime repo inventory, then submit the "
+                "exact prompt from package6-real-task-prompt.txt."
             ),
         }
         OUTPUT.write_text(

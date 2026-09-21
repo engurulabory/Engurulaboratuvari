@@ -61,7 +61,7 @@ jobs:
         run: python -m unittest discover -s tests -p 'test_mac_local_commissioning.py' -v
 
       - name: Mac Engineer Package 6 provenance tool syntax
-        run: python -m py_compile tools/mac_engineer_runtime_provenance.py tools/mac_engineering_prepare_real_task.py
+        run: python -m py_compile tools/mac_engineer_runtime_provenance.py tools/mac_engineering_prepare_real_task.py tools/mac_engineering_refresh_real_task_runtime.py
 
       - name: Mac Engineer Package 6 provenance reconciliation syntax
         run: python -m py_compile tools/mac_engineer_provenance_reconcile.py
@@ -110,6 +110,9 @@ jobs:
 
       - name: Mac Engineering real task preparation tests
         run: python -m unittest discover -s tests -p 'test_mac_engineering_prepare_real_task.py' -v
+
+      - name: Mac Engineering real task runtime refresh tests
+        run: python -m unittest discover -s tests -p 'test_mac_engineering_refresh_real_task_runtime.py' -v
 
       - name: Quality & Red Team review tests
         run: python -m unittest discover -s tests -p 'test_quality_review.py' -v
