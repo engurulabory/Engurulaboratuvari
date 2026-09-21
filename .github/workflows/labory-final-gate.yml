@@ -51,6 +51,12 @@ jobs:
       - name: Mac Engineer Package 4 Mandatory DoneCheck
         run: python tools/package4_field_acceptance_donecheck.py
 
+      - name: Mac Engineer Package 5 aggregate closeout tests
+        run: python -m unittest discover -s tests -p 'test_package5_closeout.py' -v
+
+      - name: Mac Engineer Package 5 final Mandatory DoneCheck
+        run: python tools/package5_v06_donecheck.py
+
       - name: Quality & Red Team review tests
         run: python -m unittest discover -s tests -p 'test_quality_review.py' -v
 
