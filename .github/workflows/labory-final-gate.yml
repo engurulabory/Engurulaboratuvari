@@ -69,6 +69,9 @@ jobs:
       - name: Mac Engineer Package 6 source intake review syntax
         run: python -m py_compile tools/mac_engineer_source_intake_review.py
 
+      - name: Mac Engineer Package 6 delta authority review syntax
+        run: python -m py_compile tools/mac_engineer_delta_authority_review.py
+
       - name: Quality & Red Team review tests
         run: python -m unittest discover -s tests -p 'test_quality_review.py' -v
 
