@@ -1000,4 +1000,21 @@ Evaluate under original ENGÜRÜ identity:
 ## N. Exit Contract
 `Capability Matrix → Field Reality Audit → measured gap closure → Graphic/Illustration/Motion/Video/3D decisions → competitive benchmarks → efficiency evidence → Package 2C runtime binding → regression → Second Look → Evidence → Mandatory DoneCheck → Human Artistic Authority where applicable → Package 2C VERIFIED FINAL / LOCKED → Package 3 Persistent Working Memory`
 
+
+## O. v0.6 Minimal Governance Hardening Harvest — SCHEDULED, NO ROLLOUT CHANGE
+
+**Placement rule:** these are small hardening items for existing layers. They do **not** create a new core, new agent framework or parallel authority path; they do not change the locked v0.6 rollout order. Implement only when the owning package becomes active.
+
+### Package 3 — Persistent Working Memory placement
+- [ ] **Durable Task Record:** every real engineering task has one durable task identity inside existing Task State + Evidence, binding objective, authority snapshot, required capabilities, state transitions, artifacts/evidence refs, human decisions, resume checkpoint and final outcome.
+- [ ] **Governed Learning Promotion:** `OBSERVED → LEARNING_CANDIDATE → EVIDENCE → FRESH/INDEPENDENT REVIEW → ACCEPT/REJECT → VERSIONED MEMORY/SKILL PROMOTION`; one successful observation never becomes canonical truth automatically.
+
+### Package 4 — Real Field Acceptance / Finished Ability placement
+- [ ] **Specialist Spawn Guard:** open a bounded specialist only for a verified capability gap or materially useful independent second view; scope/time are bounded and all central Authority / Human Threshold permissions are inherited unchanged.
+- [ ] **Governed Tool-Gap Proposal:** `TOOL_GAP → PROPOSAL → authority/security/cost review → bounded test → evidence → ACCEPT/REJECT`; a tool gap never grants autonomous install/build/integration authority.
+- [ ] **Human Intervention Reconciliation Gate:** after Human Threshold/takeover changes real state, do not resume from stale checkpoint; re-read repo/runtime/artifact/state → reconcile differences → establish `NEW_VERIFIED_STATE` → resume.
+
+**Invariant:** specialization ≠ privilege escalation. Central Authority already exists and must not be duplicated.
+
+
 **Current single objective:** **C. Aesthetic Motor Field Reality Audit™**.
