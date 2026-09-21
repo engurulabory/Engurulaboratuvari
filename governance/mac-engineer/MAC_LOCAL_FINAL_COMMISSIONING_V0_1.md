@@ -91,6 +91,31 @@ Default evidence:
 
 This step may prove historical continuity, but it does not by itself make the historical local source package canonical GitHub source. Canonical GitHub intake occurs only after a source-hygiene review confirms what should be retained.
 
+## Phase 2.7 — Source hygiene / canonical intake review
+
+Historical continuity PASS does not automatically make the old handoff snapshot canonical source. The current runtime contains verified evolution beyond that snapshot.
+
+Run:
+
+```bash
+python3 tools/mac_engineer_source_intake_review.py
+```
+
+Default evidence:
+
+`~/Enguru/Evidence/MacEngineer/v0.6/package6-source-intake-review.json`
+
+The review:
+
+- identifies safe source candidates;
+- identifies native Swift sources;
+- excludes caches, binaries, archives and app bundles;
+- detects possible sensitive material without printing secret values;
+- classifies runtime files as exact / divergent / runtime-only;
+- preserves authority: it does not choose which side wins and does not copy anything into Git.
+
+Canonical intake remains HOLD until every divergent/runtime-only file has an evidence-backed authority decision.
+
 ## Phase 3 — Runtime identity
 
 The discovery evidence must identify the actual Mac Engineer execution surface.
