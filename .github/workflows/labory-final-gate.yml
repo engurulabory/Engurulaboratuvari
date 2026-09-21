@@ -39,6 +39,9 @@ jobs:
       - name: Shared AI behavior tests
         run: python -m unittest discover -s tests -p 'test_shared_ai_behavior.py' -v
 
+      - name: Mac Engineer Package 3 persistent working memory tests
+        run: python -m unittest discover -s tests -p 'test_working_memory.py' -v
+
       - name: Quality & Red Team review tests
         run: python -m unittest discover -s tests -p 'test_quality_review.py' -v
 
