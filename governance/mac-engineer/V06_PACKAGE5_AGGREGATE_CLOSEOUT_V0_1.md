@@ -6,9 +6,9 @@ IMPLEMENTED CANDIDATE — exact-head CI and post-merge exact-main verification r
 
 ## NIYET
 
-Close v0.6 only from reconciled package evidence, locked target thresholds, zero unresolved critical failures and one executable final DoneCheck.
+Close the GitHub engineering phase of v0.6 only from reconciled package evidence, locked target thresholds, zero unresolved critical failures and one executable engineering DoneCheck.
 
-Package 5 is a closure layer. It does not introduce a new Core or change runtime authority.
+Package 5 is the GitHub engineering closure layer. It does not introduce a new Core or change runtime authority. It cannot by itself issue the product-level v0.6 VERIFIED FINAL / LOCKED judgment; Package 6 Mac Local Final Commissioning remains mandatory.
 
 ## Canonical target set
 
@@ -97,8 +97,8 @@ The detailed bases and evidence refs live in the scorecard and are executable th
 
 ## Closure sequence
 
-`aggregate scorecard → negative tests → Package 5 Mandatory DoneCheck™ → exact-head CI → Evidence/WORKLIST reconciliation → merge → exact-main verification → v0.6 VERIFIED FINAL / LOCKED`
+`aggregate scorecard → negative tests → Package 5 Mandatory DoneCheck™ → exact-head CI → Evidence/WORKLIST reconciliation → merge → exact-main verification → GITHUB_ENGINEERING_VERIFIED / MAC_COMMISSIONING_REQUIRED → Package 6 Mac Local Final Commissioning → v0.6 VERIFIED FINAL / LOCKED`
 
 ## NEXT ACTION
 
-Run Package 5 tests + Mandatory DoneCheck™ inside the full Labory Final Gate. If exact-head is green, record the Package 5 candidate evidence and reconcile the first three Package 5 WORKLIST items. The final v0.6 closure item remains open until post-merge exact-main PASS is observed.
+Run Package 5 tests + Mandatory DoneCheck™ inside the full Labory Final Gate. If exact-head is green, record Package 5 evidence, reconcile its engineering-closeout WORKLIST items, merge and verify exact-main. Then move directly to Package 6 Mac Local Final Commissioning; only Package 6 may unlock product-level v0.6 VERIFIED FINAL / LOCKED.
