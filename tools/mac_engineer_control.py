@@ -119,7 +119,7 @@ def status() -> dict[str, Any]:
         next_action = "Inspect the prepared product source and initialize/publish canonical Git authority."
     elif not product.get("origin"):
         issues.append("PRODUCT_SOURCE_REMOTE_REQUIRED")
-        next_action = "python3 tools/mac_engineer_control.py bootstrap-source --publish"
+        next_action = "python3 tools/mac_engineer_control.py publish-source"
     elif product.get("clean") is not True:
         issues.append("PRODUCT_SOURCE_CLEAN_REQUIRED")
         next_action = "Reconcile product-source changes before continuing commissioning."
@@ -246,6 +246,7 @@ def main() -> int:
     sub.add_parser("status")
     boot = sub.add_parser("bootstrap-source")
     boot.add_argument("--publish", action="store_true")
+    sub.add_parser("publish-source")
     sub.add_parser("audit-layout")
 
     args = parser.parse_args()
@@ -254,6 +255,8 @@ def main() -> int:
         return 0
     if args.command == "bootstrap-source":
         return bootstrap_source(args.publish)
+    if args.command == "publish-source":
+        return bootstrap_source(True)
     if args.command == "audit-layout":
         proc = subprocess.run(
             [sys.executable, str(LAYOUT_AUDIT)],
