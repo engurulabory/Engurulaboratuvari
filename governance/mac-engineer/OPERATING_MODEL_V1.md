@@ -118,6 +118,36 @@ At any moment there is one canonical active objective in Labory WORKLIST.
 
 Mac Engineer may work on many repositories, but its own product-development objective remains singular.
 
+## 4.1 Session continuity
+
+Every new ChatGPT/Terminal session begins from canonical state, not remembered conversation context.
+
+Canonical start:
+
+```bash
+cd "$LABORY" &&
+git fetch origin main &&
+git checkout main &&
+git pull --ff-only origin main &&
+python3 tools/mac_engineer_control.py session-start
+```
+
+Canonical handoff:
+
+```bash
+python3 tools/mac_engineer_control.py session-handoff
+```
+
+The session continuity contract is:
+
+`governance/mac-engineer/SESSION_CONTINUITY_CONTRACT_V1.md`
+
+Machine-readable current state is:
+
+`governance/mac-engineer/SESSION_STATE_V1.json`
+
+If WORKLIST, session-state, exact-main or local product-source truth disagree, the session returns HOLD and reconciles the difference before engineering continues.
+
 ## 5. Daily control command
 
 During v0.6 commissioning, the canonical control-plane entry point is:
