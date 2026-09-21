@@ -29,6 +29,11 @@ EXACT_SHA_REBUILD_INSTALL = ROOT / "tools" / "mac_engineer_exact_sha_rebuild_ins
 SYNC_CONTEXT = ROOT / "tools" / "mac_engineering_sync_context.py"
 RUNTIME_PROVENANCE = ROOT / "tools" / "mac_engineer_runtime_provenance.py"
 PREPARE_REAL_TASK = ROOT / "tools" / "mac_engineering_prepare_real_task.py"
+VERIFY_REAL_TASK = ROOT / "tools" / "mac_engineering_verify_real_task.py"
+RESTART_CONTINUITY = ROOT / "tools" / "mac_engineering_restart_continuity.py"
+VERIFY_CONTINUITY = ROOT / "tools" / "mac_engineering_verify_continuity.py"
+RECONCILE_RECOVERY = ROOT / "tools" / "mac_engineering_reconcile_recovery.py"
+BUILD_COMMISSIONING_BUNDLE = ROOT / "tools" / "mac_engineering_build_commissioning_bundle.py"
 
 
 def run(cmd: list[str], cwd: Path | None = None) -> tuple[int, str, str]:
@@ -269,6 +274,11 @@ def main() -> int:
     sub.add_parser("sync-context")
     sub.add_parser("verify-runtime-provenance")
     sub.add_parser("prepare-real-task")
+    sub.add_parser("verify-real-task")
+    sub.add_parser("restart-continuity")
+    sub.add_parser("verify-continuity")
+    sub.add_parser("reconcile-recovery")
+    sub.add_parser("build-commissioning-bundle")
 
     args = parser.parse_args()
     if args.command == "status":
@@ -344,6 +354,41 @@ def main() -> int:
     if args.command == "prepare-real-task":
         proc = subprocess.run(
             [sys.executable, str(PREPARE_REAL_TASK)],
+            cwd=str(ROOT),
+            check=False,
+        )
+        return proc.returncode
+    if args.command == "verify-real-task":
+        proc = subprocess.run(
+            [sys.executable, str(VERIFY_REAL_TASK)],
+            cwd=str(ROOT),
+            check=False,
+        )
+        return proc.returncode
+    if args.command == "restart-continuity":
+        proc = subprocess.run(
+            [sys.executable, str(RESTART_CONTINUITY)],
+            cwd=str(ROOT),
+            check=False,
+        )
+        return proc.returncode
+    if args.command == "verify-continuity":
+        proc = subprocess.run(
+            [sys.executable, str(VERIFY_CONTINUITY)],
+            cwd=str(ROOT),
+            check=False,
+        )
+        return proc.returncode
+    if args.command == "reconcile-recovery":
+        proc = subprocess.run(
+            [sys.executable, str(RECONCILE_RECOVERY)],
+            cwd=str(ROOT),
+            check=False,
+        )
+        return proc.returncode
+    if args.command == "build-commissioning-bundle":
+        proc = subprocess.run(
+            [sys.executable, str(BUILD_COMMISSIONING_BUNDLE)],
             cwd=str(ROOT),
             check=False,
         )
