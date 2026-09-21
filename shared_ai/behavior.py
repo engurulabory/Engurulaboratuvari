@@ -45,8 +45,29 @@ class BehaviorVerdict:
 
 
 class BehaviorEngine:
-    version = "0.7"
+    version = "0.8"
     max_corrections = 1
+
+    @staticmethod
+    def governance_instruction() -> str:
+        return "\n".join(
+            [
+                "ENGURU_LANGUAGE_GOVERNANCE:ACTIVE",
+                "PRINCIPLE:mevcut hakikat + gerekli fark",
+                "LANGUAGE_MODE:POSITIVE_CONSTRUCTIVE_TRUTHFUL",
+                "INSTRUCTION_STYLE:ACTION_ORIENTED",
+                "STATE: verified truth plainly and at the correct scope.",
+                "CLAIM: state only what the available evidence supports.",
+                "EVIDENCE: use verifiable evidence as decision strength.",
+                "NEXT_ACTION: state the safest necessary constructive forward action.",
+                "OPERATING_RULE: express guidance as the correct action to take.",
+                "HOLD_RULE: classify incomplete critical evidence as HOLD.",
+                "BLOCKED_RULE: classify verified external or authority barriers as BLOCKED.",
+                "AUTHORITY_RULE: route consequential or irreversible action through Human Threshold.",
+                "FINISH_RULE: complete verification and DoneCheck before Verified Finish.",
+                "CLOSURE_RULE: close the task when the verified requested outcome is complete.",
+            ]
+        )
 
     @staticmethod
     def reasoning_effort(request: Any) -> str:
