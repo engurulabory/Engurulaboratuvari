@@ -27,6 +27,7 @@ PUBLISH_V06_ALIGNMENT = ROOT / "tools" / "mac_engineer_publish_v06_alignment.py"
 MERGE_V06_ALIGNMENT = ROOT / "tools" / "mac_engineer_merge_v06_alignment.py"
 EXACT_SHA_REBUILD_INSTALL = ROOT / "tools" / "mac_engineer_exact_sha_rebuild_install.py"
 SYNC_CONTEXT = ROOT / "tools" / "mac_engineering_sync_context.py"
+RUNTIME_PROVENANCE = ROOT / "tools" / "mac_engineer_runtime_provenance.py"
 
 
 def run(cmd: list[str], cwd: Path | None = None) -> tuple[int, str, str]:
@@ -265,6 +266,7 @@ def main() -> int:
     sub.add_parser("merge-v06-alignment")
     sub.add_parser("rebuild-install")
     sub.add_parser("sync-context")
+    sub.add_parser("verify-runtime-provenance")
 
     args = parser.parse_args()
     if args.command == "status":
@@ -326,6 +328,13 @@ def main() -> int:
     if args.command == "sync-context":
         proc = subprocess.run(
             [sys.executable, str(SYNC_CONTEXT)],
+            cwd=str(ROOT),
+            check=False,
+        )
+        return proc.returncode
+    if args.command == "verify-runtime-provenance":
+        proc = subprocess.run(
+            [sys.executable, str(RUNTIME_PROVENANCE)],
             cwd=str(ROOT),
             check=False,
         )
