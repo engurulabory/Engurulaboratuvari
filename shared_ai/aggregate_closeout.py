@@ -79,6 +79,35 @@ def assess_v06_aggregate(payload: Mapping[str, Any]) -> AggregateCloseoutResult:
         else:
             evidence.extend(f"{package_id}:{ref}" for ref in refs)
 
+    dimensions = payload.get("operatingCharacterDimensions")
+    if not isinstance(dimensions, list) or len(dimensions) != 12:
+        issues.append("OPERATING_CHARACTER_12_DIMENSIONS_REQUIRED")
+    else:
+        names: set[str] = set()
+        scores: list[float] = []
+        for item in dimensions:
+            if not isinstance(item, Mapping):
+                issues.append("INVALID_OPERATING_CHARACTER_DIMENSION")
+                continue
+            name = str(item.get("dimension", "")).strip()
+            score = _number(item.get("score"))
+            refs = item.get("evidenceRefs", [])
+            if not name or name in names:
+                issues.append("OPERATING_CHARACTER_DIMENSION_IDENTITY_INVALID")
+            names.add(name)
+            if score is None or score < 0 or score > 100:
+                issues.append(f"OPERATING_CHARACTER_DIMENSION_SCORE_INVALID:{name or 'UNKNOWN'}")
+            else:
+                scores.append(score)
+            if not isinstance(refs, list) or not refs:
+                issues.append(f"OPERATING_CHARACTER_DIMENSION_EVIDENCE_MISSING:{name or 'UNKNOWN'}")
+        if len(scores) == 12:
+            operating = payload.get("domains", {}).get("operating_character", {})
+            declared = _number(operating.get("score")) if isinstance(operating, Mapping) else None
+            calculated = round(sum(scores) / len(scores), 1)
+            if declared is None or abs(declared - calculated) > 1e-9:
+                issues.append("OPERATING_CHARACTER_MEAN_MISMATCH")
+
     domains = payload.get("domains")
     if not isinstance(domains, Mapping):
         issues.append("DOMAIN_SCORECARD_REQUIRED")
