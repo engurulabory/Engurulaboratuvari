@@ -10,6 +10,7 @@ from tools.mac_engineer_session_continuity import (
     WORKLIST,
     active_objective,
     normalize_objective,
+    authorized_product_working_branch,
 )
 
 
@@ -41,6 +42,49 @@ class MacEngineerSessionContinuityTests(unittest.TestCase):
         self.assertIn("SESSION START", text)
         self.assertIn("SESSION HANDOFF", text)
         self.assertIn("One active objective", text)
+
+    def test_authorized_publication_branch_passes_exact_contract(self):
+        state = {
+            "currentObjective": "PRODUCT_SOURCE_V0_6_ALIGNMENT_PUBLICATION",
+            "observedV06AlignmentPreparation": {
+                "branch": "feature/v06-version-branding-alignment",
+                "commit": "02b7cc3",
+                "baseMain": "3ac09bd",
+            },
+        }
+        product = {
+            "branch": "feature/v06-version-branding-alignment",
+            "head": "02b7cc3",
+            "origin_main": "3ac09bd",
+            "clean": True,
+        }
+        authorized, policy = authorized_product_working_branch(
+            state,
+            product,
+        )
+        self.assertTrue(authorized)
+        self.assertTrue(policy["authorized"])
+
+    def test_unrecorded_product_branch_is_not_authorized(self):
+        state = {
+            "currentObjective": "PRODUCT_SOURCE_V0_6_ALIGNMENT_PUBLICATION",
+            "observedV06AlignmentPreparation": {
+                "branch": "feature/v06-version-branding-alignment",
+                "commit": "02b7cc3",
+                "baseMain": "3ac09bd",
+            },
+        }
+        product = {
+            "branch": "feature/other",
+            "head": "02b7cc3",
+            "origin_main": "3ac09bd",
+            "clean": True,
+        }
+        authorized, _ = authorized_product_working_branch(
+            state,
+            product,
+        )
+        self.assertFalse(authorized)
 
     def test_worklist_is_canonical_source(self):
         self.assertTrue(WORKLIST.is_file())
