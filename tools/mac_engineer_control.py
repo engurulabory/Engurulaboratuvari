@@ -18,6 +18,7 @@ EVIDENCE_ROOT = Path.home() / "Enguru" / "Evidence" / "MacEngineer" / "v0.6"
 BOOTSTRAP = ROOT / "tools" / "mac_engineer_bootstrap_product_source.py"
 SOURCE_REVIEW = ROOT / "tools" / "mac_engineer_source_intake_review.py"
 DELTA_REVIEW = ROOT / "tools" / "mac_engineer_delta_authority_review.py"
+LAYOUT_AUDIT = ROOT / "tools" / "mac_engineer_layout_audit.py"
 
 
 def run(cmd: list[str], cwd: Path | None = None) -> tuple[int, str, str]:
@@ -245,6 +246,7 @@ def main() -> int:
     sub.add_parser("status")
     boot = sub.add_parser("bootstrap-source")
     boot.add_argument("--publish", action="store_true")
+    sub.add_parser("audit-layout")
 
     args = parser.parse_args()
     if args.command == "status":
@@ -252,6 +254,13 @@ def main() -> int:
         return 0
     if args.command == "bootstrap-source":
         return bootstrap_source(args.publish)
+    if args.command == "audit-layout":
+        proc = subprocess.run(
+            [sys.executable, str(LAYOUT_AUDIT)],
+            cwd=str(ROOT),
+            check=False,
+        )
+        return proc.returncode
     return 2
 
 
