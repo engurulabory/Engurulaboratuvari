@@ -1026,7 +1026,7 @@ Evaluate under original ENGÜRÜ identity:
 - [x] **Aggregate Evidence Bundle:** reconcile v0.6 package evidence into one canonical engineering-closure surface; preserve exact source SHA/run refs and distinguish GitHub technical evidence, Mac-local field evidence and Human Threshold evidence.
 - [x] **Locked target reconciliation:** Operating Character **98–99+ field**; Architecture Foundations **97+ applied**; Engineering Foundations **98+**; Intellectual Depth **97+**; Finished Ability **98+**; Human-Centered Conversation **97+**; Persistent Working Memory **97+**; **critical failures = 0**. A target may PASS only from applicable evidence; unsupported scores remain HOLD.
 - [x] **GitHub Engineering Mandatory DoneCheck™:** implementation → regression → canonical truth → authority boundaries → evidence completeness → PASS / HOLD / BLOCKED.
-- [ ] **GitHub Engineering Closeout:** exact-head PASS → merge → exact-main PASS → state **GITHUB_ENGINEERING_VERIFIED / MAC_COMMISSIONING_REQUIRED**.
+- [x] **GitHub Engineering Closeout:** exact-head PASS → merge `49198ddad2f9aac987d6a2c3efbd6c58f910a17a` → exact-main Final Gate #214 + IP Gate #234 + Fleet #219 PASS → state **GITHUB_ENGINEERING_VERIFIED / MAC_COMMISSIONING_REQUIRED**.
 
 ### Package 6 — Mac Local Final Commissioning
 - [ ] **Exact-main sync:** Mac working copy resolves to the exact canonical GitHub main SHA; dirty/divergent state is reconciled before commissioning.
@@ -1038,4 +1038,4 @@ Evaluate under original ENGÜRÜ identity:
 - [ ] **Mac Local Mandatory DoneCheck™:** work done? actually works? real Mac task? restart/resume? recovery? evidence? authority boundaries? critical failures = 0?
 - [ ] **v0.6 final closure:** GitHub engineering PASS + Mac local commissioning PASS → **ENGÜRÜ Mac Engineer™ v0.6 VERIFIED FINAL / LOCKED**.
 
-**Current single objective:** **Package 5 — GitHub Engineering Closeout / Aggregate Evidence + Mandatory DoneCheck™**.
+**Current single objective:** **Package 6 — Mac Local Final Commissioning**.
