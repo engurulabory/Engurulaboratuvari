@@ -57,6 +57,9 @@ jobs:
       - name: Mac Engineer Package 5 final Mandatory DoneCheck
         run: python tools/package5_v06_donecheck.py
 
+      - name: Mac Engineer Package 6 commissioning contract tests
+        run: python -m unittest discover -s tests -p 'test_mac_local_commissioning.py' -v
+
       - name: Quality & Red Team review tests
         run: python -m unittest discover -s tests -p 'test_quality_review.py' -v
 
