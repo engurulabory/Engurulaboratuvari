@@ -28,9 +28,11 @@
     "productCIExactMain": "PASS",
     "productV06ExactMainCI": "PASS",
     "rebuildInstallPreflight": "PASS",
-    "exactShaRebuildInstall": "PASS"
+    "exactShaRebuildInstall": "PASS",
+    "runtimeAppProvenance": "PASS",
+    "archiveDecision": "PASS_PRESERVE_FIRST"
   },
-  "currentObjective": "RUNTIME_APP_PROVENANCE_CLOSURE",
+  "currentObjective": "REAL_MAC_ENGINEERING_TASK",
   "observedProductPublication": {
     "source": "MAC_FIELD_OUTPUT",
     "localSourceHead": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
@@ -44,8 +46,6 @@
     "productCIRunNumber": 1
   },
   "canonicalNextLine": [
-    "RUNTIME_APP_PROVENANCE_CLOSURE",
-    "HISTORICAL_HANDOFF_BACKUP_ARTIFACT_ARCHIVE_DECISION",
     "REAL_MAC_ENGINEERING_TASK",
     "CHECKPOINT_RESTART_RESUME",
     "RECOVERY_FIELD_PROOF_RECONCILIATION",
@@ -169,5 +169,24 @@
     "rollbackPrepared": true,
     "rollbackUsed": false,
     "evidence": "~/Enguru/Evidence/MacEngineer/v0.6/package6-exact-sha-rebuild-install.json"
+  },
+  "observedRuntimeAppProvenance": {
+    "state": "PASS",
+    "productSourceSha": "28b901ab3303f4be3c7356b11218b62422f2da42",
+    "provenanceSourceSha": "28b901ab3303f4be3c7356b11218b62422f2da42",
+    "installEvidenceSourceSha": "28b901ab3303f4be3c7356b11218b62422f2da42",
+    "installedAppVersion": "0.6",
+    "runtimeBuildAppVersion": "0.6",
+    "nativeExecutableSha256": "168d9560148bb61e20b05aa7abea2a0546f7b23568551e8724997fd2e2c5c784",
+    "allSourceShaEqual": true,
+    "allNativeHashEqual": true,
+    "evidence": "~/Enguru/Evidence/MacEngineer/v0.6/package6-runtime-app-provenance-closure.json"
+  },
+  "archiveDecision": {
+    "state": "PASS_PRESERVE_FIRST",
+    "historicalHandoff": "PRESERVE_AS_PROVENANCE_UNTIL_V0_6_FINAL",
+    "installBackups": "RETAIN_AS_ROLLBACK_AND_RECOVERY_EVIDENCE",
+    "runtimeBuildApp": "KEEP_ACTIVE_GENERATED_ARTIFACT",
+    "destructiveCleanup": false
   }
 }
