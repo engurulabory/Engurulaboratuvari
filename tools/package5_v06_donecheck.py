@@ -44,7 +44,7 @@ def main() -> int:
         json.dumps(
             {
                 "state": "PASS",
-                "claim": "ENGURU Mac Engineer v0.6 Package 5 aggregate evidence satisfies the locked internal field/applied closure targets.",
+                "claim": "ENGURU Mac Engineer v0.6 Package 5 aggregate evidence satisfies the locked GitHub engineering closeout targets; Mac Local Final Commissioning remains required for product final.",
                 "scoreType": payload["scoreType"],
                 "domains": domains,
                 "operatingCharacterMean": operating_mean,
@@ -55,7 +55,9 @@ def main() -> int:
                 "doneCheckCount": len(payload["mandatoryDoneCheck"]),
                 "evidenceRefCount": len(result.evidence),
                 "truthBoundary": payload["truthBoundary"],
-                "next_action": "Verify exact-head CI, reconcile Package 5 WORKLIST, merge, then require exact-main PASS before v0.6 VERIFIED FINAL / LOCKED.",
+                "productFinalState": payload["productFinalState"],
+                "nextRequiredGate": payload["nextRequiredGate"],
+                "next_action": "Verify exact-head CI, reconcile Package 5 WORKLIST, merge, verify exact-main, then run Package 6 Mac Local Final Commissioning before product-level v0.6 VERIFIED FINAL / LOCKED.",
             },
             ensure_ascii=False,
             indent=2,
