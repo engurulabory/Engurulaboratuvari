@@ -826,6 +826,46 @@ Trend / technology chain:
 `observe → source/provenance → relevance test → equal-brief experiment → quality + usability + accessibility + performance delta → adopt / reject / review later`
 
 
+
+## C.3 Atelier Craft & Original Design Discipline™ — 100/100 TARGET
+
+**Intent:** every product is approached with tailor-level care: product-specific proportion, composition, typography, interaction, material and detail decisions. Aesthetic Motor must master originality without falling into novelty-for-novelty, template reuse or a single ENGÜRÜ house look.
+
+**Truth boundary:** originality is a governed capability target, not a claim that every first draft is award-grade. PASS requires real alternatives, real render evidence, critique, correction and Human Artistic Authority™. Reuse may preserve proven principles and mechanisms, but must not collapse products into repeated visual templates.
+
+- [ ] **Bespoke product fit:** derive the visual system from this product's purpose, audience, content, domain, behavior and emotional intent; do not start from a preferred house template.
+- [ ] **Product-specific Design DNA:** record the candidate's composition logic, typographic character, spatial rhythm, color/light logic, material language, interaction tone and visual risks.
+- [ ] **Exactly 3 genuinely original alternatives:** every direction must present a materially different visual thesis, not a palette/font swap.
+- [ ] **Alternative diversity gate:** directions differ across several structural axes such as composition, focal strategy, typography, density, imagery/material, interaction, motion and information rhythm.
+- [ ] **No cosmetic branching:** if two directions share substantially the same layout skeleton and only change styling, they fail the direction gate.
+- [ ] **Independent direction critique:** each alternative receives its own strengths, risks, clichés, product-fit weaknesses and originality attacks before Human direction selection.
+- [ ] **Internal-output distance:** compare against recent ENGÜRÜ outputs to detect accidental repetition of hero geometry, card grammar, type hierarchy, spacing rhythm, material treatment and motion language.
+- [ ] **Reference-distance guard:** inspirations may inform principles, but distinctive competitor compositions, motifs, identities and signature visual grammar must not be reproduced.
+- [ ] **Originality with usability:** uniqueness never excuses weak clarity, broken interaction, inaccessible contrast, poor responsive behavior or implementation fragility.
+- [ ] **Tailor-level responsive fit:** desktop, tablet and mobile are individually composed for the same intent; responsive adaptation is treated as fitting, not shrinking.
+- [ ] **Content tailoring:** long/short copy, TR/EN, data density, empty states and real product content are allowed to change composition where needed rather than being forced into a rigid template.
+- [ ] **Micro-detail craft pass:** optical alignment, baseline relationships, edge distances, control proportions, icon/text balance, radius, border, shadow, state transition and visual weight receive a final detail pass.
+- [ ] **Interaction tailoring:** controls, feedback, loading, error, success, disabled, modal/dialog and navigation behavior inherit the selected direction's visual character without sacrificing functional truth.
+- [ ] **Material / light specificity:** shadows, gradients, depth, blur, texture and light are used only when the product concept justifies them; generic premium effects are rejected.
+- [ ] **Deliberate restraint:** absence, whitespace and simplicity are treated as designed choices with measurable hierarchy rather than empty leftovers.
+- [ ] **No generic premium:** glass, gradients, oversized serif, blobs, cards or dark-mode styling cannot manufacture a premium verdict by themselves.
+- [ ] **Craft defect ledger:** visible awkwardness, imbalance, crowding, dead space, repetition, weak focus, poor wrapping and generic composition are recorded as aesthetic defects, not dismissed as taste.
+- [ ] **Bounded reconstruction:** when a direction is conceptually right but visually weak, repair the smallest sufficient composition/detail layer before inventing a replacement direction.
+- [ ] **Fresh-Eye originality check:** a fresh reviewer must be able to explain what makes the chosen result specific to this product and why it is not interchangeable with another product.
+- [ ] **Blind alternative test:** where practical, direction labels are hidden and reviewers judge product fit, memorability, coherence and originality without being told which path is preferred.
+- [ ] **Verified learning without template lock:** successful craft principles may be learned; visual appearance is not promoted as a universal template.
+- [ ] **Human Artistic Authority™:** final originality, emotional precision and artistic acceptance remain human-governed.
+- [ ] **Repeated field proof:** 100/100 target requires repeated real products across materially different categories; one bespoke success cannot certify motor-wide mastery.
+
+Atelier chain:
+
+`intent → product-specific Design DNA → 3 independent visual theses → originality/diversity gate → real render → critique → Human direction selection → tailor-level responsive fit → micro-detail craft → Fresh-Eye → bounded correction → re-render → Human Artistic Authority™ → Evidence → DoneCheck™`
+
+Originality rule:
+
+`reuse principles, not appearance; preserve craft, not template; learn judgment, not style cloning`
+
+
 ## D. Graphic Design / Brand Production Expansion
 - [ ] Poster / key visual.
 - [ ] Social campaign family.
