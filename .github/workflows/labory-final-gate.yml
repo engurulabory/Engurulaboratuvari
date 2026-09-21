@@ -87,6 +87,9 @@ jobs:
       - name: Mac Engineer product CI verifier tests
         run: python -m unittest discover -s tests -p 'test_mac_engineer_product_ci_verify.py' -v
 
+      - name: Mac Engineer rebuild install preflight tests
+        run: python -m unittest discover -s tests -p 'test_mac_engineer_rebuild_install_preflight.py' -v
+
       - name: Quality & Red Team review tests
         run: python -m unittest discover -s tests -p 'test_quality_review.py' -v
 

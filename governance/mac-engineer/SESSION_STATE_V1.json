@@ -23,9 +23,11 @@
   "closedTruth": {
     "githubEngineeringCloseout": "VERIFIED_LOCKED",
     "localProductSourceBootstrap": "PASS",
-    "macLayoutAudit": "PASS"
+    "macLayoutAudit": "PASS",
+    "productSourceAuthority": "PASS",
+    "productCIExactMain": "PASS"
   },
-  "currentObjective": "PRODUCT_CI_EXACT_MAIN_VERIFICATION",
+  "currentObjective": "EXACT_SHA_REBUILD_INSTALL_PREFLIGHT",
   "observedProductPublication": {
     "source": "MAC_FIELD_OUTPUT",
     "localSourceHead": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
@@ -34,11 +36,12 @@
     "pushState": "PASS",
     "remoteTracking": true,
     "localExactOriginMain": true,
-    "productCIExactMain": "PENDING_VERIFICATION"
+    "productCIExactMain": "PASS",
+    "productCIRunId": 35640369690,
+    "productCIRunNumber": 1
   },
   "canonicalNextLine": [
-    "PRODUCT_CI_EXACT_MAIN",
-    "LABORY_PRODUCT_SOURCE_BINDING",
+    "EXACT_SHA_REBUILD_INSTALL_PREFLIGHT",
     "EXACT_SHA_REBUILD_INSTALL",
     "RUNTIME_APP_PROVENANCE",
     "HISTORICAL_HANDOFF_BACKUP_ARTIFACT_ARCHIVE_DECISION",

@@ -1033,9 +1033,9 @@ Evaluate under original ENGÜRÜ identity:
 - [x] **Historical source + field delta reconciliation:** 97 safe historical source files + 1 Swift source; zero secret findings; 13 current-field delta authority candidates verified by compile + runtime tests.
 - [x] **Dedicated product source bootstrap:** local canonical source prepared at `~/Enguru/Projects/enguru-mac-engineer`; 3 native + 26 runtime source files; runtime compile PASS; 25 runtime tests PASS; zsh syntax PASS; native Swift build PASS/executable; clean local Git `main` root commit `3ac09bd7d022a6114b9066afca14ff170e0177c1`.
 - [x] **Mac layout audit:** PASS — 15 findings reconciled; canonical=8, known secondary=7, unknown=0, stale temp=0, missing canonical=0, unknown processes=0, cleanup candidates=0.
-- [ ] **Dedicated GitHub source authority:** private `engurulabory/enguru-mac-engineer` created and local `main` pushed/tracking `origin/main` at `3ac09bd7d022a6114b9066afca14ff170e0177c1` — Mac publication PASS; **ACTIVE — product CI exact-main verification + Labory product-source SHA binding**.
+- [x] **Dedicated GitHub source authority:** private `engurulabory/enguru-mac-engineer`; local HEAD = local `origin/main` = remote `main` = `3ac09bd7d022a6114b9066afca14ff170e0177c1`; Product CI run #1 (`35640369690`) exact-head `completed/success`; Labory binding recorded.
 - [x] **Exact-main sync:** Mac `main` = GitHub `origin/main` at `e4f7670429ccdc57178065093f45ced83d07696f`; pre-sync local Shared AI edits preserved on `local/package6-preserve-20260921T201619` / `d3e5dca`; worktree clean.
-- [ ] **Local runtime boot / source binding:** runtime/app/process + Shared AI + Ollama/qwen3:14b ACTIVE/PASS; historical continuity PASS; source hygiene PASS; runtime delta authority PASS (13/13, compile + tests PASS). **ACTIVE — DEDICATED PRODUCT SOURCE BOOTSTRAP:** prepare `~/Enguru/Projects/enguru-mac-engineer` → private `engurulabory/enguru-mac-engineer` → product exact-main CI → rebuild/install from exact product SHA.
+- [ ] **Local runtime boot / source binding:** runtime/app/process + Shared AI + Ollama/qwen3:14b ACTIVE/PASS; product source authority + exact-main CI PASS at `3ac09bd7d022a6114b9066afca14ff170e0177c1`. **ACTIVE — EXACT-SHA REBUILD/INSTALL PREFLIGHT:** verify source version/build contract and current installed/runtime provenance, then rebuild/install from the canonical product SHA.
 - [ ] **Real Mac task:** one real engineering task is executed through the actual Mac Engineer path; health-only evidence is insufficient.
 - [ ] **Persistent continuity:** task checkpoint is written, runtime/process is restarted, and the same task resumes from verified persistent state without identity drift.
 - [ ] **Recovery field proof:** inject or observe one bounded recoverable failure → diagnose → smallest repair/recovery → reverify.
@@ -1043,4 +1043,4 @@ Evaluate under original ENGÜRÜ identity:
 - [ ] **Mac Local Mandatory DoneCheck™:** work done? actually works? real Mac task? restart/resume? recovery? evidence? authority boundaries? critical failures = 0?
 - [ ] **v0.6 final closure:** GitHub engineering PASS + Mac local commissioning PASS → **ENGÜRÜ Mac Engineer™ v0.6 VERIFIED FINAL / LOCKED**.
 
-**Current single objective:** **Package 6 — Product CI Exact-Main Verification**.
+**Current single objective:** **Package 6 — Exact-SHA Rebuild/Install Preflight**.

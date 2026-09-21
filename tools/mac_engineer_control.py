@@ -21,6 +21,7 @@ DELTA_REVIEW = ROOT / "tools" / "mac_engineer_delta_authority_review.py"
 LAYOUT_AUDIT = ROOT / "tools" / "mac_engineer_layout_audit.py"
 SESSION_CONTINUITY = ROOT / "tools" / "mac_engineer_session_continuity.py"
 PRODUCT_CI_VERIFY = ROOT / "tools" / "mac_engineer_product_ci_verify.py"
+REBUILD_PREFLIGHT = ROOT / "tools" / "mac_engineer_rebuild_install_preflight.py"
 
 
 def run(cmd: list[str], cwd: Path | None = None) -> tuple[int, str, str]:
@@ -253,6 +254,7 @@ def main() -> int:
     sub.add_parser("session-start")
     sub.add_parser("session-handoff")
     sub.add_parser("verify-product-ci")
+    sub.add_parser("rebuild-preflight")
 
     args = parser.parse_args()
     if args.command == "status":
@@ -272,6 +274,13 @@ def main() -> int:
     if args.command == "verify-product-ci":
         proc = subprocess.run(
             [sys.executable, str(PRODUCT_CI_VERIFY)],
+            cwd=str(ROOT),
+            check=False,
+        )
+        return proc.returncode
+    if args.command == "rebuild-preflight":
+        proc = subprocess.run(
+            [sys.executable, str(REBUILD_PREFLIGHT)],
             cwd=str(ROOT),
             check=False,
         )
