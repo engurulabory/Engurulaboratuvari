@@ -27,7 +27,7 @@
     "productSourceAuthority": "PASS",
     "productCIExactMain": "PASS"
   },
-  "currentObjective": "EXACT_SHA_REBUILD_INSTALL_PREFLIGHT",
+  "currentObjective": "PRODUCT_SOURCE_V0_6_ALIGNMENT",
   "observedProductPublication": {
     "source": "MAC_FIELD_OUTPUT",
     "localSourceHead": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
@@ -41,10 +41,32 @@
     "productCIRunNumber": 1
   },
   "canonicalNextLine": [
-    "EXACT_SHA_REBUILD_INSTALL_PREFLIGHT",
+    "PRODUCT_SOURCE_V06_ALIGNMENT",
+    "PRODUCT_CI_EXACT_MAIN",
+    "REBUILD_PREFLIGHT_RECHECK",
     "EXACT_SHA_REBUILD_INSTALL",
     "RUNTIME_APP_PROVENANCE",
     "HISTORICAL_HANDOFF_BACKUP_ARTIFACT_ARCHIVE_DECISION",
     "REAL_MAC_TASK"
-  ]
+  ],
+  "observedRebuildPreflight": {
+    "state": "HOLD",
+    "issues": [
+      "PRODUCT_VERSION_ALIGNMENT_REQUIRED",
+      "PRODUCT_BUILD_VERSION_ALIGNMENT_REQUIRED",
+      "RUNTIME_SOURCE_ASSET_REVIEW_REQUIRED:static/engineer-emblem.png"
+    ],
+    "productSourceVersion": "0.4",
+    "installedAppVersion": "0.4",
+    "runtimeParity": {
+      "productFiles": 26,
+      "currentFiles": 27,
+      "exact": 26,
+      "changed": 0,
+      "missingCurrent": 0,
+      "currentOnly": [
+        "static/engineer-emblem.png"
+      ]
+    }
+  }
 }

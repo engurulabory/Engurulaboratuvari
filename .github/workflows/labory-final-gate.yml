@@ -90,6 +90,9 @@ jobs:
       - name: Mac Engineer rebuild install preflight tests
         run: python -m unittest discover -s tests -p 'test_mac_engineer_rebuild_install_preflight.py' -v
 
+      - name: Mac Engineer v0.6 alignment preparation tests
+        run: python -m unittest discover -s tests -p 'test_mac_engineer_prepare_v06_alignment.py' -v
+
       - name: Quality & Red Team review tests
         run: python -m unittest discover -s tests -p 'test_quality_review.py' -v
 
