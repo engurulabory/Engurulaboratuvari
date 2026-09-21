@@ -19,7 +19,7 @@ from typing import Any
 
 SOURCE_SUFFIXES = {
     ".py", ".swift", ".html", ".css", ".js", ".mjs", ".json",
-    ".yaml", ".yml", ".toml", ".plist", ".sh", ".md", ".txt",
+    ".yaml", ".yml", ".toml", ".plist", ".sh", ".command", ".md", ".txt",
 }
 RUNTIME_SOURCE_NAMES = {
     "app.py", "provider.py", "repo_manager.py", "backup_manager.py",
