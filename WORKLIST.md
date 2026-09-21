@@ -1029,8 +1029,12 @@ Evaluate under original ENGÜRÜ identity:
 - [x] **GitHub Engineering Closeout:** exact-head PASS → merge `49198ddad2f9aac987d6a2c3efbd6c58f910a17a` → exact-main Final Gate #214 + IP Gate #234 + Fleet #219 PASS → state **GITHUB_ENGINEERING_VERIFIED / MAC_COMMISSIONING_REQUIRED**.
 
 ### Package 6 — Mac Local Final Commissioning
+- [x] **Source ownership model:** Labory = CONTROL_PLANE; dedicated Mac Engineer repository = PRODUCT SOURCE; Runtime/Applications = EXECUTION OUTPUTS; local Evidence = field proof.
+- [x] **Historical source + field delta reconciliation:** 97 safe historical source files + 1 Swift source; zero secret findings; 13 current-field delta authority candidates verified by compile + runtime tests.
+- [ ] **Dedicated product source bootstrap:** atomically prepare `~/Enguru/Projects/enguru-mac-engineer` from safe historical source + verified runtime overrides; local compile/tests PASS; initialize clean `main`.
+- [ ] **Dedicated GitHub source authority:** create/push private `engurulabory/enguru-mac-engineer`; product CI PASS on exact-main; Labory references product source SHA.
 - [x] **Exact-main sync:** Mac `main` = GitHub `origin/main` at `e4f7670429ccdc57178065093f45ced83d07696f`; pre-sync local Shared AI edits preserved on `local/package6-preserve-20260921T201619` / `d3e5dca`; worktree clean.
-- [ ] **Local runtime boot:** runtime/app/process + Shared AI + Ollama/qwen3:14b are observed ACTIVE/PASS; historical continuity PASS; source hygiene PASS (97 safe, 1 Swift, 0 secret findings); **HOLD — RUNTIME DELTA AUTHORITY** for 8 divergent + 5 runtime-only files pending current runtime compile/test evidence, then canonical source intake.
+- [ ] **Local runtime boot / source binding:** runtime/app/process + Shared AI + Ollama/qwen3:14b ACTIVE/PASS; historical continuity PASS; source hygiene PASS; runtime delta authority PASS (13/13, compile + tests PASS). **ACTIVE — DEDICATED PRODUCT SOURCE BOOTSTRAP:** prepare `~/Enguru/Projects/enguru-mac-engineer` → private `engurulabory/enguru-mac-engineer` → product exact-main CI → rebuild/install from exact product SHA.
 - [ ] **Real Mac task:** one real engineering task is executed through the actual Mac Engineer path; health-only evidence is insufficient.
 - [ ] **Persistent continuity:** task checkpoint is written, runtime/process is restarted, and the same task resumes from verified persistent state without identity drift.
 - [ ] **Recovery field proof:** inject or observe one bounded recoverable failure → diagnose → smallest repair/recovery → reverify.
@@ -1038,4 +1042,4 @@ Evaluate under original ENGÜRÜ identity:
 - [ ] **Mac Local Mandatory DoneCheck™:** work done? actually works? real Mac task? restart/resume? recovery? evidence? authority boundaries? critical failures = 0?
 - [ ] **v0.6 final closure:** GitHub engineering PASS + Mac local commissioning PASS → **ENGÜRÜ Mac Engineer™ v0.6 VERIFIED FINAL / LOCKED**.
 
-**Current single objective:** **Package 6 — Mac Local Final Commissioning**.
+**Current single objective:** **Package 6 — Dedicated Mac Engineer Product Source Bootstrap**.
