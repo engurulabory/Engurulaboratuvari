@@ -1,10 +1,16 @@
-# ENGÜRÜ Mac Engineer™ — Canonical Operating Model v1.0
+# ENGÜRÜ Mac Engineering™ — Canonical Operating Model v1.0
 
 ## STATE
 
 CANONICAL OPERATING MODEL — ACTIVE CANDIDATE
 
 This document defines the permanent separation of authority between ChatGPT, Labory/GitHub, the Mac Engineer product source, the installed Mac runtime and Evidence.
+
+Canonical product identity and final version road:
+- `governance/mac-engineer/PRODUCT_IDENTITY_ROADMAP_V1.md`
+- `governance/mac-engineer/PRODUCT_ROADMAP_V1.json`
+
+Technical repository/path identifiers retain the historical `mac-engineer` / `MacEngineer` compatibility names.
 
 ## 1. One system, four surfaces
 
@@ -164,6 +170,12 @@ Remote GitHub publication, when the local source is verified and GitHub CLI is a
 
 The control command fails closed when truth is incomplete.
 
+Sync canonical product identity/roadmap/session context into Mac runtime state:
+
+`python3 tools/mac_engineer_control.py sync-context`
+
+This writes `~/Enguru/Runtime/MacEngineer/state/canonical-context.json` and a matching local Evidence receipt. GitHub WORKLIST/governance remains authority.
+
 ## 6. Evidence placement
 
 Local, potentially large or machine-specific Evidence remains under:
@@ -180,7 +192,7 @@ Secrets, access tokens, local caches and machine-specific transient state never 
 
 ## 7. Final v0.6 closure
 
-Product-level **ENGÜRÜ Mac Engineer™ v0.6 VERIFIED FINAL / LOCKED** requires:
+Product-level **ENGÜRÜ Mac Engineering™ v0.6 VERIFIED FINAL / LOCKED** requires:
 
 1. Labory engineering closeout PASS.
 2. Dedicated Mac Engineer product source canonicalized.

@@ -1,0 +1,83 @@
+{
+  "schema": "enguru.mac-engineering.roadmap/v1",
+  "product": {
+    "canonicalName": "ENGÜRÜ Mac Engineering™",
+    "technicalRepository": "engurulabory/enguru-mac-engineer",
+    "technicalLocalCheckout": "~/Enguru/Projects/enguru-mac-engineer",
+    "runtime": "~/Enguru/Runtime/MacEngineer",
+    "installedApp": "~/Applications/ENGÜRÜ Mac Engineer.app",
+    "controlPlane": "engurulabory/Engurulaboratuvari"
+  },
+  "finalTarget": {
+    "version": "v1.0",
+    "title": "Verified Product Engineering Operator",
+    "verdictTarget": "VERIFIED_FINAL_LOCKED"
+  },
+  "current": {
+    "version": "v0.6",
+    "state": "FIELD_CLOSEOUT_ACTIVE",
+    "activeObjective": "RUNTIME_APP_PROVENANCE_CLOSURE",
+    "productSourceSha": "28b901ab3303f4be3c7356b11218b62422f2da42",
+    "installedVersion": "0.6"
+  },
+  "versions": [
+    {
+      "version": "v0.4",
+      "name": "Field Engineering Foundation",
+      "state": "LOCKED"
+    },
+    {
+      "version": "v0.5",
+      "name": "Reliability & Recovery Foundation",
+      "state": "LOCKED"
+    },
+    {
+      "version": "v0.6",
+      "name": "Operating Behavior & Verified Local Product",
+      "state": "FIELD_CLOSEOUT_ACTIVE",
+      "exit": [
+        "RUNTIME_APP_PROVENANCE_CLOSURE",
+        "ARCHIVE_DECISION",
+        "REAL_MAC_ENGINEERING_TASK",
+        "CHECKPOINT_RESTART_RESUME",
+        "RECOVERY_FIELD_PROOF_RECONCILIATION",
+        "LOCAL_EVIDENCE_BUNDLE",
+        "MANDATORY_DONECHECK",
+        "V0_6_VERIFIED_FINAL_LOCKED"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "name": "Long-Running Reliability",
+      "state": "PLANNED",
+      "exit": [
+        "LONG_RUN_RELIABILITY_VERIFIED_LOCKED"
+      ]
+    },
+    {
+      "version": "v0.8",
+      "name": "Product Engineering Operator",
+      "state": "PLANNED",
+      "exit": [
+        "PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED"
+      ]
+    },
+    {
+      "version": "v0.9",
+      "name": "World-Class Field Benchmark",
+      "state": "PLANNED",
+      "exit": [
+        "WORLD_CLASS_FIELD_BENCHMARK_VERIFIED"
+      ]
+    },
+    {
+      "version": "v1.0",
+      "name": "Verified Product Engineering Operator",
+      "state": "FINAL_TARGET",
+      "exit": [
+        "VERIFIED_FINAL_LOCKED"
+      ]
+    }
+  ],
+  "method": "SESSION_START -> CANONICAL_SYNC -> SESSION_STATE -> ONE_ACTIVE_OBJECTIVE -> CHANGE -> TEST_CI -> EXACT_MAIN -> MAC_FIELD_ACTION -> EVIDENCE -> DONECHECK -> WORKLIST_RECONCILE -> SESSION_HANDOFF"
+}
