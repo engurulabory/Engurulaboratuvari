@@ -1,0 +1,97 @@
+{
+  "schema": "enguru.mac-engineer.local-commissioning/v0.1",
+  "platform": "Darwin",
+  "github_engineering_state": "GITHUB_ENGINEERING_VERIFIED",
+  "canonical_sync": {
+    "branch": "main",
+    "head_sha": "",
+    "origin_main_sha": "",
+    "clean": false,
+    "evidence_refs": []
+  },
+  "runtime": {
+    "state": "HOLD",
+    "identity": "",
+    "path": "",
+    "shared_ai_state": "HOLD",
+    "provider": "",
+    "model": "",
+    "evidence_refs": []
+  },
+  "real_task": {
+    "state": "HOLD",
+    "task_id": "",
+    "health_only": false,
+    "artifact_refs": [],
+    "test_refs": [],
+    "evidence_refs": []
+  },
+  "continuity": {
+    "state": "HOLD",
+    "task_id_before": "",
+    "task_id_after": "",
+    "checkpoint_id": "",
+    "restart_observed": false,
+    "evidence_refs": []
+  },
+  "recovery": {
+    "state": "HOLD",
+    "failure_observed": false,
+    "root_cause": "",
+    "bounded_correction": "",
+    "reverified": false,
+    "evidence_refs": []
+  },
+  "authority": {
+    "state": "HOLD",
+    "human_threshold_preserved": true,
+    "privilege_escalation": false,
+    "evidence_refs": []
+  },
+  "critical_failures": {
+    "unresolved": 0,
+    "evidence_refs": []
+  },
+  "mandatory_donecheck": [
+    {
+      "check": "exact_main_sync",
+      "state": "HOLD",
+      "evidence_refs": []
+    },
+    {
+      "check": "local_runtime_ready",
+      "state": "HOLD",
+      "evidence_refs": []
+    },
+    {
+      "check": "real_mac_task",
+      "state": "HOLD",
+      "evidence_refs": []
+    },
+    {
+      "check": "restart_resume",
+      "state": "HOLD",
+      "evidence_refs": []
+    },
+    {
+      "check": "recovery",
+      "state": "HOLD",
+      "evidence_refs": []
+    },
+    {
+      "check": "authority_preserved",
+      "state": "HOLD",
+      "evidence_refs": []
+    },
+    {
+      "check": "evidence_complete",
+      "state": "HOLD",
+      "evidence_refs": []
+    },
+    {
+      "check": "critical_failures_zero",
+      "state": "HOLD",
+      "evidence_refs": []
+    }
+  ]
+}
