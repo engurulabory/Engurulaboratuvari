@@ -790,6 +790,42 @@ Acceptance chain:
 `viewport geometry → spacing rhythm → overflow repair → responsive recomposition → controls → cards/containers → modal/dialog → keyboard/focus → interaction truth → stress render → bounded correction → re-render → Evidence → DoneCheck™ → Human Artistic Authority™`
 
 
+
+## C.2 Verified Aesthetic Evolution & Trend Intelligence™ — 100/100 TARGET
+
+**Truth boundary:** Aesthetic Motor may learn from verified field outcomes, current design/technology evidence and bounded experiments. It may not silently rewrite canonical authority, copy fashionable styles, expand its own permissions, or convert novelty into quality without evidence. Self-improvement remains evidence-gated, reversible and Human Threshold-aware.
+
+- [ ] **Verified learning loop:** defect / critique / human feedback → bounded correction → measured delta → persistence check → evidence → reusable learning candidate.
+- [ ] **Learning promotion rule:** one successful correction is not a permanent rule; promote only after repeated cross-brief evidence or an explicit Human Artistic Authority / governance decision.
+- [ ] **Failure memory:** record recurring overflow, spacing, typography, modal, control-state, responsive and composition failures with root cause and successful repair pattern.
+- [ ] **Success memory:** preserve patterns that repeatedly improve intent fidelity, usability, aesthetic quality and implementation integrity without template-locking future work.
+- [ ] **Context-bound reuse:** every learned pattern carries scope, source, date, applicable contexts, known risks, confidence and rollback path.
+- [ ] **No style cloning:** learning may extract principles and mechanisms but must not memorize or reproduce a competitor’s distinctive visual identity.
+- [ ] **Trend intelligence:** periodically observe contemporary web/product/graphic/interaction/motion/typography patterns and distinguish durable design evolution from short-lived fashion.
+- [ ] **Trend restraint:** trend adoption requires intent fit, originality, accessibility, performance and brand coherence; fashionable but irrelevant patterns are rejected.
+- [ ] **Technology watch:** track relevant browser/CSS/layout, accessibility, interaction/input, responsive/device, rendering, motion, image/video/3D and creative-tool advances that could materially improve output.
+- [ ] **Standards watch:** review material changes in accessibility, browser/platform behavior and implementation standards before they become field regressions.
+- [ ] **Tool/provider watch:** compare new creative models/tools/providers as optional execution surfaces; no provider becomes canonical authority from marketing claims alone.
+- [ ] **Fresh benchmark:** periodically rerun equal-brief comparisons against relevant frontier creative/product surfaces and record dated evidence.
+- [ ] **Second Look / Outside Voice:** important capability promotions receive fresh-context critique and, where useful, independent outside-voice review.
+- [ ] **Bounded experiment path:** discover → evidence → sandbox → benchmark → regression → accept/reject → rollback-ready integration.
+- [ ] **No silent self-modification:** Aesthetic Motor may propose and test improvements autonomously inside approved bounds, but canonical rule/authority changes require governed promotion.
+- [ ] **Versioned evolution:** accepted learning updates are versioned; last-known-good behavior remains recoverable.
+- [ ] **Decay / freshness:** time-sensitive trend/tool assumptions carry review dates and may expire back to REVIEW/HOLD instead of remaining permanent truth.
+- [ ] **Resource discipline:** do not chase every trend or tool; investigate only changes with plausible quality, reliability, efficiency or creative-range gain.
+- [ ] **Originality protection:** repeated learning must increase judgment and range, not collapse outputs into one house template.
+- [ ] **Human Artistic Authority™ preserved:** final aesthetic acceptance, identity-changing decisions and consequential taste judgments remain human-governed.
+- [ ] **Quarterly Technology Review binding:** significant aesthetic/creative technology changes feed the existing governed review cycle rather than creating a parallel update system.
+
+Evolution chain:
+
+`field evidence → verified learning candidate → repeated proof → bounded adoption → regression → Second Look → versioned promotion → periodic freshness review → rollback if degraded`
+
+Trend / technology chain:
+
+`observe → source/provenance → relevance test → equal-brief experiment → quality + usability + accessibility + performance delta → adopt / reject / review later`
+
+
 ## D. Graphic Design / Brand Production Expansion
 - [ ] Poster / key visual.
 - [ ] Social campaign family.
