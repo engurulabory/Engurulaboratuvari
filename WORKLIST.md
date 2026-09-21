@@ -1023,9 +1023,9 @@ Evaluate under original ENGÜRÜ identity:
 **Invariant:** specialization ≠ privilege escalation. Central Authority already exists and must not be duplicated.
 
 ### Package 5 — GitHub Engineering Closeout / Aggregate Evidence + Mandatory DoneCheck™
-- [ ] **Aggregate Evidence Bundle:** reconcile v0.6 package evidence into one canonical engineering-closure surface; preserve exact source SHA/run refs and distinguish GitHub technical evidence, Mac-local field evidence and Human Threshold evidence.
-- [ ] **Locked target reconciliation:** Operating Character **98–99+ field**; Architecture Foundations **97+ applied**; Engineering Foundations **98+**; Intellectual Depth **97+**; Finished Ability **98+**; Human-Centered Conversation **97+**; Persistent Working Memory **97+**; **critical failures = 0**. A target may PASS only from applicable evidence; unsupported scores remain HOLD.
-- [ ] **GitHub Engineering Mandatory DoneCheck™:** implementation → regression → canonical truth → authority boundaries → evidence completeness → PASS / HOLD / BLOCKED.
+- [x] **Aggregate Evidence Bundle:** reconcile v0.6 package evidence into one canonical engineering-closure surface; preserve exact source SHA/run refs and distinguish GitHub technical evidence, Mac-local field evidence and Human Threshold evidence.
+- [x] **Locked target reconciliation:** Operating Character **98–99+ field**; Architecture Foundations **97+ applied**; Engineering Foundations **98+**; Intellectual Depth **97+**; Finished Ability **98+**; Human-Centered Conversation **97+**; Persistent Working Memory **97+**; **critical failures = 0**. A target may PASS only from applicable evidence; unsupported scores remain HOLD.
+- [x] **GitHub Engineering Mandatory DoneCheck™:** implementation → regression → canonical truth → authority boundaries → evidence completeness → PASS / HOLD / BLOCKED.
 - [ ] **GitHub Engineering Closeout:** exact-head PASS → merge → exact-main PASS → state **GITHUB_ENGINEERING_VERIFIED / MAC_COMMISSIONING_REQUIRED**.
 
 ### Package 6 — Mac Local Final Commissioning
