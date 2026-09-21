@@ -202,7 +202,14 @@ class FrontierBehaviorTests(unittest.TestCase):
         self.assertEqual(result.attempts, 2)
         self.assertEqual(result.behavior_evidence["correction_attempts"], 1)
         self.assertEqual(adapter.calls, 2)
-        self.assertEqual(adapter.instructions[0], "")
+        self.assertIn(
+            "ENGURU_LANGUAGE_GOVERNANCE:ACTIVE",
+            adapter.instructions[0],
+        )
+        self.assertIn(
+            "LANGUAGE_MODE:POSITIVE_CONSTRUCTIVE_TRUTHFUL",
+            adapter.instructions[0],
+        )
         self.assertIn("structured_output_required", adapter.instructions[1])
 
     def test_correction_budget_stops_after_one_retry(self):
@@ -987,3 +994,57 @@ class PolishP4OutputMultimodalTests(unittest.TestCase):
         self.assertEqual(result.state, "HOLD")
         self.assertEqual(result.reason, "invalid_response_structure")
         self.assertEqual(adapter.calls, 0)
+
+class PositiveGovernanceLanguageTests(unittest.TestCase):
+    def test_canonical_governance_instruction_is_action_oriented(self):
+        instruction = BehaviorEngine.governance_instruction()
+
+        required = [
+            "ENGURU_LANGUAGE_GOVERNANCE:ACTIVE",
+            "PRINCIPLE:mevcut hakikat + gerekli fark",
+            "LANGUAGE_MODE:POSITIVE_CONSTRUCTIVE_TRUTHFUL",
+            "INSTRUCTION_STYLE:ACTION_ORIENTED",
+            "STATE:",
+            "CLAIM:",
+            "EVIDENCE:",
+            "NEXT_ACTION:",
+            "AUTHORITY_RULE:",
+            "FINISH_RULE:",
+            "CLOSURE_RULE:",
+        ]
+
+        for item in required:
+            self.assertIn(item, instruction)
+
+        for negative_command in [
+            "DO NOT",
+            "MUST NOT",
+            "NEVER ",
+        ]:
+            self.assertNotIn(negative_command, instruction.upper())
+
+    def test_every_provider_request_receives_governance_alignment(self):
+        adapter = FakeAdapter(output="aligned")
+        result = SharedAIRuntime([provider(adapter)]).execute(request())
+
+        self.assertEqual(result.state, "PASS")
+        self.assertEqual(adapter.calls, 1)
+
+        instruction = adapter.instructions[0]
+
+        self.assertIn(
+            "ENGURU_LANGUAGE_GOVERNANCE:ACTIVE",
+            instruction,
+        )
+        self.assertIn(
+            "LANGUAGE_MODE:POSITIVE_CONSTRUCTIVE_TRUTHFUL",
+            instruction,
+        )
+        self.assertIn(
+            "NEXT_ACTION: state the safest necessary constructive forward action.",
+            instruction,
+        )
+
+    def test_behavior_version_records_positive_language_revision(self):
+        self.assertEqual(BehaviorEngine.version, "0.8")
+
