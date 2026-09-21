@@ -226,9 +226,11 @@ class MacEngineerProductSourceBootstrapTests(unittest.TestCase):
             self.assertTrue(
                 (dest / ".enguru" / "labory-manifest.json").exists()
             )
-            self.assertTrue(
-                (dest / ".github" / "workflows" / "product-ci.yml").exists()
-            )
+            workflow = (
+                dest / ".github" / "workflows" / "product-ci.yml"
+            ).read_text(encoding="utf-8")
+            self.assertIn("swiftc -parse-as-library", workflow)
+            self.assertNotIn("swiftc -typecheck", workflow)
 
     def test_delta_authority_must_cover_all_non_exact_runtime_files(self):
         with tempfile.TemporaryDirectory() as td:

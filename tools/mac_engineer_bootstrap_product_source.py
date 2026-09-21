@@ -19,6 +19,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import sys
+import tempfile
 from typing import Any, Iterable
 
 
@@ -467,8 +468,12 @@ jobs:
         run: python -m unittest discover -s runtime/tests -v
       - name: Native prep syntax
         run: zsh -n execution_prep/native_app/prepare_native_app.command
-      - name: Native Swift typecheck
-        run: xcrun swiftc -typecheck execution_prep/native_app/EnguruMacEngineerApp.swift -framework SwiftUI -framework WebKit -framework AppKit
+      - name: Native Swift build verification
+        shell: bash
+        run: |
+          OUT="$(mktemp -d)/EnguruMacEngineer"
+          xcrun swiftc -parse-as-library execution_prep/native_app/EnguruMacEngineerApp.swift             -o "$OUT"             -framework SwiftUI -framework WebKit -framework AppKit
+          test -x "$OUT"
 """
     (destination_root / ".github" / "workflows" / "product-ci.yml").write_text(
         workflow, encoding="utf-8"
@@ -557,22 +562,39 @@ def verify_tree(root: Path) -> dict[str, Any]:
             ["zsh", "-n", str(prep)],
             cwd=root,
         )
-        native["swift_typecheck"] = run(
-            [
-                "xcrun",
-                "swiftc",
-                "-typecheck",
-                str(swift),
-                "-framework",
-                "SwiftUI",
-                "-framework",
-                "WebKit",
-                "-framework",
-                "AppKit",
-            ],
-            cwd=root,
-            timeout=300,
-        )
+        with tempfile.TemporaryDirectory() as td:
+            native_out = Path(td) / "EnguruMacEngineer"
+            native["swift_build"] = run(
+                [
+                    "xcrun",
+                    "swiftc",
+                    "-parse-as-library",
+                    str(swift),
+                    "-o",
+                    str(native_out),
+                    "-framework",
+                    "SwiftUI",
+                    "-framework",
+                    "WebKit",
+                    "-framework",
+                    "AppKit",
+                ],
+                cwd=root,
+                timeout=300,
+            )
+            if native["swift_build"]["pass"]:
+                native["swift_build"]["artifact_exists"] = (
+                    native_out.exists()
+                )
+                native["swift_build"]["artifact_executable"] = (
+                    native_out.exists()
+                    and os.access(native_out, os.X_OK)
+                )
+                if not native["swift_build"]["artifact_executable"]:
+                    native["swift_build"]["pass"] = False
+                    native["swift_build"]["reason"] = (
+                        "NATIVE_BUILD_ARTIFACT_NOT_EXECUTABLE"
+                    )
 
     passed = (
         compile_result["pass"]
