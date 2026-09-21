@@ -71,6 +71,26 @@ The tool records the installed app bundle identity, executable SHA-256, runtime 
 
 PASS requires an existing evidence-backed source/version signal matching the canonical GitHub HEAD. If no such signal exists, state remains `HOLD — RUNTIME_PROVENANCE_UNBOUND`.
 
+## Phase 2.6 — Historical source/build reconciliation
+
+Known prior project truth places the original Mac Engineer handoff package at:
+
+`~/Desktop/ENGURU_Mac_Engineer_Project_Handoff_v1`
+
+with baseline `baseline_v0.4`, native build receipt `native_app_prepare_20260920T082338Z.txt`, and Phase‑1 DoneCheck evidence `phase1_donecheck_20260920T095119Z.json`.
+
+Reconcile those artifacts against the current installed app/runtime:
+
+```bash
+python3 tools/mac_engineer_provenance_reconcile.py
+```
+
+Default evidence:
+
+`~/Enguru/Evidence/MacEngineer/v0.6/package6-provenance-reconcile.json`
+
+This step may prove historical continuity, but it does not by itself make the historical local source package canonical GitHub source. Canonical GitHub intake occurs only after a source-hygiene review confirms what should be retained.
+
 ## Phase 3 — Runtime identity
 
 The discovery evidence must identify the actual Mac Engineer execution surface.
