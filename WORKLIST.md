@@ -1029,8 +1029,8 @@ Evaluate under original ENGÜRÜ identity:
 - [x] **GitHub Engineering Closeout:** exact-head PASS → merge `49198ddad2f9aac987d6a2c3efbd6c58f910a17a` → exact-main Final Gate #214 + IP Gate #234 + Fleet #219 PASS → state **GITHUB_ENGINEERING_VERIFIED / MAC_COMMISSIONING_REQUIRED**.
 
 ### Package 6 — Mac Local Final Commissioning
-- [ ] **Exact-main sync:** Mac working copy resolves to the exact canonical GitHub main SHA; dirty/divergent state is reconciled before commissioning.
-- [ ] **Local runtime boot:** Mac-local runtime starts from the canonical tree and required local providers/services report READY.
+- [x] **Exact-main sync:** Mac `main` = GitHub `origin/main` at `e4f7670429ccdc57178065093f45ced83d07696f`; pre-sync local Shared AI edits preserved on `local/package6-preserve-20260921T201619` / `d3e5dca`; worktree clean.
+- [ ] **Local runtime boot:** runtime/app/process + Shared AI + Ollama/qwen3:14b are observed ACTIVE/PASS; **HOLD — RUNTIME PROVENANCE** until the installed `EnguruMacEngineer` + `~/Enguru/Runtime/MacEngineer/runtime/app.py` are bound to canonical source/version evidence.
 - [ ] **Real Mac task:** one real engineering task is executed through the actual Mac Engineer path; health-only evidence is insufficient.
 - [ ] **Persistent continuity:** task checkpoint is written, runtime/process is restarted, and the same task resumes from verified persistent state without identity drift.
 - [ ] **Recovery field proof:** inject or observe one bounded recoverable failure → diagnose → smallest repair/recovery → reverify.
