@@ -74,8 +74,18 @@ def git_info(path: Path) -> dict[str, Any]:
 
 
 def is_related(path: Path) -> bool:
-    s = str(path).lower()
-    return any(token in s for token in TOKENS) or path.name.startswith(".enguru-mac-engineer.bootstrap-")
+    name = path.name.lower()
+    return (
+        any(token in name for token in TOKENS)
+        or path.name.startswith(".enguru-mac-engineer.bootstrap-")
+    )
+
+
+def is_mac_engineer_app(path: Path) -> bool:
+    if not path.name.endswith(".app"):
+        return False
+    info = app_info(path)
+    return info.get("bundle_id") == "com.engurumaya.macengineer"
 
 
 def within(path: Path, root: Path) -> bool:
@@ -139,7 +149,8 @@ def scan() -> list[dict[str, Any]]:
 
             for name in list(dirs):
                 p = cur / name
-                if is_related(p):
+                app_match = name.endswith(".app") and is_mac_engineer_app(p)
+                if is_related(p) or app_match:
                     key = str(p.absolute())
                     if key not in seen:
                         state, reason = classify(p)
