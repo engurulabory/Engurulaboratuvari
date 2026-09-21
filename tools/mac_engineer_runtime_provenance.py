@@ -1,40 +1,56 @@
 #!/usr/bin/env python3
-"""ENGÜRÜ Mac Engineer™ v0.6 — installed runtime provenance discovery.
+"""ENGÜRÜ Mac Engineering™ v0.6 — canonical runtime/app provenance verifier.
 
-Non-destructive. It fingerprints the installed app/runtime and reports whether an
-evidence-backed source/version binding already exists. It never manufactures one.
+Read-only. Verifies the installed/native runtime identity against the dedicated
+product repository exact-main and the provenance receipt written by the
+exact-SHA rebuild/install step.
 """
 from __future__ import annotations
 
-import argparse
 from datetime import datetime, timezone
 import hashlib
 import json
-import os
 from pathlib import Path
 import plistlib
-import re
 import subprocess
 from typing import Any
 
 
-SHA40 = re.compile(r"\b[0-9a-f]{40}\b", re.IGNORECASE)
-META_NAMES = {
-    "manifest.json", "release.json", "build.json", "version.json",
-    "provenance.json", "runtime-manifest.json", "runtime_manifest.json",
-    "build-info.json", "build_info.json", "source.json",
-}
-TEXT_SUFFIXES = {".json", ".yaml", ".yml", ".toml", ".plist", ".txt", ".md", ".py", ".sh"}
-SKIP_DIRS = {".git", "__pycache__", ".venv", "venv", "node_modules", ".cache"}
+HOME = Path.home()
+PRODUCT = HOME / "Enguru" / "Projects" / "enguru-mac-engineer"
+RUNTIME_ROOT = HOME / "Enguru" / "Runtime" / "MacEngineer"
+RUNTIME_APP = RUNTIME_ROOT / "App" / "ENGÜRÜ Mac Engineer.app"
+INSTALLED_APP = HOME / "Applications" / "ENGÜRÜ Mac Engineer.app"
+PROVENANCE = RUNTIME_ROOT / "state" / "source-provenance.json"
+INSTALL_EVIDENCE = (
+    HOME
+    / "Enguru"
+    / "Evidence"
+    / "MacEngineer"
+    / "v0.6"
+    / "package6-exact-sha-rebuild-install.json"
+)
+OUTPUT = (
+    HOME
+    / "Enguru"
+    / "Evidence"
+    / "MacEngineer"
+    / "v0.6"
+    / "package6-runtime-app-provenance-closure.json"
+)
+
+EXPECTED_REPO = "engurulabory/enguru-mac-engineer"
+EXPECTED_BUNDLE_ID = "com.engurumaya.macengineer"
+EXPECTED_VERSION = "0.6"
 
 
 def now() -> str:
     return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
 
-def run(*args: str, cwd: Path | None = None) -> tuple[int, str, str]:
+def run(cmd: list[str], cwd: Path | None = None) -> tuple[int, str, str]:
     p = subprocess.run(
-        args,
+        cmd,
         cwd=str(cwd) if cwd else None,
         text=True,
         capture_output=True,
@@ -51,222 +67,263 @@ def sha256_file(path: Path) -> str:
     return h.hexdigest()
 
 
-def file_record(path: Path, root: Path | None = None) -> dict[str, Any]:
-    stat = path.stat()
-    rec = {
-        "path": str(path),
-        "size": stat.st_size,
-        "sha256": sha256_file(path),
-    }
-    if root is not None:
-        try:
-            rec["relative_path"] = str(path.relative_to(root))
-        except ValueError:
-            pass
-    return rec
-
-
-def git_truth(repo: Path) -> dict[str, Any]:
-    values: dict[str, Any] = {"available": (repo / ".git").exists()}
-    if not values["available"]:
-        return values
+def git_truth(path: Path) -> dict[str, Any]:
+    if not (path / ".git").exists():
+        return {"available": False}
+    out: dict[str, Any] = {"available": True}
     for key, cmd in {
-        "head": ("git", "rev-parse", "HEAD"),
-        "origin_main": ("git", "rev-parse", "origin/main"),
-        "branch": ("git", "branch", "--show-current"),
-        "status": ("git", "status", "--porcelain"),
-        "origin": ("git", "remote", "get-url", "origin"),
+        "head": ["git", "rev-parse", "HEAD"],
+        "origin_main": ["git", "rev-parse", "origin/main"],
+        "branch": ["git", "branch", "--show-current"],
+        "status": ["git", "status", "--porcelain"],
+        "origin": ["git", "remote", "get-url", "origin"],
     }.items():
-        code, out, err = run(*cmd, cwd=repo)
-        values[key] = out if code == 0 else None
-        if code != 0:
-            values[key + "_error"] = err
-    values["clean"] = not bool(values.get("status"))
-    values["exact_origin_main"] = bool(values.get("head")) and values.get("head") == values.get("origin_main")
-    return values
+        rc, stdout, stderr = run(cmd, cwd=path)
+        out[key] = stdout if rc == 0 else None
+        if rc != 0:
+            out[f"{key}_error"] = stderr
+    out["clean"] = out.get("status") == ""
+    out["exact_origin_main"] = bool(
+        out.get("head")
+        and out.get("origin_main")
+        and out["head"] == out["origin_main"]
+    )
+    return out
+
+
+def load_json(path: Path) -> dict[str, Any]:
+    if not path.is_file():
+        return {"exists": False, "path": str(path)}
+    try:
+        return {
+            "exists": True,
+            "path": str(path),
+            "payload": json.loads(path.read_text(encoding="utf-8")),
+        }
+    except json.JSONDecodeError as exc:
+        return {
+            "exists": True,
+            "path": str(path),
+            "error": f"JSONDecodeError:{exc}",
+        }
 
 
 def app_identity(app: Path) -> dict[str, Any]:
     result: dict[str, Any] = {"path": str(app), "exists": app.exists()}
     if not app.exists():
         return result
+
     plist_path = app / "Contents" / "Info.plist"
     result["info_plist"] = str(plist_path)
-    if plist_path.exists():
-        with plist_path.open("rb") as fh:
-            plist = plistlib.load(fh)
-        result.update({
-            "bundle_id": plist.get("CFBundleIdentifier", ""),
-            "display_name": plist.get("CFBundleDisplayName") or plist.get("CFBundleName") or "",
-            "bundle_version": plist.get("CFBundleVersion", ""),
-            "short_version": plist.get("CFBundleShortVersionString", ""),
-            "executable_name": plist.get("CFBundleExecutable", ""),
-        })
-        exe_name = str(result.get("executable_name", ""))
-        if exe_name:
-            exe = app / "Contents" / "MacOS" / exe_name
-            result["executable"] = file_record(exe) if exe.exists() else {"path": str(exe), "exists": False}
-    return result
-
-
-def scan_runtime(root: Path, max_files: int = 400) -> dict[str, Any]:
-    result: dict[str, Any] = {"path": str(root), "exists": root.exists(), "files": [], "metadata_candidates": []}
-    if not root.exists():
+    if not plist_path.is_file():
         return result
 
-    git = git_truth(root)
-    if git.get("available"):
-        result["git"] = git
+    with plist_path.open("rb") as fh:
+        plist = plistlib.load(fh)
 
-    files: list[dict[str, Any]] = []
-    metadata: list[dict[str, Any]] = []
-    count = 0
-    for current, dirs, names in os.walk(root):
-        dirs[:] = [d for d in dirs if d not in SKIP_DIRS and not d.startswith(".")]
-        current_path = Path(current)
-        for name in names:
-            path = current_path / name
-            if path.is_symlink() or not path.is_file():
-                continue
-            if count >= max_files:
-                result["truncated"] = True
-                break
-            if path.suffix.lower() in TEXT_SUFFIXES or name in META_NAMES:
-                rec = file_record(path, root)
-                files.append(rec)
-                count += 1
-                if name in META_NAMES or any(token in name.lower() for token in ("manifest", "release", "version", "build", "provenance", "source")):
-                    try:
-                        text = path.read_text(encoding="utf-8", errors="replace")
-                    except OSError:
-                        text = ""
-                    metadata.append({
-                        **rec,
-                        "sha40_candidates": sorted(set(SHA40.findall(text)))[:20],
-                        "preview": text[:1000],
-                    })
-        if result.get("truncated"):
-            break
-    result["files"] = files
-    result["metadata_candidates"] = metadata
+    executable_name = str(plist.get("CFBundleExecutable", ""))
+    result.update(
+        {
+            "bundle_id": str(plist.get("CFBundleIdentifier", "")),
+            "short_version": str(plist.get("CFBundleShortVersionString", "")),
+            "bundle_version": str(plist.get("CFBundleVersion", "")),
+            "executable_name": executable_name,
+        }
+    )
+
+    if executable_name:
+        executable = app / "Contents" / "MacOS" / executable_name
+        result["executable"] = {
+            "path": str(executable),
+            "exists": executable.is_file(),
+        }
+        if executable.is_file():
+            result["executable"]["sha256"] = sha256_file(executable)
+
     return result
-
-
-def process_matches() -> list[dict[str, str]]:
-    code, out, err = run("ps", "-axo", "pid=,command=")
-    if code != 0:
-        return [{"error": err or "ps_failed"}]
-    found: list[dict[str, str]] = []
-    for line in out.splitlines():
-        lowered = line.lower()
-        if "engurumacengineer" in lowered or "/enguru/runtime/macengineer/" in lowered:
-            pid, _, command = line.strip().partition(" ")
-            found.append({"pid": pid.strip(), "command": command.strip()[:1000]})
-    return found
-
-
-def find_existing_binding(app_info: dict[str, Any], runtime_info: dict[str, Any], canonical: dict[str, Any]) -> dict[str, Any]:
-    expected_sha = str(canonical.get("head") or "")
-    findings: list[dict[str, Any]] = []
-
-    if runtime_info.get("git", {}).get("head"):
-        head = runtime_info["git"]["head"]
-        findings.append({
-            "type": "runtime_git_head",
-            "value": head,
-            "matches_canonical": head == expected_sha,
-        })
-
-    for meta in runtime_info.get("metadata_candidates", []):
-        for sha in meta.get("sha40_candidates", []):
-            findings.append({
-                "type": "metadata_sha",
-                "path": meta.get("path"),
-                "value": sha,
-                "matches_canonical": sha == expected_sha,
-            })
-
-    matched = [x for x in findings if x.get("matches_canonical") is True]
-    return {
-        "canonical_head": expected_sha,
-        "signals": findings,
-        "matched_signals": matched,
-        "bound": bool(matched),
-    }
 
 
 def main() -> int:
-    home = Path.home()
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--repo", type=Path, default=Path(__file__).resolve().parents[1])
-    parser.add_argument("--app", type=Path, default=home / "Applications" / "ENGÜRÜ Mac Engineer.app")
-    parser.add_argument("--runtime-root", type=Path, default=home / "Enguru" / "Runtime" / "MacEngineer")
-    parser.add_argument(
-        "--evidence",
-        type=Path,
-        default=home / "Enguru" / "Evidence" / "MacEngineer" / "v0.6" / "package6-runtime-provenance.json",
-    )
-    args = parser.parse_args()
-
-    canonical = git_truth(args.repo)
-    app = app_identity(args.app)
-    runtime = scan_runtime(args.runtime_root)
-    binding = find_existing_binding(app, runtime, canonical)
-
     issues: list[str] = []
-    if not canonical.get("exact_origin_main") or not canonical.get("clean"):
-        issues.append("CANONICAL_EXACT_MAIN_REQUIRED")
-    if not app.get("exists"):
-        issues.append("MAC_ENGINEER_APP_NOT_FOUND")
-    if app.get("bundle_id") != "com.engurumaya.macengineer":
-        issues.append("UNEXPECTED_MAC_ENGINEER_BUNDLE_ID")
-    if not runtime.get("exists"):
-        issues.append("MAC_ENGINEER_RUNTIME_ROOT_NOT_FOUND")
-    if not binding.get("bound"):
-        issues.append("RUNTIME_PROVENANCE_UNBOUND")
 
-    payload = {
-        "schema": "enguru.mac-engineer.runtime-provenance/v0.1",
-        "observed_at": now(),
-        "canonical_checkout": canonical,
-        "app": app,
-        "runtime": runtime,
-        "processes": process_matches(),
-        "binding": binding,
-        "issues": issues,
-        "state": "PASS" if not issues else "HOLD",
-        "truth_boundary": (
-            "PASS requires an existing evidence-backed source/version signal matching the canonical GitHub HEAD. "
-            "This tool fingerprints and discovers; it does not create provenance or infer source identity from names."
+    product = git_truth(PRODUCT)
+    provenance_record = load_json(PROVENANCE)
+    install_record = load_json(INSTALL_EVIDENCE)
+    installed = app_identity(INSTALLED_APP)
+    runtime_app = app_identity(RUNTIME_APP)
+
+    if not product.get("available"):
+        issues.append("PRODUCT_SOURCE_GIT_REQUIRED")
+    else:
+        if product.get("branch") != "main":
+            issues.append("PRODUCT_SOURCE_MAIN_REQUIRED")
+        if product.get("clean") is not True:
+            issues.append("PRODUCT_SOURCE_CLEAN_REQUIRED")
+        if product.get("exact_origin_main") is not True:
+            issues.append("PRODUCT_SOURCE_EXACT_MAIN_REQUIRED")
+        if EXPECTED_REPO not in str(product.get("origin") or ""):
+            issues.append("PRODUCT_SOURCE_ORIGIN_MISMATCH")
+
+    if not provenance_record.get("exists"):
+        issues.append("SOURCE_PROVENANCE_RECEIPT_REQUIRED")
+    elif provenance_record.get("error"):
+        issues.append("SOURCE_PROVENANCE_RECEIPT_INVALID")
+
+    if not install_record.get("exists"):
+        issues.append("EXACT_SHA_INSTALL_EVIDENCE_REQUIRED")
+    elif install_record.get("error"):
+        issues.append("EXACT_SHA_INSTALL_EVIDENCE_INVALID")
+    elif install_record.get("payload", {}).get("state") != "PASS":
+        issues.append("EXACT_SHA_INSTALL_PASS_REQUIRED")
+
+    for label, app in (
+        ("INSTALLED", installed),
+        ("RUNTIME_BUILD", runtime_app),
+    ):
+        if not app.get("exists"):
+            issues.append(f"{label}_APP_REQUIRED")
+            continue
+        if app.get("bundle_id") != EXPECTED_BUNDLE_ID:
+            issues.append(f"{label}_BUNDLE_ID_MISMATCH")
+        if app.get("short_version") != EXPECTED_VERSION:
+            issues.append(f"{label}_VERSION_V06_REQUIRED")
+        if app.get("bundle_version") != EXPECTED_VERSION:
+            issues.append(f"{label}_BUILD_VERSION_V06_REQUIRED")
+        if not app.get("executable", {}).get("exists"):
+            issues.append(f"{label}_EXECUTABLE_REQUIRED")
+
+    product_sha = str(product.get("head") or "")
+    provenance = provenance_record.get("payload", {})
+    install = install_record.get("payload", {})
+    installed_sha = str(installed.get("executable", {}).get("sha256") or "")
+    runtime_sha = str(runtime_app.get("executable", {}).get("sha256") or "")
+
+    if provenance_record.get("exists") and not provenance_record.get("error"):
+        if provenance.get("product_repository") != EXPECTED_REPO:
+            issues.append("PROVENANCE_PRODUCT_REPOSITORY_MISMATCH")
+        if provenance.get("product_source_sha") != product_sha:
+            issues.append("PROVENANCE_PRODUCT_SHA_MISMATCH")
+        if provenance.get("version") != EXPECTED_VERSION:
+            issues.append("PROVENANCE_VERSION_MISMATCH")
+        if provenance.get("build_version") != EXPECTED_VERSION:
+            issues.append("PROVENANCE_BUILD_VERSION_MISMATCH")
+        if provenance.get("runtime_source_parity") != "27/27_EXACT_AT_PREFLIGHT":
+            issues.append("PROVENANCE_RUNTIME_PARITY_MISMATCH")
+        if provenance.get("native_executable_sha256") != installed_sha:
+            issues.append("PROVENANCE_NATIVE_HASH_MISMATCH")
+
+    if install_record.get("exists") and not install_record.get("error"):
+        if install.get("product_source_sha") != product_sha:
+            issues.append("INSTALL_EVIDENCE_PRODUCT_SHA_MISMATCH")
+        if install.get("version") != EXPECTED_VERSION:
+            issues.append("INSTALL_EVIDENCE_VERSION_MISMATCH")
+        if install.get("runtime_source_parity") != "27/27_EXACT":
+            issues.append("INSTALL_EVIDENCE_RUNTIME_PARITY_MISMATCH")
+        if install.get("installed_app", {}).get("executable_sha256") != installed_sha:
+            issues.append("INSTALL_EVIDENCE_INSTALLED_HASH_MISMATCH")
+        if install.get("runtime_build_app", {}).get("executable_sha256") != runtime_sha:
+            issues.append("INSTALL_EVIDENCE_RUNTIME_HASH_MISMATCH")
+        if install.get("live_status", {}).get("pass") is not True:
+            issues.append("INSTALL_EVIDENCE_LIVE_STATUS_PASS_REQUIRED")
+        if install.get("process_verification", {}).get("pass") is not True:
+            issues.append("INSTALL_EVIDENCE_PROCESS_VERIFICATION_PASS_REQUIRED")
+
+    if installed_sha and runtime_sha and installed_sha != runtime_sha:
+        issues.append("INSTALLED_RUNTIME_NATIVE_HASH_MISMATCH")
+
+    binding = {
+        "product_source_sha": product_sha,
+        "provenance_source_sha": provenance.get("product_source_sha"),
+        "install_evidence_source_sha": install.get("product_source_sha"),
+        "installed_executable_sha256": installed_sha,
+        "runtime_build_executable_sha256": runtime_sha,
+        "provenance_executable_sha256": provenance.get("native_executable_sha256"),
+        "all_source_sha_equal": bool(
+            product_sha
+            and product_sha == provenance.get("product_source_sha")
+            and product_sha == install.get("product_source_sha")
         ),
-        "next_action": (
-            "Proceed to Package 6 real-task commissioning."
-            if not issues
-            else "Reconcile only the reported provenance gap before real-task commissioning."
+        "all_native_hash_equal": bool(
+            installed_sha
+            and installed_sha == runtime_sha
+            and installed_sha == provenance.get("native_executable_sha256")
+            and installed_sha
+            == install.get("installed_app", {}).get("executable_sha256")
+            and installed_sha
+            == install.get("runtime_build_app", {}).get("executable_sha256")
         ),
     }
 
-    args.evidence.parent.mkdir(parents=True, exist_ok=True)
-    args.evidence.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({
-        "state": payload["state"],
-        "issues": issues,
-        "evidence": str(args.evidence),
-        "canonical_head": canonical.get("head"),
-        "app": {
-            "path": app.get("path"),
-            "bundle_id": app.get("bundle_id"),
-            "short_version": app.get("short_version"),
-            "bundle_version": app.get("bundle_version"),
-            "executable": app.get("executable"),
+    if not binding["all_source_sha_equal"]:
+        issues.append("SOURCE_SHA_BINDING_REQUIRED")
+    if not binding["all_native_hash_equal"]:
+        issues.append("NATIVE_BINARY_HASH_BINDING_REQUIRED")
+
+    payload = {
+        "schema": "enguru.mac-engineering.runtime-app-provenance-closure/v1",
+        "observed_at": now(),
+        "state": "PASS" if not issues else "HOLD",
+        "issues": sorted(set(issues)),
+        "product": product,
+        "installed_app": installed,
+        "runtime_build_app": runtime_app,
+        "source_provenance": provenance_record,
+        "install_evidence": {
+            "exists": install_record.get("exists"),
+            "path": install_record.get("path"),
+            "state": install.get("state"),
+            "product_source_sha": install.get("product_source_sha"),
+            "version": install.get("version"),
+            "runtime_source_parity": install.get("runtime_source_parity"),
+            "live_status_pass": install.get("live_status", {}).get("pass"),
+            "process_verification_pass": install.get(
+                "process_verification", {}
+            ).get("pass"),
         },
-        "runtime_path": runtime.get("path"),
-        "runtime_git": runtime.get("git"),
-        "metadata_candidates": runtime.get("metadata_candidates"),
         "binding": binding,
-        "processes": payload["processes"],
-        "next_action": payload["next_action"],
-    }, ensure_ascii=False, indent=2))
+        "truth_boundary": (
+            "PASS proves source SHA, product exact-main, installed app v0.6, "
+            "runtime build app v0.6, native executable hashes, install Evidence "
+            "and local provenance receipt all agree. It does not prove the next "
+            "real engineering task, restart/resume, or final DoneCheck."
+        ),
+        "next_action": (
+            "Reconcile archive treatment for historical handoff, backup and runtime-build artifacts."
+            if not issues
+            else "Resolve only the reported provenance mismatch, then rerun."
+        ),
+    }
+
+    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    OUTPUT.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+
+    print(
+        json.dumps(
+            {
+                "state": payload["state"],
+                "issues": payload["issues"],
+                "product_source_sha": product_sha,
+                "installed_app": {
+                    "version": installed.get("short_version"),
+                    "build_version": installed.get("bundle_version"),
+                    "executable_sha256": installed_sha,
+                },
+                "runtime_build_app": {
+                    "version": runtime_app.get("short_version"),
+                    "build_version": runtime_app.get("bundle_version"),
+                    "executable_sha256": runtime_sha,
+                },
+                "binding": binding,
+                "evidence": str(OUTPUT),
+                "next_action": payload["next_action"],
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+    )
     return 0 if payload["state"] == "PASS" else 2
 
 
