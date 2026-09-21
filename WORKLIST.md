@@ -761,6 +761,35 @@ Acceptance:
 - [ ] Human Artistic Authority boundary remains open until explicit human decision.
 - [ ] Evidence + Mandatory DoneCheck™.
 
+
+## C.1 Screen Composition & Premium Interaction Discipline™ — 100/100 TARGET
+
+**Truth boundary:** this is a capability-completeness target inside the active Field Reality Audit, not a current field score. A visually attractive static render does not PASS this gate unless geometry, interaction, responsive behavior, accessibility and recovery are also proven.
+
+- [ ] **Viewport composition:** use top / bottom / left / right space deliberately; no accidental dead zones, edge crowding or unbalanced occupancy.
+- [ ] **Margins / padding / gutters:** safe edge distance, grid/gutter rhythm and container width stay coherent across large desktop, desktop, tablet, 390 mobile and 320 small mobile.
+- [ ] **Overflow mastery:** detect and repair horizontal overflow, clipping, off-screen text, overlap, broken wrapping, oversized media and modal/dialog escape.
+- [ ] **Responsive recomposition:** layouts recompose by intent; mobile/tablet are not merely scaled-down desktop.
+- [ ] **Typography containment:** headings, labels, paragraphs, badges and controls survive TR/EN, long/short content, localization and 200% text without collision or hierarchy collapse.
+- [ ] **Button / control mastery:** controls are visually legible and actually work; default / hover / focus-visible / active / loading / disabled / success / error states are intentional where applicable.
+- [ ] **Keyboard / focus discipline:** logical tab order, visible focus, no keyboard traps, action reachability and focus restoration after transient surfaces.
+- [ ] **Box / card / container discipline:** radius, border, shadow, depth, spacing, density and hierarchy are purposeful; no generic card soup or decorative container excess.
+- [ ] **Modal / dialog mastery:** correct sizing, safe viewport fit, backdrop, focus containment, Escape/close behavior, scroll-lock, focus return, mobile adaptation and accessible semantics.
+- [ ] **Premium surface models:** produce restrained, product-specific premium cards, panels, dialogs, sheets, menus, forms and action surfaces without defaulting to generic glass/gradient aesthetics.
+- [ ] **Interaction truth:** every visible primary/secondary action has verified behavior; no dead button, fake control, hidden unreachable action or misleading enabled state.
+- [ ] **Scroll / fold discipline:** primary intent, action hierarchy and content rhythm remain coherent above/below fold; sticky/fixed elements never steal usable space or cover content.
+- [ ] **Safe-area / inset discipline:** viewport edges, browser/device insets and mobile bottom/top regions do not hide interactive or essential content.
+- [ ] **Automatic defect repair loop:** detect geometry/control defects → record defect → smallest bounded correction → re-render → prove defect delta.
+- [ ] **Stress evidence:** large desktop / standard desktop / tablet / 390 / 320 + long content + TR/EN + text-spacing + 200% text + reduced motion + keyboard path.
+- [ ] **No-average masking:** any critical overflow, unreachable control, broken modal, focus trap, clipped primary content or non-working action forces HOLD regardless of aggregate aesthetic score.
+- [ ] **Human Artistic Authority™:** premium feel and final artistic balance remain human-governed after technical/interaction gates PASS.
+- [ ] **Repeated field proof:** capability reaches 100/100 target only after repeated real candidates demonstrate stable screen-use and interaction quality, not from one showcase page.
+
+Acceptance chain:
+
+`viewport geometry → spacing rhythm → overflow repair → responsive recomposition → controls → cards/containers → modal/dialog → keyboard/focus → interaction truth → stress render → bounded correction → re-render → Evidence → DoneCheck™ → Human Artistic Authority™`
+
+
 ## D. Graphic Design / Brand Production Expansion
 - [ ] Poster / key visual.
 - [ ] Social campaign family.
