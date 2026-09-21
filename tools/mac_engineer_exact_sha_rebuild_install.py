@@ -12,6 +12,7 @@ import signal
 import subprocess
 import tempfile
 import time
+import unicodedata
 from datetime import datetime, timezone
 from typing import Any
 
@@ -126,6 +127,14 @@ def app_executable(app: Path) -> Path:
     return app / "Contents" / "MacOS" / str(name)
 
 
+def normalized_text(value: str) -> str:
+    return unicodedata.normalize("NFC", value)
+
+
+def command_contains_path(command: str, path: Path) -> bool:
+    return normalized_text(str(path)) in normalized_text(command)
+
+
 def process_rows() -> list[dict[str, str]]:
     r = run(["ps", "-axo", "pid=,command="])
     if not r["pass"]:
@@ -134,12 +143,52 @@ def process_rows() -> list[dict[str, str]]:
     for line in str(r["stdout"]).splitlines():
         command = line.strip()
         if (
-            str(INSTALLED_APP) in command
-            or str(RUNTIME_PY) in command
+            command_contains_path(command, INSTALLED_APP)
+            or command_contains_path(command, RUNTIME_PY)
         ):
             pid, _, tail = command.partition(" ")
             rows.append({"pid": pid, "command": tail})
     return rows
+
+
+def process_presence(
+    rows: list[dict[str, str]],
+) -> tuple[bool, bool]:
+    app_process = any(
+        command_contains_path(row["command"], INSTALLED_APP)
+        for row in rows
+    )
+    runtime_process = any(
+        command_contains_path(row["command"], RUNTIME_PY)
+        for row in rows
+    )
+    return app_process, runtime_process
+
+
+def wait_for_processes(
+    timeout_seconds: float = 10.0,
+) -> dict[str, Any]:
+    deadline = time.time() + timeout_seconds
+    last_rows: list[dict[str, str]] = []
+    while time.time() < deadline:
+        last_rows = process_rows()
+        app_process, runtime_process = process_presence(last_rows)
+        if app_process and runtime_process:
+            return {
+                "pass": True,
+                "app_process": True,
+                "runtime_process": True,
+                "rows": last_rows,
+            }
+        time.sleep(0.25)
+
+    app_process, runtime_process = process_presence(last_rows)
+    return {
+        "pass": False,
+        "app_process": app_process,
+        "runtime_process": runtime_process,
+        "rows": last_rows,
+    }
 
 
 def stop_existing_processes() -> list[dict[str, str]]:
@@ -453,18 +502,11 @@ def main() -> int:
             if not status_result["pass"]:
                 raise InstallError("LIVE_API_STATUS_REQUIRED")
 
-            processes_after = process_rows()
-            app_process = any(
-                str(INSTALLED_APP) in row["command"]
-                for row in processes_after
-            )
-            runtime_process = any(
-                str(RUNTIME_PY) in row["command"]
-                for row in processes_after
-            )
-            if not app_process:
+            process_check = wait_for_processes()
+            processes_after = process_check["rows"]
+            if not process_check["app_process"]:
                 raise InstallError("INSTALLED_APP_PROCESS_REQUIRED")
-            if not runtime_process:
+            if not process_check["runtime_process"]:
                 raise InstallError("RUNTIME_PROCESS_REQUIRED")
 
             payload = {
@@ -497,6 +539,7 @@ def main() -> int:
                 },
                 "provenance": provenance,
                 "live_status": status_result,
+                "process_verification": process_check,
                 "processes_after": processes_after,
                 "rollback": {
                     "prepared": True,
