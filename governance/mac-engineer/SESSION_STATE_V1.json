@@ -27,7 +27,7 @@
     "productSourceAuthority": "PASS",
     "productCIExactMain": "PASS"
   },
-  "currentObjective": "PRODUCT_SOURCE_V0_6_ALIGNMENT",
+  "currentObjective": "PRODUCT_SOURCE_V0_6_ALIGNMENT_PUBLICATION",
   "observedProductPublication": {
     "source": "MAC_FIELD_OUTPUT",
     "localSourceHead": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
@@ -41,8 +41,9 @@
     "productCIRunNumber": 1
   },
   "canonicalNextLine": [
-    "PRODUCT_SOURCE_V06_ALIGNMENT",
-    "PRODUCT_CI_EXACT_MAIN",
+    "PRODUCT_SOURCE_V0_6_ALIGNMENT_PUBLICATION",
+    "PRODUCT_PR_EXACT_HEAD_CI",
+    "PRODUCT_MERGE_EXACT_MAIN",
     "REBUILD_PREFLIGHT_RECHECK",
     "EXACT_SHA_REBUILD_INSTALL",
     "RUNTIME_APP_PROVENANCE",
@@ -67,6 +68,22 @@
       "currentOnly": [
         "static/engineer-emblem.png"
       ]
+    }
+  },
+  "observedV06AlignmentPreparation": {
+    "state": "PASS",
+    "branch": "feature/v06-version-branding-alignment",
+    "baseMain": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
+    "commit": "02b7cc3a29857fa405d7f5cc77b6af822d6369a0",
+    "changedFiles": [
+      "execution_prep/native_app/Info.plist",
+      "runtime/static/engineer-emblem.png"
+    ],
+    "verification": {
+      "runtimeCompile": "PASS",
+      "runtimeTests": "25_PASS",
+      "nativeZshSyntax": "PASS",
+      "nativeSwiftBuild": "PASS"
     }
   }
 }
