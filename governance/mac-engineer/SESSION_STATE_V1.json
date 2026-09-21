@@ -27,7 +27,7 @@
     "productSourceAuthority": "PASS",
     "productCIExactMain": "PASS"
   },
-  "currentObjective": "PRODUCT_SOURCE_V06_ALIGNMENT",
+  "currentObjective": "PRODUCT_SOURCE_V0_6_ALIGNMENT",
   "observedProductPublication": {
     "source": "MAC_FIELD_OUTPUT",
     "localSourceHead": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
