@@ -126,5 +126,20 @@
       "currentOnly": 0
     },
     "installedAppVersion": "0.4"
+  },
+  "observedExactShaInstallAttempt1": {
+    "state": "HOLD_RECOVERED",
+    "issue": "INSTALLED_APP_PROCESS_REQUIRED",
+    "rootCause": "PROCESS_PATH_VERIFICATION_FALSE_NEGATIVE_MACOS_UNICODE_NORMALIZATION_AND_READINESS",
+    "backupDir": "~/Enguru/Backup/MacEngineer/v06_exact_sha_install_20260921T195339Z",
+    "rollbackPrepared": true,
+    "rollbackUsed": true,
+    "restored": [
+      "~/Applications/ENGÜRÜ Mac Engineer.app",
+      "~/Enguru/Runtime/MacEngineer/App/ENGÜRÜ Mac Engineer.app"
+    ],
+    "relaunch": "PASS",
+    "productSourceSha": "28b901ab3303f4be3c7356b11218b62422f2da42",
+    "nextAction": "RETRY_EXACT_SHA_REBUILD_INSTALL_AFTER_PROCESS_VERIFICATION_FIX"
   }
 }
