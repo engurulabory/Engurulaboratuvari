@@ -20,6 +20,7 @@ SOURCE_REVIEW = ROOT / "tools" / "mac_engineer_source_intake_review.py"
 DELTA_REVIEW = ROOT / "tools" / "mac_engineer_delta_authority_review.py"
 LAYOUT_AUDIT = ROOT / "tools" / "mac_engineer_layout_audit.py"
 SESSION_CONTINUITY = ROOT / "tools" / "mac_engineer_session_continuity.py"
+PRODUCT_CI_VERIFY = ROOT / "tools" / "mac_engineer_product_ci_verify.py"
 
 
 def run(cmd: list[str], cwd: Path | None = None) -> tuple[int, str, str]:
@@ -251,6 +252,7 @@ def main() -> int:
     sub.add_parser("audit-layout")
     sub.add_parser("session-start")
     sub.add_parser("session-handoff")
+    sub.add_parser("verify-product-ci")
 
     args = parser.parse_args()
     if args.command == "status":
@@ -263,6 +265,13 @@ def main() -> int:
     if args.command == "audit-layout":
         proc = subprocess.run(
             [sys.executable, str(LAYOUT_AUDIT)],
+            cwd=str(ROOT),
+            check=False,
+        )
+        return proc.returncode
+    if args.command == "verify-product-ci":
+        proc = subprocess.run(
+            [sys.executable, str(PRODUCT_CI_VERIFY)],
             cwd=str(ROOT),
             check=False,
         )
