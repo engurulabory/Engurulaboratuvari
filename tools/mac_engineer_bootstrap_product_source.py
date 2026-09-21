@@ -18,6 +18,7 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 from typing import Any, Iterable
 
 
@@ -28,6 +29,13 @@ EVIDENCE_ROOT = Path.home() / "Enguru" / "Evidence" / "MacEngineer" / "v0.6"
 SOURCE_REVIEW = EVIDENCE_ROOT / "package6-source-intake-review.json"
 DELTA_REVIEW = EVIDENCE_ROOT / "package6-delta-authority-review.json"
 PROVENANCE_REVIEW = EVIDENCE_ROOT / "package6-provenance-reconcile.json"
+
+NATIVE_SOURCE_PREFIX = "execution_prep/native_app/"
+REQUIRED_NATIVE_FILES = {
+    "EnguruMacEngineerApp.swift",
+    "Info.plist",
+    "prepare_native_app.command",
+}
 
 
 class BootstrapError(RuntimeError):
@@ -111,101 +119,212 @@ def ensure_under(path: Path, root: Path) -> Path:
     return resolved
 
 
-def copy_record(record: dict[str, Any], destination_root: Path, authority_root: Path) -> dict[str, Any]:
-    source = ensure_under(Path(str(record["path"])), authority_root)
+def copy_verified_file(
+    source: Path,
+    target: Path,
+    expected_sha256: str,
+) -> str:
     if not source.is_file() or source.is_symlink():
         raise BootstrapError(f"SOURCE_FILE_INVALID:{source}")
-    rel = safe_relative(str(record["relative_path"]))
-    target = destination_root / rel
     target.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(source, target)
     digest = sha256_file(target)
-    expected = str(record.get("sha256", ""))
-    if expected and digest != expected:
-        raise BootstrapError(f"COPY_HASH_MISMATCH:{rel}")
-    return {"relative_path": str(rel), "sha256": digest, "authority": "HISTORICAL_SAFE_SOURCE"}
+    if expected_sha256 and digest != expected_sha256:
+        raise BootstrapError(f"COPY_HASH_MISMATCH:{target}")
+    return digest
 
 
-def choose_divergent_destination(row: dict[str, Any]) -> Path:
-    candidates = row.get("source_candidates", [])
-    if not isinstance(candidates, list) or not candidates:
-        raise BootstrapError(
-            f"DIVERGENT_SOURCE_MAPPING_MISSING:{row.get('runtime', {}).get('relative_path')}"
-        )
-    first = candidates[0]
-    source = first.get("source", {}) if isinstance(first, dict) else {}
-    rel = source.get("relative_path")
-    if not rel:
-        raise BootstrapError(
-            f"DIVERGENT_SOURCE_MAPPING_INVALID:{row.get('runtime', {}).get('relative_path')}"
-        )
-    return safe_relative(str(rel))
-
-
-def apply_runtime_authority(
-    delta: dict[str, Any],
+def copy_native_sources(
+    source_review: dict[str, Any],
     destination_root: Path,
-    runtime_root: Path,
+    source_root: Path,
 ) -> list[dict[str, Any]]:
-    if delta.get("state") != "PASS":
-        raise BootstrapError("DELTA_AUTHORITY_NOT_PASS")
-    if delta.get("compile_result", {}).get("pass") is not True:
-        raise BootstrapError("DELTA_COMPILE_NOT_PASS")
-    if delta.get("test_result", {}).get("pass") is not True:
-        raise BootstrapError("DELTA_TESTS_NOT_PASS")
+    safe_files = source_review.get("source", {}).get("safe_files", [])
+    selected: dict[str, dict[str, Any]] = {}
 
-    expected = set(
-        delta.get("proposed_authority", {}).get("runtime_authority_candidate_files", [])
-    )
-    applied: list[dict[str, Any]] = []
-
-    for row in delta.get("rows", []):
-        if not isinstance(row, dict):
+    for record in safe_files:
+        if not isinstance(record, dict):
             continue
-        classification = row.get("classification")
-        authority = row.get("authority")
-        runtime = row.get("runtime", {})
-        runtime_rel_value = str(runtime.get("relative_path", ""))
-        if classification not in {"DIVERGENT", "RUNTIME_ONLY"}:
+        rel_value = str(record.get("relative_path", ""))
+        rel = safe_relative(rel_value)
+        if not rel_value.startswith(NATIVE_SOURCE_PREFIX):
             continue
-        if authority != "RUNTIME_FIELD_CANDIDATE":
-            raise BootstrapError(f"DELTA_AUTHORITY_HOLD:{runtime_rel_value}")
-        if runtime_rel_value not in expected:
-            raise BootstrapError(f"DELTA_AUTHORITY_SET_MISMATCH:{runtime_rel_value}")
+        if rel.name in REQUIRED_NATIVE_FILES:
+            selected[rel.name] = record
 
-        runtime_path = ensure_under(Path(str(runtime["path"])), runtime_root)
-        if not runtime_path.is_file() or runtime_path.is_symlink():
-            raise BootstrapError(f"RUNTIME_FILE_INVALID:{runtime_path}")
-        runtime_rel = safe_relative(runtime_rel_value)
-        destination_rel = (
-            choose_divergent_destination(row)
-            if classification == "DIVERGENT"
-            else runtime_rel
+    missing = sorted(REQUIRED_NATIVE_FILES - set(selected))
+    if missing:
+        raise BootstrapError(
+            "REQUIRED_NATIVE_SOURCE_MISSING:" + ",".join(missing)
         )
-        target = destination_root / destination_rel
-        target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(runtime_path, target)
-        digest = sha256_file(target)
-        if runtime.get("sha256") and digest != runtime["sha256"]:
-            raise BootstrapError(f"RUNTIME_COPY_HASH_MISMATCH:{runtime_rel}")
-        applied.append(
+
+    copied: list[dict[str, Any]] = []
+    native_root = destination_root / "execution_prep" / "native_app"
+    for name in sorted(REQUIRED_NATIVE_FILES):
+        record = selected[name]
+        source = ensure_under(Path(str(record["path"])), source_root)
+        target = native_root / name
+        digest = copy_verified_file(
+            source,
+            target,
+            str(record.get("sha256", "")),
+        )
+        copied.append(
             {
-                "runtime_relative_path": str(runtime_rel),
-                "destination_relative_path": str(destination_rel),
+                "historical_relative_path": str(record["relative_path"]),
+                "product_relative_path": str(
+                    target.relative_to(destination_root)
+                ),
                 "sha256": digest,
-                "authority": "VERIFIED_CURRENT_FIELD_RUNTIME",
-                "classification": classification,
+                "authority": "HISTORICAL_NATIVE_SOURCE",
             }
         )
 
-    applied_names = {x["runtime_relative_path"] for x in applied}
-    if applied_names != expected:
-        missing = sorted(expected - applied_names)
-        raise BootstrapError(
-            f"DELTA_AUTHORITY_NOT_FULLY_APPLIED:{','.join(missing)}"
-        )
-    return applied
+    prep = native_root / "prepare_native_app.command"
+    text = prep.read_text(encoding="utf-8")
+    old = '$SRC_DIR/../../baseline_v0.4/runtime'
+    new = '$SRC_DIR/../../runtime'
+    if old in text:
+        text = text.replace(old, new)
+        prep.write_text(text, encoding="utf-8")
+    elif new not in text:
+        raise BootstrapError("NATIVE_PREP_RUNTIME_SOURCE_MAPPING_UNKNOWN")
 
+    for item in copied:
+        if item["product_relative_path"].endswith(
+            "prepare_native_app.command"
+        ):
+            item["sha256"] = sha256_file(prep)
+            item["derived_change"] = (
+                "runtime source normalized from historical "
+                "baseline_v0.4/runtime to canonical product runtime/"
+            )
+    return copied
+
+
+def current_runtime_records(
+    source_review: dict[str, Any],
+) -> list[dict[str, Any]]:
+    comparison = source_review.get("runtime_comparison", {})
+    records: list[dict[str, Any]] = []
+    classifications = (
+        ("exact", "HISTORICAL_EXACT"),
+        ("divergent", "VERIFIED_FIELD_DELTA"),
+        ("runtime_only", "VERIFIED_FIELD_ADDITION"),
+    )
+
+    seen: set[str] = set()
+    for section, authority in classifications:
+        rows = comparison.get(section, [])
+        if not isinstance(rows, list):
+            raise BootstrapError(
+                f"RUNTIME_COMPARISON_INVALID:{section}"
+            )
+        for row in rows:
+            if not isinstance(row, dict):
+                continue
+            runtime = row.get("runtime", {})
+            rel_value = str(runtime.get("relative_path", ""))
+            rel = safe_relative(rel_value)
+            if rel_value in seen:
+                raise BootstrapError(
+                    f"DUPLICATE_RUNTIME_RECORD:{rel_value}"
+                )
+            seen.add(rel_value)
+            records.append(
+                {
+                    "path": str(runtime.get("path", "")),
+                    "relative_path": str(rel),
+                    "sha256": str(runtime.get("sha256", "")),
+                    "authority": authority,
+                    "classification": section.upper(),
+                }
+            )
+
+    expected_total = comparison.get("counts", {}).get("runtime_total")
+    if expected_total is not None and len(records) != int(expected_total):
+        raise BootstrapError(
+            "RUNTIME_RECORD_COUNT_MISMATCH:"
+            f"{len(records)}!={expected_total}"
+        )
+    if not records:
+        raise BootstrapError("CURRENT_RUNTIME_SOURCE_EMPTY")
+    return records
+
+
+def validate_delta_authority(
+    source_review: dict[str, Any],
+    delta_review: dict[str, Any],
+) -> set[str]:
+    if delta_review.get("state") != "PASS":
+        raise BootstrapError("DELTA_AUTHORITY_NOT_PASS")
+    if delta_review.get("compile_result", {}).get("pass") is not True:
+        raise BootstrapError("DELTA_COMPILE_NOT_PASS")
+    if delta_review.get("test_result", {}).get("pass") is not True:
+        raise BootstrapError("DELTA_TESTS_NOT_PASS")
+
+    expected = set(
+        delta_review.get("proposed_authority", {}).get(
+            "runtime_authority_candidate_files", []
+        )
+    )
+    comparison = source_review.get("runtime_comparison", {})
+    observed: set[str] = set()
+    for section in ("divergent", "runtime_only"):
+        for row in comparison.get(section, []):
+            if isinstance(row, dict):
+                rel = str(
+                    row.get("runtime", {}).get(
+                        "relative_path", ""
+                    )
+                )
+                if rel:
+                    observed.add(rel)
+
+    if expected != observed:
+        raise BootstrapError(
+            "DELTA_AUTHORITY_SET_MISMATCH:"
+            f"expected={sorted(expected)}:"
+            f"observed={sorted(observed)}"
+        )
+    return expected
+
+
+def copy_current_runtime(
+    source_review: dict[str, Any],
+    delta_review: dict[str, Any],
+    destination_root: Path,
+    runtime_root: Path,
+) -> list[dict[str, Any]]:
+    validate_delta_authority(source_review, delta_review)
+    records = current_runtime_records(source_review)
+    copied: list[dict[str, Any]] = []
+
+    for record in records:
+        source = ensure_under(
+            Path(record["path"]),
+            runtime_root,
+        )
+        rel = safe_relative(record["relative_path"])
+        target = destination_root / "runtime" / rel
+        digest = copy_verified_file(
+            source,
+            target,
+            record["sha256"],
+        )
+        copied.append(
+            {
+                "runtime_relative_path": str(rel),
+                "product_relative_path": str(
+                    target.relative_to(destination_root)
+                ),
+                "sha256": digest,
+                "authority": record["authority"],
+                "classification": record["classification"],
+            }
+        )
+
+    return copied
 
 def write_metadata(
     destination_root: Path,
@@ -213,8 +332,8 @@ def write_metadata(
     provenance: dict[str, Any],
     source_review: dict[str, Any],
     delta_review: dict[str, Any],
-    safe_copies: list[dict[str, Any]],
-    runtime_overrides: list[dict[str, Any]],
+    native_sources: list[dict[str, Any]],
+    runtime_sources: list[dict[str, Any]],
 ) -> None:
     (destination_root / ".enguru").mkdir(parents=True, exist_ok=True)
     (destination_root / ".github" / "workflows").mkdir(parents=True, exist_ok=True)
@@ -274,12 +393,23 @@ DerivedData/
             "state": delta_review.get("state"),
             "compilePass": delta_review.get("compile_result", {}).get("pass"),
             "testsPass": delta_review.get("test_result", {}).get("pass"),
-            "verifiedRuntimeAuthorityCandidates": len(runtime_overrides),
+            "verifiedRuntimeAuthorityCandidates": len(
+                delta_review.get("proposed_authority", {}).get(
+                    "runtime_authority_candidate_files", []
+                )
+            ),
+            "canonicalRuntimeSourceFiles": len(runtime_sources),
+            "nativeSourceFiles": len(native_sources),
         },
         "files": {
-            "historicalSafeCopied": safe_copies,
-            "verifiedRuntimeOverrides": runtime_overrides,
+            "nativeSources": native_sources,
+            "runtimeSources": runtime_sources,
         },
+        "composition": (
+            "historical native source + current verified runtime "
+            "snapshot (13 exact historical continuities + "
+            "13 compile/test-verified field deltas)"
+        ),
         "truthBoundary": (
             "This manifest proves the local canonical-source bootstrap composition. "
             "Remote GitHub authority begins only after this exact tree is pushed and exact-main is verified."
@@ -325,75 +455,139 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.14"
-      - name: Install Python requirements when present
+      - name: Install Python requirements
         shell: bash
         run: |
-          if [ -f requirements.txt ]; then python -m pip install -r requirements.txt; fi
           if [ -f runtime/requirements.txt ]; then python -m pip install -r runtime/requirements.txt; fi
-      - name: Python compile
-        run: python -m compileall -q .
-      - name: Python tests
-        shell: bash
-        run: |
-          found=0
-          while IFS= read -r testdir; do
-            found=1
-            parent="$(dirname "$testdir")"
-            PYTHONPATH="$PWD:$PWD/runtime:$PWD/$parent" python -m unittest discover -s "$testdir" -v
-          done < <(find . -type d -name tests -not -path './.git/*' | sort)
-          if [ "$found" -eq 0 ]; then echo "No unittest directory found"; fi
-      - name: Swift parse
-        shell: bash
-        run: |
-          files="$(find . -type f -name '*.swift' -not -path './.git/*' | sort)"
-          if [ -n "$files" ]; then xcrun swiftc -parse $files; fi
+      - name: Runtime compile
+        run: python -m compileall -q runtime
+      - name: Runtime tests
+        env:
+          PYTHONPATH: ${{ github.workspace }}/runtime
+        run: python -m unittest discover -s runtime/tests -v
+      - name: Native prep syntax
+        run: zsh -n execution_prep/native_app/prepare_native_app.command
+      - name: Native Swift typecheck
+        run: xcrun swiftc -typecheck execution_prep/native_app/EnguruMacEngineerApp.swift -framework SwiftUI -framework WebKit -framework AppKit
 """
     (destination_root / ".github" / "workflows" / "product-ci.yml").write_text(
         workflow, encoding="utf-8"
     )
 
 
-def iter_test_dirs(root: Path) -> Iterable[Path]:
-    for path in sorted(root.rglob("tests")):
-        if path.is_dir() and ".git" not in path.parts and "__pycache__" not in path.parts:
-            yield path
+def verification_issues(result: dict[str, Any]) -> list[str]:
+    issues: list[str] = []
+    for key in ("runtime_compile", "runtime_tests"):
+        item = result.get(key, {})
+        if item.get("pass") is not True:
+            issues.append(key)
+    native = result.get("native", {})
+    for key, item in native.items():
+        if isinstance(item, dict) and item.get("pass") is not True:
+            issues.append(f"native:{key}")
+    return issues
 
 
 def verify_tree(root: Path) -> dict[str, Any]:
+    runtime = root / "runtime"
+    tests = runtime / "tests"
+    if not runtime.is_dir():
+        return {
+            "pass": False,
+            "runtime_compile": {
+                "pass": False,
+                "reason": "RUNTIME_SOURCE_DIRECTORY_REQUIRED",
+            },
+            "runtime_tests": {
+                "pass": False,
+                "reason": "RUNTIME_TEST_DIRECTORY_REQUIRED",
+            },
+            "native": {},
+        }
+    if not tests.is_dir():
+        return {
+            "pass": False,
+            "runtime_compile": run(
+                ["python3", "-m", "compileall", "-q", str(runtime)],
+                cwd=root,
+            ),
+            "runtime_tests": {
+                "pass": False,
+                "reason": "RUNTIME_TEST_DIRECTORY_REQUIRED",
+            },
+            "native": {},
+        }
+
     env = dict(os.environ)
-    python_paths = [str(root)]
-    if (root / "runtime").exists():
-        python_paths.append(str(root / "runtime"))
+    paths = [str(runtime)]
     if env.get("PYTHONPATH"):
-        python_paths.append(env["PYTHONPATH"])
-    env["PYTHONPATH"] = os.pathsep.join(python_paths)
+        paths.append(env["PYTHONPATH"])
+    env["PYTHONPATH"] = os.pathsep.join(paths)
 
     compile_result = run(
-        ["python3", "-m", "compileall", "-q", str(root)],
+        ["python3", "-m", "compileall", "-q", str(runtime)],
         cwd=root,
         env=env,
     )
-    test_results: list[dict[str, Any]] = []
-    for test_dir in iter_test_dirs(root):
-        local_env = dict(env)
-        test_paths = [str(root), str(root / "runtime"), str(test_dir.parent)]
-        if env.get("PYTHONPATH"):
-            test_paths.append(env["PYTHONPATH"])
-        local_env["PYTHONPATH"] = os.pathsep.join(test_paths)
-        test_results.append(
-            run(
-                ["python3", "-m", "unittest", "discover", "-s", str(test_dir), "-v"],
-                cwd=root,
-                env=local_env,
-                timeout=300,
-            )
-        )
-    return {
-        "compile": compile_result,
-        "tests": test_results,
-        "pass": compile_result["pass"] and all(x["pass"] for x in test_results),
-    }
+    test_result = run(
+        [
+            "python3",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            str(tests),
+            "-v",
+        ],
+        cwd=root,
+        env=env,
+        timeout=300,
+    )
 
+    native: dict[str, Any] = {}
+    prep = root / "execution_prep" / "native_app" / (
+        "prepare_native_app.command"
+    )
+    swift = root / "execution_prep" / "native_app" / (
+        "EnguruMacEngineerApp.swift"
+    )
+
+    if sys.platform == "darwin":
+        native["zsh_syntax"] = run(
+            ["zsh", "-n", str(prep)],
+            cwd=root,
+        )
+        native["swift_typecheck"] = run(
+            [
+                "xcrun",
+                "swiftc",
+                "-typecheck",
+                str(swift),
+                "-framework",
+                "SwiftUI",
+                "-framework",
+                "WebKit",
+                "-framework",
+                "AppKit",
+            ],
+            cwd=root,
+            timeout=300,
+        )
+
+    passed = (
+        compile_result["pass"]
+        and test_result["pass"]
+        and all(
+            item.get("pass") is True
+            for item in native.values()
+        )
+    )
+    return {
+        "runtime_compile": compile_result,
+        "runtime_tests": test_result,
+        "native": native,
+        "pass": passed,
+    }
 
 def git_initialize(root: Path) -> dict[str, Any]:
     steps = [
@@ -489,11 +683,13 @@ def prepare_tree(
         raise BootstrapError("SOURCE_SECRET_FINDINGS_PRESENT")
     if int(source.get("safe_file_count", 0)) <= 0:
         raise BootstrapError("NO_SAFE_SOURCE_FILES")
-    if delta_review.get("state") != "PASS":
-        raise BootstrapError("DELTA_AUTHORITY_NOT_PASS")
 
-    source_root = Path(str(source_review.get("source_root", ""))).expanduser()
-    runtime_root = Path(str(source_review.get("runtime_root", ""))).expanduser()
+    source_root = Path(
+        str(source_review.get("source_root", ""))
+    ).expanduser()
+    runtime_root = Path(
+        str(source_review.get("runtime_root", ""))
+    ).expanduser()
     if not source_root.is_dir():
         raise BootstrapError(f"SOURCE_ROOT_MISSING:{source_root}")
     if not runtime_root.is_dir():
@@ -501,32 +697,77 @@ def prepare_tree(
 
     destination = destination.expanduser()
     if destination.exists():
-        raise BootstrapError(f"DESTINATION_ALREADY_EXISTS:{destination}")
+        raise BootstrapError(
+            f"DESTINATION_ALREADY_EXISTS:{destination}"
+        )
     destination.parent.mkdir(parents=True, exist_ok=True)
 
-    staging = destination.parent / f".{destination.name}.bootstrap-{os.getpid()}"
+    staging = destination.parent / (
+        f".{destination.name}.bootstrap-{os.getpid()}"
+    )
     if staging.exists():
-        raise BootstrapError(f"STAGING_ALREADY_EXISTS:{staging}")
+        raise BootstrapError(
+            f"STAGING_ALREADY_EXISTS:{staging}"
+        )
     staging.mkdir()
 
     try:
-        safe_copies = [
-            copy_record(record, staging, source_root)
-            for record in source.get("safe_files", [])
-        ]
-        overrides = apply_runtime_authority(delta_review, staging, runtime_root)
+        native_sources = copy_native_sources(
+            source_review,
+            staging,
+            source_root,
+        )
+        runtime_sources = copy_current_runtime(
+            source_review,
+            delta_review,
+            staging,
+            runtime_root,
+        )
         write_metadata(
             staging,
             provenance=provenance,
             source_review=source_review,
             delta_review=delta_review,
-            safe_copies=safe_copies,
-            runtime_overrides=overrides,
+            native_sources=native_sources,
+            runtime_sources=runtime_sources,
         )
 
         verification = verify_tree(staging)
         if not verification["pass"]:
-            raise BootstrapError("PREPARED_SOURCE_VERIFICATION_FAILED")
+            failure = {
+                "schema": (
+                    "enguru.mac-engineer."
+                    "product-source-bootstrap-failure/v1"
+                ),
+                "observedAt": now(),
+                "state": "HOLD",
+                "issues": verification_issues(verification),
+                "verification": verification,
+                "staging": str(staging),
+                "truthBoundary": (
+                    "Staging was not promoted and will be "
+                    "removed after this receipt is written."
+                ),
+            }
+            EVIDENCE_ROOT.mkdir(parents=True, exist_ok=True)
+            failure_path = (
+                EVIDENCE_ROOT
+                / "product-source-bootstrap-failure.json"
+            )
+            failure_path.write_text(
+                json.dumps(
+                    failure,
+                    ensure_ascii=False,
+                    indent=2,
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            raise BootstrapError(
+                "PREPARED_SOURCE_VERIFICATION_FAILED:"
+                + ",".join(failure["issues"])
+                + f":evidence={failure_path}"
+            )
 
         staging.rename(destination)
     except Exception:
@@ -536,11 +777,14 @@ def prepare_tree(
 
     return {
         "destination": str(destination),
-        "safe_source_files": len(safe_copies),
-        "runtime_overrides": len(overrides),
+        "native_source_files": len(native_sources),
+        "runtime_source_files": len(runtime_sources),
         "verification": verification,
+        "composition": (
+            "3 historical native source files + "
+            "26 current verified runtime source files"
+        ),
     }
-
 
 def main() -> int:
     parser = argparse.ArgumentParser()
