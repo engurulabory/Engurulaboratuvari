@@ -1030,7 +1030,7 @@ Evaluate under original ENGÜRÜ identity:
 
 ### Package 6 — Mac Local Final Commissioning
 - [x] **Exact-main sync:** Mac `main` = GitHub `origin/main` at `e4f7670429ccdc57178065093f45ced83d07696f`; pre-sync local Shared AI edits preserved on `local/package6-preserve-20260921T201619` / `d3e5dca`; worktree clean.
-- [ ] **Local runtime boot:** runtime/app/process + Shared AI + Ollama/qwen3:14b are observed ACTIVE/PASS; historical source/build continuity PASS (26 runtime files: 13 exact, 8 divergent, 5 runtime-only); **HOLD — CANONICAL SOURCE INTAKE** until source hygiene + runtime-delta authority review binds the installed runtime to canonical GitHub source/version evidence.
+- [ ] **Local runtime boot:** runtime/app/process + Shared AI + Ollama/qwen3:14b are observed ACTIVE/PASS; historical continuity PASS; source hygiene PASS (97 safe, 1 Swift, 0 secret findings); **HOLD — RUNTIME DELTA AUTHORITY** for 8 divergent + 5 runtime-only files pending current runtime compile/test evidence, then canonical source intake.
 - [ ] **Real Mac task:** one real engineering task is executed through the actual Mac Engineer path; health-only evidence is insufficient.
 - [ ] **Persistent continuity:** task checkpoint is written, runtime/process is restarted, and the same task resumes from verified persistent state without identity drift.
 - [ ] **Recovery field proof:** inject or observe one bounded recoverable failure → diagnose → smallest repair/recovery → reverify.
