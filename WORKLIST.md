@@ -1031,8 +1031,9 @@ Evaluate under original ENGÜRÜ identity:
 ### Package 6 — Mac Local Final Commissioning
 - [x] **Source ownership model:** Labory = CONTROL_PLANE; dedicated Mac Engineer repository = PRODUCT SOURCE; Runtime/Applications = EXECUTION OUTPUTS; local Evidence = field proof.
 - [x] **Historical source + field delta reconciliation:** 97 safe historical source files + 1 Swift source; zero secret findings; 13 current-field delta authority candidates verified by compile + runtime tests.
-- [ ] **Dedicated product source bootstrap:** atomically prepare `~/Enguru/Projects/enguru-mac-engineer` from safe historical source + verified runtime overrides; local compile/tests PASS; initialize clean `main`.
-- [ ] **Dedicated GitHub source authority:** create/push private `engurulabory/enguru-mac-engineer`; product CI PASS on exact-main; Labory references product source SHA.
+- [x] **Dedicated product source bootstrap:** local canonical source prepared at `~/Enguru/Projects/enguru-mac-engineer`; 3 native + 26 runtime source files; runtime compile PASS; 25 runtime tests PASS; zsh syntax PASS; native Swift build PASS/executable; clean local Git `main` root commit `3ac09bd7d022a6114b9066afca14ff170e0177c1`.
+- [ ] **Mac layout audit:** bounded read-only inventory of Mac Engineer-related structures/processes → classify `CANONICAL / KNOWN_SECONDARY / STALE_TEMP / UNKNOWN`; zero unexplained active/path drift before remote publication.
+- [ ] **Dedicated GitHub source authority:** after layout audit PASS, create/push private `engurulabory/enguru-mac-engineer`; product CI PASS on exact-main; Labory references product source SHA.
 - [x] **Exact-main sync:** Mac `main` = GitHub `origin/main` at `e4f7670429ccdc57178065093f45ced83d07696f`; pre-sync local Shared AI edits preserved on `local/package6-preserve-20260921T201619` / `d3e5dca`; worktree clean.
 - [ ] **Local runtime boot / source binding:** runtime/app/process + Shared AI + Ollama/qwen3:14b ACTIVE/PASS; historical continuity PASS; source hygiene PASS; runtime delta authority PASS (13/13, compile + tests PASS). **ACTIVE — DEDICATED PRODUCT SOURCE BOOTSTRAP:** prepare `~/Enguru/Projects/enguru-mac-engineer` → private `engurulabory/enguru-mac-engineer` → product exact-main CI → rebuild/install from exact product SHA.
 - [ ] **Real Mac task:** one real engineering task is executed through the actual Mac Engineer path; health-only evidence is insufficient.
@@ -1042,4 +1043,4 @@ Evaluate under original ENGÜRÜ identity:
 - [ ] **Mac Local Mandatory DoneCheck™:** work done? actually works? real Mac task? restart/resume? recovery? evidence? authority boundaries? critical failures = 0?
 - [ ] **v0.6 final closure:** GitHub engineering PASS + Mac local commissioning PASS → **ENGÜRÜ Mac Engineer™ v0.6 VERIFIED FINAL / LOCKED**.
 
-**Current single objective:** **Package 6 — Dedicated Mac Engineer Product Source Bootstrap**.
+**Current single objective:** **Package 6 — Mac Layout Audit**.
