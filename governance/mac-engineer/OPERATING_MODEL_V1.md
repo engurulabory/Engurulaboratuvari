@@ -130,7 +130,7 @@ Bootstrap of the dedicated product source is:
 
 Remote GitHub publication, when the local source is verified and GitHub CLI is authenticated:
 
-`python3 tools/mac_engineer_control.py bootstrap-source --publish`
+`python3 tools/mac_engineer_control.py publish-source`
 
 The control command fails closed when truth is incomplete.
 

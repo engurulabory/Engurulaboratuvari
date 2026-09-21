@@ -25,7 +25,7 @@ python3 tools/mac_engineer_control.py bootstrap-source
 Remote private product-source publication, only after local bootstrap PASS:
 
 ```bash
-python3 tools/mac_engineer_control.py bootstrap-source --publish
+python3 tools/mac_engineer_control.py publish-source
 ```
 
 The lower-level `mac_engineer_*_review.py` tools remain diagnostic/evidence mechanisms. They are not the permanent user workflow.
