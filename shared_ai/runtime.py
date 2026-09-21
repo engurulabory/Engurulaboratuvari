@@ -213,7 +213,7 @@ class SharedAIRuntime:
             list(request.context_messages),
             verified_facts=request.known_truths,
         ) if request.context_messages else ""
-        parts = []
+        parts = [self.behavior.governance_instruction()]
         if compacted:
             parts.append(f"CONTEXT:{compacted}")
         if request.steering_instruction.strip():
