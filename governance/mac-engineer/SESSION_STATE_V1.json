@@ -25,17 +25,18 @@
     "localProductSourceBootstrap": "PASS",
     "macLayoutAudit": "PASS"
   },
-  "currentObjective": "DEDICATED_GITHUB_PRODUCT_SOURCE_AUTHORITY",
+  "currentObjective": "PRODUCT_CI_EXACT_MAIN_VERIFICATION",
   "observedProductPublication": {
     "source": "MAC_FIELD_OUTPUT",
     "localSourceHead": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
     "remote": "engurulabory/enguru-mac-engineer",
+    "repositoryCreated": true,
     "pushState": "PASS",
-    "remoteExactMainObservedOnMac": true,
-    "remoteConnectorVerification": "PENDING_OR_ACCESS_REFRESH"
+    "remoteTracking": true,
+    "localExactOriginMain": true,
+    "productCIExactMain": "PENDING_VERIFICATION"
   },
   "canonicalNextLine": [
-    "REMOTE_REPOSITORY_VERIFICATION",
     "PRODUCT_CI_EXACT_MAIN",
     "LABORY_PRODUCT_SOURCE_BINDING",
     "EXACT_SHA_REBUILD_INSTALL",
