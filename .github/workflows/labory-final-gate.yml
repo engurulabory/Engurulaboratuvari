@@ -78,6 +78,9 @@ jobs:
       - name: Mac Engineer product source bootstrap tests
         run: python -m unittest discover -s tests -p 'test_mac_engineer_product_source_bootstrap.py' -v
 
+      - name: Mac Engineer layout audit tests
+        run: python -m unittest discover -s tests -p 'test_mac_engineer_layout_audit.py' -v
+
       - name: Quality & Red Team review tests
         run: python -m unittest discover -s tests -p 'test_quality_review.py' -v
 
