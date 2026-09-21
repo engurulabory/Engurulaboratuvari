@@ -27,7 +27,7 @@
     "productSourceAuthority": "PASS",
     "productCIExactMain": "PASS"
   },
-  "currentObjective": "PRODUCT_PR_EXACT_HEAD_CI_MERGE",
+  "currentObjective": "PRODUCT_EXACT_MAIN_CI_REBUILD_PREFLIGHT_RECHECK",
   "observedProductPublication": {
     "source": "MAC_FIELD_OUTPUT",
     "localSourceHead": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
@@ -41,9 +41,7 @@
     "productCIRunNumber": 1
   },
   "canonicalNextLine": [
-    "PRODUCT_PR_EXACT_HEAD_CI_MERGE",
-    "PRODUCT_EXACT_MAIN_CI",
-    "REBUILD_PREFLIGHT_RECHECK",
+    "PRODUCT_EXACT_MAIN_CI_REBUILD_PREFLIGHT_RECHECK",
     "EXACT_SHA_REBUILD_INSTALL",
     "RUNTIME_APP_PROVENANCE",
     "HISTORICAL_HANDOFF_BACKUP_ARTIFACT_ARCHIVE_DECISION",
@@ -95,5 +93,18 @@
     "push": "PASS",
     "prNumber": 1,
     "prCreated": true
+  },
+  "observedV06AlignmentMerge": {
+    "state": "PASS",
+    "prNumber": 1,
+    "prHead": "02b7cc3a29857fa405d7f5cc77b6af822d6369a0",
+    "prCIRunId": 35645127566,
+    "prCIRunNumber": 2,
+    "prCI": "PASS",
+    "mergeSha": "28b901ab3303f4be3c7356b11218b62422f2da42",
+    "localMain": "28b901ab3303f4be3c7356b11218b62422f2da42",
+    "originMain": "28b901ab3303f4be3c7356b11218b62422f2da42",
+    "localClean": true,
+    "exactMainCI": "PENDING"
   }
 }
