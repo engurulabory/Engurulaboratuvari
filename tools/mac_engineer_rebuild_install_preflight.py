@@ -210,6 +210,22 @@ def main() -> int:
         issues.append("PRODUCT_BUILD_VERSION_ALIGNMENT_REQUIRED")
 
     parity = source_runtime_parity()
+    source_like_suffixes = {
+        ".png", ".jpg", ".jpeg", ".webp", ".svg", ".ico", ".icns",
+        ".html", ".css", ".js", ".json", ".py", ".txt", ".md",
+    }
+    current_only_source_like = [
+        row["path"]
+        for row in parity.get("rows", [])
+        if row.get("state") == "CURRENT_ONLY"
+        and Path(str(row.get("path", ""))).suffix.lower()
+        in source_like_suffixes
+    ]
+    if current_only_source_like:
+        issues.append(
+            "RUNTIME_SOURCE_ASSET_REVIEW_REQUIRED:"
+            + ",".join(current_only_source_like)
+        )
 
     payload = {
         "schema": "enguru.mac-engineer.rebuild-install-preflight/v1",
@@ -222,6 +238,7 @@ def main() -> int:
         "installed_app": installed_info,
         "build_contract": prep_contract,
         "runtime_source_parity": parity,
+        "current_only_source_like": current_only_source_like,
         "source_files": {
             "swift_sha256": sha256_file(SWIFT) if SWIFT.is_file() else None,
             "info_plist_sha256": sha256_file(INFO_PLIST) if INFO_PLIST.is_file() else None,
