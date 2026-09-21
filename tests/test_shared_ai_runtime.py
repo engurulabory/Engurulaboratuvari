@@ -198,3 +198,48 @@ class LocalAdapterContractTests(unittest.TestCase):
         finally:
             server.shutdown()
             server.server_close()
+
+    def test_native_ollama_interactive_structured_adapter(self):
+        captured = {}
+
+        class LocalHandler(http_server.BaseHTTPRequestHandler):
+            def log_message(self, format, *args):
+                return
+
+            def do_POST(self):
+                captured["path"] = self.path
+                length = int(self.headers.get("Content-Length", "0"))
+                payload = json.loads(self.rfile.read(length))
+                captured["payload"] = payload
+                body = json.dumps({
+                    "message": {"content": json.dumps({"ok": True})},
+                    "done": True,
+                }).encode()
+                self.send_response(200)
+                self.send_header("Content-Type", "application/json")
+                self.send_header("Content-Length", str(len(body)))
+                self.end_headers()
+                self.wfile.write(body)
+
+        server = ThreadingHTTPServer(("127.0.0.1", 0), LocalHandler)
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        try:
+            adapter = LocalOpenAICompatibleAdapter(
+                base_url=f"http://127.0.0.1:{server.server_address[1]}",
+                model="qwen3:14b",
+                timeout_seconds=2,
+                native_ollama=True,
+            )
+            result = adapter.invoke(req(
+                latency_class="INTERACTIVE",
+                verification_profile="STRUCTURED",
+                required_capabilities=frozenset({"text", "structured_output"}),
+            ))
+            self.assertEqual(captured["path"], "/api/chat")
+            self.assertIs(captured["payload"]["think"], False)
+            self.assertEqual(captured["payload"]["format"], "json")
+            self.assertEqual(result["output"], {"ok": True})
+        finally:
+            server.shutdown()
+            server.server_close()

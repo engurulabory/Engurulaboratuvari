@@ -14,18 +14,26 @@ def build_runtime_from_env() -> SharedAIRuntime:
         base_url = os.getenv("ENGURU_LOCAL_BASE_URL", "http://127.0.0.1:11434")
         model = os.getenv("ENGURU_LOCAL_MODEL", "")
         commercial = os.getenv("ENGURU_LOCAL_COMMERCIAL_USE_VERIFIED") == "1"
+        native_ollama = os.getenv("ENGURU_LOCAL_NATIVE_OLLAMA") == "1"
         if model:
+            capabilities = {"text", "reasoning"}
+            if native_ollama:
+                capabilities.add("structured_output")
             runtime.register(ProviderRecord(
                 name="local_runtime",
                 model=model,
-                adapter=LocalOpenAICompatibleAdapter(base_url=base_url, model=model),
+                adapter=LocalOpenAICompatibleAdapter(
+                    base_url=base_url,
+                    model=model,
+                    native_ollama=native_ollama,
+                ),
                 local=True,
                 production_approved=True,
                 privacy_verified=True,
                 commercial_use_verified=commercial,
                 cost_verified=True,
                 estimated_cost=0.0,
-                capabilities={"text", "reasoning"},
+                capabilities=capabilities,
             ))
     return runtime
 
