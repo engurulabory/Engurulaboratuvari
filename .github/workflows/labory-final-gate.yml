@@ -73,7 +73,7 @@ jobs:
         run: python -m py_compile tools/mac_engineer_delta_authority_review.py
 
       - name: Mac Engineer clean operating system syntax
-        run: python -m py_compile tools/mac_engineer_control.py tools/mac_engineer_bootstrap_product_source.py tools/mac_engineer_layout_audit.py tools/mac_engineer_session_continuity.py tools/mac_engineer_product_ci_verify.py tools/mac_engineer_rebuild_install_preflight.py tools/mac_engineer_prepare_v06_alignment.py tools/mac_engineer_publish_v06_alignment.py
+        run: python -m py_compile tools/mac_engineer_control.py tools/mac_engineer_bootstrap_product_source.py tools/mac_engineer_layout_audit.py tools/mac_engineer_session_continuity.py tools/mac_engineer_product_ci_verify.py tools/mac_engineer_rebuild_install_preflight.py tools/mac_engineer_prepare_v06_alignment.py tools/mac_engineer_publish_v06_alignment.py tools/mac_engineer_merge_v06_alignment.py
 
       - name: Mac Engineer product source bootstrap tests
         run: python -m unittest discover -s tests -p 'test_mac_engineer_product_source_bootstrap.py' -v
@@ -95,6 +95,9 @@ jobs:
 
       - name: Mac Engineer v0.6 alignment publication tests
         run: python -m unittest discover -s tests -p 'test_mac_engineer_publish_v06_alignment.py' -v
+
+      - name: Mac Engineer v0.6 alignment merge gate tests
+        run: python -m unittest discover -s tests -p 'test_mac_engineer_merge_v06_alignment.py' -v
 
       - name: Quality & Red Team review tests
         run: python -m unittest discover -s tests -p 'test_quality_review.py' -v

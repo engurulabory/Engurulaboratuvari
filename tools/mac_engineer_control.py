@@ -24,6 +24,7 @@ PRODUCT_CI_VERIFY = ROOT / "tools" / "mac_engineer_product_ci_verify.py"
 REBUILD_PREFLIGHT = ROOT / "tools" / "mac_engineer_rebuild_install_preflight.py"
 PREPARE_V06_ALIGNMENT = ROOT / "tools" / "mac_engineer_prepare_v06_alignment.py"
 PUBLISH_V06_ALIGNMENT = ROOT / "tools" / "mac_engineer_publish_v06_alignment.py"
+MERGE_V06_ALIGNMENT = ROOT / "tools" / "mac_engineer_merge_v06_alignment.py"
 
 
 def run(cmd: list[str], cwd: Path | None = None) -> tuple[int, str, str]:
@@ -259,6 +260,7 @@ def main() -> int:
     sub.add_parser("rebuild-preflight")
     sub.add_parser("prepare-v06-alignment")
     sub.add_parser("publish-v06-alignment")
+    sub.add_parser("merge-v06-alignment")
 
     args = parser.parse_args()
     if args.command == "status":
@@ -299,6 +301,13 @@ def main() -> int:
     if args.command == "publish-v06-alignment":
         proc = subprocess.run(
             [sys.executable, str(PUBLISH_V06_ALIGNMENT)],
+            cwd=str(ROOT),
+            check=False,
+        )
+        return proc.returncode
+    if args.command == "merge-v06-alignment":
+        proc = subprocess.run(
+            [sys.executable, str(MERGE_V06_ALIGNMENT)],
             cwd=str(ROOT),
             check=False,
         )
