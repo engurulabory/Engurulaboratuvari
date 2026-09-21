@@ -70,11 +70,18 @@ response:
       - tool_required
       - correction_attempts
 rules:
-  - "Products MUST NOT require a vendor-specific API contract."
-  - "Provider-specific features MUST be isolated behind adapters/capability checks."
-  - "Unknown critical metadata fails closed."
-  - "Cost ceiling MUST be enforced before execution."
-  - "SECRET data defaults to LOCAL_ONLY."
+  - "Products use the provider-independent service contract."
+  - "Provider-specific features stay isolated behind adapters and capability checks."
+  - "Unknown critical metadata is classified HOLD."
+  - "Cost ceiling is verified before execution."
+  - "SECRET data uses LOCAL_ONLY by default."
+
+language_governance:
+  canonical_contract: "governance/ENGURU_LANGUAGE_GOVERNANCE_V1.md"
+  principle: "mevcut hakikat + gerekli fark"
+  mode: "POSITIVE_CONSTRUCTIVE_TRUTHFUL"
+  instruction_style: "ACTION_ORIENTED"
+  truth_rule: "Gerçeği olduğu gibi ifade et; davranışı yapılması gereken doğru hareket üzerinden tarif et."
 
 
 frontier_response:
@@ -102,8 +109,8 @@ execution_evidence:
     - side_effect_state
     - completion_evidence
   rules:
-    - "Consequential side effects require runtime-generated completion evidence."
-    - "Text generation success MUST NOT erase or redefine side-effect completion state."
+    - "Consequential side effects close with runtime-generated completion evidence."
+    - "Side-effect completion state remains authoritative independently of text generation."
 
 
 output_discipline:
