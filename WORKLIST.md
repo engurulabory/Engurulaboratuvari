@@ -688,13 +688,54 @@ Canonical experiment contract:
 
 ---
 
-# ENGÜRÜ Mac Engineer™ v0.6 — PACKAGE 2C / AESTHETIC MOTOR™ 100/100 TARGET TRACK — 2026-09-21
+# ENGÜRÜ Mac Engineering™ — CANONICAL PRODUCT ROADMAP + v0.6 FIELD CLOSEOUT
 
 **STATE:** HOLD — Aesthetic Motor architecture and core mechanisms are strong/tested; Aesthetic Studio has partial field PASS; end-to-end target → result closure, efficiency measurement, expanded creative surfaces and Mac Engineer binding remain open.
 
 **THEORETICAL TARGET:** **Aesthetic Motor™ — 100/100 TARGET**
 
 **Truth boundary:** 100/100 is a theoretical capability-completeness target. It is not a current field score and does not certify every future artwork. Project-level visual PASS requires real render/evidence plus Human Artistic Authority™. `WORLD_CLASS_100_VERIFIED` remains a stronger repeated-field claim.
+
+## Canonical product identity / final road
+
+- Canonical product name: **ENGÜRÜ Mac Engineering™**
+- Technical product repo: `engurulabory/enguru-mac-engineer`
+- Final target: **v1.0 — Verified Product Engineering Operator**
+- Human-readable roadmap: `governance/mac-engineer/PRODUCT_IDENTITY_ROADMAP_V1.md`
+- Machine-readable roadmap: `governance/mac-engineer/PRODUCT_ROADMAP_V1.json`
+- Permanent session method: `governance/mac-engineer/SESSION_CONTINUITY_CONTRACT_V1.md`
+
+Version result road:
+
+`v0.4 Field Engineering Foundation [LOCKED]`
+→ `v0.5 Reliability & Recovery Foundation [LOCKED]`
+→ `v0.6 Operating Behavior & Verified Local Product [FIELD CLOSEOUT ACTIVE]`
+→ `v0.7 Long-Running Reliability`
+→ `v0.8 Product Engineering Operator`
+→ `v0.9 World-Class Field Benchmark`
+→ `v1.0 Verified Product Engineering Operator [FINAL TARGET]`
+
+### Current v0.6 closure — canonical order
+
+- [x] GitHub Engineering Closeout — VERIFIED / LOCKED.
+- [x] Dedicated product source authority — PASS.
+- [x] Mac layout audit — PASS.
+- [x] Session Continuity Contract — PASS.
+- [x] Product exact-main CI — PASS.
+- [x] Product v0.6 source alignment — PASS.
+- [x] Exact-SHA rebuild/install — PASS at product SHA `28b901ab3303f4be3c7356b11218b62422f2da42`.
+- [x] Installed app v0.6 + runtime build app v0.6 — PASS.
+- [x] Runtime source parity 27/27 exact — PASS.
+- [x] Live localhost status + app/runtime processes — PASS.
+- [x] Fail-closed rollback behavior — field observed on first install attempt.
+- [ ] **ACTIVE — Runtime/App Provenance canonical closure.**
+- [ ] Historical handoff / backup / runtime-build artifact archive decision.
+- [ ] One real Mac engineering task.
+- [ ] Checkpoint → restart → same-task resume.
+- [ ] Recovery field proof reconciliation; execute only the necessary remaining delta.
+- [ ] Local Evidence bundle.
+- [ ] Mandatory DoneCheck™.
+- [ ] **ENGÜRÜ Mac Engineering™ v0.6 VERIFIED FINAL / LOCKED.**
 
 ## Current Truth — LOCKED BASELINE
 - [x] Aesthetic Motor architecture — PASS.
@@ -1043,4 +1084,4 @@ Evaluate under original ENGÜRÜ identity:
 - [ ] **Mac Local Mandatory DoneCheck™:** work done? actually works? real Mac task? restart/resume? recovery? evidence? authority boundaries? critical failures = 0?
 - [ ] **v0.6 final closure:** GitHub engineering PASS + Mac local commissioning PASS → **ENGÜRÜ Mac Engineer™ v0.6 VERIFIED FINAL / LOCKED**.
 
-**Current single objective:** **Package 6 — Exact-SHA Rebuild/Install**.
+**Current single objective:** **Package 6 — Runtime/App Provenance Closure**.
