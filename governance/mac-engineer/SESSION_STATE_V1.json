@@ -1,6 +1,6 @@
 {
   "schema": "enguru.mac-engineer.session-state/v1",
-  "product": "ENGÜRÜ Mac Engineer™",
+  "product": "ENGÜRÜ Mac Engineering™",
   "state": "ACTIVE",
   "continuityContract": "governance/mac-engineer/SESSION_CONTINUITY_CONTRACT_V1.md",
   "authorityOrder": [
@@ -27,9 +27,10 @@
     "productSourceAuthority": "PASS",
     "productCIExactMain": "PASS",
     "productV06ExactMainCI": "PASS",
-    "rebuildInstallPreflight": "PASS"
+    "rebuildInstallPreflight": "PASS",
+    "exactShaRebuildInstall": "PASS"
   },
-  "currentObjective": "EXACT_SHA_REBUILD_INSTALL",
+  "currentObjective": "RUNTIME_APP_PROVENANCE_CLOSURE",
   "observedProductPublication": {
     "source": "MAC_FIELD_OUTPUT",
     "localSourceHead": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
@@ -43,10 +44,18 @@
     "productCIRunNumber": 1
   },
   "canonicalNextLine": [
-    "EXACT_SHA_REBUILD_INSTALL",
-    "RUNTIME_APP_PROVENANCE",
+    "RUNTIME_APP_PROVENANCE_CLOSURE",
     "HISTORICAL_HANDOFF_BACKUP_ARTIFACT_ARCHIVE_DECISION",
-    "REAL_MAC_TASK"
+    "REAL_MAC_ENGINEERING_TASK",
+    "CHECKPOINT_RESTART_RESUME",
+    "RECOVERY_FIELD_PROOF_RECONCILIATION",
+    "LOCAL_EVIDENCE_BUNDLE",
+    "MANDATORY_DONECHECK",
+    "V0_6_VERIFIED_FINAL_LOCKED",
+    "V0_7_LONG_RUNNING_RELIABILITY",
+    "V0_8_PRODUCT_ENGINEERING_OPERATOR",
+    "V0_9_WORLD_CLASS_FIELD_BENCHMARK",
+    "V1_0_VERIFIED_PRODUCT_ENGINEERING_OPERATOR"
   ],
   "observedRebuildPreflight": {
     "state": "HOLD",
@@ -141,5 +150,24 @@
     "relaunch": "PASS",
     "productSourceSha": "28b901ab3303f4be3c7356b11218b62422f2da42",
     "nextAction": "RETRY_EXACT_SHA_REBUILD_INSTALL_AFTER_PROCESS_VERIFICATION_FIX"
+  },
+  "technicalProductId": "enguru-mac-engineer",
+  "productIdentityRoadmap": "governance/mac-engineer/PRODUCT_IDENTITY_ROADMAP_V1.md",
+  "productRoadmap": "governance/mac-engineer/PRODUCT_ROADMAP_V1.json",
+  "currentVersion": "v0.6",
+  "finalTarget": "v1.0_VERIFIED_PRODUCT_ENGINEERING_OPERATOR",
+  "observedExactShaInstall": {
+    "state": "PASS",
+    "productSourceSha": "28b901ab3303f4be3c7356b11218b62422f2da42",
+    "version": "0.6",
+    "installedAppVersion": "0.6",
+    "runtimeBuildAppVersion": "0.6",
+    "runtimeSourceParity": "27/27_EXACT",
+    "liveStatus": "PASS",
+    "appProcess": "PASS",
+    "runtimeProcess": "PASS",
+    "rollbackPrepared": true,
+    "rollbackUsed": false,
+    "evidence": "~/Enguru/Evidence/MacEngineer/v0.6/package6-exact-sha-rebuild-install.json"
   }
 }
