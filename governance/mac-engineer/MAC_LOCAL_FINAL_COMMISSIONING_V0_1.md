@@ -4,6 +4,32 @@
 
 TOOLING CANDIDATE — GitHub-side commissioning harness can be verified in CI; product-level Package 6 remains HOLD until the user's real Mac produces local field Evidence.
 
+## Canonical operating entry point
+
+Permanent role separation is defined in:
+
+`governance/mac-engineer/OPERATING_MODEL_V1.md`
+
+During Package 6, normal operation uses one control-plane entry point:
+
+```bash
+python3 tools/mac_engineer_control.py status
+```
+
+Dedicated product-source bootstrap:
+
+```bash
+python3 tools/mac_engineer_control.py bootstrap-source
+```
+
+Remote private product-source publication, only after local bootstrap PASS:
+
+```bash
+python3 tools/mac_engineer_control.py bootstrap-source --publish
+```
+
+The lower-level `mac_engineer_*_review.py` tools remain diagnostic/evidence mechanisms. They are not the permanent user workflow.
+
 ## NIYET
 
 Prove that the exact canonical GitHub engineering result is the same system that actually runs, persists, recovers and completes a real engineering task on the user's Mac.

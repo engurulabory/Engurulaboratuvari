@@ -1,0 +1,39 @@
+{
+  "schema": "enguru.mac-engineer.product-source-contract/v1",
+  "state": "REPOSITORY_CREATION_REQUIRED",
+  "product": "ENGÜRÜ Mac Engineer™",
+  "productRole": "PRODUCT",
+  "controlPlane": {
+    "repository": "engurulabory/Engurulaboratuvari",
+    "role": "CONTROL_PLANE"
+  },
+  "productSource": {
+    "repositoryTarget": "engurulabory/enguru-mac-engineer",
+    "visibility": "private",
+    "localCheckout": "~/Enguru/Projects/enguru-mac-engineer",
+    "authority": "GITHUB_EXACT_MAIN"
+  },
+  "execution": {
+    "runtimeRoot": "~/Enguru/Runtime/MacEngineer",
+    "installedApp": "~/Applications/ENGÜRÜ Mac Engineer.app",
+    "evidenceRoot": "~/Enguru/Evidence/MacEngineer"
+  },
+  "historicalIntake": {
+    "sourceRoot": "~/Desktop/ENGURU_Mac_Engineer_Project_Handoff_v1",
+    "baseline": "baseline_v0.4",
+    "sourceHygiene": "PASS",
+    "deltaAuthority": "PASS",
+    "safeSourceFiles": 97,
+    "nativeSwiftSources": 1,
+    "divergentRuntimeFiles": 8,
+    "runtimeOnlyFiles": 5,
+    "verifiedRuntimeAuthorityCandidates": 13
+  },
+  "invariant": [
+    "Labory does not own Mac Engineer product source.",
+    "Runtime and Applications are execution outputs, not development source.",
+    "Field runtime deltas require Evidence + tests + product-source promotion.",
+    "Product exact-main must precede build/install field claims."
+  ],
+  "nextRequiredState": "LOCAL_PRODUCT_SOURCE_BOOTSTRAPPED"
+}

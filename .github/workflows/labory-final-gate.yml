@@ -72,6 +72,12 @@ jobs:
       - name: Mac Engineer Package 6 delta authority review syntax
         run: python -m py_compile tools/mac_engineer_delta_authority_review.py
 
+      - name: Mac Engineer clean operating system syntax
+        run: python -m py_compile tools/mac_engineer_control.py tools/mac_engineer_bootstrap_product_source.py
+
+      - name: Mac Engineer product source bootstrap tests
+        run: python -m unittest discover -s tests -p 'test_mac_engineer_product_source_bootstrap.py' -v
+
       - name: Quality & Red Team review tests
         run: python -m unittest discover -s tests -p 'test_quality_review.py' -v
 

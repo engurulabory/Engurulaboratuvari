@@ -1,0 +1,183 @@
+#!/usr/bin/env python3
+"""Single control-plane entry point for ENGÜRÜ Mac Engineer™ commissioning."""
+from __future__ import annotations
+
+import argparse
+import json
+from pathlib import Path
+import subprocess
+import sys
+from typing import Any
+
+
+ROOT = Path(__file__).resolve().parents[1]
+PRODUCT_SOURCE = Path.home() / "Enguru" / "Projects" / "enguru-mac-engineer"
+RUNTIME_ROOT = Path.home() / "Enguru" / "Runtime" / "MacEngineer"
+APP = Path.home() / "Applications" / "ENGÜRÜ Mac Engineer.app"
+EVIDENCE_ROOT = Path.home() / "Enguru" / "Evidence" / "MacEngineer" / "v0.6"
+BOOTSTRAP = ROOT / "tools" / "mac_engineer_bootstrap_product_source.py"
+
+
+def run(cmd: list[str], cwd: Path | None = None) -> tuple[int, str, str]:
+    p = subprocess.run(
+        cmd,
+        cwd=str(cwd) if cwd else None,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    return p.returncode, p.stdout.strip(), p.stderr.strip()
+
+
+def git_state(path: Path) -> dict[str, Any]:
+    if not (path / ".git").exists():
+        return {"available": False}
+    out: dict[str, Any] = {"available": True}
+    for key, cmd in {
+        "head": ["git", "rev-parse", "HEAD"],
+        "branch": ["git", "branch", "--show-current"],
+        "status": ["git", "status", "--porcelain"],
+        "origin": ["git", "remote", "get-url", "origin"],
+        "origin_main": ["git", "rev-parse", "origin/main"],
+    }.items():
+        rc, stdout, stderr = run(cmd, cwd=path)
+        out[key] = stdout if rc == 0 else None
+        if rc != 0:
+            out[key + "_error"] = stderr
+    out["clean"] = not bool(out.get("status"))
+    if out.get("head") and out.get("origin_main"):
+        out["exact_origin_main"] = out["head"] == out["origin_main"]
+    return out
+
+
+def evidence_state(name: str) -> dict[str, Any]:
+    path = EVIDENCE_ROOT / name
+    if not path.exists():
+        return {"exists": False, "path": str(path)}
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        return {
+            "exists": True,
+            "path": str(path),
+            "state": payload.get("state"),
+            "issues": payload.get("issues", []),
+        }
+    except (OSError, json.JSONDecodeError) as exc:
+        return {
+            "exists": True,
+            "path": str(path),
+            "state": "INVALID",
+            "error": type(exc).__name__,
+        }
+
+
+def process_state() -> list[dict[str, str]]:
+    rc, out, err = run(["ps", "-axo", "pid=,command="])
+    if rc != 0:
+        return [{"error": err or "ps_failed"}]
+    matches: list[dict[str, str]] = []
+    for line in out.splitlines():
+        lowered = line.lower()
+        if "engurumacengineer" in lowered or "/enguru/runtime/macengineer/" in lowered:
+            pid, _, command = line.strip().partition(" ")
+            matches.append({"pid": pid.strip(), "command": command.strip()[:1000]})
+    return matches
+
+
+def status() -> dict[str, Any]:
+    control = git_state(ROOT)
+    product = git_state(PRODUCT_SOURCE)
+    evidence = {
+        "discovery": evidence_state("package6-local-discovery.json"),
+        "provenance": evidence_state("package6-provenance-reconcile.json"),
+        "source_intake": evidence_state("package6-source-intake-review.json"),
+        "delta_authority": evidence_state("package6-delta-authority-review.json"),
+    }
+    processes = process_state()
+
+    issues: list[str] = []
+    next_action = ""
+
+    if not control.get("available"):
+        issues.append("CONTROL_PLANE_GIT_REQUIRED")
+    elif control.get("clean") is not True:
+        issues.append("CONTROL_PLANE_CLEAN_REQUIRED")
+    elif control.get("exact_origin_main") is False:
+        issues.append("CONTROL_PLANE_EXACT_MAIN_REQUIRED")
+
+    if evidence["delta_authority"].get("state") != "PASS":
+        issues.append("DELTA_AUTHORITY_PASS_REQUIRED")
+
+    if not PRODUCT_SOURCE.exists():
+        issues.append("PRODUCT_SOURCE_BOOTSTRAP_REQUIRED")
+        next_action = "python3 tools/mac_engineer_control.py bootstrap-source"
+    elif not product.get("available"):
+        issues.append("PRODUCT_SOURCE_GIT_REQUIRED")
+        next_action = "Inspect the prepared product source and initialize/publish canonical Git authority."
+    elif not product.get("origin"):
+        issues.append("PRODUCT_SOURCE_REMOTE_REQUIRED")
+        next_action = "python3 tools/mac_engineer_control.py bootstrap-source --publish"
+    elif product.get("clean") is not True:
+        issues.append("PRODUCT_SOURCE_CLEAN_REQUIRED")
+        next_action = "Reconcile product-source changes before continuing commissioning."
+    else:
+        next_action = (
+            "Verify dedicated product exact-main CI, then rebuild/install runtime from the exact product-source SHA."
+        )
+
+    return {
+        "state": "PASS" if not issues else "HOLD",
+        "roles": {
+            "chatgpt": "ENGINEERING_OPERATOR_INTERFACE",
+            "labory": "CONTROL_PLANE",
+            "product_source": "DEDICATED_PRODUCT_REPOSITORY",
+            "mac_local": "EXECUTION_SURFACE",
+            "evidence": "VERIFICATION_SURFACE",
+        },
+        "paths": {
+            "control_plane": str(ROOT),
+            "product_source": str(PRODUCT_SOURCE),
+            "runtime": str(RUNTIME_ROOT),
+            "installed_app": str(APP),
+            "evidence": str(EVIDENCE_ROOT),
+        },
+        "control_plane": control,
+        "product_source": product,
+        "runtime": {
+            "root_exists": RUNTIME_ROOT.exists(),
+            "app_exists": APP.exists(),
+            "processes": processes,
+        },
+        "evidence": evidence,
+        "issues": issues,
+        "next_action": next_action,
+    }
+
+
+def bootstrap_source(publish: bool) -> int:
+    cmd = [sys.executable, str(BOOTSTRAP)]
+    if publish:
+        cmd.append("--publish")
+    proc = subprocess.run(cmd, cwd=str(ROOT), check=False)
+    return proc.returncode
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    sub = parser.add_subparsers(dest="command", required=True)
+
+    sub.add_parser("status")
+    boot = sub.add_parser("bootstrap-source")
+    boot.add_argument("--publish", action="store_true")
+
+    args = parser.parse_args()
+    if args.command == "status":
+        print(json.dumps(status(), ensure_ascii=False, indent=2))
+        return 0
+    if args.command == "bootstrap-source":
+        return bootstrap_source(args.publish)
+    return 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
