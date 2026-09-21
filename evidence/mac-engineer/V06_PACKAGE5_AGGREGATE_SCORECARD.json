@@ -2,7 +2,7 @@
   "schemaVersion": "1.0",
   "scoreType": "V0.6_INTERNAL_FIELD_APPLIED_CLOSURE",
   "generatedAt": "2026-09-21",
-  "truthBoundary": "Scores are internal v0.6 closure scores on the previously locked ENGURU Mac Engineer rubric. They are evidence-bounded applied/field reevaluations, not external industry rankings and not universal 100/100 claims.",
+  "truthBoundary": "Scores are internal v0.6 engineering/field-applied closure scores on the previously locked ENGURU Mac Engineer rubric. They are evidence-bounded, not external industry rankings or universal 100/100 claims. Package 5 can verify GitHub engineering closure only; product-level v0.6 VERIFIED FINAL / LOCKED additionally requires Package 6 Mac Local Final Commissioning PASS.",
   "canonicalMainBeforePackage5": "a3f2c565456a148b864da77b552e4fa2eab6ef61",
   "packages": {
     "package_1": {
@@ -326,7 +326,8 @@
       "state": "PASS",
       "evidenceRefs": [
         "main:a3f2c565456a148b864da77b552e4fa2eab6ef61",
-        "WORKLIST:Package5-current-objective"
+        "WORKLIST:Package5-GitHub-closeout",
+        "WORKLIST:Package6-Mac-local-final-commissioning-required"
       ]
     },
     {
@@ -371,5 +372,8 @@
       ]
     }
   ],
-  "unresolvedHolds": []
+  "unresolvedHolds": [],
+  "closureScope": "GITHUB_ENGINEERING_CLOSEOUT",
+  "nextRequiredGate": "PACKAGE6_MAC_LOCAL_FINAL_COMMISSIONING",
+  "productFinalState": "HOLD_MAC_LOCAL_COMMISSIONING_REQUIRED"
 }
