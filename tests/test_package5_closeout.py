@@ -85,6 +85,23 @@ class Package5AggregateCloseoutTests(unittest.TestCase):
         self.assertEqual(result.state, "HOLD")
         self.assertIn("UNRESOLVED_HOLDS_PRESENT", result.issues)
 
+    def test_package5_cannot_claim_product_final_before_mac_commissioning(self):
+        broken = copy.deepcopy(self.payload)
+        broken["productFinalState"] = "VERIFIED_FINAL_LOCKED"
+        result = assess_v06_aggregate(broken)
+        self.assertEqual(result.state, "HOLD")
+        self.assertIn("PREMATURE_PRODUCT_FINAL_CLAIM", result.issues)
+
+    def test_mac_local_final_commissioning_is_explicit_next_gate(self):
+        self.assertEqual(
+            self.payload["nextRequiredGate"],
+            "PACKAGE6_MAC_LOCAL_FINAL_COMMISSIONING",
+        )
+        self.assertEqual(
+            self.payload["productFinalState"],
+            "HOLD_MAC_LOCAL_COMMISSIONING_REQUIRED",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
