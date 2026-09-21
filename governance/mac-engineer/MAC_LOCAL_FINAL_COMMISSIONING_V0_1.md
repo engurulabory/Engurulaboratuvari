@@ -25,7 +25,7 @@ Run from the canonical Labory checkout:
 
 ```bash
 git fetch origin main
-python tools/mac_engineer_local_discovery.py
+python3 tools/mac_engineer_local_discovery.py
 ```
 
 Default local evidence path:
@@ -142,7 +142,7 @@ Use the repository template:
 Validate it with:
 
 ```bash
-python tools/mac_engineer_local_donecheck.py \
+python3 tools/mac_engineer_local_donecheck.py \
   --bundle ~/Enguru/Evidence/MacEngineer/v0.6/package6-local-commissioning.json
 ```
 
@@ -183,4 +183,4 @@ Those facts require Mac-local Evidence.
 
 ## NEXT ACTION
 
-Merge Package 6 tooling after CI. On Mac, sync exact-main and run `python tools/mac_engineer_local_discovery.py`. Reconcile the discovered runtime identity before running the real-task commissioning sequence.
+Merge Package 6 tooling after CI. On Mac, sync exact-main and run `python3 tools/mac_engineer_local_discovery.py`. Reconcile the discovered runtime identity before running the real-task commissioning sequence.
