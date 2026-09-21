@@ -1010,11 +1010,17 @@ Evaluate under original ENGÜRÜ identity:
 - [x] **Governed Learning Promotion:** `OBSERVED → LEARNING_CANDIDATE → EVIDENCE → FRESH/INDEPENDENT REVIEW → ACCEPT/REJECT → VERSIONED MEMORY/SKILL PROMOTION`; one successful observation never becomes canonical truth automatically.
 
 ### Package 4 — Real Field Acceptance / Finished Ability placement
-- [ ] **Specialist Spawn Guard:** open a bounded specialist only for a verified capability gap or materially useful independent second view; scope/time are bounded and all central Authority / Human Threshold permissions are inherited unchanged.
-- [ ] **Governed Tool-Gap Proposal:** `TOOL_GAP → PROPOSAL → authority/security/cost review → bounded test → evidence → ACCEPT/REJECT`; a tool gap never grants autonomous install/build/integration authority.
-- [ ] **Human Intervention Reconciliation Gate:** after Human Threshold/takeover changes real state, do not resume from stale checkpoint; re-read repo/runtime/artifact/state → reconcile differences → establish `NEW_VERIFIED_STATE` → resume.
+- [x] **Specialist Spawn Guard:** open a bounded specialist only for a verified capability gap or materially useful independent second view; scope/time are bounded and all central Authority / Human Threshold permissions are inherited unchanged.
+- [x] **Governed Tool-Gap Proposal:** `TOOL_GAP → PROPOSAL → authority/security/cost review → bounded test → evidence → ACCEPT/REJECT`; a tool gap never grants autonomous install/build/integration authority.
+- [x] **Human Intervention Reconciliation Gate:** after Human Threshold/takeover changes real state, do not resume from stale checkpoint; re-read repo/runtime/artifact/state → reconcile differences → establish `NEW_VERIFIED_STATE` → resume.
 
 **Invariant:** specialization ≠ privilege escalation. Central Authority already exists and must not be duplicated.
 
+### Package 5 — Aggregate Evidence + Mandatory DoneCheck™ placement
+- [ ] **Aggregate Evidence Bundle:** reconcile v0.6 package evidence into one canonical closure surface; preserve exact source SHA/run refs and distinguish technical evidence from Human Threshold evidence.
+- [ ] **Locked field target reconciliation:** Operating Character **98–99+ field**; Architecture Foundations **97+ applied**; Engineering Foundations **98+**; Intellectual Depth **97+**; Finished Ability **98+**; Human-Centered Conversation **97+**; Persistent Working Memory **97+**; **critical failures = 0**. A target may PASS only from applicable evidence; unsupported scores remain HOLD.
+- [ ] **Final Mandatory DoneCheck™:** completion → real implementation/field evidence → regression → canonical truth → authority boundaries → evidence completeness → PASS / HOLD / BLOCKED.
+- [ ] **v0.6 closure:** exact-head PASS → merge → exact-main verification → **ENGÜRÜ Mac Engineer™ v0.6 VERIFIED FINAL / LOCKED**.
 
-**Current single objective:** **Package 4 — Real Field Acceptance + Finished Ability™**.
+
+**Current single objective:** **Package 5 — Aggregate Evidence + Mandatory DoneCheck™**.
