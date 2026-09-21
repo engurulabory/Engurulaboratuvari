@@ -116,6 +116,29 @@ The review:
 
 Canonical intake remains HOLD until every divergent/runtime-only file has an evidence-backed authority decision.
 
+## Phase 2.8 — Runtime delta authority review
+
+Source hygiene PASS identified **13 current runtime deltas**: 8 divergent files and 5 runtime-only files.
+
+Run:
+
+```bash
+python3 tools/mac_engineer_delta_authority_review.py
+```
+
+Default evidence:
+
+`~/Enguru/Evidence/MacEngineer/v0.6/package6-delta-authority-review.json`
+
+Authority rule:
+
+- historical handoff remains baseline/native-source evidence;
+- current active runtime may become authoritative for later deltas only when current runtime compile PASS + current runtime tests PASS;
+- the tool does not copy files into Git;
+- canonical source intake remains a separate governed step.
+
+This prevents a stale baseline from overwriting verified field evolution.
+
 ## Phase 3 — Runtime identity
 
 The discovery evidence must identify the actual Mac Engineer execution surface.
