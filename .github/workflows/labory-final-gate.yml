@@ -105,6 +105,9 @@ jobs:
       - name: Mac Engineering canonical context tests
         run: python -m unittest discover -s tests -p 'test_mac_engineering_canonical_context.py' -v
 
+      - name: Mac Engineering runtime provenance closure tests
+        run: python -m unittest discover -s tests -p 'test_mac_engineering_runtime_provenance.py' -v
+
       - name: Quality & Red Team review tests
         run: python -m unittest discover -s tests -p 'test_quality_review.py' -v
 
