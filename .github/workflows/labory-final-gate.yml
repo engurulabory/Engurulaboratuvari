@@ -45,6 +45,12 @@ jobs:
       - name: Mac Engineer Package 3 Mandatory DoneCheck
         run: python tools/package3_working_memory_donecheck.py
 
+      - name: Mac Engineer Package 4 field acceptance tests
+        run: python -m unittest discover -s tests -p 'test_field_acceptance.py' -v
+
+      - name: Mac Engineer Package 4 Mandatory DoneCheck
+        run: python tools/package4_field_acceptance_donecheck.py
+
       - name: Quality & Red Team review tests
         run: python -m unittest discover -s tests -p 'test_quality_review.py' -v
 
