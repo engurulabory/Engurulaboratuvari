@@ -84,7 +84,10 @@ def authorized_product_working_branch(
 ) -> tuple[bool, dict[str, Any]]:
     objective = str(state.get("currentObjective", ""))
     prepared = state.get("observedV06AlignmentPreparation", {})
-    if objective != "PRODUCT_SOURCE_V0_6_ALIGNMENT_PUBLICATION":
+    if objective not in {
+        "PRODUCT_SOURCE_V0_6_ALIGNMENT_PUBLICATION",
+        "PRODUCT_PR_EXACT_HEAD_CI_MERGE",
+    }:
         return False, {}
 
     expected_branch = str(prepared.get("branch", ""))
