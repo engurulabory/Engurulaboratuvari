@@ -555,23 +555,50 @@ def main() -> int:
         "destination": str(args.destination.expanduser()),
     }
     try:
-        prepared = prepare_tree(args.destination)
-        output["prepared"] = prepared
+        destination = args.destination.expanduser()
 
-        git_result = git_initialize(args.destination.expanduser())
-        output["git"] = git_result
-        if not git_result["pass"]:
-            output["reason"] = "LOCAL_GIT_INITIALIZATION_FAILED"
-            print(json.dumps(output, ensure_ascii=False, indent=2))
-            return 2
+        if destination.exists():
+            if not args.publish:
+                raise BootstrapError(f"DESTINATION_ALREADY_EXISTS:{destination}")
+            if not (destination / ".git").exists():
+                raise BootstrapError("EXISTING_PRODUCT_SOURCE_GIT_REQUIRED")
+            if not (destination / "PROVENANCE.json").exists():
+                raise BootstrapError("EXISTING_PRODUCT_SOURCE_PROVENANCE_REQUIRED")
 
-        head = run(
-            ["git", "rev-parse", "HEAD"], cwd=args.destination.expanduser()
-        )
-        output["localSourceHead"] = head.get("stdout", "")
+            verification = verify_tree(destination)
+            output["prepared"] = {
+                "destination": str(destination),
+                "existing": True,
+                "verification": verification,
+            }
+            if not verification["pass"]:
+                raise BootstrapError("EXISTING_PRODUCT_SOURCE_VERIFICATION_FAILED")
+
+            status = run(["git", "status", "--porcelain"], cwd=destination)
+            if not status["pass"] or status["stdout"]:
+                raise BootstrapError("EXISTING_PRODUCT_SOURCE_CLEAN_REQUIRED")
+
+            head = run(["git", "rev-parse", "HEAD"], cwd=destination)
+            if not head["pass"]:
+                raise BootstrapError("EXISTING_PRODUCT_SOURCE_HEAD_REQUIRED")
+            output["localSourceHead"] = head.get("stdout", "")
+            output["git"] = {"pass": True, "existing": True}
+        else:
+            prepared = prepare_tree(destination)
+            output["prepared"] = prepared
+
+            git_result = git_initialize(destination)
+            output["git"] = git_result
+            if not git_result["pass"]:
+                output["reason"] = "LOCAL_GIT_INITIALIZATION_FAILED"
+                print(json.dumps(output, ensure_ascii=False, indent=2))
+                return 2
+
+            head = run(["git", "rev-parse", "HEAD"], cwd=destination)
+            output["localSourceHead"] = head.get("stdout", "")
 
         if args.publish:
-            remote = publish(args.destination.expanduser())
+            remote = publish(destination)
             output["publish"] = remote
             if not remote["pass"]:
                 output["reason"] = remote.get(
@@ -590,7 +617,7 @@ def main() -> int:
             output["state"] = "PASS"
             output["reason"] = "LOCAL_PRODUCT_SOURCE_BOOTSTRAPPED"
             output["next_action"] = (
-                "Review the prepared local source, then rerun with --publish to create/push the dedicated private product repository."
+                "Review the prepared local source, then run the same control entry point with --publish; the verified tree will be reused without reconstruction."
             )
 
         print(json.dumps(output, ensure_ascii=False, indent=2))
