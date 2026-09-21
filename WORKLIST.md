@@ -684,3 +684,215 @@ The current 100 cases are canonical-derived reproducible Labory governance fixtu
 Canonical experiment contract:
 `governance/quality/JEV_EXPERIMENT_CONTRACT_V1.md`
 
+
+
+---
+
+# ENGÜRÜ Mac Engineer™ v0.6 — PACKAGE 2C / AESTHETIC MOTOR™ 100/100 TARGET TRACK — 2026-09-21
+
+**STATE:** HOLD — Aesthetic Motor architecture and core mechanisms are strong/tested; Aesthetic Studio has partial field PASS; end-to-end target → result closure, efficiency measurement, expanded creative surfaces and Mac Engineer binding remain open.
+
+**THEORETICAL TARGET:** **Aesthetic Motor™ — 100/100 TARGET**
+
+**Truth boundary:** 100/100 is a theoretical capability-completeness target. It is not a current field score and does not certify every future artwork. Project-level visual PASS requires real render/evidence plus Human Artistic Authority™. `WORLD_CLASS_100_VERIFIED` remains a stronger repeated-field claim.
+
+## Current Truth — LOCKED BASELINE
+- [x] Aesthetic Motor architecture — PASS.
+- [x] Aesthetic Motor core mechanisms — STRONG / TESTED.
+- [x] Aesthetic Studio direct-manipulation partial field path — PASS.
+- [x] Canonical 10-dimension source coverage exists: Purpose & Artistic Intent; Simplicity & Clarity; Visual Hierarchy & Composition; Typography; Color Intelligence; Photography & Imagery; Spacing/Rhythm/Proportion; Component Consistency; Motion/Feedback; Accessibility & Adaptive Beauty.
+- [x] Existing authority chain remains canonical: Aesthetic Motor™ / Aesthetic Diamond™ / Design Language / Visual Excellence / VX1 / Human Artistic Authority™.
+- [x] No parallel aesthetic engine is authorized by default.
+- [x] Reuse rule remains: **reuse → extend → adapter → new core**.
+- [ ] **[HOLD — FIELD PROOF]** End-to-end brief → final visual result closure.
+- [ ] **[HOLD — MEASUREMENT]** Efficiency / correction-cost / acceptance metrics.
+- [ ] **[HOLD — PACKAGE 2C]** Mac Engineer runtime binding; first Package 2C binding attempt returned HOLD and is not treated as active.
+- [ ] **[HOLD — REPEATED FIELD EVIDENCE]** `WORLD_CLASS_100_VERIFIED`.
+
+## A. Aesthetic Capability Matrix™
+Produce one evidence-backed matrix with **PRESENT / PARTIAL / MISSING**, current proof, benchmark reference, necessary difference and closure test for:
+- [ ] Web / Product Design.
+- [ ] Brand / Graphic Design.
+- [ ] Illustration.
+- [ ] Art Direction.
+- [ ] Motion / Effects.
+- [ ] Video Editing / Cinematic Craft.
+- [ ] 3D / Interactive Visuals.
+- [ ] Competitive World-Class / Award-Level Output.
+
+Benchmark references are comparison surfaces, not authority: **Framer, v0, Lovable, Canva, Adobe creative surfaces, Runway, Spline, Apple-class product craft**.
+
+## B. Foundation Aesthetic Intelligence — 10-Dimension Field Verification
+For one real product candidate, verify:
+- [ ] Purpose & Artistic Intent.
+- [ ] Simplicity & Clarity.
+- [ ] Visual Hierarchy & Composition.
+- [ ] Typography.
+- [ ] Color Intelligence.
+- [ ] Photography & Imagery.
+- [ ] Spacing / Rhythm / Proportion.
+- [ ] Component Consistency.
+- [ ] Motion / Feedback.
+- [ ] Accessibility & Adaptive Beauty.
+- [ ] No critical weakness hidden by an average score.
+- [ ] Real desktop / tablet / mobile evidence.
+- [ ] TR / EN and content-length stress where applicable.
+- [ ] 200% text / 320px reflow / reduced-motion evidence where applicable.
+
+## C. Aesthetic Motor Field Reality Audit™ — FIRST ACTIVE PACKAGE
+Run one real brief end to end:
+
+`Brief → Aesthetic Intent → 3 materially distinct directions → Human direction selection → build → desktop/tablet/mobile real render → Professor/Fresh-Eye → visible defects → bounded correction → re-render → measured quality delta → reload/persistence → Human Artistic Authority candidate → Evidence → DoneCheck™`
+
+Acceptance:
+- [ ] Real brief selected.
+- [ ] Aesthetic Intent Brief produced from real intent.
+- [ ] Exactly 3 genuinely different directions.
+- [ ] Direction difference is structural/artistic, not only color/font variation.
+- [ ] Human direction selection recorded.
+- [ ] Selected direction implemented.
+- [ ] Real multi-viewport renders produced.
+- [ ] Professor / Fresh-Eye evidence produced.
+- [ ] Visible defects recorded without hiding weak disciplines.
+- [ ] Smallest sufficient aesthetic correction applied.
+- [ ] Re-render proves measurable improvement or explicit HOLD.
+- [ ] Reload / persistence preserves candidate truth.
+- [ ] Regression preserves working product behavior.
+- [ ] Human Artistic Authority boundary remains open until explicit human decision.
+- [ ] Evidence + Mandatory DoneCheck™.
+
+## D. Graphic Design / Brand Production Expansion
+- [ ] Poster / key visual.
+- [ ] Social campaign family.
+- [ ] Presentation / editorial layout.
+- [ ] Brand collateral / launch asset set.
+- [ ] Vector / icon / shape-language production.
+- [ ] Brand-system consistency across multiple formats.
+- [ ] Export / asset provenance / rights truth.
+- [ ] Benchmark against Canva / Adobe-class workflows under equal brief conditions.
+- [ ] Decide **reuse / extend / adapter / new core** only after measured gap.
+
+## E. Illustration / Art Capability
+- [ ] Conceptual illustration.
+- [ ] Editorial illustration.
+- [ ] Geometric / organic / technical illustration.
+- [ ] Character or recurring visual-series consistency when applicable.
+- [ ] Raster + vector path strategy.
+- [ ] Composition, anatomy/form, perspective and depth quality where applicable.
+- [ ] Style consistency without template memory.
+- [ ] Reference-distance / originality guard.
+- [ ] Provenance / rights evidence.
+- [ ] Real blind human comparison.
+
+## F. Advanced Art / Color / Material / Light
+- [ ] Advanced color harmony and contrast strategy.
+- [ ] Cultural / emotional color meaning.
+- [ ] Light direction, softness, temperature, depth and shadow logic.
+- [ ] Material / texture / surface intelligence.
+- [ ] Pattern and visual rhythm.
+- [ ] Layering / compositing / depth.
+- [ ] Optical correction.
+- [ ] Deliberate restraint versus decorative excess.
+- [ ] Real-render evidence under varied displays/backgrounds where applicable.
+
+## G. Motion / Effects
+- [ ] Micro-interaction grammar.
+- [ ] Temporal hierarchy.
+- [ ] Typographic motion.
+- [ ] Choreography and transition logic.
+- [ ] Motion performance budget.
+- [ ] Reduced-motion artistic equivalent.
+- [ ] Feedback states: loading / success / warning / error / disabled / modal.
+- [ ] Motion is meaningful rather than decorative.
+- [ ] Repeated-use fatigue / distraction check.
+- [ ] Equal-condition comparison against leading motion-capable product surfaces.
+
+## H. Video Editing / Cinematic Craft
+First determine whether existing layers are sufficient; use adapter before creating a new core.
+- [ ] Story / shot intent.
+- [ ] Edit rhythm / pacing.
+- [ ] Cut / transition discipline.
+- [ ] Scene continuity.
+- [ ] Color / light continuity.
+- [ ] Text / title / graphic overlays.
+- [ ] Audio / speech / music relationship where applicable.
+- [ ] Reframe / format adaptation.
+- [ ] Generative-video integration boundary if needed.
+- [ ] Real export + playback evidence.
+- [ ] Benchmark against Runway / Adobe-class video workflows.
+- [ ] Decide **reuse / extend / adapter / new core** from measured evidence.
+
+## I. 3D / Interactive Visual Capability
+First determine measured need; Spline-class capability is benchmark reference, not automatic scope.
+- [ ] 3D scene / object generation or controlled import path.
+- [ ] Materials / textures.
+- [ ] Camera / composition.
+- [ ] Lighting / shadows.
+- [ ] Depth / perspective.
+- [ ] Animation / states.
+- [ ] Interaction.
+- [ ] Physics / particles only when justified.
+- [ ] Web performance / fallback / accessibility.
+- [ ] Multi-platform export or integration path where needed.
+- [ ] Benchmark against Spline-class production.
+- [ ] Decide **reuse / extend / adapter / new core** from measured evidence.
+
+## J. Apple-Class Product Craft Benchmark — Reference, Not Imitation
+Evaluate under original ENGÜRÜ identity:
+- [ ] Purpose clarity.
+- [ ] Restraint / simplicity.
+- [ ] Typography authority.
+- [ ] Hierarchy and spacing precision.
+- [ ] Material / light discipline.
+- [ ] Motion restraint and feedback.
+- [ ] Interaction polish.
+- [ ] Responsive/adaptive quality.
+- [ ] Accessibility.
+- [ ] Detail consistency.
+- [ ] Product-wide coherence.
+- [ ] Originality / no stylistic copying.
+
+## K. Competitive World-Class Proof
+- [ ] At least 12 real Builder briefs; target program 13.
+- [ ] At least 10 materially different categories.
+- [ ] Minimum brief score >= 96 under canonical floor.
+- [ ] Critical discipline floors all satisfied.
+- [ ] External frontier blind comparison / tournament.
+- [ ] Independent human jury.
+- [ ] Award-Grade / Professor / Fresh-Eye / Blind Comparison evidence.
+- [ ] Human Artistic Authority approved.
+- [ ] One strong candidate is not used to manufacture motor-wide proof.
+- [ ] Only after repeated evidence may `WORLD_CLASS_100_VERIFIED` be considered.
+
+## L. Efficiency / Target → Result Metrics
+- [ ] Brief → first credible candidate elapsed time.
+- [ ] First-pass acceptance rate.
+- [ ] Average correction cycles.
+- [ ] Defects per viewport.
+- [ ] Professor/Fresh-Eye findings per iteration.
+- [ ] Quality delta after bounded correction.
+- [ ] Human acceptance / revise / reject rate.
+- [ ] Runtime / provider / tool cost where measurable.
+- [ ] CPU / memory / render resource use where relevant.
+- [ ] Persistence / recovery success.
+- [ ] Rework avoided through preservation of verified work.
+
+## M. Mac Engineer Package 2C Binding — AFTER FIELD REALITY PASS
+- [ ] Reconcile failed first Package 2C binding test to exact root cause.
+- [ ] Bind only verified Aesthetic Motor authority and measured capabilities.
+- [ ] Preserve no-parallel-engine rule.
+- [ ] Preserve Human Artistic Authority™.
+- [ ] Preserve `WORLD_CLASS_100_VERIFIED` as separate repeated-field claim.
+- [ ] Runtime restart.
+- [ ] Real conversation-first aesthetic smoke.
+- [ ] ZEKÜ / Labory / Builder truth preservation.
+- [ ] Regression.
+- [ ] Second Look.
+- [ ] Evidence.
+- [ ] Mandatory DoneCheck™.
+- [ ] Package 2C — VERIFIED FINAL / LOCKED.
+
+## N. Exit Contract
+`Capability Matrix → Field Reality Audit → measured gap closure → Graphic/Illustration/Motion/Video/3D decisions → competitive benchmarks → efficiency evidence → Package 2C runtime binding → regression → Second Look → Evidence → Mandatory DoneCheck → Human Artistic Authority where applicable → Package 2C VERIFIED FINAL / LOCKED → Package 3 Persistent Working Memory`
+
+**Current single objective:** **C. Aesthetic Motor Field Reality Audit™**.
