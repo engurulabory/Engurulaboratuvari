@@ -10,6 +10,7 @@ import os
 from pathlib import Path
 import plistlib
 import subprocess
+import unicodedata
 from typing import Any
 
 HOME = Path.home()
@@ -96,6 +97,18 @@ def within(path: Path, root: Path) -> bool:
         return False
 
 
+def normalized_text(value: str) -> str:
+    return unicodedata.normalize("NFC", value)
+
+
+def canonical_process_command(command: str) -> bool:
+    normalized = normalized_text(command)
+    return any(
+        normalized_text(str(CANONICAL[key])) in normalized
+        for key in ("installed_app", "runtime")
+    )
+
+
 def classify(path: Path) -> tuple[str, str]:
     rp = str(path.resolve()) if path.exists() else str(path)
     for role, cp in CANONICAL.items():
@@ -110,6 +123,14 @@ def classify(path: Path) -> tuple[str, str]:
         try:
             if path.resolve() == kp.resolve() or within(path, kp):
                 return "KNOWN_SECONDARY", label
+        except Exception:
+            pass
+
+    for role in ("control_plane", "product_source", "runtime", "evidence"):
+        cp = CANONICAL[role]
+        try:
+            if within(path, cp):
+                return "CANONICAL_CHILD", role
         except Exception:
             pass
 
@@ -211,12 +232,11 @@ def processes() -> list[dict[str, Any]]:
         low = line.lower()
         if "engurumacengineer" in low or "/enguru/runtime/macengineer/" in low:
             pid, _, command = line.strip().partition(" ")
-            classification = "CANONICAL"
-            if not (
-                str(CANONICAL["installed_app"]) in command
-                or str(CANONICAL["runtime"]) in command
-            ):
-                classification = "UNKNOWN_PROCESS_PATH"
+            classification = (
+                "CANONICAL_PROCESS"
+                if canonical_process_command(command)
+                else "UNKNOWN_PROCESS_PATH"
+            )
             out.append({"pid": pid, "command": command, "classification": classification})
     return out
 
@@ -235,7 +255,11 @@ def main() -> int:
     unknown = [x for x in findings if x["classification"] == "UNKNOWN"]
     stale_temp = [x for x in findings if x["classification"] == "STALE_TEMP"]
     missing = [x for x in findings if x["classification"] == "MISSING_CANONICAL"]
-    unknown_proc = [x for x in proc if x["classification"] != "CANONICAL"]
+    unknown_proc = [
+        x
+        for x in proc
+        if x["classification"] != "CANONICAL_PROCESS"
+    ]
 
     issues: list[str] = []
     if unknown:
@@ -257,8 +281,22 @@ def main() -> int:
         "processes": proc,
         "summary": {
             "total_findings": len(findings),
-            "canonical": sum(x["classification"] == "CANONICAL" for x in findings),
-            "known_secondary": sum(x["classification"] == "KNOWN_SECONDARY" for x in findings),
+            "canonical": sum(
+                x["classification"] in {"CANONICAL", "CANONICAL_CHILD"}
+                for x in findings
+            ),
+            "canonical_roots": sum(
+                x["classification"] == "CANONICAL"
+                for x in findings
+            ),
+            "canonical_children": sum(
+                x["classification"] == "CANONICAL_CHILD"
+                for x in findings
+            ),
+            "known_secondary": sum(
+                x["classification"] == "KNOWN_SECONDARY"
+                for x in findings
+            ),
             "unknown": len(unknown),
             "stale_temp": len(stale_temp),
             "missing_canonical": len(missing),
@@ -267,6 +305,7 @@ def main() -> int:
         "cleanup_candidates": [x["path"] for x in stale_temp + unknown],
         "truth_boundary": (
             "Read-only inventory. PASS means no unknown/stale Mac Engineer structures were observed in bounded roots. "
+            "Canonical descendants of control-plane/product-source/runtime/evidence roots are classified explicitly. "
             "Known backup, provenance and runtime-build artifacts are reported but do not count as drift. "
             "No path is deleted or moved by this audit."
         ),
