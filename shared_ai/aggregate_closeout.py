@@ -59,6 +59,12 @@ def assess_v06_aggregate(payload: Mapping[str, Any]) -> AggregateCloseoutResult:
     score_type = str(payload.get("scoreType", ""))
     if score_type != "V0.6_INTERNAL_FIELD_APPLIED_CLOSURE":
         issues.append("INVALID_SCORE_TYPE")
+    if payload.get("closureScope") != "GITHUB_ENGINEERING_CLOSEOUT":
+        issues.append("INVALID_CLOSURE_SCOPE")
+    if payload.get("nextRequiredGate") != "PACKAGE6_MAC_LOCAL_FINAL_COMMISSIONING":
+        issues.append("MAC_COMMISSIONING_GATE_REQUIRED")
+    if payload.get("productFinalState") != "HOLD_MAC_LOCAL_COMMISSIONING_REQUIRED":
+        issues.append("PREMATURE_PRODUCT_FINAL_CLAIM")
 
     packages = payload.get("packages")
     if not isinstance(packages, Mapping):
