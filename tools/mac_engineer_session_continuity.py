@@ -65,6 +65,10 @@ def load_state() -> dict[str, Any]:
     return json.loads(STATE_FILE.read_text(encoding="utf-8"))
 
 
+def normalize_objective(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", " ", value.lower()).strip()
+
+
 def active_objective() -> str:
     text = WORKLIST.read_text(encoding="utf-8")
     match = re.search(
@@ -117,8 +121,11 @@ def snapshot(mode: str) -> dict[str, Any]:
 
     declared = state.get("currentObjective", "")
     # WORKLIST is the higher authority; mismatch must be visible, not silently repaired.
-    if declared and declared.lower().replace("_", " ") not in objective.lower():
-        issues.append("SESSION_STATE_WORKLIST_OBJECTIVE_RECONCILIATION_REQUIRED")
+    if declared:
+        declared_norm = normalize_objective(declared)
+        objective_norm = normalize_objective(objective)
+        if declared_norm not in objective_norm and objective_norm not in declared_norm:
+            issues.append("SESSION_STATE_WORKLIST_OBJECTIVE_RECONCILIATION_REQUIRED")
 
     payload = {
         "schema": "enguru.mac-engineer.session-snapshot/v1",
