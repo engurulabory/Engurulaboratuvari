@@ -1,0 +1,47 @@
+{
+  "schema": "enguru.mac-engineer.session-state/v1",
+  "product": "ENGÜRÜ Mac Engineer™",
+  "state": "ACTIVE",
+  "continuityContract": "governance/mac-engineer/SESSION_CONTINUITY_CONTRACT_V1.md",
+  "authorityOrder": [
+    "LABORY_WORKLIST_GOVERNANCE",
+    "PRODUCT_REPOSITORY_EXACT_MAIN",
+    "MAC_PRODUCT_CHECKOUT_EXACT_MAIN",
+    "VERIFIED_MAC_RUNTIME_EVIDENCE",
+    "CURRENT_CHAT_CONTEXT",
+    "HISTORICAL_HANDOFF_BACKUP_CONVERSATION"
+  ],
+  "canonicalSurfaces": {
+    "controlPlane": "engurulabory/Engurulaboratuvari",
+    "productSource": "engurulabory/enguru-mac-engineer",
+    "localProductCheckout": "~/Enguru/Projects/enguru-mac-engineer",
+    "runtime": "~/Enguru/Runtime/MacEngineer",
+    "installedApp": "~/Applications/ENGÜRÜ Mac Engineer.app",
+    "evidence": "~/Enguru/Evidence/MacEngineer"
+  },
+  "lockedMethod": "SESSION_START -> CANONICAL_SYNC -> SESSION_STATE -> ONE_ACTIVE_OBJECTIVE -> CHANGE -> TEST_CI -> EXACT_MAIN -> MAC_FIELD_ACTION -> EVIDENCE -> DONECHECK -> WORKLIST_RECONCILE -> SESSION_HANDOFF",
+  "closedTruth": {
+    "githubEngineeringCloseout": "VERIFIED_LOCKED",
+    "localProductSourceBootstrap": "PASS",
+    "macLayoutAudit": "PASS"
+  },
+  "currentObjective": "PRODUCT_CI_EXACT_MAIN_VERIFICATION",
+  "observedProductPublication": {
+    "source": "MAC_FIELD_OUTPUT",
+    "localSourceHead": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
+    "remote": "engurulabory/enguru-mac-engineer",
+    "repositoryCreated": true,
+    "pushState": "PASS",
+    "remoteTracking": true,
+    "localExactOriginMain": true,
+    "productCIExactMain": "PENDING_VERIFICATION"
+  },
+  "canonicalNextLine": [
+    "PRODUCT_CI_EXACT_MAIN",
+    "LABORY_PRODUCT_SOURCE_BINDING",
+    "EXACT_SHA_REBUILD_INSTALL",
+    "RUNTIME_APP_PROVENANCE",
+    "HISTORICAL_HANDOFF_BACKUP_ARTIFACT_ARCHIVE_DECISION",
+    "REAL_MAC_TASK"
+  ]
+}

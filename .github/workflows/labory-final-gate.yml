@@ -81,6 +81,9 @@ jobs:
       - name: Mac Engineer layout audit tests
         run: python -m unittest discover -s tests -p 'test_mac_engineer_layout_audit.py' -v
 
+      - name: Mac Engineer session continuity tests
+        run: python -m unittest discover -s tests -p 'test_mac_engineer_session_continuity.py' -v
+
       - name: Quality & Red Team review tests
         run: python -m unittest discover -s tests -p 'test_quality_review.py' -v
 

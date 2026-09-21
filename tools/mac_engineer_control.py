@@ -19,6 +19,7 @@ BOOTSTRAP = ROOT / "tools" / "mac_engineer_bootstrap_product_source.py"
 SOURCE_REVIEW = ROOT / "tools" / "mac_engineer_source_intake_review.py"
 DELTA_REVIEW = ROOT / "tools" / "mac_engineer_delta_authority_review.py"
 LAYOUT_AUDIT = ROOT / "tools" / "mac_engineer_layout_audit.py"
+SESSION_CONTINUITY = ROOT / "tools" / "mac_engineer_session_continuity.py"
 
 
 def run(cmd: list[str], cwd: Path | None = None) -> tuple[int, str, str]:
@@ -248,6 +249,8 @@ def main() -> int:
     boot.add_argument("--publish", action="store_true")
     sub.add_parser("publish-source")
     sub.add_parser("audit-layout")
+    sub.add_parser("session-start")
+    sub.add_parser("session-handoff")
 
     args = parser.parse_args()
     if args.command == "status":
@@ -260,6 +263,14 @@ def main() -> int:
     if args.command == "audit-layout":
         proc = subprocess.run(
             [sys.executable, str(LAYOUT_AUDIT)],
+            cwd=str(ROOT),
+            check=False,
+        )
+        return proc.returncode
+    if args.command in {"session-start", "session-handoff"}:
+        mode = "start" if args.command == "session-start" else "handoff"
+        proc = subprocess.run(
+            [sys.executable, str(SESSION_CONTINUITY), mode],
             cwd=str(ROOT),
             check=False,
         )
