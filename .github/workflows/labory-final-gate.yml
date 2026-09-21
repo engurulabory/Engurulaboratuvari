@@ -42,6 +42,9 @@ jobs:
       - name: Mac Engineer Package 3 persistent working memory tests
         run: python -m unittest discover -s tests -p 'test_working_memory.py' -v
 
+      - name: Mac Engineer Package 3 Mandatory DoneCheck
+        run: python tools/package3_working_memory_donecheck.py
+
       - name: Quality & Red Team review tests
         run: python -m unittest discover -s tests -p 'test_quality_review.py' -v
 
