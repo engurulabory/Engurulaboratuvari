@@ -1006,8 +1006,8 @@ Evaluate under original ENGÜRÜ identity:
 **Placement rule:** these are small hardening items for existing layers. They do **not** create a new core, new agent framework or parallel authority path; they do not change the locked v0.6 rollout order. Implement only when the owning package becomes active.
 
 ### Package 3 — Persistent Working Memory placement
-- [ ] **Durable Task Record:** every real engineering task has one durable task identity inside existing Task State + Evidence, binding objective, authority snapshot, required capabilities, state transitions, artifacts/evidence refs, human decisions, resume checkpoint and final outcome.
-- [ ] **Governed Learning Promotion:** `OBSERVED → LEARNING_CANDIDATE → EVIDENCE → FRESH/INDEPENDENT REVIEW → ACCEPT/REJECT → VERSIONED MEMORY/SKILL PROMOTION`; one successful observation never becomes canonical truth automatically.
+- [x] **Durable Task Record:** every real engineering task has one durable task identity inside existing Task State + Evidence, binding objective, authority snapshot, required capabilities, state transitions, artifacts/evidence refs, human decisions, resume checkpoint and final outcome.
+- [x] **Governed Learning Promotion:** `OBSERVED → LEARNING_CANDIDATE → EVIDENCE → FRESH/INDEPENDENT REVIEW → ACCEPT/REJECT → VERSIONED MEMORY/SKILL PROMOTION`; one successful observation never becomes canonical truth automatically.
 
 ### Package 4 — Real Field Acceptance / Finished Ability placement
 - [ ] **Specialist Spawn Guard:** open a bounded specialist only for a verified capability gap or materially useful independent second view; scope/time are bounded and all central Authority / Human Threshold permissions are inherited unchanged.
@@ -1017,4 +1017,4 @@ Evaluate under original ENGÜRÜ identity:
 **Invariant:** specialization ≠ privilege escalation. Central Authority already exists and must not be duplicated.
 
 
-**Current single objective:** **Package 3 — Persistent Working Memory**.
+**Current single objective:** **Package 4 — Real Field Acceptance + Finished Ability™**.
