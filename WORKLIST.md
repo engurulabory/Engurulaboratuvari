@@ -983,19 +983,19 @@ Evaluate under original ENGÜRÜ identity:
 - [ ] Rework avoided through preservation of verified work.
 
 ## M. Mac Engineer Package 2C Binding — AFTER FIELD REALITY PASS
-- [ ] Reconcile failed first Package 2C binding test to exact root cause.
-- [ ] Bind only verified Aesthetic Motor authority and measured capabilities.
-- [ ] Preserve no-parallel-engine rule.
-- [ ] Preserve Human Artistic Authority™.
-- [ ] Preserve `WORLD_CLASS_100_VERIFIED` as separate repeated-field claim.
-- [ ] Runtime restart.
-- [ ] Real conversation-first aesthetic smoke.
-- [ ] ZEKÜ / Labory / Builder truth preservation.
-- [ ] Regression.
-- [ ] Second Look.
-- [ ] Evidence.
-- [ ] Mandatory DoneCheck™.
-- [ ] Package 2C — VERIFIED FINAL / LOCKED.
+- [x] Reconcile failed first Package 2C binding test to exact root cause.
+- [x] Bind only verified Aesthetic Motor authority and measured capabilities.
+- [x] Preserve no-parallel-engine rule.
+- [x] Preserve Human Artistic Authority™.
+- [x] Preserve `WORLD_CLASS_100_VERIFIED` as separate repeated-field claim.
+- [x] Runtime restart.
+- [x] Real conversation-first aesthetic smoke.
+- [x] ZEKÜ / Labory / Builder truth preservation.
+- [x] Regression.
+- [x] Second Look.
+- [x] Evidence.
+- [x] Mandatory DoneCheck™.
+- [x] Package 2C — VERIFIED FINAL / LOCKED.
 
 ## N. Exit Contract
 `Capability Matrix → Field Reality Audit → measured gap closure → Graphic/Illustration/Motion/Video/3D decisions → competitive benchmarks → efficiency evidence → Package 2C runtime binding → regression → Second Look → Evidence → Mandatory DoneCheck → Human Artistic Authority where applicable → Package 2C VERIFIED FINAL / LOCKED → Package 3 Persistent Working Memory`
@@ -1006,8 +1006,8 @@ Evaluate under original ENGÜRÜ identity:
 **Placement rule:** these are small hardening items for existing layers. They do **not** create a new core, new agent framework or parallel authority path; they do not change the locked v0.6 rollout order. Implement only when the owning package becomes active.
 
 ### Package 3 — Persistent Working Memory placement
-- [ ] **Durable Task Record:** every real engineering task has one durable task identity inside existing Task State + Evidence, binding objective, authority snapshot, required capabilities, state transitions, artifacts/evidence refs, human decisions, resume checkpoint and final outcome.
-- [ ] **Governed Learning Promotion:** `OBSERVED → LEARNING_CANDIDATE → EVIDENCE → FRESH/INDEPENDENT REVIEW → ACCEPT/REJECT → VERSIONED MEMORY/SKILL PROMOTION`; one successful observation never becomes canonical truth automatically.
+- [x] **Durable Task Record:** every real engineering task has one durable task identity inside existing Task State + Evidence, binding objective, authority snapshot, required capabilities, state transitions, artifacts/evidence refs, human decisions, resume checkpoint and final outcome.
+- [x] **Governed Learning Promotion:** `OBSERVED → LEARNING_CANDIDATE → EVIDENCE → FRESH/INDEPENDENT REVIEW → ACCEPT/REJECT → VERSIONED MEMORY/SKILL PROMOTION`; one successful observation never becomes canonical truth automatically.
 
 ### Package 4 — Real Field Acceptance / Finished Ability placement
 - [ ] **Specialist Spawn Guard:** open a bounded specialist only for a verified capability gap or materially useful independent second view; scope/time are bounded and all central Authority / Human Threshold permissions are inherited unchanged.
@@ -1017,4 +1017,4 @@ Evaluate under original ENGÜRÜ identity:
 **Invariant:** specialization ≠ privilege escalation. Central Authority already exists and must not be duplicated.
 
 
-**Current single objective:** **C. Aesthetic Motor Field Reality Audit™**.
+**Current single objective:** **Package 4 — Real Field Acceptance + Finished Ability™**.
