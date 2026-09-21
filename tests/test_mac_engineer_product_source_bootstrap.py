@@ -11,6 +11,7 @@ from tools.mac_engineer_bootstrap_product_source import (
     safe_relative,
     sha256_file,
 )
+from tools.mac_engineer_source_intake_review import scan_tree
 
 
 def record(path: Path, root: Path) -> dict:
@@ -23,6 +24,31 @@ def record(path: Path, root: Path) -> dict:
 
 
 class MacEngineerProductSourceBootstrapTests(unittest.TestCase):
+    def test_source_hygiene_accepts_native_command_script(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            native = root / "execution_prep" / "native_app"
+            native.mkdir(parents=True)
+            command = native / "prepare_native_app.command"
+            command.write_text(
+                "#!/bin/zsh\necho READY\n",
+                encoding="utf-8",
+            )
+
+            result = scan_tree(root)
+            safe_relatives = {
+                item["relative_path"] for item in result["safe"]
+            }
+            excluded_paths = {
+                item["path"] for item in result["excluded"]
+            }
+
+            self.assertIn(
+                "execution_prep/native_app/prepare_native_app.command",
+                safe_relatives,
+            )
+            self.assertNotIn(str(command), excluded_paths)
+
     def test_safe_relative_rejects_escape(self):
         with self.assertRaises(BootstrapError):
             safe_relative("../escape.py")
