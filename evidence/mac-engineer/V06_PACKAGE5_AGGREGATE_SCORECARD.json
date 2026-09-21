@@ -1,0 +1,375 @@
+{
+  "schemaVersion": "1.0",
+  "scoreType": "V0.6_INTERNAL_FIELD_APPLIED_CLOSURE",
+  "generatedAt": "2026-09-21",
+  "truthBoundary": "Scores are internal v0.6 closure scores on the previously locked ENGURU Mac Engineer rubric. They are evidence-bounded applied/field reevaluations, not external industry rankings and not universal 100/100 claims.",
+  "canonicalMainBeforePackage5": "a3f2c565456a148b864da77b552e4fa2eab6ef61",
+  "packages": {
+    "package_1": {
+      "label": "Package 1",
+      "state": "VERIFIED_PASS",
+      "evidenceRefs": [
+        "locked-program-state:Package1=VERIFIED_PASS",
+        "locked-rubric:12-operating-character-dimensions"
+      ]
+    },
+    "package_2a": {
+      "label": "Package 2A",
+      "state": "VERIFIED_AUDIT_COMPLETE",
+      "evidenceRefs": [
+        "locked-audit:architecture=96/100-source-coverage",
+        "locked-audit:engineering=94/100-source-coverage",
+        "locked-audit:overall=95/100-source-coverage",
+        "governance-alignment:PASS"
+      ]
+    },
+    "package_2a1": {
+      "label": "Package 2A.1",
+      "state": "REAL_GAP_REVIEW_COMPLETE",
+      "evidenceRefs": [
+        "gap:performance-capacity-resource-discipline",
+        "gap:verified-incident-learning",
+        "gap:one-active-objective",
+        "gap:persistent-current-objective-memory→Package3",
+        "integration-testing:already-field-covered"
+      ]
+    },
+    "package_2b": {
+      "label": "Package 2B Steel Operating Character™",
+      "state": "VERIFIED_FINAL_LOCKED",
+      "evidenceRefs": [
+        "locked-local-field:18-tests-OK",
+        "locked-local-field:regression-restart-conversation-smoke-ZEKU-Labory-preservation-Second-Look-DoneCheck=PASS",
+        "locked-local-field:One-Active-Objective=PASS",
+        "locked-local-field:Resource-Discipline=PASS",
+        "locked-local-field:Verified-Incident-Learning=PASS"
+      ]
+    },
+    "package_2c": {
+      "label": "Package 2C Aesthetic Motor™",
+      "state": "COMPLETED_USER_LOCKED",
+      "evidenceRefs": [
+        "human-lock:2026-09-21-Package2C-completed",
+        "builder-supporting-pr:250-head=adf52d20d2795f12e369ad03165e3d1b8756f51d",
+        "builder-supporting-pr:22/22-workflows-PASS",
+        "builder-supporting-pr:overflow-and-render-collision-gates-PASS"
+      ],
+      "note": "Supporting Builder PR #250 remains a separate draft technical candidate; Package 2C completion is preserved as the user's locked program decision and is not represented as a merged Builder-main claim."
+    },
+    "package_3": {
+      "label": "Package 3 Persistent Working Memory",
+      "state": "VERIFIED_FINAL_LOCKED",
+      "evidenceRefs": [
+        "merge:9039d05e0c331e7a3e98228a673f941d531a9e45",
+        "exact-main:Labory-Final-Gate#201:PASS",
+        "exact-main:Package3-unit-tests:PASS",
+        "exact-main:Package3-Mandatory-DoneCheck:PASS",
+        "evidence:MAC_ENGINEER_V06_PACKAGE3_PERSISTENT_WORKING_MEMORY_2026-09-21.md"
+      ]
+    },
+    "package_4": {
+      "label": "Package 4 Real Field Acceptance + Finished Ability™",
+      "state": "VERIFIED_FINAL_LOCKED",
+      "evidenceRefs": [
+        "merge:a3f2c565456a148b864da77b552e4fa2eab6ef61",
+        "exact-main:Labory-Final-Gate#205:PASS",
+        "exact-main:Package4-field-acceptance-tests:PASS",
+        "exact-main:Package4-Mandatory-DoneCheck:PASS",
+        "exact-main:IP-Model-Trust-Gate#225:PASS",
+        "exact-main:IP-Model-Trust-Fleet#210:PASS",
+        "evidence:MAC_ENGINEER_V06_PACKAGE4_REAL_FIELD_ACCEPTANCE_2026-09-21.md"
+      ]
+    }
+  },
+  "operatingCharacterDimensions": [
+    {
+      "dimension": "Truth Before Action",
+      "baseline": 97,
+      "score": 99,
+      "evidenceRefs": [
+        "Package2B:Truth-Before-Action-field",
+        "Package4:real-field-evidence-gated-finish"
+      ]
+    },
+    {
+      "dimension": "One Active Objective",
+      "baseline": 88,
+      "score": 99,
+      "evidenceRefs": [
+        "Package2B:One-Active-Objective=PASS",
+        "WORKLIST:single-current-objective"
+      ]
+    },
+    {
+      "dimension": "Smallest Sufficient Change",
+      "baseline": 97,
+      "score": 99,
+      "evidenceRefs": [
+        "Package3:reuse-existing-layers",
+        "Package4:real-import-path-smallest-repair"
+      ]
+    },
+    {
+      "dimension": "Assumption Challenge / Second Look",
+      "baseline": 86,
+      "score": 99,
+      "evidenceRefs": [
+        "Package2B:Second-Look=PASS",
+        "Package4:negative-fail-closed-cases"
+      ]
+    },
+    {
+      "dimension": "Evidence-Proportional Confidence",
+      "baseline": 99,
+      "score": 99,
+      "evidenceRefs": [
+        "Package3:evidence-gated-PASS",
+        "Package4:synthetic-field-evidence-rejected"
+      ]
+    },
+    {
+      "dimension": "Autonomous Engineer Initiative",
+      "baseline": 87,
+      "score": 98,
+      "evidenceRefs": [
+        "Package3:discover→implement→CI→repair→merge",
+        "Package4:full-eight-stage-field-path"
+      ]
+    },
+    {
+      "dimension": "Stop Intelligence",
+      "baseline": 99,
+      "score": 99,
+      "evidenceRefs": [
+        "Authority-gates:HOLD/BLOCKED",
+        "Package4:tool-gap-install-authority-rejected"
+      ]
+    },
+    {
+      "dimension": "Closure Discipline",
+      "baseline": 99,
+      "score": 99,
+      "evidenceRefs": [
+        "Package3:exact-head→merge→exact-main",
+        "Package4:exact-head→merge→exact-main"
+      ]
+    },
+    {
+      "dimension": "Human-Centered Conversation",
+      "baseline": 80,
+      "score": 97,
+      "evidenceRefs": [
+        "Package2B:conversation-smoke=PASS",
+        "Shared-AI-Behavior:103/103-internal-worklist",
+        "Final-Gate:shared-ai-behavior-tests=PASS"
+      ]
+    },
+    {
+      "dimension": "Architecture & Engineering Judgment",
+      "baseline": 88,
+      "score": 98,
+      "evidenceRefs": [
+        "Package2A:architecture=96-source-coverage",
+        "Package3:bounded-persistence-no-daemon",
+        "Package4:no-new-core-authority-preserved"
+      ]
+    },
+    {
+      "dimension": "End-to-End Ownership",
+      "baseline": 88,
+      "score": 99,
+      "evidenceRefs": [
+        "Package4:UNDERSTAND→FINISH-real-field",
+        "Package4:real-recovery-exercised"
+      ]
+    },
+    {
+      "dimension": "Persistent Working Memory",
+      "baseline": 76,
+      "score": 99,
+      "evidenceRefs": [
+        "Package3:durable-task-record",
+        "Package3:restart-resume-stale-write-guard",
+        "exact-main:Package3-Mandatory-DoneCheck=PASS"
+      ]
+    }
+  ],
+  "domains": {
+    "operating_character": {
+      "target": 98,
+      "score": 98.7,
+      "basis": "Field-applied rescore of the locked 12-dimension Package 1 rubric after Package 2B, Package 3 and Package 4 gap closure. Dimension mean = 98.67, reported to one decimal.",
+      "evidenceRefs": [
+        "scorecard:operatingCharacterDimensions",
+        "Package2B:VERIFIED_FINAL_LOCKED",
+        "Package3:VERIFIED_FINAL_LOCKED",
+        "Package4:VERIFIED_FINAL_LOCKED"
+      ]
+    },
+    "architecture_foundations": {
+      "target": 97,
+      "score": 98,
+      "basis": "Applied reevaluation from the locked Package 2A architecture source-coverage baseline 96 after verified bounded persistence, state/revision invariants, authority-preserving specialization, reconciliation and real-field finish architecture.",
+      "evidenceRefs": [
+        "Package2A:architecture=96/100-source-coverage",
+        "governance/mac-engineer/PERSISTENT_WORKING_MEMORY_V0_1.md",
+        "governance/mac-engineer/REAL_FIELD_ACCEPTANCE_FINISHED_ABILITY_V0_1.md",
+        "shared_ai/working_memory.py",
+        "shared_ai/field_acceptance.py"
+      ]
+    },
+    "engineering_foundations": {
+      "target": 98,
+      "score": 98,
+      "basis": "Applied reevaluation from the locked Package 2A engineering source-coverage baseline 94 after Package 2B field regression/restart proof, Package 3 atomic persistence and stale-write tests, Package 4 recovery/negative gates, and repeated exact-main regression.",
+      "evidenceRefs": [
+        "Package2A:engineering=94/100-source-coverage",
+        "Package2B:18-tests-OK-and-regression-PASS",
+        "tests/test_working_memory.py",
+        "tests/test_field_acceptance.py",
+        "exact-main:Labory-Final-Gate#205:PASS"
+      ]
+    },
+    "intellectual_depth": {
+      "target": 97,
+      "score": 98,
+      "basis": "Applied reevaluation of judgment depth after evidence-first discovery, architecture tradeoff discipline, independent/negative review, root-cause recovery and explicit truth-boundary handling across Packages 2A–4.",
+      "evidenceRefs": [
+        "Package1:Architecture-&-Engineering-Judgment-baseline=88",
+        "Package1:Assumption-Challenge-Second-Look-baseline=86",
+        "Package2A:VERIFIED_AUDIT_COMPLETE",
+        "Package4:real-root-cause-recovery",
+        "shared_ai/quality_review.py"
+      ]
+    },
+    "finished_ability": {
+      "target": 98,
+      "score": 99,
+      "basis": "Real-field Package 4 proof covers all eight stages, includes a genuine failure/recovery event, Mandatory DoneCheck, merge and exact-main verification. One-point reserve remains for broader cross-domain field breadth reserved to v0.9.",
+      "evidenceRefs": [
+        "evidence/mac-engineer/PACKAGE4_REAL_FIELD_SCENARIO_PACKAGE3.json",
+        "Package4:Mandatory-DoneCheck=PASS",
+        "merge:a3f2c565456a148b864da77b552e4fa2eab6ef61",
+        "exact-main:Labory-Final-Gate#205:PASS"
+      ]
+    },
+    "human_centered_conversation": {
+      "target": 97,
+      "score": 97,
+      "basis": "Cautious field floor: Package 2B real conversation smoke PASS plus canonical Shared AI Behavior 103/103 internal completion and continuing behavior regression. Score is held at the threshold because broader user-population field benchmarking is outside v0.6.",
+      "evidenceRefs": [
+        "Package1:Human-Centered-Conversation-baseline=80",
+        "Package2B:conversation-smoke=PASS",
+        "WORKLIST:Shared-AI-Behavior=103/103",
+        "exact-main:Final-Gate-shared-ai-behavior-tests=PASS"
+      ]
+    },
+    "persistent_working_memory": {
+      "target": 97,
+      "score": 99,
+      "basis": "Package 3 provides durable task identity, atomic persistence, optimistic revision guard, restart checkpoint/resume, evidence-bound Human decisions, governed learning promotion, Mandatory DoneCheck and exact-main verification.",
+      "evidenceRefs": [
+        "shared_ai/working_memory.py",
+        "tests/test_working_memory.py",
+        "evidence/MAC_ENGINEER_V06_PACKAGE3_PERSISTENT_WORKING_MEMORY_2026-09-21.md",
+        "merge:9039d05e0c331e7a3e98228a673f941d531a9e45",
+        "exact-main:Labory-Final-Gate#201:PASS"
+      ]
+    }
+  },
+  "criticalFailures": {
+    "unresolved": 0,
+    "scope": "v0.6 canonical closure candidate",
+    "evidenceRefs": [
+      "Package3:first-DoneCheck-failure=RECOVERED",
+      "Package4:critical-field-failure-gate=PASS",
+      "exact-main:Labory-Final-Gate#205:PASS",
+      "exact-main:IP-Model-Trust-Gate#225:PASS",
+      "exact-main:IP-Model-Trust-Fleet#210:PASS"
+    ]
+  },
+  "mandatoryDoneCheck": [
+    {
+      "check": "all_v06_packages_reconciled",
+      "state": "PASS",
+      "evidenceRefs": [
+        "packages:1,2A,2A1,2B,2C,3,4"
+      ]
+    },
+    {
+      "check": "real_implementation_and_field_evidence_present",
+      "state": "PASS",
+      "evidenceRefs": [
+        "Package2B:local-field",
+        "Package3:exact-main",
+        "Package4:real-field"
+      ]
+    },
+    {
+      "check": "locked_field_targets_met",
+      "state": "PASS",
+      "evidenceRefs": [
+        "domains:all-targets-met"
+      ]
+    },
+    {
+      "check": "regression_pass",
+      "state": "PASS",
+      "evidenceRefs": [
+        "exact-main:Labory-Final-Gate#205:PASS",
+        "exact-main:IP-Gate#225:PASS",
+        "exact-main:Fleet#210:PASS"
+      ]
+    },
+    {
+      "check": "canonical_truth_preserved",
+      "state": "PASS",
+      "evidenceRefs": [
+        "main:a3f2c565456a148b864da77b552e4fa2eab6ef61",
+        "WORKLIST:Package5-current-objective"
+      ]
+    },
+    {
+      "check": "authority_boundaries_explicit",
+      "state": "PASS",
+      "evidenceRefs": [
+        "Package4:specialization-no-privilege-escalation",
+        "Package4:tool-gap-no-install-authority",
+        "Human-Threshold:preserved"
+      ]
+    },
+    {
+      "check": "aggregate_evidence_present",
+      "state": "PASS",
+      "evidenceRefs": [
+        "this-scorecard",
+        "Package3-evidence",
+        "Package4-evidence"
+      ]
+    },
+    {
+      "check": "human_authority_preserved",
+      "state": "PASS",
+      "evidenceRefs": [
+        "Package2C:COMPLETED_USER_LOCKED",
+        "Package4:Human-Threshold-unchanged"
+      ]
+    },
+    {
+      "check": "critical_failures_zero",
+      "state": "PASS",
+      "evidenceRefs": [
+        "criticalFailures:unresolved=0"
+      ]
+    },
+    {
+      "check": "judgment_aligned_with_current_truth",
+      "state": "PASS",
+      "evidenceRefs": [
+        "truthBoundary",
+        "unresolvedHolds:empty"
+      ]
+    }
+  ],
+  "unresolvedHolds": []
+}
