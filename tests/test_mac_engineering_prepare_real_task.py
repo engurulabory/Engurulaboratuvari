@@ -38,6 +38,13 @@ class MacEngineeringPrepareRealTaskTests(unittest.TestCase):
             prep.FIXTURE,
         )
 
+    def test_v06_fixture_uses_existing_safe_repair_contract(self):
+        source = Path(prep.__file__).read_text(encoding="utf-8")
+        self.assertIn("CURRENT_STATE.md", source)
+        self.assertIn("VERIFIED EXECUTABLE BASELINE", source)
+        self.assertIn('"tests"', source)
+        self.assertNotIn("intentional bounded defect", source)
+
 
 if __name__ == "__main__":
     unittest.main()
