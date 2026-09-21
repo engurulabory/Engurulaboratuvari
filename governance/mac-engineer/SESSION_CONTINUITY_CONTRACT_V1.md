@@ -52,6 +52,20 @@ A new session must not:
 
 If new evidence contradicts canonical truth, state the contradiction and reconcile it before execution.
 
+## 4.1 Governed working branch exception
+
+Product source normally begins a session on clean exact-main.
+
+A feature branch is accepted only when the current canonical SESSION_STATE explicitly records:
+
+- the active objective that requires that branch;
+- the exact authorized branch name;
+- the exact authorized head commit;
+- the exact expected base `origin/main`;
+- a clean worktree.
+
+This is a narrow continuity exception for a verified in-flight change, not a second source authority. Any unrecorded branch/head/base difference returns HOLD.
+
 ## 5. Session start gate
 
 Canonical entry:

@@ -78,6 +78,36 @@ def active_objective() -> str:
     return match.group(1) if match else "UNRESOLVED"
 
 
+def authorized_product_working_branch(
+    state: dict[str, Any],
+    product: dict[str, Any],
+) -> tuple[bool, dict[str, Any]]:
+    objective = str(state.get("currentObjective", ""))
+    prepared = state.get("observedV06AlignmentPreparation", {})
+    if objective != "PRODUCT_SOURCE_V0_6_ALIGNMENT_PUBLICATION":
+        return False, {}
+
+    expected_branch = str(prepared.get("branch", ""))
+    expected_head = str(prepared.get("commit", ""))
+    expected_base = str(prepared.get("baseMain", ""))
+
+    authorized = bool(
+        expected_branch
+        and expected_head
+        and expected_base
+        and product.get("branch") == expected_branch
+        and product.get("head") == expected_head
+        and product.get("origin_main") == expected_base
+        and product.get("clean") is True
+    )
+    return authorized, {
+        "expected_branch": expected_branch,
+        "expected_head": expected_head,
+        "expected_base_main": expected_base,
+        "authorized": authorized,
+    }
+
+
 def process_state() -> list[dict[str, str]]:
     rc, out, _ = run(["ps", "-axo", "pid=,command="])
     if rc != 0:
@@ -105,15 +135,25 @@ def snapshot(mode: str) -> dict[str, Any]:
     if control.get("exact_origin_main") is not True:
         issues.append("CONTROL_PLANE_EXACT_MAIN_REQUIRED")
 
+    working_branch_authorized = False
+    working_branch_policy: dict[str, Any] = {}
     if not product.get("available"):
         issues.append("PRODUCT_SOURCE_REQUIRED")
     else:
-        if product.get("branch") != "main":
-            issues.append("PRODUCT_SOURCE_MAIN_REQUIRED")
+        (
+            working_branch_authorized,
+            working_branch_policy,
+        ) = authorized_product_working_branch(state, product)
+
         if product.get("clean") is not True:
             issues.append("PRODUCT_SOURCE_CLEAN_REQUIRED")
-        if product.get("exact_origin_main") is not True:
-            issues.append("PRODUCT_SOURCE_EXACT_MAIN_REQUIRED")
+
+        if not working_branch_authorized:
+            if product.get("branch") != "main":
+                issues.append("PRODUCT_SOURCE_MAIN_REQUIRED")
+            if product.get("exact_origin_main") is not True:
+                issues.append("PRODUCT_SOURCE_EXACT_MAIN_REQUIRED")
+
         expected = "engurulabory/enguru-mac-engineer"
         origin = product.get("origin") or ""
         if expected not in origin:
@@ -143,6 +183,10 @@ def snapshot(mode: str) -> dict[str, Any]:
         "canonical_surfaces": state.get("canonicalSurfaces", {}),
         "control_plane": control,
         "product_source": product,
+        "product_working_branch_policy": {
+            "authorized": working_branch_authorized,
+            **working_branch_policy,
+        },
         "runtime": {
             "root_exists": RUNTIME.exists(),
             "app_exists": APP.exists(),
@@ -150,7 +194,9 @@ def snapshot(mode: str) -> dict[str, Any]:
         },
         "session_rule": (
             "Continue only the canonical active objective. "
-            "Treat GitHub WORKLIST/governance and exact-main as authority; "
+            "Treat GitHub WORKLIST/governance and exact-main as authority. "
+            "A non-main product branch is accepted only when SESSION_STATE "
+            "explicitly authorizes its exact branch/head/base for the active objective; "
             "chat memory is advisory."
         ),
         "new_session_instruction": (
