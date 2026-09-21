@@ -25,9 +25,11 @@
     "localProductSourceBootstrap": "PASS",
     "macLayoutAudit": "PASS",
     "productSourceAuthority": "PASS",
-    "productCIExactMain": "PASS"
+    "productCIExactMain": "PASS",
+    "productV06ExactMainCI": "PASS",
+    "rebuildInstallPreflight": "PASS"
   },
-  "currentObjective": "PRODUCT_EXACT_MAIN_CI_REBUILD_PREFLIGHT_RECHECK",
+  "currentObjective": "EXACT_SHA_REBUILD_INSTALL",
   "observedProductPublication": {
     "source": "MAC_FIELD_OUTPUT",
     "localSourceHead": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
@@ -41,7 +43,6 @@
     "productCIRunNumber": 1
   },
   "canonicalNextLine": [
-    "PRODUCT_EXACT_MAIN_CI_REBUILD_PREFLIGHT_RECHECK",
     "EXACT_SHA_REBUILD_INSTALL",
     "RUNTIME_APP_PROVENANCE",
     "HISTORICAL_HANDOFF_BACKUP_ARTIFACT_ARCHIVE_DECISION",
@@ -105,6 +106,25 @@
     "localMain": "28b901ab3303f4be3c7356b11218b62422f2da42",
     "originMain": "28b901ab3303f4be3c7356b11218b62422f2da42",
     "localClean": true,
-    "exactMainCI": "PENDING"
+    "exactMainCI": "PASS"
+  },
+  "observedV06ExactMain": {
+    "state": "PASS",
+    "sha": "28b901ab3303f4be3c7356b11218b62422f2da42",
+    "ciRunId": 35645771602,
+    "ciRunNumber": 3,
+    "ciEvent": "push",
+    "ci": "PASS",
+    "sourceVersion": "0.6",
+    "preflight": "PASS",
+    "runtimeParity": {
+      "productFiles": 27,
+      "currentFiles": 27,
+      "exact": 27,
+      "changed": 0,
+      "missingCurrent": 0,
+      "currentOnly": 0
+    },
+    "installedAppVersion": "0.4"
   }
 }
