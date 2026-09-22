@@ -214,7 +214,7 @@ Latest final integrity result:
 
 The continuity repeatability acceptance is now closed.
 
-### Long-conversation durability discovery — READ-ONLY RESULT
+### Long-conversation durability discovery — EXACT READ-ONLY RESULT
 
 Observed product authority:
 
@@ -236,12 +236,27 @@ Storage remains small:
 - runtime: ~1.3 MB
 - v0.6 Evidence: ~308 KB
 
-Interpretation:
+Exact discovery findings:
 
-- durable-task/checkpoint infrastructure exists; the gap is not "no persistence";
-- first text-search result is **inconclusive**, because the diagnostic used `rg` with stderr suppressed and did not verify that `rg` exists on this Mac;
-- the empty canonical-task search therefore cannot be treated as proof that task/checkpoint identity is absent;
-- next discovery must be tool-independent and must inspect actual task/checkpoint/context JSON content plus full product source for warning/context assembly.
+- warning source is confirmed in product code:
+  - `runtime/app.py` lines around 828–843;
+  - `runtime/static/index.html` lines around 1148–1151;
+- message/context assembly exists in `runtime/app.py` around history/context/message construction;
+- canonical task/checkpoint are persisted in runtime and Evidence;
+- exact durable task record: `tasks/task_94b95c63865a45db80b85ccba95f8119.json`;
+- that task record contains both canonical ids and is currently internal state `COMPLETE`;
+- `state/cockpit.json` also contains the canonical ids;
+- `state/task-idempotency.json` does not contain literal canonical ids because its top-level keys are digests; this is not by itself evidence of loss;
+- `logs/task-journal.jsonl` contains no literal canonical-id match;
+- `state/canonical-context.json` is stale relative to current truth:
+  - observed_at = `2026-09-21T20:17:20.743204Z`;
+  - activeObjective = `Package 6 — Runtime/App Provenance Closure`;
+  - sessionStateObjective = `RUNTIME_APP_PROVENANCE_CLOSURE`;
+  - method is also the older pre-CURRENT_STATUS chain.
+
+Primary working hypothesis:
+
+**persistent task state is present; active conversation context is being assembled with stale canonical context and an early hard-coded pressure warning.**
 
 ## 6. REQUIRED DIFFERENCE
 
@@ -285,7 +300,7 @@ The program target remains v1.1.
 
 ## 9. NEXT ACTION
 
-**Single next action:** run a tool-independent Python discovery across full product source + runtime durable-state JSON + v0.6 Evidence to identify: warning source, active-context assembly, real task/checkpoint persistence, and the exact task record that owns `ENGURU-V06-FIELD-001`.
+**Single next action:** inspect the exact `runtime/app.py` context/history/warning block, the UI warning thresholds in `runtime/static/index.html`, and the canonical-context refresh path; then implement the smallest bounded patch that refreshes canonical context, pins durable task truth, budgets long history, and delays user-visible warning until genuine context pressure.
 
 ## 9.1 MAINTENANCE RULE
 
