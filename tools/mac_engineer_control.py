@@ -30,6 +30,7 @@ SYNC_CONTEXT = ROOT / "tools" / "mac_engineering_sync_context.py"
 RUNTIME_PROVENANCE = ROOT / "tools" / "mac_engineer_runtime_provenance.py"
 PREPARE_REAL_TASK = ROOT / "tools" / "mac_engineering_prepare_real_task.py"
 REFRESH_REAL_TASK_RUNTIME = ROOT / "tools" / "mac_engineering_refresh_real_task_runtime.py"
+REPO_DISCOVERY_DIAGNOSTIC = ROOT / "tools" / "mac_engineering_repo_discovery_diagnostic.py"
 
 
 def run(cmd: list[str], cwd: Path | None = None) -> tuple[int, str, str]:
@@ -271,6 +272,7 @@ def main() -> int:
     sub.add_parser("verify-runtime-provenance")
     sub.add_parser("prepare-real-task")
     sub.add_parser("refresh-real-task-runtime")
+    sub.add_parser("inspect-repo-discovery")
 
     args = parser.parse_args()
     if args.command == "status":
@@ -353,6 +355,13 @@ def main() -> int:
     if args.command == "refresh-real-task-runtime":
         proc = subprocess.run(
             [sys.executable, str(REFRESH_REAL_TASK_RUNTIME)],
+            cwd=str(ROOT),
+            check=False,
+        )
+        return proc.returncode
+    if args.command == "inspect-repo-discovery":
+        proc = subprocess.run(
+            [sys.executable, str(REPO_DISCOVERY_DIAGNOSTIC)],
             cwd=str(ROOT),
             check=False,
         )
