@@ -106,7 +106,9 @@ V07-A01 + V07-A02 **PASS / exact-main verified**: product PR #9 merged to `443fd
 
 V07-A03 + V07-A04 **PASS / exact-main verified**: product PR #10 merged to `1dcbc795e4b949448206fbad93b239aca297cc0f`; exact-main Product CI run #21 PASS with 50/50 runtime tests OK. Canonical Evidence: `evidence/MAC_ENGINEER_V07_A03_A04_ENGINEERING_2026-09-22.md`.
 
-Current required difference: implement and verify `V07-A05 + V07-A06 → BOUNDED_RETRY_WATCHDOG_AND_RECOVERY_FIXTURES`.
+V07-A05 + V07-A06 **PASS / exact-main verified**: product PR #11 merged to `199893b07941a82c26c3b39a7942478cb95420b0`; exact-main Product CI run #23 PASS with 52/52 runtime tests OK. Canonical Evidence: `evidence/MAC_ENGINEER_V07_A05_A06_ENGINEERING_2026-09-22.md`.
+
+Current required difference: implement and verify `V07-A07 + V07-A08 → RESOURCE_AND_EVIDENCE_CONTINUITY`.
 
 ## REMAINING v0.6 CLOSEOUT
 
@@ -137,4 +139,4 @@ Recovery, fixture repair, local field acceptance and the reconstructed pre-canon
 
 ## NEXT ACTION
 
-`V0_7_LONG_RUNNING_RELIABILITY → V07-A05 + V07-A06 → BOUNDED_RETRY_WATCHDOG_AND_RECOVERY_FIXTURES → GITHUB_FIRST_ENGINEERING`
+`V0_7_LONG_RUNNING_RELIABILITY → V07-A07 + V07-A08 → RESOURCE_AND_EVIDENCE_CONTINUITY → GITHUB_FIRST_ENGINEERING`
