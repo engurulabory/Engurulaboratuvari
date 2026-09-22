@@ -3,8 +3,8 @@
 **Updated:** 2026-09-22  
 **Program target:** ENGÜRÜ Mac Engineering™ v1.1 — Verified Product Engineering Operator  
 **Current version:** v0.6 — VERIFIED FINAL / LOCKED  
-**Current objective:** v0.0–v0.3 Historical Reconstruction  
-**Canonical objective id:** `V00_V03_HISTORICAL_RECONSTRUCTION`
+**Current objective:** v0.7 — Long-Running Reliability  
+**Canonical objective id:** `V0_7_LONG_RUNNING_RELIABILITY`
 
 ## CURRENT ENGINEERING TRUTH
 
@@ -77,9 +77,30 @@ Permanent direction:
 
 ## HISTORICAL LINEAGE
 
-v0.4 and v0.5 are canonical LOCKED versions.
+**V00_V03_HISTORICAL_RECONSTRUCTION = PASS / CLOSED.**
 
-v0.0–v0.3 remain **PRE-CANONICAL DEVELOPMENT LINEAGE** until Git history and dated Evidence establish real historical boundaries. No retrospective product-version title is asserted without evidence.
+Fresh Git/Evidence reconstruction supports one collective **PRE-CANONICAL DEVELOPMENT LINEAGE** for v0.0–v0.3. Separate retrospective release boundaries and product titles remain unasserted.
+
+The first Evidence-backed named product boundary is **v0.4**. By the 2026-09-20 build/DoneCheck sequence, canonical provenance records contain:
+
+- historical source: `~/Desktop/ENGURU_Mac_Engineer_Project_Handoff_v1`;
+- baseline: `baseline_v0.4`;
+- native build receipt: `native_app_prepare_20260920T082338Z.txt`;
+- Phase-1 DoneCheck: `phase1_donecheck_20260920T095119Z.json`.
+
+Dedicated product Git authority begins later at root commit `3ac09bd7d022a6114b9066afca14ff170e0177c1` with Product CI run `35640369690` PASS.
+
+Canonical reconstruction Evidence:
+
+- `evidence/MAC_ENGINEER_V00_V03_HISTORICAL_RECONSTRUCTION_2026-09-22.md`
+
+v0.4, v0.5 and v0.6 locked truths remain unchanged.
+
+## CURRENT OBJECTIVE
+
+**v0.7 — Long-Running Reliability**
+
+First required difference: define the exact v0.7 acceptance matrix from existing reliability layers before implementation work expands.
 
 ## REMAINING v0.6 CLOSEOUT
 
@@ -92,7 +113,7 @@ Canonical closeout:
 - IP Model Trust Gate push run #385: PASS
 - IP Model Trust Fleet push run #370: PASS
 
-The next active objective is v0.0–v0.3 historical reconstruction.
+The next active objective is v0.7 Long-Running Reliability.
 
 ## MAINTENANCE RULE
 
@@ -104,8 +125,10 @@ CURRENT_STATUS is updated after every material engineering package or PASS / HOL
 
 **v0.6 VERIFIED FINAL / LOCKED = PASS.**
 
-Recovery, fixture repair and local field acceptance are closed truths and are not reopened without new contradictory Evidence.
+**V00_V03_HISTORICAL_RECONSTRUCTION = PASS / CLOSED.**
+
+Recovery, fixture repair, local field acceptance and the reconstructed pre-canonical boundary are closed truths and reopen only when new contradictory Evidence materially changes current truth.
 
 ## NEXT ACTION
 
-`V0_0_V0_3_HISTORICAL_RECONSTRUCTION → HISTORICAL_RECONCILIATION_PUBLICATION → V0_7_GITHUB_FIRST_ENGINEERING`
+`V0_7_LONG_RUNNING_RELIABILITY → DEFINE_EXACT_ACCEPTANCE_MATRIX → GITHUB_FIRST_ENGINEERING`
