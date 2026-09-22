@@ -16,7 +16,7 @@ The continuity patch is now fully integrated into the product repository. Produc
 ## 2. CANONICAL SURFACES
 
 - Control plane: `engurulabory/Engurulaboratuvari`
-- Control-plane latest verified baseline before this status update: `42a3699dd0b6285b8390ccf2ab4379b631333549`; authoritative current exact-main is resolved by `session-start` after status changes merge
+- Control-plane exact-main: `6c8bbf8832ea1c1408b87d9879b3a1cfa83a8036` — Final Gate / IP Gate / Fleet PASS
 - Product source: `engurulabory/enguru-mac-engineer`
 - Mac product checkout: `~/Enguru/Projects/enguru-mac-engineer`
 - Product canonical branch: `main`
@@ -74,6 +74,16 @@ The active acceptance gate is:
 `TARGETED_REPEATABILITY=5/5_PASS + FULL_RUNTIME_REGRESSION=PASS + DIFF_CHECK=PASS + PATCH_SCOPE=3_FILES_PASS + PRODUCT_RUNTIME_CACHE_COUNT=0`
 
 ## 5. LATEST OBSERVED RESULT
+
+### Control-plane reconciliation — PASS
+
+- status reconciliation PR: **#136**
+- control-plane exact-main: `6c8bbf8832ea1c1408b87d9879b3a1cfa83a8036`
+- ENGURU Labory Final Gate: **PASS**
+- IP Model Trust Gate: **PASS**
+- IP Model Trust Fleet: **PASS**
+- active objective remains: `CONTINUITY_PATCH_EXACT_MAIN_COMMISSIONING`
+
 
 ### Product Patch GitHub Engineering — VERIFIED PASS
 
