@@ -3,15 +3,15 @@
 **Updated:** 2026-09-22  
 **Program target:** ENGÜRÜ Mac Engineer™ v1.1 — Verified Product Engineering Operator  
 **Current version:** v0.6 — Field Closeout Active  
-**Current objective:** Package 6 — Checkpoint / Restart / Same-Task Resume Field Proof  
-**Canonical objective id:** `CHECKPOINT_RESTART_RESUME_FIELD_PROOF`  
-**Current verdict:** PASS — fresh resume-verification GitHub engineering is VERIFIED PASS; exact-main Mac re-commissioning and real 6/7 field proof remain
+**Current objective:** Package 6 — Recovery Field Proof (7/7)  
+**Canonical objective id:** `RECOVERY_FIELD_PROOF_RECONCILIATION`  
+**Current verdict:** PASS — restart/resume field continuity is VERIFIED PASS at 6/7; bounded Recovery Field Proof is the single active gate
 
 ## 1. STATE
 
 ENGÜRÜ Mac Engineer™ v0.6 is **not yet VERIFIED FINAL / LOCKED**.
 
-The fresh resume-verification patch is fully integrated into product exact-main `8e8d7db9ae811a5855697604800c830334944c1f`; exact-head Product CI run `35738998097` and exact-main Product CI run `35739072411` are completed/success, and Mac local `main` matches remote `origin/main`. The installed/runtime execution surfaces still represent the previous commissioned exact-main and require one governed re-commission before the real same-task resume field proof is repeated.
+The fresh resume-verification patch is fully integrated into product exact-main `8e8d7db9ae811a5855697604800c830334944c1f`; exact-head Product CI run `35738998097` and exact-main Product CI run `35739072411` are completed/success. That exact-main has now been re-commissioned on the real Mac runtime/app, the runtime was restarted, and the installed app returned fresh same-task/checkpoint Evidence with `recovered=True`, `cached=False`, `fresh_revalidation=True`. Real Mac task continuity is therefore VERIFIED PASS at 6/7.
 
 ## 2. CANONICAL SURFACES
 
@@ -52,7 +52,7 @@ The following v0.6 truths are already closed and remain preserved:
 - Runtime/app provenance — PASS
 - Continuity patch exact-main Mac commissioning — VERIFIED PASS: CI evidence 35711368049, product SHA 6d2fcd923e8fa0417a2e7787acd0dcef6b25e544, runtime parity 31/31 exact, live app/runtime processes
 - Archive decision — PASS / preserve-first
-- Real Mac engineering task — VERIFIED PASS, stage 5/7
+- Real Mac engineering task — VERIFIED PASS, stage 6/7
 - Session continuity bootstrap — PASS
 - GitHub ↔ Mac session-state reconciliation — PASS
 - Bounded in-flight dirty-patch authorization — PASS
@@ -69,7 +69,7 @@ Canonical real task:
 
 - task id: `ENGURU-V06-FIELD-001`
 - checkpoint id: `v06-field-cp-001`
-- verified real-task stage: 5/7
+- verified real-task stage: 6/7
 
 The continuity patch exists to preserve the same canonical task/checkpoint/repository identity through runtime restart and resume while reusing the existing ReliabilityManager mechanisms.
 
@@ -78,6 +78,35 @@ The active acceptance gate is:
 `TARGETED_REPEATABILITY=5/5_PASS + FULL_RUNTIME_REGRESSION=PASS + DIFF_CHECK=PASS + PATCH_SCOPE=3_FILES_PASS + PRODUCT_RUNTIME_CACHE_COUNT=0`
 
 ## 5. LATEST OBSERVED RESULT
+
+### Restart / Same-Task Resume Field Proof — VERIFIED PASS (6/7)
+
+- product exact-main: `8e8d7db9ae811a5855697604800c830334944c1f`
+- control authority: **PASS**
+- canonical context exact-main binding: **PASS**
+- exact-main Product CI Evidence: **PASS**
+- rebuild preflight: **PASS**
+- exact-SHA rebuild/install: **PASS**
+- runtime/app provenance: **PASS**
+- field fixture truth: **PASS**
+- real runtime restart: **PASS**
+- canonical resume prompt identity: **PASS**
+- task id: `ENGURU-V06-FIELD-001`
+- checkpoint id: `v06-field-cp-001`
+- reliability task id: `task_94b95c63865a45db80b85ccba95f8119`
+- changed: `CURRENT_STATE.md`
+- test count: **1**
+- fixture SHA: `f563a779f6d01a46e037e4330383c3adb032d426`
+- test code: **0**
+- worktree unchanged during fresh revalidation: **true**
+- recovered: **true**
+- cached: **false**
+- fresh revalidation: **true**
+- installed-app verdict: **PASS**
+- real Mac task stage: **6/7 VERIFIED PASS**
+
+**JUDGMENT:** post-restart continuity Evidence is accepted. The single remaining field gate is bounded Recovery Field Proof.
+
 
 ### Fresh Resume Verification GitHub Engineering — VERIFIED PASS
 
@@ -533,7 +562,7 @@ The program target remains v1.1.
 
 ## 9. NEXT ACTION
 
-**Single next action:** commission product exact-main `8e8d7db9ae811a5855697604800c830334944c1f` onto the Mac runtime/app using exact-main Product CI Evidence `35739072411`, then repeat the installed-app canonical resume for `ENGURU-V06-FIELD-001 / v06-field-cp-001`.
+**Single next action:** execute one bounded recoverable failure scenario on the real Mac field fixture/runtime, verify diagnosis → smallest recovery → revalidation → Evidence, and close 7/7 only from observed recovery proof.
 
 ## 9.1 MAINTENANCE RULE
 
