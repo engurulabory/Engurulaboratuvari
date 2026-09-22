@@ -241,11 +241,20 @@
       "worktree": "CLEAN",
       "aheadOfMain": 1,
       "push": "PASS",
-      "remoteExactHead": "PASS"
+      "remoteExactHead": "PASS",
+      "connectorAccess": {
+        "state": "HOLD",
+        "surface": "CHATGPT_GITHUB_CONNECTOR",
+        "repository": "engurulabory/enguru-mac-engineer",
+        "repoLookup": "404_NOT_FOUND",
+        "branchLookup": "404_NOT_FOUND",
+        "commitLookup": "404_NOT_FOUND",
+        "scope": "ACCESS_SURFACE_ONLY"
+      }
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "PRODUCT_PATCH_PR_EXACT_HEAD_CI_MERGE_EXACT_MAIN_CI",
+  "nextAction": "MAC_LOCAL_GH_PRODUCT_PR_EXACT_HEAD_CI_MERGE_EXACT_MAIN_CI",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
