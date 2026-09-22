@@ -290,7 +290,7 @@
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "RECOVERY_FIELD_PROOF_RECONCILIATION",
+  "nextAction": "V06_CANONICAL_RECONCILIATION_AND_WORKING_MODEL_LOCK",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
@@ -610,5 +610,66 @@
     "fieldFixtureTruth": "PASS",
     "realRuntimeRestart": "PASS",
     "resumePromptIdentity": "PASS"
+  },
+  "observedRecoveryFieldProof": {
+    "state": "VERIFIED_PASS",
+    "observedAt": "2026-09-22",
+    "canonicalTaskId": "ENGURU-V06-FIELD-001",
+    "checkpointId": "v06-field-cp-001",
+    "fixtureHead": "f563a779f6d01a46e037e4330383c3adb032d426",
+    "failureObserved": true,
+    "rootCause": "controlled_bounded_fault_marker_block",
+    "boundedCorrection": "remove_exact_bounded_fault_marker_block",
+    "testCount": 1,
+    "reverified": true,
+    "recovered": true,
+    "cached": false,
+    "freshRevalidation": true,
+    "authorityPreserved": true,
+    "workingDifference": [
+      "CURRENT_STATE.md"
+    ],
+    "verdict": "PASS",
+    "evidence": "~/Enguru/Evidence/MacEngineer/package6-bounded-recovery-latest.json"
+  },
+  "observedV06LocalCloseout": {
+    "state": "VERIFIED_PASS",
+    "realMacTask": "7_OF_7_VERIFIED_PASS",
+    "localEvidenceBundle": "VERIFIED_PASS",
+    "mandatoryDoneCheck": "PASS",
+    "fixtureAuthorityPreserved": true,
+    "evidenceBundle": "~/Enguru/Evidence/MacEngineer/v0.6/package6-local-evidence-bundle.json",
+    "doneCheckEvidence": "~/Enguru/Evidence/MacEngineer/v0.6/package6-mandatory-donecheck.json",
+    "remainingBeforeFinalLock": [
+      "CONTROL_PLANE_CANONICAL_RECONCILIATION_MERGE",
+      "CONTROL_PLANE_EXACT_MAIN_ACCEPTANCE"
+    ]
+  },
+  "doneCheckAuthorityDecision": {
+    "state": "LOCKED",
+    "markdownProjection": "HUMAN_READABLE_READ_ONLY_PROJECTION",
+    "mandatoryDoneCheckJson": "STRUCTURED_EVIDENCE_CONTRACT",
+    "doneCheckV12": "MACHINE_VERIFICATION_AND_PRODUCTION_CLOSURE_AUTHORITY",
+    "humanThreshold": "FINAL_HUMAN_AUTHORITY",
+    "contract": "governance/mac-engineer/DONECHECK_AUTHORITY_MODEL_V1.md"
+  },
+  "workingModelDecision": {
+    "state": "LOCKED",
+    "model": "GITHUB_FIRST_MILESTONE_MAC",
+    "chatgptProjectRole": "CANONICAL_ORCHESTRATION_AND_ENGINEERING_CONVERSATION",
+    "githubRole": "PRIMARY_SOURCE_CI_PR_RELEASE_ENGINEERING_PLANE",
+    "macEngineerRole": "LOCAL_FIELD_EXECUTOR_AND_EVIDENCE_PRODUCER",
+    "macRole": "MILESTONE_RUNTIME_INSTALLATION_FIELD_TRUTH",
+    "contract": "governance/mac-engineer/GITHUB_FIRST_MILESTONE_MAC_WORKING_MODEL_V1.md"
+  },
+  "preCanonicalHistoricalReconstruction": {
+    "versions": [
+      "v0.0",
+      "v0.1",
+      "v0.2",
+      "v0.3"
+    ],
+    "state": "OPEN_AFTER_V06_CANONICAL_LOCK",
+    "truthBoundary": "Git/Evidence-supported boundaries only; otherwise PRE_CANONICAL_DEVELOPMENT_LINEAGE"
   }
 }
