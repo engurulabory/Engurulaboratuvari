@@ -200,6 +200,75 @@ class MacEngineerSessionContinuityTests(unittest.TestCase):
         self.assertTrue(authorized)
         self.assertEqual(policy["mode"], "IN_FLIGHT_PATCH")
 
+    def test_product_patch_github_engineering_allows_exact_clean_single_commit(self):
+        state = {
+            "currentObjective": "PRODUCT_PATCH_GITHUB_ENGINEERING",
+            "observedContinuityPatch": {
+                "branch": "fix/v06-durable-continuity-binding",
+                "head": "6f424c0",
+                "baseMain": "6f424c0",
+                "expectedDirtyPaths": [
+                    "runtime/app.py",
+                    "runtime/field_reliability.py",
+                    "runtime/tests/test_field_continuity_binding.py",
+                ],
+            },
+        }
+        product = {
+            "branch": "fix/v06-durable-continuity-binding",
+            "head": "abc1234",
+            "origin_main": "6f424c0",
+            "exact_origin_main": False,
+            "clean": True,
+            "status": "",
+            "merge_base_origin_main": "6f424c0",
+            "ahead_origin_main": "1",
+            "diff_names_origin_main": (
+                "runtime/app.py\n"
+                "runtime/field_reliability.py\n"
+                "runtime/tests/test_field_continuity_binding.py"
+            ),
+        }
+        authorized, policy = authorized_product_working_branch(state, product)
+        self.assertTrue(authorized)
+        self.assertEqual(
+            policy["mode"],
+            "COMMITTED_PATCH_AWAITING_PR",
+        )
+
+    def test_product_patch_github_engineering_rejects_extra_committed_path(self):
+        state = {
+            "currentObjective": "PRODUCT_PATCH_GITHUB_ENGINEERING",
+            "observedContinuityPatch": {
+                "branch": "fix/v06-durable-continuity-binding",
+                "head": "6f424c0",
+                "baseMain": "6f424c0",
+                "expectedDirtyPaths": [
+                    "runtime/app.py",
+                    "runtime/field_reliability.py",
+                    "runtime/tests/test_field_continuity_binding.py",
+                ],
+            },
+        }
+        product = {
+            "branch": "fix/v06-durable-continuity-binding",
+            "head": "abc1234",
+            "origin_main": "6f424c0",
+            "exact_origin_main": False,
+            "clean": True,
+            "status": "",
+            "merge_base_origin_main": "6f424c0",
+            "ahead_origin_main": "1",
+            "diff_names_origin_main": (
+                "runtime/app.py\n"
+                "runtime/field_reliability.py\n"
+                "runtime/tests/test_field_continuity_binding.py\n"
+                "runtime/unexpected.py"
+            ),
+        }
+        authorized, _ = authorized_product_working_branch(state, product)
+        self.assertFalse(authorized)
+
     def test_continuity_patch_rejects_unexpected_dirty_path(self):
         state = {
             "currentObjective": "CONTINUITY_PATCH_REPEATABILITY",
