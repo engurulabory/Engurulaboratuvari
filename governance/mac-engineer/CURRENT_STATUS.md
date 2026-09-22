@@ -4,6 +4,7 @@
 **Program target:** ENGÜRÜ Mac Engineer™ v1.1 — Verified Product Engineering Operator  
 **Current version:** v0.6 — Field Closeout Active  
 **Current objective:** Package 6 — Continuity Patch Repeatability Gate  
+**Canonical objective id:** `CONTINUITY_PATCH_REPEATABILITY`  
 **Current verdict:** HOLD — bounded technical difference identified
 
 ## 1. STATE
