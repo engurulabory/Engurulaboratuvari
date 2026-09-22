@@ -288,7 +288,7 @@
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "IMPLEMENT_PRODUCT_CONTEXT_DURABILITY_PATCH",
+  "nextAction": "COMMIT_PUSH_EXACT_CONTEXT_DURABILITY_PATCH",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
@@ -452,5 +452,33 @@
     "runtimeRefreshPreSync": "PASS",
     "failClosedOnSyncHold": true,
     "exactMainCI": "PASS"
+  },
+  "observedContextDurabilityPatch": {
+    "state": "LOCAL_VERIFIED_PASS_AWAITING_PUBLICATION",
+    "branch": "fix/v06-context-durability-resume-routing",
+    "head": "6d2fcd923e8fa0417a2e7787acd0dcef6b25e544",
+    "baseMain": "6d2fcd923e8fa0417a2e7787acd0dcef6b25e544",
+    "expectedDirtyPaths": [
+      "runtime/app.py",
+      "runtime/cockpit_store.py",
+      "runtime/field_reliability.py",
+      "runtime/static/index.html",
+      "runtime/tests/test_context_durability.py"
+    ],
+    "identityColonEquals": "PASS",
+    "canonicalContextInjection": "PASS",
+    "durableTaskPinning": "PASS",
+    "recentHistoryBudget": {
+      "maxMessages": 96,
+      "maxChars": 48000
+    },
+    "activeContextWarning": "PASS",
+    "focusedRegression": "PASS",
+    "fullRuntimeRegression": {
+      "state": "PASS",
+      "tests": 40
+    },
+    "diffCheck": "PASS",
+    "runtimeCacheCount": 0
   }
 }
