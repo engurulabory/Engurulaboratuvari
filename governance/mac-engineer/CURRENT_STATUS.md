@@ -5,7 +5,7 @@
 **Current version:** v0.6 — Field Closeout Active  
 **Current objective:** Package 6 — Checkpoint / Restart / Same-Task Resume Field Proof  
 **Canonical objective id:** `CHECKPOINT_RESTART_RESUME_FIELD_PROOF`  
-**Current verdict:** PASS — fresh resume-verification patch is locally VERIFIED PASS; publication, exact-main commissioning and real 6/7 field proof remain
+**Current verdict:** PASS — fresh resume-verification patch publication stage is VERIFIED PASS; product PR/CI, exact-main commissioning and real 6/7 field proof remain
 
 ## 1. STATE
 
@@ -78,6 +78,22 @@ The active acceptance gate is:
 `TARGETED_REPEATABILITY=5/5_PASS + FULL_RUNTIME_REGRESSION=PASS + DIFF_CHECK=PASS + PATCH_SCOPE=3_FILES_PASS + PRODUCT_RUNTIME_CACHE_COUNT=0`
 
 ## 5. LATEST OBSERVED RESULT
+
+### Fresh Resume Verification Patch — PUBLICATION STAGE PASS
+
+- branch: `fix/v06-fresh-resume-verification`
+- base exact-main: `125be3a4b01b3a4de5faf949c79372de1d249aaf`
+- committed patch head: `cc64be04c123f57dfe23fa34581a6b85c15d935f`
+- exact committed scope: **3 files**
+- post-commit worktree: **clean**
+- ahead of main: **1**
+- push: **PASS**
+- local HEAD = remote branch HEAD: **PASS**
+- post-commit session continuity: **PASS**
+- publication verdict: **FRESH_RESUME_PUBLICATION_STAGE=PASS**
+- real Mac task remains **5/7** until this exact patch is merged, commissioned and proven in the installed app
+
+
 
 ### Fresh Resume Verification Patch — LOCAL VERIFIED PASS
 
@@ -503,7 +519,7 @@ The program target remains v1.1.
 
 ## 9. NEXT ACTION
 
-**Single next action:** commit and push the exact locally verified 3-file fresh resume-verification patch from `fix/v06-fresh-resume-verification`, preserving base `125be3a4b01b3a4de5faf949c79372de1d249aaf`, exact scope and a clean one-commit-ahead state.
+**Single next action:** create the product PR from `fix/v06-fresh-resume-verification` at exact head `cc64be04c123f57dfe23fa34581a6b85c15d935f`, verify exact-head Product CI, merge, then verify product exact-main Product CI.
 
 ## 9.1 MAINTENANCE RULE
 
