@@ -108,7 +108,10 @@ def authorized_product_working_branch(
 ) -> tuple[bool, dict[str, Any]]:
     objective = str(state.get("currentObjective", ""))
 
-    if objective == "CONTINUITY_PATCH_REPEATABILITY":
+    if objective in {
+        "CONTINUITY_PATCH_REPEATABILITY",
+        "PRODUCT_PATCH_GITHUB_ENGINEERING",
+    }:
         patch = state.get("observedContinuityPatch", {})
         expected_branch = str(patch.get("branch", ""))
         expected_head = str(patch.get("head", ""))
