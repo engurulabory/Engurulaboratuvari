@@ -2,15 +2,15 @@
 
 **Updated:** 2026-09-22  
 **Program target:** ENGÜRÜ Mac Engineering™ v1.1 — Verified Product Engineering Operator  
-**Current version:** v0.6 — Local Field Closeout VERIFIED PASS  
-**Current objective:** Canonical reconciliation + working-model lock  
-**Canonical objective id:** `V06_CANONICAL_RECONCILIATION_AND_WORKING_MODEL_LOCK`
+**Current version:** v0.6 — VERIFIED FINAL / LOCKED  
+**Current objective:** v0.0–v0.3 Historical Reconstruction  
+**Canonical objective id:** `V00_V03_HISTORICAL_RECONSTRUCTION`
 
 ## CURRENT ENGINEERING TRUTH
 
-ENGÜRÜ Mac Engineer™ v0.6 has completed its real-Mac field acceptance.
+ENGÜRÜ Mac Engineer™ v0.6 is **VERIFIED FINAL / LOCKED**.
 
-The current boundary is canonical publication: local field truth is VERIFIED PASS; control-plane documentation and exact-main CI must carry that truth before v0.6 is declared VERIFIED FINAL / LOCKED.
+Local field truth, canonical reconciliation, merge provenance and control-plane exact-main acceptance are all complete. Recovery, fixture repair, local field acceptance and v0.6 closure are closed truths.
 
 ## CLAIM
 
@@ -83,12 +83,16 @@ v0.0–v0.3 remain **PRE-CANONICAL DEVELOPMENT LINEAGE** until Git history and d
 
 ## REMAINING v0.6 CLOSEOUT
 
-1. Canonical reconciliation PR CI.
-2. Merge to control-plane main.
-3. Exact-main control-plane acceptance.
-4. Record v0.6 VERIFIED FINAL / LOCKED.
+**NONE — v0.6 VERIFIED FINAL / LOCKED.**
 
-Historical v0.0–v0.3 reconstruction and v0.7 start follow the v0.6 canonical lock.
+Canonical closeout:
+- PR #165 merged.
+- control-plane exact-main: `777904a957dfd475713dfd5de7b499c88247f4de`
+- ENGURU Labory Final Gate push run #366: PASS
+- IP Model Trust Gate push run #385: PASS
+- IP Model Trust Fleet push run #370: PASS
+
+The next active objective is v0.0–v0.3 historical reconstruction.
 
 ## MAINTENANCE RULE
 
@@ -98,10 +102,10 @@ CURRENT_STATUS is updated after every material engineering package or PASS / HOL
 
 **v0.6 LOCAL FIELD CLOSEOUT = VERIFIED PASS.**
 
-**v0.6 VERIFIED FINAL / LOCKED = pending only this canonical reconciliation merge + exact-main control-plane acceptance.**
+**v0.6 VERIFIED FINAL / LOCKED = PASS.**
 
 Recovery, fixture repair and local field acceptance are closed truths and are not reopened without new contradictory Evidence.
 
 ## NEXT ACTION
 
-`CANONICAL_RECONCILIATION_PR → CI → MERGE → EXACT_MAIN → V0_6_VERIFIED_FINAL_LOCKED → V0_0_V0_3_HISTORICAL_RECONSTRUCTION → V0_7_GITHUB_FIRST_ENGINEERING`
+`V0_0_V0_3_HISTORICAL_RECONSTRUCTION → HISTORICAL_RECONCILIATION_PUBLICATION → V0_7_GITHUB_FIRST_ENGINEERING`
