@@ -7,6 +7,7 @@ import unittest
 from tools.mac_engineer_session_continuity import (
     ROOT,
     STATE_FILE,
+    CURRENT_STATUS,
     WORKLIST,
     active_objective,
     normalize_objective,
@@ -43,6 +44,14 @@ class MacEngineerSessionContinuityTests(unittest.TestCase):
         self.assertIn("SESSION START", text)
         self.assertIn("SESSION HANDOFF", text)
         self.assertIn("One active objective", text)
+
+    def test_current_status_is_canonical_bootstrap_surface(self):
+        self.assertTrue(CURRENT_STATUS.is_file())
+        text = CURRENT_STATUS.read_text(encoding="utf-8")
+        self.assertIn("CURRENT ENGINEERING TRUTH", text)
+        self.assertIn("REMAINING v0.6 CLOSEOUT", text)
+        self.assertIn("NEXT ACTION", text)
+        self.assertIn("CONTINUITY_PATCH_REPEATABILITY", text)
 
     def test_authorized_publication_branch_passes_exact_contract(self):
         state = {
