@@ -47,6 +47,24 @@ def git_state(path: Path) -> dict[str, Any]:
         "status": ["git", "status", "--porcelain"],
         "origin": ["git", "remote", "get-url", "origin"],
         "origin_main": ["git", "rev-parse", "origin/main"],
+        "merge_base_origin_main": [
+            "git",
+            "merge-base",
+            "HEAD",
+            "origin/main",
+        ],
+        "ahead_origin_main": [
+            "git",
+            "rev-list",
+            "--count",
+            "origin/main..HEAD",
+        ],
+        "diff_names_origin_main": [
+            "git",
+            "diff",
+            "--name-only",
+            "origin/main...HEAD",
+        ],
     }
     for key, cmd in commands.items():
         rc, out, err = run(cmd, cwd=path)
@@ -118,8 +136,15 @@ def authorized_product_working_branch(
         expected_base = str(patch.get("baseMain", ""))
         expected_dirty = sorted(patch.get("expectedDirtyPaths", []))
         observed_dirty = porcelain_paths(str(product.get("status", "")))
+        committed_diff = sorted(
+            path
+            for path in str(
+                product.get("diff_names_origin_main", "")
+            ).splitlines()
+            if path
+        )
 
-        authorized = bool(
+        dirty_patch_authorized = bool(
             expected_branch
             and expected_head
             and expected_base
@@ -130,13 +155,51 @@ def authorized_product_working_branch(
             and product.get("exact_origin_main") is True
             and observed_dirty == expected_dirty
         )
+
+        committed_patch_authorized = bool(
+            objective == "PRODUCT_PATCH_GITHUB_ENGINEERING"
+            and expected_branch
+            and expected_head
+            and expected_base
+            and expected_dirty
+            and product.get("branch") == expected_branch
+            and product.get("origin_main") == expected_base
+            and product.get("clean") is True
+            and product.get("head") != expected_head
+            and product.get("merge_base_origin_main")
+            == expected_base
+            and str(product.get("ahead_origin_main"))
+            == "1"
+            and committed_diff == expected_dirty
+        )
+
+        authorized = (
+            dirty_patch_authorized
+            or committed_patch_authorized
+        )
+        mode = (
+            "IN_FLIGHT_PATCH"
+            if dirty_patch_authorized
+            else (
+                "COMMITTED_PATCH_AWAITING_PR"
+                if committed_patch_authorized
+                else "IN_FLIGHT_PATCH"
+            )
+        )
         return authorized, {
-            "mode": "IN_FLIGHT_PATCH",
+            "mode": mode,
             "expected_branch": expected_branch,
             "expected_head": expected_head,
             "expected_base_main": expected_base,
             "expected_dirty_paths": expected_dirty,
             "observed_dirty_paths": observed_dirty,
+            "committed_diff_paths": committed_diff,
+            "ahead_origin_main": product.get(
+                "ahead_origin_main"
+            ),
+            "merge_base_origin_main": product.get(
+                "merge_base_origin_main"
+            ),
             "authorized": authorized,
         }
 
@@ -262,8 +325,8 @@ def snapshot(mode: str) -> dict[str, Any]:
             "Continue only the canonical active objective. "
             "Treat GitHub WORKLIST/governance and exact-main as authority. "
             "A non-main product branch is accepted only when SESSION_STATE "
-            "explicitly authorizes its exact branch/head/base and, for an in-flight patch, "
-            "the exact bounded dirty-path set for the active objective; "
+            "authorizes its exact publication state: either the bounded dirty patch "
+            "or a clean one-commit-ahead branch with the exact expected diff; "
             "chat memory is advisory."
         ),
         "new_session_instruction": (
