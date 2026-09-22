@@ -300,6 +300,116 @@ class MacEngineerSessionContinuityTests(unittest.TestCase):
         self.assertFalse(authorized)
         self.assertIn("runtime/unexpected.py", policy["observed_dirty_paths"])
 
+    def test_context_durability_patch_allows_exact_dirty_set(self):
+        state = {
+            "currentObjective": "CHECKPOINT_RESTART_RESUME_FIELD_PROOF",
+            "observedContextDurabilityPatch": {
+                "branch": "fix/v06-context-durability-resume-routing",
+                "head": "6d2fcd9",
+                "baseMain": "6d2fcd9",
+                "expectedDirtyPaths": [
+                    "runtime/app.py",
+                    "runtime/cockpit_store.py",
+                    "runtime/field_reliability.py",
+                    "runtime/static/index.html",
+                    "runtime/tests/test_context_durability.py",
+                ],
+            },
+        }
+        product = {
+            "branch": "fix/v06-context-durability-resume-routing",
+            "head": "6d2fcd9",
+            "origin_main": "6d2fcd9",
+            "exact_origin_main": True,
+            "clean": False,
+            "status": (
+                " M runtime/app.py\n"
+                " M runtime/cockpit_store.py\n"
+                " M runtime/field_reliability.py\n"
+                " M runtime/static/index.html\n"
+                "?? runtime/tests/test_context_durability.py"
+            ),
+        }
+        authorized, policy = authorized_product_working_branch(
+            state,
+            product,
+        )
+        self.assertTrue(authorized)
+        self.assertEqual(policy["mode"], "IN_FLIGHT_PATCH")
+
+    def test_context_durability_patch_allows_exact_clean_single_commit(self):
+        state = {
+            "currentObjective": "CHECKPOINT_RESTART_RESUME_FIELD_PROOF",
+            "observedContextDurabilityPatch": {
+                "branch": "fix/v06-context-durability-resume-routing",
+                "head": "6d2fcd9",
+                "baseMain": "6d2fcd9",
+                "expectedDirtyPaths": [
+                    "runtime/app.py",
+                    "runtime/cockpit_store.py",
+                    "runtime/field_reliability.py",
+                    "runtime/static/index.html",
+                    "runtime/tests/test_context_durability.py",
+                ],
+            },
+        }
+        product = {
+            "branch": "fix/v06-context-durability-resume-routing",
+            "head": "abc1234",
+            "origin_main": "6d2fcd9",
+            "exact_origin_main": False,
+            "clean": True,
+            "status": "",
+            "merge_base_origin_main": "6d2fcd9",
+            "ahead_origin_main": "1",
+            "diff_names_origin_main": (
+                "runtime/app.py\n"
+                "runtime/cockpit_store.py\n"
+                "runtime/field_reliability.py\n"
+                "runtime/static/index.html\n"
+                "runtime/tests/test_context_durability.py"
+            ),
+        }
+        authorized, policy = authorized_product_working_branch(
+            state,
+            product,
+        )
+        self.assertTrue(authorized)
+        self.assertEqual(
+            policy["mode"],
+            "COMMITTED_PATCH_AWAITING_PR",
+        )
+
+    def test_context_durability_patch_rejects_extra_path(self):
+        state = {
+            "currentObjective": "CHECKPOINT_RESTART_RESUME_FIELD_PROOF",
+            "observedContextDurabilityPatch": {
+                "branch": "fix/v06-context-durability-resume-routing",
+                "head": "6d2fcd9",
+                "baseMain": "6d2fcd9",
+                "expectedDirtyPaths": [
+                    "runtime/app.py",
+                    "runtime/cockpit_store.py",
+                    "runtime/field_reliability.py",
+                    "runtime/static/index.html",
+                    "runtime/tests/test_context_durability.py",
+                ],
+            },
+        }
+        product = {
+            "branch": "fix/v06/context-other",
+            "head": "6d2fcd9",
+            "origin_main": "6d2fcd9",
+            "exact_origin_main": True,
+            "clean": False,
+            "status": "?? runtime/unexpected.py",
+        }
+        authorized, _ = authorized_product_working_branch(
+            state,
+            product,
+        )
+        self.assertFalse(authorized)
+
     def test_unrecorded_product_branch_is_not_authorized(self):
         state = {
             "currentObjective": "PRODUCT_SOURCE_V0_6_ALIGNMENT_PUBLICATION",
