@@ -713,10 +713,45 @@
     "state": "ACTIVE",
     "objective": "V0_7_LONG_RUNNING_RELIABILITY",
     "engineeringMode": "GITHUB_FIRST",
-    "nextAction": "V07_A01_A02_LONG_RUN_TASK_STATE_AND_DURABLE_RESUME",
+    "nextAction": "V07_A03_A04_IDEMPOTENCY_AND_SINGLE_WRITER_STRESS",
     "milestoneMacCommissioning": "AFTER_GITHUB_ENGINEERING",
     "acceptanceMatrix": "PASS_DEFINED",
     "acceptanceMatrixPath": "governance/mac-engineer/V07_LONG_RUNNING_RELIABILITY_ACCEPTANCE_MATRIX_V1.md",
-    "acceptanceMatrixEvidence": "evidence/MAC_ENGINEER_V07_ACCEPTANCE_MATRIX_2026-09-22.md"
+    "acceptanceMatrixEvidence": "evidence/MAC_ENGINEER_V07_ACCEPTANCE_MATRIX_2026-09-22.md",
+    "passedGates": [
+      "V07-A01",
+      "V07-A02"
+    ],
+    "productExactMain": "443fd4455b6c2f095c7944ee7bc00445d96d2d2a",
+    "productPrNumber": 9,
+    "exactHeadCiRunId": 35768412377,
+    "exactMainCiRunId": 35768544303,
+    "exactMainCi": "PASS",
+    "runtimeRegression": "48_OF_48_OK",
+    "evidence": "evidence/MAC_ENGINEER_V07_A01_A02_ENGINEERING_2026-09-22.md"
+  },
+  "observedV07A01A02": {
+    "state": "VERIFIED_PASS_EXACT_MAIN",
+    "observedAt": "2026-09-22",
+    "productPrNumber": 9,
+    "productExactHead": "56a932bf98e4fc24e549bd953133401898e47eaa",
+    "exactHeadCiRunId": 35768412377,
+    "productExactMain": "443fd4455b6c2f095c7944ee7bc00445d96d2d2a",
+    "exactMainCiRunId": 35768544303,
+    "runtimeTests": "48_OF_48_OK",
+    "a01": {
+      "tasks": 200,
+      "governedTransitions": 1000,
+      "state": "PASS"
+    },
+    "a02": {
+      "beforeDurableCommit": 10,
+      "afterCheckpointCommit": 10,
+      "afterSideEffectReceipt": 10,
+      "totalRepetitions": 30,
+      "taskIdentityContinuity": true,
+      "state": "PASS"
+    },
+    "productionReliabilityCodeChanged": false
   }
 }

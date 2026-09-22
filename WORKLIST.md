@@ -1129,8 +1129,8 @@ Local evidence:
 Engineering mode: **GitHub-first**.
 
 - [x] Define exact v0.7 acceptance matrix from existing reliability layers. — canonical: `governance/mac-engineer/V07_LONG_RUNNING_RELIABILITY_ACCEPTANCE_MATRIX_V1.md`; Evidence: `evidence/MAC_ENGINEER_V07_ACCEPTANCE_MATRIX_2026-09-22.md`.
-- [ ] Long-run task state correctness.
-- [ ] Durable resume across process/runtime interruption.
+- [x] Long-run task state correctness. — V07-A01: 1,000 governed transitions / 200 tasks; Product exact-main `443fd4455b6c2f095c7944ee7bc00445d96d2d2a`; Product CI #19 PASS.
+- [x] Durable resume across process/runtime interruption. — V07-A02: three interruption classes × 10 repetitions; task identity continuity PASS; Evidence: `evidence/MAC_ENGINEER_V07_A01_A02_ENGINEERING_2026-09-22.md`.
 - [ ] Idempotency and single-writer stress.
 - [ ] Bounded retry / watchdog.
 - [ ] Provider/network/process recovery fixtures.

@@ -102,7 +102,9 @@ v0.4, v0.5 and v0.6 locked truths remain unchanged.
 
 First required difference **PASS**: exact v0.7 acceptance matrix is canonical at `governance/mac-engineer/V07_LONG_RUNNING_RELIABILITY_ACCEPTANCE_MATRIX_V1.md`, with Evidence at `evidence/MAC_ENGINEER_V07_ACCEPTANCE_MATRIX_2026-09-22.md`.
 
-Current required difference: implement and verify `V07-A01 + V07-A02 → LONG_RUN_TASK_STATE_AND_DURABLE_RESUME` in the technical product source.
+V07-A01 + V07-A02 **PASS / exact-main verified**: product PR #9 merged to `443fd4455b6c2f095c7944ee7bc00445d96d2d2a`; exact-main Product CI run #19 PASS with 48/48 runtime tests OK. Canonical Evidence: `evidence/MAC_ENGINEER_V07_A01_A02_ENGINEERING_2026-09-22.md`.
+
+Current required difference: implement and verify `V07-A03 + V07-A04 → IDEMPOTENCY_AND_SINGLE_WRITER_STRESS`.
 
 ## REMAINING v0.6 CLOSEOUT
 
@@ -133,4 +135,4 @@ Recovery, fixture repair, local field acceptance and the reconstructed pre-canon
 
 ## NEXT ACTION
 
-`V0_7_LONG_RUNNING_RELIABILITY → V07-A01 + V07-A02 → LONG_RUN_TASK_STATE_AND_DURABLE_RESUME → GITHUB_FIRST_ENGINEERING`
+`V0_7_LONG_RUNNING_RELIABILITY → V07-A03 + V07-A04 → IDEMPOTENCY_AND_SINGLE_WRITER_STRESS → GITHUB_FIRST_ENGINEERING`
