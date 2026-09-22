@@ -5,7 +5,7 @@
 **Current version:** v0.6 — Field Closeout Active  
 **Current objective:** Package 6 — Checkpoint / Restart / Same-Task Resume Field Proof  
 **Canonical objective id:** `CHECKPOINT_RESTART_RESUME_FIELD_PROOF`  
-**Current verdict:** HOLD — exact-main re-commissioning is PASS, but the real same-task resume still routes to generic repair/reconciliation and returns non-actionable Evidence
+**Current verdict:** PASS — fresh resume-verification patch is locally VERIFIED PASS; publication, exact-main commissioning and real 6/7 field proof remain
 
 ## 1. STATE
 
@@ -27,16 +27,14 @@ The context-durability patch is fully integrated into product exact-main `125be3
 - Installed app: `~/Applications/ENGÜRÜ Mac Engineer.app`
 - Local Evidence: `~/Enguru/Evidence/MacEngineer/v0.6`
 
-Authorized in-flight context-durability product patch:
+Authorized in-flight fresh resume-verification product patch:
 
-- branch: `fix/v06-context-durability-resume-routing`
-- base/head before commit: `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544`
+- branch: `fix/v06-fresh-resume-verification`
+- base/head before commit: `125be3a4b01b3a4de5faf949c79372de1d249aaf`
 - exact scope:
   1. `runtime/app.py`
-  2. `runtime/cockpit_store.py`
-  3. `runtime/field_reliability.py`
-  4. `runtime/static/index.html`
-  5. `runtime/tests/test_context_durability.py`
+  2. `runtime/field_reliability.py`
+  3. `runtime/tests/test_field_resume_verification.py`
 
 Exact dirty pre-commit and exact clean one-commit-ahead post-commit states are authorized for this objective only. Any branch/head/base/path/commit-count drift remains fail-closed HOLD.
 
@@ -80,6 +78,25 @@ The active acceptance gate is:
 `TARGETED_REPEATABILITY=5/5_PASS + FULL_RUNTIME_REGRESSION=PASS + DIFF_CHECK=PASS + PATCH_SCOPE=3_FILES_PASS + PRODUCT_RUNTIME_CACHE_COUNT=0`
 
 ## 5. LATEST OBSERVED RESULT
+
+### Fresh Resume Verification Patch — LOCAL VERIFIED PASS
+
+- product branch: `fix/v06-fresh-resume-verification`
+- base exact-main: `125be3a4b01b3a4de5faf949c79372de1d249aaf`
+- exact durable schema: **PASS**
+- fixture truth: **PASS**
+- resume route before generic repair: **PASS**
+- legacy COMPLETE task binding: **PASS**
+- fresh post-restart revalidation: **PASS**
+- focused resume regression: **PASS**
+- full runtime regression: **43 tests PASS**
+- exact patch scope: **3 files PASS**
+- `git diff --check`: **PASS**
+- runtime cache count: **0**
+- final local verdict: **V06_FRESH_RESUME_VERIFICATION_PATCH=PASS**
+- real Mac task remains **5/7** until this exact patch is published, commissioned, and the installed app returns fresh same-task/checkpoint Evidence
+
+
 
 ### Exact Resume Routing Diagnosis — PASS / REQUIRED DIFFERENCE NARROWED
 
@@ -486,7 +503,7 @@ The program target remains v1.1.
 
 ## 9. NEXT ACTION
 
-**Single next action:** read the exact current product checkpoint/task schema and current `execute_local_field_task` + `field_reliability` terminal/cached path, then implement one bounded resume-verification patch that prioritizes canonical resume intent, safely recognizes the legacy COMPLETE task identity, and forces fresh post-restart revalidation.
+**Single next action:** commit and push the exact locally verified 3-file fresh resume-verification patch from `fix/v06-fresh-resume-verification`, preserving base `125be3a4b01b3a4de5faf949c79372de1d249aaf`, exact scope and a clean one-commit-ahead state.
 
 ## 9.1 MAINTENANCE RULE
 
