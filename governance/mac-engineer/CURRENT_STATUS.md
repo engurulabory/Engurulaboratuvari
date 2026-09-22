@@ -214,6 +214,35 @@ Latest final integrity result:
 
 The continuity repeatability acceptance is now closed.
 
+### Long-conversation durability discovery — READ-ONLY RESULT
+
+Observed product authority:
+
+- branch: `main`
+- local HEAD = origin/main = `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544`
+- source integrity: clean
+
+Observed runtime durable-state surfaces:
+
+- `checkpoints/task_*.json` + `.lkg.json`
+- `tasks/task_*.json`
+- `logs/task-journal.jsonl`
+- `state/canonical-context.json`
+- `state/task-idempotency.json`
+- `state/task-writer.lock`
+
+Storage remains small:
+
+- runtime: ~1.3 MB
+- v0.6 Evidence: ~308 KB
+
+Interpretation:
+
+- durable-task/checkpoint infrastructure exists; the gap is not "no persistence";
+- first text-search result is **inconclusive**, because the diagnostic used `rg` with stderr suppressed and did not verify that `rg` exists on this Mac;
+- the empty canonical-task search therefore cannot be treated as proof that task/checkpoint identity is absent;
+- next discovery must be tool-independent and must inspect actual task/checkpoint/context JSON content plus full product source for warning/context assembly.
+
 ## 6. REQUIRED DIFFERENCE
 
 Close the smallest sufficient conversation/context durability gap inside the existing persistent-working-memory and durable-task path, then repeat the same restart/resume proof.
@@ -256,7 +285,7 @@ The program target remains v1.1.
 
 ## 9. NEXT ACTION
 
-**Single next action:** locate the existing conversation-history/context-budget/warning implementation and durable-task prompt assembly in product exact-main, then apply the smallest bounded hardening so long-running work stays durable and the capacity warning appears only near genuine context saturation.
+**Single next action:** run a tool-independent Python discovery across full product source + runtime durable-state JSON + v0.6 Evidence to identify: warning source, active-context assembly, real task/checkpoint persistence, and the exact task record that owns `ENGURU-V06-FIELD-001`.
 
 ## 9.1 MAINTENANCE RULE
 
