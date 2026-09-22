@@ -713,7 +713,7 @@
     "state": "ACTIVE",
     "objective": "V0_7_LONG_RUNNING_RELIABILITY",
     "engineeringMode": "GITHUB_FIRST",
-    "nextAction": "V07_A07_A08_RESOURCE_AND_EVIDENCE_CONTINUITY",
+    "nextAction": "V07_A09_GITHUB_CI_FAULT_INJECTION_CAMPAIGN",
     "milestoneMacCommissioning": "AFTER_GITHUB_ENGINEERING",
     "acceptanceMatrix": "PASS_DEFINED",
     "acceptanceMatrixPath": "governance/mac-engineer/V07_LONG_RUNNING_RELIABILITY_ACCEPTANCE_MATRIX_V1.md",
@@ -724,15 +724,17 @@
       "V07-A03",
       "V07-A04",
       "V07-A05",
-      "V07-A06"
+      "V07-A06",
+      "V07-A07",
+      "V07-A08"
     ],
-    "productExactMain": "199893b07941a82c26c3b39a7942478cb95420b0",
-    "productPrNumber": 11,
-    "exactHeadCiRunId": 35770093773,
-    "exactMainCiRunId": 35770247337,
+    "productExactMain": "5432b9b135499cea18273c0e003877b864af92c6",
+    "productPrNumber": 12,
+    "exactHeadCiRunId": 35770832924,
+    "exactMainCiRunId": 35770981787,
     "exactMainCi": "PASS",
-    "runtimeRegression": "52_OF_52_OK",
-    "evidence": "evidence/MAC_ENGINEER_V07_A05_A06_ENGINEERING_2026-09-22.md"
+    "runtimeRegression": "54_OF_54_OK",
+    "evidence": "evidence/MAC_ENGINEER_V07_A07_A08_ENGINEERING_2026-09-22.md"
   },
   "observedV07A01A02": {
     "state": "VERIFIED_PASS_EXACT_MAIN",
@@ -808,5 +810,32 @@
       "evidenceContinuity": true,
       "state": "PASS"
     }
+  },
+  "observedV07A07A08": {
+    "state": "VERIFIED_PASS_EXACT_MAIN",
+    "observedAt": "2026-09-22",
+    "productPrNumber": 12,
+    "failedHeadCiRunId": 35770750418,
+    "failedHeadRootCause": "FIXTURE_CHECKPOINT_GLOB_INCLUDED_LKG_COPY",
+    "productExactHead": "e90dace0e34c68af5cec28599ee94a5ddfad0a43",
+    "exactHeadCiRunId": 35770832924,
+    "productExactMain": "5432b9b135499cea18273c0e003877b864af92c6",
+    "exactMainCiRunId": 35770981787,
+    "runtimeTests": "54_OF_54_OK",
+    "a07": {
+      "tasks": 40,
+      "artifactScope": "CANONICAL_DURABLE_ONLY",
+      "unexpectedArtifacts": 0,
+      "tempOrCacheArtifacts": 0,
+      "state": "PASS"
+    },
+    "a08": {
+      "checkpoints": 20,
+      "restarts": 20,
+      "lineageVerified": true,
+      "journalReconciled": true,
+      "state": "PASS"
+    },
+    "productionRuntimeCodeChanged": false
   }
 }
