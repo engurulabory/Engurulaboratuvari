@@ -40,7 +40,7 @@
     "freshResumeGithubEngineering": "VERIFIED_PASS",
     "checkpointRestartResumeFieldProof": "VERIFIED_PASS"
   },
-  "currentObjective": "RECOVERY_FIELD_PROOF_RECONCILIATION",
+  "currentObjective": "V06_CANONICAL_RECONCILIATION_AND_WORKING_MODEL_LOCK",
   "observedProductPublication": {
     "source": "MAC_FIELD_OUTPUT",
     "localSourceHead": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
