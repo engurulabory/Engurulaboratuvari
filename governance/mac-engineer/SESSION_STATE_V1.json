@@ -289,7 +289,7 @@
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "RECOMMISSION_CONTEXT_DURABILITY_EXACT_MAIN_ON_MAC",
+  "nextAction": "GOVERNED_RESTART_SAME_TASK_RESUME_FIELD_PROOF_6_OF_7",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
@@ -530,5 +530,16 @@
     "exactMainCi": "PASS",
     "localRemoteMainParity": "PASS",
     "localWorktree": "CLEAN"
+  },
+  "observedContextDurabilityRecommission": {
+    "state": "VERIFIED_PASS",
+    "observedAt": "2026-09-22",
+    "productExactMain": "125be3a4b01b3a4de5faf949c79372de1d249aaf",
+    "productCiExactMainEvidence": "PASS",
+    "canonicalContextExactMain": "PASS",
+    "rebuildPreflight": "PASS",
+    "exactShaRebuildInstall": "PASS",
+    "runtimeAppProvenance": "PASS",
+    "postCommissionSession": "PASS"
   }
 }
