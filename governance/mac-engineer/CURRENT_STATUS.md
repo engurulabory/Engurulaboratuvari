@@ -81,6 +81,30 @@ The active acceptance gate is:
 
 ## 5. LATEST OBSERVED RESULT
 
+### Exact Resume Routing Diagnosis — PASS / REQUIRED DIFFERENCE NARROWED
+
+Observed durable task:
+
+- reliability task: `task_94b95c63865a45db80b85ccba95f8119`
+- task state: **COMPLETE**
+- sequence: **7**
+- checkpoint digest: `7b2a7ae3cf93f42335d3954905ae222ac8f9a3dc729127d77c4717bc97c5d399`
+- legacy structured metadata `canonical_task_id`: **missing**
+- legacy structured metadata `checkpoint_id`: **missing**
+- fixture HEAD: `f563a779f6d01a46e037e4330383c3adb032d426`
+- fixture working difference: **CURRENT_STATE.md only**
+- CURRENT_STATE repair content remains present with **1/1 PASS** truth
+- diagnostic checkpoint reader returned null fields; this is treated as **schema-read inconclusive**, not checkpoint absence, because the durable task itself retains a checkpoint digest and earlier evidence established persisted checkpoint/LKG surfaces
+
+Required difference is now bounded to one resume package:
+
+1. canonical resume intent must route before generic truth-reconcile handling;
+2. the pre-patch COMPLETE durable commissioning task must be safely recognized as the same canonical task despite missing structured metadata;
+3. post-restart verification must execute a **fresh** repository test/diff read rather than merely return a cached terminal result;
+4. successful result must preserve the same canonical task/checkpoint identity and produce real post-restart Evidence.
+
+
+
 ### Real Restart / Same-Task Resume Attempt — HOLD / ROUTING DIFFERENCE REMAINS
 
 Observed after exact-main context-durability re-commission and real installed-app restart:
@@ -462,7 +486,7 @@ The program target remains v1.1.
 
 ## 9. NEXT ACTION
 
-**Single next action:** inspect the exact current product `execute_local_field_task` routing and `field_reliability` resume/repair classifiers at product exact-main `125be3a4b01b3a4de5faf949c79372de1d249aaf`; identify the first branch that captures the canonical resume prompt and patch only that bounded routing difference.
+**Single next action:** read the exact current product checkpoint/task schema and current `execute_local_field_task` + `field_reliability` terminal/cached path, then implement one bounded resume-verification patch that prioritizes canonical resume intent, safely recognizes the legacy COMPLETE task identity, and forces fresh post-restart revalidation.
 
 ## 9.1 MAINTENANCE RULE
 
