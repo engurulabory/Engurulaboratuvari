@@ -132,7 +132,16 @@ def authorized_product_working_branch(
         "CHECKPOINT_RESTART_RESUME_FIELD_PROOF",
     }:
         patch = (
-            state.get("observedContextDurabilityPatch", {})
+            (
+                state.get(
+                    "observedFreshResumeVerificationPatch",
+                    {},
+                )
+                or state.get(
+                    "observedContextDurabilityPatch",
+                    {},
+                )
+            )
             if objective == "CHECKPOINT_RESTART_RESUME_FIELD_PROOF"
             else state.get("observedContinuityPatch", {})
         )
