@@ -5,13 +5,13 @@
 **Current version:** v0.6 — Field Closeout Active  
 **Current objective:** Package 6 — Continuity Patch Repeatability Gate  
 **Canonical objective id:** `CONTINUITY_PATCH_REPEATABILITY`  
-**Current verdict:** HOLD — bounded technical difference identified
+**Current verdict:** HOLD — continuity behavior PASS; final cache hygiene difference remains
 
 ## 1. STATE
 
 ENGÜRÜ Mac Engineer™ v0.6 is **not yet VERIFIED FINAL / LOCKED**.
 
-GitHub control-plane continuity is aligned and verified. The dedicated product source remains on the authorized in-flight continuity patch. The current HOLD is inside the repeatability test fixture, before continuity acceptance can be promoted to PASS.
+GitHub control-plane continuity is aligned and verified. The dedicated product source remains on the authorized in-flight continuity patch. The fixture/resume correction now reaches and passes continuity repeatability plus the full runtime regression. The only remaining acceptance difference in this gate is final runtime cache hygiene: two cache entries remained after the regression run.
 
 ## 2. CANONICAL SURFACES
 
@@ -81,38 +81,37 @@ Reconciliation proved:
 - patch scope remained exactly the authorized three files
 - `git diff --check`: PASS
 
-### Repeatability run
+### Repeatability run — latest
 
-The next repeatability attempt reached targeted run 1/5 and returned HOLD.
+The fixture/resume correction advanced the gate through the continuity behavior checks.
 
-Observed execution result:
+Observed result:
 
-- repository read: PASS
-- worktree unchanged: true
-- test verdict: BLOCKED
-- execution verdict: HOLD
-- fixture test command: `python3 -m unittest discover -s tests -v`
-- blocker: generated `tests/test_calculator.py` contains literal escaped newline sequences and raises `SyntaxError: unexpected character after line continuation character`
-- reliability result on this failed run: `duplicate=false`, `recovered=false`, `idempotency_key_source=GENERATED`
+- targeted continuity repeatability: **5/5 PASS**
+- full runtime regression: **35 tests PASS**
+- full runtime regression verdict: **PASS**
+- diff check: **PASS**
+- patch scope: exactly the authorized three files
+- final runtime cache count: **2**
+- final gate verdict: **HOLD — PRODUCT_RUNTIME_CACHE_COUNT_0_REQUIRED**
 
-This result does **not** close the continuity acceptance. It identifies the next required difference in the test fixture / resume path.
+This result verifies the continuity behavior and regression surface. The gate remains HOLD only because two generated cache entries were present at final integrity.
 
 ## 6. REQUIRED DIFFERENCE
 
-Repair the smallest sufficient continuity-test fixture/resume construction so that:
+Reconcile the final two runtime cache entries and prove `PRODUCT_RUNTIME_CACHE_COUNT=0` while preserving:
 
-1. the generated fixture Python source contains real line breaks and is executable;
-2. canonical `task_id` and `checkpoint_id` reach the intended deterministic continuity binding;
-3. restart/resume reuses the same reliability task;
-4. duplicate/recovered semantics match the continuity contract;
-5. the repository worktree remains unchanged during the restart/resume verification.
+1. targeted continuity repeatability **5/5 PASS**;
+2. full runtime regression **35 tests PASS**;
+3. `git diff --check` PASS;
+4. exact authorized three-file patch scope.
 
-Then rerun the complete repeatability gate from a clean zero-cache state.
+The next action is limited to identifying those two cache entries, confirming they are generated/untracked runtime artifacts, removing them safely, and rechecking the final acceptance surface.
 
 ## 7. REMAINING v0.6 CLOSEOUT — CANONICAL ORDER
 
-1. **Continuity fixture / resume correction** — ACTIVE
-2. **Continuity Patch Repeatability Gate** — 5/5 targeted + full regression + diff/scope/cache acceptance
+1. **Continuity fixture / resume correction** — PASS
+2. **Continuity Patch Repeatability Gate** — behavior/regression/scope PASS; final zero-cache hygiene HOLD
 3. **Product patch GitHub engineering** — commit → push → PR → exact-head CI → merge → exact-main CI
 4. **Mac checkpoint/restart/same-task resume field proof**
 5. **Recovery field proof** — bounded recoverable failure → diagnosis → smallest recovery → reverify
@@ -133,9 +132,9 @@ The program target remains v1.1.
 
 ## 9. NEXT ACTION
 
-**Single next action:** inspect and correct the continuity test fixture/resume construction that produced the malformed `test_calculator.py`, then rerun the Continuity Patch Repeatability Gate.
+**Single next action:** inspect the two remaining runtime cache entries, confirm generated/untracked status, reconcile them to zero, and re-run only the final integrity acceptance needed to promote the Continuity Patch Repeatability Gate.
 
-Use the smallest sufficient change inside the already-authorized three-file product patch. Preserve all verified work.
+Preserve the verified 5/5 continuity result, 35-test regression PASS, diff PASS and exact three-file patch scope.
 
 ## 9.1 MAINTENANCE RULE
 
@@ -179,4 +178,4 @@ The new session continues from the single active objective and the single requir
 ## JUDGMENT
 
 **v0.6 FIELD CLOSEOUT ACTIVE / HOLD.**  
-Verified foundations remain closed. The current bounded difference is the continuity repeatability fixture/resume path. Evidence, not conversation memory, determines promotion to PASS.
+Verified foundations remain closed. Continuity behavior and full regression are now PASS. The current bounded difference is final runtime cache hygiene: 2 entries must reconcile to 0 before this gate can promote to PASS. Evidence, not conversation memory, determines promotion.
