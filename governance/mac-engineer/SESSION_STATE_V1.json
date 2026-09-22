@@ -288,7 +288,7 @@
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "MAC_LOCAL_GH_PRODUCT_PR_EXACT_HEAD_CI_MERGE_EXACT_MAIN_CI",
+  "nextAction": "DISCOVER_PRODUCT_PR6_WORKFLOW_TRIGGER_AND_EXACT_HEAD_RUN_VISIBILITY",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
@@ -501,5 +501,15 @@
     "statusPrNumber": 148,
     "statusMergeBaseline": "8851a5da50705bcc06e90b0ef24b996ad095156c",
     "exactMainCI": "PASS"
+  },
+  "observedContextDurabilityProductPr": {
+    "state": "HOLD_CI_VISIBILITY_DISCOVERY_REQUIRED",
+    "prNumber": 6,
+    "head": "f980a47716eaace5b4fb1d9e37cc95ff0a1b5da2",
+    "base": "6d2fcd923e8fa0417a2e7787acd0dcef6b25e544",
+    "prCreation": "PASS",
+    "exactHeadChecks": "NO_CHECKS_REPORTED",
+    "mergeAttempted": false,
+    "classification": "NO_CI_FAILURE_EVIDENCE"
   }
 }
