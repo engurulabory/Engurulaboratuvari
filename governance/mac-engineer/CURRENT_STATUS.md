@@ -5,7 +5,7 @@
 **Current version:** v0.6 — Field Closeout Active  
 **Current objective:** Package 6 — Checkpoint / Restart / Same-Task Resume Field Proof  
 **Canonical objective id:** `CHECKPOINT_RESTART_RESUME_FIELD_PROOF`  
-**Current verdict:** HOLD — context-durability product patch is locally VERIFIED PASS; GitHub publication, re-commissioning and real restart/resume proof remain
+**Current verdict:** HOLD — product PR #6 exact head/base are verified; exact-head Product CI is not yet visible and requires workflow/run discovery
 
 ## 1. STATE
 
@@ -80,6 +80,19 @@ The active acceptance gate is:
 `TARGETED_REPEATABILITY=5/5_PASS + FULL_RUNTIME_REGRESSION=PASS + DIFF_CHECK=PASS + PATCH_SCOPE=3_FILES_PASS + PRODUCT_RUNTIME_CACHE_COUNT=0`
 
 ## 5. LATEST OBSERVED RESULT
+
+### Product PR #6 exact-head CI visibility — HOLD / DISCOVERY REQUIRED
+
+- product PR: **#6**
+- PR head: `f980a47716eaace5b4fb1d9e37cc95ff0a1b5da2` — exact expected head
+- PR base: `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544` — exact expected base
+- PR creation: **PASS**
+- exact-head CI command result: `no checks reported on the 'fix/v06-context-durability-resume-routing' branch`
+- merge: not attempted
+- classification: **CI visibility / trigger discovery HOLD; no CI failure evidence**
+- real Mac task remains **5/7**
+
+
 
 ### Context Durability Product Patch — PUBLICATION STAGE PASS
 
@@ -395,7 +408,7 @@ The program target remains v1.1.
 
 ## 9. NEXT ACTION
 
-**Single next action:** from the already authenticated Mac Terminal GitHub CLI, create product PR from `fix/v06-context-durability-resume-routing` at exact head `f980a47716eaace5b4fb1d9e37cc95ff0a1b5da2`, verify exact-head Product CI, merge, then verify product exact-main CI.
+**Single next action:** using the authenticated Mac-local `gh`, inspect product workflows, PR #6 status-check rollup, and recent runs for exact head `f980a47716eaace5b4fb1d9e37cc95ff0a1b5da2`; distinguish registration delay from missing PR trigger before any merge action.
 
 ## 9.1 MAINTENANCE RULE
 
