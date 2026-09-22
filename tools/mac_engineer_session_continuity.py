@@ -81,9 +81,20 @@ def active_objective() -> str:
 def porcelain_paths(status: str) -> list[str]:
     paths: list[str] = []
     for line in status.splitlines():
-        if len(line) < 4:
+        if not line:
             continue
-        path = line[3:]
+
+        # subprocess output is globally stripped before it reaches this parser.
+        # That can remove the leading space from the first porcelain line:
+        # " M runtime/app.py" -> "M runtime/app.py".
+        # Preserve exact path identity for both normalized shapes.
+        if len(line) >= 3 and line[2] == " ":
+            path = line[3:]
+        elif len(line) >= 2 and line[1] == " ":
+            path = line[2:]
+        else:
+            continue
+
         if " -> " in path:
             path = path.split(" -> ", 1)[1]
         paths.append(path)
