@@ -5,13 +5,13 @@
 **Current version:** v0.6 — Field Closeout Active  
 **Current objective:** Package 6 — Checkpoint / Restart / Same-Task Resume Field Proof  
 **Canonical objective id:** `CHECKPOINT_RESTART_RESUME_FIELD_PROOF`  
-**Current verdict:** PASS — fresh resume-verification patch publication stage is VERIFIED PASS; product PR/CI, exact-main commissioning and real 6/7 field proof remain
+**Current verdict:** PASS — fresh resume-verification GitHub engineering is VERIFIED PASS; exact-main Mac re-commissioning and real 6/7 field proof remain
 
 ## 1. STATE
 
 ENGÜRÜ Mac Engineer™ v0.6 is **not yet VERIFIED FINAL / LOCKED**.
 
-The context-durability patch is fully integrated into product exact-main `125be3a4b01b3a4de5faf949c79372de1d249aaf`; exact-main Product CI run `35726087972` is completed/success and Mac local `main` matches remote `origin/main`. The currently installed/runtime execution surfaces still represent the previously commissioned exact-main and therefore require one governed re-commission before the real checkpoint → runtime restart → same-task resume field proof is repeated.
+The fresh resume-verification patch is fully integrated into product exact-main `8e8d7db9ae811a5855697604800c830334944c1f`; exact-head Product CI run `35738998097` and exact-main Product CI run `35739072411` are completed/success, and Mac local `main` matches remote `origin/main`. The installed/runtime execution surfaces still represent the previous commissioned exact-main and require one governed re-commission before the real same-task resume field proof is repeated.
 
 ## 2. CANONICAL SURFACES
 
@@ -21,8 +21,8 @@ The context-durability patch is fully integrated into product exact-main `125be3
 - Mac product checkout: `~/Enguru/Projects/enguru-mac-engineer`
 - Product canonical branch: `main`
 - Product continuity patch head: `78dc4aaebbce4fd69ccfdc35544ea49454b27c2b`
-- Product exact-main / merge SHA: `125be3a4b01b3a4de5faf949c79372de1d249aaf`
-- Product exact-main CI: `35726087972` — PASS
+- Product exact-main / merge SHA: `8e8d7db9ae811a5855697604800c830334944c1f`
+- Product exact-main CI: `35739072411` — PASS
 - Runtime: `~/Enguru/Runtime/MacEngineer`
 - Installed app: `~/Applications/ENGÜRÜ Mac Engineer.app`
 - Local Evidence: `~/Enguru/Evidence/MacEngineer/v0.6`
@@ -78,6 +78,20 @@ The active acceptance gate is:
 `TARGETED_REPEATABILITY=5/5_PASS + FULL_RUNTIME_REGRESSION=PASS + DIFF_CHECK=PASS + PATCH_SCOPE=3_FILES_PASS + PRODUCT_RUNTIME_CACHE_COUNT=0`
 
 ## 5. LATEST OBSERVED RESULT
+
+### Fresh Resume Verification GitHub Engineering — VERIFIED PASS
+
+- product patch head: `cc64be04c123f57dfe23fa34581a6b85c15d935f`
+- exact-head Product CI run: **35738998097 — PASS**
+- product PR: **MERGED**
+- merge / new product exact-main: `8e8d7db9ae811a5855697604800c830334944c1f`
+- exact-main Product CI run: **35739072411 — PASS**
+- local product `main` = remote `origin/main`: **PASS**
+- local worktree: **clean**
+- final verdict: **FRESH_RESUME_GITHUB_ENGINEERING=PASS**
+- real Mac task remains **5/7** only until this exact-main is commissioned and the installed app returns fresh same-task/checkpoint Evidence
+
+
 
 ### Fresh Resume Verification Patch — PUBLICATION STAGE PASS
 
@@ -519,7 +533,7 @@ The program target remains v1.1.
 
 ## 9. NEXT ACTION
 
-**Single next action:** create the product PR from `fix/v06-fresh-resume-verification` at exact head `cc64be04c123f57dfe23fa34581a6b85c15d935f`, verify exact-head Product CI, merge, then verify product exact-main Product CI.
+**Single next action:** commission product exact-main `8e8d7db9ae811a5855697604800c830334944c1f` onto the Mac runtime/app using exact-main Product CI Evidence `35739072411`, then repeat the installed-app canonical resume for `ENGURU-V06-FIELD-001 / v06-field-cp-001`.
 
 ## 9.1 MAINTENANCE RULE
 

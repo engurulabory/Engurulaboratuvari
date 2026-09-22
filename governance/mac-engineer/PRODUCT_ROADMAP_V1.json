@@ -17,7 +17,7 @@
     "version": "v0.6",
     "state": "FIELD_CLOSEOUT_ACTIVE",
     "activeObjective": "CHECKPOINT_RESTART_RESUME_FIELD_PROOF",
-    "productSourceSha": "125be3a4b01b3a4de5faf949c79372de1d249aaf",
+    "productSourceSha": "8e8d7db9ae811a5855697604800c830334944c1f",
     "installedVersion": "0.6",
     "completed": [
       "RUNTIME_APP_PROVENANCE_CLOSURE",
@@ -26,7 +26,8 @@
       "CONTINUITY_PATCH_REPEATABILITY",
       "PRODUCT_PATCH_GITHUB_ENGINEERING",
       "CONTINUITY_PATCH_EXACT_MAIN_COMMISSIONING",
-      "CONTEXT_DURABILITY_GITHUB_ENGINEERING"
+      "CONTEXT_DURABILITY_GITHUB_ENGINEERING",
+      "FRESH_RESUME_GITHUB_ENGINEERING"
     ]
   },
   "versions": [
