@@ -5,7 +5,7 @@
 **Current version:** v0.6 — Field Closeout Active  
 **Current objective:** Package 6 — Checkpoint / Restart / Same-Task Resume Field Proof  
 **Canonical objective id:** `CHECKPOINT_RESTART_RESUME_FIELD_PROOF`  
-**Current verdict:** PASS — exact-main Mac commissioning verified; restart/resume field proof is active
+**Current verdict:** HOLD — real restart occurred, but resume execution lost actionable task evidence under conversation/context pressure
 
 ## 1. STATE
 
@@ -75,6 +75,34 @@ The active acceptance gate is:
 `TARGETED_REPEATABILITY=5/5_PASS + FULL_RUNTIME_REGRESSION=PASS + DIFF_CHECK=PASS + PATCH_SCOPE=3_FILES_PASS + PRODUCT_RUNTIME_CACHE_COUNT=0`
 
 ## 5. LATEST OBSERVED RESULT
+
+### Restart / same-task resume field attempt — HOLD / CONTEXT DURABILITY REQUIRED
+
+Observed in the installed ENGÜRÜ Mac Engineer™ v0.6 conversation after the governed restart:
+
+- canonical resume prompt carried the correct task id `ENGURU-V06-FIELD-001`;
+- canonical checkpoint id `v06-field-cp-001` was present;
+- the application returned `VERDICT — HOLD`;
+- response Evidence was non-actionable: `changed=None test_count=None sha=None rollback=False`;
+- the UI simultaneously displayed an early conversation-pressure warning: `Bu sohbet ağırlaşıyor. Yeni sohbet açmak daha sağlıklı.`;
+- the field task therefore remains **5/7**; restart/resume PASS is not yet evidenced.
+
+This is treated as a reliability/working-memory gap inside the existing conversation + durable-task layers, not as a new core.
+
+Required product behavior:
+
+1. long-running conversation/project work remains durable across many turns;
+2. full transcript may stay locally persisted while the active model context is budgeted;
+3. canonical task/checkpoint/Evidence/current objective are always pinned into active context;
+4. older turns may be compacted into evidence-backed rolling summaries without losing task identity;
+5. archive cleanup stays separate from active durable task/current-state records;
+6. context pressure is measured by real active-context utilization, not a small message-count heuristic;
+7. background compaction begins silently before pressure becomes user-visible;
+8. user warning appears only near genuine capacity;
+9. context pressure never converts an otherwise valid task into `changed=None / test_count=None / sha=None`;
+10. near-capacity handoff preserves exact task/checkpoint/current-status state.
+
+
 
 ### Continuity Patch Exact-Main Mac Commissioning — VERIFIED PASS
 
@@ -188,19 +216,20 @@ The continuity repeatability acceptance is now closed.
 
 ## 6. REQUIRED DIFFERENCE
 
-Prove persistent continuity on the real commissioned Mac execution path for the existing canonical task:
+Close the smallest sufficient conversation/context durability gap inside the existing persistent-working-memory and durable-task path, then repeat the same restart/resume proof.
 
-1. preserve task id `ENGURU-V06-FIELD-001`;
-2. preserve checkpoint id `v06-field-cp-001`;
-3. observe a real runtime/app restart;
-4. resume the same durable task after restart;
-5. re-read repository/task state from disk;
-6. verify the controlled `CURRENT_STATE.md` repair remains correct;
-7. re-run the repository regression;
-8. prove the same reliability task / duplicate + recovered semantics;
-9. attach post-restart Evidence to the same task record.
+Acceptance requires:
 
-Promote the real Mac task from 5/7 to 6/7 only on Evidence-backed PASS.
+1. canonical task/checkpoint/current objective remain pinned across long conversations;
+2. active context uses bounded recent turns + durable state + rolling compact summary rather than unbounded raw replay;
+3. compaction is automatic and silent before user-visible pressure;
+4. warning threshold is near genuine provider/context capacity and is informational, not a task verdict;
+5. archive cleanup cannot remove active task/checkpoint/current-status truth;
+6. resume returns real changed-file/test/SHA/Evidence values;
+7. same reliability task is reused with expected duplicate/recovered semantics;
+8. regression PASS and post-restart Evidence bind to the same durable task.
+
+Only after that Evidence may the real Mac task advance from 5/7 to 6/7.
 
 ## 7. REMAINING v0.6 CLOSEOUT — CANONICAL ORDER
 
@@ -208,7 +237,7 @@ Promote the real Mac task from 5/7 to 6/7 only on Evidence-backed PASS.
 2. **Continuity Patch Repeatability Gate** — VERIFIED PASS
 3. **Product patch GitHub engineering** — VERIFIED PASS
 4. **Continuity patch exact-main Mac commissioning** — VERIFIED PASS
-5. **Mac checkpoint/restart/same-task resume field proof** — ACTIVE
+5. **Mac checkpoint/restart/same-task resume field proof** — HOLD / context durability hardening active
 6. **Recovery field proof** — bounded recoverable failure → diagnosis → smallest recovery → reverify
 7. **Local Evidence bundle**
 8. **Mac Local Mandatory DoneCheck™**
@@ -227,7 +256,7 @@ The program target remains v1.1.
 
 ## 9. NEXT ACTION
 
-**Single next action:** restart the commissioned runtime through the existing governed real-task refresh path, then submit the existing `package6-real-task-resume-prompt.txt` so the same task/checkpoint is resumed and verified after restart.
+**Single next action:** locate the existing conversation-history/context-budget/warning implementation and durable-task prompt assembly in product exact-main, then apply the smallest bounded hardening so long-running work stays durable and the capacity warning appears only near genuine context saturation.
 
 ## 9.1 MAINTENANCE RULE
 
@@ -270,5 +299,5 @@ The new session continues from the single active objective and the single requir
 
 ## JUDGMENT
 
-**v0.6 FIELD CLOSEOUT ACTIVE / EXACT-MAIN COMMISSIONING VERIFIED PASS.**  
-The commissioned Mac runtime is bound to product exact-main `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544`. The active objective is the real checkpoint/restart/same-task resume field proof.
+**v0.6 FIELD CLOSEOUT ACTIVE / RESTART-RESUME FIELD HOLD.**  
+Exact-main commissioning remains VERIFIED PASS. The latest real resume attempt preserved the visible task/checkpoint prompt but returned non-actionable Evidence while the conversation-pressure warning fired. The bounded next difference is long-running conversation/context durability inside the existing working-memory path.

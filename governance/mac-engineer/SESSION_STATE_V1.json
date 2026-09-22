@@ -287,7 +287,7 @@
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "RESTART_COMMISSIONED_RUNTIME_AND_RESUME_ENGURU_V06_FIELD_001_AT_V06_FIELD_CP_001",
+  "nextAction": "DISCOVER_AND_HARDEN_EXISTING_CONVERSATION_CONTEXT_BUDGET_AND_DURABLE_TASK_PROMPT_ASSEMBLY",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
@@ -299,6 +299,34 @@
       "CURRENT_OBJECTIVE",
       "REMAINING_WORK",
       "NEXT_ACTION"
+    ]
+  },
+  "observedRestartResumeFieldProof": {
+    "state": "HOLD",
+    "observedAt": "2026-09-22",
+    "canonicalTaskId": "ENGURU-V06-FIELD-001",
+    "checkpointId": "v06-field-cp-001",
+    "promptIdentityVisible": true,
+    "appVerdict": "HOLD",
+    "evidence": {
+      "changed": null,
+      "testCount": null,
+      "sha": null,
+      "rollback": false
+    },
+    "conversationPressureWarning": "Bu sohbet ağırlaşıyor. Yeni sohbet açmak daha sağlıklı.",
+    "realTaskStage": "5_OF_7",
+    "classification": "CONVERSATION_CONTEXT_DURABILITY_GAP",
+    "architectureDecision": "REUSE_EXISTING_PERSISTENT_WORKING_MEMORY_AND_DURABLE_TASK_LAYERS",
+    "requiredDifference": [
+      "PIN_TASK_CHECKPOINT_OBJECTIVE_EVIDENCE_IN_ACTIVE_CONTEXT",
+      "BOUND_RAW_RECENT_TURNS",
+      "ROLLING_EVIDENCE_BACKED_COMPACTION",
+      "SILENT_EARLY_COMPACTION",
+      "WARN_ONLY_NEAR_GENUINE_CONTEXT_CAPACITY",
+      "ARCHIVE_SEPARATE_FROM_ACTIVE_TASK_TRUTH",
+      "RESUME_WITH_REAL_CHANGED_TEST_SHA_EVIDENCE",
+      "SAME_RELIABILITY_TASK_DUPLICATE_RECOVERED_PASS"
     ]
   }
 }
