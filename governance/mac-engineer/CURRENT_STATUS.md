@@ -110,7 +110,9 @@ V07-A05 + V07-A06 **PASS / exact-main verified**: product PR #11 merged to `1998
 
 V07-A07 + V07-A08 **GitHub-first acceptance PASS / Mac acceptance pending**: Product PR #12 merged to `5432b9b135499cea18273c0e003877b864af92c6`; exact-main Product CI run #26 PASS with 54/54 runtime tests OK. A07 confirms canonical-durable-only artifact scope with 0 unexpected/temp/cache residue. A08 confirms 20 checkpoint + 20 restart Evidence lineage and journal reconciliation. The ≥8h/RSS and Local Evidence bundle requirements remain reserved for consolidated Mac commissioning. Canonical Evidence: `evidence/MAC_ENGINEER_V07_A07_A08_ENGINEERING_2026-09-22.md`.
 
-Current required difference: execute `V07-A09 → GITHUB_CI_FAULT_INJECTION_CAMPAIGN`.
+V07-A09 **HOLD — external GitHub-hosted Actions execution gate**. Product PR #13 campaign remains 0/5. Jobs on `macos-latest`, explicit `macos-15`, and `ubuntu-latest` were created but failed before any workflow step (`steps=null`). No production-code defect is evidenced. Canonical Evidence: `evidence/MAC_ENGINEER_V07_A09_ACTIONS_HOLD_2026-09-22.md`.
+
+Current required difference: clear the private-repository GitHub Actions execution gate through read-only billing/usage + Actions policy inspection, then resume PR #13 on an exact candidate head.
 
 ## REMAINING v0.6 CLOSEOUT
 
@@ -141,4 +143,4 @@ Recovery, fixture repair, local field acceptance and the reconstructed pre-canon
 
 ## NEXT ACTION
 
-`V0_7_LONG_RUNNING_RELIABILITY → V07-A09 → GITHUB_CI_FAULT_INJECTION_CAMPAIGN → FIVE_CONSECUTIVE_TARGETED_PASS_RUNS → FULL_PRODUCT_REGRESSION → SCOPE_VALIDATION`
+`V0_7_LONG_RUNNING_RELIABILITY → V07-A09 HOLD_GITHUB_PRIVATE_REPO_HOSTED_ACTIONS_EXECUTION_GATE → HUMAN READ-ONLY ACTIONS/BILLING INSPECTION → RESUME PR #13 → 5 TARGETED PASS → FULL REGRESSION → SCOPE VALIDATION`
