@@ -3,15 +3,15 @@
 **Updated:** 2026-09-22  
 **Program target:** ENGÜRÜ Mac Engineer™ v1.1 — Verified Product Engineering Operator  
 **Current version:** v0.6 — Field Closeout Active  
-**Current objective:** Package 6 — Product Patch GitHub Engineering  
-**Canonical objective id:** `PRODUCT_PATCH_GITHUB_ENGINEERING`  
-**Current verdict:** HOLD — product patch pushed; ChatGPT GitHub connector lacks visibility to private product repo PR surface
+**Current objective:** Package 6 — Continuity Patch Exact-Main Commissioning  
+**Canonical objective id:** `CONTINUITY_PATCH_EXACT_MAIN_COMMISSIONING`  
+**Current verdict:** PASS — product patch GitHub engineering closed; exact-main Mac commissioning is active
 
 ## 1. STATE
 
 ENGÜRÜ Mac Engineer™ v0.6 is **not yet VERIFIED FINAL / LOCKED**.
 
-GitHub control-plane continuity is aligned and verified. The dedicated product continuity patch has satisfied its full local repeatability acceptance and has now been committed and pushed to the product repository. Local HEAD and remote branch HEAD are exactly `78dc4aaebbce4fd69ccfdc35544ea49454b27c2b`; the branch is clean, exactly one commit ahead of product main, and the committed diff remains exactly the authorized three files. The active objective remains Product Patch GitHub Engineering for PR → exact-head CI → merge → exact-main CI.
+The continuity patch is now fully integrated into the product repository. Product PR #5 merged after exact-head Product CI PASS; product exact-main is `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544`; exact-main Product CI run `35711368049` completed successfully; Mac local product `main` equals remote `main` at that exact SHA with a clean worktree. The next required difference is Mac commissioning of this new exact-main before live restart/resume field proof.
 
 ## 2. CANONICAL SURFACES
 
@@ -19,9 +19,10 @@ GitHub control-plane continuity is aligned and verified. The dedicated product c
 - Control-plane latest verified baseline before this status update: `42a3699dd0b6285b8390ccf2ab4379b631333549`; authoritative current exact-main is resolved by `session-start` after status changes merge
 - Product source: `engurulabory/enguru-mac-engineer`
 - Mac product checkout: `~/Enguru/Projects/enguru-mac-engineer`
-- Product branch: `fix/v06-durable-continuity-binding`
-- Product published patch HEAD: `78dc4aaebbce4fd69ccfdc35544ea49454b27c2b`
-- Product origin-main base: `6f424c0b815d8c0cf8aa761124be3f743e412ee1`
+- Product canonical branch: `main`
+- Product continuity patch head: `78dc4aaebbce4fd69ccfdc35544ea49454b27c2b`
+- Product exact-main / merge SHA: `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544`
+- Product exact-main CI: `35711368049` — PASS
 - Runtime: `~/Enguru/Runtime/MacEngineer`
 - Installed app: `~/Applications/ENGÜRÜ Mac Engineer.app`
 - Local Evidence: `~/Enguru/Evidence/MacEngineer/v0.6`
@@ -55,7 +56,8 @@ The following v0.6 truths are already closed and remain preserved:
 - Runtime generated-cache reconciliation — PASS; tracked cache absent; runtime cache count returned to 0
 - Continuity fixture/resume correction — PASS
 - Continuity Patch Repeatability Gate — VERIFIED PASS: 5/5 targeted + 35/35 regression + diff + exact scope + cache=0
-- Product-patch publication session binding — PASS / exact dirty pre-commit state and exact clean one-commit-ahead post-commit state are both fail-closed authorized during PRODUCT_PATCH_GITHUB_ENGINEERING
+- Product-patch publication session binding — PASS
+- Product Patch GitHub Engineering — VERIFIED PASS: PR #5 + exact-head CI + merge + exact-main CI + local/remote main parity
 
 ## 4. CURRENT ENGINEERING TRUTH
 
@@ -72,6 +74,23 @@ The active acceptance gate is:
 `TARGETED_REPEATABILITY=5/5_PASS + FULL_RUNTIME_REGRESSION=PASS + DIFF_CHECK=PASS + PATCH_SCOPE=3_FILES_PASS + PRODUCT_RUNTIME_CACHE_COUNT=0`
 
 ## 5. LATEST OBSERVED RESULT
+
+### Product Patch GitHub Engineering — VERIFIED PASS
+
+- product PR: **#5**
+- PR head: `78dc4aaebbce4fd69ccfdc35544ea49454b27c2b`
+- PR base: `6f424c0b815d8c0cf8aa761124be3f743e412ee1`
+- exact-head Product CI: **PASS**
+- merge SHA / product exact-main: `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544`
+- exact-main Product CI run: `35711368049`
+- exact-main Product CI: **completed/success**
+- local product main = remote product main: **PASS**
+- local worktree: **clean**
+- final verdict: **PRODUCT_PATCH_GITHUB_ENGINEERING=PASS**
+
+The earlier ChatGPT connector 404 was limited to that connector access surface and was resolved operationally through the authenticated Mac-local GitHub CLI.
+
+
 
 ### Product patch publication stage — PASS
 
@@ -119,29 +138,27 @@ The continuity repeatability acceptance is now closed.
 
 ## 6. REQUIRED DIFFERENCE
 
-Continue the verified product patch publication from the Mac-local authenticated GitHub surface:
+Commission product exact-main `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544` onto the Mac execution surfaces before live restart/resume proof:
 
-1. commit exact three-file patch — **PASS**;
-2. push exact branch/head — **PASS**;
-3. ChatGPT GitHub connector visibility check — **HOLD / private product repo returns 404**;
-4. create product PR from Mac-local authenticated `gh` surface;
-5. verify exact-head Product CI;
-6. merge;
-7. verify product exact-main CI.
+1. exact-main rebuild preflight;
+2. exact-SHA rebuild/install;
+3. runtime/app provenance verification;
+4. confirm installed/runtime source parity to the new exact-main.
 
-The product patch itself remains verified. This HOLD is limited to the connector access surface.
+Only then run the canonical checkpoint → runtime restart → same-task resume field proof.
 
 ## 7. REMAINING v0.6 CLOSEOUT — CANONICAL ORDER
 
 1. **Continuity fixture / resume correction** — PASS
 2. **Continuity Patch Repeatability Gate** — VERIFIED PASS
-3. **Product patch GitHub engineering** — HOLD / ACCESS SURFACE: commit PASS → push PASS → ChatGPT connector product-repo visibility 404 → Mac-local authenticated PR/CI/merge/exact-main path ACTIVE
-4. **Mac checkpoint/restart/same-task resume field proof**
-5. **Recovery field proof** — bounded recoverable failure → diagnosis → smallest recovery → reverify
-6. **Local Evidence bundle**
-7. **Mac Local Mandatory DoneCheck™**
-8. **WORKLIST + SESSION_STATE + Current Status reconciliation**
-9. **v0.6 VERIFIED FINAL / LOCKED**
+3. **Product patch GitHub engineering** — VERIFIED PASS
+4. **Continuity patch exact-main Mac commissioning** — ACTIVE
+5. **Mac checkpoint/restart/same-task resume field proof**
+6. **Recovery field proof** — bounded recoverable failure → diagnosis → smallest recovery → reverify
+7. **Local Evidence bundle**
+8. **Mac Local Mandatory DoneCheck™**
+9. **WORKLIST + SESSION_STATE + Current Status reconciliation**
+10. **v0.6 VERIFIED FINAL / LOCKED**
 
 Only after item 9 may v0.6 be described as finished.
 
@@ -155,7 +172,7 @@ The program target remains v1.1.
 
 ## 9. NEXT ACTION
 
-**Single next action:** use the Mac-local authenticated GitHub CLI to create the product PR from `fix/v06-durable-continuity-binding` at exact head `78dc4aaebbce4fd69ccfdc35544ea49454b27c2b`, verify exact-head Product CI, merge, and verify exact-main CI.
+**Single next action:** commission product exact-main `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544` onto the Mac runtime/app using the existing governed rebuild/install + provenance path.
 
 ## 9.1 MAINTENANCE RULE
 
@@ -198,5 +215,5 @@ The new session continues from the single active objective and the single requir
 
 ## JUDGMENT
 
-**v0.6 FIELD CLOSEOUT ACTIVE / PRODUCT PATCH PUBLICATION ACCESS HOLD.**  
-The continuity patch is verified, committed and pushed. The current HOLD is limited to ChatGPT connector visibility for the private product repository; Mac-local authenticated GitHub publication is the next canonical action.
+**v0.6 FIELD CLOSEOUT ACTIVE / PRODUCT PATCH GITHUB ENGINEERING PASS.**  
+The continuity patch is verified on product exact-main. The active objective is exact-main Mac commissioning; live restart/resume evidence follows after source/runtime provenance is re-established.
