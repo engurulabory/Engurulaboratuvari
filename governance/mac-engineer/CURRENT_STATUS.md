@@ -16,7 +16,7 @@ The continuity patch is fully integrated into product exact-main `6d2fcd923e8fa0
 ## 2. CANONICAL SURFACES
 
 - Control plane: `engurulabory/Engurulaboratuvari`
-- Control-plane exact-main: `6c8bbf8832ea1c1408b87d9879b3a1cfa83a8036` — Final Gate / IP Gate / Fleet PASS
+- Control-plane exact-main: `34bbe6888196c2627ab5d66faa8182637be78165` — Final Gate / IP Gate / Fleet PASS
 - Product source: `engurulabory/enguru-mac-engineer`
 - Mac product checkout: `~/Enguru/Projects/enguru-mac-engineer`
 - Product canonical branch: `main`
@@ -75,6 +75,23 @@ The active acceptance gate is:
 `TARGETED_REPEATABILITY=5/5_PASS + FULL_RUNTIME_REGRESSION=PASS + DIFF_CHECK=PASS + PATCH_SCOPE=3_FILES_PASS + PRODUCT_RUNTIME_CACHE_COUNT=0`
 
 ## 5. LATEST OBSERVED RESULT
+
+### Governed canonical-context refresh binding — VERIFIED PASS
+
+- control-plane PR: **#144**
+- exact-head controls: **PASS**
+- merge / control-plane exact-main: `34bbe6888196c2627ab5d66faa8182637be78165`
+- exact-main ENGURU Labory Final Gate: **PASS**
+- exact-main IP Model Trust Gate: **PASS**
+- exact-main IP Model Trust Fleet: **PASS**
+- `session-start` now refreshes `canonical-context.json` before continuity start
+- `refresh-real-task-runtime` now refreshes `canonical-context.json` before runtime restart
+- context-sync HOLD remains fail-closed and stops the target action
+- focused control-plane regression added
+
+This closes the stale canonical-context **refresh-path** half of the root cause. Product runtime still requires the bounded companion patch for identity parsing, canonical-context injection/pinning, longer bounded history and near-capacity-only warning behavior.
+
+
 
 ### Restart / same-task resume field attempt — HOLD / CONTEXT DURABILITY REQUIRED
 
@@ -319,7 +336,7 @@ The program target remains v1.1.
 
 ## 9. NEXT ACTION
 
-**Single next action:** implement the bounded v0.6 context-durability patch: accept ':' or '=' commissioning identity syntax; inject refreshed canonical context + matched durable task/checkpoint into CURRENT LOCAL CONTEXT; couple canonical-context refresh to the governed session/runtime path; preserve bounded history while replacing early archive-size warnings with near-capacity informational behavior; add focused regression tests.
+**Single next action:** implement the product-side bounded v0.6 context-durability patch on a dedicated branch: accept ':' or '=' commissioning identity syntax; load refreshed canonical-context into CURRENT LOCAL CONTEXT; pin matched durable task/checkpoint; expand the bounded recent-history budget; replace transcript-size warning behavior with active-context-pressure warning; add focused regression tests.
 
 ## 9.1 MAINTENANCE RULE
 
