@@ -1134,7 +1134,7 @@ Engineering mode: **GitHub-first**.
 - [x] Idempotency and single-writer stress. — V07-A03: 100 replays → 1 created / 99 duplicate / 1 durable side effect; V07-A04: 16 contenders → 1 canonical writer / 15 WriterBusy / 1 transition commit; Product exact-main `1dcbc795e4b949448206fbad93b239aca297cc0f`; Product CI #21 PASS.
 - [x] Bounded retry / watchdog. — V07-A05: retry limit 2 / max attempts 3 / over-limit fail-closed / one watchdog decision; Product exact-main `199893b07941a82c26c3b39a7942478cb95420b0`; Product CI #23 PASS.
 - [x] Provider/network/process recovery fixtures. — V07-A06: provider unavailable + network timeout + child-process exit, each recoverable and exhausted; task/Evidence continuity PASS.
-- [ ] Resource and evidence continuity.
+- [x] Resource and evidence continuity. — V07-A07/A08 exact-main PASS; Product PR #12 → `5432b9b135499cea18273c0e003877b864af92c6`; Product CI #26 PASS / 54 tests OK; 0 unexpected/temp/cache artifacts; 20 checkpoint + 20 restart Evidence lineage PASS.
 - [ ] GitHub CI / fault-injection campaign.
 - [ ] DoneCheck v1.2 integration for milestone closure.
 - [ ] **One consolidated Mac long-run commissioning campaign.**
