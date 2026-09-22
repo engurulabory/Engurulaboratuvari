@@ -20,7 +20,9 @@ When `governance/mac-engineer/ACTIVE_WORKING_PATH.md` is present, a new ChatGPT 
 
 The active working-path file records the current human/ChatGPT execution model: GitHub-first engineering, Mac last-mile commissioning, target → result discipline, role separation, Evidence, Human Threshold™ and Mandatory DoneCheck™.
 
-Dynamic technical truth continues to come from `SESSION_STATE_V1.json`, `PRODUCT_ROADMAP_V1.json`, `WORKLIST.md`, exact GitHub state and current Mac Evidence.
+While active development is in progress, `governance/mac-engineer/CURRENT_STATUS.md` is the compact human-readable handoff surface. It records what is already verified, where the program is now, the latest observed result, the remaining canonical work and the single next action.
+
+Dynamic technical truth continues to come from `CURRENT_STATUS.md`, `SESSION_STATE_V1.json`, `PRODUCT_ROADMAP_V1.json`, `WORKLIST.md`, exact GitHub state and current Mac Evidence. Structured state and direct Evidence remain authoritative when a summary line is stale.
 
 When the ENGÜRÜ Mac Engineer™ active development program reaches its verified locked finish, the active working-path bootstrap may be removed without changing this permanent continuity contract.
 
@@ -133,7 +135,7 @@ A new chat can begin from this snapshot plus GitHub canonical truth instead of c
 
 For ENGÜRÜ Mac Engineer engineering sessions, ChatGPT must:
 
-1. read canonical WORKLIST/state first;
+1. read `CURRENT_STATUS.md`, canonical WORKLIST and structured session-state first;
 2. identify the single necessary difference;
 3. perform GitHub-side work itself when tooling permits;
 4. ask the user for Mac Terminal execution only when local execution is required;
@@ -154,7 +156,7 @@ Describe the desired/verified path positively. Constraints are expressed as auth
 
 A session is safe to hand off when:
 
-- WORKLIST reflects current truth;
+- CURRENT_STATUS, WORKLIST and SESSION_STATE reflect current truth;
 - GitHub changes are merged or explicitly HOLD;
 - local field Evidence is recorded;
 - one next action is explicit;

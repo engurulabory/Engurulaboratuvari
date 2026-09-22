@@ -18,6 +18,7 @@ RUNTIME = HOME / "Enguru" / "Runtime" / "MacEngineer"
 APP = HOME / "Applications" / "ENGÜRÜ Mac Engineer.app"
 EVIDENCE_ROOT = HOME / "Enguru" / "Evidence" / "MacEngineer" / "v0.6"
 STATE_FILE = ROOT / "governance" / "mac-engineer" / "SESSION_STATE_V1.json"
+CURRENT_STATUS = ROOT / "governance" / "mac-engineer" / "CURRENT_STATUS.md"
 WORKLIST = ROOT / "WORKLIST.md"
 
 
@@ -231,6 +232,10 @@ def snapshot(mode: str) -> dict[str, Any]:
         "state": "PASS" if not issues else "HOLD",
         "issues": issues,
         "continuity_contract": state.get("continuityContract"),
+        "current_status": {
+            "path": str(CURRENT_STATUS.relative_to(ROOT)),
+            "exists": CURRENT_STATUS.is_file(),
+        },
         "locked_method": state.get("lockedMethod"),
         "authority_order": state.get("authorityOrder"),
         "active_objective": objective,
@@ -259,7 +264,10 @@ def snapshot(mode: str) -> dict[str, Any]:
         ),
         "new_session_instruction": (
             "Read governance/mac-engineer/SESSION_CONTINUITY_CONTRACT_V1.md, "
-            "governance/mac-engineer/SESSION_STATE_V1.json and WORKLIST.md. "
+            "governance/mac-engineer/ACTIVE_WORKING_PATH.md, "
+            "governance/mac-engineer/CURRENT_STATUS.md, "
+            "governance/mac-engineer/SESSION_STATE_V1.json, "
+            "governance/mac-engineer/PRODUCT_ROADMAP_V1.json and WORKLIST.md. "
             "Confirm this snapshot, then continue only the active objective "
             "using STATE → CLAIM → EVIDENCE → JUDGMENT/NEXT ACTION."
         ),
