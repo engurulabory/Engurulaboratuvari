@@ -104,7 +104,11 @@ First required difference **PASS**: exact v0.7 acceptance matrix is canonical at
 
 V07-A01 + V07-A02 **PASS / exact-main verified**: product PR #9 merged to `443fd4455b6c2f095c7944ee7bc00445d96d2d2a`; exact-main Product CI run #19 PASS with 48/48 runtime tests OK. Canonical Evidence: `evidence/MAC_ENGINEER_V07_A01_A02_ENGINEERING_2026-09-22.md`.
 
-Current required difference: implement and verify `V07-A03 + V07-A04 → IDEMPOTENCY_AND_SINGLE_WRITER_STRESS`.
+V07-A03 + V07-A04 **PASS / exact-main verified**: Product PR #10 → `1dcbc795e4b949448206fbad93b239aca297cc0f`; Product CI #21 PASS / 50 tests OK.
+
+V07-A05 + V07-A06 **PASS / exact-main verified**: Product PR #11 → current product main `199893b07941a82c26c3b39a7942478cb95420b0`; Product CI #23 PASS / 52 tests OK. Canonical Evidence: `evidence/MAC_ENGINEER_V07_A03_A06_ENGINEERING_2026-09-22.md`.
+
+Current required difference: implement and verify `V07-A07 + V07-A08 → RESOURCE_DISCIPLINE_AND_EVIDENCE_CONTINUITY`.
 
 ## REMAINING v0.6 CLOSEOUT
 
@@ -135,4 +139,4 @@ Recovery, fixture repair, local field acceptance and the reconstructed pre-canon
 
 ## NEXT ACTION
 
-`V0_7_LONG_RUNNING_RELIABILITY → V07-A03 + V07-A04 → IDEMPOTENCY_AND_SINGLE_WRITER_STRESS → GITHUB_FIRST_ENGINEERING`
+`V0_7_LONG_RUNNING_RELIABILITY → V07-A07 + V07-A08 → RESOURCE_DISCIPLINE_AND_EVIDENCE_CONTINUITY → GITHUB_FIRST_ENGINEERING`
