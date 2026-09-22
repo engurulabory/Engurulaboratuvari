@@ -1,4 +1,4 @@
-# ENGÜRÜ Mac Engineering™ — Canonical Product Identity & Roadmap v1.0
+# ENGÜRÜ Mac Engineering™ — Canonical Product Identity & Roadmap v1.1
 
 ## STATE
 
@@ -7,139 +7,107 @@
 ## Product identity
 
 - **Canonical product name:** ENGÜRÜ Mac Engineering™
-- **Final target:** ENGÜRÜ Mac Engineering™ v1.0 — Verified Product Engineering Operator
+- **Final target:** ENGÜRÜ Mac Engineering™ v1.1 — Verified Product Engineering Operator
 - **Technical repository:** `engurulabory/enguru-mac-engineer`
 - **Technical local checkout:** `~/Enguru/Projects/enguru-mac-engineer`
 - **Runtime path:** `~/Enguru/Runtime/MacEngineer`
 - **Installed app:** `~/Applications/ENGÜRÜ Mac Engineer.app`
 - **Control plane:** `engurulabory/Engurulaboratuvari`
 
-The technical repository/path identifiers remain stable compatibility identifiers. They do not override the canonical product name.
+Technical repository/path identifiers remain stable compatibility identifiers. The canonical product name and authority chain are governed here.
 
 ## Final product result
 
-ENGÜRÜ Mac Engineering™ v1.0 takes a digital product idea, brief or existing source; works across the required engineering disciplines on Mac; researches, plans, architects, builds, runs, tests, repairs, packages, publishes and verifies live; preserves recovery and continuity; and returns the work as a finished product with Evidence + Mandatory DoneCheck™.
+ENGÜRÜ Mac Engineering™ v1.1 takes a digital product idea, brief or existing source; researches, plans, architects, builds, runs, tests, repairs, packages, publishes and verifies live; preserves recovery and continuity; and returns the work as a finished product with Evidence + DoneCheck v1.2 + Human Threshold™.
 
-Human Artistic Authority™, Human Threshold™ and final human acceptance remain human authority.
+## Version truth
 
-## Canonical version road
+### v0.0–v0.3 — PRE-CANONICAL DEVELOPMENT LINEAGE
+
+Historical boundaries are reconstructed only from Git history and dated Evidence. Unsupported retrospective version titles remain unasserted.
 
 ### v0.4 — Field Engineering Foundation — LOCKED
-Result: real Mac execution surface, repository work, local task execution and governed field engineering foundation.
+
+Real Mac execution surface, repository work, local task execution and governed field-engineering foundation.
 
 ### v0.5 — Reliability & Recovery Foundation — LOCKED
-Result: bounded recovery, failure handling and reliability mechanisms established as the base for autonomous field work.
 
-### v0.6 — Operating Behavior & Verified Local Product — FIELD CLOSEOUT ACTIVE
-Result target: a canonical, installed, evidence-backed Mac engineering product with persistent working behavior, session continuity, real task completion and Mandatory DoneCheck™.
+Reliability state machine, checkpoint/resume, recovery classification, rollback basis, idempotency and single-writer foundations.
 
-Verified so far:
-- GitHub engineering closeout — VERIFIED / LOCKED
-- dedicated product source authority — PASS
-- Mac layout audit — PASS
-- session continuity contract — PASS
-- product exact-main CI — PASS
-- v0.6 source alignment — PASS
-- exact-SHA rebuild/install — PASS
-- installed app v0.6 — PASS
-- runtime build app v0.6 — PASS
-- runtime source parity 27/27 exact — PASS
-- live localhost status — PASS
-- canonical app + runtime processes — PASS
-- fail-closed rollback field behavior — observed PASS on first install attempt
+### v0.6 — Operating Behavior & Verified Local Product
 
-Remaining v0.6 closure:
-1. Runtime/App Provenance canonical closure.
-2. Historical handoff / backup / runtime-build artifact archive decision.
-3. One real Mac engineering task.
-4. Persistent continuity: checkpoint → restart → same task resume.
-5. Recovery field proof reconciliation / only missing delta if any.
-6. Local Evidence bundle.
-7. Mandatory DoneCheck™.
-8. **v0.6 VERIFIED FINAL / LOCKED.**
+**LOCAL FIELD CLOSEOUT — VERIFIED PASS.**
+
+Verified:
+- dedicated product source authority;
+- exact-main CI;
+- exact-SHA rebuild/install;
+- runtime/app provenance;
+- persistent task continuity;
+- checkpoint → restart → same-task resume;
+- real Mac task **7/7 VERIFIED PASS**;
+- bounded recovery field proof;
+- independent fresh regression **1/1 PASS**;
+- recovery Evidence contract PASS;
+- Local Evidence Bundle VERIFIED PASS;
+- Mac Local Mandatory DoneCheck™ PASS.
+
+Remaining before canonical final lock:
+1. control-plane reconciliation merge;
+2. exact-main acceptance;
+3. record **v0.6 VERIFIED FINAL / LOCKED**.
 
 ### v0.7 — Long-Running Reliability
-Result target: ENGÜRÜ Mac Engineering™ remains correct and recoverable across long unattended engineering work.
 
-Core result gates:
-- task state machine;
-- checkpoint and durable resume;
-- idempotency;
-- single-writer / concurrency safety;
-- bounded retry and watchdog behavior;
-- crash / process / provider / network recovery;
-- resource discipline;
-- evidence continuity across restart;
-- overnight / long-run field acceptance.
+GitHub-first engineering; one consolidated long-run Mac commissioning campaign at the milestone gate.
 
-Exit:
-**LONG-RUN RELIABILITY VERIFIED / LOCKED**
+Exit: **LONG-RUN RELIABILITY VERIFIED / LOCKED**
 
 ### v0.8 — Product Engineering Operator
-Result target: one governed path from idea/brief/repository to finished digital product.
 
-Core result chain:
+GitHub-first engineering of the full chain:
+
 `INTAKE → DISCOVER → ARCHITECT → DESIGN → BUILD → TEST → REPAIR → PACKAGE → DEPLOY → LIVE VERIFY → LIFECYCLE → EVIDENCE → DONECHECK`
 
-Acceptance includes:
-- new product from brief;
-- existing product change;
-- migration / repair;
-- full-stack engineering where required;
-- UI/UX + aesthetics integration;
-- release/deploy/rollback;
-- finished-product delivery rather than code-only completion.
+One consolidated real-product Mac commissioning campaign at the milestone gate.
 
-Exit:
-**PRODUCT ENGINEERING OPERATOR VERIFIED / LOCKED**
+Exit: **PRODUCT ENGINEERING OPERATOR VERIFIED / LOCKED**
 
 ### v0.9 — World-Class Field Benchmark
-Result target: prove quality against difficult, varied, real engineering scenarios rather than adding architectural volume.
 
-Evidence domains:
-- new product;
-- unfamiliar repository;
-- broken product;
-- migration;
-- deployment;
-- recovery;
-- long-running work;
-- multi-repository work;
-- UI/UX and Human Artistic Authority handoff;
-- security / authority discipline;
-- independent fresh-context / red-team review.
+GitHub benchmark harness plus selected real-Mac scenarios.
 
-Measures:
-- completion rate;
-- correctness;
-- regression rate;
-- recovery rate;
-- human intervention load;
-- evidence completeness;
-- finished-product rate;
-- quality consistency.
+Exit: **WORLD-CLASS FIELD BENCHMARK VERIFIED / LOCKED**
 
-Exit:
-**WORLD-CLASS FIELD BENCHMARK VERIFIED**
+### v1.0 — Verified Product Engineering Operator milestone
 
-### v1.0 — Verified Product Engineering Operator — FINAL TARGET
-Final result:
+Integrated release candidate from verified v0.6–v0.9 truths, exact-main release authority, consolidated Mac commissioning, DoneCheck v1.2 and Human Threshold™.
 
-**ENGÜRÜ Mac Engineering™ v1.0 — Verified Product Engineering Operator**
+Exit: **VERIFIED PRODUCT ENGINEERING OPERATOR / LOCKED**
 
-Exit contract:
+### v1.1 — FINAL TARGET
 
-`verified architecture + verified local product + long-run reliability + full product engineering + world-class field benchmark + Evidence + Mandatory DoneCheck™ + Human Threshold / final human acceptance → VERIFIED FINAL / LOCKED`
+Evidence-driven hardening after v1.0, compatibility/regression verification, final provenance and final commissioning when runtime truth changed.
+
+Exit: **VERIFIED FINAL / LOCKED**
+
+## DoneCheck authority
+
+`Markdown projection → Mandatory DoneCheck Evidence contract → DoneCheck v1.2 machine authority → Human Threshold™ final human authority`
+
+Canonical contract: `governance/mac-engineer/DONECHECK_AUTHORITY_MODEL_V1.md`.
 
 ## Permanent execution method
 
-`SESSION START → CANONICAL SYNC → SESSION STATE → ONE ACTIVE OBJECTIVE → ENGINEERING CHANGE → TEST/CI → EXACT-MAIN → MAC FIELD ACTION → EVIDENCE → MANDATORY DONECHECK™ → WORKLIST RECONCILE → SESSION HANDOFF`
+`SESSION START → CANONICAL SYNC → ONE ACTIVE OBJECTIVE → GITHUB ENGINEERING → TEST/CI → PR/REVIEW → EXACT-MAIN → DONECHECK ENGINEERING VERIFICATION → MILESTONE MAC COMMISSIONING → LOCAL EVIDENCE → DONECHECK v1.2 → HUMAN THRESHOLD → VERSION LOCK → STATUS/WORKLIST RECONCILE → SESSION HANDOFF`
+
+Canonical working-model contract: `governance/mac-engineer/GITHUB_FIRST_MILESTONE_MAC_WORKING_MODEL_V1.md`.
 
 ## Governance
 
 - One canonical WORKLIST.
 - One active objective.
-- Closed/locked versions remain closed unless new Evidence or an explicit human decision changes truth.
+- Closed versions remain closed unless new Evidence changes current truth.
 - Reuse → extend → adapter → new core.
-- Existing working truth is preserved; only the necessary difference is changed.
-- Product roadmap is outcome-driven; version numbers do not manufacture PASS.
+- Existing working truth is preserved; the necessary difference is applied.
+- Version numbers follow verified outcomes; they do not manufacture PASS.

@@ -688,54 +688,7 @@ Canonical experiment contract:
 
 ---
 
-# ENGÜRÜ Mac Engineering™ — CANONICAL PRODUCT ROADMAP + v0.6 FIELD CLOSEOUT
-
-**STATE:** HOLD — Aesthetic Motor architecture and core mechanisms are strong/tested; Aesthetic Studio has partial field PASS; end-to-end target → result closure, efficiency measurement, expanded creative surfaces and Mac Engineer binding remain open.
-
-**THEORETICAL TARGET:** **Aesthetic Motor™ — 100/100 TARGET**
-
-**Truth boundary:** 100/100 is a theoretical capability-completeness target. It is not a current field score and does not certify every future artwork. Project-level visual PASS requires real render/evidence plus Human Artistic Authority™. `WORLD_CLASS_100_VERIFIED` remains a stronger repeated-field claim.
-
-## Canonical product identity / final road
-
-- Canonical product name: **ENGÜRÜ Mac Engineering™**
-- Technical product repo: `engurulabory/enguru-mac-engineer`
-- Final target: **v1.0 — Verified Product Engineering Operator**
-- Human-readable roadmap: `governance/mac-engineer/PRODUCT_IDENTITY_ROADMAP_V1.md`
-- Machine-readable roadmap: `governance/mac-engineer/PRODUCT_ROADMAP_V1.json`
-- Permanent session method: `governance/mac-engineer/SESSION_CONTINUITY_CONTRACT_V1.md`
-
-Version result road:
-
-`v0.4 Field Engineering Foundation [LOCKED]`
-→ `v0.5 Reliability & Recovery Foundation [LOCKED]`
-→ `v0.6 Operating Behavior & Verified Local Product [FIELD CLOSEOUT ACTIVE]`
-→ `v0.7 Long-Running Reliability`
-→ `v0.8 Product Engineering Operator`
-→ `v0.9 World-Class Field Benchmark`
-→ `v1.0 Verified Product Engineering Operator [FINAL TARGET]`
-
-### Current v0.6 closure — canonical order
-
-- [x] GitHub Engineering Closeout — VERIFIED / LOCKED.
-- [x] Dedicated product source authority — PASS.
-- [x] Mac layout audit — PASS.
-- [x] Session Continuity Contract — PASS.
-- [x] Product exact-main CI — PASS.
-- [x] Product v0.6 source alignment — PASS.
-- [x] Exact-SHA rebuild/install — PASS at product SHA `28b901ab3303f4be3c7356b11218b62422f2da42`.
-- [x] Installed app v0.6 + runtime build app v0.6 — PASS.
-- [x] Runtime source parity 27/27 exact — PASS.
-- [x] Live localhost status + app/runtime processes — PASS.
-- [x] Fail-closed rollback behavior — field observed on first install attempt.
-- [x] **Runtime/App Provenance canonical closure — PASS.** Product source SHA = provenance SHA = install Evidence SHA = `28b901ab3303f4be3c7356b11218b62422f2da42`; installed/runtime app v0.6; native executable hashes identical.
-- [x] **Archive decision — PASS / preserve-first.** Historical handoff remains provenance evidence until v0.6 final; timestamped install backups remain rollback/recovery evidence; current runtime-build app remains active generated artifact. No destructive cleanup before final closure.
-- [ ] **ACTIVE — One real Mac engineering task.**
-- [ ] Checkpoint → restart → same-task resume.
-- [ ] Recovery field proof reconciliation; execute only the necessary remaining delta.
-- [ ] Local Evidence bundle.
-- [ ] Mandatory DoneCheck™.
-- [ ] **ENGÜRÜ Mac Engineering™ v0.6 VERIFIED FINAL / LOCKED.**
+# AESTHETIC MOTOR™ — CANONICAL ACTIVE WORKLIST
 
 ## Current Truth — LOCKED BASELINE
 - [x] Aesthetic Motor architecture — PASS.
@@ -1047,43 +1000,204 @@ Evaluate under original ENGÜRÜ identity:
 - GitHub exact-main PASS closes engineering truth; it does **not** by itself certify the Mac-local product runtime.
 - Final v0.6 VERIFIED FINAL / LOCKED requires both GitHub engineering closure and Mac Local Final Commissioning PASS.
 
+---
 
-## O. v0.6 Minimal Governance Hardening Harvest — SCHEDULED, NO ROLLOUT CHANGE
+# ENGÜRÜ Mac Engineering™ — CANONICAL PRODUCT ROADMAP + v0.6 FIELD CLOSEOUT
 
-**Placement rule:** these are small hardening items for existing layers. They do **not** create a new core, new agent framework or parallel authority path; they do not change the locked v0.6 rollout order. Implement only when the owning package becomes active.
+**STATE:** v0.6 LOCAL FIELD CLOSEOUT — **VERIFIED PASS**. Canonical reconciliation is the active closeout step.
 
-### Package 3 — Persistent Working Memory placement
-- [x] **Durable Task Record:** every real engineering task has one durable task identity inside existing Task State + Evidence, binding objective, authority snapshot, required capabilities, state transitions, artifacts/evidence refs, human decisions, resume checkpoint and final outcome.
-- [x] **Governed Learning Promotion:** `OBSERVED → LEARNING_CANDIDATE → EVIDENCE → FRESH/INDEPENDENT REVIEW → ACCEPT/REJECT → VERSIONED MEMORY/SKILL PROMOTION`; one successful observation never becomes canonical truth automatically.
+**Canonical product name:** **ENGÜRÜ Mac Engineering™**  
+**Technical product repository:** `engurulabory/enguru-mac-engineer`  
+**Control plane:** `engurulabory/Engurulaboratuvari`  
+**Final target:** **v1.1 — Verified Product Engineering Operator / VERIFIED FINAL LOCKED**
 
-### Package 4 — Real Field Acceptance / Finished Ability placement
-- [x] **Specialist Spawn Guard:** open a bounded specialist only for a verified capability gap or materially useful independent second view; scope/time are bounded and all central Authority / Human Threshold permissions are inherited unchanged.
-- [x] **Governed Tool-Gap Proposal:** `TOOL_GAP → PROPOSAL → authority/security/cost review → bounded test → evidence → ACCEPT/REJECT`; a tool gap never grants autonomous install/build/integration authority.
-- [x] **Human Intervention Reconciliation Gate:** after Human Threshold/takeover changes real state, do not resume from stale checkpoint; re-read repo/runtime/artifact/state → reconcile differences → establish `NEW_VERIFIED_STATE` → resume.
+## Locked authority model
 
-**Invariant:** specialization ≠ privilege escalation. Central Authority already exists and must not be duplicated.
+`STATE → CLAIM → EVIDENCE → JUDGMENT / NEXT ACTION`
 
-### Package 5 — GitHub Engineering Closeout / Aggregate Evidence + Mandatory DoneCheck™
-- [x] **Aggregate Evidence Bundle:** reconcile v0.6 package evidence into one canonical engineering-closure surface; preserve exact source SHA/run refs and distinguish GitHub technical evidence, Mac-local field evidence and Human Threshold evidence.
-- [x] **Locked target reconciliation:** Operating Character **98–99+ field**; Architecture Foundations **97+ applied**; Engineering Foundations **98+**; Intellectual Depth **97+**; Finished Ability **98+**; Human-Centered Conversation **97+**; Persistent Working Memory **97+**; **critical failures = 0**. A target may PASS only from applicable evidence; unsupported scores remain HOLD.
-- [x] **GitHub Engineering Mandatory DoneCheck™:** implementation → regression → canonical truth → authority boundaries → evidence completeness → PASS / HOLD / BLOCKED.
-- [x] **GitHub Engineering Closeout:** exact-head PASS → merge `49198ddad2f9aac987d6a2c3efbd6c58f910a17a` → exact-main Final Gate #214 + IP Gate #234 + Fleet #219 PASS → state **GITHUB_ENGINEERING_VERIFIED / MAC_COMMISSIONING_REQUIRED**.
+`Intent → Application Foundation Core™ → Production → Evidence → DoneCheck™ → Human Threshold™ → Verified Finish`
 
-### Package 6 — Mac Local Final Commissioning
-- [x] **Source ownership model:** Labory = CONTROL_PLANE; dedicated Mac Engineer repository = PRODUCT SOURCE; Runtime/Applications = EXECUTION OUTPUTS; local Evidence = field proof.
-- [x] **Historical source + field delta reconciliation:** 97 safe historical source files + 1 Swift source; zero secret findings; 13 current-field delta authority candidates verified by compile + runtime tests.
-- [x] **Dedicated product source bootstrap:** local canonical source prepared at `~/Enguru/Projects/enguru-mac-engineer`; 3 native + 26 runtime source files; runtime compile PASS; 25 runtime tests PASS; zsh syntax PASS; native Swift build PASS/executable; clean local Git `main` root commit `3ac09bd7d022a6114b9066afca14ff170e0177c1`.
-- [x] **Mac layout audit:** PASS — 15 findings reconciled; canonical=8, known secondary=7, unknown=0, stale temp=0, missing canonical=0, unknown processes=0, cleanup candidates=0.
-- [x] **Dedicated GitHub source authority:** private `engurulabory/enguru-mac-engineer`; local HEAD = local `origin/main` = remote `main` = `3ac09bd7d022a6114b9066afca14ff170e0177c1`; Product CI run #1 (`35640369690`) exact-head `completed/success`; Labory binding recorded.
-- [x] **Exact-main sync:** Mac `main` = GitHub `origin/main` at `e4f7670429ccdc57178065093f45ced83d07696f`; pre-sync local Shared AI edits preserved on `local/package6-preserve-20260921T201619` / `d3e5dca`; worktree clean.
-- [ ] **Local runtime boot / source binding:** runtime/app/process + Shared AI + Ollama/qwen3:14b ACTIVE/PASS; product source authority + exact-main CI PASS at `3ac09bd7d022a6114b9066afca14ff170e0177c1`. **PREFLIGHT HOLD — REQUIRED DIFFERENCE IDENTIFIED:** canonical product source and current runtime are code-exact across 26 source files; product/installed app version remains 0.4; runtime contains one current-only branding asset `static/engineer-emblem.png`. **PRODUCT SOURCE v0.6 EXACT-MAIN + PREFLIGHT — PASS:** product `main` = local `origin/main` = remote `main` = `28b901ab3303f4be3c7356b11218b62422f2da42`; Product CI push run #3 (`35645771602`) completed/success; fresh rebuild preflight PASS; source app version/build = 0.6; runtime parity 27/27 exact; installed app remains 0.4. **ACTIVE — exact-SHA native rebuild/install with backup + live provenance verification.** First field attempt reached post-launch verification, returned HOLD only on installed-app process detection, and rollback restored both app bundles + relaunch PASS; process verification is being corrected for macOS Unicode normalization/readiness before retry.
-- [x] **Real Mac task — 5/7 VERIFIED PASS:** canonical task `ENGURU-V06-FIELD-001`, checkpoint `v06-field-cp-001`, fixture SHA `f563a779f6d01a46e037e4330383c3adb032d426`; controlled `CURRENT_STATE.md` reconciliation completed, only intended file modified, `git diff --check` PASS, 1/1 regression PASS, application Evidence PASS and independent Evidence PASS.
-- [x] **Persistent continuity / Continuity Patch Repeatability Gate — VERIFIED PASS:** canonical task `ENGURU-V06-FIELD-001`, checkpoint `v06-field-cp-001`, authorized branch `fix/v06-durable-continuity-binding`, base `6f424c0b815d8c0cf8aa761124be3f743e412ee1`, exact patch scope `runtime/app.py`, `runtime/field_reliability.py`, `runtime/tests/test_field_continuity_binding.py`. Fixture/resume correction PASS; targeted repeatability **5/5 PASS**; full runtime regression **35 tests PASS**; diff check PASS; exact 3-file scope PASS; generated cache reconciled; final `PRODUCT_RUNTIME_CACHE_COUNT=0`; **CONTINUITY_PATCH_REPEATABILITY_GATE=PASS**. **PUBLICATION STAGE PASS:** product patch committed as `78dc4aaebbce4fd69ccfdc35544ea49454b27c2b`, worktree clean, exactly 1 commit ahead of main, pushed to remote with local HEAD = remote branch HEAD. **PRODUCT PATCH GITHUB ENGINEERING — VERIFIED PASS:** PR #5; exact-head Product CI PASS; merge SHA `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544`; exact-main Product CI run `35711368049` completed/success; Mac local `main` = remote `main`; clean worktree. Earlier connector 404 remained access-surface-only and was resolved through Mac-local authenticated `gh`.
-- [x] **Continuity patch exact-main Mac commissioning — VERIFIED PASS:** refreshed Product CI Evidence binds exact-main `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544` to Product CI run `35711368049`; rebuild preflight PASS; exact-SHA rebuild/install PASS; runtime source parity **31/31 EXACT**; backup prepared; rollback unused; installed/runtime app v0.6; product/provenance/install source SHA equality PASS; native executable hash equality PASS; live status RUNNING; installed app + runtime processes PASS; post-commission session-start PASS.
-- [x] **Checkpoint / runtime restart / same-task resume field proof — 6/7 VERIFIED PASS:** product exact-main `8e8d7db9ae811a5855697604800c830334944c1f` re-commissioned; control authority, canonical-context binding, exact-main CI Evidence, rebuild preflight, exact-SHA rebuild/install, runtime/app provenance, fixture truth, real runtime restart and resume prompt identity all PASS. Installed app returned canonical task `ENGURU-V06-FIELD-001`, checkpoint `v06-field-cp-001`, reliability task `task_94b95c63865a45db80b85ccba95f8119`, `changed=CURRENT_STATE.md`, `test_count=1`, fixture SHA `f563a779f6d01a46e037e4330383c3adb032d426`, `test_code=0`, `worktree_unchanged=True`, `recovered=True`, `cached=False`, `fresh_revalidation=True`, verdict PASS. Real Mac task is **6/7 VERIFIED PASS**.
-- [ ] **ACTIVE — Recovery field proof (7/7):** run one bounded recoverable failure scenario → diagnose → smallest recovery → reverify → Evidence → PASS/HOLD/BLOCKED.
-- [ ] **Local Evidence bundle:** repo SHA, runtime status, task record, artifacts/diff, test results, restart/resume proof and recovery proof are recorded locally and referenced canonically.
-- [ ] **Mac Local Mandatory DoneCheck™:** work done? actually works? real Mac task? restart/resume? recovery? evidence? authority boundaries? critical failures = 0?
-- [ ] **v0.6 final closure:** GitHub engineering PASS + Mac local commissioning PASS → **ENGÜRÜ Mac Engineer™ v0.6 VERIFIED FINAL / LOCKED**.
+DoneCheck authority separation is canonical:
 
-**Current single objective:** **Recovery Field Proof Reconciliation**.
+- **Markdown DoneCheck:** human-readable read-only projection of current evidence and judgment.
+- **Mandatory DoneCheck JSON:** structured evidence contract / producer output.
+- **DoneCheck v1.2:** machine verification and production closure authority.
+- **Human Threshold™:** final human authority for acceptance and irreversible/external authority boundaries.
+
+A lower layer supplies evidence to the next authority layer; higher-layer PASS is earned by its own acceptance contract.
+
+Canonical contract: `governance/mac-engineer/DONECHECK_AUTHORITY_MODEL_V1.md`.
+
+## Locked working model — GitHub-first / Milestone-Mac
+
+Primary engineering plane:
+
+`ChatGPT Project → GitHub branch/change → tests → CI → PR → review → merge → exact-main → DoneCheck v1.2 engineering verification`
+
+Milestone field plane:
+
+`exact-main milestone → Mac commissioning → real field scenarios → local Evidence → DoneCheck v1.2 → Human Threshold™ → version VERIFIED / LOCKED`
+
+ENGÜRÜ Mac Engineer™ is the local field executor and Evidence producer for ChatGPT Project sessions. GitHub remains source/CI/release truth; the real Mac remains runtime/installation/field truth.
+
+Canonical contract: `governance/mac-engineer/GITHUB_FIRST_MILESTONE_MAC_WORKING_MODEL_V1.md`.
+
+## Historical lineage — v0.0 → v0.3
+
+Git history currently provides no canonical independent product-version names for v0.0, v0.1, v0.2 or v0.3.
+
+- [ ] Reconstruct v0.0–v0.3 from Git history, evidence and dated governance records.
+- [ ] Promote a historical version name only when evidence supports an actual boundary.
+- [ ] Preserve unsupported intervals as **PRE-CANONICAL DEVELOPMENT LINEAGE**.
+
+No retrospective version name is manufactured from later architecture.
+
+## v0.4 — Field Engineering Foundation — LOCKED
+
+- [x] Real Mac execution surface.
+- [x] Governed repository work.
+- [x] Local task execution.
+- [x] Field engineering authority foundation.
+- [x] Canonical version state: **LOCKED**.
+
+## v0.5 — Reliability & Recovery Foundation — LOCKED
+
+- [x] Reliability state machine foundation.
+- [x] Checkpoint / durable resume foundation.
+- [x] Recovery classification and rollback basis.
+- [x] Idempotency / single-writer reliability mechanisms.
+- [x] Canonical version state: **LOCKED**.
+
+## v0.6 — Operating Behavior & Verified Local Product
+
+### GitHub engineering
+- [x] Dedicated product source authority.
+- [x] Product CI exact-main.
+- [x] Context durability engineering.
+- [x] Fresh resume verification engineering.
+- [x] Bounded recovery route/executor engineering.
+- [x] Product exact-main: `7f2e22994d17b913f226eb05691d934f81e1c212`.
+- [x] Product exact-main CI: **PASS**.
+
+### Mac commissioning
+- [x] Exact-SHA rebuild/install.
+- [x] Runtime source parity: **34/34 EXACT**.
+- [x] Runtime/App provenance: **PASS**.
+- [x] Installed app v0.6: **PASS**.
+- [x] Real Mac task: **7/7 VERIFIED PASS**.
+- [x] Checkpoint → restart → same-task resume: **VERIFIED PASS**.
+- [x] Bounded recoverable failure observed.
+- [x] Root cause identified.
+- [x] Smallest bounded recovery applied.
+- [x] Fresh regression: **1/1 PASS**.
+- [x] Fixture HEAD preserved: `f563a779f6d01a46e037e4330383c3adb032d426`.
+- [x] Recovery Evidence contract: **PASS**.
+- [x] Local Evidence Bundle: **VERIFIED PASS**.
+- [x] Mac Local Mandatory DoneCheck™: **PASS**.
+- [x] Fixture authority preserved.
+
+Local evidence:
+- `~/Enguru/Evidence/MacEngineer/package6-bounded-recovery-latest.json`
+- `~/Enguru/Evidence/MacEngineer/agent-ledger.jsonl`
+- `~/Enguru/Evidence/MacEngineer/v0.6/package6-local-evidence-bundle.json`
+- `~/Enguru/Evidence/MacEngineer/v0.6/package6-mandatory-donecheck.json`
+
+### v0.6 canonical closeout
+- [x] Local field truth: **VERIFIED PASS**.
+- [x] 7/7 independent recovery verification.
+- [x] Local Evidence bundle.
+- [x] Mandatory DoneCheck evidence.
+- [ ] Merge canonical reconciliation.
+- [ ] Verify control-plane exact-main CI.
+- [ ] Record **v0.6 VERIFIED FINAL / LOCKED** after exact-main acceptance.
+
+**Active objective:** `V06_CANONICAL_RECONCILIATION_AND_WORKING_MODEL_LOCK`
+
+**Current single objective:** **V06 Canonical Reconciliation and Working Model Lock**.
+
+## v0.7 — Long-Running Reliability
+
+Engineering mode: **GitHub-first**.
+
+- [ ] Define exact v0.7 acceptance matrix from existing reliability layers.
+- [ ] Long-run task state correctness.
+- [ ] Durable resume across process/runtime interruption.
+- [ ] Idempotency and single-writer stress.
+- [ ] Bounded retry / watchdog.
+- [ ] Provider/network/process recovery fixtures.
+- [ ] Resource and evidence continuity.
+- [ ] GitHub CI / fault-injection campaign.
+- [ ] DoneCheck v1.2 integration for milestone closure.
+- [ ] **One consolidated Mac long-run commissioning campaign.**
+- [ ] Human Threshold™.
+- [ ] **v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED.**
+
+## v0.8 — Product Engineering Operator
+
+Engineering mode: **GitHub-first**.
+
+Canonical chain:
+
+`INTAKE → DISCOVER → ARCHITECT → DESIGN → BUILD → TEST → REPAIR → PACKAGE → DEPLOY → LIVE VERIFY → LIFECYCLE → EVIDENCE → DONECHECK`
+
+- [ ] New product from brief.
+- [ ] Existing product change.
+- [ ] Migration / repair.
+- [ ] Full-stack path where required.
+- [ ] UI/UX + Aesthetic Motor integration.
+- [ ] Release / deploy / rollback.
+- [ ] Finished-product delivery acceptance.
+- [ ] **One consolidated real-Mac product engineering commissioning campaign.**
+- [ ] DoneCheck v1.2 + Human Threshold™.
+- [ ] **v0.8 PRODUCT ENGINEERING OPERATOR VERIFIED / LOCKED.**
+
+## v0.9 — World-Class Field Benchmark
+
+Engineering mode: **GitHub-first benchmark harness + selected Mac field proofs**.
+
+- [ ] New product scenario.
+- [ ] Unfamiliar repository.
+- [ ] Broken product.
+- [ ] Migration.
+- [ ] Deployment / rollback.
+- [ ] Recovery.
+- [ ] Long-running work.
+- [ ] Multi-repository work.
+- [ ] UI/UX + Human Artistic Authority™ handoff.
+- [ ] Security / authority discipline.
+- [ ] Independent fresh-context / red-team review.
+- [ ] Measure completion, correctness, regression, recovery, human intervention, evidence completeness and finished-product rate.
+- [ ] Selected real-Mac benchmark campaign.
+- [ ] **v0.9 WORLD-CLASS FIELD BENCHMARK VERIFIED / LOCKED.**
+
+## v1.0 — Verified Product Engineering Operator milestone
+
+- [ ] Integrate verified v0.6 + v0.7 + v0.8 + v0.9 truths.
+- [ ] Release-candidate engineering on GitHub.
+- [ ] Exact-main release authority.
+- [ ] Consolidated Mac commissioning.
+- [ ] DoneCheck v1.2 Verified Finish candidate.
+- [ ] Human Threshold™ / final human acceptance.
+- [ ] **v1.0 VERIFIED PRODUCT ENGINEERING OPERATOR — VERIFIED / LOCKED.**
+
+## v1.1 — Final target
+
+- [ ] Post-v1.0 hardening required by evidence only.
+- [ ] Regression / compatibility verification.
+- [ ] Final release provenance.
+- [ ] Final Mac commissioning when runtime truth changed since v1.0.
+- [ ] DoneCheck v1.2 Verified Finish.
+- [ ] Human Threshold™.
+- [ ] **v1.1 VERIFIED FINAL / LOCKED.**
+
+## Permanent execution method
+
+`SESSION START → CANONICAL SYNC → ONE ACTIVE OBJECTIVE → GITHUB ENGINEERING → TEST/CI → PR/REVIEW → EXACT-MAIN → DONECHECK ENGINEERING VERIFICATION → MILESTONE MAC COMMISSIONING → LOCAL EVIDENCE → DONECHECK v1.2 → HUMAN THRESHOLD → VERSION LOCK → STATUS/WORKLIST RECONCILE → SESSION HANDOFF`
+
+## Current next action
+
+1. Merge this canonical reconciliation with CI evidence.
+2. Verify exact-main.
+3. Close v0.6 as **VERIFIED FINAL / LOCKED**.
+4. Reconstruct v0.0–v0.3 historical lineage from evidence.
+5. Start v0.7 under the **GitHub-first / Milestone-Mac** model.
