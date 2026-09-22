@@ -1128,7 +1128,7 @@ Local evidence:
 
 Engineering mode: **GitHub-first**.
 
-- [ ] Define exact v0.7 acceptance matrix from existing reliability layers.
+- [x] Define exact v0.7 acceptance matrix from existing reliability layers. — canonical: `governance/mac-engineer/V07_LONG_RUNNING_RELIABILITY_ACCEPTANCE_MATRIX_V1.md`; Evidence: `evidence/MAC_ENGINEER_V07_ACCEPTANCE_MATRIX_2026-09-22.md`.
 - [ ] Long-run task state correctness.
 - [ ] Durable resume across process/runtime interruption.
 - [ ] Idempotency and single-writer stress.
