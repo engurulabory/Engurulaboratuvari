@@ -129,8 +129,13 @@ def authorized_product_working_branch(
     if objective in {
         "CONTINUITY_PATCH_REPEATABILITY",
         "PRODUCT_PATCH_GITHUB_ENGINEERING",
+        "CHECKPOINT_RESTART_RESUME_FIELD_PROOF",
     }:
-        patch = state.get("observedContinuityPatch", {})
+        patch = (
+            state.get("observedContextDurabilityPatch", {})
+            if objective == "CHECKPOINT_RESTART_RESUME_FIELD_PROOF"
+            else state.get("observedContinuityPatch", {})
+        )
         expected_branch = str(patch.get("branch", ""))
         expected_head = str(patch.get("head", ""))
         expected_base = str(patch.get("baseMain", ""))
@@ -157,7 +162,10 @@ def authorized_product_working_branch(
         )
 
         committed_patch_authorized = bool(
-            objective == "PRODUCT_PATCH_GITHUB_ENGINEERING"
+            objective in {
+                "PRODUCT_PATCH_GITHUB_ENGINEERING",
+                "CHECKPOINT_RESTART_RESUME_FIELD_PROOF",
+            }
             and expected_branch
             and expected_head
             and expected_base
