@@ -71,7 +71,10 @@
       "state": "ACTIVE",
       "exit": [
         "LONG_RUN_RELIABILITY_VERIFIED_LOCKED"
-      ]
+      ],
+      "acceptanceMatrix": "PASS_CANONICAL_CANDIDATE",
+      "acceptanceMatrixPath": "governance/mac-engineer/V07_LONG_RUNNING_RELIABILITY_ACCEPTANCE_MATRIX_V1.md",
+      "nextAction": "V07_A01_A02_LONG_RUN_TASK_STATE_AND_DURABLE_RESUME"
     },
     {
       "version": "v0.8",
