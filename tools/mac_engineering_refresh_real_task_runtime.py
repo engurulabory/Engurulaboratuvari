@@ -118,6 +118,95 @@ def wait_status(timeout_seconds: float = 20.0) -> dict[str, Any]:
     return last
 
 
+def fixture_from_rows(
+    rows: list[dict[str, Any]],
+) -> dict[str, Any] | None:
+    expected = FIXTURE.resolve()
+
+    for row in rows:
+        raw_path = row.get("path")
+
+        if not raw_path:
+            continue
+
+        try:
+            observed = Path(
+                str(raw_path)
+            ).expanduser().resolve()
+        except OSError:
+            continue
+
+        if observed == expected:
+            return row
+
+    return None
+
+
+def runtime_repository_inventory() -> dict[str, Any]:
+    runtime_dir = RUNTIME_PY.parent
+
+    code = """
+import json
+import sys
+from pathlib import Path
+
+runtime_dir = Path(sys.argv[1])
+enguru_root = Path(sys.argv[2])
+
+sys.path.insert(0, str(runtime_dir))
+
+import repo_manager as rm
+
+rows = rm.scan_enguru(enguru_root)
+
+print(
+    json.dumps(
+        rows,
+        ensure_ascii=False,
+    )
+)
+"""
+
+    result = run(
+        [
+            "python3",
+            "-c",
+            code,
+            str(runtime_dir),
+            str(HOME / "Enguru"),
+        ],
+        timeout=30,
+    )
+
+    if not result["pass"]:
+        raise RefreshError(
+            "RUNTIME_REPOSITORY_SCAN_FAILED:"
+            + str(result["stderr"])
+        )
+
+    try:
+        rows = json.loads(
+            str(result["stdout"])
+        )
+    except json.JSONDecodeError as exc:
+        raise RefreshError(
+            "RUNTIME_REPOSITORY_SCAN_INVALID_JSON"
+        ) from exc
+
+    if not isinstance(rows, list):
+        raise RefreshError(
+            "RUNTIME_REPOSITORY_SCAN_LIST_REQUIRED"
+        )
+
+    fixture = fixture_from_rows(rows)
+
+    return {
+        "repo_count": len(rows),
+        "fixture_discovered": fixture is not None,
+        "fixture": fixture,
+    }
+
+
 def main() -> int:
     try:
         if not PREP_EVIDENCE.is_file():
@@ -151,15 +240,31 @@ def main() -> int:
         if not isinstance(after_count, int):
             raise RefreshError("RUNTIME_REPO_COUNT_REQUIRED")
 
-        inventory_refreshed = (
-            before_count is None
-            or after_count > before_count
-            or after_count >= 9
+        runtime_inventory = (
+            runtime_repository_inventory()
         )
-        if not inventory_refreshed:
+
+        if not runtime_inventory.get(
+            "fixture_discovered"
+        ):
             raise RefreshError(
-                f"REAL_TASK_FIXTURE_NOT_DISCOVERED:before={before_count}:after={after_count}"
+                "REAL_TASK_FIXTURE_NOT_DISCOVERED:"
+                f"before={before_count}:"
+                f"after={after_count}"
             )
+
+        runtime_repo_count = (
+            runtime_inventory.get("repo_count")
+        )
+
+        if runtime_repo_count != after_count:
+            raise RefreshError(
+                "RUNTIME_REPO_COUNT_MISMATCH:"
+                f"status={after_count}:"
+                f"scan={runtime_repo_count}"
+            )
+
+        inventory_refreshed = True
 
         rows = process_rows()
         app_present = any(norm(str(APP)) in norm(row["command"]) for row in rows)
@@ -180,6 +285,8 @@ def main() -> int:
             "before_repo_count": before_count,
             "after_repo_count": after_count,
             "inventory_refreshed": inventory_refreshed,
+            "fixture_discovered": True,
+            "runtime_repository_inventory": runtime_inventory,
             "stopped_processes": stopped,
             "processes_after": rows,
             "runtime_status": after_payload,
