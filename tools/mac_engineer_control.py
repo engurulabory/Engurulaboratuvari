@@ -225,6 +225,23 @@ def refresh_bootstrap_evidence() -> tuple[bool, dict[str, Any]]:
     return True, evidence
 
 
+def run_after_context_sync(command: list[str]) -> int:
+    sync_proc = subprocess.run(
+        [sys.executable, str(SYNC_CONTEXT)],
+        cwd=str(ROOT),
+        check=False,
+    )
+    if sync_proc.returncode != 0:
+        return sync_proc.returncode
+
+    proc = subprocess.run(
+        command,
+        cwd=str(ROOT),
+        check=False,
+    )
+    return proc.returncode
+
+
 def bootstrap_source(publish: bool) -> int:
     if not publish:
         ok, refreshed = refresh_bootstrap_evidence()
@@ -353,12 +370,9 @@ def main() -> int:
         )
         return proc.returncode
     if args.command == "refresh-real-task-runtime":
-        proc = subprocess.run(
-            [sys.executable, str(REFRESH_REAL_TASK_RUNTIME)],
-            cwd=str(ROOT),
-            check=False,
+        return run_after_context_sync(
+            [sys.executable, str(REFRESH_REAL_TASK_RUNTIME)]
         )
-        return proc.returncode
     if args.command == "inspect-repo-discovery":
         proc = subprocess.run(
             [sys.executable, str(REPO_DISCOVERY_DIAGNOSTIC)],
@@ -368,8 +382,11 @@ def main() -> int:
         return proc.returncode
     if args.command in {"session-start", "session-handoff"}:
         mode = "start" if args.command == "session-start" else "handoff"
+        command = [sys.executable, str(SESSION_CONTINUITY), mode]
+        if args.command == "session-start":
+            return run_after_context_sync(command)
         proc = subprocess.run(
-            [sys.executable, str(SESSION_CONTINUITY), mode],
+            command,
             cwd=str(ROOT),
             check=False,
         )
