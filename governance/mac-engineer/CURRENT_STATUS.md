@@ -16,7 +16,7 @@ The continuity patch is fully integrated into product exact-main `6d2fcd923e8fa0
 ## 2. CANONICAL SURFACES
 
 - Control plane: `engurulabory/Engurulaboratuvari`
-- Control-plane exact-main: `30aa6555f494a83da4eaa798a0f0687ef3106558` — Final Gate / IP Gate / Fleet PASS
+- Control-plane exact-main: `09bdf578ea90666615c2333704516c91f850e668` — Final Gate / IP Gate / Fleet PASS
 - Product source: `engurulabory/enguru-mac-engineer`
 - Mac product checkout: `~/Enguru/Projects/enguru-mac-engineer`
 - Product canonical branch: `main`
@@ -80,6 +80,23 @@ The active acceptance gate is:
 `TARGETED_REPEATABILITY=5/5_PASS + FULL_RUNTIME_REGRESSION=PASS + DIFF_CHECK=PASS + PATCH_SCOPE=3_FILES_PASS + PRODUCT_RUNTIME_CACHE_COUNT=0`
 
 ## 5. LATEST OBSERVED RESULT
+
+### Context Durability Product Patch — PUBLICATION STAGE PASS
+
+- product branch: `fix/v06-context-durability-resume-routing`
+- base exact-main: `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544`
+- committed patch HEAD: `f980a47716eaace5b4fb1d9e37cc95ff0a1b5da2`
+- committed scope: exact 5 files
+- post-commit worktree: clean
+- ahead of main: exactly 1 commit
+- push: **PASS**
+- local HEAD = remote branch HEAD: **PASS**
+- post-commit session continuity: **PASS**
+- publication verdict: **CONTEXT_DURABILITY_PUBLICATION_STAGE=PASS**
+
+The verified product patch is now published to the remote feature branch. Product PR → exact-head Product CI → merge → exact-main Product CI is the next engineering step. Real Mac task remains **5/7** until re-commissioned field restart/resume succeeds.
+
+
 
 ### Context-durability publication authority — VERIFIED PASS
 
@@ -375,7 +392,7 @@ The program target remains v1.1.
 
 ## 9. NEXT ACTION
 
-**Single next action:** commit and push the locally verified exact 5-file context-durability patch from `fix/v06-context-durability-resume-routing`, preserving exact base/scope and a clean one-commit-ahead publication state.
+**Single next action:** create the product PR from `fix/v06-context-durability-resume-routing` at exact head `f980a47716eaace5b4fb1d9e37cc95ff0a1b5da2`, verify exact-head Product CI, merge, and verify product exact-main CI.
 
 ## 9.1 MAINTENANCE RULE
 
