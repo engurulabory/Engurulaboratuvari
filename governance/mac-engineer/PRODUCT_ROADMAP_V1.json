@@ -85,7 +85,9 @@
         "V07-A07",
         "V07-A08"
       ],
-      "evidence": "evidence/MAC_ENGINEER_V07_A07_A08_ENGINEERING_2026-09-22.md"
+      "evidence": "evidence/MAC_ENGINEER_V07_A07_A08_ENGINEERING_2026-09-22.md",
+      "passedGatesAuthority": "GITHUB_FIRST_ACCEPTANCE",
+      "milestoneMacAcceptance": "PENDING_CONSOLIDATED_COMMISSIONING"
     },
     {
       "version": "v0.8",
