@@ -1086,4 +1086,4 @@ Evaluate under original ENGÜRÜ identity:
 - [ ] **Mac Local Mandatory DoneCheck™:** work done? actually works? real Mac task? restart/resume? recovery? evidence? authority boundaries? critical failures = 0?
 - [ ] **v0.6 final closure:** GitHub engineering PASS + Mac local commissioning PASS → **ENGÜRÜ Mac Engineer™ v0.6 VERIFIED FINAL / LOCKED**.
 
-**Current single objective:** **Package 6 — Recovery Field Proof (7/7)**.
+**Current single objective:** **Recovery Field Proof Reconciliation**.
