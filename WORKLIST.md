@@ -1135,7 +1135,7 @@ Engineering mode: **GitHub-first**.
 - [x] Bounded retry / watchdog. — V07-A05: retry limit 2 / max attempts 3 / over-limit fail-closed / one watchdog decision; Product exact-main `199893b07941a82c26c3b39a7942478cb95420b0`; Product CI #23 PASS.
 - [x] Provider/network/process recovery fixtures. — V07-A06: provider unavailable + network timeout + child-process exit, each recoverable and exhausted; task/Evidence continuity PASS.
 - [ ] Resource and evidence continuity. — **GitHub-first acceptance PASS / Mac acceptance pending**. V07-A07: 40 tasks, 0 unexpected artifacts, 0 temp/cache residue. V07-A08: 20 checkpoints / 20 restarts with Evidence lineage + journal reconciliation. Product exact-main `5432b9b135499cea18273c0e003877b864af92c6`; Product CI #26 PASS. Mac ≥8h/RSS + Local Evidence bundle remain in consolidated commissioning.
-- [ ] GitHub CI / fault-injection campaign.
+- [ ] GitHub CI / fault-injection campaign. — **HOLD / external GitHub Actions execution gate**. Product PR #13 jobs on `macos-latest`, `macos-15` and `ubuntu-latest` all fail before first step (`steps=null`); A09 remains 0/5. Evidence: `evidence/MAC_ENGINEER_V07_A09_ACTIONS_HOLD_2026-09-22.md`.
 - [ ] DoneCheck v1.2 integration for milestone closure.
 - [ ] **One consolidated Mac long-run commissioning campaign.**
 - [ ] Human Threshold™.
