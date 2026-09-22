@@ -480,5 +480,14 @@
     },
     "diffCheck": "PASS",
     "runtimeCacheCount": 0
+  },
+  "observedContextDurabilityPublicationAuthority": {
+    "state": "VERIFIED_PASS",
+    "prNumber": 146,
+    "controlPlaneExactMain": "30aa6555f494a83da4eaa798a0f0687ef3106558",
+    "exactMainCI": "PASS",
+    "dirtyPreCommitAuthorization": "EXACT_ONLY",
+    "cleanSingleCommitAuthorization": "EXACT_ONLY",
+    "driftPolicy": "FAIL_CLOSED"
   }
 }

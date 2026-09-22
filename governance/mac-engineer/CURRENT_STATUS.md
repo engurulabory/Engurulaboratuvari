@@ -16,7 +16,7 @@ The continuity patch is fully integrated into product exact-main `6d2fcd923e8fa0
 ## 2. CANONICAL SURFACES
 
 - Control plane: `engurulabory/Engurulaboratuvari`
-- Control-plane exact-main: `34bbe6888196c2627ab5d66faa8182637be78165` — Final Gate / IP Gate / Fleet PASS
+- Control-plane exact-main: `30aa6555f494a83da4eaa798a0f0687ef3106558` — Final Gate / IP Gate / Fleet PASS
 - Product source: `engurulabory/enguru-mac-engineer`
 - Mac product checkout: `~/Enguru/Projects/enguru-mac-engineer`
 - Product canonical branch: `main`
@@ -80,6 +80,20 @@ The active acceptance gate is:
 `TARGETED_REPEATABILITY=5/5_PASS + FULL_RUNTIME_REGRESSION=PASS + DIFF_CHECK=PASS + PATCH_SCOPE=3_FILES_PASS + PRODUCT_RUNTIME_CACHE_COUNT=0`
 
 ## 5. LATEST OBSERVED RESULT
+
+### Context-durability publication authority — VERIFIED PASS
+
+- control-plane reconciliation PR: **#146**
+- merge / control-plane exact-main: `30aa6555f494a83da4eaa798a0f0687ef3106558`
+- exact-main ENGURU Labory Final Gate: **PASS**
+- exact-main IP Model Trust Gate: **PASS**
+- exact-main IP Model Trust Fleet: **PASS**
+- exact dirty pre-commit product state: authorized only for the recorded 5-file context-durability patch
+- exact clean one-commit-ahead post-commit state: authorized only for the same branch/base/diff
+- unexpected path / branch / base / commit-count drift: fail-closed HOLD
+- next action remains: product patch commit → push
+
+
 
 ### Context Durability Product Patch — LOCAL VERIFIED PASS
 
