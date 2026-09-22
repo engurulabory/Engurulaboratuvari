@@ -5,7 +5,7 @@
 **Current version:** v0.6 — Field Closeout Active  
 **Current objective:** Package 6 — Checkpoint / Restart / Same-Task Resume Field Proof  
 **Canonical objective id:** `CHECKPOINT_RESTART_RESUME_FIELD_PROOF`  
-**Current verdict:** PASS — product PR #6 exact-head Product CI is verified; merge and exact-main Product CI remain
+**Current verdict:** PASS — context-durability GitHub engineering is VERIFIED PASS; Mac exact-main re-commissioning and real restart/resume proof remain
 
 ## 1. STATE
 
@@ -80,6 +80,20 @@ The active acceptance gate is:
 `TARGETED_REPEATABILITY=5/5_PASS + FULL_RUNTIME_REGRESSION=PASS + DIFF_CHECK=PASS + PATCH_SCOPE=3_FILES_PASS + PRODUCT_RUNTIME_CACHE_COUNT=0`
 
 ## 5. LATEST OBSERVED RESULT
+
+### Context Durability GitHub Engineering — VERIFIED PASS
+
+- product PR: **#6 — MERGED**
+- exact-head: `f980a47716eaace5b4fb1d9e37cc95ff0a1b5da2`
+- exact-head Product CI run: **35724995225 — completed/success**
+- merge SHA / new product exact-main: `125be3a4b01b3a4de5faf949c79372de1d249aaf`
+- exact-main Product CI run: **35726087972 — completed/success**
+- local product `main` = remote `origin/main`: **PASS**
+- local product worktree: **clean**
+- final verdict: **CONTEXT_DURABILITY_GITHUB_ENGINEERING=PASS**
+- real Mac task remains **5/7** until this exact-main is commissioned and the same-task restart/resume field proof passes
+
+
 
 ### Product PR #6 Exact-Head Product CI — VERIFIED PASS
 
@@ -414,7 +428,7 @@ The program target remains v1.1.
 
 ## 9. NEXT ACTION
 
-**Single next action:** merge product PR #6 at exact head `f980a47716eaace5b4fb1d9e37cc95ff0a1b5da2`, verify the resulting product exact-main push CI, then reconcile Mac local `main` to the merge SHA.
+**Single next action:** commission product exact-main `125be3a4b01b3a4de5faf949c79372de1d249aaf` onto the Mac runtime/app using refreshed exact-main Product CI Evidence, rebuild preflight, exact-SHA rebuild/install, provenance verification and post-commission session continuity.
 
 ## 9.1 MAINTENANCE RULE
 
