@@ -2,15 +2,15 @@
 
 ## STATE
 
-**V07-A07 — PASS / EXACT-MAIN**
+**V07-A07 — GITHUB-FIRST ACCEPTANCE PASS / MAC ACCEPTANCE PENDING**
 
-**V07-A08 — PASS / EXACT-MAIN**
+**V07-A08 — GITHUB-FIRST ACCEPTANCE PASS / MAC ACCEPTANCE PENDING**
 
 v0.7 remains **ACTIVE**. This record does not assert v0.7 Verified / Locked.
 
 ## CLAIM
 
-The current product exact-main proves resource/artifact discipline and structured Evidence continuity across repeated restart without a production runtime change.
+The current product exact-main proves the GitHub-first acceptance side of resource/artifact discipline and structured Evidence continuity across repeated restart without a production runtime change. The milestone Mac acceptance side remains open for the consolidated campaign.
 
 ## EVIDENCE
 
@@ -107,9 +107,20 @@ Completed:
 
 No new core was required.
 
+## AUTHORITY BOUNDARY
+
+These receipts close the **GitHub-first acceptance** side only.
+
+Still pending in the locked acceptance matrix:
+
+- V07-A07 Mac acceptance: consolidated campaign duration **≥ 8 hours**, peak RSS after warm-up **≤ 2.0×** warm baseline, final RSS **≤ 1.5×** warm baseline, and storage/temp reconciliation at closeout.
+- V07-A08 Mac acceptance: one Local Evidence bundle covering the full campaign from start receipt through final closeout.
+
 ## JUDGMENT
 
-**PASS — V07-A01…A08 ENGINEERING VERIFIED ON PRODUCT EXACT-MAIN**
+**PASS — V07-A07 + V07-A08 GITHUB-FIRST ENGINEERING ACCEPTANCE**
+
+**HOLD — MILESTONE MAC ACCEPTANCE REMAINS OPEN**
 
 ## NEXT ACTION
 
