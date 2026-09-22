@@ -14,6 +14,16 @@ Every engineering session follows exactly this chain:
 
 No session starts directly from an old chat summary, an old Terminal directory, an installed runtime file or a remembered next step.
 
+### 1.1 Active working-path bootstrap
+
+When `governance/mac-engineer/ACTIVE_WORKING_PATH.md` is present, a new ChatGPT engineering session reads it immediately after this contract and before dynamic session-state evaluation.
+
+The active working-path file records the current human/ChatGPT execution model: GitHub-first engineering, Mac last-mile commissioning, target → result discipline, role separation, Evidence, Human Threshold™ and Mandatory DoneCheck™.
+
+Dynamic technical truth continues to come from `SESSION_STATE_V1.json`, `PRODUCT_ROADMAP_V1.json`, `WORKLIST.md`, exact GitHub state and current Mac Evidence.
+
+When the ENGÜRÜ Mac Engineer™ active development program reaches its verified locked finish, the active working-path bootstrap may be removed without changing this permanent continuity contract.
+
 ## 2. Authority order
 
 When sources disagree, use this order:
