@@ -1132,8 +1132,8 @@ Engineering mode: **GitHub-first**.
 - [x] Long-run task state correctness. — V07-A01: 1,000 governed transitions / 200 tasks; Product exact-main `443fd4455b6c2f095c7944ee7bc00445d96d2d2a`; Product CI #19 PASS.
 - [x] Durable resume across process/runtime interruption. — V07-A02: three interruption classes × 10 repetitions; task identity continuity PASS; Evidence: `evidence/MAC_ENGINEER_V07_A01_A02_ENGINEERING_2026-09-22.md`.
 - [x] Idempotency and single-writer stress. — V07-A03: 100 replays → 1 created / 99 duplicate / 1 durable side effect; V07-A04: 16 contenders → 1 canonical writer / 15 WriterBusy / 1 transition commit; Product exact-main `1dcbc795e4b949448206fbad93b239aca297cc0f`; Product CI #21 PASS.
-- [ ] Bounded retry / watchdog.
-- [ ] Provider/network/process recovery fixtures.
+- [x] Bounded retry / watchdog. — V07-A05: retry limit 2 / max attempts 3 / over-limit fail-closed / one watchdog decision; Product exact-main `199893b07941a82c26c3b39a7942478cb95420b0`; Product CI #23 PASS.
+- [x] Provider/network/process recovery fixtures. — V07-A06: provider unavailable + network timeout + child-process exit, each recoverable and exhausted; task/Evidence continuity PASS.
 - [ ] Resource and evidence continuity.
 - [ ] GitHub CI / fault-injection campaign.
 - [ ] DoneCheck v1.2 integration for milestone closure.

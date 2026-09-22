@@ -713,7 +713,7 @@
     "state": "ACTIVE",
     "objective": "V0_7_LONG_RUNNING_RELIABILITY",
     "engineeringMode": "GITHUB_FIRST",
-    "nextAction": "V07_A05_A06_BOUNDED_RETRY_WATCHDOG_AND_RECOVERY_FIXTURES",
+    "nextAction": "V07_A07_A08_RESOURCE_AND_EVIDENCE_CONTINUITY",
     "milestoneMacCommissioning": "AFTER_GITHUB_ENGINEERING",
     "acceptanceMatrix": "PASS_DEFINED",
     "acceptanceMatrixPath": "governance/mac-engineer/V07_LONG_RUNNING_RELIABILITY_ACCEPTANCE_MATRIX_V1.md",
@@ -722,15 +722,17 @@
       "V07-A01",
       "V07-A02",
       "V07-A03",
-      "V07-A04"
+      "V07-A04",
+      "V07-A05",
+      "V07-A06"
     ],
-    "productExactMain": "1dcbc795e4b949448206fbad93b239aca297cc0f",
-    "productPrNumber": 10,
-    "exactHeadCiRunId": 35769088949,
-    "exactMainCiRunId": 35769257875,
+    "productExactMain": "199893b07941a82c26c3b39a7942478cb95420b0",
+    "productPrNumber": 11,
+    "exactHeadCiRunId": 35770093773,
+    "exactMainCiRunId": 35770247337,
     "exactMainCi": "PASS",
-    "runtimeRegression": "50_OF_50_OK",
-    "evidence": "evidence/MAC_ENGINEER_V07_A03_A04_ENGINEERING_2026-09-22.md"
+    "runtimeRegression": "52_OF_52_OK",
+    "evidence": "evidence/MAC_ENGINEER_V07_A05_A06_ENGINEERING_2026-09-22.md"
   },
   "observedV07A01A02": {
     "state": "VERIFIED_PASS_EXACT_MAIN",
@@ -782,5 +784,29 @@
       "state": "PASS"
     },
     "productionReliabilityCodeChanged": false
+  },
+  "observedV07A05A06": {
+    "state": "VERIFIED_PASS_EXACT_MAIN",
+    "productExactMain": "199893b07941a82c26c3b39a7942478cb95420b0",
+    "productPrNumber": 11,
+    "exactHeadCiRunId": 35770093773,
+    "exactMainCiRunId": 35770247337,
+    "runtimeTests": "52_OF_52_OK",
+    "a05": {
+      "retryLimit": 2,
+      "maxAttempts": 3,
+      "overLimitFailClosed": true,
+      "watchdogDecisionCount": 1,
+      "repeatWatchdogFindings": 0,
+      "state": "PASS"
+    },
+    "a06": {
+      "providerUnavailable": "RECOVERABLE_AND_EXHAUSTED_PASS",
+      "networkTimeout": "RECOVERABLE_AND_EXHAUSTED_PASS",
+      "childProcessExit": "RECOVERABLE_AND_EXHAUSTED_PASS",
+      "taskIdentityContinuity": true,
+      "evidenceContinuity": true,
+      "state": "PASS"
+    }
   }
 }
