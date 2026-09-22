@@ -100,7 +100,9 @@ v0.4, v0.5 and v0.6 locked truths remain unchanged.
 
 **v0.7 — Long-Running Reliability**
 
-First required difference: define the exact v0.7 acceptance matrix from existing reliability layers before implementation work expands.
+First required difference **PASS**: exact v0.7 acceptance matrix is canonical at `governance/mac-engineer/V07_LONG_RUNNING_RELIABILITY_ACCEPTANCE_MATRIX_V1.md`, with Evidence at `evidence/MAC_ENGINEER_V07_ACCEPTANCE_MATRIX_2026-09-22.md`.
+
+Current required difference: implement and verify `V07-A01 + V07-A02 → LONG_RUN_TASK_STATE_AND_DURABLE_RESUME` in the technical product source.
 
 ## REMAINING v0.6 CLOSEOUT
 
@@ -131,4 +133,4 @@ Recovery, fixture repair, local field acceptance and the reconstructed pre-canon
 
 ## NEXT ACTION
 
-`V0_7_LONG_RUNNING_RELIABILITY → DEFINE_EXACT_ACCEPTANCE_MATRIX → GITHUB_FIRST_ENGINEERING`
+`V0_7_LONG_RUNNING_RELIABILITY → V07-A01 + V07-A02 → LONG_RUN_TASK_STATE_AND_DURABLE_RESUME → GITHUB_FIRST_ENGINEERING`
