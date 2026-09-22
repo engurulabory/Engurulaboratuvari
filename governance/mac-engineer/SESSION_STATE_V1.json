@@ -35,7 +35,8 @@
     "continuityPatchRepeatability": "VERIFIED_PASS",
     "productPatchGithubEngineering": "VERIFIED_PASS",
     "continuityPatchExactMainCommissioning": "VERIFIED_PASS",
-    "canonicalContextRefreshBinding": "VERIFIED_PASS"
+    "canonicalContextRefreshBinding": "VERIFIED_PASS",
+    "contextDurabilityGithubEngineering": "VERIFIED_PASS"
   },
   "currentObjective": "CHECKPOINT_RESTART_RESUME_FIELD_PROOF",
   "observedProductPublication": {
@@ -288,7 +289,7 @@
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "MERGE_PRODUCT_PR6_VERIFY_EXACT_MAIN_CI_AND_LOCAL_MAIN_PARITY",
+  "nextAction": "RECOMMISSION_CONTEXT_DURABILITY_EXACT_MAIN_ON_MAC",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
@@ -515,5 +516,16 @@
     "status": "completed",
     "conclusion": "success",
     "ciVisibilityHoldResolved": true
+  },
+  "observedContextDurabilityGithubEngineering": {
+    "state": "VERIFIED_PASS",
+    "productPrNumber": 6,
+    "exactHead": "f980a47716eaace5b4fb1d9e37cc95ff0a1b5da2",
+    "exactHeadCiRun": 35724995225,
+    "mergeSha": "125be3a4b01b3a4de5faf949c79372de1d249aaf",
+    "exactMainCiRun": 35726087972,
+    "exactMainCi": "PASS",
+    "localRemoteMainParity": "PASS",
+    "localWorktree": "CLEAN"
   }
 }
