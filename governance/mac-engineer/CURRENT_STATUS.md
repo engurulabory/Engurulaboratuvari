@@ -11,7 +11,7 @@
 
 ENGÜRÜ Mac Engineer™ v0.6 is **not yet VERIFIED FINAL / LOCKED**.
 
-GitHub control-plane continuity is aligned and verified. The dedicated product continuity patch has now satisfied its full local repeatability acceptance: 5/5 targeted continuity PASS, 35/35 runtime regression PASS, diff check PASS, exact 3-file scope PASS and runtime cache count 0. The active objective advances to publishing this verified patch through the product repository GitHub engineering chain.
+GitHub control-plane continuity is aligned and verified. The dedicated product continuity patch has satisfied its full local repeatability acceptance and has now been committed and pushed to the product repository. Local HEAD and remote branch HEAD are exactly `78dc4aaebbce4fd69ccfdc35544ea49454b27c2b`; the branch is clean, exactly one commit ahead of product main, and the committed diff remains exactly the authorized three files. The active objective remains Product Patch GitHub Engineering for PR → exact-head CI → merge → exact-main CI.
 
 ## 2. CANONICAL SURFACES
 
@@ -20,7 +20,8 @@ GitHub control-plane continuity is aligned and verified. The dedicated product c
 - Product source: `engurulabory/enguru-mac-engineer`
 - Mac product checkout: `~/Enguru/Projects/enguru-mac-engineer`
 - Product branch: `fix/v06-durable-continuity-binding`
-- Product HEAD / origin-main base: `6f424c0b815d8c0cf8aa761124be3f743e412ee1`
+- Product published patch HEAD: `78dc4aaebbce4fd69ccfdc35544ea49454b27c2b`
+- Product origin-main base: `6f424c0b815d8c0cf8aa761124be3f743e412ee1`
 - Runtime: `~/Enguru/Runtime/MacEngineer`
 - Installed app: `~/Applications/ENGÜRÜ Mac Engineer.app`
 - Local Evidence: `~/Enguru/Evidence/MacEngineer/v0.6`
@@ -72,6 +73,21 @@ The active acceptance gate is:
 
 ## 5. LATEST OBSERVED RESULT
 
+### Product patch publication stage — PASS
+
+- branch: `fix/v06-durable-continuity-binding`
+- base main: `6f424c0b815d8c0cf8aa761124be3f743e412ee1`
+- commit: `78dc4aaebbce4fd69ccfdc35544ea49454b27c2b`
+- commit message: `fix: preserve durable field continuity across restart`
+- committed scope: exactly 3 authorized files
+- worktree after commit: clean
+- ahead of main: 1 commit
+- push: PASS
+- local HEAD = remote branch HEAD: PASS
+- publication stage verdict: **PASS**
+
+
+
 ### Cache gate
 
 Initial repeatability run stopped safely because 10 generated Python cache artifacts were present.
@@ -105,9 +121,9 @@ The continuity repeatability acceptance is now closed.
 
 Publish the verified three-file product patch through the canonical GitHub engineering chain:
 
-1. commit exactly the authorized three files on `fix/v06-durable-continuity-binding`;
-2. push the branch;
-3. create product PR against `main`;
+1. commit exactly the authorized three files on `fix/v06-durable-continuity-binding` — **PASS**;
+2. push the branch — **PASS**;
+3. create product PR against `main` — **ACTIVE**;
 4. verify exact-head Product CI;
 5. merge;
 6. verify product exact-main CI.
@@ -118,7 +134,7 @@ The verified local acceptance evidence remains the gate for this publication.
 
 1. **Continuity fixture / resume correction** — PASS
 2. **Continuity Patch Repeatability Gate** — VERIFIED PASS
-3. **Product patch GitHub engineering** — ACTIVE: commit → push → PR → exact-head CI → merge → exact-main CI
+3. **Product patch GitHub engineering** — ACTIVE: commit PASS → push PASS → PR → exact-head CI → merge → exact-main CI
 4. **Mac checkpoint/restart/same-task resume field proof**
 5. **Recovery field proof** — bounded recoverable failure → diagnosis → smallest recovery → reverify
 6. **Local Evidence bundle**
@@ -138,7 +154,7 @@ The program target remains v1.1.
 
 ## 9. NEXT ACTION
 
-**Single next action:** publish the verified continuity patch through the product repository GitHub engineering chain, preserving the exact three-file scope and the verified acceptance evidence.
+**Single next action:** create the product PR from `fix/v06-durable-continuity-binding` at exact head `78dc4aaebbce4fd69ccfdc35544ea49454b27c2b`, then verify exact-head Product CI before merge.
 
 ## 9.1 MAINTENANCE RULE
 
