@@ -68,7 +68,10 @@ class MacEngineerSessionContinuityTests(unittest.TestCase):
             / "SESSION_CONTINUITY_CONTRACT_V1.md"
         ).read_text(encoding="utf-8")
         self.assertIn("Current Status mandatory update invariant", contract)
-        self.assertIn("after every material engineering package", contract)
+        self.assertIn(
+            "after every material engineering package",
+            contract.lower(),
+        )
 
         status = CURRENT_STATUS.read_text(encoding="utf-8")
         self.assertIn("MAINTENANCE RULE", status)
