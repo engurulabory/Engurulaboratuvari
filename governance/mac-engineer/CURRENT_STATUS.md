@@ -1,10 +1,46 @@
 # ENGÜRÜ Mac Engineer™ — Current Status
 
-**Updated:** 2026-09-22  
-**Program target:** ENGÜRÜ Mac Engineer™ v1.1 — Verified Product Engineering Operator  
-**Current version:** v0.6 — Field Closeout Active  
-**Current objective:** Package 6 — Recovery Field Proof (7/7)  
-**Canonical objective id:** `RECOVERY_FIELD_PROOF_RECONCILIATION`  
+**Updated:** 2026-09-22
+**Program target:** ENGÜRÜ Mac Engineer™ v1.1 — Verified Product Engineering Operator
+**Current version:** v0.6 — Field Closeout Active
+**Current objective:** Package 6 — Recovery Field Proof (7/7)
+**Canonical objective id:** `RECOVERY_FIELD_PROOF_RECONCILIATION`
+
+<!-- ENGURU_V06_RECOVERY_SHA_RECONCILIATION_START -->
+## Latest material Evidence — bounded recovery commissioning
+
+**COMPLETED / CHANGED WORK**
+
+- Bounded recovery product patch merged through product PR #8.
+- Current product exact-main: `7f2e22994d17b913f226eb05691d934f81e1c212`.
+- Product exact-main CI run `35753607274`: **PASS**.
+- Exact-SHA Mac rebuild/install: **PASS**.
+- Runtime source parity: **34/34 EXACT**.
+- Runtime/App provenance binding: **PASS**.
+- Controlled recovery field fault remains preserved for installed-app acceptance.
+
+**LATEST EVIDENCE**
+
+- `~/Enguru/Evidence/MacEngineer/v0.6/package6-product-ci-exact-main.json`
+- `~/Enguru/Evidence/MacEngineer/v0.6/package6-exact-sha-rebuild-install.json`
+- `~/Enguru/Evidence/MacEngineer/v0.6/package6-runtime-app-provenance-closure.json`
+
+**JUDGMENT**
+
+GitHub engineering and Mac last-mile commissioning for the bounded recovery capability are **VERIFIED PASS**. Real Mac engineering task remains **6/7 VERIFIED PASS** until the installed app executes the preserved bounded recovery and independent post-recovery verification passes.
+
+**CURRENT OBJECTIVE**
+
+`RECOVERY_FIELD_PROOF_RECONCILIATION`
+
+**REMAINING WORK**
+
+Installed-app bounded recovery → independent post-recovery verification → Local Evidence Bundle → Mandatory DoneCheck™ → v0.6 VERIFIED FINAL / LOCKED.
+
+**NEXT ACTION**
+
+Publish this canonical SHA reconciliation, verify control-plane exact-main, refresh canonical context, then execute the preserved recovery field proof through the installed ENGÜRÜ Mac Engineer™ app.
+<!-- ENGURU_V06_RECOVERY_SHA_RECONCILIATION_END -->
 **Current verdict:** PASS — restart/resume field continuity is VERIFIED PASS at 6/7; bounded Recovery Field Proof is the single active gate
 
 ## 1. STATE
@@ -605,5 +641,5 @@ The new session continues from the single active objective and the single requir
 
 ## JUDGMENT
 
-**v0.6 FIELD CLOSEOUT ACTIVE / 6 OF 7 VERIFIED PASS.**  
+**v0.6 FIELD CLOSEOUT ACTIVE / 6 OF 7 VERIFIED PASS.**
 Checkpoint → runtime restart → same-task resume continuity is VERIFIED PASS on the installed app with fresh, non-cached repository revalidation. The single active field gate is bounded Recovery Field Proof (7/7).
