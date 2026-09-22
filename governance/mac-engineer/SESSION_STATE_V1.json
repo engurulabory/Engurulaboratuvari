@@ -713,22 +713,26 @@
     "state": "ACTIVE",
     "objective": "V0_7_LONG_RUNNING_RELIABILITY",
     "engineeringMode": "GITHUB_FIRST",
-    "nextAction": "V07_A03_A04_IDEMPOTENCY_AND_SINGLE_WRITER_STRESS",
+    "nextAction": "V07_A07_A08_RESOURCE_DISCIPLINE_AND_EVIDENCE_CONTINUITY",
     "milestoneMacCommissioning": "AFTER_GITHUB_ENGINEERING",
     "acceptanceMatrix": "PASS_DEFINED",
     "acceptanceMatrixPath": "governance/mac-engineer/V07_LONG_RUNNING_RELIABILITY_ACCEPTANCE_MATRIX_V1.md",
     "acceptanceMatrixEvidence": "evidence/MAC_ENGINEER_V07_ACCEPTANCE_MATRIX_2026-09-22.md",
     "passedGates": [
       "V07-A01",
-      "V07-A02"
+      "V07-A02",
+      "V07-A03",
+      "V07-A04",
+      "V07-A05",
+      "V07-A06"
     ],
-    "productExactMain": "443fd4455b6c2f095c7944ee7bc00445d96d2d2a",
-    "productPrNumber": 9,
-    "exactHeadCiRunId": 35768412377,
-    "exactMainCiRunId": 35768544303,
+    "productExactMain": "199893b07941a82c26c3b39a7942478cb95420b0",
+    "productPrNumber": 11,
+    "exactHeadCiRunId": 35770093773,
+    "exactMainCiRunId": 35770247337,
     "exactMainCi": "PASS",
-    "runtimeRegression": "48_OF_48_OK",
-    "evidence": "evidence/MAC_ENGINEER_V07_A01_A02_ENGINEERING_2026-09-22.md"
+    "runtimeRegression": "52_OF_52_OK",
+    "evidence": "evidence/MAC_ENGINEER_V07_A03_A06_ENGINEERING_2026-09-22.md"
   },
   "observedV07A01A02": {
     "state": "VERIFIED_PASS_EXACT_MAIN",
@@ -753,5 +757,52 @@
       "state": "PASS"
     },
     "productionReliabilityCodeChanged": false
+  },
+  "observedV07A03A06": {
+    "state": "VERIFIED_PASS_EXACT_MAIN",
+    "observedAt": "2026-09-22",
+    "productExactMain": "199893b07941a82c26c3b39a7942478cb95420b0",
+    "a03": {
+      "productPrNumber": 10,
+      "exactHead": "f401ae760481dfad762a0de7fae6a2d9139b8977",
+      "exactHeadCiRunId": 35769088949,
+      "exactMain": "1dcbc795e4b949448206fbad93b239aca297cc0f",
+      "exactMainCiRunId": 35769257875,
+      "replays": 100,
+      "created": 1,
+      "duplicates": 99,
+      "durableSideEffects": 1,
+      "taskIdentityStable": true,
+      "state": "PASS"
+    },
+    "a04": {
+      "concurrentContenders": 16,
+      "canonicalWriters": 1,
+      "writerBusy": 15,
+      "transitionCommits": 1,
+      "finalState": "RUNNING",
+      "state": "PASS"
+    },
+    "a05": {
+      "productPrNumber": 11,
+      "exactHead": "6dd92012859f77c0e70ef43d3c6833734ea82b64",
+      "exactHeadCiRunId": 35770093773,
+      "exactMain": "199893b07941a82c26c3b39a7942478cb95420b0",
+      "exactMainCiRunId": 35770247337,
+      "retryLimit": 2,
+      "maxAttempts": 3,
+      "overLimitFailClosed": true,
+      "watchdogDecisions": 1,
+      "repeatWatchdogFindings": 0,
+      "state": "PASS"
+    },
+    "a06": {
+      "providerUnavailable": "RECOVERABLE_AND_EXHAUSTED_PASS",
+      "networkTimeout": "RECOVERABLE_AND_EXHAUSTED_PASS",
+      "childProcessExit": "RECOVERABLE_AND_EXHAUSTED_PASS",
+      "taskIdentityContinuity": true,
+      "evidenceContinuity": true,
+      "state": "PASS"
+    }
   }
 }
