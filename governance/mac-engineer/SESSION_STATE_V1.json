@@ -504,9 +504,9 @@
     "exactMainCI": "PASS"
   },
   "observedContextDurabilityProductPr": {
-    "state": "EXACT_HEAD_CI_VERIFIED_PASS",
+    "state": "MERGED_EXACT_MAIN_PASS",
     "prNumber": 6,
-    "prState": "OPEN",
+    "prState": "MERGED",
     "mergeState": "CLEAN",
     "head": "f980a47716eaace5b4fb1d9e37cc95ff0a1b5da2",
     "base": "6d2fcd923e8fa0417a2e7787acd0dcef6b25e544",
@@ -515,7 +515,10 @@
     "event": "pull_request",
     "status": "completed",
     "conclusion": "success",
-    "ciVisibilityHoldResolved": true
+    "ciVisibilityHoldResolved": true,
+    "mergeSha": "125be3a4b01b3a4de5faf949c79372de1d249aaf",
+    "exactMainCiRun": 35726087972,
+    "exactMainCi": "PASS"
   },
   "observedContextDurabilityGithubEngineering": {
     "state": "VERIFIED_PASS",
