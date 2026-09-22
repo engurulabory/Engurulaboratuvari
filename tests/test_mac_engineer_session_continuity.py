@@ -410,6 +410,78 @@ class MacEngineerSessionContinuityTests(unittest.TestCase):
         )
         self.assertFalse(authorized)
 
+    def test_fresh_resume_patch_allows_exact_dirty_set(self):
+        state = {
+            "currentObjective": "CHECKPOINT_RESTART_RESUME_FIELD_PROOF",
+            "observedFreshResumeVerificationPatch": {
+                "branch": "fix/v06-fresh-resume-verification",
+                "head": "125be3a",
+                "baseMain": "125be3a",
+                "expectedDirtyPaths": [
+                    "runtime/app.py",
+                    "runtime/field_reliability.py",
+                    "runtime/tests/test_field_resume_verification.py",
+                ],
+            },
+        }
+        product = {
+            "branch": "fix/v06-fresh-resume-verification",
+            "head": "125be3a",
+            "origin_main": "125be3a",
+            "exact_origin_main": True,
+            "clean": False,
+            "status": (
+                " M runtime/app.py\n"
+                " M runtime/field_reliability.py\n"
+                "?? runtime/tests/test_field_resume_verification.py"
+            ),
+        }
+        authorized, policy = authorized_product_working_branch(
+            state,
+            product,
+        )
+        self.assertTrue(authorized)
+        self.assertEqual(policy["mode"], "IN_FLIGHT_PATCH")
+
+    def test_fresh_resume_patch_allows_exact_clean_single_commit(self):
+        state = {
+            "currentObjective": "CHECKPOINT_RESTART_RESUME_FIELD_PROOF",
+            "observedFreshResumeVerificationPatch": {
+                "branch": "fix/v06-fresh-resume-verification",
+                "head": "125be3a",
+                "baseMain": "125be3a",
+                "expectedDirtyPaths": [
+                    "runtime/app.py",
+                    "runtime/field_reliability.py",
+                    "runtime/tests/test_field_resume_verification.py",
+                ],
+            },
+        }
+        product = {
+            "branch": "fix/v06-fresh-resume-verification",
+            "head": "abc1234",
+            "origin_main": "125be3a",
+            "exact_origin_main": False,
+            "clean": True,
+            "status": "",
+            "merge_base_origin_main": "125be3a",
+            "ahead_origin_main": "1",
+            "diff_names_origin_main": (
+                "runtime/app.py\n"
+                "runtime/field_reliability.py\n"
+                "runtime/tests/test_field_resume_verification.py"
+            ),
+        }
+        authorized, policy = authorized_product_working_branch(
+            state,
+            product,
+        )
+        self.assertTrue(authorized)
+        self.assertEqual(
+            policy["mode"],
+            "COMMITTED_PATCH_AWAITING_PR",
+        )
+
     def test_unrecorded_product_branch_is_not_authorized(self):
         state = {
             "currentObjective": "PRODUCT_SOURCE_V0_6_ALIGNMENT_PUBLICATION",
