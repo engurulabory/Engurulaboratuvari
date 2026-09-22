@@ -170,6 +170,36 @@ class MacEngineerSessionContinuityTests(unittest.TestCase):
             sorted(state["observedContinuityPatch"]["expectedDirtyPaths"]),
         )
 
+    def test_product_patch_github_engineering_keeps_exact_inflight_patch_authorized(self):
+        state = {
+            "currentObjective": "PRODUCT_PATCH_GITHUB_ENGINEERING",
+            "observedContinuityPatch": {
+                "branch": "fix/v06-durable-continuity-binding",
+                "head": "6f424c0",
+                "baseMain": "6f424c0",
+                "expectedDirtyPaths": [
+                    "runtime/app.py",
+                    "runtime/field_reliability.py",
+                    "runtime/tests/test_field_continuity_binding.py",
+                ],
+            },
+        }
+        product = {
+            "branch": "fix/v06-durable-continuity-binding",
+            "head": "6f424c0",
+            "origin_main": "6f424c0",
+            "exact_origin_main": True,
+            "clean": False,
+            "status": (
+                " M runtime/app.py\n"
+                " M runtime/field_reliability.py\n"
+                "?? runtime/tests/test_field_continuity_binding.py"
+            ),
+        }
+        authorized, policy = authorized_product_working_branch(state, product)
+        self.assertTrue(authorized)
+        self.assertEqual(policy["mode"], "IN_FLIGHT_PATCH")
+
     def test_continuity_patch_rejects_unexpected_dirty_path(self):
         state = {
             "currentObjective": "CONTINUITY_PATCH_REPEATABILITY",
