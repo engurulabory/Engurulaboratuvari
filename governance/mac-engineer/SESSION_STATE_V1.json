@@ -287,7 +287,7 @@
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "PYTHON_ONLY_FULL_SOURCE_AND_DURABLE_STATE_DISCOVERY",
+  "nextAction": "INSPECT_APP_CONTEXT_HISTORY_WARNING_AND_CANONICAL_CONTEXT_REFRESH_THEN_MINIMAL_HARDENING_PATCH",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
@@ -356,5 +356,41 @@
       "reason": "RG_AVAILABILITY_NOT_VERIFIED_AND_STDERR_SUPPRESSED"
     },
     "judgment": "DURABLE_TASK_INFRASTRUCTURE_EXISTS_CONTEXT_ASSEMBLY_AND_WARNING_SOURCE_REQUIRE_EXACT_DISCOVERY"
+  },
+  "observedLongConversationDurabilityExactDiscovery": {
+    "state": "PASS_READ_ONLY",
+    "observedAt": "2026-09-22",
+    "warningSource": {
+      "appPy": [
+        "runtime/app.py:828-843"
+      ],
+      "ui": [
+        "runtime/static/index.html:1148-1151"
+      ]
+    },
+    "contextAssembly": "runtime/app.py:703-753",
+    "canonicalTaskPersistence": {
+      "taskId": "ENGURU-V06-FIELD-001",
+      "checkpointId": "v06-field-cp-001",
+      "taskRecord": "tasks/task_94b95c63865a45db80b85ccba95f8119.json",
+      "internalState": "COMPLETE",
+      "cockpitContainsCanonicalIds": true,
+      "evidenceContainsCanonicalIds": true
+    },
+    "idempotency": {
+      "literalCanonicalIdsPresent": false,
+      "note": "TOP_LEVEL_KEYS_ARE_DIGESTS_NOT_LITERAL_IDS"
+    },
+    "taskJournal": {
+      "literalCanonicalIdMatches": 0
+    },
+    "canonicalContext": {
+      "state": "STALE",
+      "observedAt": "2026-09-21T20:17:20.743204Z",
+      "activeObjective": "Package 6 — Runtime/App Provenance Closure",
+      "sessionStateObjective": "RUNTIME_APP_PROVENANCE_CLOSURE",
+      "method": "OLDER_PRE_CURRENT_STATUS_CHAIN"
+    },
+    "workingHypothesis": "DURABLE_TASK_PRESENT_BUT_ACTIVE_CONVERSATION_CONTEXT_USES_STALE_CANONICAL_CONTEXT_AND_EARLY_HARDCODED_WARNING"
   }
 }
