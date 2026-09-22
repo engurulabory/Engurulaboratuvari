@@ -78,11 +78,53 @@ def active_objective() -> str:
     return match.group(1) if match else "UNRESOLVED"
 
 
+def porcelain_paths(status: str) -> list[str]:
+    paths: list[str] = []
+    for line in status.splitlines():
+        if len(line) < 4:
+            continue
+        path = line[3:]
+        if " -> " in path:
+            path = path.split(" -> ", 1)[1]
+        paths.append(path)
+    return sorted(paths)
+
+
 def authorized_product_working_branch(
     state: dict[str, Any],
     product: dict[str, Any],
 ) -> tuple[bool, dict[str, Any]]:
     objective = str(state.get("currentObjective", ""))
+
+    if objective == "CONTINUITY_PATCH_REPEATABILITY":
+        patch = state.get("observedContinuityPatch", {})
+        expected_branch = str(patch.get("branch", ""))
+        expected_head = str(patch.get("head", ""))
+        expected_base = str(patch.get("baseMain", ""))
+        expected_dirty = sorted(patch.get("expectedDirtyPaths", []))
+        observed_dirty = porcelain_paths(str(product.get("status", "")))
+
+        authorized = bool(
+            expected_branch
+            and expected_head
+            and expected_base
+            and expected_dirty
+            and product.get("branch") == expected_branch
+            and product.get("head") == expected_head
+            and product.get("origin_main") == expected_base
+            and product.get("exact_origin_main") is True
+            and observed_dirty == expected_dirty
+        )
+        return authorized, {
+            "mode": "IN_FLIGHT_PATCH",
+            "expected_branch": expected_branch,
+            "expected_head": expected_head,
+            "expected_base_main": expected_base,
+            "expected_dirty_paths": expected_dirty,
+            "observed_dirty_paths": observed_dirty,
+            "authorized": authorized,
+        }
+
     prepared = state.get("observedV06AlignmentPreparation", {})
     if objective not in {
         "PRODUCT_SOURCE_V0_6_ALIGNMENT_PUBLICATION",
@@ -104,6 +146,7 @@ def authorized_product_working_branch(
         and product.get("clean") is True
     )
     return authorized, {
+        "mode": "CLEAN_WORKING_BRANCH",
         "expected_branch": expected_branch,
         "expected_head": expected_head,
         "expected_base_main": expected_base,
@@ -148,7 +191,7 @@ def snapshot(mode: str) -> dict[str, Any]:
             working_branch_policy,
         ) = authorized_product_working_branch(state, product)
 
-        if product.get("clean") is not True:
+        if product.get("clean") is not True and not working_branch_authorized:
             issues.append("PRODUCT_SOURCE_CLEAN_REQUIRED")
 
         if not working_branch_authorized:
@@ -199,7 +242,8 @@ def snapshot(mode: str) -> dict[str, Any]:
             "Continue only the canonical active objective. "
             "Treat GitHub WORKLIST/governance and exact-main as authority. "
             "A non-main product branch is accepted only when SESSION_STATE "
-            "explicitly authorizes its exact branch/head/base for the active objective; "
+            "explicitly authorizes its exact branch/head/base and, for an in-flight patch, "
+            "the exact bounded dirty-path set for the active objective; "
             "chat memory is advisory."
         ),
         "new_session_instruction": (
