@@ -40,7 +40,7 @@
     "freshResumeGithubEngineering": "VERIFIED_PASS",
     "checkpointRestartResumeFieldProof": "VERIFIED_PASS"
   },
-  "currentObjective": "V06_CANONICAL_RECONCILIATION_AND_WORKING_MODEL_LOCK",
+  "currentObjective": "V00_V03_HISTORICAL_RECONSTRUCTION",
   "observedProductPublication": {
     "source": "MAC_FIELD_OUTPUT",
     "localSourceHead": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
@@ -290,7 +290,7 @@
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "V06_CANONICAL_RECONCILIATION_AND_WORKING_MODEL_LOCK",
+  "nextAction": "V00_V03_HISTORICAL_RECONSTRUCTION",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
@@ -640,10 +640,8 @@
     "fixtureAuthorityPreserved": true,
     "evidenceBundle": "~/Enguru/Evidence/MacEngineer/v0.6/package6-local-evidence-bundle.json",
     "doneCheckEvidence": "~/Enguru/Evidence/MacEngineer/v0.6/package6-mandatory-donecheck.json",
-    "remainingBeforeFinalLock": [
-      "CONTROL_PLANE_CANONICAL_RECONCILIATION_MERGE",
-      "CONTROL_PLANE_EXACT_MAIN_ACCEPTANCE"
-    ]
+    "remainingBeforeFinalLock": [],
+    "canonicalState": "VERIFIED_FINAL_LOCKED"
   },
   "doneCheckAuthorityDecision": {
     "state": "LOCKED",
@@ -669,7 +667,34 @@
       "v0.2",
       "v0.3"
     ],
-    "state": "OPEN_AFTER_V06_CANONICAL_LOCK",
+    "state": "ACTIVE",
     "truthBoundary": "Git/Evidence-supported boundaries only; otherwise PRE_CANONICAL_DEVELOPMENT_LINEAGE"
+  },
+  "observedV06CanonicalCloseout": {
+    "state": "VERIFIED_FINAL_LOCKED",
+    "observedAt": "2026-09-22",
+    "mergedPr": 165,
+    "mergeSha": "777904a957dfd475713dfd5de7b499c88247f4de",
+    "exactMain": {
+      "laboryFinalGate": {
+        "runId": 35762914178,
+        "runNumber": 366,
+        "state": "PASS"
+      },
+      "ipModelTrustGate": {
+        "runId": 35762914150,
+        "runNumber": 385,
+        "state": "PASS"
+      },
+      "ipModelTrustFleet": {
+        "runId": 35762914256,
+        "runNumber": 370,
+        "state": "PASS"
+      }
+    },
+    "localFieldCloseout": "VERIFIED_PASS",
+    "realMacTask": "7_OF_7_VERIFIED_PASS",
+    "localEvidenceBundle": "VERIFIED_PASS",
+    "mandatoryDoneCheck": "PASS"
   }
 }

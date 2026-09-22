@@ -15,8 +15,8 @@
   },
   "current": {
     "version": "v0.6",
-    "state": "LOCAL_FIELD_CLOSEOUT_VERIFIED_CANONICAL_RECONCILIATION",
-    "activeObjective": "V06_CANONICAL_RECONCILIATION_AND_WORKING_MODEL_LOCK",
+    "state": "VERIFIED_FINAL_LOCKED",
+    "activeObjective": "V00_V03_HISTORICAL_RECONSTRUCTION",
     "productSourceSha": "7f2e22994d17b913f226eb05691d934f81e1c212",
     "installedVersion": "0.6",
     "completed": [
@@ -31,13 +31,12 @@
       "CHECKPOINT_RESTART_RESUME",
       "RECOVERY_FIELD_PROOF_RECONCILIATION",
       "LOCAL_EVIDENCE_BUNDLE",
-      "MAC_LOCAL_MANDATORY_DONECHECK"
-    ],
-    "remaining": [
-      "CONTROL_PLANE_CANONICAL_RECONCILIATION_MERGE",
+      "MAC_LOCAL_MANDATORY_DONECHECK",
+      "CONTROL_PLANE_CANONICAL_RECONCILIATION",
       "CONTROL_PLANE_EXACT_MAIN_ACCEPTANCE",
       "V0_6_VERIFIED_FINAL_LOCKED"
-    ]
+    ],
+    "remaining": []
   },
   "versions": [
     {
@@ -53,7 +52,7 @@
     {
       "version": "v0.6",
       "name": "Operating Behavior & Verified Local Product",
-      "state": "LOCAL_FIELD_CLOSEOUT_VERIFIED_CANONICAL_RECONCILIATION",
+      "state": "LOCKED",
       "exit": [
         "RUNTIME_APP_PROVENANCE_CLOSURE",
         "ARCHIVE_DECISION",
@@ -115,8 +114,9 @@
       "v0.2",
       "v0.3"
     ],
-    "state": "HISTORICAL_RECONSTRUCTION_REQUIRED",
-    "rule": "Promote historical version names only from Git/Evidence-supported boundaries; otherwise preserve as PRE_CANONICAL_DEVELOPMENT_LINEAGE."
+    "state": "HISTORICAL_RECONSTRUCTION_ACTIVE",
+    "rule": "Promote historical version names only from Git/Evidence-supported boundaries; otherwise preserve as PRE_CANONICAL_DEVELOPMENT_LINEAGE.",
+    "nextAction": "V00_V03_HISTORICAL_RECONSTRUCTION"
   },
   "doneCheckAuthority": {
     "markdownProjection": "HUMAN_READABLE_READ_ONLY_PROJECTION",
@@ -132,5 +132,24 @@
     "fieldExecutor": "ENGURU_MAC_ENGINEER",
     "fieldPlane": "REAL_MAC_MILESTONE_COMMISSIONING",
     "contract": "governance/mac-engineer/GITHUB_FIRST_MILESTONE_MAC_WORKING_MODEL_V1.md"
+  },
+  "v06FinalLock": {
+    "state": "VERIFIED_FINAL_LOCKED",
+    "mergedPr": 165,
+    "controlPlaneExactMain": "777904a957dfd475713dfd5de7b499c88247f4de",
+    "exactMainCi": {
+      "laboryFinalGate": {
+        "runNumber": 366,
+        "state": "PASS"
+      },
+      "ipModelTrustGate": {
+        "runNumber": 385,
+        "state": "PASS"
+      },
+      "ipModelTrustFleet": {
+        "runNumber": 370,
+        "state": "PASS"
+      }
+    }
   }
 }

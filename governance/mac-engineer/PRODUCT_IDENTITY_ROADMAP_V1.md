@@ -34,9 +34,9 @@ Real Mac execution surface, repository work, local task execution and governed f
 
 Reliability state machine, checkpoint/resume, recovery classification, rollback basis, idempotency and single-writer foundations.
 
-### v0.6 — Operating Behavior & Verified Local Product
+### v0.6 — Operating Behavior & Verified Local Product — LOCKED
 
-**LOCAL FIELD CLOSEOUT — VERIFIED PASS.**
+**VERIFIED FINAL / LOCKED.**
 
 Verified:
 - dedicated product source authority;
@@ -52,10 +52,12 @@ Verified:
 - Local Evidence Bundle VERIFIED PASS;
 - Mac Local Mandatory DoneCheck™ PASS.
 
-Remaining before canonical final lock:
-1. control-plane reconciliation merge;
-2. exact-main acceptance;
-3. record **v0.6 VERIFIED FINAL / LOCKED**.
+Canonical final lock evidence:
+- PR #165 merged;
+- control-plane exact-main `777904a957dfd475713dfd5de7b499c88247f4de`;
+- Labory Final Gate #366 PASS;
+- IP Model Trust Gate #385 PASS;
+- IP Model Trust Fleet #370 PASS.
 
 ### v0.7 — Long-Running Reliability
 
