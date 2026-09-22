@@ -22,9 +22,17 @@ ENGÜRÜ Mac Engineering™ v1.1 takes a digital product idea, brief or existing
 
 ## Version truth
 
-### v0.0–v0.3 — PRE-CANONICAL DEVELOPMENT LINEAGE
+### v0.0–v0.3 — PRE-CANONICAL DEVELOPMENT LINEAGE — RECONSTRUCTED / CLOSED
 
-Historical boundaries are reconstructed only from Git history and dated Evidence. Unsupported retrospective version titles remain unasserted.
+Historical reconstruction is complete.
+
+Fresh Git history + dated Evidence support one collective pre-canonical development period. Separate v0.0, v0.1, v0.2 and v0.3 product-release boundaries remain unasserted, and retrospective product titles remain unasserted.
+
+The first Evidence-backed named product boundary is **v0.4**. By the 2026-09-20 build/DoneCheck sequence, the provenance chain contains `baseline_v0.4`, native build receipt `native_app_prepare_20260920T082338Z.txt` and Phase-1 DoneCheck `phase1_donecheck_20260920T095119Z.json`.
+
+Dedicated product Git authority begins later, on the reconciled product-source bootstrap at root commit `3ac09bd7d022a6114b9066afca14ff170e0177c1`; Product CI run `35640369690` verified that exact head.
+
+Canonical reconstruction record: `evidence/MAC_ENGINEER_V00_V03_HISTORICAL_RECONSTRUCTION_2026-09-22.md`.
 
 ### v0.4 — Field Engineering Foundation — LOCKED
 
