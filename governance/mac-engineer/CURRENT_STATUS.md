@@ -137,6 +137,21 @@ The program target remains v1.1.
 
 Use the smallest sufficient change inside the already-authorized three-file product patch. Preserve all verified work.
 
+## 9.1 MAINTENANCE RULE
+
+This file is a living canonical status surface during active development.
+
+After every material work package or PASS / HOLD / BLOCKED verification result, update this file before the next action so it reflects:
+
+- completed or changed work;
+- latest Evidence;
+- current judgment;
+- active objective;
+- remaining canonical work;
+- single next action.
+
+The purpose is continuous session handoff: a fresh ChatGPT session should understand the latest state directly from GitHub without reconstructing it from chat history.
+
 ## 10. NEW SESSION BOOTSTRAP
 
 A new ChatGPT session must first read:

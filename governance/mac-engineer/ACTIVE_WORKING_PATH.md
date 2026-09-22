@@ -59,7 +59,17 @@ Mac sonucu field acceptance yüzeyidir.
 
 Her iterasyon şu ekonomik yapı ile ilerler:
 
-`ONE ACTIVE OBJECTIVE → ONE REQUIRED DIFFERENCE → ONE ENGINEERING PACKAGE → ONE VERIFICATION RESULT → ONE NEXT ACTION`
+`ONE ACTIVE OBJECTIVE → ONE REQUIRED DIFFERENCE → ONE ENGINEERING PACKAGE → ONE VERIFICATION RESULT → CURRENT_STATUS RECONCILE → ONE NEXT ACTION`
+
+Her gerçek iş paketi PASS, HOLD veya BLOCKED hükmüne ulaştığında `governance/mac-engineer/CURRENT_STATUS.md` bir sonraki engineering action'dan önce güncellenir.
+
+Güncelleme en az şu beş hakikati taşır:
+
+- tamamlanan / değişen iş;
+- yeni Evidence ve hüküm;
+- mevcut aktif objective;
+- gerçek kalan iş;
+- tek sıradaki canonical action.
 
 Bu disiplin bağlam tüketimini, hedef kaymasını ve paralel otorite oluşumunu azaltır.
 

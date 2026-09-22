@@ -10,7 +10,7 @@ This contract prevents a new ChatGPT session, Terminal session or operator hando
 
 Every engineering session follows exactly this chain:
 
-`SESSION START → CANONICAL SYNC → SESSION STATE → ONE ACTIVE OBJECTIVE → CHANGE → TEST/CI → EXACT-MAIN → MAC FIELD ACTION → EVIDENCE → MANDATORY DONECHECK™ → WORKLIST RECONCILE → SESSION HANDOFF`
+`SESSION START → CANONICAL SYNC → SESSION STATE → ONE ACTIVE OBJECTIVE → CHANGE → TEST/CI → EXACT-MAIN → MAC FIELD ACTION → EVIDENCE → MANDATORY DONECHECK™ → CURRENT_STATUS RECONCILE → WORKLIST/SESSION_STATE RECONCILE → SESSION HANDOFF`
 
 No session starts directly from an old chat summary, an old Terminal directory, an installed runtime file or a remembered next step.
 
@@ -140,9 +140,28 @@ For ENGÜRÜ Mac Engineer engineering sessions, ChatGPT must:
 3. perform GitHub-side work itself when tooling permits;
 4. ask the user for Mac Terminal execution only when local execution is required;
 5. reconcile returned Mac evidence;
-6. update canonical truth before moving to the next objective.
+6. update `CURRENT_STATUS.md` after every completed work package or material PASS / HOLD / BLOCKED result;
+7. reconcile WORKLIST / SESSION_STATE when the result changes canonical state;
+8. move to the next action only after the status surface reflects the latest Evidence.
 
 ChatGPT must not manufacture continuity from memory when canonical state is available.
+
+## 7.1 Current Status mandatory update invariant
+
+`governance/mac-engineer/CURRENT_STATUS.md` is a living canonical handoff surface during active development.
+
+After every material engineering package or field-verification result, the operator reconciles it **before the next action**.
+
+The update records:
+
+- what was completed or changed;
+- the latest Evidence;
+- the resulting PASS / HOLD / BLOCKED judgment;
+- the current objective;
+- the remaining canonical work;
+- the single next action.
+
+A session may remain on the same objective across several iterations; CURRENT_STATUS still advances with each material result. This keeps a fresh ChatGPT session aligned without depending on conversation history.
 
 ## 8. Positive governance language
 

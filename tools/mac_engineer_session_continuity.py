@@ -237,6 +237,7 @@ def snapshot(mode: str) -> dict[str, Any]:
             "exists": CURRENT_STATUS.is_file(),
         },
         "locked_method": state.get("lockedMethod"),
+        "current_status_update_rule": state.get("currentStatusUpdateRule"),
         "authority_order": state.get("authorityOrder"),
         "active_objective": objective,
         "declared_session_objective": declared,
@@ -268,8 +269,9 @@ def snapshot(mode: str) -> dict[str, Any]:
             "governance/mac-engineer/CURRENT_STATUS.md, "
             "governance/mac-engineer/SESSION_STATE_V1.json, "
             "governance/mac-engineer/PRODUCT_ROADMAP_V1.json and WORKLIST.md. "
-            "Confirm this snapshot, then continue only the active objective "
-            "using STATE → CLAIM → EVIDENCE → JUDGMENT/NEXT ACTION."
+            "Confirm this snapshot, continue only the active objective, "
+            "and reconcile CURRENT_STATUS after every material PASS/HOLD/BLOCKED result "
+            "before the next action, using STATE → CLAIM → EVIDENCE → JUDGMENT/NEXT ACTION."
         ),
     }
     return payload
