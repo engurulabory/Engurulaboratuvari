@@ -690,400 +690,199 @@ Canonical experiment contract:
 
 # ENGÜRÜ Mac Engineering™ — CANONICAL PRODUCT ROADMAP + v0.6 FIELD CLOSEOUT
 
-**STATE:** HOLD — Aesthetic Motor architecture and core mechanisms are strong/tested; Aesthetic Studio has partial field PASS; end-to-end target → result closure, efficiency measurement, expanded creative surfaces and Mac Engineer binding remain open.
+**STATE:** v0.6 LOCAL FIELD CLOSEOUT — **VERIFIED PASS**. Canonical reconciliation is the active closeout step.
 
-**THEORETICAL TARGET:** **Aesthetic Motor™ — 100/100 TARGET**
+**Canonical product name:** **ENGÜRÜ Mac Engineering™**  
+**Technical product repository:** `engurulabory/enguru-mac-engineer`  
+**Control plane:** `engurulabory/Engurulaboratuvari`  
+**Final target:** **v1.1 — Verified Product Engineering Operator / VERIFIED FINAL LOCKED**
 
-**Truth boundary:** 100/100 is a theoretical capability-completeness target. It is not a current field score and does not certify every future artwork. Project-level visual PASS requires real render/evidence plus Human Artistic Authority™. `WORLD_CLASS_100_VERIFIED` remains a stronger repeated-field claim.
+## Locked authority model
 
-## Canonical product identity / final road
+`STATE → CLAIM → EVIDENCE → JUDGMENT / NEXT ACTION`
 
-- Canonical product name: **ENGÜRÜ Mac Engineering™**
-- Technical product repo: `engurulabory/enguru-mac-engineer`
-- Final target: **v1.0 — Verified Product Engineering Operator**
-- Human-readable roadmap: `governance/mac-engineer/PRODUCT_IDENTITY_ROADMAP_V1.md`
-- Machine-readable roadmap: `governance/mac-engineer/PRODUCT_ROADMAP_V1.json`
-- Permanent session method: `governance/mac-engineer/SESSION_CONTINUITY_CONTRACT_V1.md`
+`Intent → Application Foundation Core™ → Production → Evidence → DoneCheck™ → Human Threshold™ → Verified Finish`
 
-Version result road:
+DoneCheck authority separation is canonical:
 
-`v0.4 Field Engineering Foundation [LOCKED]`
-→ `v0.5 Reliability & Recovery Foundation [LOCKED]`
-→ `v0.6 Operating Behavior & Verified Local Product [FIELD CLOSEOUT ACTIVE]`
-→ `v0.7 Long-Running Reliability`
-→ `v0.8 Product Engineering Operator`
-→ `v0.9 World-Class Field Benchmark`
-→ `v1.0 Verified Product Engineering Operator [FINAL TARGET]`
+- **Markdown DoneCheck:** human-readable read-only projection of current evidence and judgment.
+- **Mandatory DoneCheck JSON:** structured evidence contract / producer output.
+- **DoneCheck v1.2:** machine verification and production closure authority.
+- **Human Threshold™:** final human authority for acceptance and irreversible/external authority boundaries.
 
-### Current v0.6 closure — canonical order
+A lower layer supplies evidence to the next authority layer; higher-layer PASS is earned by its own acceptance contract.
 
-- [x] GitHub Engineering Closeout — VERIFIED / LOCKED.
-- [x] Dedicated product source authority — PASS.
-- [x] Mac layout audit — PASS.
-- [x] Session Continuity Contract — PASS.
-- [x] Product exact-main CI — PASS.
-- [x] Product v0.6 source alignment — PASS.
-- [x] Exact-SHA rebuild/install — PASS at product SHA `28b901ab3303f4be3c7356b11218b62422f2da42`.
-- [x] Installed app v0.6 + runtime build app v0.6 — PASS.
-- [x] Runtime source parity 27/27 exact — PASS.
-- [x] Live localhost status + app/runtime processes — PASS.
-- [x] Fail-closed rollback behavior — field observed on first install attempt.
-- [x] **Runtime/App Provenance canonical closure — PASS.** Product source SHA = provenance SHA = install Evidence SHA = `28b901ab3303f4be3c7356b11218b62422f2da42`; installed/runtime app v0.6; native executable hashes identical.
-- [x] **Archive decision — PASS / preserve-first.** Historical handoff remains provenance evidence until v0.6 final; timestamped install backups remain rollback/recovery evidence; current runtime-build app remains active generated artifact. No destructive cleanup before final closure.
-- [ ] **ACTIVE — One real Mac engineering task.**
-- [ ] Checkpoint → restart → same-task resume.
-- [ ] Recovery field proof reconciliation; execute only the necessary remaining delta.
-- [ ] Local Evidence bundle.
-- [ ] Mandatory DoneCheck™.
-- [ ] **ENGÜRÜ Mac Engineering™ v0.6 VERIFIED FINAL / LOCKED.**
+Canonical contract: `governance/mac-engineer/DONECHECK_AUTHORITY_MODEL_V1.md`.
 
-## Current Truth — LOCKED BASELINE
-- [x] Aesthetic Motor architecture — PASS.
-- [x] Aesthetic Motor core mechanisms — STRONG / TESTED.
-- [x] Aesthetic Studio direct-manipulation partial field path — PASS.
-- [x] Canonical 10-dimension source coverage exists: Purpose & Artistic Intent; Simplicity & Clarity; Visual Hierarchy & Composition; Typography; Color Intelligence; Photography & Imagery; Spacing/Rhythm/Proportion; Component Consistency; Motion/Feedback; Accessibility & Adaptive Beauty.
-- [x] Existing authority chain remains canonical: Aesthetic Motor™ / Aesthetic Diamond™ / Design Language / Visual Excellence / VX1 / Human Artistic Authority™.
-- [x] No parallel aesthetic engine is authorized by default.
-- [x] Reuse rule remains: **reuse → extend → adapter → new core**.
-- [ ] **[HOLD — FIELD PROOF]** End-to-end brief → final visual result closure.
-- [ ] **[HOLD — MEASUREMENT]** Efficiency / correction-cost / acceptance metrics.
-- [ ] **[HOLD — PACKAGE 2C]** Mac Engineer runtime binding; first Package 2C binding attempt returned HOLD and is not treated as active.
-- [ ] **[HOLD — REPEATED FIELD EVIDENCE]** `WORLD_CLASS_100_VERIFIED`.
+## Locked working model — GitHub-first / Milestone-Mac
 
-## A. Aesthetic Capability Matrix™
-Produce one evidence-backed matrix with **PRESENT / PARTIAL / MISSING**, current proof, benchmark reference, necessary difference and closure test for:
-- [ ] Web / Product Design.
-- [ ] Brand / Graphic Design.
-- [ ] Illustration.
-- [ ] Art Direction.
-- [ ] Motion / Effects.
-- [ ] Video Editing / Cinematic Craft.
-- [ ] 3D / Interactive Visuals.
-- [ ] Competitive World-Class / Award-Level Output.
+Primary engineering plane:
 
-Benchmark references are comparison surfaces, not authority: **Framer, v0, Lovable, Canva, Adobe creative surfaces, Runway, Spline, Apple-class product craft**.
+`ChatGPT Project → GitHub branch/change → tests → CI → PR → review → merge → exact-main → DoneCheck v1.2 engineering verification`
 
-## B. Foundation Aesthetic Intelligence — 10-Dimension Field Verification
-For one real product candidate, verify:
-- [ ] Purpose & Artistic Intent.
-- [ ] Simplicity & Clarity.
-- [ ] Visual Hierarchy & Composition.
-- [ ] Typography.
-- [ ] Color Intelligence.
-- [ ] Photography & Imagery.
-- [ ] Spacing / Rhythm / Proportion.
-- [ ] Component Consistency.
-- [ ] Motion / Feedback.
-- [ ] Accessibility & Adaptive Beauty.
-- [ ] No critical weakness hidden by an average score.
-- [ ] Real desktop / tablet / mobile evidence.
-- [ ] TR / EN and content-length stress where applicable.
-- [ ] 200% text / 320px reflow / reduced-motion evidence where applicable.
+Milestone field plane:
 
-## C. Aesthetic Motor Field Reality Audit™ — FIRST ACTIVE PACKAGE
-Run one real brief end to end:
+`exact-main milestone → Mac commissioning → real field scenarios → local Evidence → DoneCheck v1.2 → Human Threshold™ → version VERIFIED / LOCKED`
 
-`Brief → Aesthetic Intent → 3 materially distinct directions → Human direction selection → build → desktop/tablet/mobile real render → Professor/Fresh-Eye → visible defects → bounded correction → re-render → measured quality delta → reload/persistence → Human Artistic Authority candidate → Evidence → DoneCheck™`
+ENGÜRÜ Mac Engineer™ is the local field executor and Evidence producer for ChatGPT Project sessions. GitHub remains source/CI/release truth; the real Mac remains runtime/installation/field truth.
 
-Acceptance:
-- [ ] Real brief selected.
-- [ ] Aesthetic Intent Brief produced from real intent.
-- [ ] Exactly 3 genuinely different directions.
-- [ ] Direction difference is structural/artistic, not only color/font variation.
-- [ ] Human direction selection recorded.
-- [ ] Selected direction implemented.
-- [ ] Real multi-viewport renders produced.
-- [ ] Professor / Fresh-Eye evidence produced.
-- [ ] Visible defects recorded without hiding weak disciplines.
-- [ ] Smallest sufficient aesthetic correction applied.
-- [ ] Re-render proves measurable improvement or explicit HOLD.
-- [ ] Reload / persistence preserves candidate truth.
-- [ ] Regression preserves working product behavior.
-- [ ] Human Artistic Authority boundary remains open until explicit human decision.
-- [ ] Evidence + Mandatory DoneCheck™.
+Canonical contract: `governance/mac-engineer/GITHUB_FIRST_MILESTONE_MAC_WORKING_MODEL_V1.md`.
 
+## Historical lineage — v0.0 → v0.3
 
-## C.1 Screen Composition & Premium Interaction Discipline™ — 100/100 TARGET
+Git history currently provides no canonical independent product-version names for v0.0, v0.1, v0.2 or v0.3.
 
-**Truth boundary:** this is a capability-completeness target inside the active Field Reality Audit, not a current field score. A visually attractive static render does not PASS this gate unless geometry, interaction, responsive behavior, accessibility and recovery are also proven.
+- [ ] Reconstruct v0.0–v0.3 from Git history, evidence and dated governance records.
+- [ ] Promote a historical version name only when evidence supports an actual boundary.
+- [ ] Preserve unsupported intervals as **PRE-CANONICAL DEVELOPMENT LINEAGE**.
 
-- [ ] **Viewport composition:** use top / bottom / left / right space deliberately; no accidental dead zones, edge crowding or unbalanced occupancy.
-- [ ] **Margins / padding / gutters:** safe edge distance, grid/gutter rhythm and container width stay coherent across large desktop, desktop, tablet, 390 mobile and 320 small mobile.
-- [ ] **Overflow mastery:** detect and repair horizontal overflow, clipping, off-screen text, overlap, broken wrapping, oversized media and modal/dialog escape.
-- [ ] **Responsive recomposition:** layouts recompose by intent; mobile/tablet are not merely scaled-down desktop.
-- [ ] **Typography containment:** headings, labels, paragraphs, badges and controls survive TR/EN, long/short content, localization and 200% text without collision or hierarchy collapse.
-- [ ] **Button / control mastery:** controls are visually legible and actually work; default / hover / focus-visible / active / loading / disabled / success / error states are intentional where applicable.
-- [ ] **Keyboard / focus discipline:** logical tab order, visible focus, no keyboard traps, action reachability and focus restoration after transient surfaces.
-- [ ] **Box / card / container discipline:** radius, border, shadow, depth, spacing, density and hierarchy are purposeful; no generic card soup or decorative container excess.
-- [ ] **Modal / dialog mastery:** correct sizing, safe viewport fit, backdrop, focus containment, Escape/close behavior, scroll-lock, focus return, mobile adaptation and accessible semantics.
-- [ ] **Premium surface models:** produce restrained, product-specific premium cards, panels, dialogs, sheets, menus, forms and action surfaces without defaulting to generic glass/gradient aesthetics.
-- [ ] **Interaction truth:** every visible primary/secondary action has verified behavior; no dead button, fake control, hidden unreachable action or misleading enabled state.
-- [ ] **Scroll / fold discipline:** primary intent, action hierarchy and content rhythm remain coherent above/below fold; sticky/fixed elements never steal usable space or cover content.
-- [ ] **Safe-area / inset discipline:** viewport edges, browser/device insets and mobile bottom/top regions do not hide interactive or essential content.
-- [ ] **Automatic defect repair loop:** detect geometry/control defects → record defect → smallest bounded correction → re-render → prove defect delta.
-- [ ] **Stress evidence:** large desktop / standard desktop / tablet / 390 / 320 + long content + TR/EN + text-spacing + 200% text + reduced motion + keyboard path.
-- [ ] **No-average masking:** any critical overflow, unreachable control, broken modal, focus trap, clipped primary content or non-working action forces HOLD regardless of aggregate aesthetic score.
-- [ ] **Human Artistic Authority™:** premium feel and final artistic balance remain human-governed after technical/interaction gates PASS.
-- [ ] **Repeated field proof:** capability reaches 100/100 target only after repeated real candidates demonstrate stable screen-use and interaction quality, not from one showcase page.
+No retrospective version name is manufactured from later architecture.
 
-Acceptance chain:
+## v0.4 — Field Engineering Foundation — LOCKED
 
-`viewport geometry → spacing rhythm → overflow repair → responsive recomposition → controls → cards/containers → modal/dialog → keyboard/focus → interaction truth → stress render → bounded correction → re-render → Evidence → DoneCheck™ → Human Artistic Authority™`
+- [x] Real Mac execution surface.
+- [x] Governed repository work.
+- [x] Local task execution.
+- [x] Field engineering authority foundation.
+- [x] Canonical version state: **LOCKED**.
 
+## v0.5 — Reliability & Recovery Foundation — LOCKED
 
+- [x] Reliability state machine foundation.
+- [x] Checkpoint / durable resume foundation.
+- [x] Recovery classification and rollback basis.
+- [x] Idempotency / single-writer reliability mechanisms.
+- [x] Canonical version state: **LOCKED**.
 
-## C.2 Verified Aesthetic Evolution & Trend Intelligence™ — 100/100 TARGET
+## v0.6 — Operating Behavior & Verified Local Product
 
-**Truth boundary:** Aesthetic Motor may learn from verified field outcomes, current design/technology evidence and bounded experiments. It may not silently rewrite canonical authority, copy fashionable styles, expand its own permissions, or convert novelty into quality without evidence. Self-improvement remains evidence-gated, reversible and Human Threshold-aware.
+### GitHub engineering
+- [x] Dedicated product source authority.
+- [x] Product CI exact-main.
+- [x] Context durability engineering.
+- [x] Fresh resume verification engineering.
+- [x] Bounded recovery route/executor engineering.
+- [x] Product exact-main: `7f2e22994d17b913f226eb05691d934f81e1c212`.
+- [x] Product exact-main CI: **PASS**.
 
-- [ ] **Verified learning loop:** defect / critique / human feedback → bounded correction → measured delta → persistence check → evidence → reusable learning candidate.
-- [ ] **Learning promotion rule:** one successful correction is not a permanent rule; promote only after repeated cross-brief evidence or an explicit Human Artistic Authority / governance decision.
-- [ ] **Failure memory:** record recurring overflow, spacing, typography, modal, control-state, responsive and composition failures with root cause and successful repair pattern.
-- [ ] **Success memory:** preserve patterns that repeatedly improve intent fidelity, usability, aesthetic quality and implementation integrity without template-locking future work.
-- [ ] **Context-bound reuse:** every learned pattern carries scope, source, date, applicable contexts, known risks, confidence and rollback path.
-- [ ] **No style cloning:** learning may extract principles and mechanisms but must not memorize or reproduce a competitor’s distinctive visual identity.
-- [ ] **Trend intelligence:** periodically observe contemporary web/product/graphic/interaction/motion/typography patterns and distinguish durable design evolution from short-lived fashion.
-- [ ] **Trend restraint:** trend adoption requires intent fit, originality, accessibility, performance and brand coherence; fashionable but irrelevant patterns are rejected.
-- [ ] **Technology watch:** track relevant browser/CSS/layout, accessibility, interaction/input, responsive/device, rendering, motion, image/video/3D and creative-tool advances that could materially improve output.
-- [ ] **Standards watch:** review material changes in accessibility, browser/platform behavior and implementation standards before they become field regressions.
-- [ ] **Tool/provider watch:** compare new creative models/tools/providers as optional execution surfaces; no provider becomes canonical authority from marketing claims alone.
-- [ ] **Fresh benchmark:** periodically rerun equal-brief comparisons against relevant frontier creative/product surfaces and record dated evidence.
-- [ ] **Second Look / Outside Voice:** important capability promotions receive fresh-context critique and, where useful, independent outside-voice review.
-- [ ] **Bounded experiment path:** discover → evidence → sandbox → benchmark → regression → accept/reject → rollback-ready integration.
-- [ ] **No silent self-modification:** Aesthetic Motor may propose and test improvements autonomously inside approved bounds, but canonical rule/authority changes require governed promotion.
-- [ ] **Versioned evolution:** accepted learning updates are versioned; last-known-good behavior remains recoverable.
-- [ ] **Decay / freshness:** time-sensitive trend/tool assumptions carry review dates and may expire back to REVIEW/HOLD instead of remaining permanent truth.
-- [ ] **Resource discipline:** do not chase every trend or tool; investigate only changes with plausible quality, reliability, efficiency or creative-range gain.
-- [ ] **Originality protection:** repeated learning must increase judgment and range, not collapse outputs into one house template.
-- [ ] **Human Artistic Authority™ preserved:** final aesthetic acceptance, identity-changing decisions and consequential taste judgments remain human-governed.
-- [ ] **Quarterly Technology Review binding:** significant aesthetic/creative technology changes feed the existing governed review cycle rather than creating a parallel update system.
+### Mac commissioning
+- [x] Exact-SHA rebuild/install.
+- [x] Runtime source parity: **34/34 EXACT**.
+- [x] Runtime/App provenance: **PASS**.
+- [x] Installed app v0.6: **PASS**.
+- [x] Real Mac task: **7/7 VERIFIED PASS**.
+- [x] Checkpoint → restart → same-task resume: **VERIFIED PASS**.
+- [x] Bounded recoverable failure observed.
+- [x] Root cause identified.
+- [x] Smallest bounded recovery applied.
+- [x] Fresh regression: **1/1 PASS**.
+- [x] Fixture HEAD preserved: `f563a779f6d01a46e037e4330383c3adb032d426`.
+- [x] Recovery Evidence contract: **PASS**.
+- [x] Local Evidence Bundle: **VERIFIED PASS**.
+- [x] Mac Local Mandatory DoneCheck™: **PASS**.
+- [x] Fixture authority preserved.
 
-Evolution chain:
+Local evidence:
+- `~/Enguru/Evidence/MacEngineer/package6-bounded-recovery-latest.json`
+- `~/Enguru/Evidence/MacEngineer/agent-ledger.jsonl`
+- `~/Enguru/Evidence/MacEngineer/v0.6/package6-local-evidence-bundle.json`
+- `~/Enguru/Evidence/MacEngineer/v0.6/package6-mandatory-donecheck.json`
 
-`field evidence → verified learning candidate → repeated proof → bounded adoption → regression → Second Look → versioned promotion → periodic freshness review → rollback if degraded`
+### v0.6 canonical closeout
+- [x] Local field truth: **VERIFIED PASS**.
+- [x] 7/7 independent recovery verification.
+- [x] Local Evidence bundle.
+- [x] Mandatory DoneCheck evidence.
+- [ ] Merge canonical reconciliation.
+- [ ] Verify control-plane exact-main CI.
+- [ ] Record **v0.6 VERIFIED FINAL / LOCKED** after exact-main acceptance.
 
-Trend / technology chain:
+**Active objective:** `V06_CANONICAL_RECONCILIATION_AND_WORKING_MODEL_LOCK`
 
-`observe → source/provenance → relevance test → equal-brief experiment → quality + usability + accessibility + performance delta → adopt / reject / review later`
+## v0.7 — Long-Running Reliability
 
+Engineering mode: **GitHub-first**.
 
+- [ ] Define exact v0.7 acceptance matrix from existing reliability layers.
+- [ ] Long-run task state correctness.
+- [ ] Durable resume across process/runtime interruption.
+- [ ] Idempotency and single-writer stress.
+- [ ] Bounded retry / watchdog.
+- [ ] Provider/network/process recovery fixtures.
+- [ ] Resource and evidence continuity.
+- [ ] GitHub CI / fault-injection campaign.
+- [ ] DoneCheck v1.2 integration for milestone closure.
+- [ ] **One consolidated Mac long-run commissioning campaign.**
+- [ ] Human Threshold™.
+- [ ] **v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED.**
 
-## C.3 Atelier Craft & Original Design Discipline™ — 100/100 TARGET
+## v0.8 — Product Engineering Operator
 
-**Intent:** every product is approached with tailor-level care: product-specific proportion, composition, typography, interaction, material and detail decisions. Aesthetic Motor must master originality without falling into novelty-for-novelty, template reuse or a single ENGÜRÜ house look.
+Engineering mode: **GitHub-first**.
 
-**Truth boundary:** originality is a governed capability target, not a claim that every first draft is award-grade. PASS requires real alternatives, real render evidence, critique, correction and Human Artistic Authority™. Reuse may preserve proven principles and mechanisms, but must not collapse products into repeated visual templates.
+Canonical chain:
 
-- [ ] **Bespoke product fit:** derive the visual system from this product's purpose, audience, content, domain, behavior and emotional intent; do not start from a preferred house template.
-- [ ] **Product-specific Design DNA:** record the candidate's composition logic, typographic character, spatial rhythm, color/light logic, material language, interaction tone and visual risks.
-- [ ] **Exactly 3 genuinely original alternatives:** every direction must present a materially different visual thesis, not a palette/font swap.
-- [ ] **Alternative diversity gate:** directions differ across several structural axes such as composition, focal strategy, typography, density, imagery/material, interaction, motion and information rhythm.
-- [ ] **No cosmetic branching:** if two directions share substantially the same layout skeleton and only change styling, they fail the direction gate.
-- [ ] **Independent direction critique:** each alternative receives its own strengths, risks, clichés, product-fit weaknesses and originality attacks before Human direction selection.
-- [ ] **Internal-output distance:** compare against recent ENGÜRÜ outputs to detect accidental repetition of hero geometry, card grammar, type hierarchy, spacing rhythm, material treatment and motion language.
-- [ ] **Reference-distance guard:** inspirations may inform principles, but distinctive competitor compositions, motifs, identities and signature visual grammar must not be reproduced.
-- [ ] **Originality with usability:** uniqueness never excuses weak clarity, broken interaction, inaccessible contrast, poor responsive behavior or implementation fragility.
-- [ ] **Tailor-level responsive fit:** desktop, tablet and mobile are individually composed for the same intent; responsive adaptation is treated as fitting, not shrinking.
-- [ ] **Content tailoring:** long/short copy, TR/EN, data density, empty states and real product content are allowed to change composition where needed rather than being forced into a rigid template.
-- [ ] **Micro-detail craft pass:** optical alignment, baseline relationships, edge distances, control proportions, icon/text balance, radius, border, shadow, state transition and visual weight receive a final detail pass.
-- [ ] **Interaction tailoring:** controls, feedback, loading, error, success, disabled, modal/dialog and navigation behavior inherit the selected direction's visual character without sacrificing functional truth.
-- [ ] **Material / light specificity:** shadows, gradients, depth, blur, texture and light are used only when the product concept justifies them; generic premium effects are rejected.
-- [ ] **Deliberate restraint:** absence, whitespace and simplicity are treated as designed choices with measurable hierarchy rather than empty leftovers.
-- [ ] **No generic premium:** glass, gradients, oversized serif, blobs, cards or dark-mode styling cannot manufacture a premium verdict by themselves.
-- [ ] **Craft defect ledger:** visible awkwardness, imbalance, crowding, dead space, repetition, weak focus, poor wrapping and generic composition are recorded as aesthetic defects, not dismissed as taste.
-- [ ] **Bounded reconstruction:** when a direction is conceptually right but visually weak, repair the smallest sufficient composition/detail layer before inventing a replacement direction.
-- [ ] **Fresh-Eye originality check:** a fresh reviewer must be able to explain what makes the chosen result specific to this product and why it is not interchangeable with another product.
-- [ ] **Blind alternative test:** where practical, direction labels are hidden and reviewers judge product fit, memorability, coherence and originality without being told which path is preferred.
-- [ ] **Verified learning without template lock:** successful craft principles may be learned; visual appearance is not promoted as a universal template.
-- [ ] **Human Artistic Authority™:** final originality, emotional precision and artistic acceptance remain human-governed.
-- [ ] **Repeated field proof:** 100/100 target requires repeated real products across materially different categories; one bespoke success cannot certify motor-wide mastery.
+`INTAKE → DISCOVER → ARCHITECT → DESIGN → BUILD → TEST → REPAIR → PACKAGE → DEPLOY → LIVE VERIFY → LIFECYCLE → EVIDENCE → DONECHECK`
 
-Atelier chain:
+- [ ] New product from brief.
+- [ ] Existing product change.
+- [ ] Migration / repair.
+- [ ] Full-stack path where required.
+- [ ] UI/UX + Aesthetic Motor integration.
+- [ ] Release / deploy / rollback.
+- [ ] Finished-product delivery acceptance.
+- [ ] **One consolidated real-Mac product engineering commissioning campaign.**
+- [ ] DoneCheck v1.2 + Human Threshold™.
+- [ ] **v0.8 PRODUCT ENGINEERING OPERATOR VERIFIED / LOCKED.**
 
-`intent → product-specific Design DNA → 3 independent visual theses → originality/diversity gate → real render → critique → Human direction selection → tailor-level responsive fit → micro-detail craft → Fresh-Eye → bounded correction → re-render → Human Artistic Authority™ → Evidence → DoneCheck™`
+## v0.9 — World-Class Field Benchmark
 
-Originality rule:
+Engineering mode: **GitHub-first benchmark harness + selected Mac field proofs**.
 
-`reuse principles, not appearance; preserve craft, not template; learn judgment, not style cloning`
+- [ ] New product scenario.
+- [ ] Unfamiliar repository.
+- [ ] Broken product.
+- [ ] Migration.
+- [ ] Deployment / rollback.
+- [ ] Recovery.
+- [ ] Long-running work.
+- [ ] Multi-repository work.
+- [ ] UI/UX + Human Artistic Authority™ handoff.
+- [ ] Security / authority discipline.
+- [ ] Independent fresh-context / red-team review.
+- [ ] Measure completion, correctness, regression, recovery, human intervention, evidence completeness and finished-product rate.
+- [ ] Selected real-Mac benchmark campaign.
+- [ ] **v0.9 WORLD-CLASS FIELD BENCHMARK VERIFIED / LOCKED.**
 
+## v1.0 — Verified Product Engineering Operator milestone
 
-## D. Graphic Design / Brand Production Expansion
-- [ ] Poster / key visual.
-- [ ] Social campaign family.
-- [ ] Presentation / editorial layout.
-- [ ] Brand collateral / launch asset set.
-- [ ] Vector / icon / shape-language production.
-- [ ] Brand-system consistency across multiple formats.
-- [ ] Export / asset provenance / rights truth.
-- [ ] Benchmark against Canva / Adobe-class workflows under equal brief conditions.
-- [ ] Decide **reuse / extend / adapter / new core** only after measured gap.
+- [ ] Integrate verified v0.6 + v0.7 + v0.8 + v0.9 truths.
+- [ ] Release-candidate engineering on GitHub.
+- [ ] Exact-main release authority.
+- [ ] Consolidated Mac commissioning.
+- [ ] DoneCheck v1.2 Verified Finish candidate.
+- [ ] Human Threshold™ / final human acceptance.
+- [ ] **v1.0 VERIFIED PRODUCT ENGINEERING OPERATOR — VERIFIED / LOCKED.**
 
-## E. Illustration / Art Capability
-- [ ] Conceptual illustration.
-- [ ] Editorial illustration.
-- [ ] Geometric / organic / technical illustration.
-- [ ] Character or recurring visual-series consistency when applicable.
-- [ ] Raster + vector path strategy.
-- [ ] Composition, anatomy/form, perspective and depth quality where applicable.
-- [ ] Style consistency without template memory.
-- [ ] Reference-distance / originality guard.
-- [ ] Provenance / rights evidence.
-- [ ] Real blind human comparison.
+## v1.1 — Final target
 
-## F. Advanced Art / Color / Material / Light
-- [ ] Advanced color harmony and contrast strategy.
-- [ ] Cultural / emotional color meaning.
-- [ ] Light direction, softness, temperature, depth and shadow logic.
-- [ ] Material / texture / surface intelligence.
-- [ ] Pattern and visual rhythm.
-- [ ] Layering / compositing / depth.
-- [ ] Optical correction.
-- [ ] Deliberate restraint versus decorative excess.
-- [ ] Real-render evidence under varied displays/backgrounds where applicable.
+- [ ] Post-v1.0 hardening required by evidence only.
+- [ ] Regression / compatibility verification.
+- [ ] Final release provenance.
+- [ ] Final Mac commissioning when runtime truth changed since v1.0.
+- [ ] DoneCheck v1.2 Verified Finish.
+- [ ] Human Threshold™.
+- [ ] **v1.1 VERIFIED FINAL / LOCKED.**
 
-## G. Motion / Effects
-- [ ] Micro-interaction grammar.
-- [ ] Temporal hierarchy.
-- [ ] Typographic motion.
-- [ ] Choreography and transition logic.
-- [ ] Motion performance budget.
-- [ ] Reduced-motion artistic equivalent.
-- [ ] Feedback states: loading / success / warning / error / disabled / modal.
-- [ ] Motion is meaningful rather than decorative.
-- [ ] Repeated-use fatigue / distraction check.
-- [ ] Equal-condition comparison against leading motion-capable product surfaces.
+## Permanent execution method
 
-## H. Video Editing / Cinematic Craft
-First determine whether existing layers are sufficient; use adapter before creating a new core.
-- [ ] Story / shot intent.
-- [ ] Edit rhythm / pacing.
-- [ ] Cut / transition discipline.
-- [ ] Scene continuity.
-- [ ] Color / light continuity.
-- [ ] Text / title / graphic overlays.
-- [ ] Audio / speech / music relationship where applicable.
-- [ ] Reframe / format adaptation.
-- [ ] Generative-video integration boundary if needed.
-- [ ] Real export + playback evidence.
-- [ ] Benchmark against Runway / Adobe-class video workflows.
-- [ ] Decide **reuse / extend / adapter / new core** from measured evidence.
+`SESSION START → CANONICAL SYNC → ONE ACTIVE OBJECTIVE → GITHUB ENGINEERING → TEST/CI → PR/REVIEW → EXACT-MAIN → DONECHECK ENGINEERING VERIFICATION → MILESTONE MAC COMMISSIONING → LOCAL EVIDENCE → DONECHECK v1.2 → HUMAN THRESHOLD → VERSION LOCK → STATUS/WORKLIST RECONCILE → SESSION HANDOFF`
 
-## I. 3D / Interactive Visual Capability
-First determine measured need; Spline-class capability is benchmark reference, not automatic scope.
-- [ ] 3D scene / object generation or controlled import path.
-- [ ] Materials / textures.
-- [ ] Camera / composition.
-- [ ] Lighting / shadows.
-- [ ] Depth / perspective.
-- [ ] Animation / states.
-- [ ] Interaction.
-- [ ] Physics / particles only when justified.
-- [ ] Web performance / fallback / accessibility.
-- [ ] Multi-platform export or integration path where needed.
-- [ ] Benchmark against Spline-class production.
-- [ ] Decide **reuse / extend / adapter / new core** from measured evidence.
+## Current next action
 
-## J. Apple-Class Product Craft Benchmark — Reference, Not Imitation
-Evaluate under original ENGÜRÜ identity:
-- [ ] Purpose clarity.
-- [ ] Restraint / simplicity.
-- [ ] Typography authority.
-- [ ] Hierarchy and spacing precision.
-- [ ] Material / light discipline.
-- [ ] Motion restraint and feedback.
-- [ ] Interaction polish.
-- [ ] Responsive/adaptive quality.
-- [ ] Accessibility.
-- [ ] Detail consistency.
-- [ ] Product-wide coherence.
-- [ ] Originality / no stylistic copying.
+1. Merge this canonical reconciliation with CI evidence.
+2. Verify exact-main.
+3. Close v0.6 as **VERIFIED FINAL / LOCKED**.
+4. Reconstruct v0.0–v0.3 historical lineage from evidence.
+5. Start v0.7 under the **GitHub-first / Milestone-Mac** model.
 
-## K. Competitive World-Class Proof
-- [ ] At least 12 real Builder briefs; target program 13.
-- [ ] At least 10 materially different categories.
-- [ ] Minimum brief score >= 96 under canonical floor.
-- [ ] Critical discipline floors all satisfied.
-- [ ] External frontier blind comparison / tournament.
-- [ ] Independent human jury.
-- [ ] Award-Grade / Professor / Fresh-Eye / Blind Comparison evidence.
-- [ ] Human Artistic Authority approved.
-- [ ] One strong candidate is not used to manufacture motor-wide proof.
-- [ ] Only after repeated evidence may `WORLD_CLASS_100_VERIFIED` be considered.
-
-## L. Efficiency / Target → Result Metrics
-- [ ] Brief → first credible candidate elapsed time.
-- [ ] First-pass acceptance rate.
-- [ ] Average correction cycles.
-- [ ] Defects per viewport.
-- [ ] Professor/Fresh-Eye findings per iteration.
-- [ ] Quality delta after bounded correction.
-- [ ] Human acceptance / revise / reject rate.
-- [ ] Runtime / provider / tool cost where measurable.
-- [ ] CPU / memory / render resource use where relevant.
-- [ ] Persistence / recovery success.
-- [ ] Rework avoided through preservation of verified work.
-
-## M. Mac Engineer Package 2C Binding — AFTER FIELD REALITY PASS
-- [x] Reconcile failed first Package 2C binding test to exact root cause.
-- [x] Bind only verified Aesthetic Motor authority and measured capabilities.
-- [x] Preserve no-parallel-engine rule.
-- [x] Preserve Human Artistic Authority™.
-- [x] Preserve `WORLD_CLASS_100_VERIFIED` as separate repeated-field claim.
-- [x] Runtime restart.
-- [x] Real conversation-first aesthetic smoke.
-- [x] ZEKÜ / Labory / Builder truth preservation.
-- [x] Regression.
-- [x] Second Look.
-- [x] Evidence.
-- [x] Mandatory DoneCheck™.
-- [x] Package 2C — VERIFIED FINAL / LOCKED.
-
-## N. Exit Contract
-`Capability Matrix → Field Reality Audit → measured gap closure → Package 2C VERIFIED FINAL / LOCKED → Package 3 Persistent Working Memory → Package 4 Real Field Acceptance + Finished Ability™ → Package 5 GitHub Engineering Closeout → exact-main PASS → Package 6 Mac Local Final Commissioning → local runtime + real Mac task + restart/resume + recovery + local Evidence + Mandatory DoneCheck™ → ENGÜRÜ Mac Engineer™ v0.6 VERIFIED FINAL / LOCKED`
-
-**Canonical environment rule**
-- **GitHub = canonical source / version / CI / engineering Evidence.**
-- **Mac local = real runtime / user operating environment / final field Evidence.**
-- GitHub exact-main PASS closes engineering truth; it does **not** by itself certify the Mac-local product runtime.
-- Final v0.6 VERIFIED FINAL / LOCKED requires both GitHub engineering closure and Mac Local Final Commissioning PASS.
-
-
-## O. v0.6 Minimal Governance Hardening Harvest — SCHEDULED, NO ROLLOUT CHANGE
-
-**Placement rule:** these are small hardening items for existing layers. They do **not** create a new core, new agent framework or parallel authority path; they do not change the locked v0.6 rollout order. Implement only when the owning package becomes active.
-
-### Package 3 — Persistent Working Memory placement
-- [x] **Durable Task Record:** every real engineering task has one durable task identity inside existing Task State + Evidence, binding objective, authority snapshot, required capabilities, state transitions, artifacts/evidence refs, human decisions, resume checkpoint and final outcome.
-- [x] **Governed Learning Promotion:** `OBSERVED → LEARNING_CANDIDATE → EVIDENCE → FRESH/INDEPENDENT REVIEW → ACCEPT/REJECT → VERSIONED MEMORY/SKILL PROMOTION`; one successful observation never becomes canonical truth automatically.
-
-### Package 4 — Real Field Acceptance / Finished Ability placement
-- [x] **Specialist Spawn Guard:** open a bounded specialist only for a verified capability gap or materially useful independent second view; scope/time are bounded and all central Authority / Human Threshold permissions are inherited unchanged.
-- [x] **Governed Tool-Gap Proposal:** `TOOL_GAP → PROPOSAL → authority/security/cost review → bounded test → evidence → ACCEPT/REJECT`; a tool gap never grants autonomous install/build/integration authority.
-- [x] **Human Intervention Reconciliation Gate:** after Human Threshold/takeover changes real state, do not resume from stale checkpoint; re-read repo/runtime/artifact/state → reconcile differences → establish `NEW_VERIFIED_STATE` → resume.
-
-**Invariant:** specialization ≠ privilege escalation. Central Authority already exists and must not be duplicated.
-
-### Package 5 — GitHub Engineering Closeout / Aggregate Evidence + Mandatory DoneCheck™
-- [x] **Aggregate Evidence Bundle:** reconcile v0.6 package evidence into one canonical engineering-closure surface; preserve exact source SHA/run refs and distinguish GitHub technical evidence, Mac-local field evidence and Human Threshold evidence.
-- [x] **Locked target reconciliation:** Operating Character **98–99+ field**; Architecture Foundations **97+ applied**; Engineering Foundations **98+**; Intellectual Depth **97+**; Finished Ability **98+**; Human-Centered Conversation **97+**; Persistent Working Memory **97+**; **critical failures = 0**. A target may PASS only from applicable evidence; unsupported scores remain HOLD.
-- [x] **GitHub Engineering Mandatory DoneCheck™:** implementation → regression → canonical truth → authority boundaries → evidence completeness → PASS / HOLD / BLOCKED.
-- [x] **GitHub Engineering Closeout:** exact-head PASS → merge `49198ddad2f9aac987d6a2c3efbd6c58f910a17a` → exact-main Final Gate #214 + IP Gate #234 + Fleet #219 PASS → state **GITHUB_ENGINEERING_VERIFIED / MAC_COMMISSIONING_REQUIRED**.
-
-### Package 6 — Mac Local Final Commissioning
-- [x] **Source ownership model:** Labory = CONTROL_PLANE; dedicated Mac Engineer repository = PRODUCT SOURCE; Runtime/Applications = EXECUTION OUTPUTS; local Evidence = field proof.
-- [x] **Historical source + field delta reconciliation:** 97 safe historical source files + 1 Swift source; zero secret findings; 13 current-field delta authority candidates verified by compile + runtime tests.
-- [x] **Dedicated product source bootstrap:** local canonical source prepared at `~/Enguru/Projects/enguru-mac-engineer`; 3 native + 26 runtime source files; runtime compile PASS; 25 runtime tests PASS; zsh syntax PASS; native Swift build PASS/executable; clean local Git `main` root commit `3ac09bd7d022a6114b9066afca14ff170e0177c1`.
-- [x] **Mac layout audit:** PASS — 15 findings reconciled; canonical=8, known secondary=7, unknown=0, stale temp=0, missing canonical=0, unknown processes=0, cleanup candidates=0.
-- [x] **Dedicated GitHub source authority:** private `engurulabory/enguru-mac-engineer`; local HEAD = local `origin/main` = remote `main` = `3ac09bd7d022a6114b9066afca14ff170e0177c1`; Product CI run #1 (`35640369690`) exact-head `completed/success`; Labory binding recorded.
-- [x] **Exact-main sync:** Mac `main` = GitHub `origin/main` at `e4f7670429ccdc57178065093f45ced83d07696f`; pre-sync local Shared AI edits preserved on `local/package6-preserve-20260921T201619` / `d3e5dca`; worktree clean.
-- [ ] **Local runtime boot / source binding:** runtime/app/process + Shared AI + Ollama/qwen3:14b ACTIVE/PASS; product source authority + exact-main CI PASS at `3ac09bd7d022a6114b9066afca14ff170e0177c1`. **PREFLIGHT HOLD — REQUIRED DIFFERENCE IDENTIFIED:** canonical product source and current runtime are code-exact across 26 source files; product/installed app version remains 0.4; runtime contains one current-only branding asset `static/engineer-emblem.png`. **PRODUCT SOURCE v0.6 EXACT-MAIN + PREFLIGHT — PASS:** product `main` = local `origin/main` = remote `main` = `28b901ab3303f4be3c7356b11218b62422f2da42`; Product CI push run #3 (`35645771602`) completed/success; fresh rebuild preflight PASS; source app version/build = 0.6; runtime parity 27/27 exact; installed app remains 0.4. **ACTIVE — exact-SHA native rebuild/install with backup + live provenance verification.** First field attempt reached post-launch verification, returned HOLD only on installed-app process detection, and rollback restored both app bundles + relaunch PASS; process verification is being corrected for macOS Unicode normalization/readiness before retry.
-- [x] **Real Mac task — 5/7 VERIFIED PASS:** canonical task `ENGURU-V06-FIELD-001`, checkpoint `v06-field-cp-001`, fixture SHA `f563a779f6d01a46e037e4330383c3adb032d426`; controlled `CURRENT_STATE.md` reconciliation completed, only intended file modified, `git diff --check` PASS, 1/1 regression PASS, application Evidence PASS and independent Evidence PASS.
-- [x] **Persistent continuity / Continuity Patch Repeatability Gate — VERIFIED PASS:** canonical task `ENGURU-V06-FIELD-001`, checkpoint `v06-field-cp-001`, authorized branch `fix/v06-durable-continuity-binding`, base `6f424c0b815d8c0cf8aa761124be3f743e412ee1`, exact patch scope `runtime/app.py`, `runtime/field_reliability.py`, `runtime/tests/test_field_continuity_binding.py`. Fixture/resume correction PASS; targeted repeatability **5/5 PASS**; full runtime regression **35 tests PASS**; diff check PASS; exact 3-file scope PASS; generated cache reconciled; final `PRODUCT_RUNTIME_CACHE_COUNT=0`; **CONTINUITY_PATCH_REPEATABILITY_GATE=PASS**. **PUBLICATION STAGE PASS:** product patch committed as `78dc4aaebbce4fd69ccfdc35544ea49454b27c2b`, worktree clean, exactly 1 commit ahead of main, pushed to remote with local HEAD = remote branch HEAD. **PRODUCT PATCH GITHUB ENGINEERING — VERIFIED PASS:** PR #5; exact-head Product CI PASS; merge SHA `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544`; exact-main Product CI run `35711368049` completed/success; Mac local `main` = remote `main`; clean worktree. Earlier connector 404 remained access-surface-only and was resolved through Mac-local authenticated `gh`.
-- [x] **Continuity patch exact-main Mac commissioning — VERIFIED PASS:** refreshed Product CI Evidence binds exact-main `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544` to Product CI run `35711368049`; rebuild preflight PASS; exact-SHA rebuild/install PASS; runtime source parity **31/31 EXACT**; backup prepared; rollback unused; installed/runtime app v0.6; product/provenance/install source SHA equality PASS; native executable hash equality PASS; live status RUNNING; installed app + runtime processes PASS; post-commission session-start PASS.
-- [x] **Checkpoint / runtime restart / same-task resume field proof — 6/7 VERIFIED PASS:** product exact-main `8e8d7db9ae811a5855697604800c830334944c1f` re-commissioned; control authority, canonical-context binding, exact-main CI Evidence, rebuild preflight, exact-SHA rebuild/install, runtime/app provenance, fixture truth, real runtime restart and resume prompt identity all PASS. Installed app returned canonical task `ENGURU-V06-FIELD-001`, checkpoint `v06-field-cp-001`, reliability task `task_94b95c63865a45db80b85ccba95f8119`, `changed=CURRENT_STATE.md`, `test_count=1`, fixture SHA `f563a779f6d01a46e037e4330383c3adb032d426`, `test_code=0`, `worktree_unchanged=True`, `recovered=True`, `cached=False`, `fresh_revalidation=True`, verdict PASS. Real Mac task is **6/7 VERIFIED PASS**.
-- [ ] **ACTIVE — Recovery field proof (7/7):** run one bounded recoverable failure scenario → diagnose → smallest recovery → reverify → Evidence → PASS/HOLD/BLOCKED.
-- [ ] **Local Evidence bundle:** repo SHA, runtime status, task record, artifacts/diff, test results, restart/resume proof and recovery proof are recorded locally and referenced canonically.
-- [ ] **Mac Local Mandatory DoneCheck™:** work done? actually works? real Mac task? restart/resume? recovery? evidence? authority boundaries? critical failures = 0?
-- [ ] **v0.6 final closure:** GitHub engineering PASS + Mac local commissioning PASS → **ENGÜRÜ Mac Engineer™ v0.6 VERIFIED FINAL / LOCKED**.
-
-**Current single objective:** **Recovery Field Proof Reconciliation**.
