@@ -16,7 +16,7 @@
   "current": {
     "version": "v0.6",
     "state": "VERIFIED_FINAL_LOCKED",
-    "activeObjective": "V00_V03_HISTORICAL_RECONSTRUCTION",
+    "activeObjective": "V0_7_LONG_RUNNING_RELIABILITY",
     "productSourceSha": "7f2e22994d17b913f226eb05691d934f81e1c212",
     "installedVersion": "0.6",
     "completed": [
@@ -68,7 +68,7 @@
     {
       "version": "v0.7",
       "name": "Long-Running Reliability",
-      "state": "PLANNED",
+      "state": "ACTIVE",
       "exit": [
         "LONG_RUN_RELIABILITY_VERIFIED_LOCKED"
       ]
@@ -114,9 +114,13 @@
       "v0.2",
       "v0.3"
     ],
-    "state": "HISTORICAL_RECONSTRUCTION_ACTIVE",
-    "rule": "Promote historical version names only from Git/Evidence-supported boundaries; otherwise preserve as PRE_CANONICAL_DEVELOPMENT_LINEAGE.",
-    "nextAction": "V00_V03_HISTORICAL_RECONSTRUCTION"
+    "state": "HISTORICAL_RECONSTRUCTION_COMPLETE",
+    "judgment": "PRE_CANONICAL_DEVELOPMENT_LINEAGE",
+    "separableVersionBoundariesProven": false,
+    "firstEvidenceBackedNamedBoundary": "v0.4",
+    "evidenceRecord": "evidence/MAC_ENGINEER_V00_V03_HISTORICAL_RECONSTRUCTION_2026-09-22.md",
+    "rule": "Historical product-version boundaries are asserted only from Git/Evidence support; unsupported retrospective titles remain unasserted.",
+    "nextAction": "V0_7_LONG_RUNNING_RELIABILITY"
   },
   "doneCheckAuthority": {
     "markdownProjection": "HUMAN_READABLE_READ_ONLY_PROJECTION",
