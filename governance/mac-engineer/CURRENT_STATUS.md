@@ -5,7 +5,7 @@
 **Current version:** v0.6 — Field Closeout Active  
 **Current objective:** Package 6 — Product Patch GitHub Engineering  
 **Canonical objective id:** `PRODUCT_PATCH_GITHUB_ENGINEERING`  
-**Current verdict:** PASS — continuity repeatability gate verified; product patch publication is active
+**Current verdict:** HOLD — product patch pushed; ChatGPT GitHub connector lacks visibility to private product repo PR surface
 
 ## 1. STATE
 
@@ -119,22 +119,23 @@ The continuity repeatability acceptance is now closed.
 
 ## 6. REQUIRED DIFFERENCE
 
-Publish the verified three-file product patch through the canonical GitHub engineering chain:
+Continue the verified product patch publication from the Mac-local authenticated GitHub surface:
 
-1. commit exactly the authorized three files on `fix/v06-durable-continuity-binding` — **PASS**;
-2. push the branch — **PASS**;
-3. create product PR against `main` — **ACTIVE**;
-4. verify exact-head Product CI;
-5. merge;
-6. verify product exact-main CI.
+1. commit exact three-file patch — **PASS**;
+2. push exact branch/head — **PASS**;
+3. ChatGPT GitHub connector visibility check — **HOLD / private product repo returns 404**;
+4. create product PR from Mac-local authenticated `gh` surface;
+5. verify exact-head Product CI;
+6. merge;
+7. verify product exact-main CI.
 
-The verified local acceptance evidence remains the gate for this publication.
+The product patch itself remains verified. This HOLD is limited to the connector access surface.
 
 ## 7. REMAINING v0.6 CLOSEOUT — CANONICAL ORDER
 
 1. **Continuity fixture / resume correction** — PASS
 2. **Continuity Patch Repeatability Gate** — VERIFIED PASS
-3. **Product patch GitHub engineering** — ACTIVE: commit PASS → push PASS → PR → exact-head CI → merge → exact-main CI
+3. **Product patch GitHub engineering** — HOLD / ACCESS SURFACE: commit PASS → push PASS → ChatGPT connector product-repo visibility 404 → Mac-local authenticated PR/CI/merge/exact-main path ACTIVE
 4. **Mac checkpoint/restart/same-task resume field proof**
 5. **Recovery field proof** — bounded recoverable failure → diagnosis → smallest recovery → reverify
 6. **Local Evidence bundle**
@@ -154,7 +155,7 @@ The program target remains v1.1.
 
 ## 9. NEXT ACTION
 
-**Single next action:** create the product PR from `fix/v06-durable-continuity-binding` at exact head `78dc4aaebbce4fd69ccfdc35544ea49454b27c2b`, then verify exact-head Product CI before merge.
+**Single next action:** use the Mac-local authenticated GitHub CLI to create the product PR from `fix/v06-durable-continuity-binding` at exact head `78dc4aaebbce4fd69ccfdc35544ea49454b27c2b`, verify exact-head Product CI, merge, and verify exact-main CI.
 
 ## 9.1 MAINTENANCE RULE
 
@@ -197,5 +198,5 @@ The new session continues from the single active objective and the single requir
 
 ## JUDGMENT
 
-**v0.6 FIELD CLOSEOUT ACTIVE / CONTINUITY REPEATABILITY PASS.**  
-The continuity repeatability gate is verified and closed. The active objective is PRODUCT_PATCH_GITHUB_ENGINEERING. Evidence, not conversation memory, determines each subsequent promotion.
+**v0.6 FIELD CLOSEOUT ACTIVE / PRODUCT PATCH PUBLICATION ACCESS HOLD.**  
+The continuity patch is verified, committed and pushed. The current HOLD is limited to ChatGPT connector visibility for the private product repository; Mac-local authenticated GitHub publication is the next canonical action.
