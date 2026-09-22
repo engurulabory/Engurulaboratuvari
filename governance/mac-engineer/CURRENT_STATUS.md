@@ -108,7 +108,7 @@ V07-A03 + V07-A04 **PASS / exact-main verified**: product PR #10 merged to `1dcb
 
 V07-A05 + V07-A06 **PASS / exact-main verified**: product PR #11 merged to `199893b07941a82c26c3b39a7942478cb95420b0`; exact-main Product CI run #23 PASS with 52/52 runtime tests OK. Canonical Evidence: `evidence/MAC_ENGINEER_V07_A05_A06_ENGINEERING_2026-09-22.md`.
 
-V07-A07 + V07-A08 **PASS / exact-main verified**: Product PR #12 merged to `5432b9b135499cea18273c0e003877b864af92c6`; exact-main Product CI run #26 PASS with 54/54 runtime tests OK. A07 confirms canonical-durable-only artifact scope with 0 unexpected/temp/cache residue. A08 confirms 20 checkpoint + 20 restart Evidence lineage and journal reconciliation. Canonical Evidence: `evidence/MAC_ENGINEER_V07_A07_A08_ENGINEERING_2026-09-22.md`.
+V07-A07 + V07-A08 **GitHub-first acceptance PASS / Mac acceptance pending**: Product PR #12 merged to `5432b9b135499cea18273c0e003877b864af92c6`; exact-main Product CI run #26 PASS with 54/54 runtime tests OK. A07 confirms canonical-durable-only artifact scope with 0 unexpected/temp/cache residue. A08 confirms 20 checkpoint + 20 restart Evidence lineage and journal reconciliation. The ≥8h/RSS and Local Evidence bundle requirements remain reserved for consolidated Mac commissioning. Canonical Evidence: `evidence/MAC_ENGINEER_V07_A07_A08_ENGINEERING_2026-09-22.md`.
 
 Current required difference: execute `V07-A09 → GITHUB_CI_FAULT_INJECTION_CAMPAIGN`.
 
