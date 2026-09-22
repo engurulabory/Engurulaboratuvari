@@ -5,7 +5,7 @@
 **Current version:** v0.6 — Field Closeout Active  
 **Current objective:** Package 6 — Continuity Patch Exact-Main Commissioning  
 **Canonical objective id:** `CONTINUITY_PATCH_EXACT_MAIN_COMMISSIONING`  
-**Current verdict:** PASS — product patch GitHub engineering closed; exact-main Mac commissioning is active
+**Current verdict:** HOLD — rebuild/install blocked by stale local exact-main CI evidence binding
 
 ## 1. STATE
 
@@ -74,6 +74,23 @@ The active acceptance gate is:
 `TARGETED_REPEATABILITY=5/5_PASS + FULL_RUNTIME_REGRESSION=PASS + DIFF_CHECK=PASS + PATCH_SCOPE=3_FILES_PASS + PRODUCT_RUNTIME_CACHE_COUNT=0`
 
 ## 5. LATEST OBSERVED RESULT
+
+### Exact-main Mac commissioning attempt — HOLD / REQUIRED DIFFERENCE IDENTIFIED
+
+- control-plane session-start: **PASS**
+- product local `main` = `origin/main` = `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544`
+- product worktree: **clean**
+- rebuild preflight: **PASS**
+- preflight runtime delta: 31 product files / 30 current files / 28 exact / 2 changed / 1 missing / 0 current-only
+- expected new continuity delta: `app.py` changed, `field_reliability.py` changed, `tests/test_field_continuity_binding.py` missing from current runtime
+- exact-SHA rebuild/install: **HOLD**
+- issue: `CI_EVIDENCE_SOURCE_SHA_MISMATCH`
+- mutation started: **no**
+- backup created: **no**
+
+Root cause: the rebuild/install gate reads local `package6-product-ci-exact-main.json`. That evidence still points to the previous product exact-main and has not yet been refreshed to the new exact-main `6d2fcd923...` / Product CI run `35711368049`.
+
+
 
 ### Control-plane reconciliation — PASS
 
@@ -148,14 +165,16 @@ The continuity repeatability acceptance is now closed.
 
 ## 6. REQUIRED DIFFERENCE
 
-Commission product exact-main `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544` onto the Mac execution surfaces before live restart/resume proof:
+Refresh the existing exact-main Product CI Evidence for product SHA `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544` and successful Product CI run `35711368049`.
 
-1. exact-main rebuild preflight;
+Then rerun:
+
+1. rebuild preflight;
 2. exact-SHA rebuild/install;
 3. runtime/app provenance verification;
-4. confirm installed/runtime source parity to the new exact-main.
+4. source/runtime parity verification.
 
-Only then run the canonical checkpoint → runtime restart → same-task resume field proof.
+The install gate already proved fail-closed behavior before mutation.
 
 ## 7. REMAINING v0.6 CLOSEOUT — CANONICAL ORDER
 
@@ -182,7 +201,7 @@ The program target remains v1.1.
 
 ## 9. NEXT ACTION
 
-**Single next action:** commission product exact-main `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544` onto the Mac runtime/app using the existing governed rebuild/install + provenance path.
+**Single next action:** run the existing `verify-product-ci` evidence refresh against product exact-main `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544`; on PASS, retry rebuild/install and provenance.
 
 ## 9.1 MAINTENANCE RULE
 
@@ -225,5 +244,5 @@ The new session continues from the single active objective and the single requir
 
 ## JUDGMENT
 
-**v0.6 FIELD CLOSEOUT ACTIVE / PRODUCT PATCH GITHUB ENGINEERING PASS.**  
-The continuity patch is verified on product exact-main. The active objective is exact-main Mac commissioning; live restart/resume evidence follows after source/runtime provenance is re-established.
+**v0.6 FIELD CLOSEOUT ACTIVE / EXACT-MAIN COMMISSIONING HOLD.**  
+The product exact-main and preflight are verified. The current bounded difference is stale local Product CI evidence; install stopped before mutation. Refresh CI evidence, then continue the existing commissioning path.
