@@ -34,7 +34,8 @@
     "realMacEngineeringTask": "VERIFIED_PASS_5_OF_7",
     "continuityPatchRepeatability": "VERIFIED_PASS",
     "productPatchGithubEngineering": "VERIFIED_PASS",
-    "continuityPatchExactMainCommissioning": "VERIFIED_PASS"
+    "continuityPatchExactMainCommissioning": "VERIFIED_PASS",
+    "canonicalContextRefreshBinding": "VERIFIED_PASS"
   },
   "currentObjective": "CHECKPOINT_RESTART_RESUME_FIELD_PROOF",
   "observedProductPublication": {
@@ -287,7 +288,7 @@
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "IMPLEMENT_BOUNDED_V06_CONTEXT_DURABILITY_PATCH",
+  "nextAction": "IMPLEMENT_PRODUCT_CONTEXT_DURABILITY_PATCH",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
@@ -442,5 +443,14 @@
       "REPLACE_EARLY_ARCHIVE_SIZE_WARNING_WITH_NEAR_CAPACITY_INFORMATIONAL_WARNING",
       "FOCUSED_REGRESSION"
     ]
+  },
+  "observedCanonicalContextRefreshBinding": {
+    "state": "VERIFIED_PASS",
+    "prNumber": 144,
+    "exactMain": "34bbe6888196c2627ab5d66faa8182637be78165",
+    "sessionStartPreSync": "PASS",
+    "runtimeRefreshPreSync": "PASS",
+    "failClosedOnSyncHold": true,
+    "exactMainCI": "PASS"
   }
 }
