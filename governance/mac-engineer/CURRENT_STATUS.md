@@ -3,15 +3,15 @@
 **Updated:** 2026-09-22  
 **Program target:** ENGÜRÜ Mac Engineer™ v1.1 — Verified Product Engineering Operator  
 **Current version:** v0.6 — Field Closeout Active  
-**Current objective:** Package 6 — Continuity Patch Repeatability Gate  
-**Canonical objective id:** `CONTINUITY_PATCH_REPEATABILITY`  
-**Current verdict:** HOLD — continuity behavior PASS; final cache hygiene difference remains
+**Current objective:** Package 6 — Product Patch GitHub Engineering  
+**Canonical objective id:** `PRODUCT_PATCH_GITHUB_ENGINEERING`  
+**Current verdict:** PASS — continuity repeatability gate verified; product patch publication is active
 
 ## 1. STATE
 
 ENGÜRÜ Mac Engineer™ v0.6 is **not yet VERIFIED FINAL / LOCKED**.
 
-GitHub control-plane continuity is aligned and verified. The dedicated product source remains on the authorized in-flight continuity patch. The fixture/resume correction now reaches and passes continuity repeatability plus the full runtime regression. The only remaining acceptance difference in this gate is final runtime cache hygiene: two cache entries remained after the regression run.
+GitHub control-plane continuity is aligned and verified. The dedicated product continuity patch has now satisfied its full local repeatability acceptance: 5/5 targeted continuity PASS, 35/35 runtime regression PASS, diff check PASS, exact 3-file scope PASS and runtime cache count 0. The active objective advances to publishing this verified patch through the product repository GitHub engineering chain.
 
 ## 2. CANONICAL SURFACES
 
@@ -52,6 +52,8 @@ The following v0.6 truths are already closed and remain preserved:
 - Bounded in-flight dirty-patch authorization — PASS
 - Porcelain dirty-path parser regression — PASS
 - Runtime generated-cache reconciliation — PASS; tracked cache absent; runtime cache count returned to 0
+- Continuity fixture/resume correction — PASS
+- Continuity Patch Repeatability Gate — VERIFIED PASS: 5/5 targeted + 35/35 regression + diff + exact scope + cache=0
 
 ## 4. CURRENT ENGINEERING TRUTH
 
@@ -81,38 +83,41 @@ Reconciliation proved:
 - patch scope remained exactly the authorized three files
 - `git diff --check`: PASS
 
-### Repeatability run — latest
+### Repeatability run — VERIFIED PASS
 
-The fixture/resume correction advanced the gate through the continuity behavior checks.
-
-Observed result:
+Latest final integrity result:
 
 - targeted continuity repeatability: **5/5 PASS**
 - full runtime regression: **35 tests PASS**
 - full runtime regression verdict: **PASS**
 - diff check: **PASS**
 - patch scope: exactly the authorized three files
-- final runtime cache count: **2**
-- final gate verdict: **HOLD — PRODUCT_RUNTIME_CACHE_COUNT_0_REQUIRED**
+- observed generated cache entries: `runtime/__pycache__` + `runtime/__pycache__/reliability.cpython-314.pyc`
+- tracked cache authority check: **PASS — none tracked**
+- generated cache reconciliation: **PASS**
+- final runtime cache count: **0**
+- final gate verdict: **CONTINUITY_PATCH_REPEATABILITY_GATE=PASS**
 
-This result verifies the continuity behavior and regression surface. The gate remains HOLD only because two generated cache entries were present at final integrity.
+The continuity repeatability acceptance is now closed.
 
 ## 6. REQUIRED DIFFERENCE
 
-Reconcile the final two runtime cache entries and prove `PRODUCT_RUNTIME_CACHE_COUNT=0` while preserving:
+Publish the verified three-file product patch through the canonical GitHub engineering chain:
 
-1. targeted continuity repeatability **5/5 PASS**;
-2. full runtime regression **35 tests PASS**;
-3. `git diff --check` PASS;
-4. exact authorized three-file patch scope.
+1. commit exactly the authorized three files on `fix/v06-durable-continuity-binding`;
+2. push the branch;
+3. create product PR against `main`;
+4. verify exact-head Product CI;
+5. merge;
+6. verify product exact-main CI.
 
-The next action is limited to identifying those two cache entries, confirming they are generated/untracked runtime artifacts, removing them safely, and rechecking the final acceptance surface.
+The verified local acceptance evidence remains the gate for this publication.
 
 ## 7. REMAINING v0.6 CLOSEOUT — CANONICAL ORDER
 
 1. **Continuity fixture / resume correction** — PASS
-2. **Continuity Patch Repeatability Gate** — behavior/regression/scope PASS; final zero-cache hygiene HOLD
-3. **Product patch GitHub engineering** — commit → push → PR → exact-head CI → merge → exact-main CI
+2. **Continuity Patch Repeatability Gate** — VERIFIED PASS
+3. **Product patch GitHub engineering** — ACTIVE: commit → push → PR → exact-head CI → merge → exact-main CI
 4. **Mac checkpoint/restart/same-task resume field proof**
 5. **Recovery field proof** — bounded recoverable failure → diagnosis → smallest recovery → reverify
 6. **Local Evidence bundle**
@@ -132,9 +137,7 @@ The program target remains v1.1.
 
 ## 9. NEXT ACTION
 
-**Single next action:** inspect the two remaining runtime cache entries, confirm generated/untracked status, reconcile them to zero, and re-run only the final integrity acceptance needed to promote the Continuity Patch Repeatability Gate.
-
-Preserve the verified 5/5 continuity result, 35-test regression PASS, diff PASS and exact three-file patch scope.
+**Single next action:** publish the verified continuity patch through the product repository GitHub engineering chain, preserving the exact three-file scope and the verified acceptance evidence.
 
 ## 9.1 MAINTENANCE RULE
 
@@ -177,5 +180,5 @@ The new session continues from the single active objective and the single requir
 
 ## JUDGMENT
 
-**v0.6 FIELD CLOSEOUT ACTIVE / HOLD.**  
-Verified foundations remain closed. Continuity behavior and full regression are now PASS. The current bounded difference is final runtime cache hygiene: 2 entries must reconcile to 0 before this gate can promote to PASS. Evidence, not conversation memory, determines promotion.
+**v0.6 FIELD CLOSEOUT ACTIVE / CONTINUITY REPEATABILITY PASS.**  
+The continuity repeatability gate is verified and closed. The active objective is PRODUCT_PATCH_GITHUB_ENGINEERING. Evidence, not conversation memory, determines each subsequent promotion.
