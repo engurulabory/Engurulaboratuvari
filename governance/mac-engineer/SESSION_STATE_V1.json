@@ -40,7 +40,7 @@
     "freshResumeGithubEngineering": "VERIFIED_PASS",
     "checkpointRestartResumeFieldProof": "VERIFIED_PASS"
   },
-  "currentObjective": "V00_V03_HISTORICAL_RECONSTRUCTION",
+  "currentObjective": "V0_7_LONG_RUNNING_RELIABILITY",
   "observedProductPublication": {
     "source": "MAC_FIELD_OUTPUT",
     "localSourceHead": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
@@ -667,8 +667,20 @@
       "v0.2",
       "v0.3"
     ],
-    "state": "ACTIVE",
-    "truthBoundary": "Git/Evidence-supported boundaries only; otherwise PRE_CANONICAL_DEVELOPMENT_LINEAGE"
+    "state": "PASS_CLOSED",
+    "judgment": "PRE_CANONICAL_DEVELOPMENT_LINEAGE",
+    "separableVersionBoundariesProven": false,
+    "firstEvidenceBackedNamedBoundary": "v0.4",
+    "evidence": {
+      "historicalSource": "~/Desktop/ENGURU_Mac_Engineer_Project_Handoff_v1",
+      "baseline": "baseline_v0.4",
+      "nativeBuildReceipt": "~/Enguru/Evidence/MacEngineer/native_app_prepare_20260920T082338Z.txt",
+      "phase1DoneCheck": "~/Enguru/Evidence/MacEngineer/phase1_donecheck_20260920T095119Z.json",
+      "productGitRoot": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
+      "productCiRunId": 35640369690,
+      "canonicalRecord": "evidence/MAC_ENGINEER_V00_V03_HISTORICAL_RECONSTRUCTION_2026-09-22.md"
+    },
+    "truthBoundary": "v0.0-v0.3 remain collective PRE_CANONICAL_DEVELOPMENT_LINEAGE; retrospective per-version product titles remain unasserted."
   },
   "observedV06CanonicalCloseout": {
     "state": "VERIFIED_FINAL_LOCKED",
@@ -696,5 +708,12 @@
     "realMacTask": "7_OF_7_VERIFIED_PASS",
     "localEvidenceBundle": "VERIFIED_PASS",
     "mandatoryDoneCheck": "PASS"
+  },
+  "currentV07": {
+    "state": "ACTIVE",
+    "objective": "V0_7_LONG_RUNNING_RELIABILITY",
+    "engineeringMode": "GITHUB_FIRST",
+    "nextAction": "DEFINE_EXACT_ACCEPTANCE_MATRIX",
+    "milestoneMacCommissioning": "AFTER_GITHUB_ENGINEERING"
   }
 }
