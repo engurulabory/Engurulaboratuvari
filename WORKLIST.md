@@ -688,6 +688,320 @@ Canonical experiment contract:
 
 ---
 
+# AESTHETIC MOTOR™ — CANONICAL ACTIVE WORKLIST
+
+## Current Truth — LOCKED BASELINE
+- [x] Aesthetic Motor architecture — PASS.
+- [x] Aesthetic Motor core mechanisms — STRONG / TESTED.
+- [x] Aesthetic Studio direct-manipulation partial field path — PASS.
+- [x] Canonical 10-dimension source coverage exists: Purpose & Artistic Intent; Simplicity & Clarity; Visual Hierarchy & Composition; Typography; Color Intelligence; Photography & Imagery; Spacing/Rhythm/Proportion; Component Consistency; Motion/Feedback; Accessibility & Adaptive Beauty.
+- [x] Existing authority chain remains canonical: Aesthetic Motor™ / Aesthetic Diamond™ / Design Language / Visual Excellence / VX1 / Human Artistic Authority™.
+- [x] No parallel aesthetic engine is authorized by default.
+- [x] Reuse rule remains: **reuse → extend → adapter → new core**.
+- [ ] **[HOLD — FIELD PROOF]** End-to-end brief → final visual result closure.
+- [ ] **[HOLD — MEASUREMENT]** Efficiency / correction-cost / acceptance metrics.
+- [ ] **[HOLD — PACKAGE 2C]** Mac Engineer runtime binding; first Package 2C binding attempt returned HOLD and is not treated as active.
+- [ ] **[HOLD — REPEATED FIELD EVIDENCE]** `WORLD_CLASS_100_VERIFIED`.
+
+## A. Aesthetic Capability Matrix™
+Produce one evidence-backed matrix with **PRESENT / PARTIAL / MISSING**, current proof, benchmark reference, necessary difference and closure test for:
+- [ ] Web / Product Design.
+- [ ] Brand / Graphic Design.
+- [ ] Illustration.
+- [ ] Art Direction.
+- [ ] Motion / Effects.
+- [ ] Video Editing / Cinematic Craft.
+- [ ] 3D / Interactive Visuals.
+- [ ] Competitive World-Class / Award-Level Output.
+
+Benchmark references are comparison surfaces, not authority: **Framer, v0, Lovable, Canva, Adobe creative surfaces, Runway, Spline, Apple-class product craft**.
+
+## B. Foundation Aesthetic Intelligence — 10-Dimension Field Verification
+For one real product candidate, verify:
+- [ ] Purpose & Artistic Intent.
+- [ ] Simplicity & Clarity.
+- [ ] Visual Hierarchy & Composition.
+- [ ] Typography.
+- [ ] Color Intelligence.
+- [ ] Photography & Imagery.
+- [ ] Spacing / Rhythm / Proportion.
+- [ ] Component Consistency.
+- [ ] Motion / Feedback.
+- [ ] Accessibility & Adaptive Beauty.
+- [ ] No critical weakness hidden by an average score.
+- [ ] Real desktop / tablet / mobile evidence.
+- [ ] TR / EN and content-length stress where applicable.
+- [ ] 200% text / 320px reflow / reduced-motion evidence where applicable.
+
+## C. Aesthetic Motor Field Reality Audit™ — FIRST ACTIVE PACKAGE
+Run one real brief end to end:
+
+`Brief → Aesthetic Intent → 3 materially distinct directions → Human direction selection → build → desktop/tablet/mobile real render → Professor/Fresh-Eye → visible defects → bounded correction → re-render → measured quality delta → reload/persistence → Human Artistic Authority candidate → Evidence → DoneCheck™`
+
+Acceptance:
+- [ ] Real brief selected.
+- [ ] Aesthetic Intent Brief produced from real intent.
+- [ ] Exactly 3 genuinely different directions.
+- [ ] Direction difference is structural/artistic, not only color/font variation.
+- [ ] Human direction selection recorded.
+- [ ] Selected direction implemented.
+- [ ] Real multi-viewport renders produced.
+- [ ] Professor / Fresh-Eye evidence produced.
+- [ ] Visible defects recorded without hiding weak disciplines.
+- [ ] Smallest sufficient aesthetic correction applied.
+- [ ] Re-render proves measurable improvement or explicit HOLD.
+- [ ] Reload / persistence preserves candidate truth.
+- [ ] Regression preserves working product behavior.
+- [ ] Human Artistic Authority boundary remains open until explicit human decision.
+- [ ] Evidence + Mandatory DoneCheck™.
+
+
+## C.1 Screen Composition & Premium Interaction Discipline™ — 100/100 TARGET
+
+**Truth boundary:** this is a capability-completeness target inside the active Field Reality Audit, not a current field score. A visually attractive static render does not PASS this gate unless geometry, interaction, responsive behavior, accessibility and recovery are also proven.
+
+- [ ] **Viewport composition:** use top / bottom / left / right space deliberately; no accidental dead zones, edge crowding or unbalanced occupancy.
+- [ ] **Margins / padding / gutters:** safe edge distance, grid/gutter rhythm and container width stay coherent across large desktop, desktop, tablet, 390 mobile and 320 small mobile.
+- [ ] **Overflow mastery:** detect and repair horizontal overflow, clipping, off-screen text, overlap, broken wrapping, oversized media and modal/dialog escape.
+- [ ] **Responsive recomposition:** layouts recompose by intent; mobile/tablet are not merely scaled-down desktop.
+- [ ] **Typography containment:** headings, labels, paragraphs, badges and controls survive TR/EN, long/short content, localization and 200% text without collision or hierarchy collapse.
+- [ ] **Button / control mastery:** controls are visually legible and actually work; default / hover / focus-visible / active / loading / disabled / success / error states are intentional where applicable.
+- [ ] **Keyboard / focus discipline:** logical tab order, visible focus, no keyboard traps, action reachability and focus restoration after transient surfaces.
+- [ ] **Box / card / container discipline:** radius, border, shadow, depth, spacing, density and hierarchy are purposeful; no generic card soup or decorative container excess.
+- [ ] **Modal / dialog mastery:** correct sizing, safe viewport fit, backdrop, focus containment, Escape/close behavior, scroll-lock, focus return, mobile adaptation and accessible semantics.
+- [ ] **Premium surface models:** produce restrained, product-specific premium cards, panels, dialogs, sheets, menus, forms and action surfaces without defaulting to generic glass/gradient aesthetics.
+- [ ] **Interaction truth:** every visible primary/secondary action has verified behavior; no dead button, fake control, hidden unreachable action or misleading enabled state.
+- [ ] **Scroll / fold discipline:** primary intent, action hierarchy and content rhythm remain coherent above/below fold; sticky/fixed elements never steal usable space or cover content.
+- [ ] **Safe-area / inset discipline:** viewport edges, browser/device insets and mobile bottom/top regions do not hide interactive or essential content.
+- [ ] **Automatic defect repair loop:** detect geometry/control defects → record defect → smallest bounded correction → re-render → prove defect delta.
+- [ ] **Stress evidence:** large desktop / standard desktop / tablet / 390 / 320 + long content + TR/EN + text-spacing + 200% text + reduced motion + keyboard path.
+- [ ] **No-average masking:** any critical overflow, unreachable control, broken modal, focus trap, clipped primary content or non-working action forces HOLD regardless of aggregate aesthetic score.
+- [ ] **Human Artistic Authority™:** premium feel and final artistic balance remain human-governed after technical/interaction gates PASS.
+- [ ] **Repeated field proof:** capability reaches 100/100 target only after repeated real candidates demonstrate stable screen-use and interaction quality, not from one showcase page.
+
+Acceptance chain:
+
+`viewport geometry → spacing rhythm → overflow repair → responsive recomposition → controls → cards/containers → modal/dialog → keyboard/focus → interaction truth → stress render → bounded correction → re-render → Evidence → DoneCheck™ → Human Artistic Authority™`
+
+
+
+## C.2 Verified Aesthetic Evolution & Trend Intelligence™ — 100/100 TARGET
+
+**Truth boundary:** Aesthetic Motor may learn from verified field outcomes, current design/technology evidence and bounded experiments. It may not silently rewrite canonical authority, copy fashionable styles, expand its own permissions, or convert novelty into quality without evidence. Self-improvement remains evidence-gated, reversible and Human Threshold-aware.
+
+- [ ] **Verified learning loop:** defect / critique / human feedback → bounded correction → measured delta → persistence check → evidence → reusable learning candidate.
+- [ ] **Learning promotion rule:** one successful correction is not a permanent rule; promote only after repeated cross-brief evidence or an explicit Human Artistic Authority / governance decision.
+- [ ] **Failure memory:** record recurring overflow, spacing, typography, modal, control-state, responsive and composition failures with root cause and successful repair pattern.
+- [ ] **Success memory:** preserve patterns that repeatedly improve intent fidelity, usability, aesthetic quality and implementation integrity without template-locking future work.
+- [ ] **Context-bound reuse:** every learned pattern carries scope, source, date, applicable contexts, known risks, confidence and rollback path.
+- [ ] **No style cloning:** learning may extract principles and mechanisms but must not memorize or reproduce a competitor’s distinctive visual identity.
+- [ ] **Trend intelligence:** periodically observe contemporary web/product/graphic/interaction/motion/typography patterns and distinguish durable design evolution from short-lived fashion.
+- [ ] **Trend restraint:** trend adoption requires intent fit, originality, accessibility, performance and brand coherence; fashionable but irrelevant patterns are rejected.
+- [ ] **Technology watch:** track relevant browser/CSS/layout, accessibility, interaction/input, responsive/device, rendering, motion, image/video/3D and creative-tool advances that could materially improve output.
+- [ ] **Standards watch:** review material changes in accessibility, browser/platform behavior and implementation standards before they become field regressions.
+- [ ] **Tool/provider watch:** compare new creative models/tools/providers as optional execution surfaces; no provider becomes canonical authority from marketing claims alone.
+- [ ] **Fresh benchmark:** periodically rerun equal-brief comparisons against relevant frontier creative/product surfaces and record dated evidence.
+- [ ] **Second Look / Outside Voice:** important capability promotions receive fresh-context critique and, where useful, independent outside-voice review.
+- [ ] **Bounded experiment path:** discover → evidence → sandbox → benchmark → regression → accept/reject → rollback-ready integration.
+- [ ] **No silent self-modification:** Aesthetic Motor may propose and test improvements autonomously inside approved bounds, but canonical rule/authority changes require governed promotion.
+- [ ] **Versioned evolution:** accepted learning updates are versioned; last-known-good behavior remains recoverable.
+- [ ] **Decay / freshness:** time-sensitive trend/tool assumptions carry review dates and may expire back to REVIEW/HOLD instead of remaining permanent truth.
+- [ ] **Resource discipline:** do not chase every trend or tool; investigate only changes with plausible quality, reliability, efficiency or creative-range gain.
+- [ ] **Originality protection:** repeated learning must increase judgment and range, not collapse outputs into one house template.
+- [ ] **Human Artistic Authority™ preserved:** final aesthetic acceptance, identity-changing decisions and consequential taste judgments remain human-governed.
+- [ ] **Quarterly Technology Review binding:** significant aesthetic/creative technology changes feed the existing governed review cycle rather than creating a parallel update system.
+
+Evolution chain:
+
+`field evidence → verified learning candidate → repeated proof → bounded adoption → regression → Second Look → versioned promotion → periodic freshness review → rollback if degraded`
+
+Trend / technology chain:
+
+`observe → source/provenance → relevance test → equal-brief experiment → quality + usability + accessibility + performance delta → adopt / reject / review later`
+
+
+
+## C.3 Atelier Craft & Original Design Discipline™ — 100/100 TARGET
+
+**Intent:** every product is approached with tailor-level care: product-specific proportion, composition, typography, interaction, material and detail decisions. Aesthetic Motor must master originality without falling into novelty-for-novelty, template reuse or a single ENGÜRÜ house look.
+
+**Truth boundary:** originality is a governed capability target, not a claim that every first draft is award-grade. PASS requires real alternatives, real render evidence, critique, correction and Human Artistic Authority™. Reuse may preserve proven principles and mechanisms, but must not collapse products into repeated visual templates.
+
+- [ ] **Bespoke product fit:** derive the visual system from this product's purpose, audience, content, domain, behavior and emotional intent; do not start from a preferred house template.
+- [ ] **Product-specific Design DNA:** record the candidate's composition logic, typographic character, spatial rhythm, color/light logic, material language, interaction tone and visual risks.
+- [ ] **Exactly 3 genuinely original alternatives:** every direction must present a materially different visual thesis, not a palette/font swap.
+- [ ] **Alternative diversity gate:** directions differ across several structural axes such as composition, focal strategy, typography, density, imagery/material, interaction, motion and information rhythm.
+- [ ] **No cosmetic branching:** if two directions share substantially the same layout skeleton and only change styling, they fail the direction gate.
+- [ ] **Independent direction critique:** each alternative receives its own strengths, risks, clichés, product-fit weaknesses and originality attacks before Human direction selection.
+- [ ] **Internal-output distance:** compare against recent ENGÜRÜ outputs to detect accidental repetition of hero geometry, card grammar, type hierarchy, spacing rhythm, material treatment and motion language.
+- [ ] **Reference-distance guard:** inspirations may inform principles, but distinctive competitor compositions, motifs, identities and signature visual grammar must not be reproduced.
+- [ ] **Originality with usability:** uniqueness never excuses weak clarity, broken interaction, inaccessible contrast, poor responsive behavior or implementation fragility.
+- [ ] **Tailor-level responsive fit:** desktop, tablet and mobile are individually composed for the same intent; responsive adaptation is treated as fitting, not shrinking.
+- [ ] **Content tailoring:** long/short copy, TR/EN, data density, empty states and real product content are allowed to change composition where needed rather than being forced into a rigid template.
+- [ ] **Micro-detail craft pass:** optical alignment, baseline relationships, edge distances, control proportions, icon/text balance, radius, border, shadow, state transition and visual weight receive a final detail pass.
+- [ ] **Interaction tailoring:** controls, feedback, loading, error, success, disabled, modal/dialog and navigation behavior inherit the selected direction's visual character without sacrificing functional truth.
+- [ ] **Material / light specificity:** shadows, gradients, depth, blur, texture and light are used only when the product concept justifies them; generic premium effects are rejected.
+- [ ] **Deliberate restraint:** absence, whitespace and simplicity are treated as designed choices with measurable hierarchy rather than empty leftovers.
+- [ ] **No generic premium:** glass, gradients, oversized serif, blobs, cards or dark-mode styling cannot manufacture a premium verdict by themselves.
+- [ ] **Craft defect ledger:** visible awkwardness, imbalance, crowding, dead space, repetition, weak focus, poor wrapping and generic composition are recorded as aesthetic defects, not dismissed as taste.
+- [ ] **Bounded reconstruction:** when a direction is conceptually right but visually weak, repair the smallest sufficient composition/detail layer before inventing a replacement direction.
+- [ ] **Fresh-Eye originality check:** a fresh reviewer must be able to explain what makes the chosen result specific to this product and why it is not interchangeable with another product.
+- [ ] **Blind alternative test:** where practical, direction labels are hidden and reviewers judge product fit, memorability, coherence and originality without being told which path is preferred.
+- [ ] **Verified learning without template lock:** successful craft principles may be learned; visual appearance is not promoted as a universal template.
+- [ ] **Human Artistic Authority™:** final originality, emotional precision and artistic acceptance remain human-governed.
+- [ ] **Repeated field proof:** 100/100 target requires repeated real products across materially different categories; one bespoke success cannot certify motor-wide mastery.
+
+Atelier chain:
+
+`intent → product-specific Design DNA → 3 independent visual theses → originality/diversity gate → real render → critique → Human direction selection → tailor-level responsive fit → micro-detail craft → Fresh-Eye → bounded correction → re-render → Human Artistic Authority™ → Evidence → DoneCheck™`
+
+Originality rule:
+
+`reuse principles, not appearance; preserve craft, not template; learn judgment, not style cloning`
+
+
+## D. Graphic Design / Brand Production Expansion
+- [ ] Poster / key visual.
+- [ ] Social campaign family.
+- [ ] Presentation / editorial layout.
+- [ ] Brand collateral / launch asset set.
+- [ ] Vector / icon / shape-language production.
+- [ ] Brand-system consistency across multiple formats.
+- [ ] Export / asset provenance / rights truth.
+- [ ] Benchmark against Canva / Adobe-class workflows under equal brief conditions.
+- [ ] Decide **reuse / extend / adapter / new core** only after measured gap.
+
+## E. Illustration / Art Capability
+- [ ] Conceptual illustration.
+- [ ] Editorial illustration.
+- [ ] Geometric / organic / technical illustration.
+- [ ] Character or recurring visual-series consistency when applicable.
+- [ ] Raster + vector path strategy.
+- [ ] Composition, anatomy/form, perspective and depth quality where applicable.
+- [ ] Style consistency without template memory.
+- [ ] Reference-distance / originality guard.
+- [ ] Provenance / rights evidence.
+- [ ] Real blind human comparison.
+
+## F. Advanced Art / Color / Material / Light
+- [ ] Advanced color harmony and contrast strategy.
+- [ ] Cultural / emotional color meaning.
+- [ ] Light direction, softness, temperature, depth and shadow logic.
+- [ ] Material / texture / surface intelligence.
+- [ ] Pattern and visual rhythm.
+- [ ] Layering / compositing / depth.
+- [ ] Optical correction.
+- [ ] Deliberate restraint versus decorative excess.
+- [ ] Real-render evidence under varied displays/backgrounds where applicable.
+
+## G. Motion / Effects
+- [ ] Micro-interaction grammar.
+- [ ] Temporal hierarchy.
+- [ ] Typographic motion.
+- [ ] Choreography and transition logic.
+- [ ] Motion performance budget.
+- [ ] Reduced-motion artistic equivalent.
+- [ ] Feedback states: loading / success / warning / error / disabled / modal.
+- [ ] Motion is meaningful rather than decorative.
+- [ ] Repeated-use fatigue / distraction check.
+- [ ] Equal-condition comparison against leading motion-capable product surfaces.
+
+## H. Video Editing / Cinematic Craft
+First determine whether existing layers are sufficient; use adapter before creating a new core.
+- [ ] Story / shot intent.
+- [ ] Edit rhythm / pacing.
+- [ ] Cut / transition discipline.
+- [ ] Scene continuity.
+- [ ] Color / light continuity.
+- [ ] Text / title / graphic overlays.
+- [ ] Audio / speech / music relationship where applicable.
+- [ ] Reframe / format adaptation.
+- [ ] Generative-video integration boundary if needed.
+- [ ] Real export + playback evidence.
+- [ ] Benchmark against Runway / Adobe-class video workflows.
+- [ ] Decide **reuse / extend / adapter / new core** from measured evidence.
+
+## I. 3D / Interactive Visual Capability
+First determine measured need; Spline-class capability is benchmark reference, not automatic scope.
+- [ ] 3D scene / object generation or controlled import path.
+- [ ] Materials / textures.
+- [ ] Camera / composition.
+- [ ] Lighting / shadows.
+- [ ] Depth / perspective.
+- [ ] Animation / states.
+- [ ] Interaction.
+- [ ] Physics / particles only when justified.
+- [ ] Web performance / fallback / accessibility.
+- [ ] Multi-platform export or integration path where needed.
+- [ ] Benchmark against Spline-class production.
+- [ ] Decide **reuse / extend / adapter / new core** from measured evidence.
+
+## J. Apple-Class Product Craft Benchmark — Reference, Not Imitation
+Evaluate under original ENGÜRÜ identity:
+- [ ] Purpose clarity.
+- [ ] Restraint / simplicity.
+- [ ] Typography authority.
+- [ ] Hierarchy and spacing precision.
+- [ ] Material / light discipline.
+- [ ] Motion restraint and feedback.
+- [ ] Interaction polish.
+- [ ] Responsive/adaptive quality.
+- [ ] Accessibility.
+- [ ] Detail consistency.
+- [ ] Product-wide coherence.
+- [ ] Originality / no stylistic copying.
+
+## K. Competitive World-Class Proof
+- [ ] At least 12 real Builder briefs; target program 13.
+- [ ] At least 10 materially different categories.
+- [ ] Minimum brief score >= 96 under canonical floor.
+- [ ] Critical discipline floors all satisfied.
+- [ ] External frontier blind comparison / tournament.
+- [ ] Independent human jury.
+- [ ] Award-Grade / Professor / Fresh-Eye / Blind Comparison evidence.
+- [ ] Human Artistic Authority approved.
+- [ ] One strong candidate is not used to manufacture motor-wide proof.
+- [ ] Only after repeated evidence may `WORLD_CLASS_100_VERIFIED` be considered.
+
+## L. Efficiency / Target → Result Metrics
+- [ ] Brief → first credible candidate elapsed time.
+- [ ] First-pass acceptance rate.
+- [ ] Average correction cycles.
+- [ ] Defects per viewport.
+- [ ] Professor/Fresh-Eye findings per iteration.
+- [ ] Quality delta after bounded correction.
+- [ ] Human acceptance / revise / reject rate.
+- [ ] Runtime / provider / tool cost where measurable.
+- [ ] CPU / memory / render resource use where relevant.
+- [ ] Persistence / recovery success.
+- [ ] Rework avoided through preservation of verified work.
+
+## M. Mac Engineer Package 2C Binding — AFTER FIELD REALITY PASS
+- [x] Reconcile failed first Package 2C binding test to exact root cause.
+- [x] Bind only verified Aesthetic Motor authority and measured capabilities.
+- [x] Preserve no-parallel-engine rule.
+- [x] Preserve Human Artistic Authority™.
+- [x] Preserve `WORLD_CLASS_100_VERIFIED` as separate repeated-field claim.
+- [x] Runtime restart.
+- [x] Real conversation-first aesthetic smoke.
+- [x] ZEKÜ / Labory / Builder truth preservation.
+- [x] Regression.
+- [x] Second Look.
+- [x] Evidence.
+- [x] Mandatory DoneCheck™.
+- [x] Package 2C — VERIFIED FINAL / LOCKED.
+
+## N. Exit Contract
+`Capability Matrix → Field Reality Audit → measured gap closure → Package 2C VERIFIED FINAL / LOCKED → Package 3 Persistent Working Memory → Package 4 Real Field Acceptance + Finished Ability™ → Package 5 GitHub Engineering Closeout → exact-main PASS → Package 6 Mac Local Final Commissioning → local runtime + real Mac task + restart/resume + recovery + local Evidence + Mandatory DoneCheck™ → ENGÜRÜ Mac Engineer™ v0.6 VERIFIED FINAL / LOCKED`
+
+**Canonical environment rule**
+- **GitHub = canonical source / version / CI / engineering Evidence.**
+- **Mac local = real runtime / user operating environment / final field Evidence.**
+- GitHub exact-main PASS closes engineering truth; it does **not** by itself certify the Mac-local product runtime.
+- Final v0.6 VERIFIED FINAL / LOCKED requires both GitHub engineering closure and Mac Local Final Commissioning PASS.
+
+---
+
 # ENGÜRÜ Mac Engineering™ — CANONICAL PRODUCT ROADMAP + v0.6 FIELD CLOSEOUT
 
 **STATE:** v0.6 LOCAL FIELD CLOSEOUT — **VERIFIED PASS**. Canonical reconciliation is the active closeout step.
@@ -885,4 +1199,3 @@ Engineering mode: **GitHub-first benchmark harness + selected Mac field proofs**
 3. Close v0.6 as **VERIFIED FINAL / LOCKED**.
 4. Reconstruct v0.0–v0.3 historical lineage from evidence.
 5. Start v0.7 under the **GitHub-first / Milestone-Mac** model.
-
