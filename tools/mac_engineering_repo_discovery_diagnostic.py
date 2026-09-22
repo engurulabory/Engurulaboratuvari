@@ -14,6 +14,7 @@ HOME = Path.home()
 RUNTIME = HOME / "Enguru" / "Runtime" / "MacEngineer" / "runtime"
 REPO_MANAGER = RUNTIME / "repo_manager.py"
 APP = RUNTIME / "app.py"
+REPO_CONTROL = RUNTIME / "repo_control.py"
 PROJECTS = HOME / "Enguru" / "Projects"
 FIXTURE = PROJECTS / "mac-engineering-v06-field-fixture"
 EVIDENCE = (
@@ -132,8 +133,15 @@ def live_runtime_scan() -> dict[str, Any]:
         "import repo_control\n"
         f"root=Path({str(HOME / 'Enguru')!r})\n"
         "raw=rm.scan_enguru(root)\n"
-        "merged=repo_control.merge_local(raw)\n"
-        "print(json.dumps({'raw':raw,'merged':merged}, ensure_ascii=False))\n"
+        "has_merge=callable(getattr(repo_control,'merge_local',None))\n"
+        "merged=repo_control.merge_local(raw) if has_merge else None\n"
+        "print(json.dumps({"
+        "'raw':raw,"
+        "'merged':merged,"
+        "'repo_control_file':getattr(repo_control,'__file__',None),"
+        "'repo_control_attrs':[n for n in dir(repo_control) if not n.startswith('_')],"
+        "'has_merge_local':has_merge"
+        "}, ensure_ascii=False))\n"
     )
     result = run(["python3", "-c", code], cwd=RUNTIME)
     payload: dict[str, Any] = {
@@ -154,26 +162,35 @@ def live_runtime_scan() -> dict[str, Any]:
         }
 
     raw = parsed.get("raw", [])
-    merged = parsed.get("merged", [])
+    merged = parsed.get("merged")
     fixture_path = str(FIXTURE)
     payload.update(
         {
             "raw_count": len(raw),
-            "merged_count": len(merged),
+            "merged_count": len(merged) if isinstance(merged, list) else None,
             "fixture_in_raw": any(
                 item.get("path") == fixture_path for item in raw
             ),
-            "fixture_in_merged": any(
-                item.get("path") == fixture_path for item in merged
+            "fixture_in_merged": (
+                any(item.get("path") == fixture_path for item in merged)
+                if isinstance(merged, list)
+                else None
             ),
             "raw_fixture": next(
                 (item for item in raw if item.get("path") == fixture_path),
                 None,
             ),
-            "merged_fixture": next(
-                (item for item in merged if item.get("path") == fixture_path),
-                None,
+            "merged_fixture": (
+                next(
+                    (item for item in merged if item.get("path") == fixture_path),
+                    None,
+                )
+                if isinstance(merged, list)
+                else None
             ),
+            "repo_control_file": parsed.get("repo_control_file"),
+            "repo_control_attrs": parsed.get("repo_control_attrs", []),
+            "has_merge_local": parsed.get("has_merge_local", False),
         }
     )
     return payload
@@ -223,6 +240,7 @@ def infer_contract(repo_source: dict[str, Any], app_source: dict[str, Any]) -> d
 def main() -> int:
     repo_source = source_functions(REPO_MANAGER)
     app_source = source_functions(APP)
+    repo_control_source = source_functions(REPO_CONTROL)
     fixture = git_probe(FIXTURE)
     inventory = project_inventory()
     inferred = infer_contract(repo_source, app_source)
@@ -233,6 +251,8 @@ def main() -> int:
         issues.append("RUNTIME_REPO_MANAGER_SOURCE_REQUIRED")
     if not app_source.get("exists"):
         issues.append("RUNTIME_APP_SOURCE_REQUIRED")
+    if not repo_control_source.get("exists"):
+        issues.append("RUNTIME_REPO_CONTROL_SOURCE_REQUIRED")
     if not fixture.get("git_dir"):
         issues.append("FIELD_FIXTURE_GIT_REQUIRED")
     if not live_scan.get("pass"):
@@ -247,6 +267,7 @@ def main() -> int:
         "projects_inventory": inventory,
         "repo_manager": repo_source,
         "app": app_source,
+        "repo_control": repo_control_source,
         "inferred_contract": inferred,
         "live_runtime_scan": live_scan,
         "truth_boundary": (
@@ -282,6 +303,15 @@ def main() -> int:
                         "source": item["source"],
                     }
                     for item in repo_source.get("functions", [])
+                ],
+                "repo_control_functions": [
+                    {
+                        "name": item["name"],
+                        "line_start": item["line_start"],
+                        "line_end": item["line_end"],
+                        "source": item["source"],
+                    }
+                    for item in repo_control_source.get("functions", [])
                 ],
                 "app_functions": [
                     {

@@ -37,6 +37,12 @@ class MacEngineeringRepoDiscoveryDiagnosticTests(unittest.TestCase):
     def test_live_scan_function_is_available(self):
         self.assertTrue(callable(diag.live_runtime_scan))
 
+    def test_repo_control_path_is_runtime_scoped(self):
+        self.assertEqual(
+            diag.REPO_CONTROL,
+            diag.RUNTIME / "repo_control.py",
+        )
+
     def test_diagnostic_evidence_is_v06_scoped(self):
         self.assertEqual(
             diag.EVIDENCE.name,
