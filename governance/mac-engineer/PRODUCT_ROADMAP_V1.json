@@ -17,7 +17,7 @@
     "version": "v0.6",
     "state": "FIELD_CLOSEOUT_ACTIVE",
     "activeObjective": "RECOVERY_FIELD_PROOF_RECONCILIATION",
-    "productSourceSha": "8e8d7db9ae811a5855697604800c830334944c1f",
+    "productSourceSha": "7f2e22994d17b913f226eb05691d934f81e1c212",
     "installedVersion": "0.6",
     "completed": [
       "RUNTIME_APP_PROVENANCE_CLOSURE",
