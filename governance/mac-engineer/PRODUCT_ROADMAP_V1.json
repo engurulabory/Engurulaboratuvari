@@ -9,19 +9,20 @@
     "controlPlane": "engurulabory/Engurulaboratuvari"
   },
   "finalTarget": {
-    "version": "v1.0",
+    "version": "v1.1",
     "title": "Verified Product Engineering Operator",
     "verdictTarget": "VERIFIED_FINAL_LOCKED"
   },
   "current": {
     "version": "v0.6",
     "state": "FIELD_CLOSEOUT_ACTIVE",
-    "activeObjective": "REAL_MAC_ENGINEERING_TASK",
-    "productSourceSha": "28b901ab3303f4be3c7356b11218b62422f2da42",
+    "activeObjective": "CONTINUITY_PATCH_REPEATABILITY",
+    "productSourceSha": "6f424c0b815d8c0cf8aa761124be3f743e412ee1",
     "installedVersion": "0.6",
     "completed": [
       "RUNTIME_APP_PROVENANCE_CLOSURE",
-      "ARCHIVE_DECISION"
+      "ARCHIVE_DECISION",
+      "REAL_MAC_ENGINEERING_TASK"
     ]
   },
   "versions": [
@@ -76,6 +77,14 @@
     },
     {
       "version": "v1.0",
+      "name": "Verified Product Engineering Operator",
+      "state": "PLANNED_MILESTONE",
+      "exit": [
+        "VERIFIED_FINAL_LOCKED"
+      ]
+    },
+    {
+      "version": "v1.1",
       "name": "Verified Product Engineering Operator",
       "state": "FINAL_TARGET",
       "exit": [
