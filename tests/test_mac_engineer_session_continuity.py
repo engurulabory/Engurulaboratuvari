@@ -87,6 +87,71 @@ class MacEngineerSessionContinuityTests(unittest.TestCase):
         self.assertTrue(authorized)
         self.assertTrue(policy["authorized"])
 
+    def test_continuity_patch_allows_exact_bounded_dirty_set(self):
+        state = {
+            "currentObjective": "CONTINUITY_PATCH_REPEATABILITY",
+            "observedContinuityPatch": {
+                "branch": "fix/v06-durable-continuity-binding",
+                "head": "6f424c0",
+                "baseMain": "6f424c0",
+                "expectedDirtyPaths": [
+                    "runtime/app.py",
+                    "runtime/field_reliability.py",
+                    "runtime/tests/test_field_continuity_binding.py",
+                ],
+            },
+        }
+        product = {
+            "branch": "fix/v06-durable-continuity-binding",
+            "head": "6f424c0",
+            "origin_main": "6f424c0",
+            "exact_origin_main": True,
+            "clean": False,
+            "status": (
+                " M runtime/app.py\n"
+                " M runtime/field_reliability.py\n"
+                "?? runtime/tests/test_field_continuity_binding.py"
+            ),
+        }
+        authorized, policy = authorized_product_working_branch(state, product)
+        self.assertTrue(authorized)
+        self.assertEqual(policy["mode"], "IN_FLIGHT_PATCH")
+        self.assertEqual(
+            policy["observed_dirty_paths"],
+            sorted(state["observedContinuityPatch"]["expectedDirtyPaths"]),
+        )
+
+    def test_continuity_patch_rejects_unexpected_dirty_path(self):
+        state = {
+            "currentObjective": "CONTINUITY_PATCH_REPEATABILITY",
+            "observedContinuityPatch": {
+                "branch": "fix/v06-durable-continuity-binding",
+                "head": "6f424c0",
+                "baseMain": "6f424c0",
+                "expectedDirtyPaths": [
+                    "runtime/app.py",
+                    "runtime/field_reliability.py",
+                    "runtime/tests/test_field_continuity_binding.py",
+                ],
+            },
+        }
+        product = {
+            "branch": "fix/v06-durable-continuity-binding",
+            "head": "6f424c0",
+            "origin_main": "6f424c0",
+            "exact_origin_main": True,
+            "clean": False,
+            "status": (
+                " M runtime/app.py\n"
+                " M runtime/field_reliability.py\n"
+                "?? runtime/tests/test_field_continuity_binding.py\n"
+                "?? runtime/unexpected.py"
+            ),
+        }
+        authorized, policy = authorized_product_working_branch(state, product)
+        self.assertFalse(authorized)
+        self.assertIn("runtime/unexpected.py", policy["observed_dirty_paths"])
+
     def test_unrecorded_product_branch_is_not_authorized(self):
         state = {
             "currentObjective": "PRODUCT_SOURCE_V0_6_ALIGNMENT_PUBLICATION",
