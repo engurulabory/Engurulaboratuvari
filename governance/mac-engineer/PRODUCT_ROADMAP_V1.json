@@ -17,7 +17,7 @@
     "version": "v0.6",
     "state": "VERIFIED_FINAL_LOCKED",
     "activeObjective": "V0_7_LONG_RUNNING_RELIABILITY",
-    "productSourceSha": "199893b07941a82c26c3b39a7942478cb95420b0",
+    "productSourceSha": "5432b9b135499cea18273c0e003877b864af92c6",
     "installedVersion": "0.6",
     "completed": [
       "RUNTIME_APP_PROVENANCE_CLOSURE",
@@ -74,16 +74,18 @@
       ],
       "acceptanceMatrix": "PASS_DEFINED",
       "acceptanceMatrixPath": "governance/mac-engineer/V07_LONG_RUNNING_RELIABILITY_ACCEPTANCE_MATRIX_V1.md",
-      "nextAction": "V07_A07_A08_RESOURCE_AND_EVIDENCE_CONTINUITY",
+      "nextAction": "V07_A09_GITHUB_CI_FAULT_INJECTION_CAMPAIGN",
       "passedGates": [
         "V07-A01",
         "V07-A02",
         "V07-A03",
         "V07-A04",
         "V07-A05",
-        "V07-A06"
+        "V07-A06",
+        "V07-A07",
+        "V07-A08"
       ],
-      "evidence": "evidence/MAC_ENGINEER_V07_A05_A06_ENGINEERING_2026-09-22.md"
+      "evidence": "evidence/MAC_ENGINEER_V07_A07_A08_ENGINEERING_2026-09-22.md"
     },
     {
       "version": "v0.8",
