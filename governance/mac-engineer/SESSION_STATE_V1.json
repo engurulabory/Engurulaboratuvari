@@ -289,7 +289,7 @@
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "READ_EXACT_TASK_CHECKPOINT_SCHEMA_AND_IMPLEMENT_BOUNDED_RESUME_VERIFICATION_PATCH",
+  "nextAction": "COMMIT_PUSH_EXACT_FRESH_RESUME_VERIFICATION_PATCH",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
@@ -557,5 +557,28 @@
       "FRESH_POST_RESTART_REVALIDATION_NOT_CACHED_TERMINAL_RESULT",
       "REAL_POST_RESTART_TASK_CHECKPOINT_TEST_SHA_EVIDENCE"
     ]
+  },
+  "observedFreshResumeVerificationPatch": {
+    "state": "LOCAL_VERIFIED_PASS_AWAITING_PUBLICATION",
+    "branch": "fix/v06-fresh-resume-verification",
+    "head": "125be3a4b01b3a4de5faf949c79372de1d249aaf",
+    "baseMain": "125be3a4b01b3a4de5faf949c79372de1d249aaf",
+    "expectedDirtyPaths": [
+      "runtime/app.py",
+      "runtime/field_reliability.py",
+      "runtime/tests/test_field_resume_verification.py"
+    ],
+    "exactDurableSchema": "PASS",
+    "fixtureTruth": "PASS",
+    "resumeRouteBeforeRepair": "PASS",
+    "legacyCompleteTaskBinding": "PASS",
+    "freshPostRestartRevalidation": "PASS",
+    "focusedRegression": "PASS",
+    "fullRuntimeRegression": {
+      "state": "PASS",
+      "tests": 43
+    },
+    "diffCheck": "PASS",
+    "runtimeCacheCount": 0
   }
 }
