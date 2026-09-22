@@ -33,9 +33,10 @@
     "archiveDecision": "PASS_PRESERVE_FIRST",
     "realMacEngineeringTask": "VERIFIED_PASS_5_OF_7",
     "continuityPatchRepeatability": "VERIFIED_PASS",
-    "productPatchGithubEngineering": "VERIFIED_PASS"
+    "productPatchGithubEngineering": "VERIFIED_PASS",
+    "continuityPatchExactMainCommissioning": "VERIFIED_PASS"
   },
-  "currentObjective": "CONTINUITY_PATCH_EXACT_MAIN_COMMISSIONING",
+  "currentObjective": "CHECKPOINT_RESTART_RESUME_FIELD_PROOF",
   "observedProductPublication": {
     "source": "MAC_FIELD_OUTPUT",
     "localSourceHead": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
@@ -49,7 +50,6 @@
     "productCIRunNumber": 1
   },
   "canonicalNextLine": [
-    "CONTINUITY_PATCH_EXACT_MAIN_COMMISSIONING",
     "CHECKPOINT_RESTART_RESUME_FIELD_PROOF",
     "RECOVERY_FIELD_PROOF_RECONCILIATION",
     "LOCAL_EVIDENCE_BUNDLE",
@@ -265,39 +265,29 @@
       "localRemoteMainParity": "PASS"
     },
     "commissioning": {
-      "state": "HOLD",
+      "state": "VERIFIED_PASS",
       "observedAt": "2026-09-22",
       "productExactMain": "6d2fcd923e8fa0417a2e7787acd0dcef6b25e544",
-      "sessionStart": "PASS",
+      "productCIRunId": 35711368049,
+      "productCIEvidence": "PASS",
       "rebuildPreflight": "PASS",
-      "runtimeParity": {
-        "productFiles": 31,
-        "currentFiles": 30,
-        "exact": 28,
-        "changed": 2,
-        "missingCurrent": 1,
-        "currentOnly": 0,
-        "changedPaths": [
-          "app.py",
-          "field_reliability.py"
-        ],
-        "missingPaths": [
-          "tests/test_field_continuity_binding.py"
-        ]
-      },
-      "rebuildInstall": "HOLD",
-      "issue": "CI_EVIDENCE_SOURCE_SHA_MISMATCH",
-      "mutationStarted": false,
-      "backupCreated": false,
-      "rootCause": "STALE_LOCAL_PRODUCT_CI_EXACT_MAIN_EVIDENCE",
-      "requiredEvidence": {
-        "productSha": "6d2fcd923e8fa0417a2e7787acd0dcef6b25e544",
-        "productCIRunId": 35711368049
-      }
+      "rebuildInstall": "PASS",
+      "runtimeSourceParity": "31/31_EXACT",
+      "backupPrepared": true,
+      "rollbackUsed": false,
+      "installedAppVersion": "0.6",
+      "runtimeBuildAppVersion": "0.6",
+      "runtimeProvenance": "PASS",
+      "allSourceShaEqual": true,
+      "allNativeHashEqual": true,
+      "liveStatus": "PASS",
+      "appProcess": "PASS",
+      "runtimeProcess": "PASS",
+      "postCommissionSessionStart": "PASS"
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "REFRESH_PRODUCT_CI_EXACT_MAIN_EVIDENCE_THEN_RETRY_COMMISSIONING",
+  "nextAction": "RESTART_COMMISSIONED_RUNTIME_AND_RESUME_ENGURU_V06_FIELD_001_AT_V06_FIELD_CP_001",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",

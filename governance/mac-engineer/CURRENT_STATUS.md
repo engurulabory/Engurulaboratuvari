@@ -3,15 +3,15 @@
 **Updated:** 2026-09-22  
 **Program target:** ENGÜRÜ Mac Engineer™ v1.1 — Verified Product Engineering Operator  
 **Current version:** v0.6 — Field Closeout Active  
-**Current objective:** Package 6 — Continuity Patch Exact-Main Commissioning  
-**Canonical objective id:** `CONTINUITY_PATCH_EXACT_MAIN_COMMISSIONING`  
-**Current verdict:** HOLD — rebuild/install blocked by stale local exact-main CI evidence binding
+**Current objective:** Package 6 — Checkpoint / Restart / Same-Task Resume Field Proof  
+**Canonical objective id:** `CHECKPOINT_RESTART_RESUME_FIELD_PROOF`  
+**Current verdict:** PASS — exact-main Mac commissioning verified; restart/resume field proof is active
 
 ## 1. STATE
 
 ENGÜRÜ Mac Engineer™ v0.6 is **not yet VERIFIED FINAL / LOCKED**.
 
-The continuity patch is now fully integrated into the product repository. Product PR #5 merged after exact-head Product CI PASS; product exact-main is `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544`; exact-main Product CI run `35711368049` completed successfully; Mac local product `main` equals remote `main` at that exact SHA with a clean worktree. The next required difference is Mac commissioning of this new exact-main before live restart/resume field proof.
+The continuity patch is fully integrated into product exact-main `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544` and is now commissioned onto the Mac execution surfaces. Exact-main Product CI Evidence was refreshed to run `35711368049`; rebuild/install completed with runtime source parity **31/31 exact**; runtime/app provenance binds the same product SHA across product source, provenance and install evidence; installed app + runtime process are live. The active objective is now the real checkpoint → runtime restart → same-task resume field proof.
 
 ## 2. CANONICAL SURFACES
 
@@ -47,6 +47,7 @@ The following v0.6 truths are already closed and remain preserved:
 - v0.6 source/version alignment — PASS
 - Exact-SHA rebuild/install — PASS
 - Runtime/app provenance — PASS
+- Continuity patch exact-main Mac commissioning — VERIFIED PASS: CI evidence 35711368049, product SHA 6d2fcd923e8fa0417a2e7787acd0dcef6b25e544, runtime parity 31/31 exact, live app/runtime processes
 - Archive decision — PASS / preserve-first
 - Real Mac engineering task — VERIFIED PASS, stage 5/7
 - Session continuity bootstrap — PASS
@@ -74,6 +75,28 @@ The active acceptance gate is:
 `TARGETED_REPEATABILITY=5/5_PASS + FULL_RUNTIME_REGRESSION=PASS + DIFF_CHECK=PASS + PATCH_SCOPE=3_FILES_PASS + PRODUCT_RUNTIME_CACHE_COUNT=0`
 
 ## 5. LATEST OBSERVED RESULT
+
+### Continuity Patch Exact-Main Mac Commissioning — VERIFIED PASS
+
+- exact-main Product CI Evidence: **PASS**
+- product SHA / local main / origin-main / remote-main: `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544`
+- Product CI run: `35711368049` — completed/success
+- rebuild preflight: **PASS**
+- exact-SHA rebuild/install: **PASS**
+- runtime source parity after install: **31/31 EXACT**
+- backup prepared: **yes**
+- rollback used: **no**
+- installed app: v0.6
+- runtime-build app: v0.6
+- product source SHA = provenance SHA = install Evidence SHA: **true**
+- installed executable hash = runtime-build executable hash = provenance executable hash: **true**
+- live `/api/status`: **RUNNING**
+- installed app process: **PASS**
+- runtime process: **PASS**
+- post-commission session-start: **PASS**
+- final verdict: **CONTINUITY_PATCH_EXACT_MAIN_COMMISSIONING=PASS**
+
+
 
 ### Exact-main Mac commissioning attempt — HOLD / REQUIRED DIFFERENCE IDENTIFIED
 
@@ -165,24 +188,27 @@ The continuity repeatability acceptance is now closed.
 
 ## 6. REQUIRED DIFFERENCE
 
-Refresh the existing exact-main Product CI Evidence for product SHA `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544` and successful Product CI run `35711368049`.
+Prove persistent continuity on the real commissioned Mac execution path for the existing canonical task:
 
-Then rerun:
+1. preserve task id `ENGURU-V06-FIELD-001`;
+2. preserve checkpoint id `v06-field-cp-001`;
+3. observe a real runtime/app restart;
+4. resume the same durable task after restart;
+5. re-read repository/task state from disk;
+6. verify the controlled `CURRENT_STATE.md` repair remains correct;
+7. re-run the repository regression;
+8. prove the same reliability task / duplicate + recovered semantics;
+9. attach post-restart Evidence to the same task record.
 
-1. rebuild preflight;
-2. exact-SHA rebuild/install;
-3. runtime/app provenance verification;
-4. source/runtime parity verification.
-
-The install gate already proved fail-closed behavior before mutation.
+Promote the real Mac task from 5/7 to 6/7 only on Evidence-backed PASS.
 
 ## 7. REMAINING v0.6 CLOSEOUT — CANONICAL ORDER
 
 1. **Continuity fixture / resume correction** — PASS
 2. **Continuity Patch Repeatability Gate** — VERIFIED PASS
 3. **Product patch GitHub engineering** — VERIFIED PASS
-4. **Continuity patch exact-main Mac commissioning** — ACTIVE
-5. **Mac checkpoint/restart/same-task resume field proof**
+4. **Continuity patch exact-main Mac commissioning** — VERIFIED PASS
+5. **Mac checkpoint/restart/same-task resume field proof** — ACTIVE
 6. **Recovery field proof** — bounded recoverable failure → diagnosis → smallest recovery → reverify
 7. **Local Evidence bundle**
 8. **Mac Local Mandatory DoneCheck™**
@@ -201,7 +227,7 @@ The program target remains v1.1.
 
 ## 9. NEXT ACTION
 
-**Single next action:** run the existing `verify-product-ci` evidence refresh against product exact-main `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544`; on PASS, retry rebuild/install and provenance.
+**Single next action:** restart the commissioned runtime through the existing governed real-task refresh path, then submit the existing `package6-real-task-resume-prompt.txt` so the same task/checkpoint is resumed and verified after restart.
 
 ## 9.1 MAINTENANCE RULE
 
@@ -244,5 +270,5 @@ The new session continues from the single active objective and the single requir
 
 ## JUDGMENT
 
-**v0.6 FIELD CLOSEOUT ACTIVE / EXACT-MAIN COMMISSIONING HOLD.**  
-The product exact-main and preflight are verified. The current bounded difference is stale local Product CI evidence; install stopped before mutation. Refresh CI evidence, then continue the existing commissioning path.
+**v0.6 FIELD CLOSEOUT ACTIVE / EXACT-MAIN COMMISSIONING VERIFIED PASS.**  
+The commissioned Mac runtime is bound to product exact-main `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544`. The active objective is the real checkpoint/restart/same-task resume field proof.
