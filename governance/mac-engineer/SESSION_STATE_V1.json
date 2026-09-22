@@ -31,15 +31,16 @@
     "exactShaRebuildInstall": "PASS",
     "runtimeAppProvenance": "PASS",
     "archiveDecision": "PASS_PRESERVE_FIRST",
-    "realMacEngineeringTask": "VERIFIED_PASS_5_OF_7",
+    "realMacEngineeringTask": "VERIFIED_PASS_6_OF_7",
     "continuityPatchRepeatability": "VERIFIED_PASS",
     "productPatchGithubEngineering": "VERIFIED_PASS",
     "continuityPatchExactMainCommissioning": "VERIFIED_PASS",
     "canonicalContextRefreshBinding": "VERIFIED_PASS",
     "contextDurabilityGithubEngineering": "VERIFIED_PASS",
-    "freshResumeGithubEngineering": "VERIFIED_PASS"
+    "freshResumeGithubEngineering": "VERIFIED_PASS",
+    "checkpointRestartResumeFieldProof": "VERIFIED_PASS"
   },
-  "currentObjective": "CHECKPOINT_RESTART_RESUME_FIELD_PROOF",
+  "currentObjective": "RECOVERY_FIELD_PROOF_RECONCILIATION",
   "observedProductPublication": {
     "source": "MAC_FIELD_OUTPUT",
     "localSourceHead": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
@@ -53,7 +54,6 @@
     "productCIRunNumber": 1
   },
   "canonicalNextLine": [
-    "CHECKPOINT_RESTART_RESUME_FIELD_PROOF",
     "RECOVERY_FIELD_PROOF_RECONCILIATION",
     "LOCAL_EVIDENCE_BUNDLE",
     "MANDATORY_DONECHECK",
@@ -290,7 +290,7 @@
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "RECOMMISSION_FRESH_RESUME_EXACT_MAIN_AND_REPEAT_6_OF_7",
+  "nextAction": "RECOVERY_FIELD_PROOF_RECONCILIATION",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
@@ -305,26 +305,25 @@
     ]
   },
   "observedRestartResumeFieldProof": {
-    "state": "HOLD",
+    "state": "VERIFIED_PASS",
     "observedAt": "2026-09-22",
     "canonicalTaskId": "ENGURU-V06-FIELD-001",
     "checkpointId": "v06-field-cp-001",
-    "appVerdict": "HOLD",
+    "reliabilityTaskId": "task_94b95c63865a45db80b85ccba95f8119",
+    "productExactMain": "8e8d7db9ae811a5855697604800c830334944c1f",
+    "appVerdict": "PASS",
     "evidence": {
-      "changed": null,
-      "testCount": null,
-      "sha": null,
-      "rollback": false
+      "changed": "CURRENT_STATE.md",
+      "testCount": 1,
+      "sha": "f563a779f6d01a46e037e4330383c3adb032d426",
+      "testCode": 0,
+      "worktreeUnchanged": true,
+      "recovered": true,
+      "cached": false,
+      "freshRevalidation": true
     },
-    "classification": "RESUME_ROUTING_OR_INTENT_CLASSIFICATION_GAP",
-    "contextWarningBlocker": false,
-    "requiredDifference": [
-      "TRACE_EXECUTE_LOCAL_FIELD_TASK_BRANCH_ORDER",
-      "TRACE_FIELD_RELIABILITY_RESUME_VS_REPAIR_CLASSIFIER",
-      "ROUTE_CANONICAL_RESUME_TO_EXISTING_DURABLE_TASK_PATH",
-      "REQUIRE_REAL_CHANGED_TEST_SHA_EVIDENCE"
-    ],
-    "realTaskStage": "5_OF_7"
+    "realTaskStage": "6_OF_7",
+    "nextGate": "RECOVERY_FIELD_PROOF_RECONCILIATION"
   },
   "observedLongConversationDurabilityDiscovery": {
     "state": "PASS_READ_ONLY_DISCOVERY_INCOMPLETE_TEXT_SEARCH",
@@ -597,5 +596,19 @@
     "exactMainCi": "PASS",
     "localRemoteMainParity": "PASS",
     "localWorktree": "CLEAN"
+  },
+  "observedFreshResumeCommissioning": {
+    "state": "VERIFIED_PASS",
+    "observedAt": "2026-09-22",
+    "productExactMain": "8e8d7db9ae811a5855697604800c830334944c1f",
+    "productCiExactMainEvidence": "PASS",
+    "controlAuthority": "PASS",
+    "canonicalContextExactMain": "PASS",
+    "rebuildPreflight": "PASS",
+    "exactShaRebuildInstall": "PASS",
+    "runtimeAppProvenance": "PASS",
+    "fieldFixtureTruth": "PASS",
+    "realRuntimeRestart": "PASS",
+    "resumePromptIdentity": "PASS"
   }
 }
