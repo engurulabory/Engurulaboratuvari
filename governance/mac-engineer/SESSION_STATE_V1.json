@@ -193,7 +193,7 @@
     "destructiveCleanup": false
   },
   "observedContinuityPatch": {
-    "state": "HOLD_FIXTURE_REPEATABILITY_REQUIRED",
+    "state": "HOLD_FINAL_CACHE_HYGIENE_REQUIRED",
     "branch": "fix/v06-durable-continuity-binding",
     "head": "6f424c0b815d8c0cf8aa761124be3f743e412ee1",
     "baseMain": "6f424c0b815d8c0cf8aa761124be3f743e412ee1",
@@ -214,31 +214,19 @@
     ],
     "latestObservedResult": {
       "observedAt": "2026-09-22",
-      "cacheReconciliation": {
-        "trackedCache": "NONE",
-        "generatedCacheCleanup": "PASS",
-        "productRuntimeCacheCount": 0,
-        "patchScope": "3_FILES_PRESERVED",
-        "diffCheck": "PASS"
-      },
-      "repeatability": {
-        "targetedRun": "1_OF_5",
-        "state": "HOLD",
-        "executionVerdict": "HOLD",
-        "testVerdict": "BLOCKED",
-        "worktreeUnchanged": true,
-        "blocker": "GENERATED_FIXTURE_TEST_CALCULATOR_LITERAL_ESCAPED_NEWLINES_SYNTAX_ERROR",
-        "reliability": {
-          "duplicate": false,
-          "recovered": false,
-          "idempotencyKeySource": "GENERATED"
-        }
-      },
-      "requiredDifference": "REPAIR_CONTINUITY_TEST_FIXTURE_AND_RESUME_CONSTRUCTION_THEN_RERUN_FULL_REPEATABILITY_GATE"
+      "fixtureResumeCorrection": "PASS",
+      "targetedRepeatability": "5_OF_5_PASS",
+      "fullRuntimeRegression": "35_TESTS_PASS",
+      "diffCheck": "PASS",
+      "patchScope": "3_FILES_PASS",
+      "productRuntimeCacheCount": 2,
+      "gateVerdict": "HOLD",
+      "issue": "PRODUCT_RUNTIME_CACHE_COUNT_0_REQUIRED",
+      "requiredDifference": "RECONCILE_FINAL_TWO_GENERATED_RUNTIME_CACHE_ENTRIES_TO_ZERO"
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "CONTINUITY_FIXTURE_RESUME_CORRECTION_THEN_REPEATABILITY_GATE",
+  "nextAction": "FINAL_RUNTIME_CACHE_RECONCILIATION_THEN_CONTINUITY_GATE_PROMOTION",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
