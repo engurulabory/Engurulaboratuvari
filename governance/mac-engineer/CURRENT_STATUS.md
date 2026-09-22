@@ -32,6 +32,7 @@ The next engineering model is now locked as **GitHub-first / Milestone-Mac**:
 - Installed/runtime app version: 0.6
 - Runtime source parity: 34/34 EXACT
 - Runtime/App provenance: PASS
+- CONTINUITY_PATCH_REPEATABILITY: VERIFIED PASS
 
 ### Real field acceptance
 - Canonical task: `ENGURU-V06-FIELD-001`
