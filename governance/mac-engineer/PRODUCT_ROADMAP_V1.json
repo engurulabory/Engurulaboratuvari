@@ -15,20 +15,28 @@
   },
   "current": {
     "version": "v0.6",
-    "state": "FIELD_CLOSEOUT_ACTIVE",
-    "activeObjective": "RECOVERY_FIELD_PROOF_RECONCILIATION",
+    "state": "LOCAL_FIELD_CLOSEOUT_VERIFIED_CANONICAL_RECONCILIATION",
+    "activeObjective": "V06_CANONICAL_RECONCILIATION_AND_WORKING_MODEL_LOCK",
     "productSourceSha": "7f2e22994d17b913f226eb05691d934f81e1c212",
     "installedVersion": "0.6",
     "completed": [
       "RUNTIME_APP_PROVENANCE_CLOSURE",
       "ARCHIVE_DECISION",
-      "REAL_MAC_ENGINEERING_TASK",
+      "REAL_MAC_ENGINEERING_TASK_7_OF_7",
       "CONTINUITY_PATCH_REPEATABILITY",
       "PRODUCT_PATCH_GITHUB_ENGINEERING",
       "CONTINUITY_PATCH_EXACT_MAIN_COMMISSIONING",
       "CONTEXT_DURABILITY_GITHUB_ENGINEERING",
       "FRESH_RESUME_GITHUB_ENGINEERING",
-      "CHECKPOINT_RESTART_RESUME"
+      "CHECKPOINT_RESTART_RESUME",
+      "RECOVERY_FIELD_PROOF_RECONCILIATION",
+      "LOCAL_EVIDENCE_BUNDLE",
+      "MAC_LOCAL_MANDATORY_DONECHECK"
+    ],
+    "remaining": [
+      "CONTROL_PLANE_CANONICAL_RECONCILIATION_MERGE",
+      "CONTROL_PLANE_EXACT_MAIN_ACCEPTANCE",
+      "V0_6_VERIFIED_FINAL_LOCKED"
     ]
   },
   "versions": [
@@ -45,15 +53,16 @@
     {
       "version": "v0.6",
       "name": "Operating Behavior & Verified Local Product",
-      "state": "FIELD_CLOSEOUT_ACTIVE",
+      "state": "LOCAL_FIELD_CLOSEOUT_VERIFIED_CANONICAL_RECONCILIATION",
       "exit": [
         "RUNTIME_APP_PROVENANCE_CLOSURE",
         "ARCHIVE_DECISION",
-        "REAL_MAC_ENGINEERING_TASK",
+        "REAL_MAC_ENGINEERING_TASK_7_OF_7",
         "CHECKPOINT_RESTART_RESUME",
         "RECOVERY_FIELD_PROOF_RECONCILIATION",
         "LOCAL_EVIDENCE_BUNDLE",
         "MANDATORY_DONECHECK",
+        "CONTROL_PLANE_CANONICAL_RECONCILIATION",
         "V0_6_VERIFIED_FINAL_LOCKED"
       ]
     },
@@ -98,5 +107,30 @@
       ]
     }
   ],
-  "method": "SESSION_START -> CANONICAL_SYNC -> SESSION_STATE -> ONE_ACTIVE_OBJECTIVE -> CHANGE -> TEST_CI -> EXACT_MAIN -> MAC_FIELD_ACTION -> EVIDENCE -> DONECHECK -> CURRENT_STATUS_RECONCILE -> WORKLIST_SESSION_STATE_RECONCILE -> SESSION_HANDOFF"
+  "method": "SESSION_START -> CANONICAL_SYNC -> ONE_ACTIVE_OBJECTIVE -> GITHUB_ENGINEERING -> TEST_CI -> PR_REVIEW -> EXACT_MAIN -> DONECHECK_ENGINEERING_VERIFICATION -> MILESTONE_MAC_COMMISSIONING -> LOCAL_EVIDENCE -> DONECHECK_V1_2 -> HUMAN_THRESHOLD -> VERSION_LOCK -> CURRENT_STATUS_RECONCILE -> WORKLIST_SESSION_STATE_RECONCILE -> SESSION_HANDOFF",
+  "preCanonicalLineage": {
+    "versions": [
+      "v0.0",
+      "v0.1",
+      "v0.2",
+      "v0.3"
+    ],
+    "state": "HISTORICAL_RECONSTRUCTION_REQUIRED",
+    "rule": "Promote historical version names only from Git/Evidence-supported boundaries; otherwise preserve as PRE_CANONICAL_DEVELOPMENT_LINEAGE."
+  },
+  "doneCheckAuthority": {
+    "markdownProjection": "HUMAN_READABLE_READ_ONLY_PROJECTION",
+    "mandatoryDoneCheckJson": "STRUCTURED_EVIDENCE_CONTRACT",
+    "machineAuthority": "DONECHECK_V1_2",
+    "finalHumanAuthority": "HUMAN_THRESHOLD",
+    "contract": "governance/mac-engineer/DONECHECK_AUTHORITY_MODEL_V1.md"
+  },
+  "workingModel": {
+    "id": "GITHUB_FIRST_MILESTONE_MAC",
+    "engineeringPlane": "GITHUB",
+    "orchestration": "CHATGPT_PROJECT",
+    "fieldExecutor": "ENGURU_MAC_ENGINEER",
+    "fieldPlane": "REAL_MAC_MILESTONE_COMMISSIONING",
+    "contract": "governance/mac-engineer/GITHUB_FIRST_MILESTONE_MAC_WORKING_MODEL_V1.md"
+  }
 }
