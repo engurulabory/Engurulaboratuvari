@@ -710,10 +710,10 @@
     "mandatoryDoneCheck": "PASS"
   },
   "currentV07": {
-    "state": "ACTIVE",
+    "state": "HOLD",
     "objective": "V0_7_LONG_RUNNING_RELIABILITY",
     "engineeringMode": "GITHUB_FIRST",
-    "nextAction": "V07_A09_GITHUB_CI_FAULT_INJECTION_CAMPAIGN",
+    "nextAction": "V07_A09_CLEAR_GITHUB_PRIVATE_REPO_HOSTED_ACTIONS_EXECUTION_GATE",
     "milestoneMacCommissioning": "AFTER_GITHUB_ENGINEERING",
     "acceptanceMatrix": "PASS_DEFINED",
     "acceptanceMatrixPath": "governance/mac-engineer/V07_LONG_RUNNING_RELIABILITY_ACCEPTANCE_MATRIX_V1.md",
@@ -736,7 +736,13 @@
     "runtimeRegression": "54_OF_54_OK",
     "evidence": "evidence/MAC_ENGINEER_V07_A07_A08_ENGINEERING_2026-09-22.md",
     "passedGatesAuthority": "GITHUB_FIRST_ACCEPTANCE",
-    "milestoneMacAcceptance": "PENDING_CONSOLIDATED_COMMISSIONING"
+    "milestoneMacAcceptance": "PENDING_CONSOLIDATED_COMMISSIONING",
+    "a09State": "HOLD_GITHUB_PRIVATE_REPO_HOSTED_ACTIONS_EXECUTION_GATE",
+    "a09CampaignPassCount": 0,
+    "a09ProductPrNumber": 13,
+    "a09LatestCandidateHead": "d545a6d9d5d9823da5878323022735ad7f47a80e",
+    "a09Evidence": "evidence/MAC_ENGINEER_V07_A09_ACTIONS_HOLD_2026-09-22.md",
+    "humanThreshold": "READ_ONLY_GITHUB_ACTIONS_BILLING_POLICY_INSPECTION_REQUIRED"
   },
   "observedV07A01A02": {
     "state": "VERIFIED_PASS_EXACT_MAIN",
@@ -843,5 +849,35 @@
       "milestoneMacAcceptance": "PENDING_LOCAL_CAMPAIGN_EVIDENCE_BUNDLE"
     },
     "productionRuntimeCodeChanged": false
+  },
+  "observedV07A09ActionsGate": {
+    "state": "HOLD",
+    "observedAt": "2026-09-22",
+    "productPrNumber": 13,
+    "campaignPassCount": 0,
+    "lastVerifiedProductExactMain": "5432b9b135499cea18273c0e003877b864af92c6",
+    "lastVerifiedProductCiRunId": 35770981787,
+    "runnerEvidence": {
+      "macosLatest": "FAIL_BEFORE_STEPS",
+      "macos15": "FAIL_BEFORE_STEPS",
+      "ubuntuLatest": "FAIL_BEFORE_STEPS"
+    },
+    "representativeRuns": [
+      35771642847,
+      35771819889,
+      35772106786,
+      35772106855,
+      35772188104,
+      35772187806,
+      35772187950
+    ],
+    "rerunAuthority": "PASS",
+    "productionCodeFailureObserved": false,
+    "rootCause": "INCONCLUSIVE_EXTERNAL_ACTIONS_EXECUTION_GATE",
+    "requiredHumanInspection": [
+      "GITHUB_BILLING_AND_LICENSING_ACTIONS_USAGE_BUDGET",
+      "PRODUCT_REPO_SETTINGS_ACTIONS_GENERAL"
+    ],
+    "evidence": "evidence/MAC_ENGINEER_V07_A09_ACTIONS_HOLD_2026-09-22.md"
   }
 }

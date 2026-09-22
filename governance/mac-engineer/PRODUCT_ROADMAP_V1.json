@@ -68,13 +68,13 @@
     {
       "version": "v0.7",
       "name": "Long-Running Reliability",
-      "state": "ACTIVE",
+      "state": "HOLD",
       "exit": [
         "LONG_RUN_RELIABILITY_VERIFIED_LOCKED"
       ],
       "acceptanceMatrix": "PASS_DEFINED",
       "acceptanceMatrixPath": "governance/mac-engineer/V07_LONG_RUNNING_RELIABILITY_ACCEPTANCE_MATRIX_V1.md",
-      "nextAction": "V07_A09_GITHUB_CI_FAULT_INJECTION_CAMPAIGN",
+      "nextAction": "V07_A09_CLEAR_GITHUB_PRIVATE_REPO_HOSTED_ACTIONS_EXECUTION_GATE",
       "passedGates": [
         "V07-A01",
         "V07-A02",
@@ -87,7 +87,13 @@
       ],
       "evidence": "evidence/MAC_ENGINEER_V07_A07_A08_ENGINEERING_2026-09-22.md",
       "passedGatesAuthority": "GITHUB_FIRST_ACCEPTANCE",
-      "milestoneMacAcceptance": "PENDING_CONSOLIDATED_COMMISSIONING"
+      "milestoneMacAcceptance": "PENDING_CONSOLIDATED_COMMISSIONING",
+      "a09": {
+        "state": "HOLD_GITHUB_PRIVATE_REPO_HOSTED_ACTIONS_EXECUTION_GATE",
+        "campaignPassCount": 0,
+        "productPrNumber": 13,
+        "evidence": "evidence/MAC_ENGINEER_V07_A09_ACTIONS_HOLD_2026-09-22.md"
+      }
     },
     {
       "version": "v0.8",
