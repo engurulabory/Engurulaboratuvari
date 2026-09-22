@@ -287,7 +287,7 @@
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "INSPECT_APP_CONTEXT_HISTORY_WARNING_AND_CANONICAL_CONTEXT_REFRESH_THEN_MINIMAL_HARDENING_PATCH",
+  "nextAction": "IMPLEMENT_BOUNDED_V06_CONTEXT_DURABILITY_PATCH",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
@@ -392,5 +392,55 @@
       "method": "OLDER_PRE_CURRENT_STATUS_CHAIN"
     },
     "workingHypothesis": "DURABLE_TASK_PRESENT_BUT_ACTIVE_CONVERSATION_CONTEXT_USES_STALE_CANONICAL_CONTEXT_AND_EARLY_HARDCODED_WARNING"
+  },
+  "observedContextResumeRootCause": {
+    "state": "ROOT_CAUSE_RESOLVED",
+    "observedAt": "2026-09-22",
+    "transcriptWeightThresholds": {
+      "chatDense": {
+        "messages": 30,
+        "chars": 7000
+      },
+      "chatHeavy": {
+        "messages": 60,
+        "chars": 14000
+      },
+      "workDense": {
+        "messages": 80,
+        "chars": 20000
+      },
+      "workHeavy": {
+        "messages": 150,
+        "chars": 40000
+      }
+    },
+    "activeHistoryBudget": {
+      "maxMessages": 24,
+      "maxChars": 12000
+    },
+    "warningJudgment": "ARCHIVE_SIZE_HEURISTIC_NOT_ACTIVE_CONTEXT_PRESSURE",
+    "resumeIdentity": {
+      "parserAccepts": "COLON_ONLY",
+      "fieldHandoffObserved": "EQUALS_SYNTAX",
+      "taskId": "ENGURU-V06-FIELD-001",
+      "checkpointId": "v06-field-cp-001",
+      "deterministicIdentityRecovered": false,
+      "structuredCanonicalIdsInObservedTaskMetadata": false
+    },
+    "canonicalContext": {
+      "syncCommandExists": true,
+      "sessionStartInvokesSync": false,
+      "chatContextLoadsCanonicalContext": false,
+      "observedRuntimeContext": "STALE"
+    },
+    "requiredPatch": [
+      "COMMISSIONING_IDENTITY_ACCEPT_COLON_OR_EQUALS",
+      "REFRESH_CANONICAL_CONTEXT_ON_GOVERNED_SESSION_RUNTIME_PATH",
+      "INJECT_CANONICAL_CONTEXT_IN_CHAT_CURRENT_LOCAL_CONTEXT",
+      "PIN_MATCHED_DURABLE_TASK_CHECKPOINT",
+      "PRESERVE_BOUNDED_HISTORY",
+      "REPLACE_EARLY_ARCHIVE_SIZE_WARNING_WITH_NEAR_CAPACITY_INFORMATIONAL_WARNING",
+      "FOCUSED_REGRESSION"
+    ]
   }
 }

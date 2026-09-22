@@ -254,9 +254,28 @@ Exact discovery findings:
   - sessionStateObjective = `RUNTIME_APP_PROVENANCE_CLOSURE`;
   - method is also the older pre-CURRENT_STATUS chain.
 
-Primary working hypothesis:
+Root cause is now materially resolved:
 
-**persistent task state is present; active conversation context is being assembled with stale canonical context and an early hard-coded pressure warning.**
+1. **Warning heuristic is early and disconnected from active model context.**
+   - chat DENSE: >=30 messages or >=7,000 chars;
+   - chat HEAVY: >=60 messages or >=14,000 chars;
+   - work DENSE: >=80 messages or >=20,000 chars;
+   - work HEAVY: >=150 messages or >=40,000 chars.
+   These weights are computed from the full stored transcript, while provider history is separately bounded to 24 messages / 12,000 chars. The current banner therefore measures archive size, not actual active-context saturation.
+
+2. **Resume identity parser rejects the syntax emitted by the real resume handoff.**
+   - `commissioning_identity()` accepts only `task_id: VALUE` and `checkpoint_id: VALUE`;
+   - the real handoff uses `task_id=ENGURU-V06-FIELD-001` and `checkpoint_id=v06-field-cp-001`;
+   - the observed durable task metadata stores those ids only inside `user_intent`, not as structured `canonical_task_id` / `checkpoint_id` fields;
+   - therefore same-task deterministic commissioning identity was not structurally recovered on the field resume attempt.
+
+3. **Canonical context refresh is decoupled from session start.**
+   - `sync-context` exists and writes `state/canonical-context.json`;
+   - `session-start` does not invoke it;
+   - product chat context construction does not currently load `canonical-context.json` into `CURRENT LOCAL CONTEXT`;
+   - the runtime context therefore remained at the earlier Runtime/App Provenance objective.
+
+**Judgment:** durable persistence works; the bounded gap is identity parsing + canonical-context injection/refresh + misleading transcript-weight warning.
 
 ## 6. REQUIRED DIFFERENCE
 
@@ -300,7 +319,7 @@ The program target remains v1.1.
 
 ## 9. NEXT ACTION
 
-**Single next action:** inspect the exact `runtime/app.py` context/history/warning block, the UI warning thresholds in `runtime/static/index.html`, and the canonical-context refresh path; then implement the smallest bounded patch that refreshes canonical context, pins durable task truth, budgets long history, and delays user-visible warning until genuine context pressure.
+**Single next action:** implement the bounded v0.6 context-durability patch: accept ':' or '=' commissioning identity syntax; inject refreshed canonical context + matched durable task/checkpoint into CURRENT LOCAL CONTEXT; couple canonical-context refresh to the governed session/runtime path; preserve bounded history while replacing early archive-size warnings with near-capacity informational behavior; add focused regression tests.
 
 ## 9.1 MAINTENANCE RULE
 
