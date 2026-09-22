@@ -19,7 +19,7 @@
     "installedApp": "~/Applications/ENGÜRÜ Mac Engineer.app",
     "evidence": "~/Enguru/Evidence/MacEngineer"
   },
-  "lockedMethod": "SESSION_START -> CANONICAL_SYNC -> SESSION_STATE -> ONE_ACTIVE_OBJECTIVE -> CHANGE -> TEST_CI -> EXACT_MAIN -> MAC_FIELD_ACTION -> EVIDENCE -> DONECHECK -> WORKLIST_RECONCILE -> SESSION_HANDOFF",
+  "lockedMethod": "SESSION_START -> CANONICAL_SYNC -> SESSION_STATE -> ONE_ACTIVE_OBJECTIVE -> CHANGE -> TEST_CI -> EXACT_MAIN -> MAC_FIELD_ACTION -> EVIDENCE -> DONECHECK -> CURRENT_STATUS_RECONCILE -> WORKLIST_SESSION_STATE_RECONCILE -> SESSION_HANDOFF",
   "closedTruth": {
     "githubEngineeringCloseout": "VERIFIED_LOCKED",
     "localProductSourceBootstrap": "PASS",
@@ -238,5 +238,18 @@
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "CONTINUITY_FIXTURE_RESUME_CORRECTION_THEN_REPEATABILITY_GATE"
+  "nextAction": "CONTINUITY_FIXTURE_RESUME_CORRECTION_THEN_REPEATABILITY_GATE",
+  "currentStatusUpdateRule": {
+    "state": "MANDATORY",
+    "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
+    "timing": "BEFORE_NEXT_ACTION",
+    "requiredFields": [
+      "COMPLETED_OR_CHANGED_WORK",
+      "LATEST_EVIDENCE",
+      "JUDGMENT",
+      "CURRENT_OBJECTIVE",
+      "REMAINING_WORK",
+      "NEXT_ACTION"
+    ]
+  }
 }
