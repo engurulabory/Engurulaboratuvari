@@ -71,11 +71,11 @@ Canonical real task:
 - checkpoint id: `v06-field-cp-001`
 - verified real-task stage: 6/7
 
-The continuity patch exists to preserve the same canonical task/checkpoint/repository identity through runtime restart and resume while reusing the existing ReliabilityManager mechanisms.
+The restart/resume continuity gate is now VERIFIED PASS at 6/7. The single active field objective is bounded Recovery Field Proof.
 
 The active acceptance gate is:
 
-`TARGETED_REPEATABILITY=5/5_PASS + FULL_RUNTIME_REGRESSION=PASS + DIFF_CHECK=PASS + PATCH_SCOPE=3_FILES_PASS + PRODUCT_RUNTIME_CACHE_COUNT=0`
+`RECOVERABLE_FAILURE_OBSERVED + ROOT_CAUSE_IDENTIFIED + SMALLEST_RECOVERY_APPLIED + REVERIFICATION_PASS + EVIDENCE_RECORDED + AUTHORITY_PRESERVED`
 
 ## 5. LATEST OBSERVED RESULT
 
@@ -522,20 +522,20 @@ Root cause is now materially resolved:
 
 ## 6. REQUIRED DIFFERENCE
 
-Close the smallest sufficient conversation/context durability gap inside the existing persistent-working-memory and durable-task path, then repeat the same restart/resume proof.
+Close the single remaining real field gap through one bounded recovery proof on the existing Mac runtime/fixture path.
 
 Acceptance requires:
 
-1. canonical task/checkpoint/current objective remain pinned across long conversations;
-2. active context uses bounded recent turns + durable state + rolling compact summary rather than unbounded raw replay;
-3. compaction is automatic and silent before user-visible pressure;
-4. warning threshold is near genuine provider/context capacity and is informational, not a task verdict;
-5. archive cleanup cannot remove active task/checkpoint/current-status truth;
-6. resume returns real changed-file/test/SHA/Evidence values;
-7. same reliability task is reused with expected duplicate/recovered semantics;
-8. regression PASS and post-restart Evidence bind to the same durable task.
+1. one real recoverable failure is observed and recorded;
+2. root cause is identified from direct Evidence;
+3. the smallest sufficient recovery is applied;
+4. the same affected path is reverified successfully;
+5. repository/runtime truth is preserved without unrelated mutation;
+6. Human Threshold™ and authority boundaries remain unchanged;
+7. recovery Evidence is written to the local v0.6 Evidence surface;
+8. unresolved critical failures remain zero.
 
-Only after that Evidence may the real Mac task advance from 5/7 to 6/7.
+Only after that Evidence may the real Mac task advance from 6/7 to 7/7.
 
 ## 7. REMAINING v0.6 CLOSEOUT — CANONICAL ORDER
 
@@ -543,8 +543,8 @@ Only after that Evidence may the real Mac task advance from 5/7 to 6/7.
 2. **Continuity Patch Repeatability Gate** — VERIFIED PASS
 3. **Product patch GitHub engineering** — VERIFIED PASS
 4. **Continuity patch exact-main Mac commissioning** — VERIFIED PASS
-5. **Mac checkpoint/restart/same-task resume field proof** — HOLD / context durability hardening active
-6. **Recovery field proof** — bounded recoverable failure → diagnosis → smallest recovery → reverify
+5. **Mac checkpoint/restart/same-task resume field proof** — **6/7 VERIFIED PASS**
+6. **Recovery field proof** — **ACTIVE / 7/7**
 7. **Local Evidence bundle**
 8. **Mac Local Mandatory DoneCheck™**
 9. **WORKLIST + SESSION_STATE + Current Status reconciliation**
@@ -605,5 +605,5 @@ The new session continues from the single active objective and the single requir
 
 ## JUDGMENT
 
-**v0.6 FIELD CLOSEOUT ACTIVE / RESTART-RESUME FIELD HOLD.**  
-Exact-main commissioning remains VERIFIED PASS. The latest real resume attempt preserved the visible task/checkpoint prompt but returned non-actionable Evidence while the conversation-pressure warning fired. The bounded next difference is long-running conversation/context durability inside the existing working-memory path.
+**v0.6 FIELD CLOSEOUT ACTIVE / 6 OF 7 VERIFIED PASS.**  
+Checkpoint → runtime restart → same-task resume continuity is VERIFIED PASS on the installed app with fresh, non-cached repository revalidation. The single active field gate is bounded Recovery Field Proof (7/7).
