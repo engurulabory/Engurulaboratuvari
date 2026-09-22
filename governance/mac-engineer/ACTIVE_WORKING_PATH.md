@@ -22,11 +22,12 @@ Yeni bir ENGÜRÜ Mac Engineer™ oturumu şu sırayla bağlanır:
 
 1. `governance/mac-engineer/SESSION_CONTINUITY_CONTRACT_V1.md`
 2. `governance/mac-engineer/ACTIVE_WORKING_PATH.md`
-3. `governance/mac-engineer/SESSION_STATE_V1.json`
-4. `governance/mac-engineer/PRODUCT_ROADMAP_V1.json`
-5. `WORKLIST.md` içindeki güncel ENGÜRÜ Mac Engineer™ objective
-6. ilgili GitHub commit / PR / CI / Evidence
-7. gerektiğinde Mac-local session-start / handoff Evidence
+3. `governance/mac-engineer/CURRENT_STATUS.md`
+4. `governance/mac-engineer/SESSION_STATE_V1.json`
+5. `governance/mac-engineer/PRODUCT_ROADMAP_V1.json`
+6. `WORKLIST.md` içindeki güncel ENGÜRÜ Mac Engineer™ objective
+7. ilgili GitHub commit / PR / CI / Evidence
+8. gerektiğinde Mac-local session-start / handoff Evidence
 
 Bu sıra yeni oturumun çalışma yöntemini, güncel objective'i ve kanıt yüzeyini birlikte kurar.
 
@@ -199,7 +200,7 @@ Gerçek engel → **BLOCKED**
 
 Yeni oturum uzun sohbet geçmişine dayanmak yerine şu yüzeylerden devam eder:
 
-`GitHub canonical truth → SESSION_STATE → WORKLIST → Evidence → active objective → previous verified result`
+`GitHub canonical truth → CURRENT_STATUS → SESSION_STATE → WORKLIST → Evidence → active objective → previous verified result`
 
 Read-only keşif gerekli hakikati sağladığında doğrudan engineering action'a geçilir.
 
