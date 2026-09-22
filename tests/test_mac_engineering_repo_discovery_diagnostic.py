@@ -34,6 +34,9 @@ class MacEngineeringRepoDiscoveryDiagnosticTests(unittest.TestCase):
             result = diag.git_probe(Path(td))
             self.assertFalse(result["git_dir"])
 
+    def test_live_scan_function_is_available(self):
+        self.assertTrue(callable(diag.live_runtime_scan))
+
     def test_diagnostic_evidence_is_v06_scoped(self):
         self.assertEqual(
             diag.EVIDENCE.name,
