@@ -713,22 +713,24 @@
     "state": "ACTIVE",
     "objective": "V0_7_LONG_RUNNING_RELIABILITY",
     "engineeringMode": "GITHUB_FIRST",
-    "nextAction": "V07_A03_A04_IDEMPOTENCY_AND_SINGLE_WRITER_STRESS",
+    "nextAction": "V07_A05_A06_BOUNDED_RETRY_WATCHDOG_AND_RECOVERY_FIXTURES",
     "milestoneMacCommissioning": "AFTER_GITHUB_ENGINEERING",
     "acceptanceMatrix": "PASS_DEFINED",
     "acceptanceMatrixPath": "governance/mac-engineer/V07_LONG_RUNNING_RELIABILITY_ACCEPTANCE_MATRIX_V1.md",
     "acceptanceMatrixEvidence": "evidence/MAC_ENGINEER_V07_ACCEPTANCE_MATRIX_2026-09-22.md",
     "passedGates": [
       "V07-A01",
-      "V07-A02"
+      "V07-A02",
+      "V07-A03",
+      "V07-A04"
     ],
-    "productExactMain": "443fd4455b6c2f095c7944ee7bc00445d96d2d2a",
-    "productPrNumber": 9,
-    "exactHeadCiRunId": 35768412377,
-    "exactMainCiRunId": 35768544303,
+    "productExactMain": "1dcbc795e4b949448206fbad93b239aca297cc0f",
+    "productPrNumber": 10,
+    "exactHeadCiRunId": 35769088949,
+    "exactMainCiRunId": 35769257875,
     "exactMainCi": "PASS",
-    "runtimeRegression": "48_OF_48_OK",
-    "evidence": "evidence/MAC_ENGINEER_V07_A01_A02_ENGINEERING_2026-09-22.md"
+    "runtimeRegression": "50_OF_50_OK",
+    "evidence": "evidence/MAC_ENGINEER_V07_A03_A04_ENGINEERING_2026-09-22.md"
   },
   "observedV07A01A02": {
     "state": "VERIFIED_PASS_EXACT_MAIN",
@@ -750,6 +752,33 @@
       "afterSideEffectReceipt": 10,
       "totalRepetitions": 30,
       "taskIdentityContinuity": true,
+      "state": "PASS"
+    },
+    "productionReliabilityCodeChanged": false
+  },
+  "observedV07A03A04": {
+    "state": "VERIFIED_PASS_EXACT_MAIN",
+    "observedAt": "2026-09-22",
+    "productPrNumber": 10,
+    "productExactHead": "f401ae760481dfad762a0de7fae6a2d9139b8977",
+    "exactHeadCiRunId": 35769088949,
+    "productExactMain": "1dcbc795e4b949448206fbad93b239aca297cc0f",
+    "exactMainCiRunId": 35769257875,
+    "runtimeTests": "50_OF_50_OK",
+    "a03": {
+      "replays": 100,
+      "created": 1,
+      "duplicates": 99,
+      "durableSideEffects": 1,
+      "taskIdentityStable": true,
+      "state": "PASS"
+    },
+    "a04": {
+      "concurrentContenders": 16,
+      "canonicalWriters": 1,
+      "writerBusy": 15,
+      "transitionCommits": 1,
+      "finalState": "RUNNING",
       "state": "PASS"
     },
     "productionReliabilityCodeChanged": false
