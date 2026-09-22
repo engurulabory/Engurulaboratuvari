@@ -1107,13 +1107,13 @@ Local evidence:
 - [x] 7/7 independent recovery verification.
 - [x] Local Evidence bundle.
 - [x] Mandatory DoneCheck evidence.
-- [ ] Merge canonical reconciliation.
-- [ ] Verify control-plane exact-main CI.
-- [ ] Record **v0.6 VERIFIED FINAL / LOCKED** after exact-main acceptance.
+- [x] Canonical reconciliation merged through PR #165.
+- [x] Control-plane exact-main `777904a957dfd475713dfd5de7b499c88247f4de` verified: Labory Final Gate #366 PASS; IP Model Trust Gate #385 PASS; IP Model Trust Fleet #370 PASS.
+- [x] **v0.6 VERIFIED FINAL / LOCKED.**
 
-**Active objective:** `V06_CANONICAL_RECONCILIATION_AND_WORKING_MODEL_LOCK`
+**Active objective:** `V00_V03_HISTORICAL_RECONSTRUCTION`
 
-**Current single objective:** **V06 Canonical Reconciliation and Working Model Lock**.
+**Current single objective:** **V00 V03 Historical Reconstruction**.
 
 ## v0.7 — Long-Running Reliability
 
@@ -1196,8 +1196,7 @@ Engineering mode: **GitHub-first benchmark harness + selected Mac field proofs**
 
 ## Current next action
 
-1. Merge this canonical reconciliation with CI evidence.
-2. Verify exact-main.
-3. Close v0.6 as **VERIFIED FINAL / LOCKED**.
-4. Reconstruct v0.0–v0.3 historical lineage from evidence.
-5. Start v0.7 under the **GitHub-first / Milestone-Mac** model.
+1. Reconstruct v0.0–v0.3 historical lineage from Git history and dated Evidence.
+2. Preserve unsupported intervals as **PRE-CANONICAL DEVELOPMENT LINEAGE**.
+3. Publish the historical reconciliation.
+4. Start v0.7 under the **GitHub-first / Milestone-Mac** model.
