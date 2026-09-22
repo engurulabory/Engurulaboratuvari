@@ -227,10 +227,25 @@
       "generatedCacheReconciliation": "PASS",
       "productRuntimeCacheCount": 0,
       "gateVerdict": "PASS"
+    },
+    "publication": {
+      "state": "PUSHED_EXACT_HEAD",
+      "branch": "fix/v06-durable-continuity-binding",
+      "baseMain": "6f424c0b815d8c0cf8aa761124be3f743e412ee1",
+      "commit": "78dc4aaebbce4fd69ccfdc35544ea49454b27c2b",
+      "committedPaths": [
+        "runtime/app.py",
+        "runtime/field_reliability.py",
+        "runtime/tests/test_field_continuity_binding.py"
+      ],
+      "worktree": "CLEAN",
+      "aheadOfMain": 1,
+      "push": "PASS",
+      "remoteExactHead": "PASS"
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "PRODUCT_PATCH_COMMIT_PUSH_PR_EXACT_HEAD_CI_MERGE_EXACT_MAIN_CI",
+  "nextAction": "PRODUCT_PATCH_PR_EXACT_HEAD_CI_MERGE_EXACT_MAIN_CI",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
