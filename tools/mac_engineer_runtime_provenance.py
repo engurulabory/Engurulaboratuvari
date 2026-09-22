@@ -143,6 +143,30 @@ def app_identity(app: Path) -> dict[str, Any]:
     return result
 
 
+def runtime_parity_is_exact(
+    detail: dict[str, Any],
+) -> bool:
+    count = detail.get("product_files")
+
+    return bool(
+        isinstance(count, int)
+        and count > 0
+        and detail.get("current_files") == count
+        and detail.get("exact") == count
+        and detail.get("changed") == 0
+        and detail.get("missing_current") == 0
+        and detail.get("current_only") == 0
+    )
+
+
+def runtime_parity_label(
+    detail: dict[str, Any],
+    suffix: str,
+) -> str:
+    count = detail.get("product_files")
+    return f"{count}/{count}_{suffix}"
+
+
 def main() -> int:
     issues: list[str] = []
 
@@ -207,8 +231,26 @@ def main() -> int:
             issues.append("PROVENANCE_VERSION_MISMATCH")
         if provenance.get("build_version") != EXPECTED_VERSION:
             issues.append("PROVENANCE_BUILD_VERSION_MISMATCH")
-        if provenance.get("runtime_source_parity") != "27/27_EXACT_AT_PREFLIGHT":
-            issues.append("PROVENANCE_RUNTIME_PARITY_MISMATCH")
+        provenance_parity = provenance.get(
+            "runtime_source_parity_detail",
+            {},
+        )
+
+        if (
+            not runtime_parity_is_exact(
+                provenance_parity
+            )
+            or provenance.get(
+                "runtime_source_parity"
+            )
+            != runtime_parity_label(
+                provenance_parity,
+                "EXACT_AT_INSTALL",
+            )
+        ):
+            issues.append(
+                "PROVENANCE_RUNTIME_PARITY_MISMATCH"
+            )
         if provenance.get("native_executable_sha256") != installed_sha:
             issues.append("PROVENANCE_NATIVE_HASH_MISMATCH")
 
@@ -217,8 +259,26 @@ def main() -> int:
             issues.append("INSTALL_EVIDENCE_PRODUCT_SHA_MISMATCH")
         if install.get("version") != EXPECTED_VERSION:
             issues.append("INSTALL_EVIDENCE_VERSION_MISMATCH")
-        if install.get("runtime_source_parity") != "27/27_EXACT":
-            issues.append("INSTALL_EVIDENCE_RUNTIME_PARITY_MISMATCH")
+        install_parity = install.get(
+            "runtime_source_parity_detail",
+            {},
+        )
+
+        if (
+            not runtime_parity_is_exact(
+                install_parity
+            )
+            or install.get(
+                "runtime_source_parity"
+            )
+            != runtime_parity_label(
+                install_parity,
+                "EXACT",
+            )
+        ):
+            issues.append(
+                "INSTALL_EVIDENCE_RUNTIME_PARITY_MISMATCH"
+            )
         if install.get("installed_app", {}).get("executable_sha256") != installed_sha:
             issues.append("INSTALL_EVIDENCE_INSTALLED_HASH_MISMATCH")
         if install.get("runtime_build_app", {}).get("executable_sha256") != runtime_sha:
