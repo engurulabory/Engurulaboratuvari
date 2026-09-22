@@ -1113,6 +1113,8 @@ Local evidence:
 
 **Active objective:** `V06_CANONICAL_RECONCILIATION_AND_WORKING_MODEL_LOCK`
 
+**Current single objective:** **V06 Canonical Reconciliation and Working Model Lock**.
+
 ## v0.7 — Long-Running Reliability
 
 Engineering mode: **GitHub-first**.
