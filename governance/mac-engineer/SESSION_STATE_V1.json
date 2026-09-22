@@ -289,7 +289,7 @@
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "INSPECT_EXACT_RESUME_ROUTING_AND_CLASSIFICATION",
+  "nextAction": "READ_EXACT_TASK_CHECKPOINT_SCHEMA_AND_IMPLEMENT_BOUNDED_RESUME_VERIFICATION_PATCH",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
@@ -535,5 +535,27 @@
     "exactShaRebuildInstall": "PASS",
     "runtimeAppProvenance": "PASS",
     "postCommissionSession": "PASS"
+  },
+  "observedExactResumeDiagnosis": {
+    "state": "PASS_REQUIRED_DIFFERENCE_NARROWED",
+    "observedAt": "2026-09-22",
+    "reliabilityTaskId": "task_94b95c63865a45db80b85ccba95f8119",
+    "taskState": "COMPLETE",
+    "taskSequence": 7,
+    "checkpointDigest": "7b2a7ae3cf93f42335d3954905ae222ac8f9a3dc729127d77c4717bc97c5d399",
+    "structuredCanonicalTaskId": null,
+    "structuredCheckpointId": null,
+    "fixtureHead": "f563a779f6d01a46e037e4330383c3adb032d426",
+    "fixtureDirtyPaths": [
+      "CURRENT_STATE.md"
+    ],
+    "currentStateRepairPresent": true,
+    "checkpointDiagnostic": "SCHEMA_READ_INCONCLUSIVE_NOT_ABSENCE",
+    "requiredDifference": [
+      "PRIORITIZE_CANONICAL_RESUME_BEFORE_GENERIC_TRUTH_RECONCILE",
+      "SAFE_LEGACY_COMPLETE_TASK_IDENTITY_RECOGNITION",
+      "FRESH_POST_RESTART_REVALIDATION_NOT_CACHED_TERMINAL_RESULT",
+      "REAL_POST_RESTART_TASK_CHECKPOINT_TEST_SHA_EVIDENCE"
+    ]
   }
 }
