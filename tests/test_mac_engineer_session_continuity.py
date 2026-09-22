@@ -11,6 +11,7 @@ from tools.mac_engineer_session_continuity import (
     active_objective,
     normalize_objective,
     authorized_product_working_branch,
+    porcelain_paths,
 )
 
 
@@ -86,6 +87,21 @@ class MacEngineerSessionContinuityTests(unittest.TestCase):
         )
         self.assertTrue(authorized)
         self.assertTrue(policy["authorized"])
+
+    def test_porcelain_paths_preserves_first_modified_path_after_strip(self):
+        status = (
+            "M runtime/app.py\n"
+            " M runtime/field_reliability.py\n"
+            "?? runtime/tests/test_field_continuity_binding.py"
+        )
+        self.assertEqual(
+            porcelain_paths(status),
+            [
+                "runtime/app.py",
+                "runtime/field_reliability.py",
+                "runtime/tests/test_field_continuity_binding.py",
+            ],
+        )
 
     def test_continuity_patch_allows_exact_bounded_dirty_set(self):
         state = {
