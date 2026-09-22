@@ -54,7 +54,7 @@ The following v0.6 truths are already closed and remain preserved:
 - Runtime generated-cache reconciliation — PASS; tracked cache absent; runtime cache count returned to 0
 - Continuity fixture/resume correction — PASS
 - Continuity Patch Repeatability Gate — VERIFIED PASS: 5/5 targeted + 35/35 regression + diff + exact scope + cache=0
-- Product-patch publication session binding — ACTIVE / exact in-flight branch remains authorized during PRODUCT_PATCH_GITHUB_ENGINEERING
+- Product-patch publication session binding — PASS / exact dirty pre-commit state and exact clean one-commit-ahead post-commit state are both fail-closed authorized during PRODUCT_PATCH_GITHUB_ENGINEERING
 
 ## 4. CURRENT ENGINEERING TRUTH
 
