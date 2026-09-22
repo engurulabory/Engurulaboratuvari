@@ -287,7 +287,7 @@
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "DISCOVER_AND_HARDEN_EXISTING_CONVERSATION_CONTEXT_BUDGET_AND_DURABLE_TASK_PROMPT_ASSEMBLY",
+  "nextAction": "PYTHON_ONLY_FULL_SOURCE_AND_DURABLE_STATE_DISCOVERY",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
@@ -328,5 +328,33 @@
       "RESUME_WITH_REAL_CHANGED_TEST_SHA_EVIDENCE",
       "SAME_RELIABILITY_TASK_DUPLICATE_RECOVERED_PASS"
     ]
+  },
+  "observedLongConversationDurabilityDiscovery": {
+    "state": "PASS_READ_ONLY_DISCOVERY_INCOMPLETE_TEXT_SEARCH",
+    "observedAt": "2026-09-22",
+    "product": {
+      "branch": "main",
+      "head": "6d2fcd923e8fa0417a2e7787acd0dcef6b25e544",
+      "originMain": "6d2fcd923e8fa0417a2e7787acd0dcef6b25e544",
+      "clean": true
+    },
+    "durableStateSurfaces": [
+      "checkpoints/task_*.json",
+      "checkpoints/task_*.lkg.json",
+      "tasks/task_*.json",
+      "logs/task-journal.jsonl",
+      "state/canonical-context.json",
+      "state/task-idempotency.json",
+      "state/task-writer.lock"
+    ],
+    "storage": {
+      "runtime": "1.3M",
+      "evidenceV06": "308K"
+    },
+    "textSearch": {
+      "result": "INCONCLUSIVE",
+      "reason": "RG_AVAILABILITY_NOT_VERIFIED_AND_STDERR_SUPPRESSED"
+    },
+    "judgment": "DURABLE_TASK_INFRASTRUCTURE_EXISTS_CONTEXT_ASSEMBLY_AND_WARNING_SOURCE_REQUIRE_EXACT_DISCOVERY"
   }
 }
