@@ -1111,9 +1111,18 @@ Local evidence:
 - [x] Control-plane exact-main `777904a957dfd475713dfd5de7b499c88247f4de` verified: Labory Final Gate #366 PASS; IP Model Trust Gate #385 PASS; IP Model Trust Fleet #370 PASS.
 - [x] **v0.6 VERIFIED FINAL / LOCKED.**
 
-**Active objective:** `V00_V03_HISTORICAL_RECONSTRUCTION`
+### v0.0–v0.3 historical reconstruction
+- [x] Fresh control-plane Git history review completed.
+- [x] Historical source/build provenance reviewed: `baseline_v0.4` + 2026-09-20 native build receipt + Phase-1 DoneCheck.
+- [x] Dedicated product Git origin reconciled: root commit `3ac09bd7d022a6114b9066afca14ff170e0177c1` / Product CI run `35640369690` PASS.
+- [x] Supported historical model fixed: **v0.0–v0.3 = PRE-CANONICAL DEVELOPMENT LINEAGE**; separate retrospective release boundaries remain unasserted.
+- [x] First Evidence-backed named product boundary: **v0.4**.
+- [x] Canonical Evidence: `evidence/MAC_ENGINEER_V00_V03_HISTORICAL_RECONSTRUCTION_2026-09-22.md`.
+- [x] **V00_V03_HISTORICAL_RECONSTRUCTION = PASS / CLOSED.**
 
-**Current single objective:** **V00 V03 Historical Reconstruction**.
+**Active objective:** `V0_7_LONG_RUNNING_RELIABILITY`
+
+**Current single objective:** **v0.7 — Long-Running Reliability**.
 
 ## v0.7 — Long-Running Reliability
 
