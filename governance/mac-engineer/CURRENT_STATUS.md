@@ -11,7 +11,7 @@
 
 ENGÜRÜ Mac Engineer™ v0.6 is **not yet VERIFIED FINAL / LOCKED**.
 
-The continuity patch is fully integrated into product exact-main `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544` and is now commissioned onto the Mac execution surfaces. Exact-main Product CI Evidence was refreshed to run `35711368049`; rebuild/install completed with runtime source parity **31/31 exact**; runtime/app provenance binds the same product SHA across product source, provenance and install evidence; installed app + runtime process are live. The active objective is now the real checkpoint → runtime restart → same-task resume field proof.
+The context-durability patch is fully integrated into product exact-main `125be3a4b01b3a4de5faf949c79372de1d249aaf`; exact-main Product CI run `35726087972` is completed/success and Mac local `main` matches remote `origin/main`. The currently installed/runtime execution surfaces still represent the previously commissioned exact-main and therefore require one governed re-commission before the real checkpoint → runtime restart → same-task resume field proof is repeated.
 
 ## 2. CANONICAL SURFACES
 
@@ -21,8 +21,8 @@ The continuity patch is fully integrated into product exact-main `6d2fcd923e8fa0
 - Mac product checkout: `~/Enguru/Projects/enguru-mac-engineer`
 - Product canonical branch: `main`
 - Product continuity patch head: `78dc4aaebbce4fd69ccfdc35544ea49454b27c2b`
-- Product exact-main / merge SHA: `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544`
-- Product exact-main CI: `35711368049` — PASS
+- Product exact-main / merge SHA: `125be3a4b01b3a4de5faf949c79372de1d249aaf`
+- Product exact-main CI: `35726087972` — PASS
 - Runtime: `~/Enguru/Runtime/MacEngineer`
 - Installed app: `~/Applications/ENGÜRÜ Mac Engineer.app`
 - Local Evidence: `~/Enguru/Evidence/MacEngineer/v0.6`
@@ -416,7 +416,7 @@ Only after that Evidence may the real Mac task advance from 5/7 to 6/7.
 9. **WORKLIST + SESSION_STATE + Current Status reconciliation**
 10. **v0.6 VERIFIED FINAL / LOCKED**
 
-Only after item 9 may v0.6 be described as finished.
+Only after item 10 may v0.6 be described as finished.
 
 ## 8. AFTER v0.6
 
