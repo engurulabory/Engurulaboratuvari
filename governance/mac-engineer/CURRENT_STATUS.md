@@ -5,7 +5,7 @@
 **Current version:** v0.6 — Field Closeout Active  
 **Current objective:** Package 6 — Checkpoint / Restart / Same-Task Resume Field Proof  
 **Canonical objective id:** `CHECKPOINT_RESTART_RESUME_FIELD_PROOF`  
-**Current verdict:** PASS — context-durability GitHub engineering is VERIFIED PASS; Mac exact-main re-commissioning and real restart/resume proof remain
+**Current verdict:** PASS — context-durability exact-main Mac re-commissioning is VERIFIED PASS; real same-task restart/resume proof remains
 
 ## 1. STATE
 
@@ -80,6 +80,21 @@ The active acceptance gate is:
 `TARGETED_REPEATABILITY=5/5_PASS + FULL_RUNTIME_REGRESSION=PASS + DIFF_CHECK=PASS + PATCH_SCOPE=3_FILES_PASS + PRODUCT_RUNTIME_CACHE_COUNT=0`
 
 ## 5. LATEST OBSERVED RESULT
+
+### Context Durability Exact-Main Mac Re-Commission — VERIFIED PASS
+
+- product exact-main: `125be3a4b01b3a4de5faf949c79372de1d249aaf`
+- local product `main` = `origin/main`: **PASS**
+- exact-main Product CI Evidence: **PASS**
+- canonical context exact-main binding: **PASS**
+- rebuild preflight: **PASS**
+- exact-SHA rebuild/install: **PASS**
+- runtime/app provenance: **PASS**
+- post-commission session continuity: **PASS**
+- final verdict: **CONTEXT_DURABILITY_EXACT_MAIN_RECOMMISSION=PASS**
+- real Mac task remains **5/7** only until the governed restart + same-task resume field proof succeeds
+
+
 
 ### Context Durability GitHub Engineering — VERIFIED PASS
 
@@ -428,7 +443,7 @@ The program target remains v1.1.
 
 ## 9. NEXT ACTION
 
-**Single next action:** commission product exact-main `125be3a4b01b3a4de5faf949c79372de1d249aaf` onto the Mac runtime/app using refreshed exact-main Product CI Evidence, rebuild preflight, exact-SHA rebuild/install, provenance verification and post-commission session continuity.
+**Single next action:** execute the governed runtime restart and resume the same canonical task `ENGURU-V06-FIELD-001` at checkpoint `v06-field-cp-001`; require real changed/test/SHA Evidence and same durable-task recovery semantics before advancing from 5/7 to 6/7.
 
 ## 9.1 MAINTENANCE RULE
 
