@@ -713,7 +713,11 @@
     "state": "ACTIVE",
     "objective": "V0_7_LONG_RUNNING_RELIABILITY",
     "engineeringMode": "GITHUB_FIRST",
-    "nextAction": "DEFINE_EXACT_ACCEPTANCE_MATRIX",
-    "milestoneMacCommissioning": "AFTER_GITHUB_ENGINEERING"
+    "nextAction": "V07_A01_A02_LONG_RUN_TASK_STATE_AND_DURABLE_RESUME",
+    "milestoneMacCommissioning": "AFTER_GITHUB_ENGINEERING",
+    "acceptanceMatrix": "PASS_CANONICAL_CANDIDATE",
+    "acceptanceMatrixPath": "governance/mac-engineer/V07_LONG_RUNNING_RELIABILITY_ACCEPTANCE_MATRIX_V1.md",
+    "acceptanceMatrixEvidence": "evidence/MAC_ENGINEER_V07_ACCEPTANCE_MATRIX_2026-09-22.md",
+    "technicalProductMutationState": "REQUIRES_PRODUCT_REPOSITORY_ACCESS"
   }
 }
