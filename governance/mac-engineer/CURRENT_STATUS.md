@@ -5,7 +5,7 @@
 **Current version:** v0.6 — Field Closeout Active  
 **Current objective:** Package 6 — Checkpoint / Restart / Same-Task Resume Field Proof  
 **Canonical objective id:** `CHECKPOINT_RESTART_RESUME_FIELD_PROOF`  
-**Current verdict:** HOLD — product PR #6 exact head/base are verified; exact-head Product CI is not yet visible and requires workflow/run discovery
+**Current verdict:** PASS — product PR #6 exact-head Product CI is verified; merge and exact-main Product CI remain
 
 ## 1. STATE
 
@@ -81,15 +81,21 @@ The active acceptance gate is:
 
 ## 5. LATEST OBSERVED RESULT
 
-### Product PR #6 exact-head CI visibility — HOLD / DISCOVERY REQUIRED
+### Product PR #6 Exact-Head Product CI — VERIFIED PASS
 
 - product PR: **#6**
+- PR state: **OPEN**
+- merge state: **CLEAN**
 - PR head: `f980a47716eaace5b4fb1d9e37cc95ff0a1b5da2` — exact expected head
 - PR base: `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544` — exact expected base
-- PR creation: **PASS**
-- exact-head CI command result: `no checks reported on the 'fix/v06-context-durability-resume-routing' branch`
-- merge: not attempted
-- classification: **CI visibility / trigger discovery HOLD; no CI failure evidence**
+- workflow: `ENGURU Mac Engineer Product CI`
+- exact-head run: **35724995225**
+- event: `pull_request`
+- status: `completed`
+- conclusion: **success**
+- check name: `product-ci`
+- CI visibility HOLD: **resolved as registration timing only**
+- merge: pending
 - real Mac task remains **5/7**
 
 
@@ -408,7 +414,7 @@ The program target remains v1.1.
 
 ## 9. NEXT ACTION
 
-**Single next action:** using the authenticated Mac-local `gh`, inspect product workflows, PR #6 status-check rollup, and recent runs for exact head `f980a47716eaace5b4fb1d9e37cc95ff0a1b5da2`; distinguish registration delay from missing PR trigger before any merge action.
+**Single next action:** merge product PR #6 at exact head `f980a47716eaace5b4fb1d9e37cc95ff0a1b5da2`, verify the resulting product exact-main push CI, then reconcile Mac local `main` to the merge SHA.
 
 ## 9.1 MAINTENANCE RULE
 
