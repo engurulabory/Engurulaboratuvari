@@ -123,6 +123,62 @@ def source_functions(path: Path) -> dict[str, Any]:
     }
 
 
+def live_runtime_scan() -> dict[str, Any]:
+    code = (
+        "import json,sys\n"
+        "from pathlib import Path\n"
+        f"sys.path.insert(0, {str(RUNTIME)!r})\n"
+        "import repo_manager as rm\n"
+        "import repo_control\n"
+        f"root=Path({str(HOME / 'Enguru')!r})\n"
+        "raw=rm.scan_enguru(root)\n"
+        "merged=repo_control.merge_local(raw)\n"
+        "print(json.dumps({'raw':raw,'merged':merged}, ensure_ascii=False))\n"
+    )
+    result = run(["python3", "-c", code], cwd=RUNTIME)
+    payload: dict[str, Any] = {
+        "pass": result["pass"],
+        "returncode": result["returncode"],
+        "stderr": result["stderr"],
+    }
+    if not result["pass"]:
+        return payload
+    try:
+        parsed = json.loads(result["stdout"])
+    except json.JSONDecodeError as exc:
+        return {
+            **payload,
+            "pass": False,
+            "error": f"JSONDecodeError:{exc}",
+            "stdout": result["stdout"],
+        }
+
+    raw = parsed.get("raw", [])
+    merged = parsed.get("merged", [])
+    fixture_path = str(FIXTURE)
+    payload.update(
+        {
+            "raw_count": len(raw),
+            "merged_count": len(merged),
+            "fixture_in_raw": any(
+                item.get("path") == fixture_path for item in raw
+            ),
+            "fixture_in_merged": any(
+                item.get("path") == fixture_path for item in merged
+            ),
+            "raw_fixture": next(
+                (item for item in raw if item.get("path") == fixture_path),
+                None,
+            ),
+            "merged_fixture": next(
+                (item for item in merged if item.get("path") == fixture_path),
+                None,
+            ),
+        }
+    )
+    return payload
+
+
 def project_inventory() -> list[dict[str, Any]]:
     if not PROJECTS.is_dir():
         return []
@@ -170,6 +226,7 @@ def main() -> int:
     fixture = git_probe(FIXTURE)
     inventory = project_inventory()
     inferred = infer_contract(repo_source, app_source)
+    live_scan = live_runtime_scan()
 
     issues: list[str] = []
     if not repo_source.get("exists"):
@@ -178,6 +235,8 @@ def main() -> int:
         issues.append("RUNTIME_APP_SOURCE_REQUIRED")
     if not fixture.get("git_dir"):
         issues.append("FIELD_FIXTURE_GIT_REQUIRED")
+    if not live_scan.get("pass"):
+        issues.append("LIVE_RUNTIME_REPO_SCAN_REQUIRED")
 
     payload = {
         "schema": "enguru.mac-engineering.repo-discovery-diagnostic/v1",
@@ -189,12 +248,13 @@ def main() -> int:
         "repo_manager": repo_source,
         "app": app_source,
         "inferred_contract": inferred,
+        "live_runtime_scan": live_scan,
         "truth_boundary": (
             "Read-only diagnostic. No repository, runtime, app, task or fixture "
             "content is changed."
         ),
         "next_action": (
-            "Use the observed runtime discovery contract to align only the field harness."
+            "Use raw-vs-merged live scan truth to align only the field harness."
             if not issues
             else "Resolve only the missing diagnostic prerequisite."
         ),
@@ -213,6 +273,7 @@ def main() -> int:
                 "issues": issues,
                 "fixture": fixture,
                 "inferred_contract": inferred,
+                "live_runtime_scan": live_scan,
                 "repo_manager_functions": [
                     {
                         "name": item["name"],
