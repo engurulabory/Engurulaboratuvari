@@ -5,7 +5,7 @@
 **Current version:** v0.6 — Field Closeout Active  
 **Current objective:** Package 6 — Checkpoint / Restart / Same-Task Resume Field Proof  
 **Canonical objective id:** `CHECKPOINT_RESTART_RESUME_FIELD_PROOF`  
-**Current verdict:** HOLD — real restart occurred, but resume execution lost actionable task evidence under conversation/context pressure
+**Current verdict:** HOLD — context-durability product patch is locally VERIFIED PASS; GitHub publication, re-commissioning and real restart/resume proof remain
 
 ## 1. STATE
 
@@ -27,13 +27,18 @@ The continuity patch is fully integrated into product exact-main `6d2fcd923e8fa0
 - Installed app: `~/Applications/ENGÜRÜ Mac Engineer.app`
 - Local Evidence: `~/Enguru/Evidence/MacEngineer/v0.6`
 
-Authorized in-flight product patch scope:
+Authorized in-flight context-durability product patch:
 
-1. `runtime/app.py`
-2. `runtime/field_reliability.py`
-3. `runtime/tests/test_field_continuity_binding.py`
+- branch: `fix/v06-context-durability-resume-routing`
+- base/head before commit: `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544`
+- exact scope:
+  1. `runtime/app.py`
+  2. `runtime/cockpit_store.py`
+  3. `runtime/field_reliability.py`
+  4. `runtime/static/index.html`
+  5. `runtime/tests/test_context_durability.py`
 
-Any branch/head/base/path drift remains fail-closed HOLD.
+Exact dirty pre-commit and exact clean one-commit-ahead post-commit states are authorized for this objective only. Any branch/head/base/path/commit-count drift remains fail-closed HOLD.
 
 ## 3. COMPLETED / VERIFIED
 
@@ -75,6 +80,26 @@ The active acceptance gate is:
 `TARGETED_REPEATABILITY=5/5_PASS + FULL_RUNTIME_REGRESSION=PASS + DIFF_CHECK=PASS + PATCH_SCOPE=3_FILES_PASS + PRODUCT_RUNTIME_CACHE_COUNT=0`
 
 ## 5. LATEST OBSERVED RESULT
+
+### Context Durability Product Patch — LOCAL VERIFIED PASS
+
+- product branch: `fix/v06-context-durability-resume-routing`
+- base exact-main: `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544`
+- identity parser: colon + equals syntax **PASS**
+- canonical-context injection: **PASS**
+- durable task pinning: **PASS**
+- bounded recent history: **96 messages / 48,000 chars**
+- active-context warning policy: **PASS**
+- focused context-durability regression: **PASS**
+- full runtime regression: **40 tests PASS**
+- exact patch scope: **5 files PASS**
+- `git diff --check`: **PASS**
+- generated runtime cache reconciled: **0**
+- final local verdict: **V06_CONTEXT_DURABILITY_PATCH=PASS**
+
+The product patch is verified locally but is not yet GitHub-published or commissioned onto the installed/runtime surfaces. Real Mac task therefore remains **5/7**.
+
+
 
 ### Governed canonical-context refresh binding — VERIFIED PASS
 
@@ -336,7 +361,7 @@ The program target remains v1.1.
 
 ## 9. NEXT ACTION
 
-**Single next action:** implement the product-side bounded v0.6 context-durability patch on a dedicated branch: accept ':' or '=' commissioning identity syntax; load refreshed canonical-context into CURRENT LOCAL CONTEXT; pin matched durable task/checkpoint; expand the bounded recent-history budget; replace transcript-size warning behavior with active-context-pressure warning; add focused regression tests.
+**Single next action:** commit and push the locally verified exact 5-file context-durability patch from `fix/v06-context-durability-resume-routing`, preserving exact base/scope and a clean one-commit-ahead publication state.
 
 ## 9.1 MAINTENANCE RULE
 
