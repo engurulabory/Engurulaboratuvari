@@ -6,7 +6,7 @@
 **Current objective:** Canonical reconciliation + working-model lock  
 **Canonical objective id:** `V06_CANONICAL_RECONCILIATION_AND_WORKING_MODEL_LOCK`
 
-## STATE
+## CURRENT ENGINEERING TRUTH
 
 ENGÜRÜ Mac Engineer™ v0.6 has completed its real-Mac field acceptance.
 
@@ -79,6 +79,19 @@ Permanent direction:
 v0.4 and v0.5 are canonical LOCKED versions.
 
 v0.0–v0.3 remain **PRE-CANONICAL DEVELOPMENT LINEAGE** until Git history and dated Evidence establish real historical boundaries. No retrospective product-version title is asserted without evidence.
+
+## REMAINING v0.6 CLOSEOUT
+
+1. Canonical reconciliation PR CI.
+2. Merge to control-plane main.
+3. Exact-main control-plane acceptance.
+4. Record v0.6 VERIFIED FINAL / LOCKED.
+
+Historical v0.0–v0.3 reconstruction and v0.7 start follow the v0.6 canonical lock.
+
+## MAINTENANCE RULE
+
+CURRENT_STATUS is updated after every material engineering package or PASS / HOLD / BLOCKED result, **before the next action**. Required reconciliation fields remain: COMPLETED_OR_CHANGED_WORK, LATEST_EVIDENCE, JUDGMENT, CURRENT_OBJECTIVE, REMAINING_WORK and NEXT_ACTION.
 
 ## JUDGMENT
 
