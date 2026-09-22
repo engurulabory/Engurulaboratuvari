@@ -53,6 +53,27 @@ class MacEngineerSessionContinuityTests(unittest.TestCase):
         self.assertIn("NEXT ACTION", text)
         self.assertIn("CONTINUITY_PATCH_REPEATABILITY", text)
 
+    def test_current_status_update_is_mandatory_after_each_material_result(self):
+        state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+        rule = state["currentStatusUpdateRule"]
+        self.assertEqual(rule["state"], "MANDATORY")
+        self.assertEqual(rule["timing"], "BEFORE_NEXT_ACTION")
+        self.assertIn("LATEST_EVIDENCE", rule["requiredFields"])
+        self.assertIn("NEXT_ACTION", rule["requiredFields"])
+
+        contract = (
+            ROOT
+            / "governance"
+            / "mac-engineer"
+            / "SESSION_CONTINUITY_CONTRACT_V1.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("Current Status mandatory update invariant", contract)
+        self.assertIn("after every material engineering package", contract)
+
+        status = CURRENT_STATUS.read_text(encoding="utf-8")
+        self.assertIn("MAINTENANCE RULE", status)
+        self.assertIn("before the next action", status)
+
     def test_authorized_publication_branch_passes_exact_contract(self):
         state = {
             "currentObjective": "PRODUCT_SOURCE_V0_6_ALIGNMENT_PUBLICATION",
