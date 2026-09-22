@@ -263,10 +263,41 @@
       "localMain": "6d2fcd923e8fa0417a2e7787acd0dcef6b25e544",
       "remoteMain": "6d2fcd923e8fa0417a2e7787acd0dcef6b25e544",
       "localRemoteMainParity": "PASS"
+    },
+    "commissioning": {
+      "state": "HOLD",
+      "observedAt": "2026-09-22",
+      "productExactMain": "6d2fcd923e8fa0417a2e7787acd0dcef6b25e544",
+      "sessionStart": "PASS",
+      "rebuildPreflight": "PASS",
+      "runtimeParity": {
+        "productFiles": 31,
+        "currentFiles": 30,
+        "exact": 28,
+        "changed": 2,
+        "missingCurrent": 1,
+        "currentOnly": 0,
+        "changedPaths": [
+          "app.py",
+          "field_reliability.py"
+        ],
+        "missingPaths": [
+          "tests/test_field_continuity_binding.py"
+        ]
+      },
+      "rebuildInstall": "HOLD",
+      "issue": "CI_EVIDENCE_SOURCE_SHA_MISMATCH",
+      "mutationStarted": false,
+      "backupCreated": false,
+      "rootCause": "STALE_LOCAL_PRODUCT_CI_EXACT_MAIN_EVIDENCE",
+      "requiredEvidence": {
+        "productSha": "6d2fcd923e8fa0417a2e7787acd0dcef6b25e544",
+        "productCIRunId": 35711368049
+      }
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "COMMISSION_PRODUCT_EXACT_MAIN_6D2FCD9_TO_MAC_RUNTIME_AND_VERIFY_PROVENANCE",
+  "nextAction": "REFRESH_PRODUCT_CI_EXACT_MAIN_EVIDENCE_THEN_RETRY_COMMISSIONING",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
