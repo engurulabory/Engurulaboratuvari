@@ -16,7 +16,7 @@ The continuity patch is fully integrated into product exact-main `6d2fcd923e8fa0
 ## 2. CANONICAL SURFACES
 
 - Control plane: `engurulabory/Engurulaboratuvari`
-- Control-plane exact-main: `09bdf578ea90666615c2333704516c91f850e668` — Final Gate / IP Gate / Fleet PASS
+- Control-plane exact-main: resolved live by canonical `session-start`; latest publication-status baseline before this update: `8851a5da50705bcc06e90b0ef24b996ad095156c` — Final Gate / IP Gate / Fleet PASS
 - Product source: `engurulabory/enguru-mac-engineer`
 - Mac product checkout: `~/Enguru/Projects/enguru-mac-engineer`
 - Product canonical branch: `main`
@@ -82,6 +82,9 @@ The active acceptance gate is:
 ## 5. LATEST OBSERVED RESULT
 
 ### Context Durability Product Patch — PUBLICATION STAGE PASS
+
+- control-plane publication status PR: **#148** — merged
+- PR #148 exact-main Final Gate / IP Gate / Fleet: **PASS**
 
 - product branch: `fix/v06-context-durability-resume-routing`
 - base exact-main: `6d2fcd923e8fa0417a2e7787acd0dcef6b25e544`
@@ -392,7 +395,7 @@ The program target remains v1.1.
 
 ## 9. NEXT ACTION
 
-**Single next action:** create the product PR from `fix/v06-context-durability-resume-routing` at exact head `f980a47716eaace5b4fb1d9e37cc95ff0a1b5da2`, verify exact-head Product CI, merge, and verify product exact-main CI.
+**Single next action:** from the already authenticated Mac Terminal GitHub CLI, create product PR from `fix/v06-context-durability-resume-routing` at exact head `f980a47716eaace5b4fb1d9e37cc95ff0a1b5da2`, verify exact-head Product CI, merge, then verify product exact-main CI.
 
 ## 9.1 MAINTENANCE RULE
 
