@@ -5,7 +5,7 @@
 **Current version:** v0.6 — Field Closeout Active  
 **Current objective:** Package 6 — Checkpoint / Restart / Same-Task Resume Field Proof  
 **Canonical objective id:** `CHECKPOINT_RESTART_RESUME_FIELD_PROOF`  
-**Current verdict:** PASS — context-durability exact-main Mac re-commissioning is VERIFIED PASS; real same-task restart/resume proof remains
+**Current verdict:** HOLD — exact-main re-commissioning is PASS, but the real same-task resume still routes to generic repair/reconciliation and returns non-actionable Evidence
 
 ## 1. STATE
 
@@ -80,6 +80,25 @@ The active acceptance gate is:
 `TARGETED_REPEATABILITY=5/5_PASS + FULL_RUNTIME_REGRESSION=PASS + DIFF_CHECK=PASS + PATCH_SCOPE=3_FILES_PASS + PRODUCT_RUNTIME_CACHE_COUNT=0`
 
 ## 5. LATEST OBSERVED RESULT
+
+### Real Restart / Same-Task Resume Attempt — HOLD / ROUTING DIFFERENCE REMAINS
+
+Observed after exact-main context-durability re-commission and real installed-app restart:
+
+- canonical resume prompt used task `ENGURU-V06-FIELD-001`
+- canonical checkpoint `v06-field-cp-001`
+- application response:
+  - STATE: canonical state reconciliation executed
+  - CLAIM: executable truth passed through repair chain
+  - EVIDENCE: `changed=None test_count=None sha=None rollback=False`
+  - VERDICT: **HOLD**
+- field task remains **5/7**
+- context-warning symptom is no longer the active blocker
+- classification: **resume intent is still reaching a generic repair/reconciliation path instead of the deterministic same-task field continuity path**
+
+Required difference is now bounded to the exact `execute_local_field_task → field_reliability` resume-routing / intent-classification chain.
+
+
 
 ### Context Durability Exact-Main Mac Re-Commission — VERIFIED PASS
 
@@ -443,7 +462,7 @@ The program target remains v1.1.
 
 ## 9. NEXT ACTION
 
-**Single next action:** execute the governed runtime restart and resume the same canonical task `ENGURU-V06-FIELD-001` at checkpoint `v06-field-cp-001`; require real changed/test/SHA Evidence and same durable-task recovery semantics before advancing from 5/7 to 6/7.
+**Single next action:** inspect the exact current product `execute_local_field_task` routing and `field_reliability` resume/repair classifiers at product exact-main `125be3a4b01b3a4de5faf949c79372de1d249aaf`; identify the first branch that captures the canonical resume prompt and patch only that bounded routing difference.
 
 ## 9.1 MAINTENANCE RULE
 
