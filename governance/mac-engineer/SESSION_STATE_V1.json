@@ -32,9 +32,10 @@
     "runtimeAppProvenance": "PASS",
     "archiveDecision": "PASS_PRESERVE_FIRST",
     "realMacEngineeringTask": "VERIFIED_PASS_5_OF_7",
-    "continuityPatchRepeatability": "VERIFIED_PASS"
+    "continuityPatchRepeatability": "VERIFIED_PASS",
+    "productPatchGithubEngineering": "VERIFIED_PASS"
   },
-  "currentObjective": "PRODUCT_PATCH_GITHUB_ENGINEERING",
+  "currentObjective": "CONTINUITY_PATCH_EXACT_MAIN_COMMISSIONING",
   "observedProductPublication": {
     "source": "MAC_FIELD_OUTPUT",
     "localSourceHead": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
@@ -48,7 +49,7 @@
     "productCIRunNumber": 1
   },
   "canonicalNextLine": [
-    "PRODUCT_PATCH_GITHUB_ENGINEERING",
+    "CONTINUITY_PATCH_EXACT_MAIN_COMMISSIONING",
     "CHECKPOINT_RESTART_RESUME_FIELD_PROOF",
     "RECOVERY_FIELD_PROOF_RECONCILIATION",
     "LOCAL_EVIDENCE_BUNDLE",
@@ -229,7 +230,7 @@
       "gateVerdict": "PASS"
     },
     "publication": {
-      "state": "PUSHED_EXACT_HEAD",
+      "state": "MERGED_EXACT_MAIN_PASS",
       "branch": "fix/v06-durable-continuity-binding",
       "baseMain": "6f424c0b815d8c0cf8aa761124be3f743e412ee1",
       "commit": "78dc4aaebbce4fd69ccfdc35544ea49454b27c2b",
@@ -249,12 +250,23 @@
         "repoLookup": "404_NOT_FOUND",
         "branchLookup": "404_NOT_FOUND",
         "commitLookup": "404_NOT_FOUND",
-        "scope": "ACCESS_SURFACE_ONLY"
-      }
+        "scope": "ACCESS_SURFACE_ONLY",
+        "resolvedByMacLocalGh": "PASS"
+      },
+      "prNumber": 5,
+      "prHead": "78dc4aaebbce4fd69ccfdc35544ea49454b27c2b",
+      "prBase": "6f424c0b815d8c0cf8aa761124be3f743e412ee1",
+      "exactHeadCI": "PASS",
+      "mergeSha": "6d2fcd923e8fa0417a2e7787acd0dcef6b25e544",
+      "exactMainCIRunId": 35711368049,
+      "exactMainCI": "PASS",
+      "localMain": "6d2fcd923e8fa0417a2e7787acd0dcef6b25e544",
+      "remoteMain": "6d2fcd923e8fa0417a2e7787acd0dcef6b25e544",
+      "localRemoteMainParity": "PASS"
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "MAC_LOCAL_GH_PRODUCT_PR_EXACT_HEAD_CI_MERGE_EXACT_MAIN_CI",
+  "nextAction": "COMMISSION_PRODUCT_EXACT_MAIN_6D2FCD9_TO_MAC_RUNTIME_AND_VERIFY_PROVENANCE",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
