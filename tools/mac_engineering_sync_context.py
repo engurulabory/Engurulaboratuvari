@@ -100,7 +100,14 @@ def main() -> int:
         issues.append("ROADMAP_PRODUCT_NAME_MISMATCH")
 
     objective = active_objective()
-    if "Runtime/App Provenance Closure" not in objective:
+    expected_objective = str(roadmap.get("current", {}).get("activeObjective", ""))
+    expected_norm = re.sub(r"[^a-z0-9]+", " ", expected_objective.lower()).strip()
+    observed_norm = re.sub(r"[^a-z0-9]+", " ", objective.lower()).strip()
+    if (
+        expected_norm
+        and expected_norm not in observed_norm
+        and observed_norm not in expected_norm
+    ):
         issues.append("WORKLIST_ACTIVE_OBJECTIVE_RECONCILIATION_REQUIRED")
 
     payload = {
