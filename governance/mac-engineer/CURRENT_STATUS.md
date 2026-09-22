@@ -15,7 +15,7 @@ GitHub control-plane continuity is aligned and verified. The dedicated product s
 ## 2. CANONICAL SURFACES
 
 - Control plane: `engurulabory/Engurulaboratuvari`
-- Control-plane exact-main: `42a3699dd0b6285b8390ccf2ab4379b631333549`
+- Control-plane latest verified baseline before this status update: `42a3699dd0b6285b8390ccf2ab4379b631333549`; authoritative current exact-main is resolved by `session-start` after status changes merge
 - Product source: `engurulabory/enguru-mac-engineer`
 - Mac product checkout: `~/Enguru/Projects/enguru-mac-engineer`
 - Product branch: `fix/v06-durable-continuity-binding`
