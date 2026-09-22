@@ -22,7 +22,9 @@ PRODUCT = HOME / "Enguru" / "Projects" / "enguru-mac-engineer"
 RUNTIME_ROOT = HOME / "Enguru" / "Runtime" / "MacEngineer"
 RUNTIME_APP = RUNTIME_ROOT / "App" / "ENGÜRÜ Mac Engineer.app"
 INSTALLED_APP = HOME / "Applications" / "ENGÜRÜ Mac Engineer.app"
-RUNTIME_PY = RUNTIME_ROOT / "runtime" / "app.py"
+PRODUCT_RUNTIME = PRODUCT / "runtime"
+RUNTIME_SOURCE = RUNTIME_ROOT / "runtime"
+RUNTIME_PY = RUNTIME_SOURCE / "app.py"
 STATE_DIR = RUNTIME_ROOT / "state"
 PROVENANCE = STATE_DIR / "source-provenance.json"
 EVIDENCE_ROOT = HOME / "Enguru" / "Evidence" / "MacEngineer" / "v0.6"
@@ -96,6 +98,146 @@ def git_value(*args: str) -> str:
             f"GIT_FAILED:{' '.join(args)}:{r['stderr']}"
         )
     return str(r["stdout"]).strip()
+
+
+def canonical_runtime_relpaths() -> list[Path]:
+    result = run(
+        ["git", "ls-files", "runtime"],
+        cwd=PRODUCT,
+    )
+    if not result["pass"]:
+        raise InstallError(
+            f"RUNTIME_SOURCE_LIST_FAILED:{result['stderr']}"
+        )
+
+    relpaths: list[Path] = []
+
+    for raw in str(result["stdout"]).splitlines():
+        raw = raw.strip()
+        if not raw:
+            continue
+
+        path = Path(raw)
+
+        try:
+            rel = path.relative_to("runtime")
+        except ValueError:
+            continue
+
+        source = PRODUCT_RUNTIME / rel
+
+        if source.is_file():
+            relpaths.append(rel)
+
+    relpaths = sorted(set(relpaths))
+
+    if not relpaths:
+        raise InstallError(
+            "CANONICAL_RUNTIME_SOURCE_SET_REQUIRED"
+        )
+
+    return relpaths
+
+
+def runtime_source_parity() -> dict[str, Any]:
+    canonical = canonical_runtime_relpaths()
+    canonical_set = set(canonical)
+
+    current: list[Path] = []
+
+    if RUNTIME_SOURCE.is_dir():
+        current = sorted(
+            path.relative_to(RUNTIME_SOURCE)
+            for path in RUNTIME_SOURCE.rglob("*")
+            if path.is_file()
+            and "__pycache__" not in path.parts
+            and path.suffix != ".pyc"
+        )
+
+    current_set = set(current)
+
+    missing = sorted(canonical_set - current_set)
+    current_only = sorted(current_set - canonical_set)
+
+    changed: list[Path] = []
+    exact = 0
+
+    for rel in canonical:
+        source = PRODUCT_RUNTIME / rel
+        target = RUNTIME_SOURCE / rel
+
+        if not target.is_file():
+            continue
+
+        if sha256_file(source) == sha256_file(target):
+            exact += 1
+        else:
+            changed.append(rel)
+
+    return {
+        "product_files": len(canonical),
+        "current_files": len(current),
+        "exact": exact,
+        "changed": len(changed),
+        "missing_current": len(missing),
+        "current_only": len(current_only),
+        "changed_paths": [str(path) for path in changed],
+        "missing_paths": [str(path) for path in missing],
+        "current_only_paths": [
+            str(path) for path in current_only
+        ],
+    }
+
+
+def exact_runtime_parity(
+    parity: dict[str, Any],
+) -> bool:
+    count = parity.get("product_files")
+
+    return bool(
+        isinstance(count, int)
+        and count > 0
+        and parity.get("current_files") == count
+        and parity.get("exact") == count
+        and parity.get("changed") == 0
+        and parity.get("missing_current") == 0
+        and parity.get("current_only") == 0
+    )
+
+
+def sync_runtime_source() -> dict[str, Any]:
+    canonical = canonical_runtime_relpaths()
+
+    if RUNTIME_SOURCE.exists():
+        shutil.rmtree(RUNTIME_SOURCE)
+
+    RUNTIME_SOURCE.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    for rel in canonical:
+        source = PRODUCT_RUNTIME / rel
+        target = RUNTIME_SOURCE / rel
+
+        target.parent.mkdir(
+            parents=True,
+            exist_ok=True,
+        )
+
+        shutil.copy2(
+            source,
+            target,
+        )
+
+    parity = runtime_source_parity()
+
+    if not exact_runtime_parity(parity):
+        raise InstallError(
+            "RUNTIME_SOURCE_EXACT_PARITY_REQUIRED"
+        )
+
+    return parity
 
 
 def plist_info(app_or_plist: Path) -> dict[str, Any]:
@@ -325,12 +467,25 @@ def write_provenance(
     installed_info: dict[str, Any],
 ) -> dict[str, Any]:
     STATE_DIR.mkdir(parents=True, exist_ok=True)
+
+    parity = runtime_source_parity()
+
+    if not exact_runtime_parity(parity):
+        raise InstallError(
+            "PROVENANCE_RUNTIME_SOURCE_PARITY_REQUIRED"
+        )
+
+    parity_count = parity["product_files"]
+
     payload = {
         "schema": "enguru.mac-engineer.runtime-provenance/v1",
         "installed_at": now(),
         "product_repository": "engurulabory/enguru-mac-engineer",
         "product_source_sha": source_sha,
-        "runtime_source_parity": "27/27_EXACT_AT_PREFLIGHT",
+        "runtime_source_parity": (
+            f"{parity_count}/{parity_count}_EXACT_AT_INSTALL"
+        ),
+        "runtime_source_parity_detail": parity,
         "installed_app": str(INSTALLED_APP),
         "runtime_build_app": str(RUNTIME_APP),
         "bundle_id": installed_info.get("bundle_id"),
@@ -359,6 +514,24 @@ def restore_backup(
         pass
 
     restored: list[str] = []
+
+    runtime_source_backup = (
+        backup_dir / "runtime_source_before"
+    )
+
+    if runtime_source_backup.exists():
+        if RUNTIME_SOURCE.exists():
+            shutil.rmtree(RUNTIME_SOURCE)
+
+        copy_bundle(
+            runtime_source_backup,
+            RUNTIME_SOURCE,
+        )
+        restored.append(str(RUNTIME_SOURCE))
+
+    elif RUNTIME_SOURCE.exists():
+        shutil.rmtree(RUNTIME_SOURCE)
+
     installed_backup = backup_dir / "installed_app_before.app"
     runtime_backup = backup_dir / "runtime_app_before.app"
 
@@ -427,15 +600,22 @@ def main() -> int:
         if preflight.get("target_version") != TARGET_VERSION:
             raise InstallError("PREFLIGHT_TARGET_VERSION_MISMATCH")
         parity = preflight.get("runtime_source_parity", {})
-        if not (
-            parity.get("product_files") == 27
-            and parity.get("current_files") == 27
-            and parity.get("exact") == 27
-            and parity.get("changed") == 0
-            and parity.get("missing_current") == 0
-            and parity.get("current_only") == 0
+        canonical_runtime_count = len(
+            canonical_runtime_relpaths()
+        )
+
+        if (
+            parity.get("product_files")
+            != canonical_runtime_count
         ):
-            raise InstallError("RUNTIME_SOURCE_PARITY_27_OF_27_REQUIRED")
+            raise InstallError(
+                "PREFLIGHT_RUNTIME_SOURCE_SET_MISMATCH"
+            )
+
+        if parity.get("current_only") != 0:
+            raise InstallError(
+                "RUNTIME_CURRENT_ONLY_SOURCE_REVIEW_REQUIRED"
+            )
 
         before = {
             "installed_app": plist_info(INSTALLED_APP),
@@ -458,6 +638,13 @@ def main() -> int:
                     RUNTIME_APP,
                     backup_dir / "runtime_app_before.app",
                 )
+
+            if RUNTIME_SOURCE.exists():
+                backup_path(
+                    RUNTIME_SOURCE,
+                    backup_dir / "runtime_source_before",
+                )
+
             if PROVENANCE.exists():
                 provenance_backup = (
                     backup_dir / "source-provenance-before.json"
@@ -466,6 +653,9 @@ def main() -> int:
 
             stopped = stop_existing_processes()
             mutation_started = True
+
+            runtime_parity = sync_runtime_source()
+            runtime_count = runtime_parity["product_files"]
 
             copy_bundle(stage_app, RUNTIME_APP)
             copy_bundle(stage_app, INSTALLED_APP)
@@ -519,7 +709,10 @@ def main() -> int:
                 "issues": [],
                 "product_source_sha": source_sha,
                 "version": TARGET_VERSION,
-                "runtime_source_parity": "27/27_EXACT",
+                "runtime_source_parity": (
+                    f"{runtime_count}/{runtime_count}_EXACT"
+                ),
+                "runtime_source_parity_detail": runtime_parity,
                 "backup_dir": str(backup_dir),
                 "before": before,
                 "build": {
@@ -547,7 +740,8 @@ def main() -> int:
                 },
                 "truth_boundary": (
                     "This proves exact-SHA native build/install, matching v0.6 "
-                    "app bundles, preserved 27/27 runtime source parity, live "
+                    f"app bundles, synchronized {runtime_count}/{runtime_count} "
+                    "runtime source parity, live "
                     "/api/status and canonical app/runtime processes. It does "
                     "not yet prove a real engineering task, restart/resume or "
                     "recovery field behavior."
