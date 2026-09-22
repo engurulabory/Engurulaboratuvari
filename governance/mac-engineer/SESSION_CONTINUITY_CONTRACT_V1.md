@@ -74,7 +74,19 @@ A feature branch is accepted only when the current canonical SESSION_STATE expli
 - the exact expected base `origin/main`;
 - a clean worktree.
 
-This is a narrow continuity exception for a verified in-flight change, not a second source authority. Any unrecorded branch/head/base difference returns HOLD.
+This is a narrow continuity exception for a verified in-flight change, not a second source authority.
+
+For an explicitly recorded in-flight patch, SESSION_STATE may authorize a bounded dirty worktree when all of these match exactly:
+
+- active objective;
+- branch;
+- HEAD;
+- origin/main base;
+- complete expected dirty-path set.
+
+An extra, missing or different path returns HOLD. This allows a verified patch to survive a new chat/session before commit without weakening source authority.
+
+Any unrecorded branch/head/base/path difference returns HOLD.
 
 ## 5. Session start gate
 
