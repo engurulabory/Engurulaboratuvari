@@ -30,9 +30,10 @@
     "rebuildInstallPreflight": "PASS",
     "exactShaRebuildInstall": "PASS",
     "runtimeAppProvenance": "PASS",
-    "archiveDecision": "PASS_PRESERVE_FIRST"
+    "archiveDecision": "PASS_PRESERVE_FIRST",
+    "realMacEngineeringTask": "VERIFIED_PASS_5_OF_7"
   },
-  "currentObjective": "REAL_MAC_ENGINEERING_TASK",
+  "currentObjective": "CONTINUITY_PATCH_REPEATABILITY",
   "observedProductPublication": {
     "source": "MAC_FIELD_OUTPUT",
     "localSourceHead": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
@@ -46,8 +47,9 @@
     "productCIRunNumber": 1
   },
   "canonicalNextLine": [
-    "REAL_MAC_ENGINEERING_TASK",
-    "CHECKPOINT_RESTART_RESUME",
+    "CONTINUITY_PATCH_REPEATABILITY",
+    "PRODUCT_PATCH_GITHUB_ENGINEERING",
+    "CHECKPOINT_RESTART_RESUME_FIELD_PROOF",
     "RECOVERY_FIELD_PROOF_RECONCILIATION",
     "LOCAL_EVIDENCE_BUNDLE",
     "MANDATORY_DONECHECK",
@@ -55,7 +57,8 @@
     "V0_7_LONG_RUNNING_RELIABILITY",
     "V0_8_PRODUCT_ENGINEERING_OPERATOR",
     "V0_9_WORLD_CLASS_FIELD_BENCHMARK",
-    "V1_0_VERIFIED_PRODUCT_ENGINEERING_OPERATOR"
+    "V1_0_VERIFIED_PRODUCT_ENGINEERING_OPERATOR",
+    "V1_1_VERIFIED_PRODUCT_ENGINEERING_OPERATOR"
   ],
   "observedRebuildPreflight": {
     "state": "HOLD",
@@ -155,7 +158,7 @@
   "productIdentityRoadmap": "governance/mac-engineer/PRODUCT_IDENTITY_ROADMAP_V1.md",
   "productRoadmap": "governance/mac-engineer/PRODUCT_ROADMAP_V1.json",
   "currentVersion": "v0.6",
-  "finalTarget": "v1.0_VERIFIED_PRODUCT_ENGINEERING_OPERATOR",
+  "finalTarget": "v1.1_VERIFIED_PRODUCT_ENGINEERING_OPERATOR",
   "observedExactShaInstall": {
     "state": "PASS",
     "productSourceSha": "28b901ab3303f4be3c7356b11218b62422f2da42",
@@ -188,5 +191,26 @@
     "installBackups": "RETAIN_AS_ROLLBACK_AND_RECOVERY_EVIDENCE",
     "runtimeBuildApp": "KEEP_ACTIVE_GENERATED_ARTIFACT",
     "destructiveCleanup": false
+  },
+  "observedContinuityPatch": {
+    "state": "ACTIVE_REPEATABILITY_GATE",
+    "branch": "fix/v06-durable-continuity-binding",
+    "head": "6f424c0b815d8c0cf8aa761124be3f743e412ee1",
+    "baseMain": "6f424c0b815d8c0cf8aa761124be3f743e412ee1",
+    "expectedDirtyPaths": [
+      "runtime/app.py",
+      "runtime/field_reliability.py",
+      "runtime/tests/test_field_continuity_binding.py"
+    ],
+    "workingTreePolicy": "EXACT_DIRTY_PATH_SET_ALLOWED",
+    "canonicalTaskId": "ENGURU-V06-FIELD-001",
+    "checkpointId": "v06-field-cp-001",
+    "acceptance": [
+      "TARGETED_REPEATABILITY_5_OF_5_PASS",
+      "FULL_RUNTIME_REGRESSION_PASS",
+      "DIFF_CHECK_PASS",
+      "PATCH_SCOPE_3_FILES_PASS",
+      "PRODUCT_RUNTIME_CACHE_COUNT_0"
+    ]
   }
 }
