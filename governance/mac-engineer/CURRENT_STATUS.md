@@ -465,3 +465,31 @@ Operator receipt: `/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T12
 This proves that ENGÜRÜ Mac-Native Engineering Authority™ can perform the bounded multi-repository engineering field path locally while preserving remote authority identity and preventing a parallel canonical truth.
 
 **NEXT ACTION — Gate 9: MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF.**
+
+
+## GATE 9 RESTART / RECOVERY CONTINUITY — PACKAGE PREPARED — 2026-09-23
+
+**STATE — PACKAGE PREPARED / FRESH EXACT-HEAD ACCEPTANCE REQUIRED.**
+
+Gate 9 now exercises the canonical product `ReliabilityManager` from the local product GitVault exact-main source across two separate Python process executions.
+
+Field sequence:
+
+`BEGIN SAME IDEMPOTENCY KEY → RUNNING → ONE DURABLE EFFECT → VERIFIED CHECKPOINT → CONTROLLED PROCESS EXIT → FRESH PROCESS → DUPLICATE BEGIN RETURNS SAME TASK → EFFECT REPLAY SUPPRESSED → CHECKPOINT RESUME → VERIFYING → COMPLETE`
+
+Acceptance requires:
+
+- product runtime source bound to the verified GitVault exact-main SHA;
+- controlled first-process exit after durable effect + verified checkpoint;
+- same task id after process restart;
+- idempotent duplicate begin;
+- exactly one durable effect receipt;
+- verified checkpoint continuity;
+- final durable task state COMPLETE;
+- one CREATE_TASK commit, two CHECKPOINT commits and one COMPLETE transition in the durable journal;
+- GitVault remote-main unchanged;
+- no network, push, merge or canonical source mutation.
+
+Evidence is preserved under `~/Enguru/Evidence/MacEngineer/v0.7/restart-recovery-continuity/`.
+
+**NEXT ACTION — fresh exact-head local candidate acceptance → Doctor → continue → Gate 9 field proof.**
