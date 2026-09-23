@@ -40,13 +40,12 @@ cd "$ROOT"
 python3 -m py_compile tools/mac_engineer_operator.py || hold "OPERATOR_PYTHON_SYNTAX_FAILED"
 print "OPERATOR_PYTHON_SYNTAX=PASS"
 
-python3 - <<'PY' || exit 20
+python3 - <<'PY' || hold "OPERATOR_ACTION_REGISTRY_JSON_FAILED"
 import json
 from pathlib import Path
 json.loads(Path("governance/mac-engineer/OPERATOR_ACTION_REGISTRY_V1.json").read_text(encoding="utf-8"))
 print("OPERATOR_ACTION_REGISTRY_JSON=PASS")
 PY
-[[ "$?" -eq 0 ]] || hold "OPERATOR_ACTION_REGISTRY_JSON_FAILED"
 
 zsh -n bin/enguru-mac || hold "OPERATOR_LAUNCHER_SYNTAX_FAILED"
 zsh -n governance/mac-engineer/INSTALL_OSI_OPERATOR.command || hold "OPERATOR_INSTALLER_SYNTAX_FAILED"
