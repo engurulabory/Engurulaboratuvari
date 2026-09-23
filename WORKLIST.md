@@ -1216,3 +1216,24 @@ Engineering mode: **GitHub-first benchmark harness + selected Mac field proofs**
 2. Preserve unsupported intervals as **PRE-CANONICAL DEVELOPMENT LINEAGE**.
 3. Publish the historical reconciliation.
 4. Start v0.7 under the **GitHub-first / Milestone-Mac** model.
+
+
+## v0.7 — VERIFIED FINISH CLOSURE CONTRACT — 13 GATES
+
+Canonical target: **ENGÜRÜ Mac Engineer™ v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED**.
+
+1. [x] Canonical Boot — exact branch/SHA, clean worktree, session continuity, Evidence.
+2. [x] OSi local operator — `status / continue / verify / recover / doctor`.
+3. [x] Repository Fabric — 12/12 repository, GitVault, offline continuity.
+4. [x] V07 A01–A08 — long-running reliability, restart/resume, idempotency, single-writer, retry/watchdog, recovery, resource/evidence continuity.
+5. [x] A09 local rehearsal — candidate `63dac60d39c93f3936658e8a5c8c80fb8470dfd3` locally verified.
+6. [x] A10 DoneCheck™ v1.2 integration — A01–A08 PASS; A09 external gap preserved as INCONCLUSIVE.
+7. [x] Pre-A11 Local Finisher Rehearsal — controlled fault → failure observed → repair → regression → idempotency → clean finish → Evidence.
+8. [ ] A09 external GitHub confirmation — GitHub-recorded external check; 5 consecutive targeted PASS runs + full regression PASS + scope/diff validation.
+9. [ ] A09 candidate → exact-main — PR #13 verification → merge → product main exact SHA → exact-main regression/CI → Evidence.
+10. [ ] A10 final re-verification — aggregate DoneCheck™ v1.2 result becomes PASS / MACHINE_VERIFICATION_PASS after A09 PASS.
+11. [ ] V07-A11 Consolidated Mac Long-Run Commissioning — one ≥8h real-Mac campaign with ≥3 controlled interruptions, continuity, exactly-once/idempotency, RSS/resource and Evidence reconciliation.
+12. [ ] Final Verify — `enguru-mac verify` → full regression → canonical state → Evidence bundle → DoneCheck™ v1.2 final closeout; technical HOLD target = 0.
+13. [ ] Human Threshold™ — human acceptance → canonical status/worklist reconciliation → **v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED**.
+
+Truth boundary: local rehearsal results do not manufacture external A09, A11, Human Threshold, or version-lock authority.
