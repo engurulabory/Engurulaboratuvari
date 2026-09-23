@@ -126,6 +126,111 @@ class OperatorSurfaceTests(unittest.TestCase):
         self.assertEqual(receipt["hold"], "ACTION_HANDLER_NOT_REGISTERED")
         self.assertEqual(receipt["next_action"], "FUTURE_UNREGISTERED_ACTION")
 
+    def test_recover_stops_before_task_mutation_when_boot_holds(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            evidence = Path(tmp)
+            runtime_receipts = evidence / "runtime"
+            recover_call = mock.Mock(return_value={"state": "PASS"})
+            with (
+                mock.patch.object(operator, "EVIDENCE", evidence),
+                mock.patch.object(operator, "RUNTIME_RECEIPTS", runtime_receipts),
+                mock.patch.object(operator, "canonical_boot", return_value={"state": "HOLD"}),
+                mock.patch.object(operator, "current_truth", return_value={"next_action": "NEXT"}),
+                mock.patch.object(operator, "recover_latest_task", recover_call),
+                mock.patch.object(operator, "sync_mirrors", return_value={}),
+            ):
+                with contextlib.redirect_stdout(io.StringIO()):
+                    code = operator.command_recover()
+
+            receipt = json.loads(
+                (evidence / "latest-receipt.json").read_text(encoding="utf-8")
+            )
+
+        self.assertEqual(code, 2)
+        self.assertEqual(receipt["hold"], "CANONICAL_BOOT")
+        recover_call.assert_not_called()
+
+    def test_continue_runs_current_candidate_rehearsal_once(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            evidence = Path(tmp)
+            runtime_receipts = evidence / "runtime"
+            rehearsal = mock.Mock(
+                return_value={
+                    "state": "PASS",
+                    "evidence": "/tmp/a09/evidence.json",
+                }
+            )
+            truth = {
+                "next_action": "V07_A09_CLEAR_GITHUB_PRIVATE_REPO_HOSTED_ACTIONS_EXECUTION_GATE",
+                "a09_candidate_sha": "candidate-sha",
+                "local_fallback": {},
+            }
+            with (
+                mock.patch.object(operator, "EVIDENCE", evidence),
+                mock.patch.object(operator, "RUNTIME_RECEIPTS", runtime_receipts),
+                mock.patch.object(operator, "canonical_boot", return_value={"state": "PASS"}),
+                mock.patch.object(operator, "current_truth", return_value=truth),
+                mock.patch.object(operator, "sync_mirrors", return_value={}),
+                mock.patch.object(operator, "runner_status", return_value={"state": "UNCOMMISSIONED"}),
+                mock.patch.object(operator, "latest_matching_fallback", return_value=None),
+                mock.patch.object(operator, "run_a09_local_rehearsal", rehearsal),
+                mock.patch.object(operator, "offline_manifest", return_value={}),
+            ):
+                with contextlib.redirect_stdout(io.StringIO()):
+                    code = operator.command_continue()
+
+            receipt = json.loads(
+                (evidence / "latest-receipt.json").read_text(encoding="utf-8")
+            )
+
+        self.assertEqual(code, 2)
+        self.assertIn("A09_LOCAL_REHEARSAL_PASS", receipt["completed"])
+        self.assertEqual(
+            receipt["next_action"],
+            "COMMISSION_OSI_SELF_HOSTED_RUNNER",
+        )
+        rehearsal.assert_called_once_with()
+
+    def test_continue_reuses_matching_candidate_evidence(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            evidence = Path(tmp)
+            runtime_receipts = evidence / "runtime"
+            rehearsal = mock.Mock()
+            truth = {
+                "next_action": "V07_A09_CLEAR_GITHUB_PRIVATE_REPO_HOSTED_ACTIONS_EXECUTION_GATE",
+                "a09_candidate_sha": "candidate-sha",
+                "local_fallback": {},
+            }
+            with (
+                mock.patch.object(operator, "EVIDENCE", evidence),
+                mock.patch.object(operator, "RUNTIME_RECEIPTS", runtime_receipts),
+                mock.patch.object(operator, "canonical_boot", return_value={"state": "PASS"}),
+                mock.patch.object(operator, "current_truth", return_value=truth),
+                mock.patch.object(operator, "sync_mirrors", return_value={}),
+                mock.patch.object(operator, "runner_status", return_value={"state": "UNCOMMISSIONED"}),
+                mock.patch.object(
+                    operator,
+                    "latest_matching_fallback",
+                    return_value={
+                        "state": "LOCAL_REHEARSAL_PASS_EXTERNAL_CONFIRMATION_PENDING",
+                        "candidate_sha": "candidate-sha",
+                        "_path": "/tmp/a09/evidence.json",
+                    },
+                ),
+                mock.patch.object(operator, "run_a09_local_rehearsal", rehearsal),
+                mock.patch.object(operator, "offline_manifest", return_value={}),
+            ):
+                with contextlib.redirect_stdout(io.StringIO()):
+                    code = operator.command_continue()
+
+            receipt = json.loads(
+                (evidence / "latest-receipt.json").read_text(encoding="utf-8")
+            )
+
+        self.assertEqual(code, 2)
+        self.assertIn("A09_LOCAL_REHEARSAL_ALREADY_PASS", receipt["completed"])
+        rehearsal.assert_not_called()
+
     def test_local_mirror_is_recovery_only(self):
         with tempfile.TemporaryDirectory() as tmp:
             base = Path(tmp)
