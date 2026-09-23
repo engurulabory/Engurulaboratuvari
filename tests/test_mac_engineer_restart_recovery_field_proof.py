@@ -31,6 +31,10 @@ class RestartRecoveryFieldProofTests(unittest.TestCase):
         )
         self.assertEqual(proof.CONTROLLED_INTERRUPTION_EXIT, 75)
 
+    def test_controlled_interruption_exit_is_nonzero_and_bounded(self):
+        self.assertEqual(proof.CONTROLLED_INTERRUPTION_EXIT, 75)
+        self.assertNotEqual(proof.CONTROLLED_INTERRUPTION_EXIT, 0)
+
     def test_durable_effect_is_created_exactly_once(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
