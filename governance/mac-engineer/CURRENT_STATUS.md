@@ -513,3 +513,35 @@ Evidence: `/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/restart-recovery-contin
 Operator receipt: `/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T123930Z-continue.json`.
 
 **NEXT ACTION — Gate 10: MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF.**
+
+
+## GATE 10 OFFLINE / GITVAULT RECONCILIATION — PACKAGE PREPARED — 2026-09-23
+
+**STATE — PACKAGE PREPARED / FRESH EXACT-HEAD ACCEPTANCE REQUIRED.**
+
+Gate 10 proves that ENGÜRÜ Mac-Native Engineering Authority™ can preserve a locally produced engineering unit while GitHub execution is unavailable, without creating a competing canonical truth.
+
+Field sequence:
+
+`FRESH ACCEPTED LOCAL CANDIDATE → LOCAL GITVAULT EXACT-HEAD CLONE → ONE OFFLINE LOCAL COMMIT → PENDING_RECONCILIATION → PATCH + GIT BUNDLE SEAL → BUNDLE VERIFY → SECOND LOCAL CLONE PATCH APPLY-CHECK → GITVAULT REF PARITY → EVIDENCE`
+
+Acceptance requires:
+
+- fresh accepted control-plane candidate with full local acceptance PASS;
+- Repository Fabric 12/12 PASS and existing offline queue proof PASS;
+- real current checkout clean and ahead of `origin/main` under pending-reconciliation authority;
+- operator GitVault remote-main identity equal to accepted `origin/main`;
+- exact accepted HEAD available from GitVault;
+- one bounded local queue commit above accepted HEAD;
+- durable `.patch` and `.bundle` Evidence artifacts;
+- bundle integrity and exact queued commit presence;
+- patch apply-check PASS from the exact accepted base;
+- GitVault refs unchanged before/after;
+- GitVault fsck PASS before/after;
+- network required: false;
+- remote push/merge: false;
+- second canonical truth: false.
+
+Queued work authority remains `PENDING_RECONCILIATION_NOT_CANONICAL` until explicit remote reconciliation becomes available.
+
+**NEXT ACTION — fresh exact-head local candidate acceptance → Doctor → continue → Gate 10 field proof.**
