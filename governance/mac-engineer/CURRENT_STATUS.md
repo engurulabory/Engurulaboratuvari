@@ -172,3 +172,23 @@ The required difference extends the existing canonical-context + session-continu
 **JUDGMENT — HOLD until real-Mac acceptance executes.**
 
 **NEXT ACTION — run the one-command local candidate acceptance gate, then `enguru-mac doctor`; after Doctor PASS, `enguru-mac continue` advances to V07-A10.**
+
+
+## CANONICAL BOOT BYTECODE CLEANLINESS — 2026-09-23
+
+**STATE — PATCH PREPARED / LOCAL RE-ACCEPTANCE REQUIRED.**
+
+The first local candidate retry reached the cleanliness gate and correctly returned `HOLD=CONTROL_PLANE_NOT_CLEAN` because the only observed working-tree difference was the untracked generated directory `tools/__pycache__/`.
+
+Root cause: Python bytecode generation could write cache artifacts into the control-plane source tree during operator / canonical-boot subprocess execution.
+
+Required difference applied:
+
+- `bin/enguru-mac` exports `PYTHONDONTWRITEBYTECODE=1` and launches Python with `-B`;
+- local candidate acceptance sets the same environment contract and uses `-B` for canonical-context/session-start child processes;
+- operator canonical-boot subprocesses use `-B`;
+- canonical executable mode remains `100755`.
+
+**JUDGMENT — HOLD until bounded cleanup + fresh real-Mac acceptance PASS.**
+
+**NEXT ACTION — verify `tools/__pycache__/` is the sole generated untracked difference, remove that generated cache only, fast-forward the candidate branch, then rerun the bytecode-free local candidate acceptance gate.**
