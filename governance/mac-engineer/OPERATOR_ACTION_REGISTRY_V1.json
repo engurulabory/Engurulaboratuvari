@@ -28,6 +28,14 @@
       "command": "governance/mac-engineer/V07_LOCAL_FINISHER_REHEARSAL.command",
       "canonicalA11Authority": false,
       "failClosed": true
+    },
+    "MAC_NATIVE_AUTHORITY_MIGRATION_FIELD_PROOF": {
+      "handler": "MAC_NATIVE_MULTI_REPO_FIELD_PROOF",
+      "authority": "LOCAL_FIELD_EVIDENCE",
+      "command": "governance/mac-engineer/V07_MAC_NATIVE_AUTHORITY_FIELD_PROOF.command",
+      "networkRequired": false,
+      "remotePush": false,
+      "failClosed": true
     }
   }
 }
