@@ -40,6 +40,7 @@ MAC_NATIVE_AUTHORITY_FIELD_PROOF = ROOT / "governance" / "mac-engineer" / "V07_M
 MAC_NATIVE_RESTART_RECOVERY_PROOF = ROOT / "governance" / "mac-engineer" / "V07_MAC_NATIVE_RESTART_RECOVERY_PROOF.command"
 MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF = ROOT / "governance" / "mac-engineer" / "V07_MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF.command"
 DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION = ROOT / "governance" / "mac-engineer" / "V07_DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION.command"
+FINAL_CONSOLIDATED_MAC_CAMPAIGN = ROOT / "governance" / "mac-engineer" / "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN.command"
 
 TERMINAL_STATES = {"COMPLETE", "HOLD", "FAILED", "BLOCKED"}
 RECOVERABLE_STATES = {"RUNNING", "CHECKPOINTED", "RECOVERY_REQUIRED", "VERIFYING"}
@@ -892,6 +893,51 @@ def run_donecheck_v12_local_authority_verification() -> dict[str, Any]:
     }
 
 
+def run_final_consolidated_mac_campaign() -> dict[str, Any]:
+    if not FINAL_CONSOLIDATED_MAC_CAMPAIGN.is_file():
+        return {
+            "state": "HOLD",
+            "reason": "FINAL_CONSOLIDATED_MAC_CAMPAIGN_COMMAND_MISSING",
+            "evidence": None,
+        }
+
+    env = {**os.environ, "PYTHONDONTWRITEBYTECODE": "1"}
+    proc = subprocess.Popen(
+        ["zsh", str(FINAL_CONSOLIDATED_MAC_CAMPAIGN)],
+        cwd=str(ROOT),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+        bufsize=1,
+        env=env,
+    )
+    lines: list[str] = []
+    assert proc.stdout is not None
+    for raw in proc.stdout:
+        line = raw.rstrip("\n")
+        print(line, flush=True)
+        lines.append(line)
+        if len(lines) > 4000:
+            lines = lines[-4000:]
+
+    code = proc.wait()
+    fields: dict[str, str] = {}
+    for line in lines:
+        if "=" in line:
+            key, value = line.split("=", 1)
+            if key and value:
+                fields[key.strip()] = value.strip()
+
+    return {
+        "state": "PASS" if code == 0 else "HOLD",
+        "code": code,
+        "fields": fields,
+        "evidence": fields.get("EVIDENCE"),
+        "stdout_tail": "\n".join(lines[-200:]),
+        "stderr_tail": "",
+    }
+
+
 def command_continue() -> int:
     boot = canonical_boot()
     truth = current_truth()
@@ -906,6 +952,53 @@ def command_continue() -> int:
         hold = "CANONICAL_BOOT"
         next_action = "enguru-mac doctor"
         completed = ["CANONICAL_BOOT_HOLD", "GITVAULT_SYNC"]
+    elif local_action == "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY":
+        completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
+        final_campaign = run_final_consolidated_mac_campaign()
+        if final_campaign.get("state") != "PASS":
+            payload = write_receipt(
+                command="continue",
+                state="HOLD",
+                completed=completed,
+                evidence=[
+                    item for item in [
+                        str(SESSION_STATE),
+                        str(final_campaign.get("evidence") or ""),
+                    ] if item
+                ],
+                hold="V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY",
+                next_action="enguru-mac doctor",
+                details={
+                    "truth": truth,
+                    "boot": boot,
+                    "runner": runner,
+                    "mirrors": mirrors,
+                    "final_campaign": final_campaign,
+                },
+            )
+            print_receipt(payload)
+            return 2
+
+        completed.extend([
+            "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_PASS",
+            "DURATION_GTE_8H_PASS",
+            "THREE_CONTROLLED_INTERRUPTION_EVENTS_PASS",
+            "TASK_IDENTITY_CONTINUITY_PASS",
+            "EXACTLY_ONCE_EFFECT_PASS",
+            "RSS_LIMITS_PASS",
+            "STORAGE_RECONCILIATION_PASS",
+            "FINAL_REGRESSIONS_PASS",
+            "NATIVE_BUILD_PASS",
+            "POST_CAMPAIGN_DONECHECK_V12_PASS",
+            "TECHNICAL_HOLD_ZERO",
+            "EXTERNAL_A09_DEFERRED_PRESERVED",
+        ])
+        state = "HOLD"
+        hold = "V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION_REQUIRED"
+        next_action = (
+            (final_campaign.get("fields") or {}).get("NEXT_ACTION")
+            or "V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION"
+        )
     elif local_action == "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION":
         completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
         local_authority_verification = run_donecheck_v12_local_authority_verification()
@@ -1214,6 +1307,7 @@ def command_continue() -> int:
                 str((locals().get("restart_proof") or {}).get("evidence") or ""),
                 str((locals().get("offline_proof") or {}).get("evidence") or ""),
                 str((locals().get("local_authority_verification") or {}).get("evidence") or ""),
+                str((locals().get("final_campaign") or {}).get("evidence") or ""),
             ]
             if item
         ],
@@ -1232,6 +1326,7 @@ def command_continue() -> int:
             "restart_proof": locals().get("restart_proof"),
             "offline_proof": locals().get("offline_proof"),
             "local_authority_verification": locals().get("local_authority_verification"),
+            "final_campaign": locals().get("final_campaign"),
             "offline_manifest": offline_manifest(),
         },
     )
