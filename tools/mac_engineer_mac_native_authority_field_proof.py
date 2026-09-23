@@ -71,9 +71,12 @@ def git(cwd: Path, *args: str, timeout: int = 300) -> str:
     return result["stdout"].strip()
 
 
-def mirror_main(mirror: Path) -> str:
-    result = run(["git", "--git-dir", str(mirror), "rev-parse", "refs/heads/main"], timeout=60)
-    require(result, "MIRROR_MAIN")
+def mirror_remote_main(mirror: Path) -> str:
+    result = run(
+        ["git", "--git-dir", str(mirror), "rev-parse", "refs/remotes/origin/main"],
+        timeout=60,
+    )
+    require(result, "MIRROR_REMOTE_MAIN")
     return result["stdout"].strip()
 
 
@@ -208,7 +211,7 @@ def write_log(run_dir: Path, name: str, result: dict[str, Any]) -> Path:
     return path
 
 
-def control_plane_verify(repo_path: Path, run_dir: Path) -> dict[str, Any]:
+def control_plane_verify(repo_path: Path, run_dir: Path, base_sha: str) -> dict[str, Any]:
     env = dict(os.environ)
     env["PYTHONDONTWRITEBYTECODE"] = "1"
     result = run(
@@ -219,12 +222,12 @@ def control_plane_verify(repo_path: Path, run_dir: Path) -> dict[str, Any]:
     )
     log = write_log(run_dir, "control-plane-full-regression", result)
     require(result, "CONTROL_PLANE_FULL_REGRESSION")
-    diff = run(["git", "diff", "--check", "main...HEAD"], cwd=repo_path, timeout=120)
+    diff = run(["git", "diff", "--check", f"{base_sha}...HEAD"], cwd=repo_path, timeout=120)
     require(diff, "CONTROL_PLANE_DIFF_CHECK")
     return {"regression": "PASS", "diffCheck": "PASS", "log": str(log), "logSha256": sha256(log)}
 
 
-def product_verify(repo_path: Path, run_dir: Path) -> dict[str, Any]:
+def product_verify(repo_path: Path, run_dir: Path, base_sha: str) -> dict[str, Any]:
     env = dict(os.environ)
     env["PYTHONDONTWRITEBYTECODE"] = "1"
     env["PYTHONPATH"] = str(repo_path / "runtime")
@@ -263,7 +266,7 @@ def product_verify(repo_path: Path, run_dir: Path) -> dict[str, Any]:
     swift_log = write_log(run_dir, "product-native-swift-build", swift)
     require(swift, "PRODUCT_NATIVE_SWIFT_BUILD")
 
-    diff = run(["git", "diff", "--check", "main...HEAD"], cwd=repo_path, timeout=120)
+    diff = run(["git", "diff", "--check", f"{base_sha}...HEAD"], cwd=repo_path, timeout=120)
     require(diff, "PRODUCT_DIFF_CHECK")
     return {
         "runtimeRegression": "PASS",
@@ -303,20 +306,20 @@ def perform() -> dict[str, Any]:
 
     control_mirror = MIRROR_ROOT / "Engurulaboratuvari.git"
     product_mirror = MIRROR_ROOT / "enguru-mac-engineer.git"
-    control_mirror_main = mirror_main(control_mirror)
-    product_base = mirror_main(product_mirror)
+    control_remote_main = mirror_remote_main(control_mirror)
+    product_base = mirror_remote_main(product_mirror)
     control_base = str(accepted_control["head"])
 
-    if control_mirror_main != control_record.get("observedMain"):
-        raise RuntimeError("CONTROL_MIRROR_FABRIC_MAIN_PARITY_REQUIRED")
+    if control_remote_main != control_record.get("observedMain"):
+        raise RuntimeError("CONTROL_GITVAULT_REMOTE_MAIN_FABRIC_PARITY_REQUIRED")
     if product_base != product_record.get("observedMain"):
         raise RuntimeError("PRODUCT_MIRROR_FABRIC_PARITY_REQUIRED")
-    if str(accepted_control["originMain"]) != control_mirror_main:
-        raise RuntimeError("ACCEPTED_CONTROL_ORIGIN_MAIN_FABRIC_PARITY_REQUIRED")
+    if str(accepted_control["originMain"]) != control_remote_main:
+        raise RuntimeError("ACCEPTED_CONTROL_ORIGIN_MAIN_GITVAULT_PARITY_REQUIRED")
     if not mirror_has_commit(control_mirror, control_base):
         raise RuntimeError("ACCEPTED_CONTROL_HEAD_NOT_PRESENT_IN_LOCAL_MIRROR")
 
-    control_mirror_before = control_mirror_main
+    control_mirror_before = control_remote_main
     product_mirror_before = product_base
 
     control = workspace / "Engurulaboratuvari"
@@ -340,8 +343,8 @@ def perform() -> dict[str, Any]:
     if product_contract["peerRepository"] != control_name:
         raise RuntimeError("PRODUCT_PEER_IDENTITY_REQUIRED")
 
-    control_verify = control_plane_verify(control, run_dir)
-    product_verify_result = product_verify(product, run_dir)
+    control_verify = control_plane_verify(control, run_dir, control_base)
+    product_verify_result = product_verify(product, run_dir, product_base)
 
     if not clean(control) or not clean(product):
         raise RuntimeError("FIELD_PROOF_WORKTREES_CLEAN_REQUIRED")
@@ -351,8 +354,8 @@ def perform() -> dict[str, Any]:
     export_patch(control, control_base, control_patch)
     export_patch(product, product_base, product_patch)
 
-    control_mirror_after = mirror_main(control_mirror)
-    product_mirror_after = mirror_main(product_mirror)
+    control_mirror_after = mirror_remote_main(control_mirror)
+    product_mirror_after = mirror_remote_main(product_mirror)
     mirrors_unchanged = (
         control_mirror_after == control_mirror_before
         and product_mirror_after == product_mirror_before
@@ -379,6 +382,7 @@ def perform() -> dict[str, Any]:
                 "acceptedCandidateOriginMain": accepted_control["originMain"],
                 "acceptedCandidateEvidence": accepted_control.get("evidence"),
                 "sourceAuthority": "LOCAL_ACCEPTED_CANDIDATE_PENDING_RECONCILIATION",
+                "gitVaultRemoteMain": control_remote_main,
                 "localProofCommit": control_commit,
                 "patch": str(control_patch),
                 "patchSha256": sha256(control_patch),
@@ -386,6 +390,7 @@ def perform() -> dict[str, Any]:
             },
             product_name: {
                 "baseSha": product_base,
+                "sourceAuthority": "GITVAULT_REMOTE_MAIN_BOUND_TO_REPOSITORY_FABRIC",
                 "localProofCommit": product_commit,
                 "patch": str(product_patch),
                 "patchSha256": sha256(product_patch),
