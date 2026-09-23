@@ -1136,7 +1136,7 @@ Engineering mode: **GitHub-first**.
 - [x] Provider/network/process recovery fixtures. — V07-A06: provider unavailable + network timeout + child-process exit, each recoverable and exhausted; task/Evidence continuity PASS.
 - [ ] Resource and evidence continuity. — **GitHub-first acceptance PASS / Mac acceptance pending**. V07-A07: 40 tasks, 0 unexpected artifacts, 0 temp/cache residue. V07-A08: 20 checkpoints / 20 restarts with Evidence lineage + journal reconciliation. Product exact-main `5432b9b135499cea18273c0e003877b864af92c6`; Product CI #26 PASS. Mac ≥8h/RSS + Local Evidence bundle remain in consolidated commissioning.
 - [ ] GitHub CI / fault-injection campaign. — **HOLD / external GitHub Actions execution gate**. Product PR #13 jobs on `macos-latest`, `macos-15` and `ubuntu-latest` all fail before first step (`steps=null`); A09 remains 0/5. Evidence: `evidence/MAC_ENGINEER_V07_A09_ACTIONS_HOLD_2026-09-22.md`.
-- [x] Astra / Mac local fallback adapter prepared for A09 continuity. — exact-SHA disposable worktree, 5× targeted local PASS contract, full regression, native verification, scope validation and Local Evidence; external GitHub CI confirmation authority preserved.
+- [x] Astra / Mac local fallback adapter **EXECUTED PASS** for A09 continuity. — exact candidate `d545a6d9d5d9823da5878323022735ad7f47a80e`; runtime compile PASS; 5/5 targeted local PASS; full regression PASS; native verification PASS; scope PASS; clean closeout; external GitHub CI confirmation authority preserved. Evidence: `evidence/MAC_ENGINEER_V07_A09_ASTRA_LOCAL_REHEARSAL_2026-09-23.md`.
 - [ ] DoneCheck v1.2 integration for milestone closure.
 - [ ] **One consolidated Mac long-run commissioning campaign.**
 - [ ] Human Threshold™.
