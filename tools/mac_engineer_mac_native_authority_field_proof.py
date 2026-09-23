@@ -19,7 +19,7 @@ from typing import Any
 HOME = Path.home()
 FABRIC_STATE = HOME / "Enguru" / "Runtime" / "MacEngineer" / "state" / "repository-fabric.json"
 ACCEPTED_CONTROL_STATE = HOME / "Enguru" / "Runtime" / "MacEngineer" / "state" / "local-accepted-control-plane-candidate.json"
-MIRROR_ROOT = HOME / "Enguru" / "GitVault" / "RepositoryFabric" / "engurulabory"
+MIRROR_ROOT = HOME / "Enguru" / "GitVault" / "MacEngineer"
 EVIDENCE_ROOT = HOME / "Enguru" / "Evidence" / "MacEngineer" / "v0.7" / "mac-native-authority-migration"
 TASK_ID = "ENGURU-V07-MAC-NATIVE-MIGRATION-001"
 BRANCH = "enguru-mac-native-migration-proof"
@@ -176,7 +176,7 @@ def write_manifest(
         "peerRepository": peer,
         "baseSha": base_sha,
         "executionAuthority": "MAC_NATIVE_LOCAL_FIELD_PROOF",
-        "source": "LOCAL_REPOSITORY_FABRIC_MIRROR",
+        "source": "LOCAL_GITVAULT_MIRROR_WITH_REPOSITORY_FABRIC_IDENTITY",
         "remoteMutation": False,
     }
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -394,6 +394,7 @@ def perform() -> dict[str, Any]:
         },
         "crossRepositoryTaskIdentity": "PASS",
         "repositoryFabric": "12_OF_12_PASS",
+        "executionSource": "FRESH_OPERATOR_GITVAULT_MIRRORS",
         "gitVaultMirrorsUnchanged": mirrors_unchanged,
         "localCommitQueue": "2_LOCAL_COMMITS_NOT_PUSHED",
         "evidenceContinuity": "PASS",
