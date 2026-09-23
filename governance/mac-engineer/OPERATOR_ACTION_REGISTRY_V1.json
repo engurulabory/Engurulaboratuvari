@@ -53,6 +53,15 @@
       "remotePush": false,
       "secondCanonicalTruth": false,
       "failClosed": true
+    },
+    "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION": {
+      "handler": "DONECHECK_V12_LOCAL_AUTHORITY_MIGRATION_VERIFICATION",
+      "authority": "DONECHECK_V1_2_EXACT_SHA",
+      "command": "governance/mac-engineer/V07_DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION.command",
+      "doneCheckVersion": "1.2.0",
+      "doneCheckExactSha": "8b90a8fc93453dd8a84994195d28d14b15e261cb",
+      "externalA09Promoted": false,
+      "failClosed": true
     }
   }
 }
