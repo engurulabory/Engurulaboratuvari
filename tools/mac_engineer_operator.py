@@ -630,8 +630,8 @@ def command_doctor() -> int:
     hold_parts = []
     if doctor.get("verdict") != "PASS":
         hold_parts.append("LOCAL_DOCTOR")
-    if runner.get("state") != "PASS":
-        hold_parts.append("SELF_HOSTED_RUNNER")
+    if any(item.get("state") != "PASS" for item in mirrors.values()):
+        hold_parts.append("GITVAULT_SYNC")
     payload = write_receipt(
         command="doctor",
         state=state,
