@@ -27,6 +27,24 @@ v0.6 already establishes verified field behavior:
 
 v0.7 therefore extends duration, repetition, interruption diversity, concurrency pressure and Evidence continuity. It does not create a parallel reliability architecture.
 
+
+## 2026-09-23 — EFFECTIVE MAC-NATIVE AUTHORITY RECONCILIATION
+
+The original GitHub-first acceptance rows remain historical Evidence for the engineering path already executed. The current effective finish path is reconciled to **ENGÜRÜ Mac-Native Engineering Authority™** because GitHub Actions execution is externally blocked by the provider billing state.
+
+This reconciliation preserves the truth boundary:
+
+- GitHub A09 external PASS is **not manufactured** from local Evidence;
+- GitHub A09 remains **EXTERNAL_BLOCKED / DEFERRED** and must be reconciled when external execution becomes available;
+- local engineering continuity and local Verified Finish proceed through the locked 13-gate Mac-native contract;
+- Mac becomes primary engineering execution authority only after local gates 8–13 and Human Threshold™ PASS.
+
+Effective remaining sequence:
+
+`Gate 8 Multi-Repo Local Field Proof → Gate 9 Restart/Recovery → Gate 10 Offline/GitVault Reconciliation → Gate 11 DoneCheck™ v1.2 Migration Verification → Gate 12 ≥8h Consolidated Mac Campaign + Final Verify → Gate 13 Human Threshold™ + Authority Transition`
+
+The original A09/A10/A11 GitHub-first sequence below is retained as historical specification context; where it conflicts with this reconciliation, **this effective Mac-native authority section governs the current v0.7 finish path**.
+
 ## 2. EXACT ACCEPTANCE MATRIX
 
 | Gate | Capability | GitHub-first acceptance | Milestone Mac acceptance | Required Evidence |
