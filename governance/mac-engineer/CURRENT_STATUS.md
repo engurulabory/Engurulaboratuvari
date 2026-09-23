@@ -403,3 +403,22 @@ Required difference applied:
 Effective v0.7 finish contract is now the 13-gate Mac-native authority path. Historical GitHub-first acceptance evidence remains preserved; external GitHub Actions A09 remains deferred and is never represented as local PASS.
 
 **NEXT ACTION — fresh exact-head local acceptance → Doctor → continue → Gate 8 Mac-Native Authority Migration Field Proof.**
+
+
+## GATE 8 DIFF CHECK RECONCILIATION — 2026-09-23
+
+**STATE — PATCH PREPARED / FRESH EXACT-HEAD ACCEPTANCE REQUIRED.**
+
+Fresh local candidate acceptance reached the diff hygiene gate and held at `DIFF_CHECK_FAILED`.
+
+Exact branch compare identified seven trailing-whitespace findings in `governance/mac-engineer/MAC_NATIVE_ENGINEERING_AUTHORITY_V1.md`, lines 69–75. These were Markdown line-break spaces only; no behavioral code defect was evidenced.
+
+Required difference applied:
+
+- trailing whitespace removed from the seven authority-contract lines;
+- contract meaning preserved;
+- GitHub branch compare now reports zero whitespace issues.
+
+Current branch head: `9f75827f80233d239740df5b22f354abfca573f1`.
+
+**NEXT ACTION — fresh exact-head local candidate acceptance → Doctor → continue → Gate 8 Mac-Native Authority Migration Field Proof.**
