@@ -735,7 +735,7 @@
     "state": "HOLD",
     "objective": "V0_7_LONG_RUNNING_RELIABILITY",
     "engineeringMode": "MAC_NATIVE_AUTHORITY_TRANSITION",
-    "nextAction": "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION",
+    "nextAction": "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY",
     "milestoneMacCommissioning": "ACTIVE_MAC_NATIVE_MIGRATION",
     "acceptanceMatrix": "PASS_DEFINED",
     "acceptanceMatrixPath": "governance/mac-engineer/V07_LONG_RUNNING_RELIABILITY_ACCEPTANCE_MATRIX_V1.md",
@@ -758,7 +758,7 @@
     "runtimeRegression": "54_OF_54_OK",
     "evidence": "evidence/MAC_ENGINEER_V07_A07_A08_ENGINEERING_2026-09-22.md",
     "passedGatesAuthority": "HISTORICAL_GITHUB_FIRST_EVIDENCE_PRESERVED_MAC_NATIVE_TRANSITION_ACTIVE",
-    "milestoneMacAcceptance": "ACTIVE_GATE_11_DONECHECK_LOCAL_AUTHORITY",
+    "milestoneMacAcceptance": "ACTIVE_GATE_12_FINAL_CAMPAIGN",
     "a09State": "EXTERNAL_BLOCKED_GITHUB_BILLING_DEFERRED",
     "a09CampaignPassCount": 0,
     "a09ProductPrNumber": 13,
@@ -818,8 +818,8 @@
       "evidenceSpool": "PASS",
       "gitVault": "PASS"
     },
-    "localContinuityNextAction": "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION",
-    "localContinuityState": "ACTIVE_DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION",
+    "localContinuityNextAction": "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY",
+    "localContinuityState": "ACTIVE_FINAL_CONSOLIDATED_MAC_CAMPAIGN",
     "controlPlaneLocalContinuity": {
       "state": "PENDING_RECONCILIATION",
       "branch": "feat/mac-engineer-osi-operator-surface",
@@ -830,8 +830,8 @@
       "externalMergeGate": "HOLD_GITHUB_ACTIONS_EXECUTION",
       "acceptanceStatePath": "~/Enguru/Runtime/MacEngineer/state/local-accepted-control-plane-candidate.json",
       "acceptanceEvidenceRoot": "~/Enguru/Evidence/MacEngineer/v0.7/canonical-boot",
-      "currentTechnicalTarget": "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION",
-      "nextAfterPass": "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY",
+      "currentTechnicalTarget": "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY",
+      "nextAfterPass": "V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION",
       "freshExternalObservation": {
         "observedAt": "2026-09-23",
         "prNumber": 176,
@@ -879,11 +879,11 @@
         7,
         8,
         9,
-        10
+        10,
+        11
       ],
-      "activeGate": 11,
+      "activeGate": 12,
       "remainingGates": [
-        11,
         12,
         13
       ],
@@ -910,15 +910,29 @@
         "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/offline-gitvault-reconciliation/20260923T124627Z/evidence.json"
       },
       "gate11": {
-        "state": "ACTIVE",
+        "state": "PASS",
         "name": "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION",
+        "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/gate11-donecheck-local-authority/20260923T125159Z/evidence.json",
+        "doneCheckExactSha": "8b90a8fc93453dd8a84994195d28d14b15e261cb"
+      },
+      "gate12": {
+        "state": "ACTIVE",
+        "name": "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY",
         "acceptance": [
-          "gate8_evidence_pass",
-          "gate9_evidence_pass",
-          "gate10_evidence_pass",
-          "criterion_scoped_donecheck_v1_2",
-          "aggregate_machine_verification_pass",
-          "external_a09_remains_deferred"
+          "duration_gte_8h",
+          "controlled_interruptions_gte_3",
+          "process_network_runtime_interruption_span",
+          "task_and_checkpoint_continuity",
+          "exactly_once_effects",
+          "peak_rss_lte_2x_warm_baseline",
+          "final_rss_lte_1_5x_warm_baseline",
+          "storage_temp_reconciliation",
+          "full_control_plane_regression",
+          "full_product_regression",
+          "native_build",
+          "final_diff_checks",
+          "post_campaign_donecheck_v1_2_pass",
+          "technical_hold_zero_except_deferred_external_a09"
         ]
       }
     },
@@ -981,6 +995,24 @@
       ],
       "authority": "REAL_MAC_OFFLINE_RECONCILIATION_EVIDENCE",
       "nextAction": "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION"
+    },
+    "doneCheckV12LocalAuthorityVerification": {
+      "state": "PASS",
+      "observedAt": "2026-09-23",
+      "operatorReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T125200Z-continue.json",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/gate11-donecheck-local-authority/20260923T125159Z/evidence.json",
+      "completed": [
+        "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION_PASS",
+        "GATE8_DONECHECK_PASS",
+        "GATE9_DONECHECK_PASS",
+        "GATE10_DONECHECK_PASS",
+        "LOCAL_AUTHORITY_MIGRATION_MACHINE_VERIFICATION_PASS",
+        "EXTERNAL_A09_DEFERRED_PRESERVED"
+      ],
+      "doneCheckVersion": "1.2.0",
+      "doneCheckExactSha": "8b90a8fc93453dd8a84994195d28d14b15e261cb",
+      "authority": "DONECHECK_V1_2_EXACT_SHA",
+      "nextAction": "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY"
     }
   },
   "observedV07A01A02": {
