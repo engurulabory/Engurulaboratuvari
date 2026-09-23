@@ -345,3 +345,19 @@ The v0.7 finish path is therefore reconciled to the existing Mac-Native Finisher
 GitHub remains a synchronized remote publication/collaboration/recovery surface. External GitHub Actions confirmation is deferred until the provider-side billing gate becomes available again.
 
 **NEXT ACTION — MAC_NATIVE_AUTHORITY_MIGRATION_FIELD_PROOF.**
+
+
+## MAC-NATIVE AUTHORITY MIGRATION FIELD PROOF — PACKAGE PREPARED — 2026-09-23
+
+**STATE — PACKAGE PREPARED / FRESH EXACT-HEAD LOCAL ACCEPTANCE REQUIRED.**
+
+Gate 8 now has a bounded real multi-repository local field package. It uses the already accepted Repository Fabric and local GitVault mirrors for:
+
+- `engurulabory/Engurulaboratuvari`;
+- `engurulabory/enguru-mac-engineer`.
+
+The package clones both repositories from verified local mirrors, binds one durable task identity across both, creates one local proof commit in each disposable clone, runs the real control-plane regression and product runtime/native verification, exports patches and Evidence, verifies recovery mirrors remain unchanged, performs no push/merge, and removes the disposable workspace after capture.
+
+Authority boundary: this proves local multi-repository engineering execution mechanics. It does not mutate GitHub, manufacture external A09 PASS, or create a second canonical truth.
+
+**NEXT ACTION — fresh exact-head local candidate acceptance → doctor → continue → MAC_NATIVE_AUTHORITY_MIGRATION_FIELD_PROOF.**
