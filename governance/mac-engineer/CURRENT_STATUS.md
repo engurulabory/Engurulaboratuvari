@@ -114,9 +114,9 @@ V07-A09 **HOLD — external GitHub-hosted Actions execution gate**. Product PR #
 
 Astra local fallback **EXECUTED PASS**: exact candidate `d545a6d9d5d9823da5878323022735ad7f47a80e`; runtime compile PASS; 5/5 targeted local PASS; full regression PASS; native syntax/build PASS; diff/scope PASS; disposable worktree clean. Local Evidence: `evidence/MAC_ENGINEER_V07_A09_ASTRA_LOCAL_REHEARSAL_2026-09-23.md`. V07-A09 remains HOLD until external GitHub CI confirmation.
 
-OSi operator surface **PREPARED / LOCAL ACCEPTANCE PENDING**: five-command surface, compact Evidence spool, automatic runtime handoff receipt, GitVault recovery mirrors, offline reconciliation manifest and secure self-hosted runner commissioning are implemented on the control-plane candidate branch. Product PR #13 is now a three-workflow self-hosted candidate at `63dac60d39c93f3936658e8a5c8c80fb8470dfd3`. The prior local PASS remains bound to `d545a6d...`; current candidate local rehearsal is pending. Preparation Evidence: `evidence/MAC_ENGINEER_OSI_OPERATOR_SURFACE_PREPARED_2026-09-23.md`.
+OSi operator surface **LOCAL ACCEPTANCE PASS**: five-command surface, compact Evidence spool, automatic runtime handoff receipt, GitVault recovery mirrors and offline reconciliation completed real-Mac acceptance on control-plane code candidate `0558ba492c352179e1d79e40dc91f7780c43df63`. Operator targeted tests PASS; 363-test control-plane regression PASS; install/doctor/status PASS; Evidence Spool PASS; GitVault PASS. Product A09 candidate `63dac60d39c93f3936658e8a5c8c80fb8470dfd3` also completed fresh local rehearsal PASS. Canonical A09 external GitHub confirmation remains HOLD. Evidence: `evidence/MAC_ENGINEER_OSI_OPERATOR_LOCAL_ACCEPTANCE_2026-09-23.md`.
 
-Current required difference: clear the private-repository GitHub Actions execution gate through read-only billing/usage + Actions policy inspection, then resume PR #13 on an exact candidate head.
+Current required difference: promote the accepted OSi operator package into canonical control-plane truth and proceed with Mac Repository Fabric discovery while V07-A09 external GitHub confirmation remains explicitly HOLD.
 
 ## REMAINING v0.6 CLOSEOUT
 
