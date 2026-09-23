@@ -1139,7 +1139,8 @@ Engineering mode: **GitHub-first**.
 - [x] Astra / Mac local fallback adapter **EXECUTED PASS** for A09 continuity. — exact candidate `d545a6d9d5d9823da5878323022735ad7f47a80e`; runtime compile PASS; 5/5 targeted local PASS; full regression PASS; native verification PASS; scope PASS; clean closeout; external GitHub CI confirmation authority preserved. Evidence: `evidence/MAC_ENGINEER_V07_A09_ASTRA_LOCAL_REHEARSAL_2026-09-23.md`.
 - [x] OSi five-command operator surface **LOCAL ACCEPTANCE PASS** — `status / continue / verify / recover / doctor`; operator targeted tests PASS; control-plane full regression PASS; install/doctor/status PASS; Evidence Spool PASS; GitVault PASS. Evidence: `evidence/MAC_ENGINEER_OSI_OPERATOR_LOCAL_ACCEPTANCE_2026-09-23.md`.
 - [x] Current A09 candidate `63dac60d39c93f3936658e8a5c8c80fb8470dfd3` **LOCAL REHEARSAL PASS** — external GitHub confirmation remains HOLD; local result does not manufacture A09 canonical PASS.
-- [ ] DoneCheck v1.2 integration for milestone closure.
+- [x] DoneCheck™ v1.2 product authority reconciliation — **PASS**: one product / two repositories; canonical v1.2.0 product `engurulabory/donecheck` exact-main `8b90a8fc...`; 32/32 tests + Release Authority + Fleet PASS. Historical foundation remains lineage only. Evidence: `evidence/DONECHECK_V12_CANONICAL_RECONCILIATION_2026-09-23.md`.
+- [ ] DoneCheck v1.2 integration for milestone closure — **A10 PENDING**; Mac Engineering Evidence must be consumed by canonical v1.2 authority.
 - [ ] **One consolidated Mac long-run commissioning campaign.**
 - [ ] Human Threshold™.
 - [ ] **v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED.**
