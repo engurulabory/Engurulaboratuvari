@@ -285,6 +285,52 @@ class OperatorSurfaceTests(unittest.TestCase):
         a10.assert_called_once_with()
         a09_rehearsal.assert_not_called()
 
+    def test_continue_runs_local_finisher_rehearsal_and_preserves_a09_hold(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            evidence = Path(tmp)
+            runtime_receipts = evidence / "runtime"
+            finisher = mock.Mock(
+                return_value={
+                    "state": "PASS",
+                    "evidence": "/tmp/local-finisher/evidence.json",
+                    "fields": {
+                        "NEXT_ACTION": "V07_A09_EXTERNAL_CONFIRMATION_OR_A11_WHEN_ELIGIBLE"
+                    },
+                }
+            )
+            truth = {
+                "next_action": "V07_A09_CLEAR_GITHUB_PRIVATE_REPO_HOSTED_ACTIONS_EXECUTION_GATE",
+                "local_continuity_next_action": "V07_LOCAL_FINISHER_REHEARSAL",
+                "local_fallback": {},
+            }
+            with (
+                mock.patch.object(operator, "EVIDENCE", evidence),
+                mock.patch.object(operator, "RUNTIME_RECEIPTS", runtime_receipts),
+                mock.patch.object(operator, "canonical_boot", return_value={"state": "PASS"}),
+                mock.patch.object(operator, "current_truth", return_value=truth),
+                mock.patch.object(operator, "sync_mirrors", return_value={}),
+                mock.patch.object(operator, "runner_status", return_value={"state": "UNCOMMISSIONED"}),
+                mock.patch.object(operator, "run_local_finisher_rehearsal", finisher),
+                mock.patch.object(operator, "offline_manifest", return_value={}),
+            ):
+                with contextlib.redirect_stdout(io.StringIO()):
+                    code = operator.command_continue()
+
+            receipt = json.loads(
+                (evidence / "latest-receipt.json").read_text(encoding="utf-8")
+            )
+
+        self.assertEqual(code, 2)
+        self.assertEqual(receipt["state"], "HOLD")
+        self.assertEqual(receipt["hold"], "A09_EXTERNAL_CONFIRMATION_PENDING")
+        self.assertIn("LOCAL_FINISHER_REHEARSAL_PASS", receipt["completed"])
+        self.assertIn("A10_DONECHECK_V1_2_INTEGRATION_PASS_PRESERVED", receipt["completed"])
+        self.assertEqual(
+            receipt["next_action"],
+            "V07_A09_EXTERNAL_CONFIRMATION_OR_A11_WHEN_ELIGIBLE",
+        )
+        finisher.assert_called_once_with()
+
     def test_local_mirror_is_recovery_only(self):
         with tempfile.TemporaryDirectory() as tmp:
             base = Path(tmp)
