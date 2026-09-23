@@ -226,3 +226,20 @@ Fresh local acceptance passed targeted and full control-plane regression, then c
 The exact branch diff contained one whitespace violation only: `governance/mac-engineer/V07_ASTRA_LOCAL_FALLBACK_PROMPT.md:9` had two trailing spaces. Those characters were removed without changing the prompt meaning. GitHub compare re-scan now reports zero whitespace issues.
 
 **JUDGMENT — HOLD until fresh local candidate acceptance confirms diff check + canonical context + session start PASS on the corrected exact head.**
+
+
+## V07-A10 VITEST REPORTER RECONCILIATION — 2026-09-23
+
+**STATE — PATCH PREPARED / FRESH LOCAL ACCEPTANCE REQUIRED.**
+
+A10 reached canonical DoneCheck v1.2 execution after Canonical Boot, targeted bridge tests and full control-plane regression passed. Execution held before the integration test because the bridge invoked Vitest with `--reporter=basic`.
+
+Canonical DoneCheck v1.2 declares Vitest `^4.1.10`. Vitest v4 supports built-in reporters such as `default`, `verbose` and `minimal`; `basic` is treated as a custom reporter module and failed to resolve.
+
+Required difference applied:
+
+- A10 bridge reporter changed from `basic` to the supported built-in `minimal` reporter;
+- a targeted regression test locks that reporter contract;
+- DoneCheck verification semantics, exact SHA and A09 authority boundary remain unchanged.
+
+**JUDGMENT — HOLD until fresh exact-head local candidate acceptance PASS, then doctor → continue reruns A10.**
