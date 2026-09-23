@@ -44,6 +44,15 @@
       "networkRequired": false,
       "remotePush": false,
       "failClosed": true
+    },
+    "MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF": {
+      "handler": "MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_FIELD_PROOF",
+      "authority": "REAL_MAC_OFFLINE_RECONCILIATION_EVIDENCE",
+      "command": "governance/mac-engineer/V07_MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF.command",
+      "networkRequired": false,
+      "remotePush": false,
+      "secondCanonicalTruth": false,
+      "failClosed": true
     }
   }
 }
