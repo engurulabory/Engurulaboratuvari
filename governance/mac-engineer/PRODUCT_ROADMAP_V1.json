@@ -74,7 +74,7 @@
       ],
       "acceptanceMatrix": "PASS_DEFINED",
       "acceptanceMatrixPath": "governance/mac-engineer/V07_LONG_RUNNING_RELIABILITY_ACCEPTANCE_MATRIX_V1.md",
-      "nextAction": "V07_A09_CLEAR_GITHUB_PRIVATE_REPO_HOSTED_ACTIONS_EXECUTION_GATE",
+      "nextAction": "MAC_NATIVE_AUTHORITY_MIGRATION_FIELD_PROOF",
       "passedGates": [
         "V07-A01",
         "V07-A02",
@@ -86,10 +86,10 @@
         "V07-A08"
       ],
       "evidence": "evidence/MAC_ENGINEER_V07_A07_A08_ENGINEERING_2026-09-22.md",
-      "passedGatesAuthority": "GITHUB_FIRST_ACCEPTANCE",
-      "milestoneMacAcceptance": "PENDING_CONSOLIDATED_COMMISSIONING",
+      "passedGatesAuthority": "HISTORICAL_GITHUB_FIRST_EVIDENCE_PRESERVED_MAC_NATIVE_TRANSITION_ACTIVE",
+      "milestoneMacAcceptance": "ACTIVE_GATE_8_MAC_NATIVE_AUTHORITY_MIGRATION",
       "a09": {
-        "state": "HOLD_GITHUB_ACTIONS_EXTERNAL_CONFIRMATION",
+        "state": "EXTERNAL_BLOCKED_GITHUB_BILLING_DEFERRED",
         "campaignPassCount": 0,
         "productPrNumber": 13,
         "evidence": "evidence/MAC_ENGINEER_V07_A09_ACTIONS_HOLD_2026-09-22.md",
@@ -107,7 +107,9 @@
           ".github/workflows/product-ci.yml",
           ".github/workflows/v07-a09-full-regression.yml",
           ".github/workflows/v07-reliability-campaign.yml"
-        ]
+        ],
+        "blockingLocalEngineering": false,
+        "externalReconciliationRequiredWhenAvailable": true
       },
       "osiOperator": {
         "state": "LOCAL_ACCEPTANCE_PASS_EXTERNAL_GITHUB_CONFIRMATION_PENDING",
@@ -130,6 +132,32 @@
           "evidenceSpool": "PASS",
           "gitVault": "PASS"
         }
+      },
+      "executionAuthorityModel": "ENGÜRÜ Mac-Native Engineering Authority™",
+      "engineeringMode": "MAC_NATIVE_AUTHORITY_TRANSITION",
+      "verifiedFinishContract": {
+        "state": "LOCKED",
+        "totalGates": 13,
+        "passed": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "active": 8,
+        "remaining": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "contract": "WORKLIST.md#v0.7--verified-finish-closure-contract--13-gates",
+        "finalAuthority": "HUMAN_THRESHOLD"
       }
     },
     {
