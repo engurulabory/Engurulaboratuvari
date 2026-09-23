@@ -1230,8 +1230,8 @@ Canonical target: **ENGÜRÜ Mac Engineer™ v0.7 LONG-RUN RELIABILITY VERIFIED 
 6. [x] A10 DoneCheck™ v1.2 integration — A01–A08 PASS; external GitHub A09 preserved as inconclusive/deferred, never manufactured.
 7. [x] Pre-A11 Local Finisher Rehearsal — controlled fault → failure observed → repair → regression → idempotency → clean finish → Evidence.
 8. [x] **Mac-Native Authority Migration Field Proof** — complete one multi-repository engineering task locally end-to-end with exact repo identity, bounded mutation, regression, Evidence and clean reconciliation.
-9. [ ] **Restart / Recovery Continuity Proof — ACTIVE** — interrupt and resume the same governed task; preserve task/checkpoint identity and exactly-once effects.
-10. [ ] **Offline / GitVault Reconciliation Proof** — prove local continuity while GitHub execution is unavailable; preserve remote identity and prevent second truth.
+9. [x] **Restart / Recovery Continuity Proof** — interrupt and resume the same governed task; preserve task/checkpoint identity and exactly-once effects.
+10. [ ] **Offline / GitVault Reconciliation Proof — ACTIVE** — prove local continuity while GitHub execution is unavailable; preserve remote identity and prevent second truth.
 11. [ ] **DoneCheck™ v1.2 Migration Verification** — consume gates 8–10 and verify local authority migration Evidence.
 12. [ ] **Final Verify + Consolidated Mac Long-Run Commissioning** — ≥8h Mac campaign, ≥3 controlled interruptions, full regression, resource/RSS, Evidence bundle, technical HOLD target = 0 except explicitly deferred external GitHub billing gate.
 13. [ ] **Human Threshold™ + Authority Transition** — human accepts Mac-native primary engineering authority; canonical status/worklist reconciliation → **v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED**.
@@ -1267,9 +1267,9 @@ Final operating chain:
 
 `GitHub truth → Mac-local build/repair/recovery → Evidence → DoneCheck™ → verified sync → Human Threshold™ → Verified Finish`
 
-### Active next action — Gate 9
+### Active next action — Gate 10
 
-`MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF`
+`MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF`
 
 Use the already-proven Repository Fabric + OSi operator + GitVault + Evidence + DoneCheck™ layers. GitHub remains remote identity/publication/recovery surface during migration; local Mac becomes primary execution authority only after gates 8–13 and Human Threshold PASS.
 
@@ -1285,3 +1285,20 @@ Verified result:
 `MAC_NATIVE_AUTHORITY_MIGRATION_FIELD_PROOF_PASS → MULTI_REPO_LOCAL_ENGINEERING_PASS → REMOTE_PUSH_FALSE → SECOND_CANONICAL_TRUTH_FALSE`
 
 **Closure state: 8/13 PASS. Active gate: 9 — Restart / Recovery Continuity Proof.**
+
+
+### Gate 9 field result — VERIFIED PASS
+
+Real-Mac Evidence:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/restart-recovery-continuity/20260923T123929Z/evidence.json`
+
+Operator receipt:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T123930Z-continue.json`
+
+Verified chain:
+
+`PROCESS_RESTART_PASS → TASK_IDENTITY_CONTINUITY_PASS → CHECKPOINT_RESUME_PASS → EXACTLY_ONCE_EFFECT_PASS → FINAL_STATE_COMPLETE`
+
+**Closure state: 9/13 PASS. Active gate: 10 — Offline / GitVault Reconciliation Proof.**
