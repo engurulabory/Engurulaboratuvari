@@ -182,10 +182,24 @@
     "nextAction": "V0_7_LONG_RUNNING_RELIABILITY"
   },
   "doneCheckAuthority": {
-    "markdownProjection": "HUMAN_READABLE_READ_ONLY_PROJECTION",
-    "mandatoryDoneCheckJson": "STRUCTURED_EVIDENCE_CONTRACT",
-    "machineAuthority": "DONECHECK_V1_2",
-    "finalHumanAuthority": "HUMAN_THRESHOLD",
+    "product": "DoneCheck™",
+    "canonicalVersion": "1.2.0",
+    "canonicalRepository": "engurulabory/donecheck",
+    "canonicalExactMain": "8b90a8fc93453dd8a84994195d28d14b15e261cb",
+    "historicalFoundationRepository": "engurulabory/donecheck-core-foundation",
+    "repositoryModel": "ONE_PRODUCT_TWO_REPOSITORIES",
+    "authorityLayers": [
+      "MARKDOWN_READ_ONLY_PROJECTION",
+      "MANDATORY_DONECHECK_JSON_PRODUCER_CONTRACT",
+      "DONECHECK_V1_2_MACHINE_AND_PRODUCTION_CLOSURE_AUTHORITY",
+      "HUMAN_THRESHOLD_FINAL_HUMAN_AUTHORITY"
+    ],
+    "exactMainEvidence": {
+      "ciRunId": 35714169933,
+      "tests": "32_OF_32_PASS",
+      "releaseAuthorityRunId": 35714169911,
+      "ipModelTrustFleetRunId": 35714170025
+    },
     "contract": "governance/mac-engineer/DONECHECK_AUTHORITY_MODEL_V1.md"
   },
   "workingModel": {
