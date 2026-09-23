@@ -67,6 +67,41 @@ class OperatorSurfaceTests(unittest.TestCase):
             "V07_A10_DONECHECK_V1_2_INTEGRATION",
         )
 
+    def test_doctor_pass_does_not_hold_on_uncommissioned_optional_runner(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            evidence = Path(tmp)
+            runtime_receipts = evidence / "runtime"
+            with (
+                mock.patch.object(operator, "EVIDENCE", evidence),
+                mock.patch.object(operator, "RUNTIME_RECEIPTS", runtime_receipts),
+                mock.patch.object(operator, "product_doctor", return_value={"verdict": "PASS"}),
+                mock.patch.object(
+                    operator,
+                    "sync_mirrors",
+                    return_value={
+                        "control_plane": {"state": "PASS"},
+                        "product": {"state": "PASS"},
+                    },
+                ),
+                mock.patch.object(
+                    operator,
+                    "runner_status",
+                    return_value={"state": "UNCOMMISSIONED"},
+                ),
+                mock.patch.object(operator, "offline_manifest", return_value={}),
+            ):
+                with contextlib.redirect_stdout(io.StringIO()):
+                    code = operator.command_doctor()
+
+            receipt = json.loads(
+                (evidence / "latest-receipt.json").read_text(encoding="utf-8")
+            )
+
+        self.assertEqual(code, 0)
+        self.assertEqual(receipt["state"], "PASS")
+        self.assertEqual(receipt["hold"], "")
+        self.assertEqual(receipt["next_action"], "enguru-mac continue")
+
     def test_receipt_contract_is_compact_and_machine_readable(self):
         with tempfile.TemporaryDirectory() as tmp:
             evidence = Path(tmp)
