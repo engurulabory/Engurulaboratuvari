@@ -320,6 +320,64 @@ class OperatorSurfaceTests(unittest.TestCase):
         a10.assert_called_once_with()
         a09_rehearsal.assert_not_called()
 
+    def test_continue_runs_donecheck_local_authority_verification(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            evidence = Path(tmp)
+            runtime_receipts = evidence / "runtime"
+            verify = mock.Mock(
+                return_value={
+                    "state": "PASS",
+                    "evidence": "/tmp/gate11/evidence.json",
+                    "fields": {
+                        "NEXT_ACTION": "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY"
+                    },
+                }
+            )
+            truth = {
+                "next_action": "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION",
+                "local_continuity_next_action": "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION",
+                "local_fallback": {},
+            }
+            with (
+                mock.patch.object(operator, "EVIDENCE", evidence),
+                mock.patch.object(operator, "RUNTIME_RECEIPTS", runtime_receipts),
+                mock.patch.object(operator, "canonical_boot", return_value={"state": "PASS"}),
+                mock.patch.object(operator, "current_truth", return_value=truth),
+                mock.patch.object(operator, "sync_mirrors", return_value={}),
+                mock.patch.object(operator, "runner_status", return_value={"state": "UNCOMMISSIONED"}),
+                mock.patch.object(
+                    operator,
+                    "run_donecheck_v12_local_authority_verification",
+                    verify,
+                ),
+                mock.patch.object(operator, "offline_manifest", return_value={}),
+            ):
+                with contextlib.redirect_stdout(io.StringIO()):
+                    code = operator.command_continue()
+
+            receipt = json.loads(
+                (evidence / "latest-receipt.json").read_text(encoding="utf-8")
+            )
+
+        self.assertEqual(code, 2)
+        self.assertEqual(
+            receipt["hold"],
+            "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY_REQUIRED",
+        )
+        self.assertIn(
+            "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION_PASS",
+            receipt["completed"],
+        )
+        self.assertIn(
+            "LOCAL_AUTHORITY_MIGRATION_MACHINE_VERIFICATION_PASS",
+            receipt["completed"],
+        )
+        self.assertEqual(
+            receipt["next_action"],
+            "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY",
+        )
+        verify.assert_called_once_with()
+
     def test_continue_runs_offline_gitvault_reconciliation_proof(self):
         with tempfile.TemporaryDirectory() as tmp:
             evidence = Path(tmp)
