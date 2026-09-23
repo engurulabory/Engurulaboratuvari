@@ -64,7 +64,11 @@ class OperatorSurfaceTests(unittest.TestCase):
     def test_receipt_contract_is_compact_and_machine_readable(self):
         with tempfile.TemporaryDirectory() as tmp:
             evidence = Path(tmp)
-            with mock.patch.object(operator, "EVIDENCE", evidence):
+            runtime_receipts = evidence / "runtime"
+            with (
+                mock.patch.object(operator, "EVIDENCE", evidence),
+                mock.patch.object(operator, "RUNTIME_RECEIPTS", runtime_receipts),
+            ):
                 payload = operator.write_receipt(
                     command="status",
                     state="PASS",
@@ -98,8 +102,10 @@ class OperatorSurfaceTests(unittest.TestCase):
                 "a09_state": None,
                 "local_fallback": {},
             }
+            runtime_receipts = evidence / "runtime"
             with (
                 mock.patch.object(operator, "EVIDENCE", evidence),
+                mock.patch.object(operator, "RUNTIME_RECEIPTS", runtime_receipts),
                 mock.patch.object(operator, "canonical_boot", return_value={"state": "PASS"}),
                 mock.patch.object(operator, "current_truth", return_value=truth),
                 mock.patch.object(operator, "sync_mirrors", return_value={}),
