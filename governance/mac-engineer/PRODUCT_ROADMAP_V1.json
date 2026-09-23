@@ -74,7 +74,7 @@
       ],
       "acceptanceMatrix": "PASS_DEFINED",
       "acceptanceMatrixPath": "governance/mac-engineer/V07_LONG_RUNNING_RELIABILITY_ACCEPTANCE_MATRIX_V1.md",
-      "nextAction": "MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF",
+      "nextAction": "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION",
       "passedGates": [
         "V07-A01",
         "V07-A02",
@@ -87,7 +87,7 @@
       ],
       "evidence": "evidence/MAC_ENGINEER_V07_A07_A08_ENGINEERING_2026-09-22.md",
       "passedGatesAuthority": "HISTORICAL_GITHUB_FIRST_EVIDENCE_PRESERVED_MAC_NATIVE_TRANSITION_ACTIVE",
-      "milestoneMacAcceptance": "ACTIVE_GATE_10_OFFLINE_GITVAULT_RECONCILIATION",
+      "milestoneMacAcceptance": "ACTIVE_GATE_11_DONECHECK_LOCAL_AUTHORITY",
       "a09": {
         "state": "EXTERNAL_BLOCKED_GITHUB_BILLING_DEFERRED",
         "campaignPassCount": 0,
@@ -147,11 +147,11 @@
           6,
           7,
           8,
-          9
+          9,
+          10
         ],
-        "active": 10,
+        "active": 11,
         "remaining": [
-          10,
           11,
           12,
           13
