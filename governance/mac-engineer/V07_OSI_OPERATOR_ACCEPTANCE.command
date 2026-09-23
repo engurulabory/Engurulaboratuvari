@@ -58,7 +58,13 @@ python3 -B -m unittest tests.test_mac_engineer_operator -v >"$TARGETED_LOG" 2>&1
 print "OPERATOR_TARGETED_TESTS=PASS"
 
 FULL_CONTROL_LOG="$RUN_DIR/control-plane-regression.log"
-python3 -B -m unittest discover -s tests -v >"$FULL_CONTROL_LOG" 2>&1 || hold "CONTROL_PLANE_REGRESSION_FAILED"
+if ! python3 -B -m unittest discover -s tests -v >"$FULL_CONTROL_LOG" 2>&1; then
+  print "CONTROL_PLANE_REGRESSION=HOLD"
+  print "CONTROL_PLANE_REGRESSION_LOG_TAIL_BEGIN"
+  tail -n 80 "$FULL_CONTROL_LOG" || true
+  print "CONTROL_PLANE_REGRESSION_LOG_TAIL_END"
+  hold "CONTROL_PLANE_REGRESSION_FAILED"
+fi
 print "CONTROL_PLANE_REGRESSION=PASS"
 
 FALLBACK_LOG="$RUN_DIR/a09-local-rehearsal.log"
