@@ -262,3 +262,21 @@ The acceptance matrix requires V07-A11 formal consolidated Mac long-run commissi
 A bounded **PRE-A11 LOCAL FINISHER REHEARSAL** package is prepared for local continuity. It exercises a disposable controlled-fault → observed failure → minimal repair → regression → idempotency → clean finish → Evidence chain. Its authority is explicitly local rehearsal only and cannot manufacture A09 PASS, A11 PASS, Human Threshold, or v0.7 version lock.
 
 **NEXT ACTION — fresh exact-head local candidate acceptance; then doctor → continue routes to V07_LOCAL_FINISHER_REHEARSAL.**
+
+
+## A10 BYTECODE CLEANLINESS ROOT-CAUSE CLOSURE — 2026-09-23
+
+**STATE — PATCH PREPARED / FRESH EXACT-HEAD ACCEPTANCE REQUIRED.**
+
+The recurring `tools/__pycache__/mac_engineer_donecheck_v12_bridge.cpython-314.pyc` was traced to the A10 syntax gate itself. The command used `python3 -m py_compile`, which intentionally emits bytecode and therefore bypassed the intended source-tree cleanliness contract even when later execution used `-B`.
+
+Required difference applied:
+
+- A10 command exports `PYTHONDONTWRITEBYTECODE=1`;
+- the bridge syntax gate now uses in-memory `compile(source, filename, "exec")` instead of `py_compile`;
+- A10 bridge verification and result-contract Python calls use `-B`;
+- targeted regression asserts that the A10 command remains bytecode-free.
+
+A10 integration PASS remains valid and preserved; this patch hardens future re-execution hygiene only.
+
+**NEXT ACTION — bounded removal of the generated cache, fast-forward to the corrected exact head, fresh local candidate acceptance, doctor, then continue to the prepared PRE-A11 local finisher rehearsal.**
