@@ -17,6 +17,10 @@ SPEC.loader.exec_module(bridge)
 
 
 class DoneCheckV12BridgeTests(unittest.TestCase):
+    def test_vitest_reporter_matches_supported_v4_builtin(self):
+        self.assertEqual(bridge.VITEST_REPORTER, "minimal")
+        self.assertNotEqual(bridge.VITEST_REPORTER, "basic")
+
     def _fixture(self, *, a09_state: str):
         temp = tempfile.TemporaryDirectory()
         root = Path(temp.name)
