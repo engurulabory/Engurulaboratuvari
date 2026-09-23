@@ -545,3 +545,25 @@ Acceptance requires:
 Queued work authority remains `PENDING_RECONCILIATION_NOT_CANONICAL` until explicit remote reconciliation becomes available.
 
 **NEXT ACTION — fresh exact-head local candidate acceptance → Doctor → continue → Gate 10 field proof.**
+
+
+## GATE 10 OFFLINE / GITVAULT RECONCILIATION — VERIFIED PASS — 2026-09-23
+
+**STATE — PASS / 10 OF 13 CLOSED.**
+
+Real-Mac Gate 10 verified:
+
+- offline local commit queue: PASS;
+- durable patch: PASS;
+- durable Git bundle: PASS;
+- reconciliation apply-check: PASS;
+- GitVault refs unchanged: PASS;
+- remote identity preserved;
+- remote push: false;
+- second canonical truth: false.
+
+Evidence: `/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/offline-gitvault-reconciliation/20260923T124627Z/evidence.json`.
+
+Operator receipt: `/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T124628Z-continue.json`.
+
+**NEXT ACTION — Gate 11: DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION.**
