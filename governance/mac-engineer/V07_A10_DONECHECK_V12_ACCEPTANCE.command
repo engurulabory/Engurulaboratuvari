@@ -1,5 +1,6 @@
 #!/bin/zsh
 set -euo pipefail
+export PYTHONDONTWRITEBYTECODE=1
 
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 EVIDENCE_ROOT="$HOME/Enguru/Evidence/MacEngineer/v0.7/a10-acceptance"
@@ -17,7 +18,13 @@ hold() {
 
 cd "$ROOT"
 
-python3 -m py_compile tools/mac_engineer_donecheck_v12_bridge.py || hold "A10_BRIDGE_PYTHON_SYNTAX_FAILED"
+python3 -B - <<'PY' || hold "A10_BRIDGE_PYTHON_SYNTAX_FAILED"
+from pathlib import Path
+
+path = Path("tools/mac_engineer_donecheck_v12_bridge.py")
+source = path.read_text(encoding="utf-8")
+compile(source, str(path), "exec")
+PY
 print "A10_BRIDGE_PYTHON_SYNTAX=PASS"
 
 TARGETED="$RUN_DIR/targeted-tests.log"
@@ -35,7 +42,7 @@ python3 -B -m unittest discover -s tests -v >"$FULL" 2>&1 || {
 print "CONTROL_PLANE_REGRESSION=PASS"
 
 VERIFY="$RUN_DIR/donecheck-v12-verification.log"
-if ! python3 tools/mac_engineer_donecheck_v12_bridge.py verify >"$VERIFY" 2>&1; then
+if ! python3 -B tools/mac_engineer_donecheck_v12_bridge.py verify >"$VERIFY" 2>&1; then
   tail -n 120 "$VERIFY" || true
   hold "DONECHECK_V12_INTEGRATION_EXECUTION_FAILED"
 fi
@@ -66,7 +73,7 @@ esac
 BRIDGE_EVIDENCE="$(grep '^EVIDENCE=' "$VERIFY" | tail -n 1 | cut -d= -f2-)"
 [[ -f "$BRIDGE_EVIDENCE" ]] || hold "A10_EVIDENCE_REQUIRED"
 
-python3 - "$BRIDGE_EVIDENCE" "$EXPECTED_A09" "$OUTCOME" "$CLOSURE" <<'PY' || hold "A10_RESULT_CONTRACT_FAILED"
+python3 -B - "$BRIDGE_EVIDENCE" "$EXPECTED_A09" "$OUTCOME" "$CLOSURE" <<'PY' || hold "A10_RESULT_CONTRACT_FAILED"
 import json
 import sys
 from pathlib import Path
