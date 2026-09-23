@@ -567,3 +567,35 @@ Evidence: `/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/offline-gitvault-reconc
 Operator receipt: `/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T124628Z-continue.json`.
 
 **NEXT ACTION — Gate 11: DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION.**
+
+
+## GATE 11 DONECHECK™ v1.2 LOCAL AUTHORITY VERIFICATION — PACKAGE PREPARED — 2026-09-23
+
+**STATE — PACKAGE PREPARED / FRESH EXACT-HEAD ACCEPTANCE REQUIRED.**
+
+Gate 11 reuses the canonical DoneCheck™ v1.2 runtime and exact SHA:
+
+`8b90a8fc93453dd8a84994195d28d14b15e261cb`
+
+It does not create new verification semantics.
+
+Criterion-scoped migration verification consumes:
+
+- Gate 8 — multi-repository Mac-native engineering authority Evidence;
+- Gate 9 — restart/recovery, same-task and exactly-once Evidence;
+- Gate 10 — offline/GitVault reconciliation and no-second-truth Evidence.
+
+Each source is structurally validated before it is presented to DoneCheck™ as PASS-capable producer Evidence.
+
+Required aggregate result:
+
+`Gate 8 pass + Gate 9 pass + Gate 10 pass → aggregate pass → LOCAL_AUTHORITY_MIGRATION_MACHINE_VERIFICATION_PASS`
+
+Authority boundary:
+
+- external GitHub A09 remains `EXTERNAL_BLOCKED_DEFERRED`;
+- Gate 11 cannot promote external A09;
+- Human Threshold™ remains final authority;
+- v0.7 version lock is not created by Gate 11.
+
+**NEXT ACTION — fresh exact-head local candidate acceptance → Doctor → continue → Gate 11 DoneCheck™ v1.2 verification.**
