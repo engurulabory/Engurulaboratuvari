@@ -152,3 +152,10 @@ Recovery, fixture repair, local field acceptance and the reconstructed pre-canon
 ## NEXT ACTION
 
 `V0_7_LONG_RUNNING_RELIABILITY → V07-A09 HOLD_GITHUB_PRIVATE_REPO_HOSTED_ACTIONS_EXECUTION_GATE → HUMAN READ-ONLY ACTIONS/BILLING INSPECTION → RESUME PR #13 → 5 TARGETED PASS → FULL REGRESSION → SCOPE VALIDATION`
+
+
+## MAC REPOSITORY FABRIC — 2026-09-23
+
+**LOCAL ACCEPTANCE PASS** — 12/12 full-history mirrors, control-plane regression PASS and offline queue PASS on the real Mac. Runtime state: `~/Enguru/Runtime/MacEngineer/state/repository-fabric.json`. Evidence: `evidence/MAC_REPOSITORY_FABRIC_LOCAL_ACCEPTANCE_2026-09-23.md`.
+
+Local continuity now advances to **V07-A10 DoneCheck™ v1.2 integration**. The external GitHub A09 confirmation remains a separate HOLD and does not stop Mac-local engineering continuity.
