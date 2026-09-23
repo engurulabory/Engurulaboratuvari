@@ -735,7 +735,7 @@
     "state": "HOLD",
     "objective": "V0_7_LONG_RUNNING_RELIABILITY",
     "engineeringMode": "MAC_NATIVE_AUTHORITY_TRANSITION",
-    "nextAction": "MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF",
+    "nextAction": "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION",
     "milestoneMacCommissioning": "ACTIVE_MAC_NATIVE_MIGRATION",
     "acceptanceMatrix": "PASS_DEFINED",
     "acceptanceMatrixPath": "governance/mac-engineer/V07_LONG_RUNNING_RELIABILITY_ACCEPTANCE_MATRIX_V1.md",
@@ -758,7 +758,7 @@
     "runtimeRegression": "54_OF_54_OK",
     "evidence": "evidence/MAC_ENGINEER_V07_A07_A08_ENGINEERING_2026-09-22.md",
     "passedGatesAuthority": "HISTORICAL_GITHUB_FIRST_EVIDENCE_PRESERVED_MAC_NATIVE_TRANSITION_ACTIVE",
-    "milestoneMacAcceptance": "ACTIVE_GATE_10_OFFLINE_GITVAULT_RECONCILIATION",
+    "milestoneMacAcceptance": "ACTIVE_GATE_11_DONECHECK_LOCAL_AUTHORITY",
     "a09State": "EXTERNAL_BLOCKED_GITHUB_BILLING_DEFERRED",
     "a09CampaignPassCount": 0,
     "a09ProductPrNumber": 13,
@@ -818,8 +818,8 @@
       "evidenceSpool": "PASS",
       "gitVault": "PASS"
     },
-    "localContinuityNextAction": "MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF",
-    "localContinuityState": "ACTIVE_MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION",
+    "localContinuityNextAction": "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION",
+    "localContinuityState": "ACTIVE_DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION",
     "controlPlaneLocalContinuity": {
       "state": "PENDING_RECONCILIATION",
       "branch": "feat/mac-engineer-osi-operator-surface",
@@ -830,8 +830,8 @@
       "externalMergeGate": "HOLD_GITHUB_ACTIONS_EXECUTION",
       "acceptanceStatePath": "~/Enguru/Runtime/MacEngineer/state/local-accepted-control-plane-candidate.json",
       "acceptanceEvidenceRoot": "~/Enguru/Evidence/MacEngineer/v0.7/canonical-boot",
-      "currentTechnicalTarget": "MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF",
-      "nextAfterPass": "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION",
+      "currentTechnicalTarget": "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION",
+      "nextAfterPass": "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY",
       "freshExternalObservation": {
         "observedAt": "2026-09-23",
         "prNumber": 176,
@@ -878,11 +878,11 @@
         6,
         7,
         8,
-        9
+        9,
+        10
       ],
-      "activeGate": 10,
+      "activeGate": 11,
       "remainingGates": [
-        10,
         11,
         12,
         13
@@ -905,15 +905,20 @@
         "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/restart-recovery-continuity/20260923T123929Z/evidence.json"
       },
       "gate10": {
-        "state": "ACTIVE",
+        "state": "PASS",
         "name": "MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF",
+        "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/offline-gitvault-reconciliation/20260923T124627Z/evidence.json"
+      },
+      "gate11": {
+        "state": "ACTIVE",
+        "name": "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION",
         "acceptance": [
-          "offline_local_commit_queue",
-          "durable_patch_and_git_bundle",
-          "reconciliation_apply_check",
-          "gitvault_refs_unchanged",
-          "remote_identity_preserved",
-          "second_canonical_truth_false"
+          "gate8_evidence_pass",
+          "gate9_evidence_pass",
+          "gate10_evidence_pass",
+          "criterion_scoped_donecheck_v1_2",
+          "aggregate_machine_verification_pass",
+          "external_a09_remains_deferred"
         ]
       }
     },
@@ -959,6 +964,23 @@
       ],
       "authority": "REAL_MAC_LOCAL_PROCESS_RESTART_EVIDENCE",
       "nextAction": "MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF"
+    },
+    "macNativeOfflineGitVaultReconciliationProof": {
+      "state": "PASS",
+      "observedAt": "2026-09-23",
+      "operatorReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T124628Z-continue.json",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/offline-gitvault-reconciliation/20260923T124627Z/evidence.json",
+      "completed": [
+        "MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF_PASS",
+        "OFFLINE_LOCAL_COMMIT_QUEUE_PASS",
+        "DURABLE_PATCH_PASS",
+        "DURABLE_GIT_BUNDLE_PASS",
+        "RECONCILIATION_APPLY_CHECK_PASS",
+        "GITVAULT_REFS_UNCHANGED_PASS",
+        "SECOND_CANONICAL_TRUTH_FALSE"
+      ],
+      "authority": "REAL_MAC_OFFLINE_RECONCILIATION_EVIDENCE",
+      "nextAction": "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION"
     }
   },
   "observedV07A01A02": {
