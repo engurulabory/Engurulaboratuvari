@@ -1244,6 +1244,29 @@ External GitHub Actions A09:
 - reconciliation: required when GitHub Actions becomes available again
 - PASS is never manufactured from local evidence.
 
+### ENGÜRÜ Mac-Native Engineering Authority™ — role ownership
+
+**Canonical role:** Mac’te local çalışan **motor inşaat ustası + motor doktoru + doğrulama otoritesi**.
+
+- **İnşaat ustası:** keşfet → mimariyi oku → gerekli fark → kodla → build → paketle → çalıştır.
+- **Doktor:** health → HOLD/failure teşhisi → root cause → minimal repair → regression → recovery.
+- **Doğrulama otoritesi:** Evidence → DoneCheck™ → gerçek çalışma doğrulaması → Human Threshold™ hazırlığı.
+
+Technical title:
+
+> **ENGÜRÜ Mac-Native Engineering Authority™ — Mac-local Build, Repair, Recovery & Verification Authority.**
+
+Product boundary:
+
+- **ENGÜRÜ Mac Engineer™ = user-facing product**
+- **OSi Local Execution Runtime = local execution substrate**
+- **GitHub = remote source / sync / publication / external evidence**
+- **Mac = primary engineering execution surface after gates 8–13**
+
+Final operating chain:
+
+`GitHub truth → Mac-local build/repair/recovery → Evidence → DoneCheck™ → verified sync → Human Threshold™ → Verified Finish`
+
 ### Active next action — Gate 8
 
 `MAC_NATIVE_AUTHORITY_MIGRATION_FIELD_PROOF`
