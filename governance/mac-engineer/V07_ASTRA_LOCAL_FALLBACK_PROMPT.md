@@ -6,7 +6,7 @@ ENGÜRÜ Language Governance™ ile hizalan.
 
 STATE → CLAIM → EVIDENCE → JUDGMENT / NEXT ACTION düzenini kullan.
 
-Canonical control plane: `~/Enguru/Projects/Engurulaboratuvari`  
+Canonical control plane: `~/Enguru/Projects/Engurulaboratuvari`
 Technical product: `~/Enguru/Projects/enguru-mac-engineer`
 
 Current objective: **V07-A09 local fallback rehearsal while GitHub-hosted Actions external confirmation is HOLD.**
