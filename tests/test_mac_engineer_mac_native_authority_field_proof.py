@@ -37,6 +37,28 @@ class MacNativeAuthorityFieldProofTests(unittest.TestCase):
         self.assertFalse(payload["remoteMutation"])
         self.assertEqual(payload["source"], "LOCAL_GITVAULT_MIRROR_WITH_REPOSITORY_FABRIC_IDENTITY")
 
+    def test_mirror_has_commit_uses_literal_commit_rev_spec(self):
+        with mock.patch.object(
+            proof,
+            "run",
+            return_value={"code": 0, "stdout": "", "stderr": ""},
+        ) as runner:
+            self.assertTrue(
+                proof.mirror_has_commit(Path("/tmp/example.git"), "b" * 40)
+            )
+
+        runner.assert_called_once_with(
+            [
+                "git",
+                "--git-dir",
+                "/tmp/example.git",
+                "cat-file",
+                "-e",
+                ("b" * 40) + "^{commit}",
+            ],
+            timeout=60,
+        )
+
     def test_mirror_remote_main_reads_remote_tracking_truth(self):
         with mock.patch.object(
             proof,
