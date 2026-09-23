@@ -280,3 +280,21 @@ Required difference applied:
 A10 integration PASS remains valid and preserved; this patch hardens future re-execution hygiene only.
 
 **NEXT ACTION — bounded removal of the generated cache, fast-forward to the corrected exact head, fresh local candidate acceptance, doctor, then continue to the prepared PRE-A11 local finisher rehearsal.**
+
+
+## PRE-A11 LOCAL FINISHER REHEARSAL — VERIFIED PASS — 2026-09-23
+
+**STATE — PASS / LOCAL REHEARSAL ONLY.**
+
+Real-Mac operator receipt `/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T113716Z-continue.json` reports:
+
+- Canonical Boot: **PASS**;
+- GitVault sync: **PASS**;
+- PRE-A11 Local Finisher Rehearsal: **PASS**;
+- A10 DoneCheck™ v1.2 integration PASS preserved;
+- V07-A09 DoneCheck result remains inconclusive by design;
+- canonical HOLD remains **A09_EXTERNAL_CONFIRMATION_PENDING**.
+
+This closes the local finisher rehearsal without manufacturing A09, A11, Human Threshold, or v0.7 lock authority.
+
+**NEXT ACTION — V07-A09 external GitHub confirmation. If the hosted Actions gate remains unavailable, commission the prepared OSi self-hosted GitHub runner and obtain GitHub-recorded external check Evidence.**
