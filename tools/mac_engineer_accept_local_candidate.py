@@ -87,7 +87,7 @@ def main() -> int:
     ):
         return fail("LOCAL_CANDIDATE_POLICY_INVALID")
 
-    fetch = run(["git", "fetch", "--prune", "origin", "main", expected_branch], timeout=300)
+    fetch = run(["git", "fetch", "--prune", "origin"], timeout=300)
     if fetch["code"] != 0:
         return fail(
             "REMOTE_REFRESH_REQUIRED",
