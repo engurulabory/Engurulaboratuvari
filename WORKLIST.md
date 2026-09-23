@@ -1143,7 +1143,7 @@ Engineering mode: **GitHub-first**.
 - [x] DoneCheck™ v1.2 product authority reconciliation — **PASS**: one product / two repositories; canonical v1.2.0 product `engurulabory/donecheck` exact-main `8b90a8fc...`; 32/32 tests + Release Authority + Fleet PASS. Historical foundation remains lineage only. Evidence: `evidence/DONECHECK_V12_CANONICAL_RECONCILIATION_2026-09-23.md`.
 - [x] Canonical Boot local accepted candidate reconciliation — **LOCAL ACCEPTANCE PASS / PENDING_RECONCILIATION**; exact `branch + HEAD + origin/main + clean + Evidence` match grants bounded local continuity while GitHub remote main remains canonical authority.
 - [x] DoneCheck v1.2 integration for milestone closure — **A10 INTEGRATION PASS / A09 INCONCLUSIVE PRESERVED**; canonical DoneCheck™ v1.2 consumed A01–A09 Evidence and preserved the unresolved external A09 criterion as HOLD.
-- [ ] Pre-A11 local finisher rehearsal — **PREPARED / LOCAL CONTINUITY ONLY**; bounded disposable recovery mechanics rehearsal, no A09/A11/version-lock authority.
+- [x] Pre-A11 local finisher rehearsal — **LOCAL REHEARSAL PASS**; controlled fault → observed failure → minimal repair → regression → idempotency → clean finish completed on Mac. A09/A11/version-lock authority remains separate.
 - [ ] **One consolidated Mac long-run commissioning campaign.**
 - [ ] Human Threshold™.
 - [ ] **v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED.**
