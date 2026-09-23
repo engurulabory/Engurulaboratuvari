@@ -20,7 +20,7 @@ cd "$ROOT"
 python3 -m py_compile tools/mac_repository_fabric.py || hold "FABRIC_PYTHON_SYNTAX_FAILED"
 print "FABRIC_PYTHON_SYNTAX=PASS"
 
-python3 - <<'PY' || exit 20
+python3 - <<'PY' || hold "FABRIC_MANIFEST_FAILED"
 import json
 from pathlib import Path
 p = Path("governance/mac-engineer/MAC_REPOSITORY_FABRIC_V1.json")
@@ -30,7 +30,6 @@ assert len(data["repositories"]) == 12
 assert len({x["name"] for x in data["repositories"]}) == 12
 print("FABRIC_MANIFEST=12_OF_12_PASS")
 PY
-[[ "$?" -eq 0 ]] || hold "FABRIC_MANIFEST_FAILED"
 
 TARGETED="$RUN_DIR/targeted-tests.log"
 python3 -B -m unittest tests.test_mac_repository_fabric -v >"$TARGETED" 2>&1 || {
