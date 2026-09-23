@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -16,6 +17,10 @@ SESSION_STATE = ROOT / "governance" / "mac-engineer" / "SESSION_STATE_V1.json"
 RUNTIME_STATE = HOME / "Enguru" / "Runtime" / "MacEngineer" / "state"
 ACCEPTANCE_STATE = RUNTIME_STATE / "local-accepted-control-plane-candidate.json"
 EVIDENCE_ROOT = HOME / "Enguru" / "Evidence" / "MacEngineer" / "v0.7" / "canonical-boot"
+
+
+os.environ["PYTHONDONTWRITEBYTECODE"] = "1"
+sys.dont_write_bytecode = True
 
 
 def now() -> str:
@@ -248,8 +253,8 @@ def main() -> int:
     }
     write_state(acceptance)
 
-    sync = run([sys.executable, "tools/mac_engineering_sync_context.py"], timeout=300)
-    start = run([sys.executable, "tools/mac_engineer_session_continuity.py", "start"], timeout=300)
+    sync = run([sys.executable, "-B", "tools/mac_engineering_sync_context.py"], timeout=300)
+    start = run([sys.executable, "-B", "tools/mac_engineer_session_continuity.py", "start"], timeout=300)
 
     if sync["code"] != 0 or start["code"] != 0:
         acceptance["state"] = "HOLD"
