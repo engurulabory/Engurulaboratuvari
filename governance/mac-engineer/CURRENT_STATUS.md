@@ -243,3 +243,22 @@ Required difference applied:
 - DoneCheck verification semantics, exact SHA and A09 authority boundary remain unchanged.
 
 **JUDGMENT — HOLD until fresh exact-head local candidate acceptance PASS, then doctor → continue reruns A10.**
+
+
+## V07-A10 PASS + PRE-A11 LOCAL FINISHER REHEARSAL — 2026-09-23
+
+**STATE — A10 PASS / A09 EXTERNAL HOLD / LOCAL CONTINUITY ACTIVE.**
+
+Real-Mac operator receipt `/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T105932Z-continue.json` reports:
+
+- Canonical Boot: **PASS**;
+- A10 DoneCheck™ v1.2 integration: **PASS**;
+- V07-A01…A08 DoneCheck results: **PASS**;
+- V07-A09: **INCONCLUSIVE PRESERVED**;
+- canonical HOLD: **A09_EXTERNAL_CONFIRMATION_PENDING**.
+
+The acceptance matrix requires V07-A11 formal consolidated Mac long-run commissioning to begin only after the GitHub engineering candidate is exact-main accepted. Therefore A11 remains unopened while A09 external confirmation is unresolved.
+
+A bounded **PRE-A11 LOCAL FINISHER REHEARSAL** package is prepared for local continuity. It exercises a disposable controlled-fault → observed failure → minimal repair → regression → idempotency → clean finish → Evidence chain. Its authority is explicitly local rehearsal only and cannot manufacture A09 PASS, A11 PASS, Human Threshold, or v0.7 version lock.
+
+**NEXT ACTION — fresh exact-head local candidate acceptance; then doctor → continue routes to V07_LOCAL_FINISHER_REHEARSAL.**
