@@ -21,6 +21,7 @@ ENGURU = HOME / "Enguru"
 PRODUCT = ENGURU / "Projects" / "enguru-mac-engineer"
 RUNTIME = ENGURU / "Runtime" / "MacEngineer"
 EVIDENCE = ENGURU / "Evidence" / "MacEngineer" / "operator"
+RUNTIME_RECEIPTS = RUNTIME / "state" / "operator"
 GITVAULT = ENGURU / "GitVault" / "MacEngineer"
 RUNNER_HOME = Path(
     os.environ.get(
@@ -106,6 +107,37 @@ def git_state(path: Path) -> dict[str, Any]:
         and out["head"] == out["origin_main"]
     )
     return out
+
+
+def sync_repo_online(path: Path) -> dict[str, Any]:
+    state = git_state(path)
+    if not state.get("available"):
+        return {"state": "HOLD", "mode": "LOCAL_MISSING", "path": str(path)}
+    fetch = run(["git", "fetch", "origin", "main", "--prune"], cwd=path, timeout=120)
+    if fetch["code"] != 0:
+        return {
+            "state": "PASS",
+            "mode": "OFFLINE_CACHED",
+            "path": str(path),
+            "fetch_error": fetch["stderr"],
+        }
+    refreshed = git_state(path)
+    if refreshed.get("branch") == "main" and refreshed.get("clean") is True:
+        ff = run(["git", "merge", "--ff-only", "origin/main"], cwd=path, timeout=60)
+        return {
+            "state": "PASS" if ff["code"] == 0 else "HOLD",
+            "mode": "ONLINE_FF_ONLY",
+            "path": str(path),
+            "fast_forward_code": ff["code"],
+            "fast_forward_error": ff["stderr"] if ff["code"] else None,
+        }
+    return {
+        "state": "PASS",
+        "mode": "ONLINE_WORKING_BRANCH_PRESERVED",
+        "path": str(path),
+        "branch": refreshed.get("branch"),
+        "clean": refreshed.get("clean"),
+    }
 
 
 def current_truth() -> dict[str, Any]:
@@ -296,6 +328,15 @@ def write_receipt(
         "\n".join(lines) + "\n",
         encoding="utf-8",
     )
+    RUNTIME_RECEIPTS.mkdir(parents=True, exist_ok=True)
+    (RUNTIME_RECEIPTS / "latest-receipt.json").write_text(
+        json_text,
+        encoding="utf-8",
+    )
+    (RUNTIME_RECEIPTS / "latest-receipt.txt").write_text(
+        "\n".join(lines) + "\n",
+        encoding="utf-8",
+    )
     payload["receipt"] = str(json_path)
     payload["compact_receipt"] = str(txt_path)
     return payload
@@ -312,10 +353,15 @@ def print_receipt(payload: dict[str, Any]) -> None:
 
 
 def canonical_boot() -> dict[str, Any]:
+    online_sync = {
+        "control_plane": sync_repo_online(ROOT),
+        "product": sync_repo_online(PRODUCT),
+    }
     sync = run([sys.executable, str(CONTROL), "sync-context"], cwd=ROOT, timeout=120)
     start = run([sys.executable, str(CONTROL), "session-start"], cwd=ROOT, timeout=120)
     return {
         "state": "PASS" if sync["code"] == 0 and start["code"] == 0 else "HOLD",
+        "online_sync": online_sync,
         "sync": sync,
         "session_start": start,
     }
