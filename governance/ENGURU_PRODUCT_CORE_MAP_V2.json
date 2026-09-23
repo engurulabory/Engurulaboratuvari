@@ -43,21 +43,23 @@
     },
     {
       "repository": "engurulabory/donecheck-core-foundation",
-      "canonicalName": "DoneCheck™ Controlled Development Source",
+      "canonicalName": "DoneCheck™ Historical Controlled Foundation",
       "assetType": "CORE",
-      "owner": "DoneCheck controlled development",
+      "owner": "DoneCheck historical development lineage",
       "state": "PASS",
       "fleetParticipation": "GOVERNED",
-      "role": "Canonical controlled development source."
+      "role": "Preserves v1.0/v1.1 Working Core development provenance and controlled reference. It is not a second DoneCheck product and is not the current full-product source of truth."
     },
     {
       "repository": "engurulabory/donecheck",
-      "canonicalName": "DoneCheck™ Public Working Core",
+      "canonicalName": "DoneCheck™ v1.2",
       "assetType": "PRODUCT_CORE",
-      "owner": "DoneCheck public release",
+      "owner": "DoneCheck canonical product / release authority",
       "state": "PASS",
       "fleetParticipation": "GOVERNED",
-      "role": "Public/open-source release; exact-main CI and IP Model Trust are green; provenance remains linked to controlled source."
+      "role": "Current canonical DoneCheck product and release surface. Package version 1.2.0; exact-main 8b90a8fc93453dd8a84994195d28d14b15e261cb; CI, 32 tests, build, Release Authority and IP Model Trust Fleet verified PASS.",
+      "version": "1.2.0",
+      "exactMain": "8b90a8fc93453dd8a84994195d28d14b15e261cb"
     },
     {
       "repository": "engurulabory/shift-core-api",
@@ -334,5 +336,19 @@
     "builderReleaseMirrorFleetRun": 35107500693,
     "builderSourceSha": "88d00d025945fb170ddd88c5bd97c1f5a69ef999",
     "builderReleaseMainSha": "fc17cbbf913bb46cc7289db3a9e7b583eb4a7e7f"
+  },
+  "doneCheckAuthority": {
+    "products": 1,
+    "repositories": 2,
+    "verifiedVersionMilestones": [
+      "v1.0",
+      "v1.1",
+      "v1.2"
+    ],
+    "canonicalProductRepository": "engurulabory/donecheck",
+    "canonicalVersion": "1.2.0",
+    "canonicalExactMain": "8b90a8fc93453dd8a84994195d28d14b15e261cb",
+    "historicalFoundationRepository": "engurulabory/donecheck-core-foundation",
+    "authorityModel": "governance/mac-engineer/DONECHECK_AUTHORITY_MODEL_V1.md"
   }
 }
