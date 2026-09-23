@@ -36,7 +36,7 @@ PY
 
 [[ -d "$PRODUCT_REPO/.git" ]] || hold "PRODUCT_REPOSITORY_NOT_FOUND"
 
-git -C "$PRODUCT_REPO" fetch origin main "$A09_BRANCH" --prune
+git -C "$PRODUCT_REPO" fetch origin --prune
 
 MAIN_SHA="$(git -C "$PRODUCT_REPO" rev-parse origin/main)"
 CANDIDATE_SHA="$(git -C "$PRODUCT_REPO" rev-parse "origin/$A09_BRANCH")"
@@ -54,6 +54,12 @@ cleanup() {
 trap cleanup EXIT
 
 [[ -z "$(git -C "$WORKTREE" status --porcelain)" ]] || hold "DISPOSABLE_WORKTREE_NOT_CLEAN_AT_START"
+
+(
+  cd "$WORKTREE"
+  python3 -B -m compileall -q runtime
+) || hold "RUNTIME_COMPILE_FAILED"
+print "RUNTIME_COMPILE=PASS"
 
 TARGETED_LOGS=()
 for run in 1 2 3 4 5; do
@@ -129,6 +135,7 @@ data = {
         ".github/workflows/v07-a09-full-regression.yml",
         ".github/workflows/v07-reliability-campaign.yml",
     ],
+    "runtime_compile": "PASS",
     "targeted_consecutive_passes": 5,
     "targeted_runs": targeted,
     "full_runtime_regression": {
@@ -151,6 +158,7 @@ with open(evidence_path, "w", encoding="utf-8") as f:
 print("STATE=LOCAL_REHEARSAL_PASS_EXTERNAL_CONFIRMATION_PENDING")
 print(f"MAIN_SHA={main_sha}")
 print(f"CANDIDATE_SHA={candidate_sha}")
+print("RUNTIME_COMPILE=PASS")
 print("TARGETED_CONSECUTIVE_PASS=5_OF_5")
 print("FULL_RUNTIME_REGRESSION=PASS")
 print("NATIVE_VERIFICATION=PASS")
