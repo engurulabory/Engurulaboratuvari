@@ -159,3 +159,16 @@ Recovery, fixture repair, local field acceptance and the reconstructed pre-canon
 **LOCAL ACCEPTANCE PASS** — 12/12 full-history mirrors, control-plane regression PASS and offline queue PASS on the real Mac. Runtime state: `~/Enguru/Runtime/MacEngineer/state/repository-fabric.json`. Evidence: `evidence/MAC_REPOSITORY_FABRIC_LOCAL_ACCEPTANCE_2026-09-23.md`.
 
 Local continuity now advances to **V07-A10 DoneCheck™ v1.2 integration**. The external GitHub A09 confirmation remains a separate HOLD and does not stop Mac-local engineering continuity.
+
+
+## CANONICAL BOOT LOCAL ACCEPTED CANDIDATE — 2026-09-23
+
+**STATE — PATCH PREPARED / LOCAL ACCEPTANCE REQUIRED.**
+
+Fresh GitHub observation: control-plane PR #176 remains open and mergeable but blocked; the observed pre-patch head was `459101e89f3dad1ff38871c7ab1a9f3e975f8db1`, remote `main` was `2fd5553a55ce2a8c42163c81a4d21fc155bc0593`, and four workflow jobs failed before steps (`steps=null`).
+
+The required difference extends the existing canonical-context + session-continuity authority model with a fail-closed `LOCAL_ACCEPTED_CANDIDATE` state. Local continuity is granted only when fresh Mac acceptance records exact branch, HEAD, origin/main, clean worktree, remote-branch parity, main ancestry, targeted tests, full regression and diff-check Evidence. GitHub remote main remains canonical; local authority remains `PENDING_RECONCILIATION`; no second canonical truth is created.
+
+**JUDGMENT — HOLD until real-Mac acceptance executes.**
+
+**NEXT ACTION — run the one-command local candidate acceptance gate, then `enguru-mac continue` for V07-A10.**
