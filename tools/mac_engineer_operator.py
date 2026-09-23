@@ -35,6 +35,7 @@ ROADMAP = ROOT / "governance" / "mac-engineer" / "PRODUCT_ROADMAP_V1.json"
 ACTION_REGISTRY = ROOT / "governance" / "mac-engineer" / "OPERATOR_ACTION_REGISTRY_V1.json"
 CONTROL = ROOT / "tools" / "mac_engineer_control.py"
 A10_ACCEPTANCE = ROOT / "governance" / "mac-engineer" / "V07_A10_DONECHECK_V12_ACCEPTANCE.command"
+LOCAL_FINISHER_REHEARSAL = ROOT / "governance" / "mac-engineer" / "V07_LOCAL_FINISHER_REHEARSAL.command"
 
 TERMINAL_STATES = {"COMPLETE", "HOLD", "FAILED", "BLOCKED"}
 RECOVERABLE_STATES = {"RUNNING", "CHECKPOINTED", "RECOVERY_REQUIRED", "VERIFYING"}
@@ -747,6 +748,30 @@ def run_a10_donecheck_acceptance() -> dict[str, Any]:
     }
 
 
+def run_local_finisher_rehearsal() -> dict[str, Any]:
+    if not LOCAL_FINISHER_REHEARSAL.is_file():
+        return {
+            "state": "HOLD",
+            "reason": "LOCAL_FINISHER_REHEARSAL_COMMAND_MISSING",
+            "evidence": None,
+        }
+    result = run(["zsh", str(LOCAL_FINISHER_REHEARSAL)], cwd=ROOT, timeout=1800)
+    fields: dict[str, str] = {}
+    for line in result.get("stdout", "").splitlines():
+        if "=" in line:
+            key, value = line.split("=", 1)
+            if key and value:
+                fields[key.strip()] = value.strip()
+    return {
+        "state": "PASS" if result["code"] == 0 else "HOLD",
+        "code": result["code"],
+        "fields": fields,
+        "evidence": fields.get("EVIDENCE"),
+        "stdout_tail": result.get("stdout", "")[-5000:],
+        "stderr_tail": result.get("stderr", "")[-5000:],
+    }
+
+
 def command_continue() -> int:
     boot = canonical_boot()
     truth = current_truth()
@@ -761,6 +786,44 @@ def command_continue() -> int:
         hold = "CANONICAL_BOOT"
         next_action = "enguru-mac doctor"
         completed = ["CANONICAL_BOOT_HOLD", "GITVAULT_SYNC"]
+    elif local_action == "V07_LOCAL_FINISHER_REHEARSAL":
+        completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
+        local_finisher = run_local_finisher_rehearsal()
+        if local_finisher.get("state") != "PASS":
+            payload = write_receipt(
+                command="continue",
+                state="HOLD",
+                completed=completed,
+                evidence=[
+                    item for item in [
+                        str(SESSION_STATE),
+                        str(local_finisher.get("evidence") or ""),
+                    ] if item
+                ],
+                hold="LOCAL_FINISHER_REHEARSAL",
+                next_action="enguru-mac doctor",
+                details={
+                    "truth": truth,
+                    "boot": boot,
+                    "runner": runner,
+                    "mirrors": mirrors,
+                    "local_finisher": local_finisher,
+                },
+            )
+            print_receipt(payload)
+            return 2
+
+        completed.extend([
+            "LOCAL_FINISHER_REHEARSAL_PASS",
+            "A10_DONECHECK_V1_2_INTEGRATION_PASS_PRESERVED",
+            "A09_DONECHECK_INCONCLUSIVE_PRESERVED",
+        ])
+        state = "HOLD"
+        hold = "A09_EXTERNAL_CONFIRMATION_PENDING"
+        next_action = (
+            (local_finisher.get("fields") or {}).get("NEXT_ACTION")
+            or "V07_A09_EXTERNAL_CONFIRMATION_OR_A11_WHEN_ELIGIBLE"
+        )
     elif local_action == "V07_A10_DONECHECK_V1_2_INTEGRATION":
         completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
         a10 = run_a10_donecheck_acceptance()
@@ -877,6 +940,7 @@ def command_continue() -> int:
             "local_a09_evidence": locals().get("local_evidence"),
             "local_a09_rehearsal": locals().get("rehearsal"),
             "a10": locals().get("a10"),
+            "local_finisher": locals().get("local_finisher"),
             "offline_manifest": offline_manifest(),
         },
     )
