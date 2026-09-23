@@ -44,18 +44,35 @@ cat "$VERIFY"
 grep -Fq "STATE=INTEGRATION_PASS" "$VERIFY" || hold "A10_INTEGRATION_PASS_REQUIRED"
 grep -Fq "DONECHECK_VERSION=1.2.0" "$VERIFY" || hold "DONECHECK_V12_REQUIRED"
 grep -Fq "DONECHECK_EXACT_SHA=8b90a8fc93453dd8a84994195d28d14b15e261cb" "$VERIFY" || hold "DONECHECK_EXACT_SHA_REQUIRED"
-grep -Fq "VERIFICATION_OUTCOME=inconclusive" "$VERIFY" || hold "CURRENT_A09_MUST_REMAIN_INCONCLUSIVE"
-grep -Fq "CLOSURE_STATE=MILESTONE_CLOSURE_HOLD_A09_EXTERNAL_CONFIRMATION" "$VERIFY" || hold "A09_EXTERNAL_HOLD_REQUIRED"
+OUTCOME="$(grep '^VERIFICATION_OUTCOME=' "$VERIFY" | tail -n 1 | cut -d= -f2-)"
+CLOSURE="$(grep '^CLOSURE_STATE=' "$VERIFY" | tail -n 1 | cut -d= -f2-)"
+
+case "$OUTCOME:$CLOSURE" in
+  inconclusive:MILESTONE_CLOSURE_HOLD_A09_EXTERNAL_CONFIRMATION)
+    EXPECTED_A09="inconclusive"
+    FINAL_STATE="A10_INTEGRATION_PASS_CLOSURE_HOLD_A09_EXTERNAL_CONFIRMATION"
+    NEXT="LOCAL_FINISHER_REHEARSAL_OR_A09_EXTERNAL_CONFIRMATION"
+    ;;
+  pass:MACHINE_VERIFICATION_PASS)
+    EXPECTED_A09="pass"
+    FINAL_STATE="A10_MACHINE_VERIFICATION_PASS"
+    NEXT="V07_A11_CONSOLIDATED_MAC_CAMPAIGN"
+    ;;
+  *)
+    hold "A10_UNEXPECTED_VERIFICATION_STATE"
+    ;;
+esac
 
 BRIDGE_EVIDENCE="$(grep '^EVIDENCE=' "$VERIFY" | tail -n 1 | cut -d= -f2-)"
 [[ -f "$BRIDGE_EVIDENCE" ]] || hold "A10_EVIDENCE_REQUIRED"
 
-python3 - "$BRIDGE_EVIDENCE" <<'PY' || hold "A10_RESULT_CONTRACT_FAILED"
+python3 - "$BRIDGE_EVIDENCE" "$EXPECTED_A09" "$OUTCOME" "$CLOSURE" <<'PY' || hold "A10_RESULT_CONTRACT_FAILED"
 import json
 import sys
 from pathlib import Path
 
 evidence = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+expected_a09, expected_outcome, expected_closure = sys.argv[2:5]
 result_path = Path(evidence["verificationResultPath"])
 result = json.loads(result_path.read_text(encoding="utf-8"))
 gates = result["gateOutcomes"]
@@ -64,18 +81,18 @@ for i in range(1, 9):
     gate = f"V07-A{i:02d}"
     assert gates[gate] == "pass", (gate, gates[gate])
 
-assert gates["V07-A09"] == "inconclusive", gates["V07-A09"]
-assert result["verificationResult"]["outcome"] == "inconclusive"
+assert gates["V07-A09"] == expected_a09, gates["V07-A09"]
+assert result["verificationResult"]["outcome"] == expected_outcome
 assert evidence["state"] == "INTEGRATION_PASS"
-assert evidence["closureState"] == "MILESTONE_CLOSURE_HOLD_A09_EXTERNAL_CONFIRMATION"
-print("A10_GATE_OUTCOMES=A01_A08_PASS_A09_INCONCLUSIVE")
+assert evidence["closureState"] == expected_closure
+print("A10_GATE_OUTCOMES=PASS")
 PY
 
-print "STATE=A10_INTEGRATION_PASS_CLOSURE_HOLD_A09_EXTERNAL_CONFIRMATION"
+print "STATE=$FINAL_STATE"
 print "DONECHECK=V1.2.0_EXACT_SHA_VERIFIED"
 print "A01_A08=PASS"
-print "A09=INCONCLUSIVE_EXTERNAL_CONFIRMATION_PENDING"
+print "A09=$EXPECTED_A09"
 print "A10_INTEGRATION=PASS"
-print "MILESTONE_CLOSURE=HOLD_A09_EXTERNAL_CONFIRMATION"
+print "MILESTONE_CLOSURE=$CLOSURE"
 print "EVIDENCE=$BRIDGE_EVIDENCE"
-print "NEXT_ACTION=LOCAL_FINISHER_REHEARSAL_OR_A09_EXTERNAL_CONFIRMATION"
+print "NEXT_ACTION=$NEXT"
