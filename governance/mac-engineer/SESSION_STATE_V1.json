@@ -744,10 +744,20 @@
     "a09Evidence": "evidence/MAC_ENGINEER_V07_A09_ACTIONS_HOLD_2026-09-22.md",
     "humanThreshold": "READ_ONLY_GITHUB_ACTIONS_BILLING_POLICY_INSPECTION_REQUIRED",
     "localFallback": {
-      "state": "PREPARED",
+      "state": "LOCAL_REHEARSAL_PASS_EXTERNAL_CONFIRMATION_PENDING",
       "contract": "governance/mac-engineer/V07_ASTRA_LOCAL_FALLBACK_V1.md",
       "command": "governance/mac-engineer/V07_ASTRA_LOCAL_FALLBACK.command",
       "prompt": "governance/mac-engineer/V07_ASTRA_LOCAL_FALLBACK_PROMPT.md",
+      "evidence": "evidence/MAC_ENGINEER_V07_A09_ASTRA_LOCAL_REHEARSAL_2026-09-23.md",
+      "mainSha": "5432b9b135499cea18273c0e003877b864af92c6",
+      "candidateSha": "d545a6d9d5d9823da5878323022735ad7f47a80e",
+      "runtimeCompile": "PASS",
+      "targetedConsecutivePasses": "5_OF_5",
+      "fullRuntimeRegression": "PASS",
+      "nativeVerification": "PASS",
+      "scopeValidation": "PASS",
+      "worktreeCloseout": "CLEAN",
+      "localEvidencePath": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/astra-fallback-20260923T070354Z/evidence.json",
       "authority": "LOCAL_REHEARSAL_ONLY_EXTERNAL_GITHUB_CI_CONFIRMATION_REQUIRED"
     }
   },
@@ -888,14 +898,22 @@
     "evidence": "evidence/MAC_ENGINEER_V07_A09_ACTIONS_HOLD_2026-09-22.md"
   },
   "observedV07A09LocalFallback": {
-    "state": "PREPARED",
+    "state": "LOCAL_REHEARSAL_PASS_EXTERNAL_CONFIRMATION_PENDING",
     "observedAt": "2026-09-23",
     "mode": "ASTRA_MAC_EXACT_SHA_DISPOSABLE_WORKTREE",
-    "targetedConsecutiveRunsRequired": 5,
-    "fullRegressionRequired": true,
-    "nativeVerificationRequired": true,
-    "scopeValidationRequired": true,
+    "mainSha": "5432b9b135499cea18273c0e003877b864af92c6",
+    "candidateSha": "d545a6d9d5d9823da5878323022735ad7f47a80e",
+    "runtimeCompile": "PASS",
+    "targetedConsecutivePasses": 5,
+    "fullRegression": "PASS",
+    "nativePrepSyntax": "PASS",
+    "nativeSwiftBuild": "PASS",
+    "diffCheck": "PASS",
+    "scopeValidation": "PASS",
+    "worktreeCloseout": "CLEAN",
     "localEvidenceSchema": "enguru.mac-engineer.v07-astra-local-fallback/v1",
-    "canonicalA09Authority": "GITHUB_EXTERNAL_CI_CONFIRMATION_STILL_REQUIRED"
+    "localEvidencePath": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/astra-fallback-20260923T070354Z/evidence.json",
+    "canonicalA09Authority": "GITHUB_EXTERNAL_CI_CONFIRMATION_STILL_REQUIRED",
+    "canonicalA09State": "HOLD"
   }
 }
