@@ -422,3 +422,26 @@ Required difference applied:
 Current branch head: `9f75827f80233d239740df5b22f354abfca573f1`.
 
 **NEXT ACTION — fresh exact-head local candidate acceptance → Doctor → continue → Gate 8 Mac-Native Authority Migration Field Proof.**
+
+
+## GATE 8 GITVAULT REMOTE-MAIN AUTHORITY RECONCILIATION — 2026-09-23
+
+**STATE — PATCH PREPARED / FRESH EXACT-HEAD ACCEPTANCE REQUIRED.**
+
+Fresh Gate 8 execution held at `CONTROL_MIRROR_FABRIC_MAIN_PARITY_REQUIRED`.
+
+Root cause: the field proof compared Repository Fabric's remote-main identity with the operator GitVault mirror's local `refs/heads/main`. These refs represent different authority surfaces and are not required to match while a locally accepted candidate is ahead of remote main.
+
+Required difference applied:
+
+- Repository Fabric `observedMain` remains the remote main identity authority;
+- GitVault parity now reads `refs/remotes/origin/main`;
+- accepted control-plane exact HEAD remains the execution base;
+- product execution base is bound to GitVault remote-main matched to Repository Fabric;
+- disposable proof diff validation is exact base SHA → proof HEAD, independent of branch naming;
+- recovery-mirror immutability is checked on remote-main refs;
+- exact-commit membership uses the literal Git rev-spec `^{commit}`, with regression coverage.
+
+Authority boundary remains unchanged: no push, merge, remote mutation, or second canonical truth is created.
+
+**NEXT ACTION — fresh exact-head local candidate acceptance → Doctor → continue → Gate 8 Mac-Native Authority Migration Field Proof.**
