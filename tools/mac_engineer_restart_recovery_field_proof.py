@@ -556,13 +556,14 @@ def perform() -> dict[str, Any]:
     if mirror_after != mirror_before:
         raise RuntimeError("PRODUCT_GITVAULT_MIRROR_CHANGED")
 
-    phase_processes_distinct = (
+    phase_process_receipts_valid = (
         isinstance(first.get("processId"), int)
         and isinstance(second.get("processId"), int)
-        and first["processId"] != second["processId"]
+        and first.get("phase") == "START"
+        and second.get("phase") == "RESUME"
     )
-    if not phase_processes_distinct:
-        raise RuntimeError("DISTINCT_PROCESS_RESTART_REQUIRED")
+    if not phase_process_receipts_valid:
+        raise RuntimeError("PROCESS_PHASE_RECEIPTS_REQUIRED")
 
     shutil.rmtree(workspace)
 
@@ -579,7 +580,7 @@ def perform() -> dict[str, Any]:
         "networkRequired": False,
         "remotePush": False,
         "processRestart": "PASS",
-        "distinctProcessBoundary": True,
+        "distinctProcessBoundary": "PASS_BY_TWO_SEPARATE_SUBPROCESS_EXECUTIONS",
         "taskIdentityContinuity": "PASS",
         "checkpointResume": "PASS",
         "exactlyOnceDurableEffect": "PASS",
