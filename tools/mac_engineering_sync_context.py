@@ -9,7 +9,10 @@ import re
 import subprocess
 from typing import Any
 
-from mac_engineer_local_candidate_authority import evaluate_local_accepted_candidate
+if __package__:
+    from .mac_engineer_local_candidate_authority import evaluate_local_accepted_candidate
+else:
+    from mac_engineer_local_candidate_authority import evaluate_local_accepted_candidate
 
 
 ROOT = Path(__file__).resolve().parents[1]
