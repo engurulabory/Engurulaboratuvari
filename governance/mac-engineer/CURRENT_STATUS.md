@@ -493,3 +493,23 @@ Acceptance requires:
 Evidence is preserved under `~/Enguru/Evidence/MacEngineer/v0.7/restart-recovery-continuity/`.
 
 **NEXT ACTION — fresh exact-head local candidate acceptance → Doctor → continue → Gate 9 field proof.**
+
+
+## GATE 9 RESTART / RECOVERY CONTINUITY — VERIFIED PASS — 2026-09-23
+
+**STATE — PASS / 9 OF 13 CLOSED.**
+
+Real-Mac Gate 9 execution verified a governed task across a controlled Python process boundary:
+
+- same task identity after restart: PASS;
+- verified checkpoint resume: PASS;
+- exactly-once durable effect: PASS;
+- final durable task state: COMPLETE;
+- GitVault mirror unchanged;
+- remote push: false.
+
+Evidence: `/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/restart-recovery-continuity/20260923T123929Z/evidence.json`.
+
+Operator receipt: `/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T123930Z-continue.json`.
+
+**NEXT ACTION — Gate 10: MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF.**
