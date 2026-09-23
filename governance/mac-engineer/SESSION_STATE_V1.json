@@ -735,7 +735,7 @@
     "state": "HOLD",
     "objective": "V0_7_LONG_RUNNING_RELIABILITY",
     "engineeringMode": "MAC_NATIVE_AUTHORITY_TRANSITION",
-    "nextAction": "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF",
+    "nextAction": "MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF",
     "milestoneMacCommissioning": "ACTIVE_MAC_NATIVE_MIGRATION",
     "acceptanceMatrix": "PASS_DEFINED",
     "acceptanceMatrixPath": "governance/mac-engineer/V07_LONG_RUNNING_RELIABILITY_ACCEPTANCE_MATRIX_V1.md",
@@ -758,7 +758,7 @@
     "runtimeRegression": "54_OF_54_OK",
     "evidence": "evidence/MAC_ENGINEER_V07_A07_A08_ENGINEERING_2026-09-22.md",
     "passedGatesAuthority": "HISTORICAL_GITHUB_FIRST_EVIDENCE_PRESERVED_MAC_NATIVE_TRANSITION_ACTIVE",
-    "milestoneMacAcceptance": "ACTIVE_GATE_9_RESTART_RECOVERY",
+    "milestoneMacAcceptance": "ACTIVE_GATE_10_OFFLINE_GITVAULT_RECONCILIATION",
     "a09State": "EXTERNAL_BLOCKED_GITHUB_BILLING_DEFERRED",
     "a09CampaignPassCount": 0,
     "a09ProductPrNumber": 13,
@@ -818,8 +818,8 @@
       "evidenceSpool": "PASS",
       "gitVault": "PASS"
     },
-    "localContinuityNextAction": "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF",
-    "localContinuityState": "ACTIVE_MAC_NATIVE_RESTART_RECOVERY_PROOF",
+    "localContinuityNextAction": "MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF",
+    "localContinuityState": "ACTIVE_MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION",
     "controlPlaneLocalContinuity": {
       "state": "PENDING_RECONCILIATION",
       "branch": "feat/mac-engineer-osi-operator-surface",
@@ -830,8 +830,8 @@
       "externalMergeGate": "HOLD_GITHUB_ACTIONS_EXECUTION",
       "acceptanceStatePath": "~/Enguru/Runtime/MacEngineer/state/local-accepted-control-plane-candidate.json",
       "acceptanceEvidenceRoot": "~/Enguru/Evidence/MacEngineer/v0.7/canonical-boot",
-      "currentTechnicalTarget": "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF",
-      "nextAfterPass": "MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF",
+      "currentTechnicalTarget": "MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF",
+      "nextAfterPass": "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION",
       "freshExternalObservation": {
         "observedAt": "2026-09-23",
         "prNumber": 176,
@@ -877,11 +877,11 @@
         5,
         6,
         7,
-        8
+        8,
+        9
       ],
-      "activeGate": 9,
+      "activeGate": 10,
       "remainingGates": [
-        9,
         10,
         11,
         12,
@@ -900,14 +900,20 @@
         "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T123058Z-continue.json"
       },
       "gate9": {
-        "state": "ACTIVE",
+        "state": "PASS",
         "name": "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF",
+        "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/restart-recovery-continuity/20260923T123929Z/evidence.json"
+      },
+      "gate10": {
+        "state": "ACTIVE",
+        "name": "MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF",
         "acceptance": [
-          "same_task_identity_after_process_restart",
-          "verified_checkpoint_resume",
-          "exactly_once_durable_effect",
-          "final_complete_state",
-          "evidence_continuity"
+          "offline_local_commit_queue",
+          "durable_patch_and_git_bundle",
+          "reconciliation_apply_check",
+          "gitvault_refs_unchanged",
+          "remote_identity_preserved",
+          "second_canonical_truth_false"
         ]
       }
     },
@@ -937,6 +943,22 @@
       ],
       "nextAction": "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF",
       "authority": "REAL_MAC_LOCAL_FIELD_EVIDENCE"
+    },
+    "macNativeRestartRecoveryContinuityProof": {
+      "state": "PASS",
+      "observedAt": "2026-09-23",
+      "operatorReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T123930Z-continue.json",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/restart-recovery-continuity/20260923T123929Z/evidence.json",
+      "completed": [
+        "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF_PASS",
+        "PROCESS_RESTART_PASS",
+        "TASK_IDENTITY_CONTINUITY_PASS",
+        "CHECKPOINT_RESUME_PASS",
+        "EXACTLY_ONCE_EFFECT_PASS",
+        "FINAL_STATE_COMPLETE"
+      ],
+      "authority": "REAL_MAC_LOCAL_PROCESS_RESTART_EVIDENCE",
+      "nextAction": "MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF"
     }
   },
   "observedV07A01A02": {
