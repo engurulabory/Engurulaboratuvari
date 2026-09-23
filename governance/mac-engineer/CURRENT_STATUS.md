@@ -599,3 +599,24 @@ Authority boundary:
 - v0.7 version lock is not created by Gate 11.
 
 **NEXT ACTION — fresh exact-head local candidate acceptance → Doctor → continue → Gate 11 DoneCheck™ v1.2 verification.**
+
+
+## GATE 11 DONECHECK™ v1.2 LOCAL AUTHORITY VERIFICATION — VERIFIED PASS — 2026-09-23
+
+**STATE — PASS / 11 OF 13 CLOSED.**
+
+Real-Mac Gate 11 verified Gates 8–10 through canonical DoneCheck™ v1.2 exact SHA `8b90a8fc93453dd8a84994195d28d14b15e261cb`.
+
+Verified outcomes:
+
+- Gate 8 criterion: PASS;
+- Gate 9 criterion: PASS;
+- Gate 10 criterion: PASS;
+- aggregate local authority migration verification: PASS;
+- external GitHub A09 remains EXTERNAL_BLOCKED_DEFERRED and was not promoted.
+
+Evidence: `/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/gate11-donecheck-local-authority/20260923T125159Z/evidence.json`.
+
+Operator receipt: `/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T125200Z-continue.json`.
+
+**NEXT ACTION — Gate 12: V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY.**
