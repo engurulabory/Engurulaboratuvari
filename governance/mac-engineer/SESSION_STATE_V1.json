@@ -645,11 +645,33 @@
   },
   "doneCheckAuthorityDecision": {
     "state": "LOCKED",
+    "productCount": 1,
+    "repositoryCount": 2,
+    "verifiedVersionMilestones": [
+      "v1.0",
+      "v1.1",
+      "v1.2"
+    ],
+    "canonicalProduct": "DoneCheck™ v1.2",
+    "canonicalRepository": "engurulabory/donecheck",
+    "canonicalVersion": "1.2.0",
+    "canonicalExactMain": "8b90a8fc93453dd8a84994195d28d14b15e261cb",
+    "historicalFoundationRepository": "engurulabory/donecheck-core-foundation",
+    "historicalFoundationExactMain": "f555354fa756b47f6e83ab05248e63005b1054bf",
     "markdownProjection": "HUMAN_READABLE_READ_ONLY_PROJECTION",
-    "mandatoryDoneCheckJson": "STRUCTURED_EVIDENCE_CONTRACT",
+    "mandatoryDoneCheckJson": "STRUCTURED_EVIDENCE_PRODUCER_CONTRACT",
     "doneCheckV12": "MACHINE_VERIFICATION_AND_PRODUCTION_CLOSURE_AUTHORITY",
     "humanThreshold": "FINAL_HUMAN_AUTHORITY",
-    "contract": "governance/mac-engineer/DONECHECK_AUTHORITY_MODEL_V1.md"
+    "exactMainEvidence": {
+      "ciRunId": 35714169933,
+      "tests": "32_OF_32_PASS",
+      "releaseAuthorityRunId": 35714169911,
+      "releaseAuthority": "PASS",
+      "ipModelTrustFleetRunId": 35714170025,
+      "ipModelTrustFleet": "PASS"
+    },
+    "contract": "governance/mac-engineer/DONECHECK_AUTHORITY_MODEL_V1.md",
+    "evidence": "evidence/DONECHECK_V12_CANONICAL_RECONCILIATION_2026-09-23.md"
   },
   "workingModelDecision": {
     "state": "LOCKED",
