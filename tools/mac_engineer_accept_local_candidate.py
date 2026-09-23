@@ -292,7 +292,7 @@ def main() -> int:
     print("SESSION_START=PASS")
     print("AUTHORITY=PENDING_RECONCILIATION")
     print(f"EVIDENCE={evidence_path}")
-    print("NEXT_ACTION=enguru-mac continue")
+    print("NEXT_ACTION=enguru-mac doctor")
     return 0
 
 
