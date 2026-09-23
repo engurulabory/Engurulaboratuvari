@@ -818,8 +818,8 @@
       "evidenceSpool": "PASS",
       "gitVault": "PASS"
     },
-    "localContinuityNextAction": "V07_A10_DONECHECK_V1_2_INTEGRATION",
-    "localContinuityState": "ACTIVE",
+    "localContinuityNextAction": "V07_LOCAL_FINISHER_REHEARSAL",
+    "localContinuityState": "ACTIVE_PRE_A11_REHEARSAL",
     "controlPlaneLocalContinuity": {
       "state": "PENDING_RECONCILIATION",
       "branch": "feat/mac-engineer-osi-operator-surface",
@@ -843,6 +843,20 @@
         "workflowJobsSteps": "NULL",
         "judgment": "HOLD_EXTERNAL_ACTIONS_EXECUTION_GATE"
       }
+    },
+    "a10State": "INTEGRATION_PASS_A09_INCONCLUSIVE_PRESERVED",
+    "a10OperatorReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T105932Z-continue.json",
+    "a10Completed": [
+      "A10_DONECHECK_V1_2_INTEGRATION_PASS",
+      "A01_A08_DONECHECK_PASS",
+      "A09_DONECHECK_INCONCLUSIVE_PRESERVED"
+    ],
+    "localFinisherRehearsal": {
+      "state": "PREPARED",
+      "authority": "LOCAL_REHEARSAL_ONLY_NO_A09_NO_A11_NO_VERSION_LOCK",
+      "command": "governance/mac-engineer/V07_LOCAL_FINISHER_REHEARSAL.command",
+      "tool": "tools/mac_engineer_local_finisher_rehearsal.py",
+      "nextAfterPass": "V07_A09_EXTERNAL_CONFIRMATION_OR_A11_WHEN_ELIGIBLE"
     }
   },
   "observedV07A01A02": {
