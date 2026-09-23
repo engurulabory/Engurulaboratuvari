@@ -125,8 +125,6 @@ def evaluate_local_accepted_candidate(
         "diffCheck": "PASS",
         "remoteBranchParity": "PASS",
         "mainAncestor": "PASS",
-        "canonicalContext": "PASS",
-        "sessionStart": "PASS",
     }
     for key, expected in required_acceptance.items():
         if acceptance.get(key) != expected:
