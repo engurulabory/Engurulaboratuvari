@@ -9,8 +9,10 @@
       "localFallback": "LOCAL_REHEARSAL_ALLOWED"
     },
     "V07_A10_DONECHECK_V1_2_INTEGRATION": {
-      "handler": "CANONICAL_PACKAGE_REQUIRED",
-      "authority": "DONECHECK_V1_2"
+      "handler": "V07_A10_DONECHECK_V12_ACCEPTANCE",
+      "authority": "DONECHECK_V1_2",
+      "command": "governance/mac-engineer/V07_A10_DONECHECK_V12_ACCEPTANCE.command",
+      "failClosed": true
     },
     "V07_A11_CONSOLIDATED_MAC_CAMPAIGN": {
       "handler": "CANONICAL_PACKAGE_REQUIRED",
