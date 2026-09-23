@@ -10,6 +10,8 @@ import re
 import subprocess
 from typing import Any
 
+from mac_engineer_local_candidate_authority import evaluate_local_accepted_candidate
+
 
 ROOT = Path(__file__).resolve().parents[1]
 HOME = Path.home()
@@ -269,12 +271,21 @@ def snapshot(mode: str) -> dict[str, Any]:
     objective = active_objective()
 
     issues: list[str] = []
-    if control.get("branch") != "main":
-        issues.append("CONTROL_PLANE_MAIN_REQUIRED")
-    if control.get("clean") is not True:
-        issues.append("CONTROL_PLANE_CLEAN_REQUIRED")
-    if control.get("exact_origin_main") is not True:
-        issues.append("CONTROL_PLANE_EXACT_MAIN_REQUIRED")
+    local_candidate = evaluate_local_accepted_candidate(control, state)
+    control_exact_main = bool(
+        control.get("branch") == "main"
+        and control.get("clean") is True
+        and control.get("exact_origin_main") is True
+    )
+    control_local_candidate = bool(local_candidate.get("authorized"))
+
+    if not (control_exact_main or control_local_candidate):
+        if control.get("branch") != "main":
+            issues.append("CONTROL_PLANE_MAIN_REQUIRED")
+        if control.get("clean") is not True:
+            issues.append("CONTROL_PLANE_CLEAN_REQUIRED")
+        if control.get("exact_origin_main") is not True:
+            issues.append("CONTROL_PLANE_EXACT_MAIN_REQUIRED")
 
     working_branch_authorized = False
     working_branch_policy: dict[str, Any] = {}
@@ -328,6 +339,18 @@ def snapshot(mode: str) -> dict[str, Any]:
         "closed_truth": state.get("closedTruth", {}),
         "canonical_surfaces": state.get("canonicalSurfaces", {}),
         "control_plane": control,
+        "control_plane_authority": {
+            "mode": (
+                "EXACT_MAIN"
+                if control_exact_main
+                else (
+                    "LOCAL_ACCEPTED_CANDIDATE"
+                    if control_local_candidate
+                    else "HOLD"
+                )
+            ),
+            "local_candidate": local_candidate,
+        },
         "product_source": product,
         "product_working_branch_policy": {
             "authorized": working_branch_authorized,
@@ -340,7 +363,9 @@ def snapshot(mode: str) -> dict[str, Any]:
         },
         "session_rule": (
             "Continue only the canonical active objective. "
-            "Treat GitHub WORKLIST/governance and exact-main as authority. "
+            "Treat GitHub WORKLIST/governance and remote main as canonical authority. "
+            "A control-plane local candidate may continue only through exact local "
+            "Evidence while remaining PENDING_RECONCILIATION. "
             "A non-main product branch is accepted only when SESSION_STATE "
             "authorizes its exact publication state: either the bounded dirty patch "
             "or a clean one-commit-ahead branch with the exact expected diff; "
