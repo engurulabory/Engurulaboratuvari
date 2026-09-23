@@ -62,6 +62,25 @@
       "doneCheckExactSha": "8b90a8fc93453dd8a84994195d28d14b15e261cb",
       "externalA09Promoted": false,
       "failClosed": true
+    },
+    "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY": {
+      "handler": "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_STREAMING",
+      "authority": "REAL_MAC_8H_FIELD_EVIDENCE_PLUS_DONECHECK_V1_2",
+      "command": "governance/mac-engineer/V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN.command",
+      "minimumDurationSeconds": 28800,
+      "controlledInterruptions": 3,
+      "interruptionSurfaces": [
+        "process",
+        "network_loopback",
+        "runtime_abrupt_process"
+      ],
+      "rssPeakLimitMultiplier": 2,
+      "rssFinalLimitMultiplier": 1.5,
+      "postCampaignDoneCheck": true,
+      "networkRequired": false,
+      "remotePush": false,
+      "humanThresholdAfterPass": true,
+      "failClosed": true
     }
   }
 }
