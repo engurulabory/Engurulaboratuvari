@@ -890,18 +890,21 @@
       "finalAuthority": "HUMAN_THRESHOLD",
       "gate8": {
         "state": "HOLD_EXTERNAL_HUMAN_ACTION",
-        "blocker": "GITHUB_ACTIONS_BILLING_LOCK",
-        "nextAction": "UPDATE_GITHUB_PAYMENT_INFORMATION_AND_UNLOCK_ACTIONS",
-        "fallbackAfterUnlockFailure": "COMMISSION_OSI_SELF_HOSTED_RUNNER"
+        "blocker": "GITHUB_PAYMENT_AUTHORIZATION_HOLD_FAILED",
+        "nextAction": "UPDATE_OR_REAUTHORIZE_GITHUB_PAYMENT_METHOD",
+        "afterHumanAction": "CONFIRM_ACTIONS_UNLOCK_THEN_RERUN_A09_HOSTED_WORKFLOWS",
+        "fallback": "COMMISSION_OSI_SELF_HOSTED_RUNNER_ONLY_IF_HOSTED_EXECUTION_REMAINS_UNAVAILABLE"
       }
     },
     "a09RootCause": {
       "state": "CONFIRMED",
       "observedAt": "2026-09-23",
-      "source": "HUMAN_VISIBLE_GITHUB_REPOSITORY_ACTIONS_UI",
-      "message": "GitHub Actions workflows can't be executed on this repository. Your account's billing is currently locked. Please update your payment information.",
+      "source": "HUMAN_VISIBLE_GITHUB_BILLING_UI",
+      "category": "PAYMENT_AUTHORIZATION_FAILURE",
+      "message": "Invalid payment method - authorization hold failed.",
       "scope": "EXTERNAL_GITHUB_ACTIONS_EXECUTION_AUTHORITY",
-      "productCodeDefectEvidenced": false
+      "productCodeDefectEvidenced": false,
+      "sensitivePaymentDetailsPersisted": false
     }
   },
   "observedV07A01A02": {
