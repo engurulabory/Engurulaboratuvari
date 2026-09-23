@@ -864,6 +864,30 @@
         "A10_DONECHECK_V1_2_INTEGRATION_PASS_PRESERVED",
         "A09_DONECHECK_INCONCLUSIVE_PRESERVED"
       ]
+    },
+    "verifiedFinishClosureContract": {
+      "state": "LOCKED",
+      "target": "V0_7_LONG_RUN_RELIABILITY_VERIFIED_LOCKED",
+      "totalGates": 13,
+      "passedGates": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "activeGate": 8,
+      "remainingGates": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "finalAuthority": "HUMAN_THRESHOLD"
     }
   },
   "observedV07A01A02": {
