@@ -229,6 +229,18 @@ def ensure_donecheck_runtime() -> dict[str, Any]:
     if reset["code"] != 0:
         raise RuntimeError("DONECHECK_RUNTIME_RESET_FAILED")
 
+    exclude = DONECHECK_RUNTIME / ".git" / "info" / "exclude"
+    exclude.parent.mkdir(parents=True, exist_ok=True)
+    existing_exclude = exclude.read_text(encoding="utf-8") if exclude.exists() else ""
+    required_excludes = ["node_modules/", "dist/"]
+    missing_excludes = [item for item in required_excludes if item not in existing_exclude.splitlines()]
+    if missing_excludes:
+        with exclude.open("a", encoding="utf-8") as handle:
+            if existing_exclude and not existing_exclude.endswith("\n"):
+                handle.write("\n")
+            for item in missing_excludes:
+                handle.write(item + "\n")
+
     package = load_json(DONECHECK_RUNTIME / "package.json")
     if package.get("version") != DONECHECK_VERSION:
         raise RuntimeError(
