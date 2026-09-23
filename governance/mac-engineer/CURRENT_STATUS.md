@@ -192,3 +192,26 @@ Required difference applied:
 **JUDGMENT — HOLD until bounded cleanup + fresh real-Mac acceptance PASS.**
 
 **NEXT ACTION — verify `tools/__pycache__/` is the sole generated untracked difference, remove that generated cache only, fast-forward the candidate branch, then rerun the bytecode-free local candidate acceptance gate.**
+
+
+## CANONICAL BOOT FULL REGRESSION RECONCILIATION — 2026-09-23
+
+**STATE — PATCH PREPARED / FRESH LOCAL REGRESSION REQUIRED.**
+
+Fresh real-Mac acceptance reached full control-plane regression and returned `HOLD=FULL_CONTROL_PLANE_REGRESSION_FAILED` after targeted Canonical Boot tests passed.
+
+Observed failures were bounded to three existing contracts:
+
+- package-mode import of `tools.mac_engineer_session_continuity` could not resolve the script-mode local-candidate helper import;
+- package-mode import of `tools.mac_engineering_sync_context` had the same resolution mismatch;
+- DoneCheck v1.2 bridge read stale `currentV07.a09State` before fresher `observedV07A09LocalFallback.canonicalA09State`, contradicting the fresh-observed-truth authority rule and the existing A09 PASS promotion regression test.
+
+Required difference applied:
+
+- session continuity and canonical-context sync now select package-relative imports when loaded as `tools.*`, while retaining sibling imports for direct script execution;
+- DoneCheck bridge now gives the fresh observed A09 canonical state precedence over stale session state;
+- existing tests remain the acceptance contract; no new core or authority surface is introduced.
+
+**JUDGMENT — HOLD until fresh real-Mac full regression PASS.**
+
+**NEXT ACTION — fast-forward the accepted candidate branch and rerun the local candidate acceptance gate.**
