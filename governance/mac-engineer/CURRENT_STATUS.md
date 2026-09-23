@@ -361,3 +361,45 @@ The package clones both repositories from verified local mirrors, binds one dura
 Authority boundary: this proves local multi-repository engineering execution mechanics. It does not mutate GitHub, manufacture external A09 PASS, or create a second canonical truth.
 
 **NEXT ACTION — fresh exact-head local candidate acceptance → doctor → continue → MAC_NATIVE_AUTHORITY_MIGRATION_FIELD_PROOF.**
+
+
+## MAC-NATIVE AUTHORITY ROLE LOCK + GATE 8 STALE-REF RECONCILIATION — 2026-09-23
+
+**STATE — ROLE MODEL LOCKED / GATE 8 PATCH PREPARED / FRESH EXACT-HEAD ACCEPTANCE REQUIRED.**
+
+Canonical role definition:
+
+> **ENGÜRÜ Mac-Native Engineering Authority™ = Mac’te local çalışan motor inşaat ustası + motor doktoru + doğrulama otoritesi.**
+
+Technical title:
+
+> **ENGÜRÜ Mac-Native Engineering Authority™ — Mac-local Build, Repair, Recovery & Verification Authority.**
+
+Role boundaries:
+
+- builder: discover → architecture → required difference → code → build → package → run;
+- doctor: health → HOLD/failure diagnosis → root cause → minimal repair → regression → recovery;
+- verification authority: Evidence → DoneCheck™ → verified operation → Human Threshold™ preparation.
+
+Product boundary remains:
+
+- ENGÜRÜ Mac Engineer™ = user-facing product;
+- OSi Local Execution Runtime = local execution substrate;
+- GitHub = remote source / synchronization / publication / external Evidence;
+- Mac = primary engineering execution surface after the locked migration gates PASS.
+
+Gate 8 field HOLD root cause was isolated to **stale control-plane ref selection**. The first migration proof cloned the Repository Fabric `main` ref, while fresh local acceptance had already verified the current feature candidate exact HEAD. The historical `main` test fixture lacked the previously repaired Swift `@main` entry point and therefore reproduced an already-resolved bootstrap failure.
+
+Required difference applied:
+
+- Gate 8 now requires the machine-readable fresh local accepted control-plane candidate;
+- the control-plane field clone is bound to that exact accepted HEAD;
+- fresh execution source is the operator GitVault mirror updated by Doctor;
+- Repository Fabric remains the 12/12 inventory / identity authority;
+- product source remains bound to its verified local mirror/main truth;
+- no remote push, merge or second canonical truth is created;
+- Doctor no longer reports optional self-hosted runner absence as a local health HOLD.
+
+Effective v0.7 finish contract is now the 13-gate Mac-native authority path. Historical GitHub-first acceptance evidence remains preserved; external GitHub Actions A09 remains deferred and is never represented as local PASS.
+
+**NEXT ACTION — fresh exact-head local acceptance → Doctor → continue → Gate 8 Mac-Native Authority Migration Field Proof.**
