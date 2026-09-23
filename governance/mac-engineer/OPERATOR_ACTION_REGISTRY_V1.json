@@ -1,0 +1,24 @@
+{
+  "schema": "enguru.mac-engineer.operator-action-registry/v1",
+  "product": "ENGÜRÜ Mac Engineering™",
+  "rule": "NEXT_ACTION handlers are explicit and fail-closed. Unregistered actions remain HOLD until a bounded handler is added.",
+  "actions": {
+    "V07_A09_CLEAR_GITHUB_PRIVATE_REPO_HOSTED_ACTIONS_EXECUTION_GATE": {
+      "handler": "A09_EXTERNAL_OR_SELF_HOSTED_CONFIRMATION",
+      "authority": "GITHUB_CHECK_REQUIRED",
+      "localFallback": "LOCAL_REHEARSAL_ALLOWED"
+    },
+    "V07_A10_DONECHECK_V1_2_INTEGRATION": {
+      "handler": "CANONICAL_PACKAGE_REQUIRED",
+      "authority": "DONECHECK_V1_2"
+    },
+    "V07_A11_CONSOLIDATED_MAC_CAMPAIGN": {
+      "handler": "CANONICAL_PACKAGE_REQUIRED",
+      "authority": "REAL_MAC_FIELD_EVIDENCE"
+    },
+    "V07_A12_HUMAN_THRESHOLD_VERSION_LOCK": {
+      "handler": "HUMAN_THRESHOLD",
+      "authority": "FINAL_HUMAN_AUTHORITY"
+    }
+  }
+}
