@@ -315,3 +315,16 @@ This converts the prior external execution uncertainty into a confirmed external
 **REQUIRED DIFFERENCE —** restore GitHub Actions execution authority by resolving the billing/payment lock. After unlock, rerun the existing GitHub-hosted A09 workflows first. OSi self-hosted runner remains a bounded fallback only if hosted execution remains unavailable after billing recovery.
 
 **NEXT ACTION — GITHUB BILLING UNLOCK → RERUN A09 HOSTED WORKFLOWS.**
+
+
+## V07-A09 BILLING ROOT CAUSE — PAYMENT AUTHORIZATION FAILURE — 2026-09-23
+
+**STATE — HOLD / EXTERNAL HUMAN ACTION REQUIRED.**
+
+Fresh human-visible GitHub Billing evidence reports: `Invalid payment method - authorization hold failed.`
+
+This confirms the repository-wide Actions billing lock is caused by a failed payment-method authorization attempt. No product-code defect is evidenced by this billing state.
+
+Sensitive payment, address and tax details are intentionally excluded from canonical engineering records.
+
+**NEXT ACTION — update or re-authorize the GitHub payment method → confirm Actions unlock → rerun the existing A09 GitHub-hosted workflows.**
