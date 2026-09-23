@@ -121,9 +121,10 @@ def canonical_gate_state() -> tuple[list[str], str]:
     session = load_json(SESSION_STATE)
     v07 = session.get("currentV07") or {}
     passed = list(v07.get("passedGates") or [])
+    observed_a09 = session.get("observedV07A09LocalFallback") or {}
     a09_state = str(
-        v07.get("a09State")
-        or (session.get("observedV07A09LocalFallback") or {}).get("canonicalA09State")
+        observed_a09.get("canonicalA09State")
+        or v07.get("a09State")
         or "HOLD"
     )
     return passed, a09_state
