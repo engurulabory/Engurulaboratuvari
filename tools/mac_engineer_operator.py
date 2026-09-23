@@ -37,6 +37,7 @@ CONTROL = ROOT / "tools" / "mac_engineer_control.py"
 A10_ACCEPTANCE = ROOT / "governance" / "mac-engineer" / "V07_A10_DONECHECK_V12_ACCEPTANCE.command"
 LOCAL_FINISHER_REHEARSAL = ROOT / "governance" / "mac-engineer" / "V07_LOCAL_FINISHER_REHEARSAL.command"
 MAC_NATIVE_AUTHORITY_FIELD_PROOF = ROOT / "governance" / "mac-engineer" / "V07_MAC_NATIVE_AUTHORITY_FIELD_PROOF.command"
+MAC_NATIVE_RESTART_RECOVERY_PROOF = ROOT / "governance" / "mac-engineer" / "V07_MAC_NATIVE_RESTART_RECOVERY_PROOF.command"
 
 TERMINAL_STATES = {"COMPLETE", "HOLD", "FAILED", "BLOCKED"}
 RECOVERABLE_STATES = {"RUNNING", "CHECKPOINTED", "RECOVERY_REQUIRED", "VERIFYING"}
@@ -802,6 +803,35 @@ def run_mac_native_authority_field_proof() -> dict[str, Any]:
     }
 
 
+def run_mac_native_restart_recovery_proof() -> dict[str, Any]:
+    if not MAC_NATIVE_RESTART_RECOVERY_PROOF.is_file():
+        return {
+            "state": "HOLD",
+            "reason": "MAC_NATIVE_RESTART_RECOVERY_PROOF_COMMAND_MISSING",
+            "evidence": None,
+        }
+    result = run(
+        ["zsh", str(MAC_NATIVE_RESTART_RECOVERY_PROOF)],
+        cwd=ROOT,
+        timeout=7200,
+        env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+    )
+    fields: dict[str, str] = {}
+    for line in result.get("stdout", "").splitlines():
+        if "=" in line:
+            key, value = line.split("=", 1)
+            if key and value:
+                fields[key.strip()] = value.strip()
+    return {
+        "state": "PASS" if result["code"] == 0 else "HOLD",
+        "code": result["code"],
+        "fields": fields,
+        "evidence": fields.get("EVIDENCE"),
+        "stdout_tail": result.get("stdout", "")[-6000:],
+        "stderr_tail": result.get("stderr", "")[-6000:],
+    }
+
+
 def command_continue() -> int:
     boot = canonical_boot()
     truth = current_truth()
@@ -816,6 +846,47 @@ def command_continue() -> int:
         hold = "CANONICAL_BOOT"
         next_action = "enguru-mac doctor"
         completed = ["CANONICAL_BOOT_HOLD", "GITVAULT_SYNC"]
+    elif local_action == "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF":
+        completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
+        restart_proof = run_mac_native_restart_recovery_proof()
+        if restart_proof.get("state") != "PASS":
+            payload = write_receipt(
+                command="continue",
+                state="HOLD",
+                completed=completed,
+                evidence=[
+                    item for item in [
+                        str(SESSION_STATE),
+                        str(restart_proof.get("evidence") or ""),
+                    ] if item
+                ],
+                hold="MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF",
+                next_action="enguru-mac doctor",
+                details={
+                    "truth": truth,
+                    "boot": boot,
+                    "runner": runner,
+                    "mirrors": mirrors,
+                    "restart_proof": restart_proof,
+                },
+            )
+            print_receipt(payload)
+            return 2
+
+        completed.extend([
+            "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF_PASS",
+            "PROCESS_RESTART_PASS",
+            "TASK_IDENTITY_CONTINUITY_PASS",
+            "CHECKPOINT_RESUME_PASS",
+            "EXACTLY_ONCE_EFFECT_PASS",
+            "FINAL_STATE_COMPLETE",
+        ])
+        state = "HOLD"
+        hold = "MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF_REQUIRED"
+        next_action = (
+            (restart_proof.get("fields") or {}).get("NEXT_ACTION")
+            or "MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF"
+        )
     elif local_action == "MAC_NATIVE_AUTHORITY_MIGRATION_FIELD_PROOF":
         completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
         migration_proof = run_mac_native_authority_field_proof()
@@ -996,6 +1067,8 @@ def command_continue() -> int:
             for item in [
                 str(SESSION_STATE),
                 str((fallback or {}).get("evidence") or ""),
+                str((locals().get("migration_proof") or {}).get("evidence") or ""),
+                str((locals().get("restart_proof") or {}).get("evidence") or ""),
             ]
             if item
         ],
@@ -1011,6 +1084,7 @@ def command_continue() -> int:
             "a10": locals().get("a10"),
             "local_finisher": locals().get("local_finisher"),
             "migration_proof": locals().get("migration_proof"),
+            "restart_proof": locals().get("restart_proof"),
             "offline_manifest": offline_manifest(),
         },
     )
