@@ -18,6 +18,7 @@ from typing import Any
 
 HOME = Path.home()
 FABRIC_STATE = HOME / "Enguru" / "Runtime" / "MacEngineer" / "state" / "repository-fabric.json"
+ACCEPTED_CONTROL_STATE = HOME / "Enguru" / "Runtime" / "MacEngineer" / "state" / "local-accepted-control-plane-candidate.json"
 MIRROR_ROOT = HOME / "Enguru" / "GitVault" / "RepositoryFabric" / "engurulabory"
 EVIDENCE_ROOT = HOME / "Enguru" / "Evidence" / "MacEngineer" / "v0.7" / "mac-native-authority-migration"
 TASK_ID = "ENGURU-V07-MAC-NATIVE-MIGRATION-001"
@@ -97,6 +98,36 @@ def load_fabric() -> dict[str, Any]:
     return data
 
 
+def load_accepted_control_candidate() -> dict[str, Any]:
+    if not ACCEPTED_CONTROL_STATE.is_file():
+        raise RuntimeError("LOCAL_ACCEPTED_CONTROL_CANDIDATE_REQUIRED")
+    data = json.loads(ACCEPTED_CONTROL_STATE.read_text(encoding="utf-8"))
+    acceptance = data.get("acceptance") or {}
+    required = {
+        "targetedTests": "PASS",
+        "fullRegression": "PASS",
+        "diffCheck": "PASS",
+        "remoteBranchParity": "PASS",
+        "mainAncestor": "PASS",
+        "canonicalContext": "PASS",
+        "sessionStart": "PASS",
+    }
+    if data.get("state") != "PASS":
+        raise RuntimeError("LOCAL_ACCEPTED_CONTROL_CANDIDATE_PASS_REQUIRED")
+    if data.get("authority") != "PENDING_RECONCILIATION":
+        raise RuntimeError("LOCAL_ACCEPTED_CONTROL_AUTHORITY_REQUIRED")
+    if data.get("canonicalRemoteAuthority") != "GITHUB_REMOTE_MAIN":
+        raise RuntimeError("LOCAL_ACCEPTED_CONTROL_REMOTE_AUTHORITY_REQUIRED")
+    if data.get("secondCanonicalTruth") is not False:
+        raise RuntimeError("LOCAL_ACCEPTED_CONTROL_SECOND_TRUTH_FALSE_REQUIRED")
+    if not data.get("head") or not data.get("originMain") or not data.get("branch"):
+        raise RuntimeError("LOCAL_ACCEPTED_CONTROL_IDENTITY_REQUIRED")
+    for key, expected in required.items():
+        if acceptance.get(key) != expected:
+            raise RuntimeError(f"LOCAL_ACCEPTED_CONTROL_{key.upper()}_{expected}_REQUIRED")
+    return data
+
+
 def repo_record(fabric: dict[str, Any], full_name: str) -> dict[str, Any]:
     for item in fabric.get("mirrors") or []:
         if item.get("repository") == full_name:
@@ -104,17 +135,29 @@ def repo_record(fabric: dict[str, Any], full_name: str) -> dict[str, Any]:
     raise RuntimeError(f"FABRIC_REPOSITORY_REQUIRED:{full_name}")
 
 
-def clone_from_mirror(mirror: Path, target: Path, expected_main: str) -> None:
+def mirror_has_commit(mirror: Path, sha: str) -> bool:
+    result = run(
+        ["git", "--git-dir", str(mirror), "cat-file", "-e", f"{sha}^{commit}"],
+        timeout=60,
+    )
+    return result["code"] == 0
+
+
+def clone_from_mirror(mirror: Path, target: Path, expected_sha: str) -> None:
     if not mirror.is_dir():
         raise RuntimeError(f"LOCAL_MIRROR_REQUIRED:{mirror}")
+    if not mirror_has_commit(mirror, expected_sha):
+        raise RuntimeError(f"LOCAL_MIRROR_EXACT_SHA_REQUIRED:{mirror.name}:{expected_sha}")
     result = run(
-        ["git", "clone", "--no-local", "--branch", "main", str(mirror), str(target)],
+        ["git", "clone", "--no-local", str(mirror), str(target)],
         timeout=1200,
     )
     require(result, "LOCAL_MIRROR_CLONE")
+    checkout = run(["git", "checkout", "--detach", expected_sha], cwd=target, timeout=120)
+    require(checkout, "LOCAL_MIRROR_EXACT_SHA_CHECKOUT")
     head = git(target, "rev-parse", "HEAD")
-    if head != expected_main:
-        raise RuntimeError(f"CLONE_EXACT_MAIN_REQUIRED:{target.name}:{head}:{expected_main}")
+    if head != expected_sha:
+        raise RuntimeError(f"CLONE_EXACT_SHA_REQUIRED:{target.name}:{head}:{expected_sha}")
 
 
 def write_manifest(
@@ -248,6 +291,7 @@ def clean(repo_path: Path) -> bool:
 
 def perform() -> dict[str, Any]:
     fabric = load_fabric()
+    accepted_control = load_accepted_control_candidate()
     run_dir = EVIDENCE_ROOT / stamp()
     workspace = run_dir / "workspace"
     workspace.mkdir(parents=True, exist_ok=False)
@@ -259,15 +303,20 @@ def perform() -> dict[str, Any]:
 
     control_mirror = MIRROR_ROOT / "Engurulaboratuvari.git"
     product_mirror = MIRROR_ROOT / "enguru-mac-engineer.git"
-    control_base = mirror_main(control_mirror)
+    control_mirror_main = mirror_main(control_mirror)
     product_base = mirror_main(product_mirror)
+    control_base = str(accepted_control["head"])
 
-    if control_base != control_record.get("observedMain"):
-        raise RuntimeError("CONTROL_MIRROR_FABRIC_PARITY_REQUIRED")
+    if control_mirror_main != control_record.get("observedMain"):
+        raise RuntimeError("CONTROL_MIRROR_FABRIC_MAIN_PARITY_REQUIRED")
     if product_base != product_record.get("observedMain"):
         raise RuntimeError("PRODUCT_MIRROR_FABRIC_PARITY_REQUIRED")
+    if str(accepted_control["originMain"]) != control_mirror_main:
+        raise RuntimeError("ACCEPTED_CONTROL_ORIGIN_MAIN_FABRIC_PARITY_REQUIRED")
+    if not mirror_has_commit(control_mirror, control_base):
+        raise RuntimeError("ACCEPTED_CONTROL_HEAD_NOT_PRESENT_IN_LOCAL_MIRROR")
 
-    control_mirror_before = control_base
+    control_mirror_before = control_mirror_main
     product_mirror_before = product_base
 
     control = workspace / "Engurulaboratuvari"
@@ -326,6 +375,10 @@ def perform() -> dict[str, Any]:
         "repositories": {
             control_name: {
                 "baseSha": control_base,
+                "acceptedCandidateBranch": accepted_control["branch"],
+                "acceptedCandidateOriginMain": accepted_control["originMain"],
+                "acceptedCandidateEvidence": accepted_control.get("evidence"),
+                "sourceAuthority": "LOCAL_ACCEPTED_CANDIDATE_PENDING_RECONCILIATION",
                 "localProofCommit": control_commit,
                 "patch": str(control_patch),
                 "patchSha256": sha256(control_patch),
