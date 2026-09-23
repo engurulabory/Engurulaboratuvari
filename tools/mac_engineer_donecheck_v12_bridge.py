@@ -26,6 +26,7 @@ EVIDENCE_ROOT = HOME / "Enguru" / "Evidence" / "MacEngineer" / "v0.7" / "a10-don
 DONECHECK_SHA = "8b90a8fc93453dd8a84994195d28d14b15e261cb"
 DONECHECK_VERSION = "1.2.0"
 PRODUCER_ID = "enguru.mac-engineer"
+VITEST_REPORTER = "minimal"
 
 GATE_EVIDENCE = {
     "V07-A01": ROOT / "evidence" / "MAC_ENGINEER_V07_A01_A02_ENGINEERING_2026-09-22.md",
@@ -380,7 +381,7 @@ def execute_verification(input_payload: dict[str, Any], output_dir: Path) -> dic
         env["ENGURU_A10_RESULT"] = str(result_path)
         vitest = DONECHECK_RUNTIME / "node_modules" / ".bin" / "vitest"
         result = run(
-            [str(vitest), "run", str(test_path.relative_to(DONECHECK_RUNTIME)), "--reporter=basic"],
+            [str(vitest), "run", str(test_path.relative_to(DONECHECK_RUNTIME)), f"--reporter={VITEST_REPORTER}"],
             cwd=DONECHECK_RUNTIME,
             timeout=1800,
             env=env,
