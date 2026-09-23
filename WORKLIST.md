@@ -1232,8 +1232,8 @@ Canonical target: **ENGÜRÜ Mac Engineer™ v0.7 LONG-RUN RELIABILITY VERIFIED 
 8. [x] **Mac-Native Authority Migration Field Proof** — complete one multi-repository engineering task locally end-to-end with exact repo identity, bounded mutation, regression, Evidence and clean reconciliation.
 9. [x] **Restart / Recovery Continuity Proof** — interrupt and resume the same governed task; preserve task/checkpoint identity and exactly-once effects.
 10. [x] **Offline / GitVault Reconciliation Proof** — prove local continuity while GitHub execution is unavailable; preserve remote identity and prevent second truth.
-11. [ ] **DoneCheck™ v1.2 Migration Verification — ACTIVE** — consume gates 8–10 and verify local authority migration Evidence.
-12. [ ] **Final Verify + Consolidated Mac Long-Run Commissioning** — ≥8h Mac campaign, ≥3 controlled interruptions, full regression, resource/RSS, Evidence bundle, technical HOLD target = 0 except explicitly deferred external GitHub billing gate.
+11. [x] **DoneCheck™ v1.2 Migration Verification** — consume gates 8–10 and verify local authority migration Evidence.
+12. [ ] **Final Verify + Consolidated Mac Long-Run Commissioning — ACTIVE** — ≥8h Mac campaign, ≥3 controlled interruptions, full regression, resource/RSS, Evidence bundle, technical HOLD target = 0 except explicitly deferred external GitHub billing gate.
 13. [ ] **Human Threshold™ + Authority Transition** — human accepts Mac-native primary engineering authority; canonical status/worklist reconciliation → **v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED**.
 
 External GitHub Actions A09:
@@ -1267,9 +1267,9 @@ Final operating chain:
 
 `GitHub truth → Mac-local build/repair/recovery → Evidence → DoneCheck™ → verified sync → Human Threshold™ → Verified Finish`
 
-### Active next action — Gate 11
+### Active next action — Gate 12
 
-`DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION`
+`V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY`
 
 Use the already-proven Repository Fabric + OSi operator + GitVault + Evidence + DoneCheck™ layers. GitHub remains remote identity/publication/recovery surface during migration; local Mac becomes primary execution authority only after gates 8–13 and Human Threshold PASS.
 
@@ -1319,3 +1319,20 @@ Verified chain:
 `OFFLINE_LOCAL_COMMIT_QUEUE_PASS → DURABLE_PATCH_PASS → DURABLE_GIT_BUNDLE_PASS → RECONCILIATION_APPLY_CHECK_PASS → GITVAULT_REFS_UNCHANGED_PASS → SECOND_CANONICAL_TRUTH_FALSE`
 
 **Closure state: 10/13 PASS. Active gate: 11 — DoneCheck™ v1.2 Migration Verification.**
+
+
+### Gate 11 field result — VERIFIED PASS
+
+Real-Mac DoneCheck™ Evidence:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/gate11-donecheck-local-authority/20260923T125159Z/evidence.json`
+
+Operator receipt:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T125200Z-continue.json`
+
+Verified chain:
+
+`GATE8_DONECHECK_PASS → GATE9_DONECHECK_PASS → GATE10_DONECHECK_PASS → LOCAL_AUTHORITY_MIGRATION_MACHINE_VERIFICATION_PASS → EXTERNAL_A09_DEFERRED_PRESERVED`
+
+**Closure state: 11/13 PASS. Active gate: 12 — Final Verify + Consolidated Mac Long-Run Commissioning.**
