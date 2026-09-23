@@ -320,6 +320,62 @@ class OperatorSurfaceTests(unittest.TestCase):
         a10.assert_called_once_with()
         a09_rehearsal.assert_not_called()
 
+    def test_continue_runs_final_consolidated_campaign(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            evidence = Path(tmp)
+            runtime_receipts = evidence / "runtime"
+            campaign = mock.Mock(
+                return_value={
+                    "state": "PASS",
+                    "evidence": "/tmp/final-campaign/evidence.json",
+                    "fields": {
+                        "NEXT_ACTION": "V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION"
+                    },
+                }
+            )
+            truth = {
+                "next_action": "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY",
+                "local_continuity_next_action": "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY",
+                "local_fallback": {},
+            }
+            with (
+                mock.patch.object(operator, "EVIDENCE", evidence),
+                mock.patch.object(operator, "RUNTIME_RECEIPTS", runtime_receipts),
+                mock.patch.object(operator, "canonical_boot", return_value={"state": "PASS"}),
+                mock.patch.object(operator, "current_truth", return_value=truth),
+                mock.patch.object(operator, "sync_mirrors", return_value={}),
+                mock.patch.object(operator, "runner_status", return_value={"state": "UNCOMMISSIONED"}),
+                mock.patch.object(
+                    operator,
+                    "run_final_consolidated_mac_campaign",
+                    campaign,
+                ),
+                mock.patch.object(operator, "offline_manifest", return_value={}),
+            ):
+                with contextlib.redirect_stdout(io.StringIO()):
+                    code = operator.command_continue()
+
+            receipt = json.loads(
+                (evidence / "latest-receipt.json").read_text(encoding="utf-8")
+            )
+
+        self.assertEqual(code, 2)
+        self.assertEqual(
+            receipt["hold"],
+            "V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION_REQUIRED",
+        )
+        self.assertIn(
+            "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_PASS",
+            receipt["completed"],
+        )
+        self.assertIn("POST_CAMPAIGN_DONECHECK_V12_PASS", receipt["completed"])
+        self.assertIn("TECHNICAL_HOLD_ZERO", receipt["completed"])
+        self.assertEqual(
+            receipt["next_action"],
+            "V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION",
+        )
+        campaign.assert_called_once_with()
+
     def test_continue_runs_donecheck_local_authority_verification(self):
         with tempfile.TemporaryDirectory() as tmp:
             evidence = Path(tmp)
