@@ -39,6 +39,7 @@ LOCAL_FINISHER_REHEARSAL = ROOT / "governance" / "mac-engineer" / "V07_LOCAL_FIN
 MAC_NATIVE_AUTHORITY_FIELD_PROOF = ROOT / "governance" / "mac-engineer" / "V07_MAC_NATIVE_AUTHORITY_FIELD_PROOF.command"
 MAC_NATIVE_RESTART_RECOVERY_PROOF = ROOT / "governance" / "mac-engineer" / "V07_MAC_NATIVE_RESTART_RECOVERY_PROOF.command"
 MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF = ROOT / "governance" / "mac-engineer" / "V07_MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF.command"
+DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION = ROOT / "governance" / "mac-engineer" / "V07_DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION.command"
 
 TERMINAL_STATES = {"COMPLETE", "HOLD", "FAILED", "BLOCKED"}
 RECOVERABLE_STATES = {"RUNNING", "CHECKPOINTED", "RECOVERY_REQUIRED", "VERIFYING"}
@@ -862,6 +863,35 @@ def run_mac_native_offline_gitvault_reconciliation_proof() -> dict[str, Any]:
     }
 
 
+def run_donecheck_v12_local_authority_verification() -> dict[str, Any]:
+    if not DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION.is_file():
+        return {
+            "state": "HOLD",
+            "reason": "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION_COMMAND_MISSING",
+            "evidence": None,
+        }
+    result = run(
+        ["zsh", str(DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION)],
+        cwd=ROOT,
+        timeout=7200,
+        env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+    )
+    fields: dict[str, str] = {}
+    for line in result.get("stdout", "").splitlines():
+        if "=" in line:
+            key, value = line.split("=", 1)
+            if key and value:
+                fields[key.strip()] = value.strip()
+    return {
+        "state": "PASS" if result["code"] == 0 else "HOLD",
+        "code": result["code"],
+        "fields": fields,
+        "evidence": fields.get("EVIDENCE"),
+        "stdout_tail": result.get("stdout", "")[-6000:],
+        "stderr_tail": result.get("stderr", "")[-6000:],
+    }
+
+
 def command_continue() -> int:
     boot = canonical_boot()
     truth = current_truth()
@@ -876,6 +906,47 @@ def command_continue() -> int:
         hold = "CANONICAL_BOOT"
         next_action = "enguru-mac doctor"
         completed = ["CANONICAL_BOOT_HOLD", "GITVAULT_SYNC"]
+    elif local_action == "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION":
+        completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
+        local_authority_verification = run_donecheck_v12_local_authority_verification()
+        if local_authority_verification.get("state") != "PASS":
+            payload = write_receipt(
+                command="continue",
+                state="HOLD",
+                completed=completed,
+                evidence=[
+                    item for item in [
+                        str(SESSION_STATE),
+                        str(local_authority_verification.get("evidence") or ""),
+                    ] if item
+                ],
+                hold="DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION",
+                next_action="enguru-mac doctor",
+                details={
+                    "truth": truth,
+                    "boot": boot,
+                    "runner": runner,
+                    "mirrors": mirrors,
+                    "local_authority_verification": local_authority_verification,
+                },
+            )
+            print_receipt(payload)
+            return 2
+
+        completed.extend([
+            "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION_PASS",
+            "GATE8_DONECHECK_PASS",
+            "GATE9_DONECHECK_PASS",
+            "GATE10_DONECHECK_PASS",
+            "LOCAL_AUTHORITY_MIGRATION_MACHINE_VERIFICATION_PASS",
+            "EXTERNAL_A09_DEFERRED_PRESERVED",
+        ])
+        state = "HOLD"
+        hold = "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY_REQUIRED"
+        next_action = (
+            (local_authority_verification.get("fields") or {}).get("NEXT_ACTION")
+            or "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY"
+        )
     elif local_action == "MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF":
         completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
         offline_proof = run_mac_native_offline_gitvault_reconciliation_proof()
@@ -1142,6 +1213,7 @@ def command_continue() -> int:
                 str((locals().get("migration_proof") or {}).get("evidence") or ""),
                 str((locals().get("restart_proof") or {}).get("evidence") or ""),
                 str((locals().get("offline_proof") or {}).get("evidence") or ""),
+                str((locals().get("local_authority_verification") or {}).get("evidence") or ""),
             ]
             if item
         ],
@@ -1159,6 +1231,7 @@ def command_continue() -> int:
             "migration_proof": locals().get("migration_proof"),
             "restart_proof": locals().get("restart_proof"),
             "offline_proof": locals().get("offline_proof"),
+            "local_authority_verification": locals().get("local_authority_verification"),
             "offline_manifest": offline_manifest(),
         },
     )
