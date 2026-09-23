@@ -818,8 +818,8 @@
       "evidenceSpool": "PASS",
       "gitVault": "PASS"
     },
-    "localContinuityNextAction": "V07_LOCAL_FINISHER_REHEARSAL",
-    "localContinuityState": "ACTIVE_PRE_A11_REHEARSAL",
+    "localContinuityNextAction": "",
+    "localContinuityState": "WAITING_A09_EXTERNAL_CONFIRMATION",
     "controlPlaneLocalContinuity": {
       "state": "PENDING_RECONCILIATION",
       "branch": "feat/mac-engineer-osi-operator-surface",
@@ -830,8 +830,8 @@
       "externalMergeGate": "HOLD_GITHUB_ACTIONS_EXECUTION",
       "acceptanceStatePath": "~/Enguru/Runtime/MacEngineer/state/local-accepted-control-plane-candidate.json",
       "acceptanceEvidenceRoot": "~/Enguru/Evidence/MacEngineer/v0.7/canonical-boot",
-      "currentTechnicalTarget": "V07_LOCAL_FINISHER_REHEARSAL",
-      "nextAfterPass": "V07_A09_EXTERNAL_CONFIRMATION_OR_A11_WHEN_ELIGIBLE",
+      "currentTechnicalTarget": "V07_A09_EXTERNAL_CONFIRMATION",
+      "nextAfterPass": "V07_A11_CONSOLIDATED_MAC_CAMPAIGN_WHEN_A09_PASS",
       "freshExternalObservation": {
         "observedAt": "2026-09-23",
         "prNumber": 176,
@@ -852,11 +852,18 @@
       "A09_DONECHECK_INCONCLUSIVE_PRESERVED"
     ],
     "localFinisherRehearsal": {
-      "state": "PREPARED",
+      "state": "PASS",
       "authority": "LOCAL_REHEARSAL_ONLY_NO_A09_NO_A11_NO_VERSION_LOCK",
       "command": "governance/mac-engineer/V07_LOCAL_FINISHER_REHEARSAL.command",
       "tool": "tools/mac_engineer_local_finisher_rehearsal.py",
-      "nextAfterPass": "V07_A09_EXTERNAL_CONFIRMATION_OR_A11_WHEN_ELIGIBLE"
+      "nextAfterPass": "V07_A09_EXTERNAL_CONFIRMATION_OR_A11_WHEN_ELIGIBLE",
+      "exactControlPlaneHead": "50fa2800c8caf503a2f0bc26ad962de96f716eab",
+      "operatorReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T113716Z-continue.json",
+      "completed": [
+        "LOCAL_FINISHER_REHEARSAL_PASS",
+        "A10_DONECHECK_V1_2_INTEGRATION_PASS_PRESERVED",
+        "A09_DONECHECK_INCONCLUSIVE_PRESERVED"
+      ]
     }
   },
   "observedV07A01A02": {
