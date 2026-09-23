@@ -1135,6 +1135,16 @@
     "primaryEngineeringExecutionSurface": "Mac",
     "githubRole": "REMOTE_SOURCE_SYNC_PUBLICATION_EXTERNAL_EVIDENCE",
     "contract": "governance/mac-engineer/MAC_NATIVE_ENGINEERING_AUTHORITY_V1.md",
-    "principle": "GITHUB_REMAINS_IN_SYSTEM_NOT_MANDATORY_FOR_ENGINEERING_EXECUTION"
+    "principle": "GITHUB_REMAINS_IN_SYSTEM_NOT_MANDATORY_FOR_ENGINEERING_EXECUTION",
+    "canonicalRoleDefinition": "MOTOR_BUILDER_DOCTOR_VERIFICATION_AUTHORITY",
+    "canonicalTechnicalTitle": "ENGÜRÜ Mac-Native Engineering Authority™ — Mac-local Build, Repair, Recovery & Verification Authority.",
+    "userFacingProduct": "ENGÜRÜ Mac Engineer™",
+    "dailyInteractionTarget": "Mac Engineer devam.",
+    "roles": [
+      "BUILD",
+      "DIAGNOSE_REPAIR_RECOVER",
+      "VERIFY"
+    ],
+    "operatingPattern": "GITHUB_TRUTH_TO_MAC_EXECUTION_TO_EVIDENCE_DONECHECK_TO_SYNC"
   }
 }
