@@ -759,12 +759,12 @@
     "evidence": "evidence/MAC_ENGINEER_V07_A07_A08_ENGINEERING_2026-09-22.md",
     "passedGatesAuthority": "GITHUB_FIRST_ACCEPTANCE",
     "milestoneMacAcceptance": "PENDING_CONSOLIDATED_COMMISSIONING",
-    "a09State": "HOLD_GITHUB_PRIVATE_REPO_HOSTED_ACTIONS_EXECUTION_GATE",
+    "a09State": "HOLD_GITHUB_ACTIONS_BILLING_LOCK_CONFIRMED",
     "a09CampaignPassCount": 0,
     "a09ProductPrNumber": 13,
     "a09LatestCandidateHead": "63dac60d39c93f3936658e8a5c8c80fb8470dfd3",
     "a09Evidence": "evidence/MAC_ENGINEER_V07_A09_ACTIONS_HOLD_2026-09-22.md",
-    "humanThreshold": "READ_ONLY_GITHUB_ACTIONS_BILLING_POLICY_INSPECTION_REQUIRED",
+    "humanThreshold": "GITHUB_BILLING_UNLOCK_REQUIRED",
     "localFallback": {
       "state": "LOCAL_REHEARSAL_PASS_EXTERNAL_CONFIRMATION_PENDING",
       "contract": "governance/mac-engineer/V07_ASTRA_LOCAL_FALLBACK_V1.md",
@@ -819,7 +819,7 @@
       "gitVault": "PASS"
     },
     "localContinuityNextAction": "",
-    "localContinuityState": "WAITING_A09_EXTERNAL_CONFIRMATION",
+    "localContinuityState": "WAITING_GITHUB_BILLING_UNLOCK",
     "controlPlaneLocalContinuity": {
       "state": "PENDING_RECONCILIATION",
       "branch": "feat/mac-engineer-osi-operator-surface",
@@ -830,8 +830,8 @@
       "externalMergeGate": "HOLD_GITHUB_ACTIONS_EXECUTION",
       "acceptanceStatePath": "~/Enguru/Runtime/MacEngineer/state/local-accepted-control-plane-candidate.json",
       "acceptanceEvidenceRoot": "~/Enguru/Evidence/MacEngineer/v0.7/canonical-boot",
-      "currentTechnicalTarget": "V07_A09_EXTERNAL_CONFIRMATION",
-      "nextAfterPass": "V07_A11_CONSOLIDATED_MAC_CAMPAIGN_WHEN_A09_PASS",
+      "currentTechnicalTarget": "V07_A09_GITHUB_BILLING_UNLOCK",
+      "nextAfterPass": "RERUN_A09_HOSTED_GITHUB_WORKFLOWS",
       "freshExternalObservation": {
         "observedAt": "2026-09-23",
         "prNumber": 176,
@@ -887,7 +887,21 @@
         12,
         13
       ],
-      "finalAuthority": "HUMAN_THRESHOLD"
+      "finalAuthority": "HUMAN_THRESHOLD",
+      "gate8": {
+        "state": "HOLD_EXTERNAL_HUMAN_ACTION",
+        "blocker": "GITHUB_ACTIONS_BILLING_LOCK",
+        "nextAction": "UPDATE_GITHUB_PAYMENT_INFORMATION_AND_UNLOCK_ACTIONS",
+        "fallbackAfterUnlockFailure": "COMMISSION_OSI_SELF_HOSTED_RUNNER"
+      }
+    },
+    "a09RootCause": {
+      "state": "CONFIRMED",
+      "observedAt": "2026-09-23",
+      "source": "HUMAN_VISIBLE_GITHUB_REPOSITORY_ACTIONS_UI",
+      "message": "GitHub Actions workflows can't be executed on this repository. Your account's billing is currently locked. Please update your payment information.",
+      "scope": "EXTERNAL_GITHUB_ACTIONS_EXECUTION_AUTHORITY",
+      "productCodeDefectEvidenced": false
     }
   },
   "observedV07A01A02": {
