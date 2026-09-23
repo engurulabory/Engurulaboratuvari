@@ -80,3 +80,56 @@ External GitHub Actions billing availability remains a separate external evidenc
 **PASS — ARCHITECTURE DEFINITION LOCKED**
 
 **NEXT ACTION — continue Gate 8 Mac-Native Authority Migration Field Proof from fresh terminal Evidence.**
+
+
+## CANONICAL ROLE DEFINITION
+
+**ENGÜRÜ Mac-Native Engineering Authority™ = Mac’te local çalışan motor inşaat ustası + motor doktoru + doğrulama otoritesi.**
+
+### İnşaat ustası
+
+Motoru keşfeder → mimarisini okur → gerekli farkı üretir → kodlar → build eder → paketler → çalıştırır.
+
+### Doktor
+
+Sağlık kontrolü yapar → HOLD/failure teşhis eder → root cause bulur → minimal onarım yapar → regression çalıştırır → recovery yapar.
+
+### Doğrulama otoritesi
+
+Evidence toplar → DoneCheck™ uygular → gerçekten çalıştığını doğrular → Human Threshold™ için sonucu hazırlar.
+
+### Canonical architecture
+
+```text
+GitHub
+Bilgi · Kaynak · Senkronizasyon · Yayın · Dış Kanıt
+                    ↓ ↑
+        Mac'teki yerel çalışma alanı
+                    ↓
+ENGÜRÜ Mac-Native Engineering Authority™
+   İnşa · Teşhis · Onarım · Doğrulama
+                    ↓
+          ENGÜRÜ Mac Engineer™
+            kullanıcı ürünü
+                    ↓
+       OSi Local Execution Runtime
+                    ↓
+                   Mac
+```
+
+### Product / authority boundary
+
+- **ENGÜRÜ Mac Engineer™ = ürün.**
+- **ENGÜRÜ Mac-Native Engineering Authority™ = ürünü ve ileride diğer ENGÜRÜ motorlarını inşa eden, sağlıklı tutan, onaran ve doğrulayan yerel mühendislik otoritesi.**
+
+Canonical operating pattern:
+
+`GitHub’dan mevcut hakikati oku → Mac’te çalış → üret/onar/test et → Evidence → DoneCheck™ → doğrulanmış sonucu senkronize et.`
+
+Technical canonical title:
+
+> **ENGÜRÜ Mac-Native Engineering Authority™ — Mac-local Build, Repair, Recovery & Verification Authority.**
+
+Daily user interaction target remains:
+
+> **Mac Engineer devam.**
