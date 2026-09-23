@@ -744,13 +744,13 @@
     "a09Evidence": "evidence/MAC_ENGINEER_V07_A09_ACTIONS_HOLD_2026-09-22.md",
     "humanThreshold": "READ_ONLY_GITHUB_ACTIONS_BILLING_POLICY_INSPECTION_REQUIRED",
     "localFallback": {
-      "state": "CURRENT_CANDIDATE_REHEARSAL_REQUIRED",
+      "state": "LOCAL_REHEARSAL_PASS_EXTERNAL_CONFIRMATION_PENDING",
       "contract": "governance/mac-engineer/V07_ASTRA_LOCAL_FALLBACK_V1.md",
       "command": "governance/mac-engineer/V07_ASTRA_LOCAL_FALLBACK.command",
       "prompt": "governance/mac-engineer/V07_ASTRA_LOCAL_FALLBACK_PROMPT.md",
-      "evidence": "evidence/MAC_ENGINEER_V07_A09_ASTRA_LOCAL_REHEARSAL_2026-09-23.md",
+      "evidence": "evidence/MAC_ENGINEER_OSI_OPERATOR_LOCAL_ACCEPTANCE_2026-09-23.md",
       "mainSha": "5432b9b135499cea18273c0e003877b864af92c6",
-      "candidateSha": "d545a6d9d5d9823da5878323022735ad7f47a80e",
+      "candidateSha": "63dac60d39c93f3936658e8a5c8c80fb8470dfd3",
       "runtimeCompile": "PASS",
       "targetedConsecutivePasses": "5_OF_5",
       "fullRuntimeRegression": "PASS",
@@ -769,7 +769,7 @@
       ".github/workflows/v07-reliability-campaign.yml"
     ],
     "osiOperator": {
-      "state": "PREPARED_LOCAL_ACCEPTANCE_PENDING",
+      "state": "LOCAL_ACCEPTANCE_PASS_EXTERNAL_GITHUB_CONFIRMATION_PENDING",
       "contract": "governance/mac-engineer/OSI_LOCAL_EXECUTION_RUNTIME_V1.md",
       "actionRegistry": "governance/mac-engineer/OPERATOR_ACTION_REGISTRY_V1.json",
       "installer": "governance/mac-engineer/INSTALL_OSI_OPERATOR.command",
@@ -784,7 +784,17 @@
         "recover",
         "doctor"
       ],
-      "githubActionsDependency": "OPTIONAL_FOR_LOCAL_ENGINEERING_REQUIRED_FOR_CANONICAL_EXTERNAL_CHECKS"
+      "githubActionsDependency": "OPTIONAL_FOR_LOCAL_ENGINEERING_REQUIRED_FOR_CANONICAL_EXTERNAL_CHECKS",
+      "acceptedCodeSha": "0558ba492c352179e1d79e40dc91f7780c43df63",
+      "acceptanceEvidence": "evidence/MAC_ENGINEER_OSI_OPERATOR_LOCAL_ACCEPTANCE_2026-09-23.md",
+      "localEvidencePath": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/osi-operator-acceptance-20260923T082037Z/evidence.json",
+      "operatorTargetedTests": "PASS",
+      "controlPlaneRegression": "363_OF_363_PASS",
+      "install": "PASS",
+      "doctor": "PASS",
+      "status": "PASS",
+      "evidenceSpool": "PASS",
+      "gitVault": "PASS"
     }
   },
   "observedV07A01A02": {
@@ -924,11 +934,11 @@
     "evidence": "evidence/MAC_ENGINEER_V07_A09_ACTIONS_HOLD_2026-09-22.md"
   },
   "observedV07A09LocalFallback": {
-    "state": "PREVIOUS_CANDIDATE_PASS_CURRENT_CANDIDATE_REHEARSAL_REQUIRED",
+    "state": "LOCAL_REHEARSAL_PASS_EXTERNAL_CONFIRMATION_PENDING",
     "observedAt": "2026-09-23",
     "mode": "ASTRA_MAC_EXACT_SHA_DISPOSABLE_WORKTREE",
     "mainSha": "5432b9b135499cea18273c0e003877b864af92c6",
-    "candidateSha": "d545a6d9d5d9823da5878323022735ad7f47a80e",
+    "candidateSha": "63dac60d39c93f3936658e8a5c8c80fb8470dfd3",
     "runtimeCompile": "PASS",
     "targetedConsecutivePasses": 5,
     "fullRegression": "PASS",
@@ -938,7 +948,7 @@
     "scopeValidation": "PASS",
     "worktreeCloseout": "CLEAN",
     "localEvidenceSchema": "enguru.mac-engineer.v07-astra-local-fallback/v1",
-    "localEvidencePath": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/astra-fallback-20260923T070354Z/evidence.json",
+    "localEvidencePath": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/osi-operator-acceptance-20260923T082037Z/evidence.json",
     "canonicalA09Authority": "GITHUB_EXTERNAL_CI_CONFIRMATION_STILL_REQUIRED",
     "canonicalA09State": "HOLD",
     "previousCandidateSha": "d545a6d9d5d9823da5878323022735ad7f47a80e",
@@ -950,7 +960,7 @@
     ]
   },
   "observedOsiOperatorSurface": {
-    "state": "PREPARED_LOCAL_ACCEPTANCE_PENDING",
+    "state": "LOCAL_ACCEPTANCE_PASS_EXTERNAL_GITHUB_CONFIRMATION_PENDING",
     "observedAt": "2026-09-23",
     "dailySurface": [
       "enguru-mac status",
@@ -959,11 +969,19 @@
       "enguru-mac recover",
       "enguru-mac doctor"
     ],
-    "evidenceSpool": "PREPARED",
+    "evidenceSpool": "PASS",
     "automaticHandoff": "PREPARED",
-    "gitVaultMirror": "PREPARED_RECOVERY_ONLY",
+    "gitVaultMirror": "PASS_RECOVERY_ONLY",
     "offlineReconciliation": "PREPARED",
     "selfHostedRunner": "PREPARED_OPTIONAL_EXTERNAL_CHECK_EXECUTION",
-    "preparationEvidence": "evidence/MAC_ENGINEER_OSI_OPERATOR_SURFACE_PREPARED_2026-09-23.md"
+    "preparationEvidence": "evidence/MAC_ENGINEER_OSI_OPERATOR_SURFACE_PREPARED_2026-09-23.md",
+    "acceptedCodeSha": "0558ba492c352179e1d79e40dc91f7780c43df63",
+    "operatorTargetedTests": "PASS",
+    "controlPlaneRegression": "363_OF_363_PASS",
+    "operatorInstall": "PASS",
+    "operatorDoctor": "PASS",
+    "operatorStatus": "PASS",
+    "localEvidencePath": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/osi-operator-acceptance-20260923T082037Z/evidence.json",
+    "acceptanceEvidence": "evidence/MAC_ENGINEER_OSI_OPERATOR_LOCAL_ACCEPTANCE_2026-09-23.md"
   }
 }
