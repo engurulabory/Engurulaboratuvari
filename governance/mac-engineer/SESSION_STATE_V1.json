@@ -818,8 +818,8 @@
       "evidenceSpool": "PASS",
       "gitVault": "PASS"
     },
-    "localContinuityNextAction": "MAC_NATIVE_AUTHORITY_MIGRATION_FIELD_PROOF",
-    "localContinuityState": "ACTIVE_MAC_NATIVE_AUTHORITY_MIGRATION",
+    "localContinuityNextAction": "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF",
+    "localContinuityState": "ACTIVE_MAC_NATIVE_RESTART_RECOVERY_PROOF",
     "controlPlaneLocalContinuity": {
       "state": "PENDING_RECONCILIATION",
       "branch": "feat/mac-engineer-osi-operator-surface",
@@ -830,8 +830,8 @@
       "externalMergeGate": "HOLD_GITHUB_ACTIONS_EXECUTION",
       "acceptanceStatePath": "~/Enguru/Runtime/MacEngineer/state/local-accepted-control-plane-candidate.json",
       "acceptanceEvidenceRoot": "~/Enguru/Evidence/MacEngineer/v0.7/canonical-boot",
-      "currentTechnicalTarget": "MAC_NATIVE_AUTHORITY_MIGRATION_FIELD_PROOF",
-      "nextAfterPass": "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION",
+      "currentTechnicalTarget": "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF",
+      "nextAfterPass": "MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF",
       "freshExternalObservation": {
         "observedAt": "2026-09-23",
         "prNumber": 176,
@@ -876,11 +876,11 @@
         4,
         5,
         6,
-        7
+        7,
+        8
       ],
-      "activeGate": 8,
+      "activeGate": 9,
       "remainingGates": [
-        8,
         9,
         10,
         11,
@@ -895,15 +895,19 @@
         "externalReconciliationRequiredWhenAvailable": true
       },
       "gate8": {
-        "state": "ACTIVE",
+        "state": "PASS",
         "name": "MAC_NATIVE_AUTHORITY_MIGRATION_FIELD_PROOF",
+        "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T123058Z-continue.json"
+      },
+      "gate9": {
+        "state": "ACTIVE",
+        "name": "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF",
         "acceptance": [
-          "multi_repository_local_task_end_to_end",
-          "restart_recovery_preserves_task",
-          "evidence_continuity",
-          "gitvault_recovery",
-          "offline_reconciliation",
-          "donecheck_v1_2_accepts_migration_proof"
+          "same_task_identity_after_process_restart",
+          "verified_checkpoint_resume",
+          "exactly_once_durable_effect",
+          "final_complete_state",
+          "evidence_continuity"
         ]
       }
     },
@@ -920,6 +924,19 @@
       "localEngineeringBlocked": false,
       "localVerifiedFinishBlocked": false,
       "githubExternalPassManufactured": false
+    },
+    "macNativeAuthorityMigrationFieldProof": {
+      "state": "PASS",
+      "observedAt": "2026-09-23",
+      "operatorReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T123058Z-continue.json",
+      "completed": [
+        "MAC_NATIVE_AUTHORITY_MIGRATION_FIELD_PROOF_PASS",
+        "MULTI_REPO_LOCAL_ENGINEERING_PASS",
+        "REMOTE_PUSH_FALSE",
+        "SECOND_CANONICAL_TRUTH_FALSE"
+      ],
+      "nextAction": "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF",
+      "authority": "REAL_MAC_LOCAL_FIELD_EVIDENCE"
     }
   },
   "observedV07A01A02": {
