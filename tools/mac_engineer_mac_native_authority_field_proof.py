@@ -140,7 +140,7 @@ def repo_record(fabric: dict[str, Any], full_name: str) -> dict[str, Any]:
 
 def mirror_has_commit(mirror: Path, sha: str) -> bool:
     result = run(
-        ["git", "--git-dir", str(mirror), "cat-file", "-e", f"{sha}^{commit}"],
+        ["git", "--git-dir", str(mirror), "cat-file", "-e", f"{sha}^{{commit}}"],
         timeout=60,
     )
     return result["code"] == 0
