@@ -58,69 +58,221 @@
       "pricingState": "UNVERIFIED",
       "ctaState": "HOLD",
       "productionOrder": 2,
-      "legacyAliases": ["Menajer Zekî"]
+      "legacyAliases": [
+        "Menajer Zekî"
+      ]
     }
   ],
   "plannedProducts": [
-    {"productId":"astro-mode","productName":"ENGÜRÜ LAB • ASTRO MODE","publicTitleTR":"ENGÜRÜ LAB • ASTRO MODE","publicTitleEN":"ENGÜRÜ LAB • ASTRO MODE","classification":"PLANNED_PRODUCT","state":"PLANNED","publicVisible":false,"canonicalRepository":null,"productionOrder":"AFTER_ARTIST_MANAGER","legacyAliases":["AstroMode"]},
-    {"productId":"adil-pay","productName":"Adil Pay","publicTitleTR":"Adil Pay","publicTitleEN":"Adil Pay","classification":"PLANNED_PRODUCT","state":"PLANNED","publicVisible":false,"canonicalRepository":null,"knownRepositoryRecord":"engurulabory/adil-pay-kanit-web","productionOrder":"AFTER_ARTIST_MANAGER","legacyAliases":[]}
+    {
+      "productId": "astro-mode",
+      "productName": "ENGÜRÜ LAB • ASTRO MODE",
+      "publicTitleTR": "ENGÜRÜ LAB • ASTRO MODE",
+      "publicTitleEN": "ENGÜRÜ LAB • ASTRO MODE",
+      "classification": "PLANNED_PRODUCT",
+      "state": "PLANNED",
+      "publicVisible": false,
+      "canonicalRepository": null,
+      "productionOrder": "AFTER_ARTIST_MANAGER",
+      "legacyAliases": [
+        "AstroMode"
+      ]
+    },
+    {
+      "productId": "adil-pay",
+      "productName": "Adil Pay",
+      "publicTitleTR": "Adil Pay",
+      "publicTitleEN": "Adil Pay",
+      "classification": "PLANNED_PRODUCT",
+      "state": "PLANNED",
+      "publicVisible": false,
+      "canonicalRepository": null,
+      "knownRepositoryRecord": "engurulabory/adil-pay-kanit-web",
+      "productionOrder": "AFTER_ARTIST_MANAGER",
+      "legacyAliases": []
+    }
   ],
   "productCandidates": [
     {
-      "productId":"mayashield",
-      "productName":"MayaShield™",
-      "classification":"PRODUCT_CANDIDATE",
-      "state":"HOLD",
-      "publicVisible":false,
-      "canonicalRepository":null,
-      "productizationOrder":"AFTER_ARTIST_MANAGER",
-      "candidatePurposeTR":"AI/model kullanımı sırasında kurum bilgisini, fikrî mülkiyeti ve hassas bağlamı koruyan güvenlik ürünü adayı.",
-      "candidatePurposeEN":"A security product candidate for protecting organizational information, intellectual property and sensitive context during AI/model use.",
-      "reuseContract":["IP & Model Trust Gate™","Secret Zero™","Security Fleet™","Human Threshold™","DoneCheck™","Evidence"],
-      "entryGate":["productIntake","demandProof","runtimeContract","securityReuseEvidence"],
-      "ctaState":"HOLD"
+      "productId": "mayashield",
+      "productName": "MayaShield™",
+      "classification": "PRODUCT_CANDIDATE",
+      "state": "HOLD",
+      "publicVisible": false,
+      "canonicalRepository": null,
+      "productizationOrder": "AFTER_ARTIST_MANAGER",
+      "candidatePurposeTR": "AI/model kullanımı sırasında kurum bilgisini, fikrî mülkiyeti ve hassas bağlamı koruyan güvenlik ürünü adayı.",
+      "candidatePurposeEN": "A security product candidate for protecting organizational information, intellectual property and sensitive context during AI/model use.",
+      "reuseContract": [
+        "IP & Model Trust Gate™",
+        "Secret Zero™",
+        "Security Fleet™",
+        "Human Threshold™",
+        "DoneCheck™",
+        "Evidence"
+      ],
+      "entryGate": [
+        "productIntake",
+        "demandProof",
+        "runtimeContract",
+        "securityReuseEvidence"
+      ],
+      "ctaState": "HOLD"
     },
     {
-      "productId":"safety-decision-layer",
-      "productName":"Safety Decision Layer™",
-      "classification":"DEVELOPER_PRODUCT_CANDIDATE",
-      "state":"HOLD",
-      "publicVisible":false,
-      "canonicalRepository":null,
-      "productizationOrder":"AFTER_MAYASHIELD_DEMAND_PROOF",
-      "candidatePurposeTR":"AI ajanı veya uygulama eylemleri için policy, risk ve authority kararı üreten gelecekteki API/SDK ürünü adayı.",
-      "candidatePurposeEN":"A future API/SDK product candidate that produces policy, risk and authority decisions for AI-agent or application actions.",
-      "reuseContract":["MİZAN™","Human Threshold™","IP & Model Trust Gate™","Policy/Evidence patterns"],
-      "entryGate":["mayashieldFieldEvidence","developerDemandProof","apiContract","reuseEvidence"],
-      "ctaState":"HOLD"
+      "productId": "safety-decision-layer",
+      "productName": "Safety Decision Layer™",
+      "classification": "DEVELOPER_PRODUCT_CANDIDATE",
+      "state": "HOLD",
+      "publicVisible": false,
+      "canonicalRepository": null,
+      "productizationOrder": "AFTER_MAYASHIELD_DEMAND_PROOF",
+      "candidatePurposeTR": "AI ajanı veya uygulama eylemleri için policy, risk ve authority kararı üreten gelecekteki API/SDK ürünü adayı.",
+      "candidatePurposeEN": "A future API/SDK product candidate that produces policy, risk and authority decisions for AI-agent or application actions.",
+      "reuseContract": [
+        "MİZAN™",
+        "Human Threshold™",
+        "IP & Model Trust Gate™",
+        "Policy/Evidence patterns"
+      ],
+      "entryGate": [
+        "mayashieldFieldEvidence",
+        "developerDemandProof",
+        "apiContract",
+        "reuseEvidence"
+      ],
+      "ctaState": "HOLD"
     }
   ],
   "productCores": [
-    {"coreId":"autonomous-economic-core","coreName":"AUTONOMOUS ECONOMIC CORE™","repository":"engurulabory/autonomous-economic-core","classification":"PRODUCT_CORE","state":"HOLD","publicVisible":false},
-    {"coreId":"donecheck","coreName":"DoneCheck™ Public Working Core","repository":"engurulabory/donecheck","classification":"PRODUCT_CORE","state":"PASS","publicVisible":false},
-    {"coreId":"shift-core","coreName":"Shift Core™","repository":"engurulabory/shift-core-api","classification":"PRODUCT_CORE","state":"HOLD","publicVisible":false}
+    {
+      "coreId": "autonomous-economic-core",
+      "coreName": "AUTONOMOUS ECONOMIC CORE™",
+      "repository": "engurulabory/autonomous-economic-core",
+      "classification": "PRODUCT_CORE",
+      "state": "HOLD",
+      "publicVisible": false
+    },
+    {
+      "coreId": "donecheck",
+      "coreName": "DoneCheck™ v1.2",
+      "repository": "engurulabory/donecheck",
+      "classification": "PRODUCT_CORE",
+      "state": "PASS",
+      "publicVisible": false,
+      "version": "1.2.0",
+      "exactMain": "8b90a8fc93453dd8a84994195d28d14b15e261cb"
+    },
+    {
+      "coreId": "shift-core",
+      "coreName": "Shift Core™",
+      "repository": "engurulabory/shift-core-api",
+      "classification": "PRODUCT_CORE",
+      "state": "HOLD",
+      "publicVisible": false
+    }
   ],
   "cores": [
-    {"coreId":"donecheck-core-foundation","coreName":"DoneCheck™ Controlled Development Source","repository":"engurulabory/donecheck-core-foundation","classification":"CORE","state":"PASS","publicVisible":false}
+    {
+      "coreId": "donecheck-core-foundation",
+      "coreName": "DoneCheck™ Historical Controlled Foundation",
+      "repository": "engurulabory/donecheck-core-foundation",
+      "classification": "CORE",
+      "state": "PASS",
+      "publicVisible": false,
+      "role": "HISTORICAL_DEVELOPMENT_LINEAGE"
+    }
   ],
   "internalCapabilities": [
-    {"capabilityId":"closed-loop-production-core","capabilityName":"ENGÜRÜ CLOSED-LOOP PRODUCTION CORE™ v0.1","classification":"CORE_CAPABILITY","canonicalPath":"governance/ENGURU_CLOSED_LOOP_PRODUCTION_CORE_V0_1.md","state":"PASS","publicVisible":false,"legacyAliases":["Akıllı Üretim Çekirdeği"]},
-    {"capabilityId":"language-governance","capabilityName":"ENGÜRÜ Language Governance™","classification":"GOVERNANCE_CAPABILITY","canonicalPath":"governance/ENGURU_CLOSED_LOOP_PRODUCTION_CORE_V0_1.md","state":"PASS","publicVisible":false,"legacyAliases":["Karar ve Dil Rehberi"]},
-    {"capabilityId":"trustspine","capabilityName":"TRUSTSPINE™","classification":"TRUST_BACKBONE_CAPABILITY","canonicalPath":"governance/ENGURU_TRUST_PRODUCTIZATION_V1.md","state":"HOLD","publicVisible":false},
-    {"capabilityId":"mizan","capabilityName":"MİZAN™","classification":"GOVERNANCE_CAPABILITY","canonicalPath":"governance/ENGURU_TRUST_PRODUCTIZATION_V1.md","state":"HOLD","publicVisible":false},
-    {"capabilityId":"maya-trust","capabilityName":"Maya Trust™","classification":"ASSURANCE_SURFACE","canonicalPath":"governance/ENGURU_TRUST_PRODUCTIZATION_V1.md","state":"HOLD","publicVisible":false}
+    {
+      "capabilityId": "closed-loop-production-core",
+      "capabilityName": "ENGÜRÜ CLOSED-LOOP PRODUCTION CORE™ v0.1",
+      "classification": "CORE_CAPABILITY",
+      "canonicalPath": "governance/ENGURU_CLOSED_LOOP_PRODUCTION_CORE_V0_1.md",
+      "state": "PASS",
+      "publicVisible": false,
+      "legacyAliases": [
+        "Akıllı Üretim Çekirdeği"
+      ]
+    },
+    {
+      "capabilityId": "language-governance",
+      "capabilityName": "ENGÜRÜ Language Governance™",
+      "classification": "GOVERNANCE_CAPABILITY",
+      "canonicalPath": "governance/ENGURU_CLOSED_LOOP_PRODUCTION_CORE_V0_1.md",
+      "state": "PASS",
+      "publicVisible": false,
+      "legacyAliases": [
+        "Karar ve Dil Rehberi"
+      ]
+    },
+    {
+      "capabilityId": "trustspine",
+      "capabilityName": "TRUSTSPINE™",
+      "classification": "TRUST_BACKBONE_CAPABILITY",
+      "canonicalPath": "governance/ENGURU_TRUST_PRODUCTIZATION_V1.md",
+      "state": "HOLD",
+      "publicVisible": false
+    },
+    {
+      "capabilityId": "mizan",
+      "capabilityName": "MİZAN™",
+      "classification": "GOVERNANCE_CAPABILITY",
+      "canonicalPath": "governance/ENGURU_TRUST_PRODUCTIZATION_V1.md",
+      "state": "HOLD",
+      "publicVisible": false
+    },
+    {
+      "capabilityId": "maya-trust",
+      "capabilityName": "Maya Trust™",
+      "classification": "ASSURANCE_SURFACE",
+      "canonicalPath": "governance/ENGURU_TRUST_PRODUCTIZATION_V1.md",
+      "state": "HOLD",
+      "publicVisible": false
+    }
   ],
   "releaseMirrors": [
-    {"id":"enguru-builder-release","repository":"engurulabory/enguru-builder-release","classification":"RELEASE_MIRROR","state":"HOLD","source":"engurulabory/enguru-website-factory","publicVisible":false}
+    {
+      "id": "enguru-builder-release",
+      "repository": "engurulabory/enguru-builder-release",
+      "classification": "RELEASE_MIRROR",
+      "state": "HOLD",
+      "source": "engurulabory/enguru-website-factory",
+      "publicVisible": false
+    }
   ],
   "legacyArchive": {
     "source": "site/LEGACY_PRODUCT_ALIGNMENT_V1.json",
     "publicVisible": false,
     "rule": "Archived legacy concepts remain evidence/history and are not counted as active or planned products unless re-entered through canonical product intake."
   },
-  "publicSections": ["Verified Products", "In Development", "Planned Products", "Product Candidates", "Core Technologies", "Research / Archive", "Trust & Evidence"],
+  "publicSections": [
+    "Verified Products",
+    "In Development",
+    "Planned Products",
+    "Product Candidates",
+    "Core Technologies",
+    "Research / Archive",
+    "Trust & Evidence"
+  ],
   "publicationGate": {
-    "requires": ["canonicalProductRecord","repositoryVerified","productStateVerified","doneCheckEvidence","verifiedFinishEvidence","productionUrlWhenApplicable","humanThresholdClear","stewardRegistryConsistency"],
+    "requires": [
+      "canonicalProductRecord",
+      "repositoryVerified",
+      "productStateVerified",
+      "doneCheckEvidence",
+      "verifiedFinishEvidence",
+      "productionUrlWhenApplicable",
+      "humanThresholdClear",
+      "stewardRegistryConsistency"
+    ],
     "failClosed": true
+  },
+  "doneCheckAuthority": {
+    "productCount": 1,
+    "repositoryCount": 2,
+    "canonicalProductRepository": "engurulabory/donecheck",
+    "canonicalVersion": "1.2.0",
+    "historicalFoundationRepository": "engurulabory/donecheck-core-foundation"
   }
 }
