@@ -1,0 +1,4 @@
+#!/bin/zsh
+set -euo pipefail
+CONTROL_PLANE="${ENGURU_CONTROL_PLANE:-$HOME/Enguru/Projects/Engurulaboratuvari}"
+exec python3 "$CONTROL_PLANE/tools/mac_engineer_operator.py" "$@"
