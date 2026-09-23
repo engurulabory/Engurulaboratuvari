@@ -759,7 +759,7 @@
     "evidence": "evidence/MAC_ENGINEER_V07_A07_A08_ENGINEERING_2026-09-22.md",
     "passedGatesAuthority": "GITHUB_FIRST_ACCEPTANCE",
     "milestoneMacAcceptance": "PENDING_CONSOLIDATED_COMMISSIONING",
-    "a09State": "HOLD_GITHUB_ACTIONS_BILLING_LOCK_CONFIRMED",
+    "a09State": "EXTERNAL_BLOCKED_GITHUB_BILLING_DEFERRED",
     "a09CampaignPassCount": 0,
     "a09ProductPrNumber": 13,
     "a09LatestCandidateHead": "63dac60d39c93f3936658e8a5c8c80fb8470dfd3",
@@ -818,8 +818,8 @@
       "evidenceSpool": "PASS",
       "gitVault": "PASS"
     },
-    "localContinuityNextAction": "",
-    "localContinuityState": "WAITING_GITHUB_BILLING_UNLOCK",
+    "localContinuityNextAction": "MAC_NATIVE_AUTHORITY_MIGRATION_FIELD_PROOF",
+    "localContinuityState": "ACTIVE_MAC_NATIVE_AUTHORITY_MIGRATION",
     "controlPlaneLocalContinuity": {
       "state": "PENDING_RECONCILIATION",
       "branch": "feat/mac-engineer-osi-operator-surface",
@@ -830,8 +830,8 @@
       "externalMergeGate": "HOLD_GITHUB_ACTIONS_EXECUTION",
       "acceptanceStatePath": "~/Enguru/Runtime/MacEngineer/state/local-accepted-control-plane-candidate.json",
       "acceptanceEvidenceRoot": "~/Enguru/Evidence/MacEngineer/v0.7/canonical-boot",
-      "currentTechnicalTarget": "V07_A09_GITHUB_BILLING_UNLOCK",
-      "nextAfterPass": "RERUN_A09_HOSTED_GITHUB_WORKFLOWS",
+      "currentTechnicalTarget": "MAC_NATIVE_AUTHORITY_MIGRATION_FIELD_PROOF",
+      "nextAfterPass": "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION",
       "freshExternalObservation": {
         "observedAt": "2026-09-23",
         "prNumber": 176,
@@ -866,8 +866,8 @@
       ]
     },
     "verifiedFinishClosureContract": {
-      "state": "LOCKED",
-      "target": "V0_7_LONG_RUN_RELIABILITY_VERIFIED_LOCKED",
+      "state": "LOCKED_RECONCILED_FOR_MAC_NATIVE_AUTHORITY",
+      "target": "V0_7_LONG_RUN_RELIABILITY_VERIFIED_LOCKED_LOCAL_AUTHORITY",
       "totalGates": 13,
       "passedGates": [
         1,
@@ -888,23 +888,38 @@
         13
       ],
       "finalAuthority": "HUMAN_THRESHOLD",
+      "githubA09": {
+        "state": "EXTERNAL_BLOCKED_DEFERRED",
+        "blockingLocalEngineering": false,
+        "blockingLocalVerifiedFinish": false,
+        "externalReconciliationRequiredWhenAvailable": true
+      },
       "gate8": {
-        "state": "HOLD_EXTERNAL_HUMAN_ACTION",
-        "blocker": "GITHUB_PAYMENT_AUTHORIZATION_HOLD_FAILED",
-        "nextAction": "UPDATE_OR_REAUTHORIZE_GITHUB_PAYMENT_METHOD",
-        "afterHumanAction": "CONFIRM_ACTIONS_UNLOCK_THEN_RERUN_A09_HOSTED_WORKFLOWS",
-        "fallback": "COMMISSION_OSI_SELF_HOSTED_RUNNER_ONLY_IF_HOSTED_EXECUTION_REMAINS_UNAVAILABLE"
+        "state": "ACTIVE",
+        "name": "MAC_NATIVE_AUTHORITY_MIGRATION_FIELD_PROOF",
+        "acceptance": [
+          "multi_repository_local_task_end_to_end",
+          "restart_recovery_preserves_task",
+          "evidence_continuity",
+          "gitvault_recovery",
+          "offline_reconciliation",
+          "donecheck_v1_2_accepts_migration_proof"
+        ]
       }
     },
     "a09RootCause": {
-      "state": "CONFIRMED",
+      "state": "CONFIRMED_EXTERNAL_BLOCKER",
       "observedAt": "2026-09-23",
       "source": "HUMAN_VISIBLE_GITHUB_BILLING_UI",
       "category": "PAYMENT_AUTHORIZATION_FAILURE",
       "message": "Invalid payment method - authorization hold failed.",
       "scope": "EXTERNAL_GITHUB_ACTIONS_EXECUTION_AUTHORITY",
       "productCodeDefectEvidenced": false,
-      "sensitivePaymentDetailsPersisted": false
+      "sensitivePaymentDetailsPersisted": false,
+      "disposition": "DEFERRED_EXTERNAL_RECONCILIATION",
+      "localEngineeringBlocked": false,
+      "localVerifiedFinishBlocked": false,
+      "githubExternalPassManufactured": false
     }
   },
   "observedV07A01A02": {
