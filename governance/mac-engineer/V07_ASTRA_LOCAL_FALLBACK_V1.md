@@ -10,7 +10,7 @@ This contract extends the existing reliability and Evidence layers. It creates n
 
 When GitHub-hosted Actions is temporarily unavailable, Astra may execute the V07-A09 engineering campaign on the real Mac against one exact product candidate SHA and produce a Local Evidence bundle.
 
-The local campaign is an engineering continuity proof. GitHub CI remains the external confirmation authority required by the current v0.7 acceptance matrix.
+The local campaign is an engineering continuity proof. GitHub CI remains the external confirmation authority required by the current v0.7 acceptance matrix. GitHub-hosted compute and OSi self-hosted compute are execution choices; neither changes the Evidence authority model.
 
 ## AUTHORITY
 
@@ -51,7 +51,7 @@ The fallback campaign records:
 1. fresh `origin/main` SHA;
 2. fresh A09 candidate SHA;
 3. candidate is based on current main;
-4. candidate scope matches the current A09 workflow-only change set;
+4. candidate scope matches the current three-file A09/self-hosted workflow change set (`product-ci` + targeted campaign + full regression);
 5. targeted v0.7 reliability suite passes **5 consecutive times** on the same candidate SHA;
 6. full runtime regression passes;
 7. native prep syntax passes;
