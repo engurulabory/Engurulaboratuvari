@@ -328,3 +328,20 @@ This confirms the repository-wide Actions billing lock is caused by a failed pay
 Sensitive payment, address and tax details are intentionally excluded from canonical engineering records.
 
 **NEXT ACTION — update or re-authorize the GitHub payment method → confirm Actions unlock → rerun the existing A09 GitHub-hosted workflows.**
+
+
+## AUTHORITY PATH RECONCILIATION — MAC-NATIVE FINISH PATH — 2026-09-23
+
+**STATE — ACTIVE / MAC-NATIVE AUTHORITY MIGRATION.**
+
+User intent and current external truth are aligned: the product is being built specifically so engineering continuity does not depend on GitHub Actions billing, hosted runner availability, quotas or temporary provider access.
+
+The confirmed GitHub billing/payment authorization failure remains preserved as external Evidence. It does not become a local PASS and it does not block local engineering progress.
+
+The v0.7 finish path is therefore reconciled to the existing Mac-Native Finisher Target:
+
+`LOCAL MULTI-REPO FIELD PROOF → RESTART/RECOVERY → OFFLINE/GITVAULT RECONCILIATION → DONECHECK v1.2 MIGRATION VERIFICATION → ≥8H CONSOLIDATED MAC CAMPAIGN → FINAL VERIFY → HUMAN THRESHOLD → MAC-NATIVE AUTHORITY TRANSITION`
+
+GitHub remains a synchronized remote publication/collaboration/recovery surface. External GitHub Actions confirmation is deferred until the provider-side billing gate becomes available again.
+
+**NEXT ACTION — MAC_NATIVE_AUTHORITY_MIGRATION_FIELD_PROOF.**
