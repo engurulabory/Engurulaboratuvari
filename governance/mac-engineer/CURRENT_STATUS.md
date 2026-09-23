@@ -215,3 +215,14 @@ Required difference applied:
 **JUDGMENT — HOLD until fresh real-Mac full regression PASS.**
 
 **NEXT ACTION — fast-forward the accepted candidate branch and rerun the local candidate acceptance gate.**
+
+
+## CANONICAL BOOT DIFF CHECK RECONCILIATION — 2026-09-23
+
+**STATE — PATCH PREPARED / FRESH LOCAL ACCEPTANCE REQUIRED.**
+
+Fresh local acceptance passed targeted and full control-plane regression, then correctly held at `DIFF_CHECK_FAILED`.
+
+The exact branch diff contained one whitespace violation only: `governance/mac-engineer/V07_ASTRA_LOCAL_FALLBACK_PROMPT.md:9` had two trailing spaces. Those characters were removed without changing the prompt meaning. GitHub compare re-scan now reports zero whitespace issues.
+
+**JUDGMENT — HOLD until fresh local candidate acceptance confirms diff check + canonical context + session start PASS on the corrected exact head.**
