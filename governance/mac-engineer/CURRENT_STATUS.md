@@ -112,7 +112,7 @@ V07-A07 + V07-A08 **GitHub-first acceptance PASS / Mac acceptance pending**: Pro
 
 V07-A09 **HOLD — external GitHub-hosted Actions execution gate**. Product PR #13 campaign remains 0/5. Jobs on `macos-latest`, explicit `macos-15`, and `ubuntu-latest` were created but failed before any workflow step (`steps=null`). No production-code defect is evidenced. Canonical Evidence: `evidence/MAC_ENGINEER_V07_A09_ACTIONS_HOLD_2026-09-22.md`.
 
-Astra local fallback **PREPARED**: governed contract `governance/mac-engineer/V07_ASTRA_LOCAL_FALLBACK_V1.md`, runnable command `governance/mac-engineer/V07_ASTRA_LOCAL_FALLBACK.command`, and field prompt `governance/mac-engineer/V07_ASTRA_LOCAL_FALLBACK_PROMPT.md`. This path can produce local engineering Evidence while A09 remains HOLD until external GitHub CI confirmation.
+Astra local fallback **EXECUTED PASS**: exact candidate `d545a6d9d5d9823da5878323022735ad7f47a80e`; runtime compile PASS; 5/5 targeted local PASS; full regression PASS; native syntax/build PASS; diff/scope PASS; disposable worktree clean. Local Evidence: `evidence/MAC_ENGINEER_V07_A09_ASTRA_LOCAL_REHEARSAL_2026-09-23.md`. V07-A09 remains HOLD until external GitHub CI confirmation.
 
 Current required difference: clear the private-repository GitHub Actions execution gate through read-only billing/usage + Actions policy inspection, then resume PR #13 on an exact candidate head.
 
