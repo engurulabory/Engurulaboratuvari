@@ -37,6 +37,65 @@ class MacNativeAuthorityFieldProofTests(unittest.TestCase):
         self.assertFalse(payload["remoteMutation"])
         self.assertEqual(payload["source"], "LOCAL_REPOSITORY_FABRIC_MIRROR")
 
+    def test_control_plane_source_requires_fresh_local_acceptance(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            state = Path(tmp) / "accepted.json"
+            state.write_text(
+                json.dumps({
+                    "state": "PASS",
+                    "branch": "feat/test",
+                    "head": "b" * 40,
+                    "originMain": "a" * 40,
+                    "authority": "PENDING_RECONCILIATION",
+                    "canonicalRemoteAuthority": "GITHUB_REMOTE_MAIN",
+                    "secondCanonicalTruth": False,
+                    "evidence": "/tmp/evidence.json",
+                    "acceptance": {
+                        "targetedTests": "PASS",
+                        "fullRegression": "PASS",
+                        "diffCheck": "PASS",
+                        "remoteBranchParity": "PASS",
+                        "mainAncestor": "PASS",
+                        "canonicalContext": "PASS",
+                        "sessionStart": "PASS",
+                    },
+                }),
+                encoding="utf-8",
+            )
+            with mock.patch.object(proof, "ACCEPTED_CONTROL_STATE", state):
+                accepted = proof.load_accepted_control_candidate()
+
+        self.assertEqual(accepted["head"], "b" * 40)
+        self.assertEqual(accepted["originMain"], "a" * 40)
+
+    def test_control_plane_acceptance_rejects_stale_regression(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            state = Path(tmp) / "accepted.json"
+            state.write_text(
+                json.dumps({
+                    "state": "PASS",
+                    "branch": "feat/test",
+                    "head": "b" * 40,
+                    "originMain": "a" * 40,
+                    "authority": "PENDING_RECONCILIATION",
+                    "canonicalRemoteAuthority": "GITHUB_REMOTE_MAIN",
+                    "secondCanonicalTruth": False,
+                    "acceptance": {
+                        "targetedTests": "PASS",
+                        "fullRegression": "HOLD",
+                        "diffCheck": "PASS",
+                        "remoteBranchParity": "PASS",
+                        "mainAncestor": "PASS",
+                        "canonicalContext": "PASS",
+                        "sessionStart": "PASS",
+                    },
+                }),
+                encoding="utf-8",
+            )
+            with mock.patch.object(proof, "ACCEPTED_CONTROL_STATE", state):
+                with self.assertRaisesRegex(RuntimeError, "FULLREGRESSION_PASS_REQUIRED"):
+                    proof.load_accepted_control_candidate()
+
     def test_fabric_gate_requires_12_of_12_and_offline_queue_pass(self):
         with tempfile.TemporaryDirectory() as tmp:
             state = Path(tmp) / "fabric.json"
