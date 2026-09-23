@@ -67,6 +67,10 @@ Canonical authority separation:
 
 Canonical document: `governance/mac-engineer/DONECHECK_AUTHORITY_MODEL_V1.md`.
 
+DoneCheck product reconciliation **PASS**: one product / two repositories / current canonical version **1.2.0**. Current product/release authority is `engurulabory/donecheck` exact-main `8b90a8fc93453dd8a84994195d28d14b15e261cb`; 32/32 tests, build, Release Authority and IP Model Trust Fleet are PASS. `engurulabory/donecheck-core-foundation` is retained as historical controlled foundation / v1.0-v1.1 development lineage, not a second product. Evidence: `evidence/DONECHECK_V12_CANONICAL_RECONCILIATION_2026-09-23.md`.
+
+Mac Engineer v0.7 A10 remains a separate integration gate: product readiness does not manufacture integration PASS.
+
 ## WORKING MODEL
 
 Canonical document: `governance/mac-engineer/GITHUB_FIRST_MILESTONE_MAC_WORKING_MODEL_V1.md`.
