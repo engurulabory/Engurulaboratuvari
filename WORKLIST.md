@@ -1220,37 +1220,32 @@ Engineering mode: **GitHub-first benchmark harness + selected Mac field proofs**
 
 ## v0.7 — VERIFIED FINISH CLOSURE CONTRACT — 13 GATES
 
-Canonical target: **ENGÜRÜ Mac Engineer™ v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED**.
+Canonical target: **ENGÜRÜ Mac Engineer™ v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED — MAC-NATIVE AUTHORITY**.
 
 1. [x] Canonical Boot — exact branch/SHA, clean worktree, session continuity, Evidence.
 2. [x] OSi local operator — `status / continue / verify / recover / doctor`.
 3. [x] Repository Fabric — 12/12 repository, GitVault, offline continuity.
 4. [x] V07 A01–A08 — long-running reliability, restart/resume, idempotency, single-writer, retry/watchdog, recovery, resource/evidence continuity.
-5. [x] A09 local rehearsal — candidate `63dac60d39c93f3936658e8a5c8c80fb8470dfd3` locally verified.
-6. [x] A10 DoneCheck™ v1.2 integration — A01–A08 PASS; A09 external gap preserved as INCONCLUSIVE.
+5. [x] A09 local rehearsal — local candidate mechanics verified; GitHub external confirmation remains a separate external evidence surface.
+6. [x] A10 DoneCheck™ v1.2 integration — A01–A08 PASS; external GitHub A09 preserved as inconclusive/deferred, never manufactured.
 7. [x] Pre-A11 Local Finisher Rehearsal — controlled fault → failure observed → repair → regression → idempotency → clean finish → Evidence.
-8. [ ] A09 external GitHub confirmation — **HOLD / GITHUB ACTIONS BILLING LOCK CONFIRMED**. First unlock GitHub billing/payment so repository workflows can execute; then rerun the existing hosted A09 workflows and require 5 consecutive targeted PASS runs + full regression PASS + scope/diff validation. Self-hosted OSi runner is fallback only if hosted execution remains unavailable after billing is restored.
-9. [ ] A09 candidate → exact-main — PR #13 verification → merge → product main exact SHA → exact-main regression/CI → Evidence.
-10. [ ] A10 final re-verification — aggregate DoneCheck™ v1.2 result becomes PASS / MACHINE_VERIFICATION_PASS after A09 PASS.
-11. [ ] V07-A11 Consolidated Mac Long-Run Commissioning — one ≥8h real-Mac campaign with ≥3 controlled interruptions, continuity, exactly-once/idempotency, RSS/resource and Evidence reconciliation.
-12. [ ] Final Verify — `enguru-mac verify` → full regression → canonical state → Evidence bundle → DoneCheck™ v1.2 final closeout; technical HOLD target = 0.
-13. [ ] Human Threshold™ — human acceptance → canonical status/worklist reconciliation → **v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED**.
+8. [ ] **Mac-Native Authority Migration Field Proof** — complete one multi-repository engineering task locally end-to-end with exact repo identity, bounded mutation, regression, Evidence and clean reconciliation.
+9. [ ] **Restart / Recovery Continuity Proof** — interrupt and resume the same governed task; preserve task/checkpoint identity and exactly-once effects.
+10. [ ] **Offline / GitVault Reconciliation Proof** — prove local continuity while GitHub execution is unavailable; preserve remote identity and prevent second truth.
+11. [ ] **DoneCheck™ v1.2 Migration Verification** — consume gates 8–10 and verify local authority migration Evidence.
+12. [ ] **Final Verify + Consolidated Mac Long-Run Commissioning** — ≥8h Mac campaign, ≥3 controlled interruptions, full regression, resource/RSS, Evidence bundle, technical HOLD target = 0 except explicitly deferred external GitHub billing gate.
+13. [ ] **Human Threshold™ + Authority Transition** — human accepts Mac-native primary engineering authority; canonical status/worklist reconciliation → **v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED**.
 
-Truth boundary: local rehearsal results do not manufacture external A09, A11, Human Threshold, or version-lock authority.
-
+External GitHub Actions A09:
+- state: **EXTERNAL_BLOCKED / GITHUB BILLING**
+- authority: external evidence only
+- local engineering: continues
+- local Verified Finish: continues under Mac-native migration contract
+- reconciliation: required when GitHub Actions becomes available again
+- PASS is never manufactured from local evidence.
 
 ### Active next action — Gate 8
 
-**STATE — HUMAN ACTION REQUIRED / EXTERNAL GITHUB BILLING.**
+`MAC_NATIVE_AUTHORITY_MIGRATION_FIELD_PROOF`
 
-Observed GitHub repository Actions UI states that workflows cannot execute because the account billing is locked and payment information must be updated.
-
-Canonical sequence:
-
-`UNLOCK_GITHUB_BILLING → CONFIRM_ACTIONS_EXECUTION_AVAILABLE → RERUN_EXISTING_HOSTED_A09_WORKFLOWS → 5x TARGETED PASS → FULL REGRESSION PASS → DIFF/SCOPE PASS → A09 PASS`
-
-Fallback rule:
-
-`HOSTED_ACTIONS_STILL_UNAVAILABLE_AFTER_BILLING_RESTORE → COMMISSION_OSI_SELF_HOSTED_RUNNER → GITHUB-RECORDED CHECK EVIDENCE`
-
-Self-hosted runner is not the first action while GitHub itself reports repository-wide workflow execution disabled by billing lock.
+Use the already-proven Repository Fabric + OSi operator + GitVault + Evidence + DoneCheck™ layers. GitHub remains remote identity/publication/recovery surface during migration; local Mac becomes primary execution authority only after gates 8–13 and Human Threshold PASS.
