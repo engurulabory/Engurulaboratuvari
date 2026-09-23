@@ -180,7 +180,7 @@ def main() -> int:
             },
         )
 
-    diff_check = run(["git", "diff", "--check"], timeout=120)
+    diff_check = run(["git", "diff", "--check", "origin/main...HEAD"], timeout=120)
     post_status = git_value("status", "--porcelain")
     post_head = git_value("rev-parse", "HEAD")
     post_origin_main = git_value("rev-parse", "origin/main")
