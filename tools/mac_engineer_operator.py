@@ -160,6 +160,7 @@ def current_truth() -> dict[str, Any]:
         "v07_state": current_v07.get("state") or v07_roadmap.get("state"),
         "next_action": current_v07.get("nextAction") or v07_roadmap.get("nextAction"),
         "a09_state": current_v07.get("a09State") or (v07_roadmap.get("a09") or {}).get("state"),
+        "a09_candidate_sha": current_v07.get("a09LatestCandidateHead") or (v07_roadmap.get("a09") or {}).get("currentCandidateSha"),
         "local_fallback": current_v07.get("localFallback") or {},
         "final_target": roadmap.get("finalTarget") or {},
     }
@@ -269,6 +270,46 @@ def offline_manifest() -> dict[str, Any]:
             "Local commits preserve engineering continuity. GitHub canonical authority "
             "is restored by explicit reconciliation; local mirrors do not create a second truth."
         ),
+    }
+
+
+def latest_matching_fallback(candidate_sha: str | None) -> dict[str, Any] | None:
+    if not candidate_sha:
+        return None
+    root = ENGURU / "Evidence" / "MacEngineer" / "v0.7"
+    if not root.is_dir():
+        return None
+    candidates = sorted(
+        root.glob("astra-fallback-*/evidence.json"),
+        key=lambda path: path.stat().st_mtime,
+        reverse=True,
+    )
+    for path in candidates:
+        payload = load_json(path)
+        if (
+            isinstance(payload, dict)
+            and payload.get("state") == "LOCAL_REHEARSAL_PASS_EXTERNAL_CONFIRMATION_PENDING"
+            and payload.get("candidate_sha") == candidate_sha
+        ):
+            return {**payload, "_path": str(path)}
+    return None
+
+
+def run_a09_local_rehearsal() -> dict[str, Any]:
+    command = ROOT / "governance" / "mac-engineer" / "V07_ASTRA_LOCAL_FALLBACK.command"
+    if not command.is_file():
+        return {"state": "HOLD", "reason": "A09_LOCAL_REHEARSAL_COMMAND_MISSING"}
+    result = run(["zsh", str(command)], cwd=ROOT, timeout=3600)
+    evidence_path = None
+    for line in result.get("stdout", "").splitlines():
+        if line.startswith("EVIDENCE="):
+            evidence_path = line.split("=", 1)[1].strip()
+    return {
+        "state": "PASS" if result["code"] == 0 else "HOLD",
+        "code": result["code"],
+        "evidence": evidence_path,
+        "stdout_tail": result.get("stdout", "")[-4000:],
+        "stderr_tail": result.get("stderr", "")[-4000:],
     }
 
 
@@ -605,6 +646,21 @@ def command_doctor() -> int:
 
 
 def command_verify() -> int:
+    boot = canonical_boot()
+    if boot.get("state") != "PASS":
+        truth = current_truth()
+        payload = write_receipt(
+            command="verify",
+            state="HOLD",
+            completed=["CANONICAL_BOOT_HOLD"],
+            evidence=[str(SESSION_STATE)],
+            hold="CANONICAL_BOOT",
+            next_action="enguru-mac doctor",
+            details={"boot": boot, "truth": truth},
+        )
+        print_receipt(payload)
+        return 2
+
     state, verification, evidence = verify_product()
     mirrors = sync_mirrors()
     truth = current_truth()
@@ -632,11 +688,25 @@ def command_verify() -> int:
 
 def command_recover() -> int:
     boot = canonical_boot()
+    truth = current_truth()
+    if boot.get("state") != "PASS":
+        mirrors = sync_mirrors()
+        payload = write_receipt(
+            command="recover",
+            state="HOLD",
+            completed=["CANONICAL_BOOT_HOLD", "GITVAULT_SYNC"],
+            evidence=[str(SESSION_STATE)],
+            hold="CANONICAL_BOOT",
+            next_action="enguru-mac doctor",
+            details={"boot": boot, "mirrors": mirrors, "truth": truth},
+        )
+        print_receipt(payload)
+        return 2
+
     recovery = recover_latest_task()
     mirrors = sync_mirrors()
     state = "PASS" if recovery.get("state") == "PASS" else "HOLD"
     hold = "" if state == "PASS" else str(recovery.get("action") or "RECOVERY_HOLD")
-    truth = current_truth()
     payload = write_receipt(
         command="recover",
         state=state,
@@ -665,8 +735,43 @@ def command_continue() -> int:
         completed = ["CANONICAL_BOOT_HOLD", "GITVAULT_SYNC"]
     elif action == "V07_A09_CLEAR_GITHUB_PRIVATE_REPO_HOSTED_ACTIONS_EXECUTION_GATE":
         completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
-        if fallback.get("state") == "LOCAL_REHEARSAL_PASS_EXTERNAL_CONFIRMATION_PENDING":
+        candidate_sha = str(truth.get("a09_candidate_sha") or "")
+        local_evidence = latest_matching_fallback(candidate_sha)
+        rehearsal = None
+
+        if local_evidence:
             completed.append("A09_LOCAL_REHEARSAL_ALREADY_PASS")
+        else:
+            rehearsal = run_a09_local_rehearsal()
+            if rehearsal.get("state") != "PASS":
+                payload = write_receipt(
+                    command="continue",
+                    state="HOLD",
+                    completed=completed,
+                    evidence=[
+                        item for item in [
+                            str(SESSION_STATE),
+                            str(rehearsal.get("evidence") or ""),
+                        ] if item
+                    ],
+                    hold="A09_LOCAL_REHEARSAL",
+                    next_action="enguru-mac verify",
+                    details={
+                        "truth": truth,
+                        "boot": boot,
+                        "runner": runner,
+                        "mirrors": mirrors,
+                        "rehearsal": rehearsal,
+                    },
+                )
+                print_receipt(payload)
+                return 2
+            completed.append("A09_LOCAL_REHEARSAL_PASS")
+            local_evidence = {
+                "candidate_sha": candidate_sha,
+                "_path": rehearsal.get("evidence"),
+            }
+
         if runner.get("state") == "PASS":
             state = "HOLD"
             hold = "GITHUB_EXTERNAL_CONFIRMATION_PENDING"
@@ -703,6 +808,8 @@ def command_continue() -> int:
             "boot": boot,
             "runner": runner,
             "mirrors": mirrors,
+            "local_a09_evidence": locals().get("local_evidence"),
+            "local_a09_rehearsal": locals().get("rehearsal"),
             "offline_manifest": offline_manifest(),
         },
     )
