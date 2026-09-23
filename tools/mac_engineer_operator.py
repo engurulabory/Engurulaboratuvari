@@ -34,6 +34,7 @@ SESSION_STATE = ROOT / "governance" / "mac-engineer" / "SESSION_STATE_V1.json"
 ROADMAP = ROOT / "governance" / "mac-engineer" / "PRODUCT_ROADMAP_V1.json"
 ACTION_REGISTRY = ROOT / "governance" / "mac-engineer" / "OPERATOR_ACTION_REGISTRY_V1.json"
 CONTROL = ROOT / "tools" / "mac_engineer_control.py"
+A10_ACCEPTANCE = ROOT / "governance" / "mac-engineer" / "V07_A10_DONECHECK_V12_ACCEPTANCE.command"
 
 TERMINAL_STATES = {"COMPLETE", "HOLD", "FAILED", "BLOCKED"}
 RECOVERABLE_STATES = {"RUNNING", "CHECKPOINTED", "RECOVERY_REQUIRED", "VERIFYING"}
@@ -162,6 +163,8 @@ def current_truth() -> dict[str, Any]:
         "a09_state": current_v07.get("a09State") or (v07_roadmap.get("a09") or {}).get("state"),
         "a09_candidate_sha": current_v07.get("a09LatestCandidateHead") or (v07_roadmap.get("a09") or {}).get("currentCandidateSha"),
         "local_fallback": current_v07.get("localFallback") or {},
+        "local_continuity_next_action": current_v07.get("localContinuityNextAction"),
+        "local_continuity_state": current_v07.get("localContinuityState"),
         "final_target": roadmap.get("finalTarget") or {},
     }
 
@@ -720,12 +723,37 @@ def command_recover() -> int:
     return 0 if state == "PASS" else 2
 
 
+def run_a10_donecheck_acceptance() -> dict[str, Any]:
+    if not A10_ACCEPTANCE.is_file():
+        return {
+            "state": "HOLD",
+            "reason": "A10_ACCEPTANCE_COMMAND_MISSING",
+            "evidence": None,
+        }
+    result = run(["zsh", str(A10_ACCEPTANCE)], cwd=ROOT, timeout=7200)
+    fields: dict[str, str] = {}
+    for line in result.get("stdout", "").splitlines():
+        if "=" in line:
+            key, value = line.split("=", 1)
+            if key and value:
+                fields[key.strip()] = value.strip()
+    return {
+        "state": "PASS" if result["code"] == 0 else "HOLD",
+        "code": result["code"],
+        "fields": fields,
+        "evidence": fields.get("EVIDENCE"),
+        "stdout_tail": result.get("stdout", "")[-5000:],
+        "stderr_tail": result.get("stderr", "")[-5000:],
+    }
+
+
 def command_continue() -> int:
     boot = canonical_boot()
     truth = current_truth()
     mirrors = sync_mirrors()
     runner = runner_status()
     action = str(truth.get("next_action") or "UNRESOLVED")
+    local_action = str(truth.get("local_continuity_next_action") or "")
     fallback = truth.get("local_fallback") or {}
 
     if boot.get("state") != "PASS":
@@ -733,6 +761,44 @@ def command_continue() -> int:
         hold = "CANONICAL_BOOT"
         next_action = "enguru-mac doctor"
         completed = ["CANONICAL_BOOT_HOLD", "GITVAULT_SYNC"]
+    elif local_action == "V07_A10_DONECHECK_V1_2_INTEGRATION":
+        completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
+        a10 = run_a10_donecheck_acceptance()
+        if a10.get("state") != "PASS":
+            payload = write_receipt(
+                command="continue",
+                state="HOLD",
+                completed=completed,
+                evidence=[
+                    item for item in [
+                        str(SESSION_STATE),
+                        str(a10.get("evidence") or ""),
+                    ] if item
+                ],
+                hold="A10_DONECHECK_V1_2_INTEGRATION",
+                next_action="enguru-mac doctor",
+                details={
+                    "truth": truth,
+                    "boot": boot,
+                    "runner": runner,
+                    "mirrors": mirrors,
+                    "a10": a10,
+                },
+            )
+            print_receipt(payload)
+            return 2
+
+        completed.extend([
+            "A10_DONECHECK_V1_2_INTEGRATION_PASS",
+            "A01_A08_DONECHECK_PASS",
+            "A09_DONECHECK_INCONCLUSIVE_PRESERVED",
+        ])
+        state = "HOLD"
+        hold = "A09_EXTERNAL_CONFIRMATION_PENDING"
+        next_action = (
+            (a10.get("fields") or {}).get("NEXT_ACTION")
+            or "LOCAL_FINISHER_REHEARSAL_OR_A09_EXTERNAL_CONFIRMATION"
+        )
     elif action == "V07_A09_CLEAR_GITHUB_PRIVATE_REPO_HOSTED_ACTIONS_EXECUTION_GATE":
         completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
         candidate_sha = str(truth.get("a09_candidate_sha") or "")
@@ -810,6 +876,7 @@ def command_continue() -> int:
             "mirrors": mirrors,
             "local_a09_evidence": locals().get("local_evidence"),
             "local_a09_rehearsal": locals().get("rehearsal"),
+            "a10": locals().get("a10"),
             "offline_manifest": offline_manifest(),
         },
     )
