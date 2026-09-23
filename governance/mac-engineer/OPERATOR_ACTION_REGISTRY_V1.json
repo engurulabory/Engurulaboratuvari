@@ -36,6 +36,14 @@
       "networkRequired": false,
       "remotePush": false,
       "failClosed": true
+    },
+    "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF": {
+      "handler": "MAC_NATIVE_RESTART_RECOVERY_FIELD_PROOF",
+      "authority": "REAL_MAC_LOCAL_PROCESS_RESTART_EVIDENCE",
+      "command": "governance/mac-engineer/V07_MAC_NATIVE_RESTART_RECOVERY_PROOF.command",
+      "networkRequired": false,
+      "remotePush": false,
+      "failClosed": true
     }
   }
 }
