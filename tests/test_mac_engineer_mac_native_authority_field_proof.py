@@ -35,7 +35,7 @@ class MacNativeAuthorityFieldProofTests(unittest.TestCase):
         self.assertEqual(payload["taskId"], proof.TASK_ID)
         self.assertEqual(payload["peerRepository"], "engurulabory/b")
         self.assertFalse(payload["remoteMutation"])
-        self.assertEqual(payload["source"], "LOCAL_REPOSITORY_FABRIC_MIRROR")
+        self.assertEqual(payload["source"], "LOCAL_GITVAULT_MIRROR_WITH_REPOSITORY_FABRIC_IDENTITY")
 
     def test_control_plane_source_requires_fresh_local_acceptance(self):
         with tempfile.TemporaryDirectory() as tmp:
