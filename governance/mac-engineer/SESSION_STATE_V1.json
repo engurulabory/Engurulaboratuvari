@@ -819,7 +819,31 @@
       "gitVault": "PASS"
     },
     "localContinuityNextAction": "V07_A10_DONECHECK_V1_2_INTEGRATION",
-    "localContinuityState": "ACTIVE"
+    "localContinuityState": "ACTIVE",
+    "controlPlaneLocalContinuity": {
+      "state": "PENDING_RECONCILIATION",
+      "branch": "feat/mac-engineer-osi-operator-surface",
+      "remotePrNumber": 176,
+      "canonicalRemoteAuthority": "GITHUB_REMOTE_MAIN",
+      "localAuthority": "PENDING_RECONCILIATION",
+      "secondCanonicalTruth": false,
+      "externalMergeGate": "HOLD_GITHUB_ACTIONS_EXECUTION",
+      "acceptanceStatePath": "~/Enguru/Runtime/MacEngineer/state/local-accepted-control-plane-candidate.json",
+      "acceptanceEvidenceRoot": "~/Enguru/Evidence/MacEngineer/v0.7/canonical-boot",
+      "currentTechnicalTarget": "CANONICAL_BOOT_LOCAL_ACCEPTED_CANDIDATE_RECONCILIATION",
+      "nextAfterPass": "V07_A10_DONECHECK_V1_2_INTEGRATION",
+      "freshExternalObservation": {
+        "observedAt": "2026-09-23",
+        "prNumber": 176,
+        "observedHeadBeforeBootPatch": "459101e89f3dad1ff38871c7ab1a9f3e975f8db1",
+        "observedRemoteMain": "2fd5553a55ce2a8c42163c81a4d21fc155bc0593",
+        "mergeable": true,
+        "mergeState": "BLOCKED",
+        "failingChecks": 4,
+        "workflowJobsSteps": "NULL",
+        "judgment": "HOLD_EXTERNAL_ACTIONS_EXECUTION_GATE"
+      }
+    }
   },
   "observedV07A01A02": {
     "state": "VERIFIED_PASS_EXACT_MAIN",
