@@ -21,6 +21,13 @@
     "V07_A12_HUMAN_THRESHOLD_VERSION_LOCK": {
       "handler": "HUMAN_THRESHOLD",
       "authority": "FINAL_HUMAN_AUTHORITY"
+    },
+    "V07_LOCAL_FINISHER_REHEARSAL": {
+      "handler": "LOCAL_FINISHER_REHEARSAL",
+      "authority": "LOCAL_REHEARSAL_ONLY",
+      "command": "governance/mac-engineer/V07_LOCAL_FINISHER_REHEARSAL.command",
+      "canonicalA11Authority": false,
+      "failClosed": true
     }
   }
 }
