@@ -1229,7 +1229,7 @@ Canonical target: **ENGÜRÜ Mac Engineer™ v0.7 LONG-RUN RELIABILITY VERIFIED 
 5. [x] A09 local rehearsal — candidate `63dac60d39c93f3936658e8a5c8c80fb8470dfd3` locally verified.
 6. [x] A10 DoneCheck™ v1.2 integration — A01–A08 PASS; A09 external gap preserved as INCONCLUSIVE.
 7. [x] Pre-A11 Local Finisher Rehearsal — controlled fault → failure observed → repair → regression → idempotency → clean finish → Evidence.
-8. [ ] A09 external GitHub confirmation — GitHub-recorded external check; 5 consecutive targeted PASS runs + full regression PASS + scope/diff validation.
+8. [ ] A09 external GitHub confirmation — **HOLD / GITHUB ACTIONS BILLING LOCK CONFIRMED**. First unlock GitHub billing/payment so repository workflows can execute; then rerun the existing hosted A09 workflows and require 5 consecutive targeted PASS runs + full regression PASS + scope/diff validation. Self-hosted OSi runner is fallback only if hosted execution remains unavailable after billing is restored.
 9. [ ] A09 candidate → exact-main — PR #13 verification → merge → product main exact SHA → exact-main regression/CI → Evidence.
 10. [ ] A10 final re-verification — aggregate DoneCheck™ v1.2 result becomes PASS / MACHINE_VERIFICATION_PASS after A09 PASS.
 11. [ ] V07-A11 Consolidated Mac Long-Run Commissioning — one ≥8h real-Mac campaign with ≥3 controlled interruptions, continuity, exactly-once/idempotency, RSS/resource and Evidence reconciliation.
@@ -1237,3 +1237,20 @@ Canonical target: **ENGÜRÜ Mac Engineer™ v0.7 LONG-RUN RELIABILITY VERIFIED 
 13. [ ] Human Threshold™ — human acceptance → canonical status/worklist reconciliation → **v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED**.
 
 Truth boundary: local rehearsal results do not manufacture external A09, A11, Human Threshold, or version-lock authority.
+
+
+### Active next action — Gate 8
+
+**STATE — HUMAN ACTION REQUIRED / EXTERNAL GITHUB BILLING.**
+
+Observed GitHub repository Actions UI states that workflows cannot execute because the account billing is locked and payment information must be updated.
+
+Canonical sequence:
+
+`UNLOCK_GITHUB_BILLING → CONFIRM_ACTIONS_EXECUTION_AVAILABLE → RERUN_EXISTING_HOSTED_A09_WORKFLOWS → 5x TARGETED PASS → FULL REGRESSION PASS → DIFF/SCOPE PASS → A09 PASS`
+
+Fallback rule:
+
+`HOSTED_ACTIONS_STILL_UNAVAILABLE_AFTER_BILLING_RESTORE → COMMISSION_OSI_SELF_HOSTED_RUNNER → GITHUB-RECORDED CHECK EVIDENCE`
+
+Self-hosted runner is not the first action while GitHub itself reports repository-wide workflow execution disabled by billing lock.
