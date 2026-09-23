@@ -817,7 +817,8 @@
       "status": "PASS",
       "evidenceSpool": "PASS",
       "gitVault": "PASS"
-    }
+    },
+    "localContinuityNextAction": "MAC_REPOSITORY_FABRIC_FIELD_ACCEPTANCE"
   },
   "observedV07A01A02": {
     "state": "VERIFIED_PASS_EXACT_MAIN",
@@ -1005,5 +1006,16 @@
     "operatorStatus": "PASS",
     "localEvidencePath": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/osi-operator-acceptance-20260923T082037Z/evidence.json",
     "acceptanceEvidence": "evidence/MAC_ENGINEER_OSI_OPERATOR_LOCAL_ACCEPTANCE_2026-09-23.md"
+  },
+  "macRepositoryFabric": {
+    "state": "PREPARED_REAL_MAC_ACCEPTANCE_PENDING",
+    "observedAt": "2026-09-23",
+    "repositoryCount": 12,
+    "manifest": "governance/mac-engineer/MAC_REPOSITORY_FABRIC_V1.json",
+    "tool": "tools/mac_repository_fabric.py",
+    "acceptance": "governance/mac-engineer/MAC_REPOSITORY_FABRIC_ACCEPTANCE.command",
+    "mirrorRoot": "~/Enguru/GitVault/RepositoryFabric/engurulabory",
+    "authority": "GITHUB_REMOTE_MAIN_CANONICAL_DURING_MIGRATION",
+    "preparationEvidence": "evidence/MAC_REPOSITORY_FABRIC_PREPARED_2026-09-23.md"
   }
 }
