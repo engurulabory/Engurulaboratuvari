@@ -298,3 +298,20 @@ Real-Mac operator receipt `/Users/abdal/Enguru/Evidence/MacEngineer/operator/202
 This closes the local finisher rehearsal without manufacturing A09, A11, Human Threshold, or v0.7 lock authority.
 
 **NEXT ACTION — V07-A09 external GitHub confirmation. If the hosted Actions gate remains unavailable, commission the prepared OSi self-hosted GitHub runner and obtain GitHub-recorded external check Evidence.**
+
+
+## V07-A09 EXTERNAL ROOT CAUSE — GITHUB BILLING LOCK CONFIRMED — 2026-09-23
+
+**STATE — HOLD / EXTERNAL HUMAN ACTION REQUIRED.**
+
+Fresh human-visible GitHub repository Actions UI evidence confirms:
+
+> GitHub Actions workflows cannot execute on this repository because the account billing is locked; payment information must be updated.
+
+This converts the prior external execution uncertainty into a confirmed external account/billing gate. No new product-code defect is evidenced.
+
+**CLAIM —** A09 remains the only open canonical engineering gate before exact-main promotion and formal A11 eligibility.
+
+**REQUIRED DIFFERENCE —** restore GitHub Actions execution authority by resolving the billing/payment lock. After unlock, rerun the existing GitHub-hosted A09 workflows first. OSi self-hosted runner remains a bounded fallback only if hosted execution remains unavailable after billing recovery.
+
+**NEXT ACTION — GITHUB BILLING UNLOCK → RERUN A09 HOSTED WORKFLOWS.**
