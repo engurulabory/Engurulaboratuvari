@@ -10,6 +10,7 @@ from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 MODULE_PATH = ROOT / "tools" / "mac_engineer_donecheck_v12_bridge.py"
+A10_COMMAND = ROOT / "governance" / "mac-engineer" / "V07_A10_DONECHECK_V12_ACCEPTANCE.command"
 SPEC = importlib.util.spec_from_file_location("mac_engineer_donecheck_v12_bridge", MODULE_PATH)
 assert SPEC and SPEC.loader
 bridge = importlib.util.module_from_spec(SPEC)
@@ -17,6 +18,13 @@ SPEC.loader.exec_module(bridge)
 
 
 class DoneCheckV12BridgeTests(unittest.TestCase):
+    def test_a10_command_keeps_syntax_check_bytecode_free(self):
+        text = A10_COMMAND.read_text(encoding="utf-8")
+        self.assertIn("export PYTHONDONTWRITEBYTECODE=1", text)
+        self.assertNotIn("python3 -m py_compile", text)
+        self.assertIn('compile(source, str(path), "exec")', text)
+        self.assertIn("python3 -B tools/mac_engineer_donecheck_v12_bridge.py verify", text)
+
     def test_vitest_reporter_matches_supported_v4_builtin(self):
         self.assertEqual(bridge.VITEST_REPORTER, "minimal")
         self.assertNotEqual(bridge.VITEST_REPORTER, "basic")
