@@ -66,13 +66,13 @@ External GitHub Actions billing availability remains a separate external evidenc
 
 `Mac Engineer devam.`
 
-→ read current truth  
-→ resolve one active objective  
-→ execute engineering work locally  
-→ test / repair / recover  
-→ preserve Evidence  
-→ DoneCheck™  
-→ Human Threshold™  
+→ read current truth
+→ resolve one active objective
+→ execute engineering work locally
+→ test / repair / recover
+→ preserve Evidence
+→ DoneCheck™
+→ Human Threshold™
 → Verified Finish
 
 ## JUDGMENT
