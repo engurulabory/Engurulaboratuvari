@@ -94,9 +94,13 @@
         "productPrNumber": 13,
         "evidence": "evidence/MAC_ENGINEER_V07_A09_ACTIONS_HOLD_2026-09-22.md",
         "localFallback": {
-          "state": "CURRENT_CANDIDATE_REHEARSAL_REQUIRED",
-          "previousPassedCandidateSha": "d545a6d9d5d9823da5878323022735ad7f47a80e",
-          "preparationEvidence": "evidence/MAC_ENGINEER_OSI_OPERATOR_SURFACE_PREPARED_2026-09-23.md"
+          "state": "LOCAL_REHEARSAL_PASS_EXTERNAL_CONFIRMATION_PENDING",
+          "candidateSha": "63dac60d39c93f3936658e8a5c8c80fb8470dfd3",
+          "targetedConsecutivePasses": 5,
+          "fullRegression": "PASS",
+          "nativeVerification": "PASS",
+          "scopeValidation": "PASS",
+          "evidence": "evidence/MAC_ENGINEER_OSI_OPERATOR_LOCAL_ACCEPTANCE_2026-09-23.md"
         },
         "currentCandidateSha": "63dac60d39c93f3936658e8a5c8c80fb8470dfd3",
         "currentCandidateScope": [
@@ -106,7 +110,7 @@
         ]
       },
       "osiOperator": {
-        "state": "PREPARED_LOCAL_ACCEPTANCE_PENDING",
+        "state": "LOCAL_ACCEPTANCE_PASS_EXTERNAL_GITHUB_CONFIRMATION_PENDING",
         "dailySurface": [
           "status",
           "continue",
@@ -114,7 +118,18 @@
           "recover",
           "doctor"
         ],
-        "contract": "governance/mac-engineer/OSI_LOCAL_EXECUTION_RUNTIME_V1.md"
+        "contract": "governance/mac-engineer/OSI_LOCAL_EXECUTION_RUNTIME_V1.md",
+        "acceptedCodeSha": "0558ba492c352179e1d79e40dc91f7780c43df63",
+        "evidence": "evidence/MAC_ENGINEER_OSI_OPERATOR_LOCAL_ACCEPTANCE_2026-09-23.md",
+        "acceptance": {
+          "operatorTargetedTests": "PASS",
+          "controlPlaneRegression": "363_OF_363_PASS",
+          "install": "PASS",
+          "doctor": "PASS",
+          "status": "PASS",
+          "evidenceSpool": "PASS",
+          "gitVault": "PASS"
+        }
       }
     },
     {
