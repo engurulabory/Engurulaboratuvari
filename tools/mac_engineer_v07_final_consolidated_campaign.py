@@ -555,9 +555,10 @@ def run_check(name: str, cmd: list[str], cwd: Path, log_dir: Path, timeout: int 
 def final_regressions(product: Path, run_dir: Path, accepted_head: str, product_sha: str) -> dict[str, Any]:
     logs = run_dir / "final-verify"
     logs.mkdir(parents=True, exist_ok=True)
-    env = dict(os.environ)
-    env["PYTHONDONTWRITEBYTECODE"] = "1"
-    env["PYTHONPATH"] = str(product / "runtime")
+    control_env = dict(os.environ)
+    control_env["PYTHONDONTWRITEBYTECODE"] = "1"
+    product_env = dict(control_env)
+    product_env["PYTHONPATH"] = str(product / "runtime")
 
     checks = [
         run_check(
@@ -566,7 +567,7 @@ def final_regressions(product: Path, run_dir: Path, accepted_head: str, product_
             ROOT,
             logs,
             timeout=3600,
-            env=env,
+            env=control_env,
         ),
         run_check(
             "control-diff-check",
@@ -581,7 +582,7 @@ def final_regressions(product: Path, run_dir: Path, accepted_head: str, product_
             product,
             logs,
             timeout=3600,
-            env=env,
+            env=product_env,
         ),
         run_check(
             "product-native-prep-syntax",
