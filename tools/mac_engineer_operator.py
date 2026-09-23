@@ -401,8 +401,8 @@ def canonical_boot() -> dict[str, Any]:
         "control_plane": sync_repo_online(ROOT),
         "product": sync_repo_online(PRODUCT),
     }
-    sync = run([sys.executable, str(CONTROL), "sync-context"], cwd=ROOT, timeout=120)
-    start = run([sys.executable, str(CONTROL), "session-start"], cwd=ROOT, timeout=120)
+    sync = run([sys.executable, "-B", str(CONTROL), "sync-context"], cwd=ROOT, timeout=120)
+    start = run([sys.executable, "-B", str(CONTROL), "session-start"], cwd=ROOT, timeout=120)
     return {
         "state": "PASS" if sync["code"] == 0 and start["code"] == 0 else "HOLD",
         "online_sync": online_sync,
