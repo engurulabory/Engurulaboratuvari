@@ -37,6 +37,26 @@ class MacNativeAuthorityFieldProofTests(unittest.TestCase):
         self.assertFalse(payload["remoteMutation"])
         self.assertEqual(payload["source"], "LOCAL_GITVAULT_MIRROR_WITH_REPOSITORY_FABRIC_IDENTITY")
 
+    def test_mirror_remote_main_reads_remote_tracking_truth(self):
+        with mock.patch.object(
+            proof,
+            "run",
+            return_value={"code": 0, "stdout": "a" * 40, "stderr": ""},
+        ) as runner:
+            observed = proof.mirror_remote_main(Path("/tmp/example.git"))
+
+        self.assertEqual(observed, "a" * 40)
+        runner.assert_called_once_with(
+            [
+                "git",
+                "--git-dir",
+                "/tmp/example.git",
+                "rev-parse",
+                "refs/remotes/origin/main",
+            ],
+            timeout=60,
+        )
+
     def test_control_plane_source_requires_fresh_local_acceptance(self):
         with tempfile.TemporaryDirectory() as tmp:
             state = Path(tmp) / "accepted.json"
