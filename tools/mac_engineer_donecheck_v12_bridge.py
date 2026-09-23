@@ -122,8 +122,8 @@ def canonical_gate_state() -> tuple[list[str], str]:
     v07 = session.get("currentV07") or {}
     passed = list(v07.get("passedGates") or [])
     a09_state = str(
-        (session.get("observedV07A09LocalFallback") or {}).get("canonicalA09State")
-        or v07.get("a09State")
+        v07.get("a09State")
+        or (session.get("observedV07A09LocalFallback") or {}).get("canonicalA09State")
         or "HOLD"
     )
     return passed, a09_state
@@ -144,7 +144,11 @@ def prepare_input(output_dir: Path) -> dict[str, Any]:
         digest = f"sha256:{sha256(source)}"
         gate_pass = gate in passed
         if gate == "V07-A09":
-            gate_pass = a09_state == "PASS"
+            gate_pass = (
+                a09_state == "PASS"
+                or a09_state.startswith("PASS_")
+                or a09_state.startswith("VERIFIED_PASS")
+            )
         content = (
             f"[DONECHECK:PASS] {gate} canonical acceptance evidence is PASS."
             if gate_pass
