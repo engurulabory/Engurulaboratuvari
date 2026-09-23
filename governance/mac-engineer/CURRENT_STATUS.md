@@ -171,4 +171,4 @@ The required difference extends the existing canonical-context + session-continu
 
 **JUDGMENT — HOLD until real-Mac acceptance executes.**
 
-**NEXT ACTION — run the one-command local candidate acceptance gate, then `enguru-mac continue` for V07-A10.**
+**NEXT ACTION — run the one-command local candidate acceptance gate, then `enguru-mac doctor`; after Doctor PASS, `enguru-mac continue` advances to V07-A10.**
