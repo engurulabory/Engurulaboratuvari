@@ -1126,5 +1126,15 @@
     "runtimeState": "/Users/abdal/Enguru/Runtime/MacEngineer/state/repository-fabric.json",
     "localEvidencePath": "/Users/abdal/Enguru/Evidence/MacEngineer/repository-fabric/20260923T094323Z/evidence.json",
     "acceptanceEvidence": "evidence/MAC_REPOSITORY_FABRIC_LOCAL_ACCEPTANCE_2026-09-23.md"
+  },
+  "macNativeEngineeringAuthority": {
+    "state": "LOCKED",
+    "name": "ENGÜRÜ Mac-Native Engineering Authority™",
+    "product": "ENGÜRÜ Mac Engineer™",
+    "localExecutionSubstrate": "OSi Local Execution Runtime",
+    "primaryEngineeringExecutionSurface": "Mac",
+    "githubRole": "REMOTE_SOURCE_SYNC_PUBLICATION_EXTERNAL_EVIDENCE",
+    "contract": "governance/mac-engineer/MAC_NATIVE_ENGINEERING_AUTHORITY_V1.md",
+    "principle": "GITHUB_REMAINS_IN_SYSTEM_NOT_MANDATORY_FOR_ENGINEERING_EXECUTION"
   }
 }
