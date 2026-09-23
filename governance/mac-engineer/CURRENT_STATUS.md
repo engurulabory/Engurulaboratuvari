@@ -620,3 +620,42 @@ Evidence: `/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/gate11-donecheck-local-
 Operator receipt: `/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T125200Z-continue.json`.
 
 **NEXT ACTION — Gate 12: V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY.**
+
+
+## GATE 12 FINAL CONSOLIDATED MAC CAMPAIGN + FINAL VERIFY — PACKAGE PREPARED — 2026-09-23
+
+**STATE — PACKAGE PREPARED / FRESH EXACT-HEAD ACCEPTANCE REQUIRED.**
+
+Gate 12 is the final technical commissioning gate before Human Threshold™.
+
+Locked campaign contract:
+
+- real wall/active campaign duration ≥ 8 hours;
+- `caffeinate -i -m` keeps the Mac from idle sleep while the campaign command owns the session;
+- one durable reliability task with one exactly-once durable effect;
+- worker RSS sampled every 60 seconds;
+- warm-up = 5 minutes; warm baseline = median of first 5 post-warm-up samples;
+- peak RSS ≤ 2.0× warm baseline;
+- final RSS ≤ 1.5× warm baseline;
+- three controlled interruption events:
+  1. graceful process restart;
+  2. real localhost network interruption + recovery;
+  3. abrupt runtime worker restart;
+- same durable task/checkpoint lineage across worker restarts;
+- runtime temp/cache reconciliation;
+- control-plane full regression + diff check;
+- product full runtime regression + native syntax + Swift build + diff check;
+- exact accepted control-plane HEAD and exact product main remain unchanged;
+- post-campaign canonical DoneCheck™ v1.2 verification PASS;
+- technical HOLD count = 0;
+- external GitHub A09 remains `EXTERNAL_BLOCKED_DEFERRED`;
+- remote push/merge = false;
+- Human Threshold™ remains the final authority transition.
+
+Campaign operator output is streamed to Terminal during execution. Progress is emitted approximately every 30 minutes and after each controlled event.
+
+Evidence root:
+
+`~/Enguru/Evidence/MacEngineer/v0.7/final-consolidated-campaign/`
+
+**NEXT ACTION — fresh exact-head local acceptance → Doctor → `enguru-mac continue` → ≥8h Gate 12 campaign → Human Threshold™ if PASS.**
