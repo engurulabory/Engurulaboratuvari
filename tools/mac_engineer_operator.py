@@ -36,6 +36,7 @@ ACTION_REGISTRY = ROOT / "governance" / "mac-engineer" / "OPERATOR_ACTION_REGIST
 CONTROL = ROOT / "tools" / "mac_engineer_control.py"
 A10_ACCEPTANCE = ROOT / "governance" / "mac-engineer" / "V07_A10_DONECHECK_V12_ACCEPTANCE.command"
 LOCAL_FINISHER_REHEARSAL = ROOT / "governance" / "mac-engineer" / "V07_LOCAL_FINISHER_REHEARSAL.command"
+MAC_NATIVE_AUTHORITY_FIELD_PROOF = ROOT / "governance" / "mac-engineer" / "V07_MAC_NATIVE_AUTHORITY_FIELD_PROOF.command"
 
 TERMINAL_STATES = {"COMPLETE", "HOLD", "FAILED", "BLOCKED"}
 RECOVERABLE_STATES = {"RUNNING", "CHECKPOINTED", "RECOVERY_REQUIRED", "VERIFYING"}
@@ -772,6 +773,35 @@ def run_local_finisher_rehearsal() -> dict[str, Any]:
     }
 
 
+def run_mac_native_authority_field_proof() -> dict[str, Any]:
+    if not MAC_NATIVE_AUTHORITY_FIELD_PROOF.is_file():
+        return {
+            "state": "HOLD",
+            "reason": "MAC_NATIVE_AUTHORITY_FIELD_PROOF_COMMAND_MISSING",
+            "evidence": None,
+        }
+    result = run(
+        ["zsh", str(MAC_NATIVE_AUTHORITY_FIELD_PROOF)],
+        cwd=ROOT,
+        timeout=7200,
+        env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+    )
+    fields: dict[str, str] = {}
+    for line in result.get("stdout", "").splitlines():
+        if "=" in line:
+            key, value = line.split("=", 1)
+            if key and value:
+                fields[key.strip()] = value.strip()
+    return {
+        "state": "PASS" if result["code"] == 0 else "HOLD",
+        "code": result["code"],
+        "fields": fields,
+        "evidence": fields.get("EVIDENCE"),
+        "stdout_tail": result.get("stdout", "")[-6000:],
+        "stderr_tail": result.get("stderr", "")[-6000:],
+    }
+
+
 def command_continue() -> int:
     boot = canonical_boot()
     truth = current_truth()
@@ -786,6 +816,45 @@ def command_continue() -> int:
         hold = "CANONICAL_BOOT"
         next_action = "enguru-mac doctor"
         completed = ["CANONICAL_BOOT_HOLD", "GITVAULT_SYNC"]
+    elif local_action == "MAC_NATIVE_AUTHORITY_MIGRATION_FIELD_PROOF":
+        completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
+        migration_proof = run_mac_native_authority_field_proof()
+        if migration_proof.get("state") != "PASS":
+            payload = write_receipt(
+                command="continue",
+                state="HOLD",
+                completed=completed,
+                evidence=[
+                    item for item in [
+                        str(SESSION_STATE),
+                        str(migration_proof.get("evidence") or ""),
+                    ] if item
+                ],
+                hold="MAC_NATIVE_AUTHORITY_MIGRATION_FIELD_PROOF",
+                next_action="enguru-mac doctor",
+                details={
+                    "truth": truth,
+                    "boot": boot,
+                    "runner": runner,
+                    "mirrors": mirrors,
+                    "migration_proof": migration_proof,
+                },
+            )
+            print_receipt(payload)
+            return 2
+
+        completed.extend([
+            "MAC_NATIVE_AUTHORITY_MIGRATION_FIELD_PROOF_PASS",
+            "MULTI_REPO_LOCAL_ENGINEERING_PASS",
+            "REMOTE_PUSH_FALSE",
+            "SECOND_CANONICAL_TRUTH_FALSE",
+        ])
+        state = "HOLD"
+        hold = "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF_REQUIRED"
+        next_action = (
+            (migration_proof.get("fields") or {}).get("NEXT_ACTION")
+            or "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF"
+        )
     elif local_action == "V07_LOCAL_FINISHER_REHEARSAL":
         completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
         local_finisher = run_local_finisher_rehearsal()
@@ -941,6 +1010,7 @@ def command_continue() -> int:
             "local_a09_rehearsal": locals().get("rehearsal"),
             "a10": locals().get("a10"),
             "local_finisher": locals().get("local_finisher"),
+            "migration_proof": locals().get("migration_proof"),
             "offline_manifest": offline_manifest(),
         },
     )
