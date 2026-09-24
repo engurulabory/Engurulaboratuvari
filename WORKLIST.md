@@ -1488,3 +1488,41 @@ External GitHub A09 remains `EXTERNAL_BLOCKED_DEFERRED` and requires reconciliat
 - [ ] Human Artistic Authority™ final real-product acceptance.
 
 **NEXT ACTION:** `V08_DESKTOP_COCKPIT_REAL_IMPLEMENTATION`
+
+<!-- ENGURU_LOCAL_MAC_ASTRA_100_TARGET_V1 -->
+
+## ENGÜRÜ Mac Engineer™ v1.0 — LOCAL MAC ASTRA 100/100 TARGET
+
+**STATE — ACTIVE / LOCKED TARGET**
+
+**CLAIM —** ENGÜRÜ Mac Engineer™ v1.0 hedefi; Mac üzerinde local-first çalışan, doğal dil ile yönetilen, bağlamını sürdüren, mühendislik işini uçtan uca icra eden, dayanıklı biçimde devam eden, Evidence + DoneCheck™ ile doğrulayan ve gerekli Human Threshold noktalarında insan otoritesini koruyan **Local Mac Astra 100/100** ürün seviyesidir.
+
+### 100/100 acceptance contract
+
+- [ ] Conversation-only primary control.
+- [ ] Autonomous project lifecycle.
+- [ ] Single Persistent Cockpit.
+- [ ] Structured work-scoped Verified Finish → automatic archive.
+- [ ] Natural-language restore and safe delete.
+- [ ] Local-first Mac execution.
+- [ ] Real text + file + image/photo + voice capability.
+- [ ] End-to-end product engineering.
+- [ ] Long-running reliability and recovery.
+- [ ] Evidence + DoneCheck™ + Human Threshold.
+- [ ] Premium Human Artistic Cockpit.
+- [ ] One-intent → Verified Finish completion.
+
+### Current finish path
+
+- [ ] Cockpit conversation compression.
+- [ ] Structured work-scoped completion state.
+- [ ] Verified Finish auto-archive.
+- [ ] Conversation-first project lifecycle.
+- [ ] Real file/image/voice.
+- [ ] Gate 7 Migration / Repair.
+- [ ] Gate 8 New Product from Brief.
+- [ ] Gate 9 Deploy / Live Verify / Rollback.
+- [ ] Consolidated commissioning.
+- [ ] DoneCheck™ v1.2 + Human Threshold + v1.0 lock.
+
+**TARGET — LOCAL MAC ASTRA 100/100**
