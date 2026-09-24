@@ -31,11 +31,14 @@ class MacEngineerSessionContinuityTests(unittest.TestCase):
         )
         worklist = (root / "WORKLIST.md").read_text(encoding="utf-8")
 
-        expected = "V08_SELF_ENGINEERING_BASELINE_AUDIT"
+        expected = roadmap["current"]["activeObjective"]
         self.assertEqual(session["currentVersion"], "v0.8")
         self.assertEqual(session["currentObjective"], expected)
         self.assertEqual(roadmap["current"]["version"], "v0.8")
-        self.assertEqual(roadmap["current"]["activeObjective"], expected)
+        self.assertIn(
+            f"**Active objective:** `{expected}`",
+            worklist,
+        )
         self.assertIn(
             f"**Current single objective:** **{expected}**.",
             worklist,
