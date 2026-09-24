@@ -676,3 +676,26 @@ Operator receipt: `/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T21
 External GitHub A09 remains `EXTERNAL_BLOCKED_DEFERRED`; no external PASS was manufactured.
 
 **NEXT ACTION — Gate 13: V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION. Explicit human decision is required before VERIFIED / LOCKED.**
+
+
+## GATE 13 HUMAN THRESHOLD™ + AUTHORITY TRANSITION — REVIEW PACKAGE PREPARED — 2026-09-24
+
+**STATE — ACTIVE / EXPLICIT HUMAN DECISION REQUIRED.**
+
+Current closure truth:
+
+- Gates 1–12: PASS;
+- Gate 12 ≥8h real Mac campaign: PASS;
+- technical HOLD count: 0;
+- post-campaign DoneCheck™ v1.2: PASS;
+- external GitHub A09: EXTERNAL_BLOCKED_DEFERRED and preserved as external evidence;
+- final authority: Human Threshold™.
+
+Gate 13 is split into two explicit stages:
+
+1. `REVIEW` — read-only structural verification of Gates 1–12, fresh local accepted candidate, Gate 12 Evidence, DoneCheck™ v1.2 exact SHA, clean checkout and external A09 boundary. Output remains `HOLD=HUMAN_DECISION_REQUIRED`.
+2. `ACCEPT` — available only after explicit human acceptance token. It writes a local Human Threshold decision receipt. It does not itself create the canonical version lock.
+
+Canonical `v0.7 VERIFIED / LOCKED` is created only after the explicit human decision receipt is observed and canonical reconciliation is completed.
+
+**NEXT ACTION — fresh exact-head local acceptance → Doctor → `enguru-mac continue` → Human Threshold REVIEW.**
