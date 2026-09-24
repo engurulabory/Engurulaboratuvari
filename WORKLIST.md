@@ -1166,8 +1166,8 @@ DoneCheck authority:
 
 `DoneCheck™ v1.2 / 1.2.0 / exact-main 8b90a8fc93453dd8a84994195d28d14b15e261cb`
 
-1. [ ] **Gate 1 — Canonical Transition + Self-Engineering Baseline — ACTIVE**
-2. [ ] **Gate 2 — Product Reality Reconciliation**
+1. [x] **Gate 1 — Canonical Transition + Self-Engineering Baseline — PASS**
+2. [ ] **Gate 2 — Product Reality Reconciliation — ACTIVE**
 3. [ ] **Gate 3 — UX + Aesthetic Product Contract**
 4. [ ] **Gate 4 — Full Product Engineering Chain Binding**
 5. [ ] **Gate 5 — Native App Productization + Version/Provenance**
@@ -1179,9 +1179,25 @@ DoneCheck authority:
 11. [ ] **Gate 11 — Consolidated Real-Mac Product Engineering Commissioning**
 12. [ ] **Gate 12 — DoneCheck™ v1.2 + Human Threshold™ + Version Lock**
 
+### Gate 1 result — VERIFIED PASS
+
+Evidence:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/self-engineering-baseline/20260924T050648Z/evidence.json`
+
+Operator receipt:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260924T050648Z-continue.json`
+
+Verified chain:
+
+`PRODUCT_RUNTIME_REGRESSION_PASS → NATIVE_SWIFT_BUILD_PASS → CURRENT_PRODUCT_REALITY_MEASURED → DONECHECK_V1_2_AUTHORITY_BOUND`
+
+**Closure state: 1/12 PASS. Active gate: 2 — Product Reality Reconciliation.**
+
 ### Current v0.8 next action
 
-`V08_SELF_ENGINEERING_BASELINE_AUDIT`
+`V08_SELF_ENGINEERING_PRODUCT_REALITY_RECONCILIATION`
 
 The first v0.8 field task uses ENGÜRÜ Mac-Native Engineering Authority™ on **ENGÜRÜ Mac Engineer™ itself**. It measures exact product source, runtime regression, native build, installed bundle version/provenance and the current user-interface form before product mutation.
 
