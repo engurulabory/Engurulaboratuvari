@@ -41,7 +41,7 @@
     "checkpointRestartResumeFieldProof": "VERIFIED_PASS",
     "v07LongRunReliability": "VERIFIED_LOCKED"
   },
-  "currentObjective": "V0_7_VERIFIED_LOCKED_AWAIT_NEXT_OBJECTIVE",
+  "currentObjective": "V08_SELF_ENGINEERING_BASELINE_AUDIT",
   "observedProductPublication": {
     "source": "MAC_FIELD_OUTPUT",
     "localSourceHead": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
@@ -162,7 +162,7 @@
   "technicalProductId": "enguru-mac-engineer",
   "productIdentityRoadmap": "governance/mac-engineer/PRODUCT_IDENTITY_ROADMAP_V1.md",
   "productRoadmap": "governance/mac-engineer/PRODUCT_ROADMAP_V1.json",
-  "currentVersion": "v0.7",
+  "currentVersion": "v0.8",
   "finalTarget": "v1.1_VERIFIED_PRODUCT_ENGINEERING_OPERATOR",
   "observedExactShaInstall": {
     "state": "PASS",
@@ -291,7 +291,7 @@
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "V0_7_VERIFIED_LOCKED_AWAIT_NEXT_OBJECTIVE",
+  "nextAction": "V08_SELF_ENGINEERING_BASELINE_AUDIT",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
@@ -1269,5 +1269,56 @@
       "VERIFY"
     ],
     "operatingPattern": "GITHUB_TRUTH_TO_MAC_EXECUTION_TO_EVIDENCE_DONECHECK_TO_SYNC"
+  },
+  "currentV08": {
+    "state": "ACTIVE",
+    "objective": "V08_PRODUCT_ENGINEERING_OPERATOR",
+    "engineeringMode": "MAC_NATIVE_PRIMARY_AUTHORITY",
+    "executionAuthorityModel": "ENGÜRÜ Mac-Native Engineering Authority™",
+    "nextAction": "V08_SELF_ENGINEERING_BASELINE_AUDIT",
+    "localContinuityNextAction": "V08_SELF_ENGINEERING_BASELINE_AUDIT",
+    "localContinuityState": "ACTIVE",
+    "acceptanceMatrix": "PASS_DEFINED",
+    "acceptanceMatrixPath": "governance/mac-engineer/V08_PRODUCT_ENGINEERING_OPERATOR_ACCEPTANCE_MATRIX_V1.md",
+    "productExactMain": "5432b9b135499cea18273c0e003877b864af92c6",
+    "installedBundleBaseline": "0.6",
+    "doneCheckAuthority": {
+      "product": "DoneCheck™ v1.2",
+      "version": "1.2.0",
+      "exactMain": "8b90a8fc93453dd8a84994195d28d14b15e261cb"
+    },
+    "controlPlaneLocalContinuity": {
+      "state": "ACTIVE_VERSION_ENGINEERING",
+      "branch": "feat/mac-engineer-v08-product-engineering-operator",
+      "canonicalRemoteAuthority": "GITHUB_REMOTE_MAIN",
+      "localAuthority": "MAC_NATIVE_PRIMARY_ENGINEERING_AUTHORITY_VERIFIED",
+      "secondCanonicalTruth": false,
+      "externalMergeGate": "HOLD_GITHUB_ACTIONS_EXECUTION",
+      "acceptanceStatePath": "~/Enguru/Runtime/MacEngineer/state/local-accepted-control-plane-candidate.json",
+      "acceptanceEvidenceRoot": "~/Enguru/Evidence/MacEngineer/v0.8/canonical-boot",
+      "currentTechnicalTarget": "V08_SELF_ENGINEERING_BASELINE_AUDIT",
+      "nextAfterPass": "V08_SELF_ENGINEERING_PRODUCT_REALITY_RECONCILIATION"
+    },
+    "closureContract": {
+      "totalGates": 12,
+      "passedGates": [],
+      "activeGate": 1,
+      "remainingGates": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "finalAuthority": "HUMAN_THRESHOLD",
+      "finalState": "PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED"
+    }
   }
 }
