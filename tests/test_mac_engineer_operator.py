@@ -320,6 +320,49 @@ class OperatorSurfaceTests(unittest.TestCase):
         a10.assert_called_once_with()
         a09_rehearsal.assert_not_called()
 
+    def test_continue_stops_at_explicit_human_decision(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            evidence = Path(tmp)
+            runtime_receipts = evidence / "runtime"
+            review = mock.Mock(
+                return_value={
+                    "state": "PASS",
+                    "evidence": "/tmp/human-threshold/review.json",
+                    "fields": {
+                        "HUMAN_THRESHOLD_REVIEW_READY": "PASS",
+                        "HUMAN_DECISION_OPTIONS": "ACCEPT|HOLD",
+                    },
+                }
+            )
+            truth = {
+                "next_action": "V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION",
+                "local_continuity_next_action": "V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION",
+                "local_fallback": {},
+            }
+            with (
+                mock.patch.object(operator, "EVIDENCE", evidence),
+                mock.patch.object(operator, "RUNTIME_RECEIPTS", runtime_receipts),
+                mock.patch.object(operator, "canonical_boot", return_value={"state": "PASS"}),
+                mock.patch.object(operator, "current_truth", return_value=truth),
+                mock.patch.object(operator, "sync_mirrors", return_value={}),
+                mock.patch.object(operator, "runner_status", return_value={"state": "UNCOMMISSIONED"}),
+                mock.patch.object(operator, "run_human_threshold_review", review),
+                mock.patch.object(operator, "offline_manifest", return_value={}),
+            ):
+                with contextlib.redirect_stdout(io.StringIO()):
+                    code = operator.command_continue()
+
+            receipt = json.loads(
+                (evidence / "latest-receipt.json").read_text(encoding="utf-8")
+            )
+
+        self.assertEqual(code, 2)
+        self.assertEqual(receipt["hold"], "HUMAN_DECISION_REQUIRED")
+        self.assertIn("HUMAN_THRESHOLD_REVIEW_READY_PASS", receipt["completed"])
+        self.assertIn("ENGINEERING_GATES_12_OF_12_PASS", receipt["completed"])
+        self.assertEqual(receipt["next_action"], "EXPLICIT_HUMAN_ACCEPT_OR_HOLD")
+        review.assert_called_once_with()
+
     def test_continue_runs_final_consolidated_campaign(self):
         with tempfile.TemporaryDirectory() as tmp:
             evidence = Path(tmp)
