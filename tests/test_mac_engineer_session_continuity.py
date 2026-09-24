@@ -17,9 +17,7 @@ from tools.mac_engineer_session_continuity import (
 
 
 class MacEngineerSessionContinuityTests(unittest.TestCase):
-    def test_post_lock_objective_alignment_contract(self) -> None:
-        import json
-
+    def test_v08_active_objective_preserves_v07_lock(self) -> None:
         root = Path(__file__).resolve().parents[1]
         session = json.loads(
             (root / "governance/mac-engineer/SESSION_STATE_V1.json").read_text(
@@ -33,13 +31,22 @@ class MacEngineerSessionContinuityTests(unittest.TestCase):
         )
         worklist = (root / "WORKLIST.md").read_text(encoding="utf-8")
 
-        expected = "V0_7_VERIFIED_LOCKED_AWAIT_NEXT_OBJECTIVE"
+        expected = "V08_SELF_ENGINEERING_BASELINE_AUDIT"
+        self.assertEqual(session["currentVersion"], "v0.8")
         self.assertEqual(session["currentObjective"], expected)
+        self.assertEqual(roadmap["current"]["version"], "v0.8")
         self.assertEqual(roadmap["current"]["activeObjective"], expected)
         self.assertIn(
             f"**Current single objective:** **{expected}**.",
             worklist,
         )
+        self.assertEqual(session["currentV07"]["state"], "VERIFIED_LOCKED")
+        v07 = next(
+            item
+            for item in roadmap["versions"]
+            if item["version"] == "v0.7"
+        )
+        self.assertEqual(v07["state"], "VERIFIED_LOCKED")
 
     def test_objective_normalization_tolerates_formatting_only(self):
         self.assertEqual(
