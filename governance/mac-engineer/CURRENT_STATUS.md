@@ -735,3 +735,36 @@ The seal is read-only with respect to canonical source and writes only local Evi
 `~/Enguru/Evidence/MacEngineer/v0.7/verified-finish/`
 
 It requires the fresh locally accepted exact control-plane HEAD, Human Threshold™ ACCEPT receipt, Gate 12 PASS Evidence, DoneCheck™ v1.2 exact SHA, 13/13 canonical reconciliation, clean worktree and preserved external A09 deferred boundary.
+
+
+## v0.7 FINAL SEAL — POST-LOCK ACCEPTANCE POLICY RECONCILIATION — 2026-09-24
+
+**STATE — PATCH PREPARED / FRESH EXACT-HEAD ACCEPTANCE REQUIRED.**
+
+Observed final-seal HOLD:
+
+`LOCAL_CANDIDATE_POLICY_INVALID`
+
+Root cause: the fresh local candidate acceptance contract recognized only the pre-lock continuity phase:
+
+`PENDING_RECONCILIATION + PENDING_RECONCILIATION`
+
+After Human Threshold™ ACCEPT and canonical v0.7 lock, the correct continuity state is:
+
+`VERIFIED_LOCAL_AUTHORITY_PENDING_EXTERNAL_RECONCILIATION + MAC_NATIVE_PRIMARY_ENGINEERING_AUTHORITY_VERIFIED`
+
+Required difference applied:
+
+- local candidate policy is now phase-aware;
+- pre-lock candidate acceptance remains supported;
+- post-lock verified-finish acceptance is explicitly supported;
+- mixed or unknown policy-state/local-authority combinations remain fail-closed;
+- `GITHUB_REMOTE_MAIN` remains canonical remote identity authority;
+- `secondCanonicalTruth=false` remains mandatory;
+- external `HOLD_*` merge gate remains mandatory;
+- acceptance and Evidence authority now match the active policy phase;
+- regression coverage includes valid post-lock authority and invalid mixed-phase rejection.
+
+No Gate PASS, Human Threshold decision or external GitHub A09 state was altered by this reconciliation.
+
+**NEXT ACTION — fresh exact-head acceptance → Doctor → v0.7 Verified Finish final seal.**
