@@ -1122,7 +1122,7 @@ Local evidence:
 
 **Active objective:** `V0_7_LONG_RUNNING_RELIABILITY`
 
-**Current single objective:** **v0.7 — Long-Running Reliability**.
+**Current single objective:** **V0_7_VERIFIED_LOCKED_AWAIT_NEXT_OBJECTIVE**.
 
 ## v0.7 — Long-Running Reliability
 
