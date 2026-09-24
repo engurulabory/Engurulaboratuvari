@@ -50,6 +50,18 @@ class V08NativeAppProductizationTests(unittest.TestCase):
         ):
             self.assertIn(expected, text)
 
+    def test_recovery_preserves_single_local_commit(self) -> None:
+        source = MODULE_PATH.read_text(encoding="utf-8")
+        self.assertIn(
+            "reconcile_existing_commit_to_current_contract",
+            source,
+        )
+        self.assertIn(
+            '["git", "commit", "--amend", "--no-edit"]',
+            source,
+        )
+        self.assertIn('"amendedRecovery": True', source)
+
     def test_gate5_never_encodes_remote_push(self) -> None:
         self.assertNotIn("git push", gate5.PREPARE_V08)
         source = MODULE_PATH.read_text(encoding="utf-8")
