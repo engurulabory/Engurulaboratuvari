@@ -107,8 +107,10 @@ Exit: **VERIFIED FINAL / LOCKED**
 
 ## DoneCheck™ v1.2 authority
 
-Canonical product: `engurulabory/donecheck`  
-Version: **1.2.0**  
+Canonical product: `engurulabory/donecheck`
+
+Version: **1.2.0**
+
 Exact main: `8b90a8fc93453dd8a84994195d28d14b15e261cb`
 
 `Markdown projection → Mandatory DoneCheck™ v1.2 Evidence contract → DoneCheck™ v1.2 machine authority → Human Threshold™ final human authority`
