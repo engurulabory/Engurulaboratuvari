@@ -46,6 +46,7 @@ V08_SELF_ENGINEERING_BASELINE = ROOT / "governance" / "mac-engineer" / "V08_SELF
 V08_PRODUCT_REALITY_RECONCILIATION = ROOT / "governance" / "mac-engineer" / "V08_SELF_ENGINEERING_PRODUCT_REALITY_RECONCILIATION.command"
 V08_UX_AESTHETIC_PRODUCT_CONTRACT = ROOT / "governance" / "mac-engineer" / "V08_UX_AESTHETIC_PRODUCT_CONTRACT.command"
 V08_FULL_PRODUCT_ENGINEERING_CHAIN_BINDING = ROOT / "governance" / "mac-engineer" / "V08_FULL_PRODUCT_ENGINEERING_CHAIN_BINDING.command"
+V08_NATIVE_APP_PRODUCTIZATION = ROOT / "governance" / "mac-engineer" / "V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE.command"
 
 TERMINAL_STATES = {"COMPLETE", "HOLD", "FAILED", "BLOCKED"}
 RECOVERABLE_STATES = {"RUNNING", "CHECKPOINTED", "RECOVERY_REQUIRED", "VERIFYING"}
@@ -1153,6 +1154,50 @@ def run_v08_full_product_engineering_chain_binding() -> dict[str, Any]:
     }
 
 
+def run_v08_native_app_productization() -> dict[str, Any]:
+    if not V08_NATIVE_APP_PRODUCTIZATION.is_file():
+        return {
+            "state": "HOLD",
+            "reason": "V08_NATIVE_APP_PRODUCTIZATION_COMMAND_MISSING",
+            "evidence": None,
+        }
+    result = run(
+        ["zsh", str(V08_NATIVE_APP_PRODUCTIZATION)],
+        cwd=ROOT,
+        timeout=3600,
+        env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+    )
+    fields: dict[str, str] = {}
+    for line in result.get("stdout", "").splitlines():
+        if "=" in line:
+            key, value = line.split("=", 1)
+            if key and value:
+                fields[key.strip()] = value.strip()
+
+    passed = (
+        result["code"] == 0
+        and fields.get("STATE") == "PASS"
+        and fields.get("V08_GATE_05") == "PASS"
+        and fields.get("NATIVE_APP_PRODUCTIZATION") == "PASS"
+        and fields.get("PRODUCT_REMOTE_PUSH") == "false"
+        and fields.get("PRODUCT_MUTATION_PATHS") == "3"
+        and fields.get("SOURCE_BUNDLE_VERSION") == "0.8"
+        and fields.get("INSTALLED_BUNDLE_VERSION") == "0.8"
+        and fields.get("SOURCE_INSTALLED_RUNTIME_PARITY") == "PASS"
+        and fields.get("RELEASE_PROVENANCE") == "PASS"
+        and fields.get("CODESIGN") == "PASS"
+        and fields.get("FRESH_APP_RUNTIME_READINESS") == "PASS"
+    )
+    return {
+        "state": "PASS" if passed else "HOLD",
+        "code": result["code"],
+        "fields": fields,
+        "evidence": fields.get("EVIDENCE"),
+        "stdout_tail": result.get("stdout", "")[-10000:],
+        "stderr_tail": result.get("stderr", "")[-10000:],
+    }
+
+
 def command_continue() -> int:
     boot = canonical_boot()
     truth = current_truth()
@@ -1167,6 +1212,50 @@ def command_continue() -> int:
         hold = "CANONICAL_BOOT"
         next_action = "enguru-mac doctor"
         completed = ["CANONICAL_BOOT_HOLD", "GITVAULT_SYNC"]
+    elif local_action == "V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE":
+        completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
+        productization = run_v08_native_app_productization()
+        if productization.get("state") != "PASS":
+            payload = write_receipt(
+                command="continue",
+                state="HOLD",
+                completed=completed,
+                evidence=[
+                    item for item in [
+                        str(SESSION_STATE),
+                        str(productization.get("evidence") or ""),
+                    ] if item
+                ],
+                hold="V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE",
+                next_action="enguru-mac doctor",
+                details={
+                    "truth": truth,
+                    "boot": boot,
+                    "runner": runner,
+                    "mirrors": mirrors,
+                    "v08_native_app_productization": productization,
+                },
+            )
+            print_receipt(payload)
+            return 2
+
+        completed.extend([
+            "V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE_PASS",
+            "PRODUCT_LOCAL_COMMIT_BOUND",
+            "BUNDLE_VERSION_V08_PASS",
+            "SOURCE_INSTALLED_RUNTIME_PARITY_PASS",
+            "RELEASE_PROVENANCE_PASS",
+            "NATIVE_CODESIGN_PASS",
+            "FRESH_APP_RUNTIME_READINESS_PASS",
+            "PRODUCT_REMOTE_PUSH_FALSE",
+            "DONECHECK_V1_2_AUTHORITY_PRESERVED",
+        ])
+        state = "HOLD"
+        hold = "V08_EXISTING_PRODUCT_CHANGE_SCENARIO_REQUIRED"
+        next_action = (
+            (productization.get("fields") or {}).get("NEXT_ACTION")
+            or "V08_EXISTING_PRODUCT_CHANGE_SCENARIO"
+        )
     elif local_action == "V08_FULL_PRODUCT_ENGINEERING_CHAIN_BINDING":
         completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
         binding = run_v08_full_product_engineering_chain_binding()
