@@ -10,6 +10,10 @@ import subprocess
 import sys
 from typing import Any
 
+from tools.mac_engineer_local_candidate_authority import (
+    local_candidate_policy_phase,
+)
+
 
 ROOT = Path(__file__).resolve().parents[1]
 HOME = Path.home()
@@ -82,15 +86,23 @@ def main() -> int:
 
     expected_branch = str(policy.get("branch") or "")
     external_hold = str(policy.get("externalMergeGate") or "")
+    acceptance_authority = str(policy.get("localAuthority") or "")
+    policy_phase = local_candidate_policy_phase(policy)
     if (
-        policy.get("state") != "PENDING_RECONCILIATION"
+        policy_phase is None
         or not expected_branch
         or policy.get("canonicalRemoteAuthority") != "GITHUB_REMOTE_MAIN"
-        or policy.get("localAuthority") != "PENDING_RECONCILIATION"
         or policy.get("secondCanonicalTruth") is not False
         or not external_hold.startswith("HOLD_")
     ):
-        return fail("LOCAL_CANDIDATE_POLICY_INVALID")
+        return fail(
+            "LOCAL_CANDIDATE_POLICY_INVALID",
+            {
+                "policyState": policy.get("state"),
+                "localAuthority": acceptance_authority,
+                "policyPhase": policy_phase,
+            },
+        )
 
     fetch = run(["git", "fetch", "--prune", "origin"], timeout=300)
     if fetch["code"] != 0:
@@ -211,7 +223,8 @@ def main() -> int:
         "mergeBase": merge_base,
         "aheadOfMain": int(ahead),
         "clean": True,
-        "authority": "PENDING_RECONCILIATION",
+        "authority": acceptance_authority,
+        "policyPhase": policy_phase,
         "canonicalRemoteAuthority": "GITHUB_REMOTE_MAIN",
         "secondCanonicalTruth": False,
         "externalMergeGate": external_hold,
@@ -236,7 +249,8 @@ def main() -> int:
         "originMain": origin_main,
         "originBranch": origin_branch,
         "clean": True,
-        "authority": "PENDING_RECONCILIATION",
+        "authority": acceptance_authority,
+        "policyPhase": policy_phase,
         "canonicalRemoteAuthority": "GITHUB_REMOTE_MAIN",
         "secondCanonicalTruth": False,
         "externalMergeGate": external_hold,
@@ -295,7 +309,8 @@ def main() -> int:
     print("FULL_REGRESSION=PASS")
     print("CANONICAL_CONTEXT=PASS")
     print("SESSION_START=PASS")
-    print("AUTHORITY=PENDING_RECONCILIATION")
+    print(f"AUTHORITY={acceptance_authority}")
+    print(f"POLICY_PHASE={policy_phase}")
     print(f"EVIDENCE={evidence_path}")
     print("NEXT_ACTION=enguru-mac doctor")
     return 0
