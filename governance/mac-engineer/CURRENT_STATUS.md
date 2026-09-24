@@ -3,12 +3,12 @@
 **Updated:** 2026-09-24
 **Program target:** ENGÜRÜ Mac Engineering™ v1.1 — Verified Product Engineering Operator
 **Current version:** v0.8 — PRODUCT ENGINEERING OPERATOR / ACTIVE
-**Current objective:** V08_SELF_ENGINEERING_BASELINE_AUDIT
-**Canonical objective id:** `V0_7_LONG_RUNNING_RELIABILITY`
+**Current objective:** V08_SELF_ENGINEERING_PRODUCT_REALITY_RECONCILIATION
+**Canonical objective id:** `V08_PRODUCT_ENGINEERING_OPERATOR`
 
 ## CURRENT ENGINEERING TRUTH
 
-ENGÜRÜ Mac Engineer™ v0.6 is **VERIFIED FINAL / LOCKED**.
+ENGÜRÜ Mac Engineering™ v0.7 is **LONG-RUN RELIABILITY VERIFIED / LOCKED**. v0.8 Product Engineering Operator is **ACTIVE** at Gate 2 — Product Reality Reconciliation.
 
 Local field truth, canonical reconciliation, merge provenance and control-plane exact-main acceptance are all complete. Recovery, fixture repair, local field acceptance and v0.6 closure are closed truths.
 
@@ -16,12 +16,14 @@ Local field truth, canonical reconciliation, merge provenance and control-plane 
 
 The v0.6 product, installed Mac runtime, real task continuity and bounded recovery path have all been independently verified on the real Mac.
 
-The next engineering model is now locked as **GitHub-first / Milestone-Mac**:
+The active engineering model is **ENGÜRÜ Mac-Native Engineering Authority™ / Mac-local primary authority**:
 
-- GitHub is the primary engineering production plane.
-- ChatGPT Project sessions orchestrate canonical engineering work.
-- ENGÜRÜ Mac Engineer™ is the local field executor and Evidence producer.
-- Mac commissioning occurs at version/milestone gates rather than after every small engineering change.
+- ENGÜRÜ Mac-Native Engineering Authority™ builds, repairs, recovers and verifies on the Mac.
+- ChatGPT Project sessions orchestrate the governed engineering sequence.
+- ENGÜRÜ Mac Engineer™ is the user-facing product and the first v0.8 self-engineering reference product.
+- GitHub remains remote identity, synchronization, publication, recovery and external Evidence.
+- DoneCheck™ v1.2 is the canonical machine verification authority.
+- Human Threshold™ remains final human authority.
 
 ## EVIDENCE
 
@@ -841,3 +843,32 @@ Gate 1 is a read-only self-engineering baseline audit of ENGÜRÜ Mac Engineer�
 No product mutation occurs in Gate 1.
 
 **NEXT ACTION — fresh v0.8 exact-head acceptance → Doctor → enguru-mac continue → V08_SELF_ENGINEERING_BASELINE_AUDIT.**
+
+
+## v0.8 GATE 1 — VERIFIED PASS / GATE 2 — PACKAGE PREPARED — 2026-09-24
+
+**STATE — 1/12 PASS / GATE 2 ACTIVE.**
+
+Gate 1 real-Mac Evidence:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/self-engineering-baseline/20260924T050648Z/evidence.json`
+
+Operator receipt:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260924T050648Z-continue.json`
+
+Verified chain:
+
+`PRODUCT_RUNTIME_REGRESSION_PASS → NATIVE_SWIFT_BUILD_PASS → CURRENT_PRODUCT_REALITY_MEASURED → DONECHECK_V1_2_AUTHORITY_BOUND`
+
+Gate 2 package consumes the measured Gate 1 Evidence and reconciles:
+
+`source/runtime/installed provenance → SwiftUI shell/WKWebView runtime boundary → bundle/version truth → bounded required difference`
+
+Authority remains:
+
+`ENGÜRÜ Mac-Native Engineering Authority™ → Evidence → DoneCheck™ v1.2 → Human Threshold™`
+
+Gate 2 product mutation: false. Remote push: false. Second canonical truth: false.
+
+**NEXT ACTION — fresh exact-head acceptance → Doctor → enguru-mac continue → V08_SELF_ENGINEERING_PRODUCT_REALITY_RECONCILIATION.**
