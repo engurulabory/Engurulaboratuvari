@@ -1120,9 +1120,9 @@ Local evidence:
 - [x] Canonical Evidence: `evidence/MAC_ENGINEER_V00_V03_HISTORICAL_RECONSTRUCTION_2026-09-22.md`.
 - [x] **V00_V03_HISTORICAL_RECONSTRUCTION = PASS / CLOSED.**
 
-**Active objective:** `V08_FULL_PRODUCT_ENGINEERING_CHAIN_BINDING`
+**Active objective:** `V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE`
 
-**Current single objective:** **V08_FULL_PRODUCT_ENGINEERING_CHAIN_BINDING**.
+**Current single objective:** **V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE**.
 
 ## v0.7 — Long-Running Reliability
 
@@ -1169,8 +1169,8 @@ DoneCheck authority:
 1. [x] **Gate 1 — Canonical Transition + Self-Engineering Baseline — PASS**
 2. [x] **Gate 2 — Product Reality Reconciliation — PASS**
 3. [x] **Gate 3 — UX + Aesthetic Product Contract — PASS**
-4. [ ] **Gate 4 — Full Product Engineering Chain Binding — ACTIVE**
-5. [ ] **Gate 5 — Native App Productization + Version/Provenance**
+4. [x] **Gate 4 — Full Product Engineering Chain Binding — PASS**
+5. [ ] **Gate 5 — Native App Productization + Version/Provenance — ACTIVE**
 6. [ ] **Gate 6 — Existing Product Change Scenario**
 7. [ ] **Gate 7 — Migration / Repair Scenario**
 8. [ ] **Gate 8 — New Product from Brief Scenario**
@@ -1219,9 +1219,21 @@ Verified chain:
 
 **Closure state: 3/12 PASS. Active gate: 4 — Full Product Engineering Chain Binding.**
 
+### Gate 4 result — VERIFIED PASS
+
+Operator receipt:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260924T052807Z-continue.json`
+
+Verified chain:
+
+`PRODUCT_ENGINEERING_CHAIN_14_STAGE_BOUND → EXISTING_MECHANISMS_REUSED → DEPLOY_ADAPTER_BOUNDARY_DEFINED → LATER_EXECUTION_PROOF_GATES_PRESERVED → UNNECESSARY_NEW_CORE_ZERO → DONECHECK_V1_2_AUTHORITY_PRESERVED`
+
+**Closure state: 4/12 PASS. Active gate: 5 — Native App Productization + Version/Provenance.**
+
 ### Current v0.8 next action
 
-`V08_FULL_PRODUCT_ENGINEERING_CHAIN_BINDING`
+`V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE`
 
 The first v0.8 field task uses ENGÜRÜ Mac-Native Engineering Authority™ on **ENGÜRÜ Mac Engineer™ itself**. It measures exact product source, runtime regression, native build, installed bundle version/provenance and the current user-interface form before product mutation.
 
