@@ -371,3 +371,25 @@ Preserve:
 - no duplicate core
 - no second canonical truth
 - no remote push without explicit authority
+## Mandatory Pre-Output ENGÜRÜ Filter
+
+Before ChatGPT presents any material ENGÜRÜ Mac Engineer™ engineering output to the human operator, the existing ENGÜRÜ authoring discipline is applied first.
+
+Material output includes Terminal or programming code, executable packages, engineering prompts, implementation prompts, repair or migration instructions, architecture-changing instructions, state-changing instructions and Human Threshold decision surfaces.
+
+Mandatory sequence:
+
+`CURRENT TRUTH → ONE ACTIVE OBJECTIVE → NECESSARY DIFFERENCE → PROGRAMMER AGENT → ENGÜRÜ LANGUAGE GOVERNANCE → POSITIVE LANGUAGE → SECOND LOOK → SCOPE / AUTHORITY / RECOVERY → DoneCheck™ PRE-SEND → OUTPUT`
+
+For executable Terminal packages:
+
+`python3 tools/mac_engineer_pre_send_filter.py <terminal-package.command>`
+
+The package reaches Terminal after this executable gate returns PASS.
+
+Material non-executable engineering prompts are reviewed against the same objective, necessary-difference, authority, recovery, Evidence and Language Governance boundaries before presentation.
+
+Terminal work units remain inside the active scenario Gate and do not create roadmap nodes.
+
+This is a permanent session invariant.
+No new core and no second canonical truth are introduced.
