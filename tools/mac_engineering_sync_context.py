@@ -22,14 +22,7 @@ SESSION_STATE = ROOT / "governance" / "mac-engineer" / "SESSION_STATE_V1.json"
 WORKLIST = ROOT / "WORKLIST.md"
 RUNTIME_STATE = HOME / "Enguru" / "Runtime" / "MacEngineer" / "state"
 OUTPUT = RUNTIME_STATE / "canonical-context.json"
-EVIDENCE = (
-    HOME
-    / "Enguru"
-    / "Evidence"
-    / "MacEngineer"
-    / "v0.6"
-    / "canonical-context-sync.json"
-)
+EVIDENCE_BASE = HOME / "Enguru" / "Evidence" / "MacEngineer"
 
 
 def now() -> str:
@@ -90,6 +83,12 @@ def main() -> int:
     roadmap = load_json(ROADMAP)
     session = load_json(SESSION_STATE)
     control = git_truth(ROOT)
+    version = str(
+        session.get("currentVersion")
+        or roadmap.get("current", {}).get("version")
+        or "v0.6"
+    )
+    evidence = EVIDENCE_BASE / version / "canonical-context-sync.json"
 
     issues: list[str] = []
     local_candidate = evaluate_local_accepted_candidate(control, session)
@@ -162,10 +161,10 @@ def main() -> int:
     }
 
     RUNTIME_STATE.mkdir(parents=True, exist_ok=True)
-    EVIDENCE.parent.mkdir(parents=True, exist_ok=True)
+    evidence.parent.mkdir(parents=True, exist_ok=True)
     text = json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
     OUTPUT.write_text(text, encoding="utf-8")
-    EVIDENCE.write_text(text, encoding="utf-8")
+    evidence.write_text(text, encoding="utf-8")
 
     print(
         json.dumps(
@@ -177,7 +176,7 @@ def main() -> int:
                 "finalTarget": payload["finalTarget"],
                 "activeObjective": objective,
                 "runtimeContext": str(OUTPUT),
-                "evidence": str(EVIDENCE),
+                "evidence": str(evidence),
             },
             ensure_ascii=False,
             indent=2,
