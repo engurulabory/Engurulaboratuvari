@@ -3,12 +3,12 @@
 **Updated:** 2026-09-24
 **Program target:** ENGÜRÜ Mac Engineering™ v1.1 — Verified Product Engineering Operator
 **Current version:** v0.8 — PRODUCT ENGINEERING OPERATOR / ACTIVE
-**Current objective:** V08_EXISTING_PRODUCT_CHANGE_SCENARIO
+**Current objective:** V08_MIGRATION_REPAIR_SCENARIO
 **Canonical objective id:** `V08_PRODUCT_ENGINEERING_OPERATOR`
 
 ## CURRENT ENGINEERING TRUTH
 
-ENGÜRÜ Mac Engineering™ v0.7 is **LONG-RUN RELIABILITY VERIFIED / LOCKED**. v0.8 Product Engineering Operator is **ACTIVE** at Gate 6 — Existing Product Change Scenario. Gates 1–5 are verified PASS.
+ENGÜRÜ Mac Engineering™ v0.7 is **LONG-RUN RELIABILITY VERIFIED / LOCKED**. v0.8 Product Engineering Operator is **ACTIVE** at Gate 7 — Migration / Repair Scenario. Gates 1–6 are verified PASS.
 
 Local field truth, canonical reconciliation, merge provenance and control-plane exact-main acceptance are all complete. Recovery, fixture repair, local field acceptance and v0.6 closure are closed truths.
 
@@ -1300,4 +1300,31 @@ SECOND_CANONICAL_TRUTH=false
 
 CURRENT NEXT ACTION
 
-FINISH_GATE6_FUNCTIONAL_ACCEPTANCE_AND_SEAL
+V08_MIGRATION_REPAIR_SCENARIO
+
+## GATE 6 — FUNCTIONAL ACCEPTANCE / SEALED
+
+STATE — **PASS**
+
+Exit:
+
+`V08_EXISTING_PRODUCT_CHANGE_VERIFIED`
+
+Verified functional truth:
+
+- bounded existing-product change: PASS;
+- technical implementation: PASS;
+- full product regression: PASS;
+- installed/runtime provenance: PASS;
+- native code-sign verification: PASS;
+- real natural-language response: PASS;
+- assistant message persistence: PASS;
+- human functional use: PASS;
+- current visual baseline: PRESERVED;
+- final Human Artistic Authority™: v1.2 final acceptance boundary;
+- product head: `a73090306cfac2eeeb3f06c3b83ba7bbbc1a7522`;
+- Evidence: `/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate6-functional-seal/20260924T174037Z/evidence.json`.
+
+CURRENT OBJECTIVE:
+
+`V08_MIGRATION_REPAIR_SCENARIO`

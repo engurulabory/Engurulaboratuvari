@@ -41,7 +41,7 @@
     "checkpointRestartResumeFieldProof": "VERIFIED_PASS",
     "v07LongRunReliability": "VERIFIED_LOCKED"
   },
-  "currentObjective": "V08_EXISTING_PRODUCT_CHANGE_SCENARIO",
+  "currentObjective": "V08_MIGRATION_REPAIR_SCENARIO",
   "observedProductPublication": {
     "source": "MAC_FIELD_OUTPUT",
     "localSourceHead": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
@@ -1447,14 +1447,21 @@
       "test": "tests/test_mac_engineer_v08_cockpit_contract.py"
     },
     "gate6": {
-      "state": "HOLD_HUMAN_ARTISTIC_AUTHORITY",
+      "state": "PASS",
       "name": "V08_EXISTING_PRODUCT_CHANGE_SCENARIO",
       "technicalImplementation": "PASS",
-      "humanArtisticAuthority": "REQUIRED_FINAL_REAL_PRODUCT_REVIEW",
-      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/existing-product-change/20260924T075816Z/evidence.json",
+      "humanArtisticAuthority": "DEFERRED_TO_V1_2_FINAL_HUMAN_ARTISTIC_AUTHORITY",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate6-functional-seal/20260924T174037Z/evidence.json",
       "operatorReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260924T075825Z-continue.json",
-      "nextAction": "V08_DESKTOP_COCKPIT_REAL_IMPLEMENTATION",
-      "visualDirection": "ACCEPTED_95_PERCENT"
+      "nextAction": "V08_MIGRATION_REPAIR_SCENARIO",
+      "visualDirection": "ACCEPTED_95_PERCENT",
+      "functionalAcceptance": "PASS",
+      "humanUsability": "PASS",
+      "realNaturalLanguageChat": "PASS",
+      "installedProductProvenance": "PASS",
+      "visualBaseline": "PRESERVED",
+      "productHead": "a73090306cfac2eeeb3f06c3b83ba7bbbc1a7522",
+      "exit": "V08_EXISTING_PRODUCT_CHANGE_VERIFIED"
     },
     "desktopCockpitDirection": {
       "state": "ACCEPTED_WITH_BOUNDED_REFINEMENT",
@@ -1494,6 +1501,12 @@
       "ffmpeg": "HOLD",
       "whisper": "HOLD",
       "dragDrop": "INCONCLUSIVE_REQUIRES_EXACT_FIELD_VERIFICATION"
+    },
+    "gate7": {
+      "state": "ACTIVE",
+      "name": "V08_MIGRATION_REPAIR_SCENARIO",
+      "previousGate": "V08_EXISTING_PRODUCT_CHANGE_VERIFIED",
+      "nextAction": "DISCOVER_REAL_MIGRATION_REPAIR_TARGET"
     }
   },
   "preSendFilter": {

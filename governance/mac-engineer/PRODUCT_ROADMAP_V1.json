@@ -9,15 +9,15 @@
     "controlPlane": "engurulabory/Engurulaboratuvari"
   },
   "finalTarget": {
-    "version": "v1.1",
-    "title": "Verified Product Engineering Operator",
+    "version": "v1.2",
+    "title": "Local Mac Astra Verified Final",
     "verdictTarget": "VERIFIED_FINAL_LOCKED"
   },
   "current": {
     "version": "v0.8",
     "state": "ACTIVE_PRODUCT_ENGINEERING_OPERATOR",
-    "activeObjective": "V08_EXISTING_PRODUCT_CHANGE_SCENARIO",
-    "productSourceSha": "5432b9b135499cea18273c0e003877b864af92c6",
+    "activeObjective": "V08_MIGRATION_REPAIR_SCENARIO",
+    "productSourceSha": "a73090306cfac2eeeb3f06c3b83ba7bbbc1a7522",
     "installedVersion": "0.8",
     "completed": [
       "RUNTIME_APP_PROVENANCE_CLOSURE",
@@ -40,10 +40,10 @@
       "V08_GATE_02_PRODUCT_REALITY_RECONCILIATION_PASS",
       "V08_GATE_03_UX_AESTHETIC_CONTRACT_PASS",
       "V08_GATE_04_FULL_CHAIN_BINDING_PASS",
-      "V08_GATE_05_NATIVE_PRODUCTIZATION_PASS"
+      "V08_GATE_05_NATIVE_PRODUCTIZATION_PASS",
+      "V08_GATE_06_EXISTING_PRODUCT_CHANGE_PASS"
     ],
     "remaining": [
-      "V08_GATE_06_EXISTING_PRODUCT_CHANGE",
       "V08_GATE_07_MIGRATION_REPAIR",
       "V08_GATE_08_NEW_PRODUCT_FROM_BRIEF",
       "V08_GATE_09_RELEASE_LIFECYCLE",
@@ -187,7 +187,7 @@
       ],
       "acceptanceMatrix": "PASS_DEFINED",
       "acceptanceMatrixPath": "governance/mac-engineer/V08_PRODUCT_ENGINEERING_OPERATOR_ACCEPTANCE_MATRIX_V1.md",
-      "nextAction": "V08_EXISTING_PRODUCT_CHANGE_SCENARIO",
+      "nextAction": "V08_MIGRATION_REPAIR_SCENARIO",
       "executionAuthorityModel": "ENGÜRÜ Mac-Native Engineering Authority™",
       "engineeringMode": "MAC_NATIVE_PRIMARY_AUTHORITY",
       "productBaselineExactMain": "5432b9b135499cea18273c0e003877b864af92c6",
@@ -205,11 +205,11 @@
           2,
           3,
           4,
-          5
+          5,
+          6
         ],
-        "active": 6,
+        "active": 7,
         "remaining": [
-          6,
           7,
           8,
           9,
@@ -235,12 +235,20 @@
       "name": "Verified Product Engineering Operator",
       "state": "PLANNED_MILESTONE",
       "exit": [
-        "VERIFIED_FINAL_LOCKED"
+        "VERIFIED_PRODUCT_ENGINEERING_OPERATOR_LOCKED"
       ]
     },
     {
       "version": "v1.1",
-      "name": "Verified Product Engineering Operator",
+      "name": "Reliability + Product-System + Visual-System Consolidation",
+      "state": "PLANNED_CONSOLIDATION",
+      "exit": [
+        "V1_1_CONSOLIDATED_READY_FOR_FINAL_ACCEPTANCE"
+      ]
+    },
+    {
+      "version": "v1.2",
+      "name": "Local Mac Astra Verified Final",
       "state": "FINAL_TARGET",
       "exit": [
         "VERIFIED_FINAL_LOCKED"

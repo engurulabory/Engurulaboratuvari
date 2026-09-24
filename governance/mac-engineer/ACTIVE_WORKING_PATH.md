@@ -467,7 +467,7 @@ SECOND_CANONICAL_TRUTH=false
 
 CURRENT NEXT ACTION
 
-FINISH_GATE6_FUNCTIONAL_ACCEPTANCE_AND_SEAL
+V08_MIGRATION_REPAIR_SCENARIO
 
 After Gate 6 PASS, activate Gate 7 — Migration / Repair.
 
@@ -512,4 +512,21 @@ SECOND_CANONICAL_TRUTH=false
 
 CURRENT NEXT ACTION
 
-FINISH_GATE6_FUNCTIONAL_ACCEPTANCE_AND_SEAL
+V08_MIGRATION_REPAIR_SCENARIO
+
+
+## Gate 6 → Gate 7 Canonical Transition
+
+Gate 6 Existing Product Change is **PASS / SEALED**.
+
+Exit:
+`V08_EXISTING_PRODUCT_CHANGE_VERIFIED`
+
+Current objective:
+`V08_MIGRATION_REPAIR_SCENARIO`
+
+Final premium Human Artistic Authority™ remains bound to
+ENGÜRÜ Mac Engineer™ v1.2 final acceptance.
+
+Evidence:
+`/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate6-functional-seal/20260924T174037Z/evidence.json`

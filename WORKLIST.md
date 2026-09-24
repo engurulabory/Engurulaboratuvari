@@ -1120,9 +1120,9 @@ Local evidence:
 - [x] Canonical Evidence: `evidence/MAC_ENGINEER_V00_V03_HISTORICAL_RECONSTRUCTION_2026-09-22.md`.
 - [x] **V00_V03_HISTORICAL_RECONSTRUCTION = PASS / CLOSED.**
 
-**Active objective:** `V08_EXISTING_PRODUCT_CHANGE_SCENARIO`
+**Active objective:** `V08_MIGRATION_REPAIR_SCENARIO`
 
-**Current single objective:** **V08_EXISTING_PRODUCT_CHANGE_SCENARIO**.
+**Current single objective:** **V08_MIGRATION_REPAIR_SCENARIO**.
 
 ## v0.7 — Long-Running Reliability
 
@@ -1171,10 +1171,10 @@ DoneCheck authority:
 3. [x] **Gate 3 — UX + Aesthetic Product Contract — PASS**
 4. [x] **Gate 4 — Full Product Engineering Chain Binding — PASS**
 5. [x] **Gate 5 — Native App Productization + Version/Provenance — PASS**
-6. [ ] **Gate 6 — Existing Product Change Scenario — ACTIVE**
+6. [x] **Gate 6 — Existing Product Change Scenario — PASS / SEALED**
    - [x] Gate 6 control-plane executor + operator binding — engineering regression PASS; field execution pending; product mutation remains false.
    - [x] Programmer Agent™ + Pre-Send Filter discipline — VERIFIED; Language Governance + Positive Language + Second Look + syntax/scope/recovery preflight + DoneCheck™ v1.2 pre-send bound; active Gate unchanged.
-7. [ ] **Gate 7 — Migration / Repair Scenario**
+7. [ ] **Gate 7 — Migration / Repair Scenario — ACTIVE**
 8. [ ] **Gate 8 — New Product from Brief Scenario**
 9. [ ] **Gate 9 — Deploy / Live Verify / Rollback + Lifecycle**
 10. [ ] **Gate 10 — Finished-Product Delivery Acceptance**
@@ -1882,7 +1882,7 @@ SECOND_CANONICAL_TRUTH=false
 
 CURRENT NEXT ACTION
 
-FINISH_GATE6_FUNCTIONAL_ACCEPTANCE_AND_SEAL
+V08_MIGRATION_REPAIR_SCENARIO
 
 After Gate 6 PASS, activate Gate 7 — Migration / Repair.
 
@@ -1927,4 +1927,25 @@ SECOND_CANONICAL_TRUTH=false
 
 CURRENT NEXT ACTION
 
-FINISH_GATE6_FUNCTIONAL_ACCEPTANCE_AND_SEAL
+V08_MIGRATION_REPAIR_SCENARIO
+
+
+### Gate 6 Functional Acceptance Seal
+
+**STATE — PASS / SEALED**
+
+Exit:
+`V08_EXISTING_PRODUCT_CHANGE_VERIFIED`
+
+Functional acceptance includes:
+real bounded product change, clean regression,
+installed provenance, real natural-language chat,
+assistant persistence and human-usable delivery.
+
+Premium final visual acceptance remains scheduled for
+v1.2 Human Artistic Authority™.
+
+Evidence:
+`/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate6-functional-seal/20260924T174037Z/evidence.json`
+
+**NEXT ACTION — V08_MIGRATION_REPAIR_SCENARIO**
