@@ -14,9 +14,9 @@
     "verdictTarget": "VERIFIED_FINAL_LOCKED"
   },
   "current": {
-    "version": "v0.7",
-    "state": "LONG_RUN_RELIABILITY_VERIFIED_LOCKED",
-    "activeObjective": "V0_7_VERIFIED_LOCKED_AWAIT_NEXT_OBJECTIVE",
+    "version": "v0.8",
+    "state": "ACTIVE_PRODUCT_ENGINEERING_OPERATOR",
+    "activeObjective": "V08_SELF_ENGINEERING_BASELINE_AUDIT",
     "productSourceSha": "5432b9b135499cea18273c0e003877b864af92c6",
     "installedVersion": "0.6",
     "completed": [
@@ -37,7 +37,20 @@
       "V0_6_VERIFIED_FINAL_LOCKED",
       "V0_7_LONG_RUN_RELIABILITY_VERIFIED_LOCKED"
     ],
-    "remaining": []
+    "remaining": [
+      "V08_GATE_01_SELF_ENGINEERING_BASELINE",
+      "V08_GATE_02_PRODUCT_REALITY_RECONCILIATION",
+      "V08_GATE_03_UX_AESTHETIC_CONTRACT",
+      "V08_GATE_04_FULL_CHAIN_BINDING",
+      "V08_GATE_05_NATIVE_PRODUCTIZATION",
+      "V08_GATE_06_EXISTING_PRODUCT_CHANGE",
+      "V08_GATE_07_MIGRATION_REPAIR",
+      "V08_GATE_08_NEW_PRODUCT_FROM_BRIEF",
+      "V08_GATE_09_RELEASE_LIFECYCLE",
+      "V08_GATE_10_FINISHED_PRODUCT_DELIVERY",
+      "V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING",
+      "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
+    ]
   },
   "versions": [
     {
@@ -168,10 +181,44 @@
     {
       "version": "v0.8",
       "name": "Product Engineering Operator",
-      "state": "PLANNED",
+      "state": "ACTIVE",
       "exit": [
         "PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED"
-      ]
+      ],
+      "acceptanceMatrix": "PASS_DEFINED",
+      "acceptanceMatrixPath": "governance/mac-engineer/V08_PRODUCT_ENGINEERING_OPERATOR_ACCEPTANCE_MATRIX_V1.md",
+      "nextAction": "V08_SELF_ENGINEERING_BASELINE_AUDIT",
+      "executionAuthorityModel": "ENGÜRÜ Mac-Native Engineering Authority™",
+      "engineeringMode": "MAC_NATIVE_PRIMARY_AUTHORITY",
+      "productBaselineExactMain": "5432b9b135499cea18273c0e003877b864af92c6",
+      "installedBundleBaseline": "0.6",
+      "doneCheckAuthority": {
+        "product": "DoneCheck™ v1.2",
+        "version": "1.2.0",
+        "exactMain": "8b90a8fc93453dd8a84994195d28d14b15e261cb"
+      },
+      "verifiedFinishContract": {
+        "state": "ACTIVE",
+        "totalGates": 12,
+        "passed": [],
+        "active": 1,
+        "remaining": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "finalAuthority": "HUMAN_THRESHOLD",
+        "finalState": "PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED"
+      }
     },
     {
       "version": "v0.9",
