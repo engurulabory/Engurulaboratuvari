@@ -1235,7 +1235,7 @@ Verified chain:
 
 `V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE`
 
-The first v0.8 field task uses ENGÜRÜ Mac-Native Engineering Authority™ on **ENGÜRÜ Mac Engineer™ itself**. It measures exact product source, runtime regression, native build, installed bundle version/provenance and the current user-interface form before product mutation.
+Gate 5 uses ENGÜRÜ Mac-Native Engineering Authority™ on **ENGÜRÜ Mac Engineer™ itself** for the first bounded v0.8 product mutation: exact product baseline → dedicated product branch → version/provenance mutation → targeted/full regression → local commit → native package/install → fresh launch/readiness → Evidence. Remote push remains false during this field proof; the Gate 3 UX implementation begins in Gate 6.
 
 ## v0.9 — World-Class Field Benchmark
 
