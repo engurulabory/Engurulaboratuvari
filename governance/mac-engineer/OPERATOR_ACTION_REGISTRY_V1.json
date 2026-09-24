@@ -93,6 +93,19 @@
       "canonicalLockCreatedByAcceptReceipt": false,
       "canonicalLockRequiresReconciliationAfterHumanReceipt": true,
       "failClosed": true
+    },
+    "V07_VERIFIED_FINISH_ACCEPTANCE": {
+      "handler": "V07_VERIFIED_FINISH_FINAL_ACCEPTANCE",
+      "authority": "FRESH_EXACT_HEAD_PLUS_HUMAN_THRESHOLD_PLUS_DONECHECK_V1_2",
+      "command": "governance/mac-engineer/V07_VERIFIED_FINISH_ACCEPTANCE.command",
+      "mutation": "EVIDENCE_ONLY",
+      "requiresFreshLocalAcceptance": true,
+      "requiresHumanThresholdAccepted": true,
+      "requiresGate12Pass": true,
+      "requiresDoneCheckExactSha": "8b90a8fc93453dd8a84994195d28d14b15e261cb",
+      "externalA09Promoted": false,
+      "secondCanonicalTruth": false,
+      "failClosed": true
     }
   }
 }
