@@ -12,10 +12,14 @@ from typing import Any
 
 try:
     from tools.mac_engineer_local_candidate_authority import (
+        active_version_label,
+        candidate_policy,
         local_candidate_policy_phase,
     )
 except ModuleNotFoundError:
     from mac_engineer_local_candidate_authority import (
+        active_version_label,
+        candidate_policy,
         local_candidate_policy_phase,
     )
 
@@ -25,7 +29,7 @@ HOME = Path.home()
 SESSION_STATE = ROOT / "governance" / "mac-engineer" / "SESSION_STATE_V1.json"
 RUNTIME_STATE = HOME / "Enguru" / "Runtime" / "MacEngineer" / "state"
 ACCEPTANCE_STATE = RUNTIME_STATE / "local-accepted-control-plane-candidate.json"
-EVIDENCE_ROOT = HOME / "Enguru" / "Evidence" / "MacEngineer" / "v0.7" / "canonical-boot"
+EVIDENCE_BASE = HOME / "Enguru" / "Evidence" / "MacEngineer"
 
 
 os.environ["PYTHONDONTWRITEBYTECODE"] = "1"
@@ -87,7 +91,9 @@ def fail(reason: str, details: dict[str, Any] | None = None) -> int:
 
 def main() -> int:
     session = json.loads(SESSION_STATE.read_text(encoding="utf-8"))
-    policy = ((session.get("currentV07") or {}).get("controlPlaneLocalContinuity") or {})
+    version = active_version_label(session)
+    policy = candidate_policy(session)
+    evidence_root = EVIDENCE_BASE / version / "canonical-boot"
 
     expected_branch = str(policy.get("branch") or "")
     external_hold = str(policy.get("externalMergeGate") or "")
@@ -215,12 +221,13 @@ def main() -> int:
     if post_head != head or post_origin_main != origin_main or post_origin_branch != origin_branch:
         return fail("GIT_TRUTH_CHANGED_DURING_ACCEPTANCE")
 
-    EVIDENCE_ROOT.mkdir(parents=True, exist_ok=True)
-    evidence_path = EVIDENCE_ROOT / f"{stamp()}-local-accepted-candidate.json"
+    evidence_root.mkdir(parents=True, exist_ok=True)
+    evidence_path = evidence_root / f"{stamp()}-local-accepted-candidate.json"
     evidence_payload = {
         "schema": "enguru.mac-engineer.local-accepted-control-plane-candidate-evidence/v1",
         "state": "PASS",
         "observedAt": now(),
+        "version": version,
         "branch": branch,
         "head": head,
         "originMain": origin_main,
@@ -249,6 +256,7 @@ def main() -> int:
         "schema": "enguru.mac-engineer.local-accepted-control-plane-candidate/v1",
         "state": "PASS",
         "observedAt": now(),
+        "version": version,
         "branch": branch,
         "head": head,
         "originMain": origin_main,
