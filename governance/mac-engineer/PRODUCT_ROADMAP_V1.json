@@ -14,9 +14,9 @@
     "verdictTarget": "VERIFIED_FINAL_LOCKED"
   },
   "current": {
-    "version": "v0.6",
-    "state": "VERIFIED_FINAL_LOCKED",
-    "activeObjective": "V0_7_LONG_RUNNING_RELIABILITY",
+    "version": "v0.7",
+    "state": "LONG_RUN_RELIABILITY_VERIFIED_LOCKED",
+    "activeObjective": "V0_7_VERIFIED_LOCKED_AWAIT_NEXT_OBJECTIVE",
     "productSourceSha": "5432b9b135499cea18273c0e003877b864af92c6",
     "installedVersion": "0.6",
     "completed": [
@@ -34,7 +34,8 @@
       "MAC_LOCAL_MANDATORY_DONECHECK",
       "CONTROL_PLANE_CANONICAL_RECONCILIATION",
       "CONTROL_PLANE_EXACT_MAIN_ACCEPTANCE",
-      "V0_6_VERIFIED_FINAL_LOCKED"
+      "V0_6_VERIFIED_FINAL_LOCKED",
+      "V0_7_LONG_RUN_RELIABILITY_VERIFIED_LOCKED"
     ],
     "remaining": []
   },
@@ -68,13 +69,13 @@
     {
       "version": "v0.7",
       "name": "Long-Running Reliability",
-      "state": "HOLD",
+      "state": "VERIFIED_LOCKED",
       "exit": [
         "LONG_RUN_RELIABILITY_VERIFIED_LOCKED"
       ],
       "acceptanceMatrix": "PASS_DEFINED",
       "acceptanceMatrixPath": "governance/mac-engineer/V07_LONG_RUNNING_RELIABILITY_ACCEPTANCE_MATRIX_V1.md",
-      "nextAction": "V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION",
+      "nextAction": "AWAIT_NEXT_OBJECTIVE",
       "passedGates": [
         "V07-A01",
         "V07-A02",
@@ -86,8 +87,8 @@
         "V07-A08"
       ],
       "evidence": "evidence/MAC_ENGINEER_V07_A07_A08_ENGINEERING_2026-09-22.md",
-      "passedGatesAuthority": "HISTORICAL_GITHUB_FIRST_EVIDENCE_PRESERVED_MAC_NATIVE_TRANSITION_ACTIVE",
-      "milestoneMacAcceptance": "GATE_12_VERIFIED_GATE_13_ACTIVE",
+      "passedGatesAuthority": "MAC_NATIVE_13_GATE_VERIFIED_FINISH",
+      "milestoneMacAcceptance": "VERIFIED_LOCKED",
       "a09": {
         "state": "EXTERNAL_BLOCKED_GITHUB_BILLING_DEFERRED",
         "campaignPassCount": 0,
@@ -134,9 +135,9 @@
         }
       },
       "executionAuthorityModel": "ENGÜRÜ Mac-Native Engineering Authority™",
-      "engineeringMode": "MAC_NATIVE_AUTHORITY_TRANSITION",
+      "engineeringMode": "MAC_NATIVE_PRIMARY_AUTHORITY",
       "verifiedFinishContract": {
-        "state": "LOCKED",
+        "state": "VERIFIED_LOCKED",
         "totalGates": 13,
         "passed": [
           1,
@@ -150,14 +151,18 @@
           9,
           10,
           11,
-          12
-        ],
-        "active": 13,
-        "remaining": [
+          12,
           13
         ],
+        "active": null,
+        "remaining": [],
         "contract": "WORKLIST.md#v0.7--verified-finish-closure-contract--13-gates",
-        "finalAuthority": "HUMAN_THRESHOLD"
+        "finalAuthority": "HUMAN_THRESHOLD_ACCEPTED",
+        "finalState": "LONG_RUN_RELIABILITY_VERIFIED_LOCKED"
+      },
+      "humanThreshold": {
+        "state": "ACCEPTED",
+        "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/human-threshold/20260924T040827Z/human-decision.json"
       }
     },
     {
@@ -231,12 +236,12 @@
     "contract": "governance/mac-engineer/DONECHECK_AUTHORITY_MODEL_V1.md"
   },
   "workingModel": {
-    "id": "GITHUB_FIRST_MILESTONE_MAC",
-    "engineeringPlane": "GITHUB",
+    "id": "MAC_NATIVE_PRIMARY_ENGINEERING_AUTHORITY",
+    "engineeringPlane": "MAC_LOCAL",
     "orchestration": "CHATGPT_PROJECT",
     "fieldExecutor": "ENGURU_MAC_ENGINEER",
-    "fieldPlane": "REAL_MAC_MILESTONE_COMMISSIONING",
-    "contract": "governance/mac-engineer/GITHUB_FIRST_MILESTONE_MAC_WORKING_MODEL_V1.md"
+    "remoteRole": "GITHUB_REMOTE_IDENTITY_SYNC_PUBLICATION_RECOVERY_EXTERNAL_EVIDENCE",
+    "contract": "governance/mac-engineer/MAC_NATIVE_ENGINEERING_AUTHORITY_V1.md"
   },
   "v06FinalLock": {
     "state": "VERIFIED_FINAL_LOCKED",
