@@ -94,6 +94,34 @@ class LocalAcceptedCandidateAuthorityTests(unittest.TestCase):
         self.assertTrue(result["authorized"], result["reasons"])
         self.assertEqual(result["mode"], "LOCAL_ACCEPTED_CANDIDATE")
 
+    def test_post_lock_verified_local_authority_is_authorized(self) -> None:
+        policy = self.session["currentV07"]["controlPlaneLocalContinuity"]
+        policy["state"] = "VERIFIED_LOCAL_AUTHORITY_PENDING_EXTERNAL_RECONCILIATION"
+        policy["localAuthority"] = "MAC_NATIVE_PRIMARY_ENGINEERING_AUTHORITY_VERIFIED"
+
+        state_payload = json.loads(self.state.read_text(encoding="utf-8"))
+        state_payload["authority"] = "MAC_NATIVE_PRIMARY_ENGINEERING_AUTHORITY_VERIFIED"
+        state_payload["policyPhase"] = "POST_LOCK_VERIFIED_FINISH"
+        self.state.write_text(json.dumps(state_payload), encoding="utf-8")
+
+        evidence_payload = json.loads(self.evidence.read_text(encoding="utf-8"))
+        evidence_payload["authority"] = "MAC_NATIVE_PRIMARY_ENGINEERING_AUTHORITY_VERIFIED"
+        evidence_payload["policyPhase"] = "POST_LOCK_VERIFIED_FINISH"
+        self.evidence.write_text(json.dumps(evidence_payload), encoding="utf-8")
+
+        result = self.evaluate()
+        self.assertTrue(result["authorized"], result["reasons"])
+        self.assertEqual(result["policy_phase"], "POST_LOCK_VERIFIED_FINISH")
+
+    def test_mixed_policy_phase_fails_closed(self) -> None:
+        policy = self.session["currentV07"]["controlPlaneLocalContinuity"]
+        policy["state"] = "VERIFIED_LOCAL_AUTHORITY_PENDING_EXTERNAL_RECONCILIATION"
+        policy["localAuthority"] = "PENDING_RECONCILIATION"
+
+        result = self.evaluate()
+        self.assertFalse(result["authorized"])
+        self.assertIn("POLICY_LOCAL_CONTINUITY_PHASE_REQUIRED", result["reasons"])
+
     def test_head_drift_fails_closed(self) -> None:
         self.control["head"] = "c" * 40
         result = self.evaluate()
