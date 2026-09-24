@@ -189,3 +189,37 @@ A session is safe to hand off when:
 **Conversation continuity is advisory. Canonical continuity is GitHub + Mac Evidence.**
 
 This contract is the permanent session working method for ENGÜRÜ Mac Engineer™.
+## Permanent Scenario-Gate Execution Rule
+
+ENGÜRÜ Mac Engineer™ uses one stable construction model.
+
+Architecture remains.
+Foundation is frozen after verified foundation work.
+Scenario gates remain scenario gates.
+Terminal packages are engineering work units inside the active Gate; they are not roadmap nodes.
+
+Canonical v0.8 order:
+
+`Gate 6 → Gate 7 → Gate 8 → Gate 9 → Gate 10 → Gate 11 → Gate 12`
+
+Every Gate follows:
+
+`CURRENT TRUTH → GATE CONTRACT → NECESSARY DIFFERENCE → PROGRAMMER AGENT → PRE-SEND FILTER → IMPLEMENT → TEST → BOUNDED REPAIR WHEN OBSERVED → REGRESSION → EVIDENCE → PASS/HOLD → NEXT GATE`
+
+The next Gate becomes active only after the current Gate earns PASS.
+
+Scenario-specific findings remain bounded repairs inside the active Gate.
+
+Foundation reopens only when fresh Evidence establishes a real foundation defect.
+
+Existing verified mechanisms are reused before extension.
+Adapters remain adapters.
+No duplicate core and no second canonical truth are created.
+
+v0.8 proves the complete Product Engineering Operator lifecycle.
+
+v0.9 owns cross-product breadth and world-class field benchmark/generalization after v0.8 lifecycle verification.
+
+Verified Finish remains:
+
+`Evidence → DoneCheck™ v1.2 → Human Threshold™ where required → canonical reconciliation → version lock`

@@ -1791,3 +1791,20 @@ and returns the finished result to the user.
 **TARGET CONTRACT — READY / LOCKED**
 
 **FIELD VERIFIED 100/100 — EARN THROUGH THE WORKLIST**
+### V0.8 Scenario-Gate Execution Lock
+
+**STATE — ACTIVE / CANONICAL WORKING DISCIPLINE**
+
+- Architecture: REMAINS.
+- Foundation: FROZEN.
+- Active Gate: 6 — Existing Product Change.
+- Order: Gate 6 → Gate 7 → Gate 8 → Gate 9 → Gate 10 → Gate 11 → Gate 12.
+- Terminal packages are Gate-local engineering units.
+- Gate advancement requires PASS + regression + Evidence.
+- Scenario findings receive bounded repair inside the active Gate.
+- Foundation reopens only from fresh contradictory Evidence.
+- No duplicate core.
+- No second canonical truth.
+- v0.9 owns world-class cross-product benchmark/generalization.
+
+**NEXT ACTION — FINISH_GATE6_EXISTING_PRODUCT_CHANGE**

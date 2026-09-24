@@ -1232,3 +1232,29 @@ Final Human Artistic Authority™ remains open.
 ### NEXT_ACTION
 
 `V08_DESKTOP_COCKPIT_REAL_IMPLEMENTATION`
+## V0.8 FOUNDATION FREEZE / ROADMAP RECONCILIATION
+
+**STATE — FOUNDATION FROZEN / GATE 6 ACTIVE.**
+
+The canonical v0.8 roadmap remains unchanged.
+
+Current execution is flattened back to the scenario-gate model:
+
+`Gate 6 → Gate 7 → Gate 8 → Gate 9 → Gate 10 → Gate 11 → Gate 12`
+
+Gate 6 internal engineering packages are implementation history and Evidence lineage; they are not additional roadmap gates.
+
+Active objective remains:
+
+`V08_EXISTING_PRODUCT_CHANGE_SCENARIO`
+
+Next canonical outcome:
+
+`V08_EXISTING_PRODUCT_CHANGE_VERIFIED`
+
+Foundation may reopen only when fresh Evidence establishes a foundation defect.
+
+Small Terminal actions remain bounded engineering work units inside the active Gate.
+
+Product mutation from this reconciliation: false.
+Remote push from this reconciliation: false.

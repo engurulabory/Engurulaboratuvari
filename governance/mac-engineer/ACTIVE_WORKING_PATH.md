@@ -279,3 +279,95 @@ Kalıcı kaynaklar:
 ## JUDGMENT
 
 **Bu çalışma yolu, yeni ChatGPT oturumunu GitHub hakikatinden başlatır; GitHub mühendisliği ile Mac gerçek-saha kanıtını tek acceptance zincirinde eşler.**
+## V0.8 SCENARIO-GATE EXECUTION DISCIPLINE
+
+**STATE — CANONICAL WORKING RULE.**
+
+Architecture remains.
+Roadmap remains Gate 6 → Gate 7 → Gate 8 → Gate 9 → Gate 10 → Gate 11 → Gate 12.
+Foundation is frozen from verified v0.4–v0.7 truth plus the bounded v0.8 completion / DoneCheck / Verified Finish authority work already evidenced during Gate 6.
+
+Execution rule:
+
+`CURRENT TRUTH → ONE SCENARIO GATE → NECESSARY DIFFERENCE → PROGRAMMER AGENT → PRE-SEND FILTER → BUILD / TEST / REPAIR → REGRESSION → EVIDENCE → GATE PASS/HOLD → NEXT GATE`
+
+A Terminal package is an engineering work unit inside the active Gate. It does not create a new roadmap node.
+
+A discovered issue remains inside the active Gate as bounded repair when it is scenario-specific.
+
+Foundation reopens only when fresh Evidence establishes a real foundation defect.
+
+Scenario gates remain:
+
+- Gate 6 — Existing Product Change
+- Gate 7 — Migration / Repair
+- Gate 8 — New Product from Brief
+- Gate 9 — Deploy / Live Verify / Rollback + Lifecycle
+- Gate 10 — Finished Product Delivery Acceptance
+- Gate 11 — Consolidated Real-Mac Commissioning
+- Gate 12 — DoneCheck™ v1.2 + Human Threshold™ + Version Lock
+
+The next Gate becomes active only after the current Gate earns PASS with regression and Evidence.
+
+World-class cross-product breadth belongs to the v0.9 benchmark layer after v0.8 proves the complete product-engineering lifecycle.
+
+No new core is introduced by this reconciliation.
+## NEXT SESSION BOOT — V0.8
+
+A fresh ChatGPT Project session reconstructs current truth from canonical surfaces rather than conversation memory.
+
+Read in this order:
+
+1. `SESSION_CONTINUITY_CONTRACT_V1.md`
+2. `ACTIVE_WORKING_PATH.md`
+3. `CURRENT_STATUS.md`
+4. `SESSION_STATE_V1.json`
+5. `PRODUCT_ROADMAP_V1.json`
+6. current ENGÜRÜ Mac Engineer™ section in `WORKLIST.md`
+7. current product Git state and relevant Evidence
+
+Current architecture rule:
+
+`Architecture remains → Foundation frozen → Scenario Gate → engineering cycle → Evidence → PASS/HOLD → next Gate`
+
+Current version:
+
+`v0.8 — Product Engineering Operator`
+
+Current Gate:
+
+`Gate 6 — Existing Product Change Scenario`
+
+Current objective:
+
+`V08_EXISTING_PRODUCT_CHANGE_SCENARIO`
+
+Current next action:
+
+`FINISH_GATE6_EXISTING_PRODUCT_CHANGE`
+
+Gate order:
+
+`6 → 7 → 8 → 9 → 10 → 11 → 12`
+
+Terminal work units do not create additional roadmap levels.
+
+Use:
+
+`STATE → CLAIM → EVIDENCE → PASS/HOLD/BLOCKED → NEXT ACTION`
+
+Preserve:
+
+- ENGÜRÜ Language Governance™
+- Positive Language
+- one active objective
+- existing truth + necessary difference
+- Programmer Agent™
+- pre-send filter
+- bounded recovery
+- Evidence
+- DoneCheck™ v1.2
+- Human Threshold™
+- no duplicate core
+- no second canonical truth
+- no remote push without explicit authority
