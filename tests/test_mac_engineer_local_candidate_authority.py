@@ -94,6 +94,18 @@ class LocalAcceptedCandidateAuthorityTests(unittest.TestCase):
         self.assertTrue(result["authorized"], result["reasons"])
         self.assertEqual(result["mode"], "LOCAL_ACCEPTED_CANDIDATE")
 
+    def test_acceptance_script_supports_direct_script_import_fallback(self) -> None:
+        source = (
+            Path(__file__).resolve().parents[1]
+            / "tools"
+            / "mac_engineer_accept_local_candidate.py"
+        ).read_text(encoding="utf-8")
+        self.assertIn("except ModuleNotFoundError:", source)
+        self.assertIn(
+            "from mac_engineer_local_candidate_authority import",
+            source,
+        )
+
     def test_post_lock_verified_local_authority_is_authorized(self) -> None:
         policy = self.session["currentV07"]["controlPlaneLocalContinuity"]
         policy["state"] = "VERIFIED_LOCAL_AUTHORITY_PENDING_EXTERNAL_RECONCILIATION"
