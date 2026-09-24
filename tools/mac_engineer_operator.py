@@ -153,11 +153,14 @@ def current_truth() -> dict[str, Any]:
     session = load_json(SESSION_STATE, {}) or {}
     roadmap = load_json(ROADMAP, {}) or {}
 
-    current_version = str(
-        roadmap.get("current", {}).get("version")
-        or session.get("currentVersion")
-        or "v0.7"
-    )
+    declared_version = str(session.get("currentVersion") or "").strip()
+    roadmap_version = str(roadmap.get("current", {}).get("version") or "").strip()
+    if declared_version:
+        current_version = declared_version
+    elif session.get("currentV07"):
+        current_version = "v0.7"
+    else:
+        current_version = roadmap_version or "v0.7"
     version_key = "currentV" + current_version.removeprefix("v").replace(".", "")
     current_version_state = session.get(version_key) or {}
     roadmap_version_state = next(
