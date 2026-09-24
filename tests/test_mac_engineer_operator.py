@@ -20,6 +20,20 @@ SPEC.loader.exec_module(operator)
 
 
 class OperatorSurfaceTests(unittest.TestCase):
+    def test_v08_gate2_operator_contract_is_bound(self) -> None:
+        source = (
+            Path(__file__).resolve().parents[1]
+            / "tools"
+            / "mac_engineer_operator.py"
+        ).read_text(encoding="utf-8")
+        self.assertIn(
+            'local_action == "V08_SELF_ENGINEERING_PRODUCT_REALITY_RECONCILIATION"',
+            source,
+        )
+        self.assertIn("V08_PRODUCT_REALITY_RECONCILIATION_PASS", source)
+        self.assertIn("V08_UX_AESTHETIC_PRODUCT_CONTRACT_REQUIRED", source)
+        self.assertIn("DONECHECK_V1_2_AUTHORITY_PRESERVED", source)
+
     def test_current_truth_reads_single_next_action(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
