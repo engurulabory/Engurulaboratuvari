@@ -14,12 +14,12 @@ class MacEngineeringCanonicalContextTests(unittest.TestCase):
             "ENGÜRÜ Mac Engineering™",
         )
 
-    def test_final_target_is_v11(self):
+    def test_final_target_is_v12(self):
         roadmap = sync.load_json(sync.ROADMAP)
-        self.assertEqual(roadmap["finalTarget"]["version"], "v1.1")
+        self.assertEqual(roadmap["finalTarget"]["version"], "v1.2")
         self.assertEqual(
             roadmap["finalTarget"]["title"],
-            "Verified Product Engineering Operator",
+            "Local Mac Astra Verified Final",
         )
 
     def test_runtime_context_is_runtime_state(self):
