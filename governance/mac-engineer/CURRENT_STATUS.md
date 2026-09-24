@@ -724,3 +724,14 @@ Canonical closure:
 **JUDGMENT — ENGÜRÜ Mac Engineer™ v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED — MAC-NATIVE AUTHORITY.**
 
 **NEXT ACTION — preserve v0.7 lock; begin a new objective only with explicit authority.**
+
+
+## v0.7 FINAL EXACT-HEAD SEAL
+
+Final exact-head seal command: `governance/mac-engineer/V07_VERIFIED_FINISH_ACCEPTANCE.command`.
+
+The seal is read-only with respect to canonical source and writes only local Evidence under:
+
+`~/Enguru/Evidence/MacEngineer/v0.7/verified-finish/`
+
+It requires the fresh locally accepted exact control-plane HEAD, Human Threshold™ ACCEPT receipt, Gate 12 PASS Evidence, DoneCheck™ v1.2 exact SHA, 13/13 canonical reconciliation, clean worktree and preserved external A09 deferred boundary.
