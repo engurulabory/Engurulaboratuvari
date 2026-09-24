@@ -81,6 +81,18 @@
       "remotePush": false,
       "humanThresholdAfterPass": true,
       "failClosed": true
+    },
+    "V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION": {
+      "handler": "HUMAN_THRESHOLD_REVIEW_THEN_EXPLICIT_DECISION",
+      "authority": "FINAL_HUMAN_AUTHORITY",
+      "command": "governance/mac-engineer/V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION.command",
+      "reviewMode": "REVIEW",
+      "acceptMode": "ACCEPT",
+      "acceptTokenRequired": true,
+      "canonicalLockCreatedByReview": false,
+      "canonicalLockCreatedByAcceptReceipt": false,
+      "canonicalLockRequiresReconciliationAfterHumanReceipt": true,
+      "failClosed": true
     }
   }
 }
