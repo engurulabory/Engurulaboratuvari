@@ -1185,3 +1185,50 @@ Final visual acceptance remains reserved for Human Artistic Authority™.
 ### NEXT_ACTION
 
 `HUMAN_ARTISTIC_AUTHORITY_REVIEW`
+
+
+## GATE 6 — DESKTOP COCKPIT DIRECTION RECONCILIATION
+
+**STATE — VISUAL DIRECTION 95% ACCEPTED / IMPLEMENTATION DIFFERENCE DEFINED.**
+
+### COMPLETED_OR_CHANGED_WORK
+
+- Persistent single-Cockpit product behavior remains canonical.
+- Desktop-only v0.8 UI target accepted.
+- READY headline accepted as `Her şey yolunda.`
+- System Health compact user signal defined.
+- Mini Report visual + conversational behavior defined.
+- Projects / Mini Rapor / Kontrol / Teknik Ayrıntılar / Geçmiş remain secondary/on-demand.
+- Text input current capability PASS.
+- Local file registration current capability PASS.
+- Local Ollama runtime current capability PASS.
+- File picker, microphone, image analysis and audio transcription remain explicit implementation requirements.
+- No unsupported multimodal PASS was manufactured.
+- New core count remains zero.
+
+### JUDGMENT
+
+The accepted visual direction is sufficiently mature to guide real desktop product implementation.
+
+The remaining visual refinement and multimodal functionality are bounded product differences.
+
+Final Human Artistic Authority™ remains open.
+
+### CURRENT_OBJECTIVE
+
+`V08_EXISTING_PRODUCT_CHANGE_SCENARIO`
+
+### REMAINING_WORK
+
+- implement accepted desktop Cockpit direction;
+- add real user-facing file intake;
+- add image/photo analysis capability;
+- add microphone capture + local transcription capability;
+- bind System Health;
+- bind Mini Report;
+- verify all behavior on the real Mac;
+- Evidence + DoneCheck™ + final Human Artistic Authority™.
+
+### NEXT_ACTION
+
+`V08_DESKTOP_COCKPIT_REAL_IMPLEMENTATION`

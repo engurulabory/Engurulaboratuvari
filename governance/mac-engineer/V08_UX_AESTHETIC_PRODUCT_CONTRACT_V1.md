@@ -321,3 +321,201 @@ Exit:
 Next:
 
 `V08_FULL_PRODUCT_ENGINEERING_CHAIN_BINDING`
+
+
+## DESKTOP COCKPIT — ACCEPTED VISUAL DIRECTION + INPUT CONTRACT
+
+### STATE
+
+**VISUAL DIRECTION — ACCEPTED WITH BOUNDED REFINEMENT / 95%.**
+
+This acceptance is a design-direction decision.
+Final Human Artistic Authority™ remains open until the real product implementation is observed on the Mac.
+
+### PLATFORM SCOPE
+
+Primary product target:
+
+**DESKTOP MAC ONLY**
+
+Current v0.8 cockpit productization scope does not require mobile or tablet layouts.
+
+### PRIMARY READY HEADING
+
+The READY state uses the user-facing headline:
+
+> **Her şey yolunda.**
+
+This headline represents the compact top-level conclusion when no user-relevant attention condition is active.
+
+### ACCEPTED DESKTOP COMPOSITION
+
+The persistent Cockpit keeps the following user-facing elements:
+
+- ENGÜRÜ Mac Engineer™ identity;
+- active project;
+- compact Projects access;
+- one general System Health signal;
+- one clear Now / next-action message;
+- one natural-language composer;
+- New Production;
+- Mini Report;
+- compact secondary controls available on demand.
+
+The accepted secondary control set is:
+
+- Projects;
+- Mini Rapor;
+- Kontrol;
+- Teknik Ayrıntılar;
+- Geçmiş.
+
+These controls open secondary surfaces.
+They do not replace the primary Cockpit working surface.
+
+### SYSTEM HEALTH CONTRACT
+
+Cockpit exposes one concise user-level system-health conclusion.
+
+The health signal represents the governed synthesis of relevant runtime truth such as:
+
+- runtime readiness;
+- continuity;
+- recovery readiness;
+- essential local control checks.
+
+Healthy state remains concise.
+
+Example:
+
+> **Sistem Sağlığı — İyi**
+
+Detailed engineering diagnostics remain available through the secondary Control / Technical Detail surfaces.
+
+A user-relevant degradation promotes a concise attention message instead of exposing raw engineering logs by default.
+
+### MINI REPORT CONTRACT
+
+Mini Report is a compact user-facing operational summary.
+
+It may summarize:
+
+- active project;
+- latest meaningful work;
+- current state;
+- latest verification result;
+- important finding count when relevant;
+- whether mutation occurred when relevant;
+- one useful next action.
+
+Mini Report expands on demand.
+
+The same semantic report must be available both:
+
+1. visually through the Cockpit;
+2. conversationally through a natural-language request such as:
+   **“Mini rapor ver.”**
+
+Mini Report is a projection of current product truth.
+It does not manufacture PASS.
+
+### PRIMARY INPUT CONTRACT
+
+The desktop Cockpit target supports these user input modes:
+
+- TEXT;
+- VOICE;
+- FILE;
+- IMAGE / PHOTO.
+
+Input controls remain compact and integrated with the natural-language composer.
+
+Their purpose is not merely attachment registration.
+
+Accepted inputs must become analyzable task context for ENGÜRÜ Mac Engineer™.
+
+### LOCAL-FIRST MULTIMODAL CONTRACT
+
+The target behavior is:
+
+**user input → local intake → validation → local analysis / extraction → governed task context → Mac engineering execution**
+
+Local Mac remains the primary execution substrate.
+
+Current verified capability truth at discovery time:
+
+- text chat API: PASS;
+- local file path registration: PASS;
+- Ollama local runtime: PASS;
+- local text model `qwen3:14b`: PRESENT;
+- user-facing file-picker UI: HOLD;
+- microphone UI: HOLD;
+- native microphone permission: HOLD;
+- native file open-panel binding: HOLD;
+- image-analysis protocol: HOLD;
+- audio-transcription protocol: HOLD;
+- local ffmpeg tool: HOLD;
+- local Whisper tool: HOLD.
+
+A broad drag/drop detector observed a possible UI signal.
+That observation is not treated as independent capability PASS until exact field verification.
+
+### FILE INPUT TARGET
+
+File selection must allow the user to provide a local file through the Cockpit.
+
+The selected file is:
+
+- validated;
+- bound to the active project / work context;
+- represented clearly to the user;
+- analyzed according to supported local capability;
+- preserved under evidence / privacy boundaries appropriate to the task.
+
+Path registration alone does not satisfy the final file-input acceptance.
+
+### IMAGE / PHOTO INPUT TARGET
+
+The user can select or attach an image or photo from the Mac Cockpit.
+
+The final capability requires actual image understanding / analysis.
+
+A decorative image button or attachment-only behavior does not satisfy the contract.
+
+### VOICE INPUT TARGET
+
+The user can invoke microphone input from the Cockpit.
+
+The final capability requires:
+
+**microphone permission → capture → local transcription → text/task context → normal governed execution**
+
+A decorative microphone button does not satisfy the contract.
+
+### SIMPLICITY RULE
+
+Multimodal controls remain subordinate to the main natural-language work surface.
+
+The Cockpit remains:
+
+**Active Project → System Health → Now → Composer → Mini Report / result**
+
+Secondary details open only when requested or operationally required.
+
+### ACCEPTANCE BOUNDARY
+
+The accepted visual reference is the direction for real desktop implementation.
+
+Final acceptance still requires:
+
+- real product implementation;
+- real desktop rendering;
+- primary interaction verification;
+- system-health behavior verification;
+- Mini Report behavior verification;
+- supported input field proof;
+- regression;
+- runtime verification;
+- Evidence;
+- DoneCheck™ v1.2;
+- Human Artistic Authority™ final judgment.

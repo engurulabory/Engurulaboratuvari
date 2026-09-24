@@ -1462,3 +1462,29 @@ External GitHub A09 remains `EXTERNAL_BLOCKED_DEFERRED` and requires reconciliat
 - [ ] Accepted visual direction is implemented and field-verified in the real product.
 
 **NEXT ACTION:** `HUMAN_ARTISTIC_AUTHORITY_REVIEW`
+
+
+## MAC ENGINEER v0.8 — DESKTOP COCKPIT IMPLEMENTATION
+
+**STATE — VISUAL DIRECTION ACCEPTED 95% / REAL IMPLEMENTATION NEXT**
+
+- [x] Single persistent Cockpit behavior canonicalized.
+- [x] Mac desktop-only target locked for current productization.
+- [x] READY heading: `Her şey yolunda.`
+- [x] System Health user-level contract defined.
+- [x] Mini Report visual + conversational contract defined.
+- [x] Projects / Mini Rapor / Kontrol / Teknik Ayrıntılar / Geçmiş secondary controls defined.
+- [x] Text input current capability PASS.
+- [x] Local file registration current capability PASS.
+- [x] Local Ollama runtime PASS.
+- [ ] Real user-facing file picker.
+- [ ] Real image / photo analysis.
+- [ ] Real microphone capture.
+- [ ] Real local audio transcription.
+- [ ] System Health real Cockpit binding.
+- [ ] Mini Report real Cockpit + runtime binding.
+- [ ] Accepted visual direction real desktop implementation.
+- [ ] Mac field verification + Evidence + DoneCheck™ v1.2.
+- [ ] Human Artistic Authority™ final real-product acceptance.
+
+**NEXT ACTION:** `V08_DESKTOP_COCKPIT_REAL_IMPLEMENTATION`

@@ -291,7 +291,7 @@
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "HUMAN_ARTISTIC_AUTHORITY_REVIEW",
+  "nextAction": "V08_DESKTOP_COCKPIT_REAL_IMPLEMENTATION",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
@@ -1275,8 +1275,8 @@
     "objective": "V08_PRODUCT_ENGINEERING_OPERATOR",
     "engineeringMode": "MAC_NATIVE_PRIMARY_AUTHORITY",
     "executionAuthorityModel": "ENGÜRÜ Mac-Native Engineering Authority™",
-    "nextAction": "HUMAN_ARTISTIC_AUTHORITY_REVIEW",
-    "localContinuityNextAction": "HUMAN_ARTISTIC_AUTHORITY_REVIEW",
+    "nextAction": "V08_DESKTOP_COCKPIT_REAL_IMPLEMENTATION",
+    "localContinuityNextAction": "V08_DESKTOP_COCKPIT_REAL_IMPLEMENTATION",
     "localContinuityState": "ACTIVE",
     "acceptanceMatrix": "PASS_DEFINED",
     "acceptanceMatrixPath": "governance/mac-engineer/V08_PRODUCT_ENGINEERING_OPERATOR_ACCEPTANCE_MATRIX_V1.md",
@@ -1450,10 +1450,50 @@
       "state": "HOLD_HUMAN_ARTISTIC_AUTHORITY",
       "name": "V08_EXISTING_PRODUCT_CHANGE_SCENARIO",
       "technicalImplementation": "PASS",
-      "humanArtisticAuthority": "REQUIRED",
+      "humanArtisticAuthority": "REQUIRED_FINAL_REAL_PRODUCT_REVIEW",
       "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/existing-product-change/20260924T075816Z/evidence.json",
       "operatorReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260924T075825Z-continue.json",
-      "nextAction": "HUMAN_ARTISTIC_AUTHORITY_REVIEW"
+      "nextAction": "V08_DESKTOP_COCKPIT_REAL_IMPLEMENTATION",
+      "visualDirection": "ACCEPTED_95_PERCENT"
+    },
+    "desktopCockpitDirection": {
+      "state": "ACCEPTED_WITH_BOUNDED_REFINEMENT",
+      "visualAcceptancePercent": 95,
+      "platform": "MAC_DESKTOP_ONLY",
+      "readyHeading": "Her şey yolunda.",
+      "primarySurface": "SINGLE_PERSISTENT_COCKPIT",
+      "systemHealth": "REQUIRED",
+      "miniReport": "REQUIRED_VISUAL_AND_CONVERSATIONAL",
+      "secondaryControls": [
+        "PROJECTS",
+        "MINI_REPORT",
+        "CONTROL",
+        "TECHNICAL_DETAILS",
+        "HISTORY"
+      ],
+      "inputTarget": [
+        "TEXT",
+        "VOICE",
+        "FILE",
+        "IMAGE_PHOTO"
+      ],
+      "localFirstAnalysis": true,
+      "humanArtisticAuthorityFinal": "PENDING_REAL_PRODUCT"
+    },
+    "desktopCockpitCapabilityTruth": {
+      "textChatApi": "PASS",
+      "localFileRegistration": "PASS",
+      "ollama": "PASS",
+      "localTextModel": "qwen3:14b",
+      "filePickerUi": "HOLD",
+      "microphoneUi": "HOLD",
+      "microphoneNativePermission": "HOLD",
+      "nativeFileOpenPanel": "HOLD",
+      "imageAnalysisProtocol": "HOLD",
+      "audioTranscriptionProtocol": "HOLD",
+      "ffmpeg": "HOLD",
+      "whisper": "HOLD",
+      "dragDrop": "INCONCLUSIVE_REQUIRES_EXACT_FIELD_VERIFICATION"
     }
   },
   "preSendFilter": {
