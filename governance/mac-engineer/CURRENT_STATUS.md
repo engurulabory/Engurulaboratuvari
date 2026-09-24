@@ -1030,3 +1030,39 @@ Required difference applied to the Gate 5 executor:
 - source/runtime/install provenance requirements remain unchanged.
 
 **NEXT ACTION — fresh exact-head acceptance → Doctor → enguru-mac continue → Gate 5 recovery/retry from existing local product truth.**
+
+
+## v0.8 GATE 5 — ACTIVE PRODUCT BRANCH CONTINUITY RECONCILIATION — 2026-09-24
+
+**STATE — CANONICAL BOOT RECOVERY PATCH PREPARED / 4/12 PASS PRESERVED.**
+
+Observed acceptance result:
+
+`HOLD=CANONICAL_BOOT_VALIDATION_FAILED`
+
+Fresh canonical comparison showed SESSION_STATE, PRODUCT_ROADMAP, WORKLIST and CURRENT_STATUS objectives already aligned to:
+
+`V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE`
+
+Root cause was session continuity product-branch authority. The continuity model recognized historical v0.6 working-branch modes but did not yet recognize the canonical v0.8 active product working branch.
+
+Required difference applied:
+
+- v0.8 active product branch authority is derived from `currentV08.productWorkingBranch`;
+- product baseline authority is derived from `currentV08.productBaselineExactMain`;
+- authorization requires exact branch identity, origin/main baseline identity, baseline merge-base, clean worktree and at least one local commit ahead;
+- v0.8 objective must be active;
+- v0.7 VERIFIED_LOCKED truth remains unchanged;
+- regression coverage verifies both valid and invalid v0.8 product working-branch states.
+
+Current product truth remains:
+
+- branch: `feat/v08-native-productization-provenance`;
+- local Gate 5 commit: `028e6f6c278623af53360d52408982709619386d`;
+- source bundle version: `0.8`;
+- installed app version: `0.6`;
+- product worktree: clean;
+- remote product branch: baseline;
+- remote push: false.
+
+**NEXT ACTION — fresh exact-head acceptance → Doctor → enguru-mac continue → Gate 5 recovery/retry.**
