@@ -151,6 +151,23 @@ def sync_repo_online(path: Path) -> dict[str, Any]:
 def current_truth() -> dict[str, Any]:
     session = load_json(SESSION_STATE, {}) or {}
     roadmap = load_json(ROADMAP, {}) or {}
+
+    current_version = str(
+        roadmap.get("current", {}).get("version")
+        or session.get("currentVersion")
+        or "v0.7"
+    )
+    version_key = "currentV" + current_version.removeprefix("v").replace(".", "")
+    current_version_state = session.get(version_key) or {}
+    roadmap_version_state = next(
+        (
+            item
+            for item in roadmap.get("versions", [])
+            if item.get("version") == current_version
+        ),
+        {},
+    )
+
     current_v07 = session.get("currentV07") or {}
     v07_roadmap = next(
         (
@@ -160,18 +177,28 @@ def current_truth() -> dict[str, Any]:
         ),
         {},
     )
+
     return {
         "product": session.get("product") or roadmap.get("product", {}).get("canonicalName"),
-        "current_version": roadmap.get("current", {}).get("version"),
-        "current_state": roadmap.get("current", {}).get("state"),
+        "current_version": current_version,
+        "current_state": (
+            current_version_state.get("state")
+            or roadmap.get("current", {}).get("state")
+            or roadmap_version_state.get("state")
+        ),
         "active_objective": roadmap.get("current", {}).get("activeObjective"),
+        "version_state": current_version_state,
+        "next_action": (
+            current_version_state.get("nextAction")
+            or roadmap_version_state.get("nextAction")
+            or roadmap.get("current", {}).get("activeObjective")
+        ),
+        "local_continuity_next_action": current_version_state.get("localContinuityNextAction"),
+        "local_continuity_state": current_version_state.get("localContinuityState"),
         "v07_state": current_v07.get("state") or v07_roadmap.get("state"),
-        "next_action": current_v07.get("nextAction") or v07_roadmap.get("nextAction"),
         "a09_state": current_v07.get("a09State") or (v07_roadmap.get("a09") or {}).get("state"),
         "a09_candidate_sha": current_v07.get("a09LatestCandidateHead") or (v07_roadmap.get("a09") or {}).get("currentCandidateSha"),
         "local_fallback": current_v07.get("localFallback") or {},
-        "local_continuity_next_action": current_v07.get("localContinuityNextAction"),
-        "local_continuity_state": current_v07.get("localContinuityState"),
         "final_target": roadmap.get("finalTarget") or {},
     }
 
