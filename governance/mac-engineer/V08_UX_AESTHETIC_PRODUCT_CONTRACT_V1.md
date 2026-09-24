@@ -98,6 +98,169 @@ Target contract:
 - advanced status, repository controls, diagnostics, settings and historical views: secondary/on-demand;
 - existing runtime capability remains intact while the presentation layer is simplified.
 
+
+## SINGLE PERSISTENT WORK SURFACE + PROJECT CONTINUITY CONTRACT
+
+This section extends the existing v0.8 UX contract.
+It introduces no new core.
+
+### PRIMARY WORK SURFACE
+
+**Cockpit is the single persistent primary work surface.**
+
+The user remains in Cockpit while:
+
+- starting a new product, project or engineering task;
+- continuing an existing project;
+- requesting inspection or a status report;
+- directing a repair or bounded product change;
+- reviewing progress;
+- providing Human Artistic Authority™ judgment;
+- providing Human Threshold™ decisions when required;
+- completing and verifying work;
+- moving to another project or beginning the next task.
+
+The same Cockpit remains present throughout the work.
+
+### MAC-LOCAL EXECUTION SUBSTRATE
+
+ENGÜRÜ Mac Engineer™ executes engineering work through the local Mac execution environment:
+
+**project source → repository truth → Mac-local shell / terminal execution → tests → runtime observation → Evidence → DoneCheck™**
+
+A visible Terminal.app window may be used when useful.
+
+The execution contract is bound to Mac-local shell / terminal capability so the engineering workflow remains durable and automatable independently of a specific terminal GUI window.
+
+### PROJECT CONTEXT
+
+Cockpit always carries one explicit active-project context when project work is in progress.
+
+The user may express project switching naturally, for example:
+
+- “ZEKÜ’ye geç.”
+- “Publish Engine’i aç.”
+- “Bu projede kaldığımız yerden devam et.”
+
+A uniquely resolved project becomes the active project.
+
+When project identity requires human disambiguation, Cockpit presents a concise project choice before engineering execution continues.
+
+Project selection returns the selected project to the same Cockpit work surface.
+
+### ONE COCKPIT — FIVE WORK STATES
+
+One continuous Cockpit supports these operational states:
+
+`READY → INSPECTING → WORKING → NEEDS_HUMAN → VERIFIED`
+
+These are states of one persistent working surface.
+
+**READY**
+The system is ready for a new instruction or continuation.
+
+**INSPECTING**
+Mac Engineer is reading project truth, repository state, tests, runtime state and relevant Evidence to prepare a report.
+
+**WORKING**
+Mac Engineer is carrying out an authorized engineering change on the local Mac.
+
+**NEEDS_HUMAN**
+Human awareness, judgment or authority is required.
+
+**VERIFIED**
+The requested work is complete and supported by verification Evidence.
+
+### INSPECTION-ONLY CONTRACT
+
+A request such as:
+
+> “Publish Engine projesini seç. Mevcut halini incele. Onarım gerektiren yerleri bana raporla.”
+
+enters an inspection-only path.
+
+Inspection-only work preserves project source state while Mac Engineer:
+
+**resolve project → verify repository truth → inspect source → run appropriate tests → inspect Evidence → observe runtime when useful → report findings**
+
+The report returns to Cockpit with:
+
+- current state;
+- concise findings;
+- attention when required;
+- one useful next action.
+
+### REPAIR / PRODUCT CHANGE CONTRACT
+
+After explicit user direction for a change, repair follows:
+
+**read → root cause → smallest sufficient change → test → regression → runtime verification → Evidence → DoneCheck™ → result**
+
+The user may continue naturally from the inspection result, for example:
+
+> “1 numaralı problemi kalıcı çöz.”
+
+Cockpit stays in place while the engineering execution proceeds on the local Mac.
+
+### PRIMARY COCKPIT COMPRESSION
+
+The primary surface compresses engineering activity into:
+
+**Active Project → Status → Attention → Now → concise live activity → result**
+
+Detailed terminal transcript, diff, tests, repository detail and Evidence remain available on demand through secondary detail surfaces.
+
+The main Cockpit remains calm, readable and usable throughout long-running work.
+
+### PROJECTS SURFACE
+
+**Projects is a secondary visibility and control surface.**
+
+It provides a complete view of the user's project estate, including:
+
+- all projects;
+- active projects;
+- work in progress;
+- completed projects;
+- projects requiring attention;
+- archived projects.
+
+A project can expose a clear action such as:
+
+**Cockpit’te Aç**
+
+Projects provides selection, visibility and lifecycle control.
+Engineering work continues in Cockpit.
+
+### PROJECT LIFECYCLE ACTIONS
+
+Project lifecycle controls live in the secondary project-control surface.
+
+Supported lifecycle concepts include:
+
+**Archive → Restore → Unpublish when applicable → Delete**
+
+Archive and restore preserve continuity.
+
+Irreversible deletion enters:
+
+**Human Threshold™ → explicit confirmation → recovery / backup truth → execution → Evidence**
+
+The user remains informed about recoverability before an irreversible action receives authority.
+
+### CONTINUITY PRINCIPLE
+
+The user can move from:
+
+**project selection → inspection → report → repair instruction → engineering execution → verification → next repair → completion**
+
+without changing the primary work surface.
+
+The Cockpit is therefore not merely a prompt box.
+
+It is the persistent project-working surface of ENGÜRÜ Mac Engineer™.
+
+
 ## OVERFLOW + ORIGINALITY + ACCESSIBILITY GATES
 
 Before Human Artistic Authority™ review, implementation must demonstrate:

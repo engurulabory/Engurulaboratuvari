@@ -291,7 +291,7 @@
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "V08_EXISTING_PRODUCT_CHANGE_SCENARIO",
+  "nextAction": "HUMAN_ARTISTIC_AUTHORITY_REVIEW",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
@@ -1275,8 +1275,8 @@
     "objective": "V08_PRODUCT_ENGINEERING_OPERATOR",
     "engineeringMode": "MAC_NATIVE_PRIMARY_AUTHORITY",
     "executionAuthorityModel": "ENGÜRÜ Mac-Native Engineering Authority™",
-    "nextAction": "V08_EXISTING_PRODUCT_CHANGE_SCENARIO",
-    "localContinuityNextAction": "V08_EXISTING_PRODUCT_CHANGE_SCENARIO",
+    "nextAction": "HUMAN_ARTISTIC_AUTHORITY_REVIEW",
+    "localContinuityNextAction": "HUMAN_ARTISTIC_AUTHORITY_REVIEW",
     "localContinuityState": "ACTIVE",
     "acceptanceMatrix": "PASS_DEFINED",
     "acceptanceMatrixPath": "governance/mac-engineer/V08_PRODUCT_ENGINEERING_OPERATOR_ACCEPTANCE_MATRIX_V1.md",
@@ -1401,6 +1401,59 @@
         "PRODUCT_REMOTE_PUSH_FALSE",
         "DONECHECK_V1_2_AUTHORITY_PRESERVED"
       ]
+    },
+    "cockpitBehaviorContract": {
+      "state": "VERIFIED_CONTRACT",
+      "newCore": false,
+      "primaryWorkSurface": "SINGLE_PERSISTENT_COCKPIT",
+      "workStates": [
+        "READY",
+        "INSPECTING",
+        "WORKING",
+        "NEEDS_HUMAN",
+        "VERIFIED"
+      ],
+      "executionSubstrate": "MAC_LOCAL_SHELL_TERMINAL_REPOSITORY_TEST_RUNTIME",
+      "primaryCompression": [
+        "ACTIVE_PROJECT",
+        "STATUS",
+        "ATTENTION",
+        "NOW",
+        "CONCISE_LIVE_ACTIVITY",
+        "RESULT"
+      ],
+      "inspectionOnly": "SOURCE_STATE_PRESERVED",
+      "repairChain": [
+        "READ",
+        "ROOT_CAUSE",
+        "SMALLEST_SUFFICIENT_CHANGE",
+        "TEST",
+        "REGRESSION",
+        "RUNTIME_VERIFICATION",
+        "EVIDENCE",
+        "DONECHECK_V1_2",
+        "RESULT"
+      ],
+      "projectsSurface": "SECONDARY_VISIBILITY_AND_LIFECYCLE_CONTROL",
+      "projectContinuity": "RETURN_TO_SAME_COCKPIT",
+      "lifecycleActions": [
+        "ARCHIVE",
+        "RESTORE",
+        "UNPUBLISH_WHEN_APPLICABLE",
+        "DELETE"
+      ],
+      "irreversibleDeleteAuthority": "HUMAN_THRESHOLD_CONFIRMATION_RECOVERY_BACKUP_TRUTH",
+      "contract": "governance/mac-engineer/V08_UX_AESTHETIC_PRODUCT_CONTRACT_V1.md",
+      "test": "tests/test_mac_engineer_v08_cockpit_contract.py"
+    },
+    "gate6": {
+      "state": "HOLD_HUMAN_ARTISTIC_AUTHORITY",
+      "name": "V08_EXISTING_PRODUCT_CHANGE_SCENARIO",
+      "technicalImplementation": "PASS",
+      "humanArtisticAuthority": "REQUIRED",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/existing-product-change/20260924T075816Z/evidence.json",
+      "operatorReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260924T075825Z-continue.json",
+      "nextAction": "HUMAN_ARTISTIC_AUTHORITY_REVIEW"
     }
   },
   "preSendFilter": {

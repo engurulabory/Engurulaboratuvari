@@ -1442,3 +1442,23 @@ Verified decision:
 **Closure state: 13/13 PASS. Canonical target: v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED.**
 
 External GitHub A09 remains `EXTERNAL_BLOCKED_DEFERRED` and requires reconciliation when GitHub Actions execution becomes available. This does not reopen the Mac-native local Verified Finish.
+
+
+## MAC ENGINEER v0.8 — SINGLE PERSISTENT COCKPIT CONTRACT
+
+**STATE — CONTRACT PASS / HUMAN ARTISTIC AUTHORITY PENDING**
+
+- [x] Gate 6 technical product-change implementation PASS.
+- [x] One persistent Cockpit defined as the primary working surface.
+- [x] READY / INSPECTING / WORKING / NEEDS_HUMAN / VERIFIED defined as states of the same Cockpit.
+- [x] Mac-local shell / terminal engineering execution bound behind Cockpit.
+- [x] Inspection-only project report flow defined.
+- [x] Bounded repair → regression → runtime → Evidence → DoneCheck™ flow defined.
+- [x] Projects defined as secondary visibility + lifecycle-control surface.
+- [x] Project continuity returns work to the same Cockpit.
+- [x] Archive / Restore / Unpublish / Delete lifecycle contract defined.
+- [x] Irreversible delete authority bound to Human Threshold™ + confirmation + recovery / backup truth.
+- [ ] Human Artistic Authority™ accepts the canonical Cockpit visual direction.
+- [ ] Accepted visual direction is implemented and field-verified in the real product.
+
+**NEXT ACTION:** `HUMAN_ARTISTIC_AUTHORITY_REVIEW`

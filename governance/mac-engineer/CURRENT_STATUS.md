@@ -1132,3 +1132,56 @@ Verified product truth:
 **JUDGMENT — V08 GATE 5 VERIFIED PASS.**
 
 **NEXT ACTION — prepare and execute Gate 6 Existing Product Change Scenario using the verified Gate 3 UX/Aesthetic contract and Human Artistic Authority™ review.**
+
+
+## GATE 6 — SINGLE PERSISTENT COCKPIT CONTRACT RECONCILIATION
+
+**STATE — TECHNICAL IMPLEMENTATION PASS / HUMAN ARTISTIC AUTHORITY HOLD.**
+
+### COMPLETED_OR_CHANGED_WORK
+
+- Gate 6 real product change technical execution: PASS.
+- Single persistent Cockpit behavior contract: defined and tested.
+- Cockpit is the primary persistent project-working surface.
+- Operational states are one-surface states:
+  `READY → INSPECTING → WORKING → NEEDS_HUMAN → VERIFIED`.
+- Mac-local engineering execution is bound to repository truth, shell / terminal execution, tests, runtime observation, Evidence and DoneCheck™.
+- Inspection-only and bounded repair flows are explicit.
+- Projects is a secondary visibility and lifecycle-control surface.
+- Archive / Restore / Unpublish / Delete lifecycle concepts are explicit.
+- Irreversible deletion remains Human Threshold™ with confirmation and recovery / backup truth.
+- New core count remains zero.
+
+### LATEST_EVIDENCE
+
+- Gate 6 field Evidence:
+  `/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/existing-product-change/20260924T075816Z/evidence.json`
+- Operator receipt:
+  `/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260924T075825Z-continue.json`
+- Canonical UX contract:
+  `governance/mac-engineer/V08_UX_AESTHETIC_PRODUCT_CONTRACT_V1.md`
+- Contract regression:
+  `tests/test_mac_engineer_v08_cockpit_contract.py`
+
+### JUDGMENT
+
+Gate 6 engineering implementation is technically verified.
+
+The primary product behavior is now defined as one persistent Cockpit while ENGÜRÜ Mac Engineer™ carries out Mac-local engineering work behind that surface.
+
+Final visual acceptance remains reserved for Human Artistic Authority™.
+
+### CURRENT_OBJECTIVE
+
+`V08_EXISTING_PRODUCT_CHANGE_SCENARIO`
+
+### REMAINING_WORK
+
+- Produce the canonical Cockpit visual candidate from the accepted behavior contract.
+- Human Artistic Authority™ review.
+- Apply the accepted visual direction to the real product.
+- Re-run field verification, Evidence and DoneCheck™ before Gate 6 closure.
+
+### NEXT_ACTION
+
+`HUMAN_ARTISTIC_AUTHORITY_REVIEW`
