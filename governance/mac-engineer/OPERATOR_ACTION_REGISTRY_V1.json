@@ -162,6 +162,27 @@
       "doneCheckExactMain": "8b90a8fc93453dd8a84994195d28d14b15e261cb",
       "nextAfterPass": "V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE",
       "failClosed": true
+    },
+    "V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE": {
+      "handler": "V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE",
+      "authority": "MAC_NATIVE_PRIMARY_ENGINEERING_AUTHORITY_VERIFIED",
+      "command": "governance/mac-engineer/V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE.command",
+      "product": "ENGÜRÜ Mac Engineer™",
+      "productRepository": "engurulabory/enguru-mac-engineer",
+      "productBranch": "feat/v08-native-productization-provenance",
+      "productMutation": true,
+      "authorizedMutationPaths": [
+        "execution_prep/native_app/Info.plist",
+        "execution_prep/native_app/prepare_native_app.command",
+        "runtime/tests/test_v08_native_productization.py"
+      ],
+      "remotePush": false,
+      "consumes": "V08_FULL_PRODUCT_ENGINEERING_CHAIN_BINDING_PASS",
+      "doneCheckAuthority": "DoneCheck™ v1.2",
+      "doneCheckVersion": "1.2.0",
+      "doneCheckExactMain": "8b90a8fc93453dd8a84994195d28d14b15e261cb",
+      "nextAfterPass": "V08_EXISTING_PRODUCT_CHANGE_SCENARIO",
+      "failClosed": true
     }
   }
 }
