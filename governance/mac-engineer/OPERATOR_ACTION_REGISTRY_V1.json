@@ -1,0 +1,111 @@
+{
+  "schema": "enguru.mac-engineer.operator-action-registry/v1",
+  "product": "ENGÜRÜ Mac Engineering™",
+  "rule": "NEXT_ACTION handlers are explicit and fail-closed. Unregistered actions remain HOLD until a bounded handler is added.",
+  "actions": {
+    "V07_A09_CLEAR_GITHUB_PRIVATE_REPO_HOSTED_ACTIONS_EXECUTION_GATE": {
+      "handler": "A09_EXTERNAL_OR_SELF_HOSTED_CONFIRMATION",
+      "authority": "GITHUB_CHECK_REQUIRED",
+      "localFallback": "LOCAL_REHEARSAL_ALLOWED"
+    },
+    "V07_A10_DONECHECK_V1_2_INTEGRATION": {
+      "handler": "V07_A10_DONECHECK_V12_ACCEPTANCE",
+      "authority": "DONECHECK_V1_2",
+      "command": "governance/mac-engineer/V07_A10_DONECHECK_V12_ACCEPTANCE.command",
+      "failClosed": true
+    },
+    "V07_A11_CONSOLIDATED_MAC_CAMPAIGN": {
+      "handler": "CANONICAL_PACKAGE_REQUIRED",
+      "authority": "REAL_MAC_FIELD_EVIDENCE"
+    },
+    "V07_A12_HUMAN_THRESHOLD_VERSION_LOCK": {
+      "handler": "HUMAN_THRESHOLD",
+      "authority": "FINAL_HUMAN_AUTHORITY"
+    },
+    "V07_LOCAL_FINISHER_REHEARSAL": {
+      "handler": "LOCAL_FINISHER_REHEARSAL",
+      "authority": "LOCAL_REHEARSAL_ONLY",
+      "command": "governance/mac-engineer/V07_LOCAL_FINISHER_REHEARSAL.command",
+      "canonicalA11Authority": false,
+      "failClosed": true
+    },
+    "MAC_NATIVE_AUTHORITY_MIGRATION_FIELD_PROOF": {
+      "handler": "MAC_NATIVE_MULTI_REPO_FIELD_PROOF",
+      "authority": "LOCAL_FIELD_EVIDENCE",
+      "command": "governance/mac-engineer/V07_MAC_NATIVE_AUTHORITY_FIELD_PROOF.command",
+      "networkRequired": false,
+      "remotePush": false,
+      "failClosed": true
+    },
+    "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF": {
+      "handler": "MAC_NATIVE_RESTART_RECOVERY_FIELD_PROOF",
+      "authority": "REAL_MAC_LOCAL_PROCESS_RESTART_EVIDENCE",
+      "command": "governance/mac-engineer/V07_MAC_NATIVE_RESTART_RECOVERY_PROOF.command",
+      "networkRequired": false,
+      "remotePush": false,
+      "failClosed": true
+    },
+    "MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF": {
+      "handler": "MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_FIELD_PROOF",
+      "authority": "REAL_MAC_OFFLINE_RECONCILIATION_EVIDENCE",
+      "command": "governance/mac-engineer/V07_MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF.command",
+      "networkRequired": false,
+      "remotePush": false,
+      "secondCanonicalTruth": false,
+      "failClosed": true
+    },
+    "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION": {
+      "handler": "DONECHECK_V12_LOCAL_AUTHORITY_MIGRATION_VERIFICATION",
+      "authority": "DONECHECK_V1_2_EXACT_SHA",
+      "command": "governance/mac-engineer/V07_DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION.command",
+      "doneCheckVersion": "1.2.0",
+      "doneCheckExactSha": "8b90a8fc93453dd8a84994195d28d14b15e261cb",
+      "externalA09Promoted": false,
+      "failClosed": true
+    },
+    "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY": {
+      "handler": "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_STREAMING",
+      "authority": "REAL_MAC_8H_FIELD_EVIDENCE_PLUS_DONECHECK_V1_2",
+      "command": "governance/mac-engineer/V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN.command",
+      "minimumDurationSeconds": 28800,
+      "controlledInterruptions": 3,
+      "interruptionSurfaces": [
+        "process",
+        "network_loopback",
+        "runtime_abrupt_process"
+      ],
+      "rssPeakLimitMultiplier": 2,
+      "rssFinalLimitMultiplier": 1.5,
+      "postCampaignDoneCheck": true,
+      "networkRequired": false,
+      "remotePush": false,
+      "humanThresholdAfterPass": true,
+      "failClosed": true
+    },
+    "V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION": {
+      "handler": "HUMAN_THRESHOLD_REVIEW_THEN_EXPLICIT_DECISION",
+      "authority": "FINAL_HUMAN_AUTHORITY",
+      "command": "governance/mac-engineer/V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION.command",
+      "reviewMode": "REVIEW",
+      "acceptMode": "ACCEPT",
+      "acceptTokenRequired": true,
+      "canonicalLockCreatedByReview": false,
+      "canonicalLockCreatedByAcceptReceipt": false,
+      "canonicalLockRequiresReconciliationAfterHumanReceipt": true,
+      "failClosed": true
+    },
+    "V07_VERIFIED_FINISH_ACCEPTANCE": {
+      "handler": "V07_VERIFIED_FINISH_FINAL_ACCEPTANCE",
+      "authority": "FRESH_EXACT_HEAD_PLUS_HUMAN_THRESHOLD_PLUS_DONECHECK_V1_2",
+      "command": "governance/mac-engineer/V07_VERIFIED_FINISH_ACCEPTANCE.command",
+      "mutation": "EVIDENCE_ONLY",
+      "requiresFreshLocalAcceptance": true,
+      "requiresHumanThresholdAccepted": true,
+      "requiresGate12Pass": true,
+      "requiresDoneCheckExactSha": "8b90a8fc93453dd8a84994195d28d14b15e261cb",
+      "externalA09Promoted": false,
+      "secondCanonicalTruth": false,
+      "failClosed": true
+    }
+  }
+}

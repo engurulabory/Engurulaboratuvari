@@ -38,9 +38,10 @@
     "canonicalContextRefreshBinding": "VERIFIED_PASS",
     "contextDurabilityGithubEngineering": "VERIFIED_PASS",
     "freshResumeGithubEngineering": "VERIFIED_PASS",
-    "checkpointRestartResumeFieldProof": "VERIFIED_PASS"
+    "checkpointRestartResumeFieldProof": "VERIFIED_PASS",
+    "v07LongRunReliability": "VERIFIED_LOCKED"
   },
-  "currentObjective": "V0_7_LONG_RUNNING_RELIABILITY",
+  "currentObjective": "V0_7_VERIFIED_LOCKED_AWAIT_NEXT_OBJECTIVE",
   "observedProductPublication": {
     "source": "MAC_FIELD_OUTPUT",
     "localSourceHead": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
@@ -161,7 +162,7 @@
   "technicalProductId": "enguru-mac-engineer",
   "productIdentityRoadmap": "governance/mac-engineer/PRODUCT_IDENTITY_ROADMAP_V1.md",
   "productRoadmap": "governance/mac-engineer/PRODUCT_ROADMAP_V1.json",
-  "currentVersion": "v0.6",
+  "currentVersion": "v0.7",
   "finalTarget": "v1.1_VERIFIED_PRODUCT_ENGINEERING_OPERATOR",
   "observedExactShaInstall": {
     "state": "PASS",
@@ -290,7 +291,7 @@
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "V00_V03_HISTORICAL_RECONSTRUCTION",
+  "nextAction": "V0_7_VERIFIED_LOCKED_AWAIT_NEXT_OBJECTIVE",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
@@ -645,11 +646,33 @@
   },
   "doneCheckAuthorityDecision": {
     "state": "LOCKED",
+    "productCount": 1,
+    "repositoryCount": 2,
+    "verifiedVersionMilestones": [
+      "v1.0",
+      "v1.1",
+      "v1.2"
+    ],
+    "canonicalProduct": "DoneCheck™ v1.2",
+    "canonicalRepository": "engurulabory/donecheck",
+    "canonicalVersion": "1.2.0",
+    "canonicalExactMain": "8b90a8fc93453dd8a84994195d28d14b15e261cb",
+    "historicalFoundationRepository": "engurulabory/donecheck-core-foundation",
+    "historicalFoundationExactMain": "f555354fa756b47f6e83ab05248e63005b1054bf",
     "markdownProjection": "HUMAN_READABLE_READ_ONLY_PROJECTION",
-    "mandatoryDoneCheckJson": "STRUCTURED_EVIDENCE_CONTRACT",
+    "mandatoryDoneCheckJson": "STRUCTURED_EVIDENCE_PRODUCER_CONTRACT",
     "doneCheckV12": "MACHINE_VERIFICATION_AND_PRODUCTION_CLOSURE_AUTHORITY",
     "humanThreshold": "FINAL_HUMAN_AUTHORITY",
-    "contract": "governance/mac-engineer/DONECHECK_AUTHORITY_MODEL_V1.md"
+    "exactMainEvidence": {
+      "ciRunId": 35714169933,
+      "tests": "32_OF_32_PASS",
+      "releaseAuthorityRunId": 35714169911,
+      "releaseAuthority": "PASS",
+      "ipModelTrustFleetRunId": 35714170025,
+      "ipModelTrustFleet": "PASS"
+    },
+    "contract": "governance/mac-engineer/DONECHECK_AUTHORITY_MODEL_V1.md",
+    "evidence": "evidence/DONECHECK_V12_CANONICAL_RECONCILIATION_2026-09-23.md"
   },
   "workingModelDecision": {
     "state": "LOCKED",
@@ -710,11 +733,11 @@
     "mandatoryDoneCheck": "PASS"
   },
   "currentV07": {
-    "state": "HOLD",
+    "state": "VERIFIED_LOCKED",
     "objective": "V0_7_LONG_RUNNING_RELIABILITY",
-    "engineeringMode": "GITHUB_FIRST",
-    "nextAction": "V07_A09_CLEAR_GITHUB_PRIVATE_REPO_HOSTED_ACTIONS_EXECUTION_GATE",
-    "milestoneMacCommissioning": "AFTER_GITHUB_ENGINEERING",
+    "engineeringMode": "MAC_NATIVE_PRIMARY_AUTHORITY",
+    "nextAction": "V0_7_VERIFIED_LOCKED_AWAIT_NEXT_OBJECTIVE",
+    "milestoneMacCommissioning": "VERIFIED_LOCKED",
     "acceptanceMatrix": "PASS_DEFINED",
     "acceptanceMatrixPath": "governance/mac-engineer/V07_LONG_RUNNING_RELIABILITY_ACCEPTANCE_MATRIX_V1.md",
     "acceptanceMatrixEvidence": "evidence/MAC_ENGINEER_V07_ACCEPTANCE_MATRIX_2026-09-22.md",
@@ -735,14 +758,292 @@
     "exactMainCi": "PASS",
     "runtimeRegression": "54_OF_54_OK",
     "evidence": "evidence/MAC_ENGINEER_V07_A07_A08_ENGINEERING_2026-09-22.md",
-    "passedGatesAuthority": "GITHUB_FIRST_ACCEPTANCE",
-    "milestoneMacAcceptance": "PENDING_CONSOLIDATED_COMMISSIONING",
-    "a09State": "HOLD_GITHUB_PRIVATE_REPO_HOSTED_ACTIONS_EXECUTION_GATE",
+    "passedGatesAuthority": "MAC_NATIVE_13_GATE_VERIFIED_FINISH",
+    "milestoneMacAcceptance": "VERIFIED_LOCKED",
+    "a09State": "EXTERNAL_BLOCKED_GITHUB_BILLING_DEFERRED",
     "a09CampaignPassCount": 0,
     "a09ProductPrNumber": 13,
-    "a09LatestCandidateHead": "d545a6d9d5d9823da5878323022735ad7f47a80e",
+    "a09LatestCandidateHead": "63dac60d39c93f3936658e8a5c8c80fb8470dfd3",
     "a09Evidence": "evidence/MAC_ENGINEER_V07_A09_ACTIONS_HOLD_2026-09-22.md",
-    "humanThreshold": "READ_ONLY_GITHUB_ACTIONS_BILLING_POLICY_INSPECTION_REQUIRED"
+    "humanThreshold": "ACCEPTED",
+    "localFallback": {
+      "state": "LOCAL_REHEARSAL_PASS_EXTERNAL_CONFIRMATION_PENDING",
+      "contract": "governance/mac-engineer/V07_ASTRA_LOCAL_FALLBACK_V1.md",
+      "command": "governance/mac-engineer/V07_ASTRA_LOCAL_FALLBACK.command",
+      "prompt": "governance/mac-engineer/V07_ASTRA_LOCAL_FALLBACK_PROMPT.md",
+      "evidence": "evidence/MAC_ENGINEER_OSI_OPERATOR_LOCAL_ACCEPTANCE_2026-09-23.md",
+      "mainSha": "5432b9b135499cea18273c0e003877b864af92c6",
+      "candidateSha": "63dac60d39c93f3936658e8a5c8c80fb8470dfd3",
+      "runtimeCompile": "PASS",
+      "targetedConsecutivePasses": "5_OF_5",
+      "fullRuntimeRegression": "PASS",
+      "nativeVerification": "PASS",
+      "scopeValidation": "PASS",
+      "worktreeCloseout": "CLEAN",
+      "localEvidencePath": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/astra-fallback-20260923T070354Z/evidence.json",
+      "authority": "LOCAL_REHEARSAL_ONLY_EXTERNAL_GITHUB_CI_CONFIRMATION_REQUIRED",
+      "previousPassedCandidateSha": "d545a6d9d5d9823da5878323022735ad7f47a80e",
+      "currentCandidateSha": "63dac60d39c93f3936658e8a5c8c80fb8470dfd3",
+      "previousEvidence": "evidence/MAC_ENGINEER_V07_A09_ASTRA_LOCAL_REHEARSAL_2026-09-23.md"
+    },
+    "a09CandidateScope": [
+      ".github/workflows/product-ci.yml",
+      ".github/workflows/v07-a09-full-regression.yml",
+      ".github/workflows/v07-reliability-campaign.yml"
+    ],
+    "osiOperator": {
+      "state": "LOCAL_ACCEPTANCE_PASS_EXTERNAL_GITHUB_CONFIRMATION_PENDING",
+      "contract": "governance/mac-engineer/OSI_LOCAL_EXECUTION_RUNTIME_V1.md",
+      "actionRegistry": "governance/mac-engineer/OPERATOR_ACTION_REGISTRY_V1.json",
+      "installer": "governance/mac-engineer/INSTALL_OSI_OPERATOR.command",
+      "acceptance": "governance/mac-engineer/V07_OSI_OPERATOR_ACCEPTANCE.command",
+      "runnerContract": "governance/mac-engineer/OSI_SELF_HOSTED_RUNNER_V1.md",
+      "runnerCommissioning": "governance/mac-engineer/COMMISSION_OSI_GITHUB_RUNNER.command",
+      "preparationEvidence": "evidence/MAC_ENGINEER_OSI_OPERATOR_SURFACE_PREPARED_2026-09-23.md",
+      "commands": [
+        "status",
+        "continue",
+        "verify",
+        "recover",
+        "doctor"
+      ],
+      "githubActionsDependency": "OPTIONAL_FOR_LOCAL_ENGINEERING_REQUIRED_FOR_CANONICAL_EXTERNAL_CHECKS",
+      "acceptedCodeSha": "0558ba492c352179e1d79e40dc91f7780c43df63",
+      "acceptanceEvidence": "evidence/MAC_ENGINEER_OSI_OPERATOR_LOCAL_ACCEPTANCE_2026-09-23.md",
+      "localEvidencePath": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/osi-operator-acceptance-20260923T082037Z/evidence.json",
+      "operatorTargetedTests": "PASS",
+      "controlPlaneRegression": "363_OF_363_PASS",
+      "install": "PASS",
+      "doctor": "PASS",
+      "status": "PASS",
+      "evidenceSpool": "PASS",
+      "gitVault": "PASS"
+    },
+    "localContinuityNextAction": "V0_7_VERIFIED_LOCKED_AWAIT_NEXT_OBJECTIVE",
+    "localContinuityState": "VERIFIED_LOCKED",
+    "controlPlaneLocalContinuity": {
+      "state": "VERIFIED_LOCAL_AUTHORITY_PENDING_EXTERNAL_RECONCILIATION",
+      "branch": "feat/mac-engineer-osi-operator-surface",
+      "remotePrNumber": 176,
+      "canonicalRemoteAuthority": "GITHUB_REMOTE_MAIN",
+      "localAuthority": "MAC_NATIVE_PRIMARY_ENGINEERING_AUTHORITY_VERIFIED",
+      "secondCanonicalTruth": false,
+      "externalMergeGate": "HOLD_GITHUB_ACTIONS_EXECUTION",
+      "acceptanceStatePath": "~/Enguru/Runtime/MacEngineer/state/local-accepted-control-plane-candidate.json",
+      "acceptanceEvidenceRoot": "~/Enguru/Evidence/MacEngineer/v0.7/canonical-boot",
+      "currentTechnicalTarget": "V0_7_VERIFIED_LOCKED",
+      "nextAfterPass": "AWAIT_NEXT_OBJECTIVE",
+      "freshExternalObservation": {
+        "observedAt": "2026-09-23",
+        "prNumber": 176,
+        "observedHeadBeforeBootPatch": "459101e89f3dad1ff38871c7ab1a9f3e975f8db1",
+        "observedRemoteMain": "2fd5553a55ce2a8c42163c81a4d21fc155bc0593",
+        "mergeable": true,
+        "mergeState": "BLOCKED",
+        "failingChecks": 4,
+        "workflowJobsSteps": "NULL",
+        "judgment": "HOLD_EXTERNAL_ACTIONS_EXECUTION_GATE"
+      }
+    },
+    "a10State": "INTEGRATION_PASS_A09_INCONCLUSIVE_PRESERVED",
+    "a10OperatorReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T105932Z-continue.json",
+    "a10Completed": [
+      "A10_DONECHECK_V1_2_INTEGRATION_PASS",
+      "A01_A08_DONECHECK_PASS",
+      "A09_DONECHECK_INCONCLUSIVE_PRESERVED"
+    ],
+    "localFinisherRehearsal": {
+      "state": "PASS",
+      "authority": "LOCAL_REHEARSAL_ONLY_NO_A09_NO_A11_NO_VERSION_LOCK",
+      "command": "governance/mac-engineer/V07_LOCAL_FINISHER_REHEARSAL.command",
+      "tool": "tools/mac_engineer_local_finisher_rehearsal.py",
+      "nextAfterPass": "V07_A09_EXTERNAL_CONFIRMATION_OR_A11_WHEN_ELIGIBLE",
+      "exactControlPlaneHead": "50fa2800c8caf503a2f0bc26ad962de96f716eab",
+      "operatorReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T113716Z-continue.json",
+      "completed": [
+        "LOCAL_FINISHER_REHEARSAL_PASS",
+        "A10_DONECHECK_V1_2_INTEGRATION_PASS_PRESERVED",
+        "A09_DONECHECK_INCONCLUSIVE_PRESERVED"
+      ]
+    },
+    "verifiedFinishClosureContract": {
+      "state": "VERIFIED_LOCKED_LOCAL_AUTHORITY",
+      "target": "V0_7_LONG_RUN_RELIABILITY_VERIFIED_LOCKED_LOCAL_AUTHORITY",
+      "totalGates": 13,
+      "passedGates": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "activeGate": null,
+      "remainingGates": [],
+      "finalAuthority": "HUMAN_THRESHOLD",
+      "githubA09": {
+        "state": "EXTERNAL_BLOCKED_DEFERRED",
+        "blockingLocalEngineering": false,
+        "blockingLocalVerifiedFinish": false,
+        "externalReconciliationRequiredWhenAvailable": true
+      },
+      "gate8": {
+        "state": "PASS",
+        "name": "MAC_NATIVE_AUTHORITY_MIGRATION_FIELD_PROOF",
+        "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T123058Z-continue.json"
+      },
+      "gate9": {
+        "state": "PASS",
+        "name": "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF",
+        "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/restart-recovery-continuity/20260923T123929Z/evidence.json"
+      },
+      "gate10": {
+        "state": "PASS",
+        "name": "MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF",
+        "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/offline-gitvault-reconciliation/20260923T124627Z/evidence.json"
+      },
+      "gate11": {
+        "state": "PASS",
+        "name": "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION",
+        "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/gate11-donecheck-local-authority/20260923T125159Z/evidence.json",
+        "doneCheckExactSha": "8b90a8fc93453dd8a84994195d28d14b15e261cb"
+      },
+      "gate12": {
+        "state": "PASS",
+        "name": "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY",
+        "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/final-consolidated-campaign/20260923T131806Z/evidence.json",
+        "operatorReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T211818Z-continue.json",
+        "technicalHoldCount": 0,
+        "postCampaignDoneCheck": "PASS"
+      },
+      "gate13": {
+        "state": "PASS",
+        "name": "HUMAN_THRESHOLD_AUTHORITY_TRANSITION",
+        "finalAuthority": "HUMAN_THRESHOLD",
+        "decision": "ACCEPT",
+        "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/human-threshold/20260924T040827Z/human-decision.json",
+        "authorityTransition": "MAC_NATIVE_PRIMARY_ENGINEERING_AUTHORITY_ACCEPTED"
+      },
+      "finalState": "V0_7_LONG_RUN_RELIABILITY_VERIFIED_LOCKED",
+      "finalAcceptanceEvidenceRoot": "~/Enguru/Evidence/MacEngineer/v0.7/verified-finish"
+    },
+    "a09RootCause": {
+      "state": "CONFIRMED_EXTERNAL_BLOCKER",
+      "observedAt": "2026-09-23",
+      "source": "HUMAN_VISIBLE_GITHUB_BILLING_UI",
+      "category": "PAYMENT_AUTHORIZATION_FAILURE",
+      "message": "Invalid payment method - authorization hold failed.",
+      "scope": "EXTERNAL_GITHUB_ACTIONS_EXECUTION_AUTHORITY",
+      "productCodeDefectEvidenced": false,
+      "sensitivePaymentDetailsPersisted": false,
+      "disposition": "DEFERRED_EXTERNAL_RECONCILIATION",
+      "localEngineeringBlocked": false,
+      "localVerifiedFinishBlocked": false,
+      "githubExternalPassManufactured": false
+    },
+    "macNativeAuthorityMigrationFieldProof": {
+      "state": "PASS",
+      "observedAt": "2026-09-23",
+      "operatorReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T123058Z-continue.json",
+      "completed": [
+        "MAC_NATIVE_AUTHORITY_MIGRATION_FIELD_PROOF_PASS",
+        "MULTI_REPO_LOCAL_ENGINEERING_PASS",
+        "REMOTE_PUSH_FALSE",
+        "SECOND_CANONICAL_TRUTH_FALSE"
+      ],
+      "nextAction": "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF",
+      "authority": "REAL_MAC_LOCAL_FIELD_EVIDENCE"
+    },
+    "macNativeRestartRecoveryContinuityProof": {
+      "state": "PASS",
+      "observedAt": "2026-09-23",
+      "operatorReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T123930Z-continue.json",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/restart-recovery-continuity/20260923T123929Z/evidence.json",
+      "completed": [
+        "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF_PASS",
+        "PROCESS_RESTART_PASS",
+        "TASK_IDENTITY_CONTINUITY_PASS",
+        "CHECKPOINT_RESUME_PASS",
+        "EXACTLY_ONCE_EFFECT_PASS",
+        "FINAL_STATE_COMPLETE"
+      ],
+      "authority": "REAL_MAC_LOCAL_PROCESS_RESTART_EVIDENCE",
+      "nextAction": "MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF"
+    },
+    "macNativeOfflineGitVaultReconciliationProof": {
+      "state": "PASS",
+      "observedAt": "2026-09-23",
+      "operatorReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T124628Z-continue.json",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/offline-gitvault-reconciliation/20260923T124627Z/evidence.json",
+      "completed": [
+        "MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF_PASS",
+        "OFFLINE_LOCAL_COMMIT_QUEUE_PASS",
+        "DURABLE_PATCH_PASS",
+        "DURABLE_GIT_BUNDLE_PASS",
+        "RECONCILIATION_APPLY_CHECK_PASS",
+        "GITVAULT_REFS_UNCHANGED_PASS",
+        "SECOND_CANONICAL_TRUTH_FALSE"
+      ],
+      "authority": "REAL_MAC_OFFLINE_RECONCILIATION_EVIDENCE",
+      "nextAction": "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION"
+    },
+    "doneCheckV12LocalAuthorityVerification": {
+      "state": "PASS",
+      "observedAt": "2026-09-23",
+      "operatorReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T125200Z-continue.json",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/gate11-donecheck-local-authority/20260923T125159Z/evidence.json",
+      "completed": [
+        "DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION_PASS",
+        "GATE8_DONECHECK_PASS",
+        "GATE9_DONECHECK_PASS",
+        "GATE10_DONECHECK_PASS",
+        "LOCAL_AUTHORITY_MIGRATION_MACHINE_VERIFICATION_PASS",
+        "EXTERNAL_A09_DEFERRED_PRESERVED"
+      ],
+      "doneCheckVersion": "1.2.0",
+      "doneCheckExactSha": "8b90a8fc93453dd8a84994195d28d14b15e261cb",
+      "authority": "DONECHECK_V1_2_EXACT_SHA",
+      "nextAction": "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY"
+    },
+    "finalConsolidatedMacCampaign": {
+      "state": "PASS",
+      "observedAt": "2026-09-23",
+      "operatorReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T211818Z-continue.json",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/final-consolidated-campaign/20260923T131806Z/evidence.json",
+      "completed": [
+        "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_PASS",
+        "DURATION_GTE_8H_PASS",
+        "THREE_CONTROLLED_INTERRUPTION_EVENTS_PASS",
+        "TASK_IDENTITY_CONTINUITY_PASS",
+        "EXACTLY_ONCE_EFFECT_PASS",
+        "RSS_LIMITS_PASS",
+        "STORAGE_RECONCILIATION_PASS",
+        "FINAL_REGRESSIONS_PASS",
+        "NATIVE_BUILD_PASS",
+        "POST_CAMPAIGN_DONECHECK_V12_PASS",
+        "TECHNICAL_HOLD_ZERO",
+        "EXTERNAL_A09_DEFERRED_PRESERVED"
+      ],
+      "technicalHoldCount": 0,
+      "externalA09": "EXTERNAL_BLOCKED_DEFERRED",
+      "nextAction": "V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION"
+    },
+    "humanThresholdDecision": {
+      "state": "PASS",
+      "decision": "ACCEPT",
+      "observedAt": "2026-09-24",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/human-threshold/20260924T040827Z/human-decision.json",
+      "authorityTransitionAccepted": true,
+      "externalA09Promoted": false,
+      "nextAction": "CANONICAL_V0_7_LOCK_RECONCILIATION"
+    }
   },
   "observedV07A01A02": {
     "state": "VERIFIED_PASS_EXACT_MAIN",
@@ -879,5 +1180,94 @@
       "PRODUCT_REPO_SETTINGS_ACTIONS_GENERAL"
     ],
     "evidence": "evidence/MAC_ENGINEER_V07_A09_ACTIONS_HOLD_2026-09-22.md"
+  },
+  "observedV07A09LocalFallback": {
+    "state": "LOCAL_REHEARSAL_PASS_EXTERNAL_CONFIRMATION_PENDING",
+    "observedAt": "2026-09-23",
+    "mode": "ASTRA_MAC_EXACT_SHA_DISPOSABLE_WORKTREE",
+    "mainSha": "5432b9b135499cea18273c0e003877b864af92c6",
+    "candidateSha": "63dac60d39c93f3936658e8a5c8c80fb8470dfd3",
+    "runtimeCompile": "PASS",
+    "targetedConsecutivePasses": 5,
+    "fullRegression": "PASS",
+    "nativePrepSyntax": "PASS",
+    "nativeSwiftBuild": "PASS",
+    "diffCheck": "PASS",
+    "scopeValidation": "PASS",
+    "worktreeCloseout": "CLEAN",
+    "localEvidenceSchema": "enguru.mac-engineer.v07-astra-local-fallback/v1",
+    "localEvidencePath": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/osi-operator-acceptance-20260923T082037Z/evidence.json",
+    "canonicalA09Authority": "GITHUB_EXTERNAL_CI_CONFIRMATION_STILL_REQUIRED",
+    "canonicalA09State": "HOLD",
+    "previousCandidateSha": "d545a6d9d5d9823da5878323022735ad7f47a80e",
+    "currentCandidateSha": "63dac60d39c93f3936658e8a5c8c80fb8470dfd3",
+    "currentCandidateScope": [
+      ".github/workflows/product-ci.yml",
+      ".github/workflows/v07-a09-full-regression.yml",
+      ".github/workflows/v07-reliability-campaign.yml"
+    ]
+  },
+  "observedOsiOperatorSurface": {
+    "state": "LOCAL_ACCEPTANCE_PASS_EXTERNAL_GITHUB_CONFIRMATION_PENDING",
+    "observedAt": "2026-09-23",
+    "dailySurface": [
+      "enguru-mac status",
+      "enguru-mac continue",
+      "enguru-mac verify",
+      "enguru-mac recover",
+      "enguru-mac doctor"
+    ],
+    "evidenceSpool": "PASS",
+    "automaticHandoff": "PREPARED",
+    "gitVaultMirror": "PASS_RECOVERY_ONLY",
+    "offlineReconciliation": "PREPARED",
+    "selfHostedRunner": "PREPARED_OPTIONAL_EXTERNAL_CHECK_EXECUTION",
+    "preparationEvidence": "evidence/MAC_ENGINEER_OSI_OPERATOR_SURFACE_PREPARED_2026-09-23.md",
+    "acceptedCodeSha": "0558ba492c352179e1d79e40dc91f7780c43df63",
+    "operatorTargetedTests": "PASS",
+    "controlPlaneRegression": "363_OF_363_PASS",
+    "operatorInstall": "PASS",
+    "operatorDoctor": "PASS",
+    "operatorStatus": "PASS",
+    "localEvidencePath": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/osi-operator-acceptance-20260923T082037Z/evidence.json",
+    "acceptanceEvidence": "evidence/MAC_ENGINEER_OSI_OPERATOR_LOCAL_ACCEPTANCE_2026-09-23.md"
+  },
+  "macRepositoryFabric": {
+    "state": "LOCAL_ACCEPTANCE_PASS",
+    "observedAt": "2026-09-23",
+    "repositoryCount": 12,
+    "manifest": "governance/mac-engineer/MAC_REPOSITORY_FABRIC_V1.json",
+    "tool": "tools/mac_repository_fabric.py",
+    "acceptance": "governance/mac-engineer/MAC_REPOSITORY_FABRIC_ACCEPTANCE.command",
+    "mirrorRoot": "~/Enguru/GitVault/RepositoryFabric/engurulabory",
+    "authority": "VERIFIED_LOCAL_SOURCE_CONTINUITY_GITHUB_REMOTE_MAIN_CANONICAL_DURING_MIGRATION",
+    "preparationEvidence": "evidence/MAC_REPOSITORY_FABRIC_PREPARED_2026-09-23.md",
+    "acceptedAt": "2026-09-23",
+    "mirrors": "12_OF_12_PASS",
+    "offlineQueue": "PASS",
+    "controlPlaneRegression": "PASS",
+    "runtimeState": "/Users/abdal/Enguru/Runtime/MacEngineer/state/repository-fabric.json",
+    "localEvidencePath": "/Users/abdal/Enguru/Evidence/MacEngineer/repository-fabric/20260923T094323Z/evidence.json",
+    "acceptanceEvidence": "evidence/MAC_REPOSITORY_FABRIC_LOCAL_ACCEPTANCE_2026-09-23.md"
+  },
+  "macNativeEngineeringAuthority": {
+    "state": "LOCKED",
+    "name": "ENGÜRÜ Mac-Native Engineering Authority™",
+    "product": "ENGÜRÜ Mac Engineer™",
+    "localExecutionSubstrate": "OSi Local Execution Runtime",
+    "primaryEngineeringExecutionSurface": "Mac",
+    "githubRole": "REMOTE_SOURCE_SYNC_PUBLICATION_EXTERNAL_EVIDENCE",
+    "contract": "governance/mac-engineer/MAC_NATIVE_ENGINEERING_AUTHORITY_V1.md",
+    "principle": "GITHUB_REMAINS_IN_SYSTEM_NOT_MANDATORY_FOR_ENGINEERING_EXECUTION",
+    "canonicalRoleDefinition": "MOTOR_BUILDER_DOCTOR_VERIFICATION_AUTHORITY",
+    "canonicalTechnicalTitle": "ENGÜRÜ Mac-Native Engineering Authority™ — Mac-local Build, Repair, Recovery & Verification Authority.",
+    "userFacingProduct": "ENGÜRÜ Mac Engineer™",
+    "dailyInteractionTarget": "Mac Engineer devam.",
+    "roles": [
+      "BUILD",
+      "DIAGNOSE_REPAIR_RECOVER",
+      "VERIFY"
+    ],
+    "operatingPattern": "GITHUB_TRUTH_TO_MAC_EXECUTION_TO_EVIDENCE_DONECHECK_TO_SYNC"
   }
 }

@@ -1,0 +1,128 @@
+{
+  "schema": "enguru.mac-engineer.repository-fabric/v1",
+  "observedAt": "2026-09-23",
+  "owner": "engurulabory",
+  "repositoryCount": 12,
+  "mirrorRoot": "~/Enguru/GitVault/RepositoryFabric/engurulabory",
+  "runtimeState": "~/Enguru/Runtime/MacEngineer/state/repository-fabric.json",
+  "evidenceRoot": "~/Enguru/Evidence/MacEngineer/repository-fabric",
+  "authority": {
+    "current": "GITHUB_REMOTE_MAIN_CANONICAL_DURING_MIGRATION",
+    "localMirror": "FULL_HISTORY_OFFLINE_SOURCE_CACHE_NOT_SECOND_TRUTH",
+    "localWorkingChanges": "PENDING_RECONCILIATION_UNTIL_EXPLICIT_PROMOTION",
+    "target": "MAC_NATIVE_ENGINEERING_AUTHORITY_AFTER_MIGRATION_ACCEPTANCE",
+    "final": "DONECHECK_V1_2_THEN_HUMAN_THRESHOLD"
+  },
+  "worktreePolicy": "REUSE_REGISTERED_EXISTING_CHECKOUT_OR_CREATE_DISPOSABLE_WORKTREE_FROM_LOCAL_MIRROR",
+  "repositories": [
+    {
+      "name": "Engurulaboratuvari",
+      "role": "CONTROL_PLANE",
+      "visibility": "public",
+      "defaultBranch": "main",
+      "exactMain": "2fd5553a55ce2a8c42163c81a4d21fc155bc0593",
+      "cloneUrl": "https://github.com/engurulabory/Engurulaboratuvari.git",
+      "knownCheckout": "~/Enguru/Projects/Engurulaboratuvari"
+    },
+    {
+      "name": "enguru-website-factory",
+      "role": "PRODUCT",
+      "visibility": "private",
+      "defaultBranch": "main",
+      "exactMain": "88d00d025945fb170ddd88c5bd97c1f5a69ef999",
+      "cloneUrl": "https://github.com/engurulabory/enguru-website-factory.git",
+      "knownCheckout": "~/Enguru/Projects/enguru-website-factory"
+    },
+    {
+      "name": "enguru-builder-release",
+      "role": "RELEASE_MIRROR",
+      "visibility": "private",
+      "defaultBranch": "main",
+      "exactMain": "fc17cbbf913bb46cc7289db3a9e7b583eb4a7e7f",
+      "cloneUrl": "https://github.com/engurulabory/enguru-builder-release.git"
+    },
+    {
+      "name": "autonomous-economic-core",
+      "role": "PRODUCT_CORE",
+      "visibility": "public",
+      "defaultBranch": "main",
+      "exactMain": "31aab38a964faf84aac4d71d084605b833f68b8d",
+      "cloneUrl": "https://github.com/engurulabory/autonomous-economic-core.git",
+      "knownCheckout": "~/Enguru/Cores/AEC/autonomous-economic-core"
+    },
+    {
+      "name": "donecheck-core-foundation",
+      "role": "HISTORICAL_CONTROLLED_FOUNDATION",
+      "visibility": "private",
+      "defaultBranch": "main",
+      "exactMain": "f555354fa756b47f6e83ab05248e63005b1054bf",
+      "cloneUrl": "https://github.com/engurulabory/donecheck-core-foundation.git"
+    },
+    {
+      "name": "donecheck",
+      "role": "PRODUCT_CORE_CANONICAL_V1_2",
+      "visibility": "public",
+      "defaultBranch": "main",
+      "exactMain": "8b90a8fc93453dd8a84994195d28d14b15e261cb",
+      "cloneUrl": "https://github.com/engurulabory/donecheck.git"
+    },
+    {
+      "name": "shift-core-api",
+      "role": "PRODUCT_CORE",
+      "visibility": "private",
+      "defaultBranch": "main",
+      "exactMain": "5ac8eaa1abc9ccf70b6b93e6eb191743ef25af01",
+      "cloneUrl": "https://github.com/engurulabory/shift-core-api.git"
+    },
+    {
+      "name": "artist-manager-ai",
+      "role": "PRODUCT",
+      "visibility": "private",
+      "defaultBranch": "main",
+      "exactMain": "330b993876319ff3dd22443dadec7d903c4844f8",
+      "cloneUrl": "https://github.com/engurulabory/artist-manager-ai.git"
+    },
+    {
+      "name": "enguru-publish-engine",
+      "role": "CORE",
+      "visibility": "private",
+      "defaultBranch": "main",
+      "exactMain": "4cac1cff5fab1db744c5f81b95dbcfe17caba6b6",
+      "cloneUrl": "https://github.com/engurulabory/enguru-publish-engine.git",
+      "knownCheckout": "~/Enguru/Cores/PublishEngine"
+    },
+    {
+      "name": "zeku-finance-prime",
+      "role": "PRODUCT",
+      "visibility": "private",
+      "defaultBranch": "main",
+      "exactMain": "0f6ea017d67cafe2deb19c4c65be37811d54e88f",
+      "cloneUrl": "https://github.com/engurulabory/zeku-finance-prime.git",
+      "knownCheckout": "~/Enguru/Projects/zeku-finance-prime"
+    },
+    {
+      "name": "enguru-mac-engineer",
+      "role": "PRODUCT_ENGINEERING_OPERATOR",
+      "visibility": "private",
+      "defaultBranch": "main",
+      "exactMain": "5432b9b135499cea18273c0e003877b864af92c6",
+      "cloneUrl": "https://github.com/engurulabory/enguru-mac-engineer.git",
+      "knownCheckout": "~/Enguru/Projects/enguru-mac-engineer"
+    },
+    {
+      "name": "adil-pay-kanit-web",
+      "role": "HISTORICAL_EXPERIMENT_EVIDENCE",
+      "visibility": "public",
+      "defaultBranch": "main",
+      "exactMain": "bd6b1e85234181705adbb8ccd826bbc4bbf04add",
+      "cloneUrl": "https://github.com/engurulabory/adil-pay-kanit-web.git"
+    }
+  ],
+  "doneCheck": {
+    "productCount": 1,
+    "repositoryCount": 2,
+    "canonicalProductRepository": "engurulabory/donecheck",
+    "canonicalVersion": "1.2.0",
+    "historicalFoundationRepository": "engurulabory/donecheck-core-foundation"
+  }
+}

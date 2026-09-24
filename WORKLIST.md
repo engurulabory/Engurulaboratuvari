@@ -1122,7 +1122,7 @@ Local evidence:
 
 **Active objective:** `V0_7_LONG_RUNNING_RELIABILITY`
 
-**Current single objective:** **v0.7 — Long-Running Reliability**.
+**Current single objective:** **V0_7_VERIFIED_LOCKED_AWAIT_NEXT_OBJECTIVE**.
 
 ## v0.7 — Long-Running Reliability
 
@@ -1136,7 +1136,14 @@ Engineering mode: **GitHub-first**.
 - [x] Provider/network/process recovery fixtures. — V07-A06: provider unavailable + network timeout + child-process exit, each recoverable and exhausted; task/Evidence continuity PASS.
 - [ ] Resource and evidence continuity. — **GitHub-first acceptance PASS / Mac acceptance pending**. V07-A07: 40 tasks, 0 unexpected artifacts, 0 temp/cache residue. V07-A08: 20 checkpoints / 20 restarts with Evidence lineage + journal reconciliation. Product exact-main `5432b9b135499cea18273c0e003877b864af92c6`; Product CI #26 PASS. Mac ≥8h/RSS + Local Evidence bundle remain in consolidated commissioning.
 - [ ] GitHub CI / fault-injection campaign. — **HOLD / external GitHub Actions execution gate**. Product PR #13 jobs on `macos-latest`, `macos-15` and `ubuntu-latest` all fail before first step (`steps=null`); A09 remains 0/5. Evidence: `evidence/MAC_ENGINEER_V07_A09_ACTIONS_HOLD_2026-09-22.md`.
-- [ ] DoneCheck v1.2 integration for milestone closure.
+- [x] Astra / Mac local fallback adapter **EXECUTED PASS** for A09 continuity. — exact candidate `d545a6d9d5d9823da5878323022735ad7f47a80e`; runtime compile PASS; 5/5 targeted local PASS; full regression PASS; native verification PASS; scope PASS; clean closeout; external GitHub CI confirmation authority preserved. Evidence: `evidence/MAC_ENGINEER_V07_A09_ASTRA_LOCAL_REHEARSAL_2026-09-23.md`.
+- [x] OSi five-command operator surface **LOCAL ACCEPTANCE PASS** — `status / continue / verify / recover / doctor`; operator targeted tests PASS; control-plane full regression PASS; install/doctor/status PASS; Evidence Spool PASS; GitVault PASS. Evidence: `evidence/MAC_ENGINEER_OSI_OPERATOR_LOCAL_ACCEPTANCE_2026-09-23.md`.
+- [x] Mac Repository Fabric **LOCAL ACCEPTANCE PASS** — 12/12 full-history mirrors, exact-main reconciliation, fsck and offline queue proof PASS. Evidence: `evidence/MAC_REPOSITORY_FABRIC_LOCAL_ACCEPTANCE_2026-09-23.md`.
+- [x] Current A09 candidate `63dac60d39c93f3936658e8a5c8c80fb8470dfd3` **LOCAL REHEARSAL PASS** — external GitHub confirmation remains HOLD; local result does not manufacture A09 canonical PASS.
+- [x] DoneCheck™ v1.2 product authority reconciliation — **PASS**: one product / two repositories; canonical v1.2.0 product `engurulabory/donecheck` exact-main `8b90a8fc...`; 32/32 tests + Release Authority + Fleet PASS. Historical foundation remains lineage only. Evidence: `evidence/DONECHECK_V12_CANONICAL_RECONCILIATION_2026-09-23.md`.
+- [x] Canonical Boot local accepted candidate reconciliation — **LOCAL ACCEPTANCE PASS / PENDING_RECONCILIATION**; exact `branch + HEAD + origin/main + clean + Evidence` match grants bounded local continuity while GitHub remote main remains canonical authority.
+- [x] DoneCheck v1.2 integration for milestone closure — **A10 INTEGRATION PASS / A09 INCONCLUSIVE PRESERVED**; canonical DoneCheck™ v1.2 consumed A01–A09 Evidence and preserved the unresolved external A09 criterion as HOLD.
+- [x] Pre-A11 local finisher rehearsal — **LOCAL REHEARSAL PASS**; controlled fault → observed failure → minimal repair → regression → idempotency → clean finish completed on Mac. A09/A11/version-lock authority remains separate.
 - [ ] **One consolidated Mac long-run commissioning campaign.**
 - [ ] Human Threshold™.
 - [ ] **v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED.**
@@ -1209,3 +1216,157 @@ Engineering mode: **GitHub-first benchmark harness + selected Mac field proofs**
 2. Preserve unsupported intervals as **PRE-CANONICAL DEVELOPMENT LINEAGE**.
 3. Publish the historical reconciliation.
 4. Start v0.7 under the **GitHub-first / Milestone-Mac** model.
+
+
+## v0.7 — VERIFIED FINISH CLOSURE CONTRACT — 13 GATES
+
+Canonical target: **ENGÜRÜ Mac Engineer™ v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED — MAC-NATIVE AUTHORITY**.
+
+1. [x] Canonical Boot — exact branch/SHA, clean worktree, session continuity, Evidence.
+2. [x] OSi local operator — `status / continue / verify / recover / doctor`.
+3. [x] Repository Fabric — 12/12 repository, GitVault, offline continuity.
+4. [x] V07 A01–A08 — long-running reliability, restart/resume, idempotency, single-writer, retry/watchdog, recovery, resource/evidence continuity.
+5. [x] A09 local rehearsal — local candidate mechanics verified; GitHub external confirmation remains a separate external evidence surface.
+6. [x] A10 DoneCheck™ v1.2 integration — A01–A08 PASS; external GitHub A09 preserved as inconclusive/deferred, never manufactured.
+7. [x] Pre-A11 Local Finisher Rehearsal — controlled fault → failure observed → repair → regression → idempotency → clean finish → Evidence.
+8. [x] **Mac-Native Authority Migration Field Proof** — complete one multi-repository engineering task locally end-to-end with exact repo identity, bounded mutation, regression, Evidence and clean reconciliation.
+9. [x] **Restart / Recovery Continuity Proof** — interrupt and resume the same governed task; preserve task/checkpoint identity and exactly-once effects.
+10. [x] **Offline / GitVault Reconciliation Proof** — prove local continuity while GitHub execution is unavailable; preserve remote identity and prevent second truth.
+11. [x] **DoneCheck™ v1.2 Migration Verification** — consume gates 8–10 and verify local authority migration Evidence.
+12. [x] **Final Verify + Consolidated Mac Long-Run Commissioning** — ≥8h Mac campaign, ≥3 controlled interruptions, full regression, resource/RSS, Evidence bundle, technical HOLD target = 0 except explicitly deferred external GitHub billing gate.
+13. [x] **Human Threshold™ + Authority Transition** — human accepts Mac-native primary engineering authority; canonical status/worklist reconciliation → **v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED**.
+
+External GitHub Actions A09:
+- state: **EXTERNAL_BLOCKED / GITHUB BILLING**
+- authority: external evidence only
+- local engineering: continues
+- local Verified Finish: continues under Mac-native migration contract
+- reconciliation: required when GitHub Actions becomes available again
+- PASS is never manufactured from local evidence.
+
+### ENGÜRÜ Mac-Native Engineering Authority™ — role ownership
+
+**Canonical role:** Mac’te local çalışan **motor inşaat ustası + motor doktoru + doğrulama otoritesi**.
+
+- **İnşaat ustası:** keşfet → mimariyi oku → gerekli fark → kodla → build → paketle → çalıştır.
+- **Doktor:** health → HOLD/failure teşhisi → root cause → minimal repair → regression → recovery.
+- **Doğrulama otoritesi:** Evidence → DoneCheck™ → gerçek çalışma doğrulaması → Human Threshold™ hazırlığı.
+
+Technical title:
+
+> **ENGÜRÜ Mac-Native Engineering Authority™ — Mac-local Build, Repair, Recovery & Verification Authority.**
+
+Product boundary:
+
+- **ENGÜRÜ Mac Engineer™ = user-facing product**
+- **OSi Local Execution Runtime = local execution substrate**
+- **GitHub = remote source / sync / publication / external evidence**
+- **Mac = primary engineering execution surface after gates 8–13**
+
+Final operating chain:
+
+`GitHub truth → Mac-local build/repair/recovery → Evidence → DoneCheck™ → verified sync → Human Threshold™ → Verified Finish`
+
+### Verified Finish — v0.7
+
+`V0_7_LONG_RUN_RELIABILITY_VERIFIED_LOCKED`
+
+Use the already-proven Repository Fabric + OSi operator + GitVault + Evidence + DoneCheck™ layers. GitHub remains remote identity/publication/recovery surface during migration; local Mac becomes primary execution authority only after gates 8–13 and Human Threshold PASS.
+
+
+### Gate 8 field result — VERIFIED PASS
+
+Real-Mac operator receipt:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T123058Z-continue.json`
+
+Verified result:
+
+`MAC_NATIVE_AUTHORITY_MIGRATION_FIELD_PROOF_PASS → MULTI_REPO_LOCAL_ENGINEERING_PASS → REMOTE_PUSH_FALSE → SECOND_CANONICAL_TRUTH_FALSE`
+
+**Closure state: 8/13 PASS. Active gate: 9 — Restart / Recovery Continuity Proof.**
+
+
+### Gate 9 field result — VERIFIED PASS
+
+Real-Mac Evidence:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/restart-recovery-continuity/20260923T123929Z/evidence.json`
+
+Operator receipt:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T123930Z-continue.json`
+
+Verified chain:
+
+`PROCESS_RESTART_PASS → TASK_IDENTITY_CONTINUITY_PASS → CHECKPOINT_RESUME_PASS → EXACTLY_ONCE_EFFECT_PASS → FINAL_STATE_COMPLETE`
+
+**Closure state: 9/13 PASS. Active gate: 10 — Offline / GitVault Reconciliation Proof.**
+
+
+### Gate 10 field result — VERIFIED PASS
+
+Real-Mac Evidence:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/offline-gitvault-reconciliation/20260923T124627Z/evidence.json`
+
+Operator receipt:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T124628Z-continue.json`
+
+Verified chain:
+
+`OFFLINE_LOCAL_COMMIT_QUEUE_PASS → DURABLE_PATCH_PASS → DURABLE_GIT_BUNDLE_PASS → RECONCILIATION_APPLY_CHECK_PASS → GITVAULT_REFS_UNCHANGED_PASS → SECOND_CANONICAL_TRUTH_FALSE`
+
+**Closure state: 10/13 PASS. Active gate: 11 — DoneCheck™ v1.2 Migration Verification.**
+
+
+### Gate 11 field result — VERIFIED PASS
+
+Real-Mac DoneCheck™ Evidence:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/gate11-donecheck-local-authority/20260923T125159Z/evidence.json`
+
+Operator receipt:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T125200Z-continue.json`
+
+Verified chain:
+
+`GATE8_DONECHECK_PASS → GATE9_DONECHECK_PASS → GATE10_DONECHECK_PASS → LOCAL_AUTHORITY_MIGRATION_MACHINE_VERIFICATION_PASS → EXTERNAL_A09_DEFERRED_PRESERVED`
+
+**Closure state: 11/13 PASS. Active gate: 12 — Final Verify + Consolidated Mac Long-Run Commissioning.**
+
+
+### Gate 12 field result — VERIFIED PASS
+
+Real-Mac Evidence:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/final-consolidated-campaign/20260923T131806Z/evidence.json`
+
+Operator receipt:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T211818Z-continue.json`
+
+Verified chain:
+
+`DURATION_GTE_8H_PASS → 3/3 CONTROLLED_INTERRUPTION_PASS → TASK_IDENTITY_CONTINUITY_PASS → EXACTLY_ONCE_EFFECT_PASS → RSS_LIMITS_PASS → STORAGE_RECONCILIATION_PASS → FINAL_REGRESSIONS_PASS → NATIVE_BUILD_PASS → POST_CAMPAIGN_DONECHECK_V12_PASS → TECHNICAL_HOLD_ZERO`
+
+External GitHub A09 remains `EXTERNAL_BLOCKED_DEFERRED` and was not promoted.
+
+**Closure state: 12/13 PASS. Active gate: 13 — Human Threshold™ + Authority Transition.**
+
+
+### Gate 13 result — HUMAN THRESHOLD ACCEPTED
+
+Human decision Evidence:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/human-threshold/20260924T040827Z/human-decision.json`
+
+Verified decision:
+
+`HUMAN_THRESHOLD=ACCEPTED → AUTHORITY_TRANSITION_ACCEPTED=PASS → EXTERNAL_A09_PROMOTED=false`
+
+**Closure state: 13/13 PASS. Canonical target: v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED.**
+
+External GitHub A09 remains `EXTERNAL_BLOCKED_DEFERRED` and requires reconciliation when GitHub Actions execution becomes available. This does not reopen the Mac-native local Verified Finish.

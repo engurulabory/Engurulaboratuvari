@@ -69,7 +69,14 @@ class MacEngineerProductSourceBootstrapTests(unittest.TestCase):
             native = source_root / "execution_prep" / "native_app"
             native.mkdir(parents=True)
             swift = native / "EnguruMacEngineerApp.swift"
-            swift.write_text("import Foundation\n", encoding="utf-8")
+            swift.write_text(
+                "import Foundation\n"
+                "@main\n"
+                "struct FixtureApp {\n"
+                "    static func main() {}\n"
+                "}\n",
+                encoding="utf-8",
+            )
             info = native / "Info.plist"
             info.write_text("<plist></plist>\n", encoding="utf-8")
             prep = native / "prepare_native_app.command"

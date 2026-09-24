@@ -9,6 +9,11 @@ import re
 import subprocess
 from typing import Any
 
+if __package__:
+    from .mac_engineer_local_candidate_authority import evaluate_local_accepted_candidate
+else:
+    from mac_engineer_local_candidate_authority import evaluate_local_accepted_candidate
+
 
 ROOT = Path(__file__).resolve().parents[1]
 HOME = Path.home()
@@ -87,12 +92,21 @@ def main() -> int:
     control = git_truth(ROOT)
 
     issues: list[str] = []
-    if control.get("branch") != "main":
-        issues.append("CONTROL_PLANE_MAIN_REQUIRED")
-    if control.get("clean") is not True:
-        issues.append("CONTROL_PLANE_CLEAN_REQUIRED")
-    if control.get("exact_origin_main") is not True:
-        issues.append("CONTROL_PLANE_EXACT_MAIN_REQUIRED")
+    local_candidate = evaluate_local_accepted_candidate(control, session)
+    control_exact_main = bool(
+        control.get("branch") == "main"
+        and control.get("clean") is True
+        and control.get("exact_origin_main") is True
+    )
+    control_local_candidate = bool(local_candidate.get("authorized"))
+
+    if not (control_exact_main or control_local_candidate):
+        if control.get("branch") != "main":
+            issues.append("CONTROL_PLANE_MAIN_REQUIRED")
+        if control.get("clean") is not True:
+            issues.append("CONTROL_PLANE_CLEAN_REQUIRED")
+        if control.get("exact_origin_main") is not True:
+            issues.append("CONTROL_PLANE_EXACT_MAIN_REQUIRED")
 
     if session.get("product") != "ENGÜRÜ Mac Engineering™":
         issues.append("CANONICAL_PRODUCT_NAME_MISMATCH")
@@ -124,6 +138,18 @@ def main() -> int:
         "sessionStateObjective": session.get("currentObjective"),
         "canonicalNextLine": session.get("canonicalNextLine"),
         "controlPlane": control,
+        "controlPlaneAuthority": {
+            "mode": (
+                "EXACT_MAIN"
+                if control_exact_main
+                else (
+                    "LOCAL_ACCEPTED_CANDIDATE"
+                    if control_local_candidate
+                    else "HOLD"
+                )
+            ),
+            "localCandidate": local_candidate,
+        },
         "sourceFiles": {
             "roadmap": str(ROADMAP.relative_to(ROOT)),
             "sessionState": str(SESSION_STATE.relative_to(ROOT)),
