@@ -20,6 +20,26 @@ SPEC.loader.exec_module(operator)
 
 
 class OperatorSurfaceTests(unittest.TestCase):
+    def test_v08_gate5_operator_contract_is_bound(self) -> None:
+        source = (
+            Path(__file__).resolve().parents[1]
+            / "tools"
+            / "mac_engineer_operator.py"
+        ).read_text(encoding="utf-8")
+        self.assertIn(
+            'local_action == "V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE"',
+            source,
+        )
+        self.assertIn(
+            "V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE_PASS",
+            source,
+        )
+        self.assertIn("PRODUCT_REMOTE_PUSH_FALSE", source)
+        self.assertIn(
+            "V08_EXISTING_PRODUCT_CHANGE_SCENARIO_REQUIRED",
+            source,
+        )
+
     def test_v08_gate4_operator_contract_is_bound(self) -> None:
         source = (
             Path(__file__).resolve().parents[1]
