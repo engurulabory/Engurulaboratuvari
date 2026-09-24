@@ -41,6 +41,7 @@ MAC_NATIVE_RESTART_RECOVERY_PROOF = ROOT / "governance" / "mac-engineer" / "V07_
 MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF = ROOT / "governance" / "mac-engineer" / "V07_MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF.command"
 DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION = ROOT / "governance" / "mac-engineer" / "V07_DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION.command"
 FINAL_CONSOLIDATED_MAC_CAMPAIGN = ROOT / "governance" / "mac-engineer" / "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN.command"
+HUMAN_THRESHOLD_AUTHORITY_TRANSITION = ROOT / "governance" / "mac-engineer" / "V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION.command"
 
 TERMINAL_STATES = {"COMPLETE", "HOLD", "FAILED", "BLOCKED"}
 RECOVERABLE_STATES = {"RUNNING", "CHECKPOINTED", "RECOVERY_REQUIRED", "VERIFYING"}
@@ -938,6 +939,41 @@ def run_final_consolidated_mac_campaign() -> dict[str, Any]:
     }
 
 
+def run_human_threshold_review() -> dict[str, Any]:
+    if not HUMAN_THRESHOLD_AUTHORITY_TRANSITION.is_file():
+        return {
+            "state": "HOLD",
+            "reason": "HUMAN_THRESHOLD_COMMAND_MISSING",
+            "evidence": None,
+        }
+    result = run(
+        ["zsh", str(HUMAN_THRESHOLD_AUTHORITY_TRANSITION), "REVIEW"],
+        cwd=ROOT,
+        timeout=1800,
+        env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+    )
+    fields: dict[str, str] = {}
+    for line in result.get("stdout", "").splitlines():
+        if "=" in line:
+            key, value = line.split("=", 1)
+            if key and value:
+                fields[key.strip()] = value.strip()
+
+    review_ready = (
+        fields.get("HUMAN_THRESHOLD_REVIEW_READY") == "PASS"
+        and fields.get("HUMAN_DECISION_OPTIONS") == "ACCEPT|HOLD"
+        and fields.get("HOLD") == "HUMAN_DECISION_REQUIRED"
+    )
+    return {
+        "state": "PASS" if review_ready else "HOLD",
+        "code": result["code"],
+        "fields": fields,
+        "evidence": fields.get("EVIDENCE"),
+        "stdout_tail": result.get("stdout", "")[-6000:],
+        "stderr_tail": result.get("stderr", "")[-6000:],
+    }
+
+
 def command_continue() -> int:
     boot = canonical_boot()
     truth = current_truth()
@@ -952,6 +988,43 @@ def command_continue() -> int:
         hold = "CANONICAL_BOOT"
         next_action = "enguru-mac doctor"
         completed = ["CANONICAL_BOOT_HOLD", "GITVAULT_SYNC"]
+    elif local_action == "V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION":
+        completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
+        human_review = run_human_threshold_review()
+        if human_review.get("state") != "PASS":
+            payload = write_receipt(
+                command="continue",
+                state="HOLD",
+                completed=completed,
+                evidence=[
+                    item for item in [
+                        str(SESSION_STATE),
+                        str(human_review.get("evidence") or ""),
+                    ] if item
+                ],
+                hold="HUMAN_THRESHOLD_REVIEW_PRECONDITION",
+                next_action="enguru-mac doctor",
+                details={
+                    "truth": truth,
+                    "boot": boot,
+                    "runner": runner,
+                    "mirrors": mirrors,
+                    "human_review": human_review,
+                },
+            )
+            print_receipt(payload)
+            return 2
+
+        completed.extend([
+            "HUMAN_THRESHOLD_REVIEW_READY_PASS",
+            "ENGINEERING_GATES_12_OF_12_PASS",
+            "DONECHECK_V12_PASS",
+            "TECHNICAL_HOLD_ZERO",
+            "EXTERNAL_A09_DEFERRED_PRESERVED",
+        ])
+        state = "HOLD"
+        hold = "HUMAN_DECISION_REQUIRED"
+        next_action = "EXPLICIT_HUMAN_ACCEPT_OR_HOLD"
     elif local_action == "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY":
         completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
         final_campaign = run_final_consolidated_mac_campaign()
@@ -1308,6 +1381,7 @@ def command_continue() -> int:
                 str((locals().get("offline_proof") or {}).get("evidence") or ""),
                 str((locals().get("local_authority_verification") or {}).get("evidence") or ""),
                 str((locals().get("final_campaign") or {}).get("evidence") or ""),
+                str((locals().get("human_review") or {}).get("evidence") or ""),
             ]
             if item
         ],
@@ -1327,6 +1401,7 @@ def command_continue() -> int:
             "offline_proof": locals().get("offline_proof"),
             "local_authority_verification": locals().get("local_authority_verification"),
             "final_campaign": locals().get("final_campaign"),
+            "human_review": locals().get("human_review"),
             "offline_manifest": offline_manifest(),
         },
     )
