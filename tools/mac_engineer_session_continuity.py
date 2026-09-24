@@ -131,6 +131,40 @@ def authorized_product_working_branch(
 ) -> tuple[bool, dict[str, Any]]:
     objective = str(state.get("currentObjective", ""))
 
+    current_version = str(state.get("currentVersion") or "")
+    current_v08 = state.get("currentV08") or {}
+    v08_branch = str(current_v08.get("productWorkingBranch") or "")
+    v08_base = str(current_v08.get("productBaselineExactMain") or "")
+    v08_objective = str(state.get("currentObjective") or "")
+
+    if (
+        current_version == "v0.8"
+        and v08_objective.startswith("V08_")
+        and v08_branch
+        and v08_base
+    ):
+        ahead = str(product.get("ahead_origin_main") or "")
+        authorized = bool(
+            product.get("branch") == v08_branch
+            and product.get("origin_main") == v08_base
+            and product.get("merge_base_origin_main") == v08_base
+            and product.get("clean") is True
+            and ahead.isdigit()
+            and int(ahead) >= 1
+        )
+        return authorized, {
+            "mode": "V08_ACTIVE_PRODUCT_WORKING_BRANCH",
+            "expected_branch": v08_branch,
+            "expected_base_main": v08_base,
+            "observed_head": product.get("head"),
+            "observed_origin_main": product.get("origin_main"),
+            "merge_base_origin_main": product.get(
+                "merge_base_origin_main"
+            ),
+            "ahead_origin_main": product.get("ahead_origin_main"),
+            "authorized": authorized,
+        }
+
     if objective in {
         "CONTINUITY_PATCH_REPEATABILITY",
         "PRODUCT_PATCH_GITHUB_ENGINEERING",
