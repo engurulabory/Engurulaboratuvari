@@ -1233,8 +1233,8 @@ Canonical target: **ENGÜRÜ Mac Engineer™ v0.7 LONG-RUN RELIABILITY VERIFIED 
 9. [x] **Restart / Recovery Continuity Proof** — interrupt and resume the same governed task; preserve task/checkpoint identity and exactly-once effects.
 10. [x] **Offline / GitVault Reconciliation Proof** — prove local continuity while GitHub execution is unavailable; preserve remote identity and prevent second truth.
 11. [x] **DoneCheck™ v1.2 Migration Verification** — consume gates 8–10 and verify local authority migration Evidence.
-12. [ ] **Final Verify + Consolidated Mac Long-Run Commissioning — ACTIVE** — ≥8h Mac campaign, ≥3 controlled interruptions, full regression, resource/RSS, Evidence bundle, technical HOLD target = 0 except explicitly deferred external GitHub billing gate.
-13. [ ] **Human Threshold™ + Authority Transition** — human accepts Mac-native primary engineering authority; canonical status/worklist reconciliation → **v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED**.
+12. [x] **Final Verify + Consolidated Mac Long-Run Commissioning** — ≥8h Mac campaign, ≥3 controlled interruptions, full regression, resource/RSS, Evidence bundle, technical HOLD target = 0 except explicitly deferred external GitHub billing gate.
+13. [ ] **Human Threshold™ + Authority Transition — ACTIVE / HUMAN DECISION REQUIRED** — human accepts Mac-native primary engineering authority; canonical status/worklist reconciliation → **v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED**.
 
 External GitHub Actions A09:
 - state: **EXTERNAL_BLOCKED / GITHUB BILLING**
@@ -1267,9 +1267,9 @@ Final operating chain:
 
 `GitHub truth → Mac-local build/repair/recovery → Evidence → DoneCheck™ → verified sync → Human Threshold™ → Verified Finish`
 
-### Active next action — Gate 12
+### Active next action — Gate 13
 
-`V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY`
+`V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION`
 
 Use the already-proven Repository Fabric + OSi operator + GitVault + Evidence + DoneCheck™ layers. GitHub remains remote identity/publication/recovery surface during migration; local Mac becomes primary execution authority only after gates 8–13 and Human Threshold PASS.
 
@@ -1336,3 +1336,22 @@ Verified chain:
 `GATE8_DONECHECK_PASS → GATE9_DONECHECK_PASS → GATE10_DONECHECK_PASS → LOCAL_AUTHORITY_MIGRATION_MACHINE_VERIFICATION_PASS → EXTERNAL_A09_DEFERRED_PRESERVED`
 
 **Closure state: 11/13 PASS. Active gate: 12 — Final Verify + Consolidated Mac Long-Run Commissioning.**
+
+
+### Gate 12 field result — VERIFIED PASS
+
+Real-Mac Evidence:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/final-consolidated-campaign/20260923T131806Z/evidence.json`
+
+Operator receipt:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T211818Z-continue.json`
+
+Verified chain:
+
+`DURATION_GTE_8H_PASS → 3/3 CONTROLLED_INTERRUPTION_PASS → TASK_IDENTITY_CONTINUITY_PASS → EXACTLY_ONCE_EFFECT_PASS → RSS_LIMITS_PASS → STORAGE_RECONCILIATION_PASS → FINAL_REGRESSIONS_PASS → NATIVE_BUILD_PASS → POST_CAMPAIGN_DONECHECK_V12_PASS → TECHNICAL_HOLD_ZERO`
+
+External GitHub A09 remains `EXTERNAL_BLOCKED_DEFERRED` and was not promoted.
+
+**Closure state: 12/13 PASS. Active gate: 13 — Human Threshold™ + Authority Transition.**
