@@ -1120,9 +1120,9 @@ Local evidence:
 - [x] Canonical Evidence: `evidence/MAC_ENGINEER_V00_V03_HISTORICAL_RECONSTRUCTION_2026-09-22.md`.
 - [x] **V00_V03_HISTORICAL_RECONSTRUCTION = PASS / CLOSED.**
 
-**Active objective:** `V0_7_LONG_RUNNING_RELIABILITY`
+**Active objective:** `V08_SELF_ENGINEERING_PRODUCT_REALITY_RECONCILIATION`
 
-**Current single objective:** **V08_SELF_ENGINEERING_BASELINE_AUDIT**.
+**Current single objective:** **V08_SELF_ENGINEERING_PRODUCT_REALITY_RECONCILIATION**.
 
 ## v0.7 — Long-Running Reliability
 
