@@ -67,6 +67,65 @@ class OperatorSurfaceTests(unittest.TestCase):
             "V07_A10_DONECHECK_V1_2_INTEGRATION",
         )
 
+    def test_current_truth_selects_v08_when_v08_is_current(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            session = root / "session.json"
+            roadmap = root / "roadmap.json"
+            session.write_text(
+                json.dumps({
+                    "product": "ENGÜRÜ Mac Engineering™",
+                    "currentVersion": "v0.8",
+                    "currentV07": {
+                        "state": "VERIFIED_LOCKED",
+                        "nextAction": "AWAIT_NEXT_OBJECTIVE",
+                    },
+                    "currentV08": {
+                        "state": "ACTIVE",
+                        "nextAction": "V08_SELF_ENGINEERING_BASELINE_AUDIT",
+                        "localContinuityNextAction": "V08_SELF_ENGINEERING_BASELINE_AUDIT",
+                        "localContinuityState": "ACTIVE",
+                    },
+                }),
+                encoding="utf-8",
+            )
+            roadmap.write_text(
+                json.dumps({
+                    "current": {
+                        "version": "v0.8",
+                        "state": "ACTIVE",
+                        "activeObjective": "V08_SELF_ENGINEERING_BASELINE_AUDIT",
+                    },
+                    "versions": [
+                        {"version": "v0.7", "state": "VERIFIED_LOCKED"},
+                        {
+                            "version": "v0.8",
+                            "state": "ACTIVE",
+                            "nextAction": "V08_SELF_ENGINEERING_BASELINE_AUDIT",
+                        },
+                    ],
+                    "finalTarget": {"version": "v1.1"},
+                }),
+                encoding="utf-8",
+            )
+            with (
+                mock.patch.object(operator, "SESSION_STATE", session),
+                mock.patch.object(operator, "ROADMAP", roadmap),
+            ):
+                truth = operator.current_truth()
+
+        self.assertEqual(truth["current_version"], "v0.8")
+        self.assertEqual(truth["current_state"], "ACTIVE")
+        self.assertEqual(
+            truth["next_action"],
+            "V08_SELF_ENGINEERING_BASELINE_AUDIT",
+        )
+        self.assertEqual(
+            truth["local_continuity_next_action"],
+            "V08_SELF_ENGINEERING_BASELINE_AUDIT",
+        )
+        self.assertEqual(truth["v07_state"], "VERIFIED_LOCKED")
+
     def test_doctor_pass_does_not_hold_on_uncommissioned_optional_runner(self):
         with tempfile.TemporaryDirectory() as tmp:
             evidence = Path(tmp)
