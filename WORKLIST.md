@@ -1120,9 +1120,9 @@ Local evidence:
 - [x] Canonical Evidence: `evidence/MAC_ENGINEER_V00_V03_HISTORICAL_RECONSTRUCTION_2026-09-22.md`.
 - [x] **V00_V03_HISTORICAL_RECONSTRUCTION = PASS / CLOSED.**
 
-**Active objective:** `V08_UX_AESTHETIC_PRODUCT_CONTRACT`
+**Active objective:** `V08_FULL_PRODUCT_ENGINEERING_CHAIN_BINDING`
 
-**Current single objective:** **V08_UX_AESTHETIC_PRODUCT_CONTRACT**.
+**Current single objective:** **V08_FULL_PRODUCT_ENGINEERING_CHAIN_BINDING**.
 
 ## v0.7 — Long-Running Reliability
 
@@ -1168,8 +1168,8 @@ DoneCheck authority:
 
 1. [x] **Gate 1 — Canonical Transition + Self-Engineering Baseline — PASS**
 2. [x] **Gate 2 — Product Reality Reconciliation — PASS**
-3. [ ] **Gate 3 — UX + Aesthetic Product Contract — ACTIVE**
-4. [ ] **Gate 4 — Full Product Engineering Chain Binding**
+3. [x] **Gate 3 — UX + Aesthetic Product Contract — PASS**
+4. [ ] **Gate 4 — Full Product Engineering Chain Binding — ACTIVE**
 5. [ ] **Gate 5 — Native App Productization + Version/Provenance**
 6. [ ] **Gate 6 — Existing Product Change Scenario**
 7. [ ] **Gate 7 — Migration / Repair Scenario**
@@ -1207,9 +1207,21 @@ Verified chain:
 
 **Closure state: 2/12 PASS. Active gate: 3 — UX + Aesthetic Product Contract.**
 
+### Gate 3 result — VERIFIED PASS
+
+Operator receipt:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260924T052209Z-continue.json`
+
+Verified chain:
+
+`PRIMARY_USER_QUESTIONS_THREE_PASS → MAIN_SURFACE_SIMPLIFICATION_CONTRACT_PASS → AESTHETIC_MOTOR_REUSE_PASS → OVERFLOW_ORIGINALITY_ACCESSIBILITY_GATES_DEFINED → HUMAN_ARTISTIC_AUTHORITY_GATE_DEFINED → DONECHECK_V1_2_AUTHORITY_PRESERVED`
+
+**Closure state: 3/12 PASS. Active gate: 4 — Full Product Engineering Chain Binding.**
+
 ### Current v0.8 next action
 
-`V08_UX_AESTHETIC_PRODUCT_CONTRACT`
+`V08_FULL_PRODUCT_ENGINEERING_CHAIN_BINDING`
 
 The first v0.8 field task uses ENGÜRÜ Mac-Native Engineering Authority™ on **ENGÜRÜ Mac Engineer™ itself**. It measures exact product source, runtime regression, native build, installed bundle version/provenance and the current user-interface form before product mutation.
 
