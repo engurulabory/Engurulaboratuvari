@@ -74,7 +74,7 @@
       ],
       "acceptanceMatrix": "PASS_DEFINED",
       "acceptanceMatrixPath": "governance/mac-engineer/V07_LONG_RUNNING_RELIABILITY_ACCEPTANCE_MATRIX_V1.md",
-      "nextAction": "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY",
+      "nextAction": "V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION",
       "passedGates": [
         "V07-A01",
         "V07-A02",
@@ -87,7 +87,7 @@
       ],
       "evidence": "evidence/MAC_ENGINEER_V07_A07_A08_ENGINEERING_2026-09-22.md",
       "passedGatesAuthority": "HISTORICAL_GITHUB_FIRST_EVIDENCE_PRESERVED_MAC_NATIVE_TRANSITION_ACTIVE",
-      "milestoneMacAcceptance": "ACTIVE_GATE_12_FINAL_CAMPAIGN",
+      "milestoneMacAcceptance": "GATE_12_VERIFIED_GATE_13_ACTIVE",
       "a09": {
         "state": "EXTERNAL_BLOCKED_GITHUB_BILLING_DEFERRED",
         "campaignPassCount": 0,
@@ -149,11 +149,11 @@
           8,
           9,
           10,
-          11
+          11,
+          12
         ],
-        "active": 12,
+        "active": 13,
         "remaining": [
-          12,
           13
         ],
         "contract": "WORKLIST.md#v0.7--verified-finish-closure-contract--13-gates",
