@@ -67,19 +67,23 @@ Canonical final lock evidence:
 - IP Model Trust Gate #385 PASS;
 - IP Model Trust Fleet #370 PASS.
 
-### v0.7 — Long-Running Reliability
+### v0.7 — Long-Running Reliability — VERIFIED / LOCKED
 
-GitHub-first engineering; one consolidated long-run Mac commissioning campaign at the milestone gate.
+Mac-native authority migration completed with 13/13 closure, ≥8h real-Mac commissioning, DoneCheck™ v1.2 and Human Threshold™ ACCEPT.
+
+ENGÜRÜ Mac-Native Engineering Authority™ is verified as the primary local engineering authority. GitHub remains remote identity, synchronization, publication, recovery and external Evidence.
 
 Exit: **LONG-RUN RELIABILITY VERIFIED / LOCKED**
 
-### v0.8 — Product Engineering Operator
+### v0.8 — Product Engineering Operator — ACTIVE
 
-GitHub-first engineering of the full chain:
+ENGÜRÜ Mac-Native Engineering Authority™ engineers the full chain locally:
 
-`INTAKE → DISCOVER → ARCHITECT → DESIGN → BUILD → TEST → REPAIR → PACKAGE → DEPLOY → LIVE VERIFY → LIFECYCLE → EVIDENCE → DONECHECK`
+`INTAKE → DISCOVER → ARCHITECT → DESIGN → BUILD → TEST → REPAIR → PACKAGE → DEPLOY → LIVE VERIFY → LIFECYCLE → EVIDENCE → DoneCheck™ v1.2 → Human Threshold™`
 
-One consolidated real-product Mac commissioning campaign at the milestone gate.
+ENGÜRÜ Mac Engineer™ itself is the first self-engineering reference product. GitHub remains the remote identity/sync/publication/recovery/external-Evidence surface.
+
+One consolidated real-product Mac commissioning campaign closes the milestone gate.
 
 Exit: **PRODUCT ENGINEERING OPERATOR VERIFIED / LOCKED**
 
@@ -101,17 +105,21 @@ Evidence-driven hardening after v1.0, compatibility/regression verification, fin
 
 Exit: **VERIFIED FINAL / LOCKED**
 
-## DoneCheck authority
+## DoneCheck™ v1.2 authority
 
-`Markdown projection → Mandatory DoneCheck Evidence contract → DoneCheck v1.2 machine authority → Human Threshold™ final human authority`
+Canonical product: `engurulabory/donecheck`  
+Version: **1.2.0**  
+Exact main: `8b90a8fc93453dd8a84994195d28d14b15e261cb`
+
+`Markdown projection → Mandatory DoneCheck™ v1.2 Evidence contract → DoneCheck™ v1.2 machine authority → Human Threshold™ final human authority`
 
 Canonical contract: `governance/mac-engineer/DONECHECK_AUTHORITY_MODEL_V1.md`.
 
 ## Permanent execution method
 
-`SESSION START → CANONICAL SYNC → ONE ACTIVE OBJECTIVE → GITHUB ENGINEERING → TEST/CI → PR/REVIEW → EXACT-MAIN → DONECHECK ENGINEERING VERIFICATION → MILESTONE MAC COMMISSIONING → LOCAL EVIDENCE → DONECHECK v1.2 → HUMAN THRESHOLD → VERSION LOCK → STATUS/WORKLIST RECONCILE → SESSION HANDOFF`
+`SESSION START → CANONICAL SYNC → ONE ACTIVE OBJECTIVE → ENGÜRÜ MAC-NATIVE ENGINEERING AUTHORITY → TEST/REGRESSION → EVIDENCE → DoneCheck™ v1.2 → GITHUB SYNC/PUBLICATION WHEN REQUIRED → MILESTONE MAC COMMISSIONING → HUMAN THRESHOLD → VERSION LOCK → STATUS/WORKLIST RECONCILE → SESSION HANDOFF`
 
-Canonical working-model contract: `governance/mac-engineer/GITHUB_FIRST_MILESTONE_MAC_WORKING_MODEL_V1.md`.
+Canonical authority contract: `governance/mac-engineer/MAC_NATIVE_ENGINEERING_AUTHORITY_V1.md`.
 
 ## Governance
 
