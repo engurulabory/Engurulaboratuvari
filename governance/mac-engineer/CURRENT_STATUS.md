@@ -992,3 +992,41 @@ Machine verification authority:
 `DoneCheck™ v1.2 / 1.2.0 / exact-main 8b90a8fc93453dd8a84994195d28d14b15e261cb`
 
 **NEXT ACTION — fresh exact-head acceptance → Doctor → enguru-mac continue → Gate 5 native productization field proof.**
+
+
+## v0.8 GATE 5 — NATIVE ICON PROVENANCE RECOVERY — 2026-09-24
+
+**STATE — HOLD RECOVERY PATCH PREPARED / 4/12 PASS PRESERVED.**
+
+Observed Gate 5 Evidence:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/native-app-productization/20260924T054137Z/evidence.json`
+
+Observed failure:
+
+`cp: execution_prep/native_app/Resources/ENGURU_Mac_Engineer.icns: No such file or directory`
+
+Fresh product-source discovery established:
+
+- no committed `.icns` exists in the canonical product baseline;
+- canonical existing visual source is `runtime/static/engineer-emblem.png`;
+- Gate 5 local product branch is correct;
+- local product commit exists at `028e6f6c278623af53360d52408982709619386d`;
+- product worktree is clean;
+- exact mutation scope remains the three authorized paths;
+- source bundle version is `0.8`;
+- installed application remains `0.6`;
+- remote product branch remains the exact baseline;
+- no remote push occurred.
+
+Required difference applied to the Gate 5 executor:
+
+- native `.icns` is generated at build time from the canonical `engineer-emblem.png` source using macOS `sips + iconutil`;
+- no new binary icon asset is committed;
+- the existing local Gate 5 commit is reconciled through `git commit --amend --no-edit`, preserving the single bounded-commit contract;
+- regression runs before amend;
+- amended commit scope must remain exactly the three authorized paths;
+- remote push remains false;
+- source/runtime/install provenance requirements remain unchanged.
+
+**NEXT ACTION — fresh exact-head acceptance → Doctor → enguru-mac continue → Gate 5 recovery/retry from existing local product truth.**
