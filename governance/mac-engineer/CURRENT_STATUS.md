@@ -789,3 +789,28 @@ Required difference applied:
 - regression coverage locks direct-script import compatibility.
 
 **NEXT ACTION — fresh exact-head acceptance → Doctor → v0.7 Verified Finish final seal.**
+
+
+## v0.7 FINAL SEAL — POST-LOCK OBJECTIVE RECONCILIATION — 2026-09-24
+
+**STATE — PATCH PREPARED / FRESH EXACT-HEAD ACCEPTANCE REQUIRED.**
+
+Observed canonical boot HOLD:
+
+`CANONICAL_BOOT_VALIDATION_FAILED`
+
+Fresh canonical read identified a stale active-objective surface:
+
+- WORKLIST: `v0.7 — Long-Running Reliability`;
+- SESSION_STATE: `V0_7_LONG_RUNNING_RELIABILITY_VERIFIED_LOCKED`;
+- ROADMAP: `V0_7_VERIFIED_LOCKED_AWAIT_NEXT_OBJECTIVE`.
+
+Required difference applied:
+
+- final state remains stored in the existing verified-lock state fields;
+- active objective is now `V0_7_VERIFIED_LOCKED_AWAIT_NEXT_OBJECTIVE`;
+- SESSION_STATE, PRODUCT_ROADMAP and the single WORKLIST objective are aligned exactly;
+- session continuity regression coverage locks the post-lock objective contract;
+- Human Threshold ACCEPT, Gates 1–13, DoneCheck™ v1.2, external A09 deferred boundary and second-truth protection remain unchanged.
+
+**NEXT ACTION — fresh exact-head acceptance → Doctor → v0.7 Verified Finish final seal.**
