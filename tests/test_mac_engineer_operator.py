@@ -20,6 +20,26 @@ SPEC.loader.exec_module(operator)
 
 
 class OperatorSurfaceTests(unittest.TestCase):
+    def test_v08_gate3_operator_contract_is_bound(self) -> None:
+        source = (
+            Path(__file__).resolve().parents[1]
+            / "tools"
+            / "mac_engineer_operator.py"
+        ).read_text(encoding="utf-8")
+        self.assertIn(
+            'local_action == "V08_UX_AESTHETIC_PRODUCT_CONTRACT"',
+            source,
+        )
+        self.assertIn("V08_UX_AESTHETIC_PRODUCT_CONTRACT_PASS", source)
+        self.assertIn(
+            "OVERFLOW_ORIGINALITY_ACCESSIBILITY_GATES_DEFINED",
+            source,
+        )
+        self.assertIn(
+            "V08_FULL_PRODUCT_ENGINEERING_CHAIN_BINDING_REQUIRED",
+            source,
+        )
+
     def test_v08_gate2_operator_contract_is_bound(self) -> None:
         source = (
             Path(__file__).resolve().parents[1]
