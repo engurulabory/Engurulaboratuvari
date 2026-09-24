@@ -44,6 +44,7 @@ FINAL_CONSOLIDATED_MAC_CAMPAIGN = ROOT / "governance" / "mac-engineer" / "V07_FI
 HUMAN_THRESHOLD_AUTHORITY_TRANSITION = ROOT / "governance" / "mac-engineer" / "V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION.command"
 V08_SELF_ENGINEERING_BASELINE = ROOT / "governance" / "mac-engineer" / "V08_SELF_ENGINEERING_BASELINE_AUDIT.command"
 V08_PRODUCT_REALITY_RECONCILIATION = ROOT / "governance" / "mac-engineer" / "V08_SELF_ENGINEERING_PRODUCT_REALITY_RECONCILIATION.command"
+V08_UX_AESTHETIC_PRODUCT_CONTRACT = ROOT / "governance" / "mac-engineer" / "V08_UX_AESTHETIC_PRODUCT_CONTRACT.command"
 
 TERMINAL_STATES = {"COMPLETE", "HOLD", "FAILED", "BLOCKED"}
 RECOVERABLE_STATES = {"RUNNING", "CHECKPOINTED", "RECOVERY_REQUIRED", "VERIFYING"}
@@ -1080,6 +1081,44 @@ def run_v08_product_reality_reconciliation() -> dict[str, Any]:
     }
 
 
+def run_v08_ux_aesthetic_product_contract() -> dict[str, Any]:
+    if not V08_UX_AESTHETIC_PRODUCT_CONTRACT.is_file():
+        return {
+            "state": "HOLD",
+            "reason": "V08_UX_AESTHETIC_PRODUCT_CONTRACT_COMMAND_MISSING",
+            "evidence": None,
+        }
+    result = run(
+        ["zsh", str(V08_UX_AESTHETIC_PRODUCT_CONTRACT)],
+        cwd=ROOT,
+        timeout=1800,
+        env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+    )
+    fields: dict[str, str] = {}
+    for line in result.get("stdout", "").splitlines():
+        if "=" in line:
+            key, value = line.split("=", 1)
+            if key and value:
+                fields[key.strip()] = value.strip()
+
+    passed = (
+        result["code"] == 0
+        and fields.get("STATE") == "PASS"
+        and fields.get("V08_GATE_03") == "PASS"
+        and fields.get("UX_PRODUCT_CONTRACT") == "PASS"
+        and fields.get("AESTHETIC_MOTOR_REUSE") == "PASS"
+        and fields.get("UNNECESSARY_NEW_CORE_COUNT") == "0"
+    )
+    return {
+        "state": "PASS" if passed else "HOLD",
+        "code": result["code"],
+        "fields": fields,
+        "evidence": fields.get("EVIDENCE"),
+        "stdout_tail": result.get("stdout", "")[-8000:],
+        "stderr_tail": result.get("stderr", "")[-8000:],
+    }
+
+
 def command_continue() -> int:
     boot = canonical_boot()
     truth = current_truth()
@@ -1094,6 +1133,48 @@ def command_continue() -> int:
         hold = "CANONICAL_BOOT"
         next_action = "enguru-mac doctor"
         completed = ["CANONICAL_BOOT_HOLD", "GITVAULT_SYNC"]
+    elif local_action == "V08_UX_AESTHETIC_PRODUCT_CONTRACT":
+        completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
+        ux_contract = run_v08_ux_aesthetic_product_contract()
+        if ux_contract.get("state") != "PASS":
+            payload = write_receipt(
+                command="continue",
+                state="HOLD",
+                completed=completed,
+                evidence=[
+                    item for item in [
+                        str(SESSION_STATE),
+                        str(ux_contract.get("evidence") or ""),
+                    ] if item
+                ],
+                hold="V08_UX_AESTHETIC_PRODUCT_CONTRACT",
+                next_action="enguru-mac doctor",
+                details={
+                    "truth": truth,
+                    "boot": boot,
+                    "runner": runner,
+                    "mirrors": mirrors,
+                    "v08_ux_aesthetic_product_contract": ux_contract,
+                },
+            )
+            print_receipt(payload)
+            return 2
+
+        completed.extend([
+            "V08_UX_AESTHETIC_PRODUCT_CONTRACT_PASS",
+            "PRIMARY_USER_QUESTIONS_THREE_PASS",
+            "MAIN_SURFACE_SIMPLIFICATION_CONTRACT_PASS",
+            "AESTHETIC_MOTOR_REUSE_PASS",
+            "OVERFLOW_ORIGINALITY_ACCESSIBILITY_GATES_DEFINED",
+            "HUMAN_ARTISTIC_AUTHORITY_GATE_DEFINED",
+            "DONECHECK_V1_2_AUTHORITY_PRESERVED",
+        ])
+        state = "HOLD"
+        hold = "V08_FULL_PRODUCT_ENGINEERING_CHAIN_BINDING_REQUIRED"
+        next_action = (
+            (ux_contract.get("fields") or {}).get("NEXT_ACTION")
+            or "V08_FULL_PRODUCT_ENGINEERING_CHAIN_BINDING"
+        )
     elif local_action == "V08_SELF_ENGINEERING_PRODUCT_REALITY_RECONCILIATION":
         completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
         reconciliation = run_v08_product_reality_reconciliation()
