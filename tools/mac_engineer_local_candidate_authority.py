@@ -16,6 +16,26 @@ DEFAULT_ACCEPTANCE_STATE = (
     / "local-accepted-control-plane-candidate.json"
 )
 
+POLICY_PHASES = {
+    (
+        "PENDING_RECONCILIATION",
+        "PENDING_RECONCILIATION",
+    ): "PRE_LOCK_CANDIDATE",
+    (
+        "VERIFIED_LOCAL_AUTHORITY_PENDING_EXTERNAL_RECONCILIATION",
+        "MAC_NATIVE_PRIMARY_ENGINEERING_AUTHORITY_VERIFIED",
+    ): "POST_LOCK_VERIFIED_FINISH",
+}
+
+
+def local_candidate_policy_phase(policy: dict[str, Any]) -> str | None:
+    return POLICY_PHASES.get(
+        (
+            str(policy.get("state") or ""),
+            str(policy.get("localAuthority") or ""),
+        )
+    )
+
 
 def _load_json(path: Path) -> dict[str, Any] | None:
     try:
@@ -56,15 +76,15 @@ def evaluate_local_accepted_candidate(
 
     expected_branch = str(policy.get("branch") or "")
     expected_external_hold = str(policy.get("externalMergeGate") or "")
+    expected_local_authority = str(policy.get("localAuthority") or "")
+    policy_phase = local_candidate_policy_phase(policy)
 
-    if policy.get("state") != "PENDING_RECONCILIATION":
-        reasons.append("POLICY_PENDING_RECONCILIATION_REQUIRED")
+    if policy_phase is None:
+        reasons.append("POLICY_LOCAL_CONTINUITY_PHASE_REQUIRED")
     if not expected_branch:
         reasons.append("POLICY_BRANCH_REQUIRED")
     if policy.get("canonicalRemoteAuthority") != "GITHUB_REMOTE_MAIN":
         reasons.append("POLICY_GITHUB_REMOTE_MAIN_AUTHORITY_REQUIRED")
-    if policy.get("localAuthority") != "PENDING_RECONCILIATION":
-        reasons.append("POLICY_LOCAL_PENDING_RECONCILIATION_REQUIRED")
     if policy.get("secondCanonicalTruth") is not False:
         reasons.append("POLICY_SECOND_CANONICAL_TRUTH_FALSE_REQUIRED")
     if not expected_external_hold.startswith("HOLD_"):
@@ -78,6 +98,7 @@ def evaluate_local_accepted_candidate(
             "mode": "LOCAL_ACCEPTED_CANDIDATE",
             "reasons": reasons,
             "policy": policy,
+            "policy_phase": policy_phase,
             "acceptance_state_path": str(state_path),
             "acceptance": None,
             "evidence": None,
@@ -87,7 +108,7 @@ def evaluate_local_accepted_candidate(
         reasons.append("LOCAL_ACCEPTANCE_SCHEMA_MISMATCH")
     if artifact.get("state") != "PASS":
         reasons.append("LOCAL_ACCEPTANCE_PASS_REQUIRED")
-    if artifact.get("authority") != "PENDING_RECONCILIATION":
+    if artifact.get("authority") != expected_local_authority:
         reasons.append("LOCAL_ACCEPTANCE_AUTHORITY_MISMATCH")
     if artifact.get("canonicalRemoteAuthority") != "GITHUB_REMOTE_MAIN":
         reasons.append("LOCAL_ACCEPTANCE_REMOTE_AUTHORITY_MISMATCH")
@@ -158,6 +179,7 @@ def evaluate_local_accepted_candidate(
         "mode": "LOCAL_ACCEPTED_CANDIDATE",
         "reasons": reasons,
         "policy": policy,
+        "policy_phase": policy_phase,
         "acceptance_state_path": str(state_path),
         "acceptance": artifact,
         "evidence": evidence,
