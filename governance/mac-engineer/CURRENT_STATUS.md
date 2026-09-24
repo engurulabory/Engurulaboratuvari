@@ -3,7 +3,7 @@
 **Updated:** 2026-09-24
 **Program target:** ENGÜRÜ Mac Engineering™ v1.1 — Verified Product Engineering Operator
 **Current version:** v0.8 — PRODUCT ENGINEERING OPERATOR / ACTIVE
-**Current objective:** V08_SELF_ENGINEERING_PRODUCT_REALITY_RECONCILIATION
+**Current objective:** V08_UX_AESTHETIC_PRODUCT_CONTRACT
 **Canonical objective id:** `V08_PRODUCT_ENGINEERING_OPERATOR`
 
 ## CURRENT ENGINEERING TRUTH
@@ -895,3 +895,34 @@ Required difference applied:
 - Gate 1 PASS Evidence, Gate 2 ACTIVE state, ENGÜRÜ Mac-Native Engineering Authority™, DoneCheck™ v1.2 authority and second-canonical-truth protection remain unchanged.
 
 **NEXT ACTION — fresh exact-head acceptance → Doctor → enguru-mac continue → Gate 2 Product Reality Reconciliation.**
+
+
+## v0.8 GATE 2 — VERIFIED PASS / GATE 3 — UX + AESTHETIC CONTRACT PREPARED — 2026-09-24
+
+**STATE — 2/12 PASS / GATE 3 ACTIVE.**
+
+Gate 2 operator receipt:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260924T051550Z-continue.json`
+
+Verified Gate 2 chain:
+
+`SOURCE_RUNTIME_INSTALLED_TRUTH_RECONCILED → NATIVE_SHELL_WEB_RUNTIME_BOUNDARY_RECONCILED → BOUNDED_REQUIRED_DIFFERENCE_DEFINED → UNNECESSARY_NEW_CORE_ZERO → DONECHECK_V1_2_AUTHORITY_PRESERVED`
+
+Gate 3 canonical UX contract:
+
+`governance/mac-engineer/V08_UX_AESTHETIC_PRODUCT_CONTRACT_V1.md`
+
+Primary user questions:
+
+`Her şey yolunda mı? → Nerede dikkat gerekiyor? → Şimdi neye bakmalıyım?`
+
+Gate 3 preserves the measured SwiftUI shell + WKWebView runtime boundary, reuses Aesthetic Motor™, defines overflow/originality/accessibility gates and keeps Human Artistic Authority™ explicit.
+
+Gate 3 product mutation: false.
+
+Machine verification authority remains:
+
+`DoneCheck™ v1.2 / 1.2.0 / exact-main 8b90a8fc93453dd8a84994195d28d14b15e261cb`
+
+**NEXT ACTION — fresh exact-head acceptance → Doctor → enguru-mac continue → Gate 3 UX + Aesthetic Product Contract verification.**
