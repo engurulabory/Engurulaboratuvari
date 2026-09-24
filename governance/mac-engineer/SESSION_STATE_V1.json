@@ -41,7 +41,7 @@
     "checkpointRestartResumeFieldProof": "VERIFIED_PASS",
     "v07LongRunReliability": "VERIFIED_LOCKED"
   },
-  "currentObjective": "V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE",
+  "currentObjective": "V08_EXISTING_PRODUCT_CHANGE_SCENARIO",
   "observedProductPublication": {
     "source": "MAC_FIELD_OUTPUT",
     "localSourceHead": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
@@ -291,7 +291,7 @@
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE",
+  "nextAction": "V08_EXISTING_PRODUCT_CHANGE_SCENARIO",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
@@ -1275,8 +1275,8 @@
     "objective": "V08_PRODUCT_ENGINEERING_OPERATOR",
     "engineeringMode": "MAC_NATIVE_PRIMARY_AUTHORITY",
     "executionAuthorityModel": "ENGÜRÜ Mac-Native Engineering Authority™",
-    "nextAction": "V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE",
-    "localContinuityNextAction": "V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE",
+    "nextAction": "V08_EXISTING_PRODUCT_CHANGE_SCENARIO",
+    "localContinuityNextAction": "V08_EXISTING_PRODUCT_CHANGE_SCENARIO",
     "localContinuityState": "ACTIVE",
     "acceptanceMatrix": "PASS_DEFINED",
     "acceptanceMatrixPath": "governance/mac-engineer/V08_PRODUCT_ENGINEERING_OPERATOR_ACCEPTANCE_MATRIX_V1.md",
@@ -1296,8 +1296,8 @@
       "externalMergeGate": "HOLD_GITHUB_ACTIONS_EXECUTION",
       "acceptanceStatePath": "~/Enguru/Runtime/MacEngineer/state/local-accepted-control-plane-candidate.json",
       "acceptanceEvidenceRoot": "~/Enguru/Evidence/MacEngineer/v0.8/canonical-boot",
-      "currentTechnicalTarget": "V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE",
-      "nextAfterPass": "V08_EXISTING_PRODUCT_CHANGE_SCENARIO"
+      "currentTechnicalTarget": "V08_EXISTING_PRODUCT_CHANGE_SCENARIO",
+      "nextAfterPass": "V08_MIGRATION_REPAIR_SCENARIO"
     },
     "closureContract": {
       "totalGates": 12,
@@ -1305,11 +1305,11 @@
         1,
         2,
         3,
-        4
+        4,
+        5
       ],
-      "activeGate": 5,
+      "activeGate": 6,
       "remainingGates": [
-        5,
         6,
         7,
         8,
@@ -1375,6 +1375,32 @@
       ]
     },
     "productWorkingBranch": "feat/v08-native-productization-provenance",
-    "productBaselineExactMain": "5432b9b135499cea18273c0e003877b864af92c6"
+    "productBaselineExactMain": "5432b9b135499cea18273c0e003877b864af92c6",
+    "gate5": {
+      "state": "PASS",
+      "name": "V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/native-app-productization/20260924T060102Z/evidence.json",
+      "operatorReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260924T060113Z-continue.json",
+      "productBranch": "feat/v08-native-productization-provenance",
+      "productLocalCommit": "8bd62a2bd8c288b07d51f78ab2164444962bf7c4",
+      "baselineExactMain": "5432b9b135499cea18273c0e003877b864af92c6",
+      "remoteWorkingBranchHead": "5432b9b135499cea18273c0e003877b864af92c6",
+      "remotePush": false,
+      "sourceBundleVersion": "0.8",
+      "installedBundleVersion": "0.8",
+      "runtimeParity": "PASS",
+      "codesign": "PASS",
+      "releaseSourceCommit": "8bd62a2bd8c288b07d51f78ab2164444962bf7c4",
+      "verified": [
+        "PRODUCT_LOCAL_COMMIT_BOUND",
+        "BUNDLE_VERSION_V08_PASS",
+        "SOURCE_INSTALLED_RUNTIME_PARITY_PASS",
+        "RELEASE_PROVENANCE_PASS",
+        "NATIVE_CODESIGN_PASS",
+        "FRESH_APP_RUNTIME_READINESS_PASS",
+        "PRODUCT_REMOTE_PUSH_FALSE",
+        "DONECHECK_V1_2_AUTHORITY_PRESERVED"
+      ]
+    }
   }
 }

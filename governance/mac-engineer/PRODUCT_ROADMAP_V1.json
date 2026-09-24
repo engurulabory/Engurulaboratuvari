@@ -16,9 +16,9 @@
   "current": {
     "version": "v0.8",
     "state": "ACTIVE_PRODUCT_ENGINEERING_OPERATOR",
-    "activeObjective": "V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE",
+    "activeObjective": "V08_EXISTING_PRODUCT_CHANGE_SCENARIO",
     "productSourceSha": "5432b9b135499cea18273c0e003877b864af92c6",
-    "installedVersion": "0.6",
+    "installedVersion": "0.8",
     "completed": [
       "RUNTIME_APP_PROVENANCE_CLOSURE",
       "ARCHIVE_DECISION",
@@ -39,10 +39,10 @@
       "V08_GATE_01_SELF_ENGINEERING_BASELINE_PASS",
       "V08_GATE_02_PRODUCT_REALITY_RECONCILIATION_PASS",
       "V08_GATE_03_UX_AESTHETIC_CONTRACT_PASS",
-      "V08_GATE_04_FULL_CHAIN_BINDING_PASS"
+      "V08_GATE_04_FULL_CHAIN_BINDING_PASS",
+      "V08_GATE_05_NATIVE_PRODUCTIZATION_PASS"
     ],
     "remaining": [
-      "V08_GATE_05_NATIVE_PRODUCTIZATION",
       "V08_GATE_06_EXISTING_PRODUCT_CHANGE",
       "V08_GATE_07_MIGRATION_REPAIR",
       "V08_GATE_08_NEW_PRODUCT_FROM_BRIEF",
@@ -187,7 +187,7 @@
       ],
       "acceptanceMatrix": "PASS_DEFINED",
       "acceptanceMatrixPath": "governance/mac-engineer/V08_PRODUCT_ENGINEERING_OPERATOR_ACCEPTANCE_MATRIX_V1.md",
-      "nextAction": "V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE",
+      "nextAction": "V08_EXISTING_PRODUCT_CHANGE_SCENARIO",
       "executionAuthorityModel": "ENGÜRÜ Mac-Native Engineering Authority™",
       "engineeringMode": "MAC_NATIVE_PRIMARY_AUTHORITY",
       "productBaselineExactMain": "5432b9b135499cea18273c0e003877b864af92c6",
@@ -204,11 +204,11 @@
           1,
           2,
           3,
-          4
+          4,
+          5
         ],
-        "active": 5,
+        "active": 6,
         "remaining": [
-          5,
           6,
           7,
           8,

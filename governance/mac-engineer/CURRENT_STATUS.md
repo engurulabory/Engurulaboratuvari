@@ -3,12 +3,12 @@
 **Updated:** 2026-09-24
 **Program target:** ENGÜRÜ Mac Engineering™ v1.1 — Verified Product Engineering Operator
 **Current version:** v0.8 — PRODUCT ENGINEERING OPERATOR / ACTIVE
-**Current objective:** V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE
+**Current objective:** V08_EXISTING_PRODUCT_CHANGE_SCENARIO
 **Canonical objective id:** `V08_PRODUCT_ENGINEERING_OPERATOR`
 
 ## CURRENT ENGINEERING TRUTH
 
-ENGÜRÜ Mac Engineering™ v0.7 is **LONG-RUN RELIABILITY VERIFIED / LOCKED**. v0.8 Product Engineering Operator is **ACTIVE** at Gate 5 — Native App Productization + Version/Provenance. Gates 1–4 are verified PASS.
+ENGÜRÜ Mac Engineering™ v0.7 is **LONG-RUN RELIABILITY VERIFIED / LOCKED**. v0.8 Product Engineering Operator is **ACTIVE** at Gate 6 — Existing Product Change Scenario. Gates 1–5 are verified PASS.
 
 Local field truth, canonical reconciliation, merge provenance and control-plane exact-main acceptance are all complete. Recovery, fixture repair, local field acceptance and v0.6 closure are closed truths.
 
@@ -31,8 +31,8 @@ The active engineering model is **ENGÜRÜ Mac-Native Engineering Authority™ /
 - Product repository: `engurulabory/enguru-mac-engineer`
 - Product Gate 5 baseline exact-main: `5432b9b135499cea18273c0e003877b864af92c6`
 - Product exact-main CI: PASS
-- Installed/runtime app version: 0.6
-- Runtime source parity: 34/34 EXACT
+- Installed/runtime app version: 0.8
+- Runtime source parity: 36/36 EXACT
 - Runtime/App provenance: PASS
 - CONTINUITY_PATCH_REPEATABILITY: VERIFIED PASS
 
@@ -153,7 +153,7 @@ Recovery, fixture repair, local field acceptance and the reconstructed pre-canon
 
 ## NEXT ACTION
 
-`V0_7_LONG_RUNNING_RELIABILITY → V07-A09 HOLD_GITHUB_PRIVATE_REPO_HOSTED_ACTIONS_EXECUTION_GATE → HUMAN READ-ONLY ACTIONS/BILLING INSPECTION → RESUME PR #13 → 5 TARGETED PASS → FULL REGRESSION → SCOPE VALIDATION`
+`V08_EXISTING_PRODUCT_CHANGE_SCENARIO → bounded real product change → regression → package/install → field verification → Evidence → Human Artistic Authority™`
 
 
 ## MAC REPOSITORY FABRIC — 2026-09-23
@@ -1066,3 +1066,36 @@ Current product truth remains:
 - remote push: false.
 
 **NEXT ACTION — fresh exact-head acceptance → Doctor → enguru-mac continue → Gate 5 recovery/retry.**
+
+
+## v0.8 GATE 5 — VERIFIED PASS / GATE 6 ACTIVE — 2026-09-24
+
+**STATE — 5/12 PASS / GATE 6 ACTIVE.**
+
+Gate 5 exact Evidence:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/native-app-productization/20260924T060102Z/evidence.json`
+
+Operator receipt:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260924T060113Z-continue.json`
+
+Verified product truth:
+
+- product baseline exact-main: `5432b9b135499cea18273c0e003877b864af92c6`;
+- local bounded Gate 5 commit: `8bd62a2bd8c288b07d51f78ab2164444962bf7c4`;
+- dedicated branch: `feat/v08-native-productization-provenance`;
+- remote working branch remains baseline;
+- remote push: false;
+- authorized mutation scope: 3 paths;
+- source bundle: `0.8`;
+- installed bundle: `0.8`;
+- runtime parity: `36/36 PASS`;
+- release provenance source commit: `8bd62a2bd8c288b07d51f78ab2164444962bf7c4`;
+- ad-hoc codesign: PASS;
+- fresh app/runtime readiness: PASS;
+- DoneCheck™ v1.2 authority preserved.
+
+**JUDGMENT — V08 GATE 5 VERIFIED PASS.**
+
+**NEXT ACTION — prepare and execute Gate 6 Existing Product Change Scenario using the verified Gate 3 UX/Aesthetic contract and Human Artistic Authority™ review.**

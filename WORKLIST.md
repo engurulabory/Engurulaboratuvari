@@ -1120,9 +1120,9 @@ Local evidence:
 - [x] Canonical Evidence: `evidence/MAC_ENGINEER_V00_V03_HISTORICAL_RECONSTRUCTION_2026-09-22.md`.
 - [x] **V00_V03_HISTORICAL_RECONSTRUCTION = PASS / CLOSED.**
 
-**Active objective:** `V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE`
+**Active objective:** `V08_EXISTING_PRODUCT_CHANGE_SCENARIO`
 
-**Current single objective:** **V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE**.
+**Current single objective:** **V08_EXISTING_PRODUCT_CHANGE_SCENARIO**.
 
 ## v0.7 — Long-Running Reliability
 
@@ -1170,8 +1170,8 @@ DoneCheck authority:
 2. [x] **Gate 2 — Product Reality Reconciliation — PASS**
 3. [x] **Gate 3 — UX + Aesthetic Product Contract — PASS**
 4. [x] **Gate 4 — Full Product Engineering Chain Binding — PASS**
-5. [ ] **Gate 5 — Native App Productization + Version/Provenance — ACTIVE**
-6. [ ] **Gate 6 — Existing Product Change Scenario**
+5. [x] **Gate 5 — Native App Productization + Version/Provenance — PASS**
+6. [ ] **Gate 6 — Existing Product Change Scenario — ACTIVE**
 7. [ ] **Gate 7 — Migration / Repair Scenario**
 8. [ ] **Gate 8 — New Product from Brief Scenario**
 9. [ ] **Gate 9 — Deploy / Live Verify / Rollback + Lifecycle**
@@ -1229,13 +1229,13 @@ Verified chain:
 
 `PRODUCT_ENGINEERING_CHAIN_14_STAGE_BOUND → EXISTING_MECHANISMS_REUSED → DEPLOY_ADAPTER_BOUNDARY_DEFINED → LATER_EXECUTION_PROOF_GATES_PRESERVED → UNNECESSARY_NEW_CORE_ZERO → DONECHECK_V1_2_AUTHORITY_PRESERVED`
 
-**Closure state: 4/12 PASS. Active gate: 5 — Native App Productization + Version/Provenance.**
+**Closure state: 5/12 PASS. Active gate: 6 — Existing Product Change Scenario.**
 
 ### Current v0.8 next action
 
-`V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE`
+`V08_EXISTING_PRODUCT_CHANGE_SCENARIO`
 
-Gate 5 uses ENGÜRÜ Mac-Native Engineering Authority™ on **ENGÜRÜ Mac Engineer™ itself** for the first bounded v0.8 product mutation: exact product baseline → dedicated product branch → version/provenance mutation → targeted/full regression → local commit → native package/install → fresh launch/readiness → Evidence. Remote push remains false during this field proof; the Gate 3 UX implementation begins in Gate 6.
+Gate 6 uses ENGÜRÜ Mac-Native Engineering Authority™ on **ENGÜRÜ Mac Engineer™ itself** for one real bounded existing-product change. The verified Gate 3 UX/Aesthetic contract is implemented through the existing product architecture, followed by build, regression, package, fresh runtime verification, Evidence and Human Artistic Authority™ review.
 
 ## v0.9 — World-Class Field Benchmark
 
@@ -1282,11 +1282,11 @@ Engineering mode: **GitHub-first benchmark harness + selected Mac field proofs**
 
 ## Current next action
 
-1. Run fresh v0.8 exact-head local acceptance.
-2. Run `enguru-mac doctor`.
-3. Run `enguru-mac continue`.
-4. Complete Gate 1 self-engineering baseline audit.
-5. Consume Evidence into Gate 2 Product Reality Reconciliation.
+1. Reconcile Gate 5 verified field Evidence into canonical control-plane truth.
+2. Activate Gate 6 — Existing Product Change Scenario.
+3. Implement the verified Gate 3 UX/Aesthetic contract as one bounded existing-product change.
+4. Run build, regression, package/install and fresh runtime verification.
+5. Produce Evidence and present the implemented direction to Human Artistic Authority™.
 
 ## v0.7 — VERIFIED FINISH CLOSURE CONTRACT — 13 GATES
 
