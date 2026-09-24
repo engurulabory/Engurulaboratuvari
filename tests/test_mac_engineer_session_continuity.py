@@ -111,6 +111,58 @@ class MacEngineerSessionContinuityTests(unittest.TestCase):
         self.assertIn("MAINTENANCE RULE", status)
         self.assertIn("before the next action", status)
 
+    def test_v08_active_product_working_branch_is_authorized(self) -> None:
+        state = {
+            "currentVersion": "v0.8",
+            "currentObjective": "V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE",
+            "currentV08": {
+                "productWorkingBranch": "feat/v08-native-productization-provenance",
+                "productBaselineExactMain": "base-sha",
+            },
+        }
+        product = {
+            "branch": "feat/v08-native-productization-provenance",
+            "head": "local-commit",
+            "origin_main": "base-sha",
+            "clean": True,
+            "merge_base_origin_main": "base-sha",
+            "ahead_origin_main": "1",
+        }
+
+        authorized, policy = authorized_product_working_branch(
+            state,
+            product,
+        )
+        self.assertTrue(authorized)
+        self.assertEqual(
+            policy["mode"],
+            "V08_ACTIVE_PRODUCT_WORKING_BRANCH",
+        )
+
+    def test_v08_active_product_branch_requires_clean_baseline_ancestry(self) -> None:
+        state = {
+            "currentVersion": "v0.8",
+            "currentObjective": "V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE",
+            "currentV08": {
+                "productWorkingBranch": "feat/v08-native-productization-provenance",
+                "productBaselineExactMain": "base-sha",
+            },
+        }
+        product = {
+            "branch": "feat/v08-native-productization-provenance",
+            "head": "local-commit",
+            "origin_main": "base-sha",
+            "clean": False,
+            "merge_base_origin_main": "wrong-base",
+            "ahead_origin_main": "1",
+        }
+
+        authorized, _ = authorized_product_working_branch(
+            state,
+            product,
+        )
+        self.assertFalse(authorized)
+
     def test_authorized_publication_branch_passes_exact_contract(self):
         state = {
             "currentObjective": "PRODUCT_SOURCE_V0_6_ALIGNMENT_PUBLICATION",
