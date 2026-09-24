@@ -17,6 +17,30 @@ from tools.mac_engineer_session_continuity import (
 
 
 class MacEngineerSessionContinuityTests(unittest.TestCase):
+    def test_post_lock_objective_alignment_contract(self) -> None:
+        import json
+
+        root = Path(__file__).resolve().parents[1]
+        session = json.loads(
+            (root / "governance/mac-engineer/SESSION_STATE_V1.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        roadmap = json.loads(
+            (root / "governance/mac-engineer/PRODUCT_ROADMAP_V1.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        worklist = (root / "WORKLIST.md").read_text(encoding="utf-8")
+
+        expected = "V0_7_VERIFIED_LOCKED_AWAIT_NEXT_OBJECTIVE"
+        self.assertEqual(session["currentObjective"], expected)
+        self.assertEqual(roadmap["current"]["activeObjective"], expected)
+        self.assertIn(
+            f"**Current single objective:** **{expected}**.",
+            worklist,
+        )
+
     def test_objective_normalization_tolerates_formatting_only(self):
         self.assertEqual(
             normalize_objective("PRODUCT_CI_EXACT_MAIN_VERIFICATION"),
