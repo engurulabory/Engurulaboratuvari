@@ -768,3 +768,24 @@ Required difference applied:
 No Gate PASS, Human Threshold decision or external GitHub A09 state was altered by this reconciliation.
 
 **NEXT ACTION — fresh exact-head acceptance → Doctor → v0.7 Verified Finish final seal.**
+
+
+## v0.7 FINAL SEAL — DIRECT-SCRIPT IMPORT RECONCILIATION — 2026-09-24
+
+**STATE — PATCH PREPARED / FRESH EXACT-HEAD ACCEPTANCE REQUIRED.**
+
+Observed execution error:
+
+`ModuleNotFoundError: No module named 'tools'`
+
+Root cause: `tools/mac_engineer_accept_local_candidate.py` is invoked directly as `python3 tools/...py`; direct-script execution places the `tools` directory on `sys.path`, while package-style test execution resolves `tools.*` from repository root.
+
+Required difference applied:
+
+- package import remains canonical when available;
+- direct-script sibling import is used as the compatibility fallback;
+- the authority helper remains a single implementation source;
+- post-lock policy semantics, Human Threshold receipt, 13/13 canonical state and external A09 boundary remain unchanged;
+- regression coverage locks direct-script import compatibility.
+
+**NEXT ACTION — fresh exact-head acceptance → Doctor → v0.7 Verified Finish final seal.**
