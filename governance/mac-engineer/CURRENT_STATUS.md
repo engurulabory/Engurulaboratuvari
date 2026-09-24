@@ -814,3 +814,30 @@ Required difference applied:
 - Human Threshold ACCEPT, Gates 1–13, DoneCheck™ v1.2, external A09 deferred boundary and second-truth protection remain unchanged.
 
 **NEXT ACTION — fresh exact-head acceptance → Doctor → v0.7 Verified Finish final seal.**
+
+
+## v0.8 PRODUCT ENGINEERING OPERATOR — CANONICAL START — 2026-09-24
+
+**STATE — ACTIVE / GATE 1 PREPARED.**
+
+v0.7 remains **VERIFIED / LOCKED** at exact sealed control-plane head `6e8bfe0506d3a772fe8127427c3fcbcc60826a34`.
+
+v0.8 starts on branch:
+
+`feat/mac-engineer-v08-product-engineering-operator`
+
+Primary engineering authority:
+
+`ENGÜRÜ Mac-Native Engineering Authority™ — Mac-local Build, Repair, Recovery & Verification Authority`
+
+Machine verification authority:
+
+`DoneCheck™ v1.2 / 1.2.0 / exact-main 8b90a8fc93453dd8a84994195d28d14b15e261cb`
+
+Gate 1 is a read-only self-engineering baseline audit of ENGÜRÜ Mac Engineer™ itself:
+
+`exact product main → runtime compile/regression → native prep/Swift build → source/installed bundle version → runtime parity → current UI form → Evidence`
+
+No product mutation occurs in Gate 1.
+
+**NEXT ACTION — fresh v0.8 exact-head acceptance → Doctor → enguru-mac continue → V08_SELF_ENGINEERING_BASELINE_AUDIT.**
