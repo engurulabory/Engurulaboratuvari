@@ -1489,7 +1489,7 @@ External GitHub A09 remains `EXTERNAL_BLOCKED_DEFERRED` and requires reconciliat
 
 **NEXT ACTION:** `V08_DESKTOP_COCKPIT_REAL_IMPLEMENTATION`
 
-<!-- ENGURU_LOCAL_MAC_ASTRA_100_TARGET_V1 -->
+<!-- ENGURU_LOCAL_MAC_ASTRA_100_TARGET_V1 — HISTORICAL / SUPERSEDED BY V1.2 -->
 
 ## ENGÜRÜ Mac Engineer™ v1.0 — LOCAL MAC ASTRA 100/100 TARGET
 
@@ -1526,3 +1526,268 @@ External GitHub A09 remains `EXTERNAL_BLOCKED_DEFERRED` and requires reconciliat
 - [ ] DoneCheck™ v1.2 + Human Threshold + v1.0 lock.
 
 **TARGET — LOCAL MAC ASTRA 100/100**
+
+<!-- ENGURU_LOCAL_MAC_ASTRA_V12_100_TARGET_V1 -->
+
+# ENGÜRÜ Mac Engineer™ — CANONICAL FINISH WORKLIST
+## Final Target: v1.2 LOCAL MAC ASTRA 100/100
+
+**TARGET STATE — LOCKED / THEORETICAL PRODUCT CONTRACT READY**
+
+**FIELD STATE — IN PROGRESS**
+
+**AUTHORITY RULE —**
+100/100 is earned by real field Evidence, Mandatory DoneCheck™,
+Human Threshold™ where required, and Verified Finish.
+The target definition itself does not manufacture completion.
+
+---
+
+## VERSION PATH — LOCKED
+
+### v0.7 — VERIFIED ENGINEERING AUTHORITY
+**STATE — VERIFIED / LOCKED**
+
+Preserve:
+
+- Mac-native engineering authority.
+- Steel Operating Character™.
+- Local-first execution.
+- Restart / resume / recovery evidence.
+- Repository truth discipline.
+- Evidence discipline.
+- Mandatory DoneCheck™.
+- Human Threshold™.
+- v0.7 canonical lock.
+
+Exit state: **COMPLETE / PRESERVE**
+
+---
+
+### v0.8 — PRODUCT ENGINEERING OPERATOR
+**STATE — ACTIVE**
+
+#### Gate 6 — Existing Product Change Scenario
+
+Current active difference:
+
+- [ ] Bind exact `work_id` to DoneCheck™ v1.2.
+- [ ] Record structured Verified Finish receipt.
+- [ ] Persist durable `work.completion`.
+- [ ] Bind server-side Verified Finish → archive lifecycle.
+- [ ] Preserve restart persistence.
+- [ ] Verify false-finish rejection.
+- [ ] Complete bounded active conversation surface.
+- [ ] Complete conversation-first project lifecycle.
+- [ ] Complete Human Artistic Authority field acceptance.
+
+#### Gate 7 — Migration / Repair Scenario
+
+- [ ] Intake a real existing product/source.
+- [ ] Discover exact current truth.
+- [ ] Diagnose root cause.
+- [ ] Apply bounded repair/migration.
+- [ ] Run targeted + full regression.
+- [ ] Produce Evidence.
+- [ ] Close with DoneCheck™.
+
+#### Gate 8 — New Product from Brief Scenario
+
+- [ ] Accept natural-language brief.
+- [ ] Establish product contract.
+- [ ] Plan architecture.
+- [ ] Build real product.
+- [ ] Run product tests.
+- [ ] Package native/runtime product.
+- [ ] Produce Evidence.
+- [ ] Close with DoneCheck™.
+
+#### Gate 9 — Deploy / Live Verify / Rollback Lifecycle
+
+- [ ] Deploy controlled product.
+- [ ] Verify live result.
+- [ ] Verify source → artifact → live provenance.
+- [ ] Exercise rollback.
+- [ ] Verify lifecycle recovery.
+
+#### Gate 10 — Finished Product Delivery Acceptance
+
+- [ ] User-facing product delivery.
+- [ ] Operational usage path.
+- [ ] Evidence package.
+- [ ] Human acceptance where required.
+
+#### Gate 11 — Consolidated Real-Mac Commissioning
+
+- [ ] Existing-product change scenario PASS.
+- [ ] Migration / repair scenario PASS.
+- [ ] New-product-from-brief scenario PASS.
+- [ ] Deploy / live verify / rollback PASS.
+- [ ] Restart / resume continuity PASS.
+
+#### Gate 12 — v0.8 Closeout
+
+- [ ] Mandatory DoneCheck™ v1.2.
+- [ ] Human Threshold™.
+- [ ] Version Evidence.
+- [ ] v0.8 Verified Finish.
+- [ ] v0.8 lock.
+
+Exit state:
+**VERIFIED PRODUCT ENGINEERING OPERATOR**
+
+---
+
+### v0.9 — AUTONOMOUS LOCAL OPERATOR
+**STATE — PLANNED AFTER v0.8**
+
+- [ ] Conversation-only primary control.
+- [ ] Automatic project discovery and routing.
+- [ ] Autonomous active/archive/restore lifecycle.
+- [ ] Safe natural-language delete authority.
+- [ ] Real local file intake.
+- [ ] Real local image/photo understanding.
+- [ ] Real microphone/audio input.
+- [ ] Local-first multimodal processing.
+- [ ] Context continuity across work sessions.
+- [ ] Bounded self-repair loop.
+- [ ] Evidence-backed autonomous completion.
+
+Exit state:
+**AUTONOMOUS LOCAL OPERATOR**
+
+---
+
+### v1.0 — VERIFIED LOCAL PRODUCT ENGINEER
+**STATE — PLANNED AFTER v0.9**
+
+- [ ] One user intent can initiate a complete engineering mission.
+- [ ] Repository/source selection is automatic and evidence-backed.
+- [ ] Research → plan → build → test → repair is integrated.
+- [ ] Package → deploy → live verify → rollback is integrated.
+- [ ] Multiple real product classes complete successfully.
+- [ ] Repeated runs remain deterministic and recoverable.
+- [ ] User receives finished result rather than engineering transcript.
+- [ ] Finished Product delivery is independently verifiable.
+
+Exit state:
+**VERIFIED LOCAL PRODUCT ENGINEER**
+
+---
+
+### v1.1 — LONG-RUNNING ASTRA RELIABILITY
+**STATE — PLANNED AFTER v1.0**
+
+- [ ] Durable checkpoints.
+- [ ] Crash-safe state persistence.
+- [ ] Application restart recovery.
+- [ ] Mac restart recovery.
+- [ ] Interrupted task resume.
+- [ ] Single-writer state authority.
+- [ ] Idempotent continuation.
+- [ ] Watchdog / health supervision.
+- [ ] Bounded retry.
+- [ ] Offline / reconnect behavior.
+- [ ] Runtime resource envelope.
+- [ ] Backup integrity.
+- [ ] Rollback integrity.
+- [ ] Recovery rehearsal.
+- [ ] Long-running unattended field test.
+- [ ] Evidence continuity across recovery.
+
+Exit state:
+**LONG-RUNNING LOCAL ASTRA RELIABILITY VERIFIED**
+
+---
+
+### v1.2 — LOCAL MAC ASTRA 100/100
+**STATE — FINAL LOCKED TARGET**
+
+The user primarily speaks or writes natural language.
+Local Mac Astra manages the engineering lifecycle behind the Cockpit.
+
+#### v1.2 Acceptance Contract
+
+- [ ] Conversation First.
+- [ ] Single Persistent Cockpit.
+- [ ] Autonomous Project Lifecycle.
+- [ ] Structured Verified Finish.
+- [ ] Real Multimodal.
+- [ ] Local-First Execution.
+- [ ] End-to-End Product Engineering.
+- [ ] Long-Running Reliability.
+- [ ] Fail-Closed Truth.
+- [ ] Evidence Continuity.
+- [ ] DoneCheck™ v1.2.
+- [ ] Human Threshold™.
+- [ ] Premium Human Artistic Cockpit.
+- [ ] One-Intent Completion.
+- [ ] Verified Product Delivery.
+- [ ] 100/100 Field Acceptance.
+
+---
+
+## v1.2 FINAL AUTHORITY CHAIN — LOCKED
+
+`USER INTENT`
+→ `CURRENT TRUTH`
+→ `ONE ACTIVE OBJECTIVE`
+→ `NECESSARY DIFFERENCE`
+→ `PROGRAMMER AGENT`
+→ `LOCAL MAC EXECUTION`
+→ `TEST / REGRESSION`
+→ `RECOVERY / CONTINUITY`
+→ `EVIDENCE`
+→ `DoneCheck™ v1.2`
+→ `Human Threshold™`
+→ `WORK-SCOPED VERIFIED FINISH`
+→ `AUTONOMOUS LIFECYCLE`
+→ `FINISHED PRODUCT DELIVERY`
+
+---
+
+## LOCAL MAC ASTRA v1.2 FINAL PRODUCT SENTENCE
+
+The user states the desired result in natural language.
+
+ENGÜRÜ Mac Engineer™ v1.2 Local Mac Astra
+finds the correct context and project,
+researches,
+plans,
+builds,
+runs,
+tests,
+repairs,
+packages,
+deploys when authorized,
+verifies live behavior,
+recovers from interruption,
+records Evidence,
+uses DoneCheck™ to verify completion,
+preserves Human Threshold™ authority,
+archives finished work,
+and returns the finished result to the user.
+
+---
+
+## CURRENT SINGLE NEXT ACTION
+
+**v0.8 Gate 6 — Server-Side Structured Verified Finish**
+
+`work_id`
+→ `DoneCheck™ v1.2 verification`
+→ `authorized HumanReview`
+→ `donecheck.verified-finish/v1 receipt`
+→ `durable work.completion`
+→ `server-side archive`
+→ `restart persistence`
+→ `false-finish rejection`
+→ `field Evidence`
+
+---
+
+**FINAL TARGET — v1.2 LOCAL MAC ASTRA 100/100**
+
+**TARGET CONTRACT — READY / LOCKED**
+
+**FIELD VERIFIED 100/100 — EARN THROUGH THE WORKLIST**
