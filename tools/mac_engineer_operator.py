@@ -42,6 +42,7 @@ MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF = ROOT / "governance" / "mac-en
 DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION = ROOT / "governance" / "mac-engineer" / "V07_DONECHECK_V12_LOCAL_AUTHORITY_VERIFICATION.command"
 FINAL_CONSOLIDATED_MAC_CAMPAIGN = ROOT / "governance" / "mac-engineer" / "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN.command"
 HUMAN_THRESHOLD_AUTHORITY_TRANSITION = ROOT / "governance" / "mac-engineer" / "V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION.command"
+V08_SELF_ENGINEERING_BASELINE = ROOT / "governance" / "mac-engineer" / "V08_SELF_ENGINEERING_BASELINE_AUDIT.command"
 
 TERMINAL_STATES = {"COMPLETE", "HOLD", "FAILED", "BLOCKED"}
 RECOVERABLE_STATES = {"RUNNING", "CHECKPOINTED", "RECOVERY_REQUIRED", "VERIFYING"}
@@ -1001,6 +1002,43 @@ def run_human_threshold_review() -> dict[str, Any]:
     }
 
 
+def run_v08_self_engineering_baseline() -> dict[str, Any]:
+    if not V08_SELF_ENGINEERING_BASELINE.is_file():
+        return {
+            "state": "HOLD",
+            "reason": "V08_SELF_ENGINEERING_BASELINE_COMMAND_MISSING",
+            "evidence": None,
+        }
+    result = run(
+        ["zsh", str(V08_SELF_ENGINEERING_BASELINE)],
+        cwd=ROOT,
+        timeout=7200,
+        env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+    )
+    fields: dict[str, str] = {}
+    for line in result.get("stdout", "").splitlines():
+        if "=" in line:
+            key, value = line.split("=", 1)
+            if key and value:
+                fields[key.strip()] = value.strip()
+
+    passed = (
+        result["code"] == 0
+        and fields.get("STATE") == "PASS"
+        and fields.get("V08_GATE_01") == "PASS"
+        and fields.get("PRODUCT_RUNTIME_REGRESSION") == "PASS"
+        and fields.get("NATIVE_SWIFT_BUILD") == "PASS"
+    )
+    return {
+        "state": "PASS" if passed else "HOLD",
+        "code": result["code"],
+        "fields": fields,
+        "evidence": fields.get("EVIDENCE"),
+        "stdout_tail": result.get("stdout", "")[-8000:],
+        "stderr_tail": result.get("stderr", "")[-8000:],
+    }
+
+
 def command_continue() -> int:
     boot = canonical_boot()
     truth = current_truth()
@@ -1015,6 +1053,46 @@ def command_continue() -> int:
         hold = "CANONICAL_BOOT"
         next_action = "enguru-mac doctor"
         completed = ["CANONICAL_BOOT_HOLD", "GITVAULT_SYNC"]
+    elif local_action == "V08_SELF_ENGINEERING_BASELINE_AUDIT":
+        completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
+        v08_baseline = run_v08_self_engineering_baseline()
+        if v08_baseline.get("state") != "PASS":
+            payload = write_receipt(
+                command="continue",
+                state="HOLD",
+                completed=completed,
+                evidence=[
+                    item for item in [
+                        str(SESSION_STATE),
+                        str(v08_baseline.get("evidence") or ""),
+                    ] if item
+                ],
+                hold="V08_SELF_ENGINEERING_BASELINE_AUDIT",
+                next_action="enguru-mac doctor",
+                details={
+                    "truth": truth,
+                    "boot": boot,
+                    "runner": runner,
+                    "mirrors": mirrors,
+                    "v08_baseline": v08_baseline,
+                },
+            )
+            print_receipt(payload)
+            return 2
+
+        completed.extend([
+            "V08_SELF_ENGINEERING_BASELINE_AUDIT_PASS",
+            "PRODUCT_RUNTIME_REGRESSION_PASS",
+            "NATIVE_SWIFT_BUILD_PASS",
+            "CURRENT_PRODUCT_REALITY_MEASURED",
+            "DONECHECK_V1_2_AUTHORITY_BOUND",
+        ])
+        state = "HOLD"
+        hold = "V08_PRODUCT_REALITY_RECONCILIATION_REQUIRED"
+        next_action = (
+            (v08_baseline.get("fields") or {}).get("NEXT_ACTION")
+            or "V08_SELF_ENGINEERING_PRODUCT_REALITY_RECONCILIATION"
+        )
     elif local_action == "V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION":
         completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
         human_review = run_human_threshold_review()
@@ -1409,6 +1487,7 @@ def command_continue() -> int:
                 str((locals().get("local_authority_verification") or {}).get("evidence") or ""),
                 str((locals().get("final_campaign") or {}).get("evidence") or ""),
                 str((locals().get("human_review") or {}).get("evidence") or ""),
+                str((locals().get("v08_baseline") or {}).get("evidence") or ""),
             ]
             if item
         ],
@@ -1429,6 +1508,7 @@ def command_continue() -> int:
             "local_authority_verification": locals().get("local_authority_verification"),
             "final_campaign": locals().get("final_campaign"),
             "human_review": locals().get("human_review"),
+            "v08_baseline": locals().get("v08_baseline"),
             "offline_manifest": offline_manifest(),
         },
     )
