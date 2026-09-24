@@ -699,3 +699,28 @@ Gate 13 is split into two explicit stages:
 Canonical `v0.7 VERIFIED / LOCKED` is created only after the explicit human decision receipt is observed and canonical reconciliation is completed.
 
 **NEXT ACTION — fresh exact-head local acceptance → Doctor → `enguru-mac continue` → Human Threshold REVIEW.**
+
+
+## v0.7 VERIFIED FINISH — HUMAN THRESHOLD ACCEPTED / CANONICAL LOCK — 2026-09-24
+
+**STATE — 13/13 PASS / LONG-RUN RELIABILITY VERIFIED / LOCKED.**
+
+Human Threshold™ decision: **ACCEPT**.
+
+Human decision Evidence: `/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/human-threshold/20260924T040827Z/human-decision.json`.
+
+Canonical closure:
+
+- Gates 1–13: PASS;
+- Gate 12 ≥8h real Mac campaign: PASS;
+- technical HOLD count: 0;
+- DoneCheck™ v1.2 exact SHA verification: PASS;
+- Human Threshold™: ACCEPTED;
+- ENGÜRÜ Mac-Native Engineering Authority™: primary local engineering authority accepted for v0.7;
+- second canonical truth: false;
+- external GitHub A09: EXTERNAL_BLOCKED_DEFERRED, preserved for later external reconciliation;
+- GitHub external PASS was not manufactured.
+
+**JUDGMENT — ENGÜRÜ Mac Engineer™ v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED — MAC-NATIVE AUTHORITY.**
+
+**NEXT ACTION — preserve v0.7 lock; begin a new objective only with explicit authority.**
