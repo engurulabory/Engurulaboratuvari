@@ -735,7 +735,7 @@
     "state": "HOLD",
     "objective": "V0_7_LONG_RUNNING_RELIABILITY",
     "engineeringMode": "MAC_NATIVE_AUTHORITY_TRANSITION",
-    "nextAction": "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY",
+    "nextAction": "V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION",
     "milestoneMacCommissioning": "ACTIVE_MAC_NATIVE_MIGRATION",
     "acceptanceMatrix": "PASS_DEFINED",
     "acceptanceMatrixPath": "governance/mac-engineer/V07_LONG_RUNNING_RELIABILITY_ACCEPTANCE_MATRIX_V1.md",
@@ -758,13 +758,13 @@
     "runtimeRegression": "54_OF_54_OK",
     "evidence": "evidence/MAC_ENGINEER_V07_A07_A08_ENGINEERING_2026-09-22.md",
     "passedGatesAuthority": "HISTORICAL_GITHUB_FIRST_EVIDENCE_PRESERVED_MAC_NATIVE_TRANSITION_ACTIVE",
-    "milestoneMacAcceptance": "ACTIVE_GATE_12_FINAL_CAMPAIGN",
+    "milestoneMacAcceptance": "GATE_12_VERIFIED_GATE_13_ACTIVE",
     "a09State": "EXTERNAL_BLOCKED_GITHUB_BILLING_DEFERRED",
     "a09CampaignPassCount": 0,
     "a09ProductPrNumber": 13,
     "a09LatestCandidateHead": "63dac60d39c93f3936658e8a5c8c80fb8470dfd3",
     "a09Evidence": "evidence/MAC_ENGINEER_V07_A09_ACTIONS_HOLD_2026-09-22.md",
-    "humanThreshold": "PENDING_FINAL_AFTER_LOCAL_VERIFICATION",
+    "humanThreshold": "PENDING_EXPLICIT_HUMAN_DECISION",
     "localFallback": {
       "state": "LOCAL_REHEARSAL_PASS_EXTERNAL_CONFIRMATION_PENDING",
       "contract": "governance/mac-engineer/V07_ASTRA_LOCAL_FALLBACK_V1.md",
@@ -818,8 +818,8 @@
       "evidenceSpool": "PASS",
       "gitVault": "PASS"
     },
-    "localContinuityNextAction": "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY",
-    "localContinuityState": "ACTIVE_FINAL_CONSOLIDATED_MAC_CAMPAIGN",
+    "localContinuityNextAction": "V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION",
+    "localContinuityState": "ACTIVE_HUMAN_THRESHOLD",
     "controlPlaneLocalContinuity": {
       "state": "PENDING_RECONCILIATION",
       "branch": "feat/mac-engineer-osi-operator-surface",
@@ -830,8 +830,8 @@
       "externalMergeGate": "HOLD_GITHUB_ACTIONS_EXECUTION",
       "acceptanceStatePath": "~/Enguru/Runtime/MacEngineer/state/local-accepted-control-plane-candidate.json",
       "acceptanceEvidenceRoot": "~/Enguru/Evidence/MacEngineer/v0.7/canonical-boot",
-      "currentTechnicalTarget": "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY",
-      "nextAfterPass": "V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION",
+      "currentTechnicalTarget": "V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION",
+      "nextAfterPass": "V0_7_LONG_RUN_RELIABILITY_VERIFIED_LOCKED",
       "freshExternalObservation": {
         "observedAt": "2026-09-23",
         "prNumber": 176,
@@ -880,11 +880,11 @@
         8,
         9,
         10,
-        11
+        11,
+        12
       ],
-      "activeGate": 12,
+      "activeGate": 13,
       "remainingGates": [
-        12,
         13
       ],
       "finalAuthority": "HUMAN_THRESHOLD",
@@ -916,23 +916,23 @@
         "doneCheckExactSha": "8b90a8fc93453dd8a84994195d28d14b15e261cb"
       },
       "gate12": {
-        "state": "ACTIVE",
+        "state": "PASS",
         "name": "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY",
+        "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/final-consolidated-campaign/20260923T131806Z/evidence.json",
+        "operatorReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T211818Z-continue.json",
+        "technicalHoldCount": 0,
+        "postCampaignDoneCheck": "PASS"
+      },
+      "gate13": {
+        "state": "ACTIVE_HUMAN_DECISION_REQUIRED",
+        "name": "HUMAN_THRESHOLD_AUTHORITY_TRANSITION",
+        "finalAuthority": "HUMAN_THRESHOLD",
         "acceptance": [
-          "duration_gte_8h",
-          "controlled_interruptions_gte_3",
-          "process_network_runtime_interruption_span",
-          "task_and_checkpoint_continuity",
-          "exactly_once_effects",
-          "peak_rss_lte_2x_warm_baseline",
-          "final_rss_lte_1_5x_warm_baseline",
-          "storage_temp_reconciliation",
-          "full_control_plane_regression",
-          "full_product_regression",
-          "native_build",
-          "final_diff_checks",
-          "post_campaign_donecheck_v1_2_pass",
-          "technical_hold_zero_except_deferred_external_a09"
+          "review_gate_1_12_evidence",
+          "confirm_mac_native_primary_engineering_authority",
+          "confirm_external_a09_deferred_boundary",
+          "explicit_human_acceptance",
+          "canonical_lock_reconciliation"
         ]
       }
     },
@@ -1013,6 +1013,29 @@
       "doneCheckExactSha": "8b90a8fc93453dd8a84994195d28d14b15e261cb",
       "authority": "DONECHECK_V1_2_EXACT_SHA",
       "nextAction": "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_AND_VERIFY"
+    },
+    "finalConsolidatedMacCampaign": {
+      "state": "PASS",
+      "observedAt": "2026-09-23",
+      "operatorReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T211818Z-continue.json",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/final-consolidated-campaign/20260923T131806Z/evidence.json",
+      "completed": [
+        "V07_FINAL_CONSOLIDATED_MAC_CAMPAIGN_PASS",
+        "DURATION_GTE_8H_PASS",
+        "THREE_CONTROLLED_INTERRUPTION_EVENTS_PASS",
+        "TASK_IDENTITY_CONTINUITY_PASS",
+        "EXACTLY_ONCE_EFFECT_PASS",
+        "RSS_LIMITS_PASS",
+        "STORAGE_RECONCILIATION_PASS",
+        "FINAL_REGRESSIONS_PASS",
+        "NATIVE_BUILD_PASS",
+        "POST_CAMPAIGN_DONECHECK_V12_PASS",
+        "TECHNICAL_HOLD_ZERO",
+        "EXTERNAL_A09_DEFERRED_PRESERVED"
+      ],
+      "technicalHoldCount": 0,
+      "externalA09": "EXTERNAL_BLOCKED_DEFERRED",
+      "nextAction": "V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION"
     }
   },
   "observedV07A01A02": {
