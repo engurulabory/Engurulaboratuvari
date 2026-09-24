@@ -193,6 +193,59 @@ class OperatorSurfaceTests(unittest.TestCase):
         self.assertTrue(latest_txt[-1].startswith("RECEIPT="))
         self.assertIn("operator-receipt/v1", payload["schema"])
 
+    def test_continue_runs_v08_self_engineering_baseline(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            evidence = Path(tmp)
+            runtime_receipts = evidence / "runtime"
+            baseline = mock.Mock(
+                return_value={
+                    "state": "PASS",
+                    "evidence": "/tmp/v08-baseline/evidence.json",
+                    "fields": {
+                        "NEXT_ACTION": "V08_SELF_ENGINEERING_PRODUCT_REALITY_RECONCILIATION",
+                    },
+                }
+            )
+            truth = {
+                "current_version": "v0.8",
+                "next_action": "V08_SELF_ENGINEERING_BASELINE_AUDIT",
+                "local_continuity_next_action": "V08_SELF_ENGINEERING_BASELINE_AUDIT",
+                "local_fallback": {},
+            }
+            with (
+                mock.patch.object(operator, "EVIDENCE", evidence),
+                mock.patch.object(operator, "RUNTIME_RECEIPTS", runtime_receipts),
+                mock.patch.object(operator, "canonical_boot", return_value={"state": "PASS"}),
+                mock.patch.object(operator, "current_truth", return_value=truth),
+                mock.patch.object(operator, "sync_mirrors", return_value={}),
+                mock.patch.object(operator, "runner_status", return_value={"state": "UNCOMMISSIONED"}),
+                mock.patch.object(operator, "run_v08_self_engineering_baseline", baseline),
+                mock.patch.object(operator, "offline_manifest", return_value={}),
+            ):
+                with contextlib.redirect_stdout(io.StringIO()):
+                    code = operator.command_continue()
+
+            receipt = json.loads(
+                (evidence / "latest-receipt.json").read_text(encoding="utf-8")
+            )
+
+        self.assertEqual(code, 2)
+        self.assertEqual(receipt["state"], "HOLD")
+        self.assertEqual(
+            receipt["hold"],
+            "V08_PRODUCT_REALITY_RECONCILIATION_REQUIRED",
+        )
+        self.assertIn(
+            "V08_SELF_ENGINEERING_BASELINE_AUDIT_PASS",
+            receipt["completed"],
+        )
+        self.assertIn("DONECHECK_V1_2_AUTHORITY_BOUND", receipt["completed"])
+        self.assertEqual(
+            receipt["next_action"],
+            "V08_SELF_ENGINEERING_PRODUCT_REALITY_RECONCILIATION",
+        )
+        baseline.assert_called_once_with()
+
     def test_continue_unknown_action_fails_closed(self):
         with tempfile.TemporaryDirectory() as tmp:
             evidence = Path(tmp)
