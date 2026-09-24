@@ -1808,3 +1808,80 @@ and returns the finished result to the user.
 - v0.9 owns world-class cross-product benchmark/generalization.
 
 **NEXT ACTION — FINISH_GATE6_EXISTING_PRODUCT_CHANGE**
+
+## Visual Aesthetic Timing — Canonical Rule
+
+STATE
+
+ENGÜRÜ Mac Engineer™ engineering and scenario-gate
+execution remains the current priority.
+
+The present Cockpit surface is the functional visual
+baseline.
+
+CLAIM
+
+Major visual refinement is intentionally scheduled
+after product engineering, scenario execution,
+reliability and long-running behavior reach their
+planned maturity.
+
+The established ENGÜRÜ Mac Engineer™ visual direction,
+including the approved mountain/lake/owl reference,
+remains the preserved design reference.
+
+VERSION RULE
+
+- v0.8 → complete the real product-engineering
+  scenario gates.
+- v0.9–v1.0 → strengthen autonomous product-engineering
+  behavior and field capability.
+- v1.1 → consolidate the visual system:
+  typography, spacing, navigation, page hierarchy,
+  panels, background treatment and interaction
+  consistency.
+- v1.2 → perform final Human Artistic Authority
+  refinement and whole-product aesthetic acceptance.
+
+CURRENT EXECUTION RULE
+
+During the engineering-first phase, visual work is
+limited to differences that materially affect:
+
+- usability,
+- readability,
+- overflow or layout integrity,
+- navigation,
+- task execution,
+- conversation,
+- human decision surfaces,
+- product correctness.
+
+Major aesthetic refinement does not create scenario
+sub-gates, roadmap nodes, a new core or a second
+canonical truth.
+
+Functional product acceptance remains evidence-based:
+working behavior → regression → Evidence → DoneCheck™
+→ declared Human Threshold.
+
+Final premium visual quality is independently accepted
+at the declared v1.1–v1.2 boundary.
+
+LOCKED DECISION
+
+ARCHITECTURE_REMAINS=true
+ROADMAP_REMAINS=true
+FOUNDATION_FROZEN=true
+ENGINEERING_FIRST=true
+CURRENT_VISUAL_BASELINE=PRESERVED
+MAJOR_VISUAL_CONSOLIDATION=v1.1
+FINAL_HUMAN_ARTISTIC_AUTHORITY=v1.2
+NEW_CORE=false
+SECOND_CANONICAL_TRUTH=false
+
+CURRENT NEXT ACTION
+
+FINISH_GATE6_FUNCTIONAL_ACCEPTANCE_AND_SEAL
+
+After Gate 6 PASS, activate Gate 7 — Migration / Repair.
