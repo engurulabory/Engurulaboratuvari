@@ -1120,9 +1120,9 @@ Local evidence:
 - [x] Canonical Evidence: `evidence/MAC_ENGINEER_V00_V03_HISTORICAL_RECONSTRUCTION_2026-09-22.md`.
 - [x] **V00_V03_HISTORICAL_RECONSTRUCTION = PASS / CLOSED.**
 
-**Active objective:** `V08_MIGRATION_REPAIR_SCENARIO`
+**Active objective:** `V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO`
 
-**Current single objective:** **V08_MIGRATION_REPAIR_SCENARIO**.
+**Current single objective:** **V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO**.
 
 ## v0.7 — Long-Running Reliability
 
@@ -1174,8 +1174,8 @@ DoneCheck authority:
 6. [x] **Gate 6 — Existing Product Change Scenario — PASS / SEALED**
    - [x] Gate 6 control-plane executor + operator binding — engineering regression PASS; field execution pending; product mutation remains false.
    - [x] Programmer Agent™ + Pre-Send Filter discipline — VERIFIED; Language Governance + Positive Language + Second Look + syntax/scope/recovery preflight + DoneCheck™ v1.2 pre-send bound; active Gate unchanged.
-7. [ ] **Gate 7 — Migration / Repair Scenario — ACTIVE**
-8. [ ] **Gate 8 — New Product from Brief Scenario**
+7. [x] **Gate 7 — Migration / Repair Scenario — PASS / SEALED**
+8. [ ] **Gate 8 — New Product from Brief Scenario — ACTIVE**
 9. [ ] **Gate 9 — Deploy / Live Verify / Rollback + Lifecycle**
 10. [ ] **Gate 10 — Finished-Product Delivery Acceptance**
 11. [ ] **Gate 11 — Consolidated Real-Mac Product Engineering Commissioning**
@@ -1949,3 +1949,15 @@ Evidence:
 `/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate6-functional-seal/20260924T174037Z/evidence.json`
 
 **NEXT ACTION — V08_MIGRATION_REPAIR_SCENARIO**
+
+### Latest Gate Transition
+
+Gate 7 — **PASS / SEALED**
+
+Exit:
+`V08_MIGRATION_REPAIR_VERIFIED`
+
+Gate 8 — **ACTIVE**
+
+Evidence:
+`/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate7-final/20260924T182614Z/evidence.json`

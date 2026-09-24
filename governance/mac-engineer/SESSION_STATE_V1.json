@@ -41,7 +41,7 @@
     "checkpointRestartResumeFieldProof": "VERIFIED_PASS",
     "v07LongRunReliability": "VERIFIED_LOCKED"
   },
-  "currentObjective": "V08_MIGRATION_REPAIR_SCENARIO",
+  "currentObjective": "V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO",
   "observedProductPublication": {
     "source": "MAC_FIELD_OUTPUT",
     "localSourceHead": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
@@ -1503,10 +1503,23 @@
       "dragDrop": "INCONCLUSIVE_REQUIRES_EXACT_FIELD_VERIFICATION"
     },
     "gate7": {
-      "state": "ACTIVE",
+      "state": "PASS",
       "name": "V08_MIGRATION_REPAIR_SCENARIO",
       "previousGate": "V08_EXISTING_PRODUCT_CHANGE_VERIFIED",
-      "nextAction": "DISCOVER_REAL_MIGRATION_REPAIR_TARGET"
+      "nextAction": "V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO",
+      "scenario": "RUNTIME_CANONICAL_CONTEXT_GATE_TRANSITION_MIGRATION",
+      "rootCause": "CONTROL_PLANE_GATE_TRANSITION_NOT_PROPAGATED_TO_RUNTIME_CONTEXT",
+      "repair": "SYNC_CONTEXT_PLUS_V12_TEST_CONTRACT_RECONCILIATION",
+      "regression": "PASS",
+      "restartPersistence": "PASS",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate7-final/20260924T182614Z/evidence.json",
+      "exit": "V08_MIGRATION_REPAIR_VERIFIED"
+    },
+    "gate8": {
+      "state": "ACTIVE",
+      "name": "V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO",
+      "previousGate": "V08_MIGRATION_REPAIR_VERIFIED",
+      "nextAction": "DEFINE_BOUNDED_REAL_NEW_PRODUCT_BRIEF"
     }
   },
   "preSendFilter": {
