@@ -16,7 +16,7 @@
   "current": {
     "version": "v0.8",
     "state": "ACTIVE_PRODUCT_ENGINEERING_OPERATOR",
-    "activeObjective": "V08_UX_AESTHETIC_PRODUCT_CONTRACT",
+    "activeObjective": "V08_FULL_PRODUCT_ENGINEERING_CHAIN_BINDING",
     "productSourceSha": "5432b9b135499cea18273c0e003877b864af92c6",
     "installedVersion": "0.6",
     "completed": [
@@ -37,10 +37,10 @@
       "V0_6_VERIFIED_FINAL_LOCKED",
       "V0_7_LONG_RUN_RELIABILITY_VERIFIED_LOCKED",
       "V08_GATE_01_SELF_ENGINEERING_BASELINE_PASS",
-      "V08_GATE_02_PRODUCT_REALITY_RECONCILIATION_PASS"
+      "V08_GATE_02_PRODUCT_REALITY_RECONCILIATION_PASS",
+      "V08_GATE_03_UX_AESTHETIC_CONTRACT_PASS"
     ],
     "remaining": [
-      "V08_GATE_03_UX_AESTHETIC_CONTRACT",
       "V08_GATE_04_FULL_CHAIN_BINDING",
       "V08_GATE_05_NATIVE_PRODUCTIZATION",
       "V08_GATE_06_EXISTING_PRODUCT_CHANGE",
@@ -187,7 +187,7 @@
       ],
       "acceptanceMatrix": "PASS_DEFINED",
       "acceptanceMatrixPath": "governance/mac-engineer/V08_PRODUCT_ENGINEERING_OPERATOR_ACCEPTANCE_MATRIX_V1.md",
-      "nextAction": "V08_UX_AESTHETIC_PRODUCT_CONTRACT",
+      "nextAction": "V08_FULL_PRODUCT_ENGINEERING_CHAIN_BINDING",
       "executionAuthorityModel": "ENGÜRÜ Mac-Native Engineering Authority™",
       "engineeringMode": "MAC_NATIVE_PRIMARY_AUTHORITY",
       "productBaselineExactMain": "5432b9b135499cea18273c0e003877b864af92c6",
@@ -202,11 +202,11 @@
         "totalGates": 12,
         "passed": [
           1,
-          2
+          2,
+          3
         ],
-        "active": 3,
+        "active": 4,
         "remaining": [
-          3,
           4,
           5,
           6,
