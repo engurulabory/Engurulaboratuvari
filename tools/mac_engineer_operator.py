@@ -47,6 +47,7 @@ V08_PRODUCT_REALITY_RECONCILIATION = ROOT / "governance" / "mac-engineer" / "V08
 V08_UX_AESTHETIC_PRODUCT_CONTRACT = ROOT / "governance" / "mac-engineer" / "V08_UX_AESTHETIC_PRODUCT_CONTRACT.command"
 V08_FULL_PRODUCT_ENGINEERING_CHAIN_BINDING = ROOT / "governance" / "mac-engineer" / "V08_FULL_PRODUCT_ENGINEERING_CHAIN_BINDING.command"
 V08_NATIVE_APP_PRODUCTIZATION = ROOT / "governance" / "mac-engineer" / "V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE.command"
+V08_EXISTING_PRODUCT_CHANGE = ROOT / "governance" / "mac-engineer" / "V08_EXISTING_PRODUCT_CHANGE_SCENARIO.command"
 
 TERMINAL_STATES = {"COMPLETE", "HOLD", "FAILED", "BLOCKED"}
 RECOVERABLE_STATES = {"RUNNING", "CHECKPOINTED", "RECOVERY_REQUIRED", "VERIFYING"}
@@ -1198,6 +1199,63 @@ def run_v08_native_app_productization() -> dict[str, Any]:
     }
 
 
+
+def run_v08_existing_product_change() -> dict[str, Any]:
+    if not V08_EXISTING_PRODUCT_CHANGE.is_file():
+        return {
+            "state": "HOLD",
+            "implementation_state": "HOLD",
+            "reason": "V08_EXISTING_PRODUCT_CHANGE_COMMAND_MISSING",
+            "evidence": None,
+        }
+
+    result = run(
+        ["zsh", str(V08_EXISTING_PRODUCT_CHANGE)],
+        cwd=ROOT,
+        timeout=3600,
+        env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+    )
+
+    fields: dict[str, str] = {}
+
+    for line in result.get("stdout", "").splitlines():
+        if "=" in line:
+            key, value = line.split("=", 1)
+            if key and value:
+                fields[key.strip()] = value.strip()
+
+    implementation_pass = (
+        result["code"] == 2
+        and fields.get("STATE") == "HOLD"
+        and fields.get("V08_GATE_06") == "HOLD"
+        and fields.get("V08_GATE_06_IMPLEMENTATION") == "PASS"
+        and fields.get("EXISTING_PRODUCT_CHANGE_IMPLEMENTATION") == "PASS"
+        and fields.get("PRODUCT_REMOTE_PUSH") == "false"
+        and fields.get("PRODUCT_MUTATION_PATHS") == "2"
+        and fields.get("SOURCE_CONTRACT") == "PASS"
+        and fields.get("FULL_RUNTIME_REGRESSION") == "PASS"
+        and fields.get("SOURCE_INSTALLED_RUNTIME_PARITY") == "PASS"
+        and fields.get("RELEASE_PROVENANCE") == "PASS"
+        and fields.get("CODESIGN") == "PASS"
+        and fields.get("FRESH_APP_RUNTIME_READINESS") == "PASS"
+        and fields.get("HUMAN_ARTISTIC_AUTHORITY") == "REQUIRED"
+        and fields.get("HOLD") == "HUMAN_ARTISTIC_AUTHORITY_REQUIRED"
+        and fields.get("NEXT_ACTION") == "HUMAN_ARTISTIC_AUTHORITY_REVIEW"
+    )
+
+    return {
+        "state": "HOLD",
+        "implementation_state": (
+            "PASS" if implementation_pass else "HOLD"
+        ),
+        "code": result["code"],
+        "fields": fields,
+        "evidence": fields.get("EVIDENCE"),
+        "stdout_tail": result.get("stdout", "")[-10000:],
+        "stderr_tail": result.get("stderr", "")[-10000:],
+    }
+
+
 def command_continue() -> int:
     boot = canonical_boot()
     truth = current_truth()
@@ -1212,6 +1270,56 @@ def command_continue() -> int:
         hold = "CANONICAL_BOOT"
         next_action = "enguru-mac doctor"
         completed = ["CANONICAL_BOOT_HOLD", "GITVAULT_SYNC"]
+    elif local_action == "V08_EXISTING_PRODUCT_CHANGE_SCENARIO":
+        completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
+        v08_existing_change = run_v08_existing_product_change()
+
+        if v08_existing_change.get("implementation_state") != "PASS":
+            payload = write_receipt(
+                command="continue",
+                state="HOLD",
+                completed=completed,
+                evidence=[
+                    item for item in [
+                        str(SESSION_STATE),
+                        str(v08_existing_change.get("evidence") or ""),
+                    ] if item
+                ],
+                hold="V08_EXISTING_PRODUCT_CHANGE_SCENARIO",
+                next_action="enguru-mac doctor",
+                details={
+                    "truth": truth,
+                    "boot": boot,
+                    "runner": runner,
+                    "mirrors": mirrors,
+                    "v08_existing_change": v08_existing_change,
+                },
+            )
+            print_receipt(payload)
+            return 2
+
+        completed.extend([
+            "V08_EXISTING_PRODUCT_CHANGE_IMPLEMENTATION_PASS",
+            "BOUNDED_PRODUCT_MUTATION_TWO_PATHS_PASS",
+            "PRIMARY_STATE_SURFACE_PASS",
+            "CONDITIONAL_ATTENTION_PASS",
+            "VISIBLE_NEXT_ACTION_PASS",
+            "NATURAL_LANGUAGE_COMPOSER_PRESERVED",
+            "FULL_RUNTIME_REGRESSION_PASS",
+            "SOURCE_INSTALLED_RUNTIME_PARITY_PASS",
+            "RELEASE_PROVENANCE_PASS",
+            "NATIVE_CODESIGN_PASS",
+            "FRESH_APP_RUNTIME_READINESS_PASS",
+            "PRODUCT_REMOTE_PUSH_FALSE",
+            "DONECHECK_V1_2_AUTHORITY_PRESERVED",
+        ])
+
+        state = "HOLD"
+        hold = "HUMAN_ARTISTIC_AUTHORITY_REQUIRED"
+        next_action = (
+            (v08_existing_change.get("fields") or {}).get("NEXT_ACTION")
+            or "HUMAN_ARTISTIC_AUTHORITY_REVIEW"
+        )
     elif local_action == "V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE":
         completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
         productization = run_v08_native_app_productization()
@@ -1811,6 +1919,7 @@ def command_continue() -> int:
                 str((locals().get("final_campaign") or {}).get("evidence") or ""),
                 str((locals().get("human_review") or {}).get("evidence") or ""),
                 str((locals().get("v08_baseline") or {}).get("evidence") or ""),
+                str((locals().get("v08_existing_change") or {}).get("evidence") or ""),
             ]
             if item
         ],
@@ -1832,6 +1941,7 @@ def command_continue() -> int:
             "final_campaign": locals().get("final_campaign"),
             "human_review": locals().get("human_review"),
             "v08_baseline": locals().get("v08_baseline"),
+            "v08_existing_change": locals().get("v08_existing_change"),
             "offline_manifest": offline_manifest(),
         },
     )

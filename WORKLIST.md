@@ -1172,6 +1172,7 @@ DoneCheck authority:
 4. [x] **Gate 4 — Full Product Engineering Chain Binding — PASS**
 5. [x] **Gate 5 — Native App Productization + Version/Provenance — PASS**
 6. [ ] **Gate 6 — Existing Product Change Scenario — ACTIVE**
+   - [x] Gate 6 control-plane executor + operator binding — engineering regression PASS; field execution pending; product mutation remains false.
    - [x] Programmer Agent™ + Pre-Send Filter discipline — VERIFIED; Language Governance + Positive Language + Second Look + syntax/scope/recovery preflight + DoneCheck™ v1.2 pre-send bound; active Gate unchanged.
 7. [ ] **Gate 7 — Migration / Repair Scenario**
 8. [ ] **Gate 8 — New Product from Brief Scenario**

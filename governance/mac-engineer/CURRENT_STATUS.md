@@ -28,6 +28,23 @@ Active product objective remains:
 
 Product mutation from this discipline package: **false**.
 
+## GATE 6 CONTROL-PLANE PREPARATION
+
+**STATE — ENGINEERING PASS / FIELD EXECUTION PENDING.**
+
+Gate 6 Existing Product Change executor contract and `enguru-mac continue` operator binding are prepared as one bounded control-plane package.
+
+Verified preparation:
+
+- Gate 6 executor contract present;
+- operator routing bound;
+- Human Artistic Authority™ remains the next acceptance authority after technical execution;
+- product remote push remains false;
+- active objective remains `V08_EXISTING_PRODUCT_CHANGE_SCENARIO`;
+- product mutation from this preparation package remains false.
+
+**NEXT ACTION — local candidate acceptance → Doctor → `enguru-mac continue`.**
+
 ## CLAIM
 
 The v0.6 product, installed Mac runtime, real task continuity and bounded recovery path have all been independently verified on the real Mac.

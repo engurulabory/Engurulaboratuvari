@@ -20,6 +20,118 @@ SPEC.loader.exec_module(operator)
 
 
 class OperatorSurfaceTests(unittest.TestCase):
+    def test_v08_gate6_operator_contract_is_bound(self) -> None:
+        source = (
+            Path(__file__).resolve().parents[1]
+            / "tools"
+            / "mac_engineer_operator.py"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn(
+            'local_action == "V08_EXISTING_PRODUCT_CHANGE_SCENARIO"',
+            source,
+        )
+        self.assertIn(
+            "V08_EXISTING_PRODUCT_CHANGE_IMPLEMENTATION_PASS",
+            source,
+        )
+        self.assertIn(
+            "HUMAN_ARTISTIC_AUTHORITY_REQUIRED",
+            source,
+        )
+        self.assertIn(
+            "PRODUCT_REMOTE_PUSH_FALSE",
+            source,
+        )
+
+    def test_continue_runs_v08_gate6_to_human_artistic_authority(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            evidence = Path(tmp)
+            runtime_receipts = evidence / "runtime"
+
+            gate6 = mock.Mock(
+                return_value={
+                    "state": "HOLD",
+                    "implementation_state": "PASS",
+                    "evidence": "/tmp/gate6/evidence.json",
+                    "fields": {
+                        "NEXT_ACTION":
+                            "HUMAN_ARTISTIC_AUTHORITY_REVIEW",
+                    },
+                }
+            )
+
+            truth = {
+                "current_version": "v0.8",
+                "next_action":
+                    "V08_EXISTING_PRODUCT_CHANGE_SCENARIO",
+                "local_continuity_next_action":
+                    "V08_EXISTING_PRODUCT_CHANGE_SCENARIO",
+                "local_fallback": {},
+            }
+
+            with (
+                mock.patch.object(operator, "EVIDENCE", evidence),
+                mock.patch.object(
+                    operator,
+                    "RUNTIME_RECEIPTS",
+                    runtime_receipts,
+                ),
+                mock.patch.object(
+                    operator,
+                    "canonical_boot",
+                    return_value={"state": "PASS"},
+                ),
+                mock.patch.object(
+                    operator,
+                    "current_truth",
+                    return_value=truth,
+                ),
+                mock.patch.object(
+                    operator,
+                    "sync_mirrors",
+                    return_value={},
+                ),
+                mock.patch.object(
+                    operator,
+                    "runner_status",
+                    return_value={"state": "UNCOMMISSIONED"},
+                ),
+                mock.patch.object(
+                    operator,
+                    "run_v08_existing_product_change",
+                    gate6,
+                ),
+                mock.patch.object(
+                    operator,
+                    "offline_manifest",
+                    return_value={},
+                ),
+            ):
+                with contextlib.redirect_stdout(io.StringIO()):
+                    code = operator.command_continue()
+
+            receipt = json.loads(
+                (evidence / "latest-receipt.json")
+                .read_text(encoding="utf-8")
+            )
+
+        self.assertEqual(code, 2)
+        self.assertEqual(receipt["state"], "HOLD")
+        self.assertEqual(
+            receipt["hold"],
+            "HUMAN_ARTISTIC_AUTHORITY_REQUIRED",
+        )
+        self.assertIn(
+            "V08_EXISTING_PRODUCT_CHANGE_IMPLEMENTATION_PASS",
+            receipt["completed"],
+        )
+        self.assertEqual(
+            receipt["next_action"],
+            "HUMAN_ARTISTIC_AUTHORITY_REVIEW",
+        )
+        gate6.assert_called_once_with()
+
     def test_v08_gate5_operator_contract_is_bound(self) -> None:
         source = (
             Path(__file__).resolve().parents[1]
