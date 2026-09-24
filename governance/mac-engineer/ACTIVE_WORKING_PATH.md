@@ -159,6 +159,24 @@ ZEKÜ çıktıyı şu akışla değerlendirir:
 
 Terminal çıktısı karar girdisidir; canonical hüküm Evidence + acceptance ilişkisi üzerinden verilir.
 
+## 8A. Programmer Agent + Pre-Send Filter
+
+`PROGRAMMER_AGENT_PRE_SEND_FILTER_V1`
+
+ENGÜRÜ Programmer Agent™ v0.1, Mac Engineer içindeki canonical kodlama / programlama uzmanıdır.
+
+Material terminal package akışı:
+
+`PROGRAMMER AGENT → LANGUAGE GOVERNANCE → POSITIVE LANGUAGE → SECOND LOOK → SYNTAX / SCOPE / RECOVERY PREFLIGHT → DoneCheck™ v1.2 PRE-SEND → TERMINAL EXECUTION`
+
+Yeni core oluşmaz. Mevcut Programmer Agent™, Steel Operating Character™, Language Governance™, Second Look ve DoneCheck™ v1.2 birlikte kullanılır.
+
+Pre-send executable gate:
+
+`python3 tools/mac_engineer_pre_send_filter.py <terminal-package.command>`
+
+Bu gate material terminal package için canonical objective, necessary difference, positive language, Second Look, expected scope, recovery, shell/Python syntax ve authority boundary kanıtını arar.
+
 ## 9. Mevcut hakikat + gerekli fark
 
 Her çalışma paketi şu ilkeye bağlıdır:

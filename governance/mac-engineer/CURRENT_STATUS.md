@@ -12,6 +12,22 @@ ENGÜRÜ Mac Engineering™ v0.7 is **LONG-RUN RELIABILITY VERIFIED / LOCKED**. 
 
 Local field truth, canonical reconciliation, merge provenance and control-plane exact-main acceptance are all complete. Recovery, fixture repair, local field acceptance and v0.6 closure are closed truths.
 
+## PROGRAMMER AGENT AUTHORING DISCIPLINE
+
+**STATE — VERIFIED.**
+
+ENGÜRÜ Programmer Agent™ v0.1 is the existing coding/programming specialist inside ENGÜRÜ Mac Engineer™. Steel Operating Character™, ENGÜRÜ Language Governance™, Positive Language, Second Look and DoneCheck™ v1.2 now form one explicit pre-send authoring path for material Terminal packages.
+
+Executable gate:
+
+`tools/mac_engineer_pre_send_filter.py`
+
+Active product objective remains:
+
+`V08_EXISTING_PRODUCT_CHANGE_SCENARIO`
+
+Product mutation from this discipline package: **false**.
+
 ## CLAIM
 
 The v0.6 product, installed Mac runtime, real task continuity and bounded recovery path have all been independently verified on the real Mac.

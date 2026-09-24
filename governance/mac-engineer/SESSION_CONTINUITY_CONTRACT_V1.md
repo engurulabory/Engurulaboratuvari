@@ -10,7 +10,7 @@ This contract prevents a new ChatGPT session, Terminal session or operator hando
 
 Every engineering session follows exactly this chain:
 
-`SESSION START → CANONICAL SYNC → SESSION STATE → ONE ACTIVE OBJECTIVE → CHANGE → TEST/CI → EXACT-MAIN → MAC FIELD ACTION → EVIDENCE → MANDATORY DONECHECK™ → CURRENT_STATUS RECONCILE → WORKLIST/SESSION_STATE RECONCILE → SESSION HANDOFF`
+`SESSION START → CANONICAL SYNC → SESSION STATE → ONE ACTIVE OBJECTIVE → PROGRAMMER AGENT → PRE-SEND FILTER → CHANGE → TEST/CI → EXACT-MAIN → MAC FIELD ACTION → EVIDENCE → MANDATORY DONECHECK™ → CURRENT_STATUS RECONCILE → WORKLIST/SESSION_STATE RECONCILE → SESSION HANDOFF`
 
 No session starts directly from an old chat summary, an old Terminal directory, an installed runtime file or a remembered next step.
 
@@ -134,6 +134,9 @@ A new chat can begin from this snapshot plus GitHub canonical truth instead of c
 ## 7. ChatGPT operating rule
 
 For ENGÜRÜ Mac Engineer engineering sessions, ChatGPT must:
+
+Before a material Mac Terminal package is presented, the session applies the ENGÜRÜ Programmer Agent™ authoring discipline and Pre-Send Filter. The package reaches Terminal only after canonical objective, necessary difference, Language Governance, positive language, Second Look, syntax, scope, recovery and DoneCheck™ v1.2 pre-send checks align.
+
 
 1. read `CURRENT_STATUS.md`, canonical WORKLIST and structured session-state first;
 2. identify the single necessary difference;

@@ -19,7 +19,7 @@
     "installedApp": "~/Applications/ENGÜRÜ Mac Engineer.app",
     "evidence": "~/Enguru/Evidence/MacEngineer"
   },
-  "lockedMethod": "SESSION_START -> CANONICAL_SYNC -> SESSION_STATE -> ONE_ACTIVE_OBJECTIVE -> CHANGE -> TEST_CI -> EXACT_MAIN -> MAC_FIELD_ACTION -> EVIDENCE -> DONECHECK -> CURRENT_STATUS_RECONCILE -> WORKLIST_SESSION_STATE_RECONCILE -> SESSION_HANDOFF",
+  "lockedMethod": "SESSION_START -> CANONICAL_SYNC -> SESSION_STATE -> ONE_ACTIVE_OBJECTIVE -> PROGRAMMER_AGENT -> PRE_SEND_FILTER -> CHANGE -> TEST_CI -> EXACT_MAIN -> MAC_FIELD_ACTION -> EVIDENCE -> DONECHECK -> CURRENT_STATUS_RECONCILE -> WORKLIST_SESSION_STATE_RECONCILE -> SESSION_HANDOFF",
   "closedTruth": {
     "githubEngineeringCloseout": "VERIFIED_LOCKED",
     "localProductSourceBootstrap": "PASS",
@@ -1402,5 +1402,15 @@
         "DONECHECK_V1_2_AUTHORITY_PRESERVED"
       ]
     }
+  },
+  "preSendFilter": {
+    "state": "VERIFIED",
+    "identity": "ENGÜRÜ Programmer Agent™ v0.1",
+    "newCore": false,
+    "executable": "tools/mac_engineer_pre_send_filter.py",
+    "language": "POSITIVE_CONSTRUCTIVE_TRUTHFUL",
+    "secondLook": "REQUIRED",
+    "doneCheck": "V1.2_REQUIRED",
+    "activeObjectivePreserved": "V08_EXISTING_PRODUCT_CHANGE_SCENARIO"
   }
 }
