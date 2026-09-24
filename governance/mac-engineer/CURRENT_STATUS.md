@@ -3,12 +3,12 @@
 **Updated:** 2026-09-24
 **Program target:** ENGÜRÜ Mac Engineering™ v1.1 — Verified Product Engineering Operator
 **Current version:** v0.8 — PRODUCT ENGINEERING OPERATOR / ACTIVE
-**Current objective:** V08_FULL_PRODUCT_ENGINEERING_CHAIN_BINDING
+**Current objective:** V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE
 **Canonical objective id:** `V08_PRODUCT_ENGINEERING_OPERATOR`
 
 ## CURRENT ENGINEERING TRUTH
 
-ENGÜRÜ Mac Engineering™ v0.7 is **LONG-RUN RELIABILITY VERIFIED / LOCKED**. v0.8 Product Engineering Operator is **ACTIVE** at Gate 2 — Product Reality Reconciliation.
+ENGÜRÜ Mac Engineering™ v0.7 is **LONG-RUN RELIABILITY VERIFIED / LOCKED**. v0.8 Product Engineering Operator is **ACTIVE** at Gate 5 — Native App Productization + Version/Provenance. Gates 1–4 are verified PASS.
 
 Local field truth, canonical reconciliation, merge provenance and control-plane exact-main acceptance are all complete. Recovery, fixture repair, local field acceptance and v0.6 closure are closed truths.
 
@@ -29,7 +29,7 @@ The active engineering model is **ENGÜRÜ Mac-Native Engineering Authority™ /
 
 ### Product authority
 - Product repository: `engurulabory/enguru-mac-engineer`
-- Product exact-main: `7f2e22994d17b913f226eb05691d934f81e1c212`
+- Product Gate 5 baseline exact-main: `5432b9b135499cea18273c0e003877b864af92c6`
 - Product exact-main CI: PASS
 - Installed/runtime app version: 0.6
 - Runtime source parity: 34/34 EXACT
@@ -953,3 +953,42 @@ Machine verification authority:
 `DoneCheck™ v1.2 / 1.2.0 / exact-main 8b90a8fc93453dd8a84994195d28d14b15e261cb`
 
 **NEXT ACTION — fresh exact-head acceptance → Doctor → enguru-mac continue → Gate 4 Full Product Engineering Chain Binding verification.**
+
+
+## v0.8 GATE 4 — VERIFIED PASS / GATE 5 — NATIVE PRODUCTIZATION PREPARED — 2026-09-24
+
+**STATE — 4/12 PASS / GATE 5 ACTIVE.**
+
+Gate 4 operator receipt:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260924T052807Z-continue.json`
+
+Verified Gate 4 chain:
+
+`PRODUCT_ENGINEERING_CHAIN_14_STAGE_BOUND → EXISTING_MECHANISMS_REUSED → DEPLOY_ADAPTER_BOUNDARY_DEFINED → LATER_EXECUTION_PROOF_GATES_PRESERVED → UNNECESSARY_NEW_CORE_ZERO → DONECHECK_V1_2_AUTHORITY_PRESERVED`
+
+Gate 5 product baseline:
+
+`engurulabory/enguru-mac-engineer @ 5432b9b135499cea18273c0e003877b864af92c6`
+
+Dedicated product branch:
+
+`feat/v08-native-productization-provenance`
+
+Authorized product mutation scope:
+
+`Info.plist + prepare_native_app.command + test_v08_native_productization.py`
+
+Gate 5 target:
+
+`0.8 candidate identity → source-bound runtime parity → exact-source release.json → local commit → native build/install → ad-hoc codesign → fresh runtime readiness → Evidence`
+
+Remote push during Gate 5 field proof: false.
+
+UI/Aesthetic implementation remains reserved for Gate 6 Existing Product Change Scenario.
+
+Machine verification authority:
+
+`DoneCheck™ v1.2 / 1.2.0 / exact-main 8b90a8fc93453dd8a84994195d28d14b15e261cb`
+
+**NEXT ACTION — fresh exact-head acceptance → Doctor → enguru-mac continue → Gate 5 native productization field proof.**
