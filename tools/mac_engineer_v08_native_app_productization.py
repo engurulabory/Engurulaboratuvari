@@ -52,6 +52,7 @@ MACOS="$CONTENTS/MacOS"
 SRC_DIR="$(cd "$(dirname "$0")" && pwd)"
 PRODUCT_ROOT="$(cd "$SRC_DIR/../.." && pwd)"
 RUNTIME_SRC="$(cd "$SRC_DIR/../../runtime" && pwd)"
+ICON_SOURCE="$RUNTIME_SRC/static/engineer-emblem.png"
 EVIDENCE="$ROOT/Evidence/MacEngineer"
 TS="$(date -u +%Y%m%dT%H%M%SZ)"
 
@@ -62,6 +63,8 @@ command -v git >/dev/null || { print "BLOCKED — git not found"; exit 4; }
 command -v swiftc >/dev/null || { print "HOLD — swiftc not found"; exit 5; }
 command -v codesign >/dev/null || { print "HOLD — codesign not found"; exit 6; }
 command -v rsync >/dev/null || { print "HOLD — rsync not found"; exit 7; }
+command -v sips >/dev/null || { print "HOLD — sips not found"; exit 8; }
+command -v iconutil >/dev/null || { print "HOLD — iconutil not found"; exit 9; }
 
 SOURCE_REPOSITORY="engurulabory/enguru-mac-engineer"
 SOURCE_BRANCH="$(git -C "$PRODUCT_ROOT" branch --show-current)"
@@ -80,6 +83,10 @@ BUNDLE_VERSION="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString'
 [[ "$BUNDLE_VERSION" == "0.8" ]] || {
   print "HOLD — bundle version must be 0.8"
   exit 10
+}
+[[ -f "$ICON_SOURCE" ]] || {
+  print "HOLD — canonical engineer emblem source missing"
+  exit 11
 }
 
 mkdir -p \
@@ -105,7 +112,20 @@ trap cleanup_stage EXIT INT TERM HUP
 
 mkdir -p "$STAGED_MACOS" "$STAGED_RESOURCES"
 cp "$SRC_DIR/Info.plist" "$STAGED_CONTENTS/Info.plist"
-cp "$SRC_DIR/Resources/ENGURU_Mac_Engineer.icns" "$STAGED_RESOURCES/ENGURU_Mac_Engineer.icns"
+
+ICONSET="$BUILD_DIR/ENGURU_Mac_Engineer.iconset"
+mkdir -p "$ICONSET"
+sips -z 16 16 "$ICON_SOURCE" --out "$ICONSET/icon_16x16.png" >/dev/null
+sips -z 32 32 "$ICON_SOURCE" --out "$ICONSET/icon_16x16@2x.png" >/dev/null
+sips -z 32 32 "$ICON_SOURCE" --out "$ICONSET/icon_32x32.png" >/dev/null
+sips -z 64 64 "$ICON_SOURCE" --out "$ICONSET/icon_32x32@2x.png" >/dev/null
+sips -z 128 128 "$ICON_SOURCE" --out "$ICONSET/icon_128x128.png" >/dev/null
+sips -z 256 256 "$ICON_SOURCE" --out "$ICONSET/icon_128x128@2x.png" >/dev/null
+sips -z 256 256 "$ICON_SOURCE" --out "$ICONSET/icon_256x256.png" >/dev/null
+sips -z 512 512 "$ICON_SOURCE" --out "$ICONSET/icon_256x256@2x.png" >/dev/null
+sips -z 512 512 "$ICON_SOURCE" --out "$ICONSET/icon_512x512.png" >/dev/null
+sips -z 1024 1024 "$ICON_SOURCE" --out "$ICONSET/icon_512x512@2x.png" >/dev/null
+iconutil -c icns "$ICONSET" -o "$STAGED_RESOURCES/ENGURU_Mac_Engineer.icns"
 
 swiftc -parse-as-library "$SRC_DIR/EnguruMacEngineerApp.swift" \
   -o "$STAGED_MACOS/EnguruMacEngineer" \
@@ -325,6 +345,8 @@ class V08NativeProductizationTests(unittest.TestCase):
             'SOURCE_COMMIT="$(git -C "$PRODUCT_ROOT" rev-parse HEAD)"',
             'release.json',
             'runtimeDigest',
+            'engineer-emblem.png',
+            'iconutil -c icns',
             'rsync -a --delete',
             'RUNTIME_PARITY=PASS',
             'codesign --verify --deep --strict',
@@ -678,9 +700,17 @@ def existing_commit_state() -> dict[str, Any] | None:
     if head == PRODUCT_BASELINE:
         return None
 
-    changed = sorted(path for path in git("diff", "--name-only", f"{PRODUCT_BASELINE}...{head}").splitlines() if path)
+    changed = sorted(
+        path
+        for path in git(
+            "diff", "--name-only", f"{PRODUCT_BASELINE}...{head}"
+        ).splitlines()
+        if path
+    )
     if changed != sorted(AUTHORIZED_PATHS):
-        raise RuntimeError("EXISTING_PRODUCT_COMMIT_SCOPE_MISMATCH:" + ",".join(changed))
+        raise RuntimeError(
+            "EXISTING_PRODUCT_COMMIT_SCOPE_MISMATCH:" + ",".join(changed)
+        )
     if plist_version(PRODUCT / AUTHORIZED_PATHS[0]) != PRODUCT_VERSION:
         raise RuntimeError("EXISTING_PRODUCT_VERSION_V08_REQUIRED")
     if git("status", "--porcelain"):
@@ -688,7 +718,93 @@ def existing_commit_state() -> dict[str, Any] | None:
     ahead = git("rev-list", "--count", f"origin/{PRODUCT_BRANCH}..HEAD")
     if ahead != "1":
         raise RuntimeError("EXISTING_PRODUCT_LOCAL_AHEAD_ONE_REQUIRED")
-    return {"head": head, "changedPaths": changed, "aheadRemoteWorkingBranch": 1}
+    return {
+        "head": head,
+        "changedPaths": changed,
+        "aheadRemoteWorkingBranch": 1,
+    }
+
+
+def reconcile_existing_commit_to_current_contract(
+    run_dir: Path,
+    existing: dict[str, Any],
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    prepare_path = PRODUCT / AUTHORIZED_PATHS[1]
+    test_path = PRODUCT / AUTHORIZED_PATHS[2]
+
+    contract_current = (
+        prepare_path.read_text(encoding="utf-8") == PREPARE_V08
+        and test_path.read_text(encoding="utf-8") == PRODUCT_TEST
+    )
+    if contract_current:
+        regression = run_product_regression(run_dir)
+        return existing, regression
+
+    apply_mutation()
+
+    worktree_paths = sorted(
+        path
+        for path in set(
+            git("diff", "--name-only").splitlines()
+            + git("ls-files", "--others", "--exclude-standard").splitlines()
+        )
+        if path
+    )
+    unexpected = sorted(set(worktree_paths) - set(AUTHORIZED_PATHS))
+    if unexpected:
+        raise RuntimeError(
+            "PRODUCT_RECOVERY_SCOPE_MISMATCH:" + ",".join(unexpected)
+        )
+
+    regression = run_product_regression(run_dir)
+
+    run(["git", "add", *AUTHORIZED_PATHS], timeout=120)
+    staged = sorted(
+        path
+        for path in git("diff", "--cached", "--name-only").splitlines()
+        if path
+    )
+    if not staged:
+        raise RuntimeError("PRODUCT_RECOVERY_AMEND_DIFF_REQUIRED")
+    unexpected_staged = sorted(set(staged) - set(AUTHORIZED_PATHS))
+    if unexpected_staged:
+        raise RuntimeError(
+            "PRODUCT_RECOVERY_STAGED_SCOPE_MISMATCH:"
+            + ",".join(unexpected_staged)
+        )
+
+    run(["git", "commit", "--amend", "--no-edit"], timeout=300)
+
+    if git("status", "--porcelain"):
+        raise RuntimeError("PRODUCT_POST_AMEND_CLEAN_REQUIRED")
+
+    amended_head = git("rev-parse", "HEAD")
+    changed = sorted(
+        path
+        for path in git(
+            "diff", "--name-only", f"{PRODUCT_BASELINE}...{amended_head}"
+        ).splitlines()
+        if path
+    )
+    if changed != sorted(AUTHORIZED_PATHS):
+        raise RuntimeError(
+            "PRODUCT_AMENDED_COMMIT_SCOPE_MISMATCH:" + ",".join(changed)
+        )
+
+    ahead = git("rev-list", "--count", f"origin/{PRODUCT_BRANCH}..HEAD")
+    if ahead != "1":
+        raise RuntimeError("PRODUCT_AMENDED_LOCAL_AHEAD_ONE_REQUIRED")
+
+    return (
+        {
+            "head": amended_head,
+            "changedPaths": changed,
+            "aheadRemoteWorkingBranch": 1,
+            "amendedRecovery": True,
+            "previousHead": existing["head"],
+        },
+        regression,
+    )
 
 
 def stop_old_runtime() -> None:
@@ -799,8 +915,10 @@ def main() -> int:
             commit = commit_product_change()
             commit["mutationScopeBeforeCommit"] = scope
         else:
-            regression = run_product_regression(run_dir)
-            commit = existing
+            commit, regression = reconcile_existing_commit_to_current_contract(
+                run_dir,
+                existing,
+            )
             commit["mutationScopeBeforeCommit"] = list(AUTHORIZED_PATHS)
 
         product_head = commit["head"]
