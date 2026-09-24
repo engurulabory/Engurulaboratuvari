@@ -1,9 +1,9 @@
 # ENGÜRÜ Mac Engineer™ — Current Status
 
-**Updated:** 2026-09-22  
-**Program target:** ENGÜRÜ Mac Engineering™ v1.1 — Verified Product Engineering Operator  
-**Current version:** v0.6 — VERIFIED FINAL / LOCKED  
-**Current objective:** v0.7 — Long-Running Reliability  
+**Updated:** 2026-09-24
+**Program target:** ENGÜRÜ Mac Engineering™ v1.1 — Verified Product Engineering Operator
+**Current version:** v0.8 — PRODUCT ENGINEERING OPERATOR / ACTIVE
+**Current objective:** V08_SELF_ENGINEERING_BASELINE_AUDIT
 **Canonical objective id:** `V0_7_LONG_RUNNING_RELIABILITY`
 
 ## CURRENT ENGINEERING TRUTH
