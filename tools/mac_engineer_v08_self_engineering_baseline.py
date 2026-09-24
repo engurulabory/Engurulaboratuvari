@@ -29,6 +29,9 @@ EVIDENCE_ROOT = (
     / "self-engineering-baseline"
 )
 
+DONECHECK_VERSION = "1.2.0"
+DONECHECK_EXACT_MAIN = "8b90a8fc93453dd8a84994195d28d14b15e261cb"
+
 
 def now() -> str:
     return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
@@ -318,8 +321,8 @@ def main() -> int:
         "attentionRequired": attention,
         "doneCheckAuthority": {
             "product": "DoneCheck™ v1.2",
-            "version": "1.2.0",
-            "exactMain": "8b90a8fc93453dd8a84994195d28d14b15e261cb",
+            "version": DONECHECK_VERSION,
+            "exactMain": DONECHECK_EXACT_MAIN,
             "appliedAtFinalGate": True,
         },
         "mutation": False,
