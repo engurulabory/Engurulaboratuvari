@@ -872,3 +872,26 @@ Authority remains:
 Gate 2 product mutation: false. Remote push: false. Second canonical truth: false.
 
 **NEXT ACTION — fresh exact-head acceptance → Doctor → enguru-mac continue → V08_SELF_ENGINEERING_PRODUCT_REALITY_RECONCILIATION.**
+
+
+## v0.8 GATE 2 — CANONICAL OBJECTIVE REGRESSION RECONCILIATION — 2026-09-24
+
+**STATE — PATCH PREPARED / FRESH EXACT-HEAD ACCEPTANCE REQUIRED.**
+
+Observed local acceptance result:
+
+`HOLD=FULL_CONTROL_PLANE_REGRESSION_FAILED`
+
+Root cause: Gate 1 was canonically closed and Gate 2 became active, while two regression surfaces retained the prior objective:
+
+- WORKLIST canonical objective still referenced the earlier v0.7 / Gate 1 objective;
+- `test_v08_active_objective_preserves_v07_lock` hard-coded `V08_SELF_ENGINEERING_BASELINE_AUDIT`.
+
+Required difference applied:
+
+- WORKLIST `Active objective` and `Current single objective` now equal `V08_SELF_ENGINEERING_PRODUCT_REALITY_RECONCILIATION`;
+- session-continuity regression derives the active objective from the canonical roadmap rather than a gate-specific hard-coded value;
+- the regression still requires v0.7 to remain `VERIFIED_LOCKED`;
+- Gate 1 PASS Evidence, Gate 2 ACTIVE state, ENGÜRÜ Mac-Native Engineering Authority™, DoneCheck™ v1.2 authority and second-canonical-truth protection remain unchanged.
+
+**NEXT ACTION — fresh exact-head acceptance → Doctor → enguru-mac continue → Gate 2 Product Reality Reconciliation.**
