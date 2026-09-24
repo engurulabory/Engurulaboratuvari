@@ -1234,7 +1234,7 @@ Canonical target: **ENGÜRÜ Mac Engineer™ v0.7 LONG-RUN RELIABILITY VERIFIED 
 10. [x] **Offline / GitVault Reconciliation Proof** — prove local continuity while GitHub execution is unavailable; preserve remote identity and prevent second truth.
 11. [x] **DoneCheck™ v1.2 Migration Verification** — consume gates 8–10 and verify local authority migration Evidence.
 12. [x] **Final Verify + Consolidated Mac Long-Run Commissioning** — ≥8h Mac campaign, ≥3 controlled interruptions, full regression, resource/RSS, Evidence bundle, technical HOLD target = 0 except explicitly deferred external GitHub billing gate.
-13. [ ] **Human Threshold™ + Authority Transition — ACTIVE / HUMAN DECISION REQUIRED** — human accepts Mac-native primary engineering authority; canonical status/worklist reconciliation → **v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED**.
+13. [x] **Human Threshold™ + Authority Transition** — human accepts Mac-native primary engineering authority; canonical status/worklist reconciliation → **v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED**.
 
 External GitHub Actions A09:
 - state: **EXTERNAL_BLOCKED / GITHUB BILLING**
@@ -1267,9 +1267,9 @@ Final operating chain:
 
 `GitHub truth → Mac-local build/repair/recovery → Evidence → DoneCheck™ → verified sync → Human Threshold™ → Verified Finish`
 
-### Active next action — Gate 13
+### Verified Finish — v0.7
 
-`V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION`
+`V0_7_LONG_RUN_RELIABILITY_VERIFIED_LOCKED`
 
 Use the already-proven Repository Fabric + OSi operator + GitVault + Evidence + DoneCheck™ layers. GitHub remains remote identity/publication/recovery surface during migration; local Mac becomes primary execution authority only after gates 8–13 and Human Threshold PASS.
 
@@ -1355,3 +1355,18 @@ Verified chain:
 External GitHub A09 remains `EXTERNAL_BLOCKED_DEFERRED` and was not promoted.
 
 **Closure state: 12/13 PASS. Active gate: 13 — Human Threshold™ + Authority Transition.**
+
+
+### Gate 13 result — HUMAN THRESHOLD ACCEPTED
+
+Human decision Evidence:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/human-threshold/20260924T040827Z/human-decision.json`
+
+Verified decision:
+
+`HUMAN_THRESHOLD=ACCEPTED → AUTHORITY_TRANSITION_ACCEPTED=PASS → EXTERNAL_A09_PROMOTED=false`
+
+**Closure state: 13/13 PASS. Canonical target: v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED.**
+
+External GitHub A09 remains `EXTERNAL_BLOCKED_DEFERRED` and requires reconciliation when GitHub Actions execution becomes available. This does not reopen the Mac-native local Verified Finish.
