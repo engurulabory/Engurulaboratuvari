@@ -106,6 +106,34 @@ class LocalAcceptedCandidateAuthorityTests(unittest.TestCase):
             source,
         )
 
+    def test_current_v08_policy_is_selected_when_v08_is_active(self) -> None:
+        self.session["currentVersion"] = "v0.8"
+        self.session["currentV08"] = {
+            "controlPlaneLocalContinuity": {
+                "state": "ACTIVE_VERSION_ENGINEERING",
+                "branch": self.branch,
+                "canonicalRemoteAuthority": "GITHUB_REMOTE_MAIN",
+                "localAuthority": "MAC_NATIVE_PRIMARY_ENGINEERING_AUTHORITY_VERIFIED",
+                "secondCanonicalTruth": False,
+                "externalMergeGate": self.external_hold,
+                "acceptanceStatePath": str(self.state),
+            }
+        }
+
+        state_payload = json.loads(self.state.read_text(encoding="utf-8"))
+        state_payload["authority"] = "MAC_NATIVE_PRIMARY_ENGINEERING_AUTHORITY_VERIFIED"
+        state_payload["policyPhase"] = "ACTIVE_VERSION_ENGINEERING"
+        self.state.write_text(json.dumps(state_payload), encoding="utf-8")
+
+        evidence_payload = json.loads(self.evidence.read_text(encoding="utf-8"))
+        evidence_payload["authority"] = "MAC_NATIVE_PRIMARY_ENGINEERING_AUTHORITY_VERIFIED"
+        evidence_payload["policyPhase"] = "ACTIVE_VERSION_ENGINEERING"
+        self.evidence.write_text(json.dumps(evidence_payload), encoding="utf-8")
+
+        result = self.evaluate()
+        self.assertTrue(result["authorized"], result["reasons"])
+        self.assertEqual(result["policy_phase"], "ACTIVE_VERSION_ENGINEERING")
+
     def test_post_lock_verified_local_authority_is_authorized(self) -> None:
         policy = self.session["currentV07"]["controlPlaneLocalContinuity"]
         policy["state"] = "VERIFIED_LOCAL_AUTHORITY_PENDING_EXTERNAL_RECONCILIATION"
