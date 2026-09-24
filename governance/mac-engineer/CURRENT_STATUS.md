@@ -659,3 +659,20 @@ Evidence root:
 `~/Enguru/Evidence/MacEngineer/v0.7/final-consolidated-campaign/`
 
 **NEXT ACTION — fresh exact-head local acceptance → Doctor → `enguru-mac continue` → ≥8h Gate 12 campaign → Human Threshold™ if PASS.**
+
+
+## GATE 12 FINAL CONSOLIDATED MAC CAMPAIGN — VERIFIED PASS — 2026-09-23
+
+**STATE — PASS / 12 OF 13 CLOSED.**
+
+The real Mac campaign completed the locked ≥8h contract with all three controlled interruption surfaces, same-task continuity, exactly-once durable effect, RSS limits, storage reconciliation, full control-plane and product regression, native Swift build, final diff checks and post-campaign DoneCheck™ v1.2.
+
+Technical HOLD count: `0`.
+
+Evidence: `/Users/abdal/Enguru/Evidence/MacEngineer/v0.7/final-consolidated-campaign/20260923T131806Z/evidence.json`.
+
+Operator receipt: `/Users/abdal/Enguru/Evidence/MacEngineer/operator/20260923T211818Z-continue.json`.
+
+External GitHub A09 remains `EXTERNAL_BLOCKED_DEFERRED`; no external PASS was manufactured.
+
+**NEXT ACTION — Gate 13: V07_HUMAN_THRESHOLD_AUTHORITY_TRANSITION. Explicit human decision is required before VERIFIED / LOCKED.**
