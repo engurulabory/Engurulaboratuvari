@@ -25,6 +25,10 @@ POLICY_PHASES = {
         "VERIFIED_LOCAL_AUTHORITY_PENDING_EXTERNAL_RECONCILIATION",
         "MAC_NATIVE_PRIMARY_ENGINEERING_AUTHORITY_VERIFIED",
     ): "POST_LOCK_VERIFIED_FINISH",
+    (
+        "ACTIVE_VERSION_ENGINEERING",
+        "MAC_NATIVE_PRIMARY_ENGINEERING_AUTHORITY_VERIFIED",
+    ): "ACTIVE_VERSION_ENGINEERING",
 }
 
 
@@ -45,10 +49,29 @@ def _load_json(path: Path) -> dict[str, Any] | None:
     return payload if isinstance(payload, dict) else None
 
 
-def _candidate_policy(session: dict[str, Any]) -> dict[str, Any]:
-    current = session.get("currentV07") or {}
+def active_version_label(session: dict[str, Any]) -> str:
+    value = str(session.get("currentVersion") or "").strip()
+    return value if value.startswith("v") else "v0.7"
+
+
+def active_version_state(session: dict[str, Any]) -> dict[str, Any]:
+    version = active_version_label(session)
+    key = "currentV" + version.removeprefix("v").replace(".", "")
+    current = session.get(key)
+    if isinstance(current, dict):
+        return current
+    legacy = session.get("currentV07") or {}
+    return legacy if isinstance(legacy, dict) else {}
+
+
+def candidate_policy(session: dict[str, Any]) -> dict[str, Any]:
+    current = active_version_state(session)
     policy = current.get("controlPlaneLocalContinuity") or {}
     return policy if isinstance(policy, dict) else {}
+
+
+def _candidate_policy(session: dict[str, Any]) -> dict[str, Any]:
+    return candidate_policy(session)
 
 
 def evaluate_local_accepted_candidate(
