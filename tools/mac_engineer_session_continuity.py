@@ -21,7 +21,7 @@ HOME = Path.home()
 PRODUCT_SOURCE = HOME / "Enguru" / "Projects" / "enguru-mac-engineer"
 RUNTIME = HOME / "Enguru" / "Runtime" / "MacEngineer"
 APP = HOME / "Applications" / "ENGÜRÜ Mac Engineer.app"
-EVIDENCE_ROOT = HOME / "Enguru" / "Evidence" / "MacEngineer" / "v0.6"
+EVIDENCE_BASE = HOME / "Enguru" / "Evidence" / "MacEngineer"
 STATE_FILE = ROOT / "governance" / "mac-engineer" / "SESSION_STATE_V1.json"
 CURRENT_STATUS = ROOT / "governance" / "mac-engineer" / "CURRENT_STATUS.md"
 WORKLIST = ROOT / "WORKLIST.md"
@@ -394,13 +394,16 @@ def main() -> int:
     args = parser.parse_args()
 
     payload = snapshot(args.mode)
-    EVIDENCE_ROOT.mkdir(parents=True, exist_ok=True)
+    state = load_state()
+    version = str(state.get("currentVersion") or "v0.6")
+    evidence_root = EVIDENCE_BASE / version
+    evidence_root.mkdir(parents=True, exist_ok=True)
     name = (
         "session-start-latest.json"
         if args.mode == "start"
         else "session-handoff-latest.json"
     )
-    path = EVIDENCE_ROOT / name
+    path = evidence_root / name
     path.write_text(
         json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
