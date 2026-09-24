@@ -10,9 +10,14 @@ import subprocess
 import sys
 from typing import Any
 
-from tools.mac_engineer_local_candidate_authority import (
-    local_candidate_policy_phase,
-)
+try:
+    from tools.mac_engineer_local_candidate_authority import (
+        local_candidate_policy_phase,
+    )
+except ModuleNotFoundError:
+    from mac_engineer_local_candidate_authority import (
+        local_candidate_policy_phase,
+    )
 
 
 ROOT = Path(__file__).resolve().parents[1]
