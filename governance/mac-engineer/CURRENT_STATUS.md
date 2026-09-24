@@ -1258,3 +1258,46 @@ Small Terminal actions remain bounded engineering work units inside the active G
 
 Product mutation from this reconciliation: false.
 Remote push from this reconciliation: false.
+
+## Mac Engineer Version Semantics — Canonical Final Target
+
+STATE
+
+ENGÜRÜ Mac Engineer™ has one final product target.
+
+VERSION SEMANTICS
+
+- v0.8 — Product Engineering Operator Field Proof.
+- v0.9 — World-Class Field Benchmark.
+- v1.0 — Verified Product Engineering Operator.
+- v1.1 — Reliability + Product-System + Visual-System Consolidation.
+- v1.2 — FINAL TARGET — Local Mac Astra Verified Final.
+
+PRODUCT VERSION DISTINCTION
+
+DoneCheck™ product version = 1.2.0
+ENGÜRÜ Mac Engineer™ final product version = v1.2
+
+VERIFIED FINISH RULE
+
+Engineering → regression → criterion-scoped Evidence
+→ DoneCheck™ v1.2 machine verification
+→ real-Mac final commissioning
+→ Human Threshold™
+→ Human Artistic Authority™
+→ version lock.
+
+LOCKED TARGET
+
+MAC_ENGINEER_FINAL_TARGET=v1.2
+V11_ROLE=RELIABILITY_PRODUCT_SYSTEM_VISUAL_CONSOLIDATION
+V12_ROLE=VERIFIED_FINAL
+V12_EXIT=VERIFIED_FINAL_LOCKED
+THEORETICAL_COHERENCE_TARGET=99_PLUS
+FIELD_100_REQUIRES_REAL_HUMAN_ACCEPTANCE=true
+NEW_CORE=false
+SECOND_CANONICAL_TRUTH=false
+
+CURRENT NEXT ACTION
+
+FINISH_GATE6_FUNCTIONAL_ACCEPTANCE_AND_SEAL

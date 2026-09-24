@@ -99,9 +99,19 @@ Integrated release candidate from verified v0.6–v0.9 truths, exact-main releas
 
 Exit: **VERIFIED PRODUCT ENGINEERING OPERATOR / LOCKED**
 
-### v1.1 — FINAL TARGET
+### v1.1 — Reliability + Product-System + Visual-System Consolidation
 
-Evidence-driven hardening after v1.0, compatibility/regression verification, final provenance and final commissioning when runtime truth changed.
+Evidence-driven hardening after v1.0:
+long-running reliability, compatibility/regression verification,
+product-system consolidation and unified visual-system consolidation.
+
+Exit: **V1.1 CONSOLIDATED / READY FOR FINAL ACCEPTANCE**
+
+### v1.2 — FINAL TARGET — Local Mac Astra Verified Final
+
+Final provenance, final real-Mac commissioning,
+full-product regression, DoneCheck™ v1.2 machine verification,
+Human Threshold™, Human Artistic Authority™ and version lock.
 
 Exit: **VERIFIED FINAL / LOCKED**
 
