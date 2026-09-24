@@ -1122,7 +1122,7 @@ Local evidence:
 
 **Active objective:** `V0_7_LONG_RUNNING_RELIABILITY`
 
-**Current single objective:** **V0_7_VERIFIED_LOCKED_AWAIT_NEXT_OBJECTIVE**.
+**Current single objective:** **V08_SELF_ENGINEERING_BASELINE_AUDIT**.
 
 ## v0.7 — Long-Running Reliability
 
@@ -1144,28 +1144,46 @@ Engineering mode: **GitHub-first**.
 - [x] Canonical Boot local accepted candidate reconciliation — **LOCAL ACCEPTANCE PASS / PENDING_RECONCILIATION**; exact `branch + HEAD + origin/main + clean + Evidence` match grants bounded local continuity while GitHub remote main remains canonical authority.
 - [x] DoneCheck v1.2 integration for milestone closure — **A10 INTEGRATION PASS / A09 INCONCLUSIVE PRESERVED**; canonical DoneCheck™ v1.2 consumed A01–A09 Evidence and preserved the unresolved external A09 criterion as HOLD.
 - [x] Pre-A11 local finisher rehearsal — **LOCAL REHEARSAL PASS**; controlled fault → observed failure → minimal repair → regression → idempotency → clean finish completed on Mac. A09/A11/version-lock authority remains separate.
-- [ ] **One consolidated Mac long-run commissioning campaign.**
-- [ ] Human Threshold™.
-- [ ] **v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED.**
+- [x] **One consolidated Mac long-run commissioning campaign.** — Gate 12 real-Mac ≥8h campaign PASS.
+- [x] Human Threshold™. — ACCEPTED for v0.7.
+- [x] **v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED.** — 13/13 PASS; exact-head final seal PASS.
 
-## v0.8 — Product Engineering Operator
+## v0.8 — Product Engineering Operator — ACTIVE
 
-Engineering mode: **GitHub-first**.
+Engineering mode: **ENGÜRÜ Mac-Native Engineering Authority™ / Mac-local primary authority**.
+
+GitHub role: **remote identity + synchronization + publication + recovery + external Evidence**.
 
 Canonical chain:
 
-`INTAKE → DISCOVER → ARCHITECT → DESIGN → BUILD → TEST → REPAIR → PACKAGE → DEPLOY → LIVE VERIFY → LIFECYCLE → EVIDENCE → DONECHECK`
+`INTAKE → DISCOVER → ARCHITECT → DESIGN → BUILD → TEST → REPAIR → PACKAGE → DEPLOY → LIVE VERIFY → LIFECYCLE → EVIDENCE → DoneCheck™ v1.2 → Human Threshold™`
 
-- [ ] New product from brief.
-- [ ] Existing product change.
-- [ ] Migration / repair.
-- [ ] Full-stack path where required.
-- [ ] UI/UX + Aesthetic Motor integration.
-- [ ] Release / deploy / rollback.
-- [ ] Finished-product delivery acceptance.
-- [ ] **One consolidated real-Mac product engineering commissioning campaign.**
-- [ ] DoneCheck v1.2 + Human Threshold™.
-- [ ] **v0.8 PRODUCT ENGINEERING OPERATOR VERIFIED / LOCKED.**
+Canonical acceptance matrix:
+
+`governance/mac-engineer/V08_PRODUCT_ENGINEERING_OPERATOR_ACCEPTANCE_MATRIX_V1.md`
+
+DoneCheck authority:
+
+`DoneCheck™ v1.2 / 1.2.0 / exact-main 8b90a8fc93453dd8a84994195d28d14b15e261cb`
+
+1. [ ] **Gate 1 — Canonical Transition + Self-Engineering Baseline — ACTIVE**
+2. [ ] **Gate 2 — Product Reality Reconciliation**
+3. [ ] **Gate 3 — UX + Aesthetic Product Contract**
+4. [ ] **Gate 4 — Full Product Engineering Chain Binding**
+5. [ ] **Gate 5 — Native App Productization + Version/Provenance**
+6. [ ] **Gate 6 — Existing Product Change Scenario**
+7. [ ] **Gate 7 — Migration / Repair Scenario**
+8. [ ] **Gate 8 — New Product from Brief Scenario**
+9. [ ] **Gate 9 — Deploy / Live Verify / Rollback + Lifecycle**
+10. [ ] **Gate 10 — Finished-Product Delivery Acceptance**
+11. [ ] **Gate 11 — Consolidated Real-Mac Product Engineering Commissioning**
+12. [ ] **Gate 12 — DoneCheck™ v1.2 + Human Threshold™ + Version Lock**
+
+### Current v0.8 next action
+
+`V08_SELF_ENGINEERING_BASELINE_AUDIT`
+
+The first v0.8 field task uses ENGÜRÜ Mac-Native Engineering Authority™ on **ENGÜRÜ Mac Engineer™ itself**. It measures exact product source, runtime regression, native build, installed bundle version/provenance and the current user-interface form before product mutation.
 
 ## v0.9 — World-Class Field Benchmark
 
@@ -1212,11 +1230,11 @@ Engineering mode: **GitHub-first benchmark harness + selected Mac field proofs**
 
 ## Current next action
 
-1. Reconstruct v0.0–v0.3 historical lineage from Git history and dated Evidence.
-2. Preserve unsupported intervals as **PRE-CANONICAL DEVELOPMENT LINEAGE**.
-3. Publish the historical reconciliation.
-4. Start v0.7 under the **GitHub-first / Milestone-Mac** model.
-
+1. Run fresh v0.8 exact-head local acceptance.
+2. Run `enguru-mac doctor`.
+3. Run `enguru-mac continue`.
+4. Complete Gate 1 self-engineering baseline audit.
+5. Consume Evidence into Gate 2 Product Reality Reconciliation.
 
 ## v0.7 — VERIFIED FINISH CLOSURE CONTRACT — 13 GATES
 
