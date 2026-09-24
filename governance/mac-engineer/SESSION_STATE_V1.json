@@ -41,7 +41,7 @@
     "checkpointRestartResumeFieldProof": "VERIFIED_PASS",
     "v07LongRunReliability": "VERIFIED_LOCKED"
   },
-  "currentObjective": "V0_7_LONG_RUNNING_RELIABILITY_VERIFIED_LOCKED",
+  "currentObjective": "V0_7_VERIFIED_LOCKED_AWAIT_NEXT_OBJECTIVE",
   "observedProductPublication": {
     "source": "MAC_FIELD_OUTPUT",
     "localSourceHead": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
