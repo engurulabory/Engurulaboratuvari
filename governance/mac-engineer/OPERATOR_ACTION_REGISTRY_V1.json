@@ -106,6 +106,19 @@
       "externalA09Promoted": false,
       "secondCanonicalTruth": false,
       "failClosed": true
+    },
+    "V08_SELF_ENGINEERING_BASELINE_AUDIT": {
+      "handler": "V08_SELF_ENGINEERING_BASELINE_AUDIT",
+      "authority": "MAC_NATIVE_PRIMARY_ENGINEERING_AUTHORITY_VERIFIED",
+      "command": "governance/mac-engineer/V08_SELF_ENGINEERING_BASELINE_AUDIT.command",
+      "product": "ENGÜRÜ Mac Engineer™",
+      "productMutation": false,
+      "remotePush": false,
+      "doneCheckAuthority": "DoneCheck™ v1.2",
+      "doneCheckVersion": "1.2.0",
+      "doneCheckExactMain": "8b90a8fc93453dd8a84994195d28d14b15e261cb",
+      "nextAfterPass": "V08_SELF_ENGINEERING_PRODUCT_REALITY_RECONCILIATION",
+      "failClosed": true
     }
   }
 }
