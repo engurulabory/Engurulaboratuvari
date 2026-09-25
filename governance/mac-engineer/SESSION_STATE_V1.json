@@ -291,7 +291,7 @@
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "DEFINE_BOUNDED_REAL_NEW_PRODUCT_BRIEF",
+  "nextAction": "GATE8_RESEARCH_HARVEST_ARCHITECTURE_VERTICAL_SLICE",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
@@ -1275,8 +1275,8 @@
     "objective": "V08_PRODUCT_ENGINEERING_OPERATOR",
     "engineeringMode": "MAC_NATIVE_PRIMARY_AUTHORITY",
     "executionAuthorityModel": "ENGÜRÜ Mac-Native Engineering Authority™",
-    "nextAction": "DEFINE_BOUNDED_REAL_NEW_PRODUCT_BRIEF",
-    "localContinuityNextAction": "DEFINE_BOUNDED_REAL_NEW_PRODUCT_BRIEF",
+    "nextAction": "GATE8_RESEARCH_HARVEST_ARCHITECTURE_VERTICAL_SLICE",
+    "localContinuityNextAction": "GATE8_RESEARCH_HARVEST_ARCHITECTURE_VERTICAL_SLICE",
     "localContinuityState": "ACTIVE",
     "acceptanceMatrix": "PASS_DEFINED",
     "acceptanceMatrixPath": "governance/mac-engineer/V08_PRODUCT_ENGINEERING_OPERATOR_ACCEPTANCE_MATRIX_V1.md",
@@ -1519,7 +1519,36 @@
       "state": "ACTIVE",
       "name": "V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO",
       "previousGate": "V08_MIGRATION_REPAIR_VERIFIED",
-      "nextAction": "DEFINE_BOUNDED_REAL_NEW_PRODUCT_BRIEF"
+      "nextAction": "GATE8_RESEARCH_HARVEST_ARCHITECTURE_VERTICAL_SLICE",
+      "humanBriefLock": {
+        "state": "LOCKED",
+        "decision": "LOCAL CSV INSPECTOR",
+        "briefId": "V08-G8-BRIEF-LOCAL-CSV-INSPECTOR-001",
+        "briefHash": "960847abaed3385ac4507036bf777f4e1a2adb6dade1cf8ab95a1636166add9b",
+        "humanAuthority": "PRODUCT_OWNER"
+      },
+      "taskContract": {
+        "state": "BOUND",
+        "taskId": "V08-G8-TASK-LOCAL-CSV-INSPECTOR-001",
+        "path": "governance/mac-engineer/V08_GATE8_LOCAL_CSV_INSPECTOR_TASK_CONTRACT_V1.json"
+      },
+      "capabilityPreflight": {
+        "state": "PASS_EXISTING_MECHANISMS_PRESENT_FIELD_PROOF_PENDING",
+        "researchTransport": "MEVCUT_NOT_YET_FIELD_VERIFIED",
+        "greenfieldWorkspace": "MEVCUT_NOT_YET_FIELD_VERIFIED",
+        "greenfieldArchitecture": "MEVCUT_NOT_YET_FIELD_VERIFIED",
+        "greenfieldSourceGeneration": "MEVCUT_NOT_YET_FIELD_VERIFIED",
+        "verifiedExistingMechanisms": [
+          "BUILD",
+          "TEST",
+          "REPAIR",
+          "PACKAGE",
+          "RUNTIME_EXECUTION",
+          "EVIDENCE",
+          "DONECHECK_V1_2_BINDING"
+        ],
+        "newCoreRequired": false
+      }
     },
     "gate8Reconnaissance": {
       "state": "PASS",

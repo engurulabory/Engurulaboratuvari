@@ -1,0 +1,153 @@
+{
+  "schema": "enguru.mac-engineer.v08.new-product-task-contract/v1",
+  "state": "HUMAN_BRIEF_LOCKED",
+  "activeObjective": "V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO",
+  "briefId": "V08-G8-BRIEF-LOCAL-CSV-INSPECTOR-001",
+  "briefHash": "960847abaed3385ac4507036bf777f4e1a2adb6dade1cf8ab95a1636166add9b",
+  "taskId": "V08-G8-TASK-LOCAL-CSV-INSPECTOR-001",
+  "brief": {
+    "briefId": "V08-G8-BRIEF-LOCAL-CSV-INSPECTOR-001",
+    "productName": "LOCAL CSV INSPECTOR",
+    "humanBriefLock": "LOCKED",
+    "productType": "LOCAL_MAC_DESKTOP_UTILITY",
+    "problem": "Mac kullanıcısı bir CSV dosyasının yapısını, temel veri kalitesini ve temel sayısal özetlerini kod kullanmadan hızlıca görmek istiyor.",
+    "primaryUserFlow": [
+      "CSV_SELECT",
+      "FILE_INFORMATION",
+      "COLUMN_LIST",
+      "ROW_COUNT",
+      "COLUMN_COUNT",
+      "MISSING_VALUE_SUMMARY",
+      "DATA_PREVIEW",
+      "APPLICABLE_NUMERIC_SUMMARY",
+      "READABLE_REPORT_EXPORT"
+    ],
+    "requiredProperties": [
+      "LOCAL_FIRST",
+      "REAL_FILE_INPUT",
+      "REAL_CSV_PARSING",
+      "REAL_COMPUTED_RESULTS",
+      "HUMAN_VISIBLE_UI",
+      "CLEAR_ERROR_STATE",
+      "REAL_REPORT_EXPORT",
+      "FRESH_SEPARATE_GIT_WORKSPACE",
+      "TARGETED_TESTS",
+      "FULL_PRODUCT_REGRESSION",
+      "PACKAGE",
+      "FRESH_LAUNCH",
+      "HUMAN_USABLE"
+    ],
+    "technologyStack": "UNLOCKED_ENGINEERING_DECISION",
+    "technologyDecisionAuthority": "MAC_ENGINEER_RESEARCH_ARCHITECTURE_PHASE",
+    "publicReleaseRequiredForGate8": false,
+    "remotePublicationRequiredForGate8": false
+  },
+  "workspaceContract": {
+    "separateFromMacEngineerProductSource": true,
+    "freshWorkspaceRequired": true,
+    "freshGitRepositoryRequired": true,
+    "initialState": [
+      "HUMAN_BRIEF",
+      "TASK_CONTRACT",
+      "MINIMAL_REPOSITORY_METADATA"
+    ],
+    "fieldProductSourcePrecreated": false
+  },
+  "acceptanceContract": {
+    "verticalSlice": [
+      "HUMAN_SELECTS_REAL_CSV_FILE",
+      "PRODUCT_READS_ACTUAL_FILE",
+      "ONE_USEFUL_VERIFIED_ANALYSIS_APPEARS",
+      "HUMAN_SEES_RESULT"
+    ],
+    "finalProduct": [
+      "REAL_FILE_SELECTION",
+      "REAL_PARSING",
+      "FILE_INFORMATION",
+      "COLUMN_INFORMATION",
+      "ROW_AND_COLUMN_COUNTS",
+      "MISSING_VALUE_SUMMARY",
+      "PREVIEW",
+      "APPLICABLE_NUMERIC_SUMMARY",
+      "READABLE_REPORT_EXPORT",
+      "CLEAR_ERROR_STATE",
+      "TARGETED_TEST_PASS",
+      "FULL_REGRESSION_PASS",
+      "PACKAGE_PROVENANCE_PASS",
+      "FRESH_LAUNCH_PASS",
+      "HUMAN_USE_PASS",
+      "EVIDENCE_COMPLETE",
+      "DONECHECK_V1_2_PASS"
+    ],
+    "humanManualSourceEditCountTarget": 0,
+    "chatgptDirectFieldProductPatchCountTarget": 0,
+    "untrackedManualStepCountTarget": 0
+  },
+  "capabilityPreflight": {
+    "briefIntake": {
+      "state": "MEVCUT",
+      "fieldProof": "PENDING_FRESH_GATE8_GOVERNED_CONSUMPTION"
+    },
+    "greenfieldWorkspaceCreation": {
+      "state": "MEVCUT",
+      "evidence": {
+        "gitCommandSurface": true,
+        "pythonCommandSurface": true
+      },
+      "fieldProof": "PENDING_GATE8_FRESH_WORKSPACE"
+    },
+    "researchCapability": {
+      "state": "MEVCUT",
+      "evidence": {
+        "researchGovernance": true,
+        "networkTransportCode": true,
+        "curlCommandSurface": true
+      },
+      "fieldProof": "PENDING_MAC_ENGINEER_GOVERNED_EXTERNAL_SOURCE_PROOF"
+    },
+    "architecturePlanning": {
+      "state": "MEVCUT",
+      "fieldProof": "PENDING_GREENFIELD_ARCHITECTURE_DECISION"
+    },
+    "sourceGenerationExecution": {
+      "state": "MEVCUT",
+      "fieldProof": "PENDING_GREENFIELD_PRODUCT_SOURCE_GENERATION"
+    },
+    "build": {
+      "state": "SAHADA_DOGRULANMIS",
+      "basis": "V08_GATES_5_7_EXISTING_REAL_MAC_EVIDENCE"
+    },
+    "test": {
+      "state": "SAHADA_DOGRULANMIS",
+      "basis": "TARGETED_AND_FULL_REGRESSION_HISTORY"
+    },
+    "repair": {
+      "state": "SAHADA_DOGRULANMIS",
+      "basis": "V08_GATE7_MIGRATION_REPAIR_VERIFIED"
+    },
+    "package": {
+      "state": "SAHADA_DOGRULANMIS",
+      "basis": "V08_NATIVE_APP_PRODUCTIZATION_EVIDENCE"
+    },
+    "runtimeExecution": {
+      "state": "SAHADA_DOGRULANMIS",
+      "basis": "REAL_MAC_RUNTIME_EVIDENCE"
+    },
+    "evidenceProduction": {
+      "state": "SAHADA_DOGRULANMIS",
+      "basis": "V06_V08_EVIDENCE_CHAIN"
+    },
+    "doneCheckBinding": {
+      "state": "SAHADA_DOGRULANMIS",
+      "basis": "DONECHECK_V1_2_EXISTING_AUTHORITY"
+    }
+  },
+  "preflightJudgment": "PASS_EXISTING_MECHANISMS_PRESENT_GREENFIELD_FIELD_PROOF_PENDING",
+  "researchRequired": true,
+  "researchTransportState": "MEVCUT_NOT_YET_FIELD_VERIFIED",
+  "architectureDecisionState": "PENDING",
+  "verticalSliceState": "PENDING",
+  "fieldProductSourceGenerationState": "NOT_STARTED",
+  "newCore": false,
+  "nextAction": "GATE8_RESEARCH_HARVEST_ARCHITECTURE_VERTICAL_SLICE"
+}

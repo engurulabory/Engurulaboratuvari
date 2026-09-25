@@ -344,7 +344,7 @@ Current objective:
 
 Current next action:
 
-`DEFINE_BOUNDED_REAL_NEW_PRODUCT_BRIEF`
+`GATE8_RESEARCH_HARVEST_ARCHITECTURE_VERTICAL_SLICE`
 
 Gate order:
 
@@ -584,3 +584,34 @@ No new core is introduced.
 
 Gate 8 now continues through the bounded Human Brief →
 Task Contract → field-product engineering path.
+
+
+## Gate 8 Human Brief Lock
+
+Human Product Owner decision:
+
+`LOCAL CSV INSPECTOR — LOCKED`
+
+Brief ID:
+
+`V08-G8-BRIEF-LOCAL-CSV-INSPECTOR-001`
+
+Task ID:
+
+`V08-G8-TASK-LOCAL-CSV-INSPECTOR-001`
+
+Structured canonical Task Contract:
+
+`governance/mac-engineer/V08_GATE8_LOCAL_CSV_INSPECTOR_TASK_CONTRACT_V1.json`
+
+Working rule:
+
+`LOCKED BRIEF → GOVERNED RESEARCH → VERIFIED HARVEST → ARCHITECTURE → VERTICAL SLICE`
+
+Technology stack remains an engineering decision.
+
+Field-product source generation has not started.
+
+Current next action:
+
+`GATE8_RESEARCH_HARVEST_ARCHITECTURE_VERTICAL_SLICE`

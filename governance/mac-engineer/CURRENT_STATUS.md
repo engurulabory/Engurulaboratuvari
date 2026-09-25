@@ -1420,3 +1420,52 @@ Current objective remains:
 Next material action after this repair PASS:
 
 `RETRY_GATE8_HUMAN_BRIEF_LOCK_TASK_CONTRACT_PREFLIGHT`
+
+
+## GATE 8 — HUMAN BRIEF LOCK + TASK CONTRACT
+
+**STATE — PASS.**
+
+Human Product Owner decision:
+
+`LOCAL CSV INSPECTOR — LOCKED`
+
+Canonical brief:
+
+- Brief ID: `V08-G8-BRIEF-LOCAL-CSV-INSPECTOR-001`
+- Brief hash: `960847abaed3385ac4507036bf777f4e1a2adb6dade1cf8ab95a1636166add9b`
+- Task ID: `V08-G8-TASK-LOCAL-CSV-INSPECTOR-001`
+- product type: local Mac desktop utility;
+- local-first: required;
+- real CSV file input: required;
+- real parsing and computed results: required;
+- human-visible UI: required;
+- readable report export: required;
+- fresh separate Git workspace: required;
+- technology stack: engineering decision, not pre-fixed;
+- public release for Gate 8: not required.
+
+Capability preflight:
+
+- brief intake: MEVCUT / fresh governed consumption pending;
+- greenfield workspace creation: MEVCUT / field proof pending;
+- research: MEVCUT / governed external-source proof pending;
+- architecture/planning: MEVCUT / greenfield proof pending;
+- source generation: MEVCUT / greenfield proof pending;
+- build: SAHADA DOĞRULANMIŞ;
+- test: SAHADA DOĞRULANMIŞ;
+- repair: SAHADA DOĞRULANMIŞ;
+- package: SAHADA DOĞRULANMIŞ;
+- runtime execution: SAHADA DOĞRULANMIŞ;
+- Evidence: SAHADA DOĞRULANMIŞ;
+- DoneCheck™ v1.2 binding: SAHADA DOĞRULANMIŞ.
+
+New core:
+
+`false`
+
+Field-product source generation:
+
+`NOT_STARTED`
+
+**NEXT ACTION — GATE8_RESEARCH_HARVEST_ARCHITECTURE_VERTICAL_SLICE.**
