@@ -336,15 +336,15 @@ Current version:
 
 Current Gate:
 
-`Gate 8 — New Product from Brief Scenario`
+`Gate 10 — Finished Product Delivery Acceptance`
 
 Current objective:
 
-`V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO`
+`V08_FINISHED_PRODUCT_DELIVERY_SCENARIO`
 
 Current next action:
 
-`GATE8_RESEARCH_HARVEST_ARCHITECTURE_VERTICAL_SLICE`
+`V08_FINISHED_PRODUCT_DELIVERY_SCENARIO`
 
 Gate order:
 
@@ -615,3 +615,42 @@ Field-product source generation has not started.
 Current next action:
 
 `GATE8_RESEARCH_HARVEST_ARCHITECTURE_VERTICAL_SLICE`
+
+## ENGURU_V08_GATE9_CANONICAL_RECONCILIATION_V1
+
+STATE — PASS / VERIFIED LOCKED
+
+Gate 9:
+`V08_RELEASE_LIFECYCLE_SCENARIO`
+
+Exit:
+`V08_RELEASE_LIFECYCLE_VERIFIED`
+
+Technical acceptance:
+`/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate9-donecheck-final/20260925T153632Z/gate9-technical-acceptance.json`
+
+DoneCheck™ v1.2:
+PASS
+
+Verified Finish:
+PASS
+
+Human Threshold™:
+CLEAR
+
+Architecture:
+PRESERVED
+
+New Core:
+false
+
+Gate 10:
+ACTIVE
+
+Current objective:
+`V08_FINISHED_PRODUCT_DELIVERY_SCENARIO`
+
+NEXT ACTION —
+`V08_FINISHED_PRODUCT_DELIVERY_SCENARIO`
+
+Gate 10 execution belongs to the next working session.

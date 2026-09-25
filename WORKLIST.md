@@ -1120,9 +1120,9 @@ Local evidence:
 - [x] Canonical Evidence: `evidence/MAC_ENGINEER_V00_V03_HISTORICAL_RECONSTRUCTION_2026-09-22.md`.
 - [x] **V00_V03_HISTORICAL_RECONSTRUCTION = PASS / CLOSED.**
 
-**Active objective:** `V08_RELEASE_LIFECYCLE_SCENARIO`
+**Active objective:** `V08_FINISHED_PRODUCT_DELIVERY_SCENARIO`
 
-**Current single objective:** **V08_RELEASE_LIFECYCLE_SCENARIO**.
+**Current single objective:** **V08_FINISHED_PRODUCT_DELIVERY_SCENARIO**.
 
 ## v0.7 — Long-Running Reliability
 
@@ -1176,8 +1176,8 @@ DoneCheck authority:
    - [x] Programmer Agent™ + Pre-Send Filter discipline — VERIFIED; Language Governance + Positive Language + Second Look + syntax/scope/recovery preflight + DoneCheck™ v1.2 pre-send bound; active Gate unchanged.
 7. [x] **Gate 7 — Migration / Repair Scenario — PASS / SEALED**
 8. [x] **Gate 8 — New Product from Brief Scenario — PASS / SEALED**
-9. [ ] **Gate 9 — Deploy / Live Verify / Rollback + Lifecycle — ACTIVE**
-10. [ ] **Gate 10 — Finished-Product Delivery Acceptance**
+9. [x] **Gate 9 — Deploy / Live Verify / Rollback + Lifecycle — PASS / SEALED**
+10. [ ] **Gate 10 — Finished-Product Delivery Acceptance — ACTIVE**
 11. [ ] **Gate 11 — Consolidated Real-Mac Product Engineering Commissioning**
 12. [ ] **Gate 12 — DoneCheck™ v1.2 + Human Threshold™ + Version Lock**
 
@@ -1255,7 +1255,7 @@ Field HEAD: `927fbc2d3130d474bcf9443231e741938b03636d`.
 
 ### Current v0.8 next action
 
-`V08_RELEASE_LIFECYCLE_SCENARIO`
+`V08_FINISHED_PRODUCT_DELIVERY_SCENARIO`
 
 Gate 9 exercises controlled release, independent live verification, rollback and applicable lifecycle controls while preserving Evidence continuity.
 
@@ -1991,3 +1991,42 @@ Gate 8 Evidence:
 `/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate8-native-layout-verified-finish/20260925T121312Z/gate8-evidence.json`
 
 **NEXT ACTION — V08_RELEASE_LIFECYCLE_SCENARIO**
+
+## ENGURU_V08_GATE9_CANONICAL_RECONCILIATION_V1
+
+STATE — PASS / VERIFIED LOCKED
+
+Gate 9:
+`V08_RELEASE_LIFECYCLE_SCENARIO`
+
+Exit:
+`V08_RELEASE_LIFECYCLE_VERIFIED`
+
+Technical acceptance:
+`/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate9-donecheck-final/20260925T153632Z/gate9-technical-acceptance.json`
+
+DoneCheck™ v1.2:
+PASS
+
+Verified Finish:
+PASS
+
+Human Threshold™:
+CLEAR
+
+Architecture:
+PRESERVED
+
+New Core:
+false
+
+Gate 10:
+ACTIVE
+
+Current objective:
+`V08_FINISHED_PRODUCT_DELIVERY_SCENARIO`
+
+NEXT ACTION —
+`V08_FINISHED_PRODUCT_DELIVERY_SCENARIO`
+
+Gate 10 execution belongs to the next working session.

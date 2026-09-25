@@ -244,3 +244,28 @@ Gate 8 state: **VERIFIED PASS / SEALED**.
 ## NEXT ACTION
 
 `V08_RELEASE_LIFECYCLE_SCENARIO → controlled release → independent live verification → rollback → lifecycle controls → Evidence continuity → V08_RELEASE_LIFECYCLE_VERIFIED`
+
+## GATE9_CANONICAL_CLOSURE_2026_09_25
+
+Gate 9 acceptance contract remains preserved.
+
+Closure:
+`V08_RELEASE_LIFECYCLE_VERIFIED` — VERIFIED / LOCKED.
+
+Evidence:
+`/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate9-donecheck-final/20260925T153632Z/gate9-technical-acceptance.json`
+
+DoneCheck™ v1.2:
+PASS.
+
+Verified Finish:
+PASS.
+
+Human Threshold™:
+CLEAR.
+
+Current authority:
+Gate 10 — Finished-Product Delivery Acceptance.
+
+Current objective:
+`V08_FINISHED_PRODUCT_DELIVERY_SCENARIO`.
