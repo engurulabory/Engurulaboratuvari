@@ -38,9 +38,9 @@ class Gate8CanonicalReconciliationTests(unittest.TestCase):
             state["currentObjective"],
             "V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO",
         )
-        self.assertEqual(
-            state["nextAction"],
-            "DEFINE_BOUNDED_REAL_NEW_PRODUCT_BRIEF",
+        self.assertTrue(
+            isinstance(state["nextAction"], str)
+            and bool(state["nextAction"].strip())
         )
 
         v08 = state["currentV08"]
@@ -61,11 +61,15 @@ class Gate8CanonicalReconciliationTests(unittest.TestCase):
 
         self.assertEqual(
             v08["nextAction"],
-            "DEFINE_BOUNDED_REAL_NEW_PRODUCT_BRIEF",
+            state["nextAction"],
         )
         self.assertEqual(
             v08["localContinuityNextAction"],
-            "DEFINE_BOUNDED_REAL_NEW_PRODUCT_BRIEF",
+            state["nextAction"],
+        )
+        self.assertEqual(
+            v08["gate8"]["nextAction"],
+            state["nextAction"],
         )
 
         continuity = v08["controlPlaneLocalContinuity"]
@@ -140,20 +144,31 @@ class Gate8CanonicalReconciliationTests(unittest.TestCase):
 
     def test_active_working_path_boot_points_to_gate8(self):
         text = ACTIVE.read_text(encoding="utf-8")
+        state = json.loads(
+            SESSION.read_text(encoding="utf-8")
+        )
 
-        current_block = """Current Gate:
+        boot_start = text.index(
+            "## NEXT SESSION BOOT — V0.8"
+        )
+        boot_end = text.index(
+            "## Mandatory Pre-Output ENGÜRÜ Filter",
+            boot_start,
+        )
+        boot = text[boot_start:boot_end]
 
-`Gate 8 — New Product from Brief Scenario`
-
-Current objective:
-
-`V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO`
-
-Current next action:
-
-`DEFINE_BOUNDED_REAL_NEW_PRODUCT_BRIEF`"""
-
-        self.assertIn(current_block, text)
+        self.assertIn(
+            "`Gate 8 — New Product from Brief Scenario`",
+            boot,
+        )
+        self.assertIn(
+            "`V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO`",
+            boot,
+        )
+        self.assertIn(
+            f"`{state['nextAction']}`",
+            boot,
+        )
         self.assertIn(
             "## Gate 8 Phase A Canonical Reconciliation",
             text,

@@ -1378,3 +1378,45 @@ Manifest SHA-256:
 `0c14e0909e6cbc4bdbca6aedf97a766576ec9aee0a26acd91fe40ffc2d0795cb`
 
 **NEXT ACTION — DEFINE_BOUNDED_REAL_NEW_PRODUCT_BRIEF.**
+
+
+## GATE 8 — TRANSIENT NEXT-ACTION TEST CONTRACT RECONCILIATION
+
+**STATE — BOUNDED REPAIR.**
+
+Gate 8 Human Brief Lock preparation passed its new targeted
+Task Contract regression, then full control-plane regression
+identified two stale assertions in the prior Gate 8 canonical
+reconciliation test.
+
+Root cause:
+
+`STALE_TRANSIENT_NEXT_ACTION_TEST_CONTRACT`
+
+The prior regression contract encoded
+`DEFINE_BOUNDED_REAL_NEW_PRODUCT_BRIEF` as a permanent value.
+
+Gate 8 truth instead requires:
+
+- Gate 8 remains ACTIVE;
+- `V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO` remains the objective;
+- current next-action projections remain mutually consistent;
+- next action may advance as verified Gate 8 work progresses.
+
+The regression contract is reconciled to those stable invariants.
+
+Product mutation:
+
+`false`
+
+Remote push:
+
+`false`
+
+Current objective remains:
+
+`V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO`
+
+Next material action after this repair PASS:
+
+`RETRY_GATE8_HUMAN_BRIEF_LOCK_TASK_CONTRACT_PREFLIGHT`
