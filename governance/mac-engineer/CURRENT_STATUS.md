@@ -1,6 +1,6 @@
 # ENGÜRÜ Mac Engineer™ — Current Status
 
-**Updated:** 2026-09-24
+**Updated:** 2026-09-25
 **Program target:** ENGÜRÜ Mac Engineering™ v1.1 — Verified Product Engineering Operator
 **Current version:** v0.8 — PRODUCT ENGINEERING OPERATOR / ACTIVE
 **Current objective:** V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO
@@ -8,7 +8,7 @@
 
 ## CURRENT ENGINEERING TRUTH
 
-ENGÜRÜ Mac Engineering™ v0.7 is **LONG-RUN RELIABILITY VERIFIED / LOCKED**. v0.8 Product Engineering Operator is **ACTIVE** at Gate 7 — Migration / Repair Scenario. Gates 1–6 are verified PASS.
+ENGÜRÜ Mac Engineering™ v0.7 is **LONG-RUN RELIABILITY VERIFIED / LOCKED**. v0.8 Product Engineering Operator is **ACTIVE** at Gate 8 — New Product from Brief Scenario. Gates 1–7 are verified PASS.
 
 Local field truth, canonical reconciliation, merge provenance and control-plane exact-main acceptance are all complete. Recovery, fixture repair, local field acceptance and v0.6 closure are closed truths.
 
@@ -24,7 +24,7 @@ Executable gate:
 
 Active product objective remains:
 
-`V08_EXISTING_PRODUCT_CHANGE_SCENARIO`
+`V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO`
 
 Product mutation from this discipline package: **false**.
 
@@ -1341,3 +1341,40 @@ Current objective:
 
 Evidence:
 `/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate7-final/20260924T182614Z/evidence.json`
+
+
+## GATE 8 PHASE A — READ-ONLY CANONICAL RECONCILIATION — 2026-09-25
+
+**STATE — PASS.**
+
+Fresh Mac-local reconnaissance verified:
+
+- control branch/head/remote feature parity: PASS;
+- Gate 7 seal commit present: PASS;
+- product local head `a73090306cfac2eeeb3f06c3b83ba7bbbc1a7522`: PRESENT / CLEAN;
+- product remote main is an ancestor of the local product head;
+- installed/runtime app version: 0.8 / 0.8;
+- runtime objective: `V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO`;
+- Gate 7 Evidence: PASS;
+- latest session handoff: PASS;
+- repositories unchanged during reconnaissance: PASS;
+- research mechanisms: MEVCUT;
+- Mac Engineer governed research transport field proof: PENDING GATE 8;
+- Gate 8 operator-registry handler: ABSENT / NOT YET PROVEN REQUIRED;
+- new core requirement: FALSE.
+
+Canonical drift is bounded to stale current projections.
+
+Reconciliation target:
+
+`1–7 PASS → Gate 8 ACTIVE → DEFINE_BOUNDED_REAL_NEW_PRODUCT_BRIEF`
+
+Local Evidence:
+
+`~/Enguru/Evidence/MacEngineer/v0.8/gate8-reconnaissance/20260925T053221Z`
+
+Manifest SHA-256:
+
+`0c14e0909e6cbc4bdbca6aedf97a766576ec9aee0a26acd91fe40ffc2d0795cb`
+
+**NEXT ACTION — DEFINE_BOUNDED_REAL_NEW_PRODUCT_BRIEF.**

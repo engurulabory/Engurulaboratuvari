@@ -291,7 +291,7 @@
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "V08_DESKTOP_COCKPIT_REAL_IMPLEMENTATION",
+  "nextAction": "DEFINE_BOUNDED_REAL_NEW_PRODUCT_BRIEF",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
@@ -1275,8 +1275,8 @@
     "objective": "V08_PRODUCT_ENGINEERING_OPERATOR",
     "engineeringMode": "MAC_NATIVE_PRIMARY_AUTHORITY",
     "executionAuthorityModel": "ENGÜRÜ Mac-Native Engineering Authority™",
-    "nextAction": "V08_DESKTOP_COCKPIT_REAL_IMPLEMENTATION",
-    "localContinuityNextAction": "V08_DESKTOP_COCKPIT_REAL_IMPLEMENTATION",
+    "nextAction": "DEFINE_BOUNDED_REAL_NEW_PRODUCT_BRIEF",
+    "localContinuityNextAction": "DEFINE_BOUNDED_REAL_NEW_PRODUCT_BRIEF",
     "localContinuityState": "ACTIVE",
     "acceptanceMatrix": "PASS_DEFINED",
     "acceptanceMatrixPath": "governance/mac-engineer/V08_PRODUCT_ENGINEERING_OPERATOR_ACCEPTANCE_MATRIX_V1.md",
@@ -1296,8 +1296,8 @@
       "externalMergeGate": "HOLD_GITHUB_ACTIONS_EXECUTION",
       "acceptanceStatePath": "~/Enguru/Runtime/MacEngineer/state/local-accepted-control-plane-candidate.json",
       "acceptanceEvidenceRoot": "~/Enguru/Evidence/MacEngineer/v0.8/canonical-boot",
-      "currentTechnicalTarget": "V08_EXISTING_PRODUCT_CHANGE_SCENARIO",
-      "nextAfterPass": "V08_MIGRATION_REPAIR_SCENARIO"
+      "currentTechnicalTarget": "V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO",
+      "nextAfterPass": "GATE9_ACTIVE"
     },
     "closureContract": {
       "totalGates": 12,
@@ -1306,12 +1306,12 @@
         2,
         3,
         4,
-        5
-      ],
-      "activeGate": 6,
-      "remainingGates": [
+        5,
         6,
-        7,
+        7
+      ],
+      "activeGate": 8,
+      "remainingGates": [
         8,
         9,
         10,
@@ -1520,6 +1520,26 @@
       "name": "V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO",
       "previousGate": "V08_MIGRATION_REPAIR_VERIFIED",
       "nextAction": "DEFINE_BOUNDED_REAL_NEW_PRODUCT_BRIEF"
+    },
+    "gate8Reconnaissance": {
+      "state": "PASS",
+      "observedAt": "2026-09-25",
+      "mode": "READ_ONLY_REPOSITORIES_PLUS_ADDITIVE_EVIDENCE",
+      "activeObjective": "V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO",
+      "controlHead": "3a0a57c2e015bff1822b299c439bdfb730119462",
+      "productLocalHead": "a73090306cfac2eeeb3f06c3b83ba7bbbc1a7522",
+      "productRemoteMain": "5432b9b135499cea18273c0e003877b864af92c6",
+      "productLocalHeadTruth": "PRESENT_CLEAN_REMOTE_MAIN_ANCESTOR",
+      "runtimeObjective": "V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO",
+      "gate7Evidence": "PASS",
+      "sessionHandoff": "PASS",
+      "researchTransportState": "MEVCUT_NOT_YET_FIELD_VERIFIED",
+      "operatorRegistryGate8Handler": "ABSENT_NOT_YET_PROVEN_REQUIRED",
+      "newCoreRequired": false,
+      "canonicalDriftClass": "BOUNDED_CURRENT_PROJECTION_DRIFT",
+      "localEvidence": "~/Enguru/Evidence/MacEngineer/v0.8/gate8-reconnaissance/20260925T053221Z",
+      "manifestSha256": "0c14e0909e6cbc4bdbca6aedf97a766576ec9aee0a26acd91fe40ffc2d0795cb",
+      "nextAction": "DEFINE_BOUNDED_REAL_NEW_PRODUCT_BRIEF"
     }
   },
   "preSendFilter": {
@@ -1530,6 +1550,6 @@
     "language": "POSITIVE_CONSTRUCTIVE_TRUTHFUL",
     "secondLook": "REQUIRED",
     "doneCheck": "V1.2_REQUIRED",
-    "activeObjectivePreserved": "V08_EXISTING_PRODUCT_CHANGE_SCENARIO"
+    "activeObjectivePreserved": "V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO"
   }
 }

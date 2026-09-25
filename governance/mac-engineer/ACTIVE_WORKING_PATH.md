@@ -336,15 +336,15 @@ Current version:
 
 Current Gate:
 
-`Gate 6 — Existing Product Change Scenario`
+`Gate 8 — New Product from Brief Scenario`
 
 Current objective:
 
-`V08_EXISTING_PRODUCT_CHANGE_SCENARIO`
+`V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO`
 
 Current next action:
 
-`FINISH_GATE6_EXISTING_PRODUCT_CHANGE`
+`DEFINE_BOUNDED_REAL_NEW_PRODUCT_BRIEF`
 
 Gate order:
 
@@ -467,9 +467,9 @@ SECOND_CANONICAL_TRUTH=false
 
 CURRENT NEXT ACTION
 
-V08_MIGRATION_REPAIR_SCENARIO
+DEFINE_BOUNDED_REAL_NEW_PRODUCT_BRIEF
 
-After Gate 6 PASS, activate Gate 7 — Migration / Repair.
+Gate 7 is PASS / SEALED. Gate 8 — New Product from Brief is ACTIVE.
 
 ## Mac Engineer Version Semantics — Canonical Final Target
 
@@ -512,7 +512,7 @@ SECOND_CANONICAL_TRUTH=false
 
 CURRENT NEXT ACTION
 
-V08_MIGRATION_REPAIR_SCENARIO
+DEFINE_BOUNDED_REAL_NEW_PRODUCT_BRIEF
 
 
 ## Gate 6 → Gate 7 Canonical Transition
@@ -541,3 +541,46 @@ Current objective:
 
 Evidence:
 `/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate7-final/20260924T182614Z/evidence.json`
+
+
+## Gate 8 Phase A Canonical Reconciliation
+
+STATE:
+
+`PASS`
+
+Fresh Mac-local reconnaissance established:
+
+`Gate 1–7 PASS → Gate 8 ACTIVE`
+
+Current objective:
+
+`V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO`
+
+Current next action:
+
+`DEFINE_BOUNDED_REAL_NEW_PRODUCT_BRIEF`
+
+Research capability truth:
+
+`MEVCUT → SAHADA DOĞRULANMIŞ PENDING GATE 8 FIELD PROOF`
+
+Operator Action Registry truth:
+
+`GATE8_HANDLER_ABSENT → NOT_YET_PROVEN_REQUIRED`
+
+Product local truth:
+
+`a73090306cfac2eeeb3f06c3b83ba7bbbc1a7522`
+
+Product remote main:
+
+`5432b9b135499cea18273c0e003877b864af92c6`
+
+The remote main is an ancestor of the clean local product head.
+This is preserved local product truth, not a manufactured remote PASS.
+
+No new core is introduced.
+
+Gate 8 now continues through the bounded Human Brief →
+Task Contract → field-product engineering path.
