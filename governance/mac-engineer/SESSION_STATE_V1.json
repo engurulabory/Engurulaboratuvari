@@ -39,9 +39,10 @@
     "contextDurabilityGithubEngineering": "VERIFIED_PASS",
     "freshResumeGithubEngineering": "VERIFIED_PASS",
     "checkpointRestartResumeFieldProof": "VERIFIED_PASS",
-    "v07LongRunReliability": "VERIFIED_LOCKED"
+    "v07LongRunReliability": "VERIFIED_LOCKED",
+    "v08Gate8NewProductFromBrief": "VERIFIED_PASS"
   },
-  "currentObjective": "V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO",
+  "currentObjective": "V08_RELEASE_LIFECYCLE_SCENARIO",
   "observedProductPublication": {
     "source": "MAC_FIELD_OUTPUT",
     "localSourceHead": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
@@ -1275,8 +1276,8 @@
     "objective": "V08_PRODUCT_ENGINEERING_OPERATOR",
     "engineeringMode": "MAC_NATIVE_PRIMARY_AUTHORITY",
     "executionAuthorityModel": "ENGÜRÜ Mac-Native Engineering Authority™",
-    "nextAction": "GATE8_RESEARCH_HARVEST_ARCHITECTURE_VERTICAL_SLICE",
-    "localContinuityNextAction": "GATE8_RESEARCH_HARVEST_ARCHITECTURE_VERTICAL_SLICE",
+    "nextAction": "V08_RELEASE_LIFECYCLE_SCENARIO",
+    "localContinuityNextAction": "V08_RELEASE_LIFECYCLE_SCENARIO",
     "localContinuityState": "ACTIVE",
     "acceptanceMatrix": "PASS_DEFINED",
     "acceptanceMatrixPath": "governance/mac-engineer/V08_PRODUCT_ENGINEERING_OPERATOR_ACCEPTANCE_MATRIX_V1.md",
@@ -1296,8 +1297,8 @@
       "externalMergeGate": "HOLD_GITHUB_ACTIONS_EXECUTION",
       "acceptanceStatePath": "~/Enguru/Runtime/MacEngineer/state/local-accepted-control-plane-candidate.json",
       "acceptanceEvidenceRoot": "~/Enguru/Evidence/MacEngineer/v0.8/canonical-boot",
-      "currentTechnicalTarget": "V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO",
-      "nextAfterPass": "GATE9_ACTIVE"
+      "currentTechnicalTarget": "V08_RELEASE_LIFECYCLE_SCENARIO",
+      "nextAfterPass": "V08_FINISHED_PRODUCT_DELIVERY_SCENARIO"
     },
     "closureContract": {
       "totalGates": 12,
@@ -1308,11 +1309,11 @@
         4,
         5,
         6,
-        7
+        7,
+        8
       ],
-      "activeGate": 8,
+      "activeGate": 9,
       "remainingGates": [
-        8,
         9,
         10,
         11,
@@ -1569,6 +1570,30 @@
       "localEvidence": "~/Enguru/Evidence/MacEngineer/v0.8/gate8-reconnaissance/20260925T053221Z",
       "manifestSha256": "0c14e0909e6cbc4bdbca6aedf97a766576ec9aee0a26acd91fe40ffc2d0795cb",
       "nextAction": "DEFINE_BOUNDED_REAL_NEW_PRODUCT_BRIEF"
+    },
+    "gate8Closure": {
+      "state": "VERIFIED_PASS",
+      "name": "V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO",
+      "exit": "V08_NEW_PRODUCT_FROM_BRIEF_VERIFIED",
+      "product": "LOCAL CSV INSPECTOR",
+      "operatorHead": "4e716e387dabea9a4fb1c4752da73a3b172bc2d8",
+      "fieldHead": "927fbc2d3130d474bcf9443231e741938b03636d",
+      "nativeLayout": "VERIFIED",
+      "userPath": "VERIFIED",
+      "reportExport": "VERIFIED",
+      "doneCheck": "PASS",
+      "humanThreshold": "PASS",
+      "providerRecalled": false,
+      "architectureState": "PRESERVED",
+      "newCore": false,
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate8-native-layout-verified-finish/20260925T121312Z/gate8-evidence.json"
+    },
+    "gate9": {
+      "state": "ACTIVE",
+      "name": "V08_RELEASE_LIFECYCLE_SCENARIO",
+      "previousGate": "V08_NEW_PRODUCT_FROM_BRIEF_VERIFIED",
+      "nextAction": "SELECT_APPLICABLE_DEPLOYABLE_PRODUCT_PATH",
+      "exit": "V08_RELEASE_LIFECYCLE_VERIFIED"
     }
   },
   "preSendFilter": {

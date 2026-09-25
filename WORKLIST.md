@@ -1120,9 +1120,9 @@ Local evidence:
 - [x] Canonical Evidence: `evidence/MAC_ENGINEER_V00_V03_HISTORICAL_RECONSTRUCTION_2026-09-22.md`.
 - [x] **V00_V03_HISTORICAL_RECONSTRUCTION = PASS / CLOSED.**
 
-**Active objective:** `V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO`
+**Active objective:** `V08_RELEASE_LIFECYCLE_SCENARIO`
 
-**Current single objective:** **V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO**.
+**Current single objective:** **V08_RELEASE_LIFECYCLE_SCENARIO**.
 
 ## v0.7 — Long-Running Reliability
 
@@ -1175,8 +1175,8 @@ DoneCheck authority:
    - [x] Gate 6 control-plane executor + operator binding — engineering regression PASS; field execution pending; product mutation remains false.
    - [x] Programmer Agent™ + Pre-Send Filter discipline — VERIFIED; Language Governance + Positive Language + Second Look + syntax/scope/recovery preflight + DoneCheck™ v1.2 pre-send bound; active Gate unchanged.
 7. [x] **Gate 7 — Migration / Repair Scenario — PASS / SEALED**
-8. [ ] **Gate 8 — New Product from Brief Scenario — ACTIVE**
-9. [ ] **Gate 9 — Deploy / Live Verify / Rollback + Lifecycle**
+8. [x] **Gate 8 — New Product from Brief Scenario — PASS / SEALED**
+9. [ ] **Gate 9 — Deploy / Live Verify / Rollback + Lifecycle — ACTIVE**
 10. [ ] **Gate 10 — Finished-Product Delivery Acceptance**
 11. [ ] **Gate 11 — Consolidated Real-Mac Product Engineering Commissioning**
 12. [ ] **Gate 12 — DoneCheck™ v1.2 + Human Threshold™ + Version Lock**
@@ -1233,11 +1233,33 @@ Verified chain:
 
 **Closure state: 5/12 PASS. Active gate: 6 — Existing Product Change Scenario.**
 
+### Gate 8 result — VERIFIED PASS
+
+Field product: **LOCAL CSV INSPECTOR**.
+
+Evidence:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate8-native-layout-verified-finish/20260925T121312Z/gate8-evidence.json`
+
+Verified chain:
+
+`BRIEF → NATIVE_PRODUCT → CSV_IMPORT → PREVIEW → NUMERIC_SUMMARY → REPORT_EXPORT → REAL_USER_PATH → DoneCheck™ v1.2 → Human Threshold™`
+
+Operator HEAD: `4e716e387dabea9a4fb1c4752da73a3b172bc2d8`.
+
+Field HEAD: `927fbc2d3130d474bcf9443231e741938b03636d`.
+
+`COUNTERS=0/0/0`; architecture preserved; new core = false; provider recalled = false.
+
+**Closure state: 8/12 PASS. Active gate: 9 — Deploy / Live Verify / Rollback + Lifecycle.**
+
 ### Current v0.8 next action
 
-`V08_EXISTING_PRODUCT_CHANGE_SCENARIO`
+`V08_RELEASE_LIFECYCLE_SCENARIO`
 
-Gate 6 uses ENGÜRÜ Mac-Native Engineering Authority™ on **ENGÜRÜ Mac Engineer™ itself** for one real bounded existing-product change. The verified Gate 3 UX/Aesthetic contract is implemented through the existing product architecture, followed by build, regression, package, fresh runtime verification, Evidence and Human Artistic Authority™ review.
+Gate 9 exercises controlled release, independent live verification, rollback and applicable lifecycle controls while preserving Evidence continuity.
+
+Exit: `V08_RELEASE_LIFECYCLE_VERIFIED`.
 
 ## v0.9 — World-Class Field Benchmark
 
@@ -1284,11 +1306,10 @@ Engineering mode: **GitHub-first benchmark harness + selected Mac field proofs**
 
 ## Current next action
 
-1. Reconcile Gate 5 verified field Evidence into canonical control-plane truth.
-2. Activate Gate 6 — Existing Product Change Scenario.
-3. Implement the verified Gate 3 UX/Aesthetic contract as one bounded existing-product change.
-4. Run build, regression, package/install and fresh runtime verification.
-5. Produce Evidence and present the implemented direction to Human Artistic Authority™.
+1. Preserve Gate 8 as VERIFIED PASS / SEALED.
+2. Execute Gate 9 — Deploy / Live Verify / Rollback + Lifecycle.
+3. Verify release → live truth → rollback → lifecycle continuity.
+4. Produce Evidence + DoneCheck™ v1.2 before Gate 10.
 
 ## v0.7 — VERIFIED FINISH CLOSURE CONTRACT — 13 GATES
 
@@ -1583,24 +1604,24 @@ Current active difference:
 
 #### Gate 7 — Migration / Repair Scenario
 
-- [ ] Intake a real existing product/source.
-- [ ] Discover exact current truth.
-- [ ] Diagnose root cause.
-- [ ] Apply bounded repair/migration.
-- [ ] Run targeted + full regression.
-- [ ] Produce Evidence.
-- [ ] Close with DoneCheck™.
+- [x] Intake a real existing product/source.
+- [x] Discover exact current truth.
+- [x] Diagnose root cause.
+- [x] Apply bounded repair/migration.
+- [x] Run targeted + full regression.
+- [x] Produce Evidence.
+- [x] Close with DoneCheck™.
 
 #### Gate 8 — New Product from Brief Scenario
 
-- [ ] Accept natural-language brief.
-- [ ] Establish product contract.
-- [ ] Plan architecture.
-- [ ] Build real product.
-- [ ] Run product tests.
-- [ ] Package native/runtime product.
-- [ ] Produce Evidence.
-- [ ] Close with DoneCheck™.
+- [x] Accept natural-language brief.
+- [x] Establish product contract.
+- [x] Plan architecture.
+- [x] Build real product.
+- [x] Run product tests.
+- [x] Package native/runtime product.
+- [x] Produce Evidence.
+- [x] Close with DoneCheck™.
 
 #### Gate 9 — Deploy / Live Verify / Rollback Lifecycle
 
@@ -1772,17 +1793,16 @@ and returns the finished result to the user.
 
 ## CURRENT SINGLE NEXT ACTION
 
-**v0.8 Gate 6 — Server-Side Structured Verified Finish**
+**v0.8 Gate 9 — Deploy / Live Verify / Rollback Lifecycle**
 
-`work_id`
-→ `DoneCheck™ v1.2 verification`
-→ `authorized HumanReview`
-→ `donecheck.verified-finish/v1 receipt`
-→ `durable work.completion`
-→ `server-side archive`
-→ `restart persistence`
-→ `false-finish rejection`
-→ `field Evidence`
+`controlled release`
+→ `independent live verification`
+→ `source → artifact → live provenance`
+→ `rollback`
+→ `lifecycle recovery`
+→ `Evidence`
+→ `DoneCheck™ v1.2`
+→ `V08_RELEASE_LIFECYCLE_VERIFIED`
 
 ---
 
@@ -1797,17 +1817,16 @@ and returns the finished result to the user.
 
 - Architecture: REMAINS.
 - Foundation: FROZEN.
-- Active Gate: 6 — Existing Product Change.
-- Order: Gate 6 → Gate 7 → Gate 8 → Gate 9 → Gate 10 → Gate 11 → Gate 12.
+- Passed: Gate 6 → Gate 7 → Gate 8.
+- Active Gate: 9 — Deploy / Live Verify / Rollback + Lifecycle.
+- Remaining order: Gate 9 → Gate 10 → Gate 11 → Gate 12.
 - Terminal packages are Gate-local engineering units.
 - Gate advancement requires PASS + regression + Evidence.
-- Scenario findings receive bounded repair inside the active Gate.
 - Foundation reopens only from fresh contradictory Evidence.
 - No duplicate core.
 - No second canonical truth.
-- v0.9 owns world-class cross-product benchmark/generalization.
 
-**NEXT ACTION — FINISH_GATE6_EXISTING_PRODUCT_CHANGE**
+**NEXT ACTION — V08_RELEASE_LIFECYCLE_SCENARIO**
 
 ## Visual Aesthetic Timing — Canonical Rule
 
@@ -1927,7 +1946,7 @@ SECOND_CANONICAL_TRUTH=false
 
 CURRENT NEXT ACTION
 
-V08_MIGRATION_REPAIR_SCENARIO
+V08_RELEASE_LIFECYCLE_SCENARIO
 
 
 ### Gate 6 Functional Acceptance Seal
@@ -1957,7 +1976,18 @@ Gate 7 — **PASS / SEALED**
 Exit:
 `V08_MIGRATION_REPAIR_VERIFIED`
 
-Gate 8 — **ACTIVE**
+Gate 8 — **PASS / SEALED**
+
+Exit:
+`V08_NEW_PRODUCT_FROM_BRIEF_VERIFIED`
+
+Gate 9 — **ACTIVE**
 
 Evidence:
 `/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate7-final/20260924T182614Z/evidence.json`
+
+
+Gate 8 Evidence:
+`/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate8-native-layout-verified-finish/20260925T121312Z/gate8-evidence.json`
+
+**NEXT ACTION — V08_RELEASE_LIFECYCLE_SCENARIO**

@@ -29,64 +29,125 @@ ACTIVE = (
 
 
 class Gate8CanonicalReconciliationTests(unittest.TestCase):
-    def test_session_state_gate8_is_current_truth(self):
+    def test_session_state_gate9_is_current_truth(self):
+        import json
+        from pathlib import Path
+
+        root = Path(__file__).resolve().parents[1]
+
         state = json.loads(
-            SESSION.read_text(encoding="utf-8")
+            (
+                root
+                / "governance/mac-engineer/SESSION_STATE_V1.json"
+            ).read_text(encoding="utf-8")
         )
+
+        roadmap = json.loads(
+            (
+                root
+                / "governance/mac-engineer/PRODUCT_ROADMAP_V1.json"
+            ).read_text(encoding="utf-8")
+        )
+
+        worklist = (
+            root / "WORKLIST.md"
+        ).read_text(encoding="utf-8")
+
+        expected = "V08_RELEASE_LIFECYCLE_SCENARIO"
 
         self.assertEqual(
             state["currentObjective"],
-            "V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO",
-        )
-        self.assertTrue(
-            isinstance(state["nextAction"], str)
-            and bool(state["nextAction"].strip())
+            expected,
         )
 
-        v08 = state["currentV08"]
-        closure = v08["closureContract"]
+        self.assertEqual(
+            roadmap["current"]["activeObjective"],
+            expected,
+        )
+
+        current_v08 = state["currentV08"]
+        closure = current_v08["closureContract"]
 
         self.assertEqual(
             closure["passedGates"],
-            [1, 2, 3, 4, 5, 6, 7],
+            [1, 2, 3, 4, 5, 6, 7, 8],
         )
+
         self.assertEqual(
             closure["activeGate"],
-            8,
+            9,
         )
+
         self.assertEqual(
             closure["remainingGates"],
-            [8, 9, 10, 11, 12],
+            [9, 10, 11, 12],
+        )
+
+        gate8 = current_v08["gate8"]
+
+        self.assertIn(
+            "humanBriefLock",
+            gate8,
         )
 
         self.assertEqual(
-            v08["nextAction"],
-            state["nextAction"],
-        )
-        self.assertEqual(
-            v08["localContinuityNextAction"],
-            state["nextAction"],
-        )
-        self.assertEqual(
-            v08["gate8"]["nextAction"],
-            state["nextAction"],
+            gate8["nextAction"],
+            "GATE8_RESEARCH_HARVEST_ARCHITECTURE_VERTICAL_SLICE",
         )
 
-        continuity = v08["controlPlaneLocalContinuity"]
+        gate8_closure = current_v08["gate8Closure"]
 
         self.assertEqual(
-            continuity["currentTechnicalTarget"],
-            "V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO",
-        )
-        self.assertEqual(
-            continuity["nextAfterPass"],
-            "GATE9_ACTIVE",
+            gate8_closure["state"],
+            "VERIFIED_PASS",
         )
 
         self.assertEqual(
-            state["preSendFilter"]["activeObjectivePreserved"],
-            "V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO",
+            gate8_closure["exit"],
+            "V08_NEW_PRODUCT_FROM_BRIEF_VERIFIED",
         )
+
+        gate9 = current_v08["gate9"]
+
+        self.assertEqual(
+            gate9["state"],
+            "ACTIVE",
+        )
+
+        self.assertEqual(
+            gate9["previousGate"],
+            "V08_NEW_PRODUCT_FROM_BRIEF_VERIFIED",
+        )
+
+        self.assertEqual(
+            gate9["exit"],
+            "V08_RELEASE_LIFECYCLE_VERIFIED",
+        )
+
+        self.assertIn(
+            "**Active objective:** "
+            "`V08_RELEASE_LIFECYCLE_SCENARIO`",
+            worklist,
+        )
+
+        self.assertIn(
+            "**Current single objective:** "
+            "**V08_RELEASE_LIFECYCLE_SCENARIO**.",
+            worklist,
+        )
+
+        self.assertIn(
+            "8. [x] **Gate 8 — New Product from Brief "
+            "Scenario — PASS / SEALED**",
+            worklist,
+        )
+
+        self.assertIn(
+            "9. [ ] **Gate 9 — Deploy / Live Verify / "
+            "Rollback + Lifecycle — ACTIVE**",
+            worklist,
+        )
+
 
     def test_session_state_matches_product_roadmap_gate_truth(self):
         state = json.loads(

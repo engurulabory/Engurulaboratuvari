@@ -16,8 +16,8 @@
   "current": {
     "version": "v0.8",
     "state": "ACTIVE_PRODUCT_ENGINEERING_OPERATOR",
-    "activeObjective": "V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO",
-    "productSourceSha": "a73090306cfac2eeeb3f06c3b83ba7bbbc1a7522",
+    "activeObjective": "V08_RELEASE_LIFECYCLE_SCENARIO",
+    "productSourceSha": "4e716e387dabea9a4fb1c4752da73a3b172bc2d8",
     "installedVersion": "0.8",
     "completed": [
       "RUNTIME_APP_PROVENANCE_CLOSURE",
@@ -42,10 +42,10 @@
       "V08_GATE_04_FULL_CHAIN_BINDING_PASS",
       "V08_GATE_05_NATIVE_PRODUCTIZATION_PASS",
       "V08_GATE_06_EXISTING_PRODUCT_CHANGE_PASS",
-      "V08_GATE_07_MIGRATION_REPAIR_PASS"
+      "V08_GATE_07_MIGRATION_REPAIR_PASS",
+      "V08_GATE_08_NEW_PRODUCT_FROM_BRIEF_PASS"
     ],
     "remaining": [
-      "V08_GATE_08_NEW_PRODUCT_FROM_BRIEF",
       "V08_GATE_09_RELEASE_LIFECYCLE",
       "V08_GATE_10_FINISHED_PRODUCT_DELIVERY",
       "V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING",
@@ -187,7 +187,7 @@
       ],
       "acceptanceMatrix": "PASS_DEFINED",
       "acceptanceMatrixPath": "governance/mac-engineer/V08_PRODUCT_ENGINEERING_OPERATOR_ACCEPTANCE_MATRIX_V1.md",
-      "nextAction": "V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO",
+      "nextAction": "V08_RELEASE_LIFECYCLE_SCENARIO",
       "executionAuthorityModel": "ENGÜRÜ Mac-Native Engineering Authority™",
       "engineeringMode": "MAC_NATIVE_PRIMARY_AUTHORITY",
       "productBaselineExactMain": "5432b9b135499cea18273c0e003877b864af92c6",
@@ -207,11 +207,11 @@
           4,
           5,
           6,
-          7
+          7,
+          8
         ],
-        "active": 8,
+        "active": 9,
         "remaining": [
-          8,
           9,
           10,
           11,
@@ -220,7 +220,22 @@
         "finalAuthority": "HUMAN_THRESHOLD",
         "finalState": "PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED"
       },
-      "productWorkingBranch": "feat/v08-native-productization-provenance"
+      "productWorkingBranch": "feat/v08-native-productization-provenance",
+      "gate8FieldProof": {
+        "state": "VERIFIED_PASS",
+        "exit": "V08_NEW_PRODUCT_FROM_BRIEF_VERIFIED",
+        "product": "LOCAL CSV INSPECTOR",
+        "operatorHead": "4e716e387dabea9a4fb1c4752da73a3b172bc2d8",
+        "fieldHead": "927fbc2d3130d474bcf9443231e741938b03636d",
+        "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate8-native-layout-verified-finish/20260925T121312Z/gate8-evidence.json",
+        "report": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate8-native-layout-verified-finish/20260925T121312Z/human-acceptance/csv-report.txt",
+        "doneCheck": "PASS",
+        "humanThreshold": "PASS",
+        "counters": "0/0/0",
+        "architectureState": "PRESERVED",
+        "newCore": false,
+        "providerRecalled": false
+      }
     },
     {
       "version": "v0.9",

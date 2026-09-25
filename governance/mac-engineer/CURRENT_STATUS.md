@@ -137,25 +137,23 @@ v0.4, v0.5 and v0.6 locked truths remain unchanged.
 
 ## CURRENT OBJECTIVE
 
-**v0.7 — Long-Running Reliability**
+**v0.8 — Product Engineering Operator / Gate 9 — Deploy / Live Verify / Rollback + Lifecycle**
 
-First required difference **PASS**: exact v0.7 acceptance matrix is canonical at `governance/mac-engineer/V07_LONG_RUNNING_RELIABILITY_ACCEPTANCE_MATRIX_V1.md`, with Evidence at `evidence/MAC_ENGINEER_V07_ACCEPTANCE_MATRIX_2026-09-22.md`.
+Gate 8 — New Product from Brief Scenario is **VERIFIED PASS / SEALED**.
 
-V07-A01 + V07-A02 **PASS / exact-main verified**: product PR #9 merged to `443fd4455b6c2f095c7944ee7bc00445d96d2d2a`; exact-main Product CI run #19 PASS with 48/48 runtime tests OK. Canonical Evidence: `evidence/MAC_ENGINEER_V07_A01_A02_ENGINEERING_2026-09-22.md`.
+Field product: **LOCAL CSV INSPECTOR**.
 
-V07-A03 + V07-A04 **PASS / exact-main verified**: product PR #10 merged to `1dcbc795e4b949448206fbad93b239aca297cc0f`; exact-main Product CI run #21 PASS with 50/50 runtime tests OK. Canonical Evidence: `evidence/MAC_ENGINEER_V07_A03_A04_ENGINEERING_2026-09-22.md`.
+Verified chain: native product → real CSV user path → preview → numeric summary → report export → DoneCheck™ v1.2 → Human Threshold™.
 
-V07-A05 + V07-A06 **PASS / exact-main verified**: product PR #11 merged to `199893b07941a82c26c3b39a7942478cb95420b0`; exact-main Product CI run #23 PASS with 52/52 runtime tests OK. Canonical Evidence: `evidence/MAC_ENGINEER_V07_A05_A06_ENGINEERING_2026-09-22.md`.
+Operator HEAD: `4e716e387dabea9a4fb1c4752da73a3b172bc2d8`.
 
-V07-A07 + V07-A08 **GitHub-first acceptance PASS / Mac acceptance pending**: Product PR #12 merged to `5432b9b135499cea18273c0e003877b864af92c6`; exact-main Product CI run #26 PASS with 54/54 runtime tests OK. A07 confirms canonical-durable-only artifact scope with 0 unexpected/temp/cache residue. A08 confirms 20 checkpoint + 20 restart Evidence lineage and journal reconciliation. The ≥8h/RSS and Local Evidence bundle requirements remain reserved for consolidated Mac commissioning. Canonical Evidence: `evidence/MAC_ENGINEER_V07_A07_A08_ENGINEERING_2026-09-22.md`.
+Field HEAD: `927fbc2d3130d474bcf9443231e741938b03636d`.
 
-V07-A09 **HOLD — external GitHub-hosted Actions execution gate**. Product PR #13 campaign remains 0/5. Jobs on `macos-latest`, explicit `macos-15`, and `ubuntu-latest` were created but failed before any workflow step (`steps=null`). No production-code defect is evidenced. Canonical Evidence: `evidence/MAC_ENGINEER_V07_A09_ACTIONS_HOLD_2026-09-22.md`.
+Gate 8 Evidence: `~/Enguru/Evidence/MacEngineer/v0.8/gate8-native-layout-verified-finish/20260925T121312Z/gate8-evidence.json`.
 
-Astra local fallback **EXECUTED PASS**: exact candidate `d545a6d9d5d9823da5878323022735ad7f47a80e`; runtime compile PASS; 5/5 targeted local PASS; full regression PASS; native syntax/build PASS; diff/scope PASS; disposable worktree clean. Local Evidence: `evidence/MAC_ENGINEER_V07_A09_ASTRA_LOCAL_REHEARSAL_2026-09-23.md`. V07-A09 remains HOLD until external GitHub CI confirmation.
+`COUNTERS=0/0/0`; architecture preserved; new core = false; provider recalled = false.
 
-OSi operator surface **LOCAL ACCEPTANCE PASS**: five-command surface, compact Evidence spool, automatic runtime handoff receipt, GitVault recovery mirrors and offline reconciliation completed real-Mac acceptance on control-plane code candidate `0558ba492c352179e1d79e40dc91f7780c43df63`. Operator targeted tests PASS; 363-test control-plane regression PASS; install/doctor/status PASS; Evidence Spool PASS; GitVault PASS. Product A09 candidate `63dac60d39c93f3936658e8a5c8c80fb8470dfd3` also completed fresh local rehearsal PASS. Canonical A09 external GitHub confirmation remains HOLD. Evidence: `evidence/MAC_ENGINEER_OSI_OPERATOR_LOCAL_ACCEPTANCE_2026-09-23.md`.
-
-Current required difference: promote the accepted OSi operator package into canonical control-plane truth and proceed with Mac Repository Fabric discovery while V07-A09 external GitHub confirmation remains explicitly HOLD.
+Current required difference: `V08_RELEASE_LIFECYCLE_SCENARIO`.
 
 ## REMAINING v0.6 CLOSEOUT
 
@@ -176,18 +174,17 @@ CURRENT_STATUS is updated after every material engineering package or PASS / HOL
 
 ## JUDGMENT
 
-**v0.6 LOCAL FIELD CLOSEOUT = VERIFIED PASS.**
-
 **v0.6 VERIFIED FINAL / LOCKED = PASS.**
 
-**V00_V03_HISTORICAL_RECONSTRUCTION = PASS / CLOSED.**
+**v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED = PASS.**
 
-Recovery, fixture repair, local field acceptance and the reconstructed pre-canonical boundary are closed truths and reopen only when new contradictory Evidence materially changes current truth.
+**v0.8 Gate 8 — New Product from Brief = VERIFIED PASS / SEALED.**
+
+v0.8 remains ACTIVE through Gates 9–12.
 
 ## NEXT ACTION
 
-`V08_EXISTING_PRODUCT_CHANGE_SCENARIO → bounded real product change → regression → package/install → field verification → Evidence → Human Artistic Authority™`
-
+`V08_RELEASE_LIFECYCLE_SCENARIO → controlled release → independent live verification → source/artifact/live provenance → rollback → lifecycle recovery → Evidence continuity → DoneCheck™ v1.2 → V08_RELEASE_LIFECYCLE_VERIFIED`
 
 ## MAC REPOSITORY FABRIC — 2026-09-23
 

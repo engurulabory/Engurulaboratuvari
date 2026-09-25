@@ -233,8 +233,14 @@ Exit:
 
 ## CURRENT ACTIVE GATE
 
-**Gate 1 — V08_SELF_ENGINEERING_BASELINE_AUDIT**
+**Gate 9 — Deploy / Live Verify / Rollback + Lifecycle**
+
+Gate 8 exit:
+
+`V08_NEW_PRODUCT_FROM_BRIEF_VERIFIED`
+
+Gate 8 state: **VERIFIED PASS / SEALED**.
 
 ## NEXT ACTION
 
-`fresh v0.8 exact-head acceptance → Doctor → enguru-mac continue → Gate 1 self-engineering baseline audit → Evidence → Gate 2 reconciliation`
+`V08_RELEASE_LIFECYCLE_SCENARIO → controlled release → independent live verification → rollback → lifecycle controls → Evidence continuity → V08_RELEASE_LIFECYCLE_VERIFIED`
