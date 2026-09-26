@@ -1012,5 +1012,128 @@ class OperatorSurfaceTests(unittest.TestCase):
         self.assertEqual(bare.stdout.strip(), "true")
 
 
+
+class Gate10FinishedProductDeliveryTests(unittest.TestCase):
+    def test_gate10_operator_contract_is_bound(self) -> None:
+        source = (
+            Path(__file__).resolve().parents[1]
+            / "tools"
+            / "mac_engineer_operator.py"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn(
+            'local_action == "V08_FINISHED_PRODUCT_DELIVERY_SCENARIO"',
+            source,
+        )
+        self.assertIn(
+            "V08_FINISHED_PRODUCT_DELIVERY_TECHNICAL_PASS",
+            source,
+        )
+        self.assertIn(
+            "HUMAN_THRESHOLD_REVIEW_READY_PASS",
+            source,
+        )
+        self.assertIn(
+            "HUMAN_DECISION_REQUIRED",
+            source,
+        )
+
+    def test_continue_runs_gate10_to_explicit_human_decision(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            evidence = Path(tmp)
+            runtime_receipts = evidence / "runtime"
+
+            gate10 = mock.Mock(
+                return_value={
+                    "state": "HOLD",
+                    "technical_state": "PASS",
+                    "evidence": "/tmp/gate10/evidence.json",
+                    "fields": {
+                        "NEXT_ACTION":
+                            "GATE10_HUMAN_DELIVERY_ACCEPTANCE",
+                    },
+                }
+            )
+
+            truth = {
+                "current_version": "v0.8",
+                "next_action":
+                    "V08_FINISHED_PRODUCT_DELIVERY_SCENARIO",
+                "local_continuity_next_action":
+                    "V08_FINISHED_PRODUCT_DELIVERY_SCENARIO",
+                "local_fallback": {},
+            }
+
+            with (
+                mock.patch.object(
+                    operator,
+                    "EVIDENCE",
+                    evidence,
+                ),
+                mock.patch.object(
+                    operator,
+                    "RUNTIME_RECEIPTS",
+                    runtime_receipts,
+                ),
+                mock.patch.object(
+                    operator,
+                    "canonical_boot",
+                    return_value={"state": "PASS"},
+                ),
+                mock.patch.object(
+                    operator,
+                    "current_truth",
+                    return_value=truth,
+                ),
+                mock.patch.object(
+                    operator,
+                    "sync_mirrors",
+                    return_value={},
+                ),
+                mock.patch.object(
+                    operator,
+                    "runner_status",
+                    return_value={"state": "UNCOMMISSIONED"},
+                ),
+                mock.patch.object(
+                    operator,
+                    "run_v08_finished_product_delivery",
+                    gate10,
+                ),
+                mock.patch.object(
+                    operator,
+                    "offline_manifest",
+                    return_value={},
+                ),
+            ):
+                with contextlib.redirect_stdout(io.StringIO()):
+                    code = operator.command_continue()
+
+            receipt = json.loads(
+                (evidence / "latest-receipt.json")
+                .read_text(encoding="utf-8")
+            )
+
+            self.assertEqual(code, 2)
+            self.assertEqual(receipt["state"], "HOLD")
+            self.assertEqual(
+                receipt["hold"],
+                "HUMAN_DECISION_REQUIRED",
+            )
+            self.assertIn(
+                "V08_FINISHED_PRODUCT_DELIVERY_TECHNICAL_PASS",
+                receipt["completed"],
+            )
+            self.assertIn(
+                "HUMAN_THRESHOLD_REVIEW_READY_PASS",
+                receipt["completed"],
+            )
+            self.assertEqual(
+                receipt["next_action"],
+                "GATE10_HUMAN_DELIVERY_ACCEPTANCE",
+            )
+
+            gate10.assert_called_once_with()
+
 if __name__ == "__main__":
     unittest.main()

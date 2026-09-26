@@ -48,6 +48,7 @@ V08_UX_AESTHETIC_PRODUCT_CONTRACT = ROOT / "governance" / "mac-engineer" / "V08_
 V08_FULL_PRODUCT_ENGINEERING_CHAIN_BINDING = ROOT / "governance" / "mac-engineer" / "V08_FULL_PRODUCT_ENGINEERING_CHAIN_BINDING.command"
 V08_NATIVE_APP_PRODUCTIZATION = ROOT / "governance" / "mac-engineer" / "V08_NATIVE_APP_PRODUCTIZATION_AND_PROVENANCE.command"
 V08_EXISTING_PRODUCT_CHANGE = ROOT / "governance" / "mac-engineer" / "V08_EXISTING_PRODUCT_CHANGE_SCENARIO.command"
+V08_FINISHED_PRODUCT_DELIVERY = ROOT / "governance" / "mac-engineer" / "V08_FINISHED_PRODUCT_DELIVERY_SCENARIO.command"
 
 TERMINAL_STATES = {"COMPLETE", "HOLD", "FAILED", "BLOCKED"}
 RECOVERABLE_STATES = {"RUNNING", "CHECKPOINTED", "RECOVERY_REQUIRED", "VERIFYING"}
@@ -1256,6 +1257,61 @@ def run_v08_existing_product_change() -> dict[str, Any]:
     }
 
 
+
+def run_v08_finished_product_delivery() -> dict[str, Any]:
+    if not V08_FINISHED_PRODUCT_DELIVERY.is_file():
+        return {
+            "state": "HOLD",
+            "technical_state": "HOLD",
+            "reason": "V08_FINISHED_PRODUCT_DELIVERY_COMMAND_MISSING",
+            "evidence": None,
+        }
+
+    result = run(
+        ["zsh", str(V08_FINISHED_PRODUCT_DELIVERY)],
+        cwd=ROOT,
+        timeout=3600,
+        env={
+            **os.environ,
+            "PYTHONDONTWRITEBYTECODE": "1",
+        },
+    )
+
+    fields: dict[str, str] = {}
+
+    for line in result.get("stdout", "").splitlines():
+        if "=" in line:
+            key, value = line.split("=", 1)
+
+            if key and value:
+                fields[key.strip()] = value.strip()
+
+    technical_pass = (
+        result["code"] == 2
+        and fields.get("STATE") == "HOLD"
+        and fields.get("V08_GATE_10") == "HOLD"
+        and fields.get("V08_GATE_10_TECHNICAL") == "PASS"
+        and fields.get("HUMAN_THRESHOLD_REVIEW_READY") == "PASS"
+        and fields.get("HUMAN_DECISION_OPTIONS") == "ACCEPT|HOLD"
+        and fields.get("HOLD") == "HUMAN_DECISION_REQUIRED"
+        and fields.get("NEXT_ACTION")
+            == "GATE10_HUMAN_DELIVERY_ACCEPTANCE"
+    )
+
+    return {
+        "state": "HOLD",
+        "technical_state":
+            "PASS" if technical_pass else "HOLD",
+        "code": result["code"],
+        "fields": fields,
+        "evidence": fields.get("EVIDENCE"),
+        "stdout_tail":
+            result.get("stdout", "")[-12000:],
+        "stderr_tail":
+            result.get("stderr", "")[-6000:],
+    }
+
+
 def command_continue() -> int:
     boot = canonical_boot()
     truth = current_truth()
@@ -1270,6 +1326,63 @@ def command_continue() -> int:
         hold = "CANONICAL_BOOT"
         next_action = "enguru-mac doctor"
         completed = ["CANONICAL_BOOT_HOLD", "GITVAULT_SYNC"]
+    elif local_action == "V08_FINISHED_PRODUCT_DELIVERY_SCENARIO":
+        completed = [
+            "CANONICAL_BOOT",
+            "GITVAULT_SYNC",
+        ]
+
+        gate10_delivery = run_v08_finished_product_delivery()
+
+        if gate10_delivery.get("technical_state") != "PASS":
+            payload = write_receipt(
+                command="continue",
+                state="HOLD",
+                completed=completed,
+                evidence=[
+                    item
+                    for item in [
+                        str(SESSION_STATE),
+                        str(gate10_delivery.get("evidence") or ""),
+                    ]
+                    if item
+                ],
+                hold="V08_FINISHED_PRODUCT_DELIVERY_SCENARIO",
+                next_action="enguru-mac doctor",
+                details={
+                    "truth": truth,
+                    "boot": boot,
+                    "runner": runner,
+                    "mirrors": mirrors,
+                    "v08_finished_product_delivery":
+                        gate10_delivery,
+                },
+            )
+
+            print_receipt(payload)
+            return 2
+
+        completed.extend([
+            "V08_FINISHED_PRODUCT_DELIVERY_TECHNICAL_PASS",
+            "USER_FACING_DELIVERY_TECHNICAL_PASS",
+            "OPERATIONAL_USAGE_PATH_TECHNICAL_PASS",
+            "OPERATIONAL_STATUS_TECHNICAL_PASS",
+            "FINISHED_RESULT_DELIVERY_TECHNICAL_PASS",
+            "DELIVERY_EVIDENCE_BUNDLE_TECHNICAL_PASS",
+            "FIELD_PRODUCT_MUTATION_FALSE",
+            "UNNECESSARY_NEW_CORE_ZERO",
+            "HUMAN_THRESHOLD_REVIEW_READY_PASS",
+            "DONECHECK_V1_2_AUTHORITY_PRESERVED",
+        ])
+
+        state = "HOLD"
+        hold = "HUMAN_DECISION_REQUIRED"
+        next_action = (
+            (gate10_delivery.get("fields") or {})
+            .get("NEXT_ACTION")
+            or "GATE10_HUMAN_DELIVERY_ACCEPTANCE"
+        )
+
     elif local_action == "V08_EXISTING_PRODUCT_CHANGE_SCENARIO":
         completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
         v08_existing_change = run_v08_existing_product_change()
