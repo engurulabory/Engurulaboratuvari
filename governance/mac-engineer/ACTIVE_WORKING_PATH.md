@@ -654,3 +654,43 @@ NEXT ACTION —
 `V08_FINISHED_PRODUCT_DELIVERY_SCENARIO`
 
 Gate 10 execution belongs to the next working session.
+
+<!-- ENGURU_GATE10_FINAL_CANONICAL_CLOSURE_V2 -->
+
+## v0.8 — CURRENT AUTHORITY AFTER GATE 10
+
+Gate 10:
+
+**VERIFIED / LOCKED**
+
+Exit:
+
+`V08_FINISHED_PRODUCT_DELIVERY_ACCEPTED`
+
+Passed Gates:
+
+`1–10`
+
+Active Gate:
+
+**11 — Consolidated Real-Mac Product Engineering Commissioning**
+
+Objective:
+
+`V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING`
+
+Remaining Gates:
+
+`11 → 12`
+
+Gate 11 execution:
+
+**NEXT SESSION / NOT STARTED**
+
+First action:
+
+`READ_ONLY_GATE11_COMMISSIONING_RECONNAISSANCE_NEXT_SESSION`
+
+Transition:
+
+`GATE10 VERIFIED_LOCKED → GATE11 ACTIVE → STOP`

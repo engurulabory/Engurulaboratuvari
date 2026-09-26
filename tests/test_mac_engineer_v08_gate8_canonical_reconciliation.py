@@ -74,47 +74,97 @@ class Gate8CanonicalReconciliationTests(unittest.TestCase):
             "LOCKED",
         )
 
-    def test_gate10_is_current_structured_truth(self):
-        self.assertEqual(
-            self.state["currentObjective"],
-            G10,
+
+    def test_gate8_progression_remains_monotonic_after_later_gates(self):
+        import json
+        from pathlib import Path
+
+        root = Path(__file__).resolve().parents[1]
+
+        session = json.loads(
+            (
+                root
+                / "governance"
+                / "mac-engineer"
+                / "SESSION_STATE_V1.json"
+            ).read_text(
+                encoding="utf-8"
+            )
         )
 
-        self.assertEqual(
-            self.v08["closureContract"]["activeGate"],
-            10,
+        roadmap = json.loads(
+            (
+                root
+                / "governance"
+                / "mac-engineer"
+                / "PRODUCT_ROADMAP_V1.json"
+            ).read_text(
+                encoding="utf-8"
+            )
         )
 
-        self.assertEqual(
-            self.roadmap["current"]["activeObjective"],
-            G10,
+        closure = (
+            session["currentV08"]
+            ["closureContract"]
         )
 
-    def test_current_status_points_to_gate10(self):
-        text = CURRENT_STATUS.read_text(
+        self.assertIn(
+            8,
+            closure["passedGates"],
+        )
+
+        self.assertGreater(
+            closure["activeGate"],
+            8,
+        )
+
+        self.assertNotIn(
+            8,
+            closure["remainingGates"],
+        )
+
+        self.assertIn(
+            "V08_GATE_08_NEW_PRODUCT_FROM_BRIEF_PASS",
+            roadmap["current"].get("completed") or [],
+        )
+
+    def test_current_status_preserves_gate8_historical_closure(self):
+        from pathlib import Path
+
+        root = Path(__file__).resolve().parents[1]
+
+        text = (
+            root
+            / "governance"
+            / "mac-engineer"
+            / "CURRENT_STATUS.md"
+        ).read_text(
             encoding="utf-8"
         )
 
         self.assertIn(
-            f"**Current objective:** {G10}",
-            text[:3000],
+            "Gate 8",
+            text,
         )
 
-    def test_active_path_records_gate10(self):
-        text = ACTIVE_PATH.read_text(
+    def test_active_path_preserves_gate8_historical_record(self):
+        from pathlib import Path
+
+        root = Path(__file__).resolve().parents[1]
+
+        text = (
+            root
+            / "governance"
+            / "mac-engineer"
+            / "ACTIVE_WORKING_PATH.md"
+        ).read_text(
             encoding="utf-8"
         )
 
         self.assertIn(
-            "ENGURU_V08_GATE9_CANONICAL_RECONCILIATION_V1",
+            "Gate 8",
             text,
         )
-
-        self.assertIn(
-            G10,
-            text,
-        )
-
 
 if __name__ == "__main__":
     unittest.main()

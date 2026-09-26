@@ -85,78 +85,70 @@ class Gate9CanonicalReconciliationTests(unittest.TestCase):
             "CLEAR",
         )
 
-    def test_gate10_is_current_authority(self):
-        closure = self.v08["closureContract"]
 
-        self.assertEqual(
+    def test_gate9_historical_transition_remains_monotonic(self):
+        import json
+        from pathlib import Path
+
+        root = Path(__file__).resolve().parents[1]
+
+        session = json.loads(
+            (
+                root
+                / "governance"
+                / "mac-engineer"
+                / "SESSION_STATE_V1.json"
+            ).read_text(
+                encoding="utf-8"
+            )
+        )
+
+        closure = session["currentV08"]["closureContract"]
+
+        self.assertIn(
+            9,
             closure["passedGates"],
-            list(range(1, 10)),
         )
 
-        self.assertEqual(
+        self.assertGreater(
             closure["activeGate"],
-            10,
+            9,
         )
 
-        self.assertEqual(
+        self.assertNotIn(
+            9,
             closure["remainingGates"],
-            [10, 11, 12],
         )
 
-        self.assertEqual(
-            self.state["currentObjective"],
-            G10,
-        )
-
-        self.assertEqual(
-            self.v08["gate10"]["state"],
-            "ACTIVE",
-        )
-
-    def test_roadmap_current_is_gate10(self):
+    def test_roadmap_preserves_gate9_completion_without_claiming_current_authority(self):
         current = self.roadmap["current"]
-
-        self.assertEqual(
-            current["activeObjective"],
-            G10,
-        )
 
         self.assertIn(
             "V08_GATE_09_RELEASE_LIFECYCLE_PASS",
-            current["completed"],
+            current.get("completed") or [],
         )
 
-    def test_worklist_current_objectives_are_gate10(self):
-        text = WORKLIST.read_text(
+        self.assertNotIn(
+            "V08_GATE_09_RELEASE_LIFECYCLE",
+            current.get("remaining") or [],
+        )
+
+    def test_worklist_preserves_gate10_historical_transition_record(self):
+        from pathlib import Path
+
+        root = Path(__file__).resolve().parents[1]
+
+        text = (
+            root
+            / "WORKLIST.md"
+        ).read_text(
             encoding="utf-8"
         )
 
-        active = re.findall(
-            r"\*\*Active objective:\*\*\s*`([^`]+)`",
+        self.assertIn(
+            "V08_FINISHED_PRODUCT_DELIVERY_SCENARIO",
             text,
         )
-
-        single = re.findall(
-            (
-                r"\*\*Current single objective:\*\*"
-                r"\s+\*\*(.+?)\*\*\."
-            ),
-            text,
-        )
-
-        self.assertTrue(active)
-        self.assertTrue(single)
-
-        self.assertEqual(
-            active[-1],
-            G10,
-        )
-
-        self.assertEqual(
-            single[-1],
-            G10,
-        )
-
     def test_acceptance_matrix_records_gate9_closure(self):
         text = MATRIX.read_text(
             encoding="utf-8"

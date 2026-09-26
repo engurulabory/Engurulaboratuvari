@@ -1120,9 +1120,9 @@ Local evidence:
 - [x] Canonical Evidence: `evidence/MAC_ENGINEER_V00_V03_HISTORICAL_RECONSTRUCTION_2026-09-22.md`.
 - [x] **V00_V03_HISTORICAL_RECONSTRUCTION = PASS / CLOSED.**
 
-**Active objective:** `V08_FINISHED_PRODUCT_DELIVERY_SCENARIO`
+**Active objective:** `V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING`
 
-**Current single objective:** **V08_FINISHED_PRODUCT_DELIVERY_SCENARIO**.
+**Current single objective:** **V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING**.
 
 ## v0.7 — Long-Running Reliability
 
@@ -2030,3 +2030,22 @@ NEXT ACTION —
 `V08_FINISHED_PRODUCT_DELIVERY_SCENARIO`
 
 Gate 10 execution belongs to the next working session.
+
+<!-- ENGURU_GATE10_FINAL_CANONICAL_CLOSURE_V2 -->
+
+### v0.8 Gate 10 — FINAL VERIFIED CLOSURE
+
+- [x] **Gate 10 — Finished-Product Delivery Acceptance — VERIFIED / LOCKED**
+- Exit: `V08_FINISHED_PRODUCT_DELIVERY_ACCEPTED`
+- Final Human Acceptance: **ACCEPTED**
+- Historical contract: **PRESERVED**
+
+### v0.8 Gate 11 — ACTIVE / NEXT SESSION
+
+- [ ] **Gate 11 — Consolidated Real-Mac Product Engineering Commissioning — ACTIVE**
+- Canonical identifier: `V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING`
+- Exit target: `V08_CONSOLIDATED_MAC_COMMISSIONING_PASS`
+- Execution this session: **0**
+- First action: `READ_ONLY_GATE11_COMMISSIONING_RECONNAISSANCE_NEXT_SESSION`
+
+**NEXT ACTION — STOP. Gate 11 execution belongs to the next session.**

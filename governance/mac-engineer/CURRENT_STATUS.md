@@ -3,7 +3,7 @@
 **Updated:** 2026-09-25
 **Program target:** ENGÜRÜ Mac Engineering™ v1.1 — Verified Product Engineering Operator
 **Current version:** v0.8 — PRODUCT ENGINEERING OPERATOR / ACTIVE
-**Current objective:** V08_FINISHED_PRODUCT_DELIVERY_SCENARIO
+**Current objective:** V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING
 **Canonical objective id:** `V08_PRODUCT_ENGINEERING_OPERATOR`
 
 ## CURRENT ENGINEERING TRUTH
@@ -1505,3 +1505,41 @@ NEXT ACTION —
 `V08_FINISHED_PRODUCT_DELIVERY_SCENARIO`
 
 Gate 10 execution belongs to the next working session.
+
+<!-- ENGURU_GATE10_FINAL_CANONICAL_CLOSURE_V2 -->
+
+## v0.8 — Gate 10 Final Closure / Gate 11 Handoff
+
+**STATE — GATE 10 VERIFIED / LOCKED.**
+
+Gate 10 exit:
+
+`V08_FINISHED_PRODUCT_DELIVERY_ACCEPTED`
+
+Final Human Threshold:
+
+**ACCEPTED**
+
+Historical Gate 10 contract:
+
+**PRESERVED**
+
+Current active Gate:
+
+**Gate 11 — Consolidated Real-Mac Product Engineering Commissioning**
+
+Canonical Gate 11 identifier:
+
+`V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING`
+
+Exit target:
+
+`V08_CONSOLIDATED_MAC_COMMISSIONING_PASS`
+
+Execution state:
+
+**ACTIVE / NOT EXECUTED IN THIS SESSION**
+
+Next action:
+
+`READ_ONLY_GATE11_COMMISSIONING_RECONNAISSANCE_NEXT_SESSION`

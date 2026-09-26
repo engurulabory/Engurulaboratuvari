@@ -269,3 +269,41 @@ Gate 10 — Finished-Product Delivery Acceptance.
 
 Current objective:
 `V08_FINISHED_PRODUCT_DELIVERY_SCENARIO`.
+
+<!-- ENGURU_GATE10_FINAL_CANONICAL_CLOSURE_V2 -->
+
+## Gate 10 — FINAL CLOSURE
+
+**STATE — VERIFIED / LOCKED**
+
+Exit:
+
+`V08_FINISHED_PRODUCT_DELIVERY_ACCEPTED`
+
+Human Threshold:
+
+**ACCEPTED**
+
+Historical contract:
+
+**PRESERVED**
+
+## CURRENT ACTIVE GATE
+
+**Gate 11 — Consolidated Real-Mac Product Engineering Commissioning**
+
+Canonical identifier:
+
+`V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING`
+
+Exit:
+
+`V08_CONSOLIDATED_MAC_COMMISSIONING_PASS`
+
+Execution:
+
+**ACTIVE / NOT STARTED**
+
+Next action:
+
+`READ_ONLY_GATE11_COMMISSIONING_RECONNAISSANCE_NEXT_SESSION`
