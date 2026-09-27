@@ -1699,5 +1699,23 @@
         "JEV_DECISION_PROVIDER_QUALIFICATION"
       ]
     }
+  },
+  "preparedGate11Method": {
+    "version": 2,
+    "state": "PREPARED_QUEUED",
+    "executionActive": false,
+    "packageCount": 12,
+    "packageRange": "P01-P12",
+    "currentPackage": null,
+    "zekuPrimaryRole": "ENGURU_COMMISSIONING_GOVERNOR",
+    "macEngineerPrimaryRole": "PRIMARY_MAC_LOCAL_ENGINEERING_PLANNER_EXECUTOR_REPAIRER_RECOVERY_OPERATOR",
+    "antiMicroPatch": true,
+    "forecastDriven": true,
+    "holdRouting": "RETURN_TO_SMALLEST_RESPONSIBLE_PACKAGE",
+    "harvestHistoricalTruthPreserved": true,
+    "harvestOriginGate": 8,
+    "harvestGate11Binding": "P03",
+    "duplicateHarvestCapabilityCreated": false,
+    "futureV11HarvestRole": "RESEARCH_HARVEST_SPECIALIST_QUALIFICATION"
   }
 }

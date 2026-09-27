@@ -1,0 +1,508 @@
+{
+  "schema": "enguru.mac-engineer.v08-gate11-commissioning-method/v2",
+  "state": "PREPARED_QUEUED",
+  "gate": 11,
+  "gateObjective": "V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING",
+  "gateExit": "V08_CONSOLIDATED_MAC_COMMISSIONING_PASS",
+  "executionActive": false,
+  "packageCount": 12,
+  "roles": {
+    "zeku": {
+      "primary": "ENGURU_COMMISSIONING_GOVERNOR",
+      "modes": [
+        "CANONICAL_SYSTEMS_ARCHITECT",
+        "MISSION_PACKAGE_ARCHITECT",
+        "PLANNING_RISK_FORECAST_ENGINEER",
+        "RESEARCH_PROVENANCE_ENGINEER",
+        "SECOND_LOOK_ACCEPTANCE_ADJUDICATOR"
+      ],
+      "defaultCodeMode": false,
+      "exceptionMode": "SOFTWARE_CODE_ENGINEER",
+      "exceptionActivationChain": [
+        "VERIFIED_CAPABILITY_GAP",
+        "EXISTING_MECHANISMS_INSUFFICIENT",
+        "MAC_ENGINEER_REPAIR_PATH_INSUFFICIENT",
+        "SMALLEST_NECESSARY_DIFFERENCE"
+      ]
+    },
+    "macEngineer": {
+      "primary": "PRIMARY_MAC_LOCAL_ENGINEERING_PLANNER_EXECUTOR_REPAIRER_RECOVERY_OPERATOR",
+      "owns": [
+        "DISCOVER",
+        "PLAN",
+        "EXECUTE",
+        "BUILD",
+        "TEST",
+        "REPAIR",
+        "PACKAGE",
+        "RUN",
+        "VERIFY",
+        "ROLLBACK",
+        "RECOVER",
+        "EVIDENCE"
+      ]
+    },
+    "terminalRuntime": {
+      "primary": "MEASUREMENT_OBSERVATION_SURFACE",
+      "architectAuthority": false,
+      "passAuthority": false
+    },
+    "evidence": {
+      "primary": "TRANSITION_PROOF"
+    },
+    "donecheck": {
+      "primary": "INDEPENDENT_MACHINE_COMPLETION_AUTHORITY"
+    },
+    "humanThreshold": {
+      "primary": "FINAL_CONSEQUENTIAL_HUMAN_AUTHORITY"
+    }
+  },
+  "historicalCapabilities": {
+    "researchHarvest": {
+      "originGate": 8,
+      "state": "HISTORICAL_VERIFIED",
+      "gate11Action": "FRESH_RECONCILE_AND_REUSE_CLASSIFY_IN_P03",
+      "allowedGate11Dispositions": [
+        "VERIFIED_REUSABLE",
+        "VERIFIED_CONTEXT_SPECIFIC",
+        "FRESH_BINDING_REQUIRED"
+      ],
+      "capabilityGapRequiresFreshEvidence": true,
+      "duplicateCapabilityCreationAllowed": false,
+      "historicalTaskContract": "governance/mac-engineer/V08_GATE8_LOCAL_CSV_INSPECTOR_TASK_CONTRACT_V1.json",
+      "futureV11Role": "RESEARCH_HARVEST_SPECIALIST_QUALIFICATION"
+    }
+  },
+  "globalInvariants": [
+    "HUMAN_MANUAL_SOURCE_EDIT_COUNT=0",
+    "CHATGPT_DIRECT_FIELD_PRODUCT_PATCH_COUNT=0",
+    "UNTRACKED_MANUAL_STEP_COUNT=0",
+    "ZEKU_SUBSTITUTED_FOR_MAC_ENGINEER_EXECUTION=0",
+    "UNSUPPORTED_CANONICAL_CLAIM=0",
+    "CRITICAL_FALSE_PASS=0",
+    "SECOND_CANONICAL_TRUTH=false",
+    "GATE8_VERIFIED_HARVEST_TRUTH_PRESERVED=true",
+    "DUPLICATE_HARVEST_CAPABILITY_CREATED=false"
+  ],
+  "reuseLaw": [
+    "REUSE",
+    "EXTEND",
+    "ADAPTER",
+    "NEW_CORE_ONLY_FROM_DEMONSTRATED_ARCHITECTURAL_NECESSITY"
+  ],
+  "planningForecastRequiredFrom": "P04",
+  "planningForecastFields": [
+    "DEPENDENCY_GRAPH",
+    "EXPECTED_STATE_TRANSITIONS",
+    "EXPECTED_MUTATIONS",
+    "EXPECTED_RUNTIME_EFFECTS",
+    "PREDICTED_FAILURE_MODES",
+    "RECOVERY_PATH_PER_CRITICAL_FAILURE",
+    "ROLLBACK_BASIS",
+    "STOP_CONDITIONS",
+    "EXPECTED_EVIDENCE",
+    "PASS_TRANSITION",
+    "RESEARCH_HARVEST_CAPABILITY_DISPOSITION"
+  ],
+  "failureClasses": [
+    "PRODUCT_FAILURE",
+    "MAC_ENGINEER_CAPABILITY_GAP",
+    "PLANNING_GAP",
+    "ROUTING_OR_ORCHESTRATION_GAP",
+    "AUTHORITY_BOUNDARY",
+    "ENVIRONMENTAL_BLOCK",
+    "CANONICAL_DRIFT",
+    "VERIFICATION_HARNESS_DEFECT",
+    "ACCEPTANCE_GAP"
+  ],
+  "holdRoutingLaw": "RETURN_TO_SMALLEST_RESPONSIBLE_PACKAGE",
+  "packages": [
+    {
+      "id": "P01",
+      "name": "CANONICAL_COMMISSIONING_PREFLIGHT",
+      "objective": "ESTABLISH_ONE_EXACT_GATE11_STARTING_TRUTH",
+      "zekuRole": [
+        "CANONICAL_SYSTEMS_ARCHITECT"
+      ],
+      "macEngineerRole": [
+        "DISCOVERY",
+        "CANONICAL_RECONCILIATION_PLANNER"
+      ],
+      "pass": [
+        "CONTROL_IDENTITY_PASS",
+        "PRODUCT_IDENTITY_PASS",
+        "RUNTIME_IDENTITY_PASS",
+        "ACTIVE_GATE_11",
+        "GATE10_CLOSURE_VERIFIED_LOCKED",
+        "CONTROL_WORKTREE_CLEAN",
+        "PRODUCT_WORKTREE_CLEAN",
+        "CANONICAL_DRIFT_0",
+        "UNRESOLVED_TRUTH_CONTRADICTION_0"
+      ],
+      "hold": [
+        "RECONCILABLE_IDENTITY_OR_PROVENANCE_DIFFERENCE"
+      ],
+      "blocked": [
+        "IRRECONCILABLE_AUTHORITY_CONFLICT_OR_UNRECOVERABLE_CANONICAL_SOURCE_LOSS"
+      ],
+      "recovery": "FRESH_READ_ONLY_RECONCILIATION_GIT_RUNTIME_EVIDENCE_SESSION",
+      "nextTransition": "P02"
+    },
+    {
+      "id": "P02",
+      "name": "GATE11_ACCEPTANCE_MATRIX_FREEZE",
+      "objective": "FREEZE_COMPLETE_MACHINE_READABLE_GATE11_ACCEPTANCE_BEFORE_ENGINEERING",
+      "zekuRole": [
+        "MISSION_PACKAGE_ARCHITECT"
+      ],
+      "macEngineerRole": [
+        "CONTRACT_FEASIBILITY_REVIEWER"
+      ],
+      "pass": [
+        "P01_PASS",
+        "CRITERION_COVERAGE_100_PERCENT",
+        "PACKAGE_COUNT_12",
+        "PASS_RULES_COMPLETE",
+        "HOLD_RULES_COMPLETE",
+        "BLOCKED_RULES_COMPLETE",
+        "RECOVERY_RULES_COMPLETE",
+        "TRANSITION_RULES_COMPLETE",
+        "MAC_ENGINEER_FEASIBILITY_REVIEW_PASS",
+        "CONTRADICTION_COUNT_0"
+      ],
+      "hold": [
+        "AMBIGUOUS_OR_NON_VERIFIABLE_CRITERION"
+      ],
+      "blocked": [
+        "CONTRACT_REQUIRES_EXPLICITLY_FORBIDDEN_AUTHORITY_OR_CAPABILITY"
+      ],
+      "recovery": "NARROW_CRITERION_OR_BIND_TO_EXISTING_EVIDENCE_MECHANISM",
+      "nextTransition": "P03"
+    },
+    {
+      "id": "P03",
+      "name": "VERIFIED_CAPABILITY_LEDGER_RECONCILIATION",
+      "objective": "MAP_EVERY_GATE11_CRITERION_TO_EXISTING_VERIFIED_CAPABILITY_AND_PRESERVE_GATE8_HARVEST_TRUTH",
+      "zekuRole": [
+        "CANONICAL_SYSTEMS_ARCHITECT",
+        "SECOND_LOOK_ACCEPTANCE_ADJUDICATOR"
+      ],
+      "macEngineerRole": [
+        "CAPABILITY_DISCOVERY_ENGINEER",
+        "HARVEST_CAPABILITY_RECONCILIATION_ENGINEER"
+      ],
+      "pass": [
+        "P02_PASS",
+        "EVERY_CRITERION_HAS_ONE_CAPABILITY_DISPOSITION",
+        "UNCLASSIFIED_CRITERION_0",
+        "UNSUPPORTED_CAPABILITY_CLAIM_0",
+        "DUPLICATE_CORE_PROPOSAL_0",
+        "REUSE_FIRST_RULE_PASS",
+        "GATE8_RESEARCH_HARVEST_HISTORY_RECONCILED_PASS",
+        "GATE8_VERIFIED_HARVEST_TRUTH_PRESERVED",
+        "HARVEST_CAPABILITY_DISPOSITION_VALID",
+        "HARVEST_CAPABILITY_REINVENTED_FALSE"
+      ],
+      "hold": [
+        "FRESH_BINDING_OR_FRESH_PROOF_REQUIRED",
+        "HARVEST_FRESH_BINDING_REQUIRED"
+      ],
+      "blocked": [
+        "REQUIRED_CAPABILITY_INCOMPATIBLE_WITH_ARCHITECTURE_WITHOUT_BOUNDED_ROUTE"
+      ],
+      "recovery": "FRESH_CAPABILITY_BINDING_BEFORE_NEW_MECHANISM",
+      "nextTransition": "P04"
+    },
+    {
+      "id": "P04",
+      "name": "MAC_ENGINEER_CONSOLIDATED_CANDIDATE_PLAN",
+      "objective": "MAC_ENGINEER_PRODUCES_COMPLETE_SOURCE_BOUND_COMMISSIONING_PLAN",
+      "zekuRole": [
+        "MISSION_PACKAGE_ARCHITECT"
+      ],
+      "macEngineerRole": [
+        "PRIMARY_ENGINEERING_PLANNER"
+      ],
+      "pass": [
+        "P03_PASS",
+        "PLAN_SOURCE_BOUND_TRUE",
+        "UNSUPPORTED_PLAN_CLAIM_0",
+        "DEPENDENCY_GRAPH_COMPLETE",
+        "EXPECTED_SCOPE_DECLARED",
+        "VERIFICATION_SEQUENCE_DECLARED",
+        "RECOVERY_BASIS_DECLARED",
+        "AUTHORITY_EXPANSION_0",
+        "RESEARCH_HARVEST_CAPABILITY_DISPOSITION_DECLARED"
+      ],
+      "hold": [
+        "PLAN_INCOMPLETE_OVERBROAD_OR_DEPENDS_ON_UNVERIFIED_CAPABILITY"
+      ],
+      "blocked": [
+        "PLAN_REQUIRES_FORBIDDEN_AUTHORITY_OR_UNSUPPORTED_ARCHITECTURE_REPLACEMENT"
+      ],
+      "recovery": "MAC_ENGINEER_REVISES_PLAN_FROM_EXACT_HOLD_FINDING",
+      "nextTransition": "P05"
+    },
+    {
+      "id": "P05",
+      "name": "FORECAST_PRE_EXECUTION_SECOND_LOOK_DRY_RUN",
+      "objective": "DETECT_FORESEEABLE_FAILURES_BEFORE_REAL_MUTATION",
+      "zekuRole": [
+        "PLANNING_RISK_FORECAST_ENGINEER",
+        "SECOND_LOOK_ACCEPTANCE_ADJUDICATOR"
+      ],
+      "macEngineerRole": [
+        "FAILURE_FORECAST_ENGINEER",
+        "DRY_RUN_ENGINEER"
+      ],
+      "pass": [
+        "P04_PASS",
+        "CRITICAL_FORECAST_GAP_0",
+        "CRITICAL_FAILURE_RECOVERY_COVERAGE_100_PERCENT",
+        "ROLLBACK_BASIS_PASS",
+        "EXPECTED_SCOPE_PASS",
+        "AUTHORITY_BOUNDARY_PASS",
+        "DRY_RUN_PASS",
+        "PRE_EXECUTION_SECOND_LOOK_PASS"
+      ],
+      "hold": [
+        "RECOVERABLE_RISK_INSUFFICIENTLY_MODELLED"
+      ],
+      "blocked": [
+        "KNOWN_CRITICAL_FAILURE_WITHOUT_SAFE_RECOVERY_PATH"
+      ],
+      "recovery": "RETURN_TO_P04_PLAN_REVISION_WITHOUT_PRODUCT_MUTATION",
+      "nextTransition": "P06"
+    },
+    {
+      "id": "P06",
+      "name": "COMMISSIONING_ENVIRONMENT_CHECKPOINT",
+      "objective": "CREATE_VERIFIED_REAL_MAC_STARTING_STATE",
+      "zekuRole": [
+        "ENGURU_COMMISSIONING_GOVERNOR"
+      ],
+      "macEngineerRole": [
+        "ENVIRONMENT_PREPARATION_OPERATOR",
+        "RECOVERY_OPERATOR"
+      ],
+      "pass": [
+        "P05_PASS",
+        "PRESTATE_VERIFIED_PASS",
+        "CHECKPOINT_PASS",
+        "ROLLBACK_BASIS_PASS",
+        "RECOVERY_IDENTITY_PASS",
+        "EVIDENCE_ROOT_PASS",
+        "WORKTREE_DISCIPLINE_PASS",
+        "RUNTIME_BASELINE_PASS"
+      ],
+      "hold": [
+        "ENVIRONMENT_DIFFERS_FROM_FORECAST_BUT_IS_RECONCILABLE"
+      ],
+      "blocked": [
+        "SAFE_CHECKPOINT_OR_ROLLBACK_CANNOT_BE_ESTABLISHED"
+      ],
+      "recovery": "RETURN_TO_VERIFIED_PRESTATE_AND_REPEAT_P06",
+      "nextTransition": "P07"
+    },
+    {
+      "id": "P07",
+      "name": "CONSOLIDATED_REAL_ENGINEERING_MISSION",
+      "objective": "EXECUTE_MEANINGFUL_REAL_PRODUCT_ENGINEERING_MISSION_THROUGH_MAC_ENGINEER",
+      "zekuRole": [
+        "ENGURU_COMMISSIONING_GOVERNOR"
+      ],
+      "macEngineerRole": [
+        "PRIMARY_ENGINEERING_PLANNER",
+        "PRIMARY_ENGINEERING_EXECUTOR",
+        "PRIMARY_REPAIRER"
+      ],
+      "pass": [
+        "P06_PASS",
+        "MAC_ENGINEER_EXECUTION_OCCURRED",
+        "REAL_ENGINEERING_OBJECTIVE_COMPLETE",
+        "EXPECTED_SCOPE_MATCH_PASS",
+        "TARGETED_TEST_PASS",
+        "MAC_ENGINEER_SELF_REPAIR_PASS_WHERE_REQUIRED",
+        "UNTRACKED_MANUAL_STEP_COUNT_0",
+        "CHATGPT_DIRECT_FIELD_PRODUCT_PATCH_COUNT_0",
+        "ZEKU_SUBSTITUTED_FOR_MAC_ENGINEER_EXECUTION_0"
+      ],
+      "hold": [
+        "BOUNDED_PRODUCT_OR_ENGINEERING_FAILURE_WITH_MAC_ENGINEER_REPAIR_ROUTE"
+      ],
+      "blocked": [
+        "CRITICAL_AUTHORITY_VIOLATION_UNSAFE_MUTATION_OR_UNRECOVERABLE_CORRUPTION"
+      ],
+      "recovery": "MAC_ENGINEER_ROOT_CAUSE_EXISTING_CAPABILITY_REPAIR_CANDIDATE_REVERIFY",
+      "nextTransition": "P08"
+    },
+    {
+      "id": "P08",
+      "name": "BUILD_PACKAGE_FRESH_RUNTIME_PROOF",
+      "objective": "PROVE_SOURCE_TO_ARTIFACT_TO_INSTALLED_RUNTIME_TRUTH",
+      "zekuRole": [
+        "RESEARCH_PROVENANCE_ENGINEER",
+        "SECOND_LOOK_ACCEPTANCE_ADJUDICATOR"
+      ],
+      "macEngineerRole": [
+        "BUILD_ENGINEER",
+        "PACKAGE_ENGINEER",
+        "RUNTIME_ENGINEER"
+      ],
+      "pass": [
+        "P07_PASS",
+        "BUILD_PASS",
+        "PACKAGE_PASS",
+        "ARTIFACT_IDENTITY_PASS",
+        "FRESH_LAUNCH_PASS",
+        "REAL_RUNTIME_PASS",
+        "SOURCE_ARTIFACT_RUNTIME_PROVENANCE_PASS",
+        "REAL_USER_PATH_PASS",
+        "RUNTIME_EVIDENCE_PASS"
+      ],
+      "hold": [
+        "BOUNDED_BUILD_PACKAGE_OR_RUNTIME_FAILURE"
+      ],
+      "blocked": [
+        "UNTRUSTED_ARTIFACT_OR_PROVENANCE_CANNOT_BE_ESTABLISHED"
+      ],
+      "recovery": "DIAGNOSE_SOURCE_ARTIFACT_INSTALL_RUNTIME_AS_SEPARATE_TRUTH_SURFACES",
+      "nextTransition": "P09"
+    },
+    {
+      "id": "P09",
+      "name": "LIFECYCLE_CONTROLLED_REPLACEMENT_ROLLBACK",
+      "objective": "PROVE_SAFE_PRODUCT_LIFECYCLE_TRANSITIONS",
+      "zekuRole": [
+        "SECOND_LOOK_ACCEPTANCE_ADJUDICATOR"
+      ],
+      "macEngineerRole": [
+        "LIFECYCLE_OPERATOR",
+        "ROLLBACK_OPERATOR"
+      ],
+      "pass": [
+        "P08_PASS",
+        "CONTROLLED_REPLACEMENT_PASS",
+        "STOP_PASS",
+        "RESTART_PASS",
+        "KNOWN_GOOD_ROLLBACK_PASS",
+        "ROLLBACK_REVERIFY_PASS",
+        "LIFECYCLE_PROVENANCE_PASS",
+        "EVIDENCE_CONTINUITY_PASS"
+      ],
+      "hold": [
+        "BOUNDED_LIFECYCLE_OPERATION_REQUIRES_REPAIR_OR_FRESH_BINDING"
+      ],
+      "blocked": [
+        "KNOWN_GOOD_STATE_CANNOT_BE_RESTORED"
+      ],
+      "recovery": "RESTORE_KNOWN_GOOD_REVERIFY_PRESERVE_EVIDENCE_DIAGNOSE_TRANSITION",
+      "nextTransition": "P10"
+    },
+    {
+      "id": "P10",
+      "name": "INTERRUPTION_RECOVERY_RESUME_RELIABILITY",
+      "objective": "PROVE_CONTINUITY_UNDER_INTERRUPTION_AND_RESTART",
+      "zekuRole": [
+        "PLANNING_RISK_FORECAST_ENGINEER",
+        "SECOND_LOOK_ACCEPTANCE_ADJUDICATOR"
+      ],
+      "macEngineerRole": [
+        "RECOVERY_OPERATOR",
+        "CONTINUITY_OPERATOR"
+      ],
+      "pass": [
+        "P09_PASS",
+        "CHECKPOINT_CONTINUITY_PASS",
+        "CONTROLLED_INTERRUPTION_PASS",
+        "RESTART_RECOVERY_PASS",
+        "SAME_TASK_RESUME_PASS",
+        "IDEMPOTENCY_PASS",
+        "EXACTLY_ONCE_EFFECT_DISCIPLINE_PASS_WHERE_APPLICABLE",
+        "SINGLE_WRITER_DISCIPLINE_PASS",
+        "BOUNDED_RETRY_PASS",
+        "RECOVERY_EVIDENCE_PASS"
+      ],
+      "hold": [
+        "RECOVERABLE_CONTINUITY_DEFECT"
+      ],
+      "blocked": [
+        "RECOVERY_CAUSES_CANONICAL_TRUTH_LOSS_OR_UNCONTROLLED_DUPLICATE_EFFECT"
+      ],
+      "recovery": "RETURN_TO_LATEST_VERIFIED_CHECKPOINT_OR_KNOWN_GOOD_STATE",
+      "nextTransition": "P11"
+    },
+    {
+      "id": "P11",
+      "name": "INDEPENDENT_VERIFICATION_SECOND_LOOK_EVIDENCE_BUNDLE",
+      "objective": "INDEPENDENTLY_CHALLENGE_COMPLETE_COMMISSIONING_RESULT",
+      "zekuRole": [
+        "SECOND_LOOK_ACCEPTANCE_ADJUDICATOR"
+      ],
+      "macEngineerRole": [
+        "VERIFICATION_SUPPORT",
+        "EVIDENCE_PRODUCER"
+      ],
+      "pass": [
+        "P10_PASS",
+        "TARGETED_REGRESSION_PASS",
+        "FULL_CONTROL_PLANE_REGRESSION_PASS",
+        "PRODUCT_REGRESSION_PASS",
+        "DIFF_CHECK_PASS",
+        "SCOPE_CHECK_PASS",
+        "PROVENANCE_CHECK_PASS",
+        "RECOVERY_CHECK_PASS",
+        "EVIDENCE_COMPLETENESS_PASS",
+        "HUMAN_MANUAL_SOURCE_EDIT_COUNT_0",
+        "CHATGPT_DIRECT_FIELD_PRODUCT_PATCH_COUNT_0",
+        "UNTRACKED_MANUAL_STEP_COUNT_0",
+        "ZEKU_SUBSTITUTED_FOR_MAC_ENGINEER_EXECUTION_0",
+        "CRITICAL_FALSE_PASS_0"
+      ],
+      "hold": [
+        "BOUNDED_VERIFICATION_INCONSISTENCY"
+      ],
+      "blocked": [
+        "CRITICAL_FALSE_PASS_AUTHORITY_VIOLATION_OR_IRRECONCILABLE_EVIDENCE_CONTRADICTION"
+      ],
+      "recovery": "RETURN_ONLY_TO_SMALLEST_RESPONSIBLE_PACKAGE",
+      "nextTransition": "P12"
+    },
+    {
+      "id": "P12",
+      "name": "DONECHECK_CANONICAL_GATE11_CLOSURE",
+      "objective": "CLOSE_GATE11_WITHOUT_REOPENING_COMPLETED_ENGINEERING",
+      "zekuRole": [
+        "SECOND_LOOK_ACCEPTANCE_ADJUDICATOR"
+      ],
+      "macEngineerRole": [
+        "CLOSEOUT_EVIDENCE_PRODUCER"
+      ],
+      "pass": [
+        "P01_THROUGH_P11_PASS",
+        "DONECHECK_V1_2_PASS",
+        "CANONICAL_RECONCILIATION_PASS",
+        "GATE11_EVIDENCE_BUNDLE_COMPLETE",
+        "GATE11_ENGINEERING_EXECUTION_PASS",
+        "ARCHITECTURE_STATE_PRESERVED",
+        "NEW_CORE_FALSE",
+        "HUMAN_MANUAL_SOURCE_EDIT_COUNT_0",
+        "CHATGPT_DIRECT_FIELD_PRODUCT_PATCH_COUNT_0",
+        "UNTRACKED_MANUAL_STEP_COUNT_0",
+        "GATE11_VERIFIED_LOCKED",
+        "GATE11_EXIT_V08_CONSOLIDATED_MAC_COMMISSIONING_PASS",
+        "ACTIVE_GATE_12",
+        "GATE12_EXECUTION_0",
+        "STOP_TRUE"
+      ],
+      "hold": [
+        "DONECHECK_INCOMPLETE_CRITERION_OR_RECONCILIATION_GAP"
+      ],
+      "blocked": [
+        "COMPLETION_CLAIM_CONFLICTS_WITH_CRITICAL_EVIDENCE"
+      ],
+      "recovery": "RETURN_ONLY_TO_PACKAGE_RESPONSIBLE_FOR_FAILED_DONECHECK_CRITERION",
+      "nextTransition": "GATE11_VERIFIED_LOCKED_GATE12_ACTIVE_STOP"
+    }
+  ]
+}
