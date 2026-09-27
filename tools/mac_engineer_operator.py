@@ -1312,6 +1312,95 @@ def run_v08_finished_product_delivery() -> dict[str, Any]:
     }
 
 
+
+def run_v08_gate11_consolidated_mac_commissioning() -> dict[str, Any]:
+    command = (
+        ROOT
+        / "governance"
+        / "mac-engineer"
+        / "V08_GATE11_CONSOLIDATED_MAC_COMMISSIONING.command"
+    )
+
+    if not command.is_file():
+        return {
+            "state": "HOLD",
+            "reason": "V08_GATE11_CONSOLIDATED_MAC_COMMISSIONING_COMMAND_MISSING",
+            "fields": {},
+            "evidence": None,
+        }
+
+    result = run(
+        ["zsh", str(command)],
+        cwd=ROOT,
+        timeout=7200,
+        env=dict(os.environ),
+    )
+
+    fields: dict[str, str] = {}
+
+    for line in result.get(
+        "stdout",
+        "",
+    ).splitlines():
+        if "=" not in line:
+            continue
+
+        key, value = line.split(
+            "=",
+            1,
+        )
+
+        if key:
+            fields[
+                key.strip()
+            ] = value.strip()
+
+    passed = all([
+        result["code"] == 0,
+        fields.get("STATE")
+            == "PASS",
+        fields.get(
+            "REAL_ENGINEERING_OBJECTIVE_COMPLETE"
+        ) == "PASS",
+        fields.get(
+            "EXPECTED_SCOPE_MATCH_PASS"
+        ) == "PASS",
+        fields.get(
+            "TARGETED_TEST_PASS"
+        ) == "PASS",
+        fields.get(
+            "FULL_RUNTIME_REGRESSION"
+        ) == "PASS",
+        fields.get(
+            "PRODUCT_REMOTE_MUTATION"
+        ) == "false",
+        fields.get(
+            "NEXT_ACTION"
+        ) == "P08",
+    ])
+
+    return {
+        "state":
+            "PASS"
+            if passed
+            else "HOLD",
+        "code":
+            result["code"],
+        "fields":
+            fields,
+        "stdout_tail":
+            result.get(
+                "stdout",
+                "",
+            )[-20000:],
+        "stderr_tail":
+            result.get(
+                "stderr",
+                "",
+            )[-12000:],
+    }
+
+
 def command_continue() -> int:
     boot = canonical_boot()
     truth = current_truth()
@@ -1326,6 +1415,81 @@ def command_continue() -> int:
         hold = "CANONICAL_BOOT"
         next_action = "enguru-mac doctor"
         completed = ["CANONICAL_BOOT_HOLD", "GITVAULT_SYNC"]
+    elif local_action == "V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING":
+        completed = [
+            "CANONICAL_BOOT",
+            "GITVAULT_SYNC",
+        ]
+
+        commissioning = (
+            run_v08_gate11_consolidated_mac_commissioning()
+        )
+
+        passed = (
+            commissioning.get("state")
+            == "PASS"
+        )
+
+        fields = (
+            commissioning.get("fields")
+            or {}
+        )
+
+        if passed:
+            completed.extend([
+                "P07_REAL_ENGINEERING_OBJECTIVE_COMPLETE",
+                "P07_EXPECTED_SCOPE_MATCH_PASS",
+                "P07_TARGETED_TEST_PASS",
+            ])
+
+        payload = write_receipt(
+            command="continue",
+            state=(
+                "PASS"
+                if passed
+                else "HOLD"
+            ),
+            completed=completed,
+            evidence=[
+                str(SESSION_STATE),
+            ],
+            hold=(
+                ""
+                if passed
+                else "V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING"
+            ),
+            next_action=(
+                fields.get(
+                    "NEXT_ACTION"
+                )
+                or (
+                    "P08"
+                    if passed
+                    else "enguru-mac doctor"
+                )
+            ),
+            details={
+                "truth":
+                    truth,
+                "boot":
+                    boot,
+                "runner":
+                    runner,
+                "mirrors":
+                    mirrors,
+                "gate11Commissioning":
+                    commissioning,
+            },
+        )
+
+        print_receipt(payload)
+
+        return (
+            0
+            if passed
+            else 2
+        )
+
     elif local_action == "V08_FINISHED_PRODUCT_DELIVERY_SCENARIO":
         completed = [
             "CANONICAL_BOOT",
