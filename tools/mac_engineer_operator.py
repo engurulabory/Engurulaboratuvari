@@ -1333,6 +1333,56 @@ def detect_v08_gate11_active_package() -> str:
         / "gate11-p09-lifecycle"
     )
 
+    p10_root = (
+        HOME
+        / "Enguru"
+        / "Evidence"
+        / "MacEngineer"
+        / "v0.8"
+        / "gate11-p10-reliability"
+    )
+
+    p10_receipts = sorted(
+        p10_root.glob("*/p10-final-acceptance.json")
+    )
+
+    p10_required = (
+        "P09_PASS",
+        "CHECKPOINT_CONTINUITY_PASS",
+        "CONTROLLED_INTERRUPTION_PASS",
+        "RESTART_RECOVERY_PASS",
+        "SAME_TASK_RESUME_PASS",
+        "IDEMPOTENCY_PASS",
+        "EXACTLY_ONCE_EFFECT_DISCIPLINE_PASS_WHERE_APPLICABLE",
+        "SINGLE_WRITER_DISCIPLINE_PASS",
+        "BOUNDED_RETRY_PASS",
+        "RECOVERY_EVIDENCE_PASS",
+    )
+
+    for receipt in reversed(p10_receipts):
+        try:
+            data = json.loads(
+                receipt.read_text(encoding="utf-8")
+            )
+        except Exception:
+            continue
+
+        acceptance = data.get("acceptance") or {}
+
+        if (
+            data.get("state") == "PASS"
+            and data.get("package") == "P10"
+            and data.get("nextTransition") == "P11"
+            and all(
+                acceptance.get(key) == "PASS"
+                for key in p10_required
+            )
+            and data.get("sourceMutation") is False
+            and data.get("remoteMutation") is False
+            and data.get("newCore") is False
+        ):
+            return "P11"
+
     p09_receipts = sorted(
         p09_root.glob("*/p09-final-acceptance.json")
     )
@@ -1510,6 +1560,19 @@ def run_v08_gate11_p10_interruption_recovery_resume_reliability() -> dict[str, A
 
 def run_v08_gate11_consolidated_mac_commissioning() -> dict[str, Any]:
     active_package = detect_v08_gate11_active_package()
+
+    if active_package == "P11":
+        return {
+            "state": "HOLD",
+            "reason": "V08_GATE11_P11_HANDLER_NOT_YET_BOUND",
+            "fields": {
+                "STATE": "HOLD",
+                "P10_ACCEPTANCE": "10_OF_10_VERIFIED",
+                "NEXT_ACTION":
+                    "P11_INDEPENDENT_VERIFICATION_SECOND_LOOK_EVIDENCE_BUNDLE",
+            },
+            "evidence": None,
+        }
 
     if active_package == "P09":
         return (

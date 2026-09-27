@@ -193,6 +193,113 @@ class Gate11P10OperatorTests(unittest.TestCase):
         )
 
 
+    def test_verified_p10_receipt_promotes_router_to_p11(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            home = Path(tmp)
+
+            receipt = (
+                home
+                / "Enguru"
+                / "Evidence"
+                / "MacEngineer"
+                / "v0.8"
+                / "gate11-p10-reliability"
+                / "20260927T201659Z"
+                / "p10-final-acceptance.json"
+            )
+            receipt.parent.mkdir(parents=True)
+
+            receipt.write_text(
+                json.dumps(
+                    {
+                        "state": "PASS",
+                        "package": "P10",
+                        "acceptance": {
+                            "P09_PASS": "PASS",
+                            "CHECKPOINT_CONTINUITY_PASS": "PASS",
+                            "CONTROLLED_INTERRUPTION_PASS": "PASS",
+                            "RESTART_RECOVERY_PASS": "PASS",
+                            "SAME_TASK_RESUME_PASS": "PASS",
+                            "IDEMPOTENCY_PASS": "PASS",
+                            "EXACTLY_ONCE_EFFECT_DISCIPLINE_PASS_WHERE_APPLICABLE":
+                                "PASS",
+                            "SINGLE_WRITER_DISCIPLINE_PASS": "PASS",
+                            "BOUNDED_RETRY_PASS": "PASS",
+                            "RECOVERY_EVIDENCE_PASS": "PASS",
+                        },
+                        "sourceMutation": False,
+                        "remoteMutation": False,
+                        "newCore": False,
+                        "nextTransition": "P11",
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            with mock.patch.object(operator, "HOME", home):
+                active = operator.detect_v08_gate11_active_package()
+
+        self.assertEqual(active, "P11")
+
+    def test_incomplete_p10_receipt_does_not_promote_to_p11(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            home = Path(tmp)
+
+            receipt = (
+                home
+                / "Enguru"
+                / "Evidence"
+                / "MacEngineer"
+                / "v0.8"
+                / "gate11-p10-reliability"
+                / "20260927T201659Z"
+                / "p10-final-acceptance.json"
+            )
+            receipt.parent.mkdir(parents=True)
+
+            receipt.write_text(
+                json.dumps(
+                    {
+                        "state": "PASS",
+                        "package": "P10",
+                        "acceptance": {
+                            "P09_PASS": "PASS",
+                        },
+                        "sourceMutation": False,
+                        "remoteMutation": False,
+                        "newCore": False,
+                        "nextTransition": "P11",
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            with mock.patch.object(operator, "HOME", home):
+                active = operator.detect_v08_gate11_active_package()
+
+        self.assertNotEqual(active, "P11")
+
+    def test_p11_is_fail_closed_until_handler_is_bound(self):
+        with mock.patch.object(
+            operator,
+            "detect_v08_gate11_active_package",
+            return_value="P11",
+        ):
+            result = (
+                operator.run_v08_gate11_consolidated_mac_commissioning()
+            )
+
+        self.assertEqual(result["state"], "HOLD")
+        self.assertEqual(
+            result["reason"],
+            "V08_GATE11_P11_HANDLER_NOT_YET_BOUND",
+        )
+        self.assertEqual(
+            result["fields"]["NEXT_ACTION"],
+            "P11_INDEPENDENT_VERIFICATION_SECOND_LOOK_EVIDENCE_BUNDLE",
+        )
+
+
     def test_p09_router_is_preserved(self):
         source = OPERATOR.read_text(encoding="utf-8")
 
