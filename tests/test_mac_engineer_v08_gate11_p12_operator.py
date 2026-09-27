@@ -79,6 +79,121 @@ class Gate11P12OperatorTests(unittest.TestCase):
             },
         )
 
+    def test_transition_proof_requires_explicit_downstream_pass_marker(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+
+            proof_dir = (
+                root
+                / "gate11-p02-test"
+            )
+            proof_dir.mkdir(
+                parents=True
+            )
+
+            proof_file = (
+                proof_dir
+                / "transition.log"
+            )
+
+            proof_file.write_text(
+                "STATE=PASS\\n"
+                "P01_PASS=PASS\\n",
+                encoding="utf-8",
+            )
+
+            with mock.patch.object(
+                adapter,
+                "GATE11_EVIDENCE_ROOT",
+                root,
+            ):
+                proof = (
+                    adapter
+                    .find_transition_proof(1)
+                )
+
+            self.assertEqual(
+                proof["package"],
+                "P01",
+            )
+            self.assertEqual(
+                proof["nextPackage"],
+                "P02",
+            )
+            self.assertEqual(
+                proof["marker"],
+                "P01_PASS=PASS",
+            )
+            self.assertTrue(
+                proof["proofSha256"]
+            )
+
+    def test_transition_proof_rejects_directory_presence_without_pass_marker(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+
+            proof_dir = (
+                root
+                / "gate11-p02-test"
+            )
+            proof_dir.mkdir(
+                parents=True
+            )
+
+            (
+                proof_dir
+                / "hold.log"
+            ).write_text(
+                "STATE=HOLD\\n"
+                "P01_ACCEPTANCE=PENDING\\n",
+                encoding="utf-8",
+            )
+
+            with mock.patch.object(
+                adapter,
+                "GATE11_EVIDENCE_ROOT",
+                root,
+            ):
+                with self.assertRaises(
+                    RuntimeError
+                ):
+                    adapter.find_transition_proof(
+                        1
+                    )
+
+    def test_final_acceptance_write_is_inside_post_commit_rollback_boundary(self):
+        source = ADAPTER_PATH.read_text(
+            encoding="utf-8"
+        )
+
+        perform = source[
+            source.index(
+                "def perform()"
+            ):
+            source.index(
+                "def main()"
+            )
+        ]
+
+        self.assertIn(
+            "write_json(\n"
+            "            final_path,\n"
+            "            evidence,\n"
+            "        )",
+            perform,
+        )
+
+        compact = "".join(
+            perform.split()
+        )
+
+        self.assertGreaterEqual(
+            compact.count(
+                '"git","reset","--hard",pre_head'
+            ),
+            2,
+        )
+
     def test_reconcile_documents_activates_gate12_only(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

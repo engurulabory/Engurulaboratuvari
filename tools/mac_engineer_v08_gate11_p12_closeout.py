@@ -40,6 +40,16 @@ EVIDENCE_ROOT = (
     / "gate11-p12-closure"
 )
 
+GATE11_EVIDENCE_ROOT = (
+    HOME
+    / "Enguru"
+    / "Evidence"
+    / "MacEngineer"
+    / "v0.8"
+)
+
+TRANSITION_PROOF_MAX_BYTES = 8 * 1024 * 1024
+
 BRIDGE_PATH = ROOT / "tools/mac_engineer_donecheck_v12_bridge.py"
 
 SPEC = importlib.util.spec_from_file_location(
@@ -246,12 +256,111 @@ def verify_p11() -> dict[str, Any]:
     }
 
 
+def transition_markers(
+    package_number: int,
+) -> tuple[str, ...]:
+    package = f"P{package_number:02d}"
+    key = package + "_PASS"
+
+    return (
+        key + "=PASS",
+        '"' + key + '": "PASS"',
+        '"' + key + '":"PASS"',
+        '"' + key + '": true',
+        '"' + key + '":true',
+    )
+
+
+def find_transition_proof(
+    package_number: int,
+) -> dict[str, Any]:
+    if not 1 <= package_number <= 10:
+        raise RuntimeError(
+            "TRANSITION_PROOF_PACKAGE_RANGE_REQUIRED"
+        )
+
+    package = f"P{package_number:02d}"
+    next_package = f"P{package_number + 1:02d}"
+
+    roots = sorted(
+        GATE11_EVIDENCE_ROOT.glob(
+            f"gate11-p{package_number + 1:02d}-*"
+        )
+    )
+
+    if not roots:
+        raise RuntimeError(
+            f"{package}_NEXT_PACKAGE_EVIDENCE_ROOT_REQUIRED"
+        )
+
+    markers = transition_markers(
+        package_number
+    )
+
+    matches: list[
+        tuple[Path, str]
+    ] = []
+
+    for root in roots:
+        if not root.is_dir():
+            continue
+
+        for path in sorted(root.rglob("*")):
+            if not path.is_file():
+                continue
+
+            try:
+                size = path.stat().st_size
+            except OSError:
+                continue
+
+            if size <= 0:
+                continue
+
+            if size > TRANSITION_PROOF_MAX_BYTES:
+                continue
+
+            try:
+                text = path.read_text(
+                    encoding="utf-8",
+                    errors="replace",
+                )
+            except OSError:
+                continue
+
+            for marker in markers:
+                if marker in text:
+                    matches.append(
+                        (path, marker)
+                    )
+                    break
+
+    if not matches:
+        raise RuntimeError(
+            f"{package}_EXPLICIT_PASS_TRANSITION_REQUIRED"
+            f"_IN_{next_package}_EVIDENCE"
+        )
+
+    proof_path, marker = matches[-1]
+
+    return {
+        "package": package,
+        "nextPackage": next_package,
+        "proofPath": str(proof_path),
+        "proofSha256": sha256(proof_path),
+        "marker": marker,
+    }
+
+
 def build_criterion_manifests(
     p11: dict[str, Any],
     output_dir: Path,
 ) -> list[dict[str, Any]]:
     manifest_dir = output_dir / "criterion-manifests"
-    manifest_dir.mkdir(parents=True, exist_ok=True)
+    manifest_dir.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
 
     packages = p11["audit"]["packageEvidence"]
 
@@ -261,38 +370,65 @@ def build_criterion_manifests(
         package = f"P{number:02d}"
         item = packages[package]
 
+        if item.get("present") is not True:
+            raise RuntimeError(
+                f"{package}_P11_EVIDENCE_PRESENCE_REQUIRED"
+            )
+
+        if int(item.get("fileCount") or 0) <= 0:
+            raise RuntimeError(
+                f"{package}_P11_EVIDENCE_FILE_COUNT_REQUIRED"
+            )
+
+        transition = find_transition_proof(
+            number
+        )
+
         manifest = {
             "schema":
-                "enguru.gate11.p12-criterion-evidence/v1",
+                "enguru.gate11.p12-criterion-evidence/v2",
             "criterion": package,
             "state": "PASS",
-            "p11Audit": str(p11["auditPath"]),
+            "p11Audit": str(
+                p11["auditPath"]
+            ),
             "sourceDirectories":
                 item.get("directories") or [],
             "sourceFileCount":
                 int(item.get("fileCount") or 0),
-            "p11IndependentAuditPass": True,
+            "transitionProof":
+                transition,
+            "machineGrounding":
+                "EXPLICIT_DOWNSTREAM_PACKAGE_PASS_TRANSITION",
         }
 
-        path = manifest_dir / f"{package}.json"
+        path = (
+            manifest_dir
+            / f"{package}.json"
+        )
+
         write_json(path, manifest)
 
         criteria.append({
             "id": package,
             "statement":
                 f"Gate 11 commissioning package {package} "
-                "has independently audited Evidence.",
+                "has Evidence and an explicit machine-grounded "
+                "PASS transition into "
+                f"{transition['nextPackage']}.",
             "source": str(path),
             "artifactDigest":
                 f"sha256:{sha256(path)}",
             "content":
-                f"[DONECHECK:PASS] {package} package Evidence "
-                "is present and independently audited PASS by P11.",
+                f"[DONECHECK:PASS] {package} has an explicit "
+                f"{transition['marker']} marker in "
+                f"{transition['nextPackage']} Evidence and "
+                "its P11 Evidence inventory is present.",
         })
 
     p11_manifest = {
         "schema":
-            "enguru.gate11.p12-criterion-evidence/v1",
+            "enguru.gate11.p12-criterion-evidence/v2",
         "criterion": "P11",
         "state": "PASS",
         "finalAcceptance":
@@ -300,22 +436,34 @@ def build_criterion_manifests(
         "verificationAudit":
             str(p11["auditPath"]),
         "acceptance":
-            p11["final"].get("acceptance"),
+            p11["final"].get(
+                "acceptance"
+            ),
         "currentUnresolvedCriticalFalsePassCount":
             p11["final"].get(
                 "currentUnresolvedCriticalFalsePassCount"
             ),
+        "machineGrounding":
+            "P11_FINAL_ACCEPTANCE_14_OF_14",
     }
 
-    p11_manifest_path = manifest_dir / "P11.json"
-    write_json(p11_manifest_path, p11_manifest)
+    p11_manifest_path = (
+        manifest_dir
+        / "P11.json"
+    )
+
+    write_json(
+        p11_manifest_path,
+        p11_manifest,
+    )
 
     criteria.append({
         "id": "P11",
         "statement":
             "P11 independent verification and second-look "
             "Evidence bundle is 14/14 PASS.",
-        "source": str(p11_manifest_path),
+        "source":
+            str(p11_manifest_path),
         "artifactDigest":
             f"sha256:{sha256(p11_manifest_path)}",
         "content":
@@ -324,7 +472,6 @@ def build_criterion_manifests(
     })
 
     return criteria
-
 
 def integration_test_source() -> str:
     return r'''
@@ -1074,56 +1221,100 @@ def perform() -> dict[str, Any]:
         )
         raise
 
-    acceptance = {
-        key: "PASS"
-        for key in P12_ACCEPTANCE
-    }
+    try:
+        acceptance = {
+            key: "PASS"
+            for key in P12_ACCEPTANCE
+        }
 
-    evidence = {
-        "schema":
-            "enguru.gate11.p12-final-acceptance/v1",
-        "observedAt": observed_at,
-        "state": "PASS",
-        "package": "P12",
-        "acceptance": acceptance,
-        "p11FinalAcceptance":
-            str(p11["finalPath"]),
-        "p11VerificationAudit":
-            str(p11["auditPath"]),
-        "doneCheckEvidence":
-            str(donecheck["evidencePath"]),
-        "doneCheckVersion":
-            DONECHECK_VERSION,
-        "doneCheckExactSha":
-            DONECHECK_SHA,
-        "controlHeadBefore":
-            pre_head,
-        "controlHeadAfter":
-            post_head,
-        "canonicalMutationFiles": 4,
-        "remoteMutation": False,
-        "productSourceMutation": False,
-        "architectureState": "PRESERVED",
-        "newCore": False,
-        "gate11State": "VERIFIED_LOCKED",
-        "gate11Exit": G11_EXIT,
-        "activeGate": 12,
-        "gate12State": "ACTIVE",
-        "gate12ExecutionCount": 0,
-        "stop": True,
-        "nextTransition":
-            "GATE11_VERIFIED_LOCKED_GATE12_ACTIVE_STOP",
-    }
+        evidence = {
+            "schema":
+                "enguru.gate11.p12-final-acceptance/v2",
+            "observedAt":
+                observed_at,
+            "state":
+                "PASS",
+            "package":
+                "P12",
+            "acceptance":
+                acceptance,
+            "p11FinalAcceptance":
+                str(p11["finalPath"]),
+            "p11VerificationAudit":
+                str(p11["auditPath"]),
+            "doneCheckEvidence":
+                str(donecheck["evidencePath"]),
+            "doneCheckVersion":
+                DONECHECK_VERSION,
+            "doneCheckExactSha":
+                DONECHECK_SHA,
+            "controlHeadBefore":
+                pre_head,
+            "controlHeadAfter":
+                post_head,
+            "canonicalMutationFiles":
+                4,
+            "remoteMutation":
+                False,
+            "productSourceMutation":
+                False,
+            "architectureState":
+                "PRESERVED",
+            "newCore":
+                False,
+            "gate11State":
+                "VERIFIED_LOCKED",
+            "gate11Exit":
+                G11_EXIT,
+            "activeGate":
+                12,
+            "gate12State":
+                "ACTIVE",
+            "gate12ExecutionCount":
+                0,
+            "stop":
+                True,
+            "machineGrounding":
+                "P01_P10_EXPLICIT_DOWNSTREAM_PASS_TRANSITIONS_PLUS_P11_FINAL_14_OF_14",
+            "nextTransition":
+                "GATE11_VERIFIED_LOCKED_GATE12_ACTIVE_STOP",
+        }
 
-    final_path = (
-        output_dir
-        / "p12-final-acceptance.json"
-    )
+        final_path = (
+            output_dir
+            / "p12-final-acceptance.json"
+        )
 
-    evidence["evidencePath"] = str(final_path)
-    write_json(final_path, evidence)
+        evidence["evidencePath"] = str(
+            final_path
+        )
 
-    return evidence
+        write_json(
+            final_path,
+            evidence,
+        )
+
+        return evidence
+
+    except Exception:
+        rollback = run(
+            [
+                "git",
+                "reset",
+                "--hard",
+                pre_head,
+            ],
+            cwd=ROOT,
+            timeout=60,
+        )
+
+        require(
+            rollback,
+            "FINAL_ACCEPTANCE_WRITE_ROLLBACK",
+        )
+
+        raise
+
 
 
 def main() -> int:
