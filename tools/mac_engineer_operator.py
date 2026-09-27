@@ -1642,6 +1642,22 @@ def command_continue() -> int:
 
         if passed:
             if (
+                fields.get("P10_ACCEPTANCE")
+                == "10_OF_10_PASS"
+            ):
+                completed.extend([
+                    "P10_P09_PASS",
+                    "P10_CHECKPOINT_CONTINUITY_PASS",
+                    "P10_CONTROLLED_INTERRUPTION_PASS",
+                    "P10_RESTART_RECOVERY_PASS",
+                    "P10_SAME_TASK_RESUME_PASS",
+                    "P10_IDEMPOTENCY_PASS",
+                    "P10_EXACTLY_ONCE_EFFECT_DISCIPLINE_PASS",
+                    "P10_SINGLE_WRITER_DISCIPLINE_PASS",
+                    "P10_BOUNDED_RETRY_PASS",
+                    "P10_RECOVERY_EVIDENCE_PASS",
+                ])
+            elif (
                 fields.get("P09_ACCEPTANCE")
                 == "8_OF_8_PASS"
             ):
