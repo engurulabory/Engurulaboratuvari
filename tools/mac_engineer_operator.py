@@ -1439,6 +1439,75 @@ def run_v08_gate11_p09_lifecycle_controlled_replacement_rollback() -> dict[str, 
     }
 
 
+def run_v08_gate11_p10_interruption_recovery_resume_reliability() -> dict[str, Any]:
+    command = (
+        ROOT
+        / "governance"
+        / "mac-engineer"
+        / "V08_GATE11_P10_INTERRUPTION_RECOVERY_RESUME_RELIABILITY.command"
+    )
+
+    if not command.is_file():
+        return {
+            "state": "HOLD",
+            "reason": "V08_GATE11_P10_COMMAND_MISSING",
+            "fields": {},
+            "evidence": None,
+        }
+
+    result = run(
+        ["zsh", str(command)],
+        cwd=ROOT,
+        timeout=7200,
+        env=dict(os.environ),
+    )
+
+    fields: dict[str, str] = {}
+
+    for line in result.get("stdout", "").splitlines():
+        if "=" not in line:
+            continue
+
+        key, value = line.split("=", 1)
+
+        if key:
+            fields[key.strip()] = value.strip()
+
+    required = [
+        "P09_PASS",
+        "CHECKPOINT_CONTINUITY_PASS",
+        "CONTROLLED_INTERRUPTION_PASS",
+        "RESTART_RECOVERY_PASS",
+        "SAME_TASK_RESUME_PASS",
+        "IDEMPOTENCY_PASS",
+        "EXACTLY_ONCE_EFFECT_DISCIPLINE_PASS_WHERE_APPLICABLE",
+        "SINGLE_WRITER_DISCIPLINE_PASS",
+        "BOUNDED_RETRY_PASS",
+        "RECOVERY_EVIDENCE_PASS",
+    ]
+
+    passed = all([
+        result["code"] == 0,
+        fields.get("STATE") == "PASS",
+        fields.get("P10_ACCEPTANCE") == "10_OF_10_PASS",
+        all(fields.get(key) == "PASS" for key in required),
+        fields.get("SOURCE_MUTATION") == "0",
+        fields.get("REMOTE_MUTATION") == "0",
+        fields.get("NEW_CORE") == "false",
+        fields.get("NEXT_ACTION")
+            == "P11_INDEPENDENT_VERIFICATION_SECOND_LOOK_EVIDENCE_BUNDLE",
+    ])
+
+    return {
+        "state": "PASS" if passed else "HOLD",
+        "code": result["code"],
+        "fields": fields,
+        "evidence": fields.get("P10_ACCEPTANCE_EVIDENCE"),
+        "stdout_tail": result.get("stdout", "")[-24000:],
+        "stderr_tail": result.get("stderr", "")[-12000:],
+    }
+
+
 def run_v08_gate11_consolidated_mac_commissioning() -> dict[str, Any]:
     active_package = detect_v08_gate11_active_package()
 
@@ -1448,16 +1517,7 @@ def run_v08_gate11_consolidated_mac_commissioning() -> dict[str, Any]:
         )
 
     if active_package == "P10":
-        return {
-            "state": "HOLD",
-            "reason": "V08_GATE11_P10_HANDLER_NOT_YET_BOUND",
-            "fields": {
-                "STATE": "HOLD",
-                "NEXT_ACTION":
-                    "P10_INTERRUPTION_RECOVERY_RESUME_RELIABILITY",
-            },
-            "evidence": None,
-        }
+        return run_v08_gate11_p10_interruption_recovery_resume_reliability()
 
     command = (
         ROOT
