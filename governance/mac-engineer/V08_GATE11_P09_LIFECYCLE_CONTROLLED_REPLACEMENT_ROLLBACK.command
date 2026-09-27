@@ -80,6 +80,20 @@ app_pid_from_runtime() {
   ps -o ppid= -p "$RP" 2>/dev/null | tr -d ' '
 }
 
+command_contains_path_nfc() {
+  PYTHONDONTWRITEBYTECODE=1 python3 -B - "$1" "$2" <<'PY_NFC'
+import sys
+import unicodedata
+
+command, path = sys.argv[1:3]
+
+command_nfc = unicodedata.normalize("NFC", command)
+path_nfc = unicodedata.normalize("NFC", path)
+
+raise SystemExit(0 if path_nfc in command_nfc else 2)
+PY_NFC
+}
+
 
 tree_sha256() {
   PYTHONDONTWRITEBYTECODE=1 python3 -B - "$1" <<'PY_TREE'
@@ -505,10 +519,7 @@ case "$FINAL_RUNTIME_COMMAND" in
   *) hold "ROLLBACK_RUNTIME_COMMAND_IDENTITY_FAILED" ;;
 esac
 
-case "$FINAL_APP_COMMAND" in
-  *"$APP_BIN"*) ;;
-  *) hold "ROLLBACK_APP_COMMAND_IDENTITY_FAILED" ;;
-esac
+command_contains_path_nfc   "$FINAL_APP_COMMAND"   "$APP_BIN"   || hold "ROLLBACK_APP_COMMAND_IDENTITY_FAILED"
 
 [ "$FINAL_RUNTIME_CWD" = "$RUNTIME" ] || hold "ROLLBACK_RUNTIME_CWD_IDENTITY_FAILED"
 

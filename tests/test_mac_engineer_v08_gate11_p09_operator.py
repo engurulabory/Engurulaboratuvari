@@ -74,6 +74,25 @@ class Gate11P09OperatorTests(unittest.TestCase):
         self.assertNotIn(".runtime-previous.", source)
         self.assertNotIn("RUNTIME_PREVIOUS", source)
 
+    def test_p09_app_command_identity_uses_macos_unicode_normalization(self):
+        source = COMMAND.read_text(encoding="utf-8")
+
+        self.assertIn("command_contains_path_nfc()", source)
+        self.assertIn('unicodedata.normalize("NFC", command)', source)
+        self.assertIn('unicodedata.normalize("NFC", path)', source)
+        self.assertIn(
+            '"$FINAL_APP_COMMAND"',
+            source,
+        )
+        self.assertIn(
+            '"$APP_BIN"',
+            source,
+        )
+        self.assertNotIn(
+            'case "$FINAL_APP_COMMAND" in',
+            source,
+        )
+
     def test_p09_command_has_no_remote_mutation_command(self):
         source = COMMAND.read_text(encoding="utf-8")
 
