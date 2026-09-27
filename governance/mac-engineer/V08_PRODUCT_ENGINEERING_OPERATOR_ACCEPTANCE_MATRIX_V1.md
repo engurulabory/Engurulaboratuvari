@@ -307,3 +307,46 @@ Execution:
 Next action:
 
 `READ_ONLY_GATE11_COMMISSIONING_RECONNAISSANCE_NEXT_SESSION`
+
+
+<!-- ENGURU_GATE11_P12_FINAL_CLOSURE_V1 -->
+
+## Gate 11 — FINAL CANONICAL CLOSURE
+
+**STATE — VERIFIED / LOCKED**
+
+Exit:
+
+`V08_CONSOLIDATED_MAC_COMMISSIONING_PASS`
+
+DoneCheck™ v1.2:
+
+**PASS**
+
+Architecture:
+
+**PRESERVED**
+
+New core:
+
+**false**
+
+## CURRENT ACTIVE GATE
+
+**Gate 12 — DoneCheck™ v1.2 + Human Threshold™ + Version Lock**
+
+Canonical identifier:
+
+`V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK`
+
+Exit:
+
+`PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED`
+
+Execution:
+
+**ACTIVE / NOT STARTED**
+
+Gate 12 execution count:
+
+**0**

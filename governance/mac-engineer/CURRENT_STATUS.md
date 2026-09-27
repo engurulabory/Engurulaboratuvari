@@ -1,9 +1,9 @@
 # ENGÜRÜ Mac Engineer™ — Current Status
 
-**Updated:** 2026-09-25
+**Updated:** 2026-09-27
 **Program target:** ENGÜRÜ Mac Engineering™ v1.1 — Verified Product Engineering Operator
 **Current version:** v0.8 — PRODUCT ENGINEERING OPERATOR / ACTIVE
-**Current objective:** V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING
+**Current objective:** V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK
 **Canonical objective id:** `V08_PRODUCT_ENGINEERING_OPERATOR`
 
 ## CURRENT ENGINEERING TRUTH
@@ -1543,3 +1543,48 @@ Execution state:
 Next action:
 
 `READ_ONLY_GATE11_COMMISSIONING_RECONNAISSANCE_NEXT_SESSION`
+
+
+<!-- ENGURU_GATE11_FINAL_CANONICAL_CLOSURE_V1 -->
+
+## GATE 11 — FINAL CANONICAL CLOSURE
+
+**STATE — VERIFIED / LOCKED**
+
+Exit:
+
+`V08_CONSOLIDATED_MAC_COMMISSIONING_PASS`
+
+DoneCheck™ v1.2:
+
+**PASS**
+
+Evidence:
+
+`/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate11-p12-closure/20260927T223539Z/p12-final-acceptance.json`
+
+## CURRENT ACTIVE GATE
+
+**Gate 12 — DoneCheck™ v1.2 + Human Threshold™ + Version Lock**
+
+Canonical identifier:
+
+`V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK`
+
+Exit:
+
+`PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED`
+
+Execution:
+
+**ACTIVE / NOT STARTED**
+
+## JUDGMENT
+
+Gate 11 commissioning is **VERIFIED / LOCKED**.
+
+Gate 12 is **ACTIVE** and has execution count **0**.
+
+## NEXT ACTION
+
+`V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK`

@@ -42,7 +42,7 @@
     "v07LongRunReliability": "VERIFIED_LOCKED",
     "v08Gate8NewProductFromBrief": "VERIFIED_PASS"
   },
-  "currentObjective": "V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING",
+  "currentObjective": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
   "observedProductPublication": {
     "source": "MAC_FIELD_OUTPUT",
     "localSourceHead": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
@@ -1276,8 +1276,8 @@
     "objective": "V08_PRODUCT_ENGINEERING_OPERATOR",
     "engineeringMode": "MAC_NATIVE_PRIMARY_AUTHORITY",
     "executionAuthorityModel": "ENGÜRÜ Mac-Native Engineering Authority™",
-    "nextAction": "V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING",
-    "localContinuityNextAction": "V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING",
+    "nextAction": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
+    "localContinuityNextAction": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
     "localContinuityState": "ACTIVE",
     "acceptanceMatrix": "PASS_DEFINED",
     "acceptanceMatrixPath": "governance/mac-engineer/V08_PRODUCT_ENGINEERING_OPERATOR_ACCEPTANCE_MATRIX_V1.md",
@@ -1297,8 +1297,8 @@
       "externalMergeGate": "HOLD_GITHUB_ACTIONS_EXECUTION",
       "acceptanceStatePath": "~/Enguru/Runtime/MacEngineer/state/local-accepted-control-plane-candidate.json",
       "acceptanceEvidenceRoot": "~/Enguru/Evidence/MacEngineer/v0.8/canonical-boot",
-      "currentTechnicalTarget": "V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING",
-      "nextAfterPass": "V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING"
+      "currentTechnicalTarget": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
+      "nextAfterPass": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
     },
     "closureContract": {
       "totalGates": 12,
@@ -1312,11 +1312,11 @@
         7,
         8,
         9,
-        10
+        10,
+        11
       ],
-      "activeGate": 11,
+      "activeGate": 12,
       "remainingGates": [
-        11,
         12
       ],
       "finalAuthority": "HUMAN_THRESHOLD",
@@ -1649,14 +1649,38 @@
       "gate11Execution": false
     },
     "gate11": {
-      "state": "ACTIVE",
+      "state": "VERIFIED_LOCKED",
       "name": "V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING",
       "title": "Consolidated Real-Mac Product Engineering Commissioning",
       "exit": "V08_CONSOLIDATED_MAC_COMMISSIONING_PASS",
-      "nextAction": "READ_ONLY_GATE11_COMMISSIONING_RECONNAISSANCE_NEXT_SESSION",
-      "executionStarted": false,
+      "nextAction": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
+      "executionStarted": true,
       "authority": "NEXT_SESSION",
-      "foundation": "GATES_1_10_VERIFIED_EVIDENCE_LINEAGE"
+      "foundation": "GATES_1_10_VERIFIED_EVIDENCE_LINEAGE",
+      "closureEvidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate11-p12-closure/20260927T223539Z/p12-final-acceptance.json",
+      "doneCheckV12": "PASS"
+    },
+    "gate11Closure": {
+      "state": "VERIFIED_LOCKED",
+      "name": "V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING",
+      "exit": "V08_CONSOLIDATED_MAC_COMMISSIONING_PASS",
+      "doneCheckV12": "PASS",
+      "doneCheckEvidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate11-p12-closure/20260927T223539Z/donecheck-evidence.json",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate11-p12-closure/20260927T223539Z/p12-final-acceptance.json",
+      "architectureState": "PRESERVED",
+      "newCore": false,
+      "observedAt": "2026-09-27T22:35:41.072596+00:00",
+      "gate12Execution": false
+    },
+    "gate12": {
+      "state": "ACTIVE",
+      "name": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
+      "title": "DoneCheck™ v1.2 + Human Threshold™ + Version Lock",
+      "exit": "PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED",
+      "executionStarted": false,
+      "authority": "HUMAN_THRESHOLD",
+      "foundation": "GATE11_VERIFIED_LOCKED",
+      "nextAction": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
     }
   },
   "preSendFilter": {
@@ -1702,11 +1726,11 @@
   },
   "preparedGate11Method": {
     "version": 2,
-    "state": "PREPARED_QUEUED",
+    "state": "VERIFIED_LOCKED",
     "executionActive": false,
     "packageCount": 12,
     "packageRange": "P01-P12",
-    "currentPackage": null,
+    "currentPackage": "P12",
     "zekuPrimaryRole": "ENGURU_COMMISSIONING_GOVERNOR",
     "macEngineerPrimaryRole": "PRIMARY_MAC_LOCAL_ENGINEERING_PLANNER_EXECUTOR_REPAIRER_RECOVERY_OPERATOR",
     "antiMicroPatch": true,
@@ -1716,6 +1740,7 @@
     "harvestOriginGate": 8,
     "harvestGate11Binding": "P03",
     "duplicateHarvestCapabilityCreated": false,
-    "futureV11HarvestRole": "RESEARCH_HARVEST_SPECIALIST_QUALIFICATION"
+    "futureV11HarvestRole": "RESEARCH_HARVEST_SPECIALIST_QUALIFICATION",
+    "nextTransition": "GATE11_VERIFIED_LOCKED_GATE12_ACTIVE_STOP"
   }
 }
