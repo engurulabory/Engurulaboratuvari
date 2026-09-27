@@ -8,6 +8,8 @@ EXPECTED_HEAD="${ENGURU_GATE11_P09_EXPECTED_PRODUCT_HEAD:-0ca33cc7b70fee915d02de
 
 APP="$HOME/Applications/ENGÜRÜ Mac Engineer.app"
 APP_BIN="$APP/Contents/MacOS/EnguruMacEngineer"
+INTERNAL_APP="$HOME/Enguru/Runtime/MacEngineer/App/ENGÜRÜ Mac Engineer.app"
+INTERNAL_APP_BIN="$INTERNAL_APP/Contents/MacOS/EnguruMacEngineer"
 BUNDLE_ID="com.engurumaya.macengineer"
 
 RUNTIME_ROOT="$HOME/Enguru/Runtime/MacEngineer"
@@ -148,6 +150,7 @@ HEAD="$(git rev-parse HEAD)"
 
 [ -x "$PREP" ] || hold "NATIVE_PREP_MISSING"
 [ -x "$APP_BIN" ] || hold "INSTALLED_APP_MISSING"
+[ -x "$INTERNAL_APP_BIN" ] || hold "INTERNAL_INSTALLED_APP_MISSING"
 
 P08_ACCEPTANCE="$(
   find "$P08_ROOT" -type f -name 'p08-final-acceptance.json' -print 2>/dev/null \
@@ -230,6 +233,67 @@ printf 'BASE_APP_TREE_SHA=%s\n' "$BASE_APP_TREE_SHA"
 printf 'BASE_RUNTIME_TREE_SHA=%s\n' "$BASE_RUNTIME_TREE_SHA"
 printf 'BASE_RELEASE_SHA=%s\n' "$BASE_RELEASE_SHA"
 
+
+printf '\n=== P09 DURABLE KNOWN-GOOD CHECKPOINT ===\n'
+
+KNOWN_GOOD_DIR="$RUN_DIR/known-good"
+KNOWN_GOOD_USER_APP="$KNOWN_GOOD_DIR/user-app.app"
+KNOWN_GOOD_INTERNAL_APP="$KNOWN_GOOD_DIR/internal-app.app"
+KNOWN_GOOD_RUNTIME="$KNOWN_GOOD_DIR/runtime"
+
+mkdir -p "$KNOWN_GOOD_DIR"
+
+ditto "$APP" "$KNOWN_GOOD_USER_APP" \
+  || hold "KNOWN_GOOD_USER_APP_CHECKPOINT_FAILED"
+
+ditto "$INTERNAL_APP" "$KNOWN_GOOD_INTERNAL_APP" \
+  || hold "KNOWN_GOOD_INTERNAL_APP_CHECKPOINT_FAILED"
+
+mkdir -p "$KNOWN_GOOD_RUNTIME"
+
+rsync -a --delete \
+  --exclude='__pycache__/' \
+  --exclude='*.pyc' \
+  "$RUNTIME/" \
+  "$KNOWN_GOOD_RUNTIME/" \
+  || hold "KNOWN_GOOD_RUNTIME_CHECKPOINT_FAILED"
+
+codesign --verify --deep --strict "$KNOWN_GOOD_USER_APP" \
+  || hold "KNOWN_GOOD_USER_APP_CODESIGN_FAILED"
+
+codesign --verify --deep --strict "$KNOWN_GOOD_INTERNAL_APP" \
+  || hold "KNOWN_GOOD_INTERNAL_APP_CODESIGN_FAILED"
+
+KNOWN_GOOD_USER_BINARY_SHA="$(
+  shasum -a 256 \
+    "$KNOWN_GOOD_USER_APP/Contents/MacOS/EnguruMacEngineer" \
+  | awk '{print $1}'
+)"
+
+KNOWN_GOOD_INTERNAL_BINARY_SHA="$(
+  shasum -a 256 \
+    "$KNOWN_GOOD_INTERNAL_APP/Contents/MacOS/EnguruMacEngineer" \
+  | awk '{print $1}'
+)"
+
+KNOWN_GOOD_RUNTIME_TREE_SHA="$(
+  tree_sha256 "$KNOWN_GOOD_RUNTIME"
+)"
+
+[ "$KNOWN_GOOD_USER_BINARY_SHA" = "$P08_EXPECTED_BINARY_SHA" ] \
+  || hold "KNOWN_GOOD_USER_BINARY_IDENTITY_FAILED"
+
+[ "$KNOWN_GOOD_INTERNAL_BINARY_SHA" = "$P08_EXPECTED_BINARY_SHA" ] \
+  || hold "KNOWN_GOOD_INTERNAL_BINARY_IDENTITY_FAILED"
+
+[ "$KNOWN_GOOD_RUNTIME_TREE_SHA" = "$BASE_RUNTIME_TREE_SHA" ] \
+  || hold "KNOWN_GOOD_RUNTIME_TREE_IDENTITY_FAILED"
+
+printf 'P09_DURABLE_KNOWN_GOOD_CHECKPOINT=PASS\n'
+printf 'KNOWN_GOOD_USER_BINARY_SHA=%s\n' "$KNOWN_GOOD_USER_BINARY_SHA"
+printf 'KNOWN_GOOD_INTERNAL_BINARY_SHA=%s\n' "$KNOWN_GOOD_INTERNAL_BINARY_SHA"
+printf 'KNOWN_GOOD_RUNTIME_TREE_SHA=%s\n' "$KNOWN_GOOD_RUNTIME_TREE_SHA"
+
 printf 'P08_PASS=PASS\n'
 printf 'BASE_RUNTIME_PID=%s\n' "$BASE_RUNTIME_PID"
 printf 'BASE_APP_PID=%s\n' "$BASE_APP_PID"
@@ -254,13 +318,6 @@ find "$HOME/Enguru/Evidence/MacEngineer" \
   -print 2>/dev/null \
   | sort > "$RUN_DIR/prep-before.txt"
 
-find "$RUNTIME_ROOT" \
-  -maxdepth 1 \
-  -type d \
-  -name '.runtime-previous.*' \
-  -print 2>/dev/null \
-  | sort > "$RUN_DIR/runtime-previous-before.txt"
-
 zsh "$PREP"
 PREP_RC=$?
 
@@ -273,26 +330,12 @@ find "$HOME/Enguru/Evidence/MacEngineer" \
   -print 2>/dev/null \
   | sort > "$RUN_DIR/prep-after.txt"
 
-find "$RUNTIME_ROOT" \
-  -maxdepth 1 \
-  -type d \
-  -name '.runtime-previous.*' \
-  -print 2>/dev/null \
-  | sort > "$RUN_DIR/runtime-previous-after.txt"
-
 NEW_PREP_RECEIPT="$(
   comm -13 "$RUN_DIR/prep-before.txt" "$RUN_DIR/prep-after.txt" | tail -n 1
 )"
 
-RUNTIME_PREVIOUS="$(
-  comm -13 "$RUN_DIR/runtime-previous-before.txt" "$RUN_DIR/runtime-previous-after.txt" | tail -n 1
-)"
-
 [ -n "$NEW_PREP_RECEIPT" ] || hold "NEW_PREP_RECEIPT_MISSING"
 [ -f "$NEW_PREP_RECEIPT" ] || hold "NEW_PREP_RECEIPT_NOT_FILE"
-
-[ -n "$RUNTIME_PREVIOUS" ] || hold "NEW_RUNTIME_PREVIOUS_MISSING"
-[ -d "$RUNTIME_PREVIOUS" ] || hold "NEW_RUNTIME_PREVIOUS_NOT_DIRECTORY"
 
 BACKUP_APP="$(
   awk -F= '
@@ -317,7 +360,6 @@ P09_ACCEPTANCE=3_OF_8_PASS
 printf 'CONTROLLED_REPLACEMENT_PASS=PASS\n'
 printf 'PREP_RECEIPT=%s\n' "$NEW_PREP_RECEIPT"
 printf 'BACKUP_APP=%s\n' "$BACKUP_APP"
-printf 'RUNTIME_PREVIOUS=%s\n' "$RUNTIME_PREVIOUS"
 
 printf '\n=== RESTART REPLACEMENT ===\n'
 
@@ -345,13 +387,32 @@ printf '\n=== ACTUAL KNOWN-GOOD ROLLBACK ===\n'
 stop_owned_app || hold "ROLLBACK_PRESTOP_FAILED"
 
 CURRENT_APP_SAVE="$RUN_DIR/replacement-installed.app"
+CURRENT_INTERNAL_APP_SAVE="$RUN_DIR/replacement-internal.app"
 CURRENT_RUNTIME_SAVE="$RUN_DIR/replacement-runtime"
 
-mv "$APP" "$CURRENT_APP_SAVE" || hold "ROLLBACK_CURRENT_APP_SAVE_FAILED"
-ditto "$BACKUP_APP" "$APP" || hold "ROLLBACK_APP_RESTORE_FAILED"
+mv "$APP" "$CURRENT_APP_SAVE" \
+  || hold "ROLLBACK_CURRENT_APP_SAVE_FAILED"
 
-mv "$RUNTIME" "$CURRENT_RUNTIME_SAVE" || hold "ROLLBACK_CURRENT_RUNTIME_SAVE_FAILED"
-mv "$RUNTIME_PREVIOUS" "$RUNTIME" || hold "ROLLBACK_RUNTIME_RESTORE_FAILED"
+mv "$INTERNAL_APP" "$CURRENT_INTERNAL_APP_SAVE" \
+  || hold "ROLLBACK_CURRENT_INTERNAL_APP_SAVE_FAILED"
+
+mv "$RUNTIME" "$CURRENT_RUNTIME_SAVE" \
+  || hold "ROLLBACK_CURRENT_RUNTIME_SAVE_FAILED"
+
+ditto "$KNOWN_GOOD_USER_APP" "$APP" \
+  || hold "ROLLBACK_USER_APP_RESTORE_FAILED"
+
+ditto "$KNOWN_GOOD_INTERNAL_APP" "$INTERNAL_APP" \
+  || hold "ROLLBACK_INTERNAL_APP_RESTORE_FAILED"
+
+mkdir -p "$RUNTIME"
+
+rsync -a --delete \
+  --exclude='__pycache__/' \
+  --exclude='*.pyc' \
+  "$KNOWN_GOOD_RUNTIME/" \
+  "$RUNTIME/" \
+  || hold "ROLLBACK_RUNTIME_RESTORE_FAILED"
 
 mkdir -p "$RUNTIME_ROOT/state"
 
@@ -361,6 +422,7 @@ cp \
   || hold "ROLLBACK_RELEASE_MANIFEST_RESTORE_FAILED"
 
 codesign --verify --deep --strict "$APP" || hold "ROLLBACK_CODESIGN_FAILED"
+codesign --verify --deep --strict "$INTERNAL_APP" || hold "ROLLBACK_INTERNAL_CODESIGN_FAILED"
 
 KNOWN_GOOD_ROLLBACK_PASS=PASS
 P09_ACCEPTANCE=5_OF_8_PASS
@@ -417,11 +479,13 @@ cmp -s \
 
 
 FINAL_BINARY_SHA="$(shasum -a 256 "$APP_BIN" | awk '{print $1}')"
+FINAL_INTERNAL_BINARY_SHA="$(shasum -a 256 "$INTERNAL_APP_BIN" | awk '{print $1}')"
 FINAL_APP_TREE_SHA="$(tree_sha256 "$APP")"
 FINAL_RUNTIME_TREE_SHA="$(tree_sha256 "$RUNTIME")"
 FINAL_RELEASE_SHA="$(shasum -a 256 "$APP/Contents/Resources/release.json" | awk '{print $1}')"
 
 [ "$FINAL_BINARY_SHA" = "$P08_EXPECTED_BINARY_SHA" ] || hold "ROLLBACK_P08_BINARY_IDENTITY_FAILED"
+[ "$FINAL_INTERNAL_BINARY_SHA" = "$P08_EXPECTED_BINARY_SHA" ] || hold "ROLLBACK_INTERNAL_P08_BINARY_IDENTITY_FAILED"
 [ "$FINAL_BINARY_SHA" = "$BASE_BINARY_SHA" ] || hold "ROLLBACK_BASE_BINARY_IDENTITY_FAILED"
 [ "$FINAL_APP_TREE_SHA" = "$BASE_APP_TREE_SHA" ] || hold "ROLLBACK_APP_TREE_IDENTITY_FAILED"
 [ "$FINAL_RUNTIME_TREE_SHA" = "$BASE_RUNTIME_TREE_SHA" ] || hold "ROLLBACK_RUNTIME_TREE_IDENTITY_FAILED"
@@ -449,6 +513,7 @@ esac
 [ "$FINAL_RUNTIME_CWD" = "$RUNTIME" ] || hold "ROLLBACK_RUNTIME_CWD_IDENTITY_FAILED"
 
 printf 'FINAL_BINARY_SHA=%s\n' "$FINAL_BINARY_SHA"
+printf 'FINAL_INTERNAL_BINARY_SHA=%s\n' "$FINAL_INTERNAL_BINARY_SHA"
 printf 'FINAL_APP_TREE_SHA=%s\n' "$FINAL_APP_TREE_SHA"
 printf 'FINAL_RUNTIME_TREE_SHA=%s\n' "$FINAL_RUNTIME_TREE_SHA"
 printf 'FINAL_RELEASE_SHA=%s\n' "$FINAL_RELEASE_SHA"
