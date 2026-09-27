@@ -1,0 +1,74 @@
+{
+  "schema": "enguru.mac-engineer.jev-provider-qualification-acceptance/v1",
+  "contractVersion": "1.2",
+  "productRoleVersion": "v1.1",
+  "accessExpected": true,
+  "integrationDirection": "FORWARD",
+  "role": "OPTIONAL_BOUNDED_ASSESSOR",
+  "currentProviderEvidenceState": "HOLD_PROVIDER_UNTIL_LIVE_EVIDENCE",
+  "targetVerdict": "JEV_PROVIDER_QUALIFICATION_PASS",
+  "optionalBindingVersion": "v1.2",
+  "v13Role": "REGRESSION_AND_CONTINUITY",
+  "v13MandatoryDependency": false,
+  "assessorOnly": true,
+  "deterministicContinuityRequired": true,
+  "vercelCanonical": false,
+  "newCore": false,
+  "benchmark": {
+    "path": "evidence/jev/benchmark_states_v1.json",
+    "expectedCases": 100,
+    "fixtureDigestRequired": true
+  },
+  "thresholds": {
+    "canonicalAgreementMin": 0.95,
+    "criticalFalsePassMax": 0,
+    "humanThresholdMissMax": 0,
+    "latencyImprovementFactorTarget": 0.75,
+    "costImprovementFactorTarget": 0.75,
+    "maxRetryAttempts": 2,
+    "calibrationMethodDeclaredRequired": true,
+    "calibrationEvidenceRequired": true
+  },
+  "criteria": {
+    "PROVIDER_TRUTH_VERIFIED": {
+      "state": "HOLD",
+      "evidence": null
+    },
+    "LIVE_TRANSPORT_VERIFIED": {
+      "state": "HOLD",
+      "evidence": null
+    },
+    "SCHEMA_PROVENANCE_BOUND": {
+      "state": "HOLD",
+      "evidence": null
+    },
+    "LIVE_100_STATE_BENCHMARK": {
+      "state": "HOLD",
+      "evidence": null
+    },
+    "CALIBRATION_EVIDENCE": {
+      "state": "HOLD",
+      "evidence": null
+    },
+    "LATENCY_EVIDENCE": {
+      "state": "HOLD",
+      "evidence": null
+    },
+    "COST_EVIDENCE": {
+      "state": "HOLD",
+      "evidence": null
+    },
+    "TRANSPORT_RESILIENCE": {
+      "state": "HOLD",
+      "evidence": null
+    },
+    "AUTHORITY_REGRESSION": {
+      "state": "HOLD",
+      "evidence": null
+    },
+    "DETERMINISTIC_CONTINUITY": {
+      "state": "HOLD",
+      "evidence": null
+    }
+  }
+}

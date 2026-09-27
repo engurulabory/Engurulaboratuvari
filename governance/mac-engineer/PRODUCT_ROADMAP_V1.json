@@ -269,6 +269,17 @@
         "role": "EMER_GROUNDING_RELIABILITY",
         "policy": "NO_MAJOR_AESTHETIC_FEATURE_EXPANSION",
         "acceptanceIntent": "Grounding, source fidelity, Evidence fidelity and operator reliability before expanded Aesthetic execution authority."
+      },
+      "jev": {
+        "role": "JEV_DECISION_PROVIDER_QUALIFICATION",
+        "accessExpected": true,
+        "integrationDirection": "FORWARD",
+        "currentProviderEvidenceState": "HOLD_PROVIDER_UNTIL_LIVE_EVIDENCE",
+        "targetVerdict": "JEV_PROVIDER_QUALIFICATION_PASS",
+        "contract": "governance/mac-engineer/V11_JEV_CANONICAL_NECESSARY_DIFFERENCE_CONTRACT_V1_2.md",
+        "acceptance": "governance/mac-engineer/V11_JEV_PROVIDER_QUALIFICATION_ACCEPTANCE_V1.json",
+        "guard": "tools/mac_engineer_v11_jev_guard.py",
+        "newCore": false
       }
     },
     {
@@ -287,6 +298,13 @@
           "PROVENANCE_FOUNDATION",
           "RECOVERY_READY_EXECUTION"
         ]
+      },
+      "jev": {
+        "role": "OPTIONAL_VERIFIED_PROVIDER_BINDING",
+        "entryCondition": "JEV_PROVIDER_QUALIFICATION_PASS",
+        "mandatory": false,
+        "assessorOnly": true,
+        "deterministicContinuityRequired": true
       }
     },
     {
@@ -302,7 +320,16 @@
       "exit": [
         "V13_AESTHETIC_MOTOR_VERIFIED_FINISH",
         "VERIFIED_FINAL_LOCKED"
-      ]
+      ],
+      "jev": {
+        "role": "REGRESSION_AND_CONTINUITY",
+        "mandatoryDependency": false,
+        "requiredRegression": [
+          "JEV_NO_AUTHORITY_REGRESSION_PASS",
+          "JEV_OPTIONAL_DEPENDENCY_INVARIANT_PASS",
+          "JEV_SCHEMA_PROVENANCE_REGRESSION_PASS_WHEN_CONFIGURED"
+        ]
+      }
     }
   ],
   "method": "SESSION_START -> CANONICAL_SYNC -> ONE_ACTIVE_OBJECTIVE -> PROGRAMMER_AGENT -> PRE_SEND_FILTER -> GITHUB_ENGINEERING -> TEST_CI -> PR_REVIEW -> EXACT_MAIN -> DONECHECK_ENGINEERING_VERIFICATION -> MILESTONE_MAC_COMMISSIONING -> LOCAL_EVIDENCE -> DONECHECK_V1_2 -> HUMAN_THRESHOLD -> VERSION_LOCK -> CURRENT_STATUS_RECONCILE -> WORKLIST_SESSION_STATE_RECONCILE -> SESSION_HANDOFF",
@@ -385,5 +412,15 @@
     "v13": "AESTHETIC_MOTOR_VERIFIED_FINISH",
     "mandatoryBeforeV13FinalPass": true,
     "requiredVerdict": "V13_AESTHETIC_MOTOR_VERIFIED_FINISH"
+  },
+  "jevPolicy": {
+    "state": "CANONICAL_PLACEMENT_LOCKED",
+    "accessExpected": true,
+    "role": "OPTIONAL_BOUNDED_ASSESSOR",
+    "canonicalRoute": "ENGURU_PUBLISH_ENGINE_TO_JEV_TO_EVIDENCE_TO_DONECHECK",
+    "vercelCanonical": false,
+    "v13MandatoryDependency": false,
+    "currentProviderEvidenceState": "HOLD_PROVIDER_UNTIL_LIVE_EVIDENCE",
+    "targetVerdict": "JEV_PROVIDER_QUALIFICATION_PASS"
   }
 }

@@ -1668,5 +1668,19 @@
     "secondLook": "REQUIRED",
     "doneCheck": "V1.2_REQUIRED",
     "activeObjectivePreserved": "V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO"
+  },
+  "jevProviderQualification": {
+    "state": "HOLD_PROVIDER_UNTIL_LIVE_EVIDENCE",
+    "accessExpected": true,
+    "integrationDirection": "FORWARD",
+    "v11Role": "JEV_DECISION_PROVIDER_QUALIFICATION",
+    "v12Role": "OPTIONAL_VERIFIED_PROVIDER_BINDING",
+    "v13Role": "REGRESSION_AND_CONTINUITY",
+    "v13MandatoryDependency": false,
+    "assessorOnly": true,
+    "deterministicContinuityRequired": true,
+    "contract": "governance/mac-engineer/V11_JEV_CANONICAL_NECESSARY_DIFFERENCE_CONTRACT_V1_2.md",
+    "acceptance": "governance/mac-engineer/V11_JEV_PROVIDER_QUALIFICATION_ACCEPTANCE_V1.json",
+    "guard": "tools/mac_engineer_v11_jev_guard.py"
   }
 }
