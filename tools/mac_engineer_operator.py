@@ -1690,21 +1690,96 @@ def run_v08_gate11_p11_independent_verification_second_look_evidence_bundle() ->
     }
 
 
+def run_v08_gate11_p12_donecheck_canonical_gate11_closure() -> dict[str, Any]:
+    command = (
+        ROOT
+        / "governance"
+        / "mac-engineer"
+        / "V08_GATE11_P12_DONECHECK_CANONICAL_GATE11_CLOSURE.command"
+    )
+
+    if not command.is_file():
+        return {
+            "state": "HOLD",
+            "reason": "V08_GATE11_P12_COMMAND_MISSING",
+            "fields": {},
+            "evidence": None,
+        }
+
+    result = run(
+        ["zsh", str(command)],
+        cwd=ROOT,
+        timeout=7200,
+        env=dict(os.environ),
+    )
+
+    fields: dict[str, str] = {}
+
+    for line in result.get("stdout", "").splitlines():
+        if "=" not in line:
+            continue
+
+        key, value = line.split("=", 1)
+
+        if key:
+            fields[key.strip()] = value.strip()
+
+    required = [
+        "P01_THROUGH_P11_PASS",
+        "DONECHECK_V1_2_PASS",
+        "CANONICAL_RECONCILIATION_PASS",
+        "GATE11_EVIDENCE_BUNDLE_COMPLETE",
+        "GATE11_ENGINEERING_EXECUTION_PASS",
+        "ARCHITECTURE_STATE_PRESERVED",
+        "NEW_CORE_FALSE",
+        "HUMAN_MANUAL_SOURCE_EDIT_COUNT_0",
+        "CHATGPT_DIRECT_FIELD_PRODUCT_PATCH_COUNT_0",
+        "UNTRACKED_MANUAL_STEP_COUNT_0",
+        "GATE11_VERIFIED_LOCKED",
+        "GATE11_EXIT_V08_CONSOLIDATED_MAC_COMMISSIONING_PASS",
+        "ACTIVE_GATE_12",
+        "GATE12_EXECUTION_0",
+        "STOP_TRUE",
+    ]
+
+    passed = all([
+        result["code"] == 0,
+        fields.get("STATE") == "PASS",
+        fields.get("P12_ACCEPTANCE")
+            == "15_OF_15_PASS",
+        all(
+            fields.get(key) == "PASS"
+            for key in required
+        ),
+        fields.get("CANONICAL_MUTATION_FILE_COUNT")
+            == "4",
+        fields.get("REMOTE_MUTATION") == "0",
+        fields.get("PRODUCT_SOURCE_MUTATION") == "0",
+        fields.get("NEW_CORE") == "false",
+        fields.get("NEXT_ACTION")
+            == "GATE11_VERIFIED_LOCKED_GATE12_ACTIVE_STOP",
+    ])
+
+    return {
+        "state": "PASS" if passed else "HOLD",
+        "code": result["code"],
+        "fields": fields,
+        "evidence":
+            fields.get("P12_ACCEPTANCE_EVIDENCE"),
+        "stdout_tail":
+            result.get("stdout", "")[-30000:],
+        "stderr_tail":
+            result.get("stderr", "")[-12000:],
+    }
+
+
 def run_v08_gate11_consolidated_mac_commissioning() -> dict[str, Any]:
     active_package = detect_v08_gate11_active_package()
 
     if active_package == "P12":
-        return {
-            "state": "HOLD",
-            "reason": "V08_GATE11_P12_HANDLER_NOT_YET_BOUND",
-            "fields": {
-                "STATE": "HOLD",
-                "P11_ACCEPTANCE": "14_OF_14_VERIFIED",
-                "NEXT_ACTION":
-                    "P12_DONECHECK_CANONICAL_GATE11_CLOSURE",
-            },
-            "evidence": None,
-        }
+        return (
+            run_v08_gate11_p12_donecheck_canonical_gate11_closure()
+        )
 
     if active_package == "P11":
         return (
@@ -1842,6 +1917,27 @@ def command_continue() -> int:
 
         if passed:
             if (
+                fields.get("P12_ACCEPTANCE")
+                == "15_OF_15_PASS"
+            ):
+                completed.extend([
+                    "P12_P01_THROUGH_P11_PASS",
+                    "P12_DONECHECK_V1_2_PASS",
+                    "P12_CANONICAL_RECONCILIATION_PASS",
+                    "P12_GATE11_EVIDENCE_BUNDLE_COMPLETE",
+                    "P12_GATE11_ENGINEERING_EXECUTION_PASS",
+                    "P12_ARCHITECTURE_STATE_PRESERVED",
+                    "P12_NEW_CORE_FALSE",
+                    "P12_HUMAN_MANUAL_SOURCE_EDIT_COUNT_0",
+                    "P12_CHATGPT_DIRECT_FIELD_PRODUCT_PATCH_COUNT_0",
+                    "P12_UNTRACKED_MANUAL_STEP_COUNT_0",
+                    "P12_GATE11_VERIFIED_LOCKED",
+                    "P12_GATE11_EXIT_PASS",
+                    "P12_ACTIVE_GATE_12",
+                    "P12_GATE12_EXECUTION_0",
+                    "P12_STOP_TRUE",
+                ])
+            elif (
                 fields.get("P11_ACCEPTANCE")
                 == "14_OF_14_PASS"
             ):

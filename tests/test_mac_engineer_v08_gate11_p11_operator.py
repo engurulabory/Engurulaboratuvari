@@ -183,21 +183,48 @@ class Gate11P11OperatorTests(unittest.TestCase):
 
         self.assertNotEqual(active, "P12")
 
-    def test_p12_is_fail_closed_until_handler_is_bound(self):
+    def test_p12_dispatch_matches_current_binding_state(self):
+        handler_name = (
+            "run_v08_gate11_p12_donecheck_"
+            "canonical_gate11_closure"
+        )
+
         with mock.patch.object(
             operator,
             "detect_v08_gate11_active_package",
             return_value="P12",
         ):
-            result = (
-                operator.run_v08_gate11_consolidated_mac_commissioning()
-            )
+            if hasattr(operator, handler_name):
+                sentinel = {
+                    "state": "HOLD",
+                    "reason": "TEST_P12_BOUND_DISPATCH",
+                    "fields": {},
+                    "evidence": None,
+                }
 
-        self.assertEqual(result["state"], "HOLD")
-        self.assertEqual(
-            result["reason"],
-            "V08_GATE11_P12_HANDLER_NOT_YET_BOUND",
-        )
+                with mock.patch.object(
+                    operator,
+                    handler_name,
+                    return_value=sentinel,
+                ) as bound_handler:
+                    result = (
+                        operator
+                        .run_v08_gate11_consolidated_mac_commissioning()
+                    )
+
+                bound_handler.assert_called_once_with()
+                self.assertEqual(result, sentinel)
+            else:
+                result = (
+                    operator
+                    .run_v08_gate11_consolidated_mac_commissioning()
+                )
+
+                self.assertEqual(result["state"], "HOLD")
+                self.assertEqual(
+                    result["reason"],
+                    "V08_GATE11_P12_HANDLER_NOT_YET_BOUND",
+                )
 
     def test_command_continue_records_p11_completion_markers(self):
         truth = {
