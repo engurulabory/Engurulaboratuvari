@@ -1342,6 +1342,63 @@ def detect_v08_gate11_active_package() -> str:
         / "gate11-p10-reliability"
     )
 
+    p11_root = (
+        HOME
+        / "Enguru"
+        / "Evidence"
+        / "MacEngineer"
+        / "v0.8"
+        / "gate11-p11-independent-verification"
+    )
+
+    p11_receipts = sorted(
+        p11_root.glob("*/p11-final-acceptance.json")
+    )
+
+    p11_required = (
+        "P10_PASS",
+        "TARGETED_REGRESSION_PASS",
+        "FULL_CONTROL_PLANE_REGRESSION_PASS",
+        "PRODUCT_REGRESSION_PASS",
+        "DIFF_CHECK_PASS",
+        "SCOPE_CHECK_PASS",
+        "PROVENANCE_CHECK_PASS",
+        "RECOVERY_CHECK_PASS",
+        "EVIDENCE_COMPLETENESS_PASS",
+        "HUMAN_MANUAL_SOURCE_EDIT_COUNT_0",
+        "CHATGPT_DIRECT_FIELD_PRODUCT_PATCH_COUNT_0",
+        "UNTRACKED_MANUAL_STEP_COUNT_0",
+        "ZEKU_SUBSTITUTED_FOR_MAC_ENGINEER_EXECUTION_0",
+        "CRITICAL_FALSE_PASS_0",
+    )
+
+    for receipt in reversed(p11_receipts):
+        try:
+            data = json.loads(
+                receipt.read_text(encoding="utf-8")
+            )
+        except Exception:
+            continue
+
+        acceptance = data.get("acceptance") or {}
+
+        if (
+            data.get("state") == "PASS"
+            and data.get("package") == "P11"
+            and data.get("nextTransition") == "P12"
+            and all(
+                acceptance.get(key) == "PASS"
+                for key in p11_required
+            )
+            and data.get(
+                "currentUnresolvedCriticalFalsePassCount"
+            ) == 0
+            and data.get("sourceMutation") is False
+            and data.get("remoteMutation") is False
+            and data.get("newCore") is False
+        ):
+            return "P12"
+
     p10_receipts = sorted(
         p10_root.glob("*/p10-final-acceptance.json")
     )
@@ -1558,21 +1615,101 @@ def run_v08_gate11_p10_interruption_recovery_resume_reliability() -> dict[str, A
     }
 
 
+def run_v08_gate11_p11_independent_verification_second_look_evidence_bundle() -> dict[str, Any]:
+    command = (
+        ROOT
+        / "governance"
+        / "mac-engineer"
+        / "V08_GATE11_P11_INDEPENDENT_VERIFICATION_SECOND_LOOK_EVIDENCE_BUNDLE.command"
+    )
+
+    if not command.is_file():
+        return {
+            "state": "HOLD",
+            "reason": "V08_GATE11_P11_COMMAND_MISSING",
+            "fields": {},
+            "evidence": None,
+        }
+
+    result = run(
+        ["zsh", str(command)],
+        cwd=ROOT,
+        timeout=7200,
+        env=dict(os.environ),
+    )
+
+    fields: dict[str, str] = {}
+
+    for line in result.get("stdout", "").splitlines():
+        if "=" not in line:
+            continue
+
+        key, value = line.split("=", 1)
+
+        if key:
+            fields[key.strip()] = value.strip()
+
+    required = [
+        "P10_PASS",
+        "TARGETED_REGRESSION_PASS",
+        "FULL_CONTROL_PLANE_REGRESSION_PASS",
+        "PRODUCT_REGRESSION_PASS",
+        "DIFF_CHECK_PASS",
+        "SCOPE_CHECK_PASS",
+        "PROVENANCE_CHECK_PASS",
+        "RECOVERY_CHECK_PASS",
+        "EVIDENCE_COMPLETENESS_PASS",
+        "HUMAN_MANUAL_SOURCE_EDIT_COUNT_0",
+        "CHATGPT_DIRECT_FIELD_PRODUCT_PATCH_COUNT_0",
+        "UNTRACKED_MANUAL_STEP_COUNT_0",
+        "ZEKU_SUBSTITUTED_FOR_MAC_ENGINEER_EXECUTION_0",
+        "CRITICAL_FALSE_PASS_0",
+    ]
+
+    passed = all([
+        result["code"] == 0,
+        fields.get("STATE") == "PASS",
+        fields.get("P11_ACCEPTANCE") == "14_OF_14_PASS",
+        all(fields.get(key) == "PASS" for key in required),
+        fields.get("CURRENT_UNRESOLVED_CRITICAL_FALSE_PASS_COUNT")
+            == "0",
+        fields.get("SOURCE_MUTATION") == "0",
+        fields.get("REMOTE_MUTATION") == "0",
+        fields.get("NEW_CORE") == "false",
+        fields.get("NEXT_ACTION")
+            == "P12_DONECHECK_CANONICAL_GATE11_CLOSURE",
+    ])
+
+    return {
+        "state": "PASS" if passed else "HOLD",
+        "code": result["code"],
+        "fields": fields,
+        "evidence": fields.get("P11_ACCEPTANCE_EVIDENCE"),
+        "stdout_tail": result.get("stdout", "")[-30000:],
+        "stderr_tail": result.get("stderr", "")[-12000:],
+    }
+
+
 def run_v08_gate11_consolidated_mac_commissioning() -> dict[str, Any]:
     active_package = detect_v08_gate11_active_package()
 
-    if active_package == "P11":
+    if active_package == "P12":
         return {
             "state": "HOLD",
-            "reason": "V08_GATE11_P11_HANDLER_NOT_YET_BOUND",
+            "reason": "V08_GATE11_P12_HANDLER_NOT_YET_BOUND",
             "fields": {
                 "STATE": "HOLD",
-                "P10_ACCEPTANCE": "10_OF_10_VERIFIED",
+                "P11_ACCEPTANCE": "14_OF_14_VERIFIED",
                 "NEXT_ACTION":
-                    "P11_INDEPENDENT_VERIFICATION_SECOND_LOOK_EVIDENCE_BUNDLE",
+                    "P12_DONECHECK_CANONICAL_GATE11_CLOSURE",
             },
             "evidence": None,
         }
+
+    if active_package == "P11":
+        return (
+            run_v08_gate11_p11_independent_verification_second_look_evidence_bundle()
+        )
 
     if active_package == "P09":
         return (
@@ -1705,6 +1842,26 @@ def command_continue() -> int:
 
         if passed:
             if (
+                fields.get("P11_ACCEPTANCE")
+                == "14_OF_14_PASS"
+            ):
+                completed.extend([
+                    "P11_P10_PASS",
+                    "P11_TARGETED_REGRESSION_PASS",
+                    "P11_FULL_CONTROL_PLANE_REGRESSION_PASS",
+                    "P11_PRODUCT_REGRESSION_PASS",
+                    "P11_DIFF_CHECK_PASS",
+                    "P11_SCOPE_CHECK_PASS",
+                    "P11_PROVENANCE_CHECK_PASS",
+                    "P11_RECOVERY_CHECK_PASS",
+                    "P11_EVIDENCE_COMPLETENESS_PASS",
+                    "P11_HUMAN_MANUAL_SOURCE_EDIT_COUNT_0",
+                    "P11_CHATGPT_DIRECT_FIELD_PRODUCT_PATCH_COUNT_0",
+                    "P11_UNTRACKED_MANUAL_STEP_COUNT_0",
+                    "P11_ZEKU_SUBSTITUTED_FOR_MAC_ENGINEER_EXECUTION_0",
+                    "P11_CRITICAL_FALSE_PASS_0",
+                ])
+            elif (
                 fields.get("P10_ACCEPTANCE")
                 == "10_OF_10_PASS"
             ):
