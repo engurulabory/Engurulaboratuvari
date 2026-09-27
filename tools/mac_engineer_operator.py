@@ -1313,7 +1313,152 @@ def run_v08_finished_product_delivery() -> dict[str, Any]:
 
 
 
+
+def detect_v08_gate11_active_package() -> str:
+    p08_root = (
+        HOME
+        / "Enguru"
+        / "Evidence"
+        / "MacEngineer"
+        / "v0.8"
+        / "gate11-p08-stale-runtime-recovery"
+    )
+
+    p09_root = (
+        HOME
+        / "Enguru"
+        / "Evidence"
+        / "MacEngineer"
+        / "v0.8"
+        / "gate11-p09-lifecycle"
+    )
+
+    p09_receipts = sorted(
+        p09_root.glob("*/p09-final-acceptance.json")
+    )
+
+    for receipt in reversed(p09_receipts):
+        try:
+            data = json.loads(
+                receipt.read_text(encoding="utf-8")
+            )
+        except Exception:
+            continue
+
+        if (
+            data.get("state") == "PASS"
+            and data.get("package") == "P09"
+            and data.get("nextTransition") == "P10"
+        ):
+            return "P10"
+
+    p08_receipts = sorted(
+        p08_root.glob("*/p08-final-acceptance.json")
+    )
+
+    for receipt in reversed(p08_receipts):
+        try:
+            data = json.loads(
+                receipt.read_text(encoding="utf-8")
+            )
+        except Exception:
+            continue
+
+        if (
+            data.get("state") == "PASS"
+            and data.get("package") == "P08"
+            and data.get("nextTransition") == "P09"
+        ):
+            return "P09"
+
+    return "P07"
+
+
+def run_v08_gate11_p09_lifecycle_controlled_replacement_rollback() -> dict[str, Any]:
+    command = (
+        ROOT
+        / "governance"
+        / "mac-engineer"
+        / "V08_GATE11_P09_LIFECYCLE_CONTROLLED_REPLACEMENT_ROLLBACK.command"
+    )
+
+    if not command.is_file():
+        return {
+            "state": "HOLD",
+            "reason": "V08_GATE11_P09_COMMAND_MISSING",
+            "fields": {},
+            "evidence": None,
+        }
+
+    result = run(
+        ["zsh", str(command)],
+        cwd=ROOT,
+        timeout=7200,
+        env=dict(os.environ),
+    )
+
+    fields: dict[str, str] = {}
+
+    for line in result.get("stdout", "").splitlines():
+        if "=" not in line:
+            continue
+
+        key, value = line.split("=", 1)
+
+        if key:
+            fields[key.strip()] = value.strip()
+
+    required = [
+        "CONTROLLED_REPLACEMENT_PASS",
+        "STOP_PASS",
+        "RESTART_PASS",
+        "KNOWN_GOOD_ROLLBACK_PASS",
+        "ROLLBACK_REVERIFY_PASS",
+        "LIFECYCLE_PROVENANCE_PASS",
+        "EVIDENCE_CONTINUITY_PASS",
+    ]
+
+    passed = all([
+        result["code"] == 0,
+        fields.get("STATE") == "PASS",
+        fields.get("P09_ACCEPTANCE") == "8_OF_8_PASS",
+        all(fields.get(key) == "PASS" for key in required),
+        fields.get("FINAL_KNOWN_GOOD") == "P08_VERIFIED",
+        fields.get("SOURCE_MUTATION") == "0",
+        fields.get("REMOTE_MUTATION") == "0",
+        fields.get("NEXT_ACTION")
+            == "P10_INTERRUPTION_RECOVERY_RESUME_RELIABILITY",
+    ])
+
+    return {
+        "state": "PASS" if passed else "HOLD",
+        "code": result["code"],
+        "fields": fields,
+        "stdout_tail": result.get("stdout", "")[-24000:],
+        "stderr_tail": result.get("stderr", "")[-12000:],
+    }
+
+
 def run_v08_gate11_consolidated_mac_commissioning() -> dict[str, Any]:
+    active_package = detect_v08_gate11_active_package()
+
+    if active_package == "P09":
+        return (
+            run_v08_gate11_p09_lifecycle_controlled_replacement_rollback()
+        )
+
+    if active_package == "P10":
+        return {
+            "state": "HOLD",
+            "reason": "V08_GATE11_P10_HANDLER_NOT_YET_BOUND",
+            "fields": {
+                "STATE": "HOLD",
+                "NEXT_ACTION":
+                    "P10_INTERRUPTION_RECOVERY_RESUME_RELIABILITY",
+            },
+            "evidence": None,
+        }
+
     command = (
         ROOT
         / "governance"
@@ -1436,11 +1581,25 @@ def command_continue() -> int:
         )
 
         if passed:
-            completed.extend([
-                "P07_REAL_ENGINEERING_OBJECTIVE_COMPLETE",
-                "P07_EXPECTED_SCOPE_MATCH_PASS",
-                "P07_TARGETED_TEST_PASS",
-            ])
+            if (
+                fields.get("P09_ACCEPTANCE")
+                == "8_OF_8_PASS"
+            ):
+                completed.extend([
+                    "P09_CONTROLLED_REPLACEMENT_PASS",
+                    "P09_STOP_PASS",
+                    "P09_RESTART_PASS",
+                    "P09_KNOWN_GOOD_ROLLBACK_PASS",
+                    "P09_ROLLBACK_REVERIFY_PASS",
+                    "P09_LIFECYCLE_PROVENANCE_PASS",
+                    "P09_EVIDENCE_CONTINUITY_PASS",
+                ])
+            else:
+                completed.extend([
+                    "P07_REAL_ENGINEERING_OBJECTIVE_COMPLETE",
+                    "P07_EXPECTED_SCOPE_MATCH_PASS",
+                    "P07_TARGETED_TEST_PASS",
+                ])
 
         payload = write_receipt(
             command="continue",
