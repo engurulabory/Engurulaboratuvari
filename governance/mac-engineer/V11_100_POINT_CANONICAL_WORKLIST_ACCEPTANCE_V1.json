@@ -1,0 +1,50 @@
+{
+  "schema": "enguru.mac-engineer.v11-100-point-worklist/v1",
+  "version": "v1.1",
+  "state": "PREPARED_QUEUED",
+  "executionActive": false,
+  "totalPoints": 100,
+  "completedPoints": 0,
+  "remainingPoints": 100,
+  "totalGates": 12,
+  "activeGate": null,
+  "activationCondition": "PRECEDING_CANONICAL_VERSION_PATH_CLOSED_AND_V1_1_EXPLICITLY_ACTIVATED",
+  "mission": "GROUNDED_ENGINEERING_RELIABILITY_PRODUCT_SYSTEM_CONSOLIDATION_PROVIDER_QUALIFICATION",
+  "targetExit": "V1_1_GROUNDED_ENGINEERING_RELIABILITY_VERIFIED_LOCKED",
+  "gates": [
+    {"gate": 1, "points": "001-010", "title": "CANONICAL_TRUTH_GROUNDING"},
+    {"gate": 2, "points": "011-020", "title": "EXACT_SOURCE_READING_AND_PROVENANCE"},
+    {"gate": 3, "points": "021-030", "title": "NO_INVENTION_AND_EPISTEMIC_FIDELITY"},
+    {"gate": 4, "points": "031-040", "title": "TASK_CONTRACT_AND_EXECUTABLE_CANDIDATE_PLAN"},
+    {"gate": 5, "points": "041-048", "title": "PLAN_VERIFICATION_AND_SECOND_LOOK"},
+    {"gate": 6, "points": "049-058", "title": "GOVERNED_EXECUTION_AND_SCOPE_AUTHORITY"},
+    {"gate": 7, "points": "059-066", "title": "DETERMINISTIC_REPLAY_AND_INDEPENDENT_VERIFICATION"},
+    {"gate": 8, "points": "067-074", "title": "RECOVERY_CONTINUITY_AND_RESOURCE_DISCIPLINE"},
+    {"gate": 9, "points": "075-082", "title": "QUALITY_SECURITY_AND_RED_TEAM"},
+    {"gate": 10, "points": "083-090", "title": "PRODUCT_SYSTEM_CONSOLIDATION_AND_COCKPIT_AUTHORITY"},
+    {"gate": 11, "points": "091-095", "title": "PREPARED_CAPABILITIES_AND_PROVIDER_SPECIALIST_QUALIFICATION"},
+    {"gate": 12, "points": "096-100", "title": "WORLD_CLASS_FIELD_BENCHMARK_DONECHECK_AND_VERSION_LOCK"}
+  ],
+  "criticalInvariants": {
+    "unsupportedCanonicalClaimMax": 0,
+    "criticalFalsePassMax": 0,
+    "humanThresholdMissMax": 0,
+    "criticalSourceProvenanceCoverage": 1.0,
+    "untrackedManualStepCountMax": 0,
+    "chatgptDirectFieldProductPatchCountMax": 0,
+    "newCoreWithoutProvenNecessityMax": 0
+  },
+  "preparedCapabilities": {
+    "aesthetic": {
+      "state": "PREPARED",
+      "v11Role": "EMER_GROUNDING_RELIABILITY",
+      "contract": "governance/mac-engineer/V13_AESTHETIC_MOTOR_CANONICAL_NECESSARY_DIFFERENCE_CONTRACT_V1.md"
+    },
+    "jev": {
+      "state": "PREPARED",
+      "v11Role": "JEV_DECISION_PROVIDER_QUALIFICATION",
+      "contract": "governance/mac-engineer/V11_JEV_CANONICAL_NECESSARY_DIFFERENCE_CONTRACT_V1_2.md",
+      "currentProviderEvidenceState": "HOLD_PROVIDER_UNTIL_LIVE_EVIDENCE"
+    }
+  }
+}

@@ -280,6 +280,19 @@
         "acceptance": "governance/mac-engineer/V11_JEV_PROVIDER_QUALIFICATION_ACCEPTANCE_V1.json",
         "guard": "tools/mac_engineer_v11_jev_guard.py",
         "newCore": false
+      },
+      "canonicalWorklist": {
+        "state": "PREPARED_QUEUED",
+        "executionActive": false,
+        "path": "governance/mac-engineer/V11_100_POINT_CANONICAL_WORKLIST_V1.md",
+        "acceptance": "governance/mac-engineer/V11_100_POINT_CANONICAL_WORKLIST_ACCEPTANCE_V1.json",
+        "guard": "tools/mac_engineer_v11_worklist_guard.py",
+        "totalPoints": 100,
+        "completedPoints": 0,
+        "remainingPoints": 100,
+        "totalGates": 12,
+        "mission": "GROUNDED_ENGINEERING_RELIABILITY_PRODUCT_SYSTEM_CONSOLIDATION_PROVIDER_QUALIFICATION",
+        "targetExit": "V1_1_GROUNDED_ENGINEERING_RELIABILITY_VERIFIED_LOCKED"
       }
     },
     {

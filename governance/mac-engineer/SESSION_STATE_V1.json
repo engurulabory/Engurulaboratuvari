@@ -1682,5 +1682,22 @@
     "contract": "governance/mac-engineer/V11_JEV_CANONICAL_NECESSARY_DIFFERENCE_CONTRACT_V1_2.md",
     "acceptance": "governance/mac-engineer/V11_JEV_PROVIDER_QUALIFICATION_ACCEPTANCE_V1.json",
     "guard": "tools/mac_engineer_v11_jev_guard.py"
+  },
+  "preparedFutureWorklists": {
+    "v1.1": {
+      "state": "PREPARED_QUEUED",
+      "executionActive": false,
+      "path": "governance/mac-engineer/V11_100_POINT_CANONICAL_WORKLIST_V1.md",
+      "acceptance": "governance/mac-engineer/V11_100_POINT_CANONICAL_WORKLIST_ACCEPTANCE_V1.json",
+      "guard": "tools/mac_engineer_v11_worklist_guard.py",
+      "totalPoints": 100,
+      "completedPoints": 0,
+      "remainingPoints": 100,
+      "activation": "AFTER_PRECEDING_CANONICAL_VERSION_PATH_CLOSED_AND_V1_1_EXPLICITLY_ACTIVATED",
+      "preparedCapabilities": [
+        "AESTHETIC_GROUNDING_RELIABILITY",
+        "JEV_DECISION_PROVIDER_QUALIFICATION"
+      ]
+    }
   }
 }
