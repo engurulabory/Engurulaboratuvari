@@ -16,6 +16,10 @@ STATUS_URL="http://127.0.0.1:8765/api/status"
 
 PREP="$PRODUCT/execution_prep/native_app/prepare_native_app.command"
 
+CONTROL="$(cd "$(dirname "$0")/../.." && pwd)"
+CONTROL_BRANCH_EXPECTED="feat/mac-engineer-v08-product-engineering-operator"
+PRODUCT_BRANCH_EXPECTED="feat/v08-native-productization-provenance"
+
 P08_ROOT="$HOME/Enguru/Evidence/MacEngineer/v0.8/gate11-p08-stale-runtime-recovery"
 
 STAMP="$(date -u +%Y%m%dT%H%M%SZ)"
@@ -74,6 +78,31 @@ app_pid_from_runtime() {
   ps -o ppid= -p "$RP" 2>/dev/null | tr -d ' '
 }
 
+
+tree_sha256() {
+  PYTHONDONTWRITEBYTECODE=1 python3 -B - "$1" <<'PY_TREE'
+import hashlib
+import sys
+from pathlib import Path
+
+root = Path(sys.argv[1])
+
+if not root.is_dir():
+    raise SystemExit(2)
+
+h = hashlib.sha256()
+
+for path in sorted(p for p in root.rglob("*") if p.is_file()):
+    rel = path.relative_to(root).as_posix()
+    h.update(rel.encode("utf-8"))
+    h.update(b"\0")
+    h.update(path.read_bytes())
+    h.update(b"\0")
+
+print(h.hexdigest())
+PY_TREE
+}
+
 stop_owned_app() {
   osascript -e "tell application id \"$BUNDLE_ID\" to quit" >/dev/null 2>&1 || return 1
 
@@ -92,6 +121,24 @@ stop_owned_app() {
 printf '=== P09 PRECONDITIONS ===\n'
 
 cd "$PRODUCT" || hold "PRODUCT_REPOSITORY_MISSING"
+
+
+PRE_CONTROL_HEAD="$(git -C "$CONTROL" rev-parse HEAD)"
+PRE_CONTROL_BRANCH="$(git -C "$CONTROL" branch --show-current)"
+PRE_CONTROL_STATUS="$(git -C "$CONTROL" status --porcelain=v1 --untracked-files=all)"
+PRE_CONTROL_REMOTE_BRANCH="$(git -C "$CONTROL" rev-parse "origin/$CONTROL_BRANCH_EXPECTED")"
+PRE_CONTROL_REMOTE_MAIN="$(git -C "$CONTROL" rev-parse origin/main)"
+
+PRE_PRODUCT_HEAD="$(git -C "$PRODUCT" rev-parse HEAD)"
+PRE_PRODUCT_BRANCH="$(git -C "$PRODUCT" branch --show-current)"
+PRE_PRODUCT_STATUS="$(git -C "$PRODUCT" status --porcelain=v1 --untracked-files=all)"
+PRE_PRODUCT_REMOTE_BRANCH="$(git -C "$PRODUCT" rev-parse "origin/$PRODUCT_BRANCH_EXPECTED")"
+PRE_PRODUCT_REMOTE_MAIN="$(git -C "$PRODUCT" rev-parse origin/main)"
+
+[ "$PRE_CONTROL_BRANCH" = "$CONTROL_BRANCH_EXPECTED" ] || hold "CONTROL_BRANCH_PRECONDITION"
+[ "$PRE_PRODUCT_BRANCH" = "$PRODUCT_BRANCH_EXPECTED" ] || hold "PRODUCT_BRANCH_PRECONDITION"
+[ -z "$PRE_CONTROL_STATUS" ] || hold "CONTROL_SOURCE_PRESTATE_NOT_CLEAN"
+[ -z "$PRE_PRODUCT_STATUS" ] || hold "PRODUCT_SOURCE_PRESTATE_NOT_CLEAN"
 
 HEAD="$(git rev-parse HEAD)"
 [ "$HEAD" = "$EXPECTED_HEAD" ] || hold "PRODUCT_HEAD_PRECONDITION"
@@ -155,6 +202,33 @@ BASE_APP_PID="$(app_pid_from_runtime "$BASE_RUNTIME_PID")"
 [ -n "$BASE_APP_PID" ] || hold "BASE_APP_PID_MISSING"
 
 BASE_APP_STAT="$(stat -f '%i:%m:%c' "$APP_BIN")"
+
+P08_EXPECTED_BINARY_SHA="$(
+  PYTHONDONTWRITEBYTECODE=1 python3 -B - "$P08_ACCEPTANCE" <<'PY_P08'
+import json
+import sys
+from pathlib import Path
+
+data = json.loads(
+    Path(sys.argv[1]).read_text(encoding="utf-8")
+)
+
+print(data["installedBinarySha256"])
+PY_P08
+)"
+
+BASE_BINARY_SHA="$(shasum -a 256 "$APP_BIN" | awk '{print $1}')"
+BASE_APP_TREE_SHA="$(tree_sha256 "$APP")"
+BASE_RUNTIME_TREE_SHA="$(tree_sha256 "$RUNTIME")"
+BASE_RELEASE_SHA="$(shasum -a 256 "$APP/Contents/Resources/release.json" | awk '{print $1}')"
+
+[ "$BASE_BINARY_SHA" = "$P08_EXPECTED_BINARY_SHA" ] || hold "P08_BASE_BINARY_IDENTITY_MISMATCH"
+
+printf 'P08_EXPECTED_BINARY_SHA=%s\n' "$P08_EXPECTED_BINARY_SHA"
+printf 'BASE_BINARY_SHA=%s\n' "$BASE_BINARY_SHA"
+printf 'BASE_APP_TREE_SHA=%s\n' "$BASE_APP_TREE_SHA"
+printf 'BASE_RUNTIME_TREE_SHA=%s\n' "$BASE_RUNTIME_TREE_SHA"
+printf 'BASE_RELEASE_SHA=%s\n' "$BASE_RELEASE_SHA"
 
 printf 'P08_PASS=PASS\n'
 printf 'BASE_RUNTIME_PID=%s\n' "$BASE_RUNTIME_PID"
@@ -341,6 +415,47 @@ cmp -s \
   "$RUNTIME/static/index.html" \
   || hold "ROLLBACK_REAL_USER_PATH_PARITY_FAILED"
 
+
+FINAL_BINARY_SHA="$(shasum -a 256 "$APP_BIN" | awk '{print $1}')"
+FINAL_APP_TREE_SHA="$(tree_sha256 "$APP")"
+FINAL_RUNTIME_TREE_SHA="$(tree_sha256 "$RUNTIME")"
+FINAL_RELEASE_SHA="$(shasum -a 256 "$APP/Contents/Resources/release.json" | awk '{print $1}')"
+
+[ "$FINAL_BINARY_SHA" = "$P08_EXPECTED_BINARY_SHA" ] || hold "ROLLBACK_P08_BINARY_IDENTITY_FAILED"
+[ "$FINAL_BINARY_SHA" = "$BASE_BINARY_SHA" ] || hold "ROLLBACK_BASE_BINARY_IDENTITY_FAILED"
+[ "$FINAL_APP_TREE_SHA" = "$BASE_APP_TREE_SHA" ] || hold "ROLLBACK_APP_TREE_IDENTITY_FAILED"
+[ "$FINAL_RUNTIME_TREE_SHA" = "$BASE_RUNTIME_TREE_SHA" ] || hold "ROLLBACK_RUNTIME_TREE_IDENTITY_FAILED"
+[ "$FINAL_RELEASE_SHA" = "$BASE_RELEASE_SHA" ] || hold "ROLLBACK_RELEASE_IDENTITY_FAILED"
+
+FINAL_RUNTIME_COMMAND="$(ps -o command= -p "$FINAL_RUNTIME_PID" 2>/dev/null)"
+FINAL_APP_COMMAND="$(ps -o command= -p "$FINAL_APP_PID" 2>/dev/null)"
+
+FINAL_RUNTIME_CWD="$(
+  lsof -a -p "$FINAL_RUNTIME_PID" -d cwd -Fn 2>/dev/null \
+  | sed -n 's/^n//p' \
+  | head -n 1
+)"
+
+case "$FINAL_RUNTIME_COMMAND" in
+  *"$RUNTIME/app.py"*) ;;
+  *) hold "ROLLBACK_RUNTIME_COMMAND_IDENTITY_FAILED" ;;
+esac
+
+case "$FINAL_APP_COMMAND" in
+  *"$APP_BIN"*) ;;
+  *) hold "ROLLBACK_APP_COMMAND_IDENTITY_FAILED" ;;
+esac
+
+[ "$FINAL_RUNTIME_CWD" = "$RUNTIME" ] || hold "ROLLBACK_RUNTIME_CWD_IDENTITY_FAILED"
+
+printf 'FINAL_BINARY_SHA=%s\n' "$FINAL_BINARY_SHA"
+printf 'FINAL_APP_TREE_SHA=%s\n' "$FINAL_APP_TREE_SHA"
+printf 'FINAL_RUNTIME_TREE_SHA=%s\n' "$FINAL_RUNTIME_TREE_SHA"
+printf 'FINAL_RELEASE_SHA=%s\n' "$FINAL_RELEASE_SHA"
+printf 'FINAL_RUNTIME_COMMAND=%s\n' "$FINAL_RUNTIME_COMMAND"
+printf 'FINAL_APP_COMMAND=%s\n' "$FINAL_APP_COMMAND"
+printf 'FINAL_RUNTIME_CWD=%s\n' "$FINAL_RUNTIME_CWD"
+
 ROLLBACK_REVERIFY_PASS=PASS
 P09_ACCEPTANCE=6_OF_8_PASS
 
@@ -348,6 +463,37 @@ printf 'ROLLBACK_REVERIFY_PASS=PASS\n'
 printf 'FINAL_RUNTIME_PID=%s\n' "$FINAL_RUNTIME_PID"
 printf 'FINAL_APP_PID=%s\n' "$FINAL_APP_PID"
 printf 'FINAL_KNOWN_GOOD=P08_VERIFIED\n'
+
+
+printf '\n=== SOURCE + REMOTE AUTHORITY INVARIANTS ===\n'
+
+POST_CONTROL_HEAD="$(git -C "$CONTROL" rev-parse HEAD)"
+POST_CONTROL_BRANCH="$(git -C "$CONTROL" branch --show-current)"
+POST_CONTROL_STATUS="$(git -C "$CONTROL" status --porcelain=v1 --untracked-files=all)"
+POST_CONTROL_REMOTE_BRANCH="$(git -C "$CONTROL" rev-parse "origin/$CONTROL_BRANCH_EXPECTED")"
+POST_CONTROL_REMOTE_MAIN="$(git -C "$CONTROL" rev-parse origin/main)"
+
+POST_PRODUCT_HEAD="$(git -C "$PRODUCT" rev-parse HEAD)"
+POST_PRODUCT_BRANCH="$(git -C "$PRODUCT" branch --show-current)"
+POST_PRODUCT_STATUS="$(git -C "$PRODUCT" status --porcelain=v1 --untracked-files=all)"
+POST_PRODUCT_REMOTE_BRANCH="$(git -C "$PRODUCT" rev-parse "origin/$PRODUCT_BRANCH_EXPECTED")"
+POST_PRODUCT_REMOTE_MAIN="$(git -C "$PRODUCT" rev-parse origin/main)"
+
+[ "$POST_CONTROL_HEAD" = "$PRE_CONTROL_HEAD" ] || hold "CONTROL_HEAD_MUTATED_DURING_P09"
+[ "$POST_CONTROL_BRANCH" = "$PRE_CONTROL_BRANCH" ] || hold "CONTROL_BRANCH_MUTATED_DURING_P09"
+[ "$POST_CONTROL_STATUS" = "$PRE_CONTROL_STATUS" ] || hold "CONTROL_WORKTREE_MUTATED_DURING_P09"
+
+[ "$POST_PRODUCT_HEAD" = "$PRE_PRODUCT_HEAD" ] || hold "PRODUCT_HEAD_MUTATED_DURING_P09"
+[ "$POST_PRODUCT_BRANCH" = "$PRE_PRODUCT_BRANCH" ] || hold "PRODUCT_BRANCH_MUTATED_DURING_P09"
+[ "$POST_PRODUCT_STATUS" = "$PRE_PRODUCT_STATUS" ] || hold "PRODUCT_WORKTREE_MUTATED_DURING_P09"
+
+[ "$POST_CONTROL_REMOTE_BRANCH" = "$PRE_CONTROL_REMOTE_BRANCH" ] || hold "CONTROL_REMOTE_TRACKING_CHANGED_DURING_P09"
+[ "$POST_CONTROL_REMOTE_MAIN" = "$PRE_CONTROL_REMOTE_MAIN" ] || hold "CONTROL_REMOTE_MAIN_CHANGED_DURING_P09"
+[ "$POST_PRODUCT_REMOTE_BRANCH" = "$PRE_PRODUCT_REMOTE_BRANCH" ] || hold "PRODUCT_REMOTE_TRACKING_CHANGED_DURING_P09"
+[ "$POST_PRODUCT_REMOTE_MAIN" = "$PRE_PRODUCT_REMOTE_MAIN" ] || hold "PRODUCT_REMOTE_MAIN_CHANGED_DURING_P09"
+
+printf 'SOURCE_MUTATION_OBSERVED=0\n'
+printf 'REMOTE_MUTATION_OBSERVED=0\n'
 
 printf '\n=== LIFECYCLE PROVENANCE + EVIDENCE CONTINUITY ===\n'
 

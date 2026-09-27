@@ -42,10 +42,26 @@ class Gate11P09OperatorTests(unittest.TestCase):
             "LIFECYCLE_PROVENANCE_PASS=PASS",
             "EVIDENCE_CONTINUITY_PASS=PASS",
             "FINAL_KNOWN_GOOD=P08_VERIFIED",
+            "P08_EXPECTED_BINARY_SHA",
+            "BASE_BINARY_SHA",
+            "BASE_APP_TREE_SHA",
+            "BASE_RUNTIME_TREE_SHA",
+            "FINAL_BINARY_SHA",
+            "FINAL_APP_TREE_SHA",
+            "FINAL_RUNTIME_TREE_SHA",
+            "FINAL_RUNTIME_CWD",
+            "SOURCE_MUTATION_OBSERVED=0",
+            "REMOTE_MUTATION_OBSERVED=0",
             "P09_ACCEPTANCE=8_OF_8_PASS",
             "NEXT_ACTION=P10_INTERRUPTION_RECOVERY_RESUME_RELIABILITY",
         ):
             self.assertIn(token, source)
+
+    def test_p09_command_has_no_remote_mutation_command(self):
+        source = COMMAND.read_text(encoding="utf-8")
+
+        self.assertNotIn("git" + " push", source)
+        self.assertNotIn("git fetch", source)
 
     def test_operator_has_package_router_and_p09_handler(self):
         source = OPERATOR.read_text(encoding="utf-8")
