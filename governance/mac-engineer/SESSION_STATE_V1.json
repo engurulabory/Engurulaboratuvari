@@ -164,7 +164,7 @@
   "productIdentityRoadmap": "governance/mac-engineer/PRODUCT_IDENTITY_ROADMAP_V1.md",
   "productRoadmap": "governance/mac-engineer/PRODUCT_ROADMAP_V1.json",
   "currentVersion": "v0.8",
-  "finalTarget": "v1.1_VERIFIED_PRODUCT_ENGINEERING_OPERATOR",
+  "finalTarget": "v1.3_USABLE_VERIFIED_PRODUCT",
   "observedExactShaInstall": {
     "state": "PASS",
     "productSourceSha": "28b901ab3303f4be3c7356b11218b62422f2da42",

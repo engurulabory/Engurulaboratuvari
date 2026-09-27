@@ -1,0 +1,74 @@
+{
+  "schema": "enguru.mac-engineer.v13-aesthetic-motor-acceptance/v1",
+  "state": "LOCKED_PRECONDITION",
+  "targetVersion": "v1.3",
+  "requiredVerdict": "V13_AESTHETIC_MOTOR_VERIFIED_FINISH",
+  "canonicalBuilderSource": "engurulabory/enguru-website-factory",
+  "architecture": {
+    "singleAestheticMotor": true,
+    "visualGenerationOrchestratorPreserved": true,
+    "humanArtisticAuthorityNonBypass": true,
+    "localFirst": true,
+    "frontierEscalationOnly": true,
+    "reuseExtendAdapterNewCore": true
+  },
+  "criteria": {
+    "VISUAL_PROVIDER_RUNTIME_COMMISSIONED": {
+      "state": "HOLD",
+      "evidence": []
+    },
+    "REAL_LOCAL_VISUAL_GENERATION": {
+      "state": "HOLD",
+      "evidence": []
+    },
+    "REAL_IMAGE_EDITING": {
+      "state": "HOLD",
+      "evidence": []
+    },
+    "REFERENCE_IMAGE_EXECUTION": {
+      "state": "HOLD",
+      "evidence": []
+    },
+    "LOCAL_MODEL_QUALIFICATION": {
+      "state": "HOLD",
+      "evidence": []
+    },
+    "LOCAL_PROVENANCE_PERSISTENCE_RESOURCE_EVIDENCE": {
+      "state": "HOLD",
+      "evidence": []
+    },
+    "LOCAL_EXTERNAL_API_ZERO_COST_EVIDENCE": {
+      "state": "HOLD",
+      "evidence": []
+    },
+    "COST_AWARE_CREATIVE_SEARCH": {
+      "state": "HOLD",
+      "evidence": []
+    },
+    "QUALITY_ESCALATION_ROUTER": {
+      "state": "HOLD",
+      "evidence": []
+    },
+    "AESTHETIC_STUDIO_MAC_ENGINEER_BINDING": {
+      "state": "HOLD",
+      "evidence": []
+    },
+    "WORLD_CLASS_BLIND_BENCHMARK": {
+      "state": "HOLD",
+      "evidence": [],
+      "target": {
+        "realBriefsMinimum": 12,
+        "targetBriefs": 13,
+        "categoriesMinimum": 10,
+        "minimumBriefScore": 96,
+        "externalFrontierBlindTournament": true,
+        "independentHumanJury": true
+      }
+    },
+    "HUMAN_ARTISTIC_AUTHORITY": {
+      "state": "HOLD",
+      "evidence": []
+    }
+  },
+  "passRule": "ALL_CRITERIA_PASS_WITH_EVIDENCE_AND_GUARD_PASS_REQUIRED_BEFORE_V13_VERIFIED_FINAL_LOCKED"
+}

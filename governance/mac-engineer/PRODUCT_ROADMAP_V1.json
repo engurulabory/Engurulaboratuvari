@@ -9,9 +9,12 @@
     "controlPlane": "engurulabory/Engurulaboratuvari"
   },
   "finalTarget": {
-    "version": "v1.2",
-    "title": "Local Mac Astra Verified Final",
-    "verdictTarget": "VERIFIED_FINAL_LOCKED"
+    "version": "v1.3",
+    "title": "Usable Verified Product",
+    "verdictTarget": "VERIFIED_FINAL_LOCKED",
+    "requiredPreconditions": [
+      "V13_AESTHETIC_MOTOR_VERIFIED_FINISH"
+    ]
   },
   "current": {
     "version": "v0.8",
@@ -261,13 +264,43 @@
       "state": "PLANNED_CONSOLIDATION",
       "exit": [
         "V1_1_CONSOLIDATED_READY_FOR_FINAL_ACCEPTANCE"
-      ]
+      ],
+      "aestheticTrack": {
+        "role": "EMER_GROUNDING_RELIABILITY",
+        "policy": "NO_MAJOR_AESTHETIC_FEATURE_EXPANSION",
+        "acceptanceIntent": "Grounding, source fidelity, Evidence fidelity and operator reliability before expanded Aesthetic execution authority."
+      }
     },
     {
       "version": "v1.2",
       "name": "Local Mac Astra Verified Final",
-      "state": "FINAL_TARGET",
+      "state": "PLANNED_MILESTONE",
       "exit": [
+        "VERIFIED_FINAL_LOCKED"
+      ],
+      "aestheticTrack": {
+        "role": "LOCAL_EXECUTION_PLANE_VISUAL_RUNTIME_FOUNDATION",
+        "requirements": [
+          "VISUAL_RUNTIME_CAPABLE_LOCAL_EXECUTION_PLANE",
+          "PROVIDER_RUNTIME_ADAPTER_BOUNDARY",
+          "RESOURCE_OBSERVABILITY",
+          "PROVENANCE_FOUNDATION",
+          "RECOVERY_READY_EXECUTION"
+        ]
+      }
+    },
+    {
+      "version": "v1.3",
+      "state": "FINAL_TARGET",
+      "name": "Usable Verified Product",
+      "aestheticTrack": {
+        "role": "AESTHETIC_MOTOR_VERIFIED_FINISH",
+        "requiredContract": "governance/mac-engineer/V13_AESTHETIC_MOTOR_CANONICAL_NECESSARY_DIFFERENCE_CONTRACT_V1.md",
+        "acceptanceState": "governance/mac-engineer/V13_AESTHETIC_MOTOR_ACCEPTANCE_V1.json",
+        "passGuard": "tools/mac_engineer_v13_aesthetic_guard.py"
+      },
+      "exit": [
+        "V13_AESTHETIC_MOTOR_VERIFIED_FINISH",
         "VERIFIED_FINAL_LOCKED"
       ]
     }
@@ -335,5 +368,22 @@
         "state": "PASS"
       }
     }
+  },
+  "aestheticMotorV13Lock": {
+    "state": "LOCKED_PRECONDITION",
+    "principle": "EXISTING_TRUTH_PLUS_NECESSARY_DIFFERENCE",
+    "canonicalBuilderSource": "engurulabory/enguru-website-factory",
+    "singleAestheticMotor": true,
+    "reuseOrder": [
+      "REUSE",
+      "EXTEND",
+      "ADAPTER",
+      "NEW_CORE"
+    ],
+    "v11": "EMER_GROUNDING_RELIABILITY",
+    "v12": "LOCAL_EXECUTION_PLANE_VISUAL_RUNTIME_FOUNDATION",
+    "v13": "AESTHETIC_MOTOR_VERIFIED_FINISH",
+    "mandatoryBeforeV13FinalPass": true,
+    "requiredVerdict": "V13_AESTHETIC_MOTOR_VERIFIED_FINISH"
   }
 }

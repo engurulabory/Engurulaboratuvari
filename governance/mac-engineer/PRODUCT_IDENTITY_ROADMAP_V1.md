@@ -7,7 +7,7 @@
 ## Product identity
 
 - **Canonical product name:** ENGÜRÜ Mac Engineering™
-- **Final target:** ENGÜRÜ Mac Engineering™ v1.1 — Verified Product Engineering Operator
+- **Final target:** ENGÜRÜ Mac Engineering™ v1.3 — Usable Verified Product
 - **Technical repository:** `engurulabory/enguru-mac-engineer`
 - **Technical local checkout:** `~/Enguru/Projects/enguru-mac-engineer`
 - **Runtime path:** `~/Enguru/Runtime/MacEngineer`
@@ -141,3 +141,112 @@ Canonical authority contract: `governance/mac-engineer/MAC_NATIVE_ENGINEERING_AU
 - Reuse → extend → adapter → new core.
 - Existing working truth is preserved; the necessary difference is applied.
 - Version numbers follow verified outcomes; they do not manufacture PASS.
+
+
+<!-- V13_AESTHETIC_SCOPE_LOCK_V1 -->
+
+## v1.1–v1.3 Aesthetic Track — LOCKED PRECONDITION
+
+### STATE
+
+**LOCKED STRATEGIC PLACEMENT / FUTURE ACCEPTANCE PRECONDITION**
+
+This lock changes no active v0.8 Gate state.
+
+### v1.1
+
+Role:
+
+`EMER_GROUNDING_RELIABILITY`
+
+Aesthetic policy:
+
+`NO_MAJOR_AESTHETIC_FEATURE_EXPANSION`
+
+Grounding, source fidelity, Evidence fidelity and operator reliability
+are strengthened before Aesthetic execution authority expands.
+
+### v1.2
+
+Role:
+
+`LOCAL_EXECUTION_PLANE_VISUAL_RUNTIME_FOUNDATION`
+
+Required foundation:
+
+- visual-runtime-capable local execution plane;
+- provider/runtime adapter boundary;
+- resource observation;
+- provenance;
+- recovery-ready execution.
+
+### v1.3
+
+Role:
+
+`AESTHETIC_MOTOR_VERIFIED_FINISH`
+
+Canonical reusable Aesthetic source:
+
+`engurulabory/enguru-website-factory`
+
+Preserve:
+
+- one ENGÜRÜ Aesthetic Motor™;
+- Visual Generation Orchestrator™;
+- Emotional Aesthetic Translator™;
+- Color & Light Intelligence™;
+- Creative Search & Mutation™;
+- Aesthetic Memory;
+- Reference Intelligence & Distance;
+- State & Interaction Art Direction;
+- Human Preference Calibration;
+- Aesthetic Studio;
+- candidate/render lineage;
+- Professor;
+- Fresh-Eye;
+- bounded reconstruction;
+- World-Class Floor;
+- Human Artistic Authority™.
+
+Necessary difference:
+
+- local visual provider commissioning;
+- real Mac-local visual generation;
+- real image editing and applicable reference-image path;
+- Local Model Qualification Matrix;
+- runtime provenance;
+- local persistence;
+- memory / latency / resource Evidence;
+- external API call + cost Evidence;
+- Cost-Aware Creative Search;
+- Quality Escalation Router;
+- Aesthetic Studio ↔ Mac Engineer binding;
+- repeated world-class / blind benchmark;
+- Human Artistic Authority™ final acceptance.
+
+### Mandatory PASS rule
+
+`v1.3 VERIFIED FINAL / LOCKED`
+
+requires:
+
+`V13_AESTHETIC_MOTOR_VERIFIED_FINISH`
+
+Architecture presence alone cannot satisfy this precondition.
+
+Real Evidence is required.
+
+### Governance
+
+`ZATEN VAR → KORU`
+
+`GEREKLİ FARK → EKLE`
+
+`DUPLICATE → ALMA`
+
+`LOCAL → COMMISSION`
+
+`FRONTIER → ESCALATION ONLY`
+
+`v1.3 → VERIFIED FINISH`
