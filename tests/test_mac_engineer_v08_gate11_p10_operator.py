@@ -279,25 +279,56 @@ class Gate11P10OperatorTests(unittest.TestCase):
 
         self.assertNotEqual(active, "P11")
 
-    def test_p11_is_fail_closed_until_handler_is_bound(self):
+    def test_p11_dispatch_matches_current_binding_state(self):
+        handler_name = (
+            "run_v08_gate11_p11_independent_verification_"
+            "second_look_evidence_bundle"
+        )
+
         with mock.patch.object(
             operator,
             "detect_v08_gate11_active_package",
             return_value="P11",
         ):
-            result = (
-                operator.run_v08_gate11_consolidated_mac_commissioning()
-            )
+            if hasattr(operator, handler_name):
+                sentinel = {
+                    "state": "HOLD",
+                    "reason": "TEST_P11_BOUND_DISPATCH",
+                    "fields": {
+                        "NEXT_ACTION":
+                            "P11_INDEPENDENT_VERIFICATION_"
+                            "SECOND_LOOK_EVIDENCE_BUNDLE",
+                    },
+                    "evidence": None,
+                }
 
-        self.assertEqual(result["state"], "HOLD")
-        self.assertEqual(
-            result["reason"],
-            "V08_GATE11_P11_HANDLER_NOT_YET_BOUND",
-        )
-        self.assertEqual(
-            result["fields"]["NEXT_ACTION"],
-            "P11_INDEPENDENT_VERIFICATION_SECOND_LOOK_EVIDENCE_BUNDLE",
-        )
+                with mock.patch.object(
+                    operator,
+                    handler_name,
+                    return_value=sentinel,
+                ) as bound_handler:
+                    result = (
+                        operator
+                        .run_v08_gate11_consolidated_mac_commissioning()
+                    )
+
+                bound_handler.assert_called_once_with()
+                self.assertEqual(result, sentinel)
+            else:
+                result = (
+                    operator
+                    .run_v08_gate11_consolidated_mac_commissioning()
+                )
+
+                self.assertEqual(result["state"], "HOLD")
+                self.assertEqual(
+                    result["reason"],
+                    "V08_GATE11_P11_HANDLER_NOT_YET_BOUND",
+                )
+                self.assertEqual(
+                    result["fields"]["NEXT_ACTION"],
+                    "P11_INDEPENDENT_VERIFICATION_SECOND_LOOK_EVIDENCE_BUNDLE",
+                )
 
 
     def test_p09_router_is_preserved(self):
