@@ -167,7 +167,9 @@ def validate_machine_result(machine: dict[str, Any], bundle: dict[str, Any]) -> 
     for item in evidence:
         _require(isinstance(item, dict) and isinstance(item.get("id"), str) and isinstance(item.get("criterionId"), str) and item.get("criterionId") in required_gates and item.get("source") == "system" and item.get("kind") in {"log", "test_report"}, "DONECHECK_EVIDENCE_SCOPE_INVALID")
         record = file_by_id.get(item.get("id"))
-        _require(isinstance(record, dict) and set(record) == {"evidenceId", "path", "digest"} and isinstance(record["path"], str) and bool(SHA.fullmatch(str(record["digest"]))), "DONECHECK_EVIDENCE_FILE_INVALID")
+        basic = {"evidenceId", "path", "digest"}
+        sourced = basic | {"sourceGate", "sourceStateKey", "sourcePath", "sourceDigest"}
+        _require(isinstance(record, dict) and set(record) in (basic, sourced) and isinstance(record["path"], str) and bool(SHA.fullmatch(str(record["digest"]))), "DONECHECK_EVIDENCE_FILE_INVALID")
         path = assert_safe_artifact_path(Path(record["path"]))
         _require(path.is_file() and file_digest(path) == record["digest"], "DONECHECK_EVIDENCE_FILE_DIGEST_MISMATCH")
         _require(path.read_text(encoding="utf-8") == item.get("content"), "DONECHECK_EVIDENCE_CONTENT_MISMATCH")

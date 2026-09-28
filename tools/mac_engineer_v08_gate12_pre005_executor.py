@@ -230,6 +230,16 @@ def execute_prelock(
                 }
             ):
                 return _hold("CANDIDATE_AUTHORITY_MISMATCH")
+            if production_use:
+                try:
+                    from mac_engineer_v08_gate12_pre005_evidence import verify_source_lineage, EvidenceHold
+                except ModuleNotFoundError:
+                    from tools.mac_engineer_v08_gate12_pre005_evidence import verify_source_lineage, EvidenceHold
+                try:
+                    manifest = _strict_object(Path(bundle["artifacts"]["evidenceManifest"]["path"]), "EVIDENCE_MANIFEST")
+                    verify_source_lineage(manifest, _strict_object(SESSION_STATE, "SESSION_STATE"))
+                except EvidenceHold as exc:
+                    return _hold(str(exc))
             machine = _strict_object(Path(bundle["artifacts"]["machineResult"]["path"]), "MACHINE_RESULT")
             validate_machine_result(machine, bundle)
             review_value = _strict_object(human_review_path, "HUMAN_REVIEW")
