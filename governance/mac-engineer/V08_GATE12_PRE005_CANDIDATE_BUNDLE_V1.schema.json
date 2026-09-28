@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "bundleVersion", "control", "product", "doneCheck", "authority", "chain", "target", "artifacts", "terminalCandidateId"],
+  "properties": {
+    "schema": {"const": "enguru.mac-engineer.v08-gate12-pre005-candidate-bundle/v1"},
+    "bundleVersion": {"const": 1},
+    "control": {"$ref": "#/$defs/control"},
+    "product": {"$ref": "#/$defs/product"},
+    "doneCheck": {"$ref": "#/$defs/doneCheck"},
+    "authority": {"$ref": "#/$defs/authority"},
+    "chain": {"$ref": "#/$defs/chain"},
+    "target": {"$ref": "#/$defs/target"},
+    "artifacts": {"$ref": "#/$defs/artifacts"},
+    "terminalCandidateId": {"type": "string", "pattern": "^g12-candidate-sha256:[0-9a-f]{64}$"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "control": {"type": "object", "additionalProperties": false, "required": ["repository", "branch", "head", "base", "remoteFeatureHead", "remoteFeatureParity", "worktreeClean"], "properties": {"repository": {"const": "engurulabory/Engurulaboratuvari"}, "branch": {"const": "feat/mac-engineer-v08-product-engineering-operator"}, "head": {"type": "string", "pattern": "^[0-9a-f]{40}$"}, "base": {"type": "string", "pattern": "^[0-9a-f]{40}$"}, "remoteFeatureHead": {"type": "string", "pattern": "^[0-9a-f]{40}$"}, "remoteFeatureParity": {"const": true}, "worktreeClean": {"const": true}}},
+    "product": {"type": "object", "additionalProperties": false, "required": ["repository", "branch", "head", "base", "worktreeClean", "publicationState"], "properties": {"repository": {"const": "engurulabory/enguru-mac-engineer"}, "branch": {"const": "feat/v08-native-productization-provenance"}, "head": {"type": "string", "pattern": "^[0-9a-f]{40}$"}, "base": {"type": "string", "pattern": "^[0-9a-f]{40}$"}, "worktreeClean": {"const": true}, "publicationState": {"const": "LOCAL_VERIFIED_NOT_REMOTE_EXACT_MAIN_NOT_REMOTE_PARITY"}}},
+    "doneCheck": {"type": "object", "additionalProperties": false, "required": ["version", "exactSha"], "properties": {"version": {"const": "1.2.0"}, "exactSha": {"const": "8b90a8fc93453dd8a84994195d28d14b15e261cb"}}},
+    "authority": {"type": "object", "additionalProperties": false, "required": ["reviewerId", "keyId", "authorityDigest"], "properties": {"reviewerId": {"type": "string"}, "keyId": {"type": "string"}, "authorityDigest": {"$ref": "#/$defs/digest"}}},
+    "chain": {"type": "object", "additionalProperties": false, "required": ["machineResultDigest", "evidenceManifestDigest", "unresolvedDeferredLedgerDigest", "canonicalSnapshotDigest", "acceptanceContractDigest", "verifiedFinishReceiptDigest", "auditHead"], "properties": {"machineResultDigest": {"$ref": "#/$defs/digest"}, "evidenceManifestDigest": {"$ref": "#/$defs/digest"}, "unresolvedDeferredLedgerDigest": {"$ref": "#/$defs/digest"}, "canonicalSnapshotDigest": {"$ref": "#/$defs/digest"}, "acceptanceContractDigest": {"$ref": "#/$defs/digest"}, "verifiedFinishReceiptDigest": {"$ref": "#/$defs/digest"}, "auditHead": {"description": "DoneCheck verified final audit-record hash, distinct from artifacts.auditLedger.digest", "$ref": "#/$defs/digest"}}},
+    "target": {"type": "object", "additionalProperties": false, "required": ["targetVersion", "intendedExit"], "properties": {"targetVersion": {"const": "v0.8"}, "intendedExit": {"const": "PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED"}}},
+    "artifact": {"type": "object", "additionalProperties": false, "required": ["path", "digest"], "properties": {"path": {"type": "string"}, "digest": {"$ref": "#/$defs/digest"}}},
+    "artifacts": {"type": "object", "additionalProperties": false, "required": ["machineResult", "evidenceManifest", "unresolvedDeferredLedger", "canonicalSnapshot", "acceptanceContract", "verifiedFinishReceipt", "auditLedger"], "properties": {"machineResult": {"$ref": "#/$defs/artifact"}, "evidenceManifest": {"$ref": "#/$defs/artifact"}, "unresolvedDeferredLedger": {"$ref": "#/$defs/artifact"}, "canonicalSnapshot": {"$ref": "#/$defs/artifact"}, "acceptanceContract": {"$ref": "#/$defs/artifact"}, "verifiedFinishReceipt": {"$ref": "#/$defs/artifact"}, "auditLedger": {"$ref": "#/$defs/artifact"}}}
+  }
+}

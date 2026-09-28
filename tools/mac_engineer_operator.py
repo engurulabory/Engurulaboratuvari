@@ -1881,6 +1881,33 @@ def run_v08_gate11_consolidated_mac_commissioning() -> dict[str, Any]:
     }
 
 
+def gate12_registry_contract(registry: dict[str, Any]) -> dict[str, Any]:
+    action = (registry.get("actions") or {}).get(
+        "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
+    )
+    expected = {
+        "handler": "V08_GATE12_PRE005_BOUNDED_PRELOCK",
+        "authority": "HUMAN_THRESHOLD_AND_DURABLE_REPLAY",
+        "doneCheckVersion": "1.2.0",
+        "doneCheckExactSha": "8b90a8fc93453dd8a84994195d28d14b15e261cb",
+        "finalAcceptanceReceipt": False,
+        "canonicalLock": False,
+        "batch3Boundary": "FINAL_ACCEPTANCE_RECEIPT_AND_CANONICAL_LOCK",
+        "failClosed": True,
+    }
+    if not isinstance(action, dict) or any(action.get(k) != v for k, v in expected.items()):
+        return {"state": "HOLD", "reason": "GATE12_REGISTRY_CONTRACT_MISMATCH"}
+    required = {
+        "GATE11_VERIFIED_LOCKED", "GATE12_ACTIVE_NOT_STARTED",
+        "FRESH_CANDIDATE_BUNDLE", "DONECHECK_V1_2_EXACT", "MACHINE_PASS",
+        "HUMAN_REVIEW_PASS", "VERIFIED_FINISH_PASS", "SIGNED_THRESHOLD",
+        "DURABLE_REPLAY", "SINGLE_WRITER_LOCK",
+    }
+    if set(action.get("requires") or []) != required:
+        return {"state": "HOLD", "reason": "GATE12_REGISTRY_REQUIREMENTS_MISMATCH"}
+    return {"state": "PASS", "action": action}
+
+
 def command_continue() -> int:
     boot = canonical_boot()
     truth = current_truth()
@@ -1895,6 +1922,28 @@ def command_continue() -> int:
         hold = "CANONICAL_BOOT"
         next_action = "enguru-mac doctor"
         completed = ["CANONICAL_BOOT_HOLD", "GITVAULT_SYNC"]
+    elif local_action == "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK":
+        completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
+        registry_contract = gate12_registry_contract(load_json(ACTION_REGISTRY, {}) or {})
+        if registry_contract.get("state") != "PASS":
+            prelock = registry_contract
+        else:
+            try:
+                try:
+                    from mac_engineer_v08_gate12_pre005_executor import execute_from_runtime_handoff
+                except ModuleNotFoundError:
+                    from tools.mac_engineer_v08_gate12_pre005_executor import execute_from_runtime_handoff
+                prelock = execute_from_runtime_handoff()
+            except Exception as exc:
+                prelock = {"state": "HOLD", "reason": f"PRE005_HANDLER:{type(exc).__name__}:{exc}"}
+        state = "HOLD"
+        hold = (
+            "BATCH3_FINALIZATION_REQUIRED"
+            if prelock.get("state") == "PASS"
+            else str(prelock.get("reason") or "PRE005_BOUNDED_PRELOCK")
+        )
+        next_action = "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
+        completed.append("V08_GATE12_PRE005_BOUNDED_PRELOCK_" + str(prelock.get("state") or "HOLD"))
     elif local_action == "V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING":
         completed = [
             "CANONICAL_BOOT",

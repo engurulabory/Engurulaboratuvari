@@ -27,6 +27,110 @@ DONECHECK_SHA = "8b90a8fc93453dd8a84994195d28d14b15e261cb"
 DONECHECK_VERSION = "1.2.0"
 PRODUCER_ID = "enguru.mac-engineer"
 VITEST_REPORTER = "minimal"
+NODE_EXTENSION_LOADER = (
+    "data:text/javascript,export async function resolve(s,c,n){try{return await n(s,c)}"
+    "catch(e){if(s.startsWith(%22.%22)){try{return await n(s+%22.js%22,c)}"
+    "catch{return n(s+%22/index.js%22,c)}}throw e}}"
+)
+
+
+def reproduce_verification_result(verification_input: dict[str, Any]) -> dict[str, Any]:
+    """Recompute a machine result with the pinned DoneCheck Working Core."""
+    core = DONECHECK_RUNTIME / "dist" / "donecheck-core.js"
+    if not core.is_file():
+        raise ValueError("DONECHECK_CORE_MISSING")
+    script = r'''
+import { readFileSync } from "node:fs";
+const { verifyTask } = await import(process.argv[1]);
+const input = JSON.parse(readFileSync(0, "utf8"));
+process.stdout.write(JSON.stringify(verifyTask(input)));
+'''
+    result = run(
+        ["node", "--experimental-loader", NODE_EXTENSION_LOADER, "--input-type=module", "-e", script, str(core)],
+        env=None, timeout=120, input_text=json.dumps(verification_input),
+    )
+    if result["code"] != 0:
+        raise ValueError("DONECHECK_VERIFY_TASK_FAILED:" + result.get("stderr", "")[-300:])
+    value = json.loads(result["stdout"])
+    if not isinstance(value, dict):
+        raise ValueError("DONECHECK_VERIFY_TASK_RESULT_INVALID")
+    return value
+
+def _strict_security_json(path: Path) -> dict[str, Any]:
+    def pairs(items: list[tuple[str, Any]]) -> dict[str, Any]:
+        value: dict[str, Any] = {}
+        for key, item in items:
+            if key in value:
+                raise ValueError(f"DUPLICATE_JSON_KEY:{key}")
+            value[key] = item
+        return value
+    value = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=pairs)
+    if not isinstance(value, dict):
+        raise ValueError("JSON_OBJECT_REQUIRED")
+    return value
+
+
+def verify_human_review_and_verified_finish(*, review_path: Path, attestation_path: Path, receipt_path: Path, audit_path: Path, authority: dict[str, Any]) -> dict[str, Any]:
+    """Read-only adapter to the pinned DoneCheck runtime verification APIs."""
+    try:
+        review = _strict_security_json(review_path)
+        attestation = _strict_security_json(attestation_path)
+        receipt = _strict_security_json(receipt_path)
+        reviewer = authority["reviewer"]
+        donecheck = authority["doneCheckAuthority"]
+        projected_authority = {
+            "reviewerId": reviewer["reviewerId"],
+            "keyId": reviewer["keyId"],
+            "publicKeyPem": reviewer["publicKeyPem"],
+            "allowedDecisions": donecheck["allowedDecisions"],
+        }
+    except Exception as exc:
+        return {"state": "HOLD", "errors": [f"INPUT_INVALID:{type(exc).__name__}"]}
+    if not audit_path.is_file():
+        return {"state": "HOLD", "errors": ["AUDIT_LEDGER_MISSING"]}
+    runtime_node = DONECHECK_RUNTIME / "dist" / "donecheck-runtime-node.js"
+    if not runtime_node.is_file():
+        return {"state": "HOLD", "errors": ["DONECHECK_RUNTIME_NODE_MISSING"]}
+    script = r'''
+import { readFileSync } from "node:fs";
+const { verifyHumanReviewAttestation, verifyAuditLedger } = await import(process.argv[1]);
+const input = JSON.parse(readFileSync(0, "utf8"));
+const errors = [];
+let reviewResult;
+try { reviewResult = verifyHumanReviewAttestation(input.review, input.attestation, input.authority); }
+catch (e) { errors.push(`HUMAN_REVIEW_VERIFY:${e.message}`); }
+let ledger;
+try { ledger = await verifyAuditLedger(input.auditPath); }
+catch (e) { errors.push(`AUDIT_VERIFY:${e.message}`); }
+const receipt = input.receipt;
+const receiptKeys = ["schema", "finishId", "taskId", "verificationResultId", "reviewerId", "auditHeadHash"];
+if (!receipt || typeof receipt !== "object" || Object.keys(receipt).sort().join() !== receiptKeys.sort().join()) errors.push("VERIFIED_FINISH_RECEIPT_INVALID");
+if (!reviewResult || reviewResult.valid !== true) errors.push("HUMAN_REVIEW_NOT_VALID");
+if (input.review.decision !== "accepted") errors.push("HUMAN_REVIEW_ACCEPTED_REQUIRED");
+if (!ledger || ledger.valid !== true) errors.push("AUDIT_LEDGER_NOT_VALID");
+const records = ledger && ledger.valid ? ledger.records : [];
+if (!records.length) errors.push("AUDIT_LEDGER_EMPTY");
+if (receipt && receipt.schema !== "donecheck.verified-finish/v1") errors.push("VERIFIED_FINISH_SCHEMA_MISMATCH");
+if (receipt && receipt.taskId !== input.review.taskId) errors.push("VERIFIED_FINISH_TASK_MISMATCH");
+if (receipt && receipt.verificationResultId !== input.review.verificationResultId) errors.push("VERIFIED_FINISH_RESULT_MISMATCH");
+if (receipt && receipt.reviewerId !== input.review.reviewerId) errors.push("VERIFIED_FINISH_REVIEWER_MISMATCH");
+if (receipt && receipt.auditHeadHash !== (ledger && ledger.headHash)) errors.push("VERIFIED_FINISH_AUDIT_HEAD_MISMATCH");
+const human = records.find((r) => r.event.type === "human_review_authorized" && r.event.id === `${receipt.finishId}:human-review`);
+const finish = records.find((r) => r.event.type === "verified_finish" && r.event.id === receipt.finishId);
+if (!human || human.event.actorId !== receipt.reviewerId || human.event.payload.taskId !== receipt.taskId || human.event.payload.verificationResultId !== receipt.verificationResultId || human.event.payload.decision !== "accepted") errors.push("HUMAN_REVIEW_AUDIT_BINDING_MISMATCH");
+if (!finish || finish.event.actorId !== receipt.reviewerId || finish.event.payload.taskId !== receipt.taskId || finish.event.payload.verificationResultId !== receipt.verificationResultId) errors.push("VERIFIED_FINISH_AUDIT_BINDING_MISMATCH");
+if (!finish || records[records.length - 1] !== finish || finish.hash !== receipt.auditHeadHash) errors.push("VERIFIED_FINISH_FINAL_RECORD_MISMATCH");
+console.log(JSON.stringify({state: errors.length ? "HOLD" : "PASS", errors, reviewerId: input.review.reviewerId, taskId: input.review.taskId, verificationResultId: input.review.verificationResultId, auditHead: ledger && ledger.headHash, receipt}));
+'''
+    payload = {"review": review, "attestation": attestation, "authority": projected_authority, "auditPath": str(audit_path), "receipt": receipt}
+    result = run(["node", "--experimental-loader", NODE_EXTENSION_LOADER, "--input-type=module", "-e", script, str(runtime_node)], env=None, timeout=120, input_text=json.dumps(payload))
+    if result["code"] != 0:
+        return {"state": "HOLD", "errors": ["DONECHECK_ADAPTER_FAILED", result.get("stderr", "")[-500:]]}
+    try:
+        output = json.loads(result["stdout"])
+    except Exception:
+        return {"state": "HOLD", "errors": ["DONECHECK_ADAPTER_OUTPUT_INVALID"]}
+    return output if isinstance(output, dict) else {"state": "HOLD", "errors": ["DONECHECK_ADAPTER_OUTPUT_INVALID"]}
 
 GATE_EVIDENCE = {
     "V07-A01": ROOT / "evidence" / "MAC_ENGINEER_V07_A01_A02_ENGINEERING_2026-09-22.md",
@@ -63,6 +167,7 @@ def run(
     cwd: Path | None = None,
     timeout: int = 1800,
     env: dict[str, str] | None = None,
+    input_text: str | None = None,
 ) -> dict[str, Any]:
     try:
         proc = subprocess.run(
@@ -73,6 +178,7 @@ def run(
             check=False,
             timeout=timeout,
             env=env,
+            input=input_text,
         )
         return {
             "code": proc.returncode,

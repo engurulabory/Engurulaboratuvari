@@ -121,5 +121,13 @@ class DoneCheckV12BridgeTests(unittest.TestCase):
                 bridge.prepare_input(root / "out")
 
 
+class Gate12BridgeBatch2Tests(unittest.TestCase):
+    def test_missing_inputs_hold(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            result = bridge.verify_human_review_and_verified_finish(review_path=root/"review.json", attestation_path=root/"attestation.json", receipt_path=root/"receipt.json", audit_path=root/"audit.json", authority={})
+            self.assertEqual(result["state"], "HOLD")
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -1135,5 +1135,16 @@ class Gate10FinishedProductDeliveryTests(unittest.TestCase):
 
             gate10.assert_called_once_with()
 
+class Gate12Batch2RegistryTests(unittest.TestCase):
+    def test_gate12_action_is_registered(self):
+        registry = operator.load_json(ROOT / "governance" / "mac-engineer" / "OPERATOR_ACTION_REGISTRY_V1.json", {})
+        action = registry["actions"]["V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"]
+        self.assertTrue(action["failClosed"])
+        self.assertFalse(action["canonicalLock"])
+
+    def test_registry_mismatch_holds(self):
+        self.assertEqual(operator.gate12_registry_contract({"actions": {}})["state"], "HOLD")
+
+
 if __name__ == "__main__":
     unittest.main()
