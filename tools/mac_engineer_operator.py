@@ -1936,14 +1936,24 @@ def command_continue() -> int:
                 prelock = execute_from_runtime_handoff()
             except Exception as exc:
                 prelock = {"state": "HOLD", "reason": f"PRE005_HANDLER:{type(exc).__name__}:{exc}"}
-        state = "HOLD"
-        hold = (
-            "BATCH3_FINALIZATION_REQUIRED"
-            if prelock.get("state") == "PASS"
-            else str(prelock.get("reason") or "PRE005_BOUNDED_PRELOCK")
-        )
-        next_action = "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
         completed.append("V08_GATE12_PRE005_BOUNDED_PRELOCK_" + str(prelock.get("state") or "HOLD"))
+        if prelock.get("state") == "PASS":
+            try:
+                try:
+                    from mac_engineer_v08_gate12_finalizer import finalize
+                except ModuleNotFoundError:
+                    from tools.mac_engineer_v08_gate12_finalizer import finalize
+                finalization = finalize()
+            except Exception as exc:
+                finalization = {"state": "HOLD", "reason": f"BATCH3_FINALIZER:{type(exc).__name__}:{exc}"}
+            state = "PASS" if finalization.get("state") == "PASS" else "HOLD"
+            hold = None if state == "PASS" else str(finalization.get("reason") or "BATCH3_FINALIZATION_REQUIRED")
+            next_action = str(finalization.get("nextAction") or "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK")
+            completed.append("V08_GATE12_BATCH3_FINALIZATION_" + state)
+        else:
+            state = "HOLD"
+            hold = str(prelock.get("reason") or "PRE005_BOUNDED_PRELOCK")
+            next_action = "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
     elif local_action == "V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING":
         completed = [
             "CANONICAL_BOOT",
