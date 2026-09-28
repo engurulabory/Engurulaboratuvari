@@ -115,11 +115,23 @@ def main() -> int:
 
     v08 = session.get("currentV08", {})
 
-    if v08.get("closureContract", {}).get("activeGate") != 11:
-        issues.append("CURRENT_V08_ACTIVE_GATE_CHANGED")
+    active_gate = v08.get("closureContract", {}).get("activeGate")
+    gate11 = v08.get("gate11", {})
+    gate12 = v08.get("gate12", {})
 
-    if v08.get("gate11", {}).get("executionStarted") is not False:
-        issues.append("CURRENT_GATE11_EXECUTION_CHANGED")
+    if active_gate == 11:
+        if gate11.get("executionStarted") is not False:
+            issues.append("CURRENT_GATE11_EXECUTION_CHANGED")
+    elif active_gate == 12:
+        if (
+            gate11.get("state") != "VERIFIED_LOCKED"
+            or gate11.get("executionStarted") is not True
+            or gate12.get("state") != "ACTIVE"
+            or gate12.get("executionStarted") is not False
+        ):
+            issues.append("GATE11_CLOSURE_GATE12_TRANSITION_INVALID")
+    else:
+        issues.append("CURRENT_V08_ACTIVE_GATE_NOT_11_OR_12")
 
     prepared = session.get(
         "preparedFutureWorklists",

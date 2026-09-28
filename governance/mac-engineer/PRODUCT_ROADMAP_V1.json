@@ -20,7 +20,18 @@
     "version": "v0.8",
     "state": "ACTIVE_PRODUCT_ENGINEERING_OPERATOR",
     "activeObjective": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
-    "productSourceSha": "4e716e387dabea9a4fb1c4752da73a3b172bc2d8",
+    "productSourceSha": "0ca33cc7b70fee915d02de72946bbd4bb0e40065",
+    "productSource": {
+      "repository": "engurulabory/enguru-mac-engineer",
+      "branch": "feat/v08-native-productization-provenance",
+      "localVerifiedHead": "0ca33cc7b70fee915d02de72946bbd4bb0e40065",
+      "baseOriginMain": "5432b9b135499cea18273c0e003877b864af92c6",
+      "worktree": "CLEAN",
+      "remoteExactMain": false,
+      "remoteParity": false,
+      "publicationState": "LOCAL_VERIFIED_NOT_REMOTE_EXACT_MAIN_NOT_REMOTE_PARITY",
+      "verificationEvidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate11-p11-independent-verification/20260927T204728Z/p11-final-acceptance.json"
+    },
     "installedVersion": "0.8",
     "completed": [
       "RUNTIME_APP_PROVENANCE_CLOSURE",
@@ -192,7 +203,7 @@
       ],
       "acceptanceMatrix": "PASS_DEFINED",
       "acceptanceMatrixPath": "governance/mac-engineer/V08_PRODUCT_ENGINEERING_OPERATOR_ACCEPTANCE_MATRIX_V1.md",
-      "nextAction": "V08_RELEASE_LIFECYCLE_SCENARIO",
+      "nextAction": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
       "executionAuthorityModel": "ENGÜRÜ Mac-Native Engineering Authority™",
       "engineeringMode": "MAC_NATIVE_PRIMARY_AUTHORITY",
       "productBaselineExactMain": "5432b9b135499cea18273c0e003877b864af92c6",
@@ -213,13 +224,13 @@
           5,
           6,
           7,
-          8
-        ],
-        "active": 9,
-        "remaining": [
+          8,
           9,
           10,
-          11,
+          11
+        ],
+        "active": 12,
+        "remaining": [
           12
         ],
         "finalAuthority": "HUMAN_THRESHOLD",

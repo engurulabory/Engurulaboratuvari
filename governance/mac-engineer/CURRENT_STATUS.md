@@ -1,16 +1,26 @@
 # ENGÜRÜ Mac Engineer™ — Current Status
 
-**Updated:** 2026-09-27
-**Program target:** ENGÜRÜ Mac Engineering™ v1.1 — Verified Product Engineering Operator
+**Updated:** 2026-09-28
+**Program target:** ENGÜRÜ Mac Engineering™ v1.3 — Usable Verified Product
 **Current version:** v0.8 — PRODUCT ENGINEERING OPERATOR / ACTIVE
 **Current objective:** V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK
 **Canonical objective id:** `V08_PRODUCT_ENGINEERING_OPERATOR`
 
+`CURRENT_OBJECTIVE=V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK`
+
+`CURRENT_GATE=12`
+
+`GATE12_EXECUTION_STARTED=0`
+
+`CURRENT_PROGRAM_FINAL_TARGET=v1.3_USABLE_VERIFIED_PRODUCT`
+
 ## CURRENT ENGINEERING TRUTH
 
-ENGÜRÜ Mac Engineering™ v0.7 is **LONG-RUN RELIABILITY VERIFIED / LOCKED**. v0.8 Product Engineering Operator is **ACTIVE** at Gate 8 — New Product from Brief Scenario. Gates 1–7 are verified PASS.
+ENGÜRÜ Mac Engineering™ v0.7 is **LONG-RUN RELIABILITY VERIFIED / LOCKED**. v0.8 Product Engineering Operator is **ACTIVE** at Gate 12 — DoneCheck™ v1.2 + Human Threshold™ + Version Lock. Gates 1–11 are verified PASS; Gate 11 is **VERIFIED / LOCKED**; Gate 12 execution has not started.
 
 Local field truth, canonical reconciliation, merge provenance and control-plane exact-main acceptance are all complete. Recovery, fixture repair, local field acceptance and v0.6 closure are closed truths.
+
+Current product source is local verified branch `feat/v08-native-productization-provenance` at `0ca33cc7b70fee915d02de72946bbd4bb0e40065`, based on `origin/main` `5432b9b135499cea18273c0e003877b864af92c6`, with a clean worktree. This is not remote exact-main and not remote parity; publication remains a separate authority surface.
 
 ## PROGRAMMER AGENT AUTHORING DISCIPLINE
 
@@ -22,9 +32,9 @@ Executable gate:
 
 `tools/mac_engineer_pre_send_filter.py`
 
-Active product objective remains:
+Current active objective:
 
-`V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO`
+`V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK`
 
 Product mutation from this discipline package: **false**.
 

@@ -15,7 +15,10 @@ Product source baseline:
 - repository: `engurulabory/enguru-mac-engineer`
 - exact main at v0.8 start: `5432b9b135499cea18273c0e003877b864af92c6`
 - installed bundle observed before v0.8 field audit: `0.6`
-- final target remains: **v1.2 — Local Mac Astra Verified Final**
+- current program final target: **v1.3 — Usable Verified Product**
+- v1.2 remains preserved as the **Local Mac Astra Verified Final** version-path milestone
+
+`CURRENT_PROGRAM_FINAL_TARGET=v1.3_USABLE_VERIFIED_PRODUCT`
 
 ## AUTHORITY MODEL
 

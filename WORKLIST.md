@@ -1120,9 +1120,17 @@ Local evidence:
 - [x] Canonical Evidence: `evidence/MAC_ENGINEER_V00_V03_HISTORICAL_RECONSTRUCTION_2026-09-22.md`.
 - [x] **V00_V03_HISTORICAL_RECONSTRUCTION = PASS / CLOSED.**
 
-**Active objective:** `V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING`
+**Active objective:** `V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK`
 
-**Current single objective:** **V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING**.
+**Current single objective:** **V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK**.
+
+`CURRENT_OBJECTIVE=V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK`
+
+`CURRENT_GATE=12`
+
+`GATE12_EXECUTION_STARTED=0`
+
+`CURRENT_PROGRAM_FINAL_TARGET=v1.3_USABLE_VERIFIED_PRODUCT`
 
 ## v0.7 — Long-Running Reliability
 
@@ -1177,9 +1185,9 @@ DoneCheck authority:
 7. [x] **Gate 7 — Migration / Repair Scenario — PASS / SEALED**
 8. [x] **Gate 8 — New Product from Brief Scenario — PASS / SEALED**
 9. [x] **Gate 9 — Deploy / Live Verify / Rollback + Lifecycle — PASS / SEALED**
-10. [ ] **Gate 10 — Finished-Product Delivery Acceptance — ACTIVE**
-11. [ ] **Gate 11 — Consolidated Real-Mac Product Engineering Commissioning**
-12. [ ] **Gate 12 — DoneCheck™ v1.2 + Human Threshold™ + Version Lock**
+10. [x] **Gate 10 — Finished-Product Delivery Acceptance — VERIFIED / LOCKED**
+11. [x] **Gate 11 — Consolidated Real-Mac Product Engineering Commissioning — VERIFIED / LOCKED**
+12. [ ] **Gate 12 — DoneCheck™ v1.2 + Human Threshold™ + Version Lock — ACTIVE / NOT STARTED**
 
 ### Gate 1 result — VERIFIED PASS
 
@@ -1255,11 +1263,11 @@ Field HEAD: `927fbc2d3130d474bcf9443231e741938b03636d`.
 
 ### Current v0.8 next action
 
-`V08_FINISHED_PRODUCT_DELIVERY_SCENARIO`
+`V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK`
 
-Gate 9 exercises controlled release, independent live verification, rollback and applicable lifecycle controls while preserving Evidence continuity.
+Gate 12 consumes criterion-scoped Gates 1–11 Evidence through DoneCheck™ v1.2, preserves external/deferred classification, requires explicit Human Threshold™ acceptance and locks v0.8 only after the final acceptance receipt.
 
-Exit: `V08_RELEASE_LIFECYCLE_VERIFIED`.
+Exit: `PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED`.
 
 ## v0.9 — World-Class Field Benchmark
 
@@ -1551,7 +1559,7 @@ External GitHub A09 remains `EXTERNAL_BLOCKED_DEFERRED` and requires reconciliat
 <!-- ENGURU_LOCAL_MAC_ASTRA_V12_100_TARGET_V1 -->
 
 # ENGÜRÜ Mac Engineer™ — CANONICAL FINISH WORKLIST
-## Final Target: v1.2 LOCAL MAC ASTRA 100/100
+## Final Target: v1.3 USABLE VERIFIED PRODUCT
 
 **TARGET STATE — LOCKED / THEORETICAL PRODUCT CONTRACT READY**
 
@@ -1793,20 +1801,17 @@ and returns the finished result to the user.
 
 ## CURRENT SINGLE NEXT ACTION
 
-**v0.8 Gate 9 — Deploy / Live Verify / Rollback Lifecycle**
+**v0.8 Gate 12 — DoneCheck™ v1.2 + Human Threshold™ + Version Lock**
 
-`controlled release`
-→ `independent live verification`
-→ `source → artifact → live provenance`
-→ `rollback`
-→ `lifecycle recovery`
-→ `Evidence`
+`Gates 1–11 criterion-scoped Evidence`
 → `DoneCheck™ v1.2`
-→ `V08_RELEASE_LIFECYCLE_VERIFIED`
+→ `explicit Human Threshold™ acceptance`
+→ `final acceptance receipt`
+→ `PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED`
 
 ---
 
-**FINAL TARGET — v1.2 LOCAL MAC ASTRA 100/100**
+**FINAL TARGET — v1.3 USABLE VERIFIED PRODUCT**
 
 **TARGET CONTRACT — READY / LOCKED**
 
@@ -1917,12 +1922,13 @@ VERSION SEMANTICS
 - v0.9 — World-Class Field Benchmark.
 - v1.0 — Verified Product Engineering Operator.
 - v1.1 — Reliability + Product-System + Visual-System Consolidation.
-- v1.2 — FINAL TARGET — Local Mac Astra Verified Final.
+- v1.2 — Local Mac Astra Verified Final milestone.
+- v1.3 — FINAL TARGET — Usable Verified Product.
 
 PRODUCT VERSION DISTINCTION
 
 DoneCheck™ product version = 1.2.0
-ENGÜRÜ Mac Engineer™ final product version = v1.2
+ENGÜRÜ Mac Engineer™ final product version = v1.3
 
 VERIFIED FINISH RULE
 
@@ -1935,10 +1941,12 @@ Engineering → regression → criterion-scoped Evidence
 
 LOCKED TARGET
 
-MAC_ENGINEER_FINAL_TARGET=v1.2
+MAC_ENGINEER_FINAL_TARGET=v1.3
 V11_ROLE=RELIABILITY_PRODUCT_SYSTEM_VISUAL_CONSOLIDATION
 V12_ROLE=VERIFIED_FINAL
 V12_EXIT=VERIFIED_FINAL_LOCKED
+V13_ROLE=AESTHETIC_MOTOR_VERIFIED_FINISH
+V13_EXIT=VERIFIED_FINAL_LOCKED
 THEORETICAL_COHERENCE_TARGET=99_PLUS
 FIELD_100_REQUIRES_REAL_HUMAN_ACCEPTANCE=true
 NEW_CORE=false
@@ -2040,7 +2048,7 @@ Gate 10 execution belongs to the next working session.
 - Final Human Acceptance: **ACCEPTED**
 - Historical contract: **PRESERVED**
 
-### v0.8 Gate 11 — ACTIVE / NEXT SESSION
+### v0.8 Gate 11 — HISTORICAL PRE-EXECUTION SNAPSHOT
 
 - [ ] **Gate 11 — Consolidated Real-Mac Product Engineering Commissioning — ACTIVE**
 - Canonical identifier: `V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING`
@@ -2049,3 +2057,21 @@ Gate 10 execution belongs to the next working session.
 - First action: `READ_ONLY_GATE11_COMMISSIONING_RECONNAISSANCE_NEXT_SESSION`
 
 **NEXT ACTION — STOP. Gate 11 execution belongs to the next session.**
+
+<!-- ENGURU_GATE12_PREEXECUTION_CURRENT_AUTHORITY_V1 -->
+
+### v0.8 Gate 11 — FINAL VERIFIED CLOSURE
+
+- [x] **Gate 11 — Consolidated Real-Mac Product Engineering Commissioning — VERIFIED / LOCKED**
+- Exit: `V08_CONSOLIDATED_MAC_COMMISSIONING_PASS`
+- DoneCheck™ v1.2: **PASS**
+- Evidence: `/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate11-p12-closure/20260927T223539Z/p12-final-acceptance.json`
+
+### v0.8 Gate 12 — ACTIVE / NOT STARTED
+
+- [ ] **Gate 12 — DoneCheck™ v1.2 + Human Threshold™ + Version Lock**
+- Canonical identifier: `V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK`
+- Exit target: `PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED`
+- Execution started: **0**
+- Current product source: local verified `0ca33cc7b70fee915d02de72946bbd4bb0e40065`; remote exact-main: **false**; remote parity: **false**.
+- Current program final target: **v1.3 — Usable Verified Product**.

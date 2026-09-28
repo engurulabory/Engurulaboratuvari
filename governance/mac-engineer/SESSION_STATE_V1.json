@@ -292,7 +292,7 @@
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "READ_ONLY_GATE11_COMMISSIONING_RECONNAISSANCE_NEXT_SESSION",
+  "nextAction": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
@@ -1300,6 +1300,17 @@
       "currentTechnicalTarget": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
       "nextAfterPass": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
     },
+    "currentProductSource": {
+      "repository": "engurulabory/enguru-mac-engineer",
+      "branch": "feat/v08-native-productization-provenance",
+      "localVerifiedHead": "0ca33cc7b70fee915d02de72946bbd4bb0e40065",
+      "baseOriginMain": "5432b9b135499cea18273c0e003877b864af92c6",
+      "worktree": "CLEAN",
+      "remoteExactMain": false,
+      "remoteParity": false,
+      "publicationState": "LOCAL_VERIFIED_NOT_REMOTE_EXACT_MAIN_NOT_REMOTE_PARITY",
+      "verificationEvidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate11-p11-independent-verification/20260927T204728Z/p11-final-acceptance.json"
+    },
     "closureContract": {
       "totalGates": 12,
       "passedGates": [
@@ -1691,7 +1702,7 @@
     "language": "POSITIVE_CONSTRUCTIVE_TRUTHFUL",
     "secondLook": "REQUIRED",
     "doneCheck": "V1.2_REQUIRED",
-    "activeObjectivePreserved": "V08_NEW_PRODUCT_FROM_BRIEF_SCENARIO"
+    "activeObjectivePreserved": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
   },
   "jevProviderQualification": {
     "state": "HOLD_PROVIDER_UNTIL_LIVE_EVIDENCE",

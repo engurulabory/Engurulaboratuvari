@@ -4,6 +4,20 @@
 
 **ACTIVE / TEMPORARY CANONICAL SESSION BOOTSTRAP**
 
+## CURRENT PRE-EXECUTION AUTHORITY
+
+`CURRENT_OBJECTIVE=V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK`
+
+`CURRENT_GATE=12`
+
+`GATE12_EXECUTION_STARTED=0`
+
+`CURRENT_PROGRAM_FINAL_TARGET=v1.3_USABLE_VERIFIED_PRODUCT`
+
+Gate 11 is **VERIFIED / LOCKED**. Gate 12 is **ACTIVE / NOT STARTED**.
+
+Current product source is the clean local branch `feat/v08-native-productization-provenance` at verified HEAD `0ca33cc7b70fee915d02de72946bbd4bb0e40065`, based on `origin/main` `5432b9b135499cea18273c0e003877b864af92c6`. The local verified HEAD is neither remote exact-main nor remote parity; publication remains a separate authority surface.
+
 Bu dosya ENGÜRÜ Mac Engineer™ geliştirme çalışması sürerken yeni ChatGPT oturumlarının aynı çalışma yoluna hızla bağlanması için tutulur.
 
 Çalışma tamamlandığında ve program Verified Finish ile kilitlendiğinde bu aktif bootstrap dosyası kaldırılır. Kalıcı oturum sözleşmesi `SESSION_CONTINUITY_CONTRACT_V1.md` içinde yaşamaya devam eder.
@@ -336,15 +350,15 @@ Current version:
 
 Current Gate:
 
-`Gate 10 — Finished Product Delivery Acceptance`
+`Gate 12 — DoneCheck™ v1.2 + Human Threshold™ + Version Lock`
 
 Current objective:
 
-`V08_FINISHED_PRODUCT_DELIVERY_SCENARIO`
+`V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK`
 
 Current next action:
 
-`V08_FINISHED_PRODUCT_DELIVERY_SCENARIO`
+`ZEKU_SECOND_LOOK_BEFORE_BOUNDED_RECONCILIATION_COMMIT`
 
 Gate order:
 
@@ -483,12 +497,13 @@ VERSION SEMANTICS
 - v0.9 — World-Class Field Benchmark.
 - v1.0 — Verified Product Engineering Operator.
 - v1.1 — Reliability + Product-System + Visual-System Consolidation.
-- v1.2 — FINAL TARGET — Local Mac Astra Verified Final.
+- v1.2 — Local Mac Astra Verified Final milestone.
+- v1.3 — FINAL TARGET — Usable Verified Product.
 
 PRODUCT VERSION DISTINCTION
 
 DoneCheck™ product version = 1.2.0
-ENGÜRÜ Mac Engineer™ final product version = v1.2
+ENGÜRÜ Mac Engineer™ final product version = v1.3
 
 VERIFIED FINISH RULE
 
@@ -501,10 +516,12 @@ Engineering → regression → criterion-scoped Evidence
 
 LOCKED TARGET
 
-MAC_ENGINEER_FINAL_TARGET=v1.2
+MAC_ENGINEER_FINAL_TARGET=v1.3
 V11_ROLE=RELIABILITY_PRODUCT_SYSTEM_VISUAL_CONSOLIDATION
 V12_ROLE=VERIFIED_FINAL
 V12_EXIT=VERIFIED_FINAL_LOCKED
+V13_ROLE=AESTHETIC_MOTOR_VERIFIED_FINISH
+V13_EXIT=VERIFIED_FINAL_LOCKED
 THEORETICAL_COHERENCE_TARGET=99_PLUS
 FIELD_100_REQUIRES_REAL_HUMAN_ACCEPTANCE=true
 NEW_CORE=false
@@ -657,7 +674,7 @@ Gate 10 execution belongs to the next working session.
 
 <!-- ENGURU_GATE10_FINAL_CANONICAL_CLOSURE_V2 -->
 
-## v0.8 — CURRENT AUTHORITY AFTER GATE 10
+## v0.8 — HISTORICAL AUTHORITY SNAPSHOT AFTER GATE 10
 
 Gate 10:
 
