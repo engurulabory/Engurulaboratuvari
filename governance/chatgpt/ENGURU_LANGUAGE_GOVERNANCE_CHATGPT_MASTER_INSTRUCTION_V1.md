@@ -2,9 +2,28 @@
 
 **Classification:** GOVERNANCE ADAPTER / CHATGPT TEACHING PACKAGE  
 **Canonical parent:** `governance/ENGURU_LANGUAGE_GOVERNANCE_V1.md`  
+**Operational entrypoint:** `governance/chatgpt/ENGURU_CHATGPT_CANONICAL_BOOT_V1.md`  
 **New core:** false  
 **Principle:** `mevcut hakikat + gerekli fark`  
 **Teaching model:** `Core Instructions + Few-shot Corpus + Project Contract + Pre-Send Linter`
+
+## 0. Fresh-session entrypoint
+
+A fresh governed ChatGPT session begins with:
+
+`ENGÜRÜ ChatGPT Canonical Boot™ v1.0`
+
+Canonical path:
+
+`governance/chatgpt/ENGURU_CHATGPT_CANONICAL_BOOT_V1.md`
+
+Boot reconstructs canonical authority, active project truth, locked decisions, Evidence, active objective and next action before substantive execution.
+
+Preferred invocation:
+
+**“ENGÜRÜ Canonical Boot’u çalıştır ve mevcut işe devam et.”**
+
+A fresh session reaches operational alignment through a canonical Boot Receipt rather than a narrative “aligned” assertion.
 
 ## 1. Purpose
 
@@ -269,6 +288,7 @@ The language target is:
 This ChatGPT teaching package is acceptable when:
 
 - the canonical parent remains the single Language Governance authority;
+- Canonical Boot entrypoint exists and is bound;
 - Master Instruction, 30-example Corpus and Pre-Send Linter Contract exist;
 - linter reference implementation and regression tests exist;
 - parent governance contract references the package;
