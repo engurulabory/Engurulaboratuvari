@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://enguru.example/schemas/mac-engineer-v08-gate12-reviewer-authority-v1.schema.json",
+  "title": "ENGURU Mac Engineer v0.8 Gate12 Reviewer Authority v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "authorityVersion",
+    "status",
+    "validFrom",
+    "expiresAt",
+    "revokedAt",
+    "revocationReason",
+    "humanThresholdOwner",
+    "reviewer",
+    "scope",
+    "doneCheckAuthority",
+    "humanThresholdAuthority",
+    "payloadDigest"
+  ],
+  "properties": {
+    "schema": {
+      "const": "enguru.mac-engineer.v08-gate12-reviewer-authority/v1"
+    },
+    "authorityVersion": {
+      "const": 1
+    },
+    "status": {
+      "enum": ["PENDING_BINDING", "ACTIVE", "REVOKED"]
+    },
+    "validFrom": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:Z|[+-]\\d{2}:\\d{2})$"
+    },
+    "expiresAt": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:Z|[+-]\\d{2}:\\d{2})$"
+    },
+    "revokedAt": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:Z|[+-]\\d{2}:\\d{2})$"
+    },
+    "revocationReason": {
+      "type": ["string", "null"],
+      "minLength": 1
+    },
+    "humanThresholdOwner": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reviewer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reviewerId",
+        "keyId",
+        "algorithm",
+        "publicKeyPem",
+        "publicKeyFingerprint"
+      ],
+      "properties": {
+        "reviewerId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "keyId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "algorithm": {
+          "const": "ed25519"
+        },
+        "publicKeyPem": {
+          "type": "string",
+          "pattern": "^-----BEGIN PUBLIC KEY-----[\\s\\S]+-----END PUBLIC KEY-----\\n?$"
+        },
+        "publicKeyFingerprint": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "objective",
+        "gate",
+        "version",
+        "exit",
+        "doneCheckHumanReview",
+        "gate12HumanThreshold"
+      ],
+      "properties": {
+        "objective": {
+          "const": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
+        },
+        "gate": {
+          "const": 12
+        },
+        "version": {
+          "const": "v0.8"
+        },
+        "exit": {
+          "const": "PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED"
+        },
+        "doneCheckHumanReview": {
+          "type": "boolean"
+        },
+        "gate12HumanThreshold": {
+          "type": "boolean"
+        }
+      }
+    },
+    "doneCheckAuthority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allowedDecisions"],
+      "properties": {
+        "allowedDecisions": {
+          "type": "array",
+          "items": {
+            "enum": ["accepted", "revise", "rejected"]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      }
+    },
+    "humanThresholdAuthority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allowedDecisions"],
+      "properties": {
+        "allowedDecisions": {
+          "type": "array",
+          "items": {
+            "enum": ["ACCEPT", "HOLD"]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      }
+    },
+    "payloadDigest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {"enum": ["PENDING_BINDING", "ACTIVE"]}
+        }
+      },
+      "then": {
+        "properties": {
+          "revokedAt": {"type": "null"},
+          "revocationReason": {"type": "null"}
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {"const": "REVOKED"}
+        }
+      },
+      "then": {
+        "properties": {
+          "revokedAt": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "revocationReason": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  ]
+}
