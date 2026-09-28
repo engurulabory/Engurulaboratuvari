@@ -127,6 +127,10 @@ Until all closure checks pass: **HOLD**.
 
 ChatGPT-specific teaching is an adapter under this canonical authority. It creates no second governance core.
 
+Operational entrypoint:
+
+- Canonical Boot / START HERE — `governance/chatgpt/ENGURU_CHATGPT_CANONICAL_BOOT_V1.md`
+
 Teaching model:
 
 `Core Instructions + Few-shot Corpus + Project Contract + Pre-Send Linter`
@@ -139,6 +143,10 @@ Canonical package:
 - Pre-Send Linter Contract — `governance/chatgpt/ENGURU_LANGUAGE_GOVERNANCE_PRE_SEND_LINTER_CONTRACT_V1.md`
 - Deterministic reference linter — `tools/enguru_language_pre_send_linter.py`
 - Regression tests — `tests/test_enguru_language_pre_send_linter.py`
+
+Fresh-session chain:
+
+`CANONICAL BOOT → GOVERNANCE LOAD → PROJECT CONTRACT → CURRENT TRUTH → BOOT RECEIPT → EXECUTION`
 
 The teaching package must preserve:
 
