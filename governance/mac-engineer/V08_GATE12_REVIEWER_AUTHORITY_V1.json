@@ -1,0 +1,39 @@
+{
+  "schema": "enguru.mac-engineer.v08-gate12-reviewer-authority/v1",
+  "authorityVersion": 1,
+  "status": "ACTIVE",
+  "validFrom": "2026-09-28T14:19:13Z",
+  "expiresAt": null,
+  "revokedAt": null,
+  "revocationReason": null,
+  "humanThresholdOwner": "ENGURU_HUMAN_THRESHOLD_OWNER",
+  "reviewer": {
+    "reviewerId": "enguru-human-authority-primary",
+    "keyId": "enguru-gate12-ed25519-2026-01",
+    "algorithm": "ed25519",
+    "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEA5fN5M3pe/QY+bQqL9oQUgivkOJ1Ee5E/TV3wVKZ9scE=\n-----END PUBLIC KEY-----\n",
+    "publicKeyFingerprint": "sha256:0f0cc686d3a27e0c40769065a2d45cd7de3bec75ba4af9df50ee84ee313bdc63"
+  },
+  "scope": {
+    "objective": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
+    "gate": 12,
+    "version": "v0.8",
+    "exit": "PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED",
+    "doneCheckHumanReview": true,
+    "gate12HumanThreshold": true
+  },
+  "doneCheckAuthority": {
+    "allowedDecisions": [
+      "accepted",
+      "revise",
+      "rejected"
+    ]
+  },
+  "humanThresholdAuthority": {
+    "allowedDecisions": [
+      "ACCEPT",
+      "HOLD"
+    ]
+  },
+  "payloadDigest": "sha256:c5f6f0f794701fc33ce45763dbb342d7318a6784fede20142dfe75eb49c2d9ef"
+}

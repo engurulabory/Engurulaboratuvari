@@ -268,7 +268,41 @@ class Gate12ReviewerAuthorityTests(unittest.TestCase):
         self.assertFalse(schema["additionalProperties"])
         self.assertFalse(schema["properties"]["reviewer"]["additionalProperties"])
         self.assertNotIn("privateKey", json.dumps(schema))
-        self.assertFalse(authority.EXPECTED_AUTHORITY_ARTIFACT.exists())
+        self.assertTrue(authority.EXPECTED_AUTHORITY_ARTIFACT.is_file())
+
+        persisted_text = authority.EXPECTED_AUTHORITY_ARTIFACT.read_text(
+            encoding="utf-8"
+        )
+        persisted, parse_errors = authority.strict_json_loads(persisted_text)
+        self.assertEqual(parse_errors, [])
+        self.assertIsInstance(persisted, dict)
+        self.assertEqual(authority.validate_authority_schema(persisted), [])
+        self.assertNotIn("privateKey", persisted_text)
+        self.assertNotIn("PRIVATE KEY", persisted_text)
+
+        result = authority.verify_authority(
+            persisted,
+            observed_at="2026-09-28T15:00:00Z",
+            production_use=True,
+            artifact_path=authority.EXPECTED_AUTHORITY_ARTIFACT,
+        )
+        self.assertEqual(result["state"], "PASS", result)
+        self.assertEqual(
+            result["authorityDigest"],
+            "sha256:c5f6f0f794701fc33ce45763dbb342d7318a6784fede20142dfe75eb49c2d9ef",
+        )
+        self.assertEqual(
+            persisted["reviewer"]["reviewerId"],
+            "enguru-human-authority-primary",
+        )
+        self.assertEqual(
+            persisted["reviewer"]["keyId"],
+            "enguru-gate12-ed25519-2026-01",
+        )
+        self.assertEqual(
+            persisted["reviewer"]["publicKeyFingerprint"],
+            "sha256:0f0cc686d3a27e0c40769065a2d45cd7de3bec75ba4af9df50ee84ee313bdc63",
+        )
 
     def test_private_key_field_is_rejected(self):
         auth = self.make_authority()
@@ -752,12 +786,15 @@ class Gate12ReviewerAuthorityTests(unittest.TestCase):
 
     def test_production_use_requires_canonical_artifact_to_exist(self):
         auth = self.make_authority()
-        result = authority.verify_authority(
-            auth,
-            observed_at=OBSERVED_AT,
-            production_use=True,
-            artifact_path=authority.EXPECTED_AUTHORITY_ARTIFACT,
-        )
+        with tempfile.TemporaryDirectory() as directory:
+            missing = Path(directory) / "missing-reviewer-authority.json"
+            with mock.patch.object(authority, "EXPECTED_AUTHORITY_ARTIFACT", missing):
+                result = authority.verify_authority(
+                    auth,
+                    observed_at=OBSERVED_AT,
+                    production_use=True,
+                    artifact_path=missing,
+                )
         self.assertIn("AUTHORITY_ARTIFACT_MISSING", result["errors"])
 
     def test_donecheck_verified_finish_unpublished_staging_protocol(self):
