@@ -122,3 +122,32 @@ Closure requires:
 - Evidence records the final SHA and verdict.
 
 Until all closure checks pass: **HOLD**.
+
+## 9. ChatGPT Teaching Package v1.0
+
+ChatGPT-specific teaching is an adapter under this canonical authority. It creates no second governance core.
+
+Teaching model:
+
+`Core Instructions + Few-shot Corpus + Project Contract + Pre-Send Linter`
+
+Canonical package:
+
+- Core Instructions — `governance/chatgpt/ENGURU_LANGUAGE_GOVERNANCE_CHATGPT_MASTER_INSTRUCTION_V1.md`
+- Few-shot Corpus — `governance/chatgpt/ENGURU_LANGUAGE_GOVERNANCE_TRANSFORMATION_CORPUS_V1.md`
+- Project Contract — bounded adapter defined by the Master Instruction and supplied per governed project
+- Pre-Send Linter Contract — `governance/chatgpt/ENGURU_LANGUAGE_GOVERNANCE_PRE_SEND_LINTER_CONTRACT_V1.md`
+- Deterministic reference linter — `tools/enguru_language_pre_send_linter.py`
+- Regression tests — `tests/test_enguru_language_pre_send_linter.py`
+
+The teaching package must preserve:
+
+- `mevcut hakikat + gerekli fark`;
+- current authoritative truth over stale narrative context;
+- positive valid-state instruction semantics;
+- Claim / Evidence separation;
+- PASS / HOLD / BLOCKED evidence discipline;
+- Human Threshold™;
+- DoneCheck™ and Verified Finish authority.
+
+Package closure remains **HOLD** until regression, exact-head CI and canonical merge are verified.
