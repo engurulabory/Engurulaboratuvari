@@ -209,3 +209,13 @@ multimodal_normalization:
     speech: audio
   normalize_before_routing: true
   unsupported_provider_capability: HOLD_OR_REROUTE
+
+chatgpt_teaching_package:
+  role: "adapter under canonical ENGÜRÜ Language Governance™ authority"
+  new_core: false
+  master_instruction: "governance/chatgpt/ENGURU_LANGUAGE_GOVERNANCE_CHATGPT_MASTER_INSTRUCTION_V1.md"
+  transformation_corpus: "governance/chatgpt/ENGURU_LANGUAGE_GOVERNANCE_TRANSFORMATION_CORPUS_V1.md"
+  pre_send_linter_contract: "governance/chatgpt/ENGURU_LANGUAGE_GOVERNANCE_PRE_SEND_LINTER_CONTRACT_V1.md"
+  pre_send_linter_reference: "tools/enguru_language_pre_send_linter.py"
+  teaching_model: "Core Instructions + Few-shot Corpus + Project Contract + Pre-Send Linter"
+  semantic_authority: "governance/ENGURU_LANGUAGE_GOVERNANCE_V1.md"
