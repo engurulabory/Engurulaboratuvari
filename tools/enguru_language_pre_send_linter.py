@@ -21,6 +21,7 @@ EVIDENCE_CONTENT_RE = re.compile(r"(?mi)^\s*EVIDENCE\s*[:—=-]\s*\S.+$")
 PLACEHOLDER_RE = re.compile(r"\b(TODO_EVIDENCE|TBD_EVIDENCE|PLACEHOLDER_EVIDENCE|FAKE_EVIDENCE)\b", re.I)
 
 STATE_PREFIX_RE = re.compile(r"^\s*(STATE|EVIDENCE|OBSERVATION|FACT)\s*[:—=-]", re.I)
+GOVERNED_FIELD_RE = re.compile(r"(?mi)^\s*(STATE|CLAIM|EVIDENCE|NEXT(?:_| )ACTION)\s*[:—=-]")
 
 
 def finding(rule: str, severity: str, line: int, message: str, next_action: str) -> dict:
@@ -69,10 +70,8 @@ def lint(text: str, strict: bool = False) -> dict:
                 )
             )
 
-    has_governed_field = bool(
-        re.search(r"(?mi)^\s*(STATE|CLAIM|EVIDENCE|NEXT(?:_| )ACTION)\s*[:—=-]", text)
-    )
-    if has_governed_field:
+    governed_fields = [m.group(1).upper().replace(" ", "_") for m in GOVERNED_FIELD_RE.finditer(text)]
+    if len(set(governed_fields)) >= 2:
         required = {
             "STATE": bool(re.search(r"(?mi)^\s*STATE\s*[:—=-]", text)),
             "CLAIM": bool(re.search(r"(?mi)^\s*CLAIM\s*[:—=-]", text)),
