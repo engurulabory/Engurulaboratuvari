@@ -16,7 +16,8 @@ PROHIBITION_PATTERNS = [
 ]
 VERDICT_RE = re.compile(r"\b(?:STATE|VERDICT)\s*[:=]\s*(PASS|HOLD|BLOCKED)\b", re.I)
 CLOSURE_RE = re.compile(r"\b(PASS|DONE|FINISHED|VERIFIED(?:\s+FINAL)?|PRODUCTION[-_ ]?READY|100/100)\b", re.I)
-EVIDENCE_RE = re.compile(r"\b(EVIDENCE|test|tests|CI|SHA|receipt|proof|verified by|doğrula|kanıt|gözlem)\b", re.I)
+OBSERVABLE_EVIDENCE_RE = re.compile(r"\b(test(?:s)?|CI|SHA|receipt|proof|verified by|doğruland[ıi]|kanıt|gözlem|exit code|status check)\b", re.I)
+EVIDENCE_CONTENT_RE = re.compile(r"(?mi)^\s*EVIDENCE\s*[:—=-]\s*\S.+$")
 PLACEHOLDER_RE = re.compile(r"\b(TODO_EVIDENCE|TBD_EVIDENCE|PLACEHOLDER_EVIDENCE|FAKE_EVIDENCE)\b", re.I)
 
 STATE_PREFIX_RE = re.compile(r"^\s*(STATE|EVIDENCE|OBSERVATION|FACT)\s*[:—=-]", re.I)
@@ -30,6 +31,10 @@ def finding(rule: str, severity: str, line: int, message: str, next_action: str)
         "message": message,
         "next_action": next_action,
     }
+
+
+def has_evidence_signal(text: str) -> bool:
+    return bool(EVIDENCE_CONTENT_RE.search(text) or OBSERVABLE_EVIDENCE_RE.search(text))
 
 
 def lint(text: str, strict: bool = False) -> dict:
@@ -64,8 +69,9 @@ def lint(text: str, strict: bool = False) -> dict:
                 )
             )
 
-    upper = text.upper()
-    has_governed_field = any(token in upper for token in ("STATE:", "CLAIM:", "EVIDENCE:", "NEXT ACTION:", "NEXT_ACTION:"))
+    has_governed_field = bool(
+        re.search(r"(?mi)^\s*(STATE|CLAIM|EVIDENCE|NEXT(?:_| )ACTION)\s*[:—=-]", text)
+    )
     if has_governed_field:
         required = {
             "STATE": bool(re.search(r"(?mi)^\s*STATE\s*[:—=-]", text)),
@@ -88,7 +94,7 @@ def lint(text: str, strict: bool = False) -> dict:
         start = max(0, match.start() - 350)
         end = min(len(text), match.end() + 350)
         window = text[start:end]
-        if not EVIDENCE_RE.search(window):
+        if not has_evidence_signal(window):
             line = text.count("\n", 0, match.start()) + 1
             findings.append(
                 finding(
@@ -114,7 +120,7 @@ def lint(text: str, strict: bool = False) -> dict:
                 )
             )
 
-    if strict and verdict_values and "PASS" in verdict_values and not EVIDENCE_RE.search(text):
+    if strict and "PASS" in verdict_values and not has_evidence_signal(text):
         findings.append(
             finding(
                 "L04",
