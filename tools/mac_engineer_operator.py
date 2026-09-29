@@ -2011,14 +2011,11 @@ def command_continue() -> int:
             ]
         else:
             try:
-                try:
-                    from mac_engineer_v08_gate12_canonical_lock import (
-                        publish_final_acceptance_receipt,
-                    )
-                except ModuleNotFoundError:
-                    from tools.mac_engineer_v08_gate12_canonical_lock import (
-                        publish_final_acceptance_receipt,
-                    )
+                if str(ROOT) not in sys.path:
+                    sys.path.insert(0, str(ROOT))
+                from tools.mac_engineer_v08_gate12_canonical_lock import (
+                    publish_final_acceptance_receipt,
+                )
                 lock_readback = publish_final_acceptance_receipt()
             except Exception as exc:
                 lock_readback = {
@@ -2047,10 +2044,9 @@ def command_continue() -> int:
         .get("gate12", {}).get("state") == "FIELD_ACCEPTED_PENDING_CANONICAL_LOCK"
     ):
         try:
-            try:
-                from mac_engineer_v08_gate12_finalizer import publish_lock_evidence
-            except ModuleNotFoundError:
-                from tools.mac_engineer_v08_gate12_finalizer import publish_lock_evidence
+            if str(ROOT) not in sys.path:
+                sys.path.insert(0, str(ROOT))
+            from tools.mac_engineer_v08_gate12_finalizer import publish_lock_evidence
             lock_evidence = publish_lock_evidence()
         except Exception as exc:
             lock_evidence = {
