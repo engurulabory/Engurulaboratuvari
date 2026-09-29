@@ -1220,6 +1220,32 @@ class Gate12Batch2RegistryTests(unittest.TestCase):
             self.assertFalse(action["finalAcceptanceReceipt"])
             self.assertEqual(action["handler"], "V08_GATE12_FINAL_ACCEPTANCE_READBACK")
 
+    def test_final_lock_readback_requires_final_current_truth(self):
+        gate = {
+            "state": "VERIFIED_LOCKED",
+            "canonicalLockCreated": True,
+            "finalLockReadback": "PENDING_POST_COMMIT",
+        }
+        historical_truth = {
+            "current_version": "v0.8",
+            "current_state": "ACTIVE",
+            "next_action": "V08_SELF_ENGINEERING_BASELINE_AUDIT",
+            "local_continuity_next_action": "V08_SELF_ENGINEERING_BASELINE_AUDIT",
+        }
+        final_truth = {
+            "current_version": "v0.8",
+            "current_state": "VERIFIED_LOCKED",
+            "next_action": "AWAIT_NEXT_OBJECTIVE",
+            "local_continuity_next_action": "AWAIT_NEXT_OBJECTIVE",
+        }
+
+        self.assertFalse(
+            operator.gate12_final_readback_due(historical_truth, gate)
+        )
+        self.assertTrue(
+            operator.gate12_final_readback_due(final_truth, gate)
+        )
+
     def test_operator_contains_final_lock_reconciliation_and_readback_routes(self):
         source = (ROOT / "tools" / "mac_engineer_operator.py").read_text(encoding="utf-8")
         self.assertIn("prepare_final_lock_reconciliation", source)
