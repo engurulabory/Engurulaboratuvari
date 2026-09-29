@@ -26,20 +26,24 @@
     },
     {
       "acceptance": {
-        "discovered": false,
-        "doneCheckPass": false,
-        "evidenceBound": false,
-        "expectedResultObserved": false,
-        "failurePathTested": false,
-        "fieldVerified": false,
-        "freshReverify": false,
-        "invocable": false,
-        "realTaskExecuted": false
+        "discovered": true,
+        "doneCheckPass": true,
+        "evidenceBound": true,
+        "expectedResultObserved": true,
+        "failurePathTested": true,
+        "fieldVerified": true,
+        "freshReverify": true,
+        "invocable": true,
+        "realTaskExecuted": true,
+        "recoveryOrRollbackPass": true
       },
       "authority": "GREEN",
       "capabilityId": "CANONICAL_BOOT",
-      "evidence": null,
-      "fieldState": "PENDING",
+      "evidence": {
+        "path": "/Users/abdal/Enguru/Evidence/MacEngineer/package08-field-campaign/20260929T123050Z/capability-02/evidence.json",
+        "sha256": "6fd60aa1459a7a985ca749e2d4275215496ebc2cf45768766e4c501eb37c2660"
+      },
+      "fieldState": "FIELD_VERIFIED",
       "index": 2,
       "readinessClass": "B",
       "requiresHumanThreshold": false,
@@ -404,7 +408,7 @@
     }
   ],
   "capabilityCount": 19,
-  "fieldVerifiedCount": 1,
+  "fieldVerifiedCount": 2,
   "package": "PACKAGE_08_19_OF_19_REAL_OSI_FIELD_VERIFICATION",
   "schema": "enguru.mac-engineer.capability-field-verification-ledger/v1",
   "state": "ACTIVE",

@@ -1009,9 +1009,15 @@ def main():
         + sha(path)
     )
 
+    payload = load(path)
+
     print("STATE=PASS")
     print(
-        "CLAIM=CAPABILITY01_CURRENT_TECHNICAL_TRUTH_READ_FIELD_VERIFIED"
+        "CLAIM="
+        + str(
+            payload.get("claim")
+            or "CAPABILITY_FIELD_VERIFICATION_PASS"
+        )
     )
 
     return 0
