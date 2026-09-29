@@ -26,11 +26,11 @@ existing_before = copy.deepcopy(existing_plan)
 existing = orch.dry_run(existing_plan)
 
 check(
-    "SOURCE_CHANGE_BUILD_TEST_BOUND_REMAINING_PLAN_HOLD",
-    existing["STATE"] == "HOLD"
+    "SOURCE_CHANGE_BUILD_TEST_DONECHECK_PLAN_READY",
+    existing["STATE"] == "DRY_RUN_READY"
     and existing["STEP_COUNT"] == 4
-    and existing["EXECUTABLE_STEP_COUNT"] == 3
-    and existing["HOLD_STEP_COUNT"] == 1
+    and existing["EXECUTABLE_STEP_COUNT"] == 4
+    and existing["HOLD_STEP_COUNT"] == 0
     and existing["STEPS"][0]["CAPABILITY_ID"]
         == "SOURCE_PRODUCT_CHANGE"
     and existing["STEPS"][0]["BINDING_TYPE"]
@@ -49,8 +49,14 @@ check(
         == "REGISTERED_ACTION"
     and existing["STEPS"][2]["DRY_RUN_EXECUTABLE"]
         is True
+    and existing["STEPS"][3]["CAPABILITY_ID"]
+        == "EVIDENCE_DONECHECK"
+    and existing["STEPS"][3]["BINDING_TYPE"]
+        == "REGISTERED_ACTION"
     and existing["STEPS"][3]["DRY_RUN_EXECUTABLE"]
-        is False,
+        is True
+    and existing["STEPS"][3]["HOLD_REASON"]
+        is None,
 )
 
 check(
@@ -2245,6 +2251,194 @@ check(
     == "REGISTERED_ACTION_RESULT_CONTRACT_HOLD"
 )
 
+
+cap15_plan = {
+    "STATE":
+        "PLAN_READY",
+
+    "PLAN_ID":
+        "package05-cap15-test",
+
+    "TRUTH_FINGERPRINT":
+        "package05-cap15-truth",
+
+    "EXECUTION_AUTHORIZED":
+        False,
+
+    "CAPABILITY_PLAN": [
+        "EVIDENCE_DONECHECK",
+    ],
+}
+
+_real_cap15 = (
+    operator
+    .run_package08_cap15_evidence_donecheck_field_proof
+)
+
+operator.run_package08_cap15_evidence_donecheck_field_proof = lambda: {
+    "state": "PASS",
+    "code": 0,
+
+    "fields": {
+        "CAP15_EVIDENCE_DONECHECK": "PASS",
+        "FRESH_MATERIAL_EVIDENCE": "PASS",
+        "DONECHECK_STATE": "PASS",
+        "DONECHECK_VERSION": "1.2.0",
+        "DONECHECK_SHA":
+            "8b90a8fc93453dd8a84994195d28d14b15e261cb",
+        "VERIFICATION_RESULT_ID":
+            "verification-cap15-test",
+        "GOVERNED_FINISH": "VERIFIED",
+        "NONPASS_EVIDENCE_REJECTED": "PASS",
+        "MISSING_EVIDENCE_HOLD": "PASS",
+        "STALE_CACHED_PASS_HOLD": "PASS",
+        "DONECHECK_NONPASS_HOLD": "PASS",
+        "UNSUPPORTED_FINAL_CLAIM_HOLD": "PASS",
+        "HUMAN_THRESHOLD_REQUIRED": "false",
+        "SOURCE_MUTATION": "false",
+        "PRODUCT_MUTATION": "false",
+        "REMOTE_PUSH": "false",
+        "NETWORK_MUTATION": "false",
+        "EXECUTION_AUTHORITY_CREATED": "false",
+        "CRITICAL_FALSE_PASS_COUNT": "0",
+        "CANONICAL_TRUTH_PRESERVED": "PASS",
+        "AUTHORITY": "GREEN",
+        "MUTATION_SCOPE": "EVIDENCE_ONLY",
+        "SOURCE_EVIDENCE_SHA256":
+            "8bfc00df230bd5f42b87d9e418e349ab6a205ff81ff2fe81be7d8991cb137740",
+        "PRIOR_FIELD_EVIDENCE_SHA256":
+            "04b868f33dbff0863874925bdf9bb7553fa8fd998f7daada15bbb7b5525056af",
+    },
+
+    "evidence":
+        "/tmp/cap15-pass.json",
+}
+
+try:
+    cap15_result = (
+        orch.execute_plan_step(
+            cap15_plan,
+            1,
+        )
+    )
+finally:
+    operator.run_package08_cap15_evidence_donecheck_field_proof = (
+        _real_cap15
+    )
+
+check(
+    "PLAN_BOUND_CAP15_EVIDENCE_DONECHECK_PASS",
+
+    cap15_result["STATE"]
+    == "PASS"
+
+    and cap15_result[
+        "CAPABILITY_ID"
+    ]
+    == "EVIDENCE_DONECHECK"
+
+    and cap15_result[
+        "RECOVERY_PROOF_REQUIRED"
+    ]
+    is False
+
+    and cap15_result[
+        "RECOVERY_PROOF_OBSERVED"
+    ]
+    is False
+
+    and cap15_result[
+        "OBSERVED_RESULT"
+    ][
+        "doneCheckPass"
+    ]
+    is True
+
+    and cap15_result[
+        "OBSERVED_RESULT"
+    ][
+        "governedFinishVerified"
+    ]
+    is True
+
+    and cap15_result[
+        "OBSERVED_RESULT"
+    ][
+        "nonPassRejected"
+    ]
+    is True
+
+    and cap15_result[
+        "OBSERVED_RESULT"
+    ][
+        "staleCachedPassHold"
+    ]
+    is True
+)
+
+operator.run_package08_cap15_evidence_donecheck_field_proof = lambda: {
+    "state": "PASS",
+    "code": 0,
+
+    "fields": {
+        "CAP15_EVIDENCE_DONECHECK": "PASS",
+        "FRESH_MATERIAL_EVIDENCE": "PASS",
+        "DONECHECK_STATE": "HOLD",
+        "DONECHECK_VERSION": "1.2.0",
+        "DONECHECK_SHA":
+            "8b90a8fc93453dd8a84994195d28d14b15e261cb",
+        "VERIFICATION_RESULT_ID":
+            "verification-cap15-negative",
+        "GOVERNED_FINISH": "VERIFIED",
+        "NONPASS_EVIDENCE_REJECTED": "PASS",
+        "MISSING_EVIDENCE_HOLD": "PASS",
+        "STALE_CACHED_PASS_HOLD": "PASS",
+        "DONECHECK_NONPASS_HOLD": "PASS",
+        "UNSUPPORTED_FINAL_CLAIM_HOLD": "PASS",
+        "HUMAN_THRESHOLD_REQUIRED": "false",
+        "SOURCE_MUTATION": "false",
+        "PRODUCT_MUTATION": "false",
+        "REMOTE_PUSH": "false",
+        "NETWORK_MUTATION": "false",
+        "EXECUTION_AUTHORITY_CREATED": "false",
+        "CRITICAL_FALSE_PASS_COUNT": "0",
+        "CANONICAL_TRUTH_PRESERVED": "PASS",
+        "AUTHORITY": "GREEN",
+        "MUTATION_SCOPE": "EVIDENCE_ONLY",
+        "SOURCE_EVIDENCE_SHA256":
+            "8bfc00df230bd5f42b87d9e418e349ab6a205ff81ff2fe81be7d8991cb137740",
+        "PRIOR_FIELD_EVIDENCE_SHA256":
+            "04b868f33dbff0863874925bdf9bb7553fa8fd998f7daada15bbb7b5525056af",
+    },
+
+    "evidence":
+        "/tmp/cap15-negative.json",
+}
+
+try:
+    cap15_negative = (
+        orch.execute_plan_step(
+            cap15_plan,
+            1,
+        )
+    )
+finally:
+    operator.run_package08_cap15_evidence_donecheck_field_proof = (
+        _real_cap15
+    )
+
+check(
+    "CAP15_DONECHECK_NONPASS_REQUIRED_HOLD",
+
+    cap15_negative["STATE"]
+    == "HOLD"
+
+    and cap15_negative[
+        "HOLD_REASON"
+    ]
+    == "REGISTERED_ACTION_RESULT_CONTRACT_HOLD"
+)
+
 invalid_step = orch.execute_plan_step(
     truth_plan,
     99,
@@ -2298,8 +2492,8 @@ check(
 )
 
 check(
-    "TEN_PROVEN_REGISTERED_ACTION_BINDINGS",
-    len(registered_bindings) == 10
+    "ELEVEN_PROVEN_REGISTERED_ACTION_BINDINGS",
+    len(registered_bindings) == 11
     and {
         row["CAPABILITY_ID"]
         for row in registered_bindings
@@ -2315,12 +2509,13 @@ check(
         "NEW_PRODUCT_FROM_BRIEF",
         "RELEASE_LIFECYCLE",
         "FINISHED_PRODUCT_DELIVERY_ACCEPTANCE",
+        "EVIDENCE_DONECHECK",
     },
 )
 
 check(
-    "SEVEN_UNBOUND_FAIL_CLOSED",
-    len(hold_bindings) == 7,
+    "SIX_UNBOUND_FAIL_CLOSED",
+    len(hold_bindings) == 6,
 )
 
 

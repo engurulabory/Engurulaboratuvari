@@ -324,6 +324,23 @@
       "releaseMutationAllowed": false,
       "acceptanceReexecutionAllowed": false,
       "canonicalTruthPreserved": true
+    },
+    "PACKAGE08_CAP15_EVIDENCE_DONECHECK_FIELD_PROOF": {
+      "handler": "PACKAGE08_CAP15_EVIDENCE_DONECHECK_FIELD_PROOF",
+      "authority": "GREEN_PINNED_DONECHECK_V1_2_EVIDENCE_AUTHORITY",
+      "command": "governance/mac-engineer/PACKAGE08_CAP15_EVIDENCE_DONECHECK_FIELD_PROOF.command",
+      "networkRequired": false,
+      "remotePush": false,
+      "failClosed": true,
+      "humanThresholdRequired": false,
+      "sourceEvidenceSha256": "8bfc00df230bd5f42b87d9e418e349ab6a205ff81ff2fe81be7d8991cb137740",
+      "priorFieldEvidenceSha256": "04b868f33dbff0863874925bdf9bb7553fa8fd998f7daada15bbb7b5525056af",
+      "doneCheckVersion": "1.2.0",
+      "doneCheckExactSha": "8b90a8fc93453dd8a84994195d28d14b15e261cb",
+      "mutationScope": "EVIDENCE_ONLY",
+      "sourceMutationAllowed": false,
+      "productMutationAllowed": false,
+      "canonicalTruthPreserved": true
     }
   }
 }

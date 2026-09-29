@@ -833,6 +833,59 @@ def execute_proven_registered_action(
                 False,
         },
 
+        "EVIDENCE_DONECHECK": {
+            "ACTION":
+                "PACKAGE08_CAP15_EVIDENCE_DONECHECK_FIELD_PROOF",
+
+            "REGISTERED_HANDLER":
+                "PACKAGE08_CAP15_EVIDENCE_DONECHECK_FIELD_PROOF",
+
+            "OPERATOR_CALLABLE":
+                "run_package08_cap15_evidence_donecheck_field_proof",
+
+            "AUTHORITY":
+                "GREEN_PINNED_DONECHECK_V1_2_EVIDENCE_AUTHORITY",
+
+            "NETWORK_ALLOWED":
+                False,
+
+            "REMOTE_PUSH_ALLOWED":
+                False,
+
+            "RECOVERY_PROOF_REQUIRED":
+                False,
+
+            "HUMAN_THRESHOLD_REQUIRED":
+                False,
+
+            "SOURCE_EVIDENCE_SHA256":
+                "8bfc00df230bd5f42b87d9e418e349ab6a205ff81ff2fe81be7d8991cb137740",
+
+            "PRIOR_FIELD_EVIDENCE_SHA256":
+                "04b868f33dbff0863874925bdf9bb7553fa8fd998f7daada15bbb7b5525056af",
+
+            "DONECHECK_VERSION":
+                "1.2.0",
+
+            "DONECHECK_EXACT_SHA":
+                "8b90a8fc93453dd8a84994195d28d14b15e261cb",
+
+            "MUTATION_SCOPE":
+                "EVIDENCE_ONLY",
+
+            "SOURCE_MUTATION_ALLOWED":
+                False,
+
+            "PRODUCT_MUTATION_ALLOWED":
+                False,
+
+            "CANONICAL_TRUTH_PRESERVED":
+                True,
+
+            "EXECUTION_AUTHORITY_CREATED":
+                False,
+        },
+
     }
 
     expected = (
@@ -2518,6 +2571,211 @@ def execute_proven_registered_action(
                 False,
 
             "releaseMutationAllowed":
+                False,
+
+            "canonicalTruthPreserved":
+                True,
+        }
+
+    elif capability_id == "EVIDENCE_DONECHECK":
+        result = (
+            operator
+            .run_package08_cap15_evidence_donecheck_field_proof()
+        )
+
+        fields = (
+            result.get("fields")
+            if isinstance(
+                result.get("fields"),
+                dict,
+            )
+            else {}
+        )
+
+        observed = {
+            "wrapperStatePass":
+                result.get("state")
+                == "PASS",
+
+            "wrapperCodeZero":
+                result.get("code")
+                == 0,
+
+            "capabilityPass":
+                fields.get(
+                    "CAP15_EVIDENCE_DONECHECK"
+                )
+                == "PASS",
+
+            "freshMaterialEvidence":
+                fields.get(
+                    "FRESH_MATERIAL_EVIDENCE"
+                )
+                == "PASS",
+
+            "doneCheckPass":
+                fields.get(
+                    "DONECHECK_STATE"
+                )
+                == "PASS",
+
+            "doneCheckVersion":
+                fields.get(
+                    "DONECHECK_VERSION"
+                )
+                == "1.2.0",
+
+            "doneCheckSha":
+                fields.get(
+                    "DONECHECK_SHA"
+                )
+                == "8b90a8fc93453dd8a84994195d28d14b15e261cb",
+
+            "verificationResultPresent":
+                bool(
+                    fields.get(
+                        "VERIFICATION_RESULT_ID"
+                    )
+                ),
+
+            "governedFinishVerified":
+                fields.get(
+                    "GOVERNED_FINISH"
+                )
+                == "VERIFIED",
+
+            "nonPassRejected":
+                fields.get(
+                    "NONPASS_EVIDENCE_REJECTED"
+                )
+                == "PASS",
+
+            "missingEvidenceHold":
+                fields.get(
+                    "MISSING_EVIDENCE_HOLD"
+                )
+                == "PASS",
+
+            "staleCachedPassHold":
+                fields.get(
+                    "STALE_CACHED_PASS_HOLD"
+                )
+                == "PASS",
+
+            "doneCheckNonPassHold":
+                fields.get(
+                    "DONECHECK_NONPASS_HOLD"
+                )
+                == "PASS",
+
+            "unsupportedClaimHold":
+                fields.get(
+                    "UNSUPPORTED_FINAL_CLAIM_HOLD"
+                )
+                == "PASS",
+
+            "humanThresholdFalse":
+                fields.get(
+                    "HUMAN_THRESHOLD_REQUIRED"
+                )
+                == "false",
+
+            "sourceMutationFalse":
+                fields.get(
+                    "SOURCE_MUTATION"
+                )
+                == "false",
+
+            "productMutationFalse":
+                fields.get(
+                    "PRODUCT_MUTATION"
+                )
+                == "false",
+
+            "remotePushFalse":
+                fields.get(
+                    "REMOTE_PUSH"
+                )
+                == "false",
+
+            "networkMutationFalse":
+                fields.get(
+                    "NETWORK_MUTATION"
+                )
+                == "false",
+
+            "executionAuthorityCreatedFalse":
+                fields.get(
+                    "EXECUTION_AUTHORITY_CREATED"
+                )
+                == "false",
+
+            "falsePassZero":
+                fields.get(
+                    "CRITICAL_FALSE_PASS_COUNT"
+                )
+                == "0",
+
+            "canonicalTruth":
+                fields.get(
+                    "CANONICAL_TRUTH_PRESERVED"
+                )
+                == "PASS",
+
+            "authorityGreen":
+                fields.get(
+                    "AUTHORITY"
+                )
+                == "GREEN",
+
+            "evidenceOnly":
+                fields.get(
+                    "MUTATION_SCOPE"
+                )
+                == "EVIDENCE_ONLY",
+
+            "sourceDigest":
+                fields.get(
+                    "SOURCE_EVIDENCE_SHA256"
+                )
+                == "8bfc00df230bd5f42b87d9e418e349ab6a205ff81ff2fe81be7d8991cb137740",
+
+            "priorFieldDigest":
+                fields.get(
+                    "PRIOR_FIELD_EVIDENCE_SHA256"
+                )
+                == "04b868f33dbff0863874925bdf9bb7553fa8fd998f7daada15bbb7b5525056af",
+
+            "runtimeEvidencePresent":
+                bool(
+                    result.get(
+                        "evidence"
+                    )
+                ),
+        }
+
+        recovery_observed = False
+
+        mutation_scope = {
+            "filesystemMutationExpected":
+                False,
+
+            "scope":
+                "EVIDENCE_ONLY",
+
+            "humanThresholdRequired":
+                False,
+
+            "recoveryProofRequired":
+                False,
+
+            "sourceMutationAllowed":
+                False,
+
+            "productMutationAllowed":
+                False,
+
+            "remoteMutationAllowed":
                 False,
 
             "canonicalTruthPreserved":
