@@ -2807,6 +2807,7 @@ def command_continue() -> int:
                 str((locals().get("human_review") or {}).get("evidence") or ""),
                 str((locals().get("v08_baseline") or {}).get("evidence") or ""),
                 str((locals().get("v08_existing_change") or {}).get("evidence") or ""),
+                str((locals().get("finalization") or {}).get("fieldReceipt") or ""),
             ]
             if item
         ],
@@ -2829,6 +2830,8 @@ def command_continue() -> int:
             "human_review": locals().get("human_review"),
             "v08_baseline": locals().get("v08_baseline"),
             "v08_existing_change": locals().get("v08_existing_change"),
+            "gate12_prelock": locals().get("prelock"),
+            "gate12_finalization": locals().get("finalization"),
             "offline_manifest": offline_manifest(),
         },
     )

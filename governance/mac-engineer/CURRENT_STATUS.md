@@ -1,5 +1,29 @@
 # ENGÜRÜ Mac Engineer™ — Current Status
 
+## Gate 12 Batch 3 safety review — engineering HOLD
+
+**STATE:** The signed PRE-005 candidate is bound to control HEAD
+`c684b858f10799773536d65ad94b7a767134d4b7`. Batch 3 code was
+subsequently pushed at `cbe9e4dffa71dc99d7641f08a20f0fa9dfdfe9cf`.
+Production prelock requires exact current control HEAD parity, so the
+old handoff cannot authorize execution on the newer HEAD.
+
+**CLAIM:** The first Batch 3 finalizer could publish a final receipt and
+lock before repository reconciliation. Its prior 665-test regression
+did not include a finalizer-specific test.
+
+**EVIDENCE:** The `finalize` publication order in
+`tools/mac_engineer_v08_gate12_finalizer.py`; PRE-005 live-truth HEAD
+binding in `tools/mac_engineer_v08_gate12_pre005_executor.py`.
+This bounded repair prepares a retry-safe field receipt and returns
+`GATE12_CANONICAL_RECONCILIATION_REQUIRED`. It does not claim a
+canonical lock or a final Gate 12 PASS.
+
+**NEXT ACTION:** Verify this repair on the real Mac; commit and push
+the tested control candidate; bind a fresh PRE-005 candidate and
+signed human decision to that exact HEAD; then publish the field
+receipt and reconcile repository truth before canonical lock.
+
 **Updated:** 2026-09-28
 **Program target:** ENGÜRÜ Mac Engineering™ v1.3 — Usable Verified Product
 **Current version:** v0.8 — PRODUCT ENGINEERING OPERATOR / ACTIVE
