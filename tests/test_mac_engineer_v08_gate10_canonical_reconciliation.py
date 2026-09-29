@@ -86,9 +86,29 @@ class Gate10CanonicalReconciliationTests(unittest.TestCase):
                 v08["gate12"]["executionStarted"]
             )
             self.assertFalse(v08["gate12"]["canonicalLockCreated"])
+        elif closure["activeGate"] is None:
+            self.assertEqual(
+                self.session["currentObjective"],
+                ROADMAP_G12,
+            )
+            self.assertEqual(
+                closure["passedGates"],
+                list(range(1, 13)),
+            )
+            self.assertEqual(
+                closure["remainingGates"],
+                [],
+            )
+            self.assertEqual(
+                v08["gate12"]["state"],
+                "VERIFIED_LOCKED",
+            )
+            self.assertTrue(
+                v08["gate12"]["canonicalLockCreated"]
+            )
         else:
             self.fail(
-                "ACTIVE_GATE_MUST_BE_11_OR_12"
+                "ACTIVE_GATE_MUST_BE_11_12_OR_FINAL"
             )
 
     def test_roadmap_reconciles_gate10_through_gate12(self):
@@ -129,9 +149,22 @@ class Gate10CanonicalReconciliationTests(unittest.TestCase):
                 current["remaining"],
                 [ROADMAP_G12],
             )
+        elif current["activeGate"] is None:
+            self.assertEqual(
+                current["activeObjective"],
+                ROADMAP_G12,
+            )
+            self.assertEqual(
+                current["remaining"],
+                [],
+            )
+            self.assertEqual(
+                current["state"],
+                "V08_PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED",
+            )
         else:
             self.fail(
-                "ROADMAP_ACTIVE_GATE_MUST_BE_11_OR_12"
+                "ROADMAP_ACTIVE_GATE_MUST_BE_11_12_OR_FINAL"
             )
 
 
