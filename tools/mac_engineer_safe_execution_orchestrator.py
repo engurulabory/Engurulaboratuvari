@@ -654,6 +654,41 @@ def execute_proven_registered_action(
                 False,
         },
 
+        "ADVANCED_CODE_ENGINEERING": {
+            "ACTION":
+                "PACKAGE08_CAP11_ADVANCED_CODE_ENGINEERING_FIELD_PROOF",
+
+            "REGISTERED_HANDLER":
+                "PACKAGE08_CAP11_ADVANCED_CODE_ENGINEERING_FIELD_PROOF",
+
+            "OPERATOR_CALLABLE":
+                "run_package08_cap11_advanced_code_engineering_field_proof",
+
+            "AUTHORITY":
+                "AMBER_LOCAL_EXPLICIT_ENGINEERING_AUTHORITY",
+
+            "NETWORK_ALLOWED":
+                False,
+
+            "REMOTE_PUSH_ALLOWED":
+                False,
+
+            "RECOVERY_PROOF_REQUIRED":
+                True,
+
+            "MUTATION_SCOPE":
+                "EXPLICIT_ENGINEERING_SCOPE",
+
+            "MINIMUM_CHANGED_FILE_COUNT":
+                2,
+
+            "CANONICAL_TRUTH_PRESERVED":
+                True,
+
+            "EXECUTION_AUTHORITY_CREATED":
+                False,
+        },
+
     }
 
     expected = (
@@ -1579,6 +1614,179 @@ def execute_proven_registered_action(
                 ],
 
             "postHumanFreshReconciliationRequired":
+                True,
+        }
+
+    elif capability_id == "ADVANCED_CODE_ENGINEERING":
+        result = (
+            operator
+            .run_package08_cap11_advanced_code_engineering_field_proof()
+        )
+
+        fields = (
+            result.get("fields")
+            if isinstance(
+                result.get("fields"),
+                dict,
+            )
+            else {}
+        )
+
+        observed = {
+            "wrapperStatePass":
+                result.get("state")
+                == "PASS",
+
+            "wrapperCodeZero":
+                result.get("code")
+                == 0,
+
+            "engineeringPass":
+                fields.get(
+                    "CAP11_ADVANCED_CODE_ENGINEERING"
+                )
+                == "PASS",
+
+            "negativeControl":
+                fields.get(
+                    "INCOMPLETE_MULTI_FILE_CHANGE_FAILURE"
+                )
+                == "PASS",
+
+            "multiFileScope":
+                fields.get(
+                    "MULTI_FILE_SCOPE"
+                )
+                == "PASS",
+
+            "changedFileCount":
+                fields.get(
+                    "CHANGED_FILE_COUNT"
+                )
+                == "2",
+
+            "targetedRegression":
+                fields.get(
+                    "TARGETED_REGRESSION"
+                )
+                == "PASS",
+
+            "fullRegression":
+                fields.get(
+                    "FULL_REGRESSION"
+                )
+                == "PASS",
+
+            "publicBehavior":
+                fields.get(
+                    "PUBLIC_ADD_BEHAVIOR_PRESERVED"
+                )
+                == "PASS",
+
+            "internalAbstraction":
+                fields.get(
+                    "INTERNAL_OPERATION_ABSTRACTION"
+                )
+                == "PASS",
+
+            "idempotent":
+                fields.get(
+                    "ENGINEERING_IDEMPOTENCY"
+                )
+                == "PASS",
+
+            "rollbackParity":
+                fields.get(
+                    "ROLLBACK_BYTE_PARITY"
+                )
+                == "PASS",
+
+            "rollbackClean":
+                fields.get(
+                    "ROLLBACK_WORKTREE_CLEAN"
+                )
+                == "PASS",
+
+            "rollbackRegression":
+                fields.get(
+                    "ROLLBACK_REGRESSION"
+                )
+                == "PASS",
+
+            "sourceFixtureTruth":
+                fields.get(
+                    "SOURCE_FIXTURE_TRUTH_PRESERVED"
+                )
+                == "PASS",
+
+            "falsePassZero":
+                fields.get(
+                    "CRITICAL_FALSE_PASS_COUNT"
+                )
+                == "0",
+
+            "canonicalTruth":
+                fields.get(
+                    "CANONICAL_TRUTH_PRESERVED"
+                )
+                == "PASS",
+
+            "authorityAmber":
+                fields.get(
+                    "AUTHORITY"
+                )
+                == "AMBER",
+
+            "engineeringScope":
+                fields.get(
+                    "MUTATION_SCOPE"
+                )
+                == "EXPLICIT_ENGINEERING_SCOPE",
+
+            "remotePushFalse":
+                fields.get(
+                    "REMOTE_PUSH"
+                )
+                == "false",
+
+            "executionAuthorityCreatedFalse":
+                fields.get(
+                    "EXECUTION_AUTHORITY_CREATED"
+                )
+                == "false",
+
+            "runtimeEvidencePresent":
+                bool(
+                    result.get("evidence")
+                ),
+        }
+
+        recovery_observed = bool(
+            observed[
+                "rollbackParity"
+            ]
+            and observed[
+                "rollbackClean"
+            ]
+            and observed[
+                "rollbackRegression"
+            ]
+        )
+
+        mutation_scope = {
+            "filesystemMutationExpected":
+                True,
+
+            "scope":
+                "EXPLICIT_ENGINEERING_SCOPE",
+
+            "minimumChangedFileCount":
+                2,
+
+            "canonicalTruthPreserved":
+                True,
+
+            "rollbackRequired":
                 True,
         }
 

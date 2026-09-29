@@ -264,6 +264,18 @@
       "mutationScope": "EXPLICIT_RECONCILIATION_SCOPE",
       "rollbackRequired": true,
       "canonicalTruthPreserved": true
+    },
+    "PACKAGE08_CAP11_ADVANCED_CODE_ENGINEERING_FIELD_PROOF": {
+      "handler": "PACKAGE08_CAP11_ADVANCED_CODE_ENGINEERING_FIELD_PROOF",
+      "authority": "AMBER_LOCAL_EXPLICIT_ENGINEERING_AUTHORITY",
+      "command": "governance/mac-engineer/PACKAGE08_CAP11_ADVANCED_CODE_ENGINEERING_FIELD_PROOF.command",
+      "networkRequired": false,
+      "remotePush": false,
+      "failClosed": true,
+      "mutationScope": "EXPLICIT_ENGINEERING_SCOPE",
+      "rollbackRequired": true,
+      "minimumChangedFileCount": 2,
+      "canonicalTruthPreserved": true
     }
   }
 }

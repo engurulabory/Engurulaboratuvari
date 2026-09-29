@@ -2271,6 +2271,74 @@ def run_package08_cap10_migration_canonical_reconciliation_field_proof() -> dict
     }
 
 
+
+def run_package08_cap11_advanced_code_engineering_field_proof() -> dict[str, Any]:
+    command = (
+        ROOT
+        / "governance"
+        / "mac-engineer"
+        / "PACKAGE08_CAP11_ADVANCED_CODE_ENGINEERING_FIELD_PROOF.command"
+    )
+
+    result = run(
+        ["zsh", str(command)],
+        cwd=ROOT,
+        timeout=3600,
+        env={
+            **os.environ,
+            "PYTHONDONTWRITEBYTECODE": "1",
+        },
+    )
+
+    fields: dict[str, str] = {}
+
+    for line in result.get(
+        "stdout",
+        "",
+    ).splitlines():
+        if "=" not in line:
+            continue
+
+        key, value = line.split(
+            "=",
+            1,
+        )
+
+        fields[
+            key.strip()
+        ] = value.strip()
+
+    return {
+        "state":
+            (
+                "PASS"
+                if result["code"] == 0
+                else "HOLD"
+            ),
+
+        "code":
+            result["code"],
+
+        "fields":
+            fields,
+
+        "evidence":
+            fields.get("EVIDENCE"),
+
+        "stdout_tail":
+            result.get(
+                "stdout",
+                "",
+            )[-16000:],
+
+        "stderr_tail":
+            result.get(
+                "stderr",
+                "",
+            )[-16000:],
+    }
+
+
 def resolve_operator_continue_dispatch(
     action: str,
     registry: dict[str, Any] | None = None,

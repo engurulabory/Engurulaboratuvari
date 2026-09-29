@@ -1380,6 +1380,256 @@ check(
     == "REGISTERED_ACTION_RESULT_CONTRACT_HOLD"
 )
 
+
+cap11_plan = {
+    "STATE":
+        "PLAN_READY",
+
+    "PLAN_ID":
+        "package05-cap11-test",
+
+    "TRUTH_FINGERPRINT":
+        "package05-cap11-truth",
+
+    "EXECUTION_AUTHORIZED":
+        False,
+
+    "CAPABILITY_PLAN": [
+        "ADVANCED_CODE_ENGINEERING",
+    ],
+}
+
+_real_cap11 = (
+    operator
+    .run_package08_cap11_advanced_code_engineering_field_proof
+)
+
+operator.run_package08_cap11_advanced_code_engineering_field_proof = lambda: {
+    "state": "PASS",
+
+    "code": 0,
+
+    "fields": {
+        "CAP11_ADVANCED_CODE_ENGINEERING":
+            "PASS",
+
+        "INCOMPLETE_MULTI_FILE_CHANGE_FAILURE":
+            "PASS",
+
+        "MULTI_FILE_SCOPE":
+            "PASS",
+
+        "CHANGED_FILE_COUNT":
+            "2",
+
+        "TARGETED_REGRESSION":
+            "PASS",
+
+        "FULL_REGRESSION":
+            "PASS",
+
+        "PUBLIC_ADD_BEHAVIOR_PRESERVED":
+            "PASS",
+
+        "INTERNAL_OPERATION_ABSTRACTION":
+            "PASS",
+
+        "ENGINEERING_IDEMPOTENCY":
+            "PASS",
+
+        "ROLLBACK_BYTE_PARITY":
+            "PASS",
+
+        "ROLLBACK_WORKTREE_CLEAN":
+            "PASS",
+
+        "ROLLBACK_REGRESSION":
+            "PASS",
+
+        "SOURCE_FIXTURE_TRUTH_PRESERVED":
+            "PASS",
+
+        "CRITICAL_FALSE_PASS_COUNT":
+            "0",
+
+        "CANONICAL_TRUTH_PRESERVED":
+            "PASS",
+
+        "AUTHORITY":
+            "AMBER",
+
+        "MUTATION_SCOPE":
+            "EXPLICIT_ENGINEERING_SCOPE",
+
+        "REMOTE_PUSH":
+            "false",
+
+        "EXECUTION_AUTHORITY_CREATED":
+            "false",
+    },
+
+    "evidence":
+        "/tmp/cap11-pass.json",
+}
+
+try:
+    cap11_result = (
+        orch.execute_plan_step(
+            cap11_plan,
+            1,
+        )
+    )
+finally:
+    operator.run_package08_cap11_advanced_code_engineering_field_proof = (
+        _real_cap11
+    )
+
+check(
+    "PLAN_BOUND_CAP11_ADVANCED_CODE_ENGINEERING_PASS",
+
+    cap11_result[
+        "STATE"
+    ]
+    == "PASS"
+
+    and cap11_result[
+        "CAPABILITY_ID"
+    ]
+    == "ADVANCED_CODE_ENGINEERING"
+
+    and cap11_result[
+        "RECOVERY_PROOF_REQUIRED"
+    ]
+    is True
+
+    and cap11_result[
+        "RECOVERY_PROOF_OBSERVED"
+    ]
+    is True
+
+    and cap11_result[
+        "OBSERVED_RESULT"
+    ][
+        "negativeControl"
+    ]
+    is True
+
+    and cap11_result[
+        "OBSERVED_RESULT"
+    ][
+        "changedFileCount"
+    ]
+    is True
+
+    and cap11_result[
+        "OBSERVED_RESULT"
+    ][
+        "fullRegression"
+    ]
+    is True
+
+    and cap11_result[
+        "OBSERVED_RESULT"
+    ][
+        "rollbackParity"
+    ]
+    is True
+)
+
+operator.run_package08_cap11_advanced_code_engineering_field_proof = lambda: {
+    "state": "PASS",
+
+    "code": 0,
+
+    "fields": {
+        "CAP11_ADVANCED_CODE_ENGINEERING":
+            "PASS",
+
+        "INCOMPLETE_MULTI_FILE_CHANGE_FAILURE":
+            "PASS",
+
+        "MULTI_FILE_SCOPE":
+            "PASS",
+
+        "CHANGED_FILE_COUNT":
+            "2",
+
+        "TARGETED_REGRESSION":
+            "PASS",
+
+        "FULL_REGRESSION":
+            "PASS",
+
+        "PUBLIC_ADD_BEHAVIOR_PRESERVED":
+            "PASS",
+
+        "INTERNAL_OPERATION_ABSTRACTION":
+            "PASS",
+
+        "ENGINEERING_IDEMPOTENCY":
+            "PASS",
+
+        "ROLLBACK_BYTE_PARITY":
+            "HOLD",
+
+        "ROLLBACK_WORKTREE_CLEAN":
+            "PASS",
+
+        "ROLLBACK_REGRESSION":
+            "PASS",
+
+        "SOURCE_FIXTURE_TRUTH_PRESERVED":
+            "PASS",
+
+        "CRITICAL_FALSE_PASS_COUNT":
+            "0",
+
+        "CANONICAL_TRUTH_PRESERVED":
+            "PASS",
+
+        "AUTHORITY":
+            "AMBER",
+
+        "MUTATION_SCOPE":
+            "EXPLICIT_ENGINEERING_SCOPE",
+
+        "REMOTE_PUSH":
+            "false",
+
+        "EXECUTION_AUTHORITY_CREATED":
+            "false",
+    },
+
+    "evidence":
+        "/tmp/cap11-negative.json",
+}
+
+try:
+    cap11_negative = (
+        orch.execute_plan_step(
+            cap11_plan,
+            1,
+        )
+    )
+finally:
+    operator.run_package08_cap11_advanced_code_engineering_field_proof = (
+        _real_cap11
+    )
+
+check(
+    "CAP11_ROLLBACK_REQUIRED_HOLD",
+
+    cap11_negative[
+        "STATE"
+    ]
+    == "HOLD"
+
+    and cap11_negative[
+        "HOLD_REASON"
+    ]
+    == "REGISTERED_ACTION_RESULT_CONTRACT_HOLD"
+)
+
 invalid_step = orch.execute_plan_step(
     truth_plan,
     99,
@@ -1433,8 +1683,8 @@ check(
 )
 
 check(
-    "SIX_PROVEN_REGISTERED_ACTION_BINDINGS",
-    len(registered_bindings) == 6
+    "SEVEN_PROVEN_REGISTERED_ACTION_BINDINGS",
+    len(registered_bindings) == 7
     and {
         row["CAPABILITY_ID"]
         for row in registered_bindings
@@ -1446,12 +1696,13 @@ check(
         "TEST_REGRESSION",
         "ROOT_CAUSE_REPAIR",
         "MIGRATION_CANONICAL_RECONCILIATION",
+        "ADVANCED_CODE_ENGINEERING",
     },
 )
 
 check(
-    "ELEVEN_UNBOUND_FAIL_CLOSED",
-    len(hold_bindings) == 11,
+    "TEN_UNBOUND_FAIL_CLOSED",
+    len(hold_bindings) == 10,
 )
 
 
