@@ -103,6 +103,30 @@ def _git(*args: str, timeout: int = 120) -> str:
     return result.stdout.strip()
 
 
+def _changed_paths() -> set[str]:
+    commands = (
+        ("diff", "--name-only"),
+        ("diff", "--cached", "--name-only"),
+        ("ls-files", "--others", "--exclude-standard"),
+    )
+    paths: set[str] = set()
+    for args in commands:
+        result = _run("git", *args)
+        if result.returncode != 0:
+            raise FinalLockHold(
+                "GIT_CHANGED_PATHS_FAILED:"
+                + " ".join(args)
+                + ":"
+                + (result.stderr or result.stdout)[-2000:]
+            )
+        paths.update(
+            line
+            for line in result.stdout.splitlines()
+            if line
+        )
+    return paths
+
+
 def _atomic_text(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     fd, raw = tempfile.mkstemp(prefix=f".{path.name}.", suffix=".tmp", dir=str(path.parent))
@@ -476,15 +500,7 @@ def prepare_final_lock_reconciliation() -> dict[str, Any]:
         _atomic_text(WORKING_PATH, _replace_working_path(originals[WORKING_PATH], receipt_path=receipt_path, digest=digest))
         _atomic_text(WORKLIST_PATH, _replace_gate12_worklist(originals[WORKLIST_PATH], receipt_path=receipt_path, digest=digest))
 
-        changed = [
-            line
-            for line in _git("status", "--porcelain").splitlines()
-            if line
-        ]
-        changed_paths = {
-            line[3:] if len(line) >= 4 else line
-            for line in changed
-        }
+        changed_paths = _changed_paths()
         if changed_paths != EXPECTED_MUTATION_PATHS:
             raise FinalLockHold(
                 "FINAL_LOCK_MUTATION_SCOPE_MISMATCH:" + ",".join(sorted(changed_paths))
