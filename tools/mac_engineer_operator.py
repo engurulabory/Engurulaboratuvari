@@ -1916,6 +1916,11 @@ def command_continue() -> int:
     action = str(truth.get("next_action") or "UNRESOLVED")
     local_action = str(truth.get("local_continuity_next_action") or "")
     fallback = truth.get("local_fallback") or {}
+    session_snapshot = load_json(SESSION_STATE, {}) or {}
+    v08_snapshot = session_snapshot.get("currentV08") or {}
+    gate12_snapshot = v08_snapshot.get("gate12") or {}
+    gate12_state = str(gate12_snapshot.get("state") or "")
+
 
     if boot.get("state") != "PASS":
         state = "HOLD"
@@ -1923,26 +1928,107 @@ def command_continue() -> int:
         next_action = "enguru-mac doctor"
         completed = ["CANONICAL_BOOT_HOLD", "GITVAULT_SYNC"]
     elif (
-        local_action == "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
-        and ((load_json(SESSION_STATE, {}) or {}).get("currentV08") or {})
-        .get("gate12", {}).get("state") == "LOCK_EVIDENCE_RECONCILED_PENDING_FINAL_RECEIPT"
+        gate12_state == "VERIFIED_LOCKED"
+        and gate12_snapshot.get("canonicalLockCreated") is True
     ):
         try:
             try:
-                from mac_engineer_v08_gate12_canonical_lock import publish_final_acceptance_receipt
+                from mac_engineer_v08_gate12_final_lock_reconciler import (
+                    verify_final_lock_readback,
+                )
             except ModuleNotFoundError:
-                from tools.mac_engineer_v08_gate12_canonical_lock import publish_final_acceptance_receipt
-            lock_readback = publish_final_acceptance_receipt()
+                from tools.mac_engineer_v08_gate12_final_lock_reconciler import (
+                    verify_final_lock_readback,
+                )
+            gate12_final_lock = verify_final_lock_readback()
         except Exception as exc:
-            lock_readback = {
-                "state": "HOLD", "reason": f"GATE12_LOCK_READBACK:{type(exc).__name__}:{exc}"
+            gate12_final_lock = {
+                "state": "HOLD",
+                "reason": f"GATE12_FINAL_LOCK_READBACK:{type(exc).__name__}:{exc}",
             }
-        state = "HOLD"
-        hold = str(lock_readback.get("reason") or "GATE12_FINAL_ACCEPTANCE_RECEIPT_REQUIRED")
-        next_action = str(lock_readback.get("nextAction") or "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK")
-        completed = ["CANONICAL_BOOT", "GITVAULT_SYNC", "V08_GATE12_FINAL_ACCEPTANCE_RECEIPT_" + (
-            "PUBLISHED" if lock_readback.get("finalAcceptanceReceipt") else "HOLD"
-        )]
+        state = "PASS" if gate12_final_lock.get("state") == "PASS" else "HOLD"
+        hold = None if state == "PASS" else str(
+            gate12_final_lock.get("reason") or "GATE12_FINAL_LOCK_READBACK_REQUIRED"
+        )
+        next_action = str(gate12_final_lock.get("nextAction") or "AWAIT_NEXT_OBJECTIVE")
+        completed = [
+            "CANONICAL_BOOT",
+            "GITVAULT_SYNC",
+            "V08_GATE12_FINAL_CANONICAL_LOCK_READBACK_" + state,
+        ]
+    elif (
+        local_action == "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
+        and gate12_state == "LOCK_EVIDENCE_RECONCILED_PENDING_FINAL_RECEIPT"
+    ):
+        lock_path = Path(str(gate12_snapshot.get("lockEvidence") or ""))
+        final_receipt_path = lock_path.parent / "final-acceptance-receipt.json"
+        if final_receipt_path.is_file():
+            try:
+                try:
+                    from mac_engineer_v08_gate12_final_lock_reconciler import (
+                        prepare_final_lock_reconciliation,
+                    )
+                except ModuleNotFoundError:
+                    from tools.mac_engineer_v08_gate12_final_lock_reconciler import (
+                        prepare_final_lock_reconciliation,
+                    )
+                gate12_final_lock = prepare_final_lock_reconciliation()
+            except Exception as exc:
+                gate12_final_lock = {
+                    "state": "HOLD",
+                    "reason": f"GATE12_FINAL_LOCK_RECONCILIATION:{type(exc).__name__}:{exc}",
+                }
+            state = "HOLD"
+            hold = str(
+                gate12_final_lock.get("reason")
+                or "GATE12_FINAL_LOCK_RECONCILIATION_REQUIRED"
+            )
+            next_action = str(
+                gate12_final_lock.get("nextAction")
+                or "COMMIT_PUSH_ACCEPT_AND_FRESH_READBACK"
+            )
+            completed = [
+                "CANONICAL_BOOT",
+                "GITVAULT_SYNC",
+                "V08_GATE12_FINAL_ACCEPTANCE_RECEIPT_PRESENT",
+                "V08_GATE12_FINAL_LOCK_RECONCILIATION_" + (
+                    "PREPARED"
+                    if gate12_final_lock.get("canonicalLockCreated") is True
+                    else "HOLD"
+                ),
+            ]
+        else:
+            try:
+                try:
+                    from mac_engineer_v08_gate12_canonical_lock import (
+                        publish_final_acceptance_receipt,
+                    )
+                except ModuleNotFoundError:
+                    from tools.mac_engineer_v08_gate12_canonical_lock import (
+                        publish_final_acceptance_receipt,
+                    )
+                lock_readback = publish_final_acceptance_receipt()
+            except Exception as exc:
+                lock_readback = {
+                    "state": "HOLD",
+                    "reason": f"GATE12_LOCK_READBACK:{type(exc).__name__}:{exc}",
+                }
+            state = "HOLD"
+            hold = str(
+                lock_readback.get("reason")
+                or "GATE12_FINAL_ACCEPTANCE_RECEIPT_REQUIRED"
+            )
+            next_action = str(
+                lock_readback.get("nextAction")
+                or "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
+            )
+            completed = [
+                "CANONICAL_BOOT",
+                "GITVAULT_SYNC",
+                "V08_GATE12_FINAL_ACCEPTANCE_RECEIPT_" + (
+                    "PUBLISHED" if lock_readback.get("finalAcceptanceReceipt") else "HOLD"
+                ),
+            ]
     elif (
         local_action == "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
         and ((load_json(SESSION_STATE, {}) or {}).get("currentV08") or {})
@@ -2857,6 +2943,8 @@ def command_continue() -> int:
                 str((locals().get("lock_evidence") or {}).get("lockEvidence") or ""),
                 str((locals().get("lock_readback") or {}).get("lockEvidence") or ""),
                 str((locals().get("lock_readback") or {}).get("finalAcceptanceReceipt") or ""),
+                str((locals().get("gate12_final_lock") or {}).get("finalAcceptanceReceipt") or ""),
+                str((locals().get("gate12_final_lock") or {}).get("finalLockEvidence") or ""),
             ]
             if item
         ],
@@ -2883,6 +2971,7 @@ def command_continue() -> int:
             "gate12_finalization": locals().get("finalization"),
             "gate12_lock_evidence": locals().get("lock_evidence"),
             "gate12_lock_readback": locals().get("lock_readback"),
+            "gate12_final_lock": locals().get("gate12_final_lock"),
             "offline_manifest": offline_manifest(),
         },
     )
