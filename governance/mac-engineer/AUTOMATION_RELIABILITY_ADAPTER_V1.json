@@ -1,0 +1,80 @@
+{
+  "schema": "enguru.mac-engineer.automation-reliability-adapter/v1",
+  "package": "PACKAGE_06_AUTOMATION_RELIABILITY",
+  "state": "CANDIDATE",
+  "newCoreIntroduced": false,
+  "reuse": {
+    "runtime": "enguru-mac-engineer/runtime/reliability.py",
+    "manager": "ReliabilityManager",
+    "singleWriter": "writer",
+    "begin": "begin",
+    "checkpoint": "checkpoint",
+    "classifyRecovery": "classify_recovery",
+    "rollback": "rollback_to_lkg",
+    "resume": "resume",
+    "boundedRetry": "bounded_retry",
+    "watchdog": "watchdog_scan"
+  },
+  "executionIdentity": {
+    "algorithm": "SHA256",
+    "components": [
+      "PLAN_ID",
+      "TRUTH_FINGERPRINT",
+      "STEP_INDEX",
+      "CAPABILITY_ID"
+    ],
+    "separator": "|",
+    "stableForSameInputs": true,
+    "differentTruthProducesDifferentIdentity": true
+  },
+  "idempotency": {
+    "keySource": "EXECUTION_ID",
+    "duplicateBeginCreatesNewTask": false,
+    "duplicateBeginReturnsExistingTask": true,
+    "duplicateEffectReplayAllowed": false
+  },
+  "staleState": {
+    "resumeRequiresFreshTruthFingerprint": true,
+    "checkpointTruthFingerprintMustEqualFreshTruthFingerprint": true,
+    "staleCheckpointMayAuthorizeResume": false,
+    "mismatchPolicy": "HOLD"
+  },
+  "retryTranslation": {
+    "orchestratorField": "maxAttempts",
+    "runtimeField": "retry_limit",
+    "formula": "retry_limit=maxAttempts-1",
+    "minimumOrchestratorMaxAttempts": 1,
+    "maximumOrchestratorMaxAttempts": 2,
+    "maximumRuntimeRetryLimit": 1,
+    "overLimitPolicy": "HOLD",
+    "unboundedRetryAllowed": false
+  },
+  "checkpointRecovery": {
+    "verifiedCheckpointRequiredForMutatingResume": true,
+    "rollbackUsesVerifiedLastKnownGood": true,
+    "freshRevalidationRequiredAfterResume": true,
+    "freshRevalidationRequiredAfterRollback": true,
+    "rollbackAuthorityBoundary": "RELIABILITY_MANAGER_RESTORES_DURABLE_TASK_CHECKPOINT_BASIS;PRODUCT_OR_ADAPTER_APPLIES_SCOPE_SPECIFIC_EXTERNAL_STATE_RESTORE",
+    "genericExternalMutationRollbackImplied": false
+  },
+  "singleWriter": {
+    "requiredForMaterialStateMutation": true,
+    "runtimeMechanism": "fcntl.flock_LOCK_EX_LOCK_NB",
+    "contentionPolicy": "HOLD"
+  },
+  "terminalStates": {
+    "deterministic": true,
+    "allowed": [
+      "PASS",
+      "HOLD",
+      "BLOCKED"
+    ],
+    "unknownStatePolicy": "HOLD"
+  },
+  "package05Boundary": {
+    "planSelectionAllowed": false,
+    "planMutationAllowed": false,
+    "capabilityInventionAllowed": false,
+    "executionAuthorityExpansionAllowed": false
+  }
+}
