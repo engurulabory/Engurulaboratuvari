@@ -1,0 +1,119 @@
+{
+  "schema": "enguru.mac-engineer.capability-execution-binding/v1",
+  "rule": "A capability may execute only through an already proven existing runtime surface or an explicitly registered action. No binding may invent execution authority. Missing or semantically narrower authority remains HOLD.",
+  "authorityBoundary": {
+    "newCoreIntroduced": false,
+    "newHandlerIntroduced": false,
+    "newActionIntroduced": false,
+    "capabilityAuthorityExpansionAllowed": false,
+    "guessBindingAllowed": false,
+    "unboundCapabilityPolicy": "HOLD"
+  },
+  "bindings": [
+    {
+      "CAPABILITY_ID": "CURRENT_TECHNICAL_TRUTH_READ",
+      "BINDING_TYPE": "DIRECT_RUNTIME",
+      "RUNTIME_SURFACE": "PYTHON_CALLABLE",
+      "MODULE": "mac_engineer_operator",
+      "CALLABLE": "current_truth",
+      "READ_ONLY_CONFIRMED": true,
+      "NETWORK_ALLOWED": false,
+      "FILESYSTEM_MUTATION_ALLOWED": false,
+      "EXECUTION_AUTHORITY_CREATED": false
+    },
+    {
+      "CAPABILITY_ID": "CANONICAL_BOOT",
+      "BINDING_TYPE": "HOLD_UNBOUND",
+      "REASON": "EXISTING_CANONICAL_BOOT_EXCEEDS_READ_ONLY_SCOPE"
+    },
+    {
+      "CAPABILITY_ID": "LOCAL_DOCTOR",
+      "BINDING_TYPE": "HOLD_UNBOUND",
+      "REASON": "DOCTOR_INNER_RUNTIME_SIDE_EFFECTS_NOT_YET_PROVEN"
+    },
+    {
+      "CAPABILITY_ID": "OPERATOR_CONTINUE_DISPATCH",
+      "BINDING_TYPE": "HOLD_UNBOUND",
+      "REASON": "MUTATING_DISPATCH_AUTHORITY_NOT_YET_BOUND"
+    },
+    {
+      "CAPABILITY_ID": "FAIL_CLOSED_ENGINEERING",
+      "BINDING_TYPE": "HOLD_UNBOUND",
+      "REASON": "CONTROL_GUARD_NOT_EXECUTABLE_TASK"
+    },
+    {
+      "CAPABILITY_ID": "SOURCE_PRODUCT_CHANGE",
+      "BINDING_TYPE": "HOLD_UNBOUND",
+      "REASON": "NO_PROVEN_GENERIC_REGISTERED_ACTION"
+    },
+    {
+      "CAPABILITY_ID": "BUILD",
+      "BINDING_TYPE": "HOLD_UNBOUND",
+      "REASON": "NO_PROVEN_GENERIC_REGISTERED_ACTION"
+    },
+    {
+      "CAPABILITY_ID": "TEST_REGRESSION",
+      "BINDING_TYPE": "HOLD_UNBOUND",
+      "REASON": "NO_PROVEN_GENERIC_REGISTERED_ACTION"
+    },
+    {
+      "CAPABILITY_ID": "ROOT_CAUSE_REPAIR",
+      "BINDING_TYPE": "HOLD_UNBOUND",
+      "REASON": "NO_PROVEN_GENERIC_REGISTERED_ACTION"
+    },
+    {
+      "CAPABILITY_ID": "MIGRATION_CANONICAL_RECONCILIATION",
+      "BINDING_TYPE": "HOLD_UNBOUND",
+      "REASON": "NO_PROVEN_GENERIC_REGISTERED_ACTION"
+    },
+    {
+      "CAPABILITY_ID": "ADVANCED_CODE_ENGINEERING",
+      "BINDING_TYPE": "HOLD_UNBOUND",
+      "REASON": "NO_PROVEN_GENERIC_REGISTERED_ACTION"
+    },
+    {
+      "CAPABILITY_ID": "NEW_PRODUCT_FROM_BRIEF",
+      "BINDING_TYPE": "HOLD_UNBOUND",
+      "REASON": "NO_PROVEN_GENERIC_REGISTERED_ACTION"
+    },
+    {
+      "CAPABILITY_ID": "RELEASE_LIFECYCLE",
+      "BINDING_TYPE": "HOLD_UNBOUND",
+      "REASON": "NO_PROVEN_GENERIC_REGISTERED_ACTION"
+    },
+    {
+      "CAPABILITY_ID": "FINISHED_PRODUCT_DELIVERY_ACCEPTANCE",
+      "BINDING_TYPE": "HOLD_UNBOUND",
+      "REASON": "NO_PROVEN_GENERIC_REGISTERED_ACTION"
+    },
+    {
+      "CAPABILITY_ID": "EVIDENCE_DONECHECK",
+      "BINDING_TYPE": "HOLD_UNBOUND",
+      "REASON": "NO_PROVEN_GENERIC_REGISTERED_ACTION"
+    },
+    {
+      "CAPABILITY_ID": "RECOVERY_OFFLINE_CONTINUITY",
+      "BINDING_TYPE": "HOLD_UNBOUND",
+      "REASON": "REGISTERED_RECOVERY_PROOFS_EXIST_BUT_GENERIC_CAPABILITY_BINDING_REQUIRES_EXPLICIT_SUBMODE_CONTRACT",
+      "PROVEN_ACTION_CANDIDATES": [
+        "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF",
+        "MAC_NATIVE_OFFLINE_GITVAULT_RECONCILIATION_PROOF"
+      ]
+    },
+    {
+      "CAPABILITY_ID": "TERMINAL_EXECUTION",
+      "BINDING_TYPE": "HOLD_UNBOUND",
+      "REASON": "EXECUTION_SUBSTRATE_NOT_STANDALONE_TASK_BINDING"
+    },
+    {
+      "CAPABILITY_ID": "FILESYSTEM_MACOS_AUTOMATION",
+      "BINDING_TYPE": "HOLD_UNBOUND",
+      "REASON": "NO_PROVEN_GENERIC_REGISTERED_ACTION"
+    },
+    {
+      "CAPABILITY_ID": "INTERNET_RESEARCH_HARVEST_ASTRA",
+      "BINDING_TYPE": "HOLD_UNBOUND",
+      "REASON": "NO_PROVEN_GENERIC_REGISTERED_ACTION"
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "schema": "enguru.mac-engineer.safe-execution-orchestrator/v1",
+  "product": "ENGÜRÜ Mac Engineer™",
+  "rule": "Execute an already approved Package 04 capability plan through existing operator authority. The orchestrator never selects, adds, removes, reorders or invents capabilities. Execution is fail-closed, bounded, recoverable, evidence-driven and Human-Threshold-aware.",
+  "authorityBoundary": {
+    "planSelectionAllowed": false,
+    "planMutationAllowed": false,
+    "capabilityInventionAllowed": false,
+    "operatorAuthoritySource": "governance/mac-engineer/OPERATOR_ACTION_REGISTRY_V1.json",
+    "capabilityMetadataSource": "governance/mac-engineer/CAPABILITY_REGISTRY_V1.json",
+    "dependencyGraphSource": "governance/mac-engineer/CAPABILITY_DEPENDENCY_GRAPH_V1.json",
+    "unexpectedStatePolicy": "HOLD",
+    "unknownHandlerPolicy": "HOLD",
+    "humanThresholdBypassAllowed": false,
+    "newCoreIntroduced": false
+  },
+  "executionPreconditions": [
+    "PLAN_STATE_PLAN_READY",
+    "PLAN_ID_PRESENT",
+    "PLAN_TRUTH_FINGERPRINT_PRESENT",
+    "PLAN_EXECUTION_AUTHORIZED_FALSE",
+    "PLAN_CAPABILITIES_REGISTRY_KNOWN",
+    "PLAN_GRAPH_VALID",
+    "AUTHORITY_RESOLVED",
+    "CAPABILITY_HUMAN_THRESHOLD_REQUIREMENT_RESOLVED",
+    "OPERATOR_HANDLER_RESOLVED",
+    "PREFLIGHT_PASS",
+    "SINGLE_WRITER_LOCK_ACQUIRED",
+    "CHECKPOINT_PASS",
+    "MUTATION_BUDGET_RESOLVED",
+    "NETWORK_POLICY_RESOLVED",
+    "ROLLBACK_OR_RECOVERY_BASIS_RESOLVED",
+    "EVIDENCE_ROOT_AVAILABLE"
+  ],
+  "mutationPolicy": {
+    "declaredMutationScopeRequired": true,
+    "undeclaredMutationPolicy": "HOLD",
+    "scopeExpansionAllowed": false,
+    "mutationBudgetRequired": true,
+    "budgetExceededPolicy": "HOLD"
+  },
+  "networkPolicy": {
+    "capabilityNetworkPolicyRequired": true,
+    "undeclaredNetworkAccessPolicy": "HOLD",
+    "networkEscalationAllowed": false
+  },
+  "singleWriter": {
+    "required": true,
+    "lockRequiredBeforeMutation": true,
+    "lockContentionPolicy": "HOLD"
+  },
+  "retryPolicy": {
+    "bounded": true,
+    "defaultMaxAttempts": 1,
+    "maximumAllowedAttempts": 2,
+    "unboundedRetryAllowed": false,
+    "overLimitPolicy": "HOLD",
+    "freshVerificationAfterRetry": true
+  },
+  "checkpointRecovery": {
+    "checkpointRequiredBeforeMutation": true,
+    "verifiedPrestateRequired": true,
+    "rollbackBasisRequired": true,
+    "recoveryIdentityRequired": true,
+    "staleCheckpointMayAuthorizeResume": false,
+    "safeRecoveryUnavailablePolicy": "BLOCKED"
+  },
+  "humanThreshold": {
+    "capabilityMetadataAuthoritative": true,
+    "metadataField": "REQUIRES_HUMAN_THRESHOLD",
+    "requiredCapabilityExecutionBeforeHumanThresholdAllowed": false,
+    "redCapabilityRequiresHumanThreshold": true,
+    "missingRequiredHumanThresholdPolicy": "HOLD",
+    "humanThresholdBypassAllowed": false
+  },
+  "evidence": {
+    "stepEvidenceRequired": true,
+    "missingEvidencePolicy": "HOLD"
+  },
+  "terminalStates": [
+    "PASS",
+    "HOLD",
+    "BLOCKED"
+  ],
+  "invariants": {
+    "planImmutable": true,
+    "existingOperatorAuthorityPreserved": true,
+    "mutationBudgetEnforced": true,
+    "networkPolicyEnforced": true,
+    "singleWriterEnforced": true,
+    "boundedRetryEnforced": true,
+    "stepEvidenceRequired": true,
+    "unexpectedStateFailClosed": true,
+    "humanThresholdBypassAllowed": false,
+    "capabilityMetadataHumanThresholdEnforced": true
+  }
+}
