@@ -1630,6 +1630,248 @@ check(
     == "REGISTERED_ACTION_RESULT_CONTRACT_HOLD"
 )
 
+
+cap12_plan = {
+    "STATE":
+        "PLAN_READY",
+
+    "PLAN_ID":
+        "package05-cap12-test",
+
+    "TRUTH_FINGERPRINT":
+        "package05-cap12-truth",
+
+    "EXECUTION_AUTHORIZED":
+        False,
+
+    "CAPABILITY_PLAN": [
+        "NEW_PRODUCT_FROM_BRIEF",
+    ],
+}
+
+_real_cap12 = (
+    operator
+    .run_package08_cap12_new_product_from_brief_field_proof
+)
+
+operator.run_package08_cap12_new_product_from_brief_field_proof = lambda: {
+    "state":
+        "PASS",
+
+    "code":
+        0,
+
+    "fields": {
+        "CAP12_NEW_PRODUCT_FROM_BRIEF":
+            "PASS",
+
+        "INCOMPLETE_BRIEF_PRODUCT_REJECTED":
+            "PASS",
+
+        "REQUIRED_PRODUCT_FILES":
+            "PASS",
+
+        "PRODUCT_FILE_COUNT":
+            "4",
+
+        "CALLABLE_CONTRACT":
+            "PASS",
+
+        "PRODUCT_TEST":
+            "PASS",
+
+        "CLI_RUNTIME_VERIFY":
+            "PASS",
+
+        "CLI_FAILURE_PATH":
+            "PASS",
+
+        "PRODUCT_MANIFEST":
+            "PASS",
+
+        "PRODUCT_IDEMPOTENCY":
+            "PASS",
+
+        "DISPOSABLE_WORKSPACE_CLEANUP":
+            "PASS",
+
+        "CRITICAL_FALSE_PASS_COUNT":
+            "0",
+
+        "CANONICAL_TRUTH_PRESERVED":
+            "PASS",
+
+        "AUTHORITY":
+            "AMBER",
+
+        "MUTATION_SCOPE":
+            "AUTHORIZED_WORKSPACE_ONLY",
+
+        "REMOTE_PUSH":
+            "false",
+
+        "EXECUTION_AUTHORITY_CREATED":
+            "false",
+    },
+
+    "evidence":
+        "/tmp/cap12-pass.json",
+}
+
+try:
+    cap12_result = (
+        orch.execute_plan_step(
+            cap12_plan,
+            1,
+        )
+    )
+finally:
+    operator.run_package08_cap12_new_product_from_brief_field_proof = (
+        _real_cap12
+    )
+
+check(
+    "PLAN_BOUND_CAP12_NEW_PRODUCT_FROM_BRIEF_PASS",
+
+    cap12_result[
+        "STATE"
+    ]
+    == "PASS"
+
+    and cap12_result[
+        "CAPABILITY_ID"
+    ]
+    == "NEW_PRODUCT_FROM_BRIEF"
+
+    and cap12_result[
+        "RECOVERY_PROOF_REQUIRED"
+    ]
+    is True
+
+    and cap12_result[
+        "RECOVERY_PROOF_OBSERVED"
+    ]
+    is True
+
+    and cap12_result[
+        "OBSERVED_RESULT"
+    ][
+        "negativeControl"
+    ]
+    is True
+
+    and cap12_result[
+        "OBSERVED_RESULT"
+    ][
+        "productFileCountFour"
+    ]
+    is True
+
+    and cap12_result[
+        "OBSERVED_RESULT"
+    ][
+        "cliRuntime"
+    ]
+    is True
+
+    and cap12_result[
+        "OBSERVED_RESULT"
+    ][
+        "workspaceCleanup"
+    ]
+    is True
+)
+
+operator.run_package08_cap12_new_product_from_brief_field_proof = lambda: {
+    "state":
+        "PASS",
+
+    "code":
+        0,
+
+    "fields": {
+        "CAP12_NEW_PRODUCT_FROM_BRIEF":
+            "PASS",
+
+        "INCOMPLETE_BRIEF_PRODUCT_REJECTED":
+            "PASS",
+
+        "REQUIRED_PRODUCT_FILES":
+            "PASS",
+
+        "PRODUCT_FILE_COUNT":
+            "4",
+
+        "CALLABLE_CONTRACT":
+            "PASS",
+
+        "PRODUCT_TEST":
+            "PASS",
+
+        "CLI_RUNTIME_VERIFY":
+            "PASS",
+
+        "CLI_FAILURE_PATH":
+            "PASS",
+
+        "PRODUCT_MANIFEST":
+            "PASS",
+
+        "PRODUCT_IDEMPOTENCY":
+            "PASS",
+
+        "DISPOSABLE_WORKSPACE_CLEANUP":
+            "HOLD",
+
+        "CRITICAL_FALSE_PASS_COUNT":
+            "0",
+
+        "CANONICAL_TRUTH_PRESERVED":
+            "PASS",
+
+        "AUTHORITY":
+            "AMBER",
+
+        "MUTATION_SCOPE":
+            "AUTHORIZED_WORKSPACE_ONLY",
+
+        "REMOTE_PUSH":
+            "false",
+
+        "EXECUTION_AUTHORITY_CREATED":
+            "false",
+    },
+
+    "evidence":
+        "/tmp/cap12-negative.json",
+}
+
+try:
+    cap12_negative = (
+        orch.execute_plan_step(
+            cap12_plan,
+            1,
+        )
+    )
+finally:
+    operator.run_package08_cap12_new_product_from_brief_field_proof = (
+        _real_cap12
+    )
+
+check(
+    "CAP12_WORKSPACE_CLEANUP_REQUIRED_HOLD",
+
+    cap12_negative[
+        "STATE"
+    ]
+    == "HOLD"
+
+    and cap12_negative[
+        "HOLD_REASON"
+    ]
+    == "REGISTERED_ACTION_RESULT_CONTRACT_HOLD"
+)
+
 invalid_step = orch.execute_plan_step(
     truth_plan,
     99,
@@ -1683,8 +1925,8 @@ check(
 )
 
 check(
-    "SEVEN_PROVEN_REGISTERED_ACTION_BINDINGS",
-    len(registered_bindings) == 7
+    "EIGHT_PROVEN_REGISTERED_ACTION_BINDINGS",
+    len(registered_bindings) == 8
     and {
         row["CAPABILITY_ID"]
         for row in registered_bindings
@@ -1697,12 +1939,13 @@ check(
         "ROOT_CAUSE_REPAIR",
         "MIGRATION_CANONICAL_RECONCILIATION",
         "ADVANCED_CODE_ENGINEERING",
+        "NEW_PRODUCT_FROM_BRIEF",
     },
 )
 
 check(
-    "TEN_UNBOUND_FAIL_CLOSED",
-    len(hold_bindings) == 10,
+    "NINE_UNBOUND_FAIL_CLOSED",
+    len(hold_bindings) == 9,
 )
 
 

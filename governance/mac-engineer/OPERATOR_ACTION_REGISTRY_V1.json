@@ -276,6 +276,18 @@
       "rollbackRequired": true,
       "minimumChangedFileCount": 2,
       "canonicalTruthPreserved": true
+    },
+    "PACKAGE08_CAP12_NEW_PRODUCT_FROM_BRIEF_FIELD_PROOF": {
+      "handler": "PACKAGE08_CAP12_NEW_PRODUCT_FROM_BRIEF_FIELD_PROOF",
+      "authority": "AMBER_LOCAL_AUTHORIZED_WORKSPACE_PRODUCT_CREATION_AUTHORITY",
+      "command": "governance/mac-engineer/PACKAGE08_CAP12_NEW_PRODUCT_FROM_BRIEF_FIELD_PROOF.command",
+      "networkRequired": false,
+      "remotePush": false,
+      "failClosed": true,
+      "mutationScope": "AUTHORIZED_WORKSPACE_ONLY",
+      "rollbackRequired": true,
+      "productCreationRequired": true,
+      "canonicalTruthPreserved": true
     }
   }
 }

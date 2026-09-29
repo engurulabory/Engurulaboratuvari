@@ -689,6 +689,41 @@ def execute_proven_registered_action(
                 False,
         },
 
+        "NEW_PRODUCT_FROM_BRIEF": {
+            "ACTION":
+                "PACKAGE08_CAP12_NEW_PRODUCT_FROM_BRIEF_FIELD_PROOF",
+
+            "REGISTERED_HANDLER":
+                "PACKAGE08_CAP12_NEW_PRODUCT_FROM_BRIEF_FIELD_PROOF",
+
+            "OPERATOR_CALLABLE":
+                "run_package08_cap12_new_product_from_brief_field_proof",
+
+            "AUTHORITY":
+                "AMBER_LOCAL_AUTHORIZED_WORKSPACE_PRODUCT_CREATION_AUTHORITY",
+
+            "NETWORK_ALLOWED":
+                False,
+
+            "REMOTE_PUSH_ALLOWED":
+                False,
+
+            "RECOVERY_PROOF_REQUIRED":
+                True,
+
+            "MUTATION_SCOPE":
+                "AUTHORIZED_WORKSPACE_ONLY",
+
+            "PRODUCT_CREATION_REQUIRED":
+                True,
+
+            "CANONICAL_TRUTH_PRESERVED":
+                True,
+
+            "EXECUTION_AUTHORITY_CREATED":
+                False,
+        },
+
     }
 
     expected = (
@@ -1782,6 +1817,169 @@ def execute_proven_registered_action(
 
             "minimumChangedFileCount":
                 2,
+
+            "canonicalTruthPreserved":
+                True,
+
+            "rollbackRequired":
+                True,
+        }
+
+    elif capability_id == "NEW_PRODUCT_FROM_BRIEF":
+        result = (
+            operator
+            .run_package08_cap12_new_product_from_brief_field_proof()
+        )
+
+        fields = (
+            result.get("fields")
+            if isinstance(
+                result.get("fields"),
+                dict,
+            )
+            else {}
+        )
+
+        observed = {
+            "wrapperStatePass":
+                result.get("state")
+                == "PASS",
+
+            "wrapperCodeZero":
+                result.get("code")
+                == 0,
+
+            "productFromBriefPass":
+                fields.get(
+                    "CAP12_NEW_PRODUCT_FROM_BRIEF"
+                )
+                == "PASS",
+
+            "negativeControl":
+                fields.get(
+                    "INCOMPLETE_BRIEF_PRODUCT_REJECTED"
+                )
+                == "PASS",
+
+            "requiredProductFiles":
+                fields.get(
+                    "REQUIRED_PRODUCT_FILES"
+                )
+                == "PASS",
+
+            "productFileCountFour":
+                fields.get(
+                    "PRODUCT_FILE_COUNT"
+                )
+                == "4",
+
+            "callableContract":
+                fields.get(
+                    "CALLABLE_CONTRACT"
+                )
+                == "PASS",
+
+            "productTest":
+                fields.get(
+                    "PRODUCT_TEST"
+                )
+                == "PASS",
+
+            "cliRuntime":
+                fields.get(
+                    "CLI_RUNTIME_VERIFY"
+                )
+                == "PASS",
+
+            "cliFailurePath":
+                fields.get(
+                    "CLI_FAILURE_PATH"
+                )
+                == "PASS",
+
+            "productManifest":
+                fields.get(
+                    "PRODUCT_MANIFEST"
+                )
+                == "PASS",
+
+            "idempotent":
+                fields.get(
+                    "PRODUCT_IDEMPOTENCY"
+                )
+                == "PASS",
+
+            "workspaceCleanup":
+                fields.get(
+                    "DISPOSABLE_WORKSPACE_CLEANUP"
+                )
+                == "PASS",
+
+            "falsePassZero":
+                fields.get(
+                    "CRITICAL_FALSE_PASS_COUNT"
+                )
+                == "0",
+
+            "canonicalTruth":
+                fields.get(
+                    "CANONICAL_TRUTH_PRESERVED"
+                )
+                == "PASS",
+
+            "authorityAmber":
+                fields.get(
+                    "AUTHORITY"
+                )
+                == "AMBER",
+
+            "authorizedWorkspaceScope":
+                fields.get(
+                    "MUTATION_SCOPE"
+                )
+                == "AUTHORIZED_WORKSPACE_ONLY",
+
+            "remotePushFalse":
+                fields.get(
+                    "REMOTE_PUSH"
+                )
+                == "false",
+
+            "executionAuthorityCreatedFalse":
+                fields.get(
+                    "EXECUTION_AUTHORITY_CREATED"
+                )
+                == "false",
+
+            "runtimeEvidencePresent":
+                bool(
+                    result.get(
+                        "evidence"
+                    )
+                ),
+        }
+
+        recovery_observed = bool(
+            observed[
+                "workspaceCleanup"
+            ]
+            and observed[
+                "idempotent"
+            ]
+            and observed[
+                "negativeControl"
+            ]
+        )
+
+        mutation_scope = {
+            "filesystemMutationExpected":
+                True,
+
+            "scope":
+                "AUTHORIZED_WORKSPACE_ONLY",
+
+            "productCreationRequired":
+                True,
 
             "canonicalTruthPreserved":
                 True,
