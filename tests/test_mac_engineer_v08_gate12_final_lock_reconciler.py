@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest import mock
 from unittest.mock import patch
 
 from tools import mac_engineer_v08_gate12_final_lock_reconciler as final_lock
@@ -200,7 +201,7 @@ class FinalLockReconcilerTests(unittest.TestCase):
             run.return_value.returncode = 0
             run.return_value.stderr = ""
             run.return_value.stdout = ""
-            with patch.object(final_lock, "EXPECTED_MUTATION_PATHS", {
+            expected_paths = {
                 "WORKLIST.md",
                 "governance/mac-engineer/ACTIVE_WORKING_PATH.md",
                 "governance/mac-engineer/CURRENT_STATUS.md",
@@ -208,15 +209,12 @@ class FinalLockReconcilerTests(unittest.TestCase):
                 "governance/mac-engineer/PRODUCT_ROADMAP_V1.json",
                 "governance/mac-engineer/SESSION_STATE_V1.json",
                 "governance/mac-engineer/V08_GATE12_FINAL_ACCEPTANCE_RECEIPT_V1.json",
-            }), patch.object(final_lock, "_git", side_effect=[
-                final_lock.EXPECTED_BRANCH, "control-1", "", "control-1",
-                " M WORKLIST.md\n M governance/mac-engineer/ACTIVE_WORKING_PATH.md\n"
-                " M governance/mac-engineer/CURRENT_STATUS.md\n"
-                " M governance/mac-engineer/OPERATOR_ACTION_REGISTRY_V1.json\n"
-                " M governance/mac-engineer/PRODUCT_ROADMAP_V1.json\n"
-                " M governance/mac-engineer/SESSION_STATE_V1.json\n"
-                " M governance/mac-engineer/V08_GATE12_FINAL_ACCEPTANCE_RECEIPT_V1.json",
-            ]):
+            }
+            with patch.object(final_lock, "EXPECTED_MUTATION_PATHS", expected_paths), \
+                 patch.object(final_lock, "_changed_paths", return_value=expected_paths), \
+                 patch.object(final_lock, "_git", side_effect=[
+                     final_lock.EXPECTED_BRANCH, "control-1", "", "control-1",
+                 ]):
                 result = final_lock.prepare_final_lock_reconciliation()
 
         self.assertEqual(result["state"], "HOLD")
@@ -233,6 +231,30 @@ class FinalLockReconcilerTests(unittest.TestCase):
         self.assertTrue(registry["actions"][final_lock.GATE12]["canonicalLock"])
         self.assertEqual(candidate["state"], "VERIFIED_LOCKED")
         self.assertIn("Final acceptance receipt digest", self.worklist_path.read_text())
+
+    def test_changed_paths_uses_name_only_and_preserves_first_character(self):
+        outputs = [
+            "WORKLIST.md\ngovernance/mac-engineer/CURRENT_STATUS.md\n",
+            "",
+            "",
+        ]
+
+        def fake_run(*args, **kwargs):
+            result = mock.Mock()
+            result.returncode = 0
+            result.stderr = ""
+            result.stdout = outputs.pop(0)
+            return result
+
+        with patch.object(final_lock, "_run", side_effect=fake_run):
+            observed = final_lock._changed_paths()
+
+        self.assertIn("WORKLIST.md", observed)
+        self.assertIn(
+            "governance/mac-engineer/CURRENT_STATUS.md",
+            observed,
+        )
+        self.assertNotIn("ORKLIST.md", observed)
 
     def test_readback_requires_exact_local_acceptance(self):
         self.session["currentV08"]["state"] = "VERIFIED_LOCKED"
