@@ -777,6 +777,62 @@ def execute_proven_registered_action(
                 False,
         },
 
+        "FINISHED_PRODUCT_DELIVERY_ACCEPTANCE": {
+            "ACTION":
+                "PACKAGE08_CAP14_FINISHED_PRODUCT_DELIVERY_ACCEPTANCE_FIELD_PROOF",
+
+            "REGISTERED_HANDLER":
+                "PACKAGE08_CAP14_FINISHED_PRODUCT_DELIVERY_ACCEPTANCE_FIELD_PROOF",
+
+            "OPERATOR_CALLABLE":
+                "run_package08_cap14_finished_product_delivery_acceptance_field_proof",
+
+            "AUTHORITY":
+                "RED_HT_ACCEPTED_FINISHED_PRODUCT_DELIVERY_AUTHORITY",
+
+            "NETWORK_ALLOWED":
+                False,
+
+            "REMOTE_PUSH_ALLOWED":
+                False,
+
+            "RECOVERY_PROOF_REQUIRED":
+                True,
+
+            "HUMAN_THRESHOLD_REQUIRED":
+                True,
+
+            "HUMAN_THRESHOLD_DECISION":
+                "ACCEPT",
+
+            "DELIVERY_PACKAGE_SHA256":
+                "c92cafc7da9763acdacc1b267a168d62b6cf7c92c30354838127c740516c6c13",
+
+            "HUMAN_THRESHOLD_RECEIPT_SHA256":
+                "744c8919f84ffb222f363ccfd5b5e85ac493d6297a2a46e4eb3c5aceffa72bb0",
+
+            "POST_HUMAN_EVIDENCE_SHA256":
+                "b34e072246ea77655a521a0198ba130a3bf8bc7cc08cfb8e82447aed69aa5b64",
+
+            "MUTATION_SCOPE":
+                "EVIDENCE_AND_ACCEPTANCE_ONLY",
+
+            "PRODUCT_MUTATION_ALLOWED":
+                False,
+
+            "RELEASE_MUTATION_ALLOWED":
+                False,
+
+            "ACCEPTANCE_REEXECUTION_ALLOWED":
+                False,
+
+            "CANONICAL_TRUTH_PRESERVED":
+                True,
+
+            "EXECUTION_AUTHORITY_CREATED":
+                False,
+        },
+
     }
 
     expected = (
@@ -2262,6 +2318,206 @@ def execute_proven_registered_action(
                 False,
 
             "cloudProductionAllowed":
+                False,
+
+            "canonicalTruthPreserved":
+                True,
+        }
+
+    elif capability_id == "FINISHED_PRODUCT_DELIVERY_ACCEPTANCE":
+        result = (
+            operator
+            .run_package08_cap14_finished_product_delivery_acceptance_field_proof()
+        )
+
+        fields = (
+            result.get("fields")
+            if isinstance(
+                result.get("fields"),
+                dict,
+            )
+            else {}
+        )
+
+        observed = {
+            "wrapperStatePass":
+                result.get("state")
+                == "PASS",
+
+            "wrapperCodeZero":
+                result.get("code")
+                == 0,
+
+            "deliveryAcceptancePass":
+                fields.get(
+                    "CAP14_FINISHED_PRODUCT_DELIVERY_ACCEPTANCE"
+                )
+                == "PASS",
+
+            "humanThresholdAccept":
+                fields.get(
+                    "HUMAN_THRESHOLD_ACCEPT"
+                )
+                == "PASS",
+
+            "htConsumedOnce":
+                fields.get(
+                    "HT_ACCEPTANCE_ALREADY_CONSUMED"
+                )
+                == "PASS",
+
+            "deliveryImmutable":
+                fields.get(
+                    "DELIVERY_PACKAGE_IMMUTABLE"
+                )
+                == "PASS",
+
+            "exactProductIdentity":
+                fields.get(
+                    "EXACT_PRODUCT_IDENTITY_BOUND"
+                )
+                == "PASS",
+
+            "finishedProductDelivered":
+                fields.get(
+                    "FINISHED_PRODUCT_DELIVERED"
+                )
+                == "PASS",
+
+            "humanDeliveryAcceptance":
+                fields.get(
+                    "HUMAN_DELIVERY_ACCEPTANCE"
+                )
+                == "PASS",
+
+            "codesign":
+                fields.get(
+                    "FRESH_CODESIGN"
+                )
+                == "PASS",
+
+            "runtime":
+                fields.get(
+                    "FRESH_RUNTIME_REVERIFY"
+                )
+                == "PASS",
+
+            "productMutationFalse":
+                fields.get(
+                    "PRODUCT_MUTATION"
+                )
+                == "false",
+
+            "releaseMutationFalse":
+                fields.get(
+                    "RELEASE_MUTATION"
+                )
+                == "false",
+
+            "remotePushFalse":
+                fields.get(
+                    "REMOTE_PUSH"
+                )
+                == "false",
+
+            "cloudPublicationFalse":
+                fields.get(
+                    "CLOUD_PUBLICATION"
+                )
+                == "false",
+
+            "executionAuthorityCreatedFalse":
+                fields.get(
+                    "EXECUTION_AUTHORITY_CREATED"
+                )
+                == "false",
+
+            "falsePassZero":
+                fields.get(
+                    "CRITICAL_FALSE_PASS_COUNT"
+                )
+                == "0",
+
+            "canonicalTruth":
+                fields.get(
+                    "CANONICAL_TRUTH_PRESERVED"
+                )
+                == "PASS",
+
+            "authorityRed":
+                fields.get(
+                    "AUTHORITY"
+                )
+                == "RED",
+
+            "acceptanceScope":
+                fields.get(
+                    "MUTATION_SCOPE"
+                )
+                == "EVIDENCE_AND_ACCEPTANCE_ONLY",
+
+            "deliveryDigest":
+                fields.get(
+                    "DELIVERY_PACKAGE_SHA256"
+                )
+                == "c92cafc7da9763acdacc1b267a168d62b6cf7c92c30354838127c740516c6c13",
+
+            "receiptDigest":
+                fields.get(
+                    "HUMAN_THRESHOLD_RECEIPT_SHA256"
+                )
+                == "744c8919f84ffb222f363ccfd5b5e85ac493d6297a2a46e4eb3c5aceffa72bb0",
+
+            "postHumanDigest":
+                fields.get(
+                    "POST_HUMAN_EVIDENCE_SHA256"
+                )
+                == "b34e072246ea77655a521a0198ba130a3bf8bc7cc08cfb8e82447aed69aa5b64",
+
+            "runtimeEvidencePresent":
+                bool(
+                    result.get("evidence")
+                ),
+        }
+
+        recovery_observed = bool(
+            observed[
+                "deliveryImmutable"
+            ]
+            and observed[
+                "exactProductIdentity"
+            ]
+            and observed[
+                "productMutationFalse"
+            ]
+            and observed[
+                "releaseMutationFalse"
+            ]
+        )
+
+        mutation_scope = {
+            "filesystemMutationExpected":
+                False,
+
+            "historicalHumanAcceptanceObserved":
+                True,
+
+            "scope":
+                "EVIDENCE_AND_ACCEPTANCE_ONLY",
+
+            "humanThresholdRequired":
+                True,
+
+            "humanThresholdConsumed":
+                True,
+
+            "acceptanceReexecutionAllowed":
+                False,
+
+            "productMutationAllowed":
+                False,
+
+            "releaseMutationAllowed":
                 False,
 
             "canonicalTruthPreserved":

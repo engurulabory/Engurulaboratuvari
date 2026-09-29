@@ -306,6 +306,24 @@
       "activeLifecycleReexecutionAllowed": false,
       "cloudProductionAllowed": false,
       "canonicalTruthPreserved": true
+    },
+    "PACKAGE08_CAP14_FINISHED_PRODUCT_DELIVERY_ACCEPTANCE_FIELD_PROOF": {
+      "handler": "PACKAGE08_CAP14_FINISHED_PRODUCT_DELIVERY_ACCEPTANCE_FIELD_PROOF",
+      "authority": "RED_HT_ACCEPTED_FINISHED_PRODUCT_DELIVERY_AUTHORITY",
+      "command": "governance/mac-engineer/PACKAGE08_CAP14_FINISHED_PRODUCT_DELIVERY_ACCEPTANCE_FIELD_PROOF.command",
+      "networkRequired": false,
+      "remotePush": false,
+      "failClosed": true,
+      "humanThresholdRequired": true,
+      "humanThresholdDecision": "ACCEPT",
+      "deliveryPackageSha256": "c92cafc7da9763acdacc1b267a168d62b6cf7c92c30354838127c740516c6c13",
+      "humanThresholdReceiptSha256": "744c8919f84ffb222f363ccfd5b5e85ac493d6297a2a46e4eb3c5aceffa72bb0",
+      "postHumanEvidenceSha256": "b34e072246ea77655a521a0198ba130a3bf8bc7cc08cfb8e82447aed69aa5b64",
+      "mutationScope": "EVIDENCE_AND_ACCEPTANCE_ONLY",
+      "productMutationAllowed": false,
+      "releaseMutationAllowed": false,
+      "acceptanceReexecutionAllowed": false,
+      "canonicalTruthPreserved": true
     }
   }
 }

@@ -2058,6 +2058,193 @@ check(
     == "REGISTERED_ACTION_RESULT_CONTRACT_HOLD"
 )
 
+
+cap14_plan = {
+    "STATE":
+        "PLAN_READY",
+
+    "PLAN_ID":
+        "package05-cap14-test",
+
+    "TRUTH_FINGERPRINT":
+        "package05-cap14-truth",
+
+    "EXECUTION_AUTHORIZED":
+        False,
+
+    "CAPABILITY_PLAN": [
+        "FINISHED_PRODUCT_DELIVERY_ACCEPTANCE",
+    ],
+}
+
+_real_cap14 = (
+    operator
+    .run_package08_cap14_finished_product_delivery_acceptance_field_proof
+)
+
+operator.run_package08_cap14_finished_product_delivery_acceptance_field_proof = lambda: {
+    "state": "PASS",
+    "code": 0,
+
+    "fields": {
+        "CAP14_FINISHED_PRODUCT_DELIVERY_ACCEPTANCE": "PASS",
+        "HUMAN_THRESHOLD_ACCEPT": "PASS",
+        "HT_ACCEPTANCE_ALREADY_CONSUMED": "PASS",
+        "DELIVERY_PACKAGE_IMMUTABLE": "PASS",
+        "EXACT_PRODUCT_IDENTITY_BOUND": "PASS",
+        "FINISHED_PRODUCT_DELIVERED": "PASS",
+        "HUMAN_DELIVERY_ACCEPTANCE": "PASS",
+        "FRESH_CODESIGN": "PASS",
+        "FRESH_RUNTIME_REVERIFY": "PASS",
+        "PRODUCT_MUTATION": "false",
+        "RELEASE_MUTATION": "false",
+        "REMOTE_PUSH": "false",
+        "CLOUD_PUBLICATION": "false",
+        "EXECUTION_AUTHORITY_CREATED": "false",
+        "CRITICAL_FALSE_PASS_COUNT": "0",
+        "CANONICAL_TRUTH_PRESERVED": "PASS",
+        "AUTHORITY": "RED",
+        "MUTATION_SCOPE": "EVIDENCE_AND_ACCEPTANCE_ONLY",
+        "DELIVERY_PACKAGE_SHA256":
+            "c92cafc7da9763acdacc1b267a168d62b6cf7c92c30354838127c740516c6c13",
+        "HUMAN_THRESHOLD_RECEIPT_SHA256":
+            "744c8919f84ffb222f363ccfd5b5e85ac493d6297a2a46e4eb3c5aceffa72bb0",
+        "POST_HUMAN_EVIDENCE_SHA256":
+            "b34e072246ea77655a521a0198ba130a3bf8bc7cc08cfb8e82447aed69aa5b64",
+    },
+
+    "evidence":
+        "/tmp/cap14-pass.json",
+}
+
+try:
+    cap14_result = (
+        orch.execute_plan_step(
+            cap14_plan,
+            1,
+        )
+    )
+finally:
+    operator.run_package08_cap14_finished_product_delivery_acceptance_field_proof = (
+        _real_cap14
+    )
+
+check(
+    "PLAN_BOUND_CAP14_FINISHED_PRODUCT_DELIVERY_ACCEPTANCE_PASS",
+
+    cap14_result["STATE"]
+    == "PASS"
+
+    and cap14_result[
+        "CAPABILITY_ID"
+    ]
+    == "FINISHED_PRODUCT_DELIVERY_ACCEPTANCE"
+
+    and cap14_result[
+        "RECOVERY_PROOF_REQUIRED"
+    ]
+    is True
+
+    and cap14_result[
+        "RECOVERY_PROOF_OBSERVED"
+    ]
+    is True
+
+    and cap14_result[
+        "OBSERVED_RESULT"
+    ][
+        "humanThresholdAccept"
+    ]
+    is True
+
+    and cap14_result[
+        "OBSERVED_RESULT"
+    ][
+        "deliveryImmutable"
+    ]
+    is True
+
+    and cap14_result[
+        "OBSERVED_RESULT"
+    ][
+        "finishedProductDelivered"
+    ]
+    is True
+
+    and cap14_result[
+        "OBSERVED_RESULT"
+    ][
+        "humanDeliveryAcceptance"
+    ]
+    is True
+
+    and cap14_result[
+        "OBSERVED_RESULT"
+    ][
+        "runtime"
+    ]
+    is True
+)
+
+operator.run_package08_cap14_finished_product_delivery_acceptance_field_proof = lambda: {
+    "state": "PASS",
+    "code": 0,
+
+    "fields": {
+        "CAP14_FINISHED_PRODUCT_DELIVERY_ACCEPTANCE": "PASS",
+        "HUMAN_THRESHOLD_ACCEPT": "HOLD",
+        "HT_ACCEPTANCE_ALREADY_CONSUMED": "PASS",
+        "DELIVERY_PACKAGE_IMMUTABLE": "PASS",
+        "EXACT_PRODUCT_IDENTITY_BOUND": "PASS",
+        "FINISHED_PRODUCT_DELIVERED": "PASS",
+        "HUMAN_DELIVERY_ACCEPTANCE": "PASS",
+        "FRESH_CODESIGN": "PASS",
+        "FRESH_RUNTIME_REVERIFY": "PASS",
+        "PRODUCT_MUTATION": "false",
+        "RELEASE_MUTATION": "false",
+        "REMOTE_PUSH": "false",
+        "CLOUD_PUBLICATION": "false",
+        "EXECUTION_AUTHORITY_CREATED": "false",
+        "CRITICAL_FALSE_PASS_COUNT": "0",
+        "CANONICAL_TRUTH_PRESERVED": "PASS",
+        "AUTHORITY": "RED",
+        "MUTATION_SCOPE": "EVIDENCE_AND_ACCEPTANCE_ONLY",
+        "DELIVERY_PACKAGE_SHA256":
+            "c92cafc7da9763acdacc1b267a168d62b6cf7c92c30354838127c740516c6c13",
+        "HUMAN_THRESHOLD_RECEIPT_SHA256":
+            "744c8919f84ffb222f363ccfd5b5e85ac493d6297a2a46e4eb3c5aceffa72bb0",
+        "POST_HUMAN_EVIDENCE_SHA256":
+            "b34e072246ea77655a521a0198ba130a3bf8bc7cc08cfb8e82447aed69aa5b64",
+    },
+
+    "evidence":
+        "/tmp/cap14-negative.json",
+}
+
+try:
+    cap14_negative = (
+        orch.execute_plan_step(
+            cap14_plan,
+            1,
+        )
+    )
+finally:
+    operator.run_package08_cap14_finished_product_delivery_acceptance_field_proof = (
+        _real_cap14
+    )
+
+check(
+    "CAP14_HUMAN_THRESHOLD_REQUIRED_HOLD",
+
+    cap14_negative["STATE"]
+    == "HOLD"
+
+    and cap14_negative[
+        "HOLD_REASON"
+    ]
+    == "REGISTERED_ACTION_RESULT_CONTRACT_HOLD"
+)
+
 invalid_step = orch.execute_plan_step(
     truth_plan,
     99,
@@ -2111,8 +2298,8 @@ check(
 )
 
 check(
-    "NINE_PROVEN_REGISTERED_ACTION_BINDINGS",
-    len(registered_bindings) == 9
+    "TEN_PROVEN_REGISTERED_ACTION_BINDINGS",
+    len(registered_bindings) == 10
     and {
         row["CAPABILITY_ID"]
         for row in registered_bindings
@@ -2127,12 +2314,13 @@ check(
         "ADVANCED_CODE_ENGINEERING",
         "NEW_PRODUCT_FROM_BRIEF",
         "RELEASE_LIFECYCLE",
+        "FINISHED_PRODUCT_DELIVERY_ACCEPTANCE",
     },
 )
 
 check(
-    "EIGHT_UNBOUND_FAIL_CLOSED",
-    len(hold_bindings) == 8,
+    "SEVEN_UNBOUND_FAIL_CLOSED",
+    len(hold_bindings) == 7,
 )
 
 
