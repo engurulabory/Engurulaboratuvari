@@ -1,0 +1,77 @@
+{
+  "schema": "enguru.mac-engineer.governed-finish-binding/v1",
+  "package": "PACKAGE_07_EVIDENCE_DONECHECK_HUMAN_THRESHOLD_BINDING",
+  "state": "CANDIDATE",
+  "newCoreIntroduced": false,
+
+  "authorityChain": [
+    "EXECUTION_RESULT",
+    "MATERIAL_STEP_EVIDENCE",
+    "FRESH_FINAL_VERIFICATION",
+    "DONECHECK_V1_2",
+    "HUMAN_THRESHOLD_IF_REQUIRED",
+    "VERIFIED_RESULT"
+  ],
+
+  "evidence": {
+    "materialStepEvidenceRequired": true,
+    "requiredIdentityFields": [
+      "EXECUTION_ID",
+      "PLAN_ID",
+      "TRUTH_FINGERPRINT",
+      "STEP_INDEX",
+      "CAPABILITY_ID"
+    ],
+    "artifactDigestRequired": true,
+    "verificationRefRequired": true,
+    "missingEvidencePolicy": "HOLD"
+  },
+
+  "freshVerification": {
+    "requiredForFinalFinish": true,
+    "currentTruthFingerprintRequired": true,
+    "cachedPassMayAuthorizeFinalFinish": false,
+    "staleEvidenceMayAuthorizeFinalFinish": false,
+    "mismatchPolicy": "HOLD"
+  },
+
+  "doneCheck": {
+    "product": "DoneCheck™ v1.2",
+    "version": "1.2.0",
+    "exactSha": "8b90a8fc93453dd8a84994195d28d14b15e261cb",
+    "bridge": "tools/mac_engineer_donecheck_v12_bridge.py",
+    "passRequiredForFinalFinish": true,
+    "nonPassPolicy": "HOLD"
+  },
+
+  "humanThreshold": {
+    "metadataSource": "governance/mac-engineer/CAPABILITY_REGISTRY_V1.json",
+    "metadataField": "REQUIRES_HUMAN_THRESHOLD",
+    "metadataAuthoritative": true,
+    "redAlwaysRequiresHumanThreshold": true,
+    "bypassAllowed": false,
+    "missingRequiredDecisionPolicy": "HOLD",
+    "acceptedDecision": "ACCEPT",
+    "nonAcceptPolicy": "HOLD",
+    "decisionMustBindExecutionIdentity": true,
+    "decisionMustBindDoneCheckResult": true
+  },
+
+  "finalAuthority": {
+    "allowedFinalStates": [
+      "VERIFIED",
+      "HOLD"
+    ],
+    "unsupportedFinalClaimPolicy": "HOLD",
+    "evidenceWithoutDoneCheckMayVerify": false,
+    "doneCheckWithoutFreshEvidenceMayVerify": false,
+    "humanThresholdRequiredButMissingMayVerify": false
+  },
+
+  "packageBoundaries": {
+    "planSelectionAllowed": false,
+    "planMutationAllowed": false,
+    "executionAuthorityExpansionAllowed": false,
+    "reliabilityAuthorityExpansionAllowed": false
+  }
+}
