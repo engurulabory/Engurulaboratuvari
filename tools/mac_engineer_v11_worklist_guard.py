@@ -18,6 +18,23 @@ JEV = ROOT / "governance/mac-engineer/V11_JEV_CANONICAL_NECESSARY_DIFFERENCE_CON
 EXPECTED_IDS = [f"{i:03d}" for i in range(1, 101)]
 
 
+def _v08_final_closed(v08: dict) -> bool:
+    closure = v08.get("closureContract", {})
+    gate11 = v08.get("gate11", {})
+    gate12 = v08.get("gate12", {})
+    return bool(
+        v08.get("state") == "VERIFIED_LOCKED"
+        and closure.get("passedGates") == list(range(1, 13))
+        and closure.get("activeGate") is None
+        and closure.get("remainingGates") == []
+        and gate11.get("state") == "VERIFIED_LOCKED"
+        and gate11.get("executionStarted") is True
+        and gate12.get("state") == "VERIFIED_LOCKED"
+        and gate12.get("executionStarted") is True
+        and gate12.get("canonicalLockCreated") is True
+    )
+
+
 def main() -> int:
     issues: list[str] = []
 
@@ -143,8 +160,10 @@ def main() -> int:
             or not (gate12_preexecution or gate12_field_accepted)
         ):
             issues.append("GATE11_CLOSURE_GATE12_TRANSITION_INVALID")
+    elif _v08_final_closed(v08):
+        pass
     else:
-        issues.append("CURRENT_V08_ACTIVE_GATE_NOT_11_OR_12")
+        issues.append("CURRENT_V08_ACTIVE_GATE_NOT_11_OR_12_OR_FINAL_CLOSED")
 
     prepared = session.get(
         "preparedFutureWorklists",
