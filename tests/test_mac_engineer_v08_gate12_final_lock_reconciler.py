@@ -128,8 +128,25 @@ class FinalLockReconcilerTests(unittest.TestCase):
             path.write_text(json.dumps(value), encoding="utf-8")
 
         self.status_path.write_text(
-            "# status\n## Gate 12 lock evidence reconciliation — final receipt pending\nold\n"
-            "## PROGRAMMER AGENT AUTHORING DISCIPLINE\nkeep\n",
+            "# status\n"
+            "## Gate 12 lock evidence reconciliation — final receipt pending\n"
+            "old\n"
+            "## PROGRAMMER AGENT AUTHORING DISCIPLINE\n"
+            "keep\n"
+            "## CURRENT OBJECTIVE\n"
+            "**v0.8 — Product Engineering Operator / Gate 9 — Deploy / Live Verify / Rollback + Lifecycle**\n"
+            "Current required difference: `V08_RELEASE_LIFECYCLE_SCENARIO`.\n"
+            "## REMAINING v0.6 CLOSEOUT\n"
+            "**NONE — v0.6 VERIFIED FINAL / LOCKED.**\n"
+            "The next active objective is v0.7 Long-Running Reliability.\n"
+            "## MAINTENANCE RULE\n"
+            "keep\n"
+            "## JUDGMENT\n"
+            "v0.8 remains ACTIVE through Gates 9–12.\n"
+            "## NEXT ACTION\n"
+            "`V08_RELEASE_LIFECYCLE_SCENARIO`\n"
+            "## MAC REPOSITORY FABRIC — 2026-09-23\n"
+            "historical\n",
             encoding="utf-8",
         )
         self.working_path.write_text(
