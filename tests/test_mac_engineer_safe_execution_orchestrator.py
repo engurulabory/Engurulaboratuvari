@@ -26,11 +26,11 @@ existing_before = copy.deepcopy(existing_plan)
 existing = orch.dry_run(existing_plan)
 
 check(
-    "SOURCE_CHANGE_BUILD_BOUND_REMAINING_PLAN_HOLD",
+    "SOURCE_CHANGE_BUILD_TEST_BOUND_REMAINING_PLAN_HOLD",
     existing["STATE"] == "HOLD"
     and existing["STEP_COUNT"] == 4
-    and existing["EXECUTABLE_STEP_COUNT"] == 2
-    and existing["HOLD_STEP_COUNT"] == 2
+    and existing["EXECUTABLE_STEP_COUNT"] == 3
+    and existing["HOLD_STEP_COUNT"] == 1
     and existing["STEPS"][0]["CAPABILITY_ID"]
         == "SOURCE_PRODUCT_CHANGE"
     and existing["STEPS"][0]["BINDING_TYPE"]
@@ -43,10 +43,14 @@ check(
         == "REGISTERED_ACTION"
     and existing["STEPS"][1]["DRY_RUN_EXECUTABLE"]
         is True
-    and all(
-        step["DRY_RUN_EXECUTABLE"] is False
-        for step in existing["STEPS"][2:]
-    ),
+    and existing["STEPS"][2]["CAPABILITY_ID"]
+        == "TEST_REGRESSION"
+    and existing["STEPS"][2]["BINDING_TYPE"]
+        == "REGISTERED_ACTION"
+    and existing["STEPS"][2]["DRY_RUN_EXECUTABLE"]
+        is True
+    and existing["STEPS"][3]["DRY_RUN_EXECUTABLE"]
+        is False,
 )
 
 check(
@@ -804,6 +808,116 @@ check(
 )
 
 
+
+cap08_plan = {
+    "STATE":
+        "PLAN_READY",
+
+    "PLAN_ID":
+        "package05-cap08-test",
+
+    "TRUTH_FINGERPRINT":
+        "package05-cap08-truth",
+
+    "EXECUTION_AUTHORIZED":
+        False,
+
+    "CAPABILITY_PLAN": [
+        "TEST_REGRESSION",
+    ],
+}
+
+_real_cap08 = (
+    operator
+    .run_package08_cap08_test_regression_field_proof
+)
+
+operator.run_package08_cap08_test_regression_field_proof = lambda: {
+    "state": "PASS",
+    "code": 0,
+    "fields": {
+        "CAP08_TEST_REGRESSION":
+            "PASS",
+
+        "TARGETED_REGRESSION":
+            "PASS",
+
+        "FULL_RUNTIME_REGRESSION":
+            "PASS",
+
+        "CONTROLLED_TEST_FAILURE_DETECTED":
+            "PASS",
+
+        "CRITICAL_FALSE_PASS_COUNT":
+            "0",
+
+        "CANONICAL_TRUTH_PRESERVED":
+            "PASS",
+
+        "AUTHORITY":
+            "GREEN",
+
+        "NETWORK_POLICY":
+            "LOCAL_ONLY",
+
+        "MUTATION_SCOPE":
+            "TEST_ARTIFACTS_ONLY",
+
+        "REMOTE_PUSH":
+            "false",
+
+        "EXECUTION_AUTHORITY_CREATED":
+            "false",
+    },
+
+    "evidence":
+        "/tmp/cap08-test-regression.json",
+}
+
+try:
+    cap08_result = (
+        orch.execute_plan_step(
+            cap08_plan,
+            1,
+        )
+    )
+finally:
+    operator.run_package08_cap08_test_regression_field_proof = (
+        _real_cap08
+    )
+
+check(
+    "PLAN_BOUND_CAP08_TEST_REGRESSION_PASS",
+
+    cap08_result["STATE"]
+    == "PASS"
+
+    and cap08_result[
+        "CAPABILITY_ID"
+    ]
+    == "TEST_REGRESSION"
+
+    and cap08_result[
+        "OBSERVED_RESULT"
+    ]["targetedPass"]
+    is True
+
+    and cap08_result[
+        "OBSERVED_RESULT"
+    ]["fullPass"]
+    is True
+
+    and cap08_result[
+        "OBSERVED_RESULT"
+    ]["failureDetected"]
+    is True
+
+    and cap08_result[
+        "OBSERVED_RESULT"
+    ]["falsePassZero"]
+    is True
+)
+
 invalid_step = orch.execute_plan_step(
     truth_plan,
     99,
@@ -857,8 +971,8 @@ check(
 )
 
 check(
-    "THREE_PROVEN_REGISTERED_ACTION_BINDINGS",
-    len(registered_bindings) == 3
+    "FOUR_PROVEN_REGISTERED_ACTION_BINDINGS",
+    len(registered_bindings) == 4
     and {
         row["CAPABILITY_ID"]
         for row in registered_bindings
@@ -867,12 +981,13 @@ check(
         "OPERATOR_CONTINUE_DISPATCH",
         "SOURCE_PRODUCT_CHANGE",
         "BUILD",
+        "TEST_REGRESSION",
     },
 )
 
 check(
-    "FOURTEEN_UNBOUND_FAIL_CLOSED",
-    len(hold_bindings) == 14,
+    "THIRTEEN_UNBOUND_FAIL_CLOSED",
+    len(hold_bindings) == 13,
 )
 
 

@@ -173,20 +173,23 @@
     },
     {
       "acceptance": {
-        "discovered": false,
-        "doneCheckPass": false,
-        "evidenceBound": false,
-        "expectedResultObserved": false,
-        "failurePathTested": false,
-        "fieldVerified": false,
-        "freshReverify": false,
-        "invocable": false,
-        "realTaskExecuted": false
+        "discovered": true,
+        "invocable": true,
+        "realTaskExecuted": true,
+        "expectedResultObserved": true,
+        "failurePathTested": true,
+        "freshReverify": true,
+        "evidenceBound": true,
+        "doneCheckPass": true,
+        "fieldVerified": true
       },
       "authority": "GREEN",
       "capabilityId": "TEST_REGRESSION",
-      "evidence": null,
-      "fieldState": "PENDING",
+      "evidence": {
+        "path": "/Users/abdal/Enguru/Evidence/MacEngineer/package08-field-campaign/20260929T160030634647000Z/capability-08/field-verification-seal.json",
+        "sha256": "df808decdfd9151ae309dbaedf9b42f8d12e994a9ba8d21d5fd156c9188f1224"
+      },
+      "fieldState": "FIELD_VERIFIED",
       "index": 8,
       "readinessClass": "B",
       "requiresHumanThreshold": false,
@@ -425,7 +428,7 @@
     }
   ],
   "capabilityCount": 19,
-  "fieldVerifiedCount": 7,
+  "fieldVerifiedCount": 8,
   "package": "PACKAGE_08_19_OF_19_REAL_OSI_FIELD_VERIFICATION",
   "schema": "enguru.mac-engineer.capability-field-verification-ledger/v1",
   "state": "ACTIVE",

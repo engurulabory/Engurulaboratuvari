@@ -2069,6 +2069,74 @@ def run_package08_cap07_build_field_proof() -> dict[str, Any]:
     }
 
 
+
+def run_package08_cap08_test_regression_field_proof() -> dict[str, Any]:
+    command = (
+        ROOT
+        / "governance"
+        / "mac-engineer"
+        / "PACKAGE08_CAP08_TEST_REGRESSION_FIELD_PROOF.command"
+    )
+
+    result = run(
+        ["zsh", str(command)],
+        cwd=ROOT,
+        timeout=7200,
+        env={
+            **os.environ,
+            "PYTHONDONTWRITEBYTECODE": "1",
+        },
+    )
+
+    fields: dict[str, str] = {}
+
+    for line in result.get(
+        "stdout",
+        "",
+    ).splitlines():
+        if "=" not in line:
+            continue
+
+        key, value = line.split(
+            "=",
+            1,
+        )
+
+        fields[
+            key.strip()
+        ] = value.strip()
+
+    return {
+        "state":
+            (
+                "PASS"
+                if result["code"] == 0
+                else "HOLD"
+            ),
+
+        "code":
+            result["code"],
+
+        "fields":
+            fields,
+
+        "evidence":
+            fields.get("EVIDENCE"),
+
+        "stdout_tail":
+            result.get(
+                "stdout",
+                "",
+            )[-12000:],
+
+        "stderr_tail":
+            result.get(
+                "stderr",
+                "",
+            )[-12000:],
+    }
+
+
 def resolve_operator_continue_dispatch(
     action: str,
     registry: dict[str, Any] | None = None,

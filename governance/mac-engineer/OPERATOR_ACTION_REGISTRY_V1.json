@@ -228,6 +228,16 @@
       "failClosed": true,
       "mutationScope": "BUILD_ARTIFACTS_ONLY",
       "sourceTruthPreserved": true
+    },
+    "PACKAGE08_CAP08_TEST_REGRESSION_FIELD_PROOF": {
+      "handler": "PACKAGE08_CAP08_TEST_REGRESSION_FIELD_PROOF",
+      "authority": "GREEN_LOCAL_TEST_REGRESSION_AUTHORITY",
+      "command": "governance/mac-engineer/PACKAGE08_CAP08_TEST_REGRESSION_FIELD_PROOF.command",
+      "networkRequired": false,
+      "remotePush": false,
+      "failClosed": true,
+      "mutationScope": "TEST_ARTIFACTS_ONLY",
+      "canonicalTruthPreserved": true
     }
   }
 }

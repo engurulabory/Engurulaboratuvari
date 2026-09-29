@@ -549,6 +549,35 @@ def execute_proven_registered_action(
                 False,
         },
 
+        "TEST_REGRESSION": {
+            "ACTION":
+                "PACKAGE08_CAP08_TEST_REGRESSION_FIELD_PROOF",
+
+            "REGISTERED_HANDLER":
+                "PACKAGE08_CAP08_TEST_REGRESSION_FIELD_PROOF",
+
+            "OPERATOR_CALLABLE":
+                "run_package08_cap08_test_regression_field_proof",
+
+            "AUTHORITY":
+                "GREEN_LOCAL_TEST_REGRESSION_AUTHORITY",
+
+            "NETWORK_ALLOWED":
+                False,
+
+            "REMOTE_PUSH_ALLOWED":
+                False,
+
+            "MUTATION_SCOPE":
+                "TEST_ARTIFACTS_ONLY",
+
+            "CANONICAL_TRUTH_PRESERVED":
+                True,
+
+            "EXECUTION_AUTHORITY_CREATED":
+                False,
+        },
+
     }
 
     expected = (
@@ -919,7 +948,7 @@ def execute_proven_registered_action(
                 False,
         }
 
-    else:
+    elif capability_id == "BUILD":
         result = (
             operator
             .run_package08_cap07_build_field_proof()
@@ -1029,6 +1058,118 @@ def execute_proven_registered_action(
                 True,
 
             "artifactIdentityRequired":
+                True,
+        }
+
+    elif capability_id == "TEST_REGRESSION":
+        result = (
+            operator
+            .run_package08_cap08_test_regression_field_proof()
+        )
+
+        fields = (
+            result.get("fields")
+            if isinstance(
+                result.get("fields"),
+                dict,
+            )
+            else {}
+        )
+
+        observed = {
+            "wrapperStatePass":
+                result.get("state")
+                == "PASS",
+
+            "wrapperCodeZero":
+                result.get("code")
+                == 0,
+
+            "regressionPass":
+                fields.get(
+                    "CAP08_TEST_REGRESSION"
+                )
+                == "PASS",
+
+            "targetedPass":
+                fields.get(
+                    "TARGETED_REGRESSION"
+                )
+                == "PASS",
+
+            "fullPass":
+                fields.get(
+                    "FULL_RUNTIME_REGRESSION"
+                )
+                == "PASS",
+
+            "failureDetected":
+                fields.get(
+                    "CONTROLLED_TEST_FAILURE_DETECTED"
+                )
+                == "PASS",
+
+            "falsePassZero":
+                fields.get(
+                    "CRITICAL_FALSE_PASS_COUNT"
+                )
+                == "0",
+
+            "canonicalTruthPreserved":
+                fields.get(
+                    "CANONICAL_TRUTH_PRESERVED"
+                )
+                == "PASS",
+
+            "authorityGreen":
+                fields.get(
+                    "AUTHORITY"
+                )
+                == "GREEN",
+
+            "localOnly":
+                fields.get(
+                    "NETWORK_POLICY"
+                )
+                == "LOCAL_ONLY",
+
+            "testArtifactsOnly":
+                fields.get(
+                    "MUTATION_SCOPE"
+                )
+                == "TEST_ARTIFACTS_ONLY",
+
+            "remotePushFalse":
+                fields.get(
+                    "REMOTE_PUSH"
+                )
+                == "false",
+
+            "executionAuthorityCreatedFalse":
+                fields.get(
+                    "EXECUTION_AUTHORITY_CREATED"
+                )
+                == "false",
+
+            "runtimeEvidencePresent":
+                bool(
+                    result.get("evidence")
+                ),
+        }
+
+        recovery_observed = False
+
+        mutation_scope = {
+            "filesystemMutationExpected":
+                True,
+
+            "scope":
+                "TEST_ARTIFACTS_ONLY",
+
+            "canonicalTruthPreserved":
+                True,
+
+            "testEvidenceRequired":
                 True,
         }
 
