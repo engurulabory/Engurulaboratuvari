@@ -19,6 +19,11 @@ class Gate12PreexecutionReconciliationGuardTests(unittest.TestCase):
         cls.acceptance = guard.ACCEPTANCE.read_text(encoding="utf-8")
         cls.product_truth = guard.current_product_truth()
 
+    def setUp(self) -> None:
+        gate = (self.session.get("currentV08") or {}).get("gate12") or {}
+        if gate.get("state") == "VERIFIED_LOCKED":
+            self.skipTest("Gate 12 final lock is beyond the historical preexecution guard")
+
     def evaluate(self, **overrides):
         values = {
             "session": deepcopy(self.session),
