@@ -1,0 +1,167 @@
+{
+  "schema": "enguru.mac-engineer.intent-execution-plan-router/v1",
+  "product": "ENGÜRÜ Mac Engineer™",
+  "rule": "Bounded human intent is normalized into exactly one supported intent class and mapped to the smallest graph-compatible capability plan. Unsupported or ambiguous intent remains HOLD. This router never executes the plan.",
+  "authorityBoundary": {
+    "executionAuthorized": false,
+    "executionOwner": "PACKAGE05_SAFE_EXECUTION_ORCHESTRATOR",
+    "inventedCapabilityAllowed": false,
+    "scopeExpansionAllowed": false,
+    "unsupportedIntentPolicy": "HOLD",
+    "ambiguousIntentPolicy": "HOLD",
+    "unknownCapabilityPolicy": "HOLD",
+    "graphViolationPolicy": "HOLD",
+    "unresolvedAuthorityPolicy": "HOLD",
+    "redCapabilityRequiresHumanThreshold": true
+  },
+  "truthSources": [
+    "governance/mac-engineer/CAPABILITY_REGISTRY_V1.json",
+    "governance/mac-engineer/CAPABILITY_DEPENDENCY_GRAPH_V1.json"
+  ],
+  "normalization": {
+    "trimWhitespace": true,
+    "collapseWhitespace": true,
+    "caseFold": true,
+    "preserveOriginalIntent": true,
+    "oneIntentClassRequired": true
+  },
+  "intentClasses": [
+    {
+      "INTENT_CLASS": "CURRENT_TRUTH_INSPECTION",
+      "MATCH_ANY": [
+        "mevcut teknik hakikati oku",
+        "mevcut durumu oku",
+        "current technical truth",
+        "inspect current truth"
+      ],
+      "PLAN": [
+        "CURRENT_TECHNICAL_TRUTH_READ",
+        "CANONICAL_BOOT",
+        "LOCAL_DOCTOR"
+      ]
+    },
+    {
+      "INTENT_CLASS": "EXISTING_PRODUCT_CHANGE",
+      "MATCH_ANY": [
+        "mevcut ürünü değiştir",
+        "mevcut ürünü güncelle",
+        "existing product change",
+        "update existing product"
+      ],
+      "PLAN": [
+        "SOURCE_PRODUCT_CHANGE",
+        "BUILD",
+        "TEST_REGRESSION",
+        "EVIDENCE_DONECHECK"
+      ]
+    },
+    {
+      "INTENT_CLASS": "NEW_PRODUCT_FROM_BRIEF",
+      "MATCH_ANY": [
+        "brief ile yeni ürün",
+        "yeni ürün oluştur",
+        "new product from brief",
+        "build a new product"
+      ],
+      "PLAN": [
+        "NEW_PRODUCT_FROM_BRIEF",
+        "INTERNET_RESEARCH_HARVEST_ASTRA",
+        "ADVANCED_CODE_ENGINEERING",
+        "BUILD",
+        "TEST_REGRESSION",
+        "EVIDENCE_DONECHECK"
+      ]
+    },
+    {
+      "INTENT_CLASS": "RESEARCH_HARVEST",
+      "MATCH_ANY": [
+        "araştırma yap",
+        "araştır ve harvest et",
+        "research harvest",
+        "research this"
+      ],
+      "PLAN": [
+        "INTERNET_RESEARCH_HARVEST_ASTRA"
+      ]
+    },
+    {
+      "INTENT_CLASS": "MIGRATION_RECONCILIATION",
+      "MATCH_ANY": [
+        "migration reconciliation",
+        "migrasyonu uzlaştır",
+        "canonical reconciliation",
+        "migration repair"
+      ],
+      "PLAN": [
+        "MIGRATION_CANONICAL_RECONCILIATION",
+        "TEST_REGRESSION",
+        "EVIDENCE_DONECHECK"
+      ]
+    },
+    {
+      "INTENT_CLASS": "RECOVERY_CONTINUITY",
+      "MATCH_ANY": [
+        "recovery yap",
+        "devamlılığı kurtar",
+        "recover continuity",
+        "offline continuity recovery"
+      ],
+      "PLAN": [
+        "RECOVERY_OFFLINE_CONTINUITY",
+        "CURRENT_TECHNICAL_TRUTH_READ",
+        "CANONICAL_BOOT",
+        "LOCAL_DOCTOR"
+      ]
+    },
+    {
+      "INTENT_CLASS": "RELEASE_DELIVERY",
+      "MATCH_ANY": [
+        "ürünü yayınla",
+        "release ve teslim et",
+        "release product",
+        "release and deliver"
+      ],
+      "PLAN": [
+        "RELEASE_LIFECYCLE",
+        "FINISHED_PRODUCT_DELIVERY_ACCEPTANCE",
+        "EVIDENCE_DONECHECK"
+      ],
+      "REQUIRES_HUMAN_THRESHOLD": true
+    }
+  ],
+  "holdConditions": [
+    "EMPTY_INTENT",
+    "UNSUPPORTED_INTENT",
+    "AMBIGUOUS_INTENT_CLASS",
+    "INVENTED_CAPABILITY",
+    "UNKNOWN_CAPABILITY",
+    "GRAPH_INCOMPATIBLE_PLAN",
+    "UNRESOLVED_PRECONDITION",
+    "UNRESOLVED_AUTHORITY",
+    "RED_CAPABILITY_WITHOUT_HUMAN_THRESHOLD",
+    "SCOPE_EXPANSION_REQUIRED"
+  ],
+  "planOutputContract": {
+    "requiredFields": [
+      "STATE",
+      "ORIGINAL_INTENT",
+      "NORMALIZED_INTENT",
+      "INTENT_CLASS",
+      "TRUTH_FINGERPRINT",
+      "PLAN_ID",
+      "CAPABILITY_PLAN",
+      "MAX_AUTHORITY",
+      "REQUIRES_HUMAN_THRESHOLD",
+      "EXECUTION_AUTHORIZED",
+      "EVIDENCE"
+    ],
+    "passState": "PLAN_READY",
+    "holdState": "HOLD",
+    "executionAuthorizedValue": false
+  },
+  "determinism": {
+    "sameIntentSameTruthSamePlan": true,
+    "truthFingerprintRequired": true,
+    "planIdDerivedFromIntentAndTruth": true
+  }
+}
