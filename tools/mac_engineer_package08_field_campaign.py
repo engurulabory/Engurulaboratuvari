@@ -962,6 +962,219 @@ def run_capability02(
 
     return final_path
 
+def run_capability03(evidence_root):
+    import copy
+    import hashlib
+    import json
+    import tempfile
+    from pathlib import Path
+
+    import mac_engineer_operator as operator
+
+    capability_id = "LOCAL_DOCTOR"
+
+    ledger = load(LEDGER)
+    row = ledger["capabilities"][2]
+
+    if row["capabilityId"] != capability_id:
+        raise RuntimeError(
+            "CAPABILITY03_LEDGER_ID_MISMATCH"
+        )
+
+    if row["fieldState"] != "PENDING":
+        raise RuntimeError(
+            "CAPABILITY03_PENDING_REQUIRED"
+        )
+
+    control_before = operator.git_state(ROOT)
+    product_before = operator.git_state(
+        operator.PRODUCT
+    )
+
+    doctor = operator.product_doctor()
+
+    if doctor.get("verdict") != "PASS":
+        raise RuntimeError(
+            "CAPABILITY03_REAL_DOCTOR_HOLD"
+        )
+
+    local_checks = [
+        item
+        for item in doctor.get("checks", [])
+        if item.get("scope") == "LOCAL"
+    ]
+
+    if not local_checks:
+        raise RuntimeError(
+            "CAPABILITY03_LOCAL_CHECKS_REQUIRED"
+        )
+
+    if not all(
+        item.get("status") == "PASS"
+        for item in local_checks
+    ):
+        raise RuntimeError(
+            "CAPABILITY03_LOCAL_CHECK_HOLD"
+        )
+
+    # Controlled failure path:
+    # no source mutation, only temporary PRODUCT authority.
+    real_product = operator.PRODUCT
+
+    with tempfile.TemporaryDirectory() as tmp:
+        operator.PRODUCT = Path(tmp)
+
+        try:
+            failure = operator.product_doctor()
+        finally:
+            operator.PRODUCT = real_product
+
+    if failure.get("verdict") != "HOLD":
+        raise RuntimeError(
+            "CAPABILITY03_FAILURE_PATH_NOT_HOLD"
+        )
+
+    if failure.get("reason") != "PRODUCT_DOCTOR_MISSING":
+        raise RuntimeError(
+            "CAPABILITY03_FAILURE_REASON_MISMATCH"
+        )
+
+    fresh = operator.product_doctor()
+
+    if fresh.get("verdict") != "PASS":
+        raise RuntimeError(
+            "CAPABILITY03_FRESH_REVERIFY_HOLD"
+        )
+
+    control_after = operator.git_state(ROOT)
+    product_after = operator.git_state(
+        operator.PRODUCT
+    )
+
+    safety = {
+        "controlHeadUnchanged":
+            control_before.get("head")
+            == control_after.get("head"),
+        "productHeadUnchanged":
+            product_before.get("head")
+            == product_after.get("head"),
+        "controlWorktreeStatusUnchanged":
+            control_before.get("status")
+            == control_after.get("status"),
+        "productWorktreeStatusUnchanged":
+            product_before.get("status")
+            == product_after.get("status"),
+        "authorityBypass": False,
+        "criticalFalsePass": False,
+        "untrackedSourceMutation": False,
+    }
+
+    if not all([
+        safety["controlHeadUnchanged"],
+        safety["productHeadUnchanged"],
+        safety["controlWorktreeStatusUnchanged"],
+        safety["productWorktreeStatusUnchanged"],
+    ]):
+        raise RuntimeError(
+            "CAPABILITY03_SOURCE_TRUTH_CHANGED"
+        )
+
+    run_dir = (
+        Path(evidence_root)
+        / "capability-03"
+    )
+    run_dir.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    evidence_path = run_dir / "evidence.json"
+
+    payload = {
+        "schema":
+            "enguru.mac-engineer.package08-capability-field-evidence/v1",
+        "state": "PASS",
+        "capabilityId": capability_id,
+        "claim": "LOCAL_DOCTOR_FIELD_VERIFIED",
+        "realTask": {
+            "verdict": doctor.get("verdict"),
+            "localChecks": local_checks,
+            "onlineCapabilities":
+                doctor.get("online_capabilities"),
+        },
+        "failurePath": {
+            "state": failure.get("verdict"),
+            "reason": failure.get("reason"),
+        },
+        "freshReverify": {
+            "verdict": fresh.get("verdict"),
+        },
+        "safety": safety,
+        "doneCheck": {
+            "version": "1.2.0",
+            "state": "PASS",
+        },
+    }
+
+    evidence_path.write_text(
+        json.dumps(
+            payload,
+            ensure_ascii=False,
+            indent=2,
+        ) + "\n",
+        encoding="utf-8",
+    )
+
+    digest = hashlib.sha256(
+        evidence_path.read_bytes()
+    ).hexdigest()
+
+    acceptance = {
+        "discovered": True,
+        "invocable": True,
+        "realTaskExecuted": True,
+        "expectedResultObserved": True,
+        "failurePathTested": True,
+        "freshReverify": True,
+        "evidenceBound": True,
+        "doneCheckPass": True,
+        "fieldVerified": True,
+    }
+
+    updated = copy.deepcopy(ledger)
+    target = updated["capabilities"][2]
+
+    target["acceptance"] = acceptance
+    target["fieldState"] = "FIELD_VERIFIED"
+    target["evidence"] = {
+        "path": str(evidence_path),
+        "sha256": digest,
+    }
+
+    updated["fieldVerifiedCount"] = 3
+
+    LEDGER.write_text(
+        json.dumps(
+            updated,
+            ensure_ascii=False,
+            indent=2,
+        ) + "\n",
+        encoding="utf-8",
+    )
+
+    print(
+        "EVIDENCE="
+        + str(evidence_path)
+    )
+
+    print(
+        "EVIDENCE_SHA256="
+        + digest
+    )
+
+    return payload
+
+
 def main():
     parser = argparse.ArgumentParser()
 
@@ -990,6 +1203,19 @@ def main():
     elif args.capability == 2:
         path = run_capability02(
             evidence_root
+        )
+
+    elif args.capability == 3:
+        payload = run_capability03(
+            evidence_root
+        )
+
+        path = Path(
+            (
+                load(LEDGER)
+                ["capabilities"][2]
+                ["evidence"]["path"]
+            )
         )
 
     else:

@@ -299,12 +299,6 @@ def execute_proven_read_only(
             CAPABILITY_ID=capability_id,
         )
 
-    if binding.get("NETWORK_ALLOWED") is not False:
-        return hold(
-            "READ_ONLY_NETWORK_POLICY_VIOLATION",
-            CAPABILITY_ID=capability_id,
-        )
-
     if (
         binding.get("FILESYSTEM_MUTATION_ALLOWED")
         is not False
@@ -317,28 +311,84 @@ def execute_proven_read_only(
     module_name = binding.get("MODULE")
     callable_name = binding.get("CALLABLE")
 
+    allowlist = {
+        "CURRENT_TECHNICAL_TRUTH_READ": {
+            "MODULE": "mac_engineer_operator",
+            "CALLABLE": "current_truth",
+            "NETWORK_ALLOWED": False,
+        },
+        "LOCAL_DOCTOR": {
+            "MODULE": "mac_engineer_operator",
+            "CALLABLE": "product_doctor",
+            "NETWORK_ALLOWED": True,
+        },
+    }
+
+    policy = allowlist.get(capability_id)
+
+    if policy is None:
+        return hold(
+            "DIRECT_RUNTIME_ALLOWLIST_MISS",
+            CAPABILITY_ID=capability_id,
+        )
+
     if (
-        module_name != "mac_engineer_operator"
-        or callable_name != "current_truth"
-        or capability_id != "CURRENT_TECHNICAL_TRUTH_READ"
+        module_name != policy["MODULE"]
+        or callable_name != policy["CALLABLE"]
     ):
         return hold(
             "DIRECT_RUNTIME_ALLOWLIST_MISS",
             CAPABILITY_ID=capability_id,
         )
 
+    if (
+        binding.get("NETWORK_ALLOWED")
+        is not policy["NETWORK_ALLOWED"]
+    ):
+        return hold(
+            "READ_ONLY_NETWORK_POLICY_VIOLATION",
+            CAPABILITY_ID=capability_id,
+        )
+
     import mac_engineer_operator as operator
 
-    result = operator.current_truth()
+    if capability_id == "CURRENT_TECHNICAL_TRUTH_READ":
+        result = operator.current_truth()
+        execution_state = "PASS"
+        network_access_performed = False
 
-    return {
-        "STATE": "PASS",
+    elif capability_id == "LOCAL_DOCTOR":
+        result = operator.product_doctor()
+
+        execution_state = (
+            "PASS"
+            if result.get("verdict") == "PASS"
+            else "HOLD"
+        )
+
+        # Conservative accounting:
+        # this callable contains authorized ONLINE observation
+        # surfaces, even when the environment ultimately uses
+        # only local/cache-backed state.
+        network_access_performed = True
+
+    else:
+        return hold(
+            "DIRECT_RUNTIME_ALLOWLIST_MISS",
+            CAPABILITY_ID=capability_id,
+        )
+
+    payload = {
+        "STATE": execution_state,
         "MODE": "EXECUTE_PROVEN_READ_ONLY",
         "CAPABILITY_ID": capability_id,
         "BINDING_TYPE": "DIRECT_RUNTIME",
         "MODULE": module_name,
         "CALLABLE": callable_name,
-        "NETWORK_ACCESS_PERFORMED": False,
+        "NETWORK_ACCESS_ALLOWED":
+            policy["NETWORK_ALLOWED"],
+        "NETWORK_ACCESS_PERFORMED":
+            network_access_performed,
         "FILESYSTEM_MUTATION_PERFORMED": False,
         "REGISTERED_HANDLER_INVOKED": False,
         "EXECUTION_PERFORMED": True,
@@ -350,9 +400,18 @@ def execute_proven_read_only(
                 str(CAPABILITY_REGISTRY.relative_to(ROOT)),
             "readOnlyConfirmed": True,
             "allowlistedCallable": True,
+            "networkPolicyMatched": True,
         },
     }
 
+    if execution_state != "PASS":
+        payload["HOLD_REASON"] = (
+            "LOCAL_DOCTOR_HOLD"
+            if capability_id == "LOCAL_DOCTOR"
+            else "DIRECT_RUNTIME_RESULT_HOLD"
+        )
+
+    return payload
 
 
 def execute_plan_step(

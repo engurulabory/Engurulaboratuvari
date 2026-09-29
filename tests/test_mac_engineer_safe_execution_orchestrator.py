@@ -59,12 +59,21 @@ truth_plan = router.route("mevcut teknik hakikati oku")
 truth = orch.dry_run(truth_plan)
 
 check(
-    "CURRENT_TRUTH_PLAN_FAILS_CLOSED_AFTER_PROVEN_STEP",
+    "CURRENT_TRUTH_PLAN_FAILS_CLOSED_ON_UNBOUND_BOOT",
     truth["STATE"] == "HOLD"
     and truth["STEP_COUNT"] == 3
-    and truth["EXECUTABLE_STEP_COUNT"] == 1
-    and truth["HOLD_STEP_COUNT"] == 2
-    and truth["EXECUTION_PERFORMED"] is False,
+    and truth["EXECUTABLE_STEP_COUNT"] == 2
+    and truth["HOLD_STEP_COUNT"] == 1
+    and truth["EXECUTION_PERFORMED"] is False
+    and truth["STEPS"][0]["CAPABILITY_ID"]
+        == "CURRENT_TECHNICAL_TRUTH_READ"
+    and truth["STEPS"][0]["DRY_RUN_EXECUTABLE"] is True
+    and truth["STEPS"][1]["CAPABILITY_ID"]
+        == "CANONICAL_BOOT"
+    and truth["STEPS"][1]["DRY_RUN_EXECUTABLE"] is False
+    and truth["STEPS"][2]["CAPABILITY_ID"]
+        == "LOCAL_DOCTOR"
+    and truth["STEPS"][2]["DRY_RUN_EXECUTABLE"] is True,
 )
 
 release_plan = router.route("ürünü yayınla")
@@ -154,6 +163,52 @@ check(
     ] is False,
 )
 
+import mac_engineer_operator as operator
+
+_real_product_doctor = operator.product_doctor
+
+operator.product_doctor = lambda: {
+    "verdict": "PASS",
+    "checks": [
+        {
+            "name": "synthetic_local",
+            "scope": "LOCAL",
+            "status": "PASS",
+            "evidence": "PACKAGE05_TEST",
+        }
+    ],
+    "online_capabilities": "HOLD",
+}
+
+try:
+    doctor_bound = orch.execute_plan_step(
+        truth_plan,
+        3,
+    )
+finally:
+    operator.product_doctor = _real_product_doctor
+
+check(
+    "PLAN_BOUND_LOCAL_DOCTOR_PASS",
+    doctor_bound["STATE"] == "PASS"
+    and doctor_bound["CAPABILITY_ID"] == "LOCAL_DOCTOR"
+    and doctor_bound["PLAN_ID"]
+        == truth_plan["PLAN_ID"]
+    and doctor_bound["TRUTH_FINGERPRINT"]
+        == truth_plan["TRUTH_FINGERPRINT"]
+    and doctor_bound["STEP_INDEX"] == 3
+    and doctor_bound["PLAN_IMMUTABLE"] is True
+    and doctor_bound["EXECUTION_PERFORMED"] is True
+    and doctor_bound["NETWORK_ACCESS_ALLOWED"] is True
+    and doctor_bound["NETWORK_ACCESS_PERFORMED"] is True
+    and doctor_bound[
+        "FILESYSTEM_MUTATION_PERFORMED"
+    ] is False
+    and bool(
+        doctor_bound.get("STEP_EVIDENCE_DIGEST")
+    ),
+)
+
 invalid_step = orch.execute_plan_step(
     truth_plan,
     99,
@@ -182,19 +237,27 @@ hold_bindings = [
     if row["BINDING_TYPE"] == "HOLD_UNBOUND"
 ]
 
+direct_ids = {
+    row["CAPABILITY_ID"]
+    for row in direct_bindings
+}
+
 check(
-    "ONE_PROVEN_DIRECT_BINDING",
-    len(direct_bindings) == 1
-    and direct_bindings[0]["CAPABILITY_ID"]
-        == "CURRENT_TECHNICAL_TRUTH_READ"
-    and direct_bindings[0][
-        "READ_ONLY_CONFIRMED"
-    ] is True,
+    "TWO_PROVEN_DIRECT_BINDINGS",
+    len(direct_bindings) == 2
+    and direct_ids == {
+        "CURRENT_TECHNICAL_TRUTH_READ",
+        "LOCAL_DOCTOR",
+    }
+    and all(
+        row["READ_ONLY_CONFIRMED"] is True
+        for row in direct_bindings
+    ),
 )
 
 check(
-    "EIGHTEEN_UNBOUND_FAIL_CLOSED",
-    len(hold_bindings) == 18,
+    "SEVENTEEN_UNBOUND_FAIL_CLOSED",
+    len(hold_bindings) == 17,
 )
 
 

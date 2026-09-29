@@ -28,8 +28,14 @@
     },
     {
       "CAPABILITY_ID": "LOCAL_DOCTOR",
-      "BINDING_TYPE": "HOLD_UNBOUND",
-      "REASON": "DOCTOR_INNER_RUNTIME_SIDE_EFFECTS_NOT_YET_PROVEN"
+      "BINDING_TYPE": "DIRECT_RUNTIME",
+      "RUNTIME_SURFACE": "PYTHON_CALLABLE",
+      "MODULE": "mac_engineer_operator",
+      "CALLABLE": "product_doctor",
+      "READ_ONLY_CONFIRMED": true,
+      "NETWORK_ALLOWED": true,
+      "FILESYSTEM_MUTATION_ALLOWED": false,
+      "EXECUTION_AUTHORITY_CREATED": false
     },
     {
       "CAPABILITY_ID": "OPERATOR_CONTINUE_DISPATCH",

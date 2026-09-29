@@ -93,7 +93,7 @@
       "AUTHORITY": "GREEN",
       "RISK_CLASS": "LOW",
       "MUTATION_SCOPE": "READ_ONLY",
-      "NETWORK_POLICY": "LOCAL_DIAGNOSTIC",
+      "NETWORK_POLICY": "LOCAL_OR_AUTHORIZED_READ",
       "REQUIRES_HUMAN_THRESHOLD": false,
       "RETRY_POLICY": {
         "maxAttempts": 2,
