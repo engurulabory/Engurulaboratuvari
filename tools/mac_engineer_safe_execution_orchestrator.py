@@ -578,6 +578,38 @@ def execute_proven_registered_action(
                 False,
         },
 
+        "ROOT_CAUSE_REPAIR": {
+            "ACTION":
+                "PACKAGE08_CAP09_ROOT_CAUSE_REPAIR_FIELD_PROOF",
+
+            "REGISTERED_HANDLER":
+                "PACKAGE08_CAP09_ROOT_CAUSE_REPAIR_FIELD_PROOF",
+
+            "OPERATOR_CALLABLE":
+                "run_package08_cap09_root_cause_repair_field_proof",
+
+            "AUTHORITY":
+                "AMBER_LOCAL_BOUNDED_REPAIR_AUTHORITY",
+
+            "NETWORK_ALLOWED":
+                False,
+
+            "REMOTE_PUSH_ALLOWED":
+                False,
+
+            "RECOVERY_PROOF_REQUIRED":
+                True,
+
+            "MUTATION_SCOPE":
+                "BOUNDED_REPAIR_SCOPE",
+
+            "CANONICAL_TRUTH_PRESERVED":
+                True,
+
+            "EXECUTION_AUTHORITY_CREATED":
+                False,
+        },
+
     }
 
     expected = (
@@ -1170,6 +1202,167 @@ def execute_proven_registered_action(
                 True,
 
             "testEvidenceRequired":
+                True,
+        }
+
+    elif capability_id == "ROOT_CAUSE_REPAIR":
+        result = (
+            operator
+            .run_package08_cap09_root_cause_repair_field_proof()
+        )
+
+        fields = (
+            result.get("fields")
+            if isinstance(
+                result.get("fields"),
+                dict,
+            )
+            else {}
+        )
+
+        observed = {
+            "wrapperStatePass":
+                result.get("state")
+                == "PASS",
+
+            "wrapperCodeZero":
+                result.get("code")
+                == 0,
+
+            "repairPass":
+                fields.get(
+                    "CAP09_ROOT_CAUSE_REPAIR"
+                )
+                == "PASS",
+
+            "failureReproduced":
+                fields.get(
+                    "CONTROLLED_FAILURE_REPRODUCED"
+                )
+                == "PASS",
+
+            "rootCauseEvidence":
+                fields.get(
+                    "ROOT_CAUSE_EVIDENCE"
+                )
+                == "PASS",
+
+            "rootCauseIdentity":
+                fields.get(
+                    "ROOT_CAUSE"
+                )
+                == "controlled_bounded_fault_marker_block",
+
+            "smallestRepair":
+                fields.get(
+                    "SMALLEST_SUFFICIENT_REPAIR"
+                )
+                == "PASS",
+
+            "regressionPass":
+                fields.get(
+                    "POST_REPAIR_REGRESSION"
+                )
+                == "PASS",
+
+            "runtimeVerifyPass":
+                fields.get(
+                    "POST_REPAIR_RUNTIME_VERIFY"
+                )
+                == "PASS",
+
+            "rollbackBaselineParity":
+                fields.get(
+                    "ROLLBACK_BASELINE_PARITY"
+                )
+                == "PASS",
+
+            "finalFixtureClean":
+                fields.get(
+                    "FINAL_FIXTURE_CLEAN"
+                )
+                == "PASS",
+
+            "sourceFixtureTruthPreserved":
+                fields.get(
+                    "SOURCE_FIXTURE_TRUTH_PRESERVED"
+                )
+                == "PASS",
+
+            "repairIdempotent":
+                fields.get(
+                    "REPAIR_IDEMPOTENCY"
+                )
+                == "PASS",
+
+            "falsePassZero":
+                fields.get(
+                    "CRITICAL_FALSE_PASS_COUNT"
+                )
+                == "0",
+
+            "canonicalTruthPreserved":
+                fields.get(
+                    "CANONICAL_TRUTH_PRESERVED"
+                )
+                == "PASS",
+
+            "authorityAmber":
+                fields.get(
+                    "AUTHORITY"
+                )
+                == "AMBER",
+
+            "boundedRepairScope":
+                fields.get(
+                    "MUTATION_SCOPE"
+                )
+                == "BOUNDED_REPAIR_SCOPE",
+
+            "remotePushFalse":
+                fields.get(
+                    "REMOTE_PUSH"
+                )
+                == "false",
+
+            "executionAuthorityCreatedFalse":
+                fields.get(
+                    "EXECUTION_AUTHORITY_CREATED"
+                )
+                == "false",
+
+            "runtimeEvidencePresent":
+                bool(
+                    result.get("evidence")
+                ),
+        }
+
+        recovery_observed = bool(
+            observed[
+                "rollbackBaselineParity"
+            ]
+            and observed[
+                "finalFixtureClean"
+            ]
+            and observed[
+                "sourceFixtureTruthPreserved"
+            ]
+        )
+
+        mutation_scope = {
+            "filesystemMutationExpected":
+                True,
+
+            "scope":
+                "BOUNDED_REPAIR_SCOPE",
+
+            "canonicalTruthPreserved":
+                True,
+
+            "rootCauseEvidenceRequired":
+                True,
+
+            "smallestSufficientRepairRequired":
                 True,
         }
 

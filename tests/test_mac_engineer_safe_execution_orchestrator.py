@@ -918,6 +918,228 @@ check(
     is True
 )
 
+
+cap09_plan = {
+    "STATE":
+        "PLAN_READY",
+
+    "PLAN_ID":
+        "package05-cap09-test",
+
+    "TRUTH_FINGERPRINT":
+        "package05-cap09-truth",
+
+    "EXECUTION_AUTHORIZED":
+        False,
+
+    "CAPABILITY_PLAN": [
+        "ROOT_CAUSE_REPAIR",
+    ],
+}
+
+_real_cap09 = (
+    operator
+    .run_package08_cap09_root_cause_repair_field_proof
+)
+
+operator.run_package08_cap09_root_cause_repair_field_proof = lambda: {
+    "state": "PASS",
+    "code": 0,
+    "fields": {
+        "CAP09_ROOT_CAUSE_REPAIR":
+            "PASS",
+
+        "CONTROLLED_FAILURE_REPRODUCED":
+            "PASS",
+
+        "ROOT_CAUSE":
+            "controlled_bounded_fault_marker_block",
+
+        "ROOT_CAUSE_EVIDENCE":
+            "PASS",
+
+        "SMALLEST_SUFFICIENT_REPAIR":
+            "PASS",
+
+        "POST_REPAIR_REGRESSION":
+            "PASS",
+
+        "POST_REPAIR_RUNTIME_VERIFY":
+            "PASS",
+
+        "ROLLBACK_BASELINE_PARITY":
+            "PASS",
+
+        "FINAL_FIXTURE_CLEAN":
+            "PASS",
+
+        "SOURCE_FIXTURE_TRUTH_PRESERVED":
+            "PASS",
+
+        "REPAIR_IDEMPOTENCY":
+            "PASS",
+
+        "CRITICAL_FALSE_PASS_COUNT":
+            "0",
+
+        "CANONICAL_TRUTH_PRESERVED":
+            "PASS",
+
+        "AUTHORITY":
+            "AMBER",
+
+        "MUTATION_SCOPE":
+            "BOUNDED_REPAIR_SCOPE",
+
+        "REMOTE_PUSH":
+            "false",
+
+        "EXECUTION_AUTHORITY_CREATED":
+            "false",
+    },
+
+    "evidence":
+        "/tmp/cap09-root-cause-repair.json",
+}
+
+try:
+    cap09_result = (
+        orch.execute_plan_step(
+            cap09_plan,
+            1,
+        )
+    )
+finally:
+    operator.run_package08_cap09_root_cause_repair_field_proof = (
+        _real_cap09
+    )
+
+check(
+    "PLAN_BOUND_CAP09_ROOT_CAUSE_REPAIR_PASS",
+
+    cap09_result["STATE"]
+    == "PASS"
+
+    and cap09_result[
+        "CAPABILITY_ID"
+    ]
+    == "ROOT_CAUSE_REPAIR"
+
+    and cap09_result[
+        "RECOVERY_PROOF_REQUIRED"
+    ]
+    is True
+
+    and cap09_result[
+        "RECOVERY_PROOF_OBSERVED"
+    ]
+    is True
+
+    and cap09_result[
+        "OBSERVED_RESULT"
+    ]["rootCauseEvidence"]
+    is True
+
+    and cap09_result[
+        "OBSERVED_RESULT"
+    ]["smallestRepair"]
+    is True
+
+    and cap09_result[
+        "OBSERVED_RESULT"
+    ]["regressionPass"]
+    is True
+
+    and cap09_result[
+        "OBSERVED_RESULT"
+    ]["rollbackBaselineParity"]
+    is True
+)
+
+operator.run_package08_cap09_root_cause_repair_field_proof = lambda: {
+    "state": "PASS",
+    "code": 0,
+    "fields": {
+        "CAP09_ROOT_CAUSE_REPAIR":
+            "PASS",
+
+        "CONTROLLED_FAILURE_REPRODUCED":
+            "PASS",
+
+        "ROOT_CAUSE":
+            "controlled_bounded_fault_marker_block",
+
+        "ROOT_CAUSE_EVIDENCE":
+            "PASS",
+
+        "SMALLEST_SUFFICIENT_REPAIR":
+            "PASS",
+
+        "POST_REPAIR_REGRESSION":
+            "PASS",
+
+        "POST_REPAIR_RUNTIME_VERIFY":
+            "PASS",
+
+        "ROLLBACK_BASELINE_PARITY":
+            "HOLD",
+
+        "FINAL_FIXTURE_CLEAN":
+            "PASS",
+
+        "SOURCE_FIXTURE_TRUTH_PRESERVED":
+            "PASS",
+
+        "REPAIR_IDEMPOTENCY":
+            "PASS",
+
+        "CRITICAL_FALSE_PASS_COUNT":
+            "0",
+
+        "CANONICAL_TRUTH_PRESERVED":
+            "PASS",
+
+        "AUTHORITY":
+            "AMBER",
+
+        "MUTATION_SCOPE":
+            "BOUNDED_REPAIR_SCOPE",
+
+        "REMOTE_PUSH":
+            "false",
+
+        "EXECUTION_AUTHORITY_CREATED":
+            "false",
+    },
+
+    "evidence":
+        "/tmp/cap09-negative.json",
+}
+
+try:
+    cap09_negative = (
+        orch.execute_plan_step(
+            cap09_plan,
+            1,
+        )
+    )
+finally:
+    operator.run_package08_cap09_root_cause_repair_field_proof = (
+        _real_cap09
+    )
+
+check(
+    "CAP09_RECOVERY_PROOF_REQUIRED_HOLD",
+
+    cap09_negative["STATE"]
+    == "HOLD"
+
+    and cap09_negative[
+        "HOLD_REASON"
+    ]
+    == "REGISTERED_ACTION_RESULT_CONTRACT_HOLD"
+)
+
 invalid_step = orch.execute_plan_step(
     truth_plan,
     99,
@@ -971,8 +1193,8 @@ check(
 )
 
 check(
-    "FOUR_PROVEN_REGISTERED_ACTION_BINDINGS",
-    len(registered_bindings) == 4
+    "FIVE_PROVEN_REGISTERED_ACTION_BINDINGS",
+    len(registered_bindings) == 5
     and {
         row["CAPABILITY_ID"]
         for row in registered_bindings
@@ -982,12 +1204,13 @@ check(
         "SOURCE_PRODUCT_CHANGE",
         "BUILD",
         "TEST_REGRESSION",
+        "ROOT_CAUSE_REPAIR",
     },
 )
 
 check(
-    "THIRTEEN_UNBOUND_FAIL_CLOSED",
-    len(hold_bindings) == 13,
+    "TWELVE_UNBOUND_FAIL_CLOSED",
+    len(hold_bindings) == 12,
 )
 
 

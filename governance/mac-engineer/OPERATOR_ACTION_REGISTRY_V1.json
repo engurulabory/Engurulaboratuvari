@@ -238,6 +238,17 @@
       "failClosed": true,
       "mutationScope": "TEST_ARTIFACTS_ONLY",
       "canonicalTruthPreserved": true
+    },
+    "PACKAGE08_CAP09_ROOT_CAUSE_REPAIR_FIELD_PROOF": {
+      "handler": "PACKAGE08_CAP09_ROOT_CAUSE_REPAIR_FIELD_PROOF",
+      "authority": "AMBER_LOCAL_BOUNDED_REPAIR_AUTHORITY",
+      "command": "governance/mac-engineer/PACKAGE08_CAP09_ROOT_CAUSE_REPAIR_FIELD_PROOF.command",
+      "networkRequired": false,
+      "remotePush": false,
+      "failClosed": true,
+      "mutationScope": "BOUNDED_REPAIR_SCOPE",
+      "rollbackRequired": true,
+      "canonicalTruthPreserved": true
     }
   }
 }
