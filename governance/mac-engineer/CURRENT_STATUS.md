@@ -1,30 +1,26 @@
 # ENGÜRÜ Mac Engineer™ — Current Status
 
-## Gate 12 Batch 3 safety review — engineering HOLD
+## Gate 12 field acceptance — canonical lock pending
 
-**STATE:** The signed PRE-005 candidate is bound to control HEAD
-`c684b858f10799773536d65ad94b7a767134d4b7`. Batch 3 code was
-subsequently pushed at `cbe9e4dffa71dc99d7641f08a20f0fa9dfdfe9cf`.
-Production prelock requires exact current control HEAD parity, so the
-old handoff cannot authorize execution on the newer HEAD.
+**STATE — FIELD ACCEPTED / LOCK PENDING.** On 2026-09-29 the
+`8c31fb5b1467a9960142d50ed62b517f571a6212` control candidate passed
+fresh local acceptance and Doctor. The signed PRE-005 candidate reproduced
+DoneCheck™ v1.2 PASS for 11/11 Gate criteria and Human Threshold™ ACCEPT.
+The operator published the field receipt, then returned
+`GATE12_CANONICAL_RECONCILIATION_REQUIRED` HOLD.
 
-**CLAIM:** The first Batch 3 finalizer could publish a final receipt and
-lock before repository reconciliation. Its prior 665-test regression
-did not include a finalizer-specific test.
+**EVIDENCE —** `/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/field-acceptance-receipt.json`;
+digest `sha256:971ed7fcdef8d6e043c3a2366e83c6db9e4781d03cafa3d46bc6753b7f9b21fa`.
+The publication marker digest and length read back exactly. External A09
+remains HOLD; product publication remains
+`LOCAL_VERIFIED_NOT_REMOTE_EXACT_MAIN_NOT_REMOTE_PARITY`.
 
-**EVIDENCE:** The `finalize` publication order in
-`tools/mac_engineer_v08_gate12_finalizer.py`; PRE-005 live-truth HEAD
-binding in `tools/mac_engineer_v08_gate12_pre005_executor.py`.
-This bounded repair prepares a retry-safe field receipt and returns
-`GATE12_CANONICAL_RECONCILIATION_REQUIRED`. It does not claim a
-canonical lock or a final Gate 12 PASS.
+**NEXT ACTION —** Reconcile repository truth at this field-receipt
+boundary, verify remote parity of the reconciled control candidate,
+then publish and reconcile canonical lock evidence. Gate 12 final PASS
+and the v0.8 version lock remain pending.
 
-**NEXT ACTION:** Verify this repair on the real Mac; commit and push
-the tested control candidate; bind a fresh PRE-005 candidate and
-signed human decision to that exact HEAD; then publish the field
-receipt and reconcile repository truth before canonical lock.
-
-**Updated:** 2026-09-28
+**Updated:** 2026-09-29
 **Program target:** ENGÜRÜ Mac Engineering™ v1.3 — Usable Verified Product
 **Current version:** v0.8 — PRODUCT ENGINEERING OPERATOR / ACTIVE
 **Current objective:** V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK
@@ -34,13 +30,13 @@ receipt and reconcile repository truth before canonical lock.
 
 `CURRENT_GATE=12`
 
-`GATE12_EXECUTION_STARTED=0`
+`GATE12_EXECUTION_STARTED=1`
 
 `CURRENT_PROGRAM_FINAL_TARGET=v1.3_USABLE_VERIFIED_PRODUCT`
 
 ## CURRENT ENGINEERING TRUTH
 
-ENGÜRÜ Mac Engineering™ v0.7 is **LONG-RUN RELIABILITY VERIFIED / LOCKED**. v0.8 Product Engineering Operator is **ACTIVE** at Gate 12 — DoneCheck™ v1.2 + Human Threshold™ + Version Lock. Gates 1–11 are verified PASS; Gate 11 is **VERIFIED / LOCKED**; Gate 12 execution has not started.
+ENGÜRÜ Mac Engineering™ v0.7 is **LONG-RUN RELIABILITY VERIFIED / LOCKED**. v0.8 Product Engineering Operator is **ACTIVE** at Gate 12 — DoneCheck™ v1.2 + Human Threshold™ + Version Lock. Gates 1–11 are verified PASS; Gate 11 is **VERIFIED / LOCKED**; Gate 12 field acceptance is recorded and canonical lock remains pending.
 
 Local field truth, canonical reconciliation, merge provenance and control-plane exact-main acceptance are all complete. Recovery, fixture repair, local field acceptance and v0.6 closure are closed truths.
 

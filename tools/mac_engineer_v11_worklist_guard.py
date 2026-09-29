@@ -123,11 +123,21 @@ def main() -> int:
         if gate11.get("executionStarted") is not False:
             issues.append("CURRENT_GATE11_EXECUTION_CHANGED")
     elif active_gate == 12:
+        gate12_preexecution = (
+            gate12.get("state") == "ACTIVE"
+            and gate12.get("executionStarted") is False
+        )
+        gate12_field_accepted = (
+            gate12.get("state") == "FIELD_ACCEPTED_PENDING_CANONICAL_LOCK"
+            and gate12.get("executionStarted") is True
+            and gate12.get("fieldAcceptanceReceiptDigest")
+            == "sha256:971ed7fcdef8d6e043c3a2366e83c6db9e4781d03cafa3d46bc6753b7f9b21fa"
+            and gate12.get("canonicalLockCreated") is False
+        )
         if (
             gate11.get("state") != "VERIFIED_LOCKED"
             or gate11.get("executionStarted") is not True
-            or gate12.get("state") != "ACTIVE"
-            or gate12.get("executionStarted") is not False
+            or not (gate12_preexecution or gate12_field_accepted)
         ):
             issues.append("GATE11_CLOSURE_GATE12_TRANSITION_INVALID")
     else:

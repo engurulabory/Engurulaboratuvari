@@ -327,7 +327,7 @@ def evaluate(
         "schema": "enguru.mac-engineer.v08-gate12-preexecution-reconciliation/v1",
         "state": "PASS" if not failed else "HOLD",
         "activeObjective": G12,
-        "gate12ExecutionStarted": 0,
+        "gate12ExecutionStarted": 1 if gate12.get("executionStarted") is True else 0,
         "productSourceMutationCount": 0 if product_truth.get("clean") else 1,
         "newCore": False,
         "checks": checks,

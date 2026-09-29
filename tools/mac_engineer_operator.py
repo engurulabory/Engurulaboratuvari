@@ -1922,6 +1922,18 @@ def command_continue() -> int:
         hold = "CANONICAL_BOOT"
         next_action = "enguru-mac doctor"
         completed = ["CANONICAL_BOOT_HOLD", "GITVAULT_SYNC"]
+    elif (
+        local_action == "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
+        and ((load_json(SESSION_STATE, {}) or {}).get("currentV08") or {})
+        .get("gate12", {}).get("state") == "FIELD_ACCEPTED_PENDING_CANONICAL_LOCK"
+    ):
+        state = "HOLD"
+        hold = "GATE12_CANONICAL_LOCK_PENDING"
+        next_action = "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
+        completed = [
+            "CANONICAL_BOOT", "GITVAULT_SYNC",
+            "V08_GATE12_FIELD_ACCEPTANCE_RECORDED",
+        ]
     elif local_action == "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK":
         completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
         registry_contract = gate12_registry_contract(load_json(ACTION_REGISTRY, {}) or {})

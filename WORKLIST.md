@@ -1128,7 +1128,7 @@ Local evidence:
 
 `CURRENT_GATE=12`
 
-`GATE12_EXECUTION_STARTED=0`
+`GATE12_EXECUTION_STARTED=1`
 
 `CURRENT_PROGRAM_FINAL_TARGET=v1.3_USABLE_VERIFIED_PRODUCT`
 
@@ -1187,7 +1187,7 @@ DoneCheck authority:
 9. [x] **Gate 9 — Deploy / Live Verify / Rollback + Lifecycle — PASS / SEALED**
 10. [x] **Gate 10 — Finished-Product Delivery Acceptance — VERIFIED / LOCKED**
 11. [x] **Gate 11 — Consolidated Real-Mac Product Engineering Commissioning — VERIFIED / LOCKED**
-12. [ ] **Gate 12 — DoneCheck™ v1.2 + Human Threshold™ + Version Lock — ACTIVE / NOT STARTED**
+12. [ ] **Gate 12 — DoneCheck™ v1.2 + Human Threshold™ + Version Lock — FIELD ACCEPTED / CANONICAL LOCK PENDING**
 
 ### Gate 1 result — VERIFIED PASS
 
@@ -2067,11 +2067,13 @@ Gate 10 execution belongs to the next working session.
 - DoneCheck™ v1.2: **PASS**
 - Evidence: `/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate11-p12-closure/20260927T223539Z/p12-final-acceptance.json`
 
-### v0.8 Gate 12 — ACTIVE / NOT STARTED
+### v0.8 Gate 12 — FIELD ACCEPTED / CANONICAL LOCK PENDING
 
 - [ ] **Gate 12 — DoneCheck™ v1.2 + Human Threshold™ + Version Lock**
 - Canonical identifier: `V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK`
 - Exit target: `PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED`
-- Execution started: **0**
+- Execution started: **1**; DoneCheck™ 11/11 PASS and signed Human Threshold™ ACCEPT are bound to control HEAD `8c31fb5b1467a9960142d50ed62b517f571a6212`.
+- Field receipt: `/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/field-acceptance-receipt.json`; `sha256:971ed7fcdef8d6e043c3a2366e83c6db9e4781d03cafa3d46bc6753b7f9b21fa`.
+- External A09: **HOLD / EXTERNAL**. Product remote publication: **DEFERRED**. Canonical lock and final Gate 12 PASS remain pending.
 - Current product source: local verified `0ca33cc7b70fee915d02de72946bbd4bb0e40065`; remote exact-main: **false**; remote parity: **false**.
 - Current program final target: **v1.3 — Usable Verified Product**.

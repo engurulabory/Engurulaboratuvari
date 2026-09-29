@@ -66,6 +66,13 @@
       "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
     ],
     "activeGate": 12,
+    "gate12FieldAcceptance": {
+      "state": "FIELD_ACCEPTED_PENDING_CANONICAL_LOCK",
+      "receipt": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/field-acceptance-receipt.json",
+      "digest": "sha256:971ed7fcdef8d6e043c3a2366e83c6db9e4781d03cafa3d46bc6753b7f9b21fa",
+      "acceptedControlHead": "8c31fb5b1467a9960142d50ed62b517f571a6212",
+      "canonicalLockCreated": false
+    },
     "nextAction": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
   },
   "versions": [
@@ -214,7 +221,7 @@
         "exactMain": "8b90a8fc93453dd8a84994195d28d14b15e261cb"
       },
       "verifiedFinishContract": {
-        "state": "ACTIVE",
+        "state": "FIELD_ACCEPTED_PENDING_CANONICAL_LOCK",
         "totalGates": 12,
         "passed": [
           1,
@@ -233,7 +240,9 @@
         "remaining": [
           12
         ],
-        "finalAuthority": "HUMAN_THRESHOLD",
+        "finalAuthority": "HUMAN_THRESHOLD_ACCEPTED",
+        "fieldAcceptanceReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/field-acceptance-receipt.json",
+        "fieldAcceptanceReceiptDigest": "sha256:971ed7fcdef8d6e043c3a2366e83c6db9e4781d03cafa3d46bc6753b7f9b21fa",
         "finalState": "PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED"
       },
       "productWorkingBranch": "feat/v08-native-productization-provenance",

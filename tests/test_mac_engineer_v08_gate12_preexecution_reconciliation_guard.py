@@ -32,16 +32,30 @@ class Gate12PreexecutionReconciliationGuardTests(unittest.TestCase):
         values.update(overrides)
         return guard.evaluate(**values)
 
-    def test_current_repository_is_gate12_preexecution_reconciled(self):
+    def test_current_field_phase_is_beyond_preexecution_guard(self):
         result = self.evaluate()
-        self.assertEqual(result["state"], "PASS", result["failed"])
-        self.assertEqual(result["gate12ExecutionStarted"], 0)
+        self.assertEqual(result["state"], "HOLD")
+        self.assertIn("SESSION_GATE12_ACTIVE_NOT_STARTED", result["failed"])
+        self.assertEqual(result["gate12ExecutionStarted"], 1)
         self.assertEqual(result["productSourceMutationCount"], 0)
         self.assertFalse(result["newCore"])
 
-    def test_gate12_started_fails_closed(self):
+    def test_current_field_receipt_is_explicit_and_unlocked(self):
+        current = self.session
+        self.assertEqual(
+            current["currentV08"]["gate12"]["state"],
+            "FIELD_ACCEPTED_PENDING_CANONICAL_LOCK",
+        )
+        self.assertTrue(current["currentV08"]["gate12"]["executionStarted"])
+        self.assertFalse(current["currentV08"]["gate12"]["canonicalLockCreated"])
+        self.assertEqual(
+            current["currentV08"]["gate12"]["fieldAcceptanceReceiptDigest"],
+            "sha256:971ed7fcdef8d6e043c3a2366e83c6db9e4781d03cafa3d46bc6753b7f9b21fa",
+        )
+
+    def test_field_phase_cannot_claim_preexecution_with_false_started_flag(self):
         session = deepcopy(self.session)
-        session["currentV08"]["gate12"]["executionStarted"] = True
+        session["currentV08"]["gate12"]["executionStarted"] = False
         result = self.evaluate(session=session)
         self.assertEqual(result["state"], "HOLD")
         self.assertIn("SESSION_GATE12_ACTIVE_NOT_STARTED", result["failed"])

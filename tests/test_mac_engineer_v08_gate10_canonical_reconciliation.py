@@ -79,11 +79,12 @@ class Gate10CanonicalReconciliationTests(unittest.TestCase):
             )
             self.assertEqual(
                 v08["gate12"]["state"],
-                "ACTIVE",
+                "FIELD_ACCEPTED_PENDING_CANONICAL_LOCK",
             )
-            self.assertFalse(
+            self.assertTrue(
                 v08["gate12"]["executionStarted"]
             )
+            self.assertFalse(v08["gate12"]["canonicalLockCreated"])
         else:
             self.fail(
                 "ACTIVE_GATE_MUST_BE_11_OR_12"

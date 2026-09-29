@@ -1684,13 +1684,20 @@
       "gate12Execution": false
     },
     "gate12": {
-      "state": "ACTIVE",
+      "state": "FIELD_ACCEPTED_PENDING_CANONICAL_LOCK",
       "name": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
       "title": "DoneCheck™ v1.2 + Human Threshold™ + Version Lock",
       "exit": "PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED",
-      "executionStarted": false,
+      "executionStarted": true,
       "authority": "HUMAN_THRESHOLD",
       "foundation": "GATE11_VERIFIED_LOCKED",
+      "machineResult": "PASS_11_OF_11",
+      "humanDecision": "ACCEPT",
+      "fieldAcceptanceReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/field-acceptance-receipt.json",
+      "fieldAcceptanceReceiptDigest": "sha256:971ed7fcdef8d6e043c3a2366e83c6db9e4781d03cafa3d46bc6753b7f9b21fa",
+      "terminalCandidateId": "g12-candidate-sha256:26d59556c5d88aaac9a68667d86329348ceea17a5b6d1a3252333de3b0862edd",
+      "acceptedControlHead": "8c31fb5b1467a9960142d50ed62b517f571a6212",
+      "canonicalLockCreated": false,
       "nextAction": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
     }
   },

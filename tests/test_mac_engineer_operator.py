@@ -462,6 +462,36 @@ class OperatorSurfaceTests(unittest.TestCase):
         self.assertEqual(receipt["hold"], "ACTION_HANDLER_NOT_REGISTERED")
         self.assertEqual(receipt["next_action"], "FUTURE_UNREGISTERED_ACTION")
 
+    def test_gate12_field_acceptance_routes_to_lock_hold(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            evidence = Path(tmp)
+            with (
+                mock.patch.object(operator, "EVIDENCE", evidence),
+                mock.patch.object(operator, "RUNTIME_RECEIPTS", evidence / "runtime"),
+                mock.patch.object(operator, "canonical_boot", return_value={"state": "PASS"}),
+                mock.patch.object(operator, "current_truth", return_value={
+                    "next_action": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
+                    "local_continuity_next_action": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
+                    "local_fallback": {},
+                }),
+                mock.patch.object(operator, "sync_mirrors", return_value={}),
+                mock.patch.object(operator, "runner_status", return_value={}),
+                mock.patch.object(operator, "offline_manifest", return_value={}),
+                mock.patch.object(operator, "load_json", return_value={
+                    "currentV08": {"gate12": {
+                        "state": "FIELD_ACCEPTED_PENDING_CANONICAL_LOCK"
+                    }}
+                }),
+            ):
+                with contextlib.redirect_stdout(io.StringIO()):
+                    code = operator.command_continue()
+            receipt = json.loads(
+                (evidence / "latest-receipt.json").read_text(encoding="utf-8")
+            )
+        self.assertEqual(code, 2)
+        self.assertEqual(receipt["hold"], "GATE12_CANONICAL_LOCK_PENDING")
+        self.assertIn("V08_GATE12_FIELD_ACCEPTANCE_RECORDED", receipt["completed"])
+
     def test_recover_stops_before_task_mutation_when_boot_holds(self):
         with tempfile.TemporaryDirectory() as tmp:
             evidence = Path(tmp)
