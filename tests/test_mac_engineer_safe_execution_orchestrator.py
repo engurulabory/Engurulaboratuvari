@@ -209,6 +209,190 @@ check(
     ),
 )
 
+registered_plan = {
+    "STATE": "PLAN_READY",
+    "PLAN_ID": "package05-cap04-registered-action-test",
+    "TRUTH_FINGERPRINT": "package05-cap04-test-truth",
+    "EXECUTION_AUTHORIZED": False,
+    "CAPABILITY_PLAN": [
+        "OPERATOR_CONTINUE_DISPATCH",
+    ],
+}
+
+_real_restart = (
+    operator
+    .run_mac_native_restart_recovery_proof
+)
+
+operator.run_mac_native_restart_recovery_proof = lambda: {
+    "state": "PASS",
+    "code": 0,
+    "fields": {
+        "STATE": "PASS",
+        "PROCESS_RESTART": "PASS",
+        "TASK_IDENTITY": "PASS",
+        "CHECKPOINT_RESUME": "PASS",
+        "EXACTLY_ONCE_EFFECT": "PASS",
+        "FINAL_STATE": "COMPLETE",
+        "GITVAULT_MIRROR_UNCHANGED": "PASS",
+        "REMOTE_PUSH": "false",
+    },
+    "evidence": "/tmp/package05-cap04-recovery-evidence.json",
+}
+
+try:
+    registered_bound = orch.execute_plan_step(
+        registered_plan,
+        1,
+    )
+finally:
+    operator.run_mac_native_restart_recovery_proof = (
+        _real_restart
+    )
+
+check(
+    "PLAN_BOUND_REGISTERED_ACTION_PASS",
+    registered_bound["STATE"] == "PASS"
+    and registered_bound["CAPABILITY_ID"]
+        == "OPERATOR_CONTINUE_DISPATCH"
+    and registered_bound["BINDING_TYPE"]
+        == "REGISTERED_ACTION"
+    and registered_bound["ACTION"]
+        == "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF"
+    and registered_bound["REGISTERED_HANDLER_INVOKED"]
+        is True
+    and registered_bound["EXECUTION_PERFORMED"]
+        is True
+    and registered_bound[
+        "RECOVERY_PROOF_OBSERVED"
+    ] is True
+    and registered_bound[
+        "OBSERVED_RESULT"
+    ]["processRestartPass"] is True
+    and registered_bound[
+        "OBSERVED_RESULT"
+    ]["taskIdentityPass"] is True
+    and registered_bound[
+        "OBSERVED_RESULT"
+    ]["checkpointResumePass"] is True
+    and registered_bound[
+        "OBSERVED_RESULT"
+    ]["exactlyOnceEffectPass"] is True
+    and registered_bound[
+        "OBSERVED_RESULT"
+    ]["finalStateComplete"] is True
+    and registered_bound[
+        "OBSERVED_RESULT"
+    ]["gitVaultMirrorUnchanged"] is True
+    and registered_bound[
+        "OBSERVED_RESULT"
+    ]["remotePushFalse"] is True
+    and registered_bound[
+        "MUTATION_SCOPE"
+    ]["filesystemMutationExpected"] is True
+    and registered_bound[
+        "MUTATION_SCOPE"
+    ]["canonicalSourceMutationAllowed"] is False
+    and bool(
+        registered_bound.get(
+            "STEP_EVIDENCE_DIGEST"
+        )
+    ),
+)
+
+_binding_path = orch.BINDING_REGISTRY
+_original_binding_doc = orch.load_json(
+    _binding_path
+)
+
+_tampered_binding_doc = (
+    __import__("copy").deepcopy(
+        _original_binding_doc
+    )
+)
+
+_cap04_binding = next(
+    row
+    for row in _tampered_binding_doc["bindings"]
+    if row["CAPABILITY_ID"]
+    == "OPERATOR_CONTINUE_DISPATCH"
+)
+
+_cap04_binding["ACTION"] = (
+    "UNREGISTERED_SYNTHETIC_ACTION"
+)
+
+_real_load_json = orch.load_json
+
+def _tampered_load_json(path):
+    if path == orch.BINDING_REGISTRY:
+        return _tampered_binding_doc
+    return _real_load_json(path)
+
+orch.load_json = _tampered_load_json
+
+try:
+    tampered_registered = (
+        orch.execute_plan_step(
+            registered_plan,
+            1,
+        )
+    )
+finally:
+    orch.load_json = _real_load_json
+
+check(
+    "REGISTERED_ACTION_TAMPER_FAIL_CLOSED",
+    tampered_registered["STATE"] == "HOLD"
+    and tampered_registered[
+        "EXECUTION_PERFORMED"
+    ] is False,
+)
+
+_real_restart = (
+    operator
+    .run_mac_native_restart_recovery_proof
+)
+
+operator.run_mac_native_restart_recovery_proof = lambda: {
+    "state": "PASS",
+    "code": 0,
+    "fields": {
+        "STATE": "PASS",
+        "PROCESS_RESTART": "PASS",
+        "TASK_IDENTITY": "PASS",
+        "CHECKPOINT_RESUME": "PASS",
+        "EXACTLY_ONCE_EFFECT": "HOLD",
+        "FINAL_STATE": "COMPLETE",
+        "GITVAULT_MIRROR_UNCHANGED": "PASS",
+        "REMOTE_PUSH": "false",
+    },
+    "evidence": "/tmp/package05-invalid-recovery-evidence.json",
+}
+
+try:
+    incomplete_recovery = (
+        orch.execute_plan_step(
+            registered_plan,
+            1,
+        )
+    )
+finally:
+    operator.run_mac_native_restart_recovery_proof = (
+        _real_restart
+    )
+
+check(
+    "REGISTERED_ACTION_INCOMPLETE_RECOVERY_HOLD",
+    incomplete_recovery["STATE"] == "HOLD"
+    and incomplete_recovery["HOLD_REASON"]
+        == "REGISTERED_ACTION_RESULT_CONTRACT_HOLD"
+    and incomplete_recovery[
+        "RECOVERY_PROOF_OBSERVED"
+    ] is False,
+)
+
+
 invalid_step = orch.execute_plan_step(
     truth_plan,
     99,
@@ -237,6 +421,12 @@ hold_bindings = [
     if row["BINDING_TYPE"] == "HOLD_UNBOUND"
 ]
 
+registered_bindings = [
+    row
+    for row in binding_doc["bindings"]
+    if row["BINDING_TYPE"] == "REGISTERED_ACTION"
+]
+
 direct_ids = {
     row["CAPABILITY_ID"]
     for row in direct_bindings
@@ -256,8 +446,17 @@ check(
 )
 
 check(
-    "SEVENTEEN_UNBOUND_FAIL_CLOSED",
-    len(hold_bindings) == 17,
+    "ONE_PROVEN_REGISTERED_ACTION_BINDING",
+    len(registered_bindings) == 1
+    and registered_bindings[0]["CAPABILITY_ID"]
+        == "OPERATOR_CONTINUE_DISPATCH"
+    and registered_bindings[0]["ACTION"]
+        == "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF",
+)
+
+check(
+    "SIXTEEN_UNBOUND_FAIL_CLOSED",
+    len(hold_bindings) == 16,
 )
 
 

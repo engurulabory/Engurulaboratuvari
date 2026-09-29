@@ -962,10 +962,12 @@ def run_capability02(
 
     return final_path
 
-def run_capability03(evidence_root):
+def run_capability03(
+    evidence_root,
+    *,
+    reverify_existing=False,
+):
     import copy
-    import hashlib
-    import json
     import tempfile
     from pathlib import Path
 
@@ -981,10 +983,53 @@ def run_capability03(evidence_root):
             "CAPABILITY03_LEDGER_ID_MISMATCH"
         )
 
-    if row["fieldState"] != "PENDING":
-        raise RuntimeError(
-            "CAPABILITY03_PENDING_REQUIRED"
+    state = row["fieldState"]
+
+    allowed_state = (
+        state == "PENDING"
+        or (
+            reverify_existing
+            and state == "FIELD_VERIFIED"
         )
+    )
+
+    if not allowed_state:
+        raise RuntimeError(
+            "CAPABILITY03_PENDING_OR_EXPLICIT_REAUDIT_REQUIRED"
+        )
+
+    # Exact binding authority must remain the proven
+    # read-only LOCAL_DOCTOR binding.
+    binding_registry = load(
+        ROOT
+        / "governance"
+        / "mac-engineer"
+        / "CAPABILITY_EXECUTION_BINDING_V1.json"
+    )
+
+    binding = next(
+        item
+        for item in binding_registry["bindings"]
+        if item["CAPABILITY_ID"]
+        == capability_id
+    )
+
+    expected_binding = {
+        "BINDING_TYPE": "DIRECT_RUNTIME",
+        "MODULE": "mac_engineer_operator",
+        "CALLABLE": "product_doctor",
+        "READ_ONLY_CONFIRMED": True,
+        "NETWORK_ALLOWED": True,
+        "FILESYSTEM_MUTATION_ALLOWED": False,
+        "EXECUTION_AUTHORITY_CREATED": False,
+    }
+
+    for key, expected in expected_binding.items():
+        if binding.get(key) != expected:
+            raise RuntimeError(
+                "CAPABILITY03_BINDING_AUTHORITY_MISMATCH:"
+                + key
+            )
 
     control_before = operator.git_state(ROOT)
     product_before = operator.git_state(
@@ -1017,8 +1062,7 @@ def run_capability03(evidence_root):
             "CAPABILITY03_LOCAL_CHECK_HOLD"
         )
 
-    # Controlled failure path:
-    # no source mutation, only temporary PRODUCT authority.
+    # Controlled failure path. No source mutation.
     real_product = operator.PRODUCT
 
     with tempfile.TemporaryDirectory() as tmp:
@@ -1051,30 +1095,21 @@ def run_capability03(evidence_root):
         operator.PRODUCT
     )
 
-    safety = {
-        "controlHeadUnchanged":
-            control_before.get("head")
-            == control_after.get("head"),
-        "productHeadUnchanged":
-            product_before.get("head")
-            == product_after.get("head"),
-        "controlWorktreeStatusUnchanged":
-            control_before.get("status")
-            == control_after.get("status"),
-        "productWorktreeStatusUnchanged":
-            product_before.get("status")
-            == product_after.get("status"),
-        "authorityBypass": False,
-        "criticalFalsePass": False,
-        "untrackedSourceMutation": False,
-    }
+    source_truth_unchanged = all([
+        control_before.get("head")
+        == control_after.get("head"),
 
-    if not all([
-        safety["controlHeadUnchanged"],
-        safety["productHeadUnchanged"],
-        safety["controlWorktreeStatusUnchanged"],
-        safety["productWorktreeStatusUnchanged"],
-    ]):
+        product_before.get("head")
+        == product_after.get("head"),
+
+        control_before.get("status")
+        == control_after.get("status"),
+
+        product_before.get("status")
+        == product_after.get("status"),
+    ])
+
+    if not source_truth_unchanged:
         raise RuntimeError(
             "CAPABILITY03_SOURCE_TRUTH_CHANGED"
         )
@@ -1083,75 +1118,261 @@ def run_capability03(evidence_root):
         Path(evidence_root)
         / "capability-03"
     )
+
     run_dir.mkdir(
         parents=True,
         exist_ok=True,
     )
 
-    evidence_path = run_dir / "evidence.json"
-
-    payload = {
+    execution = {
         "schema":
-            "enguru.mac-engineer.package08-capability-field-evidence/v1",
+            "enguru.mac-engineer.package08-capability-execution-evidence/v1",
+
         "state": "PASS",
+
+        "claim":
+            "LOCAL_DOCTOR_REAL_OSI_EXECUTION_PASS",
+
+        "capabilityIndex": 3,
         "capabilityId": capability_id,
-        "claim": "LOCAL_DOCTOR_FIELD_VERIFIED",
+        "observedAt": now(),
+
+        "bindingAuthority": {
+            key: binding.get(key)
+            for key in expected_binding
+        },
+
         "realTask": {
-            "verdict": doctor.get("verdict"),
-            "localChecks": local_checks,
+            "verdict":
+                doctor.get("verdict"),
+
+            "localChecks":
+                local_checks,
+
             "onlineCapabilities":
-                doctor.get("online_capabilities"),
+                doctor.get(
+                    "online_capabilities"
+                ),
         },
+
         "failurePath": {
-            "state": failure.get("verdict"),
-            "reason": failure.get("reason"),
+            "state":
+                failure.get("verdict"),
+
+            "reason":
+                failure.get("reason"),
         },
+
         "freshReverify": {
-            "verdict": fresh.get("verdict"),
+            "verdict":
+                fresh.get("verdict"),
         },
-        "safety": safety,
-        "doneCheck": {
-            "version": "1.2.0",
-            "state": "PASS",
+
+        "postcondition": {
+            "controlHeadUnchanged":
+                control_before.get("head")
+                == control_after.get("head"),
+
+            "productHeadUnchanged":
+                product_before.get("head")
+                == product_after.get("head"),
+
+            "controlWorktreeStatusUnchanged":
+                control_before.get("status")
+                == control_after.get("status"),
+
+            "productWorktreeStatusUnchanged":
+                product_before.get("status")
+                == product_after.get("status"),
+        },
+
+        "rollbackPolicy": {
+            "registryPolicy":
+                "NOT_REQUIRED_FOR_READ_ONLY_OPERATION",
+
+            "rollbackRequired":
+                False,
         },
     }
 
-    evidence_path.write_text(
-        json.dumps(
-            payload,
-            ensure_ascii=False,
-            indent=2,
-        ) + "\n",
-        encoding="utf-8",
+    execution_path = (
+        run_dir
+        / "execution-evidence.json"
     )
 
-    digest = hashlib.sha256(
-        evidence_path.read_bytes()
-    ).hexdigest()
+    write(
+        execution_path,
+        execution,
+    )
 
-    acceptance = {
-        "discovered": True,
-        "invocable": True,
-        "realTaskExecuted": True,
-        "expectedResultObserved": True,
-        "failurePathTested": True,
-        "freshReverify": True,
-        "evidenceBound": True,
-        "doneCheckPass": True,
-        "fieldVerified": True,
+    execution_digest = sha(
+        execution_path
+    )
+
+    machine = finish.verify_machine_finish(
+        evidence_path=
+            execution_path,
+
+        execution_id=
+            "package08-cap03:"
+            + execution_digest[:32],
+
+        task_id=
+            "package08-cap03-"
+            + execution_digest[:16],
+
+        criterion_id=
+            capability_id,
+
+        statement=
+            "LOCAL_DOCTOR real OSi field acceptance is PASS",
+    )
+
+    if (
+        machine.get(
+            "DONECHECK_STATE"
+        )
+        != "PASS"
+    ):
+        raise RuntimeError(
+            "CAPABILITY03_DONECHECK_FAILED"
+        )
+
+    final = {
+        "schema":
+            "enguru.mac-engineer.package08-capability-field-proof/v1",
+
+        "state": "PASS",
+
+        "claim":
+            "LOCAL_DOCTOR_FIELD_VERIFIED",
+
+        "capabilityIndex": 3,
+        "capabilityId": capability_id,
+        "observedAt": now(),
+
+        "acceptance": {
+            "discovered": True,
+            "invocable": True,
+            "realTaskExecuted": True,
+            "expectedResultObserved": True,
+            "failurePathTested": True,
+            "freshReverify": True,
+            "evidenceBound": True,
+
+            "doneCheckPass":
+                machine[
+                    "DONECHECK_STATE"
+                ] == "PASS",
+
+            "fieldVerified":
+                machine[
+                    "DONECHECK_STATE"
+                ] == "PASS",
+        },
+
+        "executionEvidence": {
+            "path":
+                str(execution_path),
+
+            "sha256":
+                execution_digest,
+        },
+
+        "doneCheck": {
+            "state":
+                machine[
+                    "DONECHECK_STATE"
+                ],
+
+            "version":
+                machine[
+                    "DONECHECK_VERSION"
+                ],
+
+            "exactSha":
+                machine[
+                    "DONECHECK_SHA"
+                ],
+
+            "verificationResultId":
+                machine.get(
+                    "VERIFICATION_RESULT_ID"
+                ),
+        },
+
+        "rollbackPolicy": {
+            "registryPolicy":
+                "NOT_REQUIRED_FOR_READ_ONLY_OPERATION",
+
+            "rollbackRequired":
+                False,
+
+            "rollbackPassClaimed":
+                False,
+        },
+
+        "safety": {
+            "controlHeadUnchanged":
+                control_before.get("head")
+                == control_after.get("head"),
+
+            "productHeadUnchanged":
+                product_before.get("head")
+                == product_after.get("head"),
+
+            "controlWorktreeStatusUnchanged":
+                control_before.get("status")
+                == control_after.get("status"),
+
+            "productWorktreeStatusUnchanged":
+                product_before.get("status")
+                == product_after.get("status"),
+        },
     }
 
-    updated = copy.deepcopy(ledger)
-    target = updated["capabilities"][2]
+    final_path = (
+        run_dir
+        / "evidence.json"
+    )
 
-    target["acceptance"] = acceptance
-    target["fieldState"] = "FIELD_VERIFIED"
+    write(
+        final_path,
+        final,
+    )
+
+    updated = copy.deepcopy(
+        ledger
+    )
+
+    target = updated[
+        "capabilities"
+    ][2]
+
+    target["acceptance"] = dict(
+        final["acceptance"]
+    )
+
+    target["fieldState"] = (
+        "FIELD_VERIFIED"
+    )
+
     target["evidence"] = {
-        "path": str(evidence_path),
-        "sha256": digest,
+        "path":
+            str(final_path),
+
+        "sha256":
+            sha(final_path),
     }
 
-    updated["fieldVerifiedCount"] = 3
+    updated["fieldVerifiedCount"] = sum(
+        1
+        for item in updated[
+            "capabilities"
+        ]
+        if item.get("fieldState")
+        == "FIELD_VERIFIED"
+    )
 
     LEDGER.write_text(
         json.dumps(
@@ -1164,15 +1385,70 @@ def run_capability03(evidence_root):
 
     print(
         "EVIDENCE="
-        + str(evidence_path)
+        + str(final_path)
     )
 
     print(
         "EVIDENCE_SHA256="
-        + digest
+        + sha(final_path)
     )
 
-    return payload
+    print(
+        "DONECHECK_STATE="
+        + machine[
+            "DONECHECK_STATE"
+        ]
+    )
+
+    print(
+        "DONECHECK_VERSION="
+        + machine[
+            "DONECHECK_VERSION"
+        ]
+    )
+
+    print(
+        "DONECHECK_SHA="
+        + machine[
+            "DONECHECK_SHA"
+        ]
+    )
+
+    print(
+        "VERIFICATION_RESULT_ID="
+        + str(
+            machine.get(
+                "VERIFICATION_RESULT_ID"
+            )
+        )
+    )
+
+    return final_path
+
+
+def run_capability04(evidence_root):
+    """
+    Fail-closed placeholder.
+
+    The previous resolver-only Package08 proof was
+    insufficient for OPERATOR_CONTINUE_DISPATCH because
+    the canonical Registry requires:
+
+    - bounded registered-action authority;
+    - real downstream dispatch;
+    - rollback/recovery proof;
+    - fresh reverify;
+    - real DoneCheck v1.2.
+
+    The deterministic resolver remains available through
+    mac_engineer_operator.resolve_operator_continue_dispatch,
+    but resolver verification alone MUST NOT create a
+    FIELD_VERIFIED Capability04 ledger entry.
+    """
+
+    raise RuntimeError(
+        "CAPABILITY04_TRUE_DISPATCH_ROLLBACK_AND_DONECHECK_PROOF_REQUIRED"
+    )
 
 
 def main():
@@ -1216,6 +1492,11 @@ def main():
                 ["capabilities"][2]
                 ["evidence"]["path"]
             )
+        )
+
+    elif args.capability == 4:
+        path = run_capability04(
+            evidence_root
         )
 
     else:

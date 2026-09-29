@@ -414,6 +414,394 @@ def execute_proven_read_only(
     return payload
 
 
+
+def execute_proven_registered_action(
+    capability_id: str,
+) -> dict[str, Any]:
+
+    registry = load_json(
+        CAPABILITY_REGISTRY
+    )
+
+    binding_doc = load_json(
+        BINDING_REGISTRY
+    )
+
+    caps = {
+        row["CAPABILITY_ID"]: row
+        for row in registry["capabilities"]
+    }
+
+    bindings = {
+        row["CAPABILITY_ID"]: row
+        for row in binding_doc["bindings"]
+    }
+
+    if capability_id not in caps:
+        return hold(
+            "UNKNOWN_CAPABILITY",
+            CAPABILITY_ID=capability_id,
+        )
+
+    binding = bindings.get(
+        capability_id
+    )
+
+    if not binding:
+        return hold(
+            "CAPABILITY_BINDING_MISSING",
+            CAPABILITY_ID=capability_id,
+        )
+
+    if (
+        binding.get("BINDING_TYPE")
+        != "REGISTERED_ACTION"
+    ):
+        return hold(
+            "CAPABILITY_NOT_REGISTERED_ACTION",
+            CAPABILITY_ID=capability_id,
+        )
+
+    if (
+        capability_id
+        != "OPERATOR_CONTINUE_DISPATCH"
+    ):
+        return hold(
+            "REGISTERED_ACTION_ALLOWLIST_MISS",
+            CAPABILITY_ID=capability_id,
+        )
+
+    expected = {
+        "ACTION":
+            "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF",
+
+        "REGISTERED_HANDLER":
+            "MAC_NATIVE_RESTART_RECOVERY_FIELD_PROOF",
+
+        "OPERATOR_CALLABLE":
+            "run_mac_native_restart_recovery_proof",
+
+        "AUTHORITY":
+            "REAL_MAC_LOCAL_PROCESS_RESTART_EVIDENCE",
+
+        "NETWORK_ALLOWED":
+            False,
+
+        "REMOTE_PUSH_ALLOWED":
+            False,
+
+        "RECOVERY_PROOF_REQUIRED":
+            True,
+
+        "EXECUTION_AUTHORITY_CREATED":
+            False,
+    }
+
+    for key, value in expected.items():
+        if binding.get(key) != value:
+            return hold(
+                "REGISTERED_ACTION_BINDING_MISMATCH",
+                CAPABILITY_ID=capability_id,
+                FIELD=key,
+            )
+
+    import mac_engineer_operator as operator
+
+    action_registry = (
+        operator.load_json(
+            operator.ACTION_REGISTRY,
+            {},
+        )
+        or {}
+    )
+
+    action = binding["ACTION"]
+
+    contract = (
+        action_registry.get("actions")
+        or {}
+    ).get(action)
+
+    if not isinstance(
+        contract,
+        dict,
+    ):
+        return hold(
+            "ACTION_HANDLER_NOT_REGISTERED",
+            CAPABILITY_ID=capability_id,
+            ACTION=action,
+        )
+
+    if (
+        contract.get("handler")
+        != binding["REGISTERED_HANDLER"]
+    ):
+        return hold(
+            "REGISTERED_HANDLER_MISMATCH",
+            CAPABILITY_ID=capability_id,
+            ACTION=action,
+        )
+
+    if (
+        contract.get("authority")
+        != binding["AUTHORITY"]
+    ):
+        return hold(
+            "REGISTERED_AUTHORITY_MISMATCH",
+            CAPABILITY_ID=capability_id,
+            ACTION=action,
+        )
+
+    if (
+        contract.get("networkRequired")
+        is not False
+    ):
+        return hold(
+            "REGISTERED_ACTION_NETWORK_POLICY_VIOLATION",
+            CAPABILITY_ID=capability_id,
+            ACTION=action,
+        )
+
+    if (
+        contract.get("remotePush")
+        is not False
+    ):
+        return hold(
+            "REGISTERED_ACTION_REMOTE_PUSH_POLICY_VIOLATION",
+            CAPABILITY_ID=capability_id,
+            ACTION=action,
+        )
+
+    if (
+        contract.get("failClosed")
+        is not True
+    ):
+        return hold(
+            "REGISTERED_ACTION_FAIL_CLOSED_REQUIRED",
+            CAPABILITY_ID=capability_id,
+            ACTION=action,
+        )
+
+    result = (
+        operator
+        .run_mac_native_restart_recovery_proof()
+    )
+
+    fields = (
+        result.get("fields")
+        if isinstance(
+            result.get("fields"),
+            dict,
+        )
+        else {}
+    )
+
+    runtime_evidence = result.get(
+        "evidence"
+    )
+
+    observed = {
+        "wrapperStatePass":
+            result.get("state")
+            == "PASS",
+
+        "wrapperCodeZero":
+            result.get("code")
+            == 0,
+
+        "processRestartPass":
+            fields.get(
+                "PROCESS_RESTART"
+            )
+            == "PASS",
+
+        "taskIdentityPass":
+            fields.get(
+                "TASK_IDENTITY"
+            )
+            == "PASS",
+
+        "checkpointResumePass":
+            fields.get(
+                "CHECKPOINT_RESUME"
+            )
+            == "PASS",
+
+        "exactlyOnceEffectPass":
+            fields.get(
+                "EXACTLY_ONCE_EFFECT"
+            )
+            == "PASS",
+
+        "finalStateComplete":
+            fields.get(
+                "FINAL_STATE"
+            )
+            == "COMPLETE",
+
+        "gitVaultMirrorUnchanged":
+            fields.get(
+                "GITVAULT_MIRROR_UNCHANGED"
+            )
+            == "PASS",
+
+        "remotePushFalse":
+            fields.get(
+                "REMOTE_PUSH"
+            )
+            == "false",
+
+        "runtimeEvidencePresent":
+            bool(runtime_evidence),
+    }
+
+    execution_state = (
+        "PASS"
+        if all(observed.values())
+        else "HOLD"
+    )
+
+    payload = {
+        "STATE":
+            execution_state,
+
+        "MODE":
+            "EXECUTE_PROVEN_REGISTERED_ACTION",
+
+        "CAPABILITY_ID":
+            capability_id,
+
+        "BINDING_TYPE":
+            "REGISTERED_ACTION",
+
+        "ACTION":
+            action,
+
+        "REGISTERED_HANDLER":
+            binding["REGISTERED_HANDLER"],
+
+        "AUTHORITY":
+            binding["AUTHORITY"],
+
+        "NETWORK_POLICY":
+            {
+                "allowed":
+                    False,
+
+                "contractNetworkRequired":
+                    contract.get(
+                        "networkRequired"
+                    ),
+            },
+
+        "REMOTE_PUSH_POLICY":
+            {
+                "allowed":
+                    False,
+
+                "observedRemotePushFalse":
+                    observed[
+                        "remotePushFalse"
+                    ],
+            },
+
+        "MUTATION_SCOPE":
+            {
+                "filesystemMutationExpected":
+                    True,
+
+                "scope":
+                    "DISPOSABLE_WORKSPACE_DURABLE_RUNTIME_AND_EVIDENCE",
+
+                "canonicalSourceMutationAllowed":
+                    False,
+
+                "remoteMutationAllowed":
+                    False,
+            },
+
+        "REGISTERED_HANDLER_INVOKED":
+            True,
+
+        "EXECUTION_PERFORMED":
+            True,
+
+        "RECOVERY_PROOF_REQUIRED":
+            True,
+
+        "RECOVERY_PROOF_OBSERVED":
+            bool(
+                observed[
+                    "processRestartPass"
+                ]
+                and observed[
+                    "taskIdentityPass"
+                ]
+                and observed[
+                    "checkpointResumePass"
+                ]
+                and observed[
+                    "exactlyOnceEffectPass"
+                ]
+                and observed[
+                    "finalStateComplete"
+                ]
+            ),
+
+        "OBSERVED_RESULT":
+            observed,
+
+        "RESULT":
+            result,
+
+        "EVIDENCE": {
+            "bindingRegistry":
+                str(
+                    BINDING_REGISTRY.relative_to(
+                        ROOT
+                    )
+                ),
+
+            "capabilityRegistry":
+                str(
+                    CAPABILITY_REGISTRY.relative_to(
+                        ROOT
+                    )
+                ),
+
+            "registeredActionValidated":
+                True,
+
+            "registeredHandlerValidated":
+                True,
+
+            "authorityMatched":
+                True,
+
+            "networkPolicyMatched":
+                contract.get(
+                    "networkRequired"
+                )
+                is False,
+
+            "remotePushPolicyMatched":
+                observed[
+                    "remotePushFalse"
+                ],
+
+            "runtimeEvidence":
+                runtime_evidence,
+        },
+    }
+
+    if execution_state != "PASS":
+        payload["HOLD_REASON"] = (
+            "REGISTERED_ACTION_RESULT_CONTRACT_HOLD"
+        )
+
+    return payload
+
+
 def execute_plan_step(
     plan: dict[str, Any],
     step_index: int,
@@ -448,9 +836,49 @@ def execute_plan_step(
 
     capability_id = capability_plan[step_index - 1]
 
-    result = execute_proven_read_only(
+    binding_doc = load_json(
+        BINDING_REGISTRY
+    )
+
+    bindings = {
+        row["CAPABILITY_ID"]: row
+        for row in binding_doc["bindings"]
+    }
+
+    binding = bindings.get(
         capability_id
     )
+
+    if not binding:
+        result = hold(
+            "CAPABILITY_BINDING_MISSING",
+            CAPABILITY_ID=capability_id,
+        )
+
+    elif (
+        binding.get("BINDING_TYPE")
+        == "DIRECT_RUNTIME"
+    ):
+        result = execute_proven_read_only(
+            capability_id
+        )
+
+    elif (
+        binding.get("BINDING_TYPE")
+        == "REGISTERED_ACTION"
+    ):
+        result = execute_proven_registered_action(
+            capability_id
+        )
+
+    else:
+        result = hold(
+            "CAPABILITY_NOT_EXECUTABLE",
+            CAPABILITY_ID=capability_id,
+            BINDING_TYPE=binding.get(
+                "BINDING_TYPE"
+            ),
+        )
 
     if canonical_digest(plan) != original_digest:
         return hold(

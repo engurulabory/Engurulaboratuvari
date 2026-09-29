@@ -64,8 +64,8 @@
       "authority": "GREEN",
       "capabilityId": "LOCAL_DOCTOR",
       "evidence": {
-        "path": "/Users/abdal/Enguru/Evidence/MacEngineer/package08-field-campaign/20260929T124506Z/capability-03/evidence.json",
-        "sha256": "e84698c10c0659d29a2d389ae27c6dee2dd64bdb0d2c54b427dc5feb9f38c05b"
+        "path": "/Users/abdal/Enguru/Evidence/MacEngineer/package08-field-campaign/20260929T132604Z/capability-03/evidence.json",
+        "sha256": "c799b3a2d0e1ca0e050f0aff173af0f74a8bffa2e4c787d7475276f28164ef2e"
       },
       "fieldState": "FIELD_VERIFIED",
       "index": 3,
@@ -75,20 +75,24 @@
     },
     {
       "acceptance": {
-        "discovered": false,
-        "doneCheckPass": false,
-        "evidenceBound": false,
-        "expectedResultObserved": false,
-        "failurePathTested": false,
-        "fieldVerified": false,
-        "freshReverify": false,
-        "invocable": false,
-        "realTaskExecuted": false
+        "discovered": true,
+        "invocable": true,
+        "realTaskExecuted": true,
+        "expectedResultObserved": true,
+        "failurePathTested": true,
+        "freshReverify": true,
+        "evidenceBound": true,
+        "doneCheckPass": true,
+        "recoveryOrRollbackPass": true,
+        "fieldVerified": true
       },
       "authority": "AMBER",
       "capabilityId": "OPERATOR_CONTINUE_DISPATCH",
-      "evidence": null,
-      "fieldState": "PENDING",
+      "evidence": {
+        "path": "/Users/abdal/Enguru/Evidence/MacEngineer/package08-field-campaign/20260929T135152Z/capability-04/field-verification-seal.json",
+        "sha256": "a8380df29db76b330d1797ebf1b348ae7f993a6da9d7776e8e576a1ee40b82fc"
+      },
+      "fieldState": "FIELD_VERIFIED",
       "index": 4,
       "readinessClass": "B",
       "requiresHumanThreshold": false,
@@ -411,7 +415,7 @@
     }
   ],
   "capabilityCount": 19,
-  "fieldVerifiedCount": 3,
+  "fieldVerifiedCount": 4,
   "package": "PACKAGE_08_19_OF_19_REAL_OSI_FIELD_VERIFICATION",
   "schema": "enguru.mac-engineer.capability-field-verification-ledger/v1",
   "state": "ACTIVE",

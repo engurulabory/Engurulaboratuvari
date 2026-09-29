@@ -1923,6 +1923,72 @@ def gate12_final_readback_due(
     )
 
 
+
+def resolve_operator_continue_dispatch(
+    action: str,
+    registry: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+
+    normalized = str(
+        action
+        or "UNRESOLVED"
+    )
+
+    if registry is None:
+        registry = (
+            load_json(
+                ACTION_REGISTRY,
+                {},
+            )
+            or {}
+        )
+
+    actions = (
+        registry.get("actions")
+        or {}
+    )
+
+    contract = actions.get(
+        normalized
+    )
+
+    if not isinstance(
+        contract,
+        dict,
+    ):
+        return {
+            "STATE": "HOLD",
+            "ACTION": normalized,
+            "REGISTERED": False,
+            "HANDLER": None,
+            "AUTHORITY": None,
+            "HOLD_REASON":
+                "ACTION_HANDLER_NOT_REGISTERED",
+            "NEXT_ACTION": normalized,
+            "DISPATCH_EXECUTED": False,
+            "DOWNSTREAM_ACTION_EXECUTED": False,
+            "SOURCE_MUTATION_PERFORMED": False,
+            "NETWORK_ACCESS_PERFORMED": False,
+        }
+
+    return {
+        "STATE": "HOLD",
+        "ACTION": normalized,
+        "REGISTERED": True,
+        "HANDLER":
+            contract.get("handler"),
+        "AUTHORITY":
+            contract.get("authority"),
+        "HOLD_REASON":
+            "REGISTERED_NEXT_ACTION_REQUIRED",
+        "NEXT_ACTION": normalized,
+        "DISPATCH_EXECUTED": True,
+        "DOWNSTREAM_ACTION_EXECUTED": False,
+        "SOURCE_MUTATION_PERFORMED": False,
+        "NETWORK_ACCESS_PERFORMED": False,
+        "CONTRACT": contract,
+    }
+
 def command_continue() -> int:
     boot = canonical_boot()
     truth = current_truth()
@@ -2924,11 +2990,20 @@ def command_continue() -> int:
             next_action = "COMMISSION_OSI_SELF_HOSTED_RUNNER"
     else:
         registry = load_json(ACTION_REGISTRY, {}) or {}
-        handler = (registry.get("actions") or {}).get(action)
-        state = "HOLD"
-        hold = "REGISTERED_NEXT_ACTION_REQUIRED" if handler else "ACTION_HANDLER_NOT_REGISTERED"
-        next_action = action
-        completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
+
+        dispatch = resolve_operator_continue_dispatch(
+            action,
+            registry,
+        )
+
+        state = dispatch["STATE"]
+        hold = dispatch["HOLD_REASON"]
+        next_action = dispatch["NEXT_ACTION"]
+
+        completed = [
+            "CANONICAL_BOOT",
+            "GITVAULT_SYNC",
+        ]
 
     payload = write_receipt(
         command="continue",
