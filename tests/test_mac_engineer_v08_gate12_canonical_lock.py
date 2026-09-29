@@ -193,21 +193,37 @@ class RepositoryLockCandidateTests(unittest.TestCase):
         candidate = json.loads((gov / "V08_GATE12_FINAL_ACCEPTANCE_RECEIPT_V1.json").read_text(encoding="utf-8"))
         gate = session["currentV08"]["gate12"]
         current = roadmap["current"]
-        self.assertEqual(gate["state"], "LOCK_EVIDENCE_RECONCILED_PENDING_FINAL_RECEIPT")
-        self.assertFalse(gate["canonicalLockCreated"])
         self.assertEqual(gate["lockEvidenceDigest"], current["gate12FieldAcceptance"]["lockEvidenceDigest"])
         self.assertEqual(gate["lockEvidenceDigest"], candidate["lockEvidenceDigest"])
         self.assertEqual(gate["fieldAcceptanceReceiptDigest"], candidate["fieldReceiptDigest"])
-        self.assertEqual(candidate["state"], "CANDIDATE_PENDING_FRESH_REMOTE_READBACK")
         self.assertTrue(candidate["postCommitVerificationRequired"])
         self.assertEqual(candidate["reconciliationControlHead"], gate["reconciliationControlHead"])
         self.assertEqual(candidate["externalA09State"], "HOLD")
         self.assertEqual(session["observedV07A09LocalFallback"]["canonicalA09State"], "HOLD")
         self.assertEqual(candidate["productPublicationState"],
                          session["currentV08"]["currentProductSource"]["publicationState"])
-        self.assertFalse(registry["actions"][lock.GATE12]["finalAcceptanceReceipt"])
-        self.assertEqual(current["activeGate"], 12)
-        self.assertEqual(current["remaining"], [lock.GATE12])
+
+        if gate["state"] == "VERIFIED_LOCKED":
+            self.assertTrue(gate["canonicalLockCreated"])
+            self.assertEqual(candidate["state"], "VERIFIED_LOCKED")
+            self.assertTrue(candidate["canonicalLockCreated"])
+            self.assertTrue(registry["actions"][lock.GATE12]["finalAcceptanceReceipt"])
+            self.assertTrue(registry["actions"][lock.GATE12]["canonicalLock"])
+            self.assertIsNone(current["activeGate"])
+            self.assertEqual(current["remaining"], [])
+            self.assertEqual(current["state"],
+                             "V08_PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED")
+        else:
+            self.assertEqual(
+                gate["state"],
+                "LOCK_EVIDENCE_RECONCILED_PENDING_FINAL_RECEIPT",
+            )
+            self.assertFalse(gate["canonicalLockCreated"])
+            self.assertEqual(candidate["state"], "CANDIDATE_PENDING_FRESH_REMOTE_READBACK")
+            self.assertFalse(registry["actions"][lock.GATE12]["finalAcceptanceReceipt"])
+            self.assertFalse(registry["actions"][lock.GATE12]["canonicalLock"])
+            self.assertEqual(current["activeGate"], 12)
+            self.assertEqual(current["remaining"], [lock.GATE12])
 
 
 if __name__ == "__main__":
