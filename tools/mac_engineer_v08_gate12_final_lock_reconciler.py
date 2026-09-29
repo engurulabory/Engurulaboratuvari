@@ -358,7 +358,65 @@ Current product source remains the clean local verified branch
 and not remote parity; publication remains a separate authority surface.
 
 """
-    return text[:start] + top + text[boundary:]
+    result = text[:start] + top + text[boundary:]
+
+    current_start = result.find("## CURRENT OBJECTIVE")
+    closeout_start = result.find("## REMAINING v0.6 CLOSEOUT")
+    if current_start < 0 or closeout_start < 0 or closeout_start <= current_start:
+        raise FinalLockHold("CURRENT_STATUS_CURRENT_OBJECTIVE_BOUNDARY_REQUIRED")
+
+    current_block = f"""## CURRENT OBJECTIVE
+
+**v0.8 — Product Engineering Operator / Gate 12 Final Canonical Lock.**
+
+Gates 1–12 are reconciled into the final lock candidate. DoneCheck™ v1.2
+remains **11/11 PASS**; Human Threshold™ remains **ACCEPT**.
+
+Final acceptance receipt: `{receipt_path}`.
+Final acceptance receipt digest: `{digest}`.
+
+Current required difference:
+`COMMIT_PUSH_ACCEPT_AND_FRESH_READBACK`.
+
+"""
+    result = result[:current_start] + current_block + result[closeout_start:]
+
+    result = result.replace(
+        "The next active objective is v0.7 Long-Running Reliability.",
+        "Historical closeout note: v0.7 subsequently reached VERIFIED / LOCKED; "
+        "the current authority is the v0.8 Gate 12 final lock candidate.",
+        1,
+    )
+
+    judgment_start = result.find("## JUDGMENT")
+    history_start = result.find("## MAC REPOSITORY FABRIC — 2026-09-23")
+    if judgment_start < 0 or history_start < 0 or history_start <= judgment_start:
+        raise FinalLockHold("CURRENT_STATUS_JUDGMENT_BOUNDARY_REQUIRED")
+
+    judgment_block = f"""## JUDGMENT
+
+**v0.6 VERIFIED FINAL / LOCKED = PASS.**
+
+**v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED = PASS.**
+
+**v0.8 Gate 12 final canonical lock candidate = PASS / POST-COMMIT READBACK REQUIRED.**
+
+Operator-level final PASS is intentionally withheld until the exact
+reconciliation commit is pushed, freshly local-accepted and read back.
+
+## NEXT ACTION
+
+`COMMIT_PUSH_ACCEPT_AND_FRESH_READBACK`
+
+## HISTORICAL ENGINEERING LOG
+
+The dated sections below are preserved as historical execution records.
+Any embedded `NEXT ACTION` text inside those dated records is historical
+and does not override the current authority above.
+
+"""
+    result = result[:judgment_start] + judgment_block + result[history_start:]
+    return result
 
 
 def _replace_working_path(text: str, *, receipt_path: Path, digest: str) -> str:
