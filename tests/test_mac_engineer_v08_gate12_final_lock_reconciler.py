@@ -231,6 +231,21 @@ class FinalLockReconcilerTests(unittest.TestCase):
         self.assertTrue(registry["actions"][final_lock.GATE12]["canonicalLock"])
         self.assertEqual(candidate["state"], "VERIFIED_LOCKED")
         self.assertIn("Final acceptance receipt digest", self.worklist_path.read_text())
+        status = self.status_path.read_text(encoding="utf-8")
+        self.assertIn("Gate 12 final canonical lock candidate", status)
+        self.assertIn("## HISTORICAL ENGINEERING LOG", status)
+        self.assertNotIn(
+            "v0.8 remains ACTIVE through Gates 9–12",
+            status,
+        )
+        self.assertNotIn(
+            "Current required difference: `V08_RELEASE_LIFECYCLE_SCENARIO`",
+            status,
+        )
+        self.assertNotIn(
+            "The next active objective is v0.7 Long-Running Reliability.",
+            status,
+        )
 
     def test_changed_paths_uses_name_only_and_preserves_first_character(self):
         outputs = [
