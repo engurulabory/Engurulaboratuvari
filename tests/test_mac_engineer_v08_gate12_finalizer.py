@@ -125,5 +125,178 @@ class FinalizerTests(unittest.TestCase):
         self.assertEqual(receipt["humanDecisionId"], "decision-1")
 
 
+class LockEvidenceTests(unittest.TestCase):
+    def setUp(self):
+        self.directory = tempfile.TemporaryDirectory()
+        self.addCleanup(self.directory.cleanup)
+        root = Path(self.directory.name)
+        self.root = root
+        self.receipt_path = root / "evidence" / "candidate" / "field-acceptance-receipt.json"
+        self.bundle_path = root / "bundle.json"
+        self.envelope_path = root / "envelope.json"
+        self.finish_path = root / "finish.json"
+        self.ledger_path = root / "ledger.json"
+        self.authority_path = root / "authority.json"
+        self.replay_path = root / "replay.json"
+        self.handoff_path = root / "handoff.json"
+        self.session_path = root / "session.json"
+        self.roadmap_path = root / "roadmap.json"
+        self.registry_path = root / "registry.json"
+        self.accepted = "a" * 40
+        self.current = "b" * 40
+        self.product = {
+            "repository": "product", "branch": "feature", "head": "product-1",
+            "base": "base", "worktreeClean": True,
+            "publicationState": "LOCAL_VERIFIED_NOT_REMOTE_EXACT_MAIN_NOT_REMOTE_PARITY",
+        }
+        self.bundle = {
+            "terminalCandidateId": "candidate-1",
+            "control": {"head": self.accepted},
+            "product": self.product,
+            "doneCheck": {"version": "1.2.0", "exactSha": "donecheck-sha"},
+            "chain": {"auditHead": "audit-1", "verifiedFinishReceiptDigest": ""},
+            "target": {"targetVersion": "v0.8", "intendedExit": finalizer.EXIT},
+            "artifacts": {"unresolvedDeferredLedger": {"path": str(self.ledger_path)}},
+        }
+        for path in (self.bundle_path, self.envelope_path, self.finish_path, self.authority_path):
+            path.write_text("{}", encoding="utf-8")
+        self.envelope_path.write_text('{"payload": {"decision": "ACCEPT"}}', encoding="utf-8")
+        self.bundle["chain"]["verifiedFinishReceiptDigest"] = finalizer.file_digest(self.finish_path)
+        self.ledger_path.write_text(json.dumps({"items": [
+            {"id": "V07_A09_EXTERNAL_CI_CONFIRMATION", "classification": "EXTERNAL",
+             "severity": "NON_CRITICAL", "state": "OPEN"},
+            {"id": "V08_PRODUCT_REMOTE_PUBLICATION", "classification": "DEFERRED",
+             "severity": "NON_CRITICAL", "state": "OPEN"},
+        ]}), encoding="utf-8")
+        self.receipt = {
+            "schema": "enguru.mac-engineer.v08-gate12-field-acceptance/v1",
+            "state": "FIELD_ACCEPTED_PENDING_CANONICAL_RECONCILIATION",
+            "humanDecision": "ACCEPT", "humanDecisionId": "decision-1",
+            "prelock": "PASS", "canonicalLockCreated": False,
+            "terminalCandidateId": "candidate-1", "control": self.bundle["control"],
+            "product": self.product, "doneCheck": self.bundle["doneCheck"],
+            "chain": self.bundle["chain"], "bundlePath": str(self.bundle_path),
+            "bundleDigest": finalizer.file_digest(self.bundle_path),
+            "thresholdEnvelopePath": str(self.envelope_path),
+            "thresholdEnvelopeDigest": finalizer.file_digest(self.envelope_path),
+            "externalA09State": "HOLD",
+            "productPublicationState": self.product["publicationState"],
+        }
+        publication = finalizer.CrashDurablePublisher().publish_json(
+            self.receipt_path, self.receipt
+        )
+        self.session = {
+            "currentObjective": finalizer.GATE12,
+            "currentV08": {
+                "gate12": {
+                    "state": "FIELD_ACCEPTED_PENDING_CANONICAL_LOCK",
+                    "executionStarted": True, "canonicalLockCreated": False,
+                    "fieldAcceptanceReceipt": str(self.receipt_path),
+                    "fieldAcceptanceReceiptDigest": publication.digest,
+                    "terminalCandidateId": "candidate-1",
+                    "acceptedControlHead": self.accepted,
+                },
+                "currentProductSource": {"publicationState": self.product["publicationState"]},
+            },
+            "observedV07A09LocalFallback": {"canonicalA09State": "HOLD"},
+        }
+        self.roadmap = {"current": {
+            "activeObjective": finalizer.GATE12, "activeGate": 12,
+            "gate12FieldAcceptance": {"digest": publication.digest},
+        }}
+        self.registry = {"actions": {finalizer.GATE12: {"canonicalLock": False}}}
+        self.handoff = {
+            "bundlePath": str(self.bundle_path),
+            "thresholdEnvelopePath": str(self.envelope_path),
+            "humanReviewPath": str(root / "review.json"),
+            "attestationPath": str(root / "attestation.json"),
+            "verifiedFinishPath": str(self.finish_path),
+            "auditPath": str(root / "audit.json"),
+        }
+        self._write_state()
+        for key, path in (
+            ("SESSION_PATH", self.session_path), ("ROADMAP_PATH", self.roadmap_path),
+            ("REGISTRY_PATH", self.registry_path), ("HANDOFF_PATH", self.handoff_path),
+            ("EVIDENCE_ROOT", root / "evidence"),
+        ):
+            mocker = patch.object(finalizer, key, path)
+            mocker.start()
+            self.addCleanup(mocker.stop)
+        for key, value in (
+            ("derive_live_truth", ({"head": self.current}, self.product)),
+            ("_git", self.accepted),
+            ("load_candidate_bundle", self.bundle),
+            ("load_authority", {}),
+            ("verify_authority", {"state": "PASS"}),
+            ("verify_human_review_and_verified_finish", {"state": "PASS", "auditHead": "audit-1"}),
+            ("verify_threshold_envelope_json", {
+                "state": "PASS", "decisionId": "decision-1", "terminalCandidateId": "candidate-1",
+            }),
+        ):
+            mocker = patch.object(finalizer, key, return_value=value)
+            mocker.start()
+            self.addCleanup(mocker.stop)
+
+    def _write_state(self):
+        for path, value in (
+            (self.session_path, self.session), (self.roadmap_path, self.roadmap),
+            (self.registry_path, self.registry), (self.handoff_path, self.handoff),
+        ):
+            path.write_text(json.dumps(value), encoding="utf-8")
+
+    def _run(self):
+        return finalizer.publish_lock_evidence(
+            authority_path=self.authority_path, replay_path=self.replay_path
+        )
+
+    def test_valid_chain_publishes_idempotent_pending_evidence(self):
+        first = self._run()
+        second = self._run()
+        self.assertEqual(first["state"], "HOLD")
+        self.assertEqual(first["reason"], "GATE12_LOCK_EVIDENCE_PENDING_CANONICAL_COMMIT")
+        self.assertEqual(first["lockEvidenceDigest"], second["lockEvidenceDigest"])
+        self.assertTrue(second["idempotent"])
+        self.assertFalse(first["canonicalLockCreated"])
+        evidence = json.loads(Path(first["lockEvidence"]).read_text(encoding="utf-8"))
+        self.assertEqual(evidence["acceptedControlHead"], self.accepted)
+        self.assertEqual(evidence["reconciliationControlHead"], self.current)
+        self.assertFalse(evidence["canonicalLockCreated"])
+        self.assertFalse((self.receipt_path.parent / "canonical-lock.json").exists())
+
+    def test_tampered_field_receipt_holds_before_publication(self):
+        self.receipt_path.write_text("{}", encoding="utf-8")
+        with self.assertRaisesRegex(finalizer.FinalizationHold, "FIELD_RECEIPT_PUBLICATION_MISMATCH"):
+            self._run()
+        self.assertFalse((self.receipt_path.parent / "canonical-lock-evidence.json").exists())
+
+    def test_remote_unavailable_holds_before_publication(self):
+        with patch.object(finalizer, "derive_live_truth", side_effect=RuntimeError("REMOTE_UNAVAILABLE")):
+            with self.assertRaisesRegex(RuntimeError, "REMOTE_UNAVAILABLE"):
+                self._run()
+        self.assertFalse((self.receipt_path.parent / "canonical-lock-evidence.json").exists())
+
+    def test_control_ancestry_drift_holds_before_publication(self):
+        with patch.object(finalizer, "_git", return_value="unrelated-head"):
+            with self.assertRaisesRegex(finalizer.FinalizationHold, "ACCEPTED_CONTROL_NOT_ANCESTOR"):
+                self._run()
+        self.assertFalse((self.receipt_path.parent / "canonical-lock-evidence.json").exists())
+
+    def test_reviewer_authority_expiry_holds_before_publication(self):
+        with patch.object(finalizer, "verify_authority", return_value={"state": "HOLD"}):
+            with self.assertRaisesRegex(finalizer.FinalizationHold, "REVIEWER_AUTHORITY_HOLD"):
+                self._run()
+        self.assertFalse((self.receipt_path.parent / "canonical-lock-evidence.json").exists())
+
+    def test_deferred_ledger_drift_holds_before_publication(self):
+        self.ledger_path.write_text('{"items": []}', encoding="utf-8")
+        with self.assertRaisesRegex(finalizer.FinalizationHold, "DEFERRED_LEDGER_MISMATCH"):
+            self._run()
+
+    def test_signed_threshold_hold_prevents_publication(self):
+        with patch.object(finalizer, "verify_threshold_envelope_json", return_value={"state": "HOLD"}):
+            with self.assertRaisesRegex(finalizer.FinalizationHold, "HUMAN_THRESHOLD_BINDING_MISMATCH"):
+                self._run()
+
+
 if __name__ == "__main__":
     unittest.main()

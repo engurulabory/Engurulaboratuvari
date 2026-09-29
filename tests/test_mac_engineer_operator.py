@@ -482,6 +482,14 @@ class OperatorSurfaceTests(unittest.TestCase):
                         "state": "FIELD_ACCEPTED_PENDING_CANONICAL_LOCK"
                     }}
                 }),
+                mock.patch(
+                    "tools.mac_engineer_v08_gate12_finalizer.publish_lock_evidence",
+                    return_value={
+                        "state": "HOLD",
+                        "reason": "GATE12_LOCK_EVIDENCE_PENDING_CANONICAL_COMMIT",
+                        "lockEvidence": str(evidence / "canonical-lock-evidence.json"),
+                    },
+                ),
             ):
                 with contextlib.redirect_stdout(io.StringIO()):
                     code = operator.command_continue()
@@ -489,8 +497,9 @@ class OperatorSurfaceTests(unittest.TestCase):
                 (evidence / "latest-receipt.json").read_text(encoding="utf-8")
             )
         self.assertEqual(code, 2)
-        self.assertEqual(receipt["hold"], "GATE12_CANONICAL_LOCK_PENDING")
+        self.assertEqual(receipt["hold"], "GATE12_LOCK_EVIDENCE_PENDING_CANONICAL_COMMIT")
         self.assertIn("V08_GATE12_FIELD_ACCEPTANCE_RECORDED", receipt["completed"])
+        self.assertIn("V08_GATE12_LOCK_EVIDENCE_PUBLISHED", receipt["completed"])
 
     def test_recover_stops_before_task_mutation_when_boot_holds(self):
         with tempfile.TemporaryDirectory() as tmp:

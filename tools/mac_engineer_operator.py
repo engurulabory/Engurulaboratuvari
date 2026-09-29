@@ -1927,12 +1927,25 @@ def command_continue() -> int:
         and ((load_json(SESSION_STATE, {}) or {}).get("currentV08") or {})
         .get("gate12", {}).get("state") == "FIELD_ACCEPTED_PENDING_CANONICAL_LOCK"
     ):
+        try:
+            try:
+                from mac_engineer_v08_gate12_finalizer import publish_lock_evidence
+            except ModuleNotFoundError:
+                from tools.mac_engineer_v08_gate12_finalizer import publish_lock_evidence
+            lock_evidence = publish_lock_evidence()
+        except Exception as exc:
+            lock_evidence = {
+                "state": "HOLD", "reason": f"GATE12_LOCK_EVIDENCE:{type(exc).__name__}:{exc}"
+            }
         state = "HOLD"
-        hold = "GATE12_CANONICAL_LOCK_PENDING"
+        hold = str(lock_evidence.get("reason") or "GATE12_CANONICAL_LOCK_PENDING")
         next_action = "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
         completed = [
             "CANONICAL_BOOT", "GITVAULT_SYNC",
             "V08_GATE12_FIELD_ACCEPTANCE_RECORDED",
+            "V08_GATE12_LOCK_EVIDENCE_" + (
+                "PUBLISHED" if lock_evidence.get("lockEvidence") else "HOLD"
+            ),
         ]
     elif local_action == "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK":
         completed = ["CANONICAL_BOOT", "GITVAULT_SYNC"]
@@ -2820,6 +2833,7 @@ def command_continue() -> int:
                 str((locals().get("v08_baseline") or {}).get("evidence") or ""),
                 str((locals().get("v08_existing_change") or {}).get("evidence") or ""),
                 str((locals().get("finalization") or {}).get("fieldReceipt") or ""),
+                str((locals().get("lock_evidence") or {}).get("lockEvidence") or ""),
             ]
             if item
         ],
@@ -2844,6 +2858,7 @@ def command_continue() -> int:
             "v08_existing_change": locals().get("v08_existing_change"),
             "gate12_prelock": locals().get("prelock"),
             "gate12_finalization": locals().get("finalization"),
+            "gate12_lock_evidence": locals().get("lock_evidence"),
             "offline_manifest": offline_manifest(),
         },
     )
