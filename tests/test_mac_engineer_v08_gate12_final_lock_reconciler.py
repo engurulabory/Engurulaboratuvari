@@ -191,6 +191,7 @@ class FinalLockReconcilerTests(unittest.TestCase):
             ("branch", "--show-current"): final_lock.EXPECTED_BRANCH,
             ("rev-parse", "HEAD"): "control-1",
             ("status", "--porcelain"): "",
+            ("merge-base", "control-1", "control-1"): "control-1",
         }
         return values.get(tuple(args), "")
 
@@ -208,7 +209,7 @@ class FinalLockReconcilerTests(unittest.TestCase):
                 "governance/mac-engineer/SESSION_STATE_V1.json",
                 "governance/mac-engineer/V08_GATE12_FINAL_ACCEPTANCE_RECEIPT_V1.json",
             }), patch.object(final_lock, "_git", side_effect=[
-                final_lock.EXPECTED_BRANCH, "control-1", "",
+                final_lock.EXPECTED_BRANCH, "control-1", "", "control-1",
                 " M WORKLIST.md\n M governance/mac-engineer/ACTIVE_WORKING_PATH.md\n"
                 " M governance/mac-engineer/CURRENT_STATUS.md\n"
                 " M governance/mac-engineer/OPERATOR_ACTION_REGISTRY_V1.json\n"
