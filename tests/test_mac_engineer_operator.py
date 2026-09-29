@@ -1207,10 +1207,25 @@ class Gate10FinishedProductDeliveryTests(unittest.TestCase):
 class Gate12Batch2RegistryTests(unittest.TestCase):
     def test_gate12_action_is_registered(self):
         registry = operator.load_json(ROOT / "governance" / "mac-engineer" / "OPERATOR_ACTION_REGISTRY_V1.json", {})
+        session = operator.load_json(ROOT / "governance" / "mac-engineer" / "SESSION_STATE_V1.json", {})
         action = registry["actions"]["V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"]
+        gate = ((session.get("currentV08") or {}).get("gate12") or {})
         self.assertTrue(action["failClosed"])
-        self.assertFalse(action["canonicalLock"])
-        self.assertEqual(action["handler"], "V08_GATE12_FINAL_ACCEPTANCE_READBACK")
+        if gate.get("state") == "VERIFIED_LOCKED":
+            self.assertTrue(action["canonicalLock"])
+            self.assertTrue(action["finalAcceptanceReceipt"])
+            self.assertEqual(action["handler"], "V08_GATE12_FINAL_LOCK_READBACK")
+        else:
+            self.assertFalse(action["canonicalLock"])
+            self.assertFalse(action["finalAcceptanceReceipt"])
+            self.assertEqual(action["handler"], "V08_GATE12_FINAL_ACCEPTANCE_READBACK")
+
+    def test_operator_contains_final_lock_reconciliation_and_readback_routes(self):
+        source = (ROOT / "tools" / "mac_engineer_operator.py").read_text(encoding="utf-8")
+        self.assertIn("prepare_final_lock_reconciliation", source)
+        self.assertIn("verify_final_lock_readback", source)
+        self.assertIn("V08_GATE12_FINAL_LOCK_RECONCILIATION_", source)
+        self.assertIn("V08_GATE12_FINAL_CANONICAL_LOCK_READBACK_", source)
 
     def test_registry_mismatch_holds(self):
         self.assertEqual(operator.gate12_registry_contract({"actions": {}})["state"], "HOLD")
