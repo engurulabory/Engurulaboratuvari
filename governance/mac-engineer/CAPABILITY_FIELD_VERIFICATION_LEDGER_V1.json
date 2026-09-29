@@ -399,20 +399,24 @@
     },
     {
       "acceptance": {
-        "discovered": false,
-        "doneCheckPass": false,
-        "evidenceBound": false,
-        "expectedResultObserved": false,
-        "failurePathTested": false,
-        "fieldVerified": false,
-        "freshReverify": false,
-        "invocable": false,
-        "realTaskExecuted": false
+        "discovered": true,
+        "invocable": true,
+        "realTaskExecuted": true,
+        "expectedResultObserved": true,
+        "failurePathTested": true,
+        "freshReverify": true,
+        "evidenceBound": true,
+        "doneCheckPass": true,
+        "recoveryOrRollbackPass": true,
+        "fieldVerified": true
       },
       "authority": "AMBER",
       "capabilityId": "TERMINAL_EXECUTION",
-      "evidence": null,
-      "fieldState": "PENDING",
+      "evidence": {
+        "path": "/Users/abdal/Enguru/Evidence/MacEngineer/package08-field-campaign/20260929T195530502131Z/capability-17/field-verification-seal.json",
+        "sha256": "74a4f1327abe216780ce284ec2be33c5781a29958e37e869945e4cdb56c02c2e"
+      },
+      "fieldState": "FIELD_VERIFIED",
       "index": 17,
       "readinessClass": "C",
       "requiresHumanThreshold": false,
@@ -462,7 +466,7 @@
     }
   ],
   "capabilityCount": 19,
-  "fieldVerifiedCount": 16,
+  "fieldVerifiedCount": 17,
   "package": "PACKAGE_08_19_OF_19_REAL_OSI_FIELD_VERIFICATION",
   "schema": "enguru.mac-engineer.capability-field-verification-ledger/v1",
   "state": "ACTIVE",
