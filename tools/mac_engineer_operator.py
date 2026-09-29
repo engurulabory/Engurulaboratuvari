@@ -1908,6 +1908,21 @@ def gate12_registry_contract(registry: dict[str, Any]) -> dict[str, Any]:
     return {"state": "PASS", "action": action}
 
 
+def gate12_final_readback_due(
+    truth: dict[str, Any],
+    gate12_snapshot: dict[str, Any],
+) -> bool:
+    return bool(
+        truth.get("current_version") == "v0.8"
+        and truth.get("current_state") == "VERIFIED_LOCKED"
+        and truth.get("next_action") == "AWAIT_NEXT_OBJECTIVE"
+        and truth.get("local_continuity_next_action") == "AWAIT_NEXT_OBJECTIVE"
+        and gate12_snapshot.get("state") == "VERIFIED_LOCKED"
+        and gate12_snapshot.get("canonicalLockCreated") is True
+        and gate12_snapshot.get("finalLockReadback") == "PENDING_POST_COMMIT"
+    )
+
+
 def command_continue() -> int:
     boot = canonical_boot()
     truth = current_truth()
@@ -1927,10 +1942,7 @@ def command_continue() -> int:
         hold = "CANONICAL_BOOT"
         next_action = "enguru-mac doctor"
         completed = ["CANONICAL_BOOT_HOLD", "GITVAULT_SYNC"]
-    elif (
-        gate12_state == "VERIFIED_LOCKED"
-        and gate12_snapshot.get("canonicalLockCreated") is True
-    ):
+    elif gate12_final_readback_due(truth, gate12_snapshot):
         try:
             try:
                 from mac_engineer_v08_gate12_final_lock_reconciler import (
