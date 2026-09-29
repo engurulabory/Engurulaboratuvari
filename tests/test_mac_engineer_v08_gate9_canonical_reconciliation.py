@@ -110,10 +110,25 @@ class Gate9CanonicalReconciliationTests(unittest.TestCase):
             closure["passedGates"],
         )
 
-        self.assertGreater(
-            closure["activeGate"],
-            9,
-        )
+        active_gate = closure["activeGate"]
+        if active_gate is None:
+            self.assertEqual(
+                session["currentV08"]["state"],
+                "VERIFIED_LOCKED",
+            )
+            self.assertEqual(
+                closure["passedGates"],
+                list(range(1, 13)),
+            )
+            self.assertEqual(
+                closure["remainingGates"],
+                [],
+            )
+        else:
+            self.assertGreater(
+                active_gate,
+                9,
+            )
 
         self.assertNotIn(
             9,
