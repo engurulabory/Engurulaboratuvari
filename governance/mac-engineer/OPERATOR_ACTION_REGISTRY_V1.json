@@ -218,6 +218,16 @@
       "failClosed": true,
       "authorizedPathCount": 2,
       "canonicalSourceMutation": false
+    },
+    "PACKAGE08_CAP07_BUILD_FIELD_PROOF": {
+      "handler": "PACKAGE08_CAP07_BUILD_FIELD_PROOF",
+      "authority": "GREEN_LOCAL_BUILD_ARTIFACT_AUTHORITY",
+      "command": "governance/mac-engineer/PACKAGE08_CAP07_BUILD_FIELD_PROOF.command",
+      "networkRequired": false,
+      "remotePush": false,
+      "failClosed": true,
+      "mutationScope": "BUILD_ARTIFACTS_ONLY",
+      "sourceTruthPreserved": true
     }
   }
 }

@@ -26,20 +26,26 @@ existing_before = copy.deepcopy(existing_plan)
 existing = orch.dry_run(existing_plan)
 
 check(
-    "SOURCE_CHANGE_BOUND_REMAINING_PLAN_HOLD",
+    "SOURCE_CHANGE_BUILD_BOUND_REMAINING_PLAN_HOLD",
     existing["STATE"] == "HOLD"
     and existing["STEP_COUNT"] == 4
-    and existing["EXECUTABLE_STEP_COUNT"] == 1
-    and existing["HOLD_STEP_COUNT"] == 3
+    and existing["EXECUTABLE_STEP_COUNT"] == 2
+    and existing["HOLD_STEP_COUNT"] == 2
     and existing["STEPS"][0]["CAPABILITY_ID"]
         == "SOURCE_PRODUCT_CHANGE"
     and existing["STEPS"][0]["BINDING_TYPE"]
         == "REGISTERED_ACTION"
     and existing["STEPS"][0]["DRY_RUN_EXECUTABLE"]
         is True
+    and existing["STEPS"][1]["CAPABILITY_ID"]
+        == "BUILD"
+    and existing["STEPS"][1]["BINDING_TYPE"]
+        == "REGISTERED_ACTION"
+    and existing["STEPS"][1]["DRY_RUN_EXECUTABLE"]
+        is True
     and all(
         step["DRY_RUN_EXECUTABLE"] is False
-        for step in existing["STEPS"][1:]
+        for step in existing["STEPS"][2:]
     ),
 )
 
@@ -585,6 +591,219 @@ check(
 )
 
 
+
+build_plan = {
+    "STATE":
+        "PLAN_READY",
+
+    "PLAN_ID":
+        "package05-cap07-build-test",
+
+    "TRUTH_FINGERPRINT":
+        "package05-cap07-build-truth",
+
+    "EXECUTION_AUTHORIZED":
+        False,
+
+    "CAPABILITY_PLAN": [
+        "BUILD",
+    ],
+}
+
+_real_build = (
+    operator
+    .run_package08_cap07_build_field_proof
+)
+
+operator.run_package08_cap07_build_field_proof = lambda: {
+    "state": "PASS",
+    "code": 0,
+    "fields": {
+        "STATE":
+            "PASS",
+
+        "CAP07_BUILD":
+            "PASS",
+
+        "BUILD_ARTIFACT_EXECUTABLE":
+            "PASS",
+
+        "BUILD_ARTIFACT_SHA256":
+            "a" * 64,
+
+        "CONTROLLED_COMPILER_REJECTION":
+            "PASS",
+
+        "FAILED_ARTIFACT_CLEANUP":
+            "PASS",
+
+        "CANONICAL_TRUTH_PRESERVED":
+            "PASS",
+
+        "AUTHORITY":
+            "GREEN",
+
+        "NETWORK_POLICY":
+            "LOCAL_ONLY",
+
+        "MUTATION_SCOPE":
+            "BUILD_ARTIFACTS_ONLY",
+
+        "REMOTE_PUSH":
+            "false",
+
+        "EXECUTION_AUTHORITY_CREATED":
+            "false",
+    },
+    "evidence":
+        "/tmp/package05-cap07-build-evidence.json",
+}
+
+try:
+    cap07_build = (
+        orch.execute_plan_step(
+            build_plan,
+            1,
+        )
+    )
+finally:
+    operator.run_package08_cap07_build_field_proof = (
+        _real_build
+    )
+
+check(
+    "PLAN_BOUND_CAP07_BUILD_REGISTERED_ACTION_PASS",
+
+    cap07_build["STATE"]
+    == "PASS"
+
+    and cap07_build[
+        "CAPABILITY_ID"
+    ]
+    == "BUILD"
+
+    and cap07_build[
+        "BINDING_TYPE"
+    ]
+    == "REGISTERED_ACTION"
+
+    and cap07_build[
+        "REGISTERED_HANDLER_INVOKED"
+    ]
+    is True
+
+    and cap07_build[
+        "EXECUTION_PERFORMED"
+    ]
+    is True
+
+    and cap07_build[
+        "RECOVERY_PROOF_REQUIRED"
+    ]
+    is False
+
+    and cap07_build[
+        "OBSERVED_RESULT"
+    ]["buildPass"]
+    is True
+
+    and cap07_build[
+        "OBSERVED_RESULT"
+    ]["artifactExecutable"]
+    is True
+
+    and cap07_build[
+        "OBSERVED_RESULT"
+    ]["artifactIdentityPresent"]
+    is True
+
+    and cap07_build[
+        "OBSERVED_RESULT"
+    ]["controlledCompilerRejection"]
+    is True
+
+    and cap07_build[
+        "OBSERVED_RESULT"
+    ]["canonicalTruthPreserved"]
+    is True
+
+    and cap07_build[
+        "MUTATION_SCOPE"
+    ]["scope"]
+    == "BUILD_ARTIFACTS_ONLY"
+)
+
+operator.run_package08_cap07_build_field_proof = lambda: {
+    "state": "PASS",
+    "code": 0,
+    "fields": {
+        "STATE":
+            "PASS",
+
+        "CAP07_BUILD":
+            "PASS",
+
+        "BUILD_ARTIFACT_EXECUTABLE":
+            "PASS",
+
+        "BUILD_ARTIFACT_SHA256":
+            "a" * 64,
+
+        "CONTROLLED_COMPILER_REJECTION":
+            "HOLD",
+
+        "FAILED_ARTIFACT_CLEANUP":
+            "PASS",
+
+        "CANONICAL_TRUTH_PRESERVED":
+            "PASS",
+
+        "AUTHORITY":
+            "GREEN",
+
+        "NETWORK_POLICY":
+            "LOCAL_ONLY",
+
+        "MUTATION_SCOPE":
+            "BUILD_ARTIFACTS_ONLY",
+
+        "REMOTE_PUSH":
+            "false",
+
+        "EXECUTION_AUTHORITY_CREATED":
+            "false",
+    },
+    "evidence":
+        "/tmp/package05-cap07-build-negative.json",
+}
+
+try:
+    cap07_failure_path_hold = (
+        orch.execute_plan_step(
+            build_plan,
+            1,
+        )
+    )
+finally:
+    operator.run_package08_cap07_build_field_proof = (
+        _real_build
+    )
+
+check(
+    "CAP07_BUILD_FAILURE_PATH_REQUIRED_HOLD",
+
+    cap07_failure_path_hold[
+        "STATE"
+    ]
+    == "HOLD"
+
+    and cap07_failure_path_hold[
+        "HOLD_REASON"
+    ]
+    == "REGISTERED_ACTION_RESULT_CONTRACT_HOLD"
+)
+
+
 invalid_step = orch.execute_plan_step(
     truth_plan,
     99,
@@ -638,8 +857,8 @@ check(
 )
 
 check(
-    "TWO_PROVEN_REGISTERED_ACTION_BINDINGS",
-    len(registered_bindings) == 2
+    "THREE_PROVEN_REGISTERED_ACTION_BINDINGS",
+    len(registered_bindings) == 3
     and {
         row["CAPABILITY_ID"]
         for row in registered_bindings
@@ -647,12 +866,13 @@ check(
     == {
         "OPERATOR_CONTINUE_DISPATCH",
         "SOURCE_PRODUCT_CHANGE",
+        "BUILD",
     },
 )
 
 check(
-    "FIFTEEN_UNBOUND_FAIL_CLOSED",
-    len(hold_bindings) == 15,
+    "FOURTEEN_UNBOUND_FAIL_CLOSED",
+    len(hold_bindings) == 14,
 )
 
 

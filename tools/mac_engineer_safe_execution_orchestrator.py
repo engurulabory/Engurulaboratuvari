@@ -520,6 +520,35 @@ def execute_proven_registered_action(
             "EXECUTION_AUTHORITY_CREATED":
                 False,
         },
+        "BUILD": {
+            "ACTION":
+                "PACKAGE08_CAP07_BUILD_FIELD_PROOF",
+
+            "REGISTERED_HANDLER":
+                "PACKAGE08_CAP07_BUILD_FIELD_PROOF",
+
+            "OPERATOR_CALLABLE":
+                "run_package08_cap07_build_field_proof",
+
+            "AUTHORITY":
+                "GREEN_LOCAL_BUILD_ARTIFACT_AUTHORITY",
+
+            "NETWORK_ALLOWED":
+                False,
+
+            "REMOTE_PUSH_ALLOWED":
+                False,
+
+            "MUTATION_SCOPE":
+                "BUILD_ARTIFACTS_ONLY",
+
+            "CANONICAL_TRUTH_PRESERVED":
+                True,
+
+            "EXECUTION_AUTHORITY_CREATED":
+                False,
+        },
+
     }
 
     expected = (
@@ -753,7 +782,7 @@ def execute_proven_registered_action(
                 False,
         }
 
-    else:
+    elif capability_id == "SOURCE_PRODUCT_CHANGE":
         result = (
             operator
             .run_package08_cap06_disposable_source_change_field_proof()
@@ -890,6 +919,119 @@ def execute_proven_registered_action(
                 False,
         }
 
+    else:
+        result = (
+            operator
+            .run_package08_cap07_build_field_proof()
+        )
+
+        fields = (
+            result.get("fields")
+            if isinstance(
+                result.get("fields"),
+                dict,
+            )
+            else {}
+        )
+
+        observed = {
+            "wrapperStatePass":
+                result.get("state")
+                == "PASS",
+
+            "wrapperCodeZero":
+                result.get("code")
+                == 0,
+
+            "buildPass":
+                fields.get(
+                    "CAP07_BUILD"
+                )
+                == "PASS",
+
+            "artifactExecutable":
+                fields.get(
+                    "BUILD_ARTIFACT_EXECUTABLE"
+                )
+                == "PASS",
+
+            "artifactIdentityPresent":
+                bool(
+                    fields.get(
+                        "BUILD_ARTIFACT_SHA256"
+                    )
+                ),
+
+            "controlledCompilerRejection":
+                fields.get(
+                    "CONTROLLED_COMPILER_REJECTION"
+                )
+                == "PASS",
+
+            "failedArtifactCleanup":
+                fields.get(
+                    "FAILED_ARTIFACT_CLEANUP"
+                )
+                == "PASS",
+
+            "canonicalTruthPreserved":
+                fields.get(
+                    "CANONICAL_TRUTH_PRESERVED"
+                )
+                == "PASS",
+
+            "authorityGreen":
+                fields.get(
+                    "AUTHORITY"
+                )
+                == "GREEN",
+
+            "localOnly":
+                fields.get(
+                    "NETWORK_POLICY"
+                )
+                == "LOCAL_ONLY",
+
+            "buildArtifactsOnly":
+                fields.get(
+                    "MUTATION_SCOPE"
+                )
+                == "BUILD_ARTIFACTS_ONLY",
+
+            "remotePushFalse":
+                fields.get(
+                    "REMOTE_PUSH"
+                )
+                == "false",
+
+            "executionAuthorityCreatedFalse":
+                fields.get(
+                    "EXECUTION_AUTHORITY_CREATED"
+                )
+                == "false",
+
+            "runtimeEvidencePresent":
+                bool(
+                    result.get("evidence")
+                ),
+        }
+
+        recovery_observed = False
+
+        mutation_scope = {
+            "filesystemMutationExpected":
+                True,
+
+            "scope":
+                "BUILD_ARTIFACTS_ONLY",
+
+            "canonicalTruthPreserved":
+                True,
+
+            "artifactIdentityRequired":
+                True,
+        }
+
     execution_state = (
         "PASS"
         if all(observed.values())
@@ -954,7 +1096,12 @@ def execute_proven_registered_action(
             True,
 
         "RECOVERY_PROOF_REQUIRED":
-            True,
+            bool(
+                binding.get(
+                    "RECOVERY_PROOF_REQUIRED",
+                    False,
+                )
+            ),
 
         "RECOVERY_PROOF_OBSERVED":
             recovery_observed,
