@@ -41,6 +41,23 @@ EXPECTED_IDS = [
 ]
 
 
+def _v08_final_closed(v08: dict) -> bool:
+    closure = v08.get("closureContract", {})
+    gate11 = v08.get("gate11", {})
+    gate12 = v08.get("gate12", {})
+    return bool(
+        v08.get("state") == "VERIFIED_LOCKED"
+        and closure.get("passedGates") == list(range(1, 13))
+        and closure.get("activeGate") is None
+        and closure.get("remainingGates") == []
+        and gate11.get("state") == "VERIFIED_LOCKED"
+        and gate11.get("executionStarted") is True
+        and gate12.get("state") == "VERIFIED_LOCKED"
+        and gate12.get("executionStarted") is True
+        and gate12.get("canonicalLockCreated") is True
+    )
+
+
 def main() -> int:
     issues: list[str] = []
 
@@ -330,9 +347,11 @@ def main() -> int:
             issues.append(
                 "GATE11_CLOSURE_GATE12_TRANSITION_INVALID"
             )
+    elif _v08_final_closed(v08):
+        pass
     else:
         issues.append(
-            "CURRENT_ACTIVE_GATE_NOT_11_OR_12"
+            "CURRENT_ACTIVE_GATE_NOT_11_OR_12_OR_FINAL_CLOSED"
         )
 
     prepared = session.get(
