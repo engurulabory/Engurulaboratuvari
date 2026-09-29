@@ -18,7 +18,7 @@
   },
   "current": {
     "version": "v0.8",
-    "state": "ACTIVE_PRODUCT_ENGINEERING_OPERATOR",
+    "state": "V08_PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED",
     "activeObjective": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
     "productSourceSha": "0ca33cc7b70fee915d02de72946bbd4bb0e40065",
     "productSource": {
@@ -60,23 +60,25 @@
       "V08_GATE_08_NEW_PRODUCT_FROM_BRIEF_PASS",
       "V08_GATE_09_RELEASE_LIFECYCLE_PASS",
       "V08_GATE_10_FINISHED_PRODUCT_DELIVERY_PASS",
-      "V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING_PASS"
+      "V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING_PASS",
+      "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK_PASS",
+      "PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED"
     ],
-    "remaining": [
-      "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
-    ],
-    "activeGate": 12,
+    "remaining": [],
+    "activeGate": null,
     "gate12FieldAcceptance": {
-      "state": "LOCK_EVIDENCE_RECONCILED_PENDING_FINAL_RECEIPT",
+      "state": "VERIFIED_LOCKED",
       "receipt": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/field-acceptance-receipt.json",
       "digest": "sha256:971ed7fcdef8d6e043c3a2366e83c6db9e4781d03cafa3d46bc6753b7f9b21fa",
       "acceptedControlHead": "8c31fb5b1467a9960142d50ed62b517f571a6212",
-      "canonicalLockCreated": false,
+      "canonicalLockCreated": true,
       "lockEvidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/canonical-lock-evidence.json",
       "lockEvidenceDigest": "sha256:15c369c70769cb7593c6714362b6fb91b2cfe30f44f9483d2dffafb265c64745",
-      "reconciliationControlHead": "2ae50c990fbd477899c278f00969a13cc59af80b"
+      "reconciliationControlHead": "2ae50c990fbd477899c278f00969a13cc59af80b",
+      "finalAcceptanceReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/final-acceptance-receipt.json",
+      "finalAcceptanceReceiptDigest": "sha256:697c3569d1ef83ab79dee114561146e8a3368145ce0eacffa8cd4e61e2d92b23"
     },
-    "nextAction": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
+    "nextAction": "AWAIT_NEXT_OBJECTIVE"
   },
   "versions": [
     {
@@ -207,13 +209,13 @@
     {
       "version": "v0.8",
       "name": "Product Engineering Operator",
-      "state": "ACTIVE",
+      "state": "VERIFIED_LOCKED",
       "exit": [
         "PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED"
       ],
       "acceptanceMatrix": "PASS_DEFINED",
       "acceptanceMatrixPath": "governance/mac-engineer/V08_PRODUCT_ENGINEERING_OPERATOR_ACCEPTANCE_MATRIX_V1.md",
-      "nextAction": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
+      "nextAction": "AWAIT_NEXT_OBJECTIVE",
       "executionAuthorityModel": "ENGÜRÜ Mac-Native Engineering Authority™",
       "engineeringMode": "MAC_NATIVE_PRIMARY_AUTHORITY",
       "productBaselineExactMain": "5432b9b135499cea18273c0e003877b864af92c6",
@@ -224,7 +226,7 @@
         "exactMain": "8b90a8fc93453dd8a84994195d28d14b15e261cb"
       },
       "verifiedFinishContract": {
-        "state": "LOCK_EVIDENCE_RECONCILED_PENDING_FINAL_RECEIPT",
+        "state": "VERIFIED_LOCKED",
         "totalGates": 12,
         "passed": [
           1,
@@ -237,19 +239,22 @@
           8,
           9,
           10,
-          11
-        ],
-        "active": 12,
-        "remaining": [
+          11,
           12
         ],
+        "active": null,
+        "remaining": [],
         "finalAuthority": "HUMAN_THRESHOLD_ACCEPTED",
         "fieldAcceptanceReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/field-acceptance-receipt.json",
         "fieldAcceptanceReceiptDigest": "sha256:971ed7fcdef8d6e043c3a2366e83c6db9e4781d03cafa3d46bc6753b7f9b21fa",
         "finalState": "PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED",
         "lockEvidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/canonical-lock-evidence.json",
         "lockEvidenceDigest": "sha256:15c369c70769cb7593c6714362b6fb91b2cfe30f44f9483d2dffafb265c64745",
-        "finalAcceptanceCandidate": "governance/mac-engineer/V08_GATE12_FINAL_ACCEPTANCE_RECEIPT_V1.json"
+        "finalAcceptanceCandidate": "governance/mac-engineer/V08_GATE12_FINAL_ACCEPTANCE_RECEIPT_V1.json",
+        "canonicalLockCreated": true,
+        "finalAcceptanceReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/final-acceptance-receipt.json",
+        "finalAcceptanceReceiptDigest": "sha256:697c3569d1ef83ab79dee114561146e8a3368145ce0eacffa8cd4e61e2d92b23",
+        "postCommitReadback": "REQUIRED"
       },
       "productWorkingBranch": "feat/v08-native-productization-provenance",
       "gate8FieldProof": {

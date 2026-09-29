@@ -185,7 +185,7 @@
       "failClosed": true
     },
     "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK": {
-      "handler": "V08_GATE12_FINAL_ACCEPTANCE_READBACK",
+      "handler": "V08_GATE12_FINAL_LOCK_READBACK",
       "authority": "HUMAN_THRESHOLD_AND_DURABLE_REPLAY",
       "doneCheckVersion": "1.2.0",
       "doneCheckExactSha": "8b90a8fc93453dd8a84994195d28d14b15e261cb",
@@ -201,11 +201,13 @@
         "DURABLE_REPLAY",
         "SINGLE_WRITER_LOCK"
       ],
-      "finalAcceptanceReceipt": false,
-      "canonicalLock": false,
+      "finalAcceptanceReceipt": true,
+      "canonicalLock": true,
       "batch3Boundary": "FINAL_ACCEPTANCE_RECEIPT_AND_CANONICAL_LOCK",
       "failClosed": true,
-      "finalAcceptanceReceiptCandidate": true
+      "finalAcceptanceReceiptCandidate": false,
+      "finalAcceptanceReceiptDigest": "sha256:697c3569d1ef83ab79dee114561146e8a3368145ce0eacffa8cd4e61e2d92b23",
+      "postCommitReadbackRequired": true
     }
   }
 }

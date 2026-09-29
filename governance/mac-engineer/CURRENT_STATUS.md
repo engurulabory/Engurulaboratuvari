@@ -1,54 +1,53 @@
 # ENGÜRÜ Mac Engineer™ — Current Status
 
-## Gate 12 lock evidence reconciliation — final receipt pending
+## Gate 12 final canonical lock reconciliation
 
-**STATE — FIELD ACCEPTED / LOCK PENDING.** On 2026-09-29 the
-`8c31fb5b1467a9960142d50ed62b517f571a6212` control candidate passed
-fresh local acceptance and Doctor. The signed PRE-005 candidate reproduced
-DoneCheck™ v1.2 PASS for 11/11 Gate criteria and Human Threshold™ ACCEPT.
-The operator published the field receipt, then returned
-`GATE12_CANONICAL_RECONCILIATION_REQUIRED` HOLD.
+**STATE — FINAL LOCK RECONCILED / POST-COMMIT READBACK REQUIRED.**
 
-**EVIDENCE —** `/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/field-acceptance-receipt.json`;
-digest `sha256:971ed7fcdef8d6e043c3a2366e83c6db9e4781d03cafa3d46bc6753b7f9b21fa`.
-The publication marker digest and length read back exactly. External A09
-remains HOLD; product publication remains
-`LOCAL_VERIFIED_NOT_REMOTE_EXACT_MAIN_NOT_REMOTE_PARITY`.
+DoneCheck™ v1.2 remains **PASS 11/11** and Human Threshold™ remains **ACCEPT**.
+The immutable final acceptance receipt is now reconciled into the canonical
+v0.8 closure candidate.
 
-**LOCK EVIDENCE —** The Mac published
-`/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/canonical-lock-evidence.json`;
-digest `sha256:15c369c70769cb7593c6714362b6fb91b2cfe30f44f9483d2dffafb265c64745`.
-Its reconciliation control HEAD is `2ae50c990fbd477899c278f00969a13cc59af80b`.
-The publication marker, field receipt binding, external A09 and product publication
-classification passed the Mac readback.
+**FINAL RECEIPT —** `/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/final-acceptance-receipt.json`;
+digest `sha256:697c3569d1ef83ab79dee114561146e8a3368145ce0eacffa8cd4e61e2d92b23`.
 
-**NEXT ACTION —** Commit the lock evidence reconciliation, run fresh local
-acceptance and `enguru-mac continue` on the new exact control HEAD. The
-operator must publish an immutable final acceptance receipt and return HOLD
-until that receipt's digest is reconciled into the canonical lock. Field
-acceptance is PASS; Gate 12 final PASS remains HOLD.
+External A09 remains **HOLD / EXTERNAL**. Product publication remains
+`LOCAL_VERIFIED_NOT_REMOTE_EXACT_MAIN_NOT_REMOTE_PARITY`. No product mutation, remote product push,
+new core or second canonical truth is introduced by this reconciliation.
+
+**NEXT ACTION —** Commit and push only the bounded Gate 12 reconciliation,
+fresh-accept that exact working-branch HEAD, then run `enguru-mac continue`
+for mandatory post-commit readback. Operator PASS is forbidden before that
+readback.
 
 **Updated:** 2026-09-29
 **Program target:** ENGÜRÜ Mac Engineering™ v1.3 — Usable Verified Product
-**Current version:** v0.8 — PRODUCT ENGINEERING OPERATOR / ACTIVE
+**Current version:** v0.8 — PRODUCT ENGINEERING OPERATOR / FINAL LOCK CANDIDATE
 **Current objective:** V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK
 **Canonical objective id:** `V08_PRODUCT_ENGINEERING_OPERATOR`
 
 `CURRENT_OBJECTIVE=V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK`
 
-`CURRENT_GATE=12`
+`CURRENT_GATE=NONE`
 
 `GATE12_EXECUTION_STARTED=1`
+
+`V08_CANONICAL_LOCK_CANDIDATE=1`
 
 `CURRENT_PROGRAM_FINAL_TARGET=v1.3_USABLE_VERIFIED_PRODUCT`
 
 ## CURRENT ENGINEERING TRUTH
 
-ENGÜRÜ Mac Engineering™ v0.7 is **LONG-RUN RELIABILITY VERIFIED / LOCKED**. v0.8 Gate 12 field acceptance and lock evidence are recorded. Final acceptance receipt and canonical lock remain pending. Gates 1–11 remain verified and locked.
+ENGÜRÜ Mac Engineering™ v0.7 remains **LONG-RUN RELIABILITY VERIFIED / LOCKED**.
+v0.8 Gates 1–12 are reconciled as the final lock candidate. The final
+acceptance receipt digest is bound above; mandatory post-commit readback is
+the only remaining acceptance action before operator PASS.
 
-Local field truth, canonical reconciliation, merge provenance and control-plane exact-main acceptance are all complete. Recovery, fixture repair, local field acceptance and v0.6 closure are closed truths.
-
-Current product source is local verified branch `feat/v08-native-productization-provenance` at `0ca33cc7b70fee915d02de72946bbd4bb0e40065`, based on `origin/main` `5432b9b135499cea18273c0e003877b864af92c6`, with a clean worktree. This is not remote exact-main and not remote parity; publication remains a separate authority surface.
+Current product source remains the clean local verified branch
+`feat/v08-native-productization-provenance` at
+`0ca33cc7b70fee915d02de72946bbd4bb0e40065`, based on `origin/main`
+`5432b9b135499cea18273c0e003877b864af92c6`. It is not remote exact-main
+and not remote parity; publication remains a separate authority surface.
 
 ## PROGRAMMER AGENT AUTHORING DISCIPLINE
 
@@ -175,23 +174,16 @@ v0.4, v0.5 and v0.6 locked truths remain unchanged.
 
 ## CURRENT OBJECTIVE
 
-**v0.8 — Product Engineering Operator / Gate 9 — Deploy / Live Verify / Rollback + Lifecycle**
+**v0.8 — Product Engineering Operator / Gate 12 Final Canonical Lock.**
 
-Gate 8 — New Product from Brief Scenario is **VERIFIED PASS / SEALED**.
+Gates 1–12 are reconciled into the final lock candidate. DoneCheck™ v1.2
+remains **11/11 PASS**; Human Threshold™ remains **ACCEPT**.
 
-Field product: **LOCAL CSV INSPECTOR**.
+Final acceptance receipt: `/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/final-acceptance-receipt.json`.
+Final acceptance receipt digest: `sha256:697c3569d1ef83ab79dee114561146e8a3368145ce0eacffa8cd4e61e2d92b23`.
 
-Verified chain: native product → real CSV user path → preview → numeric summary → report export → DoneCheck™ v1.2 → Human Threshold™.
-
-Operator HEAD: `4e716e387dabea9a4fb1c4752da73a3b172bc2d8`.
-
-Field HEAD: `927fbc2d3130d474bcf9443231e741938b03636d`.
-
-Gate 8 Evidence: `~/Enguru/Evidence/MacEngineer/v0.8/gate8-native-layout-verified-finish/20260925T121312Z/gate8-evidence.json`.
-
-`COUNTERS=0/0/0`; architecture preserved; new core = false; provider recalled = false.
-
-Current required difference: `V08_RELEASE_LIFECYCLE_SCENARIO`.
+Current required difference:
+`COMMIT_PUSH_ACCEPT_AND_FRESH_READBACK`.
 
 ## REMAINING v0.6 CLOSEOUT
 
@@ -204,7 +196,7 @@ Canonical closeout:
 - IP Model Trust Gate push run #385: PASS
 - IP Model Trust Fleet push run #370: PASS
 
-The next active objective is v0.7 Long-Running Reliability.
+Historical closeout note: v0.7 subsequently reached VERIFIED / LOCKED; the current authority is the v0.8 Gate 12 final lock candidate.
 
 ## MAINTENANCE RULE
 
@@ -216,13 +208,20 @@ CURRENT_STATUS is updated after every material engineering package or PASS / HOL
 
 **v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED = PASS.**
 
-**v0.8 Gate 8 — New Product from Brief = VERIFIED PASS / SEALED.**
+**v0.8 Gate 12 final canonical lock candidate = PASS / POST-COMMIT READBACK REQUIRED.**
 
-v0.8 remains ACTIVE through Gates 9–12.
+Operator-level final PASS is intentionally withheld until the exact
+reconciliation commit is pushed, freshly local-accepted and read back.
 
 ## NEXT ACTION
 
-`V08_RELEASE_LIFECYCLE_SCENARIO → controlled release → independent live verification → source/artifact/live provenance → rollback → lifecycle recovery → Evidence continuity → DoneCheck™ v1.2 → V08_RELEASE_LIFECYCLE_VERIFIED`
+`COMMIT_PUSH_ACCEPT_AND_FRESH_READBACK`
+
+## HISTORICAL ENGINEERING LOG
+
+The dated sections below are preserved as historical execution records.
+Any embedded `NEXT ACTION` text inside those dated records is historical
+and does not override the current authority above.
 
 ## MAC REPOSITORY FABRIC — 2026-09-23
 

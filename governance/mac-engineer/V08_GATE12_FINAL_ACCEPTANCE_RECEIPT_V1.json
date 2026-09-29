@@ -1,6 +1,6 @@
 {
   "schema": "enguru.mac-engineer.v08-gate12-final-acceptance/v1",
-  "state": "CANDIDATE_PENDING_FRESH_REMOTE_READBACK",
+  "state": "VERIFIED_LOCKED",
   "objective": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
   "exit": "PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED",
   "acceptedControlHead": "8c31fb5b1467a9960142d50ed62b517f571a6212",
@@ -19,5 +19,9 @@
   "humanDecisionId": "g12-ht-sha256:b9daf488f72b79b6d3c3912507170f629a44721eab4d6fbd78564c240b6100c6",
   "externalA09State": "HOLD",
   "productPublicationState": "LOCAL_VERIFIED_NOT_REMOTE_EXACT_MAIN_NOT_REMOTE_PARITY",
-  "postCommitVerificationRequired": true
+  "postCommitVerificationRequired": true,
+  "finalAcceptanceReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/final-acceptance-receipt.json",
+  "finalAcceptanceReceiptDigest": "sha256:697c3569d1ef83ab79dee114561146e8a3368145ce0eacffa8cd4e61e2d92b23",
+  "canonicalLockCreated": true,
+  "postCommitVerificationState": "PENDING"
 }

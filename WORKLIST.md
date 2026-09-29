@@ -2067,15 +2067,18 @@ Gate 10 execution belongs to the next working session.
 - DoneCheck™ v1.2: **PASS**
 - Evidence: `/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate11-p12-closure/20260927T223539Z/p12-final-acceptance.json`
 
-### v0.8 Gate 12 — LOCK EVIDENCE RECONCILED / FINAL RECEIPT PENDING
+### v0.8 Gate 12 — FINAL CANONICAL LOCK RECONCILED
 
-- [ ] **Gate 12 — DoneCheck™ v1.2 + Human Threshold™ + Version Lock** (lock evidence reconciled; final receipt and canonical lock pending)
+- [x] **Gate 12 — DoneCheck™ v1.2 + Human Threshold™ + Version Lock — VERIFIED / LOCKED**
 - Canonical identifier: `V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK`
-- Exit target: `PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED`
-- Execution started: **1**; DoneCheck™ 11/11 PASS and signed Human Threshold™ ACCEPT are bound to control HEAD `8c31fb5b1467a9960142d50ed62b517f571a6212`.
-- Field receipt: `/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/field-acceptance-receipt.json`; `sha256:971ed7fcdef8d6e043c3a2366e83c6db9e4781d03cafa3d46bc6753b7f9b21fa`.
-- Lock evidence: `/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/canonical-lock-evidence.json`; `sha256:15c369c70769cb7593c6714362b6fb91b2cfe30f44f9483d2dffafb265c64745`.
-- Final acceptance candidate: `governance/mac-engineer/V08_GATE12_FINAL_ACCEPTANCE_RECEIPT_V1.json`. After this reconciliation commit, fresh exact-HEAD Mac/remote readback produces a final receipt. Its digest is required before canonical lock.
-- External A09: **HOLD / EXTERNAL**. Product remote publication: **DEFERRED**.
-- Current product source: local verified `0ca33cc7b70fee915d02de72946bbd4bb0e40065`; remote exact-main: **false**; remote parity: **false**.
+- Exit: `PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED`
+- DoneCheck™ v1.2: **11/11 PASS**
+- Human Threshold™: **ACCEPT**
+- Final acceptance receipt: `/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/final-acceptance-receipt.json`
+- Final acceptance receipt digest: `sha256:697c3569d1ef83ab79dee114561146e8a3368145ce0eacffa8cd4e61e2d92b23`
+- External A09: **HOLD / EXTERNAL**.
+- Product remote publication: **DEFERRED**; local verified publication classification is preserved.
+- Canonical lock repository difference requires mandatory commit/push + fresh local-candidate acceptance + post-commit operator readback before operator PASS.
 - Current program final target: **v1.3 — Usable Verified Product**.
+
+**NEXT ACTION — commit/push this bounded reconciliation, run fresh local candidate acceptance, then `enguru-mac continue` for final post-commit readback.**

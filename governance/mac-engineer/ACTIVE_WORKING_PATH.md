@@ -8,15 +8,20 @@
 
 `CURRENT_OBJECTIVE=V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK`
 
-`CURRENT_GATE=12`
+`CURRENT_GATE=NONE`
 
 `GATE12_EXECUTION_STARTED=1`
 
 `CURRENT_PROGRAM_FINAL_TARGET=v1.3_USABLE_VERIFIED_PRODUCT`
 
-Gate 11 is **VERIFIED / LOCKED**. Gate 12 field acceptance and lock evidence are recorded. Fresh exact-HEAD Mac/remote readback must produce the final acceptance receipt; canonical lock remains pending. Field receipt digest: `sha256:971ed7fcdef8d6e043c3a2366e83c6db9e4781d03cafa3d46bc6753b7f9b21fa`. Lock evidence digest: `sha256:15c369c70769cb7593c6714362b6fb91b2cfe30f44f9483d2dffafb265c64745`. External A09 remains HOLD and product publication remains local verified.
+Gate 11 remains **VERIFIED / LOCKED**. Gate 12 is reconciled as the final
+canonical lock candidate from immutable final acceptance receipt
+`/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/final-acceptance-receipt.json` with digest `sha256:697c3569d1ef83ab79dee114561146e8a3368145ce0eacffa8cd4e61e2d92b23`.
 
-Current product source is the clean local branch `feat/v08-native-productization-provenance` at verified HEAD `0ca33cc7b70fee915d02de72946bbd4bb0e40065`, based on `origin/main` `5432b9b135499cea18273c0e003877b864af92c6`. The local verified HEAD is neither remote exact-main nor remote parity; publication remains a separate authority surface.
+The only remaining v0.8 acceptance action is mandatory post-commit readback:
+exact working-branch parity → fresh local-candidate acceptance → operator
+readback. External A09 remains HOLD and product publication remains local
+verified / remote-deferred.
 
 Bu dosya ENGÜRÜ Mac Engineer™ geliştirme çalışması sürerken yeni ChatGPT oturumlarının aynı çalışma yoluna hızla bağlanması için tutulur.
 

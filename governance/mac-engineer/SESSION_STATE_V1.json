@@ -1272,13 +1272,13 @@
     "operatingPattern": "GITHUB_TRUTH_TO_MAC_EXECUTION_TO_EVIDENCE_DONECHECK_TO_SYNC"
   },
   "currentV08": {
-    "state": "ACTIVE",
+    "state": "VERIFIED_LOCKED",
     "objective": "V08_PRODUCT_ENGINEERING_OPERATOR",
     "engineeringMode": "MAC_NATIVE_PRIMARY_AUTHORITY",
     "executionAuthorityModel": "ENGÜRÜ Mac-Native Engineering Authority™",
-    "nextAction": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
-    "localContinuityNextAction": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
-    "localContinuityState": "ACTIVE",
+    "nextAction": "AWAIT_NEXT_OBJECTIVE",
+    "localContinuityNextAction": "AWAIT_NEXT_OBJECTIVE",
+    "localContinuityState": "VERIFIED_LOCKED",
     "acceptanceMatrix": "PASS_DEFINED",
     "acceptanceMatrixPath": "governance/mac-engineer/V08_PRODUCT_ENGINEERING_OPERATOR_ACCEPTANCE_MATRIX_V1.md",
     "productExactMain": "5432b9b135499cea18273c0e003877b864af92c6",
@@ -1289,7 +1289,7 @@
       "exactMain": "8b90a8fc93453dd8a84994195d28d14b15e261cb"
     },
     "controlPlaneLocalContinuity": {
-      "state": "ACTIVE_VERSION_ENGINEERING",
+      "state": "VERIFIED_LOCAL_AUTHORITY_PENDING_EXTERNAL_RECONCILIATION",
       "branch": "feat/mac-engineer-v08-product-engineering-operator",
       "canonicalRemoteAuthority": "GITHUB_REMOTE_MAIN",
       "localAuthority": "MAC_NATIVE_PRIMARY_ENGINEERING_AUTHORITY_VERIFIED",
@@ -1298,7 +1298,7 @@
       "acceptanceStatePath": "~/Enguru/Runtime/MacEngineer/state/local-accepted-control-plane-candidate.json",
       "acceptanceEvidenceRoot": "~/Enguru/Evidence/MacEngineer/v0.8/canonical-boot",
       "currentTechnicalTarget": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
-      "nextAfterPass": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
+      "nextAfterPass": "AWAIT_NEXT_OBJECTIVE"
     },
     "currentProductSource": {
       "repository": "engurulabory/enguru-mac-engineer",
@@ -1324,12 +1324,11 @@
         8,
         9,
         10,
-        11
-      ],
-      "activeGate": 12,
-      "remainingGates": [
+        11,
         12
       ],
+      "activeGate": null,
+      "remainingGates": [],
       "finalAuthority": "HUMAN_THRESHOLD",
       "finalState": "PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED"
     },
@@ -1684,7 +1683,7 @@
       "gate12Execution": false
     },
     "gate12": {
-      "state": "LOCK_EVIDENCE_RECONCILED_PENDING_FINAL_RECEIPT",
+      "state": "VERIFIED_LOCKED",
       "name": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
       "title": "DoneCheck™ v1.2 + Human Threshold™ + Version Lock",
       "exit": "PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED",
@@ -1697,12 +1696,17 @@
       "fieldAcceptanceReceiptDigest": "sha256:971ed7fcdef8d6e043c3a2366e83c6db9e4781d03cafa3d46bc6753b7f9b21fa",
       "terminalCandidateId": "g12-candidate-sha256:26d59556c5d88aaac9a68667d86329348ceea17a5b6d1a3252333de3b0862edd",
       "acceptedControlHead": "8c31fb5b1467a9960142d50ed62b517f571a6212",
-      "canonicalLockCreated": false,
-      "nextAction": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
+      "canonicalLockCreated": true,
+      "nextAction": "AWAIT_NEXT_OBJECTIVE",
       "lockEvidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/canonical-lock-evidence.json",
       "lockEvidenceDigest": "sha256:15c369c70769cb7593c6714362b6fb91b2cfe30f44f9483d2dffafb265c64745",
       "reconciliationControlHead": "2ae50c990fbd477899c278f00969a13cc59af80b",
-      "finalAcceptanceCandidate": "governance/mac-engineer/V08_GATE12_FINAL_ACCEPTANCE_RECEIPT_V1.json"
+      "finalAcceptanceCandidate": "governance/mac-engineer/V08_GATE12_FINAL_ACCEPTANCE_RECEIPT_V1.json",
+      "finalAcceptanceReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/final-acceptance-receipt.json",
+      "finalAcceptanceReceiptDigest": "sha256:697c3569d1ef83ab79dee114561146e8a3368145ce0eacffa8cd4e61e2d92b23",
+      "finalAcceptanceControlHead": "22d87f7f9c416c914dd76c438d4eb17f21db9b1e",
+      "finalLockReadback": "PENDING_POST_COMMIT",
+      "observedAt": "2026-09-29T08:10:16.975438Z"
     }
   },
   "preSendFilter": {
