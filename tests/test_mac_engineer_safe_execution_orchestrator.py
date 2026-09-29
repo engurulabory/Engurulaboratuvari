@@ -1140,6 +1140,246 @@ check(
     == "REGISTERED_ACTION_RESULT_CONTRACT_HOLD"
 )
 
+
+cap10_plan = {
+    "STATE":
+        "PLAN_READY",
+
+    "PLAN_ID":
+        "package05-cap10-test",
+
+    "TRUTH_FINGERPRINT":
+        "package05-cap10-truth",
+
+    "EXECUTION_AUTHORIZED":
+        False,
+
+    "CAPABILITY_PLAN": [
+        "MIGRATION_CANONICAL_RECONCILIATION",
+    ],
+}
+
+_real_cap10 = (
+    operator
+    .run_package08_cap10_migration_canonical_reconciliation_field_proof
+)
+
+operator.run_package08_cap10_migration_canonical_reconciliation_field_proof = lambda: {
+    "state": "PASS",
+    "code": 0,
+
+    "fields": {
+        "CAP10_MIGRATION_CANONICAL_RECONCILIATION":
+            "PASS",
+
+        "HUMAN_THRESHOLD_ACCEPT":
+            "PASS",
+
+        "TECHNICAL_ROLLBACK_PARITY":
+            "PASS",
+
+        "RECONCILIATION_IDEMPOTENCY":
+            "PASS",
+
+        "FRESH_REPO_REREAD":
+            "PASS",
+
+        "FRESH_RUNTIME_REREAD":
+            "PASS",
+
+        "FRESH_ARTIFACT_REREAD":
+            "PASS",
+
+        "FRESH_STATE_REREAD":
+            "PASS",
+
+        "NEW_VERIFIED_STATE_ESTABLISHED":
+            "PASS",
+
+        "STALE_RESUME_REJECTED":
+            "PASS",
+
+        "CRITICAL_FALSE_PASS_COUNT":
+            "0",
+
+        "CANONICAL_TRUTH_PRESERVED":
+            "PASS",
+
+        "AUTHORITY":
+            "AMBER",
+
+        "MUTATION_SCOPE":
+            "EXPLICIT_RECONCILIATION_SCOPE",
+
+        "REMOTE_PUSH":
+            "false",
+
+        "EXECUTION_AUTHORITY_CREATED":
+            "false",
+
+        "HUMAN_THRESHOLD_RECEIPT_SHA256":
+            "b48f594ffb7e66bac4209e1882c6c8394789c4b78da38be47cfe2ea96f0703c4",
+
+        "POST_HUMAN_EVIDENCE_SHA256":
+            "2e8c2ad9b2141e6d5de82741cfbddc62cde00ce22392f87dc8e0034279e8592e",
+    },
+
+    "evidence":
+        "/tmp/cap10-pass.json",
+}
+
+try:
+    cap10_result = (
+        orch.execute_plan_step(
+            cap10_plan,
+            1,
+        )
+    )
+finally:
+    operator.run_package08_cap10_migration_canonical_reconciliation_field_proof = (
+        _real_cap10
+    )
+
+check(
+    "PLAN_BOUND_CAP10_MIGRATION_RECONCILIATION_PASS",
+
+    cap10_result["STATE"]
+    == "PASS"
+
+    and cap10_result[
+        "CAPABILITY_ID"
+    ]
+    == "MIGRATION_CANONICAL_RECONCILIATION"
+
+    and cap10_result[
+        "RECOVERY_PROOF_REQUIRED"
+    ]
+    is True
+
+    and cap10_result[
+        "RECOVERY_PROOF_OBSERVED"
+    ]
+    is True
+
+    and cap10_result[
+        "OBSERVED_RESULT"
+    ]["humanThresholdAccept"]
+    is True
+
+    and cap10_result[
+        "OBSERVED_RESULT"
+    ]["freshRepo"]
+    is True
+
+    and cap10_result[
+        "OBSERVED_RESULT"
+    ]["freshRuntime"]
+    is True
+
+    and cap10_result[
+        "OBSERVED_RESULT"
+    ]["freshArtifact"]
+    is True
+
+    and cap10_result[
+        "OBSERVED_RESULT"
+    ]["freshState"]
+    is True
+
+    and cap10_result[
+        "OBSERVED_RESULT"
+    ]["staleResumeRejected"]
+    is True
+)
+
+operator.run_package08_cap10_migration_canonical_reconciliation_field_proof = lambda: {
+    "state": "PASS",
+    "code": 0,
+
+    "fields": {
+        "CAP10_MIGRATION_CANONICAL_RECONCILIATION":
+            "PASS",
+
+        "HUMAN_THRESHOLD_ACCEPT":
+            "HOLD",
+
+        "TECHNICAL_ROLLBACK_PARITY":
+            "PASS",
+
+        "RECONCILIATION_IDEMPOTENCY":
+            "PASS",
+
+        "FRESH_REPO_REREAD":
+            "PASS",
+
+        "FRESH_RUNTIME_REREAD":
+            "PASS",
+
+        "FRESH_ARTIFACT_REREAD":
+            "PASS",
+
+        "FRESH_STATE_REREAD":
+            "PASS",
+
+        "NEW_VERIFIED_STATE_ESTABLISHED":
+            "PASS",
+
+        "STALE_RESUME_REJECTED":
+            "PASS",
+
+        "CRITICAL_FALSE_PASS_COUNT":
+            "0",
+
+        "CANONICAL_TRUTH_PRESERVED":
+            "PASS",
+
+        "AUTHORITY":
+            "AMBER",
+
+        "MUTATION_SCOPE":
+            "EXPLICIT_RECONCILIATION_SCOPE",
+
+        "REMOTE_PUSH":
+            "false",
+
+        "EXECUTION_AUTHORITY_CREATED":
+            "false",
+
+        "HUMAN_THRESHOLD_RECEIPT_SHA256":
+            "b48f594ffb7e66bac4209e1882c6c8394789c4b78da38be47cfe2ea96f0703c4",
+
+        "POST_HUMAN_EVIDENCE_SHA256":
+            "2e8c2ad9b2141e6d5de82741cfbddc62cde00ce22392f87dc8e0034279e8592e",
+    },
+
+    "evidence":
+        "/tmp/cap10-negative.json",
+}
+
+try:
+    cap10_negative = (
+        orch.execute_plan_step(
+            cap10_plan,
+            1,
+        )
+    )
+finally:
+    operator.run_package08_cap10_migration_canonical_reconciliation_field_proof = (
+        _real_cap10
+    )
+
+check(
+    "CAP10_HUMAN_THRESHOLD_REQUIRED_HOLD",
+
+    cap10_negative["STATE"]
+    == "HOLD"
+
+    and cap10_negative[
+        "HOLD_REASON"
+    ]
+    == "REGISTERED_ACTION_RESULT_CONTRACT_HOLD"
+)
+
 invalid_step = orch.execute_plan_step(
     truth_plan,
     99,
@@ -1193,8 +1433,8 @@ check(
 )
 
 check(
-    "FIVE_PROVEN_REGISTERED_ACTION_BINDINGS",
-    len(registered_bindings) == 5
+    "SIX_PROVEN_REGISTERED_ACTION_BINDINGS",
+    len(registered_bindings) == 6
     and {
         row["CAPABILITY_ID"]
         for row in registered_bindings
@@ -1205,12 +1445,13 @@ check(
         "BUILD",
         "TEST_REGRESSION",
         "ROOT_CAUSE_REPAIR",
+        "MIGRATION_CANONICAL_RECONCILIATION",
     },
 )
 
 check(
-    "TWELVE_UNBOUND_FAIL_CLOSED",
-    len(hold_bindings) == 12,
+    "ELEVEN_UNBOUND_FAIL_CLOSED",
+    len(hold_bindings) == 11,
 )
 
 

@@ -249,6 +249,21 @@
       "mutationScope": "BOUNDED_REPAIR_SCOPE",
       "rollbackRequired": true,
       "canonicalTruthPreserved": true
+    },
+    "PACKAGE08_CAP10_MIGRATION_CANONICAL_RECONCILIATION_FIELD_PROOF": {
+      "handler": "PACKAGE08_CAP10_MIGRATION_CANONICAL_RECONCILIATION_FIELD_PROOF",
+      "authority": "AMBER_HT_ACCEPTED_EXPLICIT_RECONCILIATION_AUTHORITY",
+      "command": "governance/mac-engineer/PACKAGE08_CAP10_MIGRATION_CANONICAL_RECONCILIATION_FIELD_PROOF.command",
+      "networkRequired": false,
+      "remotePush": false,
+      "failClosed": true,
+      "humanThresholdRequired": true,
+      "humanThresholdDecision": "ACCEPT",
+      "humanThresholdReceiptSha256": "b48f594ffb7e66bac4209e1882c6c8394789c4b78da38be47cfe2ea96f0703c4",
+      "postHumanEvidenceSha256": "2e8c2ad9b2141e6d5de82741cfbddc62cde00ce22392f87dc8e0034279e8592e",
+      "mutationScope": "EXPLICIT_RECONCILIATION_SCOPE",
+      "rollbackRequired": true,
+      "canonicalTruthPreserved": true
     }
   }
 }

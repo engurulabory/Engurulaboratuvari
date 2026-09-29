@@ -610,6 +610,50 @@ def execute_proven_registered_action(
                 False,
         },
 
+        "MIGRATION_CANONICAL_RECONCILIATION": {
+            "ACTION":
+                "PACKAGE08_CAP10_MIGRATION_CANONICAL_RECONCILIATION_FIELD_PROOF",
+
+            "REGISTERED_HANDLER":
+                "PACKAGE08_CAP10_MIGRATION_CANONICAL_RECONCILIATION_FIELD_PROOF",
+
+            "OPERATOR_CALLABLE":
+                "run_package08_cap10_migration_canonical_reconciliation_field_proof",
+
+            "AUTHORITY":
+                "AMBER_HT_ACCEPTED_EXPLICIT_RECONCILIATION_AUTHORITY",
+
+            "NETWORK_ALLOWED":
+                False,
+
+            "REMOTE_PUSH_ALLOWED":
+                False,
+
+            "RECOVERY_PROOF_REQUIRED":
+                True,
+
+            "HUMAN_THRESHOLD_REQUIRED":
+                True,
+
+            "HUMAN_THRESHOLD_DECISION":
+                "ACCEPT",
+
+            "HUMAN_THRESHOLD_RECEIPT_SHA256":
+                "b48f594ffb7e66bac4209e1882c6c8394789c4b78da38be47cfe2ea96f0703c4",
+
+            "POST_HUMAN_EVIDENCE_SHA256":
+                "2e8c2ad9b2141e6d5de82741cfbddc62cde00ce22392f87dc8e0034279e8592e",
+
+            "MUTATION_SCOPE":
+                "EXPLICIT_RECONCILIATION_SCOPE",
+
+            "CANONICAL_TRUTH_PRESERVED":
+                True,
+
+            "EXECUTION_AUTHORITY_CREATED":
+                False,
+        },
+
     }
 
     expected = (
@@ -1363,6 +1407,178 @@ def execute_proven_registered_action(
                 True,
 
             "smallestSufficientRepairRequired":
+                True,
+        }
+
+    elif capability_id == "MIGRATION_CANONICAL_RECONCILIATION":
+        result = (
+            operator
+            .run_package08_cap10_migration_canonical_reconciliation_field_proof()
+        )
+
+        fields = (
+            result.get("fields")
+            if isinstance(
+                result.get("fields"),
+                dict,
+            )
+            else {}
+        )
+
+        observed = {
+            "wrapperStatePass":
+                result.get("state")
+                == "PASS",
+
+            "wrapperCodeZero":
+                result.get("code")
+                == 0,
+
+            "reconciliationPass":
+                fields.get(
+                    "CAP10_MIGRATION_CANONICAL_RECONCILIATION"
+                )
+                == "PASS",
+
+            "humanThresholdAccept":
+                fields.get(
+                    "HUMAN_THRESHOLD_ACCEPT"
+                )
+                == "PASS",
+
+            "technicalRollbackParity":
+                fields.get(
+                    "TECHNICAL_ROLLBACK_PARITY"
+                )
+                == "PASS",
+
+            "reconciliationIdempotency":
+                fields.get(
+                    "RECONCILIATION_IDEMPOTENCY"
+                )
+                == "PASS",
+
+            "freshRepo":
+                fields.get(
+                    "FRESH_REPO_REREAD"
+                )
+                == "PASS",
+
+            "freshRuntime":
+                fields.get(
+                    "FRESH_RUNTIME_REREAD"
+                )
+                == "PASS",
+
+            "freshArtifact":
+                fields.get(
+                    "FRESH_ARTIFACT_REREAD"
+                )
+                == "PASS",
+
+            "freshState":
+                fields.get(
+                    "FRESH_STATE_REREAD"
+                )
+                == "PASS",
+
+            "newVerifiedState":
+                fields.get(
+                    "NEW_VERIFIED_STATE_ESTABLISHED"
+                )
+                == "PASS",
+
+            "staleResumeRejected":
+                fields.get(
+                    "STALE_RESUME_REJECTED"
+                )
+                == "PASS",
+
+            "falsePassZero":
+                fields.get(
+                    "CRITICAL_FALSE_PASS_COUNT"
+                )
+                == "0",
+
+            "canonicalTruthPreserved":
+                fields.get(
+                    "CANONICAL_TRUTH_PRESERVED"
+                )
+                == "PASS",
+
+            "authorityAmber":
+                fields.get(
+                    "AUTHORITY"
+                )
+                == "AMBER",
+
+            "explicitReconciliationScope":
+                fields.get(
+                    "MUTATION_SCOPE"
+                )
+                == "EXPLICIT_RECONCILIATION_SCOPE",
+
+            "remotePushFalse":
+                fields.get(
+                    "REMOTE_PUSH"
+                )
+                == "false",
+
+            "executionAuthorityCreatedFalse":
+                fields.get(
+                    "EXECUTION_AUTHORITY_CREATED"
+                )
+                == "false",
+
+            "humanThresholdReceiptDigest":
+                fields.get(
+                    "HUMAN_THRESHOLD_RECEIPT_SHA256"
+                )
+                == "b48f594ffb7e66bac4209e1882c6c8394789c4b78da38be47cfe2ea96f0703c4",
+
+            "postHumanEvidenceDigest":
+                fields.get(
+                    "POST_HUMAN_EVIDENCE_SHA256"
+                )
+                == "2e8c2ad9b2141e6d5de82741cfbddc62cde00ce22392f87dc8e0034279e8592e",
+
+            "runtimeEvidencePresent":
+                bool(
+                    result.get("evidence")
+                ),
+        }
+
+        recovery_observed = bool(
+            observed[
+                "technicalRollbackParity"
+            ]
+            and observed[
+                "reconciliationIdempotency"
+            ]
+            and observed[
+                "staleResumeRejected"
+            ]
+        )
+
+        mutation_scope = {
+            "filesystemMutationExpected":
+                True,
+
+            "scope":
+                "EXPLICIT_RECONCILIATION_SCOPE",
+
+            "canonicalTruthPreserved":
+                True,
+
+            "humanThresholdRequired":
+                True,
+
+            "humanThresholdObserved":
+                observed[
+                    "humanThresholdAccept"
+                ],
+
+            "postHumanFreshReconciliationRequired":
                 True,
         }
 
