@@ -462,40 +462,77 @@ def execute_proven_registered_action(
             CAPABILITY_ID=capability_id,
         )
 
-    if (
-        capability_id
-        != "OPERATOR_CONTINUE_DISPATCH"
-    ):
+    expected_by_capability = {
+        "OPERATOR_CONTINUE_DISPATCH": {
+            "ACTION":
+                "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF",
+
+            "REGISTERED_HANDLER":
+                "MAC_NATIVE_RESTART_RECOVERY_FIELD_PROOF",
+
+            "OPERATOR_CALLABLE":
+                "run_mac_native_restart_recovery_proof",
+
+            "AUTHORITY":
+                "REAL_MAC_LOCAL_PROCESS_RESTART_EVIDENCE",
+
+            "NETWORK_ALLOWED":
+                False,
+
+            "REMOTE_PUSH_ALLOWED":
+                False,
+
+            "RECOVERY_PROOF_REQUIRED":
+                True,
+
+            "EXECUTION_AUTHORITY_CREATED":
+                False,
+        },
+
+        "SOURCE_PRODUCT_CHANGE": {
+            "ACTION":
+                "PACKAGE08_CAP06_DISPOSABLE_SOURCE_CHANGE_FIELD_PROOF",
+
+            "REGISTERED_HANDLER":
+                "PACKAGE08_CAP06_DISPOSABLE_SOURCE_CHANGE_FIELD_PROOF",
+
+            "OPERATOR_CALLABLE":
+                "run_package08_cap06_disposable_source_change_field_proof",
+
+            "AUTHORITY":
+                "REAL_DISPOSABLE_EXACT_BASELINE_SOURCE_MUTATION_EVIDENCE",
+
+            "NETWORK_ALLOWED":
+                False,
+
+            "REMOTE_PUSH_ALLOWED":
+                False,
+
+            "RECOVERY_PROOF_REQUIRED":
+                True,
+
+            "AUTHORIZED_PATH_COUNT":
+                2,
+
+            "CANONICAL_SOURCE_MUTATION_ALLOWED":
+                False,
+
+            "EXECUTION_AUTHORITY_CREATED":
+                False,
+        },
+    }
+
+    expected = (
+        expected_by_capability.get(
+            capability_id
+        )
+    )
+
+    if expected is None:
         return hold(
             "REGISTERED_ACTION_ALLOWLIST_MISS",
             CAPABILITY_ID=capability_id,
         )
-
-    expected = {
-        "ACTION":
-            "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF",
-
-        "REGISTERED_HANDLER":
-            "MAC_NATIVE_RESTART_RECOVERY_FIELD_PROOF",
-
-        "OPERATOR_CALLABLE":
-            "run_mac_native_restart_recovery_proof",
-
-        "AUTHORITY":
-            "REAL_MAC_LOCAL_PROCESS_RESTART_EVIDENCE",
-
-        "NETWORK_ALLOWED":
-            False,
-
-        "REMOTE_PUSH_ALLOWED":
-            False,
-
-        "RECOVERY_PROOF_REQUIRED":
-            True,
-
-        "EXECUTION_AUTHORITY_CREATED":
-            False,
-    }
 
     for key, value in expected.items():
         if binding.get(key) != value:
@@ -518,7 +555,9 @@ def execute_proven_registered_action(
     action = binding["ACTION"]
 
     contract = (
-        action_registry.get("actions")
+        action_registry.get(
+            "actions"
+        )
         or {}
     ).get(action)
 
@@ -582,83 +621,283 @@ def execute_proven_registered_action(
             ACTION=action,
         )
 
-    result = (
-        operator
-        .run_mac_native_restart_recovery_proof()
-    )
+    if capability_id == "SOURCE_PRODUCT_CHANGE":
+        if (
+            contract.get(
+                "authorizedPathCount"
+            )
+            != 2
+        ):
+            return hold(
+                "REGISTERED_ACTION_AUTHORIZED_PATH_COUNT_MISMATCH",
+                CAPABILITY_ID=capability_id,
+                ACTION=action,
+            )
 
-    fields = (
-        result.get("fields")
-        if isinstance(
-            result.get("fields"),
-            dict,
+        if (
+            contract.get(
+                "canonicalSourceMutation"
+            )
+            is not False
+        ):
+            return hold(
+                "REGISTERED_ACTION_CANONICAL_MUTATION_POLICY_VIOLATION",
+                CAPABILITY_ID=capability_id,
+                ACTION=action,
+            )
+
+    if (
+        capability_id
+        == "OPERATOR_CONTINUE_DISPATCH"
+    ):
+        result = (
+            operator
+            .run_mac_native_restart_recovery_proof()
         )
-        else {}
-    )
 
-    runtime_evidence = result.get(
-        "evidence"
-    )
-
-    observed = {
-        "wrapperStatePass":
-            result.get("state")
-            == "PASS",
-
-        "wrapperCodeZero":
-            result.get("code")
-            == 0,
-
-        "processRestartPass":
-            fields.get(
-                "PROCESS_RESTART"
+        fields = (
+            result.get("fields")
+            if isinstance(
+                result.get("fields"),
+                dict,
             )
-            == "PASS",
+            else {}
+        )
 
-        "taskIdentityPass":
-            fields.get(
-                "TASK_IDENTITY"
+        observed = {
+            "wrapperStatePass":
+                result.get("state")
+                == "PASS",
+
+            "wrapperCodeZero":
+                result.get("code")
+                == 0,
+
+            "processRestartPass":
+                fields.get(
+                    "PROCESS_RESTART"
+                )
+                == "PASS",
+
+            "taskIdentityPass":
+                fields.get(
+                    "TASK_IDENTITY"
+                )
+                == "PASS",
+
+            "checkpointResumePass":
+                fields.get(
+                    "CHECKPOINT_RESUME"
+                )
+                == "PASS",
+
+            "exactlyOnceEffectPass":
+                fields.get(
+                    "EXACTLY_ONCE_EFFECT"
+                )
+                == "PASS",
+
+            "finalStateComplete":
+                fields.get(
+                    "FINAL_STATE"
+                )
+                == "COMPLETE",
+
+            "gitVaultMirrorUnchanged":
+                fields.get(
+                    "GITVAULT_MIRROR_UNCHANGED"
+                )
+                == "PASS",
+
+            "remotePushFalse":
+                fields.get(
+                    "REMOTE_PUSH"
+                )
+                == "false",
+
+            "runtimeEvidencePresent":
+                bool(
+                    result.get("evidence")
+                ),
+        }
+
+        recovery_observed = bool(
+            observed[
+                "processRestartPass"
+            ]
+            and observed[
+                "taskIdentityPass"
+            ]
+            and observed[
+                "checkpointResumePass"
+            ]
+            and observed[
+                "exactlyOnceEffectPass"
+            ]
+            and observed[
+                "finalStateComplete"
+            ]
+        )
+
+        mutation_scope = {
+            "filesystemMutationExpected":
+                True,
+
+            "scope":
+                "DISPOSABLE_WORKSPACE_DURABLE_RUNTIME_AND_EVIDENCE",
+
+            "canonicalSourceMutationAllowed":
+                False,
+
+            "remoteMutationAllowed":
+                False,
+        }
+
+    else:
+        result = (
+            operator
+            .run_package08_cap06_disposable_source_change_field_proof()
+        )
+
+        fields = (
+            result.get("fields")
+            if isinstance(
+                result.get("fields"),
+                dict,
             )
-            == "PASS",
+            else {}
+        )
 
-        "checkpointResumePass":
-            fields.get(
-                "CHECKPOINT_RESUME"
-            )
-            == "PASS",
+        observed = {
+            "wrapperStatePass":
+                result.get("state")
+                == "PASS",
 
-        "exactlyOnceEffectPass":
-            fields.get(
-                "EXACTLY_ONCE_EFFECT"
-            )
-            == "PASS",
+            "wrapperCodeZero":
+                result.get("code")
+                == 0,
 
-        "finalStateComplete":
-            fields.get(
-                "FINAL_STATE"
-            )
-            == "COMPLETE",
+            "sourceChangePass":
+                fields.get(
+                    "CAP06_SOURCE_CHANGE"
+                )
+                == "PASS",
 
-        "gitVaultMirrorUnchanged":
-            fields.get(
-                "GITVAULT_MIRROR_UNCHANGED"
-            )
-            == "PASS",
+            "authorizedPathCountTwo":
+                fields.get(
+                    "AUTHORIZED_PATH_COUNT"
+                )
+                == "2",
 
-        "remotePushFalse":
-            fields.get(
-                "REMOTE_PUSH"
-            )
-            == "false",
+            "sourceContractPass":
+                fields.get(
+                    "SOURCE_CONTRACT"
+                )
+                == "PASS",
 
-        "runtimeEvidencePresent":
-            bool(runtime_evidence),
-    }
+            "regressionPass":
+                fields.get(
+                    "REGRESSION"
+                )
+                == "PASS",
+
+            "rollbackPass":
+                fields.get(
+                    "ROLLBACK"
+                )
+                == "PASS",
+
+            "rollbackByteParityPass":
+                fields.get(
+                    "ROLLBACK_BYTE_PARITY"
+                )
+                == "PASS",
+
+            "rollbackWorktreeClean":
+                fields.get(
+                    "ROLLBACK_WORKTREE_CLEAN"
+                )
+                == "PASS",
+
+            "failurePathPass":
+                fields.get(
+                    "FAILURE_PATH"
+                )
+                == "PASS",
+
+            "canonicalControlUnchanged":
+                fields.get(
+                    "CANONICAL_CONTROL_UNCHANGED"
+                )
+                == "PASS",
+
+            "canonicalProductUnchanged":
+                fields.get(
+                    "CANONICAL_PRODUCT_UNCHANGED"
+                )
+                == "PASS",
+
+            "remotePushFalse":
+                fields.get(
+                    "REMOTE_PUSH"
+                )
+                == "false",
+
+            "networkRequiredFalse":
+                fields.get(
+                    "NETWORK_REQUIRED"
+                )
+                == "false",
+
+            "executionAuthorityCreatedFalse":
+                fields.get(
+                    "EXECUTION_AUTHORITY_CREATED"
+                )
+                == "false",
+
+            "runtimeEvidencePresent":
+                bool(
+                    result.get("evidence")
+                ),
+        }
+
+        recovery_observed = bool(
+            observed[
+                "rollbackPass"
+            ]
+            and observed[
+                "rollbackByteParityPass"
+            ]
+            and observed[
+                "rollbackWorktreeClean"
+            ]
+        )
+
+        mutation_scope = {
+            "filesystemMutationExpected":
+                True,
+
+            "scope":
+                "DISPOSABLE_EXACT_BASELINE_BOUNDED_SOURCE_MUTATION",
+
+            "authorizedPathCount":
+                2,
+
+            "canonicalSourceMutationAllowed":
+                False,
+
+            "remoteMutationAllowed":
+                False,
+        }
 
     execution_state = (
         "PASS"
         if all(observed.values())
         else "HOLD"
+    )
+
+    runtime_evidence = result.get(
+        "evidence"
     )
 
     payload = {
@@ -678,47 +917,35 @@ def execute_proven_registered_action(
             action,
 
         "REGISTERED_HANDLER":
-            binding["REGISTERED_HANDLER"],
+            binding[
+                "REGISTERED_HANDLER"
+            ],
 
         "AUTHORITY":
             binding["AUTHORITY"],
 
-        "NETWORK_POLICY":
-            {
-                "allowed":
-                    False,
+        "NETWORK_POLICY": {
+            "allowed":
+                False,
 
-                "contractNetworkRequired":
-                    contract.get(
-                        "networkRequired"
-                    ),
-            },
+            "contractNetworkRequired":
+                contract.get(
+                    "networkRequired"
+                ),
+        },
 
-        "REMOTE_PUSH_POLICY":
-            {
-                "allowed":
-                    False,
+        "REMOTE_PUSH_POLICY": {
+            "allowed":
+                False,
 
-                "observedRemotePushFalse":
-                    observed[
-                        "remotePushFalse"
-                    ],
-            },
+            "observedRemotePushFalse":
+                observed[
+                    "remotePushFalse"
+                ],
+        },
 
         "MUTATION_SCOPE":
-            {
-                "filesystemMutationExpected":
-                    True,
-
-                "scope":
-                    "DISPOSABLE_WORKSPACE_DURABLE_RUNTIME_AND_EVIDENCE",
-
-                "canonicalSourceMutationAllowed":
-                    False,
-
-                "remoteMutationAllowed":
-                    False,
-            },
+            mutation_scope,
 
         "REGISTERED_HANDLER_INVOKED":
             True,
@@ -730,23 +957,7 @@ def execute_proven_registered_action(
             True,
 
         "RECOVERY_PROOF_OBSERVED":
-            bool(
-                observed[
-                    "processRestartPass"
-                ]
-                and observed[
-                    "taskIdentityPass"
-                ]
-                and observed[
-                    "checkpointResumePass"
-                ]
-                and observed[
-                    "exactlyOnceEffectPass"
-                ]
-                and observed[
-                    "finalStateComplete"
-                ]
-            ),
+            recovery_observed,
 
         "OBSERVED_RESULT":
             observed,
@@ -757,16 +968,14 @@ def execute_proven_registered_action(
         "EVIDENCE": {
             "bindingRegistry":
                 str(
-                    BINDING_REGISTRY.relative_to(
-                        ROOT
-                    )
+                    BINDING_REGISTRY
+                    .relative_to(ROOT)
                 ),
 
             "capabilityRegistry":
                 str(
-                    CAPABILITY_REGISTRY.relative_to(
-                        ROOT
-                    )
+                    CAPABILITY_REGISTRY
+                    .relative_to(ROOT)
                 ),
 
             "registeredActionValidated":

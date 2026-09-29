@@ -26,10 +26,21 @@ existing_before = copy.deepcopy(existing_plan)
 existing = orch.dry_run(existing_plan)
 
 check(
-    "UNBOUND_EXISTING_PRODUCT_HOLD",
+    "SOURCE_CHANGE_BOUND_REMAINING_PLAN_HOLD",
     existing["STATE"] == "HOLD"
-    and existing["HOLD_STEP_COUNT"] == 4
-    and existing["EXECUTABLE_STEP_COUNT"] == 0,
+    and existing["STEP_COUNT"] == 4
+    and existing["EXECUTABLE_STEP_COUNT"] == 1
+    and existing["HOLD_STEP_COUNT"] == 3
+    and existing["STEPS"][0]["CAPABILITY_ID"]
+        == "SOURCE_PRODUCT_CHANGE"
+    and existing["STEPS"][0]["BINDING_TYPE"]
+        == "REGISTERED_ACTION"
+    and existing["STEPS"][0]["DRY_RUN_EXECUTABLE"]
+        is True
+    and all(
+        step["DRY_RUN_EXECUTABLE"] is False
+        for step in existing["STEPS"][1:]
+    ),
 )
 
 check(
@@ -300,6 +311,187 @@ check(
     ),
 )
 
+
+cap06_plan = {
+    "STATE":
+        "PLAN_READY",
+
+    "PLAN_ID":
+        "package05-cap06-registered-action-test",
+
+    "TRUTH_FINGERPRINT":
+        "package05-cap06-test-truth",
+
+    "EXECUTION_AUTHORIZED":
+        False,
+
+    "CAPABILITY_PLAN": [
+        "SOURCE_PRODUCT_CHANGE",
+    ],
+}
+
+_real_cap06 = (
+    operator
+    .run_package08_cap06_disposable_source_change_field_proof
+)
+
+operator.run_package08_cap06_disposable_source_change_field_proof = lambda: {
+    "state": "PASS",
+    "code": 0,
+    "fields": {
+        "STATE": "PASS",
+        "CAP06_SOURCE_CHANGE": "PASS",
+        "AUTHORIZED_PATH_COUNT": "2",
+        "SOURCE_CONTRACT": "PASS",
+        "REGRESSION": "PASS",
+        "ROLLBACK": "PASS",
+        "ROLLBACK_BYTE_PARITY": "PASS",
+        "ROLLBACK_WORKTREE_CLEAN": "PASS",
+        "FAILURE_PATH": "PASS",
+        "CANONICAL_CONTROL_UNCHANGED": "PASS",
+        "CANONICAL_PRODUCT_UNCHANGED": "PASS",
+        "REMOTE_PUSH": "false",
+        "NETWORK_REQUIRED": "false",
+        "EXECUTION_AUTHORITY_CREATED": "false",
+    },
+    "evidence":
+        "/tmp/package05-cap06-source-change-evidence.json",
+}
+
+try:
+    cap06_registered = (
+        orch.execute_plan_step(
+            cap06_plan,
+            1,
+        )
+    )
+finally:
+    operator.run_package08_cap06_disposable_source_change_field_proof = (
+        _real_cap06
+    )
+
+check(
+    "PLAN_BOUND_CAP06_REGISTERED_ACTION_PASS",
+
+    cap06_registered["STATE"]
+    == "PASS"
+
+    and cap06_registered[
+        "CAPABILITY_ID"
+    ]
+    == "SOURCE_PRODUCT_CHANGE"
+
+    and cap06_registered[
+        "BINDING_TYPE"
+    ]
+    == "REGISTERED_ACTION"
+
+    and cap06_registered[
+        "REGISTERED_HANDLER_INVOKED"
+    ]
+    is True
+
+    and cap06_registered[
+        "EXECUTION_PERFORMED"
+    ]
+    is True
+
+    and cap06_registered[
+        "RECOVERY_PROOF_OBSERVED"
+    ]
+    is True
+
+    and cap06_registered[
+        "OBSERVED_RESULT"
+    ]["authorizedPathCountTwo"]
+    is True
+
+    and cap06_registered[
+        "OBSERVED_RESULT"
+    ]["regressionPass"]
+    is True
+
+    and cap06_registered[
+        "OBSERVED_RESULT"
+    ]["rollbackPass"]
+    is True
+
+    and cap06_registered[
+        "OBSERVED_RESULT"
+    ]["failurePathPass"]
+    is True
+
+    and cap06_registered[
+        "OBSERVED_RESULT"
+    ]["canonicalProductUnchanged"]
+    is True
+
+    and cap06_registered[
+        "MUTATION_SCOPE"
+    ]["authorizedPathCount"]
+    == 2
+
+    and cap06_registered[
+        "MUTATION_SCOPE"
+    ]["canonicalSourceMutationAllowed"]
+    is False
+)
+
+operator.run_package08_cap06_disposable_source_change_field_proof = lambda: {
+    "state": "PASS",
+    "code": 0,
+    "fields": {
+        "STATE": "PASS",
+        "CAP06_SOURCE_CHANGE": "PASS",
+        "AUTHORIZED_PATH_COUNT": "2",
+        "SOURCE_CONTRACT": "PASS",
+        "REGRESSION": "PASS",
+        "ROLLBACK": "HOLD",
+        "ROLLBACK_BYTE_PARITY": "HOLD",
+        "ROLLBACK_WORKTREE_CLEAN": "HOLD",
+        "FAILURE_PATH": "PASS",
+        "CANONICAL_CONTROL_UNCHANGED": "PASS",
+        "CANONICAL_PRODUCT_UNCHANGED": "PASS",
+        "REMOTE_PUSH": "false",
+        "NETWORK_REQUIRED": "false",
+        "EXECUTION_AUTHORITY_CREATED": "false",
+    },
+    "evidence":
+        "/tmp/package05-cap06-incomplete-rollback.json",
+}
+
+try:
+    cap06_incomplete_rollback = (
+        orch.execute_plan_step(
+            cap06_plan,
+            1,
+        )
+    )
+finally:
+    operator.run_package08_cap06_disposable_source_change_field_proof = (
+        _real_cap06
+    )
+
+check(
+    "CAP06_REGISTERED_ACTION_INCOMPLETE_ROLLBACK_HOLD",
+
+    cap06_incomplete_rollback[
+        "STATE"
+    ]
+    == "HOLD"
+
+    and cap06_incomplete_rollback[
+        "HOLD_REASON"
+    ]
+    == "REGISTERED_ACTION_RESULT_CONTRACT_HOLD"
+
+    and cap06_incomplete_rollback[
+        "RECOVERY_PROOF_OBSERVED"
+    ]
+    is False
+)
+
+
 _binding_path = orch.BINDING_REGISTRY
 _original_binding_doc = orch.load_json(
     _binding_path
@@ -446,17 +638,21 @@ check(
 )
 
 check(
-    "ONE_PROVEN_REGISTERED_ACTION_BINDING",
-    len(registered_bindings) == 1
-    and registered_bindings[0]["CAPABILITY_ID"]
-        == "OPERATOR_CONTINUE_DISPATCH"
-    and registered_bindings[0]["ACTION"]
-        == "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF",
+    "TWO_PROVEN_REGISTERED_ACTION_BINDINGS",
+    len(registered_bindings) == 2
+    and {
+        row["CAPABILITY_ID"]
+        for row in registered_bindings
+    }
+    == {
+        "OPERATOR_CONTINUE_DISPATCH",
+        "SOURCE_PRODUCT_CHANGE",
+    },
 )
 
 check(
-    "SIXTEEN_UNBOUND_FAIL_CLOSED",
-    len(hold_bindings) == 16,
+    "FIFTEEN_UNBOUND_FAIL_CLOSED",
+    len(hold_bindings) == 15,
 )
 
 

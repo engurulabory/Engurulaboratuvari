@@ -208,6 +208,16 @@
       "finalAcceptanceReceiptCandidate": false,
       "finalAcceptanceReceiptDigest": "sha256:697c3569d1ef83ab79dee114561146e8a3368145ce0eacffa8cd4e61e2d92b23",
       "postCommitReadbackRequired": true
+    },
+    "PACKAGE08_CAP06_DISPOSABLE_SOURCE_CHANGE_FIELD_PROOF": {
+      "handler": "PACKAGE08_CAP06_DISPOSABLE_SOURCE_CHANGE_FIELD_PROOF",
+      "authority": "REAL_DISPOSABLE_EXACT_BASELINE_SOURCE_MUTATION_EVIDENCE",
+      "command": "governance/mac-engineer/PACKAGE08_CAP06_DISPOSABLE_SOURCE_CHANGE_FIELD_PROOF.command",
+      "networkRequired": false,
+      "remotePush": false,
+      "failClosed": true,
+      "authorizedPathCount": 2,
+      "canonicalSourceMutation": false
     }
   }
 }

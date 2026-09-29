@@ -1924,6 +1924,83 @@ def gate12_final_readback_due(
 
 
 
+
+def run_package08_cap06_disposable_source_change_field_proof() -> dict[str, Any]:
+    command = (
+        ROOT
+        / "governance"
+        / "mac-engineer"
+        / "PACKAGE08_CAP06_DISPOSABLE_SOURCE_CHANGE_FIELD_PROOF.command"
+    )
+
+    if not command.is_file():
+        return {
+            "state": "HOLD",
+            "reason":
+                "PACKAGE08_CAP06_SOURCE_CHANGE_FIELD_PROOF_COMMAND_MISSING",
+            "evidence": None,
+        }
+
+    result = run(
+        ["zsh", str(command)],
+        cwd=ROOT,
+        timeout=7200,
+        env={
+            **os.environ,
+            "PYTHONDONTWRITEBYTECODE": "1",
+        },
+    )
+
+    fields: dict[str, str] = {}
+
+    for line in result.get(
+        "stdout",
+        "",
+    ).splitlines():
+        if "=" not in line:
+            continue
+
+        key, value = line.split(
+            "=",
+            1,
+        )
+
+        if key and value:
+            fields[
+                key.strip()
+            ] = value.strip()
+
+    return {
+        "state":
+            (
+                "PASS"
+                if result["code"] == 0
+                else "HOLD"
+            ),
+
+        "code":
+            result["code"],
+
+        "fields":
+            fields,
+
+        "evidence":
+            fields.get("EVIDENCE"),
+
+        "stdout_tail":
+            result.get(
+                "stdout",
+                "",
+            )[-10000:],
+
+        "stderr_tail":
+            result.get(
+                "stderr",
+                "",
+            )[-10000:],
+    }
+
+
 def resolve_operator_continue_dispatch(
     action: str,
     registry: dict[str, Any] | None = None,
