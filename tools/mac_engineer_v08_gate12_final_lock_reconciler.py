@@ -211,7 +211,8 @@ def _preflight() -> tuple[dict[str, Any], dict[str, Any], dict[str, Any], dict[s
         or receipt.get("humanDecision") != "ACCEPT"
         or receipt.get("externalA09State") != "HOLD"
         or receipt.get("productPublicationState") != EXPECTED_PRODUCT_PUBLICATION
-        or receipt.get("controlHead") != head
+        or not isinstance(receipt.get("controlHead"), str)
+        or _git("merge-base", receipt["controlHead"], head) != receipt["controlHead"]
         or receipt.get("fieldReceipt") != gate.get("fieldAcceptanceReceipt")
         or receipt.get("fieldReceiptDigest") != gate.get("fieldAcceptanceReceiptDigest")
         or receipt.get("lockEvidence") != gate.get("lockEvidence")
@@ -475,13 +476,13 @@ def prepare_final_lock_reconciliation() -> dict[str, Any]:
         _atomic_text(WORKING_PATH, _replace_working_path(originals[WORKING_PATH], receipt_path=receipt_path, digest=digest))
         _atomic_text(WORKLIST_PATH, _replace_gate12_worklist(originals[WORKLIST_PATH], receipt_path=receipt_path, digest=digest))
 
-        changed = {
-            line.strip()
+        changed = [
+            line
             for line in _git("status", "--porcelain").splitlines()
-            if line.strip()
-        }
+            if line
+        ]
         changed_paths = {
-            line[3:] if len(line) > 3 else line
+            line[3:] if len(line) >= 4 else line
             for line in changed
         }
         if changed_paths != EXPECTED_MUTATION_PATHS:
