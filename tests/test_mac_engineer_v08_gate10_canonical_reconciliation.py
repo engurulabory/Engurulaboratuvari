@@ -77,9 +77,10 @@ class Gate10CanonicalReconciliationTests(unittest.TestCase):
                 v08["gate11"]["exit"],
                 G11_EXIT,
             )
-            self.assertEqual(
+            self.assertIn(
                 v08["gate12"]["state"],
-                "FIELD_ACCEPTED_PENDING_CANONICAL_LOCK",
+                {"FIELD_ACCEPTED_PENDING_CANONICAL_LOCK",
+                 "LOCK_EVIDENCE_RECONCILED_PENDING_FINAL_RECEIPT"},
             )
             self.assertTrue(
                 v08["gate12"]["executionStarted"]

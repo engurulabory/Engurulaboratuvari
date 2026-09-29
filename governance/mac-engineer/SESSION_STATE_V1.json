@@ -1684,7 +1684,7 @@
       "gate12Execution": false
     },
     "gate12": {
-      "state": "FIELD_ACCEPTED_PENDING_CANONICAL_LOCK",
+      "state": "LOCK_EVIDENCE_RECONCILED_PENDING_FINAL_RECEIPT",
       "name": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
       "title": "DoneCheck™ v1.2 + Human Threshold™ + Version Lock",
       "exit": "PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED",
@@ -1698,7 +1698,11 @@
       "terminalCandidateId": "g12-candidate-sha256:26d59556c5d88aaac9a68667d86329348ceea17a5b6d1a3252333de3b0862edd",
       "acceptedControlHead": "8c31fb5b1467a9960142d50ed62b517f571a6212",
       "canonicalLockCreated": false,
-      "nextAction": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
+      "nextAction": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
+      "lockEvidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/canonical-lock-evidence.json",
+      "lockEvidenceDigest": "sha256:15c369c70769cb7593c6714362b6fb91b2cfe30f44f9483d2dffafb265c64745",
+      "reconciliationControlHead": "2ae50c990fbd477899c278f00969a13cc59af80b",
+      "finalAcceptanceCandidate": "governance/mac-engineer/V08_GATE12_FINAL_ACCEPTANCE_RECEIPT_V1.json"
     }
   },
   "preSendFilter": {

@@ -40,17 +40,21 @@ class Gate12PreexecutionReconciliationGuardTests(unittest.TestCase):
         self.assertEqual(result["productSourceMutationCount"], 0)
         self.assertFalse(result["newCore"])
 
-    def test_current_field_receipt_is_explicit_and_unlocked(self):
+    def test_current_lock_evidence_reconciliation_preserves_field_receipt(self):
         current = self.session
         self.assertEqual(
             current["currentV08"]["gate12"]["state"],
-            "FIELD_ACCEPTED_PENDING_CANONICAL_LOCK",
+            "LOCK_EVIDENCE_RECONCILED_PENDING_FINAL_RECEIPT",
         )
         self.assertTrue(current["currentV08"]["gate12"]["executionStarted"])
         self.assertFalse(current["currentV08"]["gate12"]["canonicalLockCreated"])
         self.assertEqual(
             current["currentV08"]["gate12"]["fieldAcceptanceReceiptDigest"],
             "sha256:971ed7fcdef8d6e043c3a2366e83c6db9e4781d03cafa3d46bc6753b7f9b21fa",
+        )
+        self.assertEqual(
+            current["currentV08"]["gate12"]["lockEvidenceDigest"],
+            "sha256:15c369c70769cb7593c6714362b6fb91b2cfe30f44f9483d2dffafb265c64745",
         )
 
     def test_field_phase_cannot_claim_preexecution_with_false_started_flag(self):

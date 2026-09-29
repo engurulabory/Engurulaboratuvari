@@ -501,6 +501,36 @@ class OperatorSurfaceTests(unittest.TestCase):
         self.assertIn("V08_GATE12_FIELD_ACCEPTANCE_RECORDED", receipt["completed"])
         self.assertIn("V08_GATE12_LOCK_EVIDENCE_PUBLISHED", receipt["completed"])
 
+    def test_gate12_reconciled_lock_evidence_needs_final_receipt(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            evidence = Path(tmp)
+            with (
+                mock.patch.object(operator, "EVIDENCE", evidence),
+                mock.patch.object(operator, "RUNTIME_RECEIPTS", evidence / "runtime"),
+                mock.patch.object(operator, "canonical_boot", return_value={"state": "PASS"}),
+                mock.patch.object(operator, "current_truth", return_value={
+                    "next_action": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
+                    "local_continuity_next_action": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
+                    "local_fallback": {},
+                }),
+                mock.patch.object(operator, "sync_mirrors", return_value={}),
+                mock.patch.object(operator, "runner_status", return_value={}),
+                mock.patch.object(operator, "offline_manifest", return_value={}),
+                mock.patch.object(operator, "load_json", return_value={
+                    "currentV08": {"gate12": {"state": "LOCK_EVIDENCE_RECONCILED_PENDING_FINAL_RECEIPT"}}
+                }),
+                mock.patch(
+                    "tools.mac_engineer_v08_gate12_canonical_lock.publish_final_acceptance_receipt",
+                    return_value={"state": "HOLD", "reason": "LOCK_FRESH_TRUTH_MISMATCH"},
+                ) as verify,
+            ):
+                with contextlib.redirect_stdout(io.StringIO()):
+                    code = operator.command_continue()
+            receipt = json.loads((evidence / "latest-receipt.json").read_text())
+        verify.assert_called_once_with()
+        self.assertEqual(code, 2)
+        self.assertEqual(receipt["hold"], "LOCK_FRESH_TRUTH_MISMATCH")
+
     def test_recover_stops_before_task_mutation_when_boot_holds(self):
         with tempfile.TemporaryDirectory() as tmp:
             evidence = Path(tmp)
@@ -1180,6 +1210,7 @@ class Gate12Batch2RegistryTests(unittest.TestCase):
         action = registry["actions"]["V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"]
         self.assertTrue(action["failClosed"])
         self.assertFalse(action["canonicalLock"])
+        self.assertEqual(action["handler"], "V08_GATE12_FINAL_ACCEPTANCE_READBACK")
 
     def test_registry_mismatch_holds(self):
         self.assertEqual(operator.gate12_registry_contract({"actions": {}})["state"], "HOLD")

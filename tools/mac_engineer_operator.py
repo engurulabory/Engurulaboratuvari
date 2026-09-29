@@ -1925,6 +1925,27 @@ def command_continue() -> int:
     elif (
         local_action == "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
         and ((load_json(SESSION_STATE, {}) or {}).get("currentV08") or {})
+        .get("gate12", {}).get("state") == "LOCK_EVIDENCE_RECONCILED_PENDING_FINAL_RECEIPT"
+    ):
+        try:
+            try:
+                from mac_engineer_v08_gate12_canonical_lock import publish_final_acceptance_receipt
+            except ModuleNotFoundError:
+                from tools.mac_engineer_v08_gate12_canonical_lock import publish_final_acceptance_receipt
+            lock_readback = publish_final_acceptance_receipt()
+        except Exception as exc:
+            lock_readback = {
+                "state": "HOLD", "reason": f"GATE12_LOCK_READBACK:{type(exc).__name__}:{exc}"
+            }
+        state = "HOLD"
+        hold = str(lock_readback.get("reason") or "GATE12_FINAL_ACCEPTANCE_RECEIPT_REQUIRED")
+        next_action = str(lock_readback.get("nextAction") or "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK")
+        completed = ["CANONICAL_BOOT", "GITVAULT_SYNC", "V08_GATE12_FINAL_ACCEPTANCE_RECEIPT_" + (
+            "PUBLISHED" if lock_readback.get("finalAcceptanceReceipt") else "HOLD"
+        )]
+    elif (
+        local_action == "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
+        and ((load_json(SESSION_STATE, {}) or {}).get("currentV08") or {})
         .get("gate12", {}).get("state") == "FIELD_ACCEPTED_PENDING_CANONICAL_LOCK"
     ):
         try:
@@ -2834,6 +2855,8 @@ def command_continue() -> int:
                 str((locals().get("v08_existing_change") or {}).get("evidence") or ""),
                 str((locals().get("finalization") or {}).get("fieldReceipt") or ""),
                 str((locals().get("lock_evidence") or {}).get("lockEvidence") or ""),
+                str((locals().get("lock_readback") or {}).get("lockEvidence") or ""),
+                str((locals().get("lock_readback") or {}).get("finalAcceptanceReceipt") or ""),
             ]
             if item
         ],
@@ -2859,6 +2882,7 @@ def command_continue() -> int:
             "gate12_prelock": locals().get("prelock"),
             "gate12_finalization": locals().get("finalization"),
             "gate12_lock_evidence": locals().get("lock_evidence"),
+            "gate12_lock_readback": locals().get("lock_readback"),
             "offline_manifest": offline_manifest(),
         },
     )

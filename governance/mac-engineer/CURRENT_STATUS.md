@@ -1,6 +1,6 @@
 # ENGÜRÜ Mac Engineer™ — Current Status
 
-## Gate 12 field acceptance — canonical lock pending
+## Gate 12 lock evidence reconciliation — final receipt pending
 
 **STATE — FIELD ACCEPTED / LOCK PENDING.** On 2026-09-29 the
 `8c31fb5b1467a9960142d50ed62b517f571a6212` control candidate passed
@@ -15,10 +15,18 @@ The publication marker digest and length read back exactly. External A09
 remains HOLD; product publication remains
 `LOCAL_VERIFIED_NOT_REMOTE_EXACT_MAIN_NOT_REMOTE_PARITY`.
 
-**NEXT ACTION —** Reconcile repository truth at this field-receipt
-boundary, verify remote parity of the reconciled control candidate,
-then publish and reconcile canonical lock evidence. Gate 12 final PASS
-and the v0.8 version lock remain pending.
+**LOCK EVIDENCE —** The Mac published
+`/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/canonical-lock-evidence.json`;
+digest `sha256:15c369c70769cb7593c6714362b6fb91b2cfe30f44f9483d2dffafb265c64745`.
+Its reconciliation control HEAD is `2ae50c990fbd477899c278f00969a13cc59af80b`.
+The publication marker, field receipt binding, external A09 and product publication
+classification passed the Mac readback.
+
+**NEXT ACTION —** Commit the lock evidence reconciliation, run fresh local
+acceptance and `enguru-mac continue` on the new exact control HEAD. The
+operator must publish an immutable final acceptance receipt and return HOLD
+until that receipt's digest is reconciled into the canonical lock. Field
+acceptance is PASS; Gate 12 final PASS remains HOLD.
 
 **Updated:** 2026-09-29
 **Program target:** ENGÜRÜ Mac Engineering™ v1.3 — Usable Verified Product
@@ -36,7 +44,7 @@ and the v0.8 version lock remain pending.
 
 ## CURRENT ENGINEERING TRUTH
 
-ENGÜRÜ Mac Engineering™ v0.7 is **LONG-RUN RELIABILITY VERIFIED / LOCKED**. v0.8 Product Engineering Operator is **ACTIVE** at Gate 12 — DoneCheck™ v1.2 + Human Threshold™ + Version Lock. Gates 1–11 are verified PASS; Gate 11 is **VERIFIED / LOCKED**; Gate 12 field acceptance is recorded and canonical lock remains pending.
+ENGÜRÜ Mac Engineering™ v0.7 is **LONG-RUN RELIABILITY VERIFIED / LOCKED**. v0.8 Gate 12 field acceptance and lock evidence are recorded. Final acceptance receipt and canonical lock remain pending. Gates 1–11 remain verified and locked.
 
 Local field truth, canonical reconciliation, merge provenance and control-plane exact-main acceptance are all complete. Recovery, fixture repair, local field acceptance and v0.6 closure are closed truths.
 

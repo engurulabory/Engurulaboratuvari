@@ -67,11 +67,14 @@
     ],
     "activeGate": 12,
     "gate12FieldAcceptance": {
-      "state": "FIELD_ACCEPTED_PENDING_CANONICAL_LOCK",
+      "state": "LOCK_EVIDENCE_RECONCILED_PENDING_FINAL_RECEIPT",
       "receipt": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/field-acceptance-receipt.json",
       "digest": "sha256:971ed7fcdef8d6e043c3a2366e83c6db9e4781d03cafa3d46bc6753b7f9b21fa",
       "acceptedControlHead": "8c31fb5b1467a9960142d50ed62b517f571a6212",
-      "canonicalLockCreated": false
+      "canonicalLockCreated": false,
+      "lockEvidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/canonical-lock-evidence.json",
+      "lockEvidenceDigest": "sha256:15c369c70769cb7593c6714362b6fb91b2cfe30f44f9483d2dffafb265c64745",
+      "reconciliationControlHead": "2ae50c990fbd477899c278f00969a13cc59af80b"
     },
     "nextAction": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
   },
@@ -221,7 +224,7 @@
         "exactMain": "8b90a8fc93453dd8a84994195d28d14b15e261cb"
       },
       "verifiedFinishContract": {
-        "state": "FIELD_ACCEPTED_PENDING_CANONICAL_LOCK",
+        "state": "LOCK_EVIDENCE_RECONCILED_PENDING_FINAL_RECEIPT",
         "totalGates": 12,
         "passed": [
           1,
@@ -243,7 +246,10 @@
         "finalAuthority": "HUMAN_THRESHOLD_ACCEPTED",
         "fieldAcceptanceReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/field-acceptance-receipt.json",
         "fieldAcceptanceReceiptDigest": "sha256:971ed7fcdef8d6e043c3a2366e83c6db9e4781d03cafa3d46bc6753b7f9b21fa",
-        "finalState": "PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED"
+        "finalState": "PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED",
+        "lockEvidence": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/canonical-lock-evidence.json",
+        "lockEvidenceDigest": "sha256:15c369c70769cb7593c6714362b6fb91b2cfe30f44f9483d2dffafb265c64745",
+        "finalAcceptanceCandidate": "governance/mac-engineer/V08_GATE12_FINAL_ACCEPTANCE_RECEIPT_V1.json"
       },
       "productWorkingBranch": "feat/v08-native-productization-provenance",
       "gate8FieldProof": {

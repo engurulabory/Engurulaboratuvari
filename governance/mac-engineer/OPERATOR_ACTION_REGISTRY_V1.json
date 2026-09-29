@@ -185,15 +185,27 @@
       "failClosed": true
     },
     "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK": {
-      "handler": "V08_GATE12_PRE005_BOUNDED_PRELOCK",
+      "handler": "V08_GATE12_FINAL_ACCEPTANCE_READBACK",
       "authority": "HUMAN_THRESHOLD_AND_DURABLE_REPLAY",
       "doneCheckVersion": "1.2.0",
       "doneCheckExactSha": "8b90a8fc93453dd8a84994195d28d14b15e261cb",
-      "requires": ["GATE11_VERIFIED_LOCKED", "GATE12_ACTIVE_NOT_STARTED", "FRESH_CANDIDATE_BUNDLE", "DONECHECK_V1_2_EXACT", "MACHINE_PASS", "HUMAN_REVIEW_PASS", "VERIFIED_FINISH_PASS", "SIGNED_THRESHOLD", "DURABLE_REPLAY", "SINGLE_WRITER_LOCK"],
+      "requires": [
+        "GATE11_VERIFIED_LOCKED",
+        "GATE12_ACTIVE_NOT_STARTED",
+        "FRESH_CANDIDATE_BUNDLE",
+        "DONECHECK_V1_2_EXACT",
+        "MACHINE_PASS",
+        "HUMAN_REVIEW_PASS",
+        "VERIFIED_FINISH_PASS",
+        "SIGNED_THRESHOLD",
+        "DURABLE_REPLAY",
+        "SINGLE_WRITER_LOCK"
+      ],
       "finalAcceptanceReceipt": false,
       "canonicalLock": false,
       "batch3Boundary": "FINAL_ACCEPTANCE_RECEIPT_AND_CANONICAL_LOCK",
-      "failClosed": true
+      "failClosed": true,
+      "finalAcceptanceReceiptCandidate": true
     }
   }
 }
