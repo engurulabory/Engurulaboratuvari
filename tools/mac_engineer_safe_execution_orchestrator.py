@@ -886,6 +886,45 @@ def execute_proven_registered_action(
                 False,
         },
 
+
+        "RECOVERY_OFFLINE_CONTINUITY": {
+            "ACTION":
+                "PACKAGE08_CAP16_RECOVERY_OFFLINE_CONTINUITY_FIELD_PROOF",
+
+            "REGISTERED_HANDLER":
+                "PACKAGE08_CAP16_RECOVERY_OFFLINE_CONTINUITY_FIELD_PROOF",
+
+            "OPERATOR_CALLABLE":
+                "run_package08_cap16_recovery_offline_continuity_field_proof",
+
+            "AUTHORITY":
+                "AMBER_RECOVERY_OFFLINE_CONTINUITY_AUTHORITY",
+
+            "NETWORK_ALLOWED":
+                False,
+
+            "REMOTE_PUSH_ALLOWED":
+                False,
+
+            "RECOVERY_PROOF_REQUIRED":
+                True,
+
+            "HUMAN_THRESHOLD_REQUIRED":
+                False,
+
+            "MUTATION_SCOPE":
+                "RECOVERY_AND_ROLLBACK_SCOPE",
+
+            "CANONICAL_TRUTH_PRESERVED":
+                True,
+
+            "SECOND_CANONICAL_TRUTH":
+                False,
+
+            "EXECUTION_AUTHORITY_CREATED":
+                False,
+        },
+
     }
 
     expected = (
@@ -2781,6 +2820,231 @@ def execute_proven_registered_action(
             "canonicalTruthPreserved":
                 True,
         }
+
+    elif capability_id == "RECOVERY_OFFLINE_CONTINUITY":
+        result = (
+            operator
+            .run_package08_cap16_recovery_offline_continuity_field_proof()
+        )
+
+        fields = (
+            result.get("fields")
+            if isinstance(
+                result.get("fields"),
+                dict,
+            )
+            else {}
+        )
+
+        observed = {
+            "wrapperStatePass":
+                result.get("state")
+                == "PASS",
+
+            "wrapperCodeZero":
+                result.get("code")
+                == 0,
+
+            "capabilityPass":
+                fields.get(
+                    "CAP16_RECOVERY_OFFLINE_CONTINUITY"
+                )
+                == "PASS",
+
+            "restartRecovery":
+                fields.get(
+                    "RESTART_RECOVERY"
+                )
+                == "PASS",
+
+            "checkpointResume":
+                fields.get(
+                    "CHECKPOINT_RESUME"
+                )
+                == "PASS",
+
+            "exactlyOnce":
+                fields.get(
+                    "EXACTLY_ONCE_EFFECT"
+                )
+                == "PASS",
+
+            "offlineContinuity":
+                fields.get(
+                    "OFFLINE_CONTINUITY"
+                )
+                == "PASS",
+
+            "offlineQueue":
+                fields.get(
+                    "OFFLINE_QUEUE"
+                )
+                == "PASS",
+
+            "durablePatch":
+                fields.get(
+                    "DURABLE_PATCH"
+                )
+                == "PASS",
+
+            "durableBundle":
+                fields.get(
+                    "DURABLE_GIT_BUNDLE"
+                )
+                == "PASS",
+
+            "reconciliation":
+                fields.get(
+                    "RECONCILIATION_APPLY_CHECK"
+                )
+                == "PASS",
+
+            "refsUnchanged":
+                fields.get(
+                    "GITVAULT_REFS_UNCHANGED"
+                )
+                == "PASS",
+
+            "remoteIdentity":
+                fields.get(
+                    "REMOTE_IDENTITY_PRESERVED"
+                )
+                == "PASS",
+
+            "remotePushFalse":
+                fields.get(
+                    "REMOTE_PUSH"
+                )
+                == "false",
+
+            "networkFalse":
+                fields.get(
+                    "NETWORK_REQUIRED"
+                )
+                == "false",
+
+            "secondTruthFalse":
+                fields.get(
+                    "SECOND_CANONICAL_TRUTH"
+                )
+                == "false",
+
+            "canonicalTruth":
+                fields.get(
+                    "CANONICAL_TRUTH_PRESERVED"
+                )
+                == "PASS",
+
+            "authorityAmber":
+                fields.get(
+                    "AUTHORITY"
+                )
+                == "AMBER",
+
+            "mutationScope":
+                fields.get(
+                    "MUTATION_SCOPE"
+                )
+                == "RECOVERY_AND_ROLLBACK_SCOPE",
+
+            "humanThresholdFalse":
+                fields.get(
+                    "HUMAN_THRESHOLD_REQUIRED"
+                )
+                == "false",
+
+            "restartDigest":
+                (
+                    len(
+                        fields.get(
+                            "RESTART_EVIDENCE_SHA256",
+                            "",
+                        )
+                    )
+                    == 64
+                    and all(
+                        c
+                        in "0123456789abcdef"
+                        for c
+                        in fields.get(
+                            "RESTART_EVIDENCE_SHA256",
+                            "",
+                        )
+                    )
+                ),
+
+            "offlineDigest":
+                (
+                    len(
+                        fields.get(
+                            "OFFLINE_EVIDENCE_SHA256",
+                            "",
+                        )
+                    )
+                    == 64
+                    and all(
+                        c
+                        in "0123456789abcdef"
+                        for c
+                        in fields.get(
+                            "OFFLINE_EVIDENCE_SHA256",
+                            "",
+                        )
+                    )
+                ),
+
+            "runtimeEvidencePresent":
+                bool(
+                    result.get(
+                        "evidence"
+                    )
+                ),
+        }
+
+        recovery_observed = bool(
+            observed[
+                "restartRecovery"
+            ]
+            and observed[
+                "checkpointResume"
+            ]
+            and observed[
+                "exactlyOnce"
+            ]
+            and observed[
+                "offlineContinuity"
+            ]
+            and observed[
+                "reconciliation"
+            ]
+        )
+
+        mutation_scope = {
+            "filesystemMutationExpected":
+                True,
+
+            "scope":
+                "RECOVERY_AND_ROLLBACK_SCOPE",
+
+            "humanThresholdRequired":
+                False,
+
+            "recoveryProofRequired":
+                True,
+
+            "canonicalSourceMutationAllowed":
+                False,
+
+            "remoteMutationAllowed":
+                False,
+
+            "secondCanonicalTruthAllowed":
+                False,
+
+            "canonicalTruthPreserved":
+                True,
+        }
+
 
     execution_state = (
         "PASS"

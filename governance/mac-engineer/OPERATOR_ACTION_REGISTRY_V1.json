@@ -341,6 +341,19 @@
       "sourceMutationAllowed": false,
       "productMutationAllowed": false,
       "canonicalTruthPreserved": true
+    },
+    "PACKAGE08_CAP16_RECOVERY_OFFLINE_CONTINUITY_FIELD_PROOF": {
+      "handler": "PACKAGE08_CAP16_RECOVERY_OFFLINE_CONTINUITY_FIELD_PROOF",
+      "authority": "AMBER_RECOVERY_OFFLINE_CONTINUITY_AUTHORITY",
+      "command": "governance/mac-engineer/PACKAGE08_CAP16_RECOVERY_OFFLINE_CONTINUITY_FIELD_PROOF.command",
+      "networkRequired": false,
+      "remotePush": false,
+      "failClosed": true,
+      "humanThresholdRequired": false,
+      "recoveryProofRequired": true,
+      "mutationScope": "RECOVERY_AND_ROLLBACK_SCOPE",
+      "canonicalTruthPreserved": true,
+      "secondCanonicalTruth": false
     }
   }
 }

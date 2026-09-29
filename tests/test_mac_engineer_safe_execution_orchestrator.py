@@ -2492,8 +2492,8 @@ check(
 )
 
 check(
-    "ELEVEN_PROVEN_REGISTERED_ACTION_BINDINGS",
-    len(registered_bindings) == 11
+    "TWELVE_PROVEN_REGISTERED_ACTION_BINDINGS",
+    len(registered_bindings) == 12
     and {
         row["CAPABILITY_ID"]
         for row in registered_bindings
@@ -2510,12 +2510,13 @@ check(
         "RELEASE_LIFECYCLE",
         "FINISHED_PRODUCT_DELIVERY_ACCEPTANCE",
         "EVIDENCE_DONECHECK",
+        "RECOVERY_OFFLINE_CONTINUITY",
     },
 )
 
 check(
-    "SIX_UNBOUND_FAIL_CLOSED",
-    len(hold_bindings) == 6,
+    "FIVE_UNBOUND_FAIL_CLOSED",
+    len(hold_bindings) == 5,
 )
 
 
