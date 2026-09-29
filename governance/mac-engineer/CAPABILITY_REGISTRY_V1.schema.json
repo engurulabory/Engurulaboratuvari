@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "enguru.mac-engineer.capability-registry/v1",
+  "type": "object",
+  "required": [
+    "schema",
+    "product",
+    "rule",
+    "defaults",
+    "capabilities"
+  ],
+  "properties": {
+    "schema": {
+      "const": "enguru.mac-engineer.capability-registry/v1"
+    },
+    "product": {
+      "const": "ENGÜRÜ Mac Engineer™"
+    },
+    "rule": {
+      "type": "string",
+      "minLength": 1
+    },
+    "defaults": {
+      "type": "object"
+    },
+    "capabilities": {
+      "type": "array",
+      "minItems": 19,
+      "maxItems": 19,
+      "items": {
+        "type": "object",
+        "required": [
+          "CAPABILITY_ID",
+          "STATE",
+          "INPUTS",
+          "OUTPUTS",
+          "PRECONDITIONS",
+          "AUTHORITY",
+          "RISK_CLASS",
+          "MUTATION_SCOPE",
+          "NETWORK_POLICY",
+          "REQUIRES_HUMAN_THRESHOLD",
+          "RETRY_POLICY",
+          "ROLLBACK_POLICY",
+          "EVIDENCE_REQUIREMENTS",
+          "NEXT_COMPATIBLE_CAPABILITIES",
+          "FAIL_CLOSED"
+        ],
+        "properties": {
+          "CAPABILITY_ID": {
+            "type": "string",
+            "minLength": 1
+          },
+          "STATE": {
+            "enum": [
+              "VERIFIED",
+              "VERIFIED_BOUNDED",
+              "PARTIAL",
+              "FIELD_TEST_REQUIRED"
+            ]
+          },
+          "INPUTS": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "OUTPUTS": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "PRECONDITIONS": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "AUTHORITY": {
+            "enum": [
+              "GREEN",
+              "AMBER",
+              "RED"
+            ]
+          },
+          "RISK_CLASS": {
+            "enum": [
+              "LOW",
+              "MEDIUM",
+              "HIGH"
+            ]
+          },
+          "MUTATION_SCOPE": {
+            "type": "string",
+            "minLength": 1
+          },
+          "NETWORK_POLICY": {
+            "type": "string",
+            "minLength": 1
+          },
+          "REQUIRES_HUMAN_THRESHOLD": {
+            "type": "boolean"
+          },
+          "RETRY_POLICY": {
+            "type": "object",
+            "required": [
+              "maxAttempts",
+              "overLimit"
+            ],
+            "properties": {
+              "maxAttempts": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2
+              },
+              "overLimit": {
+                "const": "HOLD"
+              }
+            },
+            "additionalProperties": false
+          },
+          "ROLLBACK_POLICY": {
+            "type": "string",
+            "minLength": 1
+          },
+          "EVIDENCE_REQUIREMENTS": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "NEXT_COMPATIBLE_CAPABILITIES": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "FAIL_CLOSED": {
+            "const": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
