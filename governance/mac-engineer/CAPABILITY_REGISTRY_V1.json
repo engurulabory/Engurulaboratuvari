@@ -557,7 +557,7 @@
     },
     {
       "CAPABILITY_ID": "FILESYSTEM_MACOS_AUTOMATION",
-      "STATE": "PARTIAL",
+      "STATE": "VERIFIED",
       "INPUTS": [
         "CURRENT_TRUTH",
         "BOUNDED_OBJECTIVE"

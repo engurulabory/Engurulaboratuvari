@@ -2723,6 +2723,72 @@ check(
 )
 
 
+cap18_plan = {
+    "STATE": "PLAN_READY",
+    "PLAN_ID": "package05-cap18-filesystem-test",
+    "TRUTH_FINGERPRINT": "package05-cap18-filesystem-truth",
+    "EXECUTION_AUTHORIZED": False,
+    "CAPABILITY_PLAN": ["FILESYSTEM_MACOS_AUTOMATION"],
+}
+
+_real_cap18 = (
+    operator
+    .run_package08_cap18_filesystem_macos_automation_field_proof
+)
+
+operator.run_package08_cap18_filesystem_macos_automation_field_proof = lambda: {
+    "state": "PASS",
+    "code": 0,
+    "fields": {
+        "CAP18_FILESYSTEM_MACOS_AUTOMATION": "PASS",
+        "TECHNICAL_SHA_EXACT": "PASS",
+        "HUMAN_THRESHOLD_SHA_EXACT": "PASS",
+        "EXPLICIT_PATH_SCOPE": "PASS",
+        "DISPOSABLE_WORKSPACE_ONLY": "PASS",
+        "REAL_TASK_EVIDENCE_ACCEPTED": "PASS",
+        "EXPECTED_RESULT_OBSERVED": "PASS",
+        "FAILURE_PATH_TESTED": "PASS",
+        "ROLLBACK": "PASS",
+        "ROLLBACK_BYTE_PARITY": "PASS",
+        "SCOPE_CLEAN": "PASS",
+        "FRESH_REVERIFY": "PASS",
+        "HUMAN_THRESHOLD": "ACCEPT",
+        "HUMAN_THRESHOLD_CONSUMED": "true",
+        "NETWORK_ACCESS": "false",
+        "REMOTE_PUSH": "false",
+        "FINDER_GUI_AUTHORITY": "false",
+        "CANONICAL_SOURCE_MUTATION": "false",
+        "PRODUCT_MUTATION": "false",
+        "PERSISTENT_EXTERNAL_MUTATION": "false",
+        "EXECUTION_AUTHORITY_CREATED": "false",
+        "CAPABILITY_REEXECUTED": "false",
+        "CANONICAL_TRUTH_PRESERVED": "PASS",
+        "CRITICAL_FALSE_PASS_COUNT": "0",
+    },
+    "evidence": "/tmp/cap18-pass.json",
+}
+
+try:
+    cap18_result = orch.execute_plan_step(cap18_plan, 1)
+finally:
+    operator.run_package08_cap18_filesystem_macos_automation_field_proof = _real_cap18
+
+check(
+    "PLAN_BOUND_CAP18_FILESYSTEM_AUTOMATION_PASS",
+    cap18_result["STATE"] == "PASS"
+    and cap18_result["CAPABILITY_ID"] == "FILESYSTEM_MACOS_AUTOMATION"
+    and cap18_result["BINDING_TYPE"] == "REGISTERED_ACTION"
+    and cap18_result["REGISTERED_HANDLER_INVOKED"] is True
+    and cap18_result["EXECUTION_PERFORMED"] is True
+    and cap18_result["RECOVERY_PROOF_OBSERVED"] is True
+    and cap18_result["OBSERVED_RESULT"]["humanThresholdAccept"] is True
+    and cap18_result["OBSERVED_RESULT"]["notReexecuted"] is True
+    and cap18_result["MUTATION_SCOPE"]["filesystemMutationExpected"] is True
+    and cap18_result["MUTATION_SCOPE"]["technicalFilesystemMutationExpected"] is False
+    and cap18_result["MUTATION_SCOPE"]["finderGuiAuthority"] is False,
+)
+
+
 
 invalid_step = orch.execute_plan_step(
     truth_plan,
@@ -2777,8 +2843,8 @@ check(
 )
 
 check(
-    "THIRTEEN_PROVEN_REGISTERED_ACTION_BINDINGS",
-    len(registered_bindings) == 13
+    "FOURTEEN_PROVEN_REGISTERED_ACTION_BINDINGS",
+    len(registered_bindings) == 14
     and {
         row["CAPABILITY_ID"]
         for row in registered_bindings
@@ -2797,12 +2863,13 @@ check(
         "EVIDENCE_DONECHECK",
         "RECOVERY_OFFLINE_CONTINUITY",
         "TERMINAL_EXECUTION",
+        "FILESYSTEM_MACOS_AUTOMATION",
     },
 )
 
 check(
-    "FOUR_UNBOUND_FAIL_CLOSED",
-    len(hold_bindings) == 4,
+    "THREE_UNBOUND_FAIL_CLOSED",
+    len(hold_bindings) == 3,
 )
 
 

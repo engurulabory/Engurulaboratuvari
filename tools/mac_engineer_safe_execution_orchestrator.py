@@ -966,6 +966,62 @@ def execute_proven_registered_action(
                 False,
         },
 
+        "FILESYSTEM_MACOS_AUTOMATION": {
+            "ACTION":
+                "PACKAGE08_CAP18_FILESYSTEM_MACOS_AUTOMATION_FIELD_PROOF",
+
+            "REGISTERED_HANDLER":
+                "PACKAGE08_CAP18_FILESYSTEM_MACOS_AUTOMATION_FIELD_PROOF",
+
+            "OPERATOR_CALLABLE":
+                "run_package08_cap18_filesystem_macos_automation_field_proof",
+
+            "AUTHORITY":
+                "AMBER_BOUNDED_FILESYSTEM_AUTOMATION_AUTHORITY",
+
+            "NETWORK_ALLOWED":
+                False,
+
+            "REMOTE_PUSH_ALLOWED":
+                False,
+
+            "RECOVERY_PROOF_REQUIRED":
+                True,
+
+            "ROLLBACK_REQUIRED":
+                True,
+
+            "HUMAN_THRESHOLD_REQUIRED":
+                True,
+
+            "HUMAN_THRESHOLD_DECISION":
+                "ACCEPT",
+
+            "MUTATION_SCOPE":
+                "EXPLICIT_PATH_SCOPE",
+
+            "WORKSPACE_CLASS":
+                "DISPOSABLE_TEMPORARY_WORKSPACE_ONLY",
+
+            "FINDER_GUI_AUTHORITY":
+                False,
+
+            "CANONICAL_SOURCE_MUTATION_ALLOWED":
+                False,
+
+            "PRODUCT_MUTATION_ALLOWED":
+                False,
+
+            "PERSISTENT_EXTERNAL_MUTATION_ALLOWED":
+                False,
+
+            "CANONICAL_TRUTH_PRESERVED":
+                True,
+
+            "EXECUTION_AUTHORITY_CREATED":
+                False,
+        },
+
 
     }
 
@@ -1067,6 +1123,31 @@ def execute_proven_registered_action(
             CAPABILITY_ID=capability_id,
             ACTION=action,
         )
+
+    if capability_id == "FILESYSTEM_MACOS_AUTOMATION":
+        cap18_contract = {
+            "humanThresholdRequired": True,
+            "humanThresholdDecision": "ACCEPT",
+            "rollbackRequired": True,
+            "mutationScope": "EXPLICIT_PATH_SCOPE",
+            "workspaceClass": "DISPOSABLE_TEMPORARY_WORKSPACE_ONLY",
+            "finderGuiAuthority": False,
+            "canonicalSourceMutationAllowed": False,
+            "productMutationAllowed": False,
+            "persistentExternalMutationAllowed": False,
+            "authorityExpansionAllowed": False,
+            "canonicalTruthPreserved": True,
+            "technicalCandidateSha256": "ed971c6f56cef4d84e09606e549ac69901b1d9842ddc3ac975e59820246ec80b",
+            "humanThresholdReceiptSha256": "7ecc6e8422a4baa051dac0ccacb022fe36050b48f32756521321df7583276265",
+        }
+        for key, value in cap18_contract.items():
+            if contract.get(key) != value:
+                return hold(
+                    "REGISTERED_ACTION_CAP18_CONTRACT_MISMATCH",
+                    CAPABILITY_ID=capability_id,
+                    ACTION=action,
+                    FIELD=key,
+                )
 
     if capability_id == "SOURCE_PRODUCT_CHANGE":
         if (
@@ -2456,6 +2537,73 @@ def execute_proven_registered_action(
 
             "canonicalTruthPreserved":
                 True,
+        }
+
+    elif capability_id == "FILESYSTEM_MACOS_AUTOMATION":
+        result = (
+            operator
+            .run_package08_cap18_filesystem_macos_automation_field_proof()
+        )
+
+        fields = (
+            result.get("fields")
+            if isinstance(result.get("fields"), dict)
+            else {}
+        )
+
+        observed = {
+            "wrapperStatePass": result.get("state") == "PASS",
+            "wrapperCodeZero": result.get("code") == 0,
+            "capabilityPass": fields.get("CAP18_FILESYSTEM_MACOS_AUTOMATION") == "PASS",
+            "technicalShaExact": fields.get("TECHNICAL_SHA_EXACT") == "PASS",
+            "humanThresholdShaExact": fields.get("HUMAN_THRESHOLD_SHA_EXACT") == "PASS",
+            "explicitScope": fields.get("EXPLICIT_PATH_SCOPE") == "PASS",
+            "disposableWorkspace": fields.get("DISPOSABLE_WORKSPACE_ONLY") == "PASS",
+            "realTaskEvidence": fields.get("REAL_TASK_EVIDENCE_ACCEPTED") == "PASS",
+            "expectedResult": fields.get("EXPECTED_RESULT_OBSERVED") == "PASS",
+            "failurePath": fields.get("FAILURE_PATH_TESTED") == "PASS",
+            "rollback": fields.get("ROLLBACK") == "PASS",
+            "rollbackParity": fields.get("ROLLBACK_BYTE_PARITY") == "PASS",
+            "scopeClean": fields.get("SCOPE_CLEAN") == "PASS",
+            "freshReverify": fields.get("FRESH_REVERIFY") == "PASS",
+            "humanThresholdAccept": fields.get("HUMAN_THRESHOLD") == "ACCEPT",
+            "humanThresholdConsumed": fields.get("HUMAN_THRESHOLD_CONSUMED") == "true",
+            "networkFalse": fields.get("NETWORK_ACCESS") == "false",
+            "remotePushFalse": fields.get("REMOTE_PUSH") == "false",
+            "finderGuiFalse": fields.get("FINDER_GUI_AUTHORITY") == "false",
+            "canonicalMutationFalse": fields.get("CANONICAL_SOURCE_MUTATION") == "false",
+            "productMutationFalse": fields.get("PRODUCT_MUTATION") == "false",
+            "persistentExternalMutationFalse": fields.get("PERSISTENT_EXTERNAL_MUTATION") == "false",
+            "authorityCreatedFalse": fields.get("EXECUTION_AUTHORITY_CREATED") == "false",
+            "notReexecuted": fields.get("CAPABILITY_REEXECUTED") == "false",
+            "canonicalTruth": fields.get("CANONICAL_TRUTH_PRESERVED") == "PASS",
+            "falsePassZero": fields.get("CRITICAL_FALSE_PASS_COUNT") == "0",
+            "runtimeEvidencePresent": bool(result.get("evidence")),
+        }
+
+        recovery_observed = bool(
+            observed["rollback"]
+            and observed["rollbackParity"]
+            and observed["scopeClean"]
+        )
+
+        mutation_scope = {
+            "filesystemMutationExpected": True,
+            "technicalFilesystemMutationExpected": False,
+            "evidenceSealMutationExpected": True,
+            "scope": "EXPLICIT_PATH_SCOPE",
+            "workspaceClass": "DISPOSABLE_TEMPORARY_WORKSPACE_ONLY",
+            "humanThresholdRequired": True,
+            "humanThresholdDecision": "ACCEPT",
+            "recoveryProofRequired": True,
+            "rollbackRequired": True,
+            "finderGuiAuthority": False,
+            "canonicalSourceMutationAllowed": False,
+            "productMutationAllowed": False,
+            "persistentExternalMutationAllowed": False,
+            "remoteMutationAllowed": False,
+            "technicalFieldTaskReexecuted": False,
+            "canonicalTruthPreserved": True,
         }
 
     elif capability_id == "FINISHED_PRODUCT_DELIVERY_ACCEPTANCE":

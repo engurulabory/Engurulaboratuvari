@@ -42,7 +42,26 @@
     "v07LongRunReliability": "VERIFIED_LOCKED",
     "v08Gate8NewProductFromBrief": "VERIFIED_PASS"
   },
-  "currentObjective": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
+  "currentObjective": "PACKAGE08_FIELD_CAPABILITY_CAMPAIGN",
+  "postV08Objective": {
+    "state": "ACTIVE",
+    "objective": "PACKAGE08_FIELD_CAPABILITY_CAMPAIGN",
+    "fieldVerifiedCount": 18,
+    "activeCapabilityIndex": null,
+    "activeCapabilityId": null,
+    "activeCapabilityState": null,
+    "lastFieldVerifiedCapabilityIndex": 18,
+    "lastFieldVerifiedCapabilityId": "FILESYSTEM_MACOS_AUTOMATION",
+    "nextCapabilityIndex": 19,
+    "nextCapabilityId": "INTERNET_RESEARCH_HARVEST_ASTRA",
+    "nextCapabilityState": "PENDING",
+    "nextAction": "RETURN_RAW_OUTPUT_TO_ZEKU_FOR_CAP18_FINAL_SECOND_LOOK",
+    "v08Reopened": false,
+    "gate12Reactivated": false,
+    "capabilityExecutionPerformed": true,
+    "technicalFieldTaskReexecuted": false,
+    "humanThresholdRegenerated": false
+  },
   "observedProductPublication": {
     "source": "MAC_FIELD_OUTPUT",
     "localSourceHead": "3ac09bd7d022a6114b9066afca14ff170e0177c1",
@@ -292,7 +311,7 @@
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
+  "nextAction": "RETURN_RAW_OUTPUT_TO_ZEKU_FOR_CAP18_FINAL_SECOND_LOOK",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
@@ -1717,7 +1736,7 @@
     "language": "POSITIVE_CONSTRUCTIVE_TRUTHFUL",
     "secondLook": "REQUIRED",
     "doneCheck": "V1.2_REQUIRED",
-    "activeObjectivePreserved": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
+    "activeObjectivePreserved": "PACKAGE08_FIELD_CAPABILITY_CAMPAIGN"
   },
   "jevProviderQualification": {
     "state": "HOLD_PROVIDER_UNTIL_LIVE_EVIDENCE",

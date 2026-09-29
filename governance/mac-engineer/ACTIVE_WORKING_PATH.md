@@ -4,24 +4,28 @@
 
 **ACTIVE / TEMPORARY CANONICAL SESSION BOOTSTRAP**
 
-## CURRENT GATE 12 AUTHORITY
+## CURRENT POST-v0.8 OBJECTIVE AUTHORITY
 
-`CURRENT_OBJECTIVE=V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK`
+`CURRENT_OBJECTIVE=PACKAGE08_FIELD_CAPABILITY_CAMPAIGN`
 
 `CURRENT_GATE=NONE`
 
-`GATE12_EXECUTION_STARTED=1`
+`LAST_FIELD_VERIFIED_CAPABILITY_INDEX=18`
+
+`LAST_FIELD_VERIFIED_CAPABILITY_ID=FILESYSTEM_MACOS_AUTOMATION`
+
+`NEXT_ACTION=RETURN_RAW_OUTPUT_TO_ZEKU_FOR_CAP18_FINAL_SECOND_LOOK`
 
 `CURRENT_PROGRAM_FINAL_TARGET=v1.3_USABLE_VERIFIED_PRODUCT`
 
-Gate 11 remains **VERIFIED / LOCKED**. Gate 12 is reconciled as the final
-canonical lock candidate from immutable final acceptance receipt
+v0.8 remains **VERIFIED / LOCKED** and is not reopened. Gate 12 remains
+sealed by the immutable final acceptance receipt
 `/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/final-acceptance-receipt.json` with digest `sha256:697c3569d1ef83ab79dee114561146e8a3368145ce0eacffa8cd4e61e2d92b23`.
 
-The only remaining v0.8 acceptance action is mandatory post-commit readback:
-exact working-branch parity → fresh local-candidate acceptance → operator
-readback. External A09 remains HOLD and product publication remains local
-verified / remote-deferred.
+The authorized post-v0.8 objective is the existing Package08 Field Capability
+Campaign. Eighteen capabilities are field-verified; Capability 18 is sealed
+from accepted technical and Human Threshold Evidence. Capability 19 remains
+PENDING and is not activated until progression authority is reconciled.
 
 Bu dosya ENGÜRÜ Mac Engineer™ geliştirme çalışması sürerken yeni ChatGPT oturumlarının aynı çalışma yoluna hızla bağlanması için tutulur.
 

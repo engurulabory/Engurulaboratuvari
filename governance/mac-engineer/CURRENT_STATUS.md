@@ -1,47 +1,51 @@
 # ENGÜRÜ Mac Engineer™ — Current Status
 
-## Gate 12 final canonical lock reconciliation
+## Package08 Field Capability Campaign canonical objective
 
-**STATE — FINAL LOCK RECONCILED / POST-COMMIT READBACK REQUIRED.**
+**STATE — ACTIVE / CAPABILITY 18 FIELD VERIFIED.**
 
-DoneCheck™ v1.2 remains **PASS 11/11** and Human Threshold™ remains **ACCEPT**.
-The immutable final acceptance receipt is now reconciled into the canonical
-v0.8 closure candidate.
+v0.8 remains **VERIFIED / LOCKED**. DoneCheck™ v1.2 remains **PASS 11/11**,
+Human Threshold™ remains **ACCEPT**, and Gate 12 is not reactivated. The
+immutable final acceptance receipt remains authoritative.
 
 **FINAL RECEIPT —** `/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/final-acceptance-receipt.json`;
 digest `sha256:697c3569d1ef83ab79dee114561146e8a3368145ce0eacffa8cd4e61e2d92b23`.
 
-External A09 remains **HOLD / EXTERNAL**. Product publication remains
-`LOCAL_VERIFIED_NOT_REMOTE_EXACT_MAIN_NOT_REMOTE_PARITY`. No product mutation, remote product push,
-new core or second canonical truth is introduced by this reconciliation.
+The current authorized post-v0.8 objective is
+`PACKAGE08_FIELD_CAPABILITY_CAMPAIGN`. Eighteen capabilities are field
+verified. Capability 18 `FILESYSTEM_MACOS_AUTOMATION` is **FIELD_VERIFIED**
+from the accepted technical candidate, consumed Human Threshold receipt and
+fresh field-verification seal. Capability 19 remains **PENDING / NOT STARTED**.
+The technical filesystem task and Human Threshold were not re-executed.
 
-**NEXT ACTION —** Commit and push only the bounded Gate 12 reconciliation,
-fresh-accept that exact working-branch HEAD, then run `enguru-mac continue`
-for mandatory post-commit readback. Operator PASS is forbidden before that
-readback.
+**CAP18 FIELD SEAL —** `/Users/abdal/Enguru/Evidence/MacEngineer/package08-field-campaign/20260929T200532120453Z/capability-18/field-verification-seal.json`;
+digest `sha256:f30a2ebb468ba38f54bf0e8ad0f7afb1feafbeb65470dc294e2f8ade9f9440bd`.
+
+**NEXT ACTION —** `RETURN_RAW_OUTPUT_TO_ZEKU_FOR_CAP18_FINAL_SECOND_LOOK`.
 
 **Updated:** 2026-09-29
 **Program target:** ENGÜRÜ Mac Engineering™ v1.3 — Usable Verified Product
-**Current version:** v0.8 — PRODUCT ENGINEERING OPERATOR / FINAL LOCK CANDIDATE
-**Current objective:** V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK
-**Canonical objective id:** `V08_PRODUCT_ENGINEERING_OPERATOR`
+**Current version:** v0.8 — PRODUCT ENGINEERING OPERATOR / VERIFIED LOCKED
+**Current objective:** PACKAGE08_FIELD_CAPABILITY_CAMPAIGN
+**Canonical objective id:** `PACKAGE08_FIELD_CAPABILITY_CAMPAIGN`
 
-`CURRENT_OBJECTIVE=V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK`
+`CURRENT_OBJECTIVE=PACKAGE08_FIELD_CAPABILITY_CAMPAIGN`
 
 `CURRENT_GATE=NONE`
 
-`GATE12_EXECUTION_STARTED=1`
+`LAST_FIELD_VERIFIED_CAPABILITY_INDEX=18`
 
-`V08_CANONICAL_LOCK_CANDIDATE=1`
+`LAST_FIELD_VERIFIED_CAPABILITY_ID=FILESYSTEM_MACOS_AUTOMATION`
+
+`V08_VERIFIED_LOCKED=1`
 
 `CURRENT_PROGRAM_FINAL_TARGET=v1.3_USABLE_VERIFIED_PRODUCT`
 
 ## CURRENT ENGINEERING TRUTH
 
 ENGÜRÜ Mac Engineering™ v0.7 remains **LONG-RUN RELIABILITY VERIFIED / LOCKED**.
-v0.8 Gates 1–12 are reconciled as the final lock candidate. The final
-acceptance receipt digest is bound above; mandatory post-commit readback is
-the only remaining acceptance action before operator PASS.
+v0.8 Gates 1–12 remain verified and locked. Package08 is a separate
+post-v0.8 capability campaign and does not reinterpret any v0.8 gate.
 
 Current product source remains the clean local verified branch
 `feat/v08-native-productization-provenance` at
@@ -61,7 +65,7 @@ Executable gate:
 
 Current active objective:
 
-`V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK`
+`PACKAGE08_FIELD_CAPABILITY_CAMPAIGN`
 
 Product mutation from this discipline package: **false**.
 
@@ -174,16 +178,17 @@ v0.4, v0.5 and v0.6 locked truths remain unchanged.
 
 ## CURRENT OBJECTIVE
 
-**v0.8 — Product Engineering Operator / Gate 12 Final Canonical Lock.**
+**Package08 Field Capability Campaign / Capability 18.**
 
-Gates 1–12 are reconciled into the final lock candidate. DoneCheck™ v1.2
-remains **11/11 PASS**; Human Threshold™ remains **ACCEPT**.
+v0.8 remains VERIFIED / LOCKED with its final receipt unchanged. Package08
+continues as the authorized post-v0.8 objective with 18 field-verified
+capabilities. CAP18 is FIELD_VERIFIED; CAP19 remains PENDING.
 
 Final acceptance receipt: `/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/final-acceptance-receipt.json`.
 Final acceptance receipt digest: `sha256:697c3569d1ef83ab79dee114561146e8a3368145ce0eacffa8cd4e61e2d92b23`.
 
 Current required difference:
-`COMMIT_PUSH_ACCEPT_AND_FRESH_READBACK`.
+`RETURN_RAW_OUTPUT_TO_ZEKU_FOR_CAP18_FINAL_SECOND_LOOK`.
 
 ## REMAINING v0.6 CLOSEOUT
 
@@ -208,14 +213,13 @@ CURRENT_STATUS is updated after every material engineering package or PASS / HOL
 
 **v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED = PASS.**
 
-**v0.8 Gate 12 final canonical lock candidate = PASS / POST-COMMIT READBACK REQUIRED.**
+**v0.8 PRODUCT ENGINEERING OPERATOR = VERIFIED / LOCKED.**
 
-Operator-level final PASS is intentionally withheld until the exact
-reconciliation commit is pushed, freshly local-accepted and read back.
+**Package08 Field Capability Campaign = ACTIVE / CAP18 FIELD_VERIFIED / CAP19 PENDING.**
 
 ## NEXT ACTION
 
-`COMMIT_PUSH_ACCEPT_AND_FRESH_READBACK`
+`RETURN_RAW_OUTPUT_TO_ZEKU_FOR_CAP18_FINAL_SECOND_LOOK`
 
 ## HISTORICAL ENGINEERING LOG
 

@@ -19,7 +19,26 @@
   "current": {
     "version": "v0.8",
     "state": "V08_PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED",
-    "activeObjective": "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK",
+    "activeObjective": "PACKAGE08_FIELD_CAPABILITY_CAMPAIGN",
+    "postV08Objective": {
+      "state": "ACTIVE",
+      "objective": "PACKAGE08_FIELD_CAPABILITY_CAMPAIGN",
+      "fieldVerifiedCount": 18,
+      "activeCapabilityIndex": null,
+      "activeCapabilityId": null,
+      "activeCapabilityState": null,
+      "lastFieldVerifiedCapabilityIndex": 18,
+      "lastFieldVerifiedCapabilityId": "FILESYSTEM_MACOS_AUTOMATION",
+      "nextCapabilityIndex": 19,
+      "nextCapabilityId": "INTERNET_RESEARCH_HARVEST_ASTRA",
+      "nextCapabilityState": "PENDING",
+      "nextAction": "RETURN_RAW_OUTPUT_TO_ZEKU_FOR_CAP18_FINAL_SECOND_LOOK",
+      "v08Reopened": false,
+      "gate12Reactivated": false,
+      "capabilityExecutionPerformed": true,
+      "technicalFieldTaskReexecuted": false,
+      "humanThresholdRegenerated": false
+    },
     "productSourceSha": "0ca33cc7b70fee915d02de72946bbd4bb0e40065",
     "productSource": {
       "repository": "engurulabory/enguru-mac-engineer",
@@ -78,7 +97,7 @@
       "finalAcceptanceReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/final-acceptance-receipt.json",
       "finalAcceptanceReceiptDigest": "sha256:697c3569d1ef83ab79dee114561146e8a3368145ce0eacffa8cd4e61e2d92b23"
     },
-    "nextAction": "AWAIT_NEXT_OBJECTIVE"
+    "nextAction": "RETURN_RAW_OUTPUT_TO_ZEKU_FOR_CAP18_FINAL_SECOND_LOOK"
   },
   "versions": [
     {

@@ -1120,15 +1120,19 @@ Local evidence:
 - [x] Canonical Evidence: `evidence/MAC_ENGINEER_V00_V03_HISTORICAL_RECONSTRUCTION_2026-09-22.md`.
 - [x] **V00_V03_HISTORICAL_RECONSTRUCTION = PASS / CLOSED.**
 
-**Active objective:** `V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK`
+**Active objective:** `PACKAGE08_FIELD_CAPABILITY_CAMPAIGN`
 
-**Current single objective:** **V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK**.
+**Current single objective:** **PACKAGE08_FIELD_CAPABILITY_CAMPAIGN**.
 
-`CURRENT_OBJECTIVE=V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK`
+`CURRENT_OBJECTIVE=PACKAGE08_FIELD_CAPABILITY_CAMPAIGN`
 
-`CURRENT_GATE=12`
+`CURRENT_GATE=NONE`
 
-`GATE12_EXECUTION_STARTED=1`
+`LAST_FIELD_VERIFIED_CAPABILITY_INDEX=18`
+
+`LAST_FIELD_VERIFIED_CAPABILITY_ID=FILESYSTEM_MACOS_AUTOMATION`
+
+`NEXT_ACTION=RETURN_RAW_OUTPUT_TO_ZEKU_FOR_CAP18_FINAL_SECOND_LOOK`
 
 `CURRENT_PROGRAM_FINAL_TARGET=v1.3_USABLE_VERIFIED_PRODUCT`
 
@@ -1156,7 +1160,7 @@ Engineering mode: **GitHub-first**.
 - [x] Human Threshold™. — ACCEPTED for v0.7.
 - [x] **v0.7 LONG-RUN RELIABILITY VERIFIED / LOCKED.** — 13/13 PASS; exact-head final seal PASS.
 
-## v0.8 — Product Engineering Operator — ACTIVE
+## v0.8 — Product Engineering Operator — VERIFIED / LOCKED
 
 Engineering mode: **ENGÜRÜ Mac-Native Engineering Authority™ / Mac-local primary authority**.
 
@@ -1187,7 +1191,23 @@ DoneCheck authority:
 9. [x] **Gate 9 — Deploy / Live Verify / Rollback + Lifecycle — PASS / SEALED**
 10. [x] **Gate 10 — Finished-Product Delivery Acceptance — VERIFIED / LOCKED**
 11. [x] **Gate 11 — Consolidated Real-Mac Product Engineering Commissioning — VERIFIED / LOCKED**
-12. [ ] **Gate 12 — DoneCheck™ v1.2 + Human Threshold™ + Version Lock — LOCK EVIDENCE RECONCILED / FINAL RECEIPT PENDING**
+12. [x] **Gate 12 — DoneCheck™ v1.2 + Human Threshold™ + Version Lock — VERIFIED / LOCKED**
+
+## Package08 Field Capability Campaign — ACTIVE
+
+This is the current authorized post-v0.8 engineering objective. It does not
+reopen v0.8 or reactivate Gate 12.
+
+- [x] CAP01–CAP17 canonical field Evidence preserved.
+- [x] `FIELD_VERIFIED_COUNT=18`.
+- [x] CAP18 — `FILESYSTEM_MACOS_AUTOMATION` — **FIELD_VERIFIED**.
+- [ ] CAP19 — `INTERNET_RESEARCH_HARVEST_ASTRA` — **PENDING / NOT STARTED**.
+- [x] CAP18 accepted-Evidence registered action executed: **true**.
+- [x] CAP18 technical filesystem task re-executed: **false**.
+- [x] Human Threshold regenerated: **false**.
+- [x] CAP18 field seal: `sha256:f30a2ebb468ba38f54bf0e8ad0f7afb1feafbeb65470dc294e2f8ade9f9440bd`.
+
+**NEXT ACTION:** `RETURN_RAW_OUTPUT_TO_ZEKU_FOR_CAP18_FINAL_SECOND_LOOK`
 
 ### Gate 1 result — VERIFIED PASS
 

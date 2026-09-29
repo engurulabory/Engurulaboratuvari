@@ -367,6 +367,27 @@
       "mutationScope": "COMMAND_SCOPE_EXPLICIT",
       "shellInterpolationAllowed": false,
       "canonicalTruthPreserved": true
+    },
+    "PACKAGE08_CAP18_FILESYSTEM_MACOS_AUTOMATION_FIELD_PROOF": {
+      "handler": "PACKAGE08_CAP18_FILESYSTEM_MACOS_AUTOMATION_FIELD_PROOF",
+      "authority": "AMBER_BOUNDED_FILESYSTEM_AUTOMATION_AUTHORITY",
+      "command": "governance/mac-engineer/PACKAGE08_CAP18_FILESYSTEM_MACOS_AUTOMATION_FIELD_PROOF.command",
+      "networkRequired": false,
+      "remotePush": false,
+      "failClosed": true,
+      "humanThresholdRequired": true,
+      "humanThresholdDecision": "ACCEPT",
+      "rollbackRequired": true,
+      "mutationScope": "EXPLICIT_PATH_SCOPE",
+      "workspaceClass": "DISPOSABLE_TEMPORARY_WORKSPACE_ONLY",
+      "finderGuiAuthority": false,
+      "canonicalSourceMutationAllowed": false,
+      "productMutationAllowed": false,
+      "persistentExternalMutationAllowed": false,
+      "authorityExpansionAllowed": false,
+      "canonicalTruthPreserved": true,
+      "technicalCandidateSha256": "ed971c6f56cef4d84e09606e549ac69901b1d9842ddc3ac975e59820246ec80b",
+      "humanThresholdReceiptSha256": "7ecc6e8422a4baa051dac0ccacb022fe36050b48f32756521321df7583276265"
     }
   }
 }

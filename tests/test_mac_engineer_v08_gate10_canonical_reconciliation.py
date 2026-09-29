@@ -16,6 +16,8 @@ ROADMAP_G10 = "V08_GATE_10_FINISHED_PRODUCT_DELIVERY"
 ROADMAP_G10_PASS = "V08_GATE_10_FINISHED_PRODUCT_DELIVERY_PASS"
 ROADMAP_G11 = "V08_GATE_11_CONSOLIDATED_MAC_COMMISSIONING"
 ROADMAP_G12 = "V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK"
+PACKAGE08 = "PACKAGE08_FIELD_CAPABILITY_CAMPAIGN"
+PACKAGE08_NEXT = "RETURN_RAW_OUTPUT_TO_ZEKU_FOR_CAP18_FINAL_SECOND_LOOK"
 
 
 class Gate10CanonicalReconciliationTests(unittest.TestCase):
@@ -89,7 +91,7 @@ class Gate10CanonicalReconciliationTests(unittest.TestCase):
         elif closure["activeGate"] is None:
             self.assertEqual(
                 self.session["currentObjective"],
-                ROADMAP_G12,
+                PACKAGE08,
             )
             self.assertEqual(
                 closure["passedGates"],
@@ -105,6 +107,11 @@ class Gate10CanonicalReconciliationTests(unittest.TestCase):
             )
             self.assertTrue(
                 v08["gate12"]["canonicalLockCreated"]
+            )
+            self.assertEqual(v08["nextAction"], "AWAIT_NEXT_OBJECTIVE")
+            self.assertEqual(
+                self.session["postV08Objective"]["nextAction"],
+                PACKAGE08_NEXT,
             )
         else:
             self.fail(
@@ -152,7 +159,7 @@ class Gate10CanonicalReconciliationTests(unittest.TestCase):
         elif current["activeGate"] is None:
             self.assertEqual(
                 current["activeObjective"],
-                ROADMAP_G12,
+                PACKAGE08,
             )
             self.assertEqual(
                 current["remaining"],
@@ -161,6 +168,15 @@ class Gate10CanonicalReconciliationTests(unittest.TestCase):
             self.assertEqual(
                 current["state"],
                 "V08_PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED",
+            )
+            v08 = next(
+                item for item in self.roadmap["versions"]
+                if item["version"] == "v0.8"
+            )
+            self.assertEqual(v08["nextAction"], "AWAIT_NEXT_OBJECTIVE")
+            self.assertEqual(
+                current["postV08Objective"]["nextAction"],
+                PACKAGE08_NEXT,
             )
         else:
             self.fail(
