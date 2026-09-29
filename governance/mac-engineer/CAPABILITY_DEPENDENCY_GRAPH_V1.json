@@ -1,0 +1,259 @@
+{
+  "schema": "enguru.mac-engineer.capability-dependency-graph/v1",
+  "product": "ENGÜRÜ Mac Engineer™",
+  "rule": "Forward edges are fail-closed compatible transitions. Intent routing is outside this graph and remains Package 04 authority. Repair, recovery and reverify returns are explicit bounded controlled loops.",
+  "authorityBoundary": {
+    "intentRoutingPreauthorized": false,
+    "unlistedTransitionPolicy": "HOLD",
+    "redCapabilityBypassAllowed": false,
+    "newCoreIntroduced": false,
+    "releaseEntryPolicy": "PACKAGE04_ROUTER_PLUS_RED_AUTHORITY_REQUIRED",
+    "substrateNodesGrantTransitionAuthority": false
+  },
+  "sourceEvidence": [
+    "governance/mac-engineer/CAPABILITY_REGISTRY_V1.json",
+    "governance/mac-engineer/OPERATOR_ACTION_REGISTRY_V1.json",
+    "governance/mac-engineer/V08_PRODUCT_ENGINEERING_OPERATOR_ACCEPTANCE_MATRIX_V1.md",
+    "governance/mac-engineer/SESSION_STATE_V1.json",
+    "governance/mac-engineer/PRODUCT_ROADMAP_V1.json"
+  ],
+  "nodes": [
+    {
+      "CAPABILITY_ID": "CURRENT_TECHNICAL_TRUTH_READ",
+      "AUTHORITY": "GREEN",
+      "RISK_CLASS": "LOW",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "NODE_ROLE": "CONTROL_PLANE"
+    },
+    {
+      "CAPABILITY_ID": "CANONICAL_BOOT",
+      "AUTHORITY": "GREEN",
+      "RISK_CLASS": "LOW",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "NODE_ROLE": "CONTROL_PLANE"
+    },
+    {
+      "CAPABILITY_ID": "LOCAL_DOCTOR",
+      "AUTHORITY": "GREEN",
+      "RISK_CLASS": "LOW",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "NODE_ROLE": "CONTROL_PLANE"
+    },
+    {
+      "CAPABILITY_ID": "OPERATOR_CONTINUE_DISPATCH",
+      "AUTHORITY": "AMBER",
+      "RISK_CLASS": "MEDIUM",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "NODE_ROLE": "CONTROL_PLANE"
+    },
+    {
+      "CAPABILITY_ID": "FAIL_CLOSED_ENGINEERING",
+      "AUTHORITY": "GREEN",
+      "RISK_CLASS": "LOW",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "NODE_ROLE": "CONTROL_PLANE_GUARD"
+    },
+    {
+      "CAPABILITY_ID": "SOURCE_PRODUCT_CHANGE",
+      "AUTHORITY": "AMBER",
+      "RISK_CLASS": "MEDIUM",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "NODE_ROLE": "WORKFLOW"
+    },
+    {
+      "CAPABILITY_ID": "BUILD",
+      "AUTHORITY": "GREEN",
+      "RISK_CLASS": "LOW",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "NODE_ROLE": "WORKFLOW"
+    },
+    {
+      "CAPABILITY_ID": "TEST_REGRESSION",
+      "AUTHORITY": "GREEN",
+      "RISK_CLASS": "LOW",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "NODE_ROLE": "WORKFLOW"
+    },
+    {
+      "CAPABILITY_ID": "ROOT_CAUSE_REPAIR",
+      "AUTHORITY": "AMBER",
+      "RISK_CLASS": "MEDIUM",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "NODE_ROLE": "CONTROLLED_REPAIR"
+    },
+    {
+      "CAPABILITY_ID": "MIGRATION_CANONICAL_RECONCILIATION",
+      "AUTHORITY": "AMBER",
+      "RISK_CLASS": "HIGH",
+      "REQUIRES_HUMAN_THRESHOLD": true,
+      "NODE_ROLE": "WORKFLOW"
+    },
+    {
+      "CAPABILITY_ID": "ADVANCED_CODE_ENGINEERING",
+      "AUTHORITY": "AMBER",
+      "RISK_CLASS": "MEDIUM",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "NODE_ROLE": "WORKFLOW"
+    },
+    {
+      "CAPABILITY_ID": "NEW_PRODUCT_FROM_BRIEF",
+      "AUTHORITY": "AMBER",
+      "RISK_CLASS": "MEDIUM",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "NODE_ROLE": "WORKFLOW"
+    },
+    {
+      "CAPABILITY_ID": "RELEASE_LIFECYCLE",
+      "AUTHORITY": "RED",
+      "RISK_CLASS": "HIGH",
+      "REQUIRES_HUMAN_THRESHOLD": true,
+      "NODE_ROLE": "RED_WORKFLOW"
+    },
+    {
+      "CAPABILITY_ID": "FINISHED_PRODUCT_DELIVERY_ACCEPTANCE",
+      "AUTHORITY": "RED",
+      "RISK_CLASS": "HIGH",
+      "REQUIRES_HUMAN_THRESHOLD": true,
+      "NODE_ROLE": "RED_WORKFLOW"
+    },
+    {
+      "CAPABILITY_ID": "EVIDENCE_DONECHECK",
+      "AUTHORITY": "GREEN",
+      "RISK_CLASS": "LOW",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "NODE_ROLE": "WORKFLOW"
+    },
+    {
+      "CAPABILITY_ID": "RECOVERY_OFFLINE_CONTINUITY",
+      "AUTHORITY": "AMBER",
+      "RISK_CLASS": "MEDIUM",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "NODE_ROLE": "CONTROLLED_RECOVERY"
+    },
+    {
+      "CAPABILITY_ID": "TERMINAL_EXECUTION",
+      "AUTHORITY": "AMBER",
+      "RISK_CLASS": "HIGH",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "NODE_ROLE": "EXECUTION_SUBSTRATE"
+    },
+    {
+      "CAPABILITY_ID": "FILESYSTEM_MACOS_AUTOMATION",
+      "AUTHORITY": "AMBER",
+      "RISK_CLASS": "HIGH",
+      "REQUIRES_HUMAN_THRESHOLD": true,
+      "NODE_ROLE": "EXECUTION_SUBSTRATE"
+    },
+    {
+      "CAPABILITY_ID": "INTERNET_RESEARCH_HARVEST_ASTRA",
+      "AUTHORITY": "GREEN",
+      "RISK_CLASS": "MEDIUM",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "NODE_ROLE": "WORKFLOW"
+    }
+  ],
+  "forwardEdges": [
+    {
+      "FROM": "CURRENT_TECHNICAL_TRUTH_READ",
+      "TO": "CANONICAL_BOOT",
+      "FAIL_CLOSED": true,
+      "REQUIRES_HUMAN_THRESHOLD": false
+    },
+    {
+      "FROM": "CANONICAL_BOOT",
+      "TO": "LOCAL_DOCTOR",
+      "FAIL_CLOSED": true,
+      "REQUIRES_HUMAN_THRESHOLD": false
+    },
+    {
+      "FROM": "LOCAL_DOCTOR",
+      "TO": "OPERATOR_CONTINUE_DISPATCH",
+      "FAIL_CLOSED": true,
+      "REQUIRES_HUMAN_THRESHOLD": false
+    },
+    {
+      "FROM": "NEW_PRODUCT_FROM_BRIEF",
+      "TO": "INTERNET_RESEARCH_HARVEST_ASTRA",
+      "FAIL_CLOSED": true,
+      "REQUIRES_HUMAN_THRESHOLD": false
+    },
+    {
+      "FROM": "INTERNET_RESEARCH_HARVEST_ASTRA",
+      "TO": "ADVANCED_CODE_ENGINEERING",
+      "FAIL_CLOSED": true,
+      "REQUIRES_HUMAN_THRESHOLD": false
+    },
+    {
+      "FROM": "ADVANCED_CODE_ENGINEERING",
+      "TO": "BUILD",
+      "FAIL_CLOSED": true,
+      "REQUIRES_HUMAN_THRESHOLD": false
+    },
+    {
+      "FROM": "SOURCE_PRODUCT_CHANGE",
+      "TO": "BUILD",
+      "FAIL_CLOSED": true,
+      "REQUIRES_HUMAN_THRESHOLD": false
+    },
+    {
+      "FROM": "BUILD",
+      "TO": "TEST_REGRESSION",
+      "FAIL_CLOSED": true,
+      "REQUIRES_HUMAN_THRESHOLD": false
+    },
+    {
+      "FROM": "TEST_REGRESSION",
+      "TO": "EVIDENCE_DONECHECK",
+      "FAIL_CLOSED": true,
+      "REQUIRES_HUMAN_THRESHOLD": false
+    },
+    {
+      "FROM": "MIGRATION_CANONICAL_RECONCILIATION",
+      "TO": "TEST_REGRESSION",
+      "FAIL_CLOSED": true,
+      "REQUIRES_HUMAN_THRESHOLD": false
+    },
+    {
+      "FROM": "RELEASE_LIFECYCLE",
+      "TO": "FINISHED_PRODUCT_DELIVERY_ACCEPTANCE",
+      "FAIL_CLOSED": true,
+      "REQUIRES_HUMAN_THRESHOLD": true
+    }
+  ],
+  "controlledLoops": [
+    {
+      "LOOP_ID": "BOUNDED_REPAIR_REVERIFY",
+      "TYPE": "REPAIR",
+      "PATH": [
+        "TEST_REGRESSION",
+        "ROOT_CAUSE_REPAIR",
+        "TEST_REGRESSION"
+      ],
+      "MAX_ATTEMPTS": 2,
+      "OVER_LIMIT": "HOLD",
+      "REQUIRES_FRESH_EVIDENCE": true
+    },
+    {
+      "LOOP_ID": "RECOVERY_RETURN_TO_TRUTH",
+      "TYPE": "RECOVERY",
+      "PATH": [
+        "RECOVERY_OFFLINE_CONTINUITY",
+        "CURRENT_TECHNICAL_TRUTH_READ"
+      ],
+      "MAX_ATTEMPTS": 1,
+      "OVER_LIMIT": "HOLD",
+      "REQUIRES_FRESH_EVIDENCE": true
+    },
+    {
+      "LOOP_ID": "POST_DELIVERY_REVERIFY",
+      "TYPE": "REVERIFY",
+      "PATH": [
+        "FINISHED_PRODUCT_DELIVERY_ACCEPTANCE",
+        "EVIDENCE_DONECHECK"
+      ],
+      "MAX_ATTEMPTS": 1,
+      "OVER_LIMIT": "HOLD",
+      "REQUIRES_FRESH_EVIDENCE": true
+    }
+  ]
+}
