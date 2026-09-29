@@ -354,6 +354,19 @@
       "mutationScope": "RECOVERY_AND_ROLLBACK_SCOPE",
       "canonicalTruthPreserved": true,
       "secondCanonicalTruth": false
+    },
+    "PACKAGE08_CAP17_TERMINAL_EXECUTION_FIELD_PROOF": {
+      "handler": "PACKAGE08_CAP17_TERMINAL_EXECUTION_FIELD_PROOF",
+      "authority": "AMBER_EXPLICIT_TERMINAL_COMMAND_AUTHORITY",
+      "command": "governance/mac-engineer/PACKAGE08_CAP17_TERMINAL_EXECUTION_FIELD_PROOF.command",
+      "networkRequired": false,
+      "remotePush": false,
+      "failClosed": true,
+      "humanThresholdRequired": false,
+      "rollbackRequired": true,
+      "mutationScope": "COMMAND_SCOPE_EXPLICIT",
+      "shellInterpolationAllowed": false,
+      "canonicalTruthPreserved": true
     }
   }
 }

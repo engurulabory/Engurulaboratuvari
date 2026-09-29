@@ -2439,6 +2439,291 @@ check(
     == "REGISTERED_ACTION_RESULT_CONTRACT_HOLD"
 )
 
+
+cap17_plan = {
+    "STATE":
+        "PLAN_READY",
+
+    "PLAN_ID":
+        "package05-cap17-terminal-test",
+
+    "TRUTH_FINGERPRINT":
+        "package05-cap17-terminal-truth",
+
+    "EXECUTION_AUTHORIZED":
+        False,
+
+    "CAPABILITY_PLAN": [
+        "TERMINAL_EXECUTION",
+    ],
+}
+
+_real_cap17 = (
+    operator
+    .run_package08_cap17_terminal_execution_field_proof
+)
+
+operator.run_package08_cap17_terminal_execution_field_proof = lambda: {
+    "state":
+        "PASS",
+
+    "code":
+        0,
+
+    "fields": {
+        "CAP17_TERMINAL_EXECUTION":
+            "PASS",
+
+        "COMMAND_SCOPE_EXPLICIT":
+            "PASS",
+
+        "ARGV_ALLOWLIST":
+            "PASS",
+
+        "CWD_SCOPE":
+            "PASS",
+
+        "REAL_COMMAND_EXECUTED":
+            "PASS",
+
+        "EXPECTED_RESULT_OBSERVED":
+            "PASS",
+
+        "UNALLOWLISTED_COMMAND_REJECTED":
+            "PASS",
+
+        "CWD_ESCAPE_REJECTED":
+            "PASS",
+
+        "NONZERO_EXIT_HELD":
+            "PASS",
+
+        "FAILURE_PATH_TESTED":
+            "PASS",
+
+        "ROLLBACK":
+            "PASS",
+
+        "ROLLBACK_BYTE_PARITY":
+            "PASS",
+
+        "FRESH_REVERIFY":
+            "PASS",
+
+        "FINAL_ROLLBACK":
+            "PASS",
+
+        "NETWORK_ACCESS":
+            "false",
+
+        "REMOTE_PUSH":
+            "false",
+
+        "HUMAN_THRESHOLD_REQUIRED":
+            "false",
+
+        "CANONICAL_SOURCE_MUTATION":
+            "false",
+
+        "PRODUCT_MUTATION":
+            "false",
+
+        "EXECUTION_AUTHORITY_CREATED":
+            "false",
+
+        "CANONICAL_TRUTH_PRESERVED":
+            "PASS",
+
+        "CRITICAL_FALSE_PASS_COUNT":
+            "0",
+    },
+
+    "evidence":
+        "/tmp/cap17-pass.json",
+}
+
+try:
+    cap17_result = (
+        orch.execute_plan_step(
+            cap17_plan,
+            1,
+        )
+    )
+finally:
+    operator.run_package08_cap17_terminal_execution_field_proof = (
+        _real_cap17
+    )
+
+check(
+    "PLAN_BOUND_CAP17_TERMINAL_EXECUTION_PASS",
+
+    cap17_result["STATE"]
+    == "PASS"
+
+    and cap17_result[
+        "CAPABILITY_ID"
+    ]
+    == "TERMINAL_EXECUTION"
+
+    and cap17_result[
+        "BINDING_TYPE"
+    ]
+    == "REGISTERED_ACTION"
+
+    and cap17_result[
+        "REGISTERED_HANDLER_INVOKED"
+    ]
+    is True
+
+    and cap17_result[
+        "EXECUTION_PERFORMED"
+    ]
+    is True
+
+    and cap17_result[
+        "RECOVERY_PROOF_OBSERVED"
+    ]
+    is True
+
+    and cap17_result[
+        "OBSERVED_RESULT"
+    ][
+        "explicitScope"
+    ]
+    is True
+
+    and cap17_result[
+        "OBSERVED_RESULT"
+    ][
+        "failurePath"
+    ]
+    is True
+
+    and cap17_result[
+        "OBSERVED_RESULT"
+    ][
+        "rollbackParity"
+    ]
+    is True
+
+    and cap17_result[
+        "MUTATION_SCOPE"
+    ][
+        "shellInterpolationAllowed"
+    ]
+    is False
+)
+
+operator.run_package08_cap17_terminal_execution_field_proof = lambda: {
+    "state":
+        "PASS",
+
+    "code":
+        0,
+
+    "fields": {
+        "CAP17_TERMINAL_EXECUTION":
+            "PASS",
+
+        "COMMAND_SCOPE_EXPLICIT":
+            "PASS",
+
+        "ARGV_ALLOWLIST":
+            "PASS",
+
+        "CWD_SCOPE":
+            "PASS",
+
+        "REAL_COMMAND_EXECUTED":
+            "PASS",
+
+        "EXPECTED_RESULT_OBSERVED":
+            "PASS",
+
+        "UNALLOWLISTED_COMMAND_REJECTED":
+            "PASS",
+
+        "CWD_ESCAPE_REJECTED":
+            "PASS",
+
+        "NONZERO_EXIT_HELD":
+            "PASS",
+
+        "FAILURE_PATH_TESTED":
+            "PASS",
+
+        "ROLLBACK":
+            "HOLD",
+
+        "ROLLBACK_BYTE_PARITY":
+            "HOLD",
+
+        "FRESH_REVERIFY":
+            "PASS",
+
+        "FINAL_ROLLBACK":
+            "HOLD",
+
+        "NETWORK_ACCESS":
+            "false",
+
+        "REMOTE_PUSH":
+            "false",
+
+        "HUMAN_THRESHOLD_REQUIRED":
+            "false",
+
+        "CANONICAL_SOURCE_MUTATION":
+            "false",
+
+        "PRODUCT_MUTATION":
+            "false",
+
+        "EXECUTION_AUTHORITY_CREATED":
+            "false",
+
+        "CANONICAL_TRUTH_PRESERVED":
+            "PASS",
+
+        "CRITICAL_FALSE_PASS_COUNT":
+            "0",
+    },
+
+    "evidence":
+        "/tmp/cap17-rollback-hold.json",
+}
+
+try:
+    cap17_negative = (
+        orch.execute_plan_step(
+            cap17_plan,
+            1,
+        )
+    )
+finally:
+    operator.run_package08_cap17_terminal_execution_field_proof = (
+        _real_cap17
+    )
+
+check(
+    "CAP17_ROLLBACK_REQUIRED_HOLD",
+
+    cap17_negative["STATE"]
+    == "HOLD"
+
+    and cap17_negative[
+        "HOLD_REASON"
+    ]
+    == "REGISTERED_ACTION_RESULT_CONTRACT_HOLD"
+
+    and cap17_negative[
+        "RECOVERY_PROOF_OBSERVED"
+    ]
+    is False,
+)
+
+
+
 invalid_step = orch.execute_plan_step(
     truth_plan,
     99,
@@ -2492,8 +2777,8 @@ check(
 )
 
 check(
-    "TWELVE_PROVEN_REGISTERED_ACTION_BINDINGS",
-    len(registered_bindings) == 12
+    "THIRTEEN_PROVEN_REGISTERED_ACTION_BINDINGS",
+    len(registered_bindings) == 13
     and {
         row["CAPABILITY_ID"]
         for row in registered_bindings
@@ -2511,12 +2796,13 @@ check(
         "FINISHED_PRODUCT_DELIVERY_ACCEPTANCE",
         "EVIDENCE_DONECHECK",
         "RECOVERY_OFFLINE_CONTINUITY",
+        "TERMINAL_EXECUTION",
     },
 )
 
 check(
-    "FIVE_UNBOUND_FAIL_CLOSED",
-    len(hold_bindings) == 5,
+    "FOUR_UNBOUND_FAIL_CLOSED",
+    len(hold_bindings) == 4,
 )
 
 

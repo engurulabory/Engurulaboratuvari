@@ -925,6 +925,48 @@ def execute_proven_registered_action(
                 False,
         },
 
+        "TERMINAL_EXECUTION": {
+            "ACTION":
+                "PACKAGE08_CAP17_TERMINAL_EXECUTION_FIELD_PROOF",
+
+            "REGISTERED_HANDLER":
+                "PACKAGE08_CAP17_TERMINAL_EXECUTION_FIELD_PROOF",
+
+            "OPERATOR_CALLABLE":
+                "run_package08_cap17_terminal_execution_field_proof",
+
+            "AUTHORITY":
+                "AMBER_EXPLICIT_TERMINAL_COMMAND_AUTHORITY",
+
+            "NETWORK_ALLOWED":
+                False,
+
+            "REMOTE_PUSH_ALLOWED":
+                False,
+
+            "RECOVERY_PROOF_REQUIRED":
+                True,
+
+            "ROLLBACK_REQUIRED":
+                True,
+
+            "HUMAN_THRESHOLD_REQUIRED":
+                False,
+
+            "MUTATION_SCOPE":
+                "COMMAND_SCOPE_EXPLICIT",
+
+            "SHELL_INTERPOLATION_ALLOWED":
+                False,
+
+            "CANONICAL_TRUTH_PRESERVED":
+                True,
+
+            "EXECUTION_AUTHORITY_CREATED":
+                False,
+        },
+
+
     }
 
     expected = (
@@ -3039,6 +3081,215 @@ def execute_proven_registered_action(
                 False,
 
             "secondCanonicalTruthAllowed":
+                False,
+
+            "canonicalTruthPreserved":
+                True,
+        }
+
+
+    elif capability_id == "TERMINAL_EXECUTION":
+        result = (
+            operator
+            .run_package08_cap17_terminal_execution_field_proof()
+        )
+
+        fields = (
+            result.get("fields")
+            if isinstance(
+                result.get("fields"),
+                dict,
+            )
+            else {}
+        )
+
+        observed = {
+            "wrapperStatePass":
+                result.get("state")
+                == "PASS",
+
+            "wrapperCodeZero":
+                result.get("code")
+                == 0,
+
+            "capabilityPass":
+                fields.get(
+                    "CAP17_TERMINAL_EXECUTION"
+                )
+                == "PASS",
+
+            "explicitScope":
+                fields.get(
+                    "COMMAND_SCOPE_EXPLICIT"
+                )
+                == "PASS",
+
+            "argvAllowlist":
+                fields.get(
+                    "ARGV_ALLOWLIST"
+                )
+                == "PASS",
+
+            "cwdScope":
+                fields.get(
+                    "CWD_SCOPE"
+                )
+                == "PASS",
+
+            "realCommand":
+                fields.get(
+                    "REAL_COMMAND_EXECUTED"
+                )
+                == "PASS",
+
+            "expectedResult":
+                fields.get(
+                    "EXPECTED_RESULT_OBSERVED"
+                )
+                == "PASS",
+
+            "unallowlistedRejected":
+                fields.get(
+                    "UNALLOWLISTED_COMMAND_REJECTED"
+                )
+                == "PASS",
+
+            "cwdEscapeRejected":
+                fields.get(
+                    "CWD_ESCAPE_REJECTED"
+                )
+                == "PASS",
+
+            "nonzeroHeld":
+                fields.get(
+                    "NONZERO_EXIT_HELD"
+                )
+                == "PASS",
+
+            "failurePath":
+                fields.get(
+                    "FAILURE_PATH_TESTED"
+                )
+                == "PASS",
+
+            "rollback":
+                fields.get(
+                    "ROLLBACK"
+                )
+                == "PASS",
+
+            "rollbackParity":
+                fields.get(
+                    "ROLLBACK_BYTE_PARITY"
+                )
+                == "PASS",
+
+            "freshReverify":
+                fields.get(
+                    "FRESH_REVERIFY"
+                )
+                == "PASS",
+
+            "finalRollback":
+                fields.get(
+                    "FINAL_ROLLBACK"
+                )
+                == "PASS",
+
+            "networkFalse":
+                fields.get(
+                    "NETWORK_ACCESS"
+                )
+                == "false",
+
+            "remotePushFalse":
+                fields.get(
+                    "REMOTE_PUSH"
+                )
+                == "false",
+
+            "humanThresholdFalse":
+                fields.get(
+                    "HUMAN_THRESHOLD_REQUIRED"
+                )
+                == "false",
+
+            "canonicalMutationFalse":
+                fields.get(
+                    "CANONICAL_SOURCE_MUTATION"
+                )
+                == "false",
+
+            "productMutationFalse":
+                fields.get(
+                    "PRODUCT_MUTATION"
+                )
+                == "false",
+
+            "authorityCreatedFalse":
+                fields.get(
+                    "EXECUTION_AUTHORITY_CREATED"
+                )
+                == "false",
+
+            "canonicalTruth":
+                fields.get(
+                    "CANONICAL_TRUTH_PRESERVED"
+                )
+                == "PASS",
+
+            "falsePassZero":
+                fields.get(
+                    "CRITICAL_FALSE_PASS_COUNT"
+                )
+                == "0",
+
+            "runtimeEvidencePresent":
+                bool(
+                    result.get(
+                        "evidence"
+                    )
+                ),
+        }
+
+        recovery_observed = bool(
+            observed[
+                "rollback"
+            ]
+            and observed[
+                "rollbackParity"
+            ]
+            and observed[
+                "finalRollback"
+            ]
+        )
+
+        mutation_scope = {
+            "filesystemMutationExpected":
+                True,
+
+            "scope":
+                "COMMAND_SCOPE_EXPLICIT",
+
+            "humanThresholdRequired":
+                False,
+
+            "recoveryProofRequired":
+                True,
+
+            "rollbackRequired":
+                True,
+
+            "shellInterpolationAllowed":
+                False,
+
+            "canonicalSourceMutationAllowed":
+                False,
+
+            "productMutationAllowed":
+                False,
+
+            "remoteMutationAllowed":
                 False,
 
             "canonicalTruthPreserved":

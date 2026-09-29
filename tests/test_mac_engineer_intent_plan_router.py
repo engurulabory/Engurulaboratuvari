@@ -107,6 +107,40 @@ with tempfile.TemporaryDirectory() as td:
     )
 router.CONTRACT = original_contract
 
+
+terminal_plan = router.route(
+    "terminal komutu çalıştır"
+)
+
+check(
+    "TERMINAL_EXECUTION_PLAN_READY",
+    terminal_plan["STATE"]
+    == "PLAN_READY"
+    and terminal_plan[
+        "INTENT_CLASS"
+    ]
+    == "TERMINAL_EXECUTION"
+    and terminal_plan[
+        "CAPABILITY_PLAN"
+    ]
+    == [
+        "TERMINAL_EXECUTION",
+    ]
+    and terminal_plan[
+        "MAX_AUTHORITY"
+    ]
+    == "AMBER"
+    and terminal_plan[
+        "REQUIRES_HUMAN_THRESHOLD"
+    ]
+    is False
+    and terminal_plan[
+        "EXECUTION_AUTHORIZED"
+    ]
+    is False,
+)
+
+
 passed = sum(1 for _, ok in results if ok)
 for name, ok in results:
     print(f"{name}={'PASS' if ok else 'HOLD'}")

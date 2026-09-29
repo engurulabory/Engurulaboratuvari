@@ -114,6 +114,18 @@
       ]
     },
     {
+      "INTENT_CLASS": "TERMINAL_EXECUTION",
+      "MATCH_ANY": [
+        "terminal komutu çalıştır",
+        "terminal çalıştır",
+        "run terminal command",
+        "terminal execution"
+      ],
+      "PLAN": [
+        "TERMINAL_EXECUTION"
+      ]
+    },
+    {
       "INTENT_CLASS": "RELEASE_DELIVERY",
       "MATCH_ANY": [
         "ürünü yayınla",
