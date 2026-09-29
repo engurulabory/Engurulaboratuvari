@@ -288,6 +288,24 @@
       "rollbackRequired": true,
       "productCreationRequired": true,
       "canonicalTruthPreserved": true
+    },
+    "PACKAGE08_CAP13_RELEASE_LIFECYCLE_FIELD_PROOF": {
+      "handler": "PACKAGE08_CAP13_RELEASE_LIFECYCLE_FIELD_PROOF",
+      "authority": "RED_HT_ACCEPTED_LOCAL_RELEASE_LIFECYCLE_AUTHORITY",
+      "command": "governance/mac-engineer/PACKAGE08_CAP13_RELEASE_LIFECYCLE_FIELD_PROOF.command",
+      "networkRequired": false,
+      "remotePush": false,
+      "failClosed": true,
+      "humanThresholdRequired": true,
+      "humanThresholdDecision": "ACCEPT",
+      "humanThresholdReceiptSha256": "5f0d34425a05472a8376544fa2b9604b96cd9f3f1a1945f0f200ed4d80a3ce96",
+      "postHumanEvidenceSha256": "46f81b7dd6d5291c1116e027c51808963f453a09af5aef0e2276f257a7d4889f",
+      "p09AcceptanceSha256": "638bd13a48f3070125571e22c38fe3735c30b0157da604513125c35c27b232f2",
+      "mutationScope": "CONTROLLED_RELEASE_SCOPE",
+      "rollbackRequired": true,
+      "activeLifecycleReexecutionAllowed": false,
+      "cloudProductionAllowed": false,
+      "canonicalTruthPreserved": true
     }
   }
 }

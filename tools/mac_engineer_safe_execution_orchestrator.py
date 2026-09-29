@@ -724,6 +724,59 @@ def execute_proven_registered_action(
                 False,
         },
 
+        "RELEASE_LIFECYCLE": {
+            "ACTION":
+                "PACKAGE08_CAP13_RELEASE_LIFECYCLE_FIELD_PROOF",
+
+            "REGISTERED_HANDLER":
+                "PACKAGE08_CAP13_RELEASE_LIFECYCLE_FIELD_PROOF",
+
+            "OPERATOR_CALLABLE":
+                "run_package08_cap13_release_lifecycle_field_proof",
+
+            "AUTHORITY":
+                "RED_HT_ACCEPTED_LOCAL_RELEASE_LIFECYCLE_AUTHORITY",
+
+            "NETWORK_ALLOWED":
+                False,
+
+            "REMOTE_PUSH_ALLOWED":
+                False,
+
+            "RECOVERY_PROOF_REQUIRED":
+                True,
+
+            "HUMAN_THRESHOLD_REQUIRED":
+                True,
+
+            "HUMAN_THRESHOLD_DECISION":
+                "ACCEPT",
+
+            "HUMAN_THRESHOLD_RECEIPT_SHA256":
+                "5f0d34425a05472a8376544fa2b9604b96cd9f3f1a1945f0f200ed4d80a3ce96",
+
+            "POST_HUMAN_EVIDENCE_SHA256":
+                "46f81b7dd6d5291c1116e027c51808963f453a09af5aef0e2276f257a7d4889f",
+
+            "P09_ACCEPTANCE_SHA256":
+                "638bd13a48f3070125571e22c38fe3735c30b0157da604513125c35c27b232f2",
+
+            "MUTATION_SCOPE":
+                "CONTROLLED_RELEASE_SCOPE",
+
+            "ACTIVE_LIFECYCLE_REEXECUTION_ALLOWED":
+                False,
+
+            "CLOUD_PRODUCTION_ALLOWED":
+                False,
+
+            "CANONICAL_TRUTH_PRESERVED":
+                True,
+
+            "EXECUTION_AUTHORITY_CREATED":
+                False,
+        },
+
     }
 
     expected = (
@@ -1985,6 +2038,233 @@ def execute_proven_registered_action(
                 True,
 
             "rollbackRequired":
+                True,
+        }
+
+    elif capability_id == "RELEASE_LIFECYCLE":
+        result = (
+            operator
+            .run_package08_cap13_release_lifecycle_field_proof()
+        )
+
+        fields = (
+            result.get("fields")
+            if isinstance(
+                result.get("fields"),
+                dict,
+            )
+            else {}
+        )
+
+        observed = {
+            "wrapperStatePass":
+                result.get("state")
+                == "PASS",
+
+            "wrapperCodeZero":
+                result.get("code")
+                == 0,
+
+            "releaseLifecyclePass":
+                fields.get(
+                    "CAP13_RELEASE_LIFECYCLE"
+                )
+                == "PASS",
+
+            "humanThresholdAccept":
+                fields.get(
+                    "HUMAN_THRESHOLD_ACCEPT"
+                )
+                == "PASS",
+
+            "htConsumedOnce":
+                fields.get(
+                    "HT_EXECUTION_ALREADY_CONSUMED"
+                )
+                == "PASS",
+
+            "activeLifecycle":
+                fields.get(
+                    "ACTIVE_LIFECYCLE_EXECUTED"
+                )
+                == "PASS",
+
+            "controlledReplacement":
+                fields.get(
+                    "CONTROLLED_REPLACEMENT"
+                )
+                == "PASS",
+
+            "knownGoodRollback":
+                fields.get(
+                    "KNOWN_GOOD_ROLLBACK"
+                )
+                == "PASS",
+
+            "rollbackReverify":
+                fields.get(
+                    "ROLLBACK_REVERIFY"
+                )
+                == "PASS",
+
+            "provenance":
+                fields.get(
+                    "LIFECYCLE_PROVENANCE"
+                )
+                == "PASS",
+
+            "evidenceContinuity":
+                fields.get(
+                    "EVIDENCE_CONTINUITY"
+                )
+                == "PASS",
+
+            "codesign":
+                fields.get(
+                    "FRESH_CODESIGN"
+                )
+                == "PASS",
+
+            "runtime":
+                fields.get(
+                    "FRESH_RUNTIME_REVERIFY"
+                )
+                == "PASS",
+
+            "sourceMutationFalse":
+                fields.get(
+                    "SOURCE_MUTATION"
+                )
+                == "false",
+
+            "remoteMutationFalse":
+                fields.get(
+                    "REMOTE_MUTATION"
+                )
+                == "false",
+
+            "remotePushFalse":
+                fields.get(
+                    "REMOTE_PUSH"
+                )
+                == "false",
+
+            "executionAuthorityCreatedFalse":
+                fields.get(
+                    "EXECUTION_AUTHORITY_CREATED"
+                )
+                == "false",
+
+            "cloudProductionFalse":
+                fields.get(
+                    "CLOUD_PRODUCTION"
+                )
+                == "false",
+
+            "dnsMutationFalse":
+                fields.get(
+                    "DNS_MUTATION"
+                )
+                == "false",
+
+            "domainMutationFalse":
+                fields.get(
+                    "DOMAIN_MUTATION"
+                )
+                == "false",
+
+            "verifiedLiveFalse":
+                fields.get(
+                    "VERIFIED_LIVE_GRANTED"
+                )
+                == "false",
+
+            "falsePassZero":
+                fields.get(
+                    "CRITICAL_FALSE_PASS_COUNT"
+                )
+                == "0",
+
+            "canonicalTruth":
+                fields.get(
+                    "CANONICAL_TRUTH_PRESERVED"
+                )
+                == "PASS",
+
+            "authorityRed":
+                fields.get(
+                    "AUTHORITY"
+                )
+                == "RED",
+
+            "controlledReleaseScope":
+                fields.get(
+                    "MUTATION_SCOPE"
+                )
+                == "CONTROLLED_RELEASE_SCOPE",
+
+            "receiptDigest":
+                fields.get(
+                    "HUMAN_THRESHOLD_RECEIPT_SHA256"
+                )
+                == "5f0d34425a05472a8376544fa2b9604b96cd9f3f1a1945f0f200ed4d80a3ce96",
+
+            "postHumanDigest":
+                fields.get(
+                    "POST_HUMAN_EVIDENCE_SHA256"
+                )
+                == "46f81b7dd6d5291c1116e027c51808963f453a09af5aef0e2276f257a7d4889f",
+
+            "p09Digest":
+                fields.get(
+                    "P09_ACCEPTANCE_SHA256"
+                )
+                == "638bd13a48f3070125571e22c38fe3735c30b0157da604513125c35c27b232f2",
+
+            "runtimeEvidencePresent":
+                bool(
+                    result.get("evidence")
+                ),
+        }
+
+        recovery_observed = bool(
+            observed[
+                "knownGoodRollback"
+            ]
+            and observed[
+                "rollbackReverify"
+            ]
+            and observed[
+                "provenance"
+            ]
+            and observed[
+                "evidenceContinuity"
+            ]
+        )
+
+        mutation_scope = {
+            "filesystemMutationExpected":
+                False,
+
+            "historicalControlledMutationObserved":
+                True,
+
+            "scope":
+                "CONTROLLED_RELEASE_SCOPE",
+
+            "humanThresholdRequired":
+                True,
+
+            "humanThresholdConsumed":
+                True,
+
+            "activeLifecycleReexecutionAllowed":
+                False,
+
+            "cloudProductionAllowed":
+                False,
+
+            "canonicalTruthPreserved":
                 True,
         }
 

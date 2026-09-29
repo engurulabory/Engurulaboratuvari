@@ -1872,6 +1872,192 @@ check(
     == "REGISTERED_ACTION_RESULT_CONTRACT_HOLD"
 )
 
+
+cap13_plan = {
+    "STATE":
+        "PLAN_READY",
+
+    "PLAN_ID":
+        "package05-cap13-test",
+
+    "TRUTH_FINGERPRINT":
+        "package05-cap13-truth",
+
+    "EXECUTION_AUTHORIZED":
+        False,
+
+    "CAPABILITY_PLAN": [
+        "RELEASE_LIFECYCLE",
+    ],
+}
+
+_real_cap13 = (
+    operator
+    .run_package08_cap13_release_lifecycle_field_proof
+)
+
+operator.run_package08_cap13_release_lifecycle_field_proof = lambda: {
+    "state": "PASS",
+    "code": 0,
+
+    "fields": {
+        "CAP13_RELEASE_LIFECYCLE": "PASS",
+        "HUMAN_THRESHOLD_ACCEPT": "PASS",
+        "HT_EXECUTION_ALREADY_CONSUMED": "PASS",
+        "ACTIVE_LIFECYCLE_EXECUTED": "PASS",
+        "CONTROLLED_REPLACEMENT": "PASS",
+        "KNOWN_GOOD_ROLLBACK": "PASS",
+        "ROLLBACK_REVERIFY": "PASS",
+        "LIFECYCLE_PROVENANCE": "PASS",
+        "EVIDENCE_CONTINUITY": "PASS",
+        "FRESH_CODESIGN": "PASS",
+        "FRESH_RUNTIME_REVERIFY": "PASS",
+        "SOURCE_MUTATION": "false",
+        "REMOTE_MUTATION": "false",
+        "REMOTE_PUSH": "false",
+        "EXECUTION_AUTHORITY_CREATED": "false",
+        "CLOUD_PRODUCTION": "false",
+        "DNS_MUTATION": "false",
+        "DOMAIN_MUTATION": "false",
+        "VERIFIED_LIVE_GRANTED": "false",
+        "CRITICAL_FALSE_PASS_COUNT": "0",
+        "CANONICAL_TRUTH_PRESERVED": "PASS",
+        "AUTHORITY": "RED",
+        "MUTATION_SCOPE": "CONTROLLED_RELEASE_SCOPE",
+        "HUMAN_THRESHOLD_RECEIPT_SHA256":
+            "5f0d34425a05472a8376544fa2b9604b96cd9f3f1a1945f0f200ed4d80a3ce96",
+        "POST_HUMAN_EVIDENCE_SHA256":
+            "46f81b7dd6d5291c1116e027c51808963f453a09af5aef0e2276f257a7d4889f",
+        "P09_ACCEPTANCE_SHA256":
+            "638bd13a48f3070125571e22c38fe3735c30b0157da604513125c35c27b232f2",
+    },
+
+    "evidence":
+        "/tmp/cap13-pass.json",
+}
+
+try:
+    cap13_result = (
+        orch.execute_plan_step(
+            cap13_plan,
+            1,
+        )
+    )
+finally:
+    operator.run_package08_cap13_release_lifecycle_field_proof = (
+        _real_cap13
+    )
+
+check(
+    "PLAN_BOUND_CAP13_RELEASE_LIFECYCLE_PASS",
+
+    cap13_result["STATE"] == "PASS"
+
+    and cap13_result[
+        "CAPABILITY_ID"
+    ]
+    == "RELEASE_LIFECYCLE"
+
+    and cap13_result[
+        "RECOVERY_PROOF_REQUIRED"
+    ]
+    is True
+
+    and cap13_result[
+        "RECOVERY_PROOF_OBSERVED"
+    ]
+    is True
+
+    and cap13_result[
+        "OBSERVED_RESULT"
+    ]["humanThresholdAccept"]
+    is True
+
+    and cap13_result[
+        "OBSERVED_RESULT"
+    ]["knownGoodRollback"]
+    is True
+
+    and cap13_result[
+        "OBSERVED_RESULT"
+    ]["rollbackReverify"]
+    is True
+
+    and cap13_result[
+        "OBSERVED_RESULT"
+    ]["runtime"]
+    is True
+
+    and cap13_result[
+        "OBSERVED_RESULT"
+    ]["cloudProductionFalse"]
+    is True
+)
+
+operator.run_package08_cap13_release_lifecycle_field_proof = lambda: {
+    "state": "PASS",
+    "code": 0,
+
+    "fields": {
+        "CAP13_RELEASE_LIFECYCLE": "PASS",
+        "HUMAN_THRESHOLD_ACCEPT": "HOLD",
+        "HT_EXECUTION_ALREADY_CONSUMED": "PASS",
+        "ACTIVE_LIFECYCLE_EXECUTED": "PASS",
+        "CONTROLLED_REPLACEMENT": "PASS",
+        "KNOWN_GOOD_ROLLBACK": "PASS",
+        "ROLLBACK_REVERIFY": "PASS",
+        "LIFECYCLE_PROVENANCE": "PASS",
+        "EVIDENCE_CONTINUITY": "PASS",
+        "FRESH_CODESIGN": "PASS",
+        "FRESH_RUNTIME_REVERIFY": "PASS",
+        "SOURCE_MUTATION": "false",
+        "REMOTE_MUTATION": "false",
+        "REMOTE_PUSH": "false",
+        "EXECUTION_AUTHORITY_CREATED": "false",
+        "CLOUD_PRODUCTION": "false",
+        "DNS_MUTATION": "false",
+        "DOMAIN_MUTATION": "false",
+        "VERIFIED_LIVE_GRANTED": "false",
+        "CRITICAL_FALSE_PASS_COUNT": "0",
+        "CANONICAL_TRUTH_PRESERVED": "PASS",
+        "AUTHORITY": "RED",
+        "MUTATION_SCOPE": "CONTROLLED_RELEASE_SCOPE",
+        "HUMAN_THRESHOLD_RECEIPT_SHA256":
+            "5f0d34425a05472a8376544fa2b9604b96cd9f3f1a1945f0f200ed4d80a3ce96",
+        "POST_HUMAN_EVIDENCE_SHA256":
+            "46f81b7dd6d5291c1116e027c51808963f453a09af5aef0e2276f257a7d4889f",
+        "P09_ACCEPTANCE_SHA256":
+            "638bd13a48f3070125571e22c38fe3735c30b0157da604513125c35c27b232f2",
+    },
+
+    "evidence":
+        "/tmp/cap13-negative.json",
+}
+
+try:
+    cap13_negative = (
+        orch.execute_plan_step(
+            cap13_plan,
+            1,
+        )
+    )
+finally:
+    operator.run_package08_cap13_release_lifecycle_field_proof = (
+        _real_cap13
+    )
+
+check(
+    "CAP13_HUMAN_THRESHOLD_REQUIRED_HOLD",
+
+    cap13_negative["STATE"]
+    == "HOLD"
+
+    and cap13_negative[
+        "HOLD_REASON"
+    ]
+    == "REGISTERED_ACTION_RESULT_CONTRACT_HOLD"
+)
+
 invalid_step = orch.execute_plan_step(
     truth_plan,
     99,
@@ -1925,8 +2111,8 @@ check(
 )
 
 check(
-    "EIGHT_PROVEN_REGISTERED_ACTION_BINDINGS",
-    len(registered_bindings) == 8
+    "NINE_PROVEN_REGISTERED_ACTION_BINDINGS",
+    len(registered_bindings) == 9
     and {
         row["CAPABILITY_ID"]
         for row in registered_bindings
@@ -1940,12 +2126,13 @@ check(
         "MIGRATION_CANONICAL_RECONCILIATION",
         "ADVANCED_CODE_ENGINEERING",
         "NEW_PRODUCT_FROM_BRIEF",
+        "RELEASE_LIFECYCLE",
     },
 )
 
 check(
-    "NINE_UNBOUND_FAIL_CLOSED",
-    len(hold_bindings) == 9,
+    "EIGHT_UNBOUND_FAIL_CLOSED",
+    len(hold_bindings) == 8,
 )
 
 
