@@ -1,0 +1,420 @@
+{
+  "capabilities": [
+    {
+      "acceptance": {
+        "discovered": true,
+        "doneCheckPass": true,
+        "evidenceBound": true,
+        "expectedResultObserved": true,
+        "failurePathTested": true,
+        "fieldVerified": true,
+        "freshReverify": true,
+        "invocable": true,
+        "realTaskExecuted": true
+      },
+      "authority": "GREEN",
+      "capabilityId": "CURRENT_TECHNICAL_TRUTH_READ",
+      "evidence": {
+        "path": "/Users/abdal/Enguru/Evidence/MacEngineer/package08-field-campaign/20260929T115306Z/capability-01/evidence.json",
+        "sha256": "8c159f6f1d754a3404a117bc14cbd7a89be12ac6539cba73b50c8d625a91e890"
+      },
+      "fieldState": "FIELD_VERIFIED",
+      "index": 1,
+      "readinessClass": "A",
+      "requiresHumanThreshold": false,
+      "riskClass": "LOW"
+    },
+    {
+      "acceptance": {
+        "discovered": false,
+        "doneCheckPass": false,
+        "evidenceBound": false,
+        "expectedResultObserved": false,
+        "failurePathTested": false,
+        "fieldVerified": false,
+        "freshReverify": false,
+        "invocable": false,
+        "realTaskExecuted": false
+      },
+      "authority": "GREEN",
+      "capabilityId": "CANONICAL_BOOT",
+      "evidence": null,
+      "fieldState": "PENDING",
+      "index": 2,
+      "readinessClass": "B",
+      "requiresHumanThreshold": false,
+      "riskClass": "LOW"
+    },
+    {
+      "acceptance": {
+        "discovered": false,
+        "doneCheckPass": false,
+        "evidenceBound": false,
+        "expectedResultObserved": false,
+        "failurePathTested": false,
+        "fieldVerified": false,
+        "freshReverify": false,
+        "invocable": false,
+        "realTaskExecuted": false
+      },
+      "authority": "GREEN",
+      "capabilityId": "LOCAL_DOCTOR",
+      "evidence": null,
+      "fieldState": "PENDING",
+      "index": 3,
+      "readinessClass": "B",
+      "requiresHumanThreshold": false,
+      "riskClass": "LOW"
+    },
+    {
+      "acceptance": {
+        "discovered": false,
+        "doneCheckPass": false,
+        "evidenceBound": false,
+        "expectedResultObserved": false,
+        "failurePathTested": false,
+        "fieldVerified": false,
+        "freshReverify": false,
+        "invocable": false,
+        "realTaskExecuted": false
+      },
+      "authority": "AMBER",
+      "capabilityId": "OPERATOR_CONTINUE_DISPATCH",
+      "evidence": null,
+      "fieldState": "PENDING",
+      "index": 4,
+      "readinessClass": "B",
+      "requiresHumanThreshold": false,
+      "riskClass": "MEDIUM"
+    },
+    {
+      "acceptance": {
+        "discovered": false,
+        "doneCheckPass": false,
+        "evidenceBound": false,
+        "expectedResultObserved": false,
+        "failurePathTested": false,
+        "fieldVerified": false,
+        "freshReverify": false,
+        "invocable": false,
+        "realTaskExecuted": false
+      },
+      "authority": "GREEN",
+      "capabilityId": "FAIL_CLOSED_ENGINEERING",
+      "evidence": null,
+      "fieldState": "PENDING",
+      "index": 5,
+      "readinessClass": "C",
+      "requiresHumanThreshold": false,
+      "riskClass": "LOW"
+    },
+    {
+      "acceptance": {
+        "discovered": false,
+        "doneCheckPass": false,
+        "evidenceBound": false,
+        "expectedResultObserved": false,
+        "failurePathTested": false,
+        "fieldVerified": false,
+        "freshReverify": false,
+        "invocable": false,
+        "realTaskExecuted": false
+      },
+      "authority": "AMBER",
+      "capabilityId": "SOURCE_PRODUCT_CHANGE",
+      "evidence": null,
+      "fieldState": "PENDING",
+      "index": 6,
+      "readinessClass": "B",
+      "requiresHumanThreshold": false,
+      "riskClass": "MEDIUM"
+    },
+    {
+      "acceptance": {
+        "discovered": false,
+        "doneCheckPass": false,
+        "evidenceBound": false,
+        "expectedResultObserved": false,
+        "failurePathTested": false,
+        "fieldVerified": false,
+        "freshReverify": false,
+        "invocable": false,
+        "realTaskExecuted": false
+      },
+      "authority": "GREEN",
+      "capabilityId": "BUILD",
+      "evidence": null,
+      "fieldState": "PENDING",
+      "index": 7,
+      "readinessClass": "B",
+      "requiresHumanThreshold": false,
+      "riskClass": "LOW"
+    },
+    {
+      "acceptance": {
+        "discovered": false,
+        "doneCheckPass": false,
+        "evidenceBound": false,
+        "expectedResultObserved": false,
+        "failurePathTested": false,
+        "fieldVerified": false,
+        "freshReverify": false,
+        "invocable": false,
+        "realTaskExecuted": false
+      },
+      "authority": "GREEN",
+      "capabilityId": "TEST_REGRESSION",
+      "evidence": null,
+      "fieldState": "PENDING",
+      "index": 8,
+      "readinessClass": "B",
+      "requiresHumanThreshold": false,
+      "riskClass": "LOW"
+    },
+    {
+      "acceptance": {
+        "discovered": false,
+        "doneCheckPass": false,
+        "evidenceBound": false,
+        "expectedResultObserved": false,
+        "failurePathTested": false,
+        "fieldVerified": false,
+        "freshReverify": false,
+        "invocable": false,
+        "realTaskExecuted": false
+      },
+      "authority": "AMBER",
+      "capabilityId": "ROOT_CAUSE_REPAIR",
+      "evidence": null,
+      "fieldState": "PENDING",
+      "index": 9,
+      "readinessClass": "B",
+      "requiresHumanThreshold": false,
+      "riskClass": "MEDIUM"
+    },
+    {
+      "acceptance": {
+        "discovered": false,
+        "doneCheckPass": false,
+        "evidenceBound": false,
+        "expectedResultObserved": false,
+        "failurePathTested": false,
+        "fieldVerified": false,
+        "freshReverify": false,
+        "invocable": false,
+        "realTaskExecuted": false
+      },
+      "authority": "AMBER",
+      "capabilityId": "MIGRATION_CANONICAL_RECONCILIATION",
+      "evidence": null,
+      "fieldState": "PENDING",
+      "index": 10,
+      "readinessClass": "D",
+      "requiresHumanThreshold": true,
+      "riskClass": "HIGH"
+    },
+    {
+      "acceptance": {
+        "discovered": false,
+        "doneCheckPass": false,
+        "evidenceBound": false,
+        "expectedResultObserved": false,
+        "failurePathTested": false,
+        "fieldVerified": false,
+        "freshReverify": false,
+        "invocable": false,
+        "realTaskExecuted": false
+      },
+      "authority": "AMBER",
+      "capabilityId": "ADVANCED_CODE_ENGINEERING",
+      "evidence": null,
+      "fieldState": "PENDING",
+      "index": 11,
+      "readinessClass": "B",
+      "requiresHumanThreshold": false,
+      "riskClass": "MEDIUM"
+    },
+    {
+      "acceptance": {
+        "discovered": false,
+        "doneCheckPass": false,
+        "evidenceBound": false,
+        "expectedResultObserved": false,
+        "failurePathTested": false,
+        "fieldVerified": false,
+        "freshReverify": false,
+        "invocable": false,
+        "realTaskExecuted": false
+      },
+      "authority": "AMBER",
+      "capabilityId": "NEW_PRODUCT_FROM_BRIEF",
+      "evidence": null,
+      "fieldState": "PENDING",
+      "index": 12,
+      "readinessClass": "B",
+      "requiresHumanThreshold": false,
+      "riskClass": "MEDIUM"
+    },
+    {
+      "acceptance": {
+        "discovered": false,
+        "doneCheckPass": false,
+        "evidenceBound": false,
+        "expectedResultObserved": false,
+        "failurePathTested": false,
+        "fieldVerified": false,
+        "freshReverify": false,
+        "invocable": false,
+        "realTaskExecuted": false
+      },
+      "authority": "RED",
+      "capabilityId": "RELEASE_LIFECYCLE",
+      "evidence": null,
+      "fieldState": "PENDING",
+      "index": 13,
+      "readinessClass": "D",
+      "requiresHumanThreshold": true,
+      "riskClass": "HIGH"
+    },
+    {
+      "acceptance": {
+        "discovered": false,
+        "doneCheckPass": false,
+        "evidenceBound": false,
+        "expectedResultObserved": false,
+        "failurePathTested": false,
+        "fieldVerified": false,
+        "freshReverify": false,
+        "invocable": false,
+        "realTaskExecuted": false
+      },
+      "authority": "RED",
+      "capabilityId": "FINISHED_PRODUCT_DELIVERY_ACCEPTANCE",
+      "evidence": null,
+      "fieldState": "PENDING",
+      "index": 14,
+      "readinessClass": "D",
+      "requiresHumanThreshold": true,
+      "riskClass": "HIGH"
+    },
+    {
+      "acceptance": {
+        "discovered": false,
+        "doneCheckPass": false,
+        "evidenceBound": false,
+        "expectedResultObserved": false,
+        "failurePathTested": false,
+        "fieldVerified": false,
+        "freshReverify": false,
+        "invocable": false,
+        "realTaskExecuted": false
+      },
+      "authority": "GREEN",
+      "capabilityId": "EVIDENCE_DONECHECK",
+      "evidence": null,
+      "fieldState": "PENDING",
+      "index": 15,
+      "readinessClass": "B",
+      "requiresHumanThreshold": false,
+      "riskClass": "LOW"
+    },
+    {
+      "acceptance": {
+        "discovered": false,
+        "doneCheckPass": false,
+        "evidenceBound": false,
+        "expectedResultObserved": false,
+        "failurePathTested": false,
+        "fieldVerified": false,
+        "freshReverify": false,
+        "invocable": false,
+        "realTaskExecuted": false
+      },
+      "authority": "AMBER",
+      "capabilityId": "RECOVERY_OFFLINE_CONTINUITY",
+      "evidence": null,
+      "fieldState": "PENDING",
+      "index": 16,
+      "readinessClass": "B",
+      "requiresHumanThreshold": false,
+      "riskClass": "MEDIUM"
+    },
+    {
+      "acceptance": {
+        "discovered": false,
+        "doneCheckPass": false,
+        "evidenceBound": false,
+        "expectedResultObserved": false,
+        "failurePathTested": false,
+        "fieldVerified": false,
+        "freshReverify": false,
+        "invocable": false,
+        "realTaskExecuted": false
+      },
+      "authority": "AMBER",
+      "capabilityId": "TERMINAL_EXECUTION",
+      "evidence": null,
+      "fieldState": "PENDING",
+      "index": 17,
+      "readinessClass": "C",
+      "requiresHumanThreshold": false,
+      "riskClass": "HIGH"
+    },
+    {
+      "acceptance": {
+        "discovered": false,
+        "doneCheckPass": false,
+        "evidenceBound": false,
+        "expectedResultObserved": false,
+        "failurePathTested": false,
+        "fieldVerified": false,
+        "freshReverify": false,
+        "invocable": false,
+        "realTaskExecuted": false
+      },
+      "authority": "AMBER",
+      "capabilityId": "FILESYSTEM_MACOS_AUTOMATION",
+      "evidence": null,
+      "fieldState": "PENDING",
+      "index": 18,
+      "readinessClass": "D",
+      "requiresHumanThreshold": true,
+      "riskClass": "HIGH"
+    },
+    {
+      "acceptance": {
+        "discovered": false,
+        "doneCheckPass": false,
+        "evidenceBound": false,
+        "expectedResultObserved": false,
+        "failurePathTested": false,
+        "fieldVerified": false,
+        "freshReverify": false,
+        "invocable": false,
+        "realTaskExecuted": false
+      },
+      "authority": "GREEN",
+      "capabilityId": "INTERNET_RESEARCH_HARVEST_ASTRA",
+      "evidence": null,
+      "fieldState": "PENDING",
+      "index": 19,
+      "readinessClass": "D",
+      "requiresHumanThreshold": false,
+      "riskClass": "MEDIUM"
+    }
+  ],
+  "capabilityCount": 19,
+  "fieldVerifiedCount": 1,
+  "package": "PACKAGE_08_19_OF_19_REAL_OSI_FIELD_VERIFICATION",
+  "schema": "enguru.mac-engineer.capability-field-verification-ledger/v1",
+  "state": "ACTIVE",
+  "zeroTolerance": {
+    "AUTHORITY_BYPASS": 0,
+    "CRITICAL_FALSE_PASS": 0,
+    "EVIDENCE_MISSING": 0,
+    "HUMAN_THRESHOLD_MISS": 0,
+    "STALE_PASS_USED_AS_FINAL": 0,
+    "UNBOUNDED_RETRY": 0,
+    "UNTRACKED_MUTATION": 0
+  }
+}
