@@ -2,7 +2,7 @@
 
 ## STATE
 
-**ACTIVE / TEMPORARY CANONICAL SESSION BOOTSTRAP**
+**PACKAGE08 VERIFIED_CLOSED / TEMPORARY CANONICAL SESSION BOOTSTRAP**
 
 ## CURRENT POST-v0.8 OBJECTIVE AUTHORITY
 
@@ -10,11 +10,11 @@
 
 `CURRENT_GATE=NONE`
 
-`LAST_FIELD_VERIFIED_CAPABILITY_INDEX=18`
+`LAST_FIELD_VERIFIED_CAPABILITY_INDEX=19`
 
-`LAST_FIELD_VERIFIED_CAPABILITY_ID=FILESYSTEM_MACOS_AUTOMATION`
+`LAST_FIELD_VERIFIED_CAPABILITY_ID=INTERNET_RESEARCH_HARVEST_ASTRA`
 
-`NEXT_ACTION=RETURN_RAW_OUTPUT_TO_ZEKU_FOR_CAP18_FINAL_SECOND_LOOK`
+`NEXT_ACTION=AWAIT_NEXT_OBJECTIVE`
 
 `CURRENT_PROGRAM_FINAL_TARGET=v1.3_USABLE_VERIFIED_PRODUCT`
 
@@ -22,10 +22,12 @@ v0.8 remains **VERIFIED / LOCKED** and is not reopened. Gate 12 remains
 sealed by the immutable final acceptance receipt
 `/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/final-acceptance-receipt.json` with digest `sha256:697c3569d1ef83ab79dee114561146e8a3368145ce0eacffa8cd4e61e2d92b23`.
 
-The authorized post-v0.8 objective is the existing Package08 Field Capability
-Campaign. Eighteen capabilities are field-verified; Capability 18 is sealed
-from accepted technical and Human Threshold Evidence. Capability 19 remains
-PENDING and is not activated until progression authority is reconciled.
+The authorized post-v0.8 Package08 Field Capability Campaign is
+**VERIFIED_CLOSED**. All nineteen capabilities are FIELD_VERIFIED. CAP01–18
+Evidence remains preserved; CAP19 is bound to its fresh field seal and 21/21
+DoneCheck PASS. Campaign aggregate DoneCheck is 14/14 PASS and its closure
+receipt is authoritative for this campaign scope. v0.8 and Gate 12 remain
+VERIFIED_LOCKED and were not reopened.
 
 Bu dosya ENGÜRÜ Mac Engineer™ geliştirme çalışması sürerken yeni ChatGPT oturumlarının aynı çalışma yoluna hızla bağlanması için tutulur.
 
@@ -302,6 +304,14 @@ Kalıcı kaynaklar:
 ## JUDGMENT
 
 **Bu çalışma yolu, yeni ChatGPT oturumunu GitHub hakikatinden başlatır; GitHub mühendisliği ile Mac gerçek-saha kanıtını tek acceptance zincirinde eşler.**
+
+## HISTORICAL WORKING-PATH RECORDS
+
+The records below preserve earlier v0.8 execution states and historical next
+actions. They do not override the current post-v0.8 authority block at the top
+of this file: Package08 is `VERIFIED_CLOSED` and the current next action is
+`AWAIT_NEXT_OBJECTIVE`.
+
 ## V0.8 SCENARIO-GATE EXECUTION DISCIPLINE
 
 **STATE — CANONICAL WORKING RULE.**

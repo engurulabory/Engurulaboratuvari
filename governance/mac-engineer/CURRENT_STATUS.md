@@ -2,7 +2,7 @@
 
 ## Package08 Field Capability Campaign canonical objective
 
-**STATE — ACTIVE / CAPABILITY 18 FIELD VERIFIED.**
+**STATE — VERIFIED_CLOSED / 19 OF 19 FIELD_VERIFIED.**
 
 v0.8 remains **VERIFIED / LOCKED**. DoneCheck™ v1.2 remains **PASS 11/11**,
 Human Threshold™ remains **ACCEPT**, and Gate 12 is not reactivated. The
@@ -12,18 +12,33 @@ immutable final acceptance receipt remains authoritative.
 digest `sha256:697c3569d1ef83ab79dee114561146e8a3368145ce0eacffa8cd4e61e2d92b23`.
 
 The current authorized post-v0.8 objective is
-`PACKAGE08_FIELD_CAPABILITY_CAMPAIGN`. Eighteen capabilities are field
-verified. Capability 18 `FILESYSTEM_MACOS_AUTOMATION` is **FIELD_VERIFIED**
-from the accepted technical candidate, consumed Human Threshold receipt and
-fresh field-verification seal. Capability 19 remains **PENDING / NOT STARTED**.
-The technical filesystem task and Human Threshold were not re-executed.
+`PACKAGE08_FIELD_CAPABILITY_CAMPAIGN`. All nineteen capabilities are field
+verified. Capability 18 `FILESYSTEM_MACOS_AUTOMATION` remains
+**FIELD_VERIFIED**. Capability 19 `INTERNET_RESEARCH_HARVEST_ASTRA` is now
+**FIELD_VERIFIED** after one fresh bounded registered-action execution produced
+two primary-source captures, `local_runtime` / `qwen3:14b` synthesis, 21/21
+DoneCheck PASS, failure-path proof and a fresh field seal. Campaign aggregate
+reconciliation and campaign DoneCheck are PASS; Package08 is
+**VERIFIED_CLOSED**.
 
 **CAP18 FIELD SEAL —** `/Users/abdal/Enguru/Evidence/MacEngineer/package08-field-campaign/20260929T200532120453Z/capability-18/field-verification-seal.json`;
 digest `sha256:f30a2ebb468ba38f54bf0e8ad0f7afb1feafbeb65470dc294e2f8ade9f9440bd`.
 
-**NEXT ACTION —** `RETURN_RAW_OUTPUT_TO_ZEKU_FOR_CAP18_FINAL_SECOND_LOOK`.
+**CAP19 HOLD EVIDENCE —** `/Users/abdal/Enguru/Evidence/MacEngineer/package08-field-campaign/20260929T211920128482Z/capability-19/hold-receipt.json`;
+digest `sha256:e0684688b15e82fa88bf8c7147dca5b3c5652402d3a0f35bd51c99e03bcfd69d`.
 
-**Updated:** 2026-09-29
+**CAP19 FIELD SEAL —** `/Users/abdal/Enguru/Evidence/MacEngineer/package08-field-campaign/20260930T044658087707Z/capability-19/field-verification-seal.json`;
+digest `sha256:953f86c54d07a5f4c86a0d668f20b9030f62fd4692cc1874834b354525271c74`.
+
+**CAMPAIGN DONECHECK —** `/Users/abdal/Enguru/Evidence/MacEngineer/package08-field-campaign/campaign-closure/20260930T045952885213Z/campaign-donecheck.json`;
+digest `sha256:d5a71a8ab3c6d1463a39f53dcfb98181cd203017e404ab4d25f0e34efe9f7000`.
+
+**CAMPAIGN CLOSURE RECEIPT —** `/Users/abdal/Enguru/Evidence/MacEngineer/package08-field-campaign/campaign-closure/20260930T045952885213Z/campaign-closure-receipt.json`;
+digest `sha256:ba6e8163507c44826efd3cdaf8caab0a4f7a42f3153ebaad421250683a66192e`.
+
+**NEXT ACTION —** `AWAIT_NEXT_OBJECTIVE`.
+
+**Updated:** 2026-09-30
 **Program target:** ENGÜRÜ Mac Engineering™ v1.3 — Usable Verified Product
 **Current version:** v0.8 — PRODUCT ENGINEERING OPERATOR / VERIFIED LOCKED
 **Current objective:** PACKAGE08_FIELD_CAPABILITY_CAMPAIGN
@@ -33,9 +48,9 @@ digest `sha256:f30a2ebb468ba38f54bf0e8ad0f7afb1feafbeb65470dc294e2f8ade9f9440bd`
 
 `CURRENT_GATE=NONE`
 
-`LAST_FIELD_VERIFIED_CAPABILITY_INDEX=18`
+`LAST_FIELD_VERIFIED_CAPABILITY_INDEX=19`
 
-`LAST_FIELD_VERIFIED_CAPABILITY_ID=FILESYSTEM_MACOS_AUTOMATION`
+`LAST_FIELD_VERIFIED_CAPABILITY_ID=INTERNET_RESEARCH_HARVEST_ASTRA`
 
 `V08_VERIFIED_LOCKED=1`
 
@@ -178,17 +193,20 @@ v0.4, v0.5 and v0.6 locked truths remain unchanged.
 
 ## CURRENT OBJECTIVE
 
-**Package08 Field Capability Campaign / Capability 18.**
+**Package08 Field Capability Campaign / Capability 19.**
 
 v0.8 remains VERIFIED / LOCKED with its final receipt unchanged. Package08
-continues as the authorized post-v0.8 objective with 18 field-verified
-capabilities. CAP18 is FIELD_VERIFIED; CAP19 remains PENDING.
+is the completed post-v0.8 objective with 19 field-verified capabilities.
+CAP18 remains FIELD_VERIFIED. CAP19 fresh registered-action execution,
+primary-source transport, local synthesis, failure paths, 21/21 DoneCheck and
+field seal are PASS. Campaign aggregate DoneCheck is 14/14 PASS and Package08
+is VERIFIED_CLOSED.
 
 Final acceptance receipt: `/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/final-acceptance-receipt.json`.
 Final acceptance receipt digest: `sha256:697c3569d1ef83ab79dee114561146e8a3368145ce0eacffa8cd4e61e2d92b23`.
 
 Current required difference:
-`RETURN_RAW_OUTPUT_TO_ZEKU_FOR_CAP18_FINAL_SECOND_LOOK`.
+`AWAIT_NEXT_OBJECTIVE`.
 
 ## REMAINING v0.6 CLOSEOUT
 
@@ -215,11 +233,11 @@ CURRENT_STATUS is updated after every material engineering package or PASS / HOL
 
 **v0.8 PRODUCT ENGINEERING OPERATOR = VERIFIED / LOCKED.**
 
-**Package08 Field Capability Campaign = ACTIVE / CAP18 FIELD_VERIFIED / CAP19 PENDING.**
+**Package08 Field Capability Campaign = VERIFIED_CLOSED / CAP01–19 FIELD_VERIFIED / FIELD_VERIFIED_COUNT 19.**
 
 ## NEXT ACTION
 
-`RETURN_RAW_OUTPUT_TO_ZEKU_FOR_CAP18_FINAL_SECOND_LOOK`
+`AWAIT_NEXT_OBJECTIVE`
 
 ## HISTORICAL ENGINEERING LOG
 

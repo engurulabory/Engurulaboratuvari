@@ -589,7 +589,7 @@
     },
     {
       "CAPABILITY_ID": "INTERNET_RESEARCH_HARVEST_ASTRA",
-      "STATE": "PARTIAL",
+      "STATE": "VERIFIED",
       "INPUTS": [
         "CURRENT_TRUTH",
         "BOUNDED_OBJECTIVE"

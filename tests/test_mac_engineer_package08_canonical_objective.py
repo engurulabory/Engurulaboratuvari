@@ -8,7 +8,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 GOV = ROOT / "governance" / "mac-engineer"
 OBJECTIVE = "PACKAGE08_FIELD_CAPABILITY_CAMPAIGN"
-NEXT_ACTION = "RETURN_RAW_OUTPUT_TO_ZEKU_FOR_CAP18_FINAL_SECOND_LOOK"
+NEXT_ACTION = "AWAIT_NEXT_OBJECTIVE"
 
 
 def load(name: str) -> dict:
@@ -58,20 +58,27 @@ class Package08CanonicalObjectiveTests(unittest.TestCase):
         roadmap_campaign = roadmap["current"]["postV08Objective"]
         capabilities = {item["index"]: item for item in ledger["capabilities"]}
 
-        self.assertEqual(ledger["fieldVerifiedCount"], 18)
+        self.assertEqual(ledger["fieldVerifiedCount"], 19)
         self.assertEqual(capabilities[17]["fieldState"], "FIELD_VERIFIED")
         self.assertEqual(
             capabilities[18]["capabilityId"], "FILESYSTEM_MACOS_AUTOMATION"
         )
         self.assertEqual(capabilities[18]["fieldState"], "FIELD_VERIFIED")
-        self.assertEqual(capabilities[19]["fieldState"], "PENDING")
+        self.assertEqual(capabilities[19]["fieldState"], "FIELD_VERIFIED")
+        self.assertTrue(all(capabilities[19]["acceptance"].values()))
         self.assertEqual(campaign, roadmap_campaign)
-        self.assertEqual(campaign["fieldVerifiedCount"], 18)
-        self.assertIsNone(campaign["activeCapabilityIndex"])
-        self.assertIsNone(campaign["activeCapabilityState"])
-        self.assertEqual(campaign["lastFieldVerifiedCapabilityIndex"], 18)
-        self.assertEqual(campaign["nextCapabilityIndex"], 19)
-        self.assertEqual(campaign["nextCapabilityState"], "PENDING")
+        self.assertEqual(campaign["state"], "VERIFIED_CLOSED")
+        self.assertEqual(campaign["fieldVerifiedCount"], 19)
+        self.assertEqual(campaign["activeCapabilityIndex"], 19)
+        self.assertEqual(campaign["activeCapabilityState"], "FIELD_VERIFIED")
+        self.assertEqual(campaign["lastFieldVerifiedCapabilityIndex"], 19)
+        self.assertIsNone(campaign["nextCapabilityIndex"])
+        self.assertEqual(campaign["nextCapabilityState"], "CAMPAIGN_CLOSED")
+        self.assertEqual(campaign["cap19AttemptCount"], 2)
+        self.assertTrue(campaign["cap19RetryBudgetExhausted"])
+        self.assertTrue(campaign["cap19DoneCheckPass"])
+        self.assertTrue(campaign["cap19FieldSealProduced"])
+        self.assertTrue(campaign["campaignDoneCheckPass"])
         self.assertFalse(campaign["v08Reopened"])
         self.assertFalse(campaign["gate12Reactivated"])
         self.assertTrue(campaign["capabilityExecutionPerformed"])

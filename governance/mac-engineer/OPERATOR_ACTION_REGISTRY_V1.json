@@ -388,6 +388,30 @@
       "canonicalTruthPreserved": true,
       "technicalCandidateSha256": "ed971c6f56cef4d84e09606e549ac69901b1d9842ddc3ac975e59820246ec80b",
       "humanThresholdReceiptSha256": "7ecc6e8422a4baa051dac0ccacb022fe36050b48f32756521321df7583276265"
+    },
+    "PACKAGE08_CAP19_INTERNET_RESEARCH_HARVEST_ASTRA_FIELD_PROOF": {
+      "handler": "PACKAGE08_CAP19_INTERNET_RESEARCH_HARVEST_ASTRA_FIELD_PROOF",
+      "authority": "GREEN_BOUNDED_READ_ONLY_RESEARCH_AUTHORITY",
+      "command": "governance/mac-engineer/PACKAGE08_CAP19_INTERNET_RESEARCH_HARVEST_ASTRA_FIELD_PROOF.command",
+      "networkRequired": true,
+      "readOnlyNetwork": true,
+      "allowedHosts": [
+        "rfc-editor.org",
+        "www.iana.org",
+        "www.rfc-editor.org"
+      ],
+      "maxAttempts": 2,
+      "credentialRequired": false,
+      "remotePush": false,
+      "failClosed": true,
+      "humanThresholdRequired": false,
+      "mutationScope": "RESEARCH_ARTIFACTS_ONLY",
+      "generalBrowserAuthority": false,
+      "canonicalSourceMutationAllowed": false,
+      "productMutationAllowed": false,
+      "persistentExternalMutationAllowed": false,
+      "authorityExpansionAllowed": false,
+      "canonicalTruthPreserved": true
     }
   }
 }

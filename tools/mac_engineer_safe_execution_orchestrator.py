@@ -1022,6 +1022,59 @@ def execute_proven_registered_action(
                 False,
         },
 
+        "INTERNET_RESEARCH_HARVEST_ASTRA": {
+            "ACTION":
+                "PACKAGE08_CAP19_INTERNET_RESEARCH_HARVEST_ASTRA_FIELD_PROOF",
+
+            "REGISTERED_HANDLER":
+                "PACKAGE08_CAP19_INTERNET_RESEARCH_HARVEST_ASTRA_FIELD_PROOF",
+
+            "OPERATOR_CALLABLE":
+                "run_package08_cap19_internet_research_harvest_astra_field_proof",
+
+            "AUTHORITY":
+                "GREEN_BOUNDED_READ_ONLY_RESEARCH_AUTHORITY",
+
+            "NETWORK_ALLOWED":
+                True,
+
+            "READ_ONLY_NETWORK":
+                True,
+
+            "REMOTE_PUSH_ALLOWED":
+                False,
+
+            "RECOVERY_PROOF_REQUIRED":
+                False,
+
+            "HUMAN_THRESHOLD_REQUIRED":
+                False,
+
+            "MUTATION_SCOPE":
+                "RESEARCH_ARTIFACTS_ONLY",
+
+            "GENERAL_BROWSER_AUTHORITY":
+                False,
+
+            "CREDENTIAL_REQUIRED":
+                False,
+
+            "CANONICAL_SOURCE_MUTATION_ALLOWED":
+                False,
+
+            "PRODUCT_MUTATION_ALLOWED":
+                False,
+
+            "PERSISTENT_EXTERNAL_MUTATION_ALLOWED":
+                False,
+
+            "CANONICAL_TRUTH_PRESERVED":
+                True,
+
+            "EXECUTION_AUTHORITY_CREATED":
+                False,
+        },
+
 
     }
 
@@ -1094,9 +1147,14 @@ def execute_proven_registered_action(
             ACTION=action,
         )
 
+    expected_network_required = (
+        capability_id
+        == "INTERNET_RESEARCH_HARVEST_ASTRA"
+    )
+
     if (
         contract.get("networkRequired")
-        is not False
+        is not expected_network_required
     ):
         return hold(
             "REGISTERED_ACTION_NETWORK_POLICY_VIOLATION",
@@ -1144,6 +1202,30 @@ def execute_proven_registered_action(
             if contract.get(key) != value:
                 return hold(
                     "REGISTERED_ACTION_CAP18_CONTRACT_MISMATCH",
+                    CAPABILITY_ID=capability_id,
+                    ACTION=action,
+                    FIELD=key,
+                )
+
+    if capability_id == "INTERNET_RESEARCH_HARVEST_ASTRA":
+        cap19_contract = {
+            "readOnlyNetwork": True,
+            "allowedHosts": ["rfc-editor.org", "www.iana.org", "www.rfc-editor.org"],
+            "maxAttempts": 2,
+            "credentialRequired": False,
+            "humanThresholdRequired": False,
+            "mutationScope": "RESEARCH_ARTIFACTS_ONLY",
+            "generalBrowserAuthority": False,
+            "canonicalSourceMutationAllowed": False,
+            "productMutationAllowed": False,
+            "persistentExternalMutationAllowed": False,
+            "authorityExpansionAllowed": False,
+            "canonicalTruthPreserved": True,
+        }
+        for key, value in cap19_contract.items():
+            if contract.get(key) != value:
+                return hold(
+                    "REGISTERED_ACTION_CAP19_CONTRACT_MISMATCH",
                     CAPABILITY_ID=capability_id,
                     ACTION=action,
                     FIELD=key,
@@ -2606,6 +2688,52 @@ def execute_proven_registered_action(
             "canonicalTruthPreserved": True,
         }
 
+    elif capability_id == "INTERNET_RESEARCH_HARVEST_ASTRA":
+        result = (
+            operator
+            .run_package08_cap19_internet_research_harvest_astra_field_proof()
+        )
+
+        fields = result.get("fields") if isinstance(result.get("fields"), dict) else {}
+        observed = {
+            "wrapperStatePass": result.get("state") == "PASS",
+            "wrapperCodeZero": result.get("code") == 0,
+            "capabilityPass": fields.get("CAP19_INTERNET_RESEARCH_HARVEST_ASTRA") == "PASS",
+            "networkAccess": fields.get("NETWORK_ACCESS") == "true",
+            "networkMutationFalse": fields.get("NETWORK_MUTATION") == "false",
+            "sourceMutationFalse": fields.get("SOURCE_MUTATION") == "false",
+            "productMutationFalse": fields.get("PRODUCT_MUTATION") == "false",
+            "remotePushFalse": fields.get("REMOTE_PUSH") == "false",
+            "credentialFalse": fields.get("CREDENTIAL_USED") == "false",
+            "freshSources": fields.get("FRESH_SOURCES") == "2",
+            "astraSynthesis": fields.get("ASTRA_SYNTHESIS") == "PASS",
+            "expectedResult": fields.get("EXPECTED_RESULT_OBSERVED") == "PASS",
+            "failurePath": fields.get("FAILURE_PATH_TESTED") == "PASS",
+            "boundedRetry": fields.get("BOUNDED_RETRY") == "PASS",
+            "freshReverify": fields.get("FRESH_REVERIFY") == "PASS",
+            "doneCheck": fields.get("DONECHECK") == "PASS",
+            "humanThresholdFalse": fields.get("HUMAN_THRESHOLD_REQUIRED") == "false",
+            "generalBrowserFalse": fields.get("GENERAL_BROWSER_AUTHORITY") == "false",
+            "canonicalTruth": fields.get("CANONICAL_TRUTH_PRESERVED") == "PASS",
+            "falsePassZero": fields.get("CRITICAL_FALSE_PASS_COUNT") == "0",
+            "runtimeEvidencePresent": bool(result.get("evidence")),
+        }
+
+        recovery_observed = False
+        mutation_scope = {
+            "filesystemMutationExpected": True,
+            "scope": "RESEARCH_ARTIFACTS_ONLY",
+            "networkAccessExpected": True,
+            "networkMutationAllowed": False,
+            "sourceMutationAllowed": False,
+            "productMutationAllowed": False,
+            "remoteMutationAllowed": False,
+            "generalBrowserAuthority": False,
+            "credentialRequired": False,
+            "humanThresholdRequired": False,
+            "canonicalTruthPreserved": True,
+        }
+
     elif capability_id == "FINISHED_PRODUCT_DELIVERY_ACCEPTANCE":
         result = (
             operator
@@ -3481,7 +3609,7 @@ def execute_proven_registered_action(
 
         "NETWORK_POLICY": {
             "allowed":
-                False,
+                expected_network_required,
 
             "contractNetworkRequired":
                 contract.get(
@@ -3551,7 +3679,7 @@ def execute_proven_registered_action(
                 contract.get(
                     "networkRequired"
                 )
-                is False,
+                is expected_network_required,
 
             "remotePushPolicyMatched":
                 observed[

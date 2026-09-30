@@ -450,20 +450,23 @@
     },
     {
       "acceptance": {
-        "discovered": false,
-        "doneCheckPass": false,
-        "evidenceBound": false,
-        "expectedResultObserved": false,
-        "failurePathTested": false,
-        "fieldVerified": false,
-        "freshReverify": false,
-        "invocable": false,
-        "realTaskExecuted": false
+        "discovered": true,
+        "doneCheckPass": true,
+        "evidenceBound": true,
+        "expectedResultObserved": true,
+        "failurePathTested": true,
+        "fieldVerified": true,
+        "freshReverify": true,
+        "invocable": true,
+        "realTaskExecuted": true
       },
       "authority": "GREEN",
       "capabilityId": "INTERNET_RESEARCH_HARVEST_ASTRA",
-      "evidence": null,
-      "fieldState": "PENDING",
+      "evidence": {
+        "path": "/Users/abdal/Enguru/Evidence/MacEngineer/package08-field-campaign/20260930T044658087707Z/capability-19/field-verification-seal.json",
+        "sha256": "953f86c54d07a5f4c86a0d668f20b9030f62fd4692cc1874834b354525271c74"
+      },
+      "fieldState": "FIELD_VERIFIED",
       "index": 19,
       "readinessClass": "D",
       "requiresHumanThreshold": false,
@@ -471,10 +474,18 @@
     }
   ],
   "capabilityCount": 19,
-  "fieldVerifiedCount": 18,
+  "fieldVerifiedCount": 19,
   "package": "PACKAGE_08_19_OF_19_REAL_OSI_FIELD_VERIFICATION",
   "schema": "enguru.mac-engineer.capability-field-verification-ledger/v1",
-  "state": "ACTIVE",
+  "state": "VERIFIED_CLOSED",
+  "campaignClosure": {
+    "state": "PASS",
+    "doneCheckPass": true,
+    "doneCheckPath": "/Users/abdal/Enguru/Evidence/MacEngineer/package08-field-campaign/campaign-closure/20260930T045952885213Z/campaign-donecheck.json",
+    "doneCheckSha256": "d5a71a8ab3c6d1463a39f53dcfb98181cd203017e404ab4d25f0e34efe9f7000",
+    "receiptPath": "/Users/abdal/Enguru/Evidence/MacEngineer/package08-field-campaign/campaign-closure/20260930T045952885213Z/campaign-closure-receipt.json",
+    "receiptSha256": "ba6e8163507c44826efd3cdaf8caab0a4f7a42f3153ebaad421250683a66192e"
+  },
   "zeroTolerance": {
     "AUTHORITY_BYPASS": 0,
     "CRITICAL_FALSE_PASS": 0,

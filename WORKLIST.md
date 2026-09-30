@@ -1128,11 +1128,11 @@ Local evidence:
 
 `CURRENT_GATE=NONE`
 
-`LAST_FIELD_VERIFIED_CAPABILITY_INDEX=18`
+`LAST_FIELD_VERIFIED_CAPABILITY_INDEX=19`
 
-`LAST_FIELD_VERIFIED_CAPABILITY_ID=FILESYSTEM_MACOS_AUTOMATION`
+`LAST_FIELD_VERIFIED_CAPABILITY_ID=INTERNET_RESEARCH_HARVEST_ASTRA`
 
-`NEXT_ACTION=RETURN_RAW_OUTPUT_TO_ZEKU_FOR_CAP18_FINAL_SECOND_LOOK`
+`NEXT_ACTION=AWAIT_NEXT_OBJECTIVE`
 
 `CURRENT_PROGRAM_FINAL_TARGET=v1.3_USABLE_VERIFIED_PRODUCT`
 
@@ -1193,21 +1193,31 @@ DoneCheck authority:
 11. [x] **Gate 11 — Consolidated Real-Mac Product Engineering Commissioning — VERIFIED / LOCKED**
 12. [x] **Gate 12 — DoneCheck™ v1.2 + Human Threshold™ + Version Lock — VERIFIED / LOCKED**
 
-## Package08 Field Capability Campaign — ACTIVE
+## Package08 Field Capability Campaign — VERIFIED_CLOSED
 
 This is the current authorized post-v0.8 engineering objective. It does not
 reopen v0.8 or reactivate Gate 12.
 
 - [x] CAP01–CAP17 canonical field Evidence preserved.
-- [x] `FIELD_VERIFIED_COUNT=18`.
+- [x] `FIELD_VERIFIED_COUNT=19`.
 - [x] CAP18 — `FILESYSTEM_MACOS_AUTOMATION` — **FIELD_VERIFIED**.
-- [ ] CAP19 — `INTERNET_RESEARCH_HARVEST_ASTRA` — **PENDING / NOT STARTED**.
+- [x] CAP19 — `INTERNET_RESEARCH_HARVEST_ASTRA` — **FIELD_VERIFIED**; registered action, exactly two read-only primary sources, `local_runtime` / `qwen3:14b` synthesis, failure paths, 21/21 DoneCheck and fresh field seal PASS.
 - [x] CAP18 accepted-Evidence registered action executed: **true**.
 - [x] CAP18 technical filesystem task re-executed: **false**.
 - [x] Human Threshold regenerated: **false**.
 - [x] CAP18 field seal: `sha256:f30a2ebb468ba38f54bf0e8ad0f7afb1feafbeb65470dc294e2f8ade9f9440bd`.
 
-**NEXT ACTION:** `RETURN_RAW_OUTPUT_TO_ZEKU_FOR_CAP18_FINAL_SECOND_LOOK`
+**CAP19 HOLD EVIDENCE:** `/Users/abdal/Enguru/Evidence/MacEngineer/package08-field-campaign/20260929T211920128482Z/capability-19/hold-receipt.json`; `sha256:e0684688b15e82fa88bf8c7147dca5b3c5652402d3a0f35bd51c99e03bcfd69d`.
+
+**CAP19 FIELD SEAL:** `/Users/abdal/Enguru/Evidence/MacEngineer/package08-field-campaign/20260930T044658087707Z/capability-19/field-verification-seal.json`; `sha256:953f86c54d07a5f4c86a0d668f20b9030f62fd4692cc1874834b354525271c74`.
+
+**CAMPAIGN DONECHECK:** `/Users/abdal/Enguru/Evidence/MacEngineer/package08-field-campaign/campaign-closure/20260930T045952885213Z/campaign-donecheck.json`; `sha256:d5a71a8ab3c6d1463a39f53dcfb98181cd203017e404ab4d25f0e34efe9f7000`.
+
+**CAMPAIGN CLOSURE RECEIPT:** `/Users/abdal/Enguru/Evidence/MacEngineer/package08-field-campaign/campaign-closure/20260930T045952885213Z/campaign-closure-receipt.json`; `sha256:ba6e8163507c44826efd3cdaf8caab0a4f7a42f3153ebaad421250683a66192e`.
+
+**CAMPAIGN DONECHECK:** `14/14 PASS`; all seven zero-tolerance counters remain `0`.
+
+**NEXT ACTION:** `AWAIT_NEXT_OBJECTIVE`
 
 ### Gate 1 result — VERIFIED PASS
 
@@ -1821,13 +1831,13 @@ and returns the finished result to the user.
 
 ## CURRENT SINGLE NEXT ACTION
 
-**v0.8 Gate 12 — DoneCheck™ v1.2 + Human Threshold™ + Version Lock**
+**Package08 Field Capability Campaign — VERIFIED_CLOSED**
 
-`Gates 1–11 criterion-scoped Evidence`
-→ `DoneCheck™ v1.2`
-→ `explicit Human Threshold™ acceptance`
-→ `final acceptance receipt`
-→ `PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED`
+`CAP01–19 FIELD_VERIFIED`
+→ `campaign DoneCheck 14/14 PASS`
+→ `campaign closure receipt`
+→ `canonical final lock`
+→ `AWAIT_NEXT_OBJECTIVE`
 
 ---
 

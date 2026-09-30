@@ -2789,6 +2789,57 @@ check(
 )
 
 
+cap19_plan = {
+    "STATE": "PLAN_READY",
+    "PLAN_ID": "package05-cap19-research-test",
+    "TRUTH_FINGERPRINT": "package05-cap19-research-truth",
+    "EXECUTION_AUTHORIZED": False,
+    "CAPABILITY_PLAN": ["INTERNET_RESEARCH_HARVEST_ASTRA"],
+}
+
+_real_cap19 = operator.run_package08_cap19_internet_research_harvest_astra_field_proof
+operator.run_package08_cap19_internet_research_harvest_astra_field_proof = lambda: {
+    "state": "PASS",
+    "code": 0,
+    "fields": {
+        "CAP19_INTERNET_RESEARCH_HARVEST_ASTRA": "PASS",
+        "NETWORK_ACCESS": "true",
+        "NETWORK_MUTATION": "false",
+        "SOURCE_MUTATION": "false",
+        "PRODUCT_MUTATION": "false",
+        "REMOTE_PUSH": "false",
+        "CREDENTIAL_USED": "false",
+        "FRESH_SOURCES": "2",
+        "ASTRA_SYNTHESIS": "PASS",
+        "EXPECTED_RESULT_OBSERVED": "PASS",
+        "FAILURE_PATH_TESTED": "PASS",
+        "BOUNDED_RETRY": "PASS",
+        "FRESH_REVERIFY": "PASS",
+        "DONECHECK": "PASS",
+        "HUMAN_THRESHOLD_REQUIRED": "false",
+        "GENERAL_BROWSER_AUTHORITY": "false",
+        "CANONICAL_TRUTH_PRESERVED": "PASS",
+        "CRITICAL_FALSE_PASS_COUNT": "0",
+    },
+    "evidence": "/tmp/cap19-pass.json",
+}
+
+try:
+    cap19_result = orch.execute_plan_step(cap19_plan, 1)
+finally:
+    operator.run_package08_cap19_internet_research_harvest_astra_field_proof = _real_cap19
+
+check(
+    "PLAN_BOUND_CAP19_RESEARCH_HARVEST_PASS",
+    cap19_result["STATE"] == "PASS"
+    and cap19_result["CAPABILITY_ID"] == "INTERNET_RESEARCH_HARVEST_ASTRA"
+    and cap19_result["NETWORK_POLICY"]["allowed"] is True
+    and cap19_result["OBSERVED_RESULT"]["networkAccess"] is True
+    and cap19_result["OBSERVED_RESULT"]["generalBrowserFalse"] is True
+    and cap19_result["MUTATION_SCOPE"]["networkMutationAllowed"] is False,
+)
+
+
 
 invalid_step = orch.execute_plan_step(
     truth_plan,
@@ -2843,8 +2894,8 @@ check(
 )
 
 check(
-    "FOURTEEN_PROVEN_REGISTERED_ACTION_BINDINGS",
-    len(registered_bindings) == 14
+    "FIFTEEN_PROVEN_REGISTERED_ACTION_BINDINGS",
+    len(registered_bindings) == 15
     and {
         row["CAPABILITY_ID"]
         for row in registered_bindings
@@ -2864,12 +2915,13 @@ check(
         "RECOVERY_OFFLINE_CONTINUITY",
         "TERMINAL_EXECUTION",
         "FILESYSTEM_MACOS_AUTOMATION",
+        "INTERNET_RESEARCH_HARVEST_ASTRA",
     },
 )
 
 check(
-    "THREE_UNBOUND_FAIL_CLOSED",
-    len(hold_bindings) == 3,
+    "TWO_UNBOUND_FAIL_CLOSED",
+    len(hold_bindings) == 2,
 )
 
 
