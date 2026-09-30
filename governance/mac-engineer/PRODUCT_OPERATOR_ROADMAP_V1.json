@@ -1,0 +1,37 @@
+{
+  "schema": "enguru.product-operator.roadmap/v1",
+  "product": {
+    "id": "ENGURU_PRODUCT_OPERATOR",
+    "name": "ENGÜRÜ Product Operator™",
+    "version": "v1.2"
+  },
+  "stateNamespace": "productOperatorV12",
+  "objective": {
+    "id": "ENGURU_PRODUCT_OPERATOR_V12",
+    "state": "ACTIVE",
+    "activeGate": "G8_HUMAN_FIELD_ACCEPTANCE",
+    "engineeringPhase": "FINAL_PRODUCT_SURFACE_AND_LIFECYCLE_ENGINEERING",
+    "nextAction": "FINAL_PRODUCT_SURFACE_AND_LIFECYCLE_ENGINEERING"
+  },
+  "relationship": {
+    "executionEngine": "ENGÜRÜ Mac Engineer™",
+    "executionEngineVersionState": "v0.8 VERIFIED_LOCKED",
+    "macEngineerRoadmapV12Identity": "Local Mac Astra Verified Final",
+    "distinctVersionNamespace": true
+  },
+  "sourceContinuity": {
+    "repository": "engurulabory/enguru-mac-engineer",
+    "branch": "feat/v08-native-productization-provenance",
+    "currentVerifiedHead": "2e38dac2154fda7076906d0813cb6895cc6d8b63",
+    "baseOriginMain": "5432b9b135499cea18273c0e003877b864af92c6",
+    "worktree": "CLEAN",
+    "remoteExactMain": false,
+    "remoteParity": false,
+    "historicalVerifiedHeads": [
+      "0ca33cc7b70fee915d02de72946bbd4bb0e40065"
+    ],
+    "provenancePreserved": true
+  },
+  "acceptanceContract": "governance/mac-engineer/PRODUCT_OPERATOR_V12_ACCEPTANCE_CONTRACT_V1.json",
+  "executionBinding": "governance/mac-engineer/PRODUCT_OPERATOR_V12_EXECUTION_BINDING_V1.json"
+}

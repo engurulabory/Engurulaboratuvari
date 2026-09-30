@@ -1,0 +1,152 @@
+{
+  "schema": "enguru.product-operator.acceptance-contract/v1",
+  "productId": "ENGURU_PRODUCT_OPERATOR",
+  "productName": "ENGÜRÜ Product Operator™",
+  "version": "v1.2",
+  "objectiveId": "ENGURU_PRODUCT_OPERATOR_V12",
+  "state": "ACTIVE",
+  "relationship": {
+    "executionEngine": "ENGÜRÜ Mac Engineer™",
+    "macEngineerRoadmapIdentityIndependent": true,
+    "macEngineerV12Identity": "Local Mac Astra Verified Final"
+  },
+  "principle": "Natural user intent is translated into bounded canonical objective and registered-action execution while governance details remain background unless Human Threshold or safe continuation requires them.",
+  "activeEngineeringPhase": "FINAL_PRODUCT_SURFACE_AND_LIFECYCLE_ENGINEERING",
+  "finalProductSurfaceContract": {
+    "implementationState": "CHARACTERIZED_NOT_IMPLEMENTED",
+    "topLevelSurfaces": [
+      "COCKPIT",
+      "PROJELER"
+    ],
+    "archivePolicy": "PROJECTS_FILTER_NOT_TOP_LEVEL_SURFACE",
+    "cockpit": {
+      "required": [
+        "ACTIVE_PROJECT",
+        "PRODUCT_STATE",
+        "CONVERSATION",
+        "NEXT_ACTION",
+        "COMPOSER",
+        "CONVERSATION_SCROLLBAR"
+      ],
+      "forbidden": [
+        "PERMANENT_PROJECT_RAIL",
+        "PERMANENT_STATUS_RAIL"
+      ]
+    },
+    "projects": {
+      "searchRequired": true,
+      "filters": [
+        "TUMU",
+        "AKTIF",
+        "TAMAMLANAN",
+        "YAYINDA",
+        "ARSIV"
+      ],
+      "columns": [
+        "PROJE",
+        "DURUM",
+        "ASAMA",
+        "SON_HAREKET",
+        "SIRADAKI_ADIM",
+        "DEVAM_ET"
+      ]
+    },
+    "status": {
+      "presentation": "DEFAULT_CLOSED_DRAWER",
+      "required": [
+        "CURRENT_ACTIVE_STATE_ONLY",
+        "CURRENT_WORK",
+        "PROGRESS",
+        "NEXT_ACTION",
+        "MAC_ENGINEER_HEALTH"
+      ],
+      "technicalDetails": "COLLAPSED"
+    },
+    "productStateVocabulary": [
+      "READY",
+      "WORKING",
+      "NEEDS_HUMAN",
+      "VERIFIED"
+    ],
+    "stageVocabulary": [
+      "PLANLAMA",
+      "URETIM",
+      "DOGRULAMA",
+      "YAYIN"
+    ],
+    "invariants": {
+      "stateDistinctFromStage": true,
+      "publishedIsState": false,
+      "archiveIsCompletionAuthorityState": false,
+      "newCoreCount": 0,
+      "newGateCount": 0,
+      "newSecondCockpitCount": 0
+    },
+    "acceptanceAuthority": "G8_HUMAN_FIELD_ACCEPTANCE"
+  },
+  "gates": [
+    {
+      "index": 1,
+      "id": "OBJECTIVE_ACTIVATION",
+      "state": "PASS",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/product-operator-v12/g1-objective-activation/20260930T065932Z/g1-objective-activation-receipt.json",
+      "evidenceSha256": "ab900022b02f3cc6f94f3f6eb4ed0be7a544d5c6936803000669072b15319859"
+    },
+    {
+      "index": 2,
+      "id": "REGISTERED_ACTION_BINDING",
+      "state": "PASS",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/product-operator-v12/g2-registered-action-binding/20260930T071132Z/g2-registered-action-binding-receipt.json",
+      "evidenceSha256": "55531c9bb0f2728aea0689e0fc8a32eb2680158cfbf795cc1531b91387151346"
+    },
+    {
+      "index": 3,
+      "id": "HUMAN_THRESHOLD",
+      "state": "PASS",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/product-operator-v12/g3-human-threshold/20260930T071918Z/g3-human-threshold-receipt.json",
+      "evidenceSha256": "72d548cec1cd4acc55835a2b4df7c8b3b95152f3bf4125086b8a2683174c1bd8"
+    },
+    {
+      "index": 4,
+      "id": "MATERIAL_EXECUTION",
+      "state": "PASS",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/product-operator-v12/g4-material-execution/20260930T073441Z/g4-material-execution-receipt.json",
+      "evidenceSha256": "291aec8b4aadb520d77fbea700eaac082c95d6a02fcc961dfd34a6c30830c65e"
+    },
+    {
+      "index": 5,
+      "id": "CONVERSATION_CONTINUITY",
+      "state": "PASS",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/product-operator-v12/g5-conversation-continuity/20260930T073842Z/g5-conversation-continuity-receipt.json",
+      "evidenceSha256": "7d25bb5c5dc0d89d68df5a8978127c9676430da04d1d52656e736752c1172661"
+    },
+    {
+      "index": 6,
+      "id": "RECOVERY",
+      "state": "PASS",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/product-operator-v12/g6-recovery/20260930T075326Z/g6-recovery-receipt.json",
+      "evidenceSha256": "a166efb905ab55ab5fed5dcde58313701887de90496dce017e853ac83366baa5"
+    },
+    {
+      "index": 7,
+      "id": "EVIDENCE_DONECHECK",
+      "state": "PASS",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/product-operator-v12/g7-evidence-donecheck/20260930T075811Z/g7-evidence-donecheck-receipt.json",
+      "evidenceSha256": "af558e956bf5fb06d4cfcdefe753c106039e35372c96d129da7690660e803b4b"
+    },
+    {
+      "index": 8,
+      "id": "HUMAN_FIELD_ACCEPTANCE",
+      "state": "PENDING"
+    }
+  ],
+  "authority": {
+    "failClosed": true,
+    "remotePush": false,
+    "doneCheck": "DoneCheck™ v1.2",
+    "humanThreshold": "ONLY_WHEN_MATERIALLY_REQUIRED",
+    "verifiedPromotion": "ONLY_AFTER_G1_THROUGH_G8_PASS"
+  },
+  "firstAction": "PRODUCT_OPERATOR_V12_OBJECTIVE_ACTIVATION",
+  "nextAction": "FINAL_PRODUCT_SURFACE_AND_LIFECYCLE_ENGINEERING"
+}

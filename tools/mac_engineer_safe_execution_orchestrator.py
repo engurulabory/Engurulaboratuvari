@@ -350,7 +350,10 @@ def execute_proven_read_only(
             CAPABILITY_ID=capability_id,
         )
 
-    import mac_engineer_operator as operator
+    try:
+        import mac_engineer_operator as operator
+    except ModuleNotFoundError:
+        from tools import mac_engineer_operator as operator
 
     if capability_id == "CURRENT_TECHNICAL_TRUTH_READ":
         result = operator.current_truth()
@@ -1098,7 +1101,10 @@ def execute_proven_registered_action(
                 FIELD=key,
             )
 
-    import mac_engineer_operator as operator
+    try:
+        import mac_engineer_operator as operator
+    except ModuleNotFoundError:
+        from tools import mac_engineer_operator as operator
 
     action_registry = (
         operator.load_json(

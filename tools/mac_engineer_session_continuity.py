@@ -131,6 +131,33 @@ def authorized_product_working_branch(
 ) -> tuple[bool, dict[str, Any]]:
     objective = str(state.get("currentObjective", ""))
 
+    if objective == "ENGURU_PRODUCT_OPERATOR_V12":
+        product_operator = state.get("productOperatorV12") or {}
+        source = product_operator.get("sourceContinuity") or {}
+        expected_branch = str(source.get("branch") or "")
+        expected_head = str(source.get("currentVerifiedHead") or "")
+        expected_base = str(source.get("baseOriginMain") or "")
+        authorized = bool(
+            expected_branch
+            and expected_head
+            and expected_base
+            and product.get("branch") == expected_branch
+            and product.get("head") == expected_head
+            and product.get("origin_main") == expected_base
+            and product.get("merge_base_origin_main") == expected_base
+            and product.get("clean") is True
+        )
+        return authorized, {
+            "mode": "PRODUCT_OPERATOR_V12_VERIFIED_PRODUCT_BRANCH",
+            "expected_branch": expected_branch,
+            "expected_head": expected_head,
+            "expected_base_main": expected_base,
+            "observed_head": product.get("head"),
+            "observed_origin_main": product.get("origin_main"),
+            "merge_base_origin_main": product.get("merge_base_origin_main"),
+            "authorized": authorized,
+        }
+
     current_version = str(state.get("currentVersion") or "")
     current_v08 = state.get("currentV08") or {}
     v08_branch = str(current_v08.get("productWorkingBranch") or "")

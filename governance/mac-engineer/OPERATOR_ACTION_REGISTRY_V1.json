@@ -412,6 +412,21 @@
       "persistentExternalMutationAllowed": false,
       "authorityExpansionAllowed": false,
       "canonicalTruthPreserved": true
+    },
+    "PRODUCT_OPERATOR_V12_OBJECTIVE_ACTIVATION": {
+      "handler": "PRODUCT_OPERATOR_V12_OBJECTIVE_ACTIVATION",
+      "authority": "GREEN_CANONICAL_OBJECTIVE_ACTIVATION_FOUNDATION",
+      "command": "governance/mac-engineer/PRODUCT_OPERATOR_V12_OBJECTIVE_ACTIVATION.command",
+      "networkRequired": false,
+      "remotePush": false,
+      "failClosed": true,
+      "humanThresholdRequired": false,
+      "mutationScope": "CANONICAL_OBJECTIVE_FOUNDATION_ONLY",
+      "objectiveId": "ENGURU_PRODUCT_OPERATOR_V12",
+      "acceptanceContract": "governance/mac-engineer/PRODUCT_OPERATOR_V12_ACCEPTANCE_CONTRACT_V1.json",
+      "executionBinding": "governance/mac-engineer/PRODUCT_OPERATOR_V12_EXECUTION_BINDING_V1.json",
+      "authorityExpansionAllowed": false,
+      "canonicalTruthPreserved": true
     }
   }
 }

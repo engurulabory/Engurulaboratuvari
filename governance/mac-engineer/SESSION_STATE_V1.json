@@ -42,7 +42,7 @@
     "v07LongRunReliability": "VERIFIED_LOCKED",
     "v08Gate8NewProductFromBrief": "VERIFIED_PASS"
   },
-  "currentObjective": "PACKAGE08_FIELD_CAPABILITY_CAMPAIGN",
+  "currentObjective": "ENGURU_PRODUCT_OPERATOR_V12",
   "postV08Objective": {
     "state": "VERIFIED_CLOSED",
     "objective": "PACKAGE08_FIELD_CAPABILITY_CAMPAIGN",
@@ -324,7 +324,7 @@
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "AWAIT_NEXT_OBJECTIVE",
+  "nextAction": "FINAL_PRODUCT_SURFACE_AND_LIFECYCLE_ENGINEERING",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
@@ -1800,5 +1800,61 @@
     "duplicateHarvestCapabilityCreated": false,
     "futureV11HarvestRole": "RESEARCH_HARVEST_SPECIALIST_QUALIFICATION",
     "nextTransition": "GATE11_VERIFIED_LOCKED_GATE12_ACTIVE_STOP"
+  },
+  "productOperatorV12": {
+    "state": "ACTIVE",
+    "activeGate": "G8_HUMAN_FIELD_ACCEPTANCE",
+    "engineeringPhase": "FINAL_PRODUCT_SURFACE_AND_LIFECYCLE_ENGINEERING",
+    "nextAction": "FINAL_PRODUCT_SURFACE_AND_LIFECYCLE_ENGINEERING",
+    "sourceContinuity": {
+      "repository": "engurulabory/enguru-mac-engineer",
+      "branch": "feat/v08-native-productization-provenance",
+      "currentVerifiedHead": "2e38dac2154fda7076906d0813cb6895cc6d8b63",
+      "baseOriginMain": "5432b9b135499cea18273c0e003877b864af92c6",
+      "worktree": "CLEAN",
+      "historicalVerifiedHeads": [
+        "0ca33cc7b70fee915d02de72946bbd4bb0e40065"
+      ],
+      "provenancePreserved": true
+    },
+    "g1ObjectiveActivation": {
+      "state": "PASS",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/product-operator-v12/g1-objective-activation/20260930T065932Z/g1-objective-activation-receipt.json",
+      "evidenceSha256": "ab900022b02f3cc6f94f3f6eb4ed0be7a544d5c6936803000669072b15319859"
+    },
+    "g2RegisteredActionBinding": {
+      "state": "PASS",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/product-operator-v12/g2-registered-action-binding/20260930T071132Z/g2-registered-action-binding-receipt.json",
+      "evidenceSha256": "55531c9bb0f2728aea0689e0fc8a32eb2680158cfbf795cc1531b91387151346"
+    },
+    "g3HumanThreshold": {
+      "state": "PASS",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/product-operator-v12/g3-human-threshold/20260930T071918Z/g3-human-threshold-receipt.json",
+      "evidenceSha256": "72d548cec1cd4acc55835a2b4df7c8b3b95152f3bf4125086b8a2683174c1bd8"
+    },
+    "g4MaterialExecution": {
+      "state": "PASS",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/product-operator-v12/g4-material-execution/20260930T073441Z/g4-material-execution-receipt.json",
+      "evidenceSha256": "291aec8b4aadb520d77fbea700eaac082c95d6a02fcc961dfd34a6c30830c65e"
+    },
+    "g5ConversationContinuity": {
+      "state": "PASS",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/product-operator-v12/g5-conversation-continuity/20260930T073842Z/g5-conversation-continuity-receipt.json",
+      "evidenceSha256": "7d25bb5c5dc0d89d68df5a8978127c9676430da04d1d52656e736752c1172661"
+    },
+    "g6Recovery": {
+      "state": "PASS",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/product-operator-v12/g6-recovery/20260930T075326Z/g6-recovery-receipt.json",
+      "evidenceSha256": "a166efb905ab55ab5fed5dcde58313701887de90496dce017e853ac83366baa5",
+      "recoveryPrimitive": "OPERATOR_CONTINUE_DISPATCH"
+    },
+    "g7EvidenceDoneCheck": {
+      "state": "PASS",
+      "evidence": "/Users/abdal/Enguru/Evidence/MacEngineer/product-operator-v12/g7-evidence-donecheck/20260930T075811Z/g7-evidence-donecheck-receipt.json",
+      "evidenceSha256": "af558e956bf5fb06d4cfcdefe753c106039e35372c96d129da7690660e803b4b",
+      "aggregateEvidenceSha256": "e97afdeabb5ca415814b099053caaea083ffa1767815defb5318ff870a6d36d6",
+      "doneCheckVersion": "1.2.0",
+      "doneCheckExactSha": "8b90a8fc93453dd8a84994195d28d14b15e261cb"
+    }
   }
 }

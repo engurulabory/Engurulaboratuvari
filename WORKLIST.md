@@ -1120,19 +1120,23 @@ Local evidence:
 - [x] Canonical Evidence: `evidence/MAC_ENGINEER_V00_V03_HISTORICAL_RECONSTRUCTION_2026-09-22.md`.
 - [x] **V00_V03_HISTORICAL_RECONSTRUCTION = PASS / CLOSED.**
 
-**Active objective:** `PACKAGE08_FIELD_CAPABILITY_CAMPAIGN`
+**Active objective:** `ENGURU_PRODUCT_OPERATOR_V12`
 
-**Current single objective:** **PACKAGE08_FIELD_CAPABILITY_CAMPAIGN**.
+**Current single objective:** **ENGURU_PRODUCT_OPERATOR_V12**.
 
-`CURRENT_OBJECTIVE=PACKAGE08_FIELD_CAPABILITY_CAMPAIGN`
+`CURRENT_OBJECTIVE=ENGURU_PRODUCT_OPERATOR_V12`
 
-`CURRENT_GATE=NONE`
+`CURRENT_GATE=G8_HUMAN_FIELD_ACCEPTANCE`
 
 `LAST_FIELD_VERIFIED_CAPABILITY_INDEX=19`
 
 `LAST_FIELD_VERIFIED_CAPABILITY_ID=INTERNET_RESEARCH_HARVEST_ASTRA`
 
-`NEXT_ACTION=AWAIT_NEXT_OBJECTIVE`
+`G1_G7=PASS`
+
+`G8=PENDING`
+
+`NEXT_ACTION=FINAL_PRODUCT_SURFACE_AND_LIFECYCLE_ENGINEERING`
 
 `CURRENT_PROGRAM_FINAL_TARGET=v1.3_USABLE_VERIFIED_PRODUCT`
 
@@ -1195,7 +1199,7 @@ DoneCheck authority:
 
 ## Package08 Field Capability Campaign — VERIFIED_CLOSED
 
-This is the current authorized post-v0.8 engineering objective. It does not
+This is the completed predecessor post-v0.8 engineering objective. It does not
 reopen v0.8 or reactivate Gate 12.
 
 - [x] CAP01–CAP17 canonical field Evidence preserved.
@@ -1217,7 +1221,21 @@ reopen v0.8 or reactivate Gate 12.
 
 **CAMPAIGN DONECHECK:** `14/14 PASS`; all seven zero-tolerance counters remain `0`.
 
-**NEXT ACTION:** `AWAIT_NEXT_OBJECTIVE`
+**HISTORICAL NEXT ACTION:** `AWAIT_NEXT_OBJECTIVE`
+
+## ENGÜRÜ Product Operator™ v1.2 — ACTIVE
+
+- [x] G1–G7 acceptance Evidence remains PASS.
+- [ ] G8 Human Field Acceptance remains PENDING.
+- [x] Product source continuity is bound to clean branch
+  `feat/v08-native-productization-provenance` at
+  `2e38dac2154fda7076906d0813cb6895cc6d8b63`.
+- [x] Final product information architecture is characterized without claiming
+  runtime implementation.
+- [ ] Final Cockpit/Projeler surface and lifecycle engineering.
+- [ ] Human field acceptance only after implementation and real daily use.
+
+**NEXT ACTION:** `FINAL_PRODUCT_SURFACE_AND_LIFECYCLE_ENGINEERING`
 
 ### Gate 1 result — VERIFIED PASS
 
@@ -1831,13 +1849,12 @@ and returns the finished result to the user.
 
 ## CURRENT SINGLE NEXT ACTION
 
-**Package08 Field Capability Campaign — VERIFIED_CLOSED**
+**ENGÜRÜ Product Operator™ v1.2 — G8 remains PENDING**
 
-`CAP01–19 FIELD_VERIFIED`
-→ `campaign DoneCheck 14/14 PASS`
-→ `campaign closure receipt`
-→ `canonical final lock`
-→ `AWAIT_NEXT_OBJECTIVE`
+`G1–G7 PASS`
+→ `FINAL_PRODUCT_SURFACE_AND_LIFECYCLE_ENGINEERING`
+→ `real human field use`
+→ `G8 HUMAN_FIELD_ACCEPTANCE`
 
 ---
 

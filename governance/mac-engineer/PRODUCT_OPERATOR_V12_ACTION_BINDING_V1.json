@@ -1,0 +1,72 @@
+{
+  "schema": "enguru.product-operator.action-binding/v1",
+  "productId": "ENGURU_PRODUCT_OPERATOR",
+  "version": "v1.2",
+  "objectiveId": "ENGURU_PRODUCT_OPERATOR_V12",
+  "state": "ACTIVE",
+  "policy": {
+    "selection": "DETERMINISTIC_EXACT_CLASS",
+    "unbound": "HOLD",
+    "arbitraryActionAllowed": false,
+    "authorityExpansionAllowed": false,
+    "reuseExistingMacEngineerActions": true
+  },
+  "bindings": {
+    "SOURCE_PRODUCT_CHANGE": {
+      "capabilityId": "SOURCE_PRODUCT_CHANGE",
+      "action": "PACKAGE08_CAP06_DISPOSABLE_SOURCE_CHANGE_FIELD_PROOF"
+    },
+    "BUILD": {
+      "capabilityId": "BUILD",
+      "action": "PACKAGE08_CAP07_BUILD_FIELD_PROOF"
+    },
+    "TEST_REGRESSION": {
+      "capabilityId": "TEST_REGRESSION",
+      "action": "PACKAGE08_CAP08_TEST_REGRESSION_FIELD_PROOF"
+    },
+    "ROOT_CAUSE_REPAIR": {
+      "capabilityId": "ROOT_CAUSE_REPAIR",
+      "action": "PACKAGE08_CAP09_ROOT_CAUSE_REPAIR_FIELD_PROOF"
+    },
+    "MIGRATION_CANONICAL_RECONCILIATION": {
+      "capabilityId": "MIGRATION_CANONICAL_RECONCILIATION",
+      "action": "PACKAGE08_CAP10_MIGRATION_CANONICAL_RECONCILIATION_FIELD_PROOF"
+    },
+    "ADVANCED_CODE_ENGINEERING": {
+      "capabilityId": "ADVANCED_CODE_ENGINEERING",
+      "action": "PACKAGE08_CAP11_ADVANCED_CODE_ENGINEERING_FIELD_PROOF"
+    },
+    "NEW_PRODUCT_FROM_BRIEF": {
+      "capabilityId": "NEW_PRODUCT_FROM_BRIEF",
+      "action": "PACKAGE08_CAP12_NEW_PRODUCT_FROM_BRIEF_FIELD_PROOF"
+    },
+    "RELEASE_LIFECYCLE": {
+      "capabilityId": "RELEASE_LIFECYCLE",
+      "action": "PACKAGE08_CAP13_RELEASE_LIFECYCLE_FIELD_PROOF"
+    },
+    "FINISHED_PRODUCT_DELIVERY_ACCEPTANCE": {
+      "capabilityId": "FINISHED_PRODUCT_DELIVERY_ACCEPTANCE",
+      "action": "PACKAGE08_CAP14_FINISHED_PRODUCT_DELIVERY_ACCEPTANCE_FIELD_PROOF"
+    },
+    "EVIDENCE_DONECHECK": {
+      "capabilityId": "EVIDENCE_DONECHECK",
+      "action": "PACKAGE08_CAP15_EVIDENCE_DONECHECK_FIELD_PROOF"
+    },
+    "RECOVERY_OFFLINE_CONTINUITY": {
+      "capabilityId": "RECOVERY_OFFLINE_CONTINUITY",
+      "action": "PACKAGE08_CAP16_RECOVERY_OFFLINE_CONTINUITY_FIELD_PROOF"
+    },
+    "TERMINAL_EXECUTION": {
+      "capabilityId": "TERMINAL_EXECUTION",
+      "action": "PACKAGE08_CAP17_TERMINAL_EXECUTION_FIELD_PROOF"
+    },
+    "FILESYSTEM_MACOS_AUTOMATION": {
+      "capabilityId": "FILESYSTEM_MACOS_AUTOMATION",
+      "action": "PACKAGE08_CAP18_FILESYSTEM_MACOS_AUTOMATION_FIELD_PROOF"
+    },
+    "INTERNET_RESEARCH_HARVEST_ASTRA": {
+      "capabilityId": "INTERNET_RESEARCH_HARVEST_ASTRA",
+      "action": "PACKAGE08_CAP19_INTERNET_RESEARCH_HARVEST_ASTRA_FIELD_PROOF"
+    }
+  }
+}

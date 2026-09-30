@@ -1,0 +1,25 @@
+{
+  "schema": "enguru.product-operator.execution-binding/v1",
+  "productId": "ENGURU_PRODUCT_OPERATOR",
+  "version": "v1.2",
+  "objectiveId": "ENGURU_PRODUCT_OPERATOR_V12",
+  "bindings": [
+    {
+      "gate": "G1_OBJECTIVE_ACTIVATION",
+      "capabilityId": "PRODUCT_OPERATOR_OBJECTIVE_ACTIVATION",
+      "bindingType": "REGISTERED_ACTION",
+      "action": "PRODUCT_OPERATOR_V12_OBJECTIVE_ACTIVATION",
+      "actionRegistry": "governance/mac-engineer/OPERATOR_ACTION_REGISTRY_V1.json",
+      "registeredHandler": "PRODUCT_OPERATOR_V12_OBJECTIVE_ACTIVATION",
+      "operatorCallable": "run_product_operator_v12_objective_activation",
+      "authority": "GREEN_CANONICAL_OBJECTIVE_ACTIVATION_FOUNDATION",
+      "networkAllowed": false,
+      "remotePushAllowed": false,
+      "humanThresholdRequired": false,
+      "mutationScope": "CANONICAL_OBJECTIVE_FOUNDATION_ONLY",
+      "failClosed": true,
+      "executionAuthorityCreated": false,
+      "state": "VERIFIED_EXECUTED"
+    }
+  ]
+}

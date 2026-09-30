@@ -188,6 +188,9 @@ def current_truth() -> dict[str, Any]:
         {},
     )
 
+    product_operator = session.get("productOperatorV12") or {}
+    product_operator_active = session.get("currentObjective") == "ENGURU_PRODUCT_OPERATOR_V12"
+
     return {
         "product": session.get("product") or roadmap.get("product", {}).get("canonicalName"),
         "current_version": current_version,
@@ -196,15 +199,27 @@ def current_truth() -> dict[str, Any]:
             or roadmap.get("current", {}).get("state")
             or roadmap_version_state.get("state")
         ),
-        "active_objective": roadmap.get("current", {}).get("activeObjective"),
+        "active_objective": session.get("currentObjective") or roadmap.get("current", {}).get("activeObjective"),
         "version_state": current_version_state,
         "next_action": (
+            product_operator.get("nextAction") if product_operator_active else None
+        ) or (
+            session.get("nextAction") if product_operator_active else None
+        ) or (
             current_version_state.get("nextAction")
             or roadmap_version_state.get("nextAction")
             or roadmap.get("current", {}).get("activeObjective")
         ),
-        "local_continuity_next_action": current_version_state.get("localContinuityNextAction"),
-        "local_continuity_state": current_version_state.get("localContinuityState"),
+        "local_continuity_next_action": (
+            product_operator.get("nextAction")
+            if product_operator_active
+            else current_version_state.get("localContinuityNextAction")
+        ),
+        "local_continuity_state": (
+            product_operator.get("state")
+            if product_operator_active
+            else current_version_state.get("localContinuityState")
+        ),
         "v07_state": current_v07.get("state") or v07_roadmap.get("state"),
         "a09_state": current_v07.get("a09State") or (v07_roadmap.get("a09") or {}).get("state"),
         "a09_candidate_sha": current_v07.get("a09LatestCandidateHead") or (v07_roadmap.get("a09") or {}).get("currentCandidateSha"),
@@ -2820,6 +2835,34 @@ def run_package08_cap19_internet_research_harvest_astra_field_proof() -> dict[st
         "evidence": fields.get("EVIDENCE"),
         "stdout_tail": result.get("stdout", "")[-16000:],
         "stderr_tail": result.get("stderr", "")[-16000:],
+    }
+
+
+def run_product_operator_v12_objective_activation() -> dict[str, Any]:
+    """Validate the registered Product Operator G1 foundation without promotion."""
+    try:
+        try:
+            from mac_engineer_product_operator_v12_foundation import evaluate
+        except ModuleNotFoundError:
+            from tools.mac_engineer_product_operator_v12_foundation import evaluate
+        result = evaluate()
+    except Exception as exc:
+        return {
+            "state": "HOLD",
+            "reason": f"PRODUCT_OPERATOR_V12_FOUNDATION:{type(exc).__name__}:{exc}",
+            "evidence": None,
+        }
+
+    return {
+        "state": "PASS" if result.get("STATE") == "PASS" else "HOLD",
+        "reason": result.get("HOLD_REASON"),
+        "evidence": str(
+            ROOT
+            / "governance"
+            / "mac-engineer"
+            / "PRODUCT_OPERATOR_V12_ACCEPTANCE_CONTRACT_V1.json"
+        ),
+        "result": result,
     }
 
 

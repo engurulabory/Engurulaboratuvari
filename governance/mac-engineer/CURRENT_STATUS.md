@@ -1,6 +1,43 @@
 # ENGÜRÜ Mac Engineer™ — Current Status
 
-## Package08 Field Capability Campaign canonical objective
+## CURRENT ENGINEERING TRUTH — ENGÜRÜ Product Operator™ v1.2
+
+**STATE — ACTIVE / FINAL PRODUCT SURFACE ENGINEERING.**
+
+`PRODUCT_ID=ENGURU_PRODUCT_OPERATOR`
+
+`CURRENT_OBJECTIVE=ENGURU_PRODUCT_OPERATOR_V12`
+
+`CURRENT_GATE=G8_HUMAN_FIELD_ACCEPTANCE`
+
+`G1_G7=PASS`
+
+`G8=PENDING`
+
+`SOURCE_CONTINUITY_HEAD=2e38dac2154fda7076906d0813cb6895cc6d8b63`
+
+The source-continuity branch is
+`feat/v08-native-productization-provenance`; the observed product worktree is
+clean and based on `origin/main`
+`5432b9b135499cea18273c0e003877b864af92c6`.
+
+The final Product Operator information architecture is characterized in
+`PRODUCT_OPERATOR_V12_ACCEPTANCE_CONTRACT_V1.json`. The only top-level product
+surfaces are Cockpit and Projeler. Archive remains a Projects filter. Product
+state remains distinct from stage. This characterization does not claim that
+the final UI is implemented.
+
+G8 remains pending. Machine tests, UI implementation and source continuity do
+not create human field acceptance or Verified Finish.
+
+Slice 1 canonical reconciliation verification is PASS: the Product Operator
+foundation command passed, 72 focused Product Operator/session-continuity/
+operator regression tests passed, JSON parsing passed and `git diff --check`
+passed. The final product surface remains characterized but not implemented.
+
+**NEXT ACTION —** `FINAL_PRODUCT_SURFACE_AND_LIFECYCLE_ENGINEERING`.
+
+## Preserved predecessor truth — Package08 Field Capability Campaign
 
 **STATE — VERIFIED_CLOSED / 19 OF 19 FIELD_VERIFIED.**
 
@@ -11,7 +48,7 @@ immutable final acceptance receipt remains authoritative.
 **FINAL RECEIPT —** `/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/final-acceptance-receipt.json`;
 digest `sha256:697c3569d1ef83ab79dee114561146e8a3368145ce0eacffa8cd4e61e2d92b23`.
 
-The current authorized post-v0.8 objective is
+The completed predecessor post-v0.8 objective was
 `PACKAGE08_FIELD_CAPABILITY_CAMPAIGN`. All nineteen capabilities are field
 verified. Capability 18 `FILESYSTEM_MACOS_AUTOMATION` remains
 **FIELD_VERIFIED**. Capability 19 `INTERNET_RESEARCH_HARVEST_ASTRA` is now
@@ -36,17 +73,17 @@ digest `sha256:d5a71a8ab3c6d1463a39f53dcfb98181cd203017e404ab4d25f0e34efe9f7000`
 **CAMPAIGN CLOSURE RECEIPT —** `/Users/abdal/Enguru/Evidence/MacEngineer/package08-field-campaign/campaign-closure/20260930T045952885213Z/campaign-closure-receipt.json`;
 digest `sha256:ba6e8163507c44826efd3cdaf8caab0a4f7a42f3153ebaad421250683a66192e`.
 
-**NEXT ACTION —** `AWAIT_NEXT_OBJECTIVE`.
+**HISTORICAL NEXT ACTION —** `AWAIT_NEXT_OBJECTIVE`.
 
 **Updated:** 2026-09-30
 **Program target:** ENGÜRÜ Mac Engineering™ v1.3 — Usable Verified Product
 **Current version:** v0.8 — PRODUCT ENGINEERING OPERATOR / VERIFIED LOCKED
-**Current objective:** PACKAGE08_FIELD_CAPABILITY_CAMPAIGN
-**Canonical objective id:** `PACKAGE08_FIELD_CAPABILITY_CAMPAIGN`
+**Predecessor objective:** PACKAGE08_FIELD_CAPABILITY_CAMPAIGN
+**Predecessor objective id:** `PACKAGE08_FIELD_CAPABILITY_CAMPAIGN`
 
-`CURRENT_OBJECTIVE=PACKAGE08_FIELD_CAPABILITY_CAMPAIGN`
+`HISTORICAL_OBJECTIVE=PACKAGE08_FIELD_CAPABILITY_CAMPAIGN`
 
-`CURRENT_GATE=NONE`
+`HISTORICAL_GATE=NONE`
 
 `LAST_FIELD_VERIFIED_CAPABILITY_INDEX=19`
 
@@ -56,13 +93,13 @@ digest `sha256:ba6e8163507c44826efd3cdaf8caab0a4f7a42f3153ebaad421250683a66192e`
 
 `CURRENT_PROGRAM_FINAL_TARGET=v1.3_USABLE_VERIFIED_PRODUCT`
 
-## CURRENT ENGINEERING TRUTH
+## PRESERVED PREDECESSOR ENGINEERING TRUTH
 
 ENGÜRÜ Mac Engineering™ v0.7 remains **LONG-RUN RELIABILITY VERIFIED / LOCKED**.
 v0.8 Gates 1–12 remain verified and locked. Package08 is a separate
 post-v0.8 capability campaign and does not reinterpret any v0.8 gate.
 
-Current product source remains the clean local verified branch
+At Package08 closure, the recorded product source was the clean local verified branch
 `feat/v08-native-productization-provenance` at
 `0ca33cc7b70fee915d02de72946bbd4bb0e40065`, based on `origin/main`
 `5432b9b135499cea18273c0e003877b864af92c6`. It is not remote exact-main
@@ -78,7 +115,7 @@ Executable gate:
 
 `tools/mac_engineer_pre_send_filter.py`
 
-Current active objective:
+Historical active objective:
 
 `PACKAGE08_FIELD_CAPABILITY_CAMPAIGN`
 
@@ -191,7 +228,7 @@ Canonical reconstruction Evidence:
 
 v0.4, v0.5 and v0.6 locked truths remain unchanged.
 
-## CURRENT OBJECTIVE
+## PRESERVED PREDECESSOR OBJECTIVE
 
 **Package08 Field Capability Campaign / Capability 19.**
 
@@ -205,7 +242,7 @@ is VERIFIED_CLOSED.
 Final acceptance receipt: `/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/final-acceptance-receipt.json`.
 Final acceptance receipt digest: `sha256:697c3569d1ef83ab79dee114561146e8a3368145ce0eacffa8cd4e61e2d92b23`.
 
-Current required difference:
+Historical required difference:
 `AWAIT_NEXT_OBJECTIVE`.
 
 ## REMAINING v0.6 CLOSEOUT
@@ -225,7 +262,7 @@ Historical closeout note: v0.7 subsequently reached VERIFIED / LOCKED; the curre
 
 CURRENT_STATUS is updated after every material engineering package or PASS / HOLD / BLOCKED result, **before the next action**. Required reconciliation fields remain: COMPLETED_OR_CHANGED_WORK, LATEST_EVIDENCE, JUDGMENT, CURRENT_OBJECTIVE, REMAINING_WORK and NEXT_ACTION.
 
-## JUDGMENT
+## PRESERVED PREDECESSOR JUDGMENT
 
 **v0.6 VERIFIED FINAL / LOCKED = PASS.**
 
@@ -235,7 +272,7 @@ CURRENT_STATUS is updated after every material engineering package or PASS / HOL
 
 **Package08 Field Capability Campaign = VERIFIED_CLOSED / CAP01–19 FIELD_VERIFIED / FIELD_VERIFIED_COUNT 19.**
 
-## NEXT ACTION
+## PRESERVED PREDECESSOR NEXT ACTION
 
 `AWAIT_NEXT_OBJECTIVE`
 
