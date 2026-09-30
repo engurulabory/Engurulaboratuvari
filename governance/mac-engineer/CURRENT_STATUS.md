@@ -2,7 +2,7 @@
 
 ## CURRENT ENGINEERING TRUTH — ENGÜRÜ Product Operator™ v1.2
 
-**STATE — ACTIVE / FINAL PRODUCT SURFACE ENGINEERING.**
+**STATE — ACTIVE / MACHINE IMPLEMENTED / NATIVE DELIVERY PENDING.**
 
 `PRODUCT_ID=ENGURU_PRODUCT_OPERATOR`
 
@@ -14,28 +14,29 @@
 
 `G8=PENDING`
 
-`SOURCE_CONTINUITY_HEAD=2e38dac2154fda7076906d0813cb6895cc6d8b63`
+`SOURCE_CONTINUITY_HEAD=185cc75ab8ee0d319a642c38908b3d162ddd1bc1`
 
 The source-continuity branch is
 `feat/v08-native-productization-provenance`; the observed product worktree is
 clean and based on `origin/main`
 `5432b9b135499cea18273c0e003877b864af92c6`.
 
-The final Product Operator information architecture is characterized in
-`PRODUCT_OPERATOR_V12_ACCEPTANCE_CONTRACT_V1.json`. The only top-level product
-surfaces are Cockpit and Projeler. Archive remains a Projects filter. Product
-state remains distinct from stage. This characterization does not claim that
-the final UI is implemented.
+The final Product Operator information architecture is implemented and machine-verified in
+`enguru-mac-engineer`. The only top-level product surfaces remain Cockpit and Projeler.
+Archive remains a Projects filter; Product state remains distinct from stage. The full
+Create → Open → Work → Auto-save → Close → Reopen → Resume → Rename → Archive → Restore →
+Delete lifecycle is machine-verified 11/11, and Delete is bound to exact Human Threshold
+ACCEPT/REJECT authority. This machine implementation does not create G8 human field acceptance.
 
 G8 remains pending. Machine tests, UI implementation and source continuity do
 not create human field acceptance or Verified Finish.
 
-Slice 1 canonical reconciliation verification is PASS: the Product Operator
-foundation command passed, 72 focused Product Operator/session-continuity/
-operator regression tests passed, JSON parsing passed and `git diff --check`
-passed. The final product surface remains characterized but not implemented.
+Product Operator final machine implementation is closed: backend truth projection, final
+Cockpit/Projeler shell, default-closed Status drawer, durable project lifecycle and
+Human Threshold-bound Delete are implemented and regression-verified. Native exact-head
+delivery and G8 Human Field Acceptance remain open.
 
-**NEXT ACTION —** `FINAL_PRODUCT_SURFACE_AND_LIFECYCLE_ENGINEERING`.
+**NEXT ACTION —** `EXACT_HEAD_NATIVE_INSTALL_THEN_G8_HUMAN_FIELD_ACCEPTANCE`.
 
 ## Preserved predecessor truth — Package08 Field Capability Campaign
 

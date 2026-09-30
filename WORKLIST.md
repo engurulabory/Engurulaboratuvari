@@ -1229,13 +1229,14 @@ reopen v0.8 or reactivate Gate 12.
 - [ ] G8 Human Field Acceptance remains PENDING.
 - [x] Product source continuity is bound to clean branch
   `feat/v08-native-productization-provenance` at
-  `2e38dac2154fda7076906d0813cb6895cc6d8b63`.
-- [x] Final product information architecture is characterized without claiming
-  runtime implementation.
-- [ ] Final Cockpit/Projeler surface and lifecycle engineering.
-- [ ] Human field acceptance only after implementation and real daily use.
+  `185cc75ab8ee0d319a642c38908b3d162ddd1bc1`.
+- [x] Final Cockpit/Projeler information architecture is implemented and machine-verified.
+- [x] Full project lifecycle is machine-verified: Create → Open → Work → Auto-save → Close → Reopen → Resume → Rename → Archive → Restore → Delete.
+- [x] Delete requires exact Human Threshold ACCEPT/REJECT authority.
+- [ ] Exact-head native build/install, runtime parity and installed provenance.
+- [ ] G8 Human Field Acceptance only after real installed-product daily use.
 
-**NEXT ACTION:** `FINAL_PRODUCT_SURFACE_AND_LIFECYCLE_ENGINEERING`
+**NEXT ACTION:** `EXACT_HEAD_NATIVE_INSTALL_THEN_G8_HUMAN_FIELD_ACCEPTANCE`
 
 ### Gate 1 result — VERIFIED PASS
 

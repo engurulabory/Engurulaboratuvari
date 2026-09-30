@@ -10,7 +10,7 @@ PRODUCT = Path.home() / "Enguru" / "Projects" / "enguru-mac-engineer"
 
 OBJECTIVE = "ENGURU_PRODUCT_OPERATOR_V12"
 ACTIVE_GATE = "G8_HUMAN_FIELD_ACCEPTANCE"
-NEXT_ACTION = "FINAL_PRODUCT_SURFACE_AND_LIFECYCLE_ENGINEERING"
+NEXT_ACTION = "EXACT_HEAD_NATIVE_INSTALL_THEN_G8_HUMAN_FIELD_ACCEPTANCE"
 
 
 def load(name):
@@ -92,11 +92,11 @@ class ProductOperatorV12CanonicalReconciliationTests(unittest.TestCase):
             "PACKAGE08_FIELD_CAPABILITY_CAMPAIGN",
         )
 
-    def test_final_information_architecture_is_characterized_not_implemented(self):
+    def test_final_information_architecture_is_implemented_machine_verified_g8_pending(self):
         surface = self.contract["finalProductSurfaceContract"]
         self.assertEqual(
             surface["implementationState"],
-            "CHARACTERIZED_NOT_IMPLEMENTED",
+            "IMPLEMENTED_MACHINE_VERIFIED_G8_PENDING",
         )
         self.assertEqual(surface["topLevelSurfaces"], ["COCKPIT", "PROJELER"])
         self.assertEqual(

@@ -111,7 +111,7 @@
       "finalAcceptanceReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/v0.8/gate12-final/61bff4088171f3b1b0fb951d/final-acceptance-receipt.json",
       "finalAcceptanceReceiptDigest": "sha256:697c3569d1ef83ab79dee114561146e8a3368145ce0eacffa8cd4e61e2d92b23"
     },
-    "nextAction": "FINAL_PRODUCT_SURFACE_AND_LIFECYCLE_ENGINEERING"
+    "nextAction": "EXACT_HEAD_NATIVE_INSTALL_THEN_G8_HUMAN_FIELD_ACCEPTANCE"
   },
   "versions": [
     {

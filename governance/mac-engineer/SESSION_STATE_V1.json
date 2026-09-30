@@ -324,7 +324,7 @@
     }
   },
   "currentStatus": "governance/mac-engineer/CURRENT_STATUS.md",
-  "nextAction": "FINAL_PRODUCT_SURFACE_AND_LIFECYCLE_ENGINEERING",
+  "nextAction": "EXACT_HEAD_NATIVE_INSTALL_THEN_G8_HUMAN_FIELD_ACCEPTANCE",
   "currentStatusUpdateRule": {
     "state": "MANDATORY",
     "trigger": "EVERY_MATERIAL_WORK_PACKAGE_OR_PASS_HOLD_BLOCKED_RESULT",
@@ -1805,15 +1805,17 @@
     "state": "ACTIVE",
     "activeGate": "G8_HUMAN_FIELD_ACCEPTANCE",
     "engineeringPhase": "FINAL_PRODUCT_SURFACE_AND_LIFECYCLE_ENGINEERING",
-    "nextAction": "FINAL_PRODUCT_SURFACE_AND_LIFECYCLE_ENGINEERING",
+    "nextAction": "EXACT_HEAD_NATIVE_INSTALL_THEN_G8_HUMAN_FIELD_ACCEPTANCE",
     "sourceContinuity": {
       "repository": "engurulabory/enguru-mac-engineer",
       "branch": "feat/v08-native-productization-provenance",
-      "currentVerifiedHead": "2e38dac2154fda7076906d0813cb6895cc6d8b63",
+      "currentVerifiedHead": "185cc75ab8ee0d319a642c38908b3d162ddd1bc1",
       "baseOriginMain": "5432b9b135499cea18273c0e003877b864af92c6",
       "worktree": "CLEAN",
       "historicalVerifiedHeads": [
-        "0ca33cc7b70fee915d02de72946bbd4bb0e40065"
+        "0ca33cc7b70fee915d02de72946bbd4bb0e40065",
+        "2e38dac2154fda7076906d0813cb6895cc6d8b63",
+        "749adfc3ddb9b30f50e590dca70d9ad8236f13ee"
       ],
       "provenancePreserved": true
     },
