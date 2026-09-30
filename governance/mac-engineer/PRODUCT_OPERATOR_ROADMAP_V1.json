@@ -22,7 +22,7 @@
   "sourceContinuity": {
     "repository": "engurulabory/enguru-mac-engineer",
     "branch": "feat/v08-native-productization-provenance",
-    "currentVerifiedHead": "185cc75ab8ee0d319a642c38908b3d162ddd1bc1",
+    "currentVerifiedHead": "6e43fa9fc6a58d614851df18fd24d2616d48d667",
     "baseOriginMain": "5432b9b135499cea18273c0e003877b864af92c6",
     "worktree": "CLEAN",
     "remoteExactMain": false,
@@ -30,7 +30,8 @@
     "historicalVerifiedHeads": [
       "0ca33cc7b70fee915d02de72946bbd4bb0e40065",
       "2e38dac2154fda7076906d0813cb6895cc6d8b63",
-      "749adfc3ddb9b30f50e590dca70d9ad8236f13ee"
+      "749adfc3ddb9b30f50e590dca70d9ad8236f13ee",
+      "185cc75ab8ee0d319a642c38908b3d162ddd1bc1"
     ],
     "provenancePreserved": true
   },
