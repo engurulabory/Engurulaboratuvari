@@ -148,5 +148,30 @@
     "verifiedPromotion": "ONLY_AFTER_G1_THROUGH_G8_PASS"
   },
   "firstAction": "PRODUCT_OPERATOR_V12_OBJECTIVE_ACTIVATION",
-  "nextAction": "EXACT_HEAD_NATIVE_INSTALL_THEN_G8_HUMAN_FIELD_ACCEPTANCE"
+  "nextAction": "EXACT_HEAD_NATIVE_INSTALL_THEN_G8_HUMAN_FIELD_ACCEPTANCE",
+  "foundationContractSet": {
+    "state": "CONTRACT_DEFINED_RUNTIME_ACCEPTANCE_PENDING",
+    "contracts": {
+      "PRODUCT_OPERATOR_V12_COCKPIT_ARCHITECTURE_CONTRACT_V1.json": {
+        "path": "governance/mac-engineer/PRODUCT_OPERATOR_V12_COCKPIT_ARCHITECTURE_CONTRACT_V1.json",
+        "sha256": "5d021f1878cfb7391a84a624d1cbbdf707a61072204018c1fba28c403ef89c55"
+      },
+      "PRODUCT_OPERATOR_V12_PILOT_FABRIC_CONTRACT_V1.json": {
+        "path": "governance/mac-engineer/PRODUCT_OPERATOR_V12_PILOT_FABRIC_CONTRACT_V1.json",
+        "sha256": "e61a40c0d0b1cd49982f06fb087a3535821af10eef9d5bd23d7ff33c8313b06b"
+      },
+      "PRODUCT_OPERATOR_V12_PILOT_GOVERNANCE_CONTRACT_V1.json": {
+        "path": "governance/mac-engineer/PRODUCT_OPERATOR_V12_PILOT_GOVERNANCE_CONTRACT_V1.json",
+        "sha256": "50368a6efe666e08171ff1e6e6cd79671d5d84e99923d31d784f1f708288c2f3"
+      },
+      "PRODUCT_OPERATOR_V12_COCKPIT_FIELD_ACCEPTANCE_CONTRACT_V1.json": {
+        "path": "governance/mac-engineer/PRODUCT_OPERATOR_V12_COCKPIT_FIELD_ACCEPTANCE_CONTRACT_V1.json",
+        "sha256": "a5b15a9be58eec51b1e7e3734aafd65daf20c54fd5d5b9bef9555c8c4ed64e82"
+      }
+    },
+    "acceptanceAuthority": "G8_HUMAN_FIELD_ACCEPTANCE",
+    "criterionCount": 32,
+    "newGateCount": 0,
+    "runtimeCoreChangeCount": 0
+  }
 }

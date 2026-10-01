@@ -1,0 +1,259 @@
+{
+  "productId": "ENGURU_PRODUCT_OPERATOR",
+  "objectiveId": "ENGURU_PRODUCT_OPERATOR_V12",
+  "state": "CONTRACT_DEFINED",
+  "acceptanceAuthority": "G8_HUMAN_FIELD_ACCEPTANCE",
+  "parentContract": "governance/mac-engineer/PRODUCT_OPERATOR_V12_ACCEPTANCE_CONTRACT_V1.json",
+  "executionAuthority": "EXISTING_CAPABILITY_AND_ACTION_REGISTRIES",
+  "schema": "enguru.product-operator.cockpit-field-acceptance/v1",
+  "contractName": "Cockpit DoneCheck / Field Acceptance Contract v1.0",
+  "version": "v1.0",
+  "criteria": [
+    {
+      "id": "SOURCE_IDENTITY",
+      "worklistStep": 1,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "INSTALLED_PROVENANCE",
+      "worklistStep": 1,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "RUNTIME_PARITY",
+      "worklistStep": 1,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "RECOVERY_SCOPE_AND_ROOT_CAUSE",
+      "worklistStep": 2,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "RECOVERY_REGRESSION",
+      "worklistStep": 2,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "ROLLBACK_READINESS",
+      "worklistStep": 2,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "BASELINE_COCKPIT_TO_PROJECTS",
+      "worklistStep": 3,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "BASELINE_PROJECTS_TO_COCKPIT",
+      "worklistStep": 3,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "BASELINE_STATUS_OPEN_CLOSE",
+      "worklistStep": 3,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "BASELINE_SEND_RESPONSE",
+      "worklistStep": 3,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "ARCHITECTURE_CONTRACT",
+      "worklistStep": 4,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "PILOT_FABRIC_CONTRACT",
+      "worklistStep": 4,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "PILOT_GOVERNANCE_CONTRACT",
+      "worklistStep": 4,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "FIELD_ACCEPTANCE_CONTRACT",
+      "worklistStep": 4,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "PILOT_EXECUTION_RESOLUTION",
+      "worklistStep": 5,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "SINGLE_WRITER_AND_HANDOFF",
+      "worklistStep": 5,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "AUTHORITY_INHERITANCE",
+      "worklistStep": 5,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "PRODUCER_VERIFIER_SEPARATION",
+      "worklistStep": 5,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "FIVE_PRIMARY_STRUCTURES",
+      "worklistStep": 6,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "REAL_INPUT_AND_EXECUTION_HANDLERS",
+      "worklistStep": 6,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "MESSAGE_SCOPED_STRUCTURED_RESULTS",
+      "worklistStep": 6,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "REBUILT_NATIVE_INTERACTION_4_OF_4",
+      "worklistStep": 6,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "NATIVE_PROJECT_LIFECYCLE_AND_DELETE_THRESHOLD",
+      "worklistStep": 7,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "PERSISTENCE_AND_RESTART_CONTINUITY",
+      "worklistStep": 7,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "LOCAL_RECOVERY_AND_STALE_STATE",
+      "worklistStep": 7,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "ERROR_STATES_AND_SECURITY",
+      "worklistStep": 7,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "APPROVED_VISUAL_INTEGRITY",
+      "worklistStep": 8,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "READABILITY_AND_RESPONSIVE_LAYOUT",
+      "worklistStep": 8,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "MEASURED_PERFORMANCE_BUDGET",
+      "worklistStep": 8,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "REAL_TASK_END_TO_END_EVIDENCE",
+      "worklistStep": 9,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "DONECHECK_FINAL_VERIFICATION",
+      "worklistStep": 9,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    },
+    {
+      "id": "HUMAN_FINAL_ACCEPTANCE",
+      "worklistStep": 9,
+      "required": true,
+      "passRule": "ALL_APPLICABLE_SUBCONDITIONS_WITH_SCOPE_MATCHED_EVIDENCE"
+    }
+  ],
+  "criterionCount": 32,
+  "progressRule": "EVIDENCE_VALID_PASS_COUNT / REQUIRED_CRITERION_COUNT * 100",
+  "progressMeaning": "VERIFIED_ACCEPTANCE_COVERAGE",
+  "evidenceIdentity": [
+    "CRITERION_ID",
+    "PRODUCT_HEAD_OR_COMPATIBILITY_PROOF",
+    "RUNTIME_IDENTITY_WHEN_APPLICABLE",
+    "EVIDENCE_PATH",
+    "SHA256",
+    "PRODUCER",
+    "VERIFIER",
+    "HUMAN_REPORT_WHEN_APPLICABLE"
+  ],
+  "partialCriterionState": "HOLD",
+  "regressionPolicy": "REVALIDATE_AFFECTED_CRITERIA",
+  "nativeInteraction": [
+    "COCKPIT_TO_PROJECTS",
+    "PROJECTS_TO_COCKPIT",
+    "STATUS_OPEN_CLOSE",
+    "SEND_AND_RESPONSE"
+  ],
+  "nativeLifecycle": [
+    "NEW",
+    "OPEN",
+    "RENAME",
+    "ARCHIVE",
+    "RESTORE",
+    "DELETE_REJECT",
+    "DELETE_ACCEPT"
+  ],
+  "continuity": [
+    "FRESH_LAUNCH",
+    "RELOAD",
+    "CLOSE_REOPEN",
+    "WORKSPACE_RESUME",
+    "RUNTIME_RESTART",
+    "LOCAL_ONLY",
+    "STALE_STATE_RECONCILIATION"
+  ],
+  "realTaskAcceptance": [
+    "NATURAL_INTENT",
+    "BOUNDED_OBJECTIVE",
+    "CURRENT_CAPABILITY_DISCOVERY",
+    "QUALIFIED_EXECUTION",
+    "RESULT",
+    "EVIDENCE",
+    "DONECHECK",
+    "HUMAN_FIELD_DECISION"
+  ],
+  "performancePolicy": "MEASURE_THEN_LOCK_BUDGETS_WITH_EVIDENCE",
+  "visualEvidence": "NATIVE_SCREENSHOTS_AT_ACCEPTANCE_WIDTHS",
+  "completionRule": "ALL_REQUIRED_CRITERIA_PLUS_PARENT_G1_G8_ACCEPTANCE",
+  "currentFieldScope": "BASELINE_RECOVERY_4_OF_4",
+  "finishedProductState": "HOLD_PENDING_FULL_ACCEPTANCE"
+}

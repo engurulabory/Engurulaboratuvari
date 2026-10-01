@@ -1,0 +1,78 @@
+{
+  "productId": "ENGURU_PRODUCT_OPERATOR",
+  "objectiveId": "ENGURU_PRODUCT_OPERATOR_V12",
+  "state": "CONTRACT_DEFINED",
+  "acceptanceAuthority": "G8_HUMAN_FIELD_ACCEPTANCE",
+  "parentContract": "governance/mac-engineer/PRODUCT_OPERATOR_V12_ACCEPTANCE_CONTRACT_V1.json",
+  "executionAuthority": "EXISTING_CAPABILITY_AND_ACTION_REGISTRIES",
+  "schema": "enguru.product-operator.cockpit-architecture/v1",
+  "contractName": "Cockpit Architecture Contract v1.2",
+  "version": "v1.2",
+  "topLevelSurfaces": [
+    "COCKPIT",
+    "PROJELER"
+  ],
+  "primaryHierarchy": [
+    "HEADER",
+    "ACTIVE_WORK_BAND",
+    "ZEKU",
+    "CONVERSATION",
+    "COMPOSER"
+  ],
+  "secondarySurfaces": [
+    "DEFAULT_CLOSED_STATUS_DRAWER",
+    "SPECIALIST_STATUS",
+    "HUMAN_THRESHOLD_MODAL"
+  ],
+  "archivePolicy": "PROJECTS_FILTER",
+  "stateVocabulary": [
+    "READY",
+    "WORKING",
+    "NEEDS_HUMAN",
+    "VERIFIED"
+  ],
+  "stageVocabulary": [
+    "PLANLAMA",
+    "URETIM",
+    "DOGRULAMA",
+    "YAYIN"
+  ],
+  "projectionAuthority": "EXISTING_BACKEND_PRODUCT_PROJECTION",
+  "persistenceAuthority": "EXISTING_COCKPIT_STORE_AND_CONVERSATION_PERSISTENCE",
+  "interaction": {
+    "COCKPIT": "WORK",
+    "PROJELER": "MANAGE",
+    "DURUM": "INSPECT",
+    "BASLAT": "EXECUTE_RESOLVED_CANONICAL_NEXT_ACTION",
+    "GONDER": "SEND_MESSAGE_TO_ZEKU",
+    "ACTIVE_WORK": "OPEN_RELATED_PROJECT",
+    "SPECIALIST_SUMMARY": "OPEN_REAL_SPECIALIST_STATUS"
+  },
+  "visibleControlThreshold": [
+    "REAL_HANDLER",
+    "ACCEPTANCE",
+    "EVIDENCE",
+    "DONECHECK"
+  ],
+  "structuredResultPolicy": "REAL_MESSAGE_SCOPED_METADATA_AND_EVIDENCE",
+  "standardMessageFallback": true,
+  "specialistCountSource": "REAL_EXECUTION_STATE",
+  "visualReference": {
+    "name": "ChatGPT Görseli 1 Eki 2026 15_04_30.png",
+    "role": "USER_APPROVED_PRESENTATION_REFERENCE",
+    "brand": "FUTURISTIC_ROBOT_OWL",
+    "atmosphere": "DEEP_GREEN_MISTY_MOUNTAIN_FOREST_VALLEY",
+    "refinements": [
+      "CONTROLLED_ZEKU_SCALE",
+      "COMPACT_ACTIVE_WORK",
+      "RESTRAINED_BASLAT_EMPHASIS"
+    ]
+  },
+  "rebuildThreshold": {
+    "receipt": "/Users/abdal/Enguru/Evidence/MacEngineer/v1.2/baseline-human-field-acceptance/20261001T130427241455Z/evidence.json",
+    "sha256": "0d2ba71a31914a647df2792b96cc07efe4d312dca7a92ac5a5b0e12e5a679717",
+    "state": "PASS",
+    "nativeChecks": "4/4"
+  },
+  "runtimeImplementationState": "HOLD_PENDING_REBUILD"
+}

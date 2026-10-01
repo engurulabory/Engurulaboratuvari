@@ -1,0 +1,93 @@
+{
+  "productId": "ENGURU_PRODUCT_OPERATOR",
+  "objectiveId": "ENGURU_PRODUCT_OPERATOR_V12",
+  "state": "CONTRACT_DEFINED",
+  "acceptanceAuthority": "G8_HUMAN_FIELD_ACCEPTANCE",
+  "parentContract": "governance/mac-engineer/PRODUCT_OPERATOR_V12_ACCEPTANCE_CONTRACT_V1.json",
+  "executionAuthority": "EXISTING_CAPABILITY_AND_ACTION_REGISTRIES",
+  "schema": "enguru.product-operator.pilot-governance/v1",
+  "contractName": "Pilot Governance Contract v1.0",
+  "version": "v1.0",
+  "languageDiscipline": [
+    "STATE",
+    "CLAIM",
+    "EVIDENCE",
+    "JUDGMENT",
+    "NEXT_ACTION"
+  ],
+  "expansionDiscipline": [
+    "OBSERVE",
+    "REUSE",
+    "EXTEND",
+    "ADAPTER",
+    "NEW_CORE"
+  ],
+  "authorityOrder": [
+    "FRESH_REPOSITORY_RUNTIME_EVIDENCE",
+    "CANONICAL_PRODUCT_CONTRACTS",
+    "INTERACTION_CONTRACT",
+    "VISUAL_REFERENCE",
+    "PRESENTATION_POLISH"
+  ],
+  "orchestrationOwner": "ZEKU",
+  "executionAdmission": [
+    "CURRENT_CAPABILITY_RESOLVED",
+    "CURRENT_ACTION_RESOLVED",
+    "TASK_SCOPE_RESOLVED",
+    "HANDLER_SCOPE_QUALIFIED",
+    "HUMAN_DECISION_WHEN_REQUIRED"
+  ],
+  "proofReceiptAuthority": "ORIGINAL_PROOF_SCOPE_ONLY",
+  "humanDecisionBinding": [
+    "WORK_ID",
+    "ACTION",
+    "EXACT_SCOPE",
+    "CURRENT_STATE"
+  ],
+  "concurrency": {
+    "independentReadOnly": "PARALLEL_WHEN_APPROPRIATE",
+    "dependencyBound": "ORDERED",
+    "materialMutation": "SINGLE_WRITER",
+    "mutationIdentity": [
+      "WORK_ID",
+      "PILOT_ID",
+      "CAPABILITY_ID",
+      "EXACT_SCOPE"
+    ]
+  },
+  "handoff": [
+    "STATE",
+    "CLAIM",
+    "EVIDENCE",
+    "OPEN_DIFFERENCE",
+    "NEXT_ACTION"
+  ],
+  "conflictResolution": [
+    "EVIDENCE_COMPARISON",
+    "SENTINEL_SECOND_LOOK",
+    "ZEKU_SYNTHESIS"
+  ],
+  "verification": {
+    "producerVerifierSeparation": true,
+    "sameArtifactSelfApproval": "HOLD_REQUIRES_INDEPENDENT_REVIEW",
+    "doneCheckAuthority": "EXISTING_DONECHECK_V1_2",
+    "humanFinalAuthority": "HUMAN_THRESHOLD"
+  },
+  "evidenceReceiptFields": [
+    "OBJECTIVE",
+    "WORK_ID",
+    "PILOT",
+    "CAPABILITY",
+    "AUTHORITY",
+    "PRE_STATE",
+    "EXACT_SCOPE",
+    "EXECUTION_RESULT",
+    "TEST_RESULT",
+    "EVIDENCE_PATHS",
+    "EVIDENCE_DIGESTS",
+    "RECOVERY_STATE",
+    "POST_STATE",
+    "NEXT_ACTION"
+  ],
+  "runtimeEnforcementState": "HOLD_PENDING_BEHAVIORAL_VERIFICATION"
+}

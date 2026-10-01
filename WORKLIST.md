@@ -2130,3 +2130,14 @@ Gate 10 execution belongs to the next working session.
 - Current program final target: **v1.3 — Usable Verified Product**.
 
 **NEXT ACTION — commit/push this bounded reconciliation, run fresh local candidate acceptance, then `enguru-mac continue` for final post-commit readback.**
+
+
+## Product Operator v1.2 — Cockpit Foundation contract set
+
+User-approved sequence: Temel → Recovery → Çalışan baseline → Mimari → Mühendislik → Uygulama → Operasyon → Parlatma → Final.
+
+Baseline recovery native acceptance: 4/4 human-reported PASS.
+Four foundation contracts extend the existing G8 acceptance authority.
+Foundation acceptance denominator: 32 required composite criteria.
+Pilot runtime binding and complete G8 acceptance: HOLD.
+Next work: qualify existing execution handlers and bind Pilot Fabric before the reference-aligned Cockpit rebuild.
