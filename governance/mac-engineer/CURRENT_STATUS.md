@@ -14,7 +14,7 @@
 
 `G8=PENDING`
 
-`SOURCE_CONTINUITY_HEAD=6e43fa9fc6a58d614851df18fd24d2616d48d667`
+`SOURCE_CONTINUITY_HEAD=9a63b45721b176335ce4c9959701a257f01d2b55`
 
 The source-continuity branch is
 `feat/v08-native-productization-provenance`; the observed product worktree is
