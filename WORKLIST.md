@@ -1229,7 +1229,7 @@ reopen v0.8 or reactivate Gate 12.
 - [ ] G8 Human Field Acceptance remains PENDING.
 - [x] Product source continuity is bound to clean branch
   `feat/v08-native-productization-provenance` at
-  `9a63b45721b176335ce4c9959701a257f01d2b55`.
+  `d06608a21e58b506a3384bd9ae89f24c8599a74b`.
 - [x] Final Cockpit/Projeler information architecture is implemented and machine-verified.
 - [x] Full project lifecycle is machine-verified: Create → Open → Work → Auto-save → Close → Reopen → Resume → Rename → Archive → Restore → Delete.
 - [x] Delete requires exact Human Threshold ACCEPT/REJECT authority.
