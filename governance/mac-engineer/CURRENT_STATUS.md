@@ -14,7 +14,7 @@
 
 `G8=PENDING`
 
-`SOURCE_CONTINUITY_HEAD=d06608a21e58b506a3384bd9ae89f24c8599a74b`
+`SOURCE_CONTINUITY_HEAD=b9c4aee774bbe7e09c9775b71a94bb4ea8c17f94`
 
 The source-continuity branch is
 `feat/v08-native-productization-provenance`; the observed product worktree is
@@ -1685,3 +1685,18 @@ Gate 12 is **ACTIVE** and has execution count **0**.
 ## NEXT ACTION
 
 `V08_GATE_12_DONECHECK_V1_2_HUMAN_THRESHOLD_LOCK`
+
+
+## Cockpit baseline recovery — 2026-10-01
+
+Product HEAD: `b9c4aee774bbe7e09c9775b71a94bb4ea8c17f94`.
+
+Source recovery: PASS; baseline tree parity: PASS.
+
+Product targeted tests: 24/24 PASS; runtime regression: 297/297 PASS.
+
+Native recovery install: PENDING. Field acceptance: HOLD pending 4/4 native interaction proof.
+
+Recovery Evidence: `/Users/abdal/Enguru/Evidence/MacEngineer/v1.2/cockpit-baseline-recovery/20261001T125110422371Z/recovery.json`.
+
+Recovery digest: `8e5cd57767b348f2aec82d94e74525839ad034ae7e4ba63c2b6241499497c6cd`.
