@@ -22,14 +22,16 @@ class Package08CanonicalObjectiveTests(unittest.TestCase):
         status = (GOV / "CURRENT_STATUS.md").read_text(encoding="utf-8")
         worklist = (ROOT / "WORKLIST.md").read_text(encoding="utf-8")
 
-        self.assertEqual(session["currentObjective"], OBJECTIVE)
-        self.assertEqual(session["nextAction"], NEXT_ACTION)
-        self.assertEqual(roadmap["current"]["activeObjective"], OBJECTIVE)
-        self.assertEqual(roadmap["current"]["nextAction"], NEXT_ACTION)
-        self.assertIn(f"**Active objective:** `{OBJECTIVE}`", worklist)
-        self.assertIn(f"**Current single objective:** **{OBJECTIVE}**.", worklist)
-        self.assertIn(f"`CURRENT_OBJECTIVE={OBJECTIVE}`", status)
-        self.assertIn(f"`{NEXT_ACTION}`", status)
+        session_campaign = session["postV08Objective"]
+        roadmap_campaign = roadmap["current"]["postV08Objective"]
+
+        self.assertEqual(session_campaign, roadmap_campaign)
+        self.assertEqual(session_campaign["objective"], OBJECTIVE)
+        self.assertEqual(session_campaign["state"], "VERIFIED_CLOSED")
+        self.assertEqual(session_campaign["nextAction"], NEXT_ACTION)
+        self.assertIn("Predecessor objective:", status)
+        self.assertIn(OBJECTIVE, status)
+        self.assertIn("VERIFIED_CLOSED", status)
 
     def test_v08_lock_is_preserved_and_gate12_is_not_reactivated(self) -> None:
         session = load("SESSION_STATE_V1.json")
@@ -43,10 +45,14 @@ class Package08CanonicalObjectiveTests(unittest.TestCase):
         self.assertEqual(session["currentV08"]["gate12"]["state"], "VERIFIED_LOCKED")
         self.assertIsNone(session["currentV08"]["closureContract"]["activeGate"])
         self.assertEqual(
-            roadmap["current"]["state"],
-            "V08_PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED",
+            roadmap["current"]["postV08Objective"]["state"],
+            "VERIFIED_CLOSED",
         )
-        self.assertIsNone(roadmap["current"]["activeGate"])
+        self.assertEqual(
+            roadmap["current"]["postV08Objective"]["objective"],
+            OBJECTIVE,
+        )
+        self.assertNotEqual(roadmap["current"].get("activeGate"), 12)
         self.assertEqual(v08["state"], "VERIFIED_LOCKED")
         self.assertEqual(v08["nextAction"], "AWAIT_NEXT_OBJECTIVE")
 

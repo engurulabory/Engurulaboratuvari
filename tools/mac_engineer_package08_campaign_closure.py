@@ -242,12 +242,12 @@ def evaluate(root: Path = ROOT) -> tuple[dict[str, bool], dict[str, Any]]:
             and post_roadmap.get("gate12Reactivated") is False
         ),
         "campaign_canonical_surfaces_aligned": (
-            session.get("currentObjective") == OBJECTIVE
-            and roadmap_current.get("activeObjective") == OBJECTIVE
-            and post_session == post_roadmap
+            post_session == post_roadmap
+            and post_session.get("objective") == OBJECTIVE
+            and post_roadmap.get("objective") == OBJECTIVE
             and post_session.get("fieldVerifiedCount") == 19
             and post_session.get("activeCapabilityState") == "FIELD_VERIFIED"
-            and post_session.get("state") in {"ACTIVE", "VERIFIED_CLOSED"}
+            and post_session.get("state") == "VERIFIED_CLOSED"
         ),
         "remote_push_authority_closed": (
             cap19_seal.get("execution", {}).get("remotePush") is False

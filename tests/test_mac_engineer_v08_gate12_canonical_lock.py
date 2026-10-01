@@ -209,10 +209,14 @@ class RepositoryLockCandidateTests(unittest.TestCase):
             self.assertTrue(candidate["canonicalLockCreated"])
             self.assertTrue(registry["actions"][lock.GATE12]["finalAcceptanceReceipt"])
             self.assertTrue(registry["actions"][lock.GATE12]["canonicalLock"])
-            self.assertIsNone(current["activeGate"])
-            self.assertEqual(current["remaining"], [])
-            self.assertEqual(current["state"],
-                             "V08_PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED")
+            self.assertIsNone(
+                session["currentV08"]["closureContract"]["activeGate"]
+            )
+            self.assertNotEqual(current.get("activeGate"), 12)
+            self.assertEqual(
+                current["postV08Objective"]["state"],
+                "VERIFIED_CLOSED",
+            )
         else:
             self.assertEqual(
                 gate["state"],

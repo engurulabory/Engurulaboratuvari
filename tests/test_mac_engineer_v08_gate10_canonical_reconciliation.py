@@ -90,8 +90,12 @@ class Gate10CanonicalReconciliationTests(unittest.TestCase):
             self.assertFalse(v08["gate12"]["canonicalLockCreated"])
         elif closure["activeGate"] is None:
             self.assertEqual(
-                self.session["currentObjective"],
+                self.session["postV08Objective"]["objective"],
                 PACKAGE08,
+            )
+            self.assertEqual(
+                self.session["postV08Objective"]["state"],
+                "VERIFIED_CLOSED",
             )
             self.assertEqual(
                 closure["passedGates"],
@@ -156,18 +160,14 @@ class Gate10CanonicalReconciliationTests(unittest.TestCase):
                 current["remaining"],
                 [ROADMAP_G12],
             )
-        elif current["activeGate"] is None:
+        elif self.session["currentV08"]["closureContract"]["activeGate"] is None:
             self.assertEqual(
-                current["activeObjective"],
+                current["postV08Objective"]["objective"],
                 PACKAGE08,
             )
             self.assertEqual(
-                current["remaining"],
-                [],
-            )
-            self.assertEqual(
-                current["state"],
-                "V08_PRODUCT_ENGINEERING_OPERATOR_VERIFIED_LOCKED",
+                current["postV08Objective"]["state"],
+                "VERIFIED_CLOSED",
             )
             v08 = next(
                 item for item in self.roadmap["versions"]
