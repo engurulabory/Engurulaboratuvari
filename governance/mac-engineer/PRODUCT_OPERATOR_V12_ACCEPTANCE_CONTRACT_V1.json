@@ -137,7 +137,11 @@
     {
       "index": 8,
       "id": "HUMAN_FIELD_ACCEPTANCE",
-      "state": "PENDING"
+      "state": "PASS",
+      "productHead": "0b47738e1b38b00ad8267ffbf9510af5422b2901",
+      "compatibilityReceipt": "/Users/abdal/Enguru/Evidence/MacEngineer/product-operator-v12/p0-final-atomic-closure/20261003T110758Z/current-head-compatibility-receipt.json",
+      "compatibilityReceiptSha256": "0006ab926593551164225c3ccbed5ee0e856e58c5c4cd709fec193fbfcc5472d",
+      "closedAt": "2026-10-03T11:07:58.189914+00:00"
     }
   ],
   "authority": {

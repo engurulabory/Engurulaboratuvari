@@ -38,5 +38,12 @@
     "provenancePreserved": true
   },
   "acceptanceContract": "governance/mac-engineer/PRODUCT_OPERATOR_V12_ACCEPTANCE_CONTRACT_V1.json",
-  "executionBinding": "governance/mac-engineer/PRODUCT_OPERATOR_V12_EXECUTION_BINDING_V1.json"
+  "executionBinding": "governance/mac-engineer/PRODUCT_OPERATOR_V12_EXECUTION_BINDING_V1.json",
+  "current": {
+    "state": "PASS",
+    "activeGate": null,
+    "remainingGates": 0,
+    "progressPercent": 100.0,
+    "nextAction": "P1_QWEN38_QUALIFICATION"
+  }
 }

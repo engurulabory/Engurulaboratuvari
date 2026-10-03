@@ -1802,10 +1802,10 @@
     "nextTransition": "GATE11_VERIFIED_LOCKED_GATE12_ACTIVE_STOP"
   },
   "productOperatorV12": {
-    "state": "ACTIVE",
-    "activeGate": "G8_HUMAN_FIELD_ACCEPTANCE",
+    "state": "PASS",
+    "activeGate": null,
     "engineeringPhase": "FINAL_PRODUCT_SURFACE_AND_LIFECYCLE_ENGINEERING",
-    "nextAction": "EXACT_HEAD_NATIVE_INSTALL_THEN_G8_HUMAN_FIELD_ACCEPTANCE",
+    "nextAction": "P1_QWEN38_QUALIFICATION",
     "sourceContinuity": {
       "repository": "engurulabory/enguru-mac-engineer",
       "branch": "feat/v08-native-productization-provenance",
@@ -1860,6 +1860,9 @@
       "aggregateEvidenceSha256": "e97afdeabb5ca415814b099053caaea083ffa1767815defb5318ff870a6d36d6",
       "doneCheckVersion": "1.2.0",
       "doneCheckExactSha": "8b90a8fc93453dd8a84994195d28d14b15e261cb"
-    }
+    },
+    "remainingGates": 0,
+    "progressPercent": 100.0,
+    "productHead": "0b47738e1b38b00ad8267ffbf9510af5422b2901"
   }
 }
