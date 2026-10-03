@@ -1,0 +1,88 @@
+{
+  "receiptId": "MAC_ENGINEER_PRODUCT_OPERATOR_V12_SLICE1_2026-09-30",
+  "recordedAt": "2026-09-30T13:23:26+03:00",
+  "state": "PASS",
+  "claim": "PRODUCT_OPERATOR_V12_SLICE1_CANONICAL_RECONCILIATION_COMPLETE",
+  "scope": "CANONICAL_TRUTH_RECONCILIATION_SOURCE_CONTINUITY_LOCK_AND_FINAL_UI_ACCEPTANCE_CHARACTERIZATION",
+  "productSource": {
+    "repository": "/Users/abdal/Enguru/Projects/enguru-mac-engineer",
+    "branch": "feat/v08-native-productization-provenance",
+    "head": "2e38dac2154fda7076906d0813cb6895cc6d8b63",
+    "worktreeClean": true,
+    "uiFilesMutated": false
+  },
+  "controlPlane": {
+    "repository": "/Users/abdal/Enguru/Projects/Engurulaboratuvari",
+    "branch": "feat/mac-engineer-v08-product-engineering-operator",
+    "preHead": "5c6008d18536ddf5fda78d52df3e6f24c263241d",
+    "postHead": "e7a917b8bc390aa90a67db78c65b4d34b29d0d12",
+    "commitSubject": "chore(product-operator): reconcile v1.2 canonical truth",
+    "commitCount": 1,
+    "committedFileCount": 21
+  },
+  "canonicalTruth": {
+    "productId": "ENGURU_PRODUCT_OPERATOR",
+    "currentObjective": "ENGURU_PRODUCT_OPERATOR_V12",
+    "activeGate": "G8_HUMAN_FIELD_ACCEPTANCE",
+    "gates": {
+      "G1": "PASS",
+      "G2": "PASS",
+      "G3": "PASS",
+      "G4": "PASS",
+      "G5": "PASS",
+      "G6": "PASS",
+      "G7": "PASS",
+      "G8": "PENDING"
+    },
+    "nextAction": "FINAL_PRODUCT_SURFACE_AND_LIFECYCLE_ENGINEERING",
+    "finalProductSurface": "CHARACTERIZED_NOT_IMPLEMENTED"
+  },
+  "dirtyPathClassification": {
+    "A_RELEVANT_COMMITTED": [
+      "WORKLIST.md",
+      "governance/mac-engineer/CURRENT_STATUS.md",
+      "governance/mac-engineer/OPERATOR_ACTION_REGISTRY_V1.json",
+      "governance/mac-engineer/PRODUCT_OPERATOR_ROADMAP_V1.json",
+      "governance/mac-engineer/PRODUCT_OPERATOR_V12_ACCEPTANCE_CONTRACT_V1.json",
+      "governance/mac-engineer/PRODUCT_OPERATOR_V12_ACTION_BINDING_V1.json",
+      "governance/mac-engineer/PRODUCT_OPERATOR_V12_EXECUTION_BINDING_V1.json",
+      "governance/mac-engineer/PRODUCT_OPERATOR_V12_OBJECTIVE_ACTIVATION.command",
+      "governance/mac-engineer/PRODUCT_ROADMAP_V1.json",
+      "governance/mac-engineer/SESSION_STATE_V1.json",
+      "tests/test_mac_engineer_product_operator_v12_canonical_reconciliation.py",
+      "tests/test_mac_engineer_product_operator_v12_human_threshold.py",
+      "tests/test_mac_engineer_product_operator_v12_material_execution.py",
+      "tools/mac_engineer_operator.py",
+      "tools/mac_engineer_product_operator_v12_action_binding.py",
+      "tools/mac_engineer_product_operator_v12_conversation_continuity.py",
+      "tools/mac_engineer_product_operator_v12_foundation.py",
+      "tools/mac_engineer_product_operator_v12_human_threshold.py",
+      "tools/mac_engineer_product_operator_v12_material_execution.py",
+      "tools/mac_engineer_safe_execution_orchestrator.py",
+      "tools/mac_engineer_session_continuity.py"
+    ],
+    "B_UNRELATED_PRESERVED": [
+      "tools/__pycache__/"
+    ],
+    "C_UNCERTAIN": []
+  },
+  "verification": {
+    "activationCommand": "PASS",
+    "productOperatorTests": "17_OF_17_PASS",
+    "sessionContinuityTests": "23_OF_23_PASS",
+    "operatorRegressionTests": "32_OF_32_PASS",
+    "totalTests": "72_OF_72_PASS",
+    "jsonValidation": "PASS",
+    "diffCheck": "PASS",
+    "stagedFileCountBeforeCommit": 21,
+    "productSourceContinuity": "PASS"
+  },
+  "mutation": {
+    "productRepository": false,
+    "remote": false,
+    "push": false,
+    "reset": false,
+    "stash": false
+  },
+  "nextAction": "ENGINEERING_SLICE_2_BACKEND_PRODUCT_TRUTH_PROJECTION_STAGE_PROGRESS_RESTORE_AND_PERSISTENCE_HARDENING"
+}
