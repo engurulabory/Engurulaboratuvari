@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "1.0",
+  "governanceVersion": "1.0",
+  "governanceId": "ENGURU_LANGUAGE_GOVERNANCE",
+  "authorityClass": "CANONICAL_CANDIDATE",
+  "newCore": false,
+
+  "purpose": "Machine-readable execution contract for ENGURU Language Governance",
+
+  "canonicalPrinciple": {
+    "tr": "HAKİKATİ GÖR → DEĞERİ KORU → GEREKLİ FARKI ÜRET → KANITLA → İLERLET",
+    "execution": [
+      "OBSERVE",
+      "PRESERVE",
+      "RECONCILE",
+      "PRODUCE_NECESSARY_DIFFERENCE",
+      "VERIFY",
+      "ADVANCE"
+    ]
+  },
+
+  "capabilityDecisionOrder": [
+    "REUSE",
+    "EXTEND",
+    "ADAPTER",
+    "NEW"
+  ],
+
+  "claimClasses": [
+    "OBSERVED",
+    "PROVEN",
+    "INFERRED",
+    "PROPOSED"
+  ],
+
+  "executionStates": [
+    "PASS",
+    "HOLD",
+    "BLOCKED",
+    "FAIL"
+  ],
+
+  "preferredVocabulary": {
+    "bozmadan": "koruyarak"
+  },
+
+  "languagePrinciples": [
+    "YAPICI",
+    "ONARICI",
+    "İLERLETİCİ",
+    "OLUMLU",
+    "HAKİKATE_SADIK"
+  ],
+
+  "defaultReasoningOrder": [
+    "STATE",
+    "CLAIM",
+    "EVIDENCE",
+    "PRESERVED_VALUE",
+    "NECESSARY_DIFFERENCE",
+    "JUDGMENT",
+    "NEXT_ACTION"
+  ],
+
+  "mutationDiscipline": [
+    "BOOT",
+    "OBSERVE",
+    "CLASSIFY",
+    "DESIGN",
+    "DECLARE_SCOPE",
+    "MUTATE",
+    "TARGETED_TEST",
+    "LINKED_TEST",
+    "FULL_REGRESSION",
+    "FIELD_PROOF",
+    "COMMIT",
+    "CLOSE"
+  ],
+
+  "recoveryDiscipline": [
+    "DISCOVER",
+    "PRESERVE",
+    "RECONCILE",
+    "REPAIR",
+    "REVALIDATE"
+  ],
+
+  "verifiedFinishRequires": [
+    "OBJECTIVE_ACCEPTED",
+    "IMPLEMENTATION_PASS",
+    "TARGETED_PASS",
+    "LINKED_PASS",
+    "FULL_REGRESSION_PASS",
+    "RUNTIME_PASS",
+    "FIELD_PROOF_PASS",
+    "DONECHECK_PASS",
+    "HUMAN_THRESHOLD_PASS"
+  ],
+
+  "visualProductFinishRequires": [
+    "CODE",
+    "TEST",
+    "BUILD",
+    "INSTALL",
+    "OPEN",
+    "SEE",
+    "INTERACT",
+    "COMPARE",
+    "HUMAN_ACCEPT",
+    "VERIFIED_FINISH"
+  ],
+
+  "closureClaimsRequiringEvidence": [
+    "PASS",
+    "DONE",
+    "VERIFIED",
+    "FINAL",
+    "LOCKED",
+    "COMPLETE",
+    "PRODUCTION_READY",
+    "100/100"
+  ],
+
+  "oneOwnerRule": true,
+  "oneNextActionRule": true,
+  "humanThresholdRequiredFor": [
+    "VISUAL_ACCEPTANCE",
+    "BRAND_JUDGMENT",
+    "MEANING_CHANGING_CONTENT",
+    "IRREVERSIBLE_ACTION",
+    "CANONICAL_LOCK",
+    "FIELD_FINISH"
+  ]
+}

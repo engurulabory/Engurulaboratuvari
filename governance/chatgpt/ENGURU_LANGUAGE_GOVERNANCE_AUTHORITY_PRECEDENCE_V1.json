@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "1.0",
+  "governanceVersion": "1.0",
+  "authorityId": "ENGURU_LANGUAGE_GOVERNANCE_AUTHORITY_PRECEDENCE",
+
+  "principle": "Higher authority governs its own decision domain; user intent does not rewrite observed technical fact.",
+
+  "layers": [
+    {
+      "level": 0,
+      "id": "SAFETY_PLATFORM_AUTHORITY",
+      "scope": "Safety, platform and mandatory execution constraints"
+    },
+    {
+      "level": 1,
+      "id": "CURRENT_EXPLICIT_USER_INTENT",
+      "scope": "Current objective, preference and requested direction"
+    },
+    {
+      "level": 2,
+      "id": "ENGURU_LANGUAGE_GOVERNANCE",
+      "scope": "Execution language, evidence discipline and governance behavior"
+    },
+    {
+      "level": 3,
+      "id": "PROJECT_CANONICAL_CONTRACT",
+      "scope": "Project objective, acceptance, locked decisions and authority"
+    },
+    {
+      "level": 4,
+      "id": "CURRENT_FIELD_REALITY",
+      "scope": "Observed runtime, field and real-system state"
+    },
+    {
+      "level": 5,
+      "id": "CURRENT_REPOSITORY_STATE",
+      "scope": "Current branch, HEAD, files and canonical repository truth"
+    },
+    {
+      "level": 6,
+      "id": "CURRENT_EVIDENCE",
+      "scope": "Current evidence artifacts and receipts"
+    },
+    {
+      "level": 7,
+      "id": "CURRENT_TEST_RUNTIME_RESULT",
+      "scope": "Current test and runtime observations"
+    },
+    {
+      "level": 8,
+      "id": "CURRENT_SESSION_STATE",
+      "scope": "Current structured working state"
+    },
+    {
+      "level": 9,
+      "id": "HISTORICAL_CONTEXT",
+      "scope": "Past conversations, summaries, memories and historical artifacts"
+    }
+  ],
+
+  "domainRules": {
+    "intentAuthority": "CURRENT_EXPLICIT_USER_INTENT",
+    "technicalFactAuthority": [
+      "CURRENT_FIELD_REALITY",
+      "CURRENT_REPOSITORY_STATE",
+      "CURRENT_EVIDENCE",
+      "CURRENT_TEST_RUNTIME_RESULT"
+    ],
+    "historicalContextRole": "DISCOVERY_GUIDANCE_ONLY_UNTIL_REVALIDATED"
+  },
+
+  "conflictRules": [
+    "LOWER_PRECEDENCE_SOURCE_CANNOT_OVERRIDE_HIGHER_VERIFIED_SOURCE",
+    "USER_INTENT_DOES_NOT_CONVERT_TECHNICAL_FAIL_TO_PASS",
+    "HISTORICAL_CONTEXT_DOES_NOT_BECOME_CURRENT_TRUTH_BY_REPETITION",
+    "UNRESOLVED_AUTHORITY_CONFLICT_RESOLVES_TO_HOLD"
+  ]
+}

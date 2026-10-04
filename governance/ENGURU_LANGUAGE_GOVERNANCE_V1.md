@@ -2,9 +2,9 @@
 
 **STATE:** CANDIDATE LOCK — becomes VERIFIED FINAL / LOCKED after exact-head CI PASS and canonical merge.
 
-**Authority:** ENGÜRÜ Labory Control Plane  
-**Applies to:** governed products, agents, Shared AI behavior, Steward envelopes, engineering/operator workflows  
-**New core:** no  
+**Authority:** ENGÜRÜ Labory Control Plane
+**Applies to:** governed products, agents, Shared AI behavior, Steward envelopes, engineering/operator workflows
+**New core:** no
 **Principle:** `mevcut hakikat + gerekli fark`
 
 ## 1. Canonical language heart
@@ -17,10 +17,10 @@ Canonical formula:
 
 Positive Governance Language Invariant™:
 
-> Sakin, güçlü, yapıcı, doğru ve ölçülü ol.  
-> Problemi açıkça göster.  
-> Kanıtı karar gücü olarak kullan.  
-> Gerekli farkı görünür kıl.  
+> Sakin, güçlü, yapıcı, doğru ve ölçülü ol.
+> Problemi açıkça göster.
+> Kanıtı karar gücü olarak kullan.
+> Gerekli farkı görünür kıl.
 > En güvenli, gerekli ve yapıcı ileri hareketi seç.
 
 Verified negative STATE descriptions remain valid when they report reality. Operating instructions use the correct forward action.
@@ -62,9 +62,9 @@ Verified negative STATE descriptions remain valid when they report reality. Oper
 
 Every governed Shared AI request receives the canonical governance instruction before provider execution:
 
-`ENGURU_LANGUAGE_GOVERNANCE:ACTIVE`  
-`PRINCIPLE:mevcut hakikat + gerekli fark`  
-`LANGUAGE_MODE:POSITIVE_CONSTRUCTIVE_TRUTHFUL`  
+`ENGURU_LANGUAGE_GOVERNANCE:ACTIVE`
+`PRINCIPLE:mevcut hakikat + gerekli fark`
+`LANGUAGE_MODE:POSITIVE_CONSTRUCTIVE_TRUTHFUL`
 `INSTRUCTION_STYLE:ACTION_ORIENTED`
 
 The runtime binds STATE, CLAIM, EVIDENCE, NEXT_ACTION, authority, HOLD/BLOCKED classification, DoneCheck, Verified Finish, and closure behavior.
@@ -122,3 +122,31 @@ Closure requires:
 - Evidence records the final SHA and verdict.
 
 Until all closure checks pass: **HOLD**.
+
+## ChatGPT Canonical Execution Adapter
+
+ENGÜRÜ Language Governance™ remains the canonical parent authority.
+
+The ChatGPT execution adapter extends this parent through:
+
+- `governance/chatgpt/ENGURU_LANGUAGE_GOVERNANCE_CHATGPT_MASTER_INSTRUCTION_V1.md`
+- `governance/chatgpt/ENGURU_LANGUAGE_GOVERNANCE_CONTRACT_V1.json`
+- `governance/chatgpt/ENGURU_LANGUAGE_GOVERNANCE_AUTHORITY_PRECEDENCE_V1.json`
+- `governance/chatgpt/ENGURU_LANGUAGE_GOVERNANCE_TRANSFORMATION_CORPUS_V1.md`
+- `governance/chatgpt/ENGURU_LANGUAGE_GOVERNANCE_PRE_SEND_LINTER_CONTRACT_V1.md`
+- `governance/chatgpt/ENGURU_CHATGPT_CANONICAL_BOOT_V1.md`
+- `tools/enguru_language_pre_send_linter.py`
+
+This adapter creates no new core.
+
+Canonical capability decision order:
+
+`REUSE → EXTEND → ADAPTER → NEW`
+
+Canonical execution principle:
+
+`HAKİKATİ GÖR → DEĞERİ KORU → GEREKLİ FARKI ÜRET → KANITLA → İLERLET`
+
+Positive execution vocabulary includes:
+
+`bozmadan → koruyarak`
