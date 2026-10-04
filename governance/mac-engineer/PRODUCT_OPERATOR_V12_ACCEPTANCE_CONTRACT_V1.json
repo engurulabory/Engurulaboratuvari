@@ -13,7 +13,7 @@
   "principle": "Natural user intent is translated into bounded canonical objective and registered-action execution while governance details remain background unless Human Threshold or safe continuation requires them.",
   "activeEngineeringPhase": "FINAL_PRODUCT_SURFACE_AND_LIFECYCLE_ENGINEERING",
   "finalProductSurfaceContract": {
-    "implementationState": "IMPLEMENTED_MACHINE_VERIFIED_G8_PENDING",
+    "implementationState": "IMPLEMENTED_MACHINE_VERIFIED_G8_PASS",
     "topLevelSurfaces": [
       "COCKPIT",
       "PROJELER"
@@ -152,7 +152,7 @@
     "verifiedPromotion": "ONLY_AFTER_G1_THROUGH_G8_PASS"
   },
   "firstAction": "PRODUCT_OPERATOR_V12_OBJECTIVE_ACTIVATION",
-  "nextAction": "EXACT_HEAD_NATIVE_INSTALL_THEN_G8_HUMAN_FIELD_ACCEPTANCE",
+  "nextAction": "P1_QWEN38_QUALIFICATION",
   "foundationContractSet": {
     "state": "CONTRACT_DEFINED_RUNTIME_ACCEPTANCE_PENDING",
     "contracts": {

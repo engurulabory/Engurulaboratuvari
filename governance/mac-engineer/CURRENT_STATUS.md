@@ -2,19 +2,19 @@
 
 ## CURRENT ENGINEERING TRUTH — ENGÜRÜ Product Operator™ v1.2
 
-**STATE — ACTIVE / MACHINE IMPLEMENTED / NATIVE DELIVERY PENDING.**
+**STATE — VERIFIED / LOCKED / G8 HUMAN FIELD ACCEPTANCE PASS.**
 
 `PRODUCT_ID=ENGURU_PRODUCT_OPERATOR`
 
 `CURRENT_OBJECTIVE=ENGURU_PRODUCT_OPERATOR_V12`
 
-`CURRENT_GATE=G8_HUMAN_FIELD_ACCEPTANCE`
+`CURRENT_GATE=NONE`
 
 `G1_G7=PASS`
 
-`G8=PENDING`
+`G8=PASS`
 
-`SOURCE_CONTINUITY_HEAD=b9c4aee774bbe7e09c9775b71a94bb4ea8c17f94`
+`SOURCE_CONTINUITY_HEAD=a5be3b1a57252f0922dfcd836823bf5570cbba11`
 
 The source-continuity branch is
 `feat/v08-native-productization-provenance`; the observed product worktree is
@@ -26,17 +26,15 @@ The final Product Operator information architecture is implemented and machine-v
 Archive remains a Projects filter; Product state remains distinct from stage. The full
 Create → Open → Work → Auto-save → Close → Reopen → Resume → Rename → Archive → Restore →
 Delete lifecycle is machine-verified 11/11, and Delete is bound to exact Human Threshold
-ACCEPT/REJECT authority. This machine implementation does not create G8 human field acceptance.
+ACCEPT/REJECT authority. G8 Human Field Acceptance is closed PASS at the current canonical Product Operator v1.2 state.
 
-G8 remains pending. Machine tests, UI implementation and source continuity do
-not create human field acceptance or Verified Finish.
+G8 Human Field Acceptance is PASS. Product Operator v1.2 is VERIFIED / LOCKED at the current canonical state.
 
 Product Operator final machine implementation is closed: backend truth projection, final
 Cockpit/Projeler shell, default-closed Status drawer, durable project lifecycle and
-Human Threshold-bound Delete are implemented and regression-verified. Native exact-head
-delivery and G8 Human Field Acceptance remain open.
+Human Threshold-bound Delete are implemented and regression-verified. Native exact-head source continuity is aligned to the current verified product HEAD and G8 Human Field Acceptance is closed.
 
-**NEXT ACTION —** `EXACT_HEAD_NATIVE_INSTALL_THEN_G8_HUMAN_FIELD_ACCEPTANCE`.
+**NEXT ACTION —** `P1_QWEN38_QUALIFICATION`.
 
 ## Preserved predecessor truth — Package08 Field Capability Campaign
 

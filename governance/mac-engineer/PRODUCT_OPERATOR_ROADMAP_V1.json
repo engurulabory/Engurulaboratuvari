@@ -8,10 +8,10 @@
   "stateNamespace": "productOperatorV12",
   "objective": {
     "id": "ENGURU_PRODUCT_OPERATOR_V12",
-    "state": "ACTIVE",
-    "activeGate": "G8_HUMAN_FIELD_ACCEPTANCE",
+    "state": "PASS",
+    "activeGate": null,
     "engineeringPhase": "FINAL_PRODUCT_SURFACE_AND_LIFECYCLE_ENGINEERING",
-    "nextAction": "EXACT_HEAD_NATIVE_INSTALL_THEN_G8_HUMAN_FIELD_ACCEPTANCE"
+    "nextAction": "P1_QWEN38_QUALIFICATION"
   },
   "relationship": {
     "executionEngine": "ENGÜRÜ Mac Engineer™",
@@ -22,7 +22,7 @@
   "sourceContinuity": {
     "repository": "engurulabory/enguru-mac-engineer",
     "branch": "feat/v08-native-productization-provenance",
-    "currentVerifiedHead": "b9c4aee774bbe7e09c9775b71a94bb4ea8c17f94",
+    "currentVerifiedHead": "a5be3b1a57252f0922dfcd836823bf5570cbba11",
     "baseOriginMain": "5432b9b135499cea18273c0e003877b864af92c6",
     "worktree": "CLEAN",
     "remoteExactMain": false,

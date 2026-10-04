@@ -9,8 +9,8 @@ GOV = ROOT / "governance" / "mac-engineer"
 PRODUCT = Path.home() / "Enguru" / "Projects" / "enguru-mac-engineer"
 
 OBJECTIVE = "ENGURU_PRODUCT_OPERATOR_V12"
-ACTIVE_GATE = "G8_HUMAN_FIELD_ACCEPTANCE"
-NEXT_ACTION = "EXACT_HEAD_NATIVE_INSTALL_THEN_G8_HUMAN_FIELD_ACCEPTANCE"
+ACTIVE_GATE = None
+NEXT_ACTION = "P1_QWEN38_QUALIFICATION"
 
 
 def load(name):
@@ -45,12 +45,12 @@ class ProductOperatorV12CanonicalReconciliationTests(unittest.TestCase):
         self.assertEqual(self.product_roadmap["objective"]["nextAction"], NEXT_ACTION)
         self.assertEqual(self.contract["nextAction"], NEXT_ACTION)
 
-    def test_g1_through_g7_pass_and_g8_remains_pending(self):
+    def test_g1_through_g8_pass_and_objective_is_closed(self):
         gates = self.contract["gates"]
         self.assertEqual(len(gates), 8)
-        self.assertTrue(all(gate["state"] == "PASS" for gate in gates[:7]))
+        self.assertTrue(all(gate["state"] == "PASS" for gate in gates))
         self.assertEqual(gates[7]["id"], "HUMAN_FIELD_ACCEPTANCE")
-        self.assertEqual(gates[7]["state"], "PENDING")
+        self.assertEqual(gates[7]["state"], "PASS")
         self.assertEqual(
             self.session["productOperatorV12"]["activeGate"],
             ACTIVE_GATE,
@@ -92,11 +92,11 @@ class ProductOperatorV12CanonicalReconciliationTests(unittest.TestCase):
             "PACKAGE08_FIELD_CAPABILITY_CAMPAIGN",
         )
 
-    def test_final_information_architecture_is_implemented_machine_verified_g8_pending(self):
+    def test_final_information_architecture_is_implemented_machine_verified_g8_pass(self):
         surface = self.contract["finalProductSurfaceContract"]
         self.assertEqual(
             surface["implementationState"],
-            "IMPLEMENTED_MACHINE_VERIFIED_G8_PENDING",
+            "IMPLEMENTED_MACHINE_VERIFIED_G8_PASS",
         )
         self.assertEqual(surface["topLevelSurfaces"], ["COCKPIT", "PROJELER"])
         self.assertEqual(
