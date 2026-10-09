@@ -25,5 +25,6 @@ jobs:
         run: |
           node steward/tests.mjs
           node steward/v12-runtime.test.mjs
+          node steward/fleet-observation.test.mjs
           node tools/hybrid_handoff/steward-v12-preflight.test.mjs
           node tools/hybrid_handoff/steward-v12-preflight.mjs
