@@ -1,0 +1,28 @@
+name: OSi Autonomous Engineering Contract Simulation
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'governance/osi-autonomous-engineering/**'
+      - 'steward/**'
+      - '.github/workflows/osi-autonomous-engineering-ci.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  osi-contract-simulation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: OSi P05 ten scoped positive and negative gates
+        run: node governance/osi-autonomous-engineering/contract-simulation.test.mjs
+      - name: Reuse Steward v1.2 real runtime test harness
+        run: |
+          node steward/v12-runtime.test.mjs
+          node steward/fleet-observation.test.mjs
+      - name: Ensure documentation-only simulation retains execution HOLD
+        run: |
+          grep -Fq 'VERIFIED_FINISH_HOLD' governance/osi-autonomous-engineering/OSI_AUTONOMOUS_ENGINEERING_CONTRACT_V01.md
