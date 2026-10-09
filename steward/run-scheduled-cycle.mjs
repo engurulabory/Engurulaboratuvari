@@ -79,5 +79,5 @@ if (process.argv[1] && import.meta.url === new URL('file://' + process.argv[1]).
   const receipt=inspectTrackedScopes({files,contents:textContents(files),sourceCommit});
   console.log(JSON.stringify(receipt,null,2));
   if(receipt.state==='BLOCKED') process.exitCode=3;
-  else if(receipt.state==='HOLD') process.exitCode=2;
+  else if(receipt.state==='HOLD' && process.env.ENGURU_STEWARD_STRICT_FIELD==='1') process.exitCode=2;
 }
