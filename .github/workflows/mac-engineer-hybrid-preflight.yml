@@ -23,5 +23,7 @@ jobs:
         run: python3 -m unittest discover -s tools/hybrid_handoff -p 'test_*.py' -v
       - name: Steward v1.2 full-chain simulation and adversarial tests
         run: |
+          node steward/tests.mjs
+          node steward/v12-runtime.test.mjs
           node tools/hybrid_handoff/steward-v12-preflight.test.mjs
           node tools/hybrid_handoff/steward-v12-preflight.mjs
