@@ -1,0 +1,38 @@
+{
+  "schema": "enguru.mac-engineer.hybrid-handoff/v1",
+  "state": "PENDING",
+  "projectId": null,
+  "subproduct": null,
+  "executionMode": null,
+  "canonicalRepo": null,
+  "sourceRef": null,
+  "sourceCommit": null,
+  "artifactDigest": null,
+  "toolchain": {},
+  "testEvidence": [],
+  "negativeEvidence": [],
+  "licenseSecurity": {
+    "state": "HOLD",
+    "references": []
+  },
+  "osiInstallPlan": {
+    "state": "PENDING",
+    "steps": []
+  },
+  "rollbackPlan": {
+    "state": "PENDING",
+    "steps": []
+  },
+  "doneCheckRef": null,
+  "humanAuthorityScope": {
+    "state": "HOLD",
+    "scope": null
+  },
+  "progressProjectBinding": {
+    "state": "HOLD",
+    "projectId": null
+  },
+  "finalizerRef": null,
+  "verifiedFinish": "HOLD",
+  "authorityNote": "Template only. CI PASS is not local Verified Finish. Do not promote without OSi evidence."
+}
