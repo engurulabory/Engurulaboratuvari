@@ -16,7 +16,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Repository Steward read-only cycle
-        run: node steward/run-scheduled-cycle.mjs | tee /tmp/steward-cycle.json
+        shell: bash
+        run: |
+          set -o pipefail
+          node steward/run-scheduled-cycle.mjs | tee /tmp/steward-cycle.json
         env:
           ENGURU_STEWARD_STRICT_FIELD: '1'
           STEWARD_FLEET_READ_TOKEN: ${{ secrets.STEWARD_FLEET_READ_TOKEN }}
