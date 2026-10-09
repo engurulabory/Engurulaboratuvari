@@ -21,3 +21,7 @@ jobs:
         run: python3 tools/hybrid_handoff/validate_hybrid_handoff.py governance/mac-engineer/ENGURU_MAC_ENGINEER_HYBRID_HANDOFF_TEMPLATE_V1.json --mode template
       - name: Adversarial checks
         run: python3 -m unittest discover -s tools/hybrid_handoff -p 'test_*.py' -v
+      - name: Steward v1.2 full-chain simulation and adversarial tests
+        run: |
+          node tools/hybrid_handoff/steward-v12-preflight.test.mjs
+          node tools/hybrid_handoff/steward-v12-preflight.mjs
