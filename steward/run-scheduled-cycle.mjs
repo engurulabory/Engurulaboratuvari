@@ -20,7 +20,8 @@ export function classifyTrackedFile(path) {
 }
 
 export function inspectTrackedScopes({ files=[], contents=[], nowEpochMs=Date.now(),
-  observedAt=new Date(nowEpochMs).toISOString(), sourceCommit=null } = {}) {
+  observedAt=new Date(nowEpochMs).toISOString(), sourceCommit=null,
+  eventName=null, runId=null } = {}) {
   const scoped = SCOPES.map((scope) => {
     const subset = files.filter(p=>classifyTrackedFile(p)===scope);
     const matching = contents.filter(x=>classifyTrackedFile(x.path || '')===scope);
@@ -31,15 +32,16 @@ export function inspectTrackedScopes({ files=[], contents=[], nowEpochMs=Date.no
       findings:inspection.repository?.findings || [],
       coverage:subset.length ? 'OBSERVED' : 'MISSING'};
   });
-  // Current run is an observation, not proof of earlier continuous scheduling.
+  const genuineScheduledRun = eventName === 'schedule' && /^[0-9]+$/.test(String(runId || '')) && !!sourceCommit;
+  // Event provenance is a native GitHub Actions context; PR fixtures stay observational.
   const freshness = assessEvidenceFreshness({records:[{id:'CURRENT_RUN',observedAt}],nowEpochMs});
   const evidenceState = sourceCommit ? freshness.state : 'HOLD';
   const health = assessSelfHealth({
-    schedulerState:'HOLD', // Scheduled cadence needs GitHub event/run-history proof.
+    schedulerState:genuineScheduledRun?'PASS':'HOLD',
     discoveryState:scoped.every(x=>x.coverage==='OBSERVED')?'PASS':'HOLD',
     assessorState:aggregate(scoped.map(x=>x.state)),
     writeBoundaryState:'PASS',
-    lastSuccessfulRunAt:undefined,nowEpochMs
+    lastSuccessfulRunAt:genuineScheduledRun?observedAt:undefined,nowEpochMs
   });
   const scorecard = buildDailyScorecard({
     workerHealth:health,
@@ -49,6 +51,7 @@ export function inspectTrackedScopes({ files=[], contents=[], nowEpochMs=Date.no
   return {
     schemaVersion:'1.2',stewardVersion:STEWARD_VERSION,
     mode:'READ_ONLY_SCHEDULED_CYCLE',sourceCommit,observedAt,
+    runEvent:{eventName,runId,genuineScheduledRun},
     authority:'INSPECT_AND_PLAN',writeBoundary:'PRESERVED',
     scopeCoverage:scoped,trackedFileCount:files.length,
     evidenceFreshness:evidenceState,workerHealth:health,
@@ -76,7 +79,9 @@ function textContents(files) {
 if (process.argv[1] && import.meta.url === new URL('file://' + process.argv[1]).href) {
   const files=trackedFiles();
   const sourceCommit=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
-  const receipt=inspectTrackedScopes({files,contents:textContents(files),sourceCommit});
+  const receipt=inspectTrackedScopes({files,contents:textContents(files),sourceCommit,
+    eventName:process.env.GITHUB_EVENT_NAME || null,
+    runId:process.env.GITHUB_RUN_ID || null});
   console.log(JSON.stringify(receipt,null,2));
   if(receipt.state==='BLOCKED') process.exitCode=3;
   else if(receipt.state==='HOLD' && process.env.ENGURU_STEWARD_STRICT_FIELD==='1') process.exitCode=2;
