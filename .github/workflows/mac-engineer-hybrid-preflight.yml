@@ -1,0 +1,30 @@
+name: Mac Engineer Hybrid Handoff Preflight
+
+on:
+  pull_request:
+    paths:
+      - "governance/mac-engineer/ENGURU_MAC_ENGINEER_HYBRID_*"
+      - "tools/hybrid_handoff/**"
+      - ".github/workflows/mac-engineer-hybrid-preflight.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  hybrid-contract-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate pending handoff template
+        run: python3 tools/hybrid_handoff/validate_hybrid_handoff.py governance/mac-engineer/ENGURU_MAC_ENGINEER_HYBRID_HANDOFF_TEMPLATE_V1.json --mode template
+      - name: Adversarial checks
+        run: python3 -m unittest discover -s tools/hybrid_handoff -p 'test_*.py' -v
+      - name: Steward v1.2 full-chain simulation and adversarial tests
+        run: |
+          node steward/tests.mjs
+          node steward/v12-runtime.test.mjs
+          node steward/fleet-observation.test.mjs
+          node tools/hybrid_handoff/steward-v12-preflight.test.mjs
+          node tools/hybrid_handoff/steward-v12-preflight.mjs
