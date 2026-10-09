@@ -18,6 +18,12 @@ assert.equal(r.workerHealth.state,'HOLD');
 assert.equal(r.verifiedFinish,'HOLD');
 assert.equal(r.scorecard.state,'HOLD');
 assert.equal(r.scorecard.portfolioHealthScore,100);
+const scheduled=inspectTrackedScopes({...base,eventName:'schedule',runId:'1234567'});
+assert.equal(scheduled.runEvent.genuineScheduledRun,true);
+assert.equal(scheduled.state,'PASS');
+assert.equal(scheduled.verifiedFinish,'HOLD');
+assert.equal(inspectTrackedScopes({...base,eventName:'pull_request',runId:'1234567'}).state,'HOLD');
+assert.equal(inspectTrackedScopes({...base,eventName:'schedule',runId:'fake'}).state,'HOLD');
 assert.equal(inspectTrackedScopes({...base,files:files.slice(0,2),
  contents:contents.slice(0,2)}).scopeCoverage[1].state,'HOLD');
 const conflict=inspectTrackedScopes({...base,contents:[
