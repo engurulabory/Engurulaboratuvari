@@ -19,6 +19,8 @@ jobs:
           node-version: '22'
       - name: OSi P05 ten scoped positive and negative gates
         run: node governance/osi-autonomous-engineering/contract-simulation.test.mjs
+      - name: Seven pilot handler authority fail-closed scenarios
+        run: node governance/osi-autonomous-engineering/pilot-handler-boundary.test.mjs
       - name: Reuse Steward v1.2 real runtime test harness
         run: |
           node steward/v12-runtime.test.mjs
