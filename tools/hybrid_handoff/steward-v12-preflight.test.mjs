@@ -4,9 +4,9 @@ const s=baseline(), r=assess(s);
 assert.equal(r.rows.length,10);
 assert.equal(r.state,'HOLD');
 assert.equal(r.judgment,'VERIFIED_FINISH_HOLD');
-assert.equal(s.source,'1.1.0');
-assert.equal(s.schedule,'23 6 */3 * *');
-assert.deepEqual(r.rows.filter(x=>x.state==='PASS_PREFLIGHT').map(x=>x.id),['S01','S05','S07','S08']);
+assert.equal(s.source,'1.2.0');
+assert.equal(s.schedule,'17 5 * * *');
+assert.deepEqual(r.rows.filter(x=>x.state==='PASS_PREFLIGHT').map(x=>x.id),['S05','S07','S08']);
 const full={...s,source:'1.1.0',versionTarget:'1.2.0',behaviorValidated:true,
  probedScopes:s.scopes,schedule:'17 5 * * *',realScheduledReceipt:true,cronPermissionsReadOnly:true,
  reverifyReceipt:true,repairPolicyApproved:true,osiRuntimeReceipt:true,exactParity:true,
