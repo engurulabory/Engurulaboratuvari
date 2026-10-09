@@ -1,0 +1,90 @@
+{
+  "schema": "enguru.osi.p05.external-pilot-profile-snapshot/v1",
+  "sourceRepository": "engurulabory/Engurulaboratuvari",
+  "sourceBranch": "feat/mac-engineer-v08-product-engineering-operator",
+  "sourceBlobSha": "bba5d31d33b25bce9aba22758303fc629f00dba8",
+  "sourceAcceptanceAuthority": "G8_HUMAN_FIELD_ACCEPTANCE",
+  "executionAuthority": "EXISTING_CAPABILITY_AND_ACTION_REGISTRIES",
+  "leadPilot": "ZEKU",
+  "profiles": [
+    {
+      "id": "ZEKU",
+      "role": "Lead Product & Systems Pilot",
+      "capabilityIds": [
+        "CURRENT_TECHNICAL_TRUTH_READ",
+        "OPERATOR_CONTINUE_DISPATCH"
+      ],
+      "binding": "HOLD_PENDING_HANDLER_RESOLUTION",
+      "authority": "INHERIT_CURRENT_CAPABILITY_AND_ACTION_AUTHORITY",
+      "evidenceRequired": true
+    },
+    {
+      "id": "ATLAS",
+      "role": "Software Architect",
+      "capabilityIds": [
+        "CURRENT_TECHNICAL_TRUTH_READ",
+        "ADVANCED_CODE_ENGINEERING"
+      ],
+      "binding": "HOLD_PENDING_HANDLER_RESOLUTION",
+      "authority": "INHERIT_CURRENT_CAPABILITY_AND_ACTION_AUTHORITY",
+      "evidenceRequired": true
+    },
+    {
+      "id": "FORGE",
+      "role": "Senior Software Engineer",
+      "capabilityIds": [
+        "SOURCE_PRODUCT_CHANGE",
+        "BUILD",
+        "ROOT_CAUSE_REPAIR"
+      ],
+      "binding": "HOLD_PENDING_HANDLER_RESOLUTION",
+      "authority": "INHERIT_CURRENT_CAPABILITY_AND_ACTION_AUTHORITY",
+      "evidenceRequired": true
+    },
+    {
+      "id": "ASTRA",
+      "role": "AI Systems Architect",
+      "capabilityIds": [
+        "CURRENT_TECHNICAL_TRUTH_READ",
+        "INTERNET_RESEARCH_HARVEST_ASTRA"
+      ],
+      "binding": "HOLD_PENDING_HANDLER_RESOLUTION",
+      "authority": "INHERIT_CURRENT_CAPABILITY_AND_ACTION_AUTHORITY",
+      "evidenceRequired": true
+    },
+    {
+      "id": "NEURON",
+      "role": "AI Engineer",
+      "capabilityIds": [
+        "CURRENT_TECHNICAL_TRUTH_READ",
+        "ADVANCED_CODE_ENGINEERING"
+      ],
+      "binding": "HOLD_PENDING_HANDLER_RESOLUTION",
+      "authority": "INHERIT_CURRENT_CAPABILITY_AND_ACTION_AUTHORITY",
+      "evidenceRequired": true
+    },
+    {
+      "id": "SENTINEL",
+      "role": "Reliability & Verification Engineer",
+      "capabilityIds": [
+        "TEST_REGRESSION",
+        "EVIDENCE_DONECHECK"
+      ],
+      "binding": "HOLD_PENDING_HANDLER_RESOLUTION",
+      "authority": "INHERIT_CURRENT_CAPABILITY_AND_ACTION_AUTHORITY",
+      "evidenceRequired": true
+    },
+    {
+      "id": "FORMA",
+      "role": "Product / UX Engineer",
+      "capabilityIds": [
+        "CURRENT_TECHNICAL_TRUTH_READ",
+        "SOURCE_PRODUCT_CHANGE"
+      ],
+      "binding": "HOLD_PENDING_HANDLER_RESOLUTION",
+      "authority": "INHERIT_CURRENT_CAPABILITY_AND_ACTION_AUTHORITY",
+      "evidenceRequired": true
+    }
+  ],
+  "scope": "REFERENCE_ONLY_NOT_RUNTIME_EVIDENCE"
+}

@@ -1,0 +1,21 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {inspectWorkspaceHealth,planSafeMaintenance,closeoutRepository,STEWARD_SCOPES,STEWARD_VERSION} from '../../steward/index.mjs';
+import {inspectTrackedScopes} from '../../steward/run-scheduled-cycle.mjs';
+
+const contract=readFileSync(new URL('./OSI_AUTONOMOUS_ENGINEERING_CONTRACT_V01.md',import.meta.url),'utf8');
+let passed=0;
+const gate=(id,fn)=>{fn();passed++;console.log(id+'=PASS');};
+const required=(s)=>assert.ok(contract.includes(s),'MISSING_CONTRACT_CLAUSE:'+s);
+gate('T01_CANONICAL',()=>{for(const x of ['ZEKU','ATLAS','FORGE','ASTRA','NEURON','SENTINEL','FORMA','HOLD_PENDING_HANDLER_RESOLUTION'])required(x);assert.equal(STEWARD_VERSION,'1.2.0');});
+gate('T02_HANDLER_GUARD',()=>{required('does not grant execution authority');required('negative missing-handler');required('fail closed to HOLD');});
+gate('T03_HANDOFF_BOUNDARY',()=>{for(const x of ['Steward','Mac Engineer','CAPABILITY_AND_OWNER_RESOLUTION','single Steward core'])required(x);});
+gate('T04_HUMAN_THRESHOLD',()=>{required('HUMAN_REQUIRED');required('explicit user-selected paths');const r=planSafeMaintenance({mergedBranches:['old-feature'],staleWorkflows:['old.yml']});assert.equal(r.humanThreshold.length,2);assert.equal(r.safeActions.length,0);});
+gate('T05_MAINTENANCE_GUARDS',()=>{const r=planSafeMaintenance({findings:[{code:'OBVIOUS_JUNK',file:'governance/temp.tmp'},{code:'OBVIOUS_JUNK',file:'sandbox/junk.tmp'}]});assert.deepEqual(r.safeActions.map(x=>x.target),['sandbox/junk.tmp']);assert.equal(r.humanThreshold.length,1);required('idempotent');});
+gate('T06_RECOVERY',()=>{assert.equal(closeoutRepository({evidencePreserved:false,mapPass:true}).status,'BLOCKED');assert.equal(closeoutRepository({mapPass:false}).status,'HOLD');assert.equal(closeoutRepository({mapPass:true}).status,'READY_AGAIN');required('restart');});
+gate('T07_STATE_EVIDENCE',()=>{for(const x of ['STATE_DRIFT','CAPABILITY_HALLUCINATION','EVIDENCE_NORMALIZATION','ADAPTER_LEAKAGE','fieldProof.completed=0/7'])required(x);assert.ok(!contract.includes('CURRENT_STATE: VERIFIED_FINISH_LOCKED'));});
+gate('T08_PRESERVATION',()=>{required('eight preserved unrelated modifications');required('107 test files and 764 statically detected');required('not* 764 executable/PASS tests');});
+gate('T09_CONTINUOUS_HEALTH',()=>{const files=['governance/truth.json','steward/index.mjs','site/app.json'];const contents=files.map(path=>({path,content:'safe'}));const x=inspectTrackedScopes({files,contents,observedAt:'2026-10-09T06:00:00Z',nowEpochMs:Date.parse('2026-10-09T06:00:00Z'),sourceCommit:'a'.repeat(40)});assert.equal(x.state,'HOLD');assert.equal(x.verifiedFinish,'HOLD');required('READY_AGAIN');});
+gate('T10_NEGATIVE_RUNTIME',()=>{const x=inspectWorkspaceHealth({scope:STEWARD_SCOPES.LABORY,files:['governance/x'],contents:[{path:'governance/x',content:'<<<<<<< HEAD'}]});assert.equal(x.status,'BLOCKED');assert.equal(closeoutRepository({protectedRefsUntouched:false,mapPass:true}).status,'BLOCKED');required('Separate OSi native field acceptance');});
+assert.equal(passed,10);
+console.log(JSON.stringify({state:'PASS_SCOPED',passed,total:10,scope:'CONTRACT_AND_REUSED_STEWARD_RUNTIME',pilotHandlers:'HOLD',nativeField:'HOLD',verifiedFinish:'HOLD'}));
