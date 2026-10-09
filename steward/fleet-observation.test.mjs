@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import {reconcileFleet,discoverGithubFleet} from './fleet-observation.mjs';
+const make=(id)=>({full_name:'engurulabory/'+id,owner:{login:'engurulabory'},private:false,archived:false});
+assert.equal(reconcileFleet({records:[make('a')],expected:['engurulabory/a'],complete:true}).state,'PASS');
+assert.equal(reconcileFleet({records:[make('a')],expected:['engurulabory/b'],complete:true}).state,'HOLD');
+assert.equal(reconcileFleet({records:[make('a'),make('a')],expected:[],complete:true}).state,'HOLD');
+assert.equal(reconcileFleet({records:[make('a')],expected:[],complete:false}).state,'HOLD');
+assert.equal((await discoverGithubFleet({token:null})).state,'HOLD');
+const ok=async()=>({ok:true,json:async()=>[make('a')]});
+const result=await discoverGithubFleet({fetchImpl:ok,token:'fixture',expected:['engurulabory/a']});
+assert.equal(result.state,'PASS');
+assert.equal(result.visibleRepositoryCount,1);
+assert.equal((await discoverGithubFleet({fetchImpl:async()=>({ok:false,status:403}),token:'fixture'})).state,'HOLD');
+assert.equal((await discoverGithubFleet({fetchImpl:async()=>{throw Error('offline')},token:'fixture'})).state,'HOLD');
+assert.equal((await discoverGithubFleet({fetchImpl:async()=>({ok:true,json:async()=>({})}),token:'fixture'})).state,'HOLD');
+const fullPage=Array.from({length:100},(_,i)=>make('repo'+i));
+assert.equal((await discoverGithubFleet({fetchImpl:async()=>({ok:true,json:async()=>fullPage}),token:'fixture',maxPages:1})).state,'HOLD');
+console.log('STEWARD_V12_FLEET_OBSERVATION_NEGATIVE_TESTS=PASS');
