@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {inspectWorkspaceHealth,planSafeMaintenance,closeoutRepository,STEWARD_SCOPES,STEWARD_VERSION} from '../steward/index.mjs';
-import {inspectTrackedScopes} from '../steward/run-scheduled-cycle.mjs';
+import {inspectWorkspaceHealth,planSafeMaintenance,closeoutRepository,STEWARD_SCOPES,STEWARD_VERSION} from '../../steward/index.mjs';
+import {inspectTrackedScopes} from '../../steward/run-scheduled-cycle.mjs';
 
 const contract=readFileSync(new URL('./OSI_AUTONOMOUS_ENGINEERING_CONTRACT_V01.md',import.meta.url),'utf8');
 let passed=0;
