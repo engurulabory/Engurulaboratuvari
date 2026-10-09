@@ -8,7 +8,7 @@ import {
 import { governanceEnvelope } from './governance-envelope.mjs';
 import { assessSimplification } from './simplification-assessor.mjs';
 
-assert.equal(STEWARD_VERSION, '1.1.0');
+assert.equal(STEWARD_VERSION, '1.2.0');
 assert.deepEqual(STEWARD_CYCLE, ['YOKLAMA','TERTIP','DUZEN','TEMIZLIK','SADELESTIRME','BAKIM','ONARIM','KAPANIS','YENIDEN_HAZIR']);
 assert.equal(STEWARD_SCOPES.LABORY, 'ENGURU_LABORY');
 assert.equal(STEWARD_SCOPES.PRODUCT, 'ENGURU_PRODUCT');
