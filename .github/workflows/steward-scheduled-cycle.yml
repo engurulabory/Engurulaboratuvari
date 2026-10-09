@@ -19,6 +19,7 @@ jobs:
         run: node steward/run-scheduled-cycle.mjs | tee /tmp/steward-cycle.json
         env:
           ENGURU_STEWARD_STRICT_FIELD: '1'
+          STEWARD_FLEET_READ_TOKEN: ${{ secrets.STEWARD_FLEET_READ_TOKEN }}
 
       - name: Preserve cycle receipt in job summary
         if: always()
