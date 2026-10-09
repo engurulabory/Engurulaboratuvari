@@ -51,3 +51,30 @@ Initial state of all unverified fields is PENDING/HOLD. Machine-readable templat
 **NEXT_ACTION:** Reconcile Mac Engineer subproduct inventory against current OSi canonical HEAD; classify GITHUB_FIRST / OSI_FIRST / HYBRID; pilot **one** bounded subproduct with this same contract; measure cycle time, regression count, defects surfaced after preflight and field parity. Do not assert a speed improvement without comparative evidence.
 
 **RESULT LANGUAGE:** STATE → CLAIM → EVIDENCE → JUDGMENT → NEXT ACTION.
+
+## 8. ENGÜRÜ Süzgeci™ full alignment — mandatory decision gate
+
+This section is the **pre-send and pre-execution contract** for ChatGPT, GitHub workflows, and OSi adapters. The Süzgeç governs meaning, claims and judgment; ENGÜRÜ Work Protocol™ governs execution; each runtime adapter governs its available capability. A GitHub preparation PR does not modify the Mac-local canonical state.
+
+Every project receipt **MUST** use the sequence:
+1. **STATE:** Read repository HEAD, branch, worktree, current canonical contracts, active gates, preserved evidence and runtime availability; describe what is actually observed. Indicate source and freshness.
+2. **CLAIM:** Name one bounded necessary difference and one project-level exit condition. Separate proposed from implemented and locally verified claims.
+3. **EVIDENCE:** Bind each material claim to a real test run, source digest, CI job, artifact SHA-256 or local observation. "PASS" is prohibited for unrun simulations; syntax success is not full-chain success.
+4. **JUDGMENT:** Gate each step PASS/HOLD using explicit Human Threshold and approval scope. Contradictions, drift, missing authorized finalizer and unavailable OSi remain HOLD.
+5. **NEXT ACTION:** State the **single next bounded action** to restore the execution chain; do not spawn separate nested work campaigns or re-run previously accepted evidence without changed scope/HEAD.
+
+### Scope and finish invariants
+- **Truth before execution:** Fresh source truth supersedes stale chat narrative. If current OSi state cannot be read, mark `OSI_FIELD_STATE=UNVERIFIED`.
+- **Preserve existing artifacts:** Historical signed results, reviewer scope, branch divergence, dirty worktrees and versioned records retain their original authority. Canonical promotion requires a separately authorized writer; never fabricate one.
+- **One bounded difference:** One subproduct = one project throughout GitHub and OSi. Choose GitHub-first, OSi-first or Hybrid only after actual ownership and runtime classification.
+- **Human Threshold:** Machine DoneCheck PASS, authenticated local account, Ed25519 signature and corporate/legal authority are distinct evidence claims. An approval applies only to its explicit authorized project scope. Gate12 remains isolated.
+- **Verified Finish:** A finalizer must be existing or reviewed/authorized, must verify real inputs and negative paths, and must independently reread canonical state and Progress Core projection. `LOCKED` text in a new JSON file alone is insufficient.
+- **Pre-send filter:** Every terminal command, PR description, completion claim and manifest must pass `STATE → CLAIM → EVIDENCE → JUDGMENT → NEXT ACTION`. No capability, release or finished-state hallucination; if evidence is missing, report HOLD.
+
+### Whole-chain failure matrix, prepared before Terminal
+Test schema incompatibility; unsupported DoneCheck producerKind; missing Python/pytest/Node toolchain; stale source pin; wrong project identity; wrong registry/progress discovery; missing/ambiguous native binding; mismatched worklist-state items; wrong Human Threshold scope; historical versus fresh DoneCheck identity; signature/digest tampering; intermittent interruption; collision with foreign files; rollback/recovery; misclassified native-only capability; and GitHub/OSi branch divergence. Use authentic, scoped fixtures; do not invent machine provenance.
+
+### Canonical authority and transition
+`PROPOSED → REVIEWED → GITHUB_PREPARED → OSI_FIELD_TESTED → HUMAN_ACCEPTED → VERIFIED_FINISH_LOCKED`. These are protocol projections, not a substitute for existing product-specific gate values. Merge/release and actual state promotion require applicable independent authorizations. This PR is **PROPOSED / GITHUB_PREPARATION** and does not claim OSi acceptance.
+
+**CLOSURE_CONDITION:** GitHub source integrity and PR review, signed artifact provenance, real OSi install/regression/DoneCheck, authorized Human Threshold, approved versioned finalizer and independently verified canonical Progress projection all PASS in one scoped final receipt.
