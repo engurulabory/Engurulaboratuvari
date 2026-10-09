@@ -1,4 +1,4 @@
-export const STEWARD_VERSION = '1.1.0';
+export const STEWARD_VERSION = '1.2.0';
 export const STEWARD_SCOPES = Object.freeze({
   LABORY: 'ENGURU_LABORY',
   PRODUCT: 'ENGURU_PRODUCT',
