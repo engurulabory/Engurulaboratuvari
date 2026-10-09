@@ -34,5 +34,38 @@
   },
   "finalizerRef": null,
   "verifiedFinish": "HOLD",
-  "authorityNote": "Template only. CI PASS is not local Verified Finish. Do not promote without OSi evidence."
+  "authorityNote": "Template only. CI PASS is not local Verified Finish. Do not promote without OSi evidence.",
+  "suzgec": {
+    "state": "PENDING",
+    "claim": "UNVERIFIED",
+    "evidence": [],
+    "judgment": "HOLD",
+    "nextAction": "RECONCILE_CANONICAL_OSI_TRUTH",
+    "currentTruth": {
+      "githubCommit": null,
+      "osiHead": null,
+      "worktree": null,
+      "observedAt": null
+    },
+    "necessaryDifference": null,
+    "preservedArtifacts": [],
+    "preSendFilter": "HOLD"
+  },
+  "preflight": {
+    "wholeChainSimulation": "PENDING",
+    "schema": "HOLD",
+    "toolchains": "HOLD",
+    "nativeBinding": "HOLD",
+    "authority": "HOLD",
+    "negativeScenarios": [],
+    "rollback": "HOLD"
+  },
+  "fieldReceipt": {
+    "osiFieldState": "UNVERIFIED",
+    "nativeRegression": "HOLD",
+    "doneCheckFresh": "HOLD",
+    "humanAcceptance": "HOLD",
+    "authorizedFinalizer": "HOLD",
+    "progressReread": "HOLD"
+  }
 }
