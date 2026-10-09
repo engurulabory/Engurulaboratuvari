@@ -1,5 +1,6 @@
 import { execFileSync } from 'node:child_process';
 import { readFileSync, statSync } from 'node:fs';
+import { discoverGithubFleet } from './fleet-observation.mjs';
 import {
   inspectWorkspaceHealth, STEWARD_SCOPES, STEWARD_VERSION,
   assessEvidenceFreshness, buildDailyScorecard, assessSelfHealth
@@ -82,6 +83,11 @@ if (process.argv[1] && import.meta.url === new URL('file://' + process.argv[1]).
   const receipt=inspectTrackedScopes({files,contents:textContents(files),sourceCommit,
     eventName:process.env.GITHUB_EVENT_NAME || null,
     runId:process.env.GITHUB_RUN_ID || null});
+  const expected=JSON.parse(readFileSync('governance/ENGURU_PRODUCT_CORE_MAP_V2.json','utf8'))
+    .records.filter(x=>x.fleetParticipation==='GOVERNED').map(x=>x.repository);
+  const fleet=await discoverGithubFleet({token:process.env.STEWARD_FLEET_READ_TOKEN || null,expected});
+  receipt.fleetObservation=fleet;
+  receipt.state=aggregate([receipt.state,fleet.state]);
   console.log(JSON.stringify(receipt,null,2));
   if(receipt.state==='BLOCKED') process.exitCode=3;
   else if(receipt.state==='HOLD' && process.env.ENGURU_STEWARD_STRICT_FIELD==='1') process.exitCode=2;
