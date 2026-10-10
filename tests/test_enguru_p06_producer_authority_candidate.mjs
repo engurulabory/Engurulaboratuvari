@@ -41,9 +41,19 @@ test('pre-created replay reservation with missing receipt fails closed',async()=
 import {spawn,spawnSync} from 'node:child_process';
 import {symlink,chmod} from 'node:fs/promises';
 const CHILD=new URL('./p06_v16_child_process.mjs',import.meta.url);
-function child(x){return new Promise(resolve=>{const p=spawn(process.execPath,[CHILD.pathname],{stdio:['pipe','pipe','pipe']});let out='';p.stdout.on('data',d=>out+=d);p.on('close',code=>resolve({code,out}));p.stdin.end(JSON.stringify(x))})}
+function child(x,fault){return new Promise(resolve=>{const env={...process.env};delete env.ENGURU_P06_V16_TEST_FAULT;if(fault)env.ENGURU_P06_V16_TEST_FAULT=fault;const p=spawn(process.execPath,[CHILD.pathname],{stdio:['pipe','pipe','pipe'],env});let out='';p.stdout.on('data',d=>out+=d);p.on('close',code=>resolve({code,out}));p.stdin.end(JSON.stringify(x))})}
 test('true OS process restart rejects persisted replay',async()=>{const {dir,x}=await setup();try{const first=await child(x);assert.equal(first.code,0);const restart=await child(x);assert.equal(restart.code,41)}finally{await rm(dir,{recursive:true,force:true})}});
 test('two independent OS processes race, exactly one qualifies',async()=>{const {dir,x}=await setup();try{const a=await Promise.all([child(x),child(x)]);assert.deepEqual(a.map(r=>r.code).sort((a,b)=>a-b),[0,41])}finally{await rm(dir,{recursive:true,force:true})}});
 test('symlink ledger root holds',async()=>{const {dir,x}=await setup();try{const link=dir+'-link';await symlink(dir,link);x.ledgerDirectory=link;await hold(()=>qualifyProducer(x));await rm(link,{force:true})}finally{await rm(dir,{recursive:true,force:true})}});
 test('world-readable existing ledger root holds',async()=>{const {dir,x}=await setup();try{await chmod(dir,0o755);await hold(()=>qualifyProducer(x))}finally{await chmod(dir,0o700);await rm(dir,{recursive:true,force:true})}});
 test('injected unavailable root holds without granting authority',async()=>{const {dir,x}=await setup();try{x.ledgerDirectory=join(dir,'missing-private-ledger');await hold(()=>qualifyProducer(x))}finally{await rm(dir,{recursive:true,force:true})}});
+
+test('fault injection at write/fsync checkpoints retains deny-on-replay across processes',async()=>{
+ for(const point of ['AFTER_RESERVATION','EIO_BEFORE_WRITE','ENOSPC_BEFORE_FSYNC','AFTER_FILE_FSYNC','BEFORE_PARENT_FSYNC']){
+   const {dir,x}=await setup();
+   try{const one=await child(x,point);assert.equal(one.code,41,'fault '+point);const two=await child(x);assert.equal(two.code,41,'replay '+point)}finally{await rm(dir,{recursive:true,force:true})}
+ }
+});
+test('SIGKILL immediately after reservation keeps replay HOLD after restart',async()=>{
+ const {dir,x}=await setup();try{const first=await child(x,'SIGKILL_AFTER_RESERVATION');assert.equal(first.code,null);const again=await child(x);assert.equal(again.code,41)}finally{await rm(dir,{recursive:true,force:true})}
+});
