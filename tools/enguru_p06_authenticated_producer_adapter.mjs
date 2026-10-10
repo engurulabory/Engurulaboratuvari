@@ -65,6 +65,7 @@ function validateMachine(v13,v14,candidate,candidateSha,v13Sha){
  * @param {string} args.now - caller's trusted UTC observation time
  */
 export function assessProducerAttestation(args){
+  need(args!==null && typeof args==='object' && !Array.isArray(args),'ASSESSMENT_ARGS_OBJECT_REQUIRED');
   const {v13Bytes,v14Bytes,candidateBytes,policyBytes,expectedPolicySha256,attestation,artifactBytesById,now}=args;
   need(typeof expectedPolicySha256==='string'&&/^[a-f0-9]{64}$/.test(expectedPolicySha256),'INDEPENDENT_POLICY_PIN_REQUIRED');
   need(utcTime(now),'TRUSTED_UTC_NOW_REQUIRED');
@@ -81,13 +82,15 @@ export function assessProducerAttestation(args){
   const skew=Date.parse(now)-Date.parse(attestation.signedAt);
   need(skew>=-300_000 && skew<=86_400_000,'PRODUCER_ATTESTATION_NOT_FRESH');
   const items=candidate.evidenceCandidates;
-  need(Object.keys(artifactBytesById||{}).length===3,'EXACT_THREE_RAW_ARTIFACTS_REQUIRED');
+  need(artifactBytesById!==null && typeof artifactBytesById==='object' && !Array.isArray(artifactBytesById),'ARTIFACT_MAP_OBJECT_REQUIRED');
+  need(Object.keys(artifactBytesById).length===3,'EXACT_THREE_RAW_ARTIFACTS_REQUIRED');
   const artifacts=[];
   const seen=new Set();
   for(const item of items){
+    need(item!==null && typeof item==='object' && !Array.isArray(item),'EVIDENCE_ITEM_OBJECT_REQUIRED');
     need(typeof item.id==='string'&&!seen.has(item.id),'EVIDENCE_ID_DUPLICATE');seen.add(item.id);
     need(item.taskId===TASK && item.kind==='test_report' && item.source==='system' && typeof item.content==='string'&&!item.content.trim().toUpperCase().startsWith('[DONECHECK:'),'CANDIDATE_ASSERTION_OR_SCOPE_FORGERY');
-    need(item.provenance?.schema==='donecheck.evidence-provenance/v1' && item.provenance.producerKind==='mac_engineer' && item.provenance.producerId.includes('UNAUTHORIZED'),'SOURCE_CANDIDATE_NOT_UNAUTHORIZED');
+    need(item.provenance?.schema==='donecheck.evidence-provenance/v1' && item.provenance.producerKind==='mac_engineer' && typeof item.provenance.producerId==='string' && item.provenance.producerId.includes('UNAUTHORIZED'),'SOURCE_CANDIDATE_NOT_UNAUTHORIZED');
     const raw=artifactBytesById[item.id];
     need(Buffer.isBuffer(raw),'ARTIFACT_BYTES_MISSING_'+item.id);
     need(item.provenance.artifactDigest==='sha256:'+sha(raw),'ARTIFACT_BYTES_SHA_MISMATCH_'+item.id);
@@ -96,6 +99,7 @@ export function assessProducerAttestation(args){
   const payload={schema:'enguru.p06.producer-binding/v1',mainSha:MAIN,donecheckSha:DONECHECK,
     taskId:TASK,producerId:policy.producerId,v13Sha256:v13Sha,v14Sha256:v14Sha,
     candidateSha256:candidateSha,artifacts:artifacts.sort((a,b)=>a.id.localeCompare(b.id))};
+  need(attestation.payload!==null && typeof attestation.payload==='object' && !Array.isArray(attestation.payload),'ATTESTATION_PAYLOAD_OBJECT_REQUIRED');
   need(canonicalJson(attestation.payload)===canonicalJson(payload),'SIGNED_PAYLOAD_DOES_NOT_BIND_PROOFS');
   need(typeof attestation.signatureBase64==='string'&&/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(attestation.signatureBase64),'SIGNATURE_ENCODING_INVALID');
   const signature=Buffer.from(attestation.signatureBase64,'base64');
