@@ -8,6 +8,10 @@ source-changing task handler. Never infer authority from supplied task fields.
 from __future__ import annotations
 import hashlib, importlib.util, json, os, subprocess, sys
 from pathlib import Path
+if __package__:
+    from .enguru_evidence_receipt_io import write_new_json
+else:
+    from enguru_evidence_receipt_io import write_new_json
 
 ROOT=Path(__file__).resolve().parents[1]
 GOV=ROOT/'governance/mac-engineer'
@@ -113,8 +117,7 @@ def main(argv):
         receipt=execute(load(task_file));rc=0
     except Exception as ex:
         receipt['CLAIM']=type(ex).__name__+':'+str(ex);rc=2
-    output.parent.mkdir(parents=True,exist_ok=True)
-    output.write_text(json.dumps(receipt,indent=2,sort_keys=True,ensure_ascii=False)+'\n',encoding='utf-8')
+    write_new_json(output, receipt)
     print('STATE='+receipt['STATE']);print('PILOT='+str(receipt.get('PILOT_ID','HOLD')))
     return rc
 if __name__=='__main__':raise SystemExit(main(sys.argv[1:]))

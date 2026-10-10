@@ -14,6 +14,11 @@ import subprocess
 import sys
 from typing import Any
 
+try:
+    from tools.enguru_evidence_receipt_io import write_new_json
+except ModuleNotFoundError:
+    from enguru_evidence_receipt_io import write_new_json
+
 
 ROOT = Path(__file__).resolve().parents[1]
 BINDING_PATH = (
@@ -66,19 +71,8 @@ def require(command: list[str], *, cwd: Path, label: str) -> str:
 
 
 def atomic_json(path: Path, value: Any) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = path.with_name(f".{path.name}.{os.getpid()}.tmp")
-    raw = (json.dumps(value, ensure_ascii=False, indent=2) + "\n").encode()
-    descriptor = os.open(temporary, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
-    try:
-        with os.fdopen(descriptor, "wb") as handle:
-            handle.write(raw)
-            handle.flush()
-            os.fsync(handle.fileno())
-        os.replace(temporary, path)
-    finally:
-        if temporary.exists():
-            temporary.unlink()
+    """Write a fresh receipt, preserving all existing Evidence and state."""
+    write_new_json(path, value)
 
 
 def git_object(repo: Path, spec: str) -> str:
@@ -232,7 +226,11 @@ def main() -> int:
         print(f"STATE=HOLD\nREASON={exc}", file=sys.stderr)
         return 20
     if args.output:
-        atomic_json(args.output.expanduser().resolve(), receipt)
+        try:
+            atomic_json(args.output, receipt)
+        except (OSError, ValueError) as exc:
+            print("STATE=HOLD\nREASON=EVIDENCE_OUTPUT_AUTHORITY:" +type(exc).__name__, file=sys.stderr)
+            return 20
     print(json.dumps(receipt, ensure_ascii=False, indent=2))
     return 0 if receipt["state"] == "PASS" else 20
 

@@ -6,6 +6,10 @@ execute actions. Only explicitly opted-in SENTINEL TEST_REGRESSION is executable
 """
 from pathlib import Path
 import argparse, datetime, hashlib, json, os, subprocess, sys
+if __package__:
+    from .enguru_evidence_receipt_io import write_new_json
+else:
+    from enguru_evidence_receipt_io import write_new_json
 
 PILOTS = ('ZEKU','ATLAS','FORGE','ASTRA','NEURON','SENTINEL','FORMA')
 CONTROL = Path(__file__).resolve().parents[1]
@@ -32,6 +36,8 @@ def safe_path(relative):
 
 def qualify():
     c=get(CONTRACT)
+    if not (CONTROL/c['actionBinding']).is_file():
+        raise ValueError('P06_LEGACY_ACTION_BINDING_SOURCE_UNAVAILABLE')
     reg={key:get(safe_path(c[key])) for key in ('capabilityRegistry','actionRegistry','actionBinding')}
     actions=reg['actionRegistry']['actions']
     links={v['CAPABILITY_ID']:v for v in get(GOV/'CAPABILITY_EXECUTION_BINDING_V1.json')['bindings']}
@@ -48,9 +54,14 @@ def qualify():
             action=actions.get(action_id) if action_id else None
             entry={'capability':cap,'action':action_id,'state':'HOLD_UNBOUND'}
             if isinstance(action,dict) and action.get('command'):
-                path=safe_path(action['command'])
-                entry.update(state='REGISTERED_ACTION_PRESENT',command=action['command'],
-                    authority=action.get('authority'),sha256=digest(path))
+                try:
+                    path=safe_path(action['command'])
+                except ValueError:
+                    entry.update(state='HOLD_REGISTERED_ACTION_SOURCE_MISSING',
+                                 command=action['command'])
+                else:
+                    entry.update(state='REGISTERED_ACTION_PRESENT',command=action['command'],
+                                 authority=action.get('authority'),sha256=digest(path))
             records.append(entry)
         results[pilot]={'canonicalBindingState':profile.get('runtimeBindingState'),
                         'capabilities':records,'independentHandlerExecuted':False}
@@ -61,7 +72,7 @@ def main():
     ap.add_argument('--pilot',choices=PILOTS,default='SENTINEL')
     ap.add_argument('--capability',default='TEST_REGRESSION')
     ap.add_argument('--execute-green-cap08',action='store_true')
-    ap.add_argument('--receipt-dir',default=str(Path.home()/'Downloads/ENGURU_OSI_P06_HANDLER_ENGINEERING'))
+    ap.add_argument('--receipt-dir',default=str(Path.home()/'Enguru/Evidence/MacEngineer/P06/handler-engineering'))
     a=ap.parse_args()
     receipt={'schema':'enguru.osi.p06.pilot-dispatch-adapter/v1',
         'timestamp':datetime.datetime.now(datetime.timezone.utc).isoformat(),
@@ -100,9 +111,12 @@ def main():
         receipt['sourcePreserved']=(before==after and pre==post)
         receipt['beforeStatusSha256']=hashlib.sha256(before.get('stdoutTail','').encode()).hexdigest()
         if not receipt['sourcePreserved']:receipt['state']='HOLD_SOURCE_CHANGED'
-        dest=Path(a.receipt_dir);dest.mkdir(parents=True,exist_ok=True)
-        target=dest/'P06_HANDLER_ENGINEERING_RECEIPT.json'
-        target.write_text(json.dumps(receipt,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+        target=Path(a.receipt_dir)/('P06_HANDLER_ENGINEERING_RECEIPT_'+datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')+'.json')
+        try:
+            write_new_json(target,receipt)
+        except (OSError,ValueError) as ex:
+            print('STATE=HOLD\nREASON=EVIDENCE_OUTPUT_AUTHORITY:'+type(ex).__name__)
+            return 2
         print('STATE='+receipt['state'])
         print('SOURCE_PRESERVED='+str(receipt['sourcePreserved']).upper())
         print('REAL_SEVEN_HANDLERS=HOLD')
