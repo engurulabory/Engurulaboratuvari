@@ -24,7 +24,7 @@ Human Threshold may explicitly ACCEPT limited trust policy, REJECT, or HOLD with
 
 ## Test hook boundary
 Production entry: qualifyProducer(input), no environment-triggered fault injection.
-Separate explicitly exported review-only helper: qualifyProducerWithFaults(input,testFaults), used only by test child process. Export remains a potential mis-use surface and MUST receive independent security review before live deployment. A production build can remove the test helper once approved; prior test results remain scoped to review candidate.
+Test-only child harness creates a disposable instrumented source copy under the OS temporary directory; production module exports only qualifyProducer(input) with no test injection seam. Synthetic faults remain test-only, and do not establish hardware power-loss resilience.
 
 STATE=HOLD_HUMAN_POLICY_AND_KEY_AUTHORITY
 NEXT_ACTION=EXACT_HEAD_CI_AND_OSI_FIELD_THEN_INDEPENDENT_HUMAN_REVIEW
