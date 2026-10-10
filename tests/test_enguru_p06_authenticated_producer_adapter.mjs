@@ -44,3 +44,10 @@ reject('reject V14 forged auth PASS',x=>{const v=JSON.parse(x.v14Bytes);v.author
 reject('reject policy privilege escalation',x=>{const p=JSON.parse(x.policyBytes);p.autoVerifiedFinish=true;x.policyBytes=buf(p);x.expectedPolicySha256=sha(x.policyBytes)});
 
 reject('reject changed unsigned-looking attestation timestamp',x=>{x.attestation.signedAt='2026-10-10T13:59:59Z'});
+
+// Fail-closed input-shape regressions: malformed external data must raise HoldError.
+test('reject missing assessment args with HoldError',()=>assert.throws(()=>assessProducerAttestation(undefined),HoldError));
+reject('reject null evidence candidate',x=>{const c=JSON.parse(x.candidateBytes);c.evidenceCandidates[0]=null;x.candidateBytes=buf(c)});
+reject('reject non-string producer provenance ID',x=>{const c=JSON.parse(x.candidateBytes);c.evidenceCandidates[0].provenance.producerId=null;x.candidateBytes=buf(c)});
+reject('reject null attestation payload',x=>{x.attestation.payload=null});
+reject('reject invalid artifact map shape',x=>{x.artifactBytesById=null});
