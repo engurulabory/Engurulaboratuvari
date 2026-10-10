@@ -5,6 +5,7 @@ on:
       - 'tools/enguru_p06_authenticated_producer_adapter.mjs'
       - 'tools/enguru_p06_producer_authority_candidate.mjs'
       - 'tests/test_enguru_p06_producer_authority_candidate.mjs'
+      - 'tests/p06_v16_child_process.mjs'
       - '.github/workflows/p06-g2-v16-candidate.yml'
   workflow_dispatch:
 jobs:
