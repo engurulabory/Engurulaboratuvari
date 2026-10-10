@@ -1,0 +1,17 @@
+{
+  "authority": "EXISTING_REGISTRIES_READ_ONLY_CANDIDATE",
+  "classification": "ENGINEERING_CANDIDATE_TASK_SPECIFIC_NATIVE_ONLY",
+  "excludedClaims": [
+    "AUTONOMOUS_MULTI_AGENT",
+    "UNBOUNDED_NATURAL_LANGUAGE_TASKS",
+    "SOURCE_MUTATION_AUTHORITY",
+    "OFFICIAL_P06_ACCEPTANCE"
+  ],
+  "humanThreshold": "HOLD",
+  "officialGeneralTaskAcceptance": false,
+  "officialP06DoneCheck": "HOLD_CANONICAL_ISSUER",
+  "qualifies": "SEVEN_EXACT_TYPED_READ_ONLY_NATIVE_TASKS",
+  "schema": "enguru.p06.task-specific-native-qualification-candidate/v1",
+  "sourceEngineeringHead": "6d6864d6206575f5221f566d113b805e371baeaf",
+  "verifiedFinish": "HOLD"
+}

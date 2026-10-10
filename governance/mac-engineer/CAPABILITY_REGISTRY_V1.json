@@ -1,0 +1,623 @@
+{
+  "schema": "enguru.mac-engineer.capability-registry/v1",
+  "product": "ENGÜRÜ Mac Engineer™",
+  "rule": "Capabilities describe bounded usable authority. Registry metadata never bypasses OPERATOR_ACTION_REGISTRY, DoneCheck™ or Human Threshold™.",
+  "defaults": {
+    "FAIL_CLOSED": true,
+    "RETRY_POLICY": {
+      "maxAttempts": 2,
+      "overLimit": "HOLD"
+    },
+    "ROLLBACK_POLICY": "REQUIRED_FOR_MUTATING_OR_HIGH_RISK_CAPABILITY"
+  },
+  "capabilities": [
+    {
+      "CAPABILITY_ID": "CURRENT_TECHNICAL_TRUTH_READ",
+      "STATE": "VERIFIED",
+      "INPUTS": [
+        "CURRENT_TRUTH",
+        "BOUNDED_OBJECTIVE"
+      ],
+      "OUTPUTS": [
+        "RESULT",
+        "EVIDENCE"
+      ],
+      "PRECONDITIONS": [
+        "CURRENT_TRUTH_READ",
+        "AUTHORITY_RESOLVED"
+      ],
+      "AUTHORITY": "GREEN",
+      "RISK_CLASS": "LOW",
+      "MUTATION_SCOPE": "READ_ONLY",
+      "NETWORK_POLICY": "LOCAL_ONLY",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "RETRY_POLICY": {
+        "maxAttempts": 2,
+        "overLimit": "HOLD"
+      },
+      "ROLLBACK_POLICY": "NOT_REQUIRED_FOR_READ_ONLY_OPERATION",
+      "EVIDENCE_REQUIREMENTS": [
+        "FRESH_RESULT",
+        "MATERIAL_STEP_EVIDENCE"
+      ],
+      "NEXT_COMPATIBLE_CAPABILITIES": [],
+      "FAIL_CLOSED": true
+    },
+    {
+      "CAPABILITY_ID": "CANONICAL_BOOT",
+      "STATE": "VERIFIED",
+      "INPUTS": [
+        "CURRENT_TRUTH",
+        "BOUNDED_OBJECTIVE"
+      ],
+      "OUTPUTS": [
+        "RESULT",
+        "EVIDENCE"
+      ],
+      "PRECONDITIONS": [
+        "CURRENT_TRUTH_READ",
+        "AUTHORITY_RESOLVED"
+      ],
+      "AUTHORITY": "GREEN",
+      "RISK_CLASS": "LOW",
+      "MUTATION_SCOPE": "EXPLICIT_AUTHORIZED_PATHS_ONLY",
+      "NETWORK_POLICY": "READ_ONLY_NETWORK_BY_DEFAULT",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "RETRY_POLICY": {
+        "maxAttempts": 2,
+        "overLimit": "HOLD"
+      },
+      "ROLLBACK_POLICY": "SOURCE_HEAD_IMMUTABLE;DERIVED_RUNTIME_CONTEXT_REGENERABLE",
+      "EVIDENCE_REQUIREMENTS": [
+        "FRESH_RESULT",
+        "MATERIAL_STEP_EVIDENCE"
+      ],
+      "NEXT_COMPATIBLE_CAPABILITIES": [],
+      "FAIL_CLOSED": true
+    },
+    {
+      "CAPABILITY_ID": "LOCAL_DOCTOR",
+      "STATE": "VERIFIED",
+      "INPUTS": [
+        "CURRENT_TRUTH",
+        "BOUNDED_OBJECTIVE"
+      ],
+      "OUTPUTS": [
+        "RESULT",
+        "EVIDENCE"
+      ],
+      "PRECONDITIONS": [
+        "CURRENT_TRUTH_READ",
+        "AUTHORITY_RESOLVED"
+      ],
+      "AUTHORITY": "GREEN",
+      "RISK_CLASS": "LOW",
+      "MUTATION_SCOPE": "READ_ONLY",
+      "NETWORK_POLICY": "LOCAL_OR_AUTHORIZED_READ",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "RETRY_POLICY": {
+        "maxAttempts": 2,
+        "overLimit": "HOLD"
+      },
+      "ROLLBACK_POLICY": "NOT_REQUIRED_FOR_READ_ONLY_OPERATION",
+      "EVIDENCE_REQUIREMENTS": [
+        "FRESH_RESULT",
+        "MATERIAL_STEP_EVIDENCE"
+      ],
+      "NEXT_COMPATIBLE_CAPABILITIES": [],
+      "FAIL_CLOSED": true
+    },
+    {
+      "CAPABILITY_ID": "OPERATOR_CONTINUE_DISPATCH",
+      "STATE": "VERIFIED",
+      "INPUTS": [
+        "CURRENT_TRUTH",
+        "BOUNDED_OBJECTIVE"
+      ],
+      "OUTPUTS": [
+        "RESULT",
+        "EVIDENCE"
+      ],
+      "PRECONDITIONS": [
+        "CURRENT_TRUTH_READ",
+        "AUTHORITY_RESOLVED"
+      ],
+      "AUTHORITY": "AMBER",
+      "RISK_CLASS": "MEDIUM",
+      "MUTATION_SCOPE": "BOUNDED_BY_REGISTERED_ACTION",
+      "NETWORK_POLICY": "POLICY_BOUND",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "RETRY_POLICY": {
+        "maxAttempts": 2,
+        "overLimit": "HOLD"
+      },
+      "ROLLBACK_POLICY": "REQUIRED",
+      "EVIDENCE_REQUIREMENTS": [
+        "FRESH_RESULT",
+        "MATERIAL_STEP_EVIDENCE"
+      ],
+      "NEXT_COMPATIBLE_CAPABILITIES": [],
+      "FAIL_CLOSED": true
+    },
+    {
+      "CAPABILITY_ID": "FAIL_CLOSED_ENGINEERING",
+      "STATE": "VERIFIED",
+      "INPUTS": [
+        "CURRENT_TRUTH",
+        "BOUNDED_OBJECTIVE"
+      ],
+      "OUTPUTS": [
+        "RESULT",
+        "EVIDENCE"
+      ],
+      "PRECONDITIONS": [
+        "CURRENT_TRUTH_READ",
+        "AUTHORITY_RESOLVED"
+      ],
+      "AUTHORITY": "GREEN",
+      "RISK_CLASS": "LOW",
+      "MUTATION_SCOPE": "NONE",
+      "NETWORK_POLICY": "LOCAL_ONLY",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "RETRY_POLICY": {
+        "maxAttempts": 2,
+        "overLimit": "HOLD"
+      },
+      "ROLLBACK_POLICY": "NOT_REQUIRED_FOR_READ_ONLY_OPERATION",
+      "EVIDENCE_REQUIREMENTS": [
+        "FRESH_RESULT",
+        "MATERIAL_STEP_EVIDENCE"
+      ],
+      "NEXT_COMPATIBLE_CAPABILITIES": [],
+      "FAIL_CLOSED": true
+    },
+    {
+      "CAPABILITY_ID": "SOURCE_PRODUCT_CHANGE",
+      "STATE": "VERIFIED_BOUNDED",
+      "INPUTS": [
+        "CURRENT_TRUTH",
+        "BOUNDED_OBJECTIVE"
+      ],
+      "OUTPUTS": [
+        "RESULT",
+        "EVIDENCE"
+      ],
+      "PRECONDITIONS": [
+        "CURRENT_TRUTH_READ",
+        "AUTHORITY_RESOLVED"
+      ],
+      "AUTHORITY": "AMBER",
+      "RISK_CLASS": "MEDIUM",
+      "MUTATION_SCOPE": "EXPLICIT_AUTHORIZED_PATHS_ONLY",
+      "NETWORK_POLICY": "POLICY_BOUND",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "RETRY_POLICY": {
+        "maxAttempts": 2,
+        "overLimit": "HOLD"
+      },
+      "ROLLBACK_POLICY": "REQUIRED",
+      "EVIDENCE_REQUIREMENTS": [
+        "FRESH_RESULT",
+        "MATERIAL_STEP_EVIDENCE"
+      ],
+      "NEXT_COMPATIBLE_CAPABILITIES": [],
+      "FAIL_CLOSED": true
+    },
+    {
+      "CAPABILITY_ID": "BUILD",
+      "STATE": "VERIFIED",
+      "INPUTS": [
+        "CURRENT_TRUTH",
+        "BOUNDED_OBJECTIVE"
+      ],
+      "OUTPUTS": [
+        "RESULT",
+        "EVIDENCE"
+      ],
+      "PRECONDITIONS": [
+        "CURRENT_TRUTH_READ",
+        "AUTHORITY_RESOLVED"
+      ],
+      "AUTHORITY": "GREEN",
+      "RISK_CLASS": "LOW",
+      "MUTATION_SCOPE": "BUILD_ARTIFACTS_ONLY",
+      "NETWORK_POLICY": "LOCAL_ONLY",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "RETRY_POLICY": {
+        "maxAttempts": 2,
+        "overLimit": "HOLD"
+      },
+      "ROLLBACK_POLICY": "NOT_REQUIRED_FOR_READ_ONLY_OPERATION",
+      "EVIDENCE_REQUIREMENTS": [
+        "FRESH_RESULT",
+        "MATERIAL_STEP_EVIDENCE"
+      ],
+      "NEXT_COMPATIBLE_CAPABILITIES": [],
+      "FAIL_CLOSED": true
+    },
+    {
+      "CAPABILITY_ID": "TEST_REGRESSION",
+      "STATE": "VERIFIED",
+      "INPUTS": [
+        "CURRENT_TRUTH",
+        "BOUNDED_OBJECTIVE"
+      ],
+      "OUTPUTS": [
+        "RESULT",
+        "EVIDENCE"
+      ],
+      "PRECONDITIONS": [
+        "CURRENT_TRUTH_READ",
+        "AUTHORITY_RESOLVED"
+      ],
+      "AUTHORITY": "GREEN",
+      "RISK_CLASS": "LOW",
+      "MUTATION_SCOPE": "TEST_ARTIFACTS_ONLY",
+      "NETWORK_POLICY": "LOCAL_ONLY",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "RETRY_POLICY": {
+        "maxAttempts": 2,
+        "overLimit": "HOLD"
+      },
+      "ROLLBACK_POLICY": "NOT_REQUIRED_FOR_READ_ONLY_OPERATION",
+      "EVIDENCE_REQUIREMENTS": [
+        "FRESH_RESULT",
+        "MATERIAL_STEP_EVIDENCE"
+      ],
+      "NEXT_COMPATIBLE_CAPABILITIES": [],
+      "FAIL_CLOSED": true
+    },
+    {
+      "CAPABILITY_ID": "ROOT_CAUSE_REPAIR",
+      "STATE": "VERIFIED",
+      "INPUTS": [
+        "CURRENT_TRUTH",
+        "BOUNDED_OBJECTIVE"
+      ],
+      "OUTPUTS": [
+        "RESULT",
+        "EVIDENCE"
+      ],
+      "PRECONDITIONS": [
+        "CURRENT_TRUTH_READ",
+        "AUTHORITY_RESOLVED"
+      ],
+      "AUTHORITY": "AMBER",
+      "RISK_CLASS": "MEDIUM",
+      "MUTATION_SCOPE": "BOUNDED_REPAIR_SCOPE",
+      "NETWORK_POLICY": "POLICY_BOUND",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "RETRY_POLICY": {
+        "maxAttempts": 2,
+        "overLimit": "HOLD"
+      },
+      "ROLLBACK_POLICY": "REQUIRED",
+      "EVIDENCE_REQUIREMENTS": [
+        "FRESH_RESULT",
+        "MATERIAL_STEP_EVIDENCE"
+      ],
+      "NEXT_COMPATIBLE_CAPABILITIES": [],
+      "FAIL_CLOSED": true
+    },
+    {
+      "CAPABILITY_ID": "MIGRATION_CANONICAL_RECONCILIATION",
+      "STATE": "VERIFIED",
+      "INPUTS": [
+        "CURRENT_TRUTH",
+        "BOUNDED_OBJECTIVE"
+      ],
+      "OUTPUTS": [
+        "RESULT",
+        "EVIDENCE"
+      ],
+      "PRECONDITIONS": [
+        "CURRENT_TRUTH_READ",
+        "AUTHORITY_RESOLVED"
+      ],
+      "AUTHORITY": "AMBER",
+      "RISK_CLASS": "HIGH",
+      "MUTATION_SCOPE": "EXPLICIT_RECONCILIATION_SCOPE",
+      "NETWORK_POLICY": "POLICY_BOUND",
+      "REQUIRES_HUMAN_THRESHOLD": true,
+      "RETRY_POLICY": {
+        "maxAttempts": 2,
+        "overLimit": "HOLD"
+      },
+      "ROLLBACK_POLICY": "REQUIRED",
+      "EVIDENCE_REQUIREMENTS": [
+        "FRESH_RESULT",
+        "MATERIAL_STEP_EVIDENCE"
+      ],
+      "NEXT_COMPATIBLE_CAPABILITIES": [],
+      "FAIL_CLOSED": true
+    },
+    {
+      "CAPABILITY_ID": "ADVANCED_CODE_ENGINEERING",
+      "STATE": "VERIFIED_BOUNDED",
+      "INPUTS": [
+        "CURRENT_TRUTH",
+        "BOUNDED_OBJECTIVE"
+      ],
+      "OUTPUTS": [
+        "RESULT",
+        "EVIDENCE"
+      ],
+      "PRECONDITIONS": [
+        "CURRENT_TRUTH_READ",
+        "AUTHORITY_RESOLVED"
+      ],
+      "AUTHORITY": "AMBER",
+      "RISK_CLASS": "MEDIUM",
+      "MUTATION_SCOPE": "EXPLICIT_ENGINEERING_SCOPE",
+      "NETWORK_POLICY": "POLICY_BOUND",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "RETRY_POLICY": {
+        "maxAttempts": 2,
+        "overLimit": "HOLD"
+      },
+      "ROLLBACK_POLICY": "REQUIRED",
+      "EVIDENCE_REQUIREMENTS": [
+        "FRESH_RESULT",
+        "MATERIAL_STEP_EVIDENCE"
+      ],
+      "NEXT_COMPATIBLE_CAPABILITIES": [],
+      "FAIL_CLOSED": true
+    },
+    {
+      "CAPABILITY_ID": "NEW_PRODUCT_FROM_BRIEF",
+      "STATE": "VERIFIED_BOUNDED",
+      "INPUTS": [
+        "CURRENT_TRUTH",
+        "BOUNDED_OBJECTIVE"
+      ],
+      "OUTPUTS": [
+        "RESULT",
+        "EVIDENCE"
+      ],
+      "PRECONDITIONS": [
+        "CURRENT_TRUTH_READ",
+        "AUTHORITY_RESOLVED"
+      ],
+      "AUTHORITY": "AMBER",
+      "RISK_CLASS": "MEDIUM",
+      "MUTATION_SCOPE": "AUTHORIZED_WORKSPACE_ONLY",
+      "NETWORK_POLICY": "POLICY_BOUND",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "RETRY_POLICY": {
+        "maxAttempts": 2,
+        "overLimit": "HOLD"
+      },
+      "ROLLBACK_POLICY": "REQUIRED",
+      "EVIDENCE_REQUIREMENTS": [
+        "FRESH_RESULT",
+        "MATERIAL_STEP_EVIDENCE"
+      ],
+      "NEXT_COMPATIBLE_CAPABILITIES": [],
+      "FAIL_CLOSED": true
+    },
+    {
+      "CAPABILITY_ID": "RELEASE_LIFECYCLE",
+      "STATE": "VERIFIED",
+      "INPUTS": [
+        "CURRENT_TRUTH",
+        "BOUNDED_OBJECTIVE"
+      ],
+      "OUTPUTS": [
+        "RESULT",
+        "EVIDENCE"
+      ],
+      "PRECONDITIONS": [
+        "CURRENT_TRUTH_READ",
+        "AUTHORITY_RESOLVED"
+      ],
+      "AUTHORITY": "RED",
+      "RISK_CLASS": "HIGH",
+      "MUTATION_SCOPE": "CONTROLLED_RELEASE_SCOPE",
+      "NETWORK_POLICY": "NETWORK_AND_REMOTE_POLICY_BOUND",
+      "REQUIRES_HUMAN_THRESHOLD": true,
+      "RETRY_POLICY": {
+        "maxAttempts": 2,
+        "overLimit": "HOLD"
+      },
+      "ROLLBACK_POLICY": "REQUIRED",
+      "EVIDENCE_REQUIREMENTS": [
+        "FRESH_RESULT",
+        "MATERIAL_STEP_EVIDENCE"
+      ],
+      "NEXT_COMPATIBLE_CAPABILITIES": [],
+      "FAIL_CLOSED": true
+    },
+    {
+      "CAPABILITY_ID": "FINISHED_PRODUCT_DELIVERY_ACCEPTANCE",
+      "STATE": "VERIFIED",
+      "INPUTS": [
+        "CURRENT_TRUTH",
+        "BOUNDED_OBJECTIVE"
+      ],
+      "OUTPUTS": [
+        "RESULT",
+        "EVIDENCE"
+      ],
+      "PRECONDITIONS": [
+        "CURRENT_TRUTH_READ",
+        "AUTHORITY_RESOLVED"
+      ],
+      "AUTHORITY": "RED",
+      "RISK_CLASS": "HIGH",
+      "MUTATION_SCOPE": "EVIDENCE_AND_ACCEPTANCE_ONLY",
+      "NETWORK_POLICY": "POLICY_BOUND",
+      "REQUIRES_HUMAN_THRESHOLD": true,
+      "RETRY_POLICY": {
+        "maxAttempts": 2,
+        "overLimit": "HOLD"
+      },
+      "ROLLBACK_POLICY": "REQUIRED",
+      "EVIDENCE_REQUIREMENTS": [
+        "FRESH_RESULT",
+        "MATERIAL_STEP_EVIDENCE"
+      ],
+      "NEXT_COMPATIBLE_CAPABILITIES": [],
+      "FAIL_CLOSED": true
+    },
+    {
+      "CAPABILITY_ID": "EVIDENCE_DONECHECK",
+      "STATE": "VERIFIED",
+      "INPUTS": [
+        "CURRENT_TRUTH",
+        "BOUNDED_OBJECTIVE"
+      ],
+      "OUTPUTS": [
+        "RESULT",
+        "EVIDENCE"
+      ],
+      "PRECONDITIONS": [
+        "CURRENT_TRUTH_READ",
+        "AUTHORITY_RESOLVED"
+      ],
+      "AUTHORITY": "GREEN",
+      "RISK_CLASS": "LOW",
+      "MUTATION_SCOPE": "EVIDENCE_ONLY",
+      "NETWORK_POLICY": "LOCAL_OR_AUTHORIZED_READ",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "RETRY_POLICY": {
+        "maxAttempts": 2,
+        "overLimit": "HOLD"
+      },
+      "ROLLBACK_POLICY": "NOT_REQUIRED_FOR_READ_ONLY_OPERATION",
+      "EVIDENCE_REQUIREMENTS": [
+        "FRESH_RESULT",
+        "MATERIAL_STEP_EVIDENCE"
+      ],
+      "NEXT_COMPATIBLE_CAPABILITIES": [],
+      "FAIL_CLOSED": true
+    },
+    {
+      "CAPABILITY_ID": "RECOVERY_OFFLINE_CONTINUITY",
+      "STATE": "VERIFIED",
+      "INPUTS": [
+        "CURRENT_TRUTH",
+        "BOUNDED_OBJECTIVE"
+      ],
+      "OUTPUTS": [
+        "RESULT",
+        "EVIDENCE"
+      ],
+      "PRECONDITIONS": [
+        "CURRENT_TRUTH_READ",
+        "AUTHORITY_RESOLVED"
+      ],
+      "AUTHORITY": "AMBER",
+      "RISK_CLASS": "MEDIUM",
+      "MUTATION_SCOPE": "RECOVERY_AND_ROLLBACK_SCOPE",
+      "NETWORK_POLICY": "LOCAL_FIRST",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "RETRY_POLICY": {
+        "maxAttempts": 2,
+        "overLimit": "HOLD"
+      },
+      "ROLLBACK_POLICY": "REQUIRED",
+      "EVIDENCE_REQUIREMENTS": [
+        "FRESH_RESULT",
+        "MATERIAL_STEP_EVIDENCE"
+      ],
+      "NEXT_COMPATIBLE_CAPABILITIES": [],
+      "FAIL_CLOSED": true
+    },
+    {
+      "CAPABILITY_ID": "TERMINAL_EXECUTION",
+      "STATE": "VERIFIED",
+      "INPUTS": [
+        "CURRENT_TRUTH",
+        "BOUNDED_OBJECTIVE"
+      ],
+      "OUTPUTS": [
+        "RESULT",
+        "EVIDENCE"
+      ],
+      "PRECONDITIONS": [
+        "CURRENT_TRUTH_READ",
+        "AUTHORITY_RESOLVED"
+      ],
+      "AUTHORITY": "AMBER",
+      "RISK_CLASS": "HIGH",
+      "MUTATION_SCOPE": "COMMAND_SCOPE_EXPLICIT",
+      "NETWORK_POLICY": "POLICY_BOUND",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "RETRY_POLICY": {
+        "maxAttempts": 2,
+        "overLimit": "HOLD"
+      },
+      "ROLLBACK_POLICY": "REQUIRED",
+      "EVIDENCE_REQUIREMENTS": [
+        "FRESH_RESULT",
+        "MATERIAL_STEP_EVIDENCE"
+      ],
+      "NEXT_COMPATIBLE_CAPABILITIES": [],
+      "FAIL_CLOSED": true
+    },
+    {
+      "CAPABILITY_ID": "FILESYSTEM_MACOS_AUTOMATION",
+      "STATE": "VERIFIED",
+      "INPUTS": [
+        "CURRENT_TRUTH",
+        "BOUNDED_OBJECTIVE"
+      ],
+      "OUTPUTS": [
+        "RESULT",
+        "EVIDENCE"
+      ],
+      "PRECONDITIONS": [
+        "CURRENT_TRUTH_READ",
+        "AUTHORITY_RESOLVED"
+      ],
+      "AUTHORITY": "AMBER",
+      "RISK_CLASS": "HIGH",
+      "MUTATION_SCOPE": "EXPLICIT_PATH_SCOPE",
+      "NETWORK_POLICY": "LOCAL_ONLY",
+      "REQUIRES_HUMAN_THRESHOLD": true,
+      "RETRY_POLICY": {
+        "maxAttempts": 2,
+        "overLimit": "HOLD"
+      },
+      "ROLLBACK_POLICY": "REQUIRED",
+      "EVIDENCE_REQUIREMENTS": [
+        "FRESH_RESULT",
+        "MATERIAL_STEP_EVIDENCE"
+      ],
+      "NEXT_COMPATIBLE_CAPABILITIES": [],
+      "FAIL_CLOSED": true
+    },
+    {
+      "CAPABILITY_ID": "INTERNET_RESEARCH_HARVEST_ASTRA",
+      "STATE": "VERIFIED",
+      "INPUTS": [
+        "CURRENT_TRUTH",
+        "BOUNDED_OBJECTIVE"
+      ],
+      "OUTPUTS": [
+        "RESULT",
+        "EVIDENCE"
+      ],
+      "PRECONDITIONS": [
+        "CURRENT_TRUTH_READ",
+        "AUTHORITY_RESOLVED"
+      ],
+      "AUTHORITY": "GREEN",
+      "RISK_CLASS": "MEDIUM",
+      "MUTATION_SCOPE": "RESEARCH_ARTIFACTS_ONLY",
+      "NETWORK_POLICY": "READ_ONLY_NETWORK_BY_DEFAULT",
+      "REQUIRES_HUMAN_THRESHOLD": false,
+      "RETRY_POLICY": {
+        "maxAttempts": 2,
+        "overLimit": "HOLD"
+      },
+      "ROLLBACK_POLICY": "NOT_REQUIRED_FOR_READ_ONLY_OPERATION",
+      "EVIDENCE_REQUIREMENTS": [
+        "FRESH_RESULT",
+        "MATERIAL_STEP_EVIDENCE"
+      ],
+      "NEXT_COMPATIBLE_CAPABILITIES": [],
+      "FAIL_CLOSED": true
+    }
+  ]
+}

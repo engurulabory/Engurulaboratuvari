@@ -1,0 +1,12 @@
+#!/bin/sh
+set -eu
+
+ROOT="$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)"
+PYTHON="$(command -v python3 2>/dev/null || true)"
+
+if [ -z "$PYTHON" ]; then
+  printf 'STATE=HOLD\nREASON=PYTHON_RUNTIME_REQUIRED\n' >&2
+  exit 20
+fi
+
+exec "$PYTHON" -B "$ROOT/tools/enguru_steward_operator.py" "$@"
