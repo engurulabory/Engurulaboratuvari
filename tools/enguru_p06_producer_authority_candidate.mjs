@@ -50,13 +50,18 @@ export async function qualifyProducer(input){
   await privateDirectory(dir);
   const token=sha(Buffer.from(canonicalJson({producerId:authorization.producerId,keyId:authorization.keyId,nonce:authorization.nonce})));
   const slot=join(dir,token);
+  // Test-only fail-closed hooks. Never exposed as authorization results.
+  const fault=process.env.ENGURU_P06_V16_TEST_FAULT;
+  const testFault=(point)=>{if(fault===point)throw new HoldError('INJECTED_'+point+'_HOLD')};
   try{await mkdir(slot,{mode:0o700});}catch(e){if(e?.code==='EEXIST')throw new HoldError('REPLAY_OR_UNCERTAIN_COMMIT');throw new HoldError('LEDGER_RESERVATION_FAILED')}
   await privateDirectory(slot);
+  testFault('AFTER_RESERVATION');
+  if(fault==='SIGKILL_AFTER_RESERVATION')process.kill(process.pid,'SIGKILL');
   try{
     const f=await open(join(slot,'receipt.json'),'wx',0o600);
-    try{await f.writeFile(canonicalJson({token,authorizationDigest:sha(Buffer.from(canonicalJson(authorization))),state:'RESERVED_CANDIDATE_ONLY'})+'\n');await f.sync()}finally{await f.close()}
+    try{testFault('EIO_BEFORE_WRITE');await f.writeFile(canonicalJson({token,authorizationDigest:sha(Buffer.from(canonicalJson(authorization))),state:'RESERVED_CANDIDATE_ONLY'})+'\n');testFault('ENOSPC_BEFORE_FSYNC');await f.sync();testFault('AFTER_FILE_FSYNC')}finally{await f.close()}
     const d=await open(slot,'r');try{await d.sync()}finally{await d.close()}
-    const parent=await open(dir,'r');try{await parent.sync()}finally{await parent.close()}
+    const parent=await open(dir,'r');try{testFault('BEFORE_PARENT_FSYNC');await parent.sync()}finally{await parent.close()}
   }catch(e){throw new HoldError('LEDGER_COMMIT_UNCERTAIN_HOLD')}
   return {state:'QUALIFIED_PROVENANCE_CANDIDATE_ONLY',officialIssuer:'HOLD',officialDoneCheck:'HOLD',humanThreshold:'HOLD',verifiedFinish:'HOLD',replayToken:token,policySha256:independentPolicySha256,attestationVerified:candidate.attestationVerified,authorityBindingVerified:true,nextAction:'HUMAN_AUTHORIZED_LIVE_POLICY_AND_DONECHECK_SEPARATE_REVIEW'};
 }
