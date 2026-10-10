@@ -1,0 +1,43 @@
+{
+  "schema": "enguru.osi-runtime.steward-binding/v1",
+  "bindingId": "ENGURU_OSI_STEWARD_BINDING_V1",
+  "state": "READY_FOR_FIELD_PROOF",
+  "canonicalSource": {
+    "repository": "engurulabory/Engurulaboratuvari",
+    "remote": "origin",
+    "ref": "refs/heads/main",
+    "observedMainHead": "b20a08158dd395cbcf0770a881c6dfd5584d5d94",
+    "path": "steward",
+    "tree": "8b4a8c37a9b49415daaa816108892b9ea0b7f2d7",
+    "scheduledWorkflow": ".github/workflows/steward-scheduled-cycle.yml",
+    "scheduledWorkflowBlob": "358eeb1b85df44131bb5ff19b3850ddc4a292bcc"
+  },
+  "builderLineage": {
+    "repository": "engurulabory/enguru-website-factory",
+    "path": "packages/repository-steward",
+    "observedMainHead": "88d00d025945fb170ddd88c5bd97c1f5a69ef999",
+    "tree": "d6df7b00f07d9aa82b5ae90667ef762061e70465",
+    "role": "ADAPTER_OR_LINEAGE_ONLY",
+    "canonicalAuthority": false
+  },
+  "operator": {
+    "entrypoint": "tools/enguru-steward",
+    "canonicalImplementation": "steward/run-scheduled-cycle.mjs",
+    "mode": "READ_ONLY_INSPECT_AND_PLAN",
+    "mutationAllowed": false,
+    "outputIsEvidenceNotAuthority": true
+  },
+  "authorityBoundary": {
+    "canonicalStewardCount": 1,
+    "secondStewardAllowed": false,
+    "safeAutoExecutionEnabled": false,
+    "destructiveExecutionEnabled": false,
+    "humanThreshold": [
+      "REPOSITORY_ARCHIVE_DELETE_RENAME_MERGE",
+      "BRANCH_DELETE_OR_HISTORY_REWRITE",
+      "VISIBILITY_OR_PRODUCTION_CUTOVER",
+      "MONEY_SECRETS_ACCOUNT_OR_LEGAL_AUTHORITY"
+    ]
+  },
+  "fieldRule": "READ_ONLY_CYCLE_PLUS_PRE_POST_WORKTREE_PARITY_PLUS_MACHINE_RECEIPT"
+}
