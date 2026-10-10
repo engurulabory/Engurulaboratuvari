@@ -9,6 +9,11 @@ const sha=x=>createHash('sha256').update(x).digest('hex');
 const isHex=x=>typeof x==='string'&&/^[a-f0-9]{64}$/.test(x);
 /** Caller must obtain expected policy digest from independent approved source, not policy bytes. */
 export async function qualifyProducer(input){
+  return qualifyProducerWithFaults(input,undefined);
+}
+
+/** Test seam is injected only by test-only caller; production entry has no env-based fault control. */
+export async function qualifyProducerWithFaults(input,testFaults){
   need(input&&typeof input==='object'&&!Array.isArray(input),'INPUT_REQUIRED');
   const {assessment,authorization,authorizationSignatureBase64,independentPolicySha256,ledgerDirectory}=input;
   need(assessment&&typeof assessment==='object','ASSESSMENT_REQUIRED');
@@ -51,12 +56,11 @@ export async function qualifyProducer(input){
   const token=sha(Buffer.from(canonicalJson({producerId:authorization.producerId,keyId:authorization.keyId,nonce:authorization.nonce})));
   const slot=join(dir,token);
   // Test-only fail-closed hooks. Never exposed as authorization results.
-  const fault=process.env.ENGURU_P06_V16_TEST_FAULT;
-  const testFault=(point)=>{if(fault===point)throw new HoldError('INJECTED_'+point+'_HOLD')};
+  const testFault=(point)=>{if(testFaults?.point===point)throw new HoldError('INJECTED_'+point+'_HOLD')};
   try{await mkdir(slot,{mode:0o700});}catch(e){if(e?.code==='EEXIST')throw new HoldError('REPLAY_OR_UNCERTAIN_COMMIT');throw new HoldError('LEDGER_RESERVATION_FAILED')}
   await privateDirectory(slot);
   testFault('AFTER_RESERVATION');
-  if(fault==='SIGKILL_AFTER_RESERVATION')process.kill(process.pid,'SIGKILL');
+  if(testFaults?.point==='SIGKILL_AFTER_RESERVATION')process.kill(process.pid,'SIGKILL');
   try{
     const f=await open(join(slot,'receipt.json'),'wx',0o600);
     try{testFault('EIO_BEFORE_WRITE');await f.writeFile(canonicalJson({token,authorizationDigest:sha(Buffer.from(canonicalJson(authorization))),state:'RESERVED_CANDIDATE_ONLY'})+'\n');testFault('ENOSPC_BEFORE_FSYNC');await f.sync();testFault('AFTER_FILE_FSYNC')}finally{await f.close()}
