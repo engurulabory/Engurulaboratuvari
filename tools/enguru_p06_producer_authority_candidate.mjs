@@ -29,7 +29,9 @@ export async function qualifyProducer(input){
   let ok=false;try{ok=verify(null,Buffer.from(canonicalJson(authorization)),createPublicKey(policy.publicKeyPem),sig)}catch{ok=false}
   need(ok,'AUTHORITY_BINDING_SIGNATURE_INVALID');
   need(typeof ledgerDirectory==='string'&&ledgerDirectory.length>0,'DURABLE_LEDGER_REQUIRED');
-  const root=resolve(ledgerDirectory); const dir=join(root,'enguru-p06-g2-replay-v1');
+  const requestedRoot=resolve(ledgerDirectory);
+  const root=await realpath(requestedRoot).catch(()=>{throw new HoldError('LEDGER_PATH_UNTRUSTED')});
+  const dir=join(root,'enguru-p06-g2-replay-v1');
   // The root must already be provisioned by the authorized local operator.
   // Never recursively create or silently accept a caller-controlled symlink.
   const privateDirectory=async (path)=>{
@@ -39,6 +41,10 @@ export async function qualifyProducer(input){
     if(typeof getuid==='function')need(st.uid===getuid(),'LEDGER_DIRECTORY_OWNER');
     need((await realpath(path))===path,'LEDGER_SYMLINK_ANCESTOR');
   };
+  // Reject a symlink at the supplied ledger leaf, but allow canonical macOS
+  // system ancestors such as /var -> /private/var; operate on canonical root.
+  const requestedStat=await lstat(requestedRoot).catch(()=>{throw new HoldError('LEDGER_PATH_UNTRUSTED')});
+  need(requestedStat.isDirectory()&&!requestedStat.isSymbolicLink(),'LEDGER_ROOT_SYMLINK');
   await privateDirectory(root);
   try{await mkdir(dir,{mode:0o700})}catch(e){if(e?.code!=='EEXIST')throw new HoldError('LEDGER_DIRECTORY_CREATE_FAILED')}
   await privateDirectory(dir);
