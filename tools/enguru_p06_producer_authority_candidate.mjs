@@ -1,6 +1,7 @@
 /** P06 G2 v16 integration candidate: fail-closed, no official issuer authority. */
 import {createHash,createPublicKey,verify} from 'node:crypto';
-import {mkdir,open} from 'node:fs/promises';
+import {mkdir,open,lstat,realpath} from 'node:fs/promises';
+import {getuid} from 'node:process';
 import {join,resolve} from 'node:path';
 import {assessProducerAttestation,canonicalJson,HoldError} from './enguru_p06_authenticated_producer_adapter.mjs';
 const need=(ok,why)=>{if(!ok)throw new HoldError(why)};
@@ -29,10 +30,22 @@ export async function qualifyProducer(input){
   need(ok,'AUTHORITY_BINDING_SIGNATURE_INVALID');
   need(typeof ledgerDirectory==='string'&&ledgerDirectory.length>0,'DURABLE_LEDGER_REQUIRED');
   const root=resolve(ledgerDirectory); const dir=join(root,'enguru-p06-g2-replay-v1');
-  await mkdir(dir,{recursive:true,mode:0o700});
+  // The root must already be provisioned by the authorized local operator.
+  // Never recursively create or silently accept a caller-controlled symlink.
+  const privateDirectory=async (path)=>{
+    let st;try{st=await lstat(path)}catch{throw new HoldError('LEDGER_PATH_UNTRUSTED')}
+    need(st.isDirectory()&&!st.isSymbolicLink(),'LEDGER_PATH_NOT_PRIVATE_DIRECTORY');
+    need((st.mode&0o077)===0,'LEDGER_DIRECTORY_PERMISSIONS');
+    if(typeof getuid==='function')need(st.uid===getuid(),'LEDGER_DIRECTORY_OWNER');
+    need((await realpath(path))===path,'LEDGER_SYMLINK_ANCESTOR');
+  };
+  await privateDirectory(root);
+  try{await mkdir(dir,{mode:0o700})}catch(e){if(e?.code!=='EEXIST')throw new HoldError('LEDGER_DIRECTORY_CREATE_FAILED')}
+  await privateDirectory(dir);
   const token=sha(Buffer.from(canonicalJson({producerId:authorization.producerId,keyId:authorization.keyId,nonce:authorization.nonce})));
   const slot=join(dir,token);
-  try{await mkdir(slot,{mode:0o700});}catch(e){if(e?.code==='EEXIST')throw new HoldError('REPLAY_OR_UNCERTAIN_COMMIT');throw e}
+  try{await mkdir(slot,{mode:0o700});}catch(e){if(e?.code==='EEXIST')throw new HoldError('REPLAY_OR_UNCERTAIN_COMMIT');throw new HoldError('LEDGER_RESERVATION_FAILED')}
+  await privateDirectory(slot);
   try{
     const f=await open(join(slot,'receipt.json'),'wx',0o600);
     try{await f.writeFile(canonicalJson({token,authorizationDigest:sha(Buffer.from(canonicalJson(authorization))),state:'RESERVED_CANDIDATE_ONLY'})+'\n');await f.sync()}finally{await f.close()}
