@@ -10,7 +10,7 @@ verified sale -> invoice decision -> PARK/GİB -> document evidence -> customer 
 Products do not integrate PARK directly.
 
 ## Production adapters
-- payment verification adapter
+- payment verification adapter: VakıfPayS HPP + QUERYTRANSACTION (prepared; merchant commissioning HOLD)
 - PARK taxpayer registry adapter
 - PARK invoice/status/download adapter
 - current UBL-TR document factory
@@ -27,4 +27,4 @@ Products do not integrate PARK directly.
 - secrets are stored only in deployment secret storage
 
 ## Verified Finish
-Production PASS requires PARK authentication, authorized series, UBL-TR validation, payment-webhook verification, document issue/status/download proof, mail-delivery proof, duplicate/retry tests, cancellation/refund tests, evidence persistence, and Human Threshold approval for live fiscal issuance.
+Production PASS requires PARK authentication, authorized series, UBL-TR validation, VakıfPayS merchant commissioning, HPP payment creation, callback integrity verification, QUERYTRANSACTION payment verification, amount/currency reconciliation, controlled live settlement proof into VakıfBank, document issue/status/download proof, mail-delivery proof, duplicate/retry tests, cancellation/refund tests, evidence persistence, and Human Threshold approval for live money/fiscal issuance.

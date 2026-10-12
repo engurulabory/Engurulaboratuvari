@@ -1,0 +1,34 @@
+{
+  "core": "ENGÜRÜ Tahsilat Motoru™",
+  "provider": "VakıfPayS",
+  "version": "0.1",
+  "state": "HOLD_PROVIDER_COMMISSIONING",
+  "local_acceptance": [
+    "hpp_session_creation",
+    "no_card_data_in_enguru",
+    "callback_sha512_integrity_check",
+    "querytransaction_required_for_verified_payment",
+    "amount_currency_exact_match",
+    "provider_rejection_fail_closed",
+    "refund_surface",
+    "test_live_mode_separation",
+    "secrets_not_committed"
+  ],
+  "external_required": [
+    "merchant_activation",
+    "test_credentials",
+    "live_credentials",
+    "foreign_card_authority",
+    "settlement_currency_confirmation",
+    "commercial_terms"
+  ],
+  "live_donecheck": [
+    "controlled_live_payment",
+    "querytransaction_verified",
+    "vakifbank_settlement_reconciled",
+    "park_invoice_reconciled",
+    "refund_or_cancellation_path_exercised",
+    "evidence_persisted",
+    "human_threshold_approved"
+  ]
+}
