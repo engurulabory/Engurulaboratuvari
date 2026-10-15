@@ -1,0 +1,91 @@
+{
+  "actionId": "ENGURU_SUZGEC_V24_T01_READONLY_FIELD",
+  "approvedPilots": [
+    "B01-01",
+    "B02-01",
+    "B03-01",
+    "B04-01",
+    "B05-01",
+    "B06-01",
+    "B07-01",
+    "B08-01"
+  ],
+  "approvedScopeSha256": "c438dfc846a21a3d381a653321c83b976082790692e45b033c4e0f0a2ff22aed",
+  "authorityScope": "READ_ONLY_TESTS",
+  "canonicalTaskId": "ENGURU_SUZGEC_V24_PILOT8_T01_T02",
+  "decision": "USER_APPROVED_READ_ONLY_ENGINEERING_SCOPE",
+  "doneCheckIssuerAuthority": "HOLD_UNBOUND",
+  "evidenceSeparation": "Actual source-pinned read-only tests and pre/post are allowed; producer credentials and DONECHECK task-specific PASS must be independently authenticated",
+  "executor": "tools/enguru_suzgec_v24_readonly_operator.py",
+  "fileMutationAllowance": [],
+  "forbiddenClaims": [
+    "FULL_E01_PASS",
+    "T01_COMPLETE",
+    "DONECHECK_TASK_PASS",
+    "FIELD_BENCHMARK_PASS",
+    "T04_ACCEPTED",
+    "VERIFIED_FINISH"
+  ],
+  "gitHead": "269854b8a42a27e9419eae65a3c9e349bdcc7300",
+  "githubDraftPr": 185,
+  "githubLastProvenHead": "c629c3568c30088b9f17c5206a10fe9577805c3f",
+  "githubPush": false,
+  "grantClass": "LOCAL_T01_T02_ENGINEERING_OPERATION_ONLY",
+  "humanThreshold": "PENDING_HUMAN_ONLY",
+  "invocation": "EXPLICIT_OSi_CLI",
+  "p01": "SUSPENDED",
+  "producerSourcePins": {
+    "tools/enguru_progress.py": "f3e2610c6e325f6fd620baa84ec412437a015109dde88ac38cab7f08b2a365b4",
+    "tools/mac_engineer_donecheck_v12_bridge.py": "098d2a384d0371d96eed237703d98608312af988b50ecb3545fd97263b959e29"
+  },
+  "project": "suzgec_v24",
+  "readOnlyTestAllowlist": [
+    {
+      "expectedCount": 13,
+      "module": "test_enguru_suzgec_v23_forecast.py"
+    },
+    {
+      "expectedCount": 25,
+      "module": "test_enguru_suzgec_v23_goal_acceptance.py"
+    },
+    {
+      "expectedCount": 28,
+      "module": "test_enguru_language_pre_send_linter.py"
+    },
+    {
+      "expectedCount": 18,
+      "module": "test_enguru_suzgec_v24_language_presend.py"
+    }
+  ],
+  "recordPurpose": "Bounded operator engineering authorization and actual read-only test execution; NOT an authenticated DoneCheck evidence issuer",
+  "schema": "enguru.suzgec.v24.t01.readonly-operator-authorization/v1",
+  "sourcePins": {
+    "governance/mac-engineer/OPERATOR_ACTION_REGISTRY_V1.json": "8ace6b42893e7929dd984f8be189d918cd04f9133a2d859361c92ca482d495ea",
+    "governance/work-protocol/ENGURU_SUZGEC_V23_GITHUB_OSi_PARITY_MANIFEST_V1.json": "30bcfc86baf48655028c40ba30376e94cddd63c6f10dfe8e8b6280a123c7ba71",
+    "governance/work-protocol/ENGURU_SUZGEC_V23_GOAL_OUTCOME_POLICY_V1.json": "e0396663b41cc5d87f87014d35ae1bf6018113ff31c2e8ac6e63fe0e3c6c5d8a",
+    "governance/work-protocol/ENGURU_SUZGEC_V23_UPFRONT_FINISH_VISIBILITY_CONTRACT_V1.json": "1a6efd52ad42baecd20d8030672e0267eb2348888dce5b5ad2ca77e426ea879e",
+    "governance/work-protocol/ENGURU_SUZGEC_V24_FIELD_WORKLIST_V1.json": "32cb3b723da8d643af70a1a0a7ed56af2c7b20ed7f814390b20ca2f591c6614e",
+    "governance/work-protocol/ENGURU_SUZGEC_V24_FIELD_WORK_CONTRACT_V1.json": "cedb1466c3631abe4e5904805da292eb05ed9e77d3042b9478cbf6b96af32819",
+    "governance/work-protocol/ENGURU_SUZGEC_V24_FIELD_WORK_STATE_V1.json": "f167d0b866f00a2155e9661ed5abce1e09154b38029839b7f307a2bfecc7c9cd",
+    "governance/work-protocol/ENGURU_SUZGEC_V24_LANGUAGE_ALIGNMENT_CONTRACT_V1.json": "52bb72c2ada011519aa59d5aefa0e3ffd5497355f336a0a24aa431e84c0c0748",
+    "governance/work-protocol/ENGURU_SUZGEC_V24_PILOT8_SCOPE_APPROVED_V1.json": "c438dfc846a21a3d381a653321c83b976082790692e45b033c4e0f0a2ff22aed",
+    "tests/test_enguru_language_pre_send_linter.py": "763ecf6ab6283efa0c003dfe651138bcec3d1af0eaa19f3319710e754f8295db",
+    "tests/test_enguru_pre_execution_simulation.py": "3ade3fa5c86ca6074c3a3445069e640b26ece5bee5d5a078d4b79d3447668489",
+    "tests/test_enguru_suzgec_v23_forecast.py": "1ea406a15395b2c21e744095de46bda171f7f5a3d3aa862f0b471628ea66db8c",
+    "tests/test_enguru_suzgec_v23_goal_acceptance.py": "93b5fdd2a1da59d62544450dfb1e738d2af76e4026e5f8dd6b7e10f976c3524c",
+    "tests/test_enguru_suzgec_v23_t01_binding.py": "d66a55328cfb27c4d0193568987dffe1ea3f5adffa4459c5820955fd12bc5e26",
+    "tests/test_enguru_suzgec_v24_language_presend.py": "ec6877ad4c370084ecdd17010731236ebee62a02bb5c7690a95092efe07d0c2c",
+    "tools/enguru_language_pre_send_linter.py": "da1195239a41fd7da6fbca81930f6806dfd5f06ce8205c66c916ffaf48d5a587",
+    "tools/enguru_package_execution_guard.py": "3f2c87bc521f0d577487dbca5620151575df4b3454a8fe5fc31668750096f319",
+    "tools/enguru_suzgec_v23_execution.py": "871d94f28add0441e00edef9f3ae6e24435d7177ff089bce2af4780c7a2a021a",
+    "tools/enguru_suzgec_v23_field_dispatch.py": "5236dd39aeb09a638a40550d083ec6e6ddf245276af9a5fb3b9baac709e6214e",
+    "tools/enguru_suzgec_v23_forecast.py": "5a0cd85cd71aff19f7e2c3f2de45f16c281d4a246cfdd927e80ef6421b1e4c77",
+    "tools/enguru_suzgec_v23_goal_acceptance.py": "0bddf80ded98478b0b49e46805c99c6ae739366392620d3d71e5f76e023afa84",
+    "tools/enguru_suzgec_v24_language_presend.py": "6624b15981190c300f4e3b5383b4916b4a2fe23ebfa6d14bc2467219da58f64e",
+    "tools/enguru_suzgec_v24_task_producer_bridge.py": "b2df3a21f1eb72ad92318647be70bfa1c9797ed078af29fc3d96e06dca4e7c31",
+    "tools/mac_engineer_operator.py": "0ce4956641ba105ee47914de187704c07f18ed4f0ed957f0cbf0c2bc5d768741"
+  },
+  "t01FullE01": "HOLD_AUTHENTICATED_ISSUER_AND_CANONICAL_TASK_EXECUTION_PENDING",
+  "verifiedFinish": "HOLD",
+  "workItem": "T01_REAL_TASK_PRODUCER"
+}

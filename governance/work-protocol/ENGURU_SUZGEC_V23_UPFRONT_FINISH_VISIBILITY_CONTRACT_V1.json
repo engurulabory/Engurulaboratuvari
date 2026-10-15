@@ -1,0 +1,195 @@
+{
+  "schema": "enguru.suzgec.v23.upfront-finish-visibility/v1",
+  "title": "ENGURU Suzgec v2.3 — Upfront Finish Visibility and Execution Ownership",
+  "status": "OSi_FORESIGHT_INSTALLED_T01_READONLY_PARTIAL_T02_T03_PENDING",
+  "methodVersion": "v2.3",
+  "canonicalStages": [
+    "Hakikati gör",
+    "Değeri koru",
+    "Eksikleri ve ihtiyaçları tespit et",
+    "Gerekli farkı üret",
+    "Eksikleri tamamla, ihtiyaçları karşıla",
+    "Kanıtla",
+    "Bir sonraki ihtiyaçları belirle",
+    "İlerlet"
+  ],
+  "existingCapabilities": [
+    "H01_HOLISTIC_REASONING",
+    "H02_GOAL_CONTINUITY",
+    "H03_END_TO_END_FINISH_READINESS",
+    "H04_PRE_EXECUTION_SIMULATION",
+    "E01_EXECUTION_OWNERSHIP"
+  ],
+  "rule": {
+    "id": "E01.UPFRONT_FINISH_PATH_VISIBILITY",
+    "description": "İşe başlamadan önce bütün bilinen aşamalar, bağımlılıklar, sahipler, durma koşulları, kanıtlar, telafi yolları ve Human Threshold tek değişmeyen finiş planında görünür olmalıdır.",
+    "anchorStage": "03 — Eksikleri ve ihtiyaçları tespit et",
+    "mandatoryCheckStage": "04 — Gerekli farkı üret, mevcut Pre-Send/Pre-Execution içinde",
+    "postExecutionCheckStage": "06 — Kanıtla, mevcut postcheck/DoneCheck içinde",
+    "noNinthStage": true,
+    "noNewCore": true,
+    "fixedPlanRule": "Yeni bulgular mevcut kabul kapısının altındaki bağımlılık veya engel olarak güncellenir; ana hedef ve kapı sayısı ancak açık insan kapsam kararıyla değişir.",
+    "completionRule": "Hazırlık veya izole test PASS, teknik finiş veya Verified Finish PASS sayılmaz."
+  },
+  "requiredBeforeEveryTask": [
+    "goal_id",
+    "canonical_source_and_head",
+    "scope_and_protections",
+    "final_acceptance_criteria",
+    "full_known_dependency_path",
+    "execution_owner_and_real_caller",
+    "required_authorities",
+    "test_environment",
+    "negative_simulation_matrix",
+    "per_gate_pass_evidence",
+    "per_gate_hold_conditions",
+    "per_gate_authorized_recovery",
+    "forecast_receipt",
+    "human_threshold_boundary"
+  ],
+  "executionLabels": {
+    "PREPARATION_PASS": "Sözleşme ve kaynak haritası hazır",
+    "EXECUTION_READY": "Gerçek çağrı zinciri, yetki, araç, simülasyon ve gerekli girdiler doğrulandı",
+    "TECHNICAL_FINISH_PASS": "Regresyon, saha, DoneCheck, GitHub kaynak eşleşmesi ve SHA kanıtları tamam",
+    "HUMAN_THRESHOLD_PENDING": "Bütün zorunlu teknik kanıtlar PASS; insan kararı bekliyor",
+    "VERIFIED_FINISH": "Açık yetkili insan kabulü gerçekleşti"
+  },
+  "preSendGate": {
+    "if_missing_required_field": "HOLD_MISSING_FINISH_PATH_FORECAST",
+    "if_unknown_real_caller": "HOLD_EXECUTION_OWNER_UNVERIFIED",
+    "if_missing_authority": "HOLD_AUTHORITY_NOT_PROVEN",
+    "if_missing_simulation": "HOLD_PRESEND_SIMULATION_NOT_PROVEN",
+    "if_repeat_same_inputs_same_hold": "HOLD_NO_NEW_CLOSURE_IMPACT",
+    "if_all_verified": "EXECUTION_READY",
+    "neverInferHumanAcceptance": true
+  },
+  "project": "ENGURU_SUZGEC_V23",
+  "workPlan": [
+    {
+      "id": "T01",
+      "title": "Authorized E01 dispatch binding",
+      "status": "HOLD",
+      "knownFacts": [
+        "v2.2 guard installed",
+        "v2.3 E01 executable installed; 10/10 isolated tests PASS",
+        "action registry dispatcher presently returns HOLD and downstreamExecuted=false in inspected code",
+        "GitHub main registry has scoped V21 action; GitHub feature registry has no SUZGEC or V23 action; neither remote ref grants local V23 dispatch authority."
+      ],
+      "unverified": [
+        "actual ACTION_REGISTRY entry",
+        "authorized callback identity and allowed mutations",
+        "real Mac Engineer producer dispatch bound to E01"
+      ],
+      "dependencies": [
+        "exact registry contract",
+        "verified callback",
+        "preserved unrelated operator paths"
+      ],
+      "successEvidence": [
+        "registered scoped action",
+        "real dispatch receipt with precheck/execute/postcheck from same canonical pin",
+        "negative: unregistered action/HOLD does not execute",
+        "postcheck failure yields HOLD"
+      ],
+      "holdConditions": [
+        "registry authority absent",
+        "callback unbound",
+        "source drift",
+        "existing project flow affected"
+      ],
+      "withinGateRecovery": "Only scoped, human-authorized registry/caller adjustment; then rerun targeted binding tests and regression."
+    },
+    {
+      "id": "T02",
+      "title": "Integrated S03 field acceptance",
+      "status": "PENDING",
+      "dependencies": [
+        "T01 actual runtime binding PASS",
+        "known test commands and environment"
+      ],
+      "priorEvidence": [
+        "v2.2 isolated 26/26 PASS",
+        "earlier target regression 33/33 PASS"
+      ],
+      "successEvidence": [
+        "regressions on installed, bound code",
+        "negative scenario matrix",
+        "prediction-observation reconciliation",
+        "Progress Core integrity and original projects preservation"
+      ],
+      "holdConditions": [
+        "regression failure",
+        "missing actual runtime proof",
+        "drift/replay/false PASS"
+      ],
+      "withinGateRecovery": "Correct authorized bounded defect within this gate and rerun affected test family plus mandatory regression."
+    },
+    {
+      "id": "T03",
+      "title": "GitHub and technical finish",
+      "status": "PENDING",
+      "dependencies": [
+        "T01 PASS",
+        "T02 PASS",
+        "scoped GitHub write authority if Draft PR required"
+      ],
+      "successEvidence": [
+        "source pins and GitHub commit equivalence",
+        "scoped branch and Draft PR; main remains unchanged",
+        "CI status evidence when mandatory",
+        "real DoneCheck outcome PASS",
+        "SHA-256 final manifest and Progress Core receipt"
+      ],
+      "holdConditions": [
+        "GitHub/local source mismatch",
+        "CI missing/fail",
+        "DoneCheck inconclusive/HOLD",
+        "unapproved GitHub mutation",
+        "missing evidence lock"
+      ],
+      "withinGateRecovery": "Only authorized focused correction, no automatic merge, then rerun corresponding verifications."
+    },
+    {
+      "id": "T04",
+      "title": "Human Threshold",
+      "status": "PENDING_HUMAN",
+      "dependencies": [
+        "T01 PASS",
+        "T02 PASS",
+        "T03 PASS"
+      ],
+      "successEvidence": [
+        "complete technical acceptance receipt",
+        "explicit human acceptance with scope and timestamp",
+        "Verified Finish canonical lock"
+      ],
+      "holdConditions": [
+        "human decision absent or declined"
+      ],
+      "withinGateRecovery": "Present complete proof and await explicit decision; never auto-accept."
+    }
+  ],
+  "protectedState": {
+    "PLIVE_P01": "SUSPENDED",
+    "GIT_MAIN": "PRESERVE",
+    "CURRENT_WORKTREE": "PRESERVE",
+    "OLD_EVIDENCE": "PRESERVE",
+    "HUMAN_ACCEPTANCE": "HUMAN_ONLY"
+  },
+  "preexecutionReadinessCurrent": "HOLD_T01_REAL_CALLER_AND_AUTHORITY_UNVERIFIED",
+  "verifiedFinishCurrent": "HOLD",
+  "citationBasis": "User-provided OSi terminal outputs and attached source excerpts, as of 2026-10-15; this document is not a new OSi runtime observation.",
+  "noInventedEvidence": true,
+  "githubReferenceObservation": {
+    "confidence": "GITHUB_REMOTE_REFERENCE_ONLY_NOT_OSi_LOCAL_AUTHORITY",
+    "featureBranch": "feat/mac-engineer-v08-product-engineering-operator",
+    "featureActionRegistryBlob": "0a635c7c4396ddb377b198cd98ff2c7a7794bd09",
+    "featureActionCount": 33,
+    "featureV23ActionRegistered": false,
+    "mainActionRegistryBlob": "ce70da147ab9f213b51ff0b43a269b952868590f",
+    "mainActionCount": 34,
+    "mainV21ActionRegistered": true,
+    "mainV23ActionRegistered": false,
+    "impact": "The OSi local registry and authorized action must be verified before any runtime binding or GitHub synchronization."
+  }
+}
