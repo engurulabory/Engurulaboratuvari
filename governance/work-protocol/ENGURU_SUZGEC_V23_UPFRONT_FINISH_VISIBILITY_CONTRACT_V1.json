@@ -1,7 +1,7 @@
 {
   "schema": "enguru.suzgec.v23.upfront-finish-visibility/v1",
   "title": "ENGURU Suzgec v2.3 — Upfront Finish Visibility and Execution Ownership",
-  "status": "CANONICAL_UPGRADE_CANDIDATE_OSi_NOT_INSTALLED",
+  "status": "OSi_FORESIGHT_INSTALLED_T01_READONLY_PARTIAL_T02_T03_PENDING",
   "methodVersion": "v2.3",
   "canonicalStages": [
     "Hakikati gör",

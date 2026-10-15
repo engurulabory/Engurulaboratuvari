@@ -41,6 +41,16 @@ def readiness(contract, state, abilities):
             validate_forecast(contract.get("finishPathForecast"), contract, state)
         except ValueError as exc:
             raise ExecutionHold("FORECAST_" + str(exc)) from exc
+        # E01.GOAL_OUTCOME_ACCEPTANCE: scope-defined measurable outcomes.
+        # Human scope approval and field provenance remain external authorities.
+        try:
+            from tools.enguru_suzgec_v23_goal_acceptance import validate_boundary
+        except ModuleNotFoundError:
+            from enguru_suzgec_v23_goal_acceptance import validate_boundary
+        try:
+            validate_boundary(contract.get("goalOutcomeAcceptance"), contract, state)
+        except ValueError as exc:
+            raise ExecutionHold("ACCEPTANCE_" + str(exc)) from exc
     return {"state":"EXECUTION_READY","contractSha256":pin(contract),"canonicalSha256":pin(state),"evidence":"USER_SUPPLIED_MUST_BE_VERIFIED_BY_AUTHORIZED_FIELD_EXECUTOR"}
 
 def execute_owned(contract, canonical_state, abilities, package, execute:Callable, guard):
@@ -55,4 +65,22 @@ def execute_owned(contract, canonical_state, abilities, package, execute:Callabl
     if not isinstance(result,dict):raise ExecutionHold("RESULT_NOT_EVIDENCE")
     after=guard.postcheck(copy.deepcopy(result),canonical_state=copy.deepcopy(snapshot))
     if not isinstance(after,dict) or after.get("decision")!="ADVANCE":raise ExecutionHold("POSTCHECK_HOLD")
+    if contract.get("project") == "ENGURU_SUZGEC_V23":
+        # Do not manufacture a trusted producer, DoneCheck or PASS from user data.
+        try:
+            from tools.enguru_suzgec_v23_goal_acceptance import assess_outcome
+        except ModuleNotFoundError:
+            from enguru_suzgec_v23_goal_acceptance import assess_outcome
+        observation = result.get("goalOutcomeObservation")
+        if not observation:
+            raise ExecutionHold("GOAL_OUTCOME_OBSERVATION_MISSING")
+        verifier = getattr(guard,"verify_goal_outcome_evidence",None)
+        scope_verifier = getattr(guard,"verify_goal_scope_approval",None)
+        try:
+            outcome = assess_outcome(contract["goalOutcomeAcceptance"], contract,
+                                     snapshot, observation, verifier, scope_verifier)
+        except ValueError as exc:
+            raise ExecutionHold("ACCEPTANCE_OBSERVATION_" + str(exc)) from exc
+        if outcome.get("state") != "PASS_PACKAGE_OUTCOME_MEASURED":
+            raise ExecutionHold(outcome.get("reason") or "ACCEPTANCE_OUTCOME_HOLD")
     return {"state":"TECHNICAL_EXECUTION_OBSERVED","contractSha256":r["contractSha256"],"canonicalSha256":r["canonicalSha256"],"precheck":before,"postcheck":after,"technicalFinish":"REQUIRES_INDEPENDENT_DONECHECK_AND_FIELD_EVIDENCE","humanThreshold":"PENDING","verifiedFinish":"HOLD"}

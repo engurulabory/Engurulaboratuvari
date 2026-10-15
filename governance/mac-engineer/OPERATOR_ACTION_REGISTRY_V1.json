@@ -217,7 +217,17 @@
       "remotePush": false,
       "failClosed": true,
       "authorizedPathCount": 2,
-      "canonicalSourceMutation": false
+      "canonicalSourceMutation": false,
+      "harbor01MeP02": {
+        "targetRelativeHome": "Enguru/Evidence/MacEngineer/ME_P02_DISPOSABLE_PROJECT",
+        "allowedNewFiles": [
+          "src/receipt_integrity.py",
+          "tests/test_receipt_integrity.py",
+          "README.md"
+        ],
+        "explicitCliOnly": true,
+        "verifiedFinishAuthority": false
+      }
     },
     "PACKAGE08_CAP07_BUILD_FIELD_PROOF": {
       "handler": "PACKAGE08_CAP07_BUILD_FIELD_PROOF",
@@ -431,6 +441,15 @@
     "ENGURU_SUZGEC_V21_LOOP_ADVANCE": {
       "handler": "ENGURU_SUZGEC_V21_EXECUTION_GATE",
       "authority": "ENGURU_SUZGEC_V21_EIGHT_STEP",
+      "failClosed": true
+    },
+    "ENGURU_SUZGEC_V23_T01_BOUND_FIELD": {
+      "handler": "ENGURU_SUZGEC_V23_LOCAL_READONLY_TEST_EXECUTOR",
+      "authority": "EXPLICIT_OSi_LOCAL_T01_READONLY",
+      "product": "ENGURU_SUZGEC_V23",
+      "mutationScope": "NONE",
+      "remotePush": false,
+      "humanThreshold": "HUMAN_ONLY",
       "failClosed": true
     }
   }

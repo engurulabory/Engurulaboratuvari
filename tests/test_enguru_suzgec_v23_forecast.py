@@ -25,6 +25,19 @@ def example():
         "steps":steps,
         "simulations":[{"scenario":x,"expectedState":"PENDING" if x=="HUMAN_DECISION_PENDING" else "HOLD"} for x in MANDATORY_SCENARIOS],
         "predictionVsObservation":"REQUIRED_POST_EXECUTION"}
+    # v2.3 goal-outcome measurement boundary is now mandatory.
+    from tools.enguru_suzgec_v23_goal_acceptance import SCHEMA as ACC_SCHEMA, CRITERIA
+    criteria=[]
+    for key in CRITERIA:
+        criteria.append({"id":key,"required":True,"description":"Measured proof for "+key,
+                         "measurement":{"type":"BOOLEAN","target":True},
+                         "environment":"OSi_LOCAL_REAL", "evidenceSource":"SOURCE_BOUND_PRODUCER",
+                         "holdReason":"HOLD_"+key})
+    contract["acceptanceCriteria"]=criteria
+    contract["goalOutcomeAcceptance"]={"schema":ACC_SCHEMA,"project":state["project"],
+            "goal":contract["goal"],"sourcePins":contract["sourcePins"],
+            "humanScopeAuthority":"HUMAN_ONLY","verifiedFinishAuthority":"HUMAN_ONLY",
+            "decision":"SCOPE_REVIEW_PENDING", "criteria":criteria}
     contract["finishPathForecast"]=f
     abilities={"authorizedExecutor":True,"realCallerBound":True,"testEnvironmentReady":True,
         "donecheckAvailable":True,"scopeAuthorized":True,"sourcePinsMatch":True,

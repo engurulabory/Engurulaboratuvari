@@ -1,0 +1,27 @@
+{
+  "schema": "enguru.suzgec.v23.github-osi-parity/v1",
+  "methodVersion": "2.3",
+  "sourceAuthority": "OSi_CANONICAL",
+  "githubBranch": "feat/suzgec-v23-foresight-20261015",
+  "githubPR": 185,
+  "sourceHeadObservedBeforeInstall": "269854b8a42a27e9419eae65a3c9e349bdcc7300",
+  "acceptance": "PENDING_OSi_INSTALL_AND_FIELD_SHA_MATCH",
+  "sourceSha256": {
+    "governance/mac-engineer/OPERATOR_ACTION_REGISTRY_V1.json": "8ace6b42893e7929dd984f8be189d918cd04f9133a2d859361c92ca482d495ea",
+    "governance/work-protocol/ENGURU_SUZGEC_V23_GOAL_OUTCOME_POLICY_V1.json": "e0396663b41cc5d87f87014d35ae1bf6018113ff31c2e8ac6e63fe0e3c6c5d8a",
+    "governance/work-protocol/ENGURU_SUZGEC_V23_UPFRONT_FINISH_VISIBILITY_CONTRACT_V1.json": "1a6efd52ad42baecd20d8030672e0267eb2348888dce5b5ad2ca77e426ea879e",
+    "tests/test_enguru_language_pre_send_linter.py": "763ecf6ab6283efa0c003dfe651138bcec3d1af0eaa19f3319710e754f8295db",
+    "tests/test_enguru_pre_execution_simulation.py": "3ade3fa5c86ca6074c3a3445069e640b26ece5bee5d5a078d4b79d3447668489",
+    "tests/test_enguru_suzgec_v23_forecast.py": "1ea406a15395b2c21e744095de46bda171f7f5a3d3aa862f0b471628ea66db8c",
+    "tests/test_enguru_suzgec_v23_goal_acceptance.py": "93b5fdd2a1da59d62544450dfb1e738d2af76e4026e5f8dd6b7e10f976c3524c",
+    "tests/test_enguru_suzgec_v23_t01_binding.py": "d66a55328cfb27c4d0193568987dffe1ea3f5adffa4459c5820955fd12bc5e26",
+    "tools/enguru_package_execution_guard.py": "3f2c87bc521f0d577487dbca5620151575df4b3454a8fe5fc31668750096f319",
+    "tools/enguru_suzgec_v23_execution.py": "871d94f28add0441e00edef9f3ae6e24435d7177ff089bce2af4780c7a2a021a",
+    "tools/enguru_suzgec_v23_field_dispatch.py": "5236dd39aeb09a638a40550d083ec6e6ddf245276af9a5fb3b9baac709e6214e",
+    "tools/enguru_suzgec_v23_forecast.py": "5a0cd85cd71aff19f7e2c3f2de45f16c281d4a246cfdd927e80ef6421b1e4c77",
+    "tools/enguru_suzgec_v23_goal_acceptance.py": "0bddf80ded98478b0b49e46805c99c6ae739366392620d3d71e5f76e023afa84",
+    "tools/mac_engineer_operator.py": "0ce4956641ba105ee47914de187704c07f18ed4f0ed957f0cbf0c2bc5d768741"
+  },
+  "verifiedFinish": "HOLD",
+  "p01": "SUSPENDED"
+}
