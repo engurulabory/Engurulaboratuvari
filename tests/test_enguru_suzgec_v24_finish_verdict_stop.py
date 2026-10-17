@@ -72,5 +72,61 @@ class FinishVerdictStopContractTests(unittest.TestCase):
         self.assertIn("EXISTING_PRE_SEND_POSTCHECK_DONECHECK_AND_PROGRESS",self.rule["enforcement"])
         self.assertIn("FIELD_BINDING_PENDING",self.rule["enforcement"])
 
+
+class WorkProgressClosureTests(unittest.TestCase):
+    """Static acceptance clauses only; field issuer/grant/runtime still HOLD."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.document = json.loads(PATH.read_text(encoding="utf-8"))
+        cls.c = cls.document["workProgressClosure"]
+
+    def test_unchanged_eight_stages_and_finish_gates(self):
+        self.assertEqual(self.document["eightStages"], STAGES)
+        self.assertEqual(self.document["existingFinishGates"], ["T01", "T02", "T03", "T04"])
+        self.assertTrue(all(self.c[k] for k in ("noNewCore", "noNinthStage", "noNewFinishGate")))
+
+    def test_existing_stages_and_execution_reused(self):
+        self.assertEqual(set(self.c["boundToExistingStages"]), {"03", "04", "05", "06", "07", "08"})
+        self.assertEqual(self.c["reuseExistingAuthorities"]["execution"], "ENGURU_WORK_PROTOCOL_EXISTING")
+        self.assertEqual(self.c["reuseExistingAuthorities"]["counter"], "ENGURU_PROGRESS_CORE_EXISTING_ONLY")
+        self.assertEqual(self.c["reuseExistingAuthorities"]["projection"], "ENGURU_PLIVE_EXISTING_ONLY")
+
+    def test_universal_scope_with_p02_first_real_field(self):
+        self.assertEqual(self.c["scope"], "ALL_VALID_REGISTERED_OSi_WORK_CONTRACTS")
+        self.assertEqual(self.c["firstField"], "plive-p02-user-screen")
+        self.assertIn("TWO_DISTINCT_REAL_PROJECTS", self.c["requirementForUniversalFieldPass"])
+
+    def test_evidence_scoped_grant_and_donecheck_required(self):
+        conditions = set(self.c["acceptancePreconditions"])
+        self.assertIn("authenticated_project_item_head_action_scoped_grant_verified", conditions)
+        self.assertIn("existing_verifier_and_contract_required_DoneCheck_PASS", conditions)
+        self.assertIn("actual_field_evidence_verified_for_exact_item_and_action", conditions)
+
+    def test_atomic_writing_and_replay_prevention(self):
+        self.assertIn("ATOMIC", self.c["canonicalCommitRule"])
+        self.assertIn("IDEMPOTENT", self.c["canonicalCommitRule"])
+        self.assertEqual(self.c["onDuplicateEvent"], "IDEMPOTENT_NO_DOUBLE_CREDIT")
+        self.assertIn("ZERO_UNAUTHORIZED", self.c["onConflictingReplayOrDrift"])
+
+    def test_only_native_verified_counted_pass_drives_live_ui(self):
+        self.assertIn("EXISTING_WORK_CONTRACT", self.c["progressRule"])
+        self.assertIn("EXISTING_NATIVE_PROGRESS_CORE_VERIFIED", self.c["screenRule"])
+        self.assertIn("AFTER_RESTART", self.c["continuityRule"])
+
+    def test_blocker_owner_and_pending_acceptance_separated(self):
+        self.assertIn("BLOCKER_AND_OWNER", self.c["onBlocked"])
+        self.assertIn("PENDING", self.c["onAuthorizedVerifiedChange"])
+
+    def test_no_simulated_promotion_or_p06_bypass(self):
+        self.assertTrue(self.c["noSyntheticPromotion"])
+        self.assertIn("P06_SEPARATE_AUTHORITY", self.c["reuseExistingAuthorities"]["security"])
+        self.assertEqual(self.c["officialAuthority"], "HOLD_UNTIL_REAL_ISSUER_GRANT_VERIFIER_WRITER_AND_FIELD_PROOF")
+
+    def test_method_contract_is_candidate_not_runtime_pass(self):
+        self.assertEqual(self.document["canonicalInstalledVersion"], "2.3")
+        self.assertEqual(self.c["verifiedFinish"], "HOLD")
+        self.assertIn("RUNTIME_BINDING_AND_FIELD_ACCEPTANCE_HOLD", self.c["state"])
+
 if __name__ == "__main__":
     unittest.main()
