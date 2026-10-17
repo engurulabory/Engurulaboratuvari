@@ -29,6 +29,67 @@
     "T03",
     "T04"
   ],
+  "finishVerdictStop": {
+    "schema": "enguru.suzgec.v24.finish-verdict-stop/v1",
+    "state": "HUMAN_RULE_APPROVED__OSi_FIELD_AND_CANONICAL_BINDING_PENDING",
+    "name": "ENGURU_FINIS_HUKMU_VE_DUR_SINIRI",
+    "appliedWithinExistingStages": {
+      "03": "Hedef, kapsam, sabit kabul kriterleri, kanit gereksinimleri ve DUR siniri onceden tanimlanir",
+      "04": "Mevcut Pre-Send / Pre-Execution icinde bagimliliklar ve karsi ornekler simule edilir",
+      "06": "Gercek saha kaniti, kaynak SHA, mevcut DoneCheck ve Progress Core yeniden dogrulanir",
+      "07": "Yeni ihtiyaclar mevcut isten ayrilip sonraki is ya da surume baglanir",
+      "08": "Kanita ve yetkili kabul sonucuna gore BITTI_DUR veya HOLD_GUVENLI_DUR hukmu verilir"
+    },
+    "requiredBeforeExecution": [
+      "fixed_goal_and_scope_id",
+      "work_items_and_gate_ids",
+      "final_acceptance_thresholds",
+      "source_head_sha256",
+      "authorized_producer_and_scope",
+      "dependency_and_recovery_plan",
+      "negative_simulation",
+      "evidence_provenance_and_donecheck",
+      "native_progress_binding",
+      "human_threshold_and_stop_boundary"
+    ],
+    "allRequiredForBittiDur": [
+      "all_preapproved_items_counted_pass_by_native_progress",
+      "all_existing_package_donechecks_pass",
+      "all_required_security_and_field_gates_pass",
+      "zero_unverified_pass_and_unauthorized_mutation",
+      "exact_source_and_runtime_provenance_verified",
+      "authenticated_human_threshold_accepted",
+      "native_progress_verified_finish"
+    ],
+    "outcomes": {
+      "allRealEvidenceAndAuthorityVerified": "BITTI_DUR__LOCK_EVIDENCE_AND_SCOPE",
+      "missingEvidenceOrAuthority": "HOLD_GUVENLI_DUR__RECORD_BLOCKER_AND_OWNER",
+      "newNeedOutsideScope": "SONRAKI_IS_VEYA_SURUM__PRESERVE_FINISH_BOUNDARY"
+    },
+    "scopeChange": "ONLY_EXPLICIT_HUMAN_APPROVED_VERSIONED_CHANGE",
+    "reportRequired": [
+      "goal_scope_version",
+      "accepted_item_and_gate_counts",
+      "blocking_evidence_and_owner",
+      "source_sha256",
+      "donecheck_receipt",
+      "native_progress_receipt",
+      "human_threshold_receipt",
+      "terminal_verdict"
+    ],
+    "enforcement": "EXISTING_PRE_SEND_POSTCHECK_DONECHECK_AND_PROGRESS__FIELD_BINDING_PENDING",
+    "noNinthStage": true,
+    "noNewCore": true,
+    "noNewFinishGate": true,
+    "preserveExistingAuthorities": [
+      "P01_SUSPENDED",
+      "P06_SEPARATE_SECURITY_AUTHORITY",
+      "HUMAN_THRESHOLD_HUMAN_ONLY"
+    ],
+    "simulatedTestsNotOfficialPass": true,
+    "documentsNotIssuerGrant": true,
+    "verifiedFinish": "HOLD"
+  },
   "goalOutcomeAcceptance": [
     "K01_GOAL_ACHIEVED",
     "K02_SCOPE_COMPLETED",
