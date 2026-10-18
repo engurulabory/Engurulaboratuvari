@@ -1,0 +1,87 @@
+{
+  "schema": "enguru.plive.progress-and-finish-contract/v1",
+  "project": "ENGURU_PLIVE",
+  "state": "HUMAN_METHOD_ACCEPTED__OSi_NATIVE_BINDING_AND_FULL_FIELD_ACCEPTANCE_HOLD",
+  "governingMethod": "ENGURU_SUZGEC_V24_EXISTING_EIGHT_STAGES",
+  "authority": "EXISTING_OSi_CANONICAL_WORK_CONTRACTS_AND_PROGRESS_CORE",
+  "humanFinalAuthority": "ONE_HUMAN_OWNER_HUMAN_THRESHOLD",
+  "coverage": "ALL_PLIVE_LINKED_CURRENT_AND_FUTURE_WORK_CONTRACTS",
+  "register": {
+    "trigger": [
+      "CREATE",
+      "MODIFY",
+      "RENAME",
+      "DELETE"
+    ],
+    "scope": "ALL_WORK_CONTRACTS_AND_RELATED_STATE_WORKLIST_REGISTRY_SCHEMA_OR_PROGRESS_BINDING",
+    "before": "SNAPSHOT_NATIVE_VERIFIED_PROGRESS_FOR_AFFECTED_PROJECTS",
+    "validate": [
+      "COUNTER_POLICY_AUTO_FROM_WORK_CONTRACT",
+      "VALID_REGISTERED_BINDING",
+      "CANONICAL_WORKLIST_AND_STATE_AGREEMENT",
+      "NO_PROJECT_NAME_COLLISION",
+      "PRESERVE_SOURCE_HEAD_AND_EVIDENCE_PROVENANCE"
+    ],
+    "after": "NATIVE_VERIFY_AND_PLIVE_READBACK",
+    "failure": "HOLD_CONTRACT_ACCEPTANCE__PRESERVE_LAST_VERIFIED_PERCENT_AND_SOURCE"
+  },
+  "visibility": {
+    "required": [
+      "REGISTERED_TOTAL",
+      "DECLARED_PASS",
+      "EVIDENCED_PASS",
+      "COUNTED_PASS",
+      "UNVERIFIED_PASS",
+      "ITEMS_REMAINING",
+      "OFFICIAL_PERCENT",
+      "OFFICIAL_REMAINING_PERCENT",
+      "PACKAGE_DONECHECK_COUNT",
+      "ACCEPTANCE_GATES",
+      "BLOCKERS_AND_OWNER",
+      "NEXT_APPROVED_ITEM"
+    ],
+    "officialNumerator": "EXISTING_NATIVE_PROGRESS_CORE_COUNTED_PASS",
+    "officialDenominator": "CANONICAL_WORKLIST_TOTAL",
+    "engineeringEvidence": "SHOW_SEPARATELY_AS_WORK_DONE_OR_AWAITING_ACCEPTANCE__NEVER_AUTOMATIC_COUNTED_PASS",
+    "refresh": "ON_OPEN_ON_AUTHORIZED_ITEM_TRANSITION_AND_EVERY_RELATED_CONTRACT_CHANGE"
+  },
+  "finish": {
+    "onAcceptedItem": "ITEM_FINISHED_STOP__AUTHORIZED_PREAPPROVED_NEXT_ITEM_MAY_CONTINUE",
+    "onAcceptedPackage": "PACKAGE_FINISHED_STOP__AUTHORIZED_PREAPPROVED_NEXT_PACKAGE_MAY_CONTINUE",
+    "onMissingEvidenceOrAuthority": "HOLD_GUVENLI_DUR",
+    "onVerifiedProjectFinish": "BITTI_DUR__STOP_SCOPE_AND_LOCK_EVIDENCE",
+    "nextOutsideScope": "NEW_HUMAN_APPROVED_WORK_OR_VERSION",
+    "humanReapprovalWhen": [
+      "NEW_SCOPE_OR_VERSION",
+      "NEW_TRUST_OR_ISSUER_GRANT",
+      "UNAUTHORIZED_OR_IRREVERSIBLE_OPERATION",
+      "EXPIRED_OR_REVOKED_GRANT",
+      "FINAL_HUMAN_THRESHOLD"
+    ],
+    "noRepeatedApprovalWithinCurrentGrant": true
+  },
+  "firstField": {
+    "project": "plive-p02-user-screen",
+    "items": 12,
+    "packages": 4,
+    "gates": 7,
+    "derivedFinish": "VERIFIED_FINISH",
+    "lastNativeCountedPass": 0,
+    "lastNativePackageDonecheck": 0,
+    "lastObservedGatePass": 1,
+    "status": "HOLD_G3_REAL_ISSUER_GRANT_WRITER_AND_FIELD",
+    "source": "OSi 2026-10-18 native observation; snapshot only not live authority"
+  },
+  "limits": {
+    "noNewCore": true,
+    "noNewCounter": true,
+    "noNinthStage": true,
+    "noNewFinishGate": true,
+    "noAutoGrant": true,
+    "noUnverifiedPassPromotion": true,
+    "p01": "SUSPENDED_PRESERVED",
+    "p06": "SEPARATE_SECURITY_AUTHORITY",
+    "runtimeEnforcement": "HOLD_PENDING_OSi_FIELD_INSTALL_AND_VERIFIED_HOOK",
+    "verifiedFinish": "HOLD"
+  }
+}
