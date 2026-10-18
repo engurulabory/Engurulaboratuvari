@@ -128,5 +128,53 @@ class WorkProgressClosureTests(unittest.TestCase):
         self.assertEqual(self.c["verifiedFinish"], "HOLD")
         self.assertIn("RUNTIME_BINDING_AND_FIELD_ACCEPTANCE_HOLD", self.c["state"])
 
+
+class NestedStopBoundaryTests(unittest.TestCase):
+    """Contract-only tests; authentic producer and OSi runtime remain HOLD."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.c = json.loads(PATH.read_text(encoding="utf-8"))
+        cls.n = cls.c["finishVerdictStop"]["nestedAcceptanceStop"]
+
+    def test_inner_work_finishes_at_its_authorized_acceptance(self):
+        self.assertIn("ITEM_FINISHED_STOP_ONLY", self.n["itemRule"])
+        self.assertIn("PACKAGE_POLICY", self.n["itemRule"])
+
+    def test_package_finishes_at_existing_donecheck(self):
+        self.assertIn("ALL_REGISTERED_ITEMS_AUTHORIZED_ACCEPTED", self.n["packageRule"])
+        self.assertIn("PACKAGE_DONECHECK_PASS", self.n["packageRule"])
+
+    def test_project_finishes_only_after_all_original_requirements(self):
+        p = self.n["projectRule"]
+        for term in ("12_OF_12", "4_OF_4", "SEVEN_EXISTING_GATES", "HUMAN_THRESHOLD", "VERIFIED_FINISH"):
+            self.assertIn(term, p)
+
+    def test_derived_finish_does_not_add_a_gate(self):
+        self.assertEqual(self.c["existingFinishGates"], ["T01", "T02", "T03", "T04"])
+        self.assertTrue(self.c["finishVerdictStop"]["noNinthStage"])
+        self.assertIn("NO_NEW_GATE", self.n["finalGate"])
+
+    def test_stop_is_terminal_for_accepted_scope(self):
+        self.assertIn("STOP_AT_ACCEPTED_SCOPE", self.n["stopEnforcement"])
+        self.assertIn("NEW_HUMAN_APPROVED_WORK_OR_VERSION", self.n["stopEnforcement"])
+
+    def test_missing_evidence_keeps_hold_without_fake_percent(self):
+        self.assertIn("HOLD_GUVENLI_DUR", self.n["holdEnforcement"])
+        self.assertIn("KEEP_LAST_NATIVE_VERIFIED_PERCENT", self.n["holdEnforcement"])
+        self.assertIn("COUNTED_PASS", self.n["measureOfficial"])
+        self.assertIn("NOT_PROJECT_PERCENT", self.n["measureGateClosure"])
+
+    def test_self_approval_and_raw_pass_are_forbidden(self):
+        self.assertTrue(self.n["noSelfApproval"])
+        self.assertTrue(self.n["rawPassTextDoesNotGrantAuthority"])
+        self.assertTrue(self.n["preserveP01P06AndHumanThreshold"])
+
+    def test_candidate_does_not_claim_runtime_pass(self):
+        self.assertIn("OSi_RUNTIME_BINDING_HOLD", self.n["state"])
+        self.assertIn("HOLD_UNTIL_NATIVE_VERIFIED_BINDING", self.n["officialRuntimeEnforcement"])
+        self.assertEqual(self.c["canonicalInstalledVersion"], "2.3")
+        self.assertEqual(self.c["verifiedFinish"], "HOLD")
+
 if __name__ == "__main__":
     unittest.main()
