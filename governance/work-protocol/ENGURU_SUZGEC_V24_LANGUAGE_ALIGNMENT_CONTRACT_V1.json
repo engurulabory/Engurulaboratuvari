@@ -105,6 +105,27 @@
       "rawPassTextDoesNotGrantAuthority": true,
       "preserveP01P06AndHumanThreshold": true,
       "officialRuntimeEnforcement": "HOLD_UNTIL_NATIVE_VERIFIED_BINDING_AND_SECURITY_ACCEPTANCE"
+    },
+    "passNextFlow": {
+      "schema": "enguru.suzgec.v24.authorized-pass-next/v1",
+      "principle": "DUR_BITEN_KAPSAMI_KAPATIR_ONCEDEN_ONAYLANMIS_SIRADAKI_ISIN_RAHAT_AKISINI_SAGLAR",
+      "onItemPass": "ITEM_SCOPE_STOP_AND_EVIDENCE_LOCK__AUTHORIZED_PREAPPROVED_NEXT_ITEM_AUTO_CONTINUE_IF_GRANT_COVERS_IT",
+      "onPackageDonecheckPass": "PACKAGE_SCOPE_STOP__AUTHORIZED_PREAPPROVED_NEXT_PACKAGE_AUTO_CONTINUE_IF_GRANT_COVERS_IT",
+      "onBlocked": "HOLD_GUVENLI_DUR__BLOCKER_AND_OWNER__NO_UNAUTHORIZED_AUTO_CONTINUE",
+      "onProjectVerifiedFinish": "BITTI_DUR__LOCK_SCOPE_AND_RECEIPTS__NO_NEXT_PROJECT_WITHOUT_NEW_HUMAN_COMMAND",
+      "humanCommandOnlyWhen": [
+        "NEW_SCOPE_OR_VERSION",
+        "SECURITY_TRUST_OR_PERMISSION_CHANGE",
+        "IRREVERSIBLE_ACTION_NOT_PREAUTHORIZED",
+        "FINAL_HUMAN_THRESHOLD",
+        "REAUTHORIZATION_AFTER_EXPIRED_OR_REVOKED_GRANT"
+      ],
+      "noRepeatedHumanCommandWithinValidApprovedScope": true,
+      "noAutomaticGrantOrSelfApproval": true,
+      "noRuntimeClaim": "OSi_EXECUTION_BINDING_AND_G3_FIELD_ACCEPTANCE_HOLD",
+      "noNewCore": true,
+      "noNinthStage": true,
+      "noNewFinishGate": true
     }
   },
   "workProgressClosure": {
@@ -168,7 +189,33 @@
     "noNewFinishGate": true,
     "humanThreshold": "EXISTING_PROJECT_SCOPE_ONLY_WHEN_REQUIRED__VERIFIED_FINISH_HUMAN_ONLY",
     "officialAuthority": "HOLD_UNTIL_REAL_ISSUER_GRANT_VERIFIER_WRITER_AND_FIELD_PROOF",
-    "verifiedFinish": "HOLD"
+    "verifiedFinish": "HOLD",
+    "pliveCounterActivationRule": {
+      "schema": "enguru.plive.contract-change-progress/v1",
+      "trigger": "EVERY_NEW_CHANGED_RENAMED_OR_REMOVED_PLIVE_LINKED_CONTRACT_OR_PROGRESS_BINDING",
+      "before": "EXISTING_NATIVE_PROGRESS_CORE_SNAPSHOT_FOR_ALL_AFFECTED_PROJECTS",
+      "validate": "WORK_CONTRACT_AUTO_FROM_WORK_CONTRACT_AND_VALID_PROGRESS_BINDING_AND_SCHEMA_AND_NO_COLLISION",
+      "after": "EXISTING_NATIVE_PROGRESS_CORE_VERIFY_AND_PROJECTION_READBACK_FOR_ALL_AFFECTED_PROJECTS",
+      "surfaces": [
+        "OSi",
+        "PLive"
+      ],
+      "displaySeparate": [
+        "DECLARED_PASS",
+        "EVIDENCED_PASS",
+        "COUNTED_PASS",
+        "UNVERIFIED_PASS",
+        "REMAINING_COUNT_AND_PERCENT",
+        "PACKAGE_DONECHECK",
+        "SEVEN_GATES_WHEN_APPLICABLE",
+        "BLOCKER_AND_OWNER"
+      ],
+      "progressAuthority": "ONLY_NATIVE_COUNTED_PASS_DIVIDED_BY_WORKLIST_TOTAL",
+      "missingBindingOrFailedVerify": "HOLD_GUVENLI_DUR__BLOCK_CHANGE_ACCEPTANCE_AND_KEEP_LAST_VERIFIED_PROJECTION",
+      "requireAutomaticEnforcement": "LOCAL_PRE_SEND_OR_ACCEPTED_REPOSITORY_HOOK_AND_GITHUB_CI__FIELD_BINDING_PENDING",
+      "noSyntheticPromotion": true,
+      "noParallelCounter": true
+    }
   },
   "goalOutcomeAcceptance": [
     "K01_GOAL_ACHIEVED",
