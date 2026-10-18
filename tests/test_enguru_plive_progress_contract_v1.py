@@ -86,6 +86,19 @@ class PLiveProgressFinishContractTests(unittest.TestCase):
                     self.assertFalse(rel.is_absolute() or ".." in rel.parts)
                     self.assertTrue((ROOT / rel).is_file(), f"Missing {k}: {rel}")
 
+    def test_100_point_target_is_fully_evidence_specified(self):
+        spec = ROOT / "governance/plive/ENGURU_PLIVE_100_TARGET_ACCEPTANCE_V1.json"
+        d = json.loads(spec.read_text(encoding="utf-8"))
+        checks = d["checks"]
+        self.assertEqual(len(checks), 25)
+        self.assertEqual(sum(x["points"] for x in checks), 100)
+        self.assertEqual(len({x["id"] for x in checks}), 25)
+        for x in checks:
+            self.assertTrue(x["criterion"] and x["evidence"])
+            self.assertEqual(x["status"], "FIELD_HOLD")
+        self.assertTrue(d["notAClaimOfFieldPASS"])
+        self.assertEqual(d["verifiedFinish"], "HOLD")
+
     def test_static_contract_never_claims_field_acceptance(self):
         self.assertIn("HOLD", self.p["state"])
         self.assertIn("PENDING_OSi_FIELD", self.p["limits"]["runtimeEnforcement"])
