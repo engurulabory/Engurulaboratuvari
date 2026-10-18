@@ -193,9 +193,9 @@ class NextExecutablePackageRuleTests(unittest.TestCase):
         self.assertIn("NATIVE_EVIDENCE_AND_PROGRESS", self.r["planningRule"])
         self.assertIn("CONCRETE_EXECUTABLE_NEXT_ACTIONS_IN_DEPENDENCY_ORDER", self.r["acceptancePerPackage"])
 
-    def test_positive_language_avoids_retired_phrase(self):
+    def test_positive_preservation_and_action_language(self):
         self.assertIn("POSITIVE_PRESERVATION_AND_ACTION_LANGUAGE", self.r["wordingRule"])
-        self.assertIn("AVOID_LEGACY_AZ_PAKET_SLOGAN", self.r["wordingRule"])
+        self.assertIn("NEXT_EXECUTABLE_INTEGRATED_PACKAGE", self.r["wordingRule"])
 
     def test_preapproved_next_flows_but_project_stops(self):
         self.assertIn("PREAPPROVED_NEXT_ITEM_FLOWS", self.r["transitionRule"])
