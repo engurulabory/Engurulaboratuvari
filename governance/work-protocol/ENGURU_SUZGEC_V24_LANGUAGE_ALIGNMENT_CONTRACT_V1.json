@@ -126,6 +126,26 @@
       "noNewCore": true,
       "noNinthStage": true,
       "noNewFinishGate": true
+    },
+    "nextExecutableUnifiedPackage": {
+      "schema": "enguru.suzgec.v24.next-executable-integrated-package/v1",
+      "state": "HUMAN_METHOD_RULE_ACCEPTED__OSi_FIELD_BINDING_HOLD",
+      "preferredExpression": "Bir sonraki yapılabilir adımları içeren birleşik ve bütünleşik paket.",
+      "planningRule": "CURRENT_TRUTH__PRESERVE_VALUE__IDENTIFY_EXACT_GAPS__ONE_BOUND_ACTION_PLAN__PRE_EXECUTE_NEGATIVE_SIMULATION__EXECUTE_WITH_CURRENT_GRANT__NATIVE_EVIDENCE_AND_PROGRESS__NEXT_AUTHORIZED_ACTION_OR_SCOPED_STOP",
+      "acceptancePerPackage": [
+        "IDENTIFIED_EXACT_CURRENT_SOURCE_AND_PROVENANCE",
+        "DEFINED_FINISH_AND_STOP_BOUNDARY",
+        "CONCRETE_EXECUTABLE_NEXT_ACTIONS_IN_DEPENDENCY_ORDER",
+        "PRESERVE_CANONICAL_STATE_AND_SECURITY_AUTHORITIES",
+        "EVIDENCE_FOR_EACH_STEP_AND_RECALCULATED_NATIVE_PROGRESS",
+        "HOLD_ON_MISSING_AUTHORITY_AND_NEVER_PROMOTE_SYNTHETIC_PASS"
+      ],
+      "wordingRule": "USE_POSITIVE_PRESERVATION_AND_ACTION_LANGUAGE__AVOID_LEGACY_AZ_PAKET_SLOGAN",
+      "transitionRule": "FINISHED_ITEM_SCOPE_STOP__PREAPPROVED_NEXT_ITEM_FLOWS_WITH_VALID_GRANT__FINISHED_PROJECT_BITTI_DUR",
+      "noNewCore": true,
+      "noNinthStage": true,
+      "noNewGate": true,
+      "canonicalBinding": "PENDING_OSi_NATIVE_VERIFIED_ACCEPTANCE"
     }
   },
   "workProgressClosure": {
