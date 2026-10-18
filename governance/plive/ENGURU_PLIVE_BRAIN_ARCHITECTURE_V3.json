@@ -1,0 +1,332 @@
+{
+  "schema": "enguru.plive.brain-architecture/v3",
+  "title": "ENGURU PLive — Beyin Mimarisi V3, 5 üretim alanı",
+  "kind": "GITHUB_ENGINEERING_DESIGN_AND_SIMULATION_CANDIDATE",
+  "method": {
+    "name": "ENGURU_SUZGEC_V24",
+    "stages": [
+      "Hakikati gör",
+      "Değeri koru",
+      "Eksikleri ve ihtiyaçları tespit et",
+      "Gerekli farkı üret",
+      "Eksikleri tamamla, ihtiyaçları karşıla",
+      "Kanıtla",
+      "Bir sonraki ihtiyaçları belirle",
+      "İlerlet"
+    ],
+    "methodCanonicalInstallation": "2.3__V2.4_DRAFT_UNMERGED",
+    "noNewCore": true,
+    "noNinthStage": true,
+    "noParallelProgress": true
+  },
+  "goal": "İnsan hedefinden doğrulanmış ürüne; beş üretim alanında tek kaynaklı, yalın, deterministik PLive deneyimi.",
+  "userAuthority": {
+    "humanDecisionOwner": "ONE_OWNER",
+    "localApproval": "OWNER_EXPLICIT_SCOPE",
+    "noSelfGrant": true,
+    "noImplicitReuseBetweenProjects": true,
+    "ownerPassword": "MAC_NATIVE_DIALOG_ONLY",
+    "p01": "PRESERVE_CURRENT_VERIFIED_BINDING_IF_RECONFIRMED",
+    "p02": "OFFICIAL_0_OF_12_HOLD",
+    "p06": "SEPARATE_AUTHORITY",
+    "canonicalWrites": "NONE_IN_THIS_GITHUB_CANDIDATE"
+  },
+  "screen": {
+    "regions": [
+      "Genel Durum",
+      "Şimdi",
+      "Üretim Alanları"
+    ],
+    "categories": [
+      {
+        "id": "motor",
+        "label": "Motor"
+      },
+      {
+        "id": "core",
+        "label": "Çekirdek"
+      },
+      {
+        "id": "web",
+        "label": "Web Yapımı"
+      },
+      {
+        "id": "app",
+        "label": "Uygulama / App Yapımı"
+      },
+      {
+        "id": "agent",
+        "label": "Agent"
+      }
+    ],
+    "alwaysShowFive": true,
+    "unknown": "Sınıflandırma bekliyor",
+    "emptyLabel": "Kayıtlı iş yok",
+    "noSixthCategory": true,
+    "singlePrimaryOwner": true,
+    "crossTagsDoNotCount": true,
+    "noSecondCockpit": true,
+    "contextual": [
+      "Proje detayı",
+      "Kanıt çekmecesi"
+    ],
+    "accessibility": [
+      "VoiceOver",
+      "Keyboard",
+      "NarrowWindow",
+      "ReduceMotion"
+    ],
+    "readOnlyWithoutGrant": true
+  },
+  "production": {
+    "facet": [
+      "LABORATUVAR",
+      "ANA_FABRIKA"
+    ],
+    "categoryOrthogonalToFacet": true,
+    "unknownFacet": "KAYNAK_BEKLIYOR",
+    "handoff": {
+      "requires": [
+        "source_project_id",
+        "source_head",
+        "evidence_sha256",
+        "scope",
+        "explicit_owner_decision",
+        "qualification_receipt"
+      ],
+      "state": "QUALIFIED_HANDOFF_ONLY",
+      "noAutoPromotion": true,
+      "noWorkIdDuplication": true
+    },
+    "ownership": "One canonical owning area per workId, optional non-counting cross-tags"
+  },
+  "lifeCycle": {
+    "nodes": [
+      "İnsan hedefi",
+      "Canonical iş sözleşmesi",
+      "İş paketi ve bağımlılıklar",
+      "Yetkili yürütme",
+      "Karşıt simülasyon ve gerçek test",
+      "Kaynaklı kanıt ve makbuz",
+      "Yetkili iş/paket kabulü",
+      "Native Progress Core yeniden okuma",
+      "Proje Verified Finish / BİTTİ → DUR"
+    ],
+    "notNewCanonicalStateMachine": true,
+    "readyRule": "ALL_DEPENDENCIES_ACCEPTED_AND_SOURCE_VALID",
+    "selection": "priority_integer_ascending_then_workId_unicode_ascending",
+    "unknownDependency": "HOLD",
+    "cycle": "HOLD",
+    "independentReadOnlyAllowed": true,
+    "returnToOwnerOnScopeExpansion": true
+  },
+  "sources": {
+    "authorityOrder": [
+      "Canonical Work Contract",
+      "Canonical state/worklist",
+      "Native Progress Core verify",
+      "P01 final binding if applicable",
+      "Evidence provenance and receipt",
+      "PLive adapter projection"
+    ],
+    "atomicSnapshot": "SINGLE_SOURCE_REVISION_WITH_HEAD_AND_SHA",
+    "staleness": "LAST_VERIFIED_READ_TIME_VISIBLE",
+    "sameInputSameOutput": true,
+    "missingOrConflicting": "HOLD_DURUM_DOGRULANIYOR",
+    "neverPromoteTechnicalPass": true,
+    "neverBorrowParentOrSiblingFinish": true,
+    "registry": "EXISTING_AUTO_FROM_WORK_CONTRACT"
+  },
+  "execution": {
+    "readOnlyPath": [
+      "VERIFY_SOURCE_BINDING",
+      "READ_NATIVE_PROGRESS",
+      "PROJECT_5_CATEGORIES",
+      "DISPLAY_WITH_FRESHNESS"
+    ],
+    "privilegedPath": [
+      "EXPLICIT_OWNER_APPROVAL",
+      "EXACT_PROJECT_ITEM_ACTION_AND_SOURCE_HEAD",
+      "VALID_GRANT_ISSUER_AND_NONCE",
+      "AUTHORIZED_BOUNDED_WRITER",
+      "INDEPENDENT_DONECHECK",
+      "NATIVE_PROGRESS_VERIFY",
+      "HUMAN_THRESHOLD_WHEN_REQUIRED",
+      "FINISH_ONLY_ON_ALL_GATES"
+    ],
+    "onMissingAuthority": "HOLD_WITH_BLOCKER_OWNER_AND_NEXT_ACTION",
+    "onRetry": "SAME_NONCE_NO_SECOND_WRITE",
+    "onCrash": "NO_PARTIAL_OFFICIAL_PASS",
+    "onNewScope": "NEW_EXPLICIT_HUMAN_APPROVAL",
+    "onWrite": "CANONICAL_ONLY_WITH_ACCEPTED_EXISTING_WRITER",
+    "onFinish": "PROJECT_FINISH_BITTI_DUR",
+    "engineeringMayNotIssueGrants": true
+  },
+  "recovery": {
+    "cases": [
+      "SOURCE_MISSING",
+      "SOURCE_HASH_MISMATCH",
+      "STALE_SNAPSHOT",
+      "SNAPSHOT_TORN",
+      "UNREGISTERED_WORK_ITEM",
+      "DEPENDENCY_CYCLE",
+      "DUPLICATE_OWNER",
+      "WRONG_PROJECT_GRANT",
+      "EXPIRED_GRANT",
+      "REPLAY_NONCE",
+      "WRITER_CRASH",
+      "DONECHECK_HOLD",
+      "RESTART_AND_REVALIDATE"
+    ],
+    "rule": "KEEP_LAST_VERIFIED_READOUT_WITH_ORIGINAL_TIMESTAMP__NEW_AUTHORITY_HOLD",
+    "rollback": "PROTECTED_ORIGINALS_AND_ATOMIC_RECEIPTS",
+    "onRecovery": "RELOAD_AND_REVERIFY_BEFORE_CURRENT_CLAIM"
+  },
+  "evidence": {
+    "technicalVsOfficialSeparate": true,
+    "sourceSha256Required": true,
+    "realReadbackRequiredForOfficial": true,
+    "doneCheckExisting": true,
+    "humanThresholdNotSimulated": true,
+    "nativeProgressOnly": true,
+    "immutableReceiptForHumanReview": true
+  },
+  "acceptance": {
+    "architectureScoreRule": "EACH_OF_10_COVERAGE_GATES_PASSES_STATIC_AND_NEGATIVE_TESTS__EQUAL_10_POINTS",
+    "architectureCandidatePoints": 100,
+    "fieldScore": "UNMEASURED__REQUIRES_OSI",
+    "formalStatus": "HOLD_UNTIL_OSI",
+    "p01Readback": "2_OF_2_LOCKED_VERIFIED_EXPECTED_SUBJECT_TO_CURRENT_MAC_REVERIFY",
+    "p02Counted": "0_OF_12_HOLD",
+    "p02FinishNeeds": [
+      "12/12_COUNTED_PASS",
+      "4/4_PACKAGE_DONECHECK",
+      "7/7_EXISTING_FIELD_PREREQUISITES",
+      "HUMAN_THRESHOLD_ACCEPTED",
+      "NATIVE_VERIFIED_FINISH"
+    ],
+    "visualNeeds": [
+      "FIVE_VISIBLE",
+      "LAB_FACTORY_FACET_IF_SOURCE_VERIFIED",
+      "NO_DOUBLE_COUNT",
+      "STALE_DISCLOSURE",
+      "KEYBOARD_VOICEOVER",
+      "READ_ONLY_AVAILABLE"
+    ],
+    "performanceCandidate": {
+      "projects": 100,
+      "launchP95Seconds": 3,
+      "refreshP95Seconds": 1,
+      "status": "TARGET_NOT_MEASURED"
+    },
+    "designGates": [
+      {
+        "id": "A01",
+        "name": "Hedef-Sonuç ve kapsam",
+        "points": 10,
+        "requires": [
+          "goal",
+          "lifeCycle",
+          "acceptance"
+        ]
+      },
+      {
+        "id": "A02",
+        "name": "Beş üretim alanı ve ekran",
+        "points": 10,
+        "requires": [
+          "screen.categories",
+          "screen.regions",
+          "screen.alwaysShowFive"
+        ]
+      },
+      {
+        "id": "A03",
+        "name": "Laboratuvar-Ana Fabrika devir",
+        "points": 10,
+        "requires": [
+          "production.facet",
+          "production.handoff",
+          "production.ownership"
+        ]
+      },
+      {
+        "id": "A04",
+        "name": "Uçtan uca iş yaşam döngüsü",
+        "points": 10,
+        "requires": [
+          "lifeCycle.nodes",
+          "lifeCycle.notNewCanonicalStateMachine"
+        ]
+      },
+      {
+        "id": "A05",
+        "name": "Deterministik bağımlılık ve sıralama",
+        "points": 10,
+        "requires": [
+          "lifeCycle.readyRule",
+          "lifeCycle.selection",
+          "lifeCycle.cycle"
+        ]
+      },
+      {
+        "id": "A06",
+        "name": "İnsan/yetki/writer/DoneCheck",
+        "points": 10,
+        "requires": [
+          "userAuthority",
+          "execution.privilegedPath",
+          "execution.onMissingAuthority"
+        ]
+      },
+      {
+        "id": "A07",
+        "name": "Tek hakikat ve tazelik",
+        "points": 10,
+        "requires": [
+          "sources",
+          "execution.readOnlyPath"
+        ]
+      },
+      {
+        "id": "A08",
+        "name": "Hata, tekrar ve toparlanma",
+        "points": 10,
+        "requires": [
+          "recovery",
+          "execution.onRetry",
+          "execution.onCrash"
+        ]
+      },
+      {
+        "id": "A09",
+        "name": "Mac-native ergonomi ve erişim",
+        "points": 10,
+        "requires": [
+          "screen.accessibility",
+          "screen.contextual",
+          "screen.readOnlyWithoutGrant"
+        ]
+      },
+      {
+        "id": "A10",
+        "name": "Kanıt, performans ve saha sınırı",
+        "points": 10,
+        "requires": [
+          "evidence",
+          "acceptance.p02FinishNeeds",
+          "acceptance.performanceCandidate"
+        ]
+      }
+    ],
+    "noAutomaticFieldPromotion": true
+  },
+  "readiness": {
+    "githubModelSimulationOnly": true,
+    "productionImplementation": "NOT_CLAIMED",
+    "currentField": "P01_RECHECK__P02_0_12_HOLD",
+    "mainProtected": true,
+    "repoProductSourceParity": "NOT_ASSUMED",
+    "nextAction": "OSi_READ_ONLY_SOURCE_AND_NATIVE_SNAPSHOT_CLASSIFICATION_BEFORE_ANY_INSTALL"
+  }
+}
