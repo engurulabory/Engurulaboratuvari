@@ -1,0 +1,21 @@
+name: PLive v2.4 Contract Acceptance (Source Candidate)
+on:
+  pull_request:
+  push:
+permissions:
+  contents: read
+jobs:
+  contract-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Süzgeç v2.4 finish & PLive progress contract
+        run: |
+          python -m unittest discover -s tests -p 'test_enguru_suzgec_v24_finish_verdict_stop.py' -v
+          python -m unittest discover -s tests -p 'test_enguru_plive_progress_contract_v1.py' -v
+      - name: Scope statement
+        run: |
+          echo 'Static contract acceptance only. OSi live native counter, issuer, writer, UI hook, and Human Threshold remain separate HOLD until verified.'
