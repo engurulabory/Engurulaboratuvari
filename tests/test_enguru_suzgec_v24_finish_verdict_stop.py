@@ -176,5 +176,36 @@ class NestedStopBoundaryTests(unittest.TestCase):
         self.assertEqual(self.c["canonicalInstalledVersion"], "2.3")
         self.assertEqual(self.c["verifiedFinish"], "HOLD")
 
+
+class NextExecutablePackageRuleTests(unittest.TestCase):
+    """Candidate-only v2.4 wording and bounded next-action contract."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.c = json.loads(PATH.read_text(encoding="utf-8"))
+        cls.r = cls.c["finishVerdictStop"]["nextExecutableUnifiedPackage"]
+
+    def test_preferred_integrated_next_package_phrase(self):
+        self.assertEqual(self.r["preferredExpression"], "Bir sonraki yapılabilir adımları içeren birleşik ve bütünleşik paket.")
+
+    def test_current_truth_and_evidence_are_required(self):
+        self.assertIn("CURRENT_TRUTH", self.r["planningRule"])
+        self.assertIn("NATIVE_EVIDENCE_AND_PROGRESS", self.r["planningRule"])
+        self.assertIn("CONCRETE_EXECUTABLE_NEXT_ACTIONS_IN_DEPENDENCY_ORDER", self.r["acceptancePerPackage"])
+
+    def test_positive_language_avoids_retired_phrase(self):
+        self.assertIn("POSITIVE_PRESERVATION_AND_ACTION_LANGUAGE", self.r["wordingRule"])
+        self.assertIn("AVOID_LEGACY_AZ_PAKET_SLOGAN", self.r["wordingRule"])
+
+    def test_preapproved_next_flows_but_project_stops(self):
+        self.assertIn("PREAPPROVED_NEXT_ITEM_FLOWS", self.r["transitionRule"])
+        self.assertIn("BITTI_DUR", self.r["transitionRule"])
+
+    def test_existing_eight_stage_and_no_new_gate(self):
+        self.assertEqual(len(self.c["eightStages"]), 8)
+        self.assertTrue(self.r["noNewCore"] and self.r["noNinthStage"] and self.r["noNewGate"])
+        self.assertIn("PENDING_OSi_NATIVE", self.r["canonicalBinding"])
+
+
 if __name__ == "__main__":
     unittest.main()
