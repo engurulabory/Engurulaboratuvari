@@ -50,6 +50,14 @@ def coverage(data):
         return 0
     if data.get("production", {}).get("facet") != list(FACETS):
         return 0
+    for obj, fields in (("screen", ("alwaysShowFive", "noSixthCategory", "singlePrimaryOwner", "readOnlyWithoutGrant")),
+                        ("production", ("categoryOrthogonalToFacet",)),
+                        ("userAuthority", ("noSelfGrant", "noImplicitReuseBetweenProjects")),
+                        ("sources", ("sameInputSameOutput", "neverPromoteTechnicalPass")),
+                        ("evidence", ("nativeProgressOnly", "technicalVsOfficialSeparate")),
+                        ("execution", ("engineeringMayNotIssueGrants",))):
+        if any(data.get(obj, {}).get(field) is not True for field in fields):
+            return 0
     if data.get("acceptance", {}).get("p02FinishNeeds") != list(REQUIRED_FINISH):
         return 0
     if data.get("acceptance", {}).get("noAutomaticFieldPromotion") is not True:
@@ -61,8 +69,8 @@ def coverage(data):
         required = gate.get("requires") or []
         if not required or not gate.get("name"):
             continue
-        if all(_at(data, p) is not None and _at(data, p) not in ("", [], {})
-               for p in required):
+        if all(_at(data, p) is not None and _at(data, p) is not False
+               and _at(data, p) not in ("", [], {}) for p in required):
             points += 10
     return points
 
