@@ -166,6 +166,27 @@
         "noNinthStage": true,
         "noNewGate": true,
         "reuseExistingProgressCoreOnly": true
+      },
+      "macOwnerPositiveOperation": {
+        "engineeringVerdict": "TEK_YETKILI_INSAN__YALIN_MAC_ONAYI__MEVCUT_G3_DOGRULAMASI__YETKILI_VE_AKICI_ISLEYIS__KANITLI_ILerLEME",
+        "preferredPositiveWording": "Yetkili ve akıcı işleyiş",
+        "ownerModel": "TEK_INSAN_KARAR_SAHIBI__BAGIMSIZ_TEKnik_DOGRULAMA_AYRI",
+        "authenticationMethod": "MAC_OS_NATIVE_LOCALAUTHENTICATION__TOUCH_ID_OR_DEVICE_PASSWORD_WHEN_AVAILABLE",
+        "localSigningPilot": "KEYCHAIN_USER_PRESENCE_ED25519_CHALLENGE__TECHNICAL_FIELD_CANDIDATE_ONLY",
+        "targetProject": "ENGURU_PLIVE_P02_USER_SCREEN",
+        "firstItem": "P02.S01.01",
+        "afterIdentityProof": "EXISTING_G3_TRUST_POLICY_SCOPE_GRANT_AND_WRITER_ACCEPTANCE",
+        "privilegedActionRule": "ONLY_EXACT_GRANT_AND_REAL_OSi_FIELD_PROOF_CAN_AUTHORIZE_CANONICAL_WRITE",
+        "ownerPasswordRule": "MAC_NATIVE_AUTH_DIALOG_ONLY__NOT_CHAT_NOT_SCRIPT_NOT_GITHUB",
+        "progressiveRule": "EXISTING_PROGRESS_CORE_START_CHANGE_END_VERIFY__ITEM_PACKAGE_PROJECT_SCOPE_STOP__PREAPPROVED_NEXT_ACTION",
+        "currentOfficialState": "P02_0_OF_12__G3_TRUST_GRANT_WRITER_HOLD",
+        "noAutomaticGrant": true,
+        "noSyntheticPass": true,
+        "preserveP01P06": true,
+        "noNewCore": true,
+        "noNinthStage": true,
+        "noNewGate": true,
+        "runtimeStatus": "OSi_MAC_LOCAL_AUTH_KEYCHAIN_INTEGRATION_FIELD_PENDING"
       }
     }
   },

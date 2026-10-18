@@ -248,5 +248,38 @@ class NextExecutablePackageRuleTests(unittest.TestCase):
         self.assertEqual(self.c["verifiedFinish"], "HOLD")
 
 
+    def test_mac_owner_positive_wording(self):
+        b = self.r["macOwnerPositiveOperation"]
+        self.assertEqual(b["preferredPositiveWording"], "Yetkili ve akıcı işleyiş")
+        self.assertIn("TEK_YETKILI_INSAN", b["engineeringVerdict"])
+
+    def test_mac_owner_native_auth_and_local_keychain_pilot(self):
+        b = self.r["macOwnerPositiveOperation"]
+        self.assertIn("MAC_OS_NATIVE_LOCALAUTHENTICATION", b["authenticationMethod"])
+        self.assertIn("KEYCHAIN_USER_PRESENCE_ED25519_CHALLENGE", b["localSigningPilot"])
+        self.assertIn("FIELD_CANDIDATE_ONLY", b["localSigningPilot"])
+
+    def test_mac_owner_first_item_only_and_existing_g3(self):
+        b = self.r["macOwnerPositiveOperation"]
+        self.assertEqual(b["firstItem"], "P02.S01.01")
+        self.assertEqual(b["targetProject"], "ENGURU_PLIVE_P02_USER_SCREEN")
+        self.assertIn("EXISTING_G3_TRUST_POLICY", b["afterIdentityProof"])
+        self.assertIn("ONLY_EXACT_GRANT", b["privilegedActionRule"])
+
+    def test_mac_owner_no_password_exposure_no_self_authorization(self):
+        b = self.r["macOwnerPositiveOperation"]
+        self.assertIn("NOT_CHAT_NOT_SCRIPT_NOT_GITHUB", b["ownerPasswordRule"])
+        self.assertTrue(b["noAutomaticGrant"] and b["noSyntheticPass"] and b["preserveP01P06"])
+        self.assertIn("G3_TRUST_GRANT_WRITER_HOLD", b["currentOfficialState"])
+
+    def test_mac_owner_keeps_eight_stages_and_native_finishes(self):
+        b = self.r["macOwnerPositiveOperation"]
+        self.assertTrue(b["noNewCore"] and b["noNinthStage"] and b["noNewGate"])
+        self.assertIn("EXISTING_PROGRESS_CORE", b["progressiveRule"])
+        self.assertIn("FIELD_PENDING", b["runtimeStatus"])
+        self.assertEqual(len(self.c["eightStages"]), 8)
+        self.assertEqual(self.c["verifiedFinish"], "HOLD")
+
+
 if __name__ == "__main__":
     unittest.main()
