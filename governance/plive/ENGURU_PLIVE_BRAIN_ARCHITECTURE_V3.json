@@ -319,7 +319,81 @@
         ]
       }
     ],
-    "noAutomaticFieldPromotion": true
+    "noAutomaticFieldPromotion": true,
+    "baseline78Crosswalk": [
+      {
+        "dimension": "Ana hedefin açıklığı",
+        "previousScore": 9,
+        "designEvidenceGate": "A01",
+        "designGoal": 10,
+        "postTestReview": "PENDING_GITHUB_CI_AND_HUMAN_REVIEW"
+      },
+      {
+        "dimension": "Beş üretim alanının görünürlüğü",
+        "previousScore": 10,
+        "designEvidenceGate": "A02",
+        "designGoal": 10,
+        "postTestReview": "PENDING_GITHUB_CI_AND_HUMAN_REVIEW"
+      },
+      {
+        "dimension": "Veri ve canonical hakikat ilişkisi",
+        "previousScore": 8,
+        "designEvidenceGate": "A07",
+        "designGoal": 10,
+        "postTestReview": "PENDING_GITHUB_CI_AND_HUMAN_REVIEW"
+      },
+      {
+        "dimension": "İnsan yetkisi ve güvenlik ayrımı",
+        "previousScore": 8,
+        "designEvidenceGate": "A06",
+        "designGoal": 10,
+        "postTestReview": "PENDING_GITHUB_CI_AND_HUMAN_REVIEW"
+      },
+      {
+        "dimension": "İşlerin yaşam döngüsü",
+        "previousScore": 6,
+        "designEvidenceGate": "A04",
+        "designGoal": 10,
+        "postTestReview": "PENDING_GITHUB_CI_AND_HUMAN_REVIEW"
+      },
+      {
+        "dimension": "İlerleme ve kabul sistemi",
+        "previousScore": 8,
+        "designEvidenceGate": "A10",
+        "designGoal": 10,
+        "postTestReview": "PENDING_GITHUB_CI_AND_HUMAN_REVIEW"
+      },
+      {
+        "dimension": "Hata yönetimi ve toparlanma",
+        "previousScore": 6,
+        "designEvidenceGate": "A08",
+        "designGoal": 10,
+        "postTestReview": "PENDING_GITHUB_CI_AND_HUMAN_REVIEW"
+      },
+      {
+        "dimension": "Kullanım kolaylığı",
+        "previousScore": 8,
+        "designEvidenceGate": "A09",
+        "designGoal": 10,
+        "postTestReview": "PENDING_GITHUB_CI_AND_HUMAN_REVIEW"
+      },
+      {
+        "dimension": "Hedefe ulaşma ve sonuç üretimi",
+        "previousScore": 7,
+        "designEvidenceGate": "A03",
+        "designGoal": 10,
+        "postTestReview": "PENDING_GITHUB_CI_AND_HUMAN_REVIEW"
+      },
+      {
+        "dimension": "Görsel okunabilirlik",
+        "previousScore": 8,
+        "designEvidenceGate": "A05",
+        "designGoal": 10,
+        "postTestReview": "PENDING_GITHUB_CI_AND_HUMAN_REVIEW"
+      }
+    ],
+    "baseline78Explicit": true,
+    "candidateResultMeaning": "10_OF_10_DESIGN_GATES_AND_NEGATIVE_TESTS__NOT_OSI_FIELD_100"
   },
   "readiness": {
     "githubModelSimulationOnly": true,
