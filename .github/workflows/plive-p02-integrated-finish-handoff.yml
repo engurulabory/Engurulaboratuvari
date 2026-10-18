@@ -1,0 +1,22 @@
+name: PLive P02 Integrated Finish Handoff (Static Candidate)
+on:
+  push:
+    branches:
+      - feat/plive-p02-single-finish-handoff-20261019
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  suzgec-model-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: P02 single package negative simulation
+        run: python -B tools/plive_p02_integrated_finish_handoff_v1.py --self-test
+      - name: Existing architecture v3 contract and adversarial test
+        run: python -B -m unittest discover -s tests -p 'test_plive_brain_architecture_v3.py' -v
+      - name: Declare strict field boundary
+        run: echo 'CI simulation is not official OSi issuer/grant/writer, DoneCheck, Human Threshold, or native Verified Finish.'
