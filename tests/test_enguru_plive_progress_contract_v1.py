@@ -65,6 +65,27 @@ class PLiveProgressFinishContractTests(unittest.TestCase):
         self.assertIn("EVERY_NEW_CHANGED", g["trigger"])
         self.assertEqual(g["progressAuthority"], "ONLY_NATIVE_COUNTED_PASS_DIVIDED_BY_WORKLIST_TOTAL")
 
+    def test_all_plive_contracts_auto_register_and_rebind(self):
+        # Executed by CI on any PR/push; checks each current/new PLive work contract.
+        for src in (ROOT / "governance").rglob("*_WORK_CONTRACT_V1.json"):
+            d = json.loads(src.read_text(encoding="utf-8"))
+            binding = d.get("progressBinding", {})
+            if not isinstance(binding, dict):
+                binding = {}
+            if not ("plive" in src.as_posix().lower()
+                    or "PLIVE" in str(d.get("workId", "")).upper()
+                    or "plive" in str(binding.get("name", "")).lower()):
+                continue
+            with self.subTest(path=str(src)):
+                self.assertEqual(d.get("counterPolicy"), "AUTO_FROM_WORK_CONTRACT")
+                self.assertEqual(d.get("schema"), "enguru.work-contract/v1")
+                self.assertTrue(binding.get("name") and binding.get("projectId"))
+                self.assertTrue(binding.get("evidencePolicy"))
+                for k in ("worklist", "state"):
+                    rel = Path(binding[k])
+                    self.assertFalse(rel.is_absolute() or ".." in rel.parts)
+                    self.assertTrue((ROOT / rel).is_file(), f"Missing {k}: {rel}")
+
     def test_static_contract_never_claims_field_acceptance(self):
         self.assertIn("HOLD", self.p["state"])
         self.assertIn("PENDING_OSi_FIELD", self.p["limits"]["runtimeEnforcement"])
