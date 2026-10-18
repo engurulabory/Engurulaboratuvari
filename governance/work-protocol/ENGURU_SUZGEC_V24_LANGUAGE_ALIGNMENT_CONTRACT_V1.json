@@ -88,7 +88,24 @@
     ],
     "simulatedTestsNotOfficialPass": true,
     "documentsNotIssuerGrant": true,
-    "verifiedFinish": "HOLD"
+    "verifiedFinish": "HOLD",
+    "nestedAcceptanceStop": {
+      "schema": "enguru.suzgec.v24.nested-acceptance-stop/v1",
+      "state": "HUMAN_METHOD_APPROVED__OSi_RUNTIME_BINDING_HOLD",
+      "itemRule": "ITEM_FINISHED_STOP_ONLY_WITH_AUTHENTICATED_ITEM_SCOPE_EVIDENCE_AND_ACCEPTANCE; NATIVE_COUNTED_PASS_FOLLOWS_EXISTING_PACKAGE_POLICY",
+      "packageRule": "PACKAGE_FINISHED_STOP_ONLY_WHEN_ALL_REGISTERED_ITEMS_AUTHORIZED_ACCEPTED_AND_EXISTING_PACKAGE_DONECHECK_PASS",
+      "projectRule": "BITTI_DUR_ONLY_WHEN_NATIVE_12_OF_12_AND_DONECHECK_4_OF_4_AND_SEVEN_EXISTING_GATES_PASS_AND_HUMAN_THRESHOLD_ACCEPTED_AND_NATIVE_VERIFIED_FINISH",
+      "finalGate": "DERIVED_EIGHTH_FINISH_ONLY__NO_NEW_GATE",
+      "stopEnforcement": "STOP_AT_ACCEPTED_SCOPE; NO_REPAIR_EXPANSION_OR_CONTINUED_EXECUTION_AFTER_FINISH; NEW_NEED_IN_NEW_HUMAN_APPROVED_WORK_OR_VERSION",
+      "holdEnforcement": "HOLD_GUVENLI_DUR_ON_ANY_MISSING_CONFLICTING_OR_UNAUTHORIZED_EVIDENCE; KEEP_LAST_NATIVE_VERIFIED_PERCENT_AND_BLOCKER_OWNER",
+      "measureOfficial": "EXISTING_PROGRESS_CORE_COUNTED_PASS_DIVIDED_BY_WORKLIST_TOTAL",
+      "measureGateClosure": "SEVEN_EXISTING_PREREQUISITE_GATES_AS_SEPARATE_COUNT_NOT_PROJECT_PERCENT_OR_TIME_PERCENT",
+      "noSelfApproval": true,
+      "itemPackageProjectBoundariesSeparate": true,
+      "rawPassTextDoesNotGrantAuthority": true,
+      "preserveP01P06AndHumanThreshold": true,
+      "officialRuntimeEnforcement": "HOLD_UNTIL_NATIVE_VERIFIED_BINDING_AND_SECURITY_ACCEPTANCE"
+    }
   },
   "workProgressClosure": {
     "schema": "enguru.suzgec.v24.authorized-work-progress-closure/v1",
