@@ -207,5 +207,46 @@ class NextExecutablePackageRuleTests(unittest.TestCase):
         self.assertIn("PENDING_OSi_NATIVE", self.r["canonicalBinding"])
 
 
+    def test_integrated_field_bundle_six_mandatory_artifacts(self):
+        b = self.r["fieldArtifactBundle"]
+        fields = b["requiredTogether"]
+        self.assertEqual(len(fields), 6)
+        self.assertEqual(len(set(fields)), len(fields))
+        self.assertEqual(b["principle"], self.r["preferredExpression"])
+
+    def test_integrated_bundle_requires_source_and_adversarial_simulation(self):
+        fields = self.r["fieldArtifactBundle"]["requiredTogether"]
+        self.assertIn("REAL_CURRENT_CANONICAL_SOURCE_HEAD_SHA256_AND_PROVENANCE", fields)
+        self.assertIn("PRE_EXECUTION_ADVERSARIAL_NEGATIVE_TESTS_AND_PREDICTION_RECEIPT", fields)
+
+    def test_integrated_bundle_requires_authentic_field_or_explicit_hold(self):
+        b = self.r["fieldArtifactBundle"]
+        self.assertIn("REAL_AUTHORIZED_OSi_FIELD_EXECUTION_RECEIPT_OR_EXPLICIT_HOLD", b["requiredTogether"])
+        self.assertIn("EXISTING_AUTHORIZED_PRODUCER_AND_SCOPE", b["fieldRule"])
+        self.assertIn("HOLD_GUVENLI_DUR", b["fieldRule"])
+
+    def test_integrated_bundle_requires_receipt_and_existing_native_progress(self):
+        b = self.r["fieldArtifactBundle"]
+        self.assertIn("SHA256_VERIFIED_EVIDENCE_RECEIPT_WITH_ORIGINALS_PRESERVED", b["requiredTogether"])
+        self.assertIn("EXISTING_NATIVE_PROGRESS_CORE_START_CHANGE_END_VERIFY", b["requiredTogether"])
+        self.assertTrue(b["reuseExistingProgressCoreOnly"])
+        self.assertIn("SEPARATE_TECHNICAL_PASS_FROM_OFFICIAL_ACCEPTANCE", b["evidenceRule"])
+
+    def test_integrated_bundle_respects_nested_stop_and_authorized_next(self):
+        b = self.r["fieldArtifactBundle"]
+        self.assertIn("EXPLICIT_ITEM_PACKAGE_PROJECT_STOP_BOUNDARY_AND_NEXT_PREAPPROVED_ACTION", b["requiredTogether"])
+        self.assertIn("PROJECT_VERIFIED_FINISH_BITTI_DUR", b["finishAndFlowRule"])
+        self.assertIn("NEXT_PREAPPROVED_VALIDLY_AUTHORIZED_ACTION_MAY_FLOW", b["finishAndFlowRule"])
+
+    def test_integrated_bundle_preserves_hold_and_existing_structure(self):
+        b = self.r["fieldArtifactBundle"]
+        self.assertIn("HOLD_WITH_BLOCKER_OWNER", b["noSourceOrAuthority"])
+        self.assertIn("NO_SELF_GRANT_OR_SYNTHETIC_PASS", b["noSourceOrAuthority"])
+        self.assertEqual(b["currentState"], "GITHUB_CONTRACT_CANDIDATE__OSi_NATIVE_FIELD_ACCEPTANCE_HOLD")
+        self.assertTrue(b["noNewCore"] and b["noNinthStage"] and b["noNewGate"])
+        self.assertEqual(len(self.c["eightStages"]), 8)
+        self.assertEqual(self.c["verifiedFinish"], "HOLD")
+
+
 if __name__ == "__main__":
     unittest.main()
