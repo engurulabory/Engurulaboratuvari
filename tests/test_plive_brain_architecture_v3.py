@@ -66,6 +66,14 @@ class ContractCoverageTests(unittest.TestCase):
         self.assertEqual(coverage(self.doc), 100)
         self.assertEqual(sum(g["points"] for g in self.doc["acceptance"]["designGates"]), 100)
 
+    def test_prior_78_baseline_is_not_erased_or_mixed_with_field(self):
+        rows = self.doc["acceptance"]["baseline78Crosswalk"]
+        self.assertEqual(len(rows), 10)
+        self.assertEqual(sum(x["previousScore"] for x in rows), 78)
+        self.assertTrue(all(x["designGoal"] == 10 for x in rows))
+        self.assertEqual(self.doc["acceptance"]["fieldScore"], "UNMEASURED__REQUIRES_OSI")
+        self.assertEqual(self.doc["acceptance"]["p02Counted"], "0_OF_12_HOLD")
+
     def test_audit_all_design_gates_are_unique(self):
         gates = self.doc["acceptance"]["designGates"]
         self.assertEqual(len(gates), 10)
