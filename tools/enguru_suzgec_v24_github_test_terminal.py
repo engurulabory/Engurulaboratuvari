@@ -8,6 +8,7 @@ import platform
 import subprocess
 import sys
 import time
+from tools.enguru_suzgec_v24_dependency_inventory import inventory
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=Path(os.environ.get("RUNNER_TEMP", "/tmp"))/"enguru-v24-terminal-receipt.json"
@@ -17,6 +18,7 @@ TESTS=[
  "test_enguru_suzgec_v24_source_preflight.py",
  "test_enguru_suzgec_v24_presend_source_binding.py",
  "test_enguru_suzgec_v24_recovery_fixture.py",
+ "test_enguru_suzgec_v24_dependency_inventory.py",
 ]
 def sha(p):
  return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -26,11 +28,13 @@ def execute():
  try:
   if platform.system()!="Darwin" or not os.environ.get("GITHUB_ACTIONS"):
    raise ValueError("REQUIRES_GITHUB_MACOS_RUNNER")
-  paths=[ROOT/"tools"/"enguru_suzgec_v24_source_preflight.py", ROOT/"tools"/"enguru_suzgec_v24_presend_source_binding.py", ROOT/"tools"/"enguru_suzgec_v24_recovery_fixture.py"]
+  paths=[ROOT/"tools"/"enguru_suzgec_v24_source_preflight.py", ROOT/"tools"/"enguru_suzgec_v24_presend_source_binding.py", ROOT/"tools"/"enguru_suzgec_v24_recovery_fixture.py", ROOT/"tools"/"enguru_suzgec_v24_dependency_inventory.py"]
   paths.extend(ROOT/"tests"/name for name in TESTS)
   if not all(p.is_file() and not p.is_symlink() for p in paths):
    raise ValueError("REQUIRED_SOURCE_MISSING")
-  c["D1"]={"state":"PASS_TEST_SCOPE_DISCOVERED","test_files":TESTS,"source_sha256":{str(p.relative_to(ROOT)):sha(p) for p in paths},"os":platform.platform()}
+  deps=inventory(ROOT,TESTS)
+  if deps["state"]!="PASS_DIRECT_IMPORTS_RESOLVED": raise ValueError("TEST_IMPORT_DEPENDENCIES_HOLD:"+json.dumps(deps["blockers"]))
+  c["D1"]={"dependencies":deps,"state":"PASS_TEST_SCOPE_DISCOVERED","test_files":TESTS,"source_sha256":{str(p.relative_to(ROOT)):sha(p) for p in paths},"os":platform.platform()}
   prediction={"schema":"enguru.suzgec.v24.github-prediction/v1","source_sha256":c["D1"]["source_sha256"],"expected_return_codes":{name:0 for name in TESTS},"scope":"GITHUB_TEST_FIXTURES_ONLY"}
   c["D1"]["prediction"]=prediction
   results=[]
