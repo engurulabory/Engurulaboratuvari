@@ -29,7 +29,7 @@ class FinalCandidateContractLock(unittest.TestCase):
         self.assertTrue(f["noNinthStage"] and f["noNewCore"] and f["noNewFinishGate"])
         self.assertTrue(f["nestedAcceptanceStop"]["itemPackageProjectBoundariesSeparate"])
         self.assertTrue(f["passNextFlow"]["noAutomaticGrantOrSelfApproval"])
-        self.assertTrue(f["nextExecutableUnifiedPackage"]["reuseExistingProgressCoreOnly"])
+        self.assertTrue(f["nextExecutableUnifiedPackage"]["fieldArtifactBundle"]["reuseExistingProgressCoreOnly"])
         self.assertTrue(f["macOwnerPositiveOperation"]["noAutomaticGrant"])
         w=c["workProgressClosure"]
         self.assertTrue(w["noSyntheticPromotion"])
