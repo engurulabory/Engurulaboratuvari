@@ -8,9 +8,10 @@ import platform
 import subprocess
 import sys
 import time
-from tools.enguru_suzgec_v24_dependency_inventory import inventory
 
 ROOT=Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(ROOT))
+from tools.enguru_suzgec_v24_dependency_inventory import inventory
 OUT=Path(os.environ.get("RUNNER_TEMP", "/tmp"))/"enguru-v24-terminal-receipt.json"
 TESTS=[
  "test_enguru_suzgec_v24_finish_verdict_stop.py",
