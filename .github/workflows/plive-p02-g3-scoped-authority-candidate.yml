@@ -1,0 +1,20 @@
+name: PLive P02 G3 Scoped Authority Candidate
+on:
+  push:
+    branches:
+      - feat/plive-p02-g3-authority-binding-review-20261020
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  scoped-authorization-negative-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Scope and signature adversarial tests
+        run: python -B -m unittest discover -s tests -p 'test_plive_p02_g3_scoped_grant_verify_v1.py' -v
+      - name: Preserve real-field authority boundary
+        run: echo 'Candidate code never issues an issuer/grant, writes canonical state, or authorizes P02 PASS.'
