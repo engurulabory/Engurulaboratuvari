@@ -25,3 +25,26 @@ jobs:
       - name: Scope statement
         run: |
           echo 'Static and read-only preflight acceptance only. OSi native counter, issuer, writer, actual recovery, and Human Threshold remain separate HOLD until verified.'
+
+  osi-test-terminal:
+    runs-on: macos-15
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Execute four-cycle GitHub macOS test terminal
+        run: |
+          python -B tools/enguru_suzgec_v24_github_test_terminal.py
+      - name: Preserve terminal receipt on PASS or HOLD
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enguru-v24-macos-terminal-receipt
+          path: ${{ runner.temp }}/enguru-v24-terminal-receipt.json
+          if-no-files-found: warn
