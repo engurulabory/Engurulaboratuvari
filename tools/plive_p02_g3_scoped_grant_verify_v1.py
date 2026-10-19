@@ -8,6 +8,7 @@ import re
 import subprocess
 import tempfile
 from pathlib import Path
+from datetime import datetime, timezone
 
 POLICY_SHA256 = "48f46754c4a94e28d66e7e6a272284afae60791d631f556d6826f6775744fb9e"
 PROJECT = "ENGURU_PLIVE_P02_USER_SCREEN"
@@ -41,6 +42,8 @@ def exact_json(raw: bytes) -> dict:
                        parse_constant=reject_constant)
     if not isinstance(value, dict):
         raise ValueError("OBJECT_REQUIRED")
+    if raw != canonical(value):
+        raise ValueError('NONCANONICAL_GRANT_BYTES')
     return value
 
 
@@ -78,13 +81,19 @@ def inspect(grant: dict, *, trusted: dict, expected: dict, observed_at: str,
         errors.append("UNTRUSTED_POLICY")
     if trusted.get("status") != "ACTIVE" or trusted.get("revocationChecked") is not True:
         errors.append("TRUST_NOT_ACTIVE_OR_REVOCATION_UNCHECKED")
-    # UTC timestamp lexicographic comparison is safe only with exact canonical format.
-    timestamp = re.compile(r"20[0-9]{2}-[01][0-9]-[0-3][0-9]T[0-2][0-9]:[0-5][0-9]:[0-5][0-9]Z\Z")
-    for value in (grant["issuedAt"], grant["expiresAt"], observed_at):
-        if not timestamp.fullmatch(value):
-            errors.append("TIME_FORMAT")
-            return errors
-    if not grant["issuedAt"] <= observed_at < grant["expiresAt"]:
+    def utc(value):
+        if not isinstance(value, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z", value):
+            raise ValueError("TIME_FORMAT")
+        parsed = datetime.strptime(value, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+        if parsed.strftime("%Y-%m-%dT%H:%M:%SZ") != value:
+            raise ValueError("TIME_NONCANONICAL")
+        return parsed
+    try:
+        issued, expires, now = map(utc, (grant["issuedAt"], grant["expiresAt"], observed_at))
+    except ValueError:
+        errors.append("TIME_INVALID")
+        return errors
+    if not issued <= now < expires:
         errors.append("EXPIRED_OR_NOT_YET_VALID")
     return errors
 
