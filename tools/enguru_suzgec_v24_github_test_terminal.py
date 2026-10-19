@@ -20,6 +20,7 @@ TESTS=[
  "test_enguru_suzgec_v24_presend_source_binding.py",
  "test_enguru_suzgec_v24_recovery_fixture.py",
  "test_enguru_suzgec_v24_dependency_inventory.py",
+ "test_enguru_suzgec_v24_five_sortie_simulation.py",
 ]
 def sha(p):
  return hashlib.sha256(p.read_bytes()).hexdigest()
