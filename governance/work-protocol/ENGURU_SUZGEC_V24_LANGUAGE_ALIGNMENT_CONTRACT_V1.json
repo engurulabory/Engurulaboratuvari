@@ -468,6 +468,17 @@
     "noNinthStage": true,
     "noNewCore": true,
     "noNewGate": true,
-    "verifiedFinish": "HOLD"
+    "verifiedFinish": "HOLD",
+    "finalSequence": [
+      "HEDEF",
+      "KABUL_SINIRLARI",
+      "MEVCUT_SEKIZ_ASAMA",
+      "GERCEK_KANIT",
+      "YETKILI_VERIFIED_FINISH",
+      "BITTI_DUR"
+    ],
+    "finalSequenceRule": "GOAL_AND_ACCEPTANCE_PRECONDITIONS__EIGHT_STAGE_LOOP_WITH_EVIDENCE__EXISTING_NATIVE_VERIFIER_ONLY__FINAL_STOP",
+    "finishThreshold": "ONLY_AUTHENTICATED_NATIVE_OSi_ACCEPTANCE_AND_ALL_LOCKED_CRITERIA__NO_SELF_DECLARED_PASS",
+    "canonicalActivation": "PENDING_OWNER_APPROVED_OSi_FIELD_BINDING"
   }
 }
