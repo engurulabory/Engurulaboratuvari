@@ -57,3 +57,35 @@ jobs:
             ${{ runner.temp }}/enguru-v24-terminal-receipt.json
             ${{ runner.temp }}/enguru-v24-github-twin-fingerprint.json
           if-no-files-found: warn
+
+  osi-arm64-python314-compat:
+    runs-on: macos-15-arm64
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - name: Check OSi runtime matching dimensions
+        run: |
+          python -B -c 'import platform,sys; print("OS="+platform.system(),"ARCH="+platform.machine(),"PYTHON="+".".join(map(str,sys.version_info[:2]))); assert platform.system()=="Darwin"; assert platform.machine()=="arm64"; assert sys.version_info[:2]==(3,14)'
+      - name: Run OSi terminal candidate on arm64 Python 3.14
+        run: |
+          python -B tools/enguru_suzgec_v24_github_test_terminal.py
+      - name: Export arm64 Python 3.14 fingerprint
+        if: always()
+        run: |
+          python -B tools/enguru_suzgec_v24_terminal_twin_parity.py --root . --out "${{ runner.temp }}/enguru-v24-arm64-py314-fingerprint.json"
+      - name: Preserve arm64 candidate receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enguru-v24-arm64-python314-receipts
+          path: |
+            ${{ runner.temp }}/enguru-v24-terminal-receipt.json
+            ${{ runner.temp }}/enguru-v24-arm64-py314-fingerprint.json
+          if-no-files-found: warn
