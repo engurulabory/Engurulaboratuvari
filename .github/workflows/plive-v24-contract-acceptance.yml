@@ -1,0 +1,121 @@
+name: PLive v2.4 Contract Acceptance (Source Candidate)
+on:
+  pull_request:
+  push:
+permissions:
+  contents: read
+jobs:
+  contract-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Süzgeç v2.4 finish & PLive progress contract
+        run: |
+          python -m unittest discover -s tests -p 'test_enguru_suzgec_v24_finish_verdict_stop.py' -v
+          python -m unittest discover -s tests -p 'test_enguru_plive_progress_contract_v1.py' -v
+      - name: Süzgeç v2.4 source-prediction preflight negative tests
+        run: |
+          python -m unittest discover -s tests -p 'test_enguru_suzgec_v24_source_preflight.py' -v
+      - name: Süzgeç v2.4 bounded pre-send source binding tests
+        run: |
+          python -m unittest discover -s tests -p 'test_enguru_suzgec_v24_presend_source_binding.py' -v
+      - name: Terminal Twin parity adversarial tests
+        run: |
+          python -m unittest discover -s tests -p 'test_enguru_suzgec_v24_terminal_twin_parity.py' -v
+      - name: OSi delivery dry-run negative tests
+        run: |
+          python -m unittest discover -s tests -p 'test_enguru_suzgec_v24_delivery_dry_run.py' -v
+      - name: Süzgeç v2.4 eight-stage goal acceptance loop adversarial tests
+        run: |
+          python -m unittest discover -s tests -p 'test_enguru_suzgec_v24_goal_acceptance_loop.py' -v
+      - name: Süzgeç final sequence lock adversarial tests
+        run: |
+          python -m unittest discover -s tests -p 'test_enguru_suzgec_v24_final_sequence_lock.py' -v
+      - name: Delivery inventory coverage tests
+        run: |
+          python -m unittest discover -s tests -p 'test_enguru_suzgec_v24_delivery_inventory_scope.py' -v
+      - name: Transitive dependency adversarial and candidate closure
+        run: |
+          python -m unittest discover -s tests -p 'test_enguru_suzgec_v24_transitive_closure.py' -v
+          python -m tools.enguru_suzgec_v24_transitive_closure
+      - name: Süzgeç v2.4 final integrated contract lock guard
+        run: python -m unittest discover -s tests -p 'test_enguru_suzgec_v24_final_contract_lock.py' -v
+      - name: SORTI03 fixture recovery receipt (candidate only)
+        run: python -m tools.enguru_suzgec_v24_recovery_fixture
+      - name: SORTI03 Mac decision vector parity subset
+        run: python -m unittest discover -s tests -p 'test_enguru_suzgec_v24_sorti03_decision_vectors.py' -v
+      - name: Five-sortie OSi Twin source-only simulation
+        run: |
+          python -m unittest discover -s tests -p 'test_enguru_suzgec_v24_five_sortie_simulation.py' -v
+          python -m tools.enguru_suzgec_v24_five_sortie_simulation
+      - name: Scope statement
+        run: |
+          echo 'Static and read-only preflight acceptance only. OSi native counter, issuer, writer, actual recovery, and Human Threshold remain separate HOLD until verified.'
+
+  osi-test-terminal:
+    runs-on: macos-15
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Execute four-cycle GitHub macOS test terminal
+        run: |
+          python -B tools/enguru_suzgec_v24_github_test_terminal.py
+      - name: Export bounded GitHub macOS fingerprint
+        if: always()
+        run: |
+          python -B tools/enguru_suzgec_v24_terminal_twin_parity.py --root . --out "${{ runner.temp }}/enguru-v24-github-twin-fingerprint.json"
+      - name: Preserve terminal receipt on PASS or HOLD
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enguru-v24-macos-terminal-receipt
+          path: |
+            ${{ runner.temp }}/enguru-v24-terminal-receipt.json
+            ${{ runner.temp }}/enguru-v24-github-twin-fingerprint.json
+          if-no-files-found: warn
+
+  osi-arm64-python314-compat:
+    runs-on: macos-15
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - name: Check OSi runtime matching dimensions
+        run: |
+          python -B -c 'import platform,sys; print("OS="+platform.system(),"ARCH="+platform.machine(),"PYTHON="+".".join(map(str,sys.version_info[:2]))); assert platform.system()=="Darwin"; assert platform.machine()=="arm64"; assert sys.version_info[:2]==(3,14)'
+      - name: Run OSi terminal candidate on arm64 Python 3.14
+        run: |
+          python -B tools/enguru_suzgec_v24_github_test_terminal.py
+      - name: Generate candidate SHA256 source inventory
+        run: |
+          python -B tools/enguru_suzgec_v24_delivery_inventory.py --root . --out "${{ runner.temp }}/enguru-v24-delivery-inventory.json"
+      - name: Export arm64 Python 3.14 fingerprint
+        if: always()
+        run: |
+          python -B tools/enguru_suzgec_v24_terminal_twin_parity.py --root . --out "${{ runner.temp }}/enguru-v24-arm64-py314-fingerprint.json"
+      - name: Preserve arm64 candidate receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enguru-v24-arm64-python314-receipts
+          path: |
+            ${{ runner.temp }}/enguru-v24-terminal-receipt.json
+            ${{ runner.temp }}/enguru-v24-arm64-py314-fingerprint.json
+            ${{ runner.temp }}/enguru-v24-delivery-inventory.json
+          if-no-files-found: warn

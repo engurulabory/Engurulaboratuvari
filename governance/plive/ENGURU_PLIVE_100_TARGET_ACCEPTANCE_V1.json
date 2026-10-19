@@ -1,0 +1,194 @@
+{
+  "schema": "enguru.plive.v24.target-acceptance-100/v1",
+  "state": "DESIGN_TARGET_100_DEFINED__FIELD_HOLD",
+  "scope": "PLIVE_OSi_NATIVE_FIRST",
+  "targetScore": 100,
+  "checks": [
+    {
+      "id": "T01",
+      "points": 4,
+      "criterion": "Süzgeç 8 aşama ve sabit hedef",
+      "evidence": "canonical v2.4 HEAD/SHA + hedef",
+      "status": "FIELD_HOLD"
+    },
+    {
+      "id": "T02",
+      "points": 4,
+      "criterion": "İş, paket, proje DUR sınırları",
+      "evidence": "üç bağlamlı gerçek geçiş receipt",
+      "status": "FIELD_HOLD"
+    },
+    {
+      "id": "T03",
+      "points": 4,
+      "criterion": "Onaylı sıradaki işe rahat NEXT",
+      "evidence": "kapsamlı geçerli grant + NEXT receipt",
+      "status": "FIELD_HOLD"
+    },
+    {
+      "id": "T04",
+      "points": 4,
+      "criterion": "Yeni güvenlik/kapsam için insan kararı",
+      "evidence": "yetkili insan kabul kanıtı",
+      "status": "FIELD_HOLD"
+    },
+    {
+      "id": "T05",
+      "points": 4,
+      "criterion": "Yeni core/sayaç/9. aşama korunumu",
+      "evidence": "source diff ve karşıt test",
+      "status": "FIELD_HOLD"
+    },
+    {
+      "id": "C01",
+      "points": 4,
+      "criterion": "Mevcut Progress Core tek sayaç",
+      "evidence": "native registry/verify receipt",
+      "status": "FIELD_HOLD"
+    },
+    {
+      "id": "C02",
+      "points": 4,
+      "criterion": "Tüm PLive kaynak ve sözleşme envanteri",
+      "evidence": "OSi file SHA envanteri",
+      "status": "FIELD_HOLD"
+    },
+    {
+      "id": "C03",
+      "points": 4,
+      "criterion": "Her CREATE/MODIFY/RENAME/DELETE sayaç pre/post",
+      "evidence": "yerel hook + CI field receipt",
+      "status": "FIELD_HOLD"
+    },
+    {
+      "id": "C04",
+      "points": 4,
+      "criterion": "Hatalı sözleşmede önceki doğrulanmış yüzde",
+      "evidence": "drift/rollback karşıt saha",
+      "status": "FIELD_HOLD"
+    },
+    {
+      "id": "C05",
+      "points": 4,
+      "criterion": "Restart sonrası aynı native sayaç",
+      "evidence": "restart parity receipt",
+      "status": "FIELD_HOLD"
+    },
+    {
+      "id": "V01",
+      "points": 4,
+      "criterion": "Beyan/kanıt/kabul bekleyen/sayılan ayrımı",
+      "evidence": "12 iş evidence map + gerçek ekran",
+      "status": "FIELD_HOLD"
+    },
+    {
+      "id": "V02",
+      "points": 4,
+      "criterion": "Resmî yüzde ve kalan iş doğru",
+      "evidence": "native numerator/denominator eşliği",
+      "status": "FIELD_HOLD"
+    },
+    {
+      "id": "V03",
+      "points": 4,
+      "criterion": "4 iç paket ve DoneCheck görünür",
+      "evidence": "4/4 paket görünüm kabulü",
+      "status": "FIELD_HOLD"
+    },
+    {
+      "id": "V04",
+      "points": 4,
+      "criterion": "Aktif iş ve A→B→A gerçek zamanlı",
+      "evidence": "G03 canlı GUI saha",
+      "status": "FIELD_HOLD"
+    },
+    {
+      "id": "V05",
+      "points": 4,
+      "criterion": "Kaydırma/sürükleme/çakışma Mac kabulü",
+      "evidence": "gerçek kullanıcı ekran kabulü",
+      "status": "FIELD_HOLD"
+    },
+    {
+      "id": "S01",
+      "points": 4,
+      "criterion": "P02 issuer trust root ve key custody",
+      "evidence": "insan onaylı policy pin ve public key fingerprint",
+      "status": "FIELD_HOLD"
+    },
+    {
+      "id": "S02",
+      "points": 4,
+      "criterion": "İmzalı grant tam proje/iş/eylem/HEAD kapsamı",
+      "evidence": "canlı negatif imza/scope saha",
+      "status": "FIELD_HOLD"
+    },
+    {
+      "id": "S03",
+      "points": 4,
+      "criterion": "CAS nonce durable receipt/idempotency",
+      "evidence": "race/restart/replay gözlemi",
+      "status": "FIELD_HOLD"
+    },
+    {
+      "id": "S04",
+      "points": 4,
+      "criterion": "Same-UID ve disk belirsizliği güvenli HOLD",
+      "evidence": "özgür karşıt güvenlik kabulü",
+      "status": "FIELD_HOLD"
+    },
+    {
+      "id": "S05",
+      "points": 4,
+      "criterion": "P01 P06 main ve mevcut worktree korunumu",
+      "evidence": "pin + status before/after",
+      "status": "FIELD_HOLD"
+    },
+    {
+      "id": "F01",
+      "points": 4,
+      "criterion": "12/12 gerçek P02 işi kayıtlı PASS",
+      "evidence": "native countedPass 12/12",
+      "status": "FIELD_HOLD"
+    },
+    {
+      "id": "F02",
+      "points": 4,
+      "criterion": "4/4 DoneCheck ve 7/7 kapı",
+      "evidence": "özgür kabul receipt",
+      "status": "FIELD_HOLD"
+    },
+    {
+      "id": "F03",
+      "points": 4,
+      "criterion": "Human Threshold + native Verified Finish",
+      "evidence": "yetkili insan ve native verify receipt",
+      "status": "FIELD_HOLD"
+    },
+    {
+      "id": "F04",
+      "points": 4,
+      "criterion": "BİTTİ DUR sonrası yeni kapsam yeni karar",
+      "evidence": "STOP test + versioned next",
+      "status": "FIELD_HOLD"
+    },
+    {
+      "id": "F05",
+      "points": 4,
+      "criterion": "Gerçek PLive hizmetinin devamlı saha kabulü",
+      "evidence": "P02 ve ikinci gerçek proje deneyimi",
+      "status": "FIELD_HOLD"
+    }
+  ],
+  "nativeSource": "ENGURU_PROGRESS_CORE_EXISTING",
+  "verifiedFinish": "HOLD",
+  "humanAuthority": "USER_HUMAN_THRESHOLD_ONLY",
+  "stop": "FINISHED_SCOPE_STOP__PREAPPROVED_NEXT_CONTINUES",
+  "conservation": [
+    "NO_NEW_CORE",
+    "NO_NINTH_STAGE",
+    "P01_PRESERVE",
+    "P06_SEPARATE"
+  ],
+  "notAClaimOfFieldPASS": true
+}

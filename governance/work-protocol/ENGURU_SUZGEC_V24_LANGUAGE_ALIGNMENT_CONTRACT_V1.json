@@ -29,6 +29,256 @@
     "T03",
     "T04"
   ],
+  "finishVerdictStop": {
+    "schema": "enguru.suzgec.v24.finish-verdict-stop/v1",
+    "state": "HUMAN_RULE_APPROVED__OSi_FIELD_AND_CANONICAL_BINDING_PENDING",
+    "name": "ENGURU_FINIS_HUKMU_VE_DUR_SINIRI",
+    "appliedWithinExistingStages": {
+      "03": "Hedef, kapsam, sabit kabul kriterleri, kanit gereksinimleri ve DUR siniri onceden tanimlanir",
+      "04": "Mevcut Pre-Send / Pre-Execution icinde bagimliliklar ve karsi ornekler simule edilir",
+      "06": "Gercek saha kaniti, kaynak SHA, mevcut DoneCheck ve Progress Core yeniden dogrulanir",
+      "07": "Yeni ihtiyaclar mevcut isten ayrilip sonraki is ya da surume baglanir",
+      "08": "Kanita ve yetkili kabul sonucuna gore BITTI_DUR veya HOLD_GUVENLI_DUR hukmu verilir"
+    },
+    "requiredBeforeExecution": [
+      "fixed_goal_and_scope_id",
+      "work_items_and_gate_ids",
+      "final_acceptance_thresholds",
+      "source_head_sha256",
+      "authorized_producer_and_scope",
+      "dependency_and_recovery_plan",
+      "negative_simulation",
+      "evidence_provenance_and_donecheck",
+      "native_progress_binding",
+      "human_threshold_and_stop_boundary"
+    ],
+    "allRequiredForBittiDur": [
+      "all_preapproved_items_counted_pass_by_native_progress",
+      "all_existing_package_donechecks_pass",
+      "all_required_security_and_field_gates_pass",
+      "zero_unverified_pass_and_unauthorized_mutation",
+      "exact_source_and_runtime_provenance_verified",
+      "authenticated_human_threshold_accepted",
+      "native_progress_verified_finish"
+    ],
+    "outcomes": {
+      "allRealEvidenceAndAuthorityVerified": "BITTI_DUR__LOCK_EVIDENCE_AND_SCOPE",
+      "missingEvidenceOrAuthority": "HOLD_GUVENLI_DUR__RECORD_BLOCKER_AND_OWNER",
+      "newNeedOutsideScope": "SONRAKI_IS_VEYA_SURUM__PRESERVE_FINISH_BOUNDARY"
+    },
+    "scopeChange": "ONLY_EXPLICIT_HUMAN_APPROVED_VERSIONED_CHANGE",
+    "reportRequired": [
+      "goal_scope_version",
+      "accepted_item_and_gate_counts",
+      "blocking_evidence_and_owner",
+      "source_sha256",
+      "donecheck_receipt",
+      "native_progress_receipt",
+      "human_threshold_receipt",
+      "terminal_verdict"
+    ],
+    "enforcement": "EXISTING_PRE_SEND_POSTCHECK_DONECHECK_AND_PROGRESS__FIELD_BINDING_PENDING",
+    "noNinthStage": true,
+    "noNewCore": true,
+    "noNewFinishGate": true,
+    "preserveExistingAuthorities": [
+      "P01_SUSPENDED",
+      "P06_SEPARATE_SECURITY_AUTHORITY",
+      "HUMAN_THRESHOLD_HUMAN_ONLY"
+    ],
+    "simulatedTestsNotOfficialPass": true,
+    "documentsNotIssuerGrant": true,
+    "verifiedFinish": "HOLD",
+    "nestedAcceptanceStop": {
+      "schema": "enguru.suzgec.v24.nested-acceptance-stop/v1",
+      "state": "HUMAN_METHOD_APPROVED__OSi_RUNTIME_BINDING_HOLD",
+      "itemRule": "ITEM_FINISHED_STOP_ONLY_WITH_AUTHENTICATED_ITEM_SCOPE_EVIDENCE_AND_ACCEPTANCE; NATIVE_COUNTED_PASS_FOLLOWS_EXISTING_PACKAGE_POLICY",
+      "packageRule": "PACKAGE_FINISHED_STOP_ONLY_WHEN_ALL_REGISTERED_ITEMS_AUTHORIZED_ACCEPTED_AND_EXISTING_PACKAGE_DONECHECK_PASS",
+      "projectRule": "BITTI_DUR_ONLY_WHEN_NATIVE_12_OF_12_AND_DONECHECK_4_OF_4_AND_SEVEN_EXISTING_GATES_PASS_AND_HUMAN_THRESHOLD_ACCEPTED_AND_NATIVE_VERIFIED_FINISH",
+      "finalGate": "DERIVED_EIGHTH_FINISH_ONLY__NO_NEW_GATE",
+      "stopEnforcement": "STOP_AT_ACCEPTED_SCOPE; NO_REPAIR_EXPANSION_OR_CONTINUED_EXECUTION_AFTER_FINISH; NEW_NEED_IN_NEW_HUMAN_APPROVED_WORK_OR_VERSION",
+      "holdEnforcement": "HOLD_GUVENLI_DUR_ON_ANY_MISSING_CONFLICTING_OR_UNAUTHORIZED_EVIDENCE; KEEP_LAST_NATIVE_VERIFIED_PERCENT_AND_BLOCKER_OWNER",
+      "measureOfficial": "EXISTING_PROGRESS_CORE_COUNTED_PASS_DIVIDED_BY_WORKLIST_TOTAL",
+      "measureGateClosure": "SEVEN_EXISTING_PREREQUISITE_GATES_AS_SEPARATE_COUNT_NOT_PROJECT_PERCENT_OR_TIME_PERCENT",
+      "noSelfApproval": true,
+      "itemPackageProjectBoundariesSeparate": true,
+      "rawPassTextDoesNotGrantAuthority": true,
+      "preserveP01P06AndHumanThreshold": true,
+      "officialRuntimeEnforcement": "HOLD_UNTIL_NATIVE_VERIFIED_BINDING_AND_SECURITY_ACCEPTANCE"
+    },
+    "passNextFlow": {
+      "schema": "enguru.suzgec.v24.authorized-pass-next/v1",
+      "principle": "DUR_BITEN_KAPSAMI_KAPATIR_ONCEDEN_ONAYLANMIS_SIRADAKI_ISIN_RAHAT_AKISINI_SAGLAR",
+      "onItemPass": "ITEM_SCOPE_STOP_AND_EVIDENCE_LOCK__AUTHORIZED_PREAPPROVED_NEXT_ITEM_AUTO_CONTINUE_IF_GRANT_COVERS_IT",
+      "onPackageDonecheckPass": "PACKAGE_SCOPE_STOP__AUTHORIZED_PREAPPROVED_NEXT_PACKAGE_AUTO_CONTINUE_IF_GRANT_COVERS_IT",
+      "onBlocked": "HOLD_GUVENLI_DUR__BLOCKER_AND_OWNER__NO_UNAUTHORIZED_AUTO_CONTINUE",
+      "onProjectVerifiedFinish": "BITTI_DUR__LOCK_SCOPE_AND_RECEIPTS__NO_NEXT_PROJECT_WITHOUT_NEW_HUMAN_COMMAND",
+      "humanCommandOnlyWhen": [
+        "NEW_SCOPE_OR_VERSION",
+        "SECURITY_TRUST_OR_PERMISSION_CHANGE",
+        "IRREVERSIBLE_ACTION_NOT_PREAUTHORIZED",
+        "FINAL_HUMAN_THRESHOLD",
+        "REAUTHORIZATION_AFTER_EXPIRED_OR_REVOKED_GRANT"
+      ],
+      "noRepeatedHumanCommandWithinValidApprovedScope": true,
+      "noAutomaticGrantOrSelfApproval": true,
+      "noRuntimeClaim": "OSi_EXECUTION_BINDING_AND_G3_FIELD_ACCEPTANCE_HOLD",
+      "noNewCore": true,
+      "noNinthStage": true,
+      "noNewFinishGate": true
+    },
+    "nextExecutableUnifiedPackage": {
+      "schema": "enguru.suzgec.v24.next-executable-integrated-package/v1",
+      "state": "HUMAN_METHOD_RULE_ACCEPTED__OSi_FIELD_BINDING_HOLD",
+      "preferredExpression": "Bir sonraki yapılabilir adımları içeren birleşik ve bütünleşik paket.",
+      "planningRule": "CURRENT_TRUTH__PRESERVE_VALUE__IDENTIFY_EXACT_GAPS__ONE_BOUND_ACTION_PLAN__PRE_EXECUTE_NEGATIVE_SIMULATION__EXECUTE_WITH_CURRENT_GRANT__NATIVE_EVIDENCE_AND_PROGRESS__NEXT_AUTHORIZED_ACTION_OR_SCOPED_STOP",
+      "acceptancePerPackage": [
+        "IDENTIFIED_EXACT_CURRENT_SOURCE_AND_PROVENANCE",
+        "DEFINED_FINISH_AND_STOP_BOUNDARY",
+        "CONCRETE_EXECUTABLE_NEXT_ACTIONS_IN_DEPENDENCY_ORDER",
+        "PRESERVE_CANONICAL_STATE_AND_SECURITY_AUTHORITIES",
+        "EVIDENCE_FOR_EACH_STEP_AND_RECALCULATED_NATIVE_PROGRESS",
+        "HOLD_ON_MISSING_AUTHORITY_AND_NEVER_PROMOTE_SYNTHETIC_PASS"
+      ],
+      "wordingRule": "ACTIVE_POSITIVE_PRESERVATION_AND_ACTION_LANGUAGE__NEXT_EXECUTABLE_INTEGRATED_PACKAGE",
+      "transitionRule": "FINISHED_ITEM_SCOPE_STOP__PREAPPROVED_NEXT_ITEM_FLOWS_WITH_VALID_GRANT__FINISHED_PROJECT_BITTI_DUR",
+      "noNewCore": true,
+      "noNinthStage": true,
+      "noNewGate": true,
+      "canonicalBinding": "PENDING_OSi_NATIVE_VERIFIED_ACCEPTANCE",
+      "fieldArtifactBundle": {
+        "principle": "Bir sonraki yapılabilir adımları içeren birleşik ve bütünleşik paket.",
+        "requiredTogether": [
+          "REAL_CURRENT_CANONICAL_SOURCE_HEAD_SHA256_AND_PROVENANCE",
+          "PRE_EXECUTION_ADVERSARIAL_NEGATIVE_TESTS_AND_PREDICTION_RECEIPT",
+          "REAL_AUTHORIZED_OSi_FIELD_EXECUTION_RECEIPT_OR_EXPLICIT_HOLD",
+          "SHA256_VERIFIED_EVIDENCE_RECEIPT_WITH_ORIGINALS_PRESERVED",
+          "EXISTING_NATIVE_PROGRESS_CORE_START_CHANGE_END_VERIFY",
+          "EXPLICIT_ITEM_PACKAGE_PROJECT_STOP_BOUNDARY_AND_NEXT_PREAPPROVED_ACTION"
+        ],
+        "preSendRule": "PIN_SOURCE_AND_ACCEPTANCE__SIMULATE_NEGATIVE_PATHS__VALIDATE_GRANT_SCOPE__PRESERVE_EXISTING_VALUE",
+        "fieldRule": "EXECUTE_ONLY_WITH_EXISTING_AUTHORIZED_PRODUCER_AND_SCOPE__OTHERWISE_HOLD_GUVENLI_DUR",
+        "evidenceRule": "READ_BACK_OSi_RECEIPT_AND_SOURCE_SHA256__NATIVE_PROGRESS_CORE_VERIFY__SEPARATE_TECHNICAL_PASS_FROM_OFFICIAL_ACCEPTANCE",
+        "finishAndFlowRule": "ACCEPTED_ITEM_OR_PACKAGE_STOPS_OWN_SCOPE__NEXT_PREAPPROVED_VALIDLY_AUTHORIZED_ACTION_MAY_FLOW__PROJECT_VERIFIED_FINISH_BITTI_DUR",
+        "noSourceOrAuthority": "HOLD_WITH_BLOCKER_OWNER_AND_NEXT_AUTHORIZED_ACTION__NO_SELF_GRANT_OR_SYNTHETIC_PASS",
+        "currentState": "GITHUB_CONTRACT_CANDIDATE__OSi_NATIVE_FIELD_ACCEPTANCE_HOLD",
+        "noNewCore": true,
+        "noNinthStage": true,
+        "noNewGate": true,
+        "reuseExistingProgressCoreOnly": true
+      },
+      "macOwnerPositiveOperation": {
+        "engineeringVerdict": "TEK_YETKILI_INSAN__YALIN_MAC_ONAYI__MEVCUT_G3_DOGRULAMASI__YETKILI_VE_AKICI_ISLEYIS__KANITLI_ILerLEME",
+        "preferredPositiveWording": "Yetkili ve akıcı işleyiş",
+        "ownerModel": "TEK_INSAN_KARAR_SAHIBI__BAGIMSIZ_TEKnik_DOGRULAMA_AYRI",
+        "authenticationMethod": "MAC_OS_NATIVE_LOCALAUTHENTICATION__TOUCH_ID_OR_DEVICE_PASSWORD_WHEN_AVAILABLE",
+        "localSigningPilot": "KEYCHAIN_USER_PRESENCE_ED25519_CHALLENGE__TECHNICAL_FIELD_CANDIDATE_ONLY",
+        "targetProject": "ENGURU_PLIVE_P02_USER_SCREEN",
+        "firstItem": "P02.S01.01",
+        "afterIdentityProof": "EXISTING_G3_TRUST_POLICY_SCOPE_GRANT_AND_WRITER_ACCEPTANCE",
+        "privilegedActionRule": "ONLY_EXACT_GRANT_AND_REAL_OSi_FIELD_PROOF_CAN_AUTHORIZE_CANONICAL_WRITE",
+        "ownerPasswordRule": "MAC_NATIVE_AUTH_DIALOG_ONLY__NOT_CHAT_NOT_SCRIPT_NOT_GITHUB",
+        "progressiveRule": "EXISTING_PROGRESS_CORE_START_CHANGE_END_VERIFY__ITEM_PACKAGE_PROJECT_SCOPE_STOP__PREAPPROVED_NEXT_ACTION",
+        "currentOfficialState": "P02_0_OF_12__G3_TRUST_GRANT_WRITER_HOLD",
+        "noAutomaticGrant": true,
+        "noSyntheticPass": true,
+        "preserveP01P06": true,
+        "noNewCore": true,
+        "noNinthStage": true,
+        "noNewGate": true,
+        "runtimeStatus": "OSi_MAC_LOCAL_AUTH_KEYCHAIN_INTEGRATION_FIELD_PENDING"
+      }
+    }
+  },
+  "workProgressClosure": {
+    "schema": "enguru.suzgec.v24.authorized-work-progress-closure/v1",
+    "state": "SPECIFICATION_CANDIDATE__RUNTIME_BINDING_AND_FIELD_ACCEPTANCE_HOLD",
+    "scope": "ALL_VALID_REGISTERED_OSi_WORK_CONTRACTS",
+    "firstField": "plive-p02-user-screen",
+    "reuseExistingAuthorities": {
+      "meaning": "ENGURU_SUZGEC_EXISTING_EIGHT_STAGES",
+      "execution": "ENGURU_WORK_PROTOCOL_EXISTING",
+      "sourceOfTruth": "CANONICAL_PROJECT_WORKLIST_AND_STATE",
+      "verifier": "EXISTING_AUTHORIZED_EVIDENCE_AND_DONECHECK",
+      "registration": "EXISTING_VERIFIED_DURABLE_WRITER_REQUIRED",
+      "counter": "ENGURU_PROGRESS_CORE_EXISTING_ONLY",
+      "projection": "ENGURU_PLIVE_EXISTING_ONLY",
+      "security": "P06_SEPARATE_AUTHORITY_HOLD_UNTIL_OWN_ACCEPTANCE"
+    },
+    "boundToExistingStages": {
+      "03": "Identify project, item, package, canonical source head, acceptance and producer authority before execution",
+      "04": "Rehearse unauthorized issuer, stale HEAD, replay, partial write, missing DoneCheck and restart adversarial outcomes",
+      "05": "After real work, verify evidence and project-item-action-HEAD scoped grant; use existing verifier and durable atomic registrar only if authorized",
+      "06": "Read back exact canonical state and existing Progress Core verify; compare countedPASS, package policy, and PLive projection from the same source version",
+      "07": "Record out-of-scope needs as separate future work while preserving current work closure",
+      "08": "Issue scoped COUNTED_PASS, ACCEPTANCE_PENDING or HOLD_BLOCKER_WITH_OWNER receipt, and keep Verified Finish independent"
+    },
+    "transitionRequiredFields": [
+      "project_id",
+      "work_item_id",
+      "package_id",
+      "source_head_sha256",
+      "evidence_digest",
+      "issuer_identity",
+      "scoped_grant_id",
+      "verification_receipt",
+      "package_donecheck_receipt_if_required",
+      "canonical_before_digest",
+      "canonical_after_digest",
+      "native_progress_verify_receipt",
+      "plive_source_version_readback",
+      "terminal_decision_and_blocker_owner"
+    ],
+    "acceptancePreconditions": [
+      "source_and_worklist_exact_identity_verified",
+      "actual_field_evidence_verified_for_exact_item_and_action",
+      "authenticated_project_item_head_action_scoped_grant_verified",
+      "existing_verifier_and_contract_required_DoneCheck_PASS",
+      "authorized_durable_atomic_compare_and_swap_writer_verified"
+    ],
+    "canonicalCommitRule": "ONE_IDEMPOTENT_AUTHORIZED_ATOMIC_ITEM_OR_PACKAGE_TRANSITION_WITH_DURABLE_RECEIPT_AND_REPLAY_PROTECTION",
+    "progressRule": "COUNTED_PASS_ONLY_WHEN_EXISTING_WORK_CONTRACT_EVIDENCE_POLICY_AND_PACKAGE_DONECHECK_REQUIREMENTS_ARE_MET",
+    "screenRule": "ONLY_EXISTING_NATIVE_PROGRESS_CORE_VERIFIED_SOURCE_VERSION_MAY_DRIVE_PLIVE_LIVE_PERCENT",
+    "continuityRule": "CANONICAL_AFTER_DIGEST_AND_PROGRESS_VERIFICATION_MUST_MATCH_PLIVE_READBACK_AFTER_RESTART",
+    "onBlocked": "HOLD_GUVENLI_DUR__KEEP_LAST_VERIFIED_PERCENT__RECORD_BLOCKER_AND_OWNER",
+    "onDuplicateEvent": "IDEMPOTENT_NO_DOUBLE_CREDIT",
+    "onConflictingReplayOrDrift": "HOLD__ZERO_UNAUTHORIZED_WRITE_OR_CREDIT",
+    "onAuthorizedVerifiedChange": "COUNTED_PASS_RECEIPT_OR_CONTRACT_SCOPED_PENDING_RECEIPT__TRIGGER_NATIVE_RECALC_AND_PLIVE_READBACK",
+    "requirementForUniversalFieldPass": "TWO_DISTINCT_REAL_PROJECTS_ONE_P02__AUTHENTICATED_FIELD_COMMIT_AND_LIVE_RESTART_EVIDENCE",
+    "noSyntheticPromotion": true,
+    "noNewCore": true,
+    "noNinthStage": true,
+    "noNewFinishGate": true,
+    "humanThreshold": "EXISTING_PROJECT_SCOPE_ONLY_WHEN_REQUIRED__VERIFIED_FINISH_HUMAN_ONLY",
+    "officialAuthority": "HOLD_UNTIL_REAL_ISSUER_GRANT_VERIFIER_WRITER_AND_FIELD_PROOF",
+    "verifiedFinish": "HOLD",
+    "pliveCounterActivationRule": {
+      "schema": "enguru.plive.contract-change-progress/v1",
+      "trigger": "EVERY_NEW_CHANGED_RENAMED_OR_REMOVED_PLIVE_LINKED_CONTRACT_OR_PROGRESS_BINDING",
+      "before": "EXISTING_NATIVE_PROGRESS_CORE_SNAPSHOT_FOR_ALL_AFFECTED_PROJECTS",
+      "validate": "WORK_CONTRACT_AUTO_FROM_WORK_CONTRACT_AND_VALID_PROGRESS_BINDING_AND_SCHEMA_AND_NO_COLLISION",
+      "after": "EXISTING_NATIVE_PROGRESS_CORE_VERIFY_AND_PROJECTION_READBACK_FOR_ALL_AFFECTED_PROJECTS",
+      "surfaces": [
+        "OSi",
+        "PLive"
+      ],
+      "displaySeparate": [
+        "DECLARED_PASS",
+        "EVIDENCED_PASS",
+        "COUNTED_PASS",
+        "UNVERIFIED_PASS",
+        "REMAINING_COUNT_AND_PERCENT",
+        "PACKAGE_DONECHECK",
+        "SEVEN_GATES_WHEN_APPLICABLE",
+        "BLOCKER_AND_OWNER"
+      ],
+      "progressAuthority": "ONLY_NATIVE_COUNTED_PASS_DIVIDED_BY_WORKLIST_TOTAL",
+      "missingBindingOrFailedVerify": "HOLD_GUVENLI_DUR__BLOCK_CHANGE_ACCEPTANCE_AND_KEEP_LAST_VERIFIED_PROJECTION",
+      "requireAutomaticEnforcement": "LOCAL_PRE_SEND_OR_ACCEPTED_REPOSITORY_HOOK_AND_GITHUB_CI__FIELD_BINDING_PENDING",
+      "noSyntheticPromotion": true,
+      "noParallelCounter": true
+    }
+  },
   "goalOutcomeAcceptance": [
     "K01_GOAL_ACHIEVED",
     "K02_SCOPE_COMPLETED",
@@ -166,5 +416,69 @@
   "verifiedFinish": "HOLD",
   "newCore": false,
   "newCanonicalStage": false,
-  "newFinishGate": false
+  "newFinishGate": false,
+  "eightStageGoalAcceptanceLoop": {
+    "schema": "enguru.suzgec.v24.eight-stage-goal-acceptance-loop/v1",
+    "state": "GITHUB_EXECUTABLE_CANDIDATE__OSi_FIELD_BINDING_HOLD",
+    "goalLock": {
+      "stage": "01",
+      "required": [
+        "goal_id",
+        "goal_statement",
+        "scope_version",
+        "owner"
+      ],
+      "rule": "GOAL_MUST_BE_EXPLICIT_BEFORE_EXECUTION"
+    },
+    "preserve": {
+      "stage": "02",
+      "rule": "EXISTING_CANONICAL_VALUE_AND_AUTHORITY_UNCHANGED"
+    },
+    "acceptanceLock": {
+      "stage": "03",
+      "required": [
+        "criterion_id",
+        "evidence_requirement",
+        "pass_threshold",
+        "verifier",
+        "authority_requirement"
+      ],
+      "rule": "EVERY_CRITERION_DEFINED_BEFORE_EXECUTION__CHANGES_ONLY_WITH_AUTHORIZED_VERSIONED_SCOPE"
+    },
+    "simulation": {
+      "stage": "04",
+      "rule": "EXISTING_PRE_EXECUTION_ADVERSARIAL_SIMULATION__NO_SYNTHETIC_PASS"
+    },
+    "execution": {
+      "stage": "05",
+      "rule": "EXISTING_AUTHORIZED_WORK_PROTOCOL__HOLD_IF_GRANT_MISSING"
+    },
+    "evidence": {
+      "stage": "06",
+      "rule": "REAL_SCOPED_EVIDENCE_AND_NATIVE_SOURCE_PROVENANCE__NEVER_SELF_APPROVE"
+    },
+    "loop": {
+      "stage": "07",
+      "rule": "UNMET_CRITERION_GOES_TO_EARLIEST_REQUIRED_EXISTING_STAGE__BOUNDED_RETRY__BLOCKER_OWNER__STOP_AFTER_RETRY_LIMIT"
+    },
+    "finish": {
+      "stage": "08",
+      "rule": "ALL_LOCKED_CRITERIA_AND_EXISTING_T01_T04_AND_NATIVE_VERIFIED_FINISH_AND_HUMAN_THRESHOLD_PASS_THEN_BITTI_DUR_ELSE_HOLD_GUVENLI_DUR"
+    },
+    "noNinthStage": true,
+    "noNewCore": true,
+    "noNewGate": true,
+    "verifiedFinish": "HOLD",
+    "finalSequence": [
+      "HEDEF",
+      "KABUL_SINIRLARI",
+      "MEVCUT_SEKIZ_ASAMA",
+      "GERCEK_KANIT",
+      "YETKILI_VERIFIED_FINISH",
+      "BITTI_DUR"
+    ],
+    "finalSequenceRule": "GOAL_AND_ACCEPTANCE_PRECONDITIONS__EIGHT_STAGE_LOOP_WITH_EVIDENCE__EXISTING_NATIVE_VERIFIER_ONLY__FINAL_STOP",
+    "finishThreshold": "ONLY_AUTHENTICATED_NATIVE_OSi_ACCEPTANCE_AND_ALL_LOCKED_CRITERIA__NO_SELF_DECLARED_PASS",
+    "canonicalActivation": "PENDING_OWNER_APPROVED_OSi_FIELD_BINDING"
+  }
 }

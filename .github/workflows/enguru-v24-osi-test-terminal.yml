@@ -1,0 +1,31 @@
+name: ENGURU v2.4 OSi Test Terminal (GitHub macOS)
+on:
+  push:
+    branches:
+      - feat/suzgec-v24-finish-verdict-stop-20261017
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  osi-test-terminal:
+    runs-on: macos-15
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Four-cycle GitHub macOS terminal qualification
+        run: |
+          python -B tools/enguru_suzgec_v24_github_test_terminal.py
+      - name: Preserve candidate receipt even on HOLD
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enguru-v24-github-terminal-receipt
+          path: ${{ runner.temp }}/enguru-v24-terminal-receipt.json
+          if-no-files-found: warn
