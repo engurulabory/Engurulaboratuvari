@@ -1,0 +1,21 @@
+name: PLive P02 Existing Source Discovery
+on:
+  push:
+    branches:
+      - feat/plive-p02-g3-authority-binding-review-20261020
+  pull_request:
+    paths:
+      - 'tools/plive_p02_existing_writer_signer_discovery_v1.py'
+      - 'tests/test_plive_p02_existing_writer_signer_discovery_v1.py'
+      - '.github/workflows/plive-p02-existing-source-discovery.yml'
+jobs:
+  discovery:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -B -m unittest discover -s tests -p 'test_plive_p02_existing_writer_signer_discovery_v1.py' -v
