@@ -41,6 +41,8 @@ jobs:
         run: |
           python -m unittest discover -s tests -p 'test_enguru_suzgec_v24_transitive_closure.py' -v
           python -m tools.enguru_suzgec_v24_transitive_closure
+      - name: SORTI03 Mac decision vector parity subset
+        run: python -m unittest discover -s tests -p 'test_enguru_suzgec_v24_sorti03_decision_vectors.py' -v
       - name: Five-sortie OSi Twin source-only simulation
         run: |
           python -m unittest discover -s tests -p 'test_enguru_suzgec_v24_five_sortie_simulation.py' -v
