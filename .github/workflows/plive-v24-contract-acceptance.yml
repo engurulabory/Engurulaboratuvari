@@ -37,6 +37,10 @@ jobs:
       - name: Delivery inventory coverage tests
         run: |
           python -m unittest discover -s tests -p 'test_enguru_suzgec_v24_delivery_inventory_scope.py' -v
+      - name: Transitive dependency adversarial and candidate closure
+        run: |
+          python -m unittest discover -s tests -p 'test_enguru_suzgec_v24_transitive_closure.py' -v
+          python -m tools.enguru_suzgec_v24_transitive_closure
       - name: Scope statement
         run: |
           echo 'Static and read-only preflight acceptance only. OSi native counter, issuer, writer, actual recovery, and Human Threshold remain separate HOLD until verified.'
