@@ -416,5 +416,58 @@
   "verifiedFinish": "HOLD",
   "newCore": false,
   "newCanonicalStage": false,
-  "newFinishGate": false
+  "newFinishGate": false,
+  "eightStageGoalAcceptanceLoop": {
+    "schema": "enguru.suzgec.v24.eight-stage-goal-acceptance-loop/v1",
+    "state": "GITHUB_EXECUTABLE_CANDIDATE__OSi_FIELD_BINDING_HOLD",
+    "goalLock": {
+      "stage": "01",
+      "required": [
+        "goal_id",
+        "goal_statement",
+        "scope_version",
+        "owner"
+      ],
+      "rule": "GOAL_MUST_BE_EXPLICIT_BEFORE_EXECUTION"
+    },
+    "preserve": {
+      "stage": "02",
+      "rule": "EXISTING_CANONICAL_VALUE_AND_AUTHORITY_UNCHANGED"
+    },
+    "acceptanceLock": {
+      "stage": "03",
+      "required": [
+        "criterion_id",
+        "evidence_requirement",
+        "pass_threshold",
+        "verifier",
+        "authority_requirement"
+      ],
+      "rule": "EVERY_CRITERION_DEFINED_BEFORE_EXECUTION__CHANGES_ONLY_WITH_AUTHORIZED_VERSIONED_SCOPE"
+    },
+    "simulation": {
+      "stage": "04",
+      "rule": "EXISTING_PRE_EXECUTION_ADVERSARIAL_SIMULATION__NO_SYNTHETIC_PASS"
+    },
+    "execution": {
+      "stage": "05",
+      "rule": "EXISTING_AUTHORIZED_WORK_PROTOCOL__HOLD_IF_GRANT_MISSING"
+    },
+    "evidence": {
+      "stage": "06",
+      "rule": "REAL_SCOPED_EVIDENCE_AND_NATIVE_SOURCE_PROVENANCE__NEVER_SELF_APPROVE"
+    },
+    "loop": {
+      "stage": "07",
+      "rule": "UNMET_CRITERION_GOES_TO_EARLIEST_REQUIRED_EXISTING_STAGE__BOUNDED_RETRY__BLOCKER_OWNER__STOP_AFTER_RETRY_LIMIT"
+    },
+    "finish": {
+      "stage": "08",
+      "rule": "ALL_LOCKED_CRITERIA_AND_EXISTING_T01_T04_AND_NATIVE_VERIFIED_FINISH_AND_HUMAN_THRESHOLD_PASS_THEN_BITTI_DUR_ELSE_HOLD_GUVENLI_DUR"
+    },
+    "noNinthStage": true,
+    "noNewCore": true,
+    "noNewGate": true,
+    "verifiedFinish": "HOLD"
+  }
 }
