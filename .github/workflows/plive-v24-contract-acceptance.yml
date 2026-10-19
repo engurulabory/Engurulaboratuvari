@@ -62,7 +62,7 @@ jobs:
           if-no-files-found: warn
 
   osi-arm64-python314-compat:
-    runs-on: macos-15-arm64
+    runs-on: macos-15
     timeout-minutes: 20
     env:
       PYTHONDONTWRITEBYTECODE: '1'
