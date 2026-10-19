@@ -16,5 +16,7 @@ jobs:
           python-version: '3.12'
       - name: Scope and signature adversarial tests
         run: python -B -m unittest discover -s tests -p 'test_plive_p02_g3_scoped_grant_verify_v1.py' -v
+      - name: Mac G3-A metadata qualification offline negatives
+        run: python -B -m unittest discover -s tests -p 'test_plive_p02_g3a_native_signer_metadata_readonly_v1.py' -v
       - name: Preserve real-field authority boundary
         run: echo 'Candidate code never issues an issuer/grant, writes canonical state, or authorizes P02 PASS.'
