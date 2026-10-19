@@ -19,6 +19,9 @@ jobs:
       - name: Süzgeç v2.4 source-prediction preflight negative tests
         run: |
           python -m unittest discover -s tests -p 'test_enguru_suzgec_v24_source_preflight.py' -v
+      - name: Süzgeç v2.4 bounded pre-send source binding tests
+        run: |
+          python -m unittest discover -s tests -p 'test_enguru_suzgec_v24_presend_source_binding.py' -v
       - name: Scope statement
         run: |
           echo 'Static and read-only preflight acceptance only. OSi native counter, issuer, writer, actual recovery, and Human Threshold remain separate HOLD until verified.'
