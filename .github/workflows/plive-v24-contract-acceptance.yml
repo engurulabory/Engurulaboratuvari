@@ -16,6 +16,9 @@ jobs:
         run: |
           python -m unittest discover -s tests -p 'test_enguru_suzgec_v24_finish_verdict_stop.py' -v
           python -m unittest discover -s tests -p 'test_enguru_plive_progress_contract_v1.py' -v
+      - name: Süzgeç v2.4 source-prediction preflight negative tests
+        run: |
+          python -m unittest discover -s tests -p 'test_enguru_suzgec_v24_source_preflight.py' -v
       - name: Scope statement
         run: |
-          echo 'Static contract acceptance only. OSi live native counter, issuer, writer, UI hook, and Human Threshold remain separate HOLD until verified.'
+          echo 'Static and read-only preflight acceptance only. OSi native counter, issuer, writer, actual recovery, and Human Threshold remain separate HOLD until verified.'
