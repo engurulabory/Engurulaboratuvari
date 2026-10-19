@@ -21,6 +21,10 @@ FILES = (
  "tests/test_enguru_suzgec_v24_terminal_twin_parity.py",
  "tests/test_enguru_suzgec_v24_finish_verdict_stop.py",
  "tests/test_enguru_plive_progress_contract_v1.py",
+ "tools/enguru_suzgec_v24_goal_acceptance_loop.py",
+ "tests/test_enguru_suzgec_v24_goal_acceptance_loop.py",
+ "tests/test_enguru_suzgec_v24_final_sequence_lock.py",
+ "governance/work-protocol/ENGURU_SUZGEC_V24_LANGUAGE_ALIGNMENT_CONTRACT_V1.json",
 )
 def build(root):
  root=Path(root).resolve(strict=True)
