@@ -1,5 +1,9 @@
 """Four non-authorizing decision parity vectors matching Mac SORTI03 v1."""
 import unittest
+import hashlib
+import json
+def canonical_sha(value):
+    return hashlib.sha256(json.dumps(value,sort_keys=True,ensure_ascii=False,separators=(',',':')).encode('utf-8')).hexdigest()
 from tools.enguru_suzgec_v24_goal_acceptance_loop import decide
 
 def vectors():
@@ -9,6 +13,11 @@ def vectors():
 
 EXPECTED={"VALID_GOAL_NO_NATIVE_AUTHORITY":"NATIVE_FINISH_AUTHORITY_HOLD","EMPTY_GOAL":"GOAL_LOCK_INCOMPLETE","MISSING_EVIDENCE":"CRITERION_NOT_VERIFIED","MISSING_GATE":"EXISTING_GATES_HOLD"}
 class Sorti03DecisionVectors(unittest.TestCase):
+    def test_exact_inputs_match_mac_receipt(self):
+        self.assertEqual(canonical_sha(vectors()),"90809ed4de0d10a2b3b196159b3dedd00b240b9fdebb79d44dae87b609becf07")
+    def test_full_outputs_match_mac_receipt(self):
+        results={name:decide(v) for name,v in vectors().items()}
+        self.assertEqual(canonical_sha(results),"a189a196a9d97137a568d66efcfee5ae09d7750cd5a9477e93f1303417828c5f")
     def test_four_decisions(self):
         for name,work in vectors().items():
             with self.subTest(name=name):
