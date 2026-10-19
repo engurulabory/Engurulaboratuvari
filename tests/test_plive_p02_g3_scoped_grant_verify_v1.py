@@ -100,6 +100,29 @@ class ScopedGrantNegativeTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             exact_json(b'{"x":NaN}')
 
+    def test_noncanonical_whitespace_rejected(self):
+        with self.assertRaisesRegex(ValueError, "NONCANONICAL_GRANT_BYTES"):
+            exact_json(b'{"a": 1}')
+
+    def test_noncanonical_order_rejected(self):
+        with self.assertRaisesRegex(ValueError, "NONCANONICAL_GRANT_BYTES"):
+            exact_json(b'{"z":1,"a":2}')
+
+    def test_invalid_calendar_day_rejected(self):
+        self.check_hold({"issuedAt": "2026-02-30T11:00:00Z"})
+
+    def test_invalid_calendar_month_rejected(self):
+        self.check_hold({"issuedAt": "2026-13-20T11:00:00Z"})
+
+    def test_leap_day_valid(self):
+        grant = {**GOOD, "issuedAt": "2024-02-29T11:00:00Z",
+                 "expiresAt": "2028-02-29T13:00:00Z"}
+        self.assertEqual(inspect(grant, trusted=TRUST, expected=EXPECTED,
+                         observed_at=NOW, consumed_nonces=frozenset()), [])
+
+    def test_canonical_round_trip(self):
+        self.assertEqual(exact_json(canonical(GOOD)), GOOD)
+
     def test_signature_failure_no_writer(self):
         result = verify(canonical(GOOD), base64.b64encode(b"fake").decode(),
                         trusted=TRUST, expected=EXPECTED,
