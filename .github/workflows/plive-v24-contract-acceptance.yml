@@ -41,6 +41,10 @@ jobs:
         run: |
           python -m unittest discover -s tests -p 'test_enguru_suzgec_v24_transitive_closure.py' -v
           python -m tools.enguru_suzgec_v24_transitive_closure
+      - name: Five-sortie OSi Twin source-only simulation
+        run: |
+          python -m unittest discover -s tests -p 'test_enguru_suzgec_v24_five_sortie_simulation.py' -v
+          python -m tools.enguru_suzgec_v24_five_sortie_simulation
       - name: Scope statement
         run: |
           echo 'Static and read-only preflight acceptance only. OSi native counter, issuer, writer, actual recovery, and Human Threshold remain separate HOLD until verified.'
