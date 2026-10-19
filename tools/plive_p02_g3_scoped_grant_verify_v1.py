@@ -47,6 +47,37 @@ def exact_json(raw: bytes) -> dict:
     return value
 
 
+
+def load_pinned_trust_record(raw: bytes, *, approved_sha256: str) -> dict:
+    """Load only a pre-pinned public trust record. Pin approval is an EXTERNAL human step.
+
+    Does not authenticate the person/device who supplied approved_sha256,
+    check live revocation, establish issuer custody, or authorize production.
+    """
+    if not isinstance(approved_sha256, str) or not SHA.fullmatch(approved_sha256):
+        raise ValueError("APPROVED_TRUST_PIN_REQUIRED")
+    if hashlib.sha256(raw).hexdigest() != approved_sha256:
+        raise ValueError("TRUST_SOURCE_PIN_MISMATCH")
+    trust = exact_json(raw)
+    required = {"schema", "issuerId", "keyId", "policySha256",
+                "publicKeyX963Hex", "publicKeySha256", "status",
+                "revocationChecked"}
+    if set(trust) != required:
+        raise ValueError("TRUST_FIELDS")
+    if trust["schema"] != "enguru.plive.p02.pinned-public-trust-candidate/v1":
+        raise ValueError("TRUST_SCHEMA")
+    if trust["policySha256"] != POLICY_SHA256:
+        raise ValueError("TRUST_POLICY_MISMATCH")
+    if trust["status"] != "ACTIVE" or trust["revocationChecked"] is not True:
+        raise ValueError("TRUST_STATUS_OR_REVOCATION")
+    pub = trust["publicKeyX963Hex"]
+    if not isinstance(pub, str) or not re.fullmatch(r"04[0-9a-f]{128}", pub):
+        raise ValueError("TRUST_PUBLIC_KEY_FORMAT")
+    if hashlib.sha256(bytes.fromhex(pub)).hexdigest() != trust["publicKeySha256"]:
+        raise ValueError("TRUST_KEY_FINGERPRINT")
+    return trust
+
+
 def inspect(grant: dict, *, trusted: dict, expected: dict, observed_at: str,
             consumed_nonces: frozenset[str]) -> list[str]:
     """Schema/policy checks; does NOT attest custody, user presence or revocation."""
