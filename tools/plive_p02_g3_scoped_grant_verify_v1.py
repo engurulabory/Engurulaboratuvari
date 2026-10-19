@@ -166,3 +166,26 @@ def verify(grant_raw: bytes, signature_b64: str, *, trusted: dict,
     except (ValueError, TypeError, json.JSONDecodeError, subprocess.TimeoutExpired,
             OSError) as exc:
         return {"state": "HOLD", "errors": [str(exc)[:120]], "authorizedToWrite": False}
+
+
+def verify_with_pinned_trust(grant_raw: bytes, signature_b64: str, *,
+                             trust_record_raw: bytes, approved_trust_sha256: str,
+                             expected: dict, observed_at: str,
+                             consumed_nonces: frozenset[str]) -> dict:
+    """Evidence-only entry point; trust pin MUST originate outside caller control.
+
+    This function validates a preapproved byte pin but cannot authenticate its
+    approval origin, prove signer custody, or reserve a nonce across crashes.
+    A valid result is never permission to update P02 canonical state.
+    """
+    try:
+        trust = load_pinned_trust_record(
+            trust_record_raw, approved_sha256=approved_trust_sha256
+        )
+    except (ValueError, TypeError, json.JSONDecodeError) as exc:
+        return {"state": "HOLD",
+                "errors": ["PINNED_TRUST_REJECTED:" + str(exc)[:100]],
+                "authorizedToWrite": False}
+    return verify(grant_raw, signature_b64, trusted=trust,
+                  expected=expected, observed_at=observed_at,
+                  consumed_nonces=consumed_nonces)
