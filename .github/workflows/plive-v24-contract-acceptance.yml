@@ -31,6 +31,9 @@ jobs:
       - name: Süzgeç v2.4 eight-stage goal acceptance loop adversarial tests
         run: |
           python -m unittest discover -s tests -p 'test_enguru_suzgec_v24_goal_acceptance_loop.py' -v
+      - name: Süzgeç final sequence lock adversarial tests
+        run: |
+          python -m unittest discover -s tests -p 'test_enguru_suzgec_v24_final_sequence_lock.py' -v
       - name: Scope statement
         run: |
           echo 'Static and read-only preflight acceptance only. OSi native counter, issuer, writer, actual recovery, and Human Threshold remain separate HOLD until verified.'
