@@ -9,7 +9,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 from plive_p02_g3_scoped_grant_verify_v1 import (
-    POLICY_SHA256, canonical, exact_json, inspect, verify,
+    POLICY_SHA256, canonical, exact_json, inspect, verify, load_pinned_trust_record,
 )
 
 NOW = "2026-10-20T12:00:00Z"
@@ -122,6 +122,24 @@ class ScopedGrantNegativeTests(unittest.TestCase):
 
     def test_canonical_round_trip(self):
         self.assertEqual(exact_json(canonical(GOOD)), GOOD)
+
+    def test_pinned_trust_rejects_wrong_pin(self):
+        raw = canonical({"schema": "enguru.plive.p02.pinned-public-trust-candidate/v1"})
+        with self.assertRaisesRegex(ValueError, "TRUST_SOURCE_PIN_MISMATCH"):
+            load_pinned_trust_record(raw, approved_sha256="0"*64)
+
+    def test_pinned_trust_rejects_missing_pin(self):
+        with self.assertRaisesRegex(ValueError, "APPROVED_TRUST_PIN_REQUIRED"):
+            load_pinned_trust_record(b"{}", approved_sha256="")
+
+    def test_pinned_trust_rejects_fake_policy(self):
+        raw = canonical({"schema": "enguru.plive.p02.pinned-public-trust-candidate/v1",
+                         "issuerId": "fixture", "keyId": "fixture", "policySha256": "0"*64,
+                         "publicKeyX963Hex": "04" + "0"*128,
+                         "publicKeySha256": "0"*64, "status": "ACTIVE",
+                         "revocationChecked": True})
+        with self.assertRaisesRegex(ValueError, "TRUST_POLICY_MISMATCH"):
+            load_pinned_trust_record(raw, approved_sha256=hashlib.sha256(raw).hexdigest())
 
     def test_signature_failure_no_writer(self):
         result = verify(canonical(GOOD), base64.b64encode(b"fake").decode(),
