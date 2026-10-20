@@ -18,6 +18,9 @@ class SixGateMatrixTests(unittest.TestCase):
         self.assertEqual(r["verifiedFinish"], "HOLD")
         self.assertEqual(len(r["gates"]),6)
         self.assertTrue(all(not g["fieldAccepted"] for g in r["gates"]))
+        self.assertTrue(all(not g["engineeringReady"] for g in r["gates"]))
+        self.assertTrue(all(g["claimsComplete"] for g in r["gates"]))
+        self.assertTrue(all(g["state"] == "CLAIMS_COMPLETE_UNVERIFIED" for g in r["gates"]))
 
     def test_all_false_exhaustive_blockers(self):
         r=m.reconcile(fixture(False))
