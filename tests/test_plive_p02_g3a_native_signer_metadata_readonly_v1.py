@@ -9,6 +9,7 @@ import unittest
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
+import plive_p02_g3a_native_signer_metadata_readonly_v1 as under_test
 from plive_p02_g3a_native_signer_metadata_readonly_v1 import (
     POLICY_REL, DECISION_REL, POLICY_SHA, DECISION_SHA, qualify, parse_signed_entitlements,
 )
@@ -117,6 +118,18 @@ class NativeSignerQualificationTests(unittest.TestCase):
             self.assertTrue(outcome["checks"]["entitlementsRead"])
             self.assertFalse(outcome["issuerQualified"])
             self.assertEqual(outcome["state"], "HOLD_G3A_NATIVE_AUTHORITY")
+
+    def test_cli_exits_hold_even_if_policy_and_decision_pins_pass(self):
+        """A read-only inspection cannot return process success for native H1."""
+        fake = {
+            "state": "HOLD_G3A_NATIVE_AUTHORITY",
+            "issuerQualified": False,
+            "checks": {"policy": "PASS_PIN", "decision": "PASS_PIN",
+                       "entitlementsRead": True},
+        }
+        with patch.object(under_test, "qualify", return_value=fake), patch(
+             "sys.argv", ["h1-check", "--candidate", "/tmp/nonexistent"]):
+            self.assertEqual(under_test.main(), 50)
 
     def test_policy_paths_scoped(self):
         self.assertIn("plive-p02-user-screen/", POLICY_REL)
