@@ -14,17 +14,26 @@ def prepare():
     c = {"schema": "enguru.work-contract/v1", "workId": m.PROJECT,
          "progressBinding": {"projectId": m.PROJECT, "state": m.P02_STATE_PATH,
                              "worklist": m.P02_WORKLIST_PATH}}
-    packages = [{"id": f"P02.S0{i}", "items": [f"P02.S0{i}.0{j}" for j in range(1,4)]}
-                for i in range(1,5)]
+    packages = [{"id": f"P02.S0{i}", "items": [f"P02.S0{i}.0{j}" for j in range(1, 4)]}
+                for i in range(1, 5)]
     w = {"schema": "enguru.plive.p02.worklist/v1", "projectId": m.PROJECT,
          "packages": packages}
+    state_packages = {}
+    for i, p in enumerate(packages):
+        state_packages[p["id"]] = {
+            "state": "ACTIVE" if i == 0 else "PENDING",
+            "doneCheck": "PENDING",
+            "items": {item: {"state": "ACTIVE" if item == m.ITEM else "PENDING",
+                             "head": None} for item in p["items"]}}
     s = {"schema": "enguru.plive.p02.state/v1", "projectId": m.PROJECT,
-         "activeItem": m.ITEM, "packages": {"P02.S01": {"items": {
-             m.ITEM: {"state": "ACTIVE", "head": None}}}}}
+         "activeItem": m.ITEM, "activePackage": "P02.S01",
+         "verifiedFinish": "HOLD", "humanAcceptance": "PENDING",
+         "packages": state_packages}
     src = {k: json.dumps(v, sort_keys=True).encode()
            for k, v in {"contract": c, "state": s, "worklist": w}.items()}
     pins = {k: hashlib.sha256(v).hexdigest() for k, v in src.items()}
     return src, pins
+
 
 class SourceBinding(unittest.TestCase):
     def check(self, src, pins):
@@ -57,6 +66,39 @@ class SourceBinding(unittest.TestCase):
                 keys = dict(pins)
                 keys[name] = hashlib.sha256(copy[name]).hexdigest()
                 self.assertEqual(self.check(copy, keys)["state"], "HOLD")
+
+    def test_repinning_partial_or_preaccepted_state_is_rejected(self):
+        src, pins = prepare()
+        for change in (
+            lambda x: x["packages"].pop("P02.S04"),
+            lambda x: x["packages"]["P02.S01"]["items"].pop("P02.S01.02"),
+            lambda x: x["packages"]["P02.S01"]["items"][m.ITEM].update(state="PASS"),
+            lambda x: x.update(verifiedFinish="VERIFIED"),
+            lambda x: x.update(activePackage="P02.S03"),
+        ):
+            with self.subTest(change=repr(change)):
+                changed = dict(src)
+                obj = json.loads(src["state"])
+                change(obj)
+                changed["state"] = json.dumps(obj, sort_keys=True).encode()
+                changed_pins = dict(pins)
+                changed_pins["state"] = hashlib.sha256(changed["state"]).hexdigest()
+                self.assertEqual(self.check(changed, changed_pins)["state"], "HOLD")
+
+    def test_repinning_changed_worklist_does_not_pass(self):
+        src, pins = prepare()
+        for change in (
+            lambda x: x["packages"][3]["items"].pop(),
+            lambda x: x["packages"].reverse(),
+            lambda x: x["packages"][0]["items"].append("P02.S01.04"),
+        ):
+            changed = dict(src)
+            obj = json.loads(src["worklist"])
+            change(obj)
+            changed["worklist"] = json.dumps(obj, sort_keys=True).encode()
+            changed_pins = dict(pins)
+            changed_pins["worklist"] = hashlib.sha256(changed["worklist"]).hexdigest()
+            self.assertEqual(self.check(changed, changed_pins)["state"], "HOLD")
 
     def test_duplicate_key_rejected(self):
         src, pins = prepare()
