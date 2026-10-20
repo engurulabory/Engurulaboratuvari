@@ -59,3 +59,12 @@ support, not a fifth H1 criterion.
 Yetkili Mac sahibi, aynı signed helper'ın exact binary/identity/provisioning ve user-presence koşullarını Xcode/Apple Developer yapılandırmasında tamamlar. Önceki `-34018` hata kodu tek başına kök neden tespiti değildir. Gerçek Mac signer deneyi ancak sahibin açık onayıyla mevcut sınırlı scope'ta yapılır; secret/private key dışarı aktarılmaz. Başarılı çıktının pinned binary/signing receipt, gerçek cryptographic challenge/signature verification ve bağımsız trust acceptance kanıtı değerlendirilir. Yetkisiz veya uyumsuz durumda H1 HOLD olarak kalır.
 
 **Durum:** `PREPARATION_3_GOALS_SCOPE_LOCKED_ON_GITHUB_CANDIDATE / H1_0_OF_4_HOLD / H2_0_OF_4_HOLD / H3_0_OF_4_HOLD / NATIVE_0_OF_6 / P02_0_OF_12 / VERIFIED_FINISH_HOLD`.
+
+### H1 production-app stage — real build evidence, native authority unchanged
+
+- Verified original Mac diagnostic Python source SHA-256: `9a13b4a3815257f789246f02f6b37bb6abd7ce061d30086ac535002ec73c9067`.
+- Extracted original Swift source SHA-256: `b4dae8d509b5e434cccc60324c4eed6fd4373a7e0db7791de3e9bc719736a2f4`; identical source now tracked as `tools/plive_p02_g3a_signer_main_v1.swift`.
+- Existing G3 CI workflow additionally compiles ARM64 Swift on `macos-15`. Run `39412898216` successfully completed both the pinned build job and scoped authorization negative tests. These are candidate compilation checks, **no Apple issuer enrollment, provisioning authorization, Secure Enclave private key use or canonical P02 write**.
+- User-facing Mac builder ZIP: `ENGURU_H1_SIGNER_APP_STAGE_V1.zip`, SHA-256 `ca16857fc313a54e706eaf780b3c62f8513d58d1308c05df8105c99ce463abe1`. Bundled self-test PASS and 7/7 local regression tests PASS. This ZIP is delivered via ChatGPT **separately**, not committed to GitHub.
+- Its sole field execution is owner-initiated `--stage`: compile an *unprovisioned* `ENGURU-G3A-Signer.app` inside AudiV13 and write a local build receipt. No signing or key access occurs. H1.1 still requires genuine signed source-to-binary producer attestation; H1.2–H1.4 require owner-authorized Apple signing/profile, successful real user-presence Secure Enclave challenge, and independent issuer trust acceptance.
+- Target only H1. No new gate or independent canonical state writer. **H1=0/4 HOLD, native=0/6, P02=0/12, Verified Finish HOLD.**
