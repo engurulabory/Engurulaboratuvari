@@ -284,3 +284,58 @@ def _reject_duplicate_pairs(pairs):
         out[key] = value
     return out
 
+
+
+def verify_bound_p02_scoped_grant(
+    grant_raw: bytes, signature_b64: str, *,
+    contract_raw: bytes, state_raw: bytes, worklist_raw: bytes,
+    approved_source_sha256: dict,
+    trust_record_raw: bytes, approved_trust_sha256: str,
+    expected_head: str, expected_evidence_sha256: str,
+    expected_approval_sha256: str, observed_at: str,
+    consumed_nonces: frozenset[str],
+) -> dict:
+    """One fail-closed G3-B evidence path: real P02 sources -> preimage -> grant.
+
+    Inputs labelled approved/expected must originate from an independently
+    authenticated Mac owner/authority context; arbitrary caller-provided pins
+    are not authorization. Production writer authority, live revocation,
+    durable nonce reservation and human presence are strictly outside scope.
+    """
+    hold = {"state": "HOLD", "authorizedToWrite": False}
+    binding = inspect_p02_canonical_source_binding(
+        contract_raw=contract_raw, state_raw=state_raw,
+        worklist_raw=worklist_raw,
+        approved_source_sha256=approved_source_sha256)
+    if binding["state"] != "PASS_SOURCE_BINDING_ONLY":
+        return {**hold, "errors": ["P02_CANONICAL_SOURCE_HOLD"],
+                "binding": binding}
+    expected_values = (expected_head, expected_evidence_sha256,
+                       expected_approval_sha256)
+    patterns = (HEAD, SHA, SHA)
+    if any(type(v) is not str or not pat.fullmatch(v)
+           for v, pat in zip(expected_values, patterns)):
+        return {**hold, "errors": ["INDEPENDENT_EVIDENCE_PINS_REQUIRED"]}
+    actual_preimage_sha256 = hashlib.sha256(state_raw).hexdigest()
+    try:
+        parsed = exact_json(grant_raw)
+    except (ValueError, TypeError, UnicodeError, json.JSONDecodeError) as exc:
+        return {**hold, "errors": ["GRANT_INPUT_INVALID:" + str(exc)[:100]]}
+    if parsed.get("preimageSha256") != actual_preimage_sha256:
+        return {**hold, "errors": ["CANONICAL_P02_PREIMAGE_MISMATCH"],
+                "canonicalPreimageSha256": actual_preimage_sha256}
+    expected = {
+        "head": expected_head,
+        "preimageSha256": actual_preimage_sha256,
+        "evidenceSha256": expected_evidence_sha256,
+        "approvalSha256": expected_approval_sha256,
+    }
+    result = verify_with_pinned_trust(
+        grant_raw, signature_b64,
+        trust_record_raw=trust_record_raw,
+        approved_trust_sha256=approved_trust_sha256,
+        expected=expected, observed_at=observed_at,
+        consumed_nonces=consumed_nonces)
+    result["canonicalPreimageSha256"] = actual_preimage_sha256
+    result["authorizedToWrite"] = False
+    return result
