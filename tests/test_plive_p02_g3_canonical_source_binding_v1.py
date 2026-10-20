@@ -4,6 +4,7 @@ import importlib.util
 import json
 from pathlib import Path
 import unittest
+from unittest import mock
 
 src = Path(__file__).resolve().parents[1] / "tools/plive_p02_g3_scoped_grant_verify_v1.py"
 spec = importlib.util.spec_from_file_location("grant", src)
@@ -99,6 +100,48 @@ class SourceBinding(unittest.TestCase):
             changed_pins = dict(pins)
             changed_pins["worklist"] = hashlib.sha256(changed["worklist"]).hexdigest()
             self.assertEqual(self.check(changed, changed_pins)["state"], "HOLD")
+
+
+    def test_bound_grant_preimage_matches_exact_native_bytes(self):
+        src, pins = prepare()
+        real_preimage = hashlib.sha256(src["state"]).hexdigest()
+        grant = m.canonical({"preimageSha256": real_preimage})
+        params = {
+            "contract_raw": src["contract"],
+            "state_raw": src["state"],
+            "worklist_raw": src["worklist"],
+            "approved_source_sha256": pins,
+            "trust_record_raw": b"independent-trust-fixture",
+            "approved_trust_sha256": "a" * 64,
+            "expected_head": "b" * 40,
+            "expected_evidence_sha256": "c" * 64,
+            "expected_approval_sha256": "d" * 64,
+            "observed_at": "2026-10-20T12:00:00Z",
+            "consumed_nonces": frozenset(),
+        }
+        with mock.patch.object(m, "verify_with_pinned_trust",
+                               return_value={"state": "CRYPTO_AND_SCOPE_VALID_ONLY",
+                                             "authorizedToWrite": False}) as verifier:
+            result = m.verify_bound_p02_scoped_grant(grant, "sig", **params)
+            self.assertEqual(result["state"], "CRYPTO_AND_SCOPE_VALID_ONLY")
+            self.assertFalse(result["authorizedToWrite"])
+            self.assertEqual(verifier.call_args.kwargs["expected"]["preimageSha256"],
+                             real_preimage)
+
+            forged = m.canonical({"preimageSha256": "0" * 64})
+            self.assertEqual(m.verify_bound_p02_scoped_grant(
+                forged, "sig", **params)["state"], "HOLD")
+            self.assertEqual(verifier.call_count, 1)
+
+            altered = dict(params, state_raw=src["state"] + b" ")
+            self.assertEqual(m.verify_bound_p02_scoped_grant(
+                grant, "sig", **altered)["state"], "HOLD")
+            self.assertEqual(verifier.call_count, 1)
+
+            wrong_head = dict(params, expected_head="unapproved")
+            self.assertEqual(m.verify_bound_p02_scoped_grant(
+                grant, "sig", **wrong_head)["state"], "HOLD")
+            self.assertEqual(verifier.call_count, 1)
 
     def test_duplicate_key_rejected(self):
         src, pins = prepare()
