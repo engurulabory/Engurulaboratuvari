@@ -78,6 +78,46 @@ class NativeSignerQualificationTests(unittest.TestCase):
             with self.subTest(capture=capture):
                 self.assertTrue(parse_signed_entitlements(capture)["state"].startswith("HOLD"))
 
+    def test_qualify_requests_xml_from_actually_signed_binary(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            policy = root / POLICY_REL
+            decision = root / DECISION_REL
+            policy.parent.mkdir(parents=True, exist_ok=True)
+            policy.write_text("fixture")
+            decision.write_text(json.dumps({
+                "policyCreatesNoGrant": True,
+                "scope": {"grantIssued": False, "writerApproved": False},
+            }))
+            signer = root / "signed-helper"
+            signer.write_bytes(b"test-only-no-signature")
+            xml = plistlib.dumps({"com.apple.application-identifier":
+                                    "TEAM123456.local.enguru.test"})
+            captured = []
+            def simulated_command(args):
+                captured.append(args)
+                return {"returnCode": 0, "stdout": "",
+                        "stderrSha256": "0"*64,
+                        "_stdoutBytes": xml, "_stderrBytes": b""}
+            def pin_or_file(p):
+                if p == policy:
+                    return POLICY_SHA
+                if p == decision:
+                    return DECISION_SHA
+                return hashlib.sha256(p.read_bytes()).hexdigest()
+            with patch("plive_p02_g3a_native_signer_metadata_readonly_v1.sha",
+                       side_effect=pin_or_file), patch(
+                       "plive_p02_g3a_native_signer_metadata_readonly_v1.command",
+                       side_effect=simulated_command):
+                outcome = qualify(root, signer)
+            self.assertEqual(captured[-1], [
+                "/usr/bin/codesign", "--display", "--entitlements", "-",
+                "--xml", str(signer),
+            ])
+            self.assertTrue(outcome["checks"]["entitlementsRead"])
+            self.assertFalse(outcome["issuerQualified"])
+            self.assertEqual(outcome["state"], "HOLD_G3A_NATIVE_AUTHORITY")
+
     def test_policy_paths_scoped(self):
         self.assertIn("plive-p02-user-screen/", POLICY_REL)
         self.assertIn("plive-p02-user-screen/", DECISION_REL)
