@@ -11,6 +11,30 @@
 - H1.4: Sözleşme ve policy SHA'sına bağlanan gerçek issuer public-key/trust/revocation kaydının bağımsız teknik güvenlik kabulü PASS.
 **Mevcut kanıt:** SIGNING_RECEIPT `codesignVerified=true`, ancak `applicationIdentifierPresent=false`, `keychainAccessGroupsPresent=false`, `secureEnclaveExecuted=false`, `nativeAuthority=HOLD`. Önceki G3 Mac signing field `eligibleAuthorizedProfileCount=0`; sonraki key create `-34018`; neden kesin kanıtlanmış değildir. **H1=HOLD (0/4 kriter tam doğrulanmış)**. Keychain, grant veya resmî state yazması CI tarafından yapılmaz.
 
+### H1 Apple-supported packaging constraint (engineering finding, same 4 criteria)
+
+Apple TN3125 and *Signing a daemon with a restricted entitlement* distinguish
+standalone signed tools from app-like bundles. If the existing signer genuinely
+needs **restricted** `keychain-access-groups` or related entitlement, a standalone
+executable has no place to embed the authorizing provisioning profile; the
+owner-authorized build should be an appropriately signed `.app`-like bundle
+with `Contents/Info.plist`, `Contents/MacOS/<executable>`, and (when
+required) `Contents/embedded.provisionprofile`. Xcode should match the actual
+Team, Bundle ID and approved capability. Existing installed PLive V3.1 remains
+unchanged. A profile's presence, signed executable, or CI test is not issuer
+qualification. The prior `-34018` observation alone cannot attribute a root
+cause; live key use and independent trust acceptance decide H1.3/H1.4.
+
+The **existing** `plive_p02_g3a_native_signer_metadata_readonly_v1.py`
+now inspects either a standalone signed executable or an app-like bundle,
+recording embedded profile presence separately as `PRESENT_UNVERIFIED` and
+retaining `HOLD_G3A_NATIVE_AUTHORITY`. This is H1.1/H1.2 engineering
+support, not a fifth H1 criterion.
+
+**Official Apple references:**
+- https://developer.apple.com/documentation/technotes/tn3125-inside-code-signing-provisioning-profiles
+- https://developer.apple.com/documentation/xcode/signing-a-daemon-with-a-restricted-entitlement
+
 ## H2 — Mevcut tek canonical P02 writer (4/4)
 - H2.1: Mevcut P02 canonical state sahibi ve yetkili mutasyon entrypoint'i Mac kaynaklarında kesin kaynak/izin/sahiplik kanıtıyla onaylı.
 - H2.2: Tek writer sözleşmesi mevcut state, worklist, Progress Core, human/security policy ile kaynak seviyesinde bağlanmış.
