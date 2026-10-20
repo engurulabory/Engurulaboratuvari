@@ -1,6 +1,7 @@
 """Offline G3-A metadata qualification adversarial tests. No signer execution."""
 import hashlib
 import json
+import plistlib
 from pathlib import Path
 import sys
 import tempfile
@@ -9,7 +10,7 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 from plive_p02_g3a_native_signer_metadata_readonly_v1 import (
-    POLICY_REL, DECISION_REL, POLICY_SHA, DECISION_SHA, qualify,
+    POLICY_REL, DECISION_REL, POLICY_SHA, DECISION_SHA, qualify, parse_signed_entitlements,
 )
 
 
@@ -46,6 +47,36 @@ class NativeSignerQualificationTests(unittest.TestCase):
             with patch("plive_p02_g3a_native_signer_metadata_readonly_v1.command",
                        side_effect=AssertionError("command unexpectedly called")):
                 qualify(Path(d), Path(d) / "absent")
+
+    def test_signed_entitlements_stdout_and_stderr(self):
+        sample = {"com.apple.application-identifier": "TEAM123456.local.enguru.app",
+                  "keychain-access-groups": ["TEAM123456.local.enguru.app"]}
+        xml = plistlib.dumps(sample, fmt=plistlib.FMT_XML)
+        bplist = plistlib.dumps(sample, fmt=plistlib.FMT_BINARY)
+        for name, capture in (
+            ("stdout_xml", {"returnCode": 0, "_stdoutBytes": xml, "_stderrBytes": b""}),
+            ("stderr_xml", {"returnCode": 0, "_stdoutBytes": b"", "_stderrBytes": xml}),
+            ("stderr_prefix", {"returnCode": 0, "_stdoutBytes": b"",
+                                "_stderrBytes": b"codesign: displaying entitlements\\n"+xml}),
+            ("stdout_binary", {"returnCode": 0, "_stdoutBytes": bplist,
+                               "_stderrBytes": b""}),
+        ):
+            with self.subTest(name=name):
+                out = parse_signed_entitlements(capture)
+                self.assertEqual(out["state"], "PASS_EMBEDDED_ENTITLEMENTS_PARSED_ONLY")
+                self.assertTrue(out["appIdentifierPresent"])
+                self.assertEqual(out["keychainAccessGroupCount"], 1)
+
+    def test_entitlements_parse_fails_closed(self):
+        bad_groups = plistlib.dumps({"keychain-access-groups": "wrong-type"})
+        for capture in (
+            {"returnCode": 1, "_stdoutBytes": b"", "_stderrBytes": b""},
+            {"returnCode": 0, "_stdoutBytes": b"", "_stderrBytes": b""},
+            {"returnCode": 0, "_stdoutBytes": b"not a plist", "_stderrBytes": b""},
+            {"returnCode": 0, "_stdoutBytes": bad_groups, "_stderrBytes": b""},
+        ):
+            with self.subTest(capture=capture):
+                self.assertTrue(parse_signed_entitlements(capture)["state"].startswith("HOLD"))
 
     def test_policy_paths_scoped(self):
         self.assertIn("plive-p02-user-screen/", POLICY_REL)
