@@ -22,3 +22,25 @@ jobs:
         run: python -B -m unittest discover -s tests -p 'test_plive_p02_g3a_native_signer_metadata_readonly_v1.py' -v
       - name: Preserve real-field authority boundary
         run: echo 'Candidate code never issues an issuer/grant, writes canonical state, or authorizes P02 PASS.'
+
+  pinned-g3a-app-build:
+    name: G3A pinned Swift app-like build (authority HOLD)
+    runs-on: macos-15
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify Mac signer exact Swift source SHA-256
+        shell: bash
+        run: |
+          python3 -c 'import hashlib,pathlib; p=pathlib.Path("tools/plive_p02_g3a_signer_main_v1.swift"); actual=hashlib.sha256(p.read_bytes()).hexdigest(); expected="b4dae8d509b5e434cccc60324c4eed6fd4373a7e0db7791de3e9bc719736a2f4"; print("SWIFT_SOURCE_SHA256="+actual); assert actual == expected, "HOLD_SOURCE_DRIFT"'
+      - name: Compile ARM64 app-like signer (no signing or key use)
+        shell: bash
+        run: |
+          set -euo pipefail
+          APP="$RUNNER_TEMP/ENGURU-G3A-Signer.app"
+          mkdir -p "$APP/Contents/MacOS"
+          xcrun swiftc -target arm64-apple-macos13.0 tools/plive_p02_g3a_signer_main_v1.swift -o "$APP/Contents/MacOS/enguru-g3a-signer"
+          test -s "$APP/Contents/MacOS/enguru-g3a-signer"
+          file "$APP/Contents/MacOS/enguru-g3a-signer"
+          echo 'STATE=PASS_PINNED_SWIFT_APP_BUILD_ONLY'
+          echo 'NATIVE_G3A_AUTHORITY=HOLD NO_KEYCHAIN_EXECUTION=TRUE P02_WRITES=0'
