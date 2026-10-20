@@ -86,7 +86,12 @@ def inspect_candidate_bundle(candidate: Path) -> tuple[Path, dict]:
                            "restrictedProfilePackaging": "HOLD_NO_APP_BUNDLE"}
     if not candidate.is_dir():
         raise ValueError("APP_BUNDLE_MISSING")
-    info = candidate / "Contents" / "Info.plist"
+    contents = candidate / "Contents"
+    macos = contents / "MacOS"
+    if (contents.is_symlink() or not contents.is_dir()
+            or macos.is_symlink() or not macos.is_dir()):
+        raise ValueError("APP_STRUCTURE_UNSAFE")
+    info = contents / "Info.plist"
     if info.is_symlink() or not info.is_file() or info.stat().st_size > 65536:
         raise ValueError("APP_INFO_PLIST_MISSING_OR_UNSAFE")
     try:
@@ -105,7 +110,7 @@ def inspect_candidate_bundle(candidate: Path) -> tuple[Path, dict]:
     if (type(bundle_id) is not str or not re.fullmatch(
             r"[A-Za-z0-9][A-Za-z0-9.-]{3,149}", bundle_id)):
         raise ValueError("APP_BUNDLE_ID_INVALID")
-    executable = candidate / "Contents" / "MacOS" / executable_name
+    executable = macos / executable_name
     if executable.is_symlink() or not executable.is_file():
         raise ValueError("APP_EXECUTABLE_MISSING_OR_SYMLINK")
     profile = candidate / "Contents" / "embedded.provisionprofile"
