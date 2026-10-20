@@ -71,6 +71,56 @@ def parse_signed_entitlements(command_result: dict) -> dict:
     return {"state": "HOLD_EMBEDDED_ENTITLEMENTS_UNPARSEABLE"}
 
 
+def inspect_candidate_bundle(candidate: Path) -> tuple[Path, dict]:
+    """Inspect an app-like signer container; existence is never Apple approval.
+
+    A restricted-entitlement CLI needs an app-like bundle with an embedded
+    profile. Inspect Info.plist and executable, without signing or running.
+    """
+    if candidate.is_symlink():
+        raise ValueError("SYMLINK_CANDIDATE")
+    if candidate.suffix != ".app":
+        if not candidate.is_file():
+            raise ValueError("SIGNER_EXECUTABLE_MISSING")
+        return candidate, {"kind": "STANDALONE_EXECUTABLE",
+                           "restrictedProfilePackaging": "HOLD_NO_APP_BUNDLE"}
+    if not candidate.is_dir():
+        raise ValueError("APP_BUNDLE_MISSING")
+    info = candidate / "Contents" / "Info.plist"
+    if info.is_symlink() or not info.is_file() or info.stat().st_size > 65536:
+        raise ValueError("APP_INFO_PLIST_MISSING_OR_UNSAFE")
+    try:
+        metadata = plistlib.loads(info.read_bytes())
+    except (ValueError, TypeError, plistlib.InvalidFileException, OverflowError):
+        raise ValueError("APP_INFO_PLIST_INVALID")
+    if type(metadata) is not dict or metadata.get("CFBundlePackageType") != "APPL":
+        raise ValueError("APP_BUNDLE_TYPE_INVALID")
+    executable_name = metadata.get("CFBundleExecutable")
+    bundle_id = metadata.get("CFBundleIdentifier")
+    import re
+    if (type(executable_name) is not str
+            or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}", executable_name)
+            or executable_name in {".", ".."}):
+        raise ValueError("APP_EXECUTABLE_NAME_INVALID")
+    if (type(bundle_id) is not str or not re.fullmatch(
+            r"[A-Za-z0-9][A-Za-z0-9.-]{3,149}", bundle_id)):
+        raise ValueError("APP_BUNDLE_ID_INVALID")
+    executable = candidate / "Contents" / "MacOS" / executable_name
+    if executable.is_symlink() or not executable.is_file():
+        raise ValueError("APP_EXECUTABLE_MISSING_OR_SYMLINK")
+    profile = candidate / "Contents" / "embedded.provisionprofile"
+    profile_present = (profile.is_file() and not profile.is_symlink()
+                       and 0 < profile.stat().st_size < 2 * 1024 * 1024)
+    return executable, {
+        "kind": "PROVISIONED_APP_CANDIDATE",
+        "bundleId": bundle_id,
+        "executable": executable_name,
+        "embeddedProfile": "PRESENT_UNVERIFIED" if profile_present else "HOLD_MISSING_OR_UNSAFE",
+        "profileSha256": sha(profile) if profile_present else None,
+        "profileEligibility": "HOLD_INDEPENDENT_APPLE_AND_OWNER_VERIFICATION",
+    }
+
+
 def qualify(root: Path, candidate: Path | None) -> dict:
     report = {"schema": "enguru.plive.p02.g3a.readonly-signing-metadata/v1",
               "state": "HOLD_G3A_NATIVE_AUTHORITY",
@@ -99,11 +149,16 @@ def qualify(root: Path, candidate: Path | None) -> dict:
     if candidate is None:
         report["checks"]["candidate"] = "HOLD_NO_EXACT_SIGNER_PATH"
         return report
-    if candidate.is_symlink() or not candidate.is_file():
-        report["checks"]["candidate"] = "HOLD_NOT_REGULAR_FILE"
+    try:
+        executable, container = inspect_candidate_bundle(candidate)
+    except (ValueError, OSError) as exc:
+        report["checks"]["candidate"] = "HOLD_" + str(exc)[:100]
         return report
-    report["checks"]["candidate"] = {"path": str(candidate),
-                                      "sha256": sha(candidate)}
+    report["checks"]["candidate"] = {
+        "path": str(candidate),
+        "executableSha256": sha(executable),
+        "container": container,
+    }
     # Codesign metadata is untrusted unless it is verified and matched with
     # expected canonical bundle ID, team ID, and provisioning evidence.
     cs = command(["/usr/bin/codesign", "--verify", "--strict", "--verbose=2", str(candidate)])
