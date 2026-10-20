@@ -28,9 +28,47 @@ def command(argv: list[str]) -> dict:
         return {"returnCode": completed.returncode,
                 "stdoutSha256": hashlib.sha256(completed.stdout).hexdigest(),
                 "stderrSha256": hashlib.sha256(completed.stderr).hexdigest(),
-                "stdout": completed.stdout.decode("utf-8", "replace")[:18000]}
+                "stdout": completed.stdout.decode("utf-8", "replace")[:18000],
+                "_stdoutBytes": completed.stdout[:65536],
+                "_stderrBytes": completed.stderr[:65536]}
     except (OSError, subprocess.TimeoutExpired) as exc:
         return {"returnCode": None, "error": type(exc).__name__}
+
+
+
+def parse_signed_entitlements(command_result: dict) -> dict:
+    """Inspect the actual signed-binary plist; codesign may use either stream."""
+    if command_result.get("returnCode") != 0:
+        return {"state": "HOLD_CODESIGN_COMMAND"}
+    for key in ("_stdoutBytes", "_stderrBytes"):
+        raw = command_result.get(key, b"")
+        if not isinstance(raw, bytes) or len(raw) > 65536:
+            continue
+        candidates = [raw]
+        xml_start = raw.find(b"<?xml")
+        if xml_start == -1:
+            xml_start = raw.find(b"<plist")
+        if xml_start > 0:
+            candidates.append(raw[xml_start:])
+        for blob in candidates:
+            try:
+                parsed = plistlib.loads(blob)
+            except (ValueError, TypeError, plistlib.InvalidFileException, OverflowError):
+                continue
+            if type(parsed) is not dict or any(type(k) is not str for k in parsed):
+                return {"state": "HOLD_ENTITLEMENTS_NOT_DICTIONARY"}
+            groups = parsed.get("keychain-access-groups", [])
+            if type(groups) is not list or any(type(x) is not str for x in groups):
+                return {"state": "HOLD_ENTITLEMENT_GROUPS_INVALID"}
+            app_id = parsed.get("com.apple.application-identifier",
+                                parsed.get("application-identifier"))
+            if app_id is not None and type(app_id) is not str:
+                return {"state": "HOLD_ENTITLEMENT_APP_ID_INVALID"}
+            return {"state": "PASS_EMBEDDED_ENTITLEMENTS_PARSED_ONLY",
+                    "entitlementNames": sorted(parsed),
+                    "appIdentifierPresent": bool(app_id),
+                    "keychainAccessGroupCount": len(groups)}
+    return {"state": "HOLD_EMBEDDED_ENTITLEMENTS_UNPARSEABLE"}
 
 
 def qualify(root: Path, candidate: Path | None) -> dict:
@@ -76,14 +114,10 @@ def qualify(root: Path, candidate: Path | None) -> dict:
     # Metadata content is intentionally not printed: avoid paths/account IDs
     # and avoid asserting app identity from a signature alone.
     ent = command(["/usr/bin/codesign", "-d", "--entitlements", ":-", str(candidate)])
-    report["checks"]["entitlementsRead"] = ent["returnCode"] == 0
-    if ent["returnCode"] == 0:
-        try:
-            parsed = plistlib.loads(ent["stdout"].encode("utf-8"))
-            names = sorted(k for k in parsed if isinstance(k, str))
-            report["checks"]["entitlementNames"] = names
-        except (ValueError, TypeError, plistlib.InvalidFileException):
-            report["checks"]["entitlementNames"] = "HOLD_PARSE"
+    ent_inspection = parse_signed_entitlements(ent)
+    report["checks"]["embeddedEntitlementsInspection"] = ent_inspection
+    report["checks"]["entitlementsRead"] = (
+        ent_inspection["state"] == "PASS_EMBEDDED_ENTITLEMENTS_PARSED_ONLY")
     report["checks"]["expectedBundleAndTeamBinding"] = "HOLD_NOT_ATTESTED"
     report["checks"]["provisioningAndAccessGroups"] = "HOLD_NOT_ATTESTED"
     report["checks"]["ownerPresenceAndKeyUse"] = "HOLD_NOT_ATTESTED"
