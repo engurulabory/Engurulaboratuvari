@@ -11,7 +11,7 @@ from unittest.mock import patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 import plive_p02_g3a_native_signer_metadata_readonly_v1 as under_test
 from plive_p02_g3a_native_signer_metadata_readonly_v1 import (
-    POLICY_REL, DECISION_REL, POLICY_SHA, DECISION_SHA, qualify, parse_signed_entitlements,
+    POLICY_REL, DECISION_REL, POLICY_SHA, DECISION_SHA, qualify, parse_signed_entitlements, inspect_candidate_bundle,
 )
 
 
@@ -130,6 +130,51 @@ class NativeSignerQualificationTests(unittest.TestCase):
         with patch.object(under_test, "qualify", return_value=fake), patch(
              "sys.argv", ["h1-check", "--candidate", "/tmp/nonexistent"]):
             self.assertEqual(under_test.main(), 50)
+
+    def test_provisioned_app_bundle_is_source_only(self):
+        with tempfile.TemporaryDirectory() as d:
+            bundle = Path(d) / "SignedSigner.app"
+            (bundle / "Contents/MacOS").mkdir(parents=True)
+            info = {"CFBundlePackageType": "APPL",
+                    "CFBundleIdentifier": "local.enguru.plive.g3a.signer.field.v1",
+                    "CFBundleExecutable": "signer"}
+            (bundle / "Contents/Info.plist").write_bytes(plistlib.dumps(info))
+            (bundle / "Contents/MacOS/signer").write_bytes(b"not signed fixture")
+            profile = bundle / "Contents/embedded.provisionprofile"
+            profile.write_bytes(b"test-only CMS placeholder")
+            executable, meta = inspect_candidate_bundle(bundle)
+            self.assertEqual(executable, bundle / "Contents/MacOS/signer")
+            self.assertEqual(meta["kind"], "PROVISIONED_APP_CANDIDATE")
+            self.assertEqual(meta["embeddedProfile"], "PRESENT_UNVERIFIED")
+            self.assertEqual(meta["profileEligibility"], "HOLD_INDEPENDENT_APPLE_AND_OWNER_VERIFICATION")
+            profile.unlink()
+            _, absent = inspect_candidate_bundle(bundle)
+            self.assertEqual(absent["embeddedProfile"], "HOLD_MISSING_OR_UNSAFE")
+
+    def test_app_bundle_rejects_path_escape_and_symlink(self):
+        with tempfile.TemporaryDirectory() as d:
+            bundle = Path(d) / "Signer.app"
+            (bundle / "Contents/MacOS").mkdir(parents=True)
+            info_path = bundle / "Contents/Info.plist"
+            info = {"CFBundlePackageType": "APPL",
+                    "CFBundleIdentifier": "local.enguru.plive.g3a.signer.field.v1",
+                    "CFBundleExecutable": "../outside"}
+            info_path.write_bytes(plistlib.dumps(info))
+            with self.assertRaisesRegex(ValueError, "APP_EXECUTABLE_NAME_INVALID"):
+                inspect_candidate_bundle(bundle)
+            info["CFBundleExecutable"] = "signer"
+            info_path.write_bytes(plistlib.dumps(info))
+            (bundle / "Contents/MacOS/signer").symlink_to(Path(d) / "other")
+            with self.assertRaisesRegex(ValueError, "APP_EXECUTABLE_MISSING_OR_SYMLINK"):
+                inspect_candidate_bundle(bundle)
+
+    def test_standalone_signer_is_not_profile_qualified(self):
+        with tempfile.TemporaryDirectory() as d:
+            signer = Path(d) / "signer"
+            signer.write_bytes(b"fixture")
+            _, detail = inspect_candidate_bundle(signer)
+            self.assertEqual(detail["kind"], "STANDALONE_EXECUTABLE")
+            self.assertEqual(detail["restrictedProfilePackaging"], "HOLD_NO_APP_BUNDLE")
 
     def test_policy_paths_scoped(self):
         self.assertIn("plive-p02-user-screen/", POLICY_REL)
