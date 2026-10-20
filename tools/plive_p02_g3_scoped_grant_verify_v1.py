@@ -230,18 +230,46 @@ def inspect_p02_canonical_source_binding(*, contract_raw: bytes, state_raw: byte
                 or binding.get("state") != P02_STATE_PATH
                 or binding.get("worklist") != P02_WORKLIST_PATH):
             raise ValueError("WORK_CONTRACT_BINDING_MISMATCH")
+        # Validate the real 4-package/12-item canonical shape, rather than
+        # trusting the caller's re-pinned partial fixture as full P02 state.
+        package_ids = ["P02.S01", "P02.S02", "P02.S03", "P02.S04"]
+        work_packages = worklist.get("packages")
+        if (worklist.get("schema") != "enguru.plive.p02.worklist/v1"
+                or worklist.get("projectId") != PROJECT
+                or type(work_packages) is not list or len(work_packages) != 4):
+            raise ValueError("P02_WORKLIST_IDENTITY_OR_SIZE")
         if (state.get("schema") != "enguru.plive.p02.state/v1"
                 or state.get("projectId") != PROJECT
                 or state.get("activeItem") != ITEM
-                or state.get("packages", {}).get("P02.S01", {}).get("items", {}).get(ITEM, {}).get("state") != "ACTIVE"):
-            raise ValueError("P02_STATE_NOT_EXPECTED_ACTIVE_ITEM")
-        if (worklist.get("schema") != "enguru.plive.p02.worklist/v1"
-                or worklist.get("projectId") != PROJECT
-                or type(worklist.get("packages")) is not list
-                or len(worklist["packages"]) != 4
-                or [item for p in worklist["packages"] for item in p["items"]].count(ITEM) != 1
-                or sum(len(p["items"]) for p in worklist["packages"]) != 12):
-            raise ValueError("P02_WORKLIST_SCOPE_MISMATCH")
+                or state.get("activePackage") != "P02.S01"
+                or state.get("verifiedFinish") != "HOLD"
+                or state.get("humanAcceptance") != "PENDING"):
+            raise ValueError("P02_INITIAL_STATE_IDENTITY_OR_FINISH")
+        state_packages = state.get("packages")
+        if type(state_packages) is not dict or set(state_packages) != set(package_ids):
+            raise ValueError("P02_STATE_PACKAGE_SET")
+        for idx, package_id in enumerate(package_ids):
+            wp = work_packages[idx]
+            if type(wp) is not dict or wp.get("id") != package_id:
+                raise ValueError("P02_WORKLIST_PACKAGE_ORDER")
+            expected_items = [f"{package_id}.0{n}" for n in (1, 2, 3)]
+            if wp.get("items") != expected_items:
+                raise ValueError("P02_WORKLIST_EXACT_ITEMS")
+            sp = state_packages[package_id]
+            if (type(sp) is not dict or sp.get("state") !=
+                    ("ACTIVE" if idx == 0 else "PENDING")
+                    or sp.get("doneCheck") != "PENDING"):
+                raise ValueError("P02_INITIAL_PACKAGE_STATUS")
+            state_items = sp.get("items")
+            if type(state_items) is not dict or set(state_items) != set(expected_items):
+                raise ValueError("P02_STATE_ITEM_SET")
+            for item_id in expected_items:
+                record = state_items[item_id]
+                if (type(record) is not dict
+                        or record.get("state") !=
+                        ("ACTIVE" if item_id == ITEM else "PENDING")
+                        or record.get("head", "MISSING") is not None):
+                    raise ValueError("P02_INITIAL_ITEM_STATUS")
         result["state"] = "PASS_SOURCE_BINDING_ONLY"
     except (ValueError, TypeError, KeyError, AttributeError, json.JSONDecodeError) as exc:
         result["error"] = str(exc)[:128]
