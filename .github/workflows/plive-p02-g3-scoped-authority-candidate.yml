@@ -16,6 +16,8 @@ jobs:
           python-version: '3.12'
       - name: Scope and signature adversarial tests
         run: python -B -m unittest discover -s tests -p 'test_plive_p02_g3_scoped_grant_verify_v1.py' -v
+      - name: P02 pinned canonical source binding adversarial tests
+        run: python -B -m unittest discover -s tests -p 'test_plive_p02_g3_canonical_source_binding_v1.py' -v
       - name: Mac G3-A metadata qualification offline negatives
         run: python -B -m unittest discover -s tests -p 'test_plive_p02_g3a_native_signer_metadata_readonly_v1.py' -v
       - name: Preserve real-field authority boundary
