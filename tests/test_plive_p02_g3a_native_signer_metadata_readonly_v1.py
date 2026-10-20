@@ -168,6 +168,23 @@ class NativeSignerQualificationTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "APP_EXECUTABLE_MISSING_OR_SYMLINK"):
                 inspect_candidate_bundle(bundle)
 
+    def test_app_bundle_symlinked_container_is_rejected(self):
+        with tempfile.TemporaryDirectory() as d:
+            base = Path(d)
+            external = base / "external"
+            (external / "MacOS").mkdir(parents=True)
+            (external / "Info.plist").write_bytes(plistlib.dumps({
+                "CFBundlePackageType": "APPL",
+                "CFBundleIdentifier": "local.enguru.plive.g3a.signer.field.v1",
+                "CFBundleExecutable": "signer",
+            }))
+            (external / "MacOS" / "signer").write_bytes(b"external")
+            app = base / "Signer.app"
+            app.mkdir()
+            (app / "Contents").symlink_to(external, target_is_directory=True)
+            with self.assertRaisesRegex(ValueError, "APP_STRUCTURE_UNSAFE"):
+                inspect_candidate_bundle(app)
+
     def test_standalone_signer_is_not_profile_qualified(self):
         with tempfile.TemporaryDirectory() as d:
             signer = Path(d) / "signer"
