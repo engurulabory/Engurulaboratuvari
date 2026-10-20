@@ -1,0 +1,26 @@
+name: PLive Brain V3 Architecture (GitHub Model Only)
+on:
+  pull_request:
+  push:
+    branches:
+      - feat/plive-brain-v3-architecture-100-20261018
+permissions:
+  contents: read
+jobs:
+  brain-architecture:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Deterministic V3 design and adversarial scenarios
+        run: python -m unittest discover -s tests -p 'test_plive_brain_architecture_v3.py' -v
+      - name: Existing ENGURU Süzgeç v2.4 and PLive counter contracts
+        run: |
+          python -m unittest discover -s tests -p 'test_enguru_suzgec_v24_finish_verdict_stop.py' -v
+          python -m unittest discover -s tests -p 'test_enguru_plive_progress_contract_v1.py' -v
+      - name: Gate design specification coverage (never field credit)
+        run: |
+          python -c "from tools.plive_brain_v3_simulator import contract, coverage; s=coverage(contract()); print('PLIVE_BRAIN_V3_ARCHITECTURE_SPEC=', str(s)+'/100'); assert s==100"
+          echo 'GitHub model PASS only. PLive native P02 0/12 HOLD, P01 native readback and all OSi field checks remain independent.'
