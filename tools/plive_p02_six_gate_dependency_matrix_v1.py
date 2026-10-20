@@ -30,7 +30,7 @@ REQUIRED_CHECKS = {
 }
 
 def reconcile(evidence: dict) -> dict:
-    """An exhaustive, deterministic readiness matrix from strictly typed signals."""
+    """Evaluate untrusted engineering claims; never qualify field readiness."""
     result = {"schema": "enguru.p02.six-gate.dependency-matrix/v1",
               "state": "HOLD", "officialP02": "HOLD",
               "verifiedFinish": "HOLD", "authorizedToWrite": False,
@@ -45,16 +45,17 @@ def reconcile(evidence: dict) -> dict:
         if not isinstance(checks, dict) or set(checks) != set(required) or any(type(v) is not bool for v in checks.values()):
             valid = False
             result["blockingChecks"].append(name + ":INVALID_CHECK_SHAPE")
-            result["gates"].append({"name": name, "engineeringReady": False,
+            result["gates"].append({"name": name, "engineeringReady": False, "claimsComplete": False,
                                     "fieldAccepted": False, "state": "HOLD_INPUT"})
             continue
         missing = [key for key in required if checks[key] is False]
         result["blockingChecks"].extend(name + ":" + key for key in missing)
         result["gates"].append({"name": name,
-                                "engineeringReady": not missing,
+                                "engineeringReady": False,
+                                "claimsComplete": not missing,
                                 "fieldAccepted": False,
                                 "prerequisites": list(PREREQUISITES[name]),
-                                "state": "REVIEW_READY_NATIVE_HOLD" if not missing else "HOLD_ENGINEERING_GAP"})
+                                "state": "CLAIMS_COMPLETE_UNVERIFIED" if not missing else "HOLD_ENGINEERING_GAP"})
     result["state"] = "PASS_ENGINEERING_MATRIX_OFFICIAL_HOLD" if valid else "HOLD_INVALID_EVIDENCE"
     return result
 
