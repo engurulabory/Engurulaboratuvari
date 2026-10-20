@@ -134,7 +134,9 @@ def main():
     root = Path.home() / ROOT_REL
     result = qualify(root, args.candidate)
     print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True))
-    return 0 if result["checks"].get("policy") == "PASS_PIN" and result["checks"].get("decision") == "PASS_PIN" else 50
+    # Exit status is never success when the CLI has not established native issuer
+    # qualification. Successful policy-source checks are evidence only.
+    return 0 if result.get("issuerQualified") is True and result.get("state") == "PASS_G3A_NATIVE_AUTHORITY" else 50
 
 
 if __name__ == "__main__":
