@@ -113,7 +113,9 @@ def qualify(root: Path, candidate: Path | None) -> dict:
     report["checks"]["codesignMetadataOutputSha256"] = details.get("stderrSha256")
     # Metadata content is intentionally not printed: avoid paths/account IDs
     # and avoid asserting app identity from a signature alone.
-    ent = command(["/usr/bin/codesign", "-d", "--entitlements", ":-", str(candidate)])
+    # Apple TN3125: --xml requests a plist rather than human-readable DER output.
+    # Inspect the signed binary itself; no source .entitlements assumptions.
+    ent = command(["/usr/bin/codesign", "--display", "--entitlements", "-", "--xml", str(candidate)])
     ent_inspection = parse_signed_entitlements(ent)
     report["checks"]["embeddedEntitlementsInspection"] = ent_inspection
     report["checks"]["entitlementsRead"] = (
