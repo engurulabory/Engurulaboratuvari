@@ -189,3 +189,70 @@ def verify_with_pinned_trust(grant_raw: bytes, signature_b64: str, *,
     return verify(grant_raw, signature_b64, trusted=trust,
                   expected=expected, observed_at=observed_at,
                   consumed_nonces=consumed_nonces)
+
+# Canonical source binding is a guard on evidence input, not native writer authority.
+P02_STATE_PATH = "governance/plive-p02-user-screen/STATE_V1.json"
+P02_WORKLIST_PATH = "governance/plive-p02-user-screen/WORKLIST_V1.json"
+
+def inspect_p02_canonical_source_binding(*, contract_raw: bytes, state_raw: bytes,
+                                         worklist_raw: bytes,
+                                         approved_source_sha256: dict) -> dict:
+    """Validate exact source bytes and P02 identity before preparing grant evidence.
+
+    All three pins must come from the independently approved Mac source snapshot,
+    not from the grant submitter. The binding does not attest Mac currentness,
+    ownership, human approval, preimage interpretation, or writer authority.
+    """
+    source = {"contract": contract_raw, "state": state_raw, "worklist": worklist_raw}
+    result = {"state": "HOLD", "authorizedToWrite": False, "sourceSha256": {}}
+    try:
+        if type(approved_source_sha256) is not dict or set(approved_source_sha256) != set(source):
+            raise ValueError("EXACT_APPROVED_SOURCE_PINS_REQUIRED")
+        for name, raw in source.items():
+            if type(raw) is not bytes or len(raw) > 1024 * 1024:
+                raise ValueError("INVALID_SOURCE_" + name)
+            pin = approved_source_sha256[name]
+            if type(pin) is not str or not SHA.fullmatch(pin):
+                raise ValueError("INVALID_SOURCE_PIN_" + name)
+            digest = hashlib.sha256(raw).hexdigest()
+            if digest != pin:
+                raise ValueError("SOURCE_PIN_MISMATCH_" + name)
+            result["sourceSha256"][name] = digest
+
+        contract = json.loads(contract_raw, object_pairs_hook=_reject_duplicate_pairs)
+        state = json.loads(state_raw, object_pairs_hook=_reject_duplicate_pairs)
+        worklist = json.loads(worklist_raw, object_pairs_hook=_reject_duplicate_pairs)
+        binding = contract["progressBinding"]
+        if (contract.get("schema") != "enguru.work-contract/v1"
+                or contract.get("projectId", contract.get("workId")) != PROJECT
+                or contract.get("workId") != PROJECT
+                or binding.get("projectId") != PROJECT
+                or binding.get("state") != P02_STATE_PATH
+                or binding.get("worklist") != P02_WORKLIST_PATH):
+            raise ValueError("WORK_CONTRACT_BINDING_MISMATCH")
+        if (state.get("schema") != "enguru.plive.p02.state/v1"
+                or state.get("projectId") != PROJECT
+                or state.get("activeItem") != ITEM
+                or state.get("packages", {}).get("P02.S01", {}).get("items", {}).get(ITEM, {}).get("state") != "ACTIVE"):
+            raise ValueError("P02_STATE_NOT_EXPECTED_ACTIVE_ITEM")
+        if (worklist.get("schema") != "enguru.plive.p02.worklist/v1"
+                or worklist.get("projectId") != PROJECT
+                or type(worklist.get("packages")) is not list
+                or len(worklist["packages"]) != 4
+                or [item for p in worklist["packages"] for item in p["items"]].count(ITEM) != 1
+                or sum(len(p["items"]) for p in worklist["packages"]) != 12):
+            raise ValueError("P02_WORKLIST_SCOPE_MISMATCH")
+        result["state"] = "PASS_SOURCE_BINDING_ONLY"
+    except (ValueError, TypeError, KeyError, AttributeError, json.JSONDecodeError) as exc:
+        result["error"] = str(exc)[:128]
+    return result
+
+
+def _reject_duplicate_pairs(pairs):
+    out = {}
+    for key, value in pairs:
+        if key in out:
+            raise ValueError("DUPLICATE_SOURCE_KEY")
+        out[key] = value
+    return out
+
