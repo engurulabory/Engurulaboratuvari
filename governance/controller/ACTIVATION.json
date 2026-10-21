@@ -1,0 +1,9 @@
+{
+  "state": "ENABLED_READONLY",
+  "repository": "engurulabory/Engurulaboratuvari",
+  "max_tasks_per_cycle": 1,
+  "max_additional_spend_usd": 0,
+  "paid_providers": false,
+  "human_final_authority": "OWNER",
+  "b_series_authority": "OWNER_RESERVED"
+}

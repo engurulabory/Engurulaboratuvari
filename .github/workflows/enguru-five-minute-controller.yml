@@ -1,0 +1,32 @@
+name: ENGURU Five Minute Controller
+on:
+  pull_request:
+    paths: ['tools/enguru_five_minute_controller.py','tests/test_enguru_five_minute_controller.py','governance/controller/**','.github/workflows/enguru-five-minute-controller.yml']
+  workflow_dispatch:
+  schedule:
+    - cron: '*/5 * * * *'
+permissions:
+  contents: read
+  issues: write
+concurrency:
+  group: enguru-five-minute-controller
+  cancel-in-progress: false
+jobs:
+  controller:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Regression verification
+        if: github.event_name != 'schedule'
+        run: python3 -m unittest discover -s tests -p 'test_enguru_five_minute_controller.py' -v
+      - name: PR bounded pilot
+        if: github.event_name == 'pull_request'
+        run: python3 tools/enguru_five_minute_controller.py --pilot --root . --worklist governance/controller/TASKS.json --gate governance/controller/ACTIVATION.json --output /tmp/enguru-controller.json
+      - name: Perform one governed task
+        if: github.event_name != 'pull_request'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 tools/enguru_five_minute_controller.py --root . --worklist governance/controller/TASKS.json --gate governance/controller/ACTIVATION.json --output /tmp/enguru-controller.json
