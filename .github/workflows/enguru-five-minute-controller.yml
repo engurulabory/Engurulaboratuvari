@@ -2,11 +2,15 @@ name: ENGURU Five Minute Controller
 on:
   pull_request:
     paths: ['tools/enguru_five_minute_controller.py','tests/test_enguru_five_minute_controller.py','governance/controller/**','.github/workflows/enguru-five-minute-controller.yml']
+  push:
+    branches: [main]
+    paths: ['tools/enguru_five_minute_controller.py','tests/test_enguru_five_minute_controller.py','governance/controller/**','.github/workflows/enguru-five-minute-controller.yml']
   workflow_dispatch:
   schedule:
     - cron: '*/5 * * * *'
 permissions:
-  contents: read
+  contents: write
+  pull-requests: write
   issues: write
 concurrency:
   group: enguru-five-minute-controller

@@ -3,7 +3,7 @@ from pathlib import Path
 from hashlib import sha256
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"tools"))
 from enguru_five_minute_controller import cycle,select,verifier,key,REPO
-G={"state":"ENABLED_READONLY","repository":REPO,"max_tasks_per_cycle":1,"max_additional_spend_usd":0,"paid_providers":False,"human_final_authority":"OWNER"}
+G={"state":"ENABLED_BOUNDED_PR","repository":REPO,"max_tasks_per_cycle":1,"max_additional_spend_usd":0,"paid_providers":False,"human_final_authority":"OWNER"}
 def t(**kwargs):
     x={"id":"LABORY_PILOT","state":"READY","target_repo":REPO,"action":"verify_file_digest","path":"source.txt","expected_sha256":sha256(b"PASS").hexdigest(),"dependencies":[]}
     x.update(kwargs);return x
@@ -37,4 +37,131 @@ class ControllerTests(unittest.TestCase):
             self.assertEqual(verifier(t(),{"state":"PASS","evidence":{"sha256":"0"*64,"size":4}},root)["state"],"HOLD_GUVENLI_DUR")
     def test_unknown_recipe(self):self.assertEqual(cycle(Path("."),{"tasks":[t(action="run_unit_test",path="other.py")]},G)["reason"],"TEST_RECIPE_SCOPE")
     def test_fingerprint(self):self.assertNotEqual(key(t()),key(t(path="change.txt")))
+
+    def test_pass_receipt_rechecks_source_sha(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d); (root/"source.txt").write_bytes(b"PASS")
+            task=t()
+            old=key(task,root,"a"*40)
+            (root/"source.txt").write_bytes(b"DRIFT")
+            self.assertNotEqual(old,key(task,root,"a"*40))
+            self.assertNotEqual(old,key(task,root,"b"*40))
+    def test_retry_budget_governed(self):
+        task=t()
+        r=cycle(Path("."),{"tasks":[task]},G,failed={task["id"]:2})
+        self.assertEqual(r["reason"],"RETRY_BUDGET_REQUIRES_MANAGEMENT_REVIEW")
+    def test_current_source_verified_finish_separate(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);(root/"source.txt").write_bytes(b"PASS")
+            r=cycle(root,{"tasks":[t()]},G,commit="a"*40)
+            self.assertEqual(r["official_verified_finish"],"HOLD_DONECHECK_HUMAN_GATE")
+
+    def test_repair_candidate_second_verification_and_owner_gate(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);sub=root/"governance/controller/work";sub.mkdir(parents=True)
+            (sub/"fix.txt").write_bytes(b"old\n")
+            item=t(id="LABORY_REPAIR",action="propose_exact_repair",path="governance/controller/work/fix.txt",
+                   expected_sha256=sha256(b"old\n").hexdigest(),desired_sha256=sha256(b"new\n").hexdigest(),
+                   replace_from="old",replace_to="new")
+            result=cycle(root,{"tasks":[item]},G,commit="a"*40)
+            self.assertEqual(result["state"],"PR_PENDING")
+            self.assertEqual(result["verification"]["proof"],"REPAIR_INDEPENDENT_RECOMPUTE")
+            self.assertFalse(result["authorized_merge"])
+            self.assertEqual((sub/"fix.txt").read_bytes(),b"old\n")
+            (sub/"fix.txt").write_bytes(b"new\n")
+            self.assertEqual(cycle(root,{"tasks":[item]},G,commit="a"*40)["state"],"PASS")
+    def test_repair_wrong_digest_holds(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);sub=root/"governance/controller/work";sub.mkdir(parents=True)
+            (sub/"fix.txt").write_bytes(b"old\n")
+            item=t(id="LABORY_REPAIR",action="propose_exact_repair",path="governance/controller/work/fix.txt",
+                   expected_sha256=sha256(b"old\n").hexdigest(),desired_sha256="0"*64,
+                   replace_from="old",replace_to="new")
+            self.assertEqual(cycle(root,{"tasks":[item]},G)["state"],"HOLD_GUVENLI_DUR")
+    def test_repair_scope_is_explicit(self):
+        self.assertEqual(cycle(Path("."),{"tasks":[t(action="propose_exact_repair")]},G)["reason"],"REPAIR_PATH_GRANT")
+    def test_pending_blocks_repeat_without_unlocking_dependencies(self):
+        item=t()
+        root=Path(".")
+        self.assertEqual(select({"tasks":[item]},set(),{item["id"]})[1],"NO_ELIGIBLE_TASK")
+        child=t(id="LABORY_SECOND",dependencies=[item["id"]])
+        self.assertEqual(select({"tasks":[item,child]},set(),{item["id"]})[1],"NO_ELIGIBLE_TASK")
+    def test_repair_contract_alters_fingerprint(self):
+        item=t(id="LABORY_REPAIR",action="propose_exact_repair",path="governance/controller/work/fix.txt",
+               expected_sha256="1"*64,desired_sha256="2"*64,replace_from="old",replace_to="new")
+        self.assertNotEqual(key(item),key({**item,"replace_to":"different"}))
+
+    def test_pending_human_gate_freezes_next_task(self):
+        task=t()
+        result=cycle(Path("."),{"tasks":[task]},G,pending={task["id"]})
+        self.assertEqual(result["state"],"AWAITING_HUMAN")
+        self.assertEqual(result["human_final_authority"],"OWNER_RESERVED")
+
+    def test_repair_pr_remote_provenance_and_draft_boundary(self):
+        from unittest.mock import patch
+        import base64
+        from enguru_five_minute_controller import prepare_repair_pr
+        calls=[]
+        def fake_github(url,token,body=None,method=None):
+            calls.append((url,body,method))
+            if "?ref=main" in url:
+                return {"content":base64.b64encode(b"old\n").decode(),"sha":"blob-old"}
+            if url.endswith("/pulls"):
+                self.assertTrue(body["draft"])
+                self.assertEqual(body["base"],"main")
+                return {"html_url":"https://github.com/engurulabory/Engurulaboratuvari/pull/999"}
+            return {"ok":True}
+        item=t(id="LABORY_REPAIR",action="propose_exact_repair",path="governance/controller/work/fix.txt",
+               expected_sha256=sha256(b"old\n").hexdigest(),desired_sha256=sha256(b"new\n").hexdigest(),
+               replace_from="old",replace_to="new")
+        result={"fingerprint":"a"*64,"engineering":{"evidence":{"candidate_base64":base64.b64encode(b"new\n").decode()}}}
+        with patch("enguru_five_minute_controller.github",fake_github):
+            url=prepare_repair_pr("token",item,result,"b"*40)
+        self.assertTrue(url.endswith("999"))
+        self.assertTrue(any(method=="PUT" and body["branch"].startswith("enguru/controller-") for _,body,method in calls))
+        self.assertFalse(any(url.endswith("/git/refs/heads/main") for url,_,_ in calls))
+    def test_repair_pr_remote_drift_rejected(self):
+        from unittest.mock import patch
+        import base64
+        from enguru_five_minute_controller import prepare_repair_pr
+        item=t(id="LABORY_REPAIR",action="propose_exact_repair",path="governance/controller/work/fix.txt",
+               expected_sha256=sha256(b"old\n").hexdigest(),desired_sha256=sha256(b"new\n").hexdigest(),
+               replace_from="old",replace_to="new")
+        result={"fingerprint":"a"*64,"engineering":{"evidence":{"candidate_base64":base64.b64encode(b"new\n").decode()}}}
+        with patch("enguru_five_minute_controller.github",return_value={"content":base64.b64encode(b"drift\n").decode(),"sha":"blob-remote"}):
+            with self.assertRaisesRegex(ValueError,"REPAIR_REMOTE_SOURCE_DRIFT"):
+                prepare_repair_pr("token",item,result,"b"*40)
+
+    def test_receipt_requires_actual_successful_schedule_run(self):
+        from unittest.mock import patch
+        from enguru_five_minute_controller import receipts,MARKER
+        root=Path("."); task=t()
+        commit="a"*40
+        entry=MARKER+"PASS:"+task["id"]+":"+key(task,root,commit)+":123:"+commit
+        comment={"user":{"login":"github-actions[bot]"},"body":"<!-- "+entry+" -->"}
+        def fake(url,token,body=None,method=None):
+            if "/comments?" in url:return [comment]
+            return {"head_sha":commit,"status":"completed","event":"schedule","conclusion":"success"}
+        with patch("enguru_five_minute_controller.github",side_effect=fake):
+            done,pending,failed=receipts("token",root,[task],commit)
+        self.assertEqual(done,{task["id"]})
+        self.assertEqual(pending,set())
+        def failed_run(url,token,body=None,method=None):
+            if "/comments?" in url:return [comment]
+            return {"head_sha":commit,"status":"completed","event":"schedule","conclusion":"failure"}
+        with patch("enguru_five_minute_controller.github",side_effect=failed_run):
+            done,_,_=receipts("token",root,[task],commit)
+        self.assertEqual(done,set())
+    def test_receipt_from_wrong_actor_and_old_sha_is_rejected(self):
+        from unittest.mock import patch
+        from enguru_five_minute_controller import receipts,MARKER
+        root=Path("."); task=t();commit="a"*40
+        entry=MARKER+"PASS:"+task["id"]+":"+key(task,root,commit)+":123:"+commit
+        comments=[{"user":{"login":"other-bot"},"body":"<!-- "+entry+" -->"}]
+        with patch("enguru_five_minute_controller.github",return_value=comments):
+            done,_,_=receipts("token",root,[task],commit)
+        self.assertEqual(done,set())
+    def test_malformed_policy_rejects_retry_and_priority(self):
+        self.assertEqual(cycle(Path("."),{"tasks":[t(max_attempts=10)]},G)["reason"],"RETRY_POLICY")
+        self.assertEqual(cycle(Path("."),{"tasks":[t(priority="high")]},G)["reason"],"PRIORITY_POLICY")
 if __name__=="__main__":unittest.main()
