@@ -1,6 +1,6 @@
 # ENGÜRÜ — 100 Birim Uçtan Uca Finiş Sayacı™
 
-**21.10.2026 — doğrulanmış kontrol:** **18/100** · Kalan **82/100** · **Resmî H1–H3:** 0/12 · **F01–F06 kapanış:** 0/6 · **Verified Finish:** HOLD
+**21.10.2026 — doğrulanmış kontrol:** **21/100** · Kalan **79/100** · **Resmî H1–H3:** 0/12 · **F01–F06 kapanış:** 0/6 · **Verified Finish:** HOLD
 
 **Anlamı:** 100 eşit sayımlı kontrol noktası, iş süresi veya nihai ürün tamamlanma yüzdesi tahmini değildir. Her ✓ bağımsız teknik/kanıt/tespit alt kapısının doğrulandığını belirtir; yetkili resmî kabul yalnız kendi kriterlerinde PASS olduğunda ilerler.
 
@@ -10,20 +10,20 @@
 
 | Blok | İş paketi | ✓ / 10 | Durum |
 |---|---|---:|---|
-| B01 | Hakikat ve kaynak koruma | **7/10** | Kısmi teknik PASS |
+| B01 | Hakikat ve kaynak koruma | **8/10** | Kısmi teknik PASS |
 | B02 | F01 · Yetkili kriter kararı | **2/10** | Kısmi teknik PASS |
 | B03 | H1 · P-256 signer 4/4 | **1/10** | Kısmi teknik PASS |
 | B04 | H2 · Canonical writer 4/4 | **1/10** | Kısmi teknik PASS |
 | B05 | H3 · GitHub ↔ OSi 4/4 | **1/10** | Kısmi teknik PASS |
 | B06 | F05 · Çalışan Native derleme | **6/10** | Kısmi teknik PASS |
-| B07 | F05 · Canonical kaynak ve ikon | **0/10** | Kabul/kanıt bekliyor |
+| B07 | F05 · Canonical kaynak ve ikon | **2/10** | Kabul/kanıt bekliyor |
 | B08 | Native · İmza, kurulum, çalışma | **0/10** | Kabul/kanıt bekliyor |
 | B09 | Uçtan uca · Evidence ve kabul | **0/10** | Kabul/kanıt bekliyor |
 | B10 | Verified Finish · Bitiş | **0/10** | Kabul/kanıt bekliyor |
 
 ## 100 doğrulanabilir iş (✓ PASS · □ HOLD)
 
-### B01 — Hakikat ve kaynak koruma · 7/10
+### B01 — Hakikat ve kaynak koruma · 8/10
 
 - ✓ **B01-01** — V13 F01 karar dosyasının SHA-256 bütünlüğü doğrulandı — *Kanıt: V15 F01_DECISION_SHA256=PASS*
 - ✓ **B01-02** — V14 gerçek Mac devir raporunun SHA-256 bütünlüğü doğrulandı — *Kanıt: V15 PREVIOUS_REPORT_SHA256=PASS*
@@ -31,7 +31,7 @@
 - ✓ **B01-04** — Orijinal yerel Git çalışma alanlarının korunması kanıtlandı — *Kanıt: V15 GIT_WORKTREE_PRESERVATION=PASS*
 - ✓ **B01-05** — V15 arşivindeki Native uygulama SHA-256/Mach-O bütünlüğü doğrulandı — *Kanıt: V15 F05_ARCHIVED_APP=PASS_SHA256_MACHO_BUNDLE*
 - ✓ **B01-06** — DoneCheck canonical origin otorite blob kimliği eşleşti — *Kanıt: V15 F01_ORIGIN_MODEL_MATCH=PASS*
-- □ **B01-07** — Yerel ürün HEAD ile origin/main kapsam farkı kaynak düzeyinde açıklandı
+- ✓ **B01-07** — Yerel ürün HEAD ile origin/main kapsam farkı kaynak düzeyinde açıklandı — *Kanıt: V17 Mac devir raporu, SHA-256 e71df29b…1b9ae93*
 - ✓ **B01-08** — PR #14 stage nesnesinin yerel erişim durumu teknik nedeniyle sınıflandı — *Kanıt: V16 F05_PR14_LOCAL_COMMIT=HOLD_MISSING_GIT_COMMIT_OBJECT; F05_HEAD_STAGE=HOLD (kaynak durumu teşhisi PASS, canonical kabul HOLD)*
 - □ **B01-09** — Aktif sürüm ve yetkili kaynak sahibi zinciri doğrulandı
 - □ **B01-10** — F01–F06 için yetkili tek canonical kaynak snapshot tamamlandı
@@ -101,11 +101,11 @@
 - □ **B06-09** — Aktif Native Info.plist ve sürüm mutabakatı tamamlandı
 - □ **B06-10** — Yetkili kaynak kabulünden sonra aynı stage regresyonu PASS
 
-### B07 — F05 · Canonical kaynak ve ikon · 0/10
+### B07 — F05 · Canonical kaynak ve ikon · 2/10
 
-- □ **B07-01** — Yerel Git içindeki PR #14 stage blob erişim nedeni doğrulandı
+- ✓ **B07-01** — Yerel Git içindeki PR #14 stage blob erişim nedeni doğrulandı — *Kanıt: V17 yerel Git kaynak teşhisi PASS; B07-02 ancestry ayrı HOLD*
 - □ **B07-02** — Yerel HEAD, origin/main ve PR #14 ancestry tam karşılaştırıldı
-- □ **B07-03** — Korunan dirty değişiklikler için uyuşma planı oluşturuldu
+- ✓ **B07-03** — Korunan dirty değişiklikler için uyuşma planı oluşturuldu — *Kanıt: V17 dirty-path planı ve GIT_WORKTREE_PRESERVATION=PASS*
 - □ **B07-04** — Yetkili ürün owner kaynak inceleme kararı verdi
 - □ **B07-05** — Stage kalıcı canonical kaynak sürümüne uygun şekilde alındı
 - □ **B07-06** — Kaynak farkları PR/review/CI ile kabul edildi
@@ -166,3 +166,11 @@ F01 ana iş, F05 bağımsız destek. Sıradaki somut eylem: F01 owner/reviewer k
 - **Teknik kazanım:** İzole source patch uygulanıp doğrulandı; gerçek Mac Swift build yeniden RC=0; aynı executable SHA-256 elde edildi. Önceden tamamlanmış build/test maddeleri ikinci kez sayılmadı.
 - **Sıradaki:** F01 yetkili owner/reviewer kabul kararı; F05 mevcut V16 patch'inin canonical kaynak owner incelemesi ve ikon provenance.
 - **Resmî durum:** 0/12 kriter, 0/6 kapanmış engel, Verified Finish HOLD.
+
+## V17 kısa ilerleme kaydı — 21.10.2026
+
+- **Sayaç:** 18/100 → **21/100** (+3): ✓ `B01-07`, ✓ `B07-01`, ✓ `B07-03`.
+- **Açık kalan:** `B07-02=HOLD_MISSING_LOCAL_PR_COMMIT_OR_ORIGIN`. V18 hedefi yalnız bu ancestry mutabakatının kanıtlı kapanışıyla 22/100.
+- **Ana iş:** F01 12 kriterin yetkili owner/reviewer kararını ve Mac–DoneCheck acceptance binding'ini tamamlamak.
+- **Teknik kaynak:** `ENGURU_ENGINEER_V17_F01_F05_20261021T134648317060Z.json`; SHA-256 `e71df29b6d2ebee8d32061ea029c3b7eb47d228d47514bf8a083282411b9ae93` (İCRA saha beyanı; JSON dosyası bu Yönetim çalışma ağacında bağımsız açılmadı).
+- **Resmî kabul:** 0/12; kapanan engel 0/6; Verified Finish HOLD.
