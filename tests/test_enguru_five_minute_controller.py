@@ -131,4 +131,37 @@ class ControllerTests(unittest.TestCase):
         with patch("enguru_five_minute_controller.github",return_value={"content":base64.b64encode(b"drift\n").decode(),"sha":"blob-remote"}):
             with self.assertRaisesRegex(ValueError,"REPAIR_REMOTE_SOURCE_DRIFT"):
                 prepare_repair_pr("token",item,result,"b"*40)
+
+    def test_receipt_requires_actual_successful_schedule_run(self):
+        from unittest.mock import patch
+        from enguru_five_minute_controller import receipts,MARKER
+        root=Path("."); task=t()
+        commit="a"*40
+        entry=MARKER+"PASS:"+task["id"]+":"+key(task,root,commit)+":123:"+commit
+        comment={"user":{"login":"github-actions[bot]"},"body":"<!-- "+entry+" -->"}
+        def fake(url,token,body=None,method=None):
+            if "/comments?" in url:return [comment]
+            return {"head_sha":commit,"status":"completed","event":"schedule","conclusion":"success"}
+        with patch("enguru_five_minute_controller.github",side_effect=fake):
+            done,pending,failed=receipts("token",root,[task],commit)
+        self.assertEqual(done,{task["id"]})
+        self.assertEqual(pending,set())
+        def failed_run(url,token,body=None,method=None):
+            if "/comments?" in url:return [comment]
+            return {"head_sha":commit,"status":"completed","event":"schedule","conclusion":"failure"}
+        with patch("enguru_five_minute_controller.github",side_effect=failed_run):
+            done,_,_=receipts("token",root,[task],commit)
+        self.assertEqual(done,set())
+    def test_receipt_from_wrong_actor_and_old_sha_is_rejected(self):
+        from unittest.mock import patch
+        from enguru_five_minute_controller import receipts,MARKER
+        root=Path("."); task=t();commit="a"*40
+        entry=MARKER+"PASS:"+task["id"]+":"+key(task,root,commit)+":123:"+commit
+        comments=[{"user":{"login":"other-bot"},"body":"<!-- "+entry+" -->"}]
+        with patch("enguru_five_minute_controller.github",return_value=comments):
+            done,_,_=receipts("token",root,[task],commit)
+        self.assertEqual(done,set())
+    def test_malformed_policy_rejects_retry_and_priority(self):
+        self.assertEqual(cycle(Path("."),{"tasks":[t(max_attempts=10)]},G)["reason"],"RETRY_POLICY")
+        self.assertEqual(cycle(Path("."),{"tasks":[t(priority="high")]},G)["reason"],"PRIORITY_POLICY")
 if __name__=="__main__":unittest.main()

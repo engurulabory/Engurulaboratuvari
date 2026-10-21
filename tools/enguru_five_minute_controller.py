@@ -47,6 +47,8 @@ def select(worklist,completed,pending=None):
         if t.get("action")=="verify_file_digest" and not re.fullmatch("[0-9a-f]{64}",str(t.get("expected_sha256",""))):return None,"EXPECTED_DIGEST_REQUIRED"
         if t.get("action")=="run_unit_test" and t.get("path")!=TEST:return None,"TEST_RECIPE_SCOPE"
         if not isinstance(t.get("dependencies",[]),list):return None,"DEPENDENCY_SCHEMA"
+        if not isinstance(t.get("max_attempts",2),int) or not 1<=t.get("max_attempts",2)<=3:return None,"RETRY_POLICY"
+        if not isinstance(t.get("priority",100),int) or not 0<=t.get("priority",100)<=999:return None,"PRIORITY_POLICY"
     if len(ids)!=len(set(ids)):return None,"DUPLICATE_TASK_IDS"
     if any(d not in ids for t in tasks for d in t.get("dependencies",[])):return None,"DEPENDENCY_AUTHORITY"
     candidates=[t for t in tasks if t.get("state")=="READY" and t["id"] not in completed and t["id"] not in (pending or set()) and set(t.get("dependencies",[])).issubset(completed)]
@@ -201,5 +203,5 @@ def main():
     Path(args.output).parent.mkdir(parents=True,exist_ok=True)
     Path(args.output).write_text(json.dumps(result,indent=2,ensure_ascii=False)+"\n")
     print("STATE="+result["state"])
-    return 0 if result["state"] in ("PASS","PASS_IDLE","PR_PENDING","AWAITING_HUMAN") else 50
+    return 0 if result["state"] in ("PASS","PASS_IDLE","PR_PENDING","AWAITING_HUMAN") or result.get("reason")=="RETRY_BUDGET_REQUIRES_MANAGEMENT_REVIEW" else 50
 if __name__=="__main__":raise SystemExit(main())
