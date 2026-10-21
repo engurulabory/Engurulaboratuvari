@@ -1,6 +1,6 @@
 # ENGÜRÜ — 100 Birim Uçtan Uca Finiş Sayacı™
 
-**21.10.2026 — doğrulanmış kontrol:** **23/100** · Kalan **77/100** · **Resmî H1–H3:** 0/12 · **F01–F06 kapanış:** 0/6 · **Verified Finish:** HOLD
+**21.10.2026 — doğrulanmış kontrol:** **24/100** · Kalan **76/100** · **Resmî H1–H3:** 0/12 · **F01–F06 kapanış:** 0/6 · **Verified Finish:** HOLD
 
 **Anlamı:** 100 eşit sayımlı kontrol noktası, iş süresi veya nihai ürün tamamlanma yüzdesi tahmini değildir. Her ✓ bağımsız teknik/kanıt/tespit alt kapısının doğrulandığını belirtir; yetkili resmî kabul yalnız kendi kriterlerinde PASS olduğunda ilerler.
 
@@ -19,7 +19,7 @@
 | B07 | F05 · Canonical kaynak ve ikon | **3/10** | Kabul/kanıt bekliyor |
 | B08 | Native · İmza, kurulum, çalışma | **0/10** | Kabul/kanıt bekliyor |
 | B09 | Uçtan uca · Evidence ve kabul | **0/10** | Kabul/kanıt bekliyor |
-| B10 | Verified Finish · Bitiş | **0/10** | Kabul/kanıt bekliyor |
+| B10 | Verified Finish · Bitiş | **1/10** | Tarihsel v0.6 provenance teknik PASS; nihai finiş HOLD |
 
 ## 100 doğrulanabilir iş (✓ PASS · □ HOLD)
 
@@ -140,11 +140,11 @@
 - □ **B09-09** — Human Review Ed25519 attestation doğrulandı
 - □ **B09-10** — Ürün düzeyi tam kabul kararı yetkili kayda bağlandı
 
-### B10 — Verified Finish · Bitiş · 0/10
+### B10 — Verified Finish · Bitiş · 1/10
 
 - □ **B10-01** — Nihai exact canonical kaynak/HEAD snapshot doğrulandı
 - □ **B10-02** — Exact-main CI ve gerekiyorsa release authority PASS
-- □ **B10-03** — Tarihsel v0.6 kilitli ürün provenance korundu
+- ✓ **B10-03** — Tarihsel v0.6 kilitli ürün provenance korundu — *Kanıt: V27 gerçek Mac SHA256 7823e1fb…426a9 + PR #165 canonical final lock SHA 777904a9…47f4de + korunan v0.6 backup executable SHA 168d9560…5973 + Yönetim ENGURU_V27_B10_03_HISTORICAL_LOCK_TEKNIK_KABULU_V1.md; kapsam yalnız tarihsel ürün provenance*
 - □ **B10-04** — F01–F06 için tam kapanış kanıtı mutabık kılındı
 - □ **B10-05** — H1/H2/H3 resmî 12/12 PASS elde edildi
 - □ **B10-06** — Native ürün nihai yetkili kabulü PASS
