@@ -13,7 +13,7 @@ def sha(data): return hashlib.sha256(data).hexdigest()
 def canonical(value):return json.dumps(value,sort_keys=True,ensure_ascii=False,separators=(",",":"))
 def hold(reason):return {"state":"HOLD_GUVENLI_DUR","reason":reason}
 def key(task,root=None,commit=None):
-    values={k:task.get(k) for k in ("id","action","path","expected_sha256","desired_sha256","replace_from","replace_to","dependencies","target_repo","acceptance_version")}
+    values={k:task.get(k) for k in ("id","action","path","expected_sha256","desired_sha256","replace_from","replace_to","dependencies","target_repo","acceptance_version","existing_pr_number")}
     if root is not None:
         file=safe_file(root,task.get("path"))
         values["observed_source_sha256"]=sha(file.read_bytes()) if file else "MISSING"
@@ -165,15 +165,44 @@ def receipts(token,root,tasks,commit):
 def prepare_repair_pr(token,task,result,commit):
     path=task["path"]
     if not path.startswith("governance/controller/work/"):raise ValueError("REPAIR_SCOPE")
-    branch="enguru/controller-"+task["id"].lower().replace("_","-")+"-"+result["fingerprint"][:10]
-    blob=github(f"https://api.github.com/repos/{REPO}/contents/{path}?ref=main",token)
-    remote=base64.b64decode(blob["content"])
-    if sha(remote)!=task["expected_sha256"]:raise ValueError("REPAIR_REMOTE_SOURCE_DRIFT")
-    github(f"https://api.github.com/repos/{REPO}/git/refs",token,{"ref":"refs/heads/"+branch,"sha":commit})
-    candidate=result["engineering"]["evidence"]["candidate_base64"]
-    github(f"https://api.github.com/repos/{REPO}/contents/{path}",token,{"message":"ENGURU governed bounded fix "+task["id"],"branch":branch,"sha":blob["sha"],"content":candidate},method="PUT")
-    pr=github(f"https://api.github.com/repos/{REPO}/pulls",token,{"title":"ENGURU guarded fix: "+task["id"],"head":branch,"base":"main","draft":True,"body":"Source-scoped reversible candidate. Human owner reviews CI and authorizes final merge. No automated publication."})
-    return pr["html_url"]
+    desired=task["desired_sha256"]
+    prior=task.get("existing_pr_number")
+    if prior is not None:
+        if not isinstance(prior,int) or prior<1:raise ValueError("PR_REFERENCE_FORMAT")
+        pr=github(f"https://api.github.com/repos/{REPO}/pulls/{prior}",token)
+        if pr.get("state")!="open" or pr.get("base",{}).get("ref")!="main" or pr.get("head",{}).get("repo",{}).get("full_name")!=REPO:
+            raise ValueError("PR_REFERENCE_AUTHORITY")
+        linked=pr["head"]["ref"]
+        blob=github(f"https://api.github.com/repos/{REPO}/contents/{path}?ref={linked}",token)
+        if sha(base64.b64decode(blob["content"]))!=desired:raise ValueError("PR_REFERENCE_SOURCE_DIGEST")
+        return pr["html_url"]
+    branch="enguru/controller-"+task["id"].lower().replace("_","-")+"-"+task["expected_sha256"][:10]+"-"+desired[:10]
+    original=github(f"https://api.github.com/repos/{REPO}/contents/{path}?ref=main",token)
+    if sha(base64.b64decode(original["content"]))!=task["expected_sha256"]:
+        raise ValueError("REPAIR_REMOTE_SOURCE_DRIFT")
+    try:
+        current=github(f"https://api.github.com/repos/{REPO}/contents/{path}?ref={branch}",token)
+    except HTTPError as error:
+        if error.code!=404:raise
+        github(f"https://api.github.com/repos/{REPO}/git/refs",token,{"ref":"refs/heads/"+branch,"sha":commit})
+        current=github(f"https://api.github.com/repos/{REPO}/contents/{path}?ref={branch}",token)
+    digest=sha(base64.b64decode(current["content"]))
+    if digest==task["expected_sha256"]:
+        github(f"https://api.github.com/repos/{REPO}/contents/{path}",token,{
+            "message":"ENGURU governed bounded fix "+task["id"],"branch":branch,
+            "sha":current["sha"],"content":result["engineering"]["evidence"]["candidate_base64"]},method="PUT")
+    elif digest!=desired:
+        raise ValueError("REPAIR_BRANCH_SOURCE_CONFLICT")
+    try:
+        pr=github(f"https://api.github.com/repos/{REPO}/pulls",token,{
+            "title":"ENGURU guarded fix: "+task["id"],"head":branch,"base":"main","draft":True,
+            "body":"Verified bounded change. Final merge and DoneCheck remain owner-controlled."})
+        return pr["html_url"]
+    except HTTPError as error:
+        if error.code==403:
+            return "OWNER_PR_CREATION_REQUIRED:"+branch
+        raise
+
 def main():
     p=argparse.ArgumentParser()
     for field in ("root","worklist","gate","output"):p.add_argument("--"+field,required=True)
@@ -197,7 +226,7 @@ def main():
                 name=result["task_id"]
                 status="PASS" if result["state"]=="PASS" else "PR_PENDING" if result["state"]=="PR_PENDING" else "HOLD"
                 marker=MARKER+status+":"+name+":"+result["fingerprint"]+":"+runid+":"+commit
-                body=f"<!-- {marker} -->\nENGURU verified task: {name}\nEngineer: {result['engineering']['state']}; verifier: {result['verification']['state']}; receipt: {result['receipt_sha256']}; Human Threshold: owner."
+                body=f"<!-- {marker} -->\nENGURU verified task: {name}\nEngineer: {result['engineering']['state']}; verifier: {result['verification']['state']}; receipt: {result['receipt_sha256']}; Human Threshold: owner; PR handoff: {result.get('pull_request', 'N/A')}."
                 github(f"https://api.github.com/repos/{REPO}/issues/{ISSUE}/comments",token,{"body":body})
         except (HTTPError,URLError,TimeoutError,ValueError,KeyError,TypeError,OSError) as e:result=hold("GITHUB_EVIDENCE_TRANSPORT_"+type(e).__name__)
     Path(args.output).parent.mkdir(parents=True,exist_ok=True)

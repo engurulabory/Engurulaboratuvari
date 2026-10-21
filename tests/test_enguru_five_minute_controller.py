@@ -164,4 +164,31 @@ class ControllerTests(unittest.TestCase):
     def test_malformed_policy_rejects_retry_and_priority(self):
         self.assertEqual(cycle(Path("."),{"tasks":[t(max_attempts=10)]},G)["reason"],"RETRY_POLICY")
         self.assertEqual(cycle(Path("."),{"tasks":[t(priority="high")]},G)["reason"],"PRIORITY_POLICY")
+
+    def test_existing_owner_pr_recovery_checks_exact_source_and_repo(self):
+        from unittest.mock import patch
+        import base64
+        from enguru_five_minute_controller import prepare_repair_pr,REPO
+        item=t(id="LABORY_REPAIR",action="propose_exact_repair",path="governance/controller/work/fix.txt",
+               expected_sha256=sha256(b"old\n").hexdigest(),desired_sha256=sha256(b"new\n").hexdigest(),
+               replace_from="old",replace_to="new",existing_pr_number=196)
+        result={"fingerprint":"a"*64,"engineering":{"evidence":{"candidate_base64":base64.b64encode(b"new\n").decode()}}}
+        def fake(url,token,body=None,method=None):
+            if "/pulls/196" in url:
+                return {"state":"open","base":{"ref":"main"},"head":{"ref":"enguru/controller-labory-repair","repo":{"full_name":REPO}},"html_url":"https://github.com/engurulabory/Engurulaboratuvari/pull/196"}
+            if "?ref=" in url:return {"content":base64.b64encode(b"new\n").decode()}
+            raise AssertionError("UNEXPECTED_REMOTE_MUTATION")
+        with patch("enguru_five_minute_controller.github",side_effect=fake):
+            self.assertTrue(prepare_repair_pr("token",item,result,"b"*40).endswith("/196"))
+    def test_existing_pr_wrong_scope_holds(self):
+        from unittest.mock import patch
+        import base64
+        from enguru_five_minute_controller import prepare_repair_pr
+        item=t(id="LABORY_REPAIR",action="propose_exact_repair",path="governance/controller/work/fix.txt",
+               expected_sha256=sha256(b"old\n").hexdigest(),desired_sha256=sha256(b"new\n").hexdigest(),
+               replace_from="old",replace_to="new",existing_pr_number=196)
+        result={"fingerprint":"a"*64,"engineering":{"evidence":{"candidate_base64":base64.b64encode(b"new\n").decode()}}}
+        with patch("enguru_five_minute_controller.github",return_value={"state":"open","base":{"ref":"other"},"head":{"repo":{"full_name":"other/repo"}}}):
+            with self.assertRaisesRegex(ValueError,"PR_REFERENCE_AUTHORITY"):
+                prepare_repair_pr("token",item,result,"b"*40)
 if __name__=="__main__":unittest.main()
