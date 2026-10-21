@@ -1,6 +1,6 @@
 # ENGÜRÜ — 100 Birim Uçtan Uca Finiş Sayacı™
 
-**21.10.2026 — doğrulanmış kontrol:** **21/100** · Kalan **79/100** · **Resmî H1–H3:** 0/12 · **F01–F06 kapanış:** 0/6 · **Verified Finish:** HOLD
+**21.10.2026 — doğrulanmış kontrol:** **22/100** · Kalan **78/100** · **Resmî H1–H3:** 0/12 · **F01–F06 kapanış:** 0/6 · **Verified Finish:** HOLD
 
 **Anlamı:** 100 eşit sayımlı kontrol noktası, iş süresi veya nihai ürün tamamlanma yüzdesi tahmini değildir. Her ✓ bağımsız teknik/kanıt/tespit alt kapısının doğrulandığını belirtir; yetkili resmî kabul yalnız kendi kriterlerinde PASS olduğunda ilerler.
 
@@ -16,7 +16,7 @@
 | B04 | H2 · Canonical writer 4/4 | **1/10** | Kısmi teknik PASS |
 | B05 | H3 · GitHub ↔ OSi 4/4 | **1/10** | Kısmi teknik PASS |
 | B06 | F05 · Çalışan Native derleme | **6/10** | Kısmi teknik PASS |
-| B07 | F05 · Canonical kaynak ve ikon | **2/10** | Kabul/kanıt bekliyor |
+| B07 | F05 · Canonical kaynak ve ikon | **3/10** | Kabul/kanıt bekliyor |
 | B08 | Native · İmza, kurulum, çalışma | **0/10** | Kabul/kanıt bekliyor |
 | B09 | Uçtan uca · Evidence ve kabul | **0/10** | Kabul/kanıt bekliyor |
 | B10 | Verified Finish · Bitiş | **0/10** | Kabul/kanıt bekliyor |
@@ -101,10 +101,10 @@
 - □ **B06-09** — Aktif Native Info.plist ve sürüm mutabakatı tamamlandı
 - □ **B06-10** — Yetkili kaynak kabulünden sonra aynı stage regresyonu PASS
 
-### B07 — F05 · Canonical kaynak ve ikon · 2/10
+### B07 — F05 · Canonical kaynak ve ikon · 3/10
 
 - ✓ **B07-01** — Yerel Git içindeki PR #14 stage blob erişim nedeni doğrulandı — *Kanıt: V17 yerel Git kaynak teşhisi PASS; B07-02 ancestry ayrı HOLD*
-- □ **B07-02** — Yerel HEAD, origin/main ve PR #14 ancestry tam karşılaştırıldı
+- ✓ **B07-02** — Yerel HEAD, origin/main ve PR #14 ancestry tam karşılaştırıldı — *Kanıt: V19 gerçek Mac izole Git ancestry PASS; rapor SHA-256 60a5491952f54555f556baf569f93c91e0efec98d24f8a6a56bfad196cef0159*
 - ✓ **B07-03** — Korunan dirty değişiklikler için uyuşma planı oluşturuldu — *Kanıt: V17 dirty-path planı ve GIT_WORKTREE_PRESERVATION=PASS*
 - □ **B07-04** — Yetkili ürün owner kaynak inceleme kararı verdi
 - □ **B07-05** — Stage kalıcı canonical kaynak sürümüne uygun şekilde alındı
@@ -170,7 +170,15 @@ F01 ana iş, F05 bağımsız destek. Sıradaki somut eylem: F01 owner/reviewer k
 ## V17 kısa ilerleme kaydı — 21.10.2026
 
 - **Sayaç:** 18/100 → **21/100** (+3): ✓ `B01-07`, ✓ `B07-01`, ✓ `B07-03`.
-- **Açık kalan:** `B07-02=HOLD_MISSING_LOCAL_PR_COMMIT_OR_ORIGIN`. V18 hedefi yalnız bu ancestry mutabakatının kanıtlı kapanışıyla 22/100.
+- **V17/V18 tarihsel not:** O tarihte `B07-02=HOLD_MISSING_LOCAL_PR_COMMIT_OR_ORIGIN` idi. V19 gerçek Mac kanıtıyla bu tekil kontrol Yönetim tarafından PASS kabul edildi.
 - **Ana iş:** F01 12 kriterin yetkili owner/reviewer kararını ve Mac–DoneCheck acceptance binding'ini tamamlamak.
 - **Teknik kaynak:** `ENGURU_ENGINEER_V17_F01_F05_20261021T134648317060Z.json`; SHA-256 `e71df29b6d2ebee8d32061ea029c3b7eb47d228d47514bf8a083282411b9ae93` (İCRA saha beyanı; JSON dosyası bu Yönetim çalışma ağacında bağımsız açılmadı).
 - **Resmî kabul:** 0/12; kapanan engel 0/6; Verified Finish HOLD.
+
+## V19 Yönetim kabulü — 21.10.2026
+
+- **Tekil karar:** `B07-02=PASS_EVIDENCE`, sayaç **21/100 → 22/100** (+1). V18'in adsız +1 bildirimi ayrı tutuldu; aynı kontrol iki kez sayılmadı.
+- **Kaynak:** `ENGURU_V19_F05_FORENSIC_20261021T143701623388Z.json` · SHA-256 `60a5491952f54555f556baf569f93c91e0efec98d24f8a6a56bfad196cef0159` (gerçek dosya bağımsız SHA-256 doğrulandı).
+- **Teknik kanıt:** `git ls-remote` ve izole fetch RC=0; local↔main 185/0, local↔PR14 185/31, PR14 eski→güncel 0/6, ortak merge-base `5432b9b13549`. Orijinal HEAD/iki dirty path korunmuş.
+- **Sıradaki:** F01 yetkili owner/reviewer Human Threshold™ ve Mac–DoneCheck bağının kabulü; F05 PR14 kaynak owner incelemesi, 185 yerel commit/iki dirty path ve ikon provenance mutabakatı.
+- **Resmî sonuç:** H1/H2/H3 0/12, F01–F06 kapanan 0/6, Native HOLD, Verified Finish HOLD. Teknik Git ancestry PASS, canonical source promotion değildir.
