@@ -35,7 +35,7 @@ class ManagementProgressTests(unittest.TestCase):
         record["goals"]["H1"]["passed"] = 1
         result = project(record)
         self.assertEqual(result["officialAccepted"]["percent"], 8.33)
-        self.assertNotEqual(result["terminal"], "BITTI_DUR")
+        self.assertNotEqual(result["terminalProjection"], "READY_FOR_INDEPENDENT_FINAL_ACCEPTANCE")
 
     def test_real_receipt_is_required_for_closed_blocker(self):
         record = base()
