@@ -1,12 +1,12 @@
 {
   "schema": "enguru.100-unit-verified-finish-tracker/v1",
   "date": "2026-10-21",
-  "source_state": "V26 original real Mac field JSON SHA256=a60ed0d02b7d641a5531f7ccad4405465d5408c057a9eb8cfceba487f57c409b; Management original B05-03 (two local origin repo identities) technical acceptance 22→23; B05-04 owner/base receipt HOLD; B10-03 v0.6 lock HOLD; official H1/H2/H3 0/12, F01-F06 0/6, Verified Finish HOLD",
+  "source_state": "V27 verified original Mac JSON SHA256=7823e1fba1b4e67d088ff4ed886afc956ae1ae5b7c74c6ecb377fff16fd426a9; Management verified canonical PR165 v0.6 final lock plus exact preserved Mac executable backup and accepted original B10-03 23→24; B05-04 owner branch/base grant HOLD; H1/H2/H3 0/12, F01–F06 0/6, Native/DoneCheck/Verified Finish HOLD",
   "measurement": "100 binary technical/control checkpoints; each checkpoint counted only with grounded evidence; NOT effort-time estimate and NOT official acceptance",
   "target": "H1 4/4 -> H2 4/4 -> H3 4/4 -> Native OSi -> Verified Finish -> BITTI_DUR",
   "total_units": 100,
-  "verified_units": 23,
-  "remaining_units": 77,
+  "verified_units": 24,
+  "remaining_units": 76,
   "official_h1_h2_h3": {
     "passed": 0,
     "total": 12
@@ -667,8 +667,8 @@
       "id": "B10-03",
       "block": "10",
       "name": "Tarihsel v0.6 kilitli ürün provenance korundu",
-      "state": "HOLD",
-      "evidence": null
+      "state": "PASS_EVIDENCE",
+      "evidence": "V27 real Mac SHA256 7823e1fba1b4e67d088ff4ed886afc956ae1ae5b7c74c6ecb377fff16fd426a9; v0.6 official PR165 merge 777904a957dfd475713dfd5de7b499c88247f4de, roadmap/session canonical lock blobs 9b62c0e4a8b85cf5764ef7bdfd98c783043f2860 / 221163508963881434bd1d491468c12544642618; preserved Mac backup v0.6 executable SHA 168d9560148bb61e20b05aa7abea2a0546f7b23568551e8724997fd2e2c5c784 matches historical canonical nativeExecutableSha256; Management ENGURU_V27_B10_03_HISTORICAL_LOCK_TEKNIK_KABULU_V1.md; technical historical provenance scope only."
     },
     {
       "id": "B10-04",
