@@ -1,0 +1,64 @@
+{
+  "schema": "enguru.management.handoff/v1",
+  "source": {
+    "report": "ENGURU_DORT_HEDEF_V13_F01_F05_20261021T112710918324Z.json",
+    "sha256": "d4512aa7b57e3fe1195a0d5c4ac967883057c2d25f7b5574d158600d08a860c4"
+  },
+  "goals": {
+    "H1": {
+      "passed": 0,
+      "total": 4
+    },
+    "H2": {
+      "passed": 0,
+      "total": 4
+    },
+    "H3": {
+      "passed": 0,
+      "total": 4
+    },
+    "native": "HOLD",
+    "verifiedFinish": "HOLD"
+  },
+  "blockers": [
+    {
+      "id": "F01",
+      "status": "HOLD_AUTHORITY"
+    },
+    {
+      "id": "F02",
+      "status": "HOLD_AUTHORITY"
+    },
+    {
+      "id": "F03",
+      "status": "HOLD_AUTHORITY"
+    },
+    {
+      "id": "F04",
+      "status": "HOLD_EVIDENCE"
+    },
+    {
+      "id": "F05",
+      "status": "HOLD_EVIDENCE"
+    },
+    {
+      "id": "F06",
+      "status": "BLOCKED"
+    }
+  ],
+  "scope": {
+    "nativeProduct": "ENGURU_MAC_ENGINEER",
+    "nextProduct": "PILIVE",
+    "isolatedBuild": "PASS",
+    "compilerRC": 0,
+    "buildBinarySha256": "6cd91aa5163418165a0b9746dfe27613d6bce4e78e85322f78606bcf6c847c08",
+    "sourceBuildIntegration": "HOLD",
+    "icon": "HOLD",
+    "nativeField": "HOLD",
+    "criteriaApproved": 0,
+    "criteriaProposed": 12,
+    "criteriaStatus": "UNAPPROVED_ENGINEERING_PROPOSAL",
+    "humanDecisionStatus": "READY_FOR_AUTHORIZED_REVIEW",
+    "decisionSha256": "3ec5a01b3939b27d82cc60efc83edd944959a4b158fd8e5ff81faf1ed49cac1b"
+  }
+}
