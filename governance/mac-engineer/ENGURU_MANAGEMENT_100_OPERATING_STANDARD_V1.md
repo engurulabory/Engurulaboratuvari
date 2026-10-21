@@ -113,3 +113,20 @@ python3 -B tools/enguru_management_progress_v1.py --input governance/mac-enginee
 ```
 
 **Yönetim aktif kararı:** F01 yetkili kriter/owner mutabakatı (tek ana iş), F05 gerçek Swift `RC=1` onarımı ve izole build (tek bağımsız destek). F02–F04 ve F06 finiş haritasında görünür ve mevcut resmî sıralarıyla kapanır. Sonraki İCRA emri uygulaması ayrıca mühendis oturumuna devredilir.
+
+
+## 9. V13 saha kazanımı ve Yönetim kabul ayrımı
+
+**Kaynak bildirimi:** `ENGURU_DORT_HEDEF_V13_F01_F05_20261021T112710918324Z.json`, SHA-256 `d4512aa7b57e3fe1195a0d5c4ac967883057c2d25f7b5574d158600d08a860c4`. Bu GitHub fixture bir projeksiyondur; gerçek yerel receipt'i bağımsız doğrulamadan resmî kanıt veya izin statüsü üretmez.
+
+**F05 gerçek kazanım:** Yerel Swift standart kütüphane yükleme problemi `arm64-apple-macosx26.0` için A/B tekrar üretim yapıldı. Sınırlı gerçek neden, Swift derlemede macOS SDK'nın `-sdk` ile açık bağlanmasıdır. `RC=0` ve `PASS_ISOLATED_SWIFT_APP` gözlendi. Binary SHA-256: `6cd91aa5163418165a0b9746dfe27613d6bce4e78e85322f78606bcf6c847c08`. Üçlü kaynak ve build receipt PASS; **canonical build komutuna kalıcı kaynak değişikliği, ikon Git provenance, gerçek imza, kurulum, smoke ve Native kabul HOLD**.
+
+**F01 karar eşiği:** 12 kriterin SHA bağlı onay-hazır taslağı V13 `ENGURU_V13_F01_HUMAN_THRESHOLD_DECISION_20261021T112700085955Z.md` içinde bildirildi. SHA-256: `3ec5a01b3939b27d82cc60efc83edd944959a4b158fd8e5ff81faf1ed49cac1b`. **Onaylı kriter 0/12**, yetkili kabul sahibi/belge doğrulaması HOLD. Önce mevcut yetkili kanonik kaynak ve gerçek reviewer kimliği aranır; doğrulanmış boşlukta yalnız dar `ENGURU_MAC_ENGINEER_H1_H2_H3_OFFICIAL_4X4_ONLY` kapsamında insanın inceleyebileceği karar kullanılır. GitHub yazma ve PR CI bu kararın yerini tutmaz.
+
+**Yönetim kararı:** 1 ana F01 (yetkili kriter sahibi ve Progress Core/DoneCheck runtime kabul bağı), 1 bağımsız F05 (kanıtlı `-sdk` farkını mevcut yetkili build tarifine kalıcı bağlama, ikon provenance ve imzalı saha hazırlığı). F02/F03/F04/F06 korunmuş sıralı kapanış haritasıdır. Teknik onarım kapanışı ile bütünsel F05 kapanışı ayrı takip edilir.
+
+```bash
+python3 -B tools/enguru_management_progress_v1.py --input governance/mac-engineer/examples/ENGURU_MANAGEMENT_V13_PROJECTION_INPUT.json
+```
+
+**Resmî sayaç:** H1/H2/H3 = 0/12; F01–F06 kapalı = 0/6; Native = HOLD; Verified Finish = HOLD. Tasarım 100/100, gerçek çalışan mühendislik becerisi ve sahadaki kabul puanları ayrı ölçülür.
