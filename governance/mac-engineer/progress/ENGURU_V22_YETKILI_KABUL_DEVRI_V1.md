@@ -33,3 +33,10 @@ V22'de yeni 100 kontrol PASS **0**. `B02-05/06/07/08`, `B06-07/08/09`, `B07-07` 
 **Öncelik:** Gerçek yetkili F01 insan kararı; F05 review patch'in yetkili source review'a erişimi ve canlı Native regresyon planı. Bu kararlar verildiğinde mühendis, güvenli bütün bağımlılıkları aynı turda tamamlar. İnsan veya source review sonuçlanıncaya kadar aynı izole build/teşhis turu tekrarından yeni kabul puanı türetilemez.
 
 **Sonraki kesin kapı:** `HOLD_AUTHORIZED_OWNER_REVIEWER_DECISION_AND_NATIVE_SOURCE_REVIEW`. GitHub PR üzerinde inceleme isteği, yetkili Human Threshold™ kabul receipt'i yerine geçmez.
+
+
+## Gerçek review yönlendirmesi — GitHub PR konuşma kayıtları
+
+- **F01 karar sevki:** [PR #191 yorum #6321359639](https://github.com/engurulabory/Engurulaboratuvari/pull/191#issuecomment-6321359639) — A/B canonical owner/reviewer yetki ve receipt talebi açık.
+- **F05 owner source review sevki:** [PR #14 yorum #6321360515](https://github.com/engurulabory/enguru-mac-engineer/pull/14#issuecomment-6321360515) — Native 0.8 korumalı patch dosyasının SHA doğrulanmış tam baytlarının owner incelemesine alınması istendi.
+- **Yetki sınırı:** Bu PR'larda kaynak konusu kayda alınmıştır; belirli bir yetkili owner/reviewer kişi ve onayı henüz kanıtlanmış değildir. Yorum, gerçek source review, PR merge veya HumanReview receipt anlamına gelmez.
