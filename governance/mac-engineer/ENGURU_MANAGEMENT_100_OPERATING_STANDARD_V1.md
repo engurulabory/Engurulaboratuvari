@@ -155,3 +155,15 @@ python3 -B tools/enguru_management_progress_v1.py --input governance/mac-enginee
 **Süreklilik:** Mevcut V18 İCRA raporu tamamlanınca yeni mühendislik oturumu `engurulabory/enguru-mac-engineer` PR #14 üzerindeki `docs/ENGURU_ENGINEER_V19_SESSION_BOOT.md` ile başlatılır. Başlangıçta son Mac AudiV13 saha raporu SHA ve bu depodaki `governance/mac-engineer/progress/ENGURU_100_BIRIM_FINIS_SAYACI_V1.json` mutabıklaştırılır. GitHub kaynak adayları ve yerel canonical Mac kabulleri ayrı tutulur.
 
 **Yanıt şekli:** 6 satır: STATE; 100 sayaç; yeni ✓; F01; F05; resmî kabul + rapor SHA + sonraki karar.
+
+## 12. Kopyala-yapıştır teslim standardı ve V20 mühendislik hizası
+
+**Kaynak:** [Engineer PR #14](https://github.com/engurulabory/enguru-mac-engineer/pull/14), `runtime/governance.py` → `ENGINEER_DELIVERY_100`, `PASTE_READY_TERMINAL`, `PACKAGE_DELIVERY_BOUNDARY`. Bu standart mevcut Engineer 100/100 tasarımına eklenen teslim disiplinidir; gerçek Mac saha kapasitesi ve resmî kabul gerçek kanıtla ayrıca izlenir.
+
+**Yönetimin beklediği sade mühendislik yanıtı:** `STATE`; 100 birim önce→sonra; tekil yeni ✓; `F01`; `F05`; `RESMÎ + RAPOR_SHA256 + SONRAKİ` — toplam altı satır.
+
+**Teslim paketi gerektiğinde:** **A ZIP İNDİR** gerçek ve SHA-256'sı doğrulanmış dosya bağlantısı; **B MAC TERMİNAL KOPYALA-YAPIŞTIR** tek tamamlanmış `zsh` kod bloğu (exact indirilen dosya adı, tırnaklı yollar, dosya/symlink/SHA kontrolü, AudiV13 arşiv); **C BEKLENEN SONUÇ** kısa PASS/HOLD. ZIP ihtiyacı olmayan salt-okuma turunda sade rapor yeterli. Blok içindeki talimat ve kod birbirinden açıkça ayrılır.
+
+**Kapsam:** Tek F01 + tek bağımsız F05; bir turda erişilebilir bütün kanıtlı bağımlılıklar. %10–20 kontrol artışı çalışma hedefidir, zorunlu bitiş kotası değildir. Human Threshold™, canonical kaynak koruması, resmî DoneCheck kabulü ve tarihsel v0.6 kilidi sabit kalır.
+
+**Yönetim kararı:** GitHub test PASS, ürün/OSi final kabul PASS iddiası üretmez. Yeni mühendislik sohbeti başta GitHub son PR14 kaydını ve V19/V20 oturum devir kaydını okur.
