@@ -96,7 +96,7 @@ def project(handoff: dict) -> dict:
         "nextWork": {"primary": primary, "independentSupport": support},
         "native": goals["native"],
         "verifiedFinish": goals["verifiedFinish"],
-        "terminal": "BITTI_DUR" if done else "HOLD_PENDING_AUTHORIZED_ACCEPTANCE",
+        "terminalProjection": "READY_FOR_INDEPENDENT_FINAL_ACCEPTANCE" if done else "HOLD_PENDING_AUTHORIZED_ACCEPTANCE",
         "note": "Numbers project supplied handoff; verify authority, source, signature and OSi independently.",
     }
 
