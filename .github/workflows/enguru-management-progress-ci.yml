@@ -1,0 +1,54 @@
+name: ENGURU Management Progress Verification
+
+on:
+  pull_request:
+    paths:
+      - "governance/mac-engineer/ENGURU_MANAGEMENT_100_OPERATING_STANDARD_V1.md"
+      - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V9_PROJECTION_INPUT.json"
+      - "tools/enguru_management_progress_v1.py"
+      - "tests/test_enguru_management_progress_v1.py"
+      - ".github/workflows/enguru-management-progress-ci.yml"
+  push:
+    branches: [main]
+    paths:
+      - "governance/mac-engineer/ENGURU_MANAGEMENT_100_OPERATING_STANDARD_V1.md"
+      - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V9_PROJECTION_INPUT.json"
+      - "tools/enguru_management_progress_v1.py"
+      - "tests/test_enguru_management_progress_v1.py"
+      - ".github/workflows/enguru-management-progress-ci.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  verify-management-projection:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Regression and fail-closed tests
+        run: python3 -m unittest discover -s tests -p "test_enguru_management_progress_v1.py" -v
+      - name: V9 handoff CLI integration and invariants
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B tools/enguru_management_progress_v1.py \
+            --input governance/mac-engineer/examples/ENGURU_MANAGEMENT_V9_PROJECTION_INPUT.json \
+            > /tmp/enguru-management-v9-projection.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          result = json.loads(Path("/tmp/enguru-management-v9-projection.json").read_text())
+          assert result["state"] == "PROJECTION_ONLY_NOT_AUTHORITY"
+          assert result["officialAccepted"]["sum"] == 0
+          assert result["officialAccepted"]["percent"] == 0
+          assert result["blockers"]["closed"] == 0
+          assert result["blockers"]["closedPercent"] == 0
+          assert result["nextWork"]["primary"] == "F01"
+          assert result["nextWork"]["independentSupport"] == "F05_SCOPE_AND_SOURCE_PREPARATION"
+          assert result["terminalProjection"] == "HOLD_PENDING_AUTHORIZED_ACCEPTANCE"
+          assert result["canonicalOrOsiWrites"] == 0
+          print("STATE=PASS_READ_ONLY_V9_PROJECTION")
+          PY
