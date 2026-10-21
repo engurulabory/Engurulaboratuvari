@@ -78,4 +78,3 @@ jobs:
           assert result["terminalProjection"] == "HOLD_PENDING_AUTHORIZED_ACCEPTANCE"
           print("STATE=PASS_V10_SCOPE_AND_ZERO_ACCEPTANCE_PROJECTION")
           PY
-          PY
