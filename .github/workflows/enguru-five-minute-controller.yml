@@ -1,0 +1,45 @@
+name: ENGURU Five Minute Controller
+on:
+  pull_request:
+    paths: ['tools/enguru_five_minute_controller.py', 'tests/test_enguru_five_minute_controller.py', 'governance/controller/**', '.github/workflows/enguru-five-minute-controller.yml']
+  workflow_dispatch:
+    inputs:
+      pilot:
+        description: Read-only pilot, explicit manual invocation
+        type: boolean
+        default: false
+  schedule:
+    - cron: '*/5 * * * *'
+permissions:
+  contents: read
+concurrency:
+  group: enguru-five-minute-controller
+  cancel-in-progress: false
+jobs:
+  evaluate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Governance and engineer regression tests
+        run: python3 -m unittest discover -s tests -p 'test_enguru_five_minute_controller.py' -v
+      - name: One source-authorized task
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          pilot=''
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ inputs.pilot }}" == "true" ]]; then pilot='--pilot'; fi
+          python3 tools/enguru_five_minute_controller.py --root . --worklist governance/controller/TASKS.json --gate governance/controller/ACTIVATION.json --output evidence/controller/cycle.json $pilot
+      - name: Upload receipt
+        if: always() && github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: enguru-controller-cycle
+          path: evidence/controller/cycle.json
+          if-no-files-found: warn
