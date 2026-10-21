@@ -77,6 +77,21 @@ class ManagementProgressTests(unittest.TestCase):
         with self.assertRaises(HandoffError):
             project(record)
 
+    def test_v10_native_identity_is_preserved_without_claiming_acceptance(self):
+        import json
+        from pathlib import Path
+        fixture = Path(__file__).resolve().parents[1] / "governance" / "mac-engineer" / "examples" / "ENGURU_MANAGEMENT_V10_PROJECTION_INPUT.json"
+        report = json.loads(fixture.read_text(encoding="utf-8"))
+        self.assertEqual(report["scope"]["activeProduct"], "ENGURU_MAC_ENGINEER")
+        self.assertEqual(report["scope"]["nativeProductIdentity"], "PASS_TWO_CANONICAL_CONTRACTS")
+        self.assertEqual(report["scope"]["nextProduct"], "PLIVE")
+        self.assertFalse(report["scope"]["buildExecuted"])
+        view = project(report)
+        self.assertEqual(view["officialAccepted"]["sum"], 0)
+        self.assertEqual(view["blockers"]["closed"], 0)
+        self.assertEqual(view["nextWork"], {"primary": "F01", "independentSupport": "F05_SCOPE_AND_SOURCE_PREPARATION"})
+        self.assertEqual(view["terminalProjection"], "HOLD_PENDING_AUTHORIZED_ACCEPTANCE")
+
     def test_full_chain_still_projection_not_authority(self):
         record = base()
         for goal in ("H1", "H2", "H3"):
