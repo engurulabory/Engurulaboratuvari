@@ -145,3 +145,13 @@ python3 -B tools/enguru_management_progress_v1.py --input governance/mac-enginee
 **F01:** Mevcut yetki karar kaydı `APPROVED_FOR_AUTHORIZED_REVIEW_ONLY`; onaylı kriter `0/12`, Mac DoneCheck binding HOLD. Yetkili kaynak/sahip incelemesi ana kapanış. **F05** tek bağımsız destek olarak kalıcı yerel source adaptation + regresyon ve receipt. H1/H2/H3 resmî sayaç `0/12`, tam F01–F06 kapanış `0/6`, Verified Finish HOLD.
 
 **Tasarım ve saha ayrımı:** Engineer kapasitesi 100/100 ve Yönetim uyumu 100/100 sabit tasarım hedefidir. GitHub CI PASS mühendislik ilerlemesidir; İCRA saha kabiliyeti ve çalışan ürünün yetkili bitişi kendi mevcut gözlem ve doğrulamasında ölçülür.
+
+## 11. Bütünleşik tek-tur yürütme ve V19 oturum devri
+
+**Bağlayıcı İCRA yeteneği:** Bir ana F01 + bir bağımsız F05 kapsamında, tek emirle bütün yapılabilir alt bağımlılıklar kaynak → güvenli fark → yürütme → regresyon → Evidence olarak topluca tamamlanır. İlk teknik PASS sonrasında kapsamın kalan uygun işleri sürer; kesin insan/yetki/kanıt eşiğinde `GÜVENLİ_DUR` ve tek karar hazırlanır. Yeni core, paralel yönetim veya ilave Süzgeç™ aşaması oluşmaz.
+
+**Kapasite:** +10 kanıtlı kontrol çalışma hedefi, +20 uygun durumlarda genişleme; bir sınır veya başarı ilanı değil. 100 maddelik GitHub ilerleme listesi sabittir; yalnız gerçek ✓ üretir. H1/H2/H3 ve Verified Finish yalnız gerçek yetkili kayıtla yükselir.
+
+**Süreklilik:** Mevcut V18 İCRA raporu tamamlanınca yeni mühendislik oturumu `engurulabory/enguru-mac-engineer` PR #14 üzerindeki `docs/ENGURU_ENGINEER_V19_SESSION_BOOT.md` ile başlatılır. Başlangıçta son Mac AudiV13 saha raporu SHA ve bu depodaki `governance/mac-engineer/progress/ENGURU_100_BIRIM_FINIS_SAYACI_V1.json` mutabıklaştırılır. GitHub kaynak adayları ve yerel canonical Mac kabulleri ayrı tutulur.
+
+**Yanıt şekli:** 6 satır: STATE; 100 sayaç; yeni ✓; F01; F05; resmî kabul + rapor SHA + sonraki karar.
