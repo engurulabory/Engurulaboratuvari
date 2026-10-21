@@ -2,6 +2,17 @@
 
 **V20 kaynak doğrulaması:** Gerçek Mac raporu `ENGURU_V20_F01_F05_FIELD_20261021T151555209916Z.json` SHA-256 `1a99a53669ce831e9431790b11983eade4206cbb8c7a3bf1263bebc07edf9f3a`, bağımsız dosya baytları üzerinden PASS. `EXIT_CODE=0`, izole Git/7 karşıt test PASS. **Tekil yeni kontrol PASS=0; Yönetim sayacı 22/100.** Resmî 0/12, tam engel kapanışı 0/6.
 
+## V20 → V21 düzeltici Yönetim hükmü
+
+**Gözlem:** V20 7/7 karşıt test, gerçek Mac ve izole Git PASS üretti; fakat kabul edilmiş yeni 100-kontrol ID'si **0**. Bu, tekrar teşhisini bitirip somut kapanış üretmeye yönelme ihtiyacını gösterir. `+10` performans hedefi, owner/reviewer Human Threshold ve canonical kaynak kabulünün yerine geçmez.
+
+**V21 somut teslim kapısı:**
+1. **F05 tamamlanabilir mühendislik farkı:** Mevcut V16 patch + PR #14 Native dört dosya farkı + aktif 0.8/PR 0.6 sürüm ve ikon kaynak kapsamını **izole geçici kaynakta** birleştirilebilir inceleme adayı olarak hazırla. Gerçek patch/diff, exact input-output SHA, 2 dirty yol/185 commit preservation ve kapsamlı regresyon receipt ile sun. Canonical yazım, sürüm ilanı, ikon lisansı ve imza yalnız yetkili owner kararından sonra.
+2. **F01 tek gerçek karar:** Var olan V13 A/B yetki yolunu, mevcut owner/reviewer ve Ed25519 authorization kaynakları üzerinden kesinleştir. Bulunan yetkili kaynağı test/adapter bağına bağla; gerçek yetki boşluğu kalırsa sahibine sunulacak **tek karar dosyası** hazırla: A/B, owner-source/path, reviewer key authorization, CRITERIA_SET_SHA ve kalan gerekli receipt alanları. Yetkili insan onayı yalnız onay sahibinden gelir.
+3. **Yürütme bitiş eşiği:** Yapılabilir güvenli onarım/entegrasyon/simülasyon zinciri tamamlanınca ölçülen 100-kontrol ID'lerini kanıtıyla sun. İnsan kararı tek engelse `GÜVENLİ_DUR` + tam karar paketi; aynı SHA/aynı testlerle tekrar keşif yeni İCRA turunun hedefi değildir. Bir sonraki emir somut yetki/owner yanıtı veya yeni kanıt getirmeli.
+
+**Performans ölçütü:** Kapanan doğrulanmış kontrol sayısı; somut hazır kaynak farkı ve tek karara indirgenmiş yetki ihtiyacı. Gözlem ve tekrar test, kabul kriterini karşılamadıkça ek ✓ üretmez.
+
 **Kalıcı sabit hedef:** H1 4/4 → H2 4/4 → H3 4/4 → Native OSi → Verified Finish → `BITTI_DUR`.
 
 **Ana iş F01 — gerçek otorite kararı:** Mevcut V13 Human Threshold™ 12-kriter önerisini ve canonical DoneCheck Authority Model yerel blob `a37c2fbb...` ↔ origin/main `a3fa94c6...` farkını, exact kaynak/commit/blob ve satır bazında incele. Farkın gerçek yetki/kapsam sonucunu belirle. Yetkili owner/reviewer kaynağı ve Ed25519 reviewer key yetkilendirmesi bulunursa 12 kriter SHA, Mac → Progress Core™ → Mandatory DoneCheck JSON → `verifyTask` yolundaki yapılabilir yetkili testleri tamamla. Yetki boşluğu kanıtlanırsa mevcut V13 dar kapsamlı kararı **tek Human Threshold™ incelemesine** yetki sahibi ve eksik alanlarıyla sun. Hakiki imza/attestation/receipt öncesi resmî 0/12 korunur.
