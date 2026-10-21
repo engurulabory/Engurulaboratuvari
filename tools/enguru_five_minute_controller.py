@@ -13,7 +13,7 @@ def sha(data): return hashlib.sha256(data).hexdigest()
 def canonical(value):return json.dumps(value,sort_keys=True,ensure_ascii=False,separators=(",",":"))
 def hold(reason):return {"state":"HOLD_GUVENLI_DUR","reason":reason}
 def key(task,root=None,commit=None):
-    values={k:task.get(k) for k in ("id","action","path","expected_sha256","dependencies","target_repo","acceptance_version")}
+    values={k:task.get(k) for k in ("id","action","path","expected_sha256","desired_sha256","replace_from","replace_to","dependencies","target_repo","acceptance_version")}
     if root is not None:
         file=safe_file(root,task.get("path"))
         values["observed_source_sha256"]=sha(file.read_bytes()) if file else "MISSING"

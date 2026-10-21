@@ -55,4 +55,39 @@ class ControllerTests(unittest.TestCase):
             root=Path(d);(root/"source.txt").write_bytes(b"PASS")
             r=cycle(root,{"tasks":[t()]},G,commit="a"*40)
             self.assertEqual(r["official_verified_finish"],"HOLD_DONECHECK_HUMAN_GATE")
+
+    def test_repair_candidate_second_verification_and_owner_gate(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);sub=root/"governance/controller/work";sub.mkdir(parents=True)
+            (sub/"fix.txt").write_bytes(b"old\n")
+            item=t(id="LABORY_REPAIR",action="propose_exact_repair",path="governance/controller/work/fix.txt",
+                   expected_sha256=sha256(b"old\n").hexdigest(),desired_sha256=sha256(b"new\n").hexdigest(),
+                   replace_from="old",replace_to="new")
+            result=cycle(root,{"tasks":[item]},G,commit="a"*40)
+            self.assertEqual(result["state"],"PR_PENDING")
+            self.assertEqual(result["verification"]["proof"],"REPAIR_INDEPENDENT_RECOMPUTE")
+            self.assertFalse(result["authorized_merge"])
+            self.assertEqual((sub/"fix.txt").read_bytes(),b"old\n")
+            (sub/"fix.txt").write_bytes(b"new\n")
+            self.assertEqual(cycle(root,{"tasks":[item]},G,commit="a"*40)["state"],"PASS")
+    def test_repair_wrong_digest_holds(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);sub=root/"governance/controller/work";sub.mkdir(parents=True)
+            (sub/"fix.txt").write_bytes(b"old\n")
+            item=t(id="LABORY_REPAIR",action="propose_exact_repair",path="governance/controller/work/fix.txt",
+                   expected_sha256=sha256(b"old\n").hexdigest(),desired_sha256="0"*64,
+                   replace_from="old",replace_to="new")
+            self.assertEqual(cycle(root,{"tasks":[item]},G)["state"],"HOLD_GUVENLI_DUR")
+    def test_repair_scope_is_explicit(self):
+        self.assertEqual(cycle(Path("."),{"tasks":[t(action="propose_exact_repair")]},G)["reason"],"REPAIR_PATH_GRANT")
+    def test_pending_blocks_repeat_without_unlocking_dependencies(self):
+        item=t()
+        root=Path(".")
+        self.assertEqual(select({"tasks":[item]},set(),{item["id"]})[1],"NO_READY_TASK")
+        child=t(id="LABORY_SECOND",dependencies=[item["id"]])
+        self.assertEqual(select({"tasks":[item,child]},set(),{item["id"]})[1],"NO_READY_TASK")
+    def test_repair_contract_alters_fingerprint(self):
+        item=t(id="LABORY_REPAIR",action="propose_exact_repair",path="governance/controller/work/fix.txt",
+               expected_sha256="1"*64,desired_sha256="2"*64,replace_from="old",replace_to="new")
+        self.assertNotEqual(key(item),key({**item,"replace_to":"different"}))
 if __name__=="__main__":unittest.main()
