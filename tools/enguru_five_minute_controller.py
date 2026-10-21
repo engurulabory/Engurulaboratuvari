@@ -103,8 +103,9 @@ def receipts(token,root,tasks,commit):
             try:
                 payload=c["body"].split(MARKER,1)[1].split("-->",1)[0].strip()
                 fields=payload.split(":")
-                if len(fields)!=4:continue
-                status,taskkey,runid,source=fields
+                if len(fields)!=5:continue
+                status,taskid,fingerprint,runid,source=fields
+                taskkey=taskid+":"+fingerprint
                 if taskkey not in known or source!=commit or not runid.isdigit():continue
                 if runid not in run_cache:
                     run_cache[runid]=github(f"https://api.github.com/repos/{REPO}/actions/runs/{runid}",token)
