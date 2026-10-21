@@ -73,6 +73,8 @@ Normalized girdi: `enguru.management.handoff/v1`; örnek ve testler `tests/test_
 
 ```bash
 python3 -m unittest tests.test_enguru_management_progress_v1 -v
+python3 -B tools/enguru_management_progress_v1.py --input governance/mac-engineer/examples/ENGURU_MANAGEMENT_V9_PROJECTION_INPUT.json
+# veya yeni rapor incelendikten sonra:
 python3 -B tools/enguru_management_progress_v1.py --input /path/to/reviewed_handoff.json
 ```
 
