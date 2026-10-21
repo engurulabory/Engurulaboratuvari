@@ -130,3 +130,18 @@ python3 -B tools/enguru_management_progress_v1.py --input governance/mac-enginee
 ```
 
 **Resmî sayaç:** H1/H2/H3 = 0/12; F01–F06 kapalı = 0/6; Native = HOLD; Verified Finish = HOLD. Tasarım 100/100, gerçek çalışan mühendislik becerisi ve sahadaki kabul puanları ayrı ölçülür.
+
+
+## 10. Kaynak bütünlüğü ve dayanıklı derleme — Engineer PR #14 kabul kanıtı
+
+**Pozitif ENGÜRÜ çalışma ilkesi:** **Tek kaynak → Uyumlu yürütme → Güvenilir derleme → Karşıt sınama → Doğrulanmış sonuç → Kalıcı teslim.**
+
+**Gerçek GitHub ürün kanıtı:** `engurulabory/enguru-mac-engineer` PR #14, kaynak HEAD `9f3b0fa9f0d5de86d9aa5dbd42e8e40c43ec5e24`; GitHub macOS Product CI [#39598242347](https://github.com/engurulabory/enguru-mac-engineer/actions/runs/39598242347) **SUCCESS**. Toplam **90/90 runtime test**, aynı shared Swift SDK stage'i kullanan gerçek Swift compile, Mach-O, Info.plist ve kaynak/binary SHA-256 receipt eşleşmesi PASS. Güvenlik regresyonları SDK keşfi, kaynak değişimi, derleme hatası, symlink ve mevcut çıktının korunması kapılarını sınar.
+
+**Mühendislik yeteneği:** Kanıtlanmış geçici `-sdk` çözümü, mevcut GitHub ürün kaynak hazırlığında `swift_build_stage.command` üzerinden tek kaynak tarifiyle Native hazırlık ve CI akışına bağlandı. Bu kaynak hazırlığı **İCRA oturumuna otomatik aktarım** veya **yerel Mac v0.8 canonical kabulü** değildir.
+
+**Yerel uygulama kararı:** V14 kaynak `GUVENLI_DUR_UNRECOGNIZED_CANONICAL_PREP_SCRIPT` gözlemi üzerinden aktif yerel HEAD/working tree ve Swift komut yapısı kanıtla okunur. GitHub ürün PR #14 kodunun **yeteneği ve doğrulanmış davranışı**, yerel mevcut `v0.8` kaynak yapısına en küçük uygun farkla adapte edilir. Geçerli `v0.6 VERIFIED_LOCKED` geçmişi korunur. Derleme işlemi geçici alanda gerçekleştirilir; kurulum, imza, üretim sistemi kabulü ve yetkili insan kararları ayrı kapılarda tutulur.
+
+**F01:** Mevcut yetki karar kaydı `APPROVED_FOR_AUTHORIZED_REVIEW_ONLY`; onaylı kriter `0/12`, Mac DoneCheck binding HOLD. Yetkili kaynak/sahip incelemesi ana kapanış. **F05** tek bağımsız destek olarak kalıcı yerel source adaptation + regresyon ve receipt. H1/H2/H3 resmî sayaç `0/12`, tam F01–F06 kapanış `0/6`, Verified Finish HOLD.
+
+**Tasarım ve saha ayrımı:** Engineer kapasitesi 100/100 ve Yönetim uyumu 100/100 sabit tasarım hedefidir. GitHub CI PASS mühendislik ilerlemesidir; İCRA saha kabiliyeti ve çalışan ürünün yetkili bitişi kendi mevcut gözlem ve doğrulamasında ölçülür.
