@@ -1,12 +1,12 @@
 {
   "schema": "enguru.100-unit-verified-finish-tracker/v1",
   "date": "2026-10-21",
-  "source_state": "V15 management handoff + PR14 current HEAD/CI",
+  "source_state": "V16 Engineer handoff: isolated source patch+real Swift compile PASS; local commit-object availability classified; F01 authority and F05 canonical review HOLD",
   "measurement": "100 binary technical/control checkpoints; each checkpoint counted only with grounded evidence; NOT effort-time estimate and NOT official acceptance",
   "target": "H1 4/4 -> H2 4/4 -> H3 4/4 -> Native OSi -> Verified Finish -> BITTI_DUR",
   "total_units": 100,
-  "verified_units": 17,
-  "remaining_units": 83,
+  "verified_units": 18,
+  "remaining_units": 82,
   "official_h1_h2_h3": {
     "passed": 0,
     "total": 12
@@ -72,8 +72,8 @@
       "id": "B01-08",
       "block": "01",
       "name": "PR #14 stage nesnesinin yerel erişim durumu teknik nedeniyle sınıflandı",
-      "state": "HOLD",
-      "evidence": null
+      "state": "PASS_EVIDENCE",
+      "evidence": "V16 gerçek Mac: F05_PR14_LOCAL_COMMIT=HOLD_MISSING_GIT_COMMIT_OBJECT; F05_HEAD_STAGE=HOLD — PR #14 kaynak commit nesnesinin yerel Git'te erişilememesi kesin sınıflandırıldı; canonical kabul ayrı HOLD."
     },
     {
       "id": "B01-09",
