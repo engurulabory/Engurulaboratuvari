@@ -7,6 +7,7 @@ on:
       - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V9_PROJECTION_INPUT.json"
       - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V10_PROJECTION_INPUT.json"
       - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V12_PROJECTION_INPUT.json"
+      - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V13_PROJECTION_INPUT.json"
       - "tools/enguru_management_progress_v1.py"
       - "tests/test_enguru_management_progress_v1.py"
       - ".github/workflows/enguru-management-progress-ci.yml"
@@ -17,6 +18,7 @@ on:
       - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V9_PROJECTION_INPUT.json"
       - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V10_PROJECTION_INPUT.json"
       - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V12_PROJECTION_INPUT.json"
+      - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V13_PROJECTION_INPUT.json"
       - "tools/enguru_management_progress_v1.py"
       - "tests/test_enguru_management_progress_v1.py"
       - ".github/workflows/enguru-management-progress-ci.yml"
@@ -102,4 +104,27 @@ jobs:
           assert result["blockers"]["closed"] == 0
           assert result["terminalProjection"] == "HOLD_PENDING_AUTHORIZED_ACCEPTANCE"
           print("STATE=PASS_V12_SCOPE_AND_HOLD_PROJECTION")
+          PY
+
+      - name: V13 successful SDK compilation still requires official acceptance
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B tools/enguru_management_progress_v1.py \
+            --input governance/mac-engineer/examples/ENGURU_MANAGEMENT_V13_PROJECTION_INPUT.json \
+            > /tmp/enguru-management-v13-projection.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          source = json.loads(Path("governance/mac-engineer/examples/ENGURU_MANAGEMENT_V13_PROJECTION_INPUT.json").read_text())
+          result = json.loads(Path("/tmp/enguru-management-v13-projection.json").read_text())
+          assert source["scope"]["isolatedBuild"] == "PASS"
+          assert source["scope"]["compilerRC"] == 0
+          assert source["scope"]["criteriaApproved"] == 0
+          assert source["scope"]["criteriaProposed"] == 12
+          assert result["state"] == "PROJECTION_ONLY_NOT_AUTHORITY"
+          assert result["officialAccepted"]["sum"] == 0
+          assert result["blockers"]["closed"] == 0
+          assert result["terminalProjection"] == "HOLD_PENDING_AUTHORIZED_ACCEPTANCE"
+          print("STATE=PASS_V13_TECHNICAL_BUILD_AND_OFFICIAL_HOLD")
           PY
