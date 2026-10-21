@@ -1,12 +1,12 @@
 {
   "schema": "enguru.100-unit-verified-finish-tracker/v1",
   "date": "2026-10-21",
-  "source_state": "V17 owner-reported real Mac PASS: B01-07 B07-01 B07-03; B07-02 local PR14 commit/origin ancestry HOLD; source JSON report SHA256=e71df29b6d2ebee8d32061ea029c3b7eb47d228d47514bf8a083282411b9ae93",
+  "source_state": "V19 true Mac source report SHA256=60a5491952f54555f556baf569f93c91e0efec98d24f8a6a56bfad196cef0159; Yönetim B07-02 verified and authorized 21→22 checkpoint only; H1/H2/H3 0/12, F01–F06 0/6 HOLD",
   "measurement": "100 binary technical/control checkpoints; each checkpoint counted only with grounded evidence; NOT effort-time estimate and NOT official acceptance",
   "target": "H1 4/4 -> H2 4/4 -> H3 4/4 -> Native OSi -> Verified Finish -> BITTI_DUR",
   "total_units": 100,
-  "verified_units": 21,
-  "remaining_units": 79,
+  "verified_units": 22,
+  "remaining_units": 78,
   "official_h1_h2_h3": {
     "passed": 0,
     "total": 12
@@ -450,8 +450,8 @@
       "id": "B07-02",
       "block": "07",
       "name": "Yerel HEAD, origin/main ve PR #14 ancestry tam karşılaştırıldı",
-      "state": "HOLD",
-      "evidence": null
+      "state": "PASS_EVIDENCE",
+      "evidence": "V19 gerçek Mac izolasyon raporu ENGURU_V19_F05_FORENSIC_20261021T143701623388Z.json; independently SHA256 verified 60a5491952f54555f556baf569f93c91e0efec98d24f8a6a56bfad196cef0159. Local 26925c21c781 vs main 5432b9b13549 vs PR14 a0cd947a2048; local↔main 185/0, local↔PR14 185/31, V16 PR14↔V19 0/6; merge-base 5432b9b13549; isolated fetch RC=0; source canonical owner review stays HOLD. Yönetim 21→22 approved as unique B07-02; V19 field report count_delta_authorized=0 prior to management update."
     },
     {
       "id": "B07-03",
