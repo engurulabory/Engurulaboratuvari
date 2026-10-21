@@ -104,7 +104,7 @@ class ControllerTests(unittest.TestCase):
         calls=[]
         def fake_github(url,token,body=None,method=None):
             calls.append((url,body,method))
-            if "?ref=main" in url:
+            if "?ref=" in url:
                 return {"content":base64.b64encode(b"old\n").decode(),"sha":"blob-old"}
             if url.endswith("/pulls"):
                 self.assertTrue(body["draft"])
