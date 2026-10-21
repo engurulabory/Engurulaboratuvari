@@ -2,7 +2,7 @@
   "tasks": [
     {
       "id": "LABORY_PILOT_SOURCE",
-      "state": "READY",
+      "state": "PAUSED_AUDITED",
       "priority": 1,
       "target_repo": "engurulabory/Engurulaboratuvari",
       "action": "verify_file_digest",
@@ -12,7 +12,7 @@
     },
     {
       "id": "LABORY_PILOT_TEST",
-      "state": "READY",
+      "state": "PAUSED_AUDITED",
       "priority": 2,
       "target_repo": "engurulabory/Engurulaboratuvari",
       "action": "run_unit_test",
@@ -20,6 +20,21 @@
       "dependencies": [
         "LABORY_PILOT_SOURCE"
       ]
+    },
+    {
+      "id": "LABORY_SAFE_REPAIR",
+      "state": "READY",
+      "priority": 1,
+      "target_repo": "engurulabory/Engurulaboratuvari",
+      "action": "propose_exact_repair",
+      "path": "governance/controller/work/pilot-repair.txt",
+      "expected_sha256": "5de73e4e320bbe62a7508b6bf3bed6c0c5f608a2c3efe14672ded30fc50908e6",
+      "desired_sha256": "a2e1e1722469377f6a5b02628e05ef5241d4b3d16db95d7c92184cccac82f7d1",
+      "replace_from": "PENDING",
+      "replace_to": "VERIFIED",
+      "dependencies": [],
+      "max_attempts": 2,
+      "acceptance_version": "v3.1"
     }
   ]
 }
