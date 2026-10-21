@@ -26,7 +26,7 @@ def safe_file(root,relative):
         return p if p.is_file() else None
     except (OSError,ValueError):return None
 def gate_valid(gate):
-    required={"state":"ENABLED_READONLY","repository":REPO,"max_tasks_per_cycle":1,"max_additional_spend_usd":0,"paid_providers":False,"human_final_authority":"OWNER"}
+    required={"state":"ENABLED_BOUNDED_PR","repository":REPO,"max_tasks_per_cycle":1,"max_additional_spend_usd":0,"paid_providers":False,"human_final_authority":"OWNER"}
     return isinstance(gate,dict) and all(gate.get(k)==v for k,v in required.items())
 def select(worklist,completed,pending=None):
     tasks=worklist.get("tasks") if isinstance(worklist,dict) else None
@@ -104,6 +104,8 @@ def verifier(task,result,root):
     return {"state":"PASS","proof":"SECOND_REGRESSION_EXECUTION"}
 def cycle(root,worklist,gate,completed=None,failed=None,commit=None,pending=None):
     if not gate_valid(gate):return hold("AUTHORITY_OR_ZERO_COST_GATE")
+    if pending:
+        return {"state":"AWAITING_HUMAN","reason":"GOVERNED_PR_REVIEW_PENDING","human_final_authority":"OWNER_RESERVED"}
     task,reason=select(worklist,set(completed or []),set(pending or []))
     if task is not None and (failed or {}).get(task["id"],0)>=task.get("max_attempts",2):
         return hold("RETRY_BUDGET_REQUIRES_MANAGEMENT_REVIEW")
@@ -187,5 +189,5 @@ def main():
     Path(args.output).parent.mkdir(parents=True,exist_ok=True)
     Path(args.output).write_text(json.dumps(result,indent=2,ensure_ascii=False)+"\n")
     print("STATE="+result["state"])
-    return 0 if result["state"] in ("PASS","PASS_IDLE","PR_PENDING") else 50
+    return 0 if result["state"] in ("PASS","PASS_IDLE","PR_PENDING","AWAITING_HUMAN") else 50
 if __name__=="__main__":raise SystemExit(main())

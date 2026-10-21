@@ -3,7 +3,7 @@ from pathlib import Path
 from hashlib import sha256
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"tools"))
 from enguru_five_minute_controller import cycle,select,verifier,key,REPO
-G={"state":"ENABLED_READONLY","repository":REPO,"max_tasks_per_cycle":1,"max_additional_spend_usd":0,"paid_providers":False,"human_final_authority":"OWNER"}
+G={"state":"ENABLED_BOUNDED_PR","repository":REPO,"max_tasks_per_cycle":1,"max_additional_spend_usd":0,"paid_providers":False,"human_final_authority":"OWNER"}
 def t(**kwargs):
     x={"id":"LABORY_PILOT","state":"READY","target_repo":REPO,"action":"verify_file_digest","path":"source.txt","expected_sha256":sha256(b"PASS").hexdigest(),"dependencies":[]}
     x.update(kwargs);return x
@@ -83,11 +83,17 @@ class ControllerTests(unittest.TestCase):
     def test_pending_blocks_repeat_without_unlocking_dependencies(self):
         item=t()
         root=Path(".")
-        self.assertEqual(select({"tasks":[item]},set(),{item["id"]})[1],"NO_READY_TASK")
+        self.assertEqual(select({"tasks":[item]},set(),{item["id"]})[1],"NO_ELIGIBLE_TASK")
         child=t(id="LABORY_SECOND",dependencies=[item["id"]])
         self.assertEqual(select({"tasks":[item,child]},set(),{item["id"]})[1],"NO_READY_TASK")
     def test_repair_contract_alters_fingerprint(self):
         item=t(id="LABORY_REPAIR",action="propose_exact_repair",path="governance/controller/work/fix.txt",
                expected_sha256="1"*64,desired_sha256="2"*64,replace_from="old",replace_to="new")
         self.assertNotEqual(key(item),key({**item,"replace_to":"different"}))
+
+    def test_pending_human_gate_freezes_next_task(self):
+        task=t()
+        result=cycle(Path("."),{"tasks":[task]},G,pending={task["id"]})
+        self.assertEqual(result["state"],"AWAITING_HUMAN")
+        self.assertEqual(result["human_final_authority"],"OWNER_RESERVED")
 if __name__=="__main__":unittest.main()

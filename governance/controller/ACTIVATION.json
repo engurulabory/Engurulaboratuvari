@@ -1,5 +1,5 @@
 {
-  "state": "ENABLED_READONLY",
+  "state": "ENABLED_BOUNDED_PR",
   "repository": "engurulabory/Engurulaboratuvari",
   "max_tasks_per_cycle": 1,
   "max_additional_spend_usd": 0,
