@@ -7,12 +7,18 @@ from urllib.error import HTTPError,URLError
 
 REPO="engurulabory/Engurulaboratuvari"
 ISSUE=192
-MARKER="ENGURU_CONTROLLER_V2:"
+MARKER="ENGURU_CONTROLLER_V3:"
 TEST="tests/test_enguru_five_minute_controller.py"
 def sha(data): return hashlib.sha256(data).hexdigest()
 def canonical(value):return json.dumps(value,sort_keys=True,ensure_ascii=False,separators=(",",":"))
 def hold(reason):return {"state":"HOLD_GUVENLI_DUR","reason":reason}
-def key(task):return sha(canonical({k:task.get(k) for k in ("id","action","path","expected_sha256","dependencies","target_repo")}).encode())
+def key(task,root=None,commit=None):
+    values={k:task.get(k) for k in ("id","action","path","expected_sha256","dependencies","target_repo","acceptance_version")}
+    if root is not None:
+        file=safe_file(root,task.get("path"))
+        values["observed_source_sha256"]=sha(file.read_bytes()) if file else "MISSING"
+    values["source_commit"]=commit or "0"*40
+    return sha(canonical(values).encode())
 def safe_file(root,relative):
     if not isinstance(relative,str) or not relative or Path(relative).is_absolute() or ".." in Path(relative).parts or ".git" in Path(relative).parts:return None
     try:
@@ -69,13 +75,15 @@ def verifier(task,result,root):
     m=re.search(r"Ran (\d+) tests",r.stderr)
     if r.returncode!=0 or not m or "OK" not in r.stderr or m.group(1)!=result["evidence"]["count"]:return hold("VERIFIER_TEST_DIFFERENCE")
     return {"state":"PASS","proof":"SECOND_REGRESSION_EXECUTION"}
-def cycle(root,worklist,gate,completed=None):
+def cycle(root,worklist,gate,completed=None,failed=None,commit=None):
     if not gate_valid(gate):return hold("AUTHORITY_OR_ZERO_COST_GATE")
     task,reason=select(worklist,set(completed or []))
+    if task is not None and (failed or {}).get(task["id"],0)>=task.get("max_attempts",2):
+        return hold("RETRY_BUDGET_REQUIRES_MANAGEMENT_REVIEW")
     if reason=="NO_ELIGIBLE_TASK":return {"state":"PASS_IDLE","tasks_executed":0,"owner_approval":"RESERVED"}
     if reason:return hold(reason)
     e=engineer(task,root);v=verifier(task,e,root)
-    result={"schema":"enguru.controller.v2","state":"PASS" if v["state"]=="PASS" else "HOLD_GUVENLI_DUR","task_id":task["id"],"fingerprint":key(task),"management":"TASK_SELECTED","engineering":e,"verification":v,"tasks_executed":1,"human_final_authority":"OWNER_RESERVED","authorized_merge":False,"additional_spend_usd":0}
+    result={"schema":"enguru.controller.v3","state":"PASS" if v["state"]=="PASS" else "HOLD_GUVENLI_DUR","task_id":task["id"],"fingerprint":key(task,root,commit),"source_commit":commit or "0"*40,"management":"TASK_SELECTED","engineering":e,"verification":v,"tasks_executed":1,"human_final_authority":"OWNER_RESERVED","authorized_merge":False,"additional_spend_usd":0,"official_verified_finish":"HOLD_DONECHECK_HUMAN_GATE"}
     result["receipt_sha256"]=sha(canonical(result).encode())
     return result
 def github(url,token,body=None):
@@ -83,15 +91,31 @@ def github(url,token,body=None):
     h={"Authorization":"Bearer "+token,"Accept":"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"}
     if data is not None:h["Content-Type"]="application/json"
     with urlopen(Request(url,headers=h,data=data,method="POST" if data is not None else "GET"),timeout=12) as f:return json.load(f)
-def receipts(token):
-    out=set()
+def receipts(token,root,tasks,commit):
+    completed=set()
+    failed={}
+    known={t["id"]+":"+key(t,root,commit):t["id"] for t in tasks}
+    run_cache={}
     for page in range(1,6):
         comments=github(f"https://api.github.com/repos/{REPO}/issues/{ISSUE}/comments?per_page=100&page={page}",token)
         for c in comments:
-            if c.get("user",{}).get("login")=="github-actions[bot]" and MARKER in c.get("body",""):
-                out.add(c["body"].split(MARKER,1)[1].split("-->",1)[0].strip())
-        if len(comments)<100:return out
-    raise ValueError("EVIDENCE_PAGINATION_LIMIT")
+            if c.get("user",{}).get("login")!="github-actions[bot]" or MARKER not in c.get("body",""):continue
+            try:
+                payload=c["body"].split(MARKER,1)[1].split("-->",1)[0].strip()
+                fields=payload.split(":")
+                if len(fields)!=4:continue
+                status,taskkey,runid,source=fields
+                if taskkey not in known or source!=commit or not runid.isdigit():continue
+                if runid not in run_cache:
+                    run_cache[runid]=github(f"https://api.github.com/repos/{REPO}/actions/runs/{runid}",token)
+                run=run_cache[runid]
+                if run.get("head_sha")!=commit or run.get("status")!="completed" or run.get("event") not in ("schedule","workflow_dispatch"):continue
+                name=known[taskkey]
+                if status=="PASS" and run.get("conclusion")=="success":completed.add(name)
+                if status=="HOLD" and run.get("conclusion") in ("failure","success"):failed[name]=failed.get(name,0)+1
+            except (ValueError,KeyError,TypeError):continue
+        if len(comments)<100:return completed,failed
+    raise ValueError("HISTORY_PAGINATION_LIMIT")
 def main():
     p=argparse.ArgumentParser()
     for field in ("root","worklist","gate","output"):p.add_argument("--"+field,required=True)
@@ -102,14 +126,19 @@ def main():
     elif os.getenv("GITHUB_REPOSITORY")!=REPO or not os.getenv("GITHUB_TOKEN"):result=hold("GITHUB_AUTHORIZATION_REQUIRED")
     else:
         try:
-            token=os.environ["GITHUB_TOKEN"];old=receipts(token)
-            completed={t["id"] for t in tasks.get("tasks",[]) if t["id"]+":"+key(t) in old}
-            result=cycle(root,tasks,gate,completed)
-            if result["state"]=="PASS" and result["task_id"]+":"+result["fingerprint"] not in receipts(token):
-                marker=MARKER+result["task_id"]+":"+result["fingerprint"]
-                body=f"<!-- {marker} -->\nENGURU verified task: {result['task_id']}\nEngineer PASS; verifier PASS; receipt {result['receipt_sha256']}; owner final authority reserved."
+            token=os.environ["GITHUB_TOKEN"]
+            commit=os.getenv("GITHUB_SHA","")
+            runid=os.getenv("GITHUB_RUN_ID","")
+            if not re.fullmatch("[a-f0-9]{40}",commit) or not runid.isdigit():raise ValueError("RUNTIME_PROVENANCE_REQUIRED")
+            completed,failed=receipts(token,root,tasks.get("tasks",[]),commit)
+            result=cycle(root,tasks,gate,completed,failed,commit)
+            if result.get("task_id"):
+                name=result["task_id"]
+                status="PASS" if result["state"]=="PASS" else "HOLD"
+                marker=MARKER+status+":"+name+":"+result["fingerprint"]+":"+runid+":"+commit
+                body=f"<!-- {marker} -->\nENGURU verified task: {name}\nEngineer: {result['engineering']['state']}; verifier: {result['verification']['state']}; receipt: {result['receipt_sha256']}; Human Threshold: owner."
                 github(f"https://api.github.com/repos/{REPO}/issues/{ISSUE}/comments",token,{"body":body})
-        except (HTTPError,URLError,TimeoutError,ValueError) as e:result=hold("GITHUB_EVIDENCE_TRANSPORT_"+type(e).__name__)
+        except (HTTPError,URLError,TimeoutError,ValueError,KeyError,TypeError,OSError) as e:result=hold("GITHUB_EVIDENCE_TRANSPORT_"+type(e).__name__)
     Path(args.output).parent.mkdir(parents=True,exist_ok=True)
     Path(args.output).write_text(json.dumps(result,indent=2,ensure_ascii=False)+"\n")
     print("STATE="+result["state"])

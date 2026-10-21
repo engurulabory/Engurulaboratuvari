@@ -37,4 +37,22 @@ class ControllerTests(unittest.TestCase):
             self.assertEqual(verifier(t(),{"state":"PASS","evidence":{"sha256":"0"*64,"size":4}},root)["state"],"HOLD_GUVENLI_DUR")
     def test_unknown_recipe(self):self.assertEqual(cycle(Path("."),{"tasks":[t(action="run_unit_test",path="other.py")]},G)["reason"],"TEST_RECIPE_SCOPE")
     def test_fingerprint(self):self.assertNotEqual(key(t()),key(t(path="change.txt")))
+
+    def test_pass_receipt_rechecks_source_sha(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d); (root/"source.txt").write_bytes(b"PASS")
+            task=t()
+            old=key(task,root,"a"*40)
+            (root/"source.txt").write_bytes(b"DRIFT")
+            self.assertNotEqual(old,key(task,root,"a"*40))
+            self.assertNotEqual(old,key(task,root,"b"*40))
+    def test_retry_budget_governed(self):
+        task=t()
+        r=cycle(Path("."),{"tasks":[task]},G,failed={task["id"]:2})
+        self.assertEqual(r["reason"],"RETRY_BUDGET_REQUIRES_MANAGEMENT_REVIEW")
+    def test_current_source_verified_finish_separate(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);(root/"source.txt").write_bytes(b"PASS")
+            r=cycle(root,{"tasks":[t()]},G,commit="a"*40)
+            self.assertEqual(r["official_verified_finish"],"HOLD_DONECHECK_HUMAN_GATE")
 if __name__=="__main__":unittest.main()
