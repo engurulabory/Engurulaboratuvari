@@ -1,4 +1,25 @@
 {
-  "verified_task_ids": [],
-  "tasks": []
+  "tasks": [
+    {
+      "id": "LABORY_PILOT_SOURCE",
+      "state": "READY",
+      "priority": 1,
+      "target_repo": "engurulabory/Engurulaboratuvari",
+      "action": "verify_file_digest",
+      "path": "governance/controller/PILOT_SOURCE.txt",
+      "expected_sha256": "eeb1115554d6dce2246fc4d4a00febf4c94f8ae9c4023472ff3a7a97417caf00",
+      "dependencies": []
+    },
+    {
+      "id": "LABORY_PILOT_TEST",
+      "state": "READY",
+      "priority": 2,
+      "target_repo": "engurulabory/Engurulaboratuvari",
+      "action": "run_unit_test",
+      "path": "tests/test_enguru_five_minute_controller.py",
+      "dependencies": [
+        "LABORY_PILOT_SOURCE"
+      ]
+    }
+  ]
 }

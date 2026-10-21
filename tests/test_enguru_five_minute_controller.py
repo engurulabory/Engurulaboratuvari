@@ -1,41 +1,40 @@
-import unittest
-import tempfile
-import sys
-from hashlib import sha256
+import sys,unittest,tempfile
 from pathlib import Path
+from hashlib import sha256
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"tools"))
-from enguru_five_minute_controller import cycle,management_select
-
+from enguru_five_minute_controller import cycle,select,verifier,key,REPO
+G={"state":"ENABLED_READONLY","repository":REPO,"max_tasks_per_cycle":1,"max_additional_spend_usd":0,"paid_providers":False,"human_final_authority":"OWNER"}
+def t(**kwargs):
+    x={"id":"LABORY_PILOT","state":"READY","target_repo":REPO,"action":"verify_file_digest","path":"source.txt","expected_sha256":sha256(b"PASS").hexdigest(),"dependencies":[]}
+    x.update(kwargs);return x
 class ControllerTests(unittest.TestCase):
-    def test_safe_management_engineer_management(self):
+    def test_proof(self):
         with tempfile.TemporaryDirectory() as d:
-            root=Path(d);(root/"safe.txt").write_text("PASS")
-            task=dict(id="a",state="READY",priority=1,dependencies=[],action="verify_file_digest",path="safe.txt",expected_sha256=sha256(b"PASS").hexdigest())
-            r=cycle(root,{"tasks":[task]},{"state":"HOLD"},pilot=True)
-            self.assertEqual(r["state"],"PASS")
-            self.assertEqual(r["executed_count"],1)
-            self.assertEqual(r["human_authority"],"OWNER_RESERVED")
-    def test_unvalidated_receipt_holds(self):
-        r=cycle(Path("."),{"tasks":[]},{"state":"PASS","donecheck_verified_finish_receipt":"invented"})
-        self.assertEqual(r["reason"],"CANONICAL_RECEIPT_VERIFIER_BINDING_REQUIRED")
-    def test_pending_b1_holds(self):
-        r=cycle(Path("."),{"tasks":[]},{"state":"HOLD"})
-        self.assertEqual(r["reason"],"B1_SIGNED_DONECHECK_FINISH_REQUIRED")
-    def test_scope_holds(self):
-        t=dict(id="a",state="READY",action="verify_file_digest",path="../secret",expected_sha256="0"*64)
+            root=Path(d);(root/"source.txt").write_bytes(b"PASS")
+            r=cycle(root,{"tasks":[t()]},G)
+            self.assertEqual(r["state"],"PASS");self.assertEqual(r["verification"]["state"],"PASS")
+            self.assertFalse(r["authorized_merge"]);self.assertEqual(r["additional_spend_usd"],0)
+    def test_idle(self):self.assertEqual(cycle(Path("."),{"tasks":[t()]},G,{"LABORY_PILOT"})["state"],"PASS_IDLE")
+    def test_paid_provider(self):self.assertEqual(cycle(Path("."),{"tasks":[]},{**G,"paid_providers":True})["reason"],"AUTHORITY_OR_ZERO_COST_GATE")
+    def test_cost(self):self.assertEqual(cycle(Path("."),{"tasks":[]},{**G,"max_additional_spend_usd":1})["state"],"HOLD_GUVENLI_DUR")
+    def test_private(self):self.assertEqual(cycle(Path("."),{"tasks":[t(target_repo="private")]},G)["reason"],"PRIVATE_REPO_GRANT_REQUIRED")
+    def test_shell(self):self.assertEqual(cycle(Path("."),{"tasks":[t(action="shell")]},G)["reason"],"ACTION_GRANT_REQUIRED")
+    def test_duplicate(self):self.assertEqual(select({"tasks":[t(),t()]},set())[1],"DUPLICATE_TASK_IDS")
+    def test_missing_dependency(self):self.assertEqual(select({"tasks":[t(dependencies=["MISSING"])]},set())[1],"DEPENDENCY_AUTHORITY")
+    def test_priority(self):
+        nexttask=t(id="LABORY_SECOND",dependencies=["LABORY_PILOT"])
+        self.assertEqual(select({"tasks":[nexttask,t()]},set())[0]["id"],"LABORY_PILOT")
+        self.assertEqual(select({"tasks":[nexttask,t()]},{"LABORY_PILOT"})[0]["id"],"LABORY_SECOND")
+    def test_escape(self):
+        with tempfile.TemporaryDirectory() as d:self.assertEqual(cycle(Path(d),{"tasks":[t(path="../secret")]},G)["state"],"HOLD_GUVENLI_DUR")
+    def test_mismatch(self):
         with tempfile.TemporaryDirectory() as d:
-            r=cycle(Path(d),{"tasks":[t]},{},pilot=True)
-            self.assertEqual(r["state"],"HOLD_GUVENLI_DUR")
-    def test_no_ungranted_shell(self):
-        t=dict(id="a",state="READY",action="shell")
+            root=Path(d);(root/"source.txt").write_bytes(b"FAIL")
+            self.assertEqual(cycle(root,{"tasks":[t()]},G)["state"],"HOLD_GUVENLI_DUR")
+    def test_tamper(self):
         with tempfile.TemporaryDirectory() as d:
-            r=cycle(Path(d),{"tasks":[t]},{},pilot=True)
-            self.assertEqual(r["engineer"]["reason"],"EXPLICIT_ACTION_GRANT_REQUIRED")
-    def test_priority_dependencies(self):
-        t,e=management_select({"verified_task_ids":[],"tasks":[{"id":"a","state":"READY","priority":1,"dependencies":["b"]},{"id":"b","state":"READY","priority":2}]})
-        self.assertEqual(t["id"],"b")
-    def test_duplicate_hold(self):
-        t,e=management_select({"tasks":[{"id":"a"},{"id":"a"}]})
-        self.assertEqual(e,"DUPLICATE_TASK_IDS")
-
+            root=Path(d);(root/"source.txt").write_bytes(b"PASS")
+            self.assertEqual(verifier(t(),{"state":"PASS","evidence":{"sha256":"0"*64,"size":4}},root)["state"],"HOLD_GUVENLI_DUR")
+    def test_unknown_recipe(self):self.assertEqual(cycle(Path("."),{"tasks":[t(action="run_unit_test",path="other.py")]},G)["reason"],"TEST_RECIPE_SCOPE")
+    def test_fingerprint(self):self.assertNotEqual(key(t()),key(t(path="change.txt")))
 if __name__=="__main__":unittest.main()

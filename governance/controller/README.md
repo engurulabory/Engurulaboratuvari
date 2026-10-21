@@ -1,11 +1,2 @@
-# ENGÜRÜ Five Minute Controller — pilot adapter
-
-State: **STAGED / PR ONLY / NO SCHEDULE RUNNING**. Linked worklist: Issue #192.
-
-This reuses the existing ENGÜRÜ Closed-Loop Production Core, Language Governance, Süzgeç, Management, Engineering and DoneCheck authorities. No new verification core.
-
-Management selects at most one eligible task; Engineering executes only allowlisted, read-only SHA-256 file observation; Management independently rechecks the actual source. Results produce a deterministic receipt. Owner retains Human Threshold authority.
-
-**Release safety:** Editable flags are insufficient for activation. The scheduled path always returns `HOLD_GUVENLI_DUR` until canonical B1-signed DoneCheck receipt verification is implemented and tested. An open PR does not enable GitHub's default-branch scheduled workflow.
-
-**Current limitations:** This is a read-only, isolated pilot. Autonomous code generation, persistent task leases, GitHub issue writeback, cross-repo commands, and Verified Finish receipt authentication are follow-on evidence-gated integrations; they are not claimed in this PR.
+ENGÜRÜ Beş Dakika Denetleyicisi™ — pilot adapter v2.
+Yönetici: tek READY görev ve bağımlılıklar. Mühendis: allowlist kaynak doğrulama veya sabit test. Denetleyici: kaynak hash yeniden hesaplama veya testin yeniden icrası. İnsan nihai onayı repo sahibinde. Her görev fingerprint sonucu Labory Issue #192 içine github-actions[bot] tarafından bir kere kaydedilir. Zamanlama 5 dakikadır, public standart GitHub Ubuntu runner ve Python standard library kullanılır. Ücretli model/API, özel runner, ayrı çekirdek, serbest shell, otomatik merge, B1-B6 üzerinde write/deploy ve yeni harcama yetkisi tanımlı değildir. B1'in GitHub sonucu ve Ed25519 DoneCheck açık durumu korunur. Özel B repo yetkili adaptörü ayrı grant ve test gerektirir.
