@@ -4,7 +4,7 @@
 
 **Saha bildirimi:** `21/100 → 22/100`; `YENİ_PASS=1/10` ancak tekil 100-kontrol ID belirtilmemiş. Bildirilen önceki V16/V17 SHA ve worktree koruma kanıtları Yönetim 100-kontrol cetvelinde zaten ✓ işaretli. Bu nedenle **Yönetim teyitli sayaç 21/100**, `22/100` **V18 bildirimi / tekil ID mutabakatı HOLD** olarak korunur. Tekil yeni ID ve kendi saha Evidence'i doğrulanınca birim ilave edilir; önceki PASS ikinci kez sayılmaz.
 
-**V18 saha raporu:** `ENGURU_ENGINEER_V18_F01_F05_20261021T134648317060Z.json` **DEĞİL**; V18 için kullanıcı tarafından yalnız SHA paylaşılmıştır: `d5683eff57b2a06a2fa4363c09371ed43dfe24584ae2b358de24727590716eb5`. Yerel AudiV13 gerçek V18 raporunun exact yolu ve SHA'sı yeni İCRA oturumunda keşfedilip doğrulanır; saha SHA değeri Yönetimce henüz bağımsız okunmuş değildir.
+**V18 saha raporu:** Kullanıcı tarafından bildirilen SHA-256 `d5683eff57b2a06a2fa4363c09371ed43dfe24584ae2b358de24727590716eb5`. Yerel AudiV13 içindeki gerçek V18 rapor yolunu yeni İCRA oturumu bulup SHA ile doğrular. Rapor dosyası Yönetim'e henüz açılmadığından saha özeti kaynak beyanı statüsündedir.
 
 **F01:** `HOLD_AUTHORITY`; 12 yetkili kriter, owner/reviewer, Mac → Progress Core™ → Mandatory DoneCheck JSON → DoneCheck v1.2 binding ihtiyacı devam eder. Tek mevcut V13 Human Threshold™ kararı ve PR #191 owner review esastır.
 
