@@ -191,3 +191,16 @@ python3 -B tools/enguru_management_progress_v1.py --input governance/mac-enginee
 **İCRA devir raporu:** 6 satır yönetici özeti + AudiV13 tam raporu. Raporda **bütün yapılan işler ve testleri, ID/evidence/owner gate kabul matrisi, kalan işlerin tamamı, engellerin kanıtlı nedenleri, hangi owner kararı gerektiği, her engel için çözüm önerisi ve net sonraki eylem**, preservation ve H1/H2/H3/Native/DoneCheck/Verified Finish durumu zorunlu. Yönetim her raporda gerçek tekil kontrol kapanışlarını kabul edip sayaç/mini ilerlemeyi günceller.
 
 **Tek bağlayıcı emir:** `governance/mac-engineer/progress/ENGURU_V23_BUTUNSEL_FINIS_ICRA_V1.md`. İCRA Engineer PR #14 `V23_GOAL_HIERARCHY`, `V23_FULL_SCOPE_ENGINEER`, `V23_ACCEPTANCE_FINISH`, `V23_BATCHED_MANAGEMENT_10`, `V23_FULL_REPORT_BLOCKERS` runtime guidance ile hizalanır. Gerçek yetkili approval ve local Mac canonical aktivasyonu kendi kapısında.
+
+
+## 15. V26 — Süzgeç, pozitif dil ve 10-kontrol finiş
+
+**Kaynak/bağ:** `governance/ENGURU_LANGUAGE_GOVERNANCE_V1.md` pozitif ve doğru çalışma evreni; mevcut ENGÜRÜ Süzgeci™ sekiz aşama; `governance/mac-engineer/progress/ENGURU_V26_ONARIM_VE_ONAR_KONTROL_FINIS_EMRI_V1.md` Yönetim V26 ana emri; Engineer PR #14 `runtime/governance.py` V26 runtime guidance. Yeni canonical core veya ek kabul otoritesi kurulmaz.
+
+**Yönetim rolü:** Ana P0 Verified Finish/`BITTI_DUR`; P1 H1 4/4→H2 4/4→H3 4/4→Native 0.8→DoneCheck/HumanReview resmî kapıları; P2 F01 ana + F05 bağımsız desteğin gerçek mühendislik kapanışı. F01–F06 ve 100 özgün ID bütünsel izlenir. `STATE → CLAIM → EVIDENCE → NEXT ACTION → VERDICT` doğru ve pozitif sunumla uygulanır.
+
+**Onar kontrol evreleri:** 22/100 mevcut, V26 32/100 çalışma hedefi; ardından 42→52→62→72→82→92→100 (son sekiz). İCRA tüm izinli güvenli bağımlılıkları tamamlar, gerçek ✓ ID ve exact receipt sunar. Yönetim özgün tam kabul koşulu karşılanmış benzersiz ID'yi ledger'a yazar. İnsan kapısı veya bağımsız saha delili HOLD ise gerçek N ve eksik yetki/kanıt sınıflandırılır.
+
+**V25 kanıt kesiti:** PR #191 F01 karar review dokümanı commit `ef0483e1af033e782e1c4513be5442b84e19060e`; PR #14 Native review patch commit `dbf34e055672ba4c93afddbac80662f288c37d3e`. Review-only yayın PASS; owner/reviewer canonical H1–H3, actual Native source diff, ikon/versiyon ve gerçek GUI kabulü HOLD. V26 görevlerin önceliği gerçek acceptance kapılarını tamamlamaktır.
+
+**Tam devir:** Altı satır gerçek sayaç/hüküm; AudiV13'te 78 açık kontrolün tamamının kabul/owner/evidence durumu, F01–F06 doğrulanmış neden/hipotez ayrımı, kod/test/onarım, insan kararı ve sonraki uygun işi içeren JSON/MD. Yönetim alındığında yeni 10'lu grubu gerçek kabul edilmiş N'den oluşturur.
