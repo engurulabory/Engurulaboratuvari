@@ -1,12 +1,12 @@
 {
   "schema": "enguru.100-unit-verified-finish-tracker/v1",
   "date": "2026-10-21",
-  "source_state": "V16 Engineer handoff: isolated source patch+real Swift compile PASS; local commit-object availability classified; F01 authority and F05 canonical review HOLD",
+  "source_state": "V17 owner-reported real Mac PASS: B01-07 B07-01 B07-03; B07-02 local PR14 commit/origin ancestry HOLD; source JSON report SHA256=e71df29b6d2ebee8d32061ea029c3b7eb47d228d47514bf8a083282411b9ae93",
   "measurement": "100 binary technical/control checkpoints; each checkpoint counted only with grounded evidence; NOT effort-time estimate and NOT official acceptance",
   "target": "H1 4/4 -> H2 4/4 -> H3 4/4 -> Native OSi -> Verified Finish -> BITTI_DUR",
   "total_units": 100,
-  "verified_units": 18,
-  "remaining_units": 82,
+  "verified_units": 21,
+  "remaining_units": 79,
   "official_h1_h2_h3": {
     "passed": 0,
     "total": 12
@@ -65,8 +65,8 @@
       "id": "B01-07",
       "block": "01",
       "name": "Yerel ürün HEAD ile origin/main kapsam farkı kaynak düzeyinde açıklandı",
-      "state": "HOLD",
-      "evidence": null
+      "state": "PASS_EVIDENCE",
+      "evidence": "V17 Mac handoff: local product HEAD vs origin/main source difference classified PASS; source report ENGURU_ENGINEER_V17_F01_F05_20261021T134648317060Z.json SHA256=e71df29b6d2ebee8d32061ea029c3b7eb47d228d47514bf8a083282411b9ae93"
     },
     {
       "id": "B01-08",
@@ -443,8 +443,8 @@
       "id": "B07-01",
       "block": "07",
       "name": "Yerel Git içindeki PR #14 stage blob erişim nedeni doğrulandı",
-      "state": "HOLD",
-      "evidence": null
+      "state": "PASS_EVIDENCE",
+      "evidence": "V17 Mac handoff: PR14 local Git stage/object availability diagnosis PASS; B07-02 commit ancestry remains HOLD_MISSING_LOCAL_PR_COMMIT_OR_ORIGIN; report SHA256=e71df29b6d2ebee8d32061ea029c3b7eb47d228d47514bf8a083282411b9ae93"
     },
     {
       "id": "B07-02",
@@ -457,8 +457,8 @@
       "id": "B07-03",
       "block": "07",
       "name": "Korunan dirty değişiklikler için uyuşma planı oluşturuldu",
-      "state": "HOLD",
-      "evidence": null
+      "state": "PASS_EVIDENCE",
+      "evidence": "V17 Mac handoff: preserved dirty-path changes have a source reconciliation/review plan PASS, original worktree preserved; report SHA256=e71df29b6d2ebee8d32061ea029c3b7eb47d228d47514bf8a083282411b9ae93"
     },
     {
       "id": "B07-04",
