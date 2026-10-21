@@ -1,12 +1,12 @@
 {
   "schema": "enguru.100-unit-verified-finish-tracker/v1",
   "date": "2026-10-21",
-  "source_state": "V19 true Mac source report SHA256=60a5491952f54555f556baf569f93c91e0efec98d24f8a6a56bfad196cef0159; Yönetim B07-02 verified and authorized 21→22 checkpoint only; H1/H2/H3 0/12, F01–F06 0/6 HOLD",
+  "source_state": "V26 original real Mac field JSON SHA256=a60ed0d02b7d641a5531f7ccad4405465d5408c057a9eb8cfceba487f57c409b; Management original B05-03 (two local origin repo identities) technical acceptance 22→23; B05-04 owner/base receipt HOLD; B10-03 v0.6 lock HOLD; official H1/H2/H3 0/12, F01-F06 0/6, Verified Finish HOLD",
   "measurement": "100 binary technical/control checkpoints; each checkpoint counted only with grounded evidence; NOT effort-time estimate and NOT official acceptance",
   "target": "H1 4/4 -> H2 4/4 -> H3 4/4 -> Native OSi -> Verified Finish -> BITTI_DUR",
   "total_units": 100,
-  "verified_units": 22,
-  "remaining_units": 78,
+  "verified_units": 23,
+  "remaining_units": 77,
   "official_h1_h2_h3": {
     "passed": 0,
     "total": 12
@@ -317,8 +317,8 @@
       "id": "B05-03",
       "block": "05",
       "name": "Kontrol/ürün Git remote ve kimlikleri doğrulandı",
-      "state": "HOLD",
-      "evidence": null
+      "state": "PASS_EVIDENCE",
+      "evidence": "V26 exact Mac field JSON SHA256=a60ed0d02b7d641a5531f7ccad4405465d5408c057a9eb8cfceba487f57c409b; both local origin repo slugs PASS_ORIGIN_MATCH; preserved local control HEAD 269854b8a42a27e9419eae65a3c9e349bdcc7300 and product HEAD 26925c21c7816a90edc0eb047382aba8c696764c; Management review ENGURU_V26_B05_03_YONETIM_KABUL_KARARI_V1.md"
     },
     {
       "id": "B05-04",
