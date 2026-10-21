@@ -101,7 +101,7 @@ def verifier(task,result,root):
         if text.count(task["replace_from"])!=1:return hold("VERIFIER_REPAIR_UNIQUE_MATCH")
         independent=text.replace(task["replace_from"],task["replace_to"],1).encode("utf8")
         if candidate!=independent or sha(independent)!=task["desired_sha256"]:return hold("VERIFIER_REPAIR_CANDIDATE_DRIFT")
-        return {"state":"PASS","proof":"REPAIR_INDEPENDENT_RECOMPUTE"
+        return {"state":"PASS","proof":"REPAIR_INDEPENDENT_RECOMPUTE"}
     if result.get("state")!="PASS":return hold("ENGINEERING_EVIDENCE_REQUIRED")
     if task["action"]=="verify_file_digest":
         file=safe_file(root,task["path"])
