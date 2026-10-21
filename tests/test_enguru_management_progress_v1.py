@@ -28,7 +28,7 @@ class ManagementProgressTests(unittest.TestCase):
         self.assertEqual(result["nextWork"]["primary"], "F01")
         self.assertEqual(result["nextWork"]["independentSupport"], "F05_SCOPE_AND_SOURCE_PREPARATION")
         self.assertEqual(result["state"], "PROJECTION_ONLY_NOT_AUTHORITY")
-        self.assertEqual(result["terminal"], "HOLD_PENDING_AUTHORIZED_ACCEPTANCE")
+        self.assertEqual(result["terminalProjection"], "HOLD_PENDING_AUTHORIZED_ACCEPTANCE")
 
     def test_partial_official_acceptance_is_not_a_finished_goal(self):
         record = base()
