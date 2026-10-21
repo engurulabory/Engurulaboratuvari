@@ -85,7 +85,7 @@ class ManagementProgressTests(unittest.TestCase):
         for item in record["blockers"]:
             item.update(status="PASS_CLOSED", acceptanceReceipt=f"receipt:{item['id']}")
         result = project(record)
-        self.assertEqual(result["terminal"], "BITTI_DUR")
+        self.assertEqual(result["terminalProjection"], "READY_FOR_INDEPENDENT_FINAL_ACCEPTANCE")
         self.assertEqual(result["state"], "PROJECTION_ONLY_NOT_AUTHORITY")
         self.assertEqual(result["blockers"]["closedPercent"], 100)
 
