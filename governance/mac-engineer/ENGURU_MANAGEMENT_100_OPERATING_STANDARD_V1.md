@@ -167,3 +167,14 @@ python3 -B tools/enguru_management_progress_v1.py --input governance/mac-enginee
 **Kapsam:** Tek F01 + tek bağımsız F05; bir turda erişilebilir bütün kanıtlı bağımlılıklar. %10–20 kontrol artışı çalışma hedefidir, zorunlu bitiş kotası değildir. Human Threshold™, canonical kaynak koruması, resmî DoneCheck kabulü ve tarihsel v0.6 kilidi sabit kalır.
 
 **Yönetim kararı:** GitHub test PASS, ürün/OSi final kabul PASS iddiası üretmez. Yeni mühendislik sohbeti başta GitHub son PR14 kaydını ve V19/V20 oturum devir kaydını okur.
+
+
+## 13. İCRA'nın asli mühendislik rolü
+
+**İCRA**, ENGÜRÜ Mac Engineer™ gerçek ürün mühendisi ve teknik icracıdır: mimari ve kaynak incelemesi, doğrulanmış kök neden, kod/kalıcı onarım, entegrasyon, gerçek yürütme, pozitif-negatif regresyon, koruma/güvenlik, Evidence/DoneCheck sınırı, owner review'a hazır somut teslim. **Yönetim** kalıcı sabit hedefi, iş önceliğini, 100 maddelik kabul sayacını yönetir. **Yetkili canonical owner/reviewer** korumalı imza, lisans, source promotion, 12 kriter ve resmî kabul kararlarını yürütür.
+
+**V22 icra hedefi:** Yönetim 22/100 → 30/100 (+8 yalnız özgün kriter PASS). F01 ana: tek mevcut Human Threshold karar adayını yetkili sahibi ve kaynak/kanıta bağla. F05 bağımsız: Native 0.8'in yeniden başlatma, eşzamanlı çalışma ve kapanış korumalarını muhafaza eden izole birleşik kaynak onarımı; gerçek Swift ve negatif regresyon; Git kaynak, patch ve SHA; owner inceleme adayı. Bir tek teşhis veya ilk testte durmak yerine tüm uygun güvenli bağımlı işleri tamamla.
+
+**Sıfır-artış disiplini:** Yeni benzersiz kabul şartı gerçekleşmeden sayaç yükselmez. Yetki engeli varsa kalan bağımsız işleri tamamlayıp tek gerekçeli Human Threshold kararıyla `GÜVENLİ_DUR`. Geçmiş başarılı test, resmî H1/H2/H3 kabulü değildir.
+
+**Kaynak:** Mühendislik PR #14 `runtime/governance.py` içindeki `ENGINEER_ROLE_AUTHORITY_SPLIT`, `ENGINEER_ROLE_OWN_THE_CLOSE`, `ENGINEER_ROLE_DECISION_READY_STOP`, `ENGINEER_ROLE_30_MEASURE`; bağlı mühendislik standardı ve oturum boot. GitHub PR review yetkili Mac OSi canonical aktivasyonundan ayrıdır.
