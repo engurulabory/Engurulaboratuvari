@@ -6,6 +6,7 @@ on:
       - "governance/mac-engineer/ENGURU_MANAGEMENT_100_OPERATING_STANDARD_V1.md"
       - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V9_PROJECTION_INPUT.json"
       - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V10_PROJECTION_INPUT.json"
+      - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V12_PROJECTION_INPUT.json"
       - "tools/enguru_management_progress_v1.py"
       - "tests/test_enguru_management_progress_v1.py"
       - ".github/workflows/enguru-management-progress-ci.yml"
@@ -15,6 +16,7 @@ on:
       - "governance/mac-engineer/ENGURU_MANAGEMENT_100_OPERATING_STANDARD_V1.md"
       - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V9_PROJECTION_INPUT.json"
       - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V10_PROJECTION_INPUT.json"
+      - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V12_PROJECTION_INPUT.json"
       - "tools/enguru_management_progress_v1.py"
       - "tests/test_enguru_management_progress_v1.py"
       - ".github/workflows/enguru-management-progress-ci.yml"
@@ -77,4 +79,27 @@ jobs:
           assert result["nextWork"]["independentSupport"] == "F05_SCOPE_AND_SOURCE_PREPARATION"
           assert result["terminalProjection"] == "HOLD_PENDING_AUTHORIZED_ACCEPTANCE"
           print("STATE=PASS_V10_SCOPE_AND_ZERO_ACCEPTANCE_PROJECTION")
+          PY
+
+      - name: V12 compiler-failure projection and original acceptance boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B tools/enguru_management_progress_v1.py \
+            --input governance/mac-engineer/examples/ENGURU_MANAGEMENT_V12_PROJECTION_INPUT.json \
+            > /tmp/enguru-management-v12-projection.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root = Path("governance/mac-engineer/examples/ENGURU_MANAGEMENT_V12_PROJECTION_INPUT.json")
+          source = json.loads(root.read_text(encoding="utf-8"))
+          result = json.loads(Path("/tmp/enguru-management-v12-projection.json").read_text())
+          assert source["scope"]["swiftBuild"]["returnCode"] == 1
+          assert source["scope"]["f01"]["approvedCriteria"] == 0
+          assert source["scope"]["f01"]["proposedCriteria"] == 12
+          assert result["state"] == "PROJECTION_ONLY_NOT_AUTHORITY"
+          assert result["officialAccepted"]["sum"] == 0
+          assert result["blockers"]["closed"] == 0
+          assert result["terminalProjection"] == "HOLD_PENDING_AUTHORIZED_ACCEPTANCE"
+          print("STATE=PASS_V12_SCOPE_AND_HOLD_PROJECTION")
           PY
