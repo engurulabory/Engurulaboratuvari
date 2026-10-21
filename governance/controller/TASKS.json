@@ -34,7 +34,8 @@
       "replace_to": "VERIFIED",
       "dependencies": [],
       "max_attempts": 2,
-      "acceptance_version": "v3.1"
+      "acceptance_version": "v3.1",
+      "existing_pr_number": 196
     }
   ]
 }
