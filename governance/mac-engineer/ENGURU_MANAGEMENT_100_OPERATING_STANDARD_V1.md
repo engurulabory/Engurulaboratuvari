@@ -92,3 +92,24 @@ python3 -B tools/enguru_management_progress_v1.py --input /path/to/reviewed_hand
 Gelecek gerçek İCRA raporuyla aynı sayaçlar gözden geçirilecek; bütün engellere çözüm bulunurken aktif emir kapsamı 1 ana + en fazla 1 bağımsız işe odaklanacak.
 
 **STATE → CLAIM → EVIDENCE → JUDGMENT → NEXT ACTION.**
+
+
+## 8. V12 Yönetim kararı — yeni çalışma modelinin ilk saha girdisi
+
+**Gerçek saha kanıtı:** `ENGURU_DORT_HEDEF_V12_F01_F05_20261021T110149917554Z.json`, bildirilen SHA-256 `06823eb5837ec1461994cd7b32dc8bc8a4b9e07188ee70afdbaa49ddc80ecd6c`. Bu kaynak Mac üzerinde bağımsız doğrulandığında hukuki/teknik kabul zincirinde yetkili kanıt olabilir; GitHub fixture yalnız raporun projeksiyonudur.
+
+**F01 ana kritik iş:** DoneCheck doğrulayıcıları biliniyor; V12'nin 4+4+4 kategoride 12 kriteri `UNAPPROVED_ENGINEERING_PROPOSAL` statüsündedir. `OFFICIAL_CRITERIA=0/12_HOLD`. Yetkili mevcut kriter kaynağı ve sahibi araştırılır. Mevcut kayıt gerçekten yetkisiz ise yalnız `ENGURU_MAC_ENGINEER_H1_H2_H3_OFFICIAL_4X4_ONLY` kapsamlı onay-hazır Human Threshold kararı hazırlanır; insan kararı ayrı bağımsız eşiği oluşturur.
+
+**F05 bağımsız yürütme/onarma işi:** Canonical ürün kaynaklarının üçlü commit bağı PASS; staged AST tarifinin doğru tek tireli Swift seçeneği PASS. Yerel gerçek Swift compiler çağrısı `RC=1` ve `NEDEN_BEKLIYOR`; ilk compiler hata satırlarının yeri `F05.build.build_errors`, stderr digest `F05.build.stderr_sha256`. Gerçek hata satırları bu yönetim özetinde olmadığı için kök neden atanmaz. Önce orijinal V12 JSON ve hata çıktısı, ardından doğrulanmış neden → kalıcı kaynak/ortam onarımı → geçici izole build → executable SHA ve receipt zinciri gerekir.
+
+**GitHub macOS CI ile yerel Mac build ayrımı:** Ürün PR #14'ün GitHub CI Swift kontrolü PASS olmuş olabilir; farklı source commit/SDK/toolchain/config nedeniyle yerel V12 `RC=1` sonucu bundan bağımsızdır. Yetkili değerlendirmede aynı kaynak pini, tam compiler komutu, SDK ve toolchain kıyaslanır. CI PASS gerçek OSi kabulüne terfi ettirilmez.
+
+**Sayaçlar:** Resmî H1/H2/H3 `0/12`, kapalı F01–F06 `0/6`, Native HOLD, Verified Finish HOLD. Yetkili kriterler, izole build ve gerçek saha kabulü ayrıdır.
+
+**İCRA yetenekleri:** 12 yetenek, 6 işlevsel bölüm ve kanıt disiplininin mevcut ürün kaynak gelişimi `engurulabory/enguru-mac-engineer` PR #14 ile ilişkilidir. Tasarım hedefi her yetenek ve Yönetim uyumu için 100/100; geçmiş gözlem puanları İCRA 80/100, ürün 74/100 ve uyum 91/100 olarak ayrı izlenir. Bu rakamlar formel saha değerlendirmesi/benchmark değildir.
+
+```bash
+python3 -B tools/enguru_management_progress_v1.py --input governance/mac-engineer/examples/ENGURU_MANAGEMENT_V12_PROJECTION_INPUT.json
+```
+
+**Yönetim aktif kararı:** F01 yetkili kriter/owner mutabakatı (tek ana iş), F05 gerçek Swift `RC=1` onarımı ve izole build (tek bağımsız destek). F02–F04 ve F06 finiş haritasında görünür ve mevcut resmî sıralarıyla kapanır. Sonraki İCRA emri uygulaması ayrıca mühendis oturumuna devredilir.
