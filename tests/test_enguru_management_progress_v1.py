@@ -114,6 +114,27 @@ class ManagementProgressTests(unittest.TestCase):
         self.assertEqual(view["nextWork"]["primary"], "F01")
         self.assertEqual(view["nextWork"]["independentSupport"], "F05_SCOPE_AND_SOURCE_PREPARATION")
 
+    def test_v13_sdk_repair_is_technical_pass_not_official_finish(self):
+        import json
+        from pathlib import Path
+        fixture = (Path(__file__).resolve().parents[1] / "governance"
+                   / "mac-engineer" / "examples"
+                   / "ENGURU_MANAGEMENT_V13_PROJECTION_INPUT.json")
+        source = json.loads(fixture.read_text(encoding="utf-8"))
+        self.assertEqual(source["scope"]["isolatedBuild"], "PASS")
+        self.assertEqual(source["scope"]["compilerRC"], 0)
+        self.assertEqual(len(source["scope"]["buildBinarySha256"]), 64)
+        self.assertEqual(source["scope"]["sourceBuildIntegration"], "HOLD")
+        self.assertEqual(source["scope"]["criteriaApproved"], 0)
+        self.assertEqual(source["scope"]["criteriaProposed"], 12)
+        self.assertEqual(source["scope"]["criteriaStatus"], "UNAPPROVED_ENGINEERING_PROPOSAL")
+        self.assertEqual(source["scope"]["nextProduct"], "PILIVE")
+        view = project(source)
+        self.assertEqual(view["officialAccepted"]["sum"], 0)
+        self.assertEqual(view["blockers"]["closed"], 0)
+        self.assertEqual(view["nextWork"]["primary"], "F01")
+        self.assertEqual(view["terminalProjection"], "HOLD_PENDING_AUTHORIZED_ACCEPTANCE")
+
     def test_full_chain_still_projection_not_authority(self):
         record = base()
         for goal in ("H1", "H2", "H3"):
