@@ -74,6 +74,7 @@ Normalized girdi: `enguru.management.handoff/v1`; örnek ve testler `tests/test_
 ```bash
 python3 -m unittest tests.test_enguru_management_progress_v1 -v
 python3 -B tools/enguru_management_progress_v1.py --input governance/mac-engineer/examples/ENGURU_MANAGEMENT_V9_PROJECTION_INPUT.json
+python3 -B tools/enguru_management_progress_v1.py --input governance/mac-engineer/examples/ENGURU_MANAGEMENT_V10_PROJECTION_INPUT.json
 # veya yeni rapor incelendikten sonra:
 python3 -B tools/enguru_management_progress_v1.py --input /path/to/reviewed_handoff.json
 ```
@@ -86,7 +87,7 @@ python3 -B tools/enguru_management_progress_v1.py --input /path/to/reviewed_hand
 
 ## 7. Mevcut taban ve sonraki rapor
 
-2026-10-21 V9 son saha raporu: `H1=0/4, H2=0/4, H3=0/4, Native=HOLD, VerifiedFinish=HOLD, open_F=6`; izole `H2=6/6, H3=13/13`, iki transport PASS. V10 İCRA çalışması sürüyor. Bu not sahadaki kaynakları değiştirmez.
+2026-10-21 V10 son saha raporu: `H1=0/4, H2=0/4, H3=0/4, Native=HOLD, VerifiedFinish=HOLD, open_F=6`; izole `H2=6/6, H3=13/13`, iki transport PASS. V10 iki yapılandırılmış canonical kaynakta **Native Mac Engineer ürün kimliğini** doğruladı: `com.engurumaya.macengineer`; Native izole build kaynak kapısında HOLD, `BUILD_RC=UNRUN`. Resmî acceptance %0, engel kapanışı %0. Gerekli Git HEAD kaynak dosyasının kimliği V10 `F05.source` ile kesinleştirilecektir. F01 resmî 12 kriter ve Mac acceptance binding HOLD; sonraki aktif yönetim önceliği F01, bağımsız F05 Native source/build hazırlığıdır. Bu not sahadaki kaynakları değiştirmez.
 
 Gelecek gerçek İCRA raporuyla aynı sayaçlar gözden geçirilecek; bütün engellere çözüm bulunurken aktif emir kapsamı 1 ana + en fazla 1 bağımsız işe odaklanacak.
 
