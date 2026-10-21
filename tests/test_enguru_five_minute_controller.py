@@ -85,7 +85,7 @@ class ControllerTests(unittest.TestCase):
         root=Path(".")
         self.assertEqual(select({"tasks":[item]},set(),{item["id"]})[1],"NO_ELIGIBLE_TASK")
         child=t(id="LABORY_SECOND",dependencies=[item["id"]])
-        self.assertEqual(select({"tasks":[item,child]},set(),{item["id"]})[1],"NO_READY_TASK")
+        self.assertEqual(select({"tasks":[item,child]},set(),{item["id"]})[1],"NO_ELIGIBLE_TASK")
     def test_repair_contract_alters_fingerprint(self):
         item=t(id="LABORY_REPAIR",action="propose_exact_repair",path="governance/controller/work/fix.txt",
                expected_sha256="1"*64,desired_sha256="2"*64,replace_from="old",replace_to="new")
@@ -96,4 +96,39 @@ class ControllerTests(unittest.TestCase):
         result=cycle(Path("."),{"tasks":[task]},G,pending={task["id"]})
         self.assertEqual(result["state"],"AWAITING_HUMAN")
         self.assertEqual(result["human_final_authority"],"OWNER_RESERVED")
+
+    def test_repair_pr_remote_provenance_and_draft_boundary(self):
+        from unittest.mock import patch
+        import base64
+        from enguru_five_minute_controller import prepare_repair_pr
+        calls=[]
+        def fake_github(url,token,body=None,method=None):
+            calls.append((url,body,method))
+            if "?ref=main" in url:
+                return {"content":base64.b64encode(b"old\n").decode(),"sha":"blob-old"}
+            if url.endswith("/pulls"):
+                self.assertTrue(body["draft"])
+                self.assertEqual(body["base"],"main")
+                return {"html_url":"https://github.com/engurulabory/Engurulaboratuvari/pull/999"}
+            return {"ok":True}
+        item=t(id="LABORY_REPAIR",action="propose_exact_repair",path="governance/controller/work/fix.txt",
+               expected_sha256=sha256(b"old\n").hexdigest(),desired_sha256=sha256(b"new\n").hexdigest(),
+               replace_from="old",replace_to="new")
+        result={"fingerprint":"a"*64,"engineering":{"evidence":{"candidate_base64":base64.b64encode(b"new\n").decode()}}}
+        with patch("enguru_five_minute_controller.github",fake_github):
+            url=prepare_repair_pr("token",item,result,"b"*40)
+        self.assertTrue(url.endswith("999"))
+        self.assertTrue(any(method=="PUT" and body["branch"].startswith("enguru/controller-") for _,body,method in calls))
+        self.assertFalse(any(url.endswith("/git/refs/heads/main") for url,_,_ in calls))
+    def test_repair_pr_remote_drift_rejected(self):
+        from unittest.mock import patch
+        import base64
+        from enguru_five_minute_controller import prepare_repair_pr
+        item=t(id="LABORY_REPAIR",action="propose_exact_repair",path="governance/controller/work/fix.txt",
+               expected_sha256=sha256(b"old\n").hexdigest(),desired_sha256=sha256(b"new\n").hexdigest(),
+               replace_from="old",replace_to="new")
+        result={"fingerprint":"a"*64,"engineering":{"evidence":{"candidate_base64":base64.b64encode(b"new\n").decode()}}}
+        with patch("enguru_five_minute_controller.github",return_value={"content":base64.b64encode(b"drift\n").decode(),"sha":"blob-remote"}):
+            with self.assertRaisesRegex(ValueError,"REPAIR_REMOTE_SOURCE_DRIFT"):
+                prepare_repair_pr("token",item,result,"b"*40)
 if __name__=="__main__":unittest.main()
