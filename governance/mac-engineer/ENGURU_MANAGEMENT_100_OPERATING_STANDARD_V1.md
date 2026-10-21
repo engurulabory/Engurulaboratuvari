@@ -178,3 +178,16 @@ python3 -B tools/enguru_management_progress_v1.py --input governance/mac-enginee
 **Sıfır-artış disiplini:** Yeni benzersiz kabul şartı gerçekleşmeden sayaç yükselmez. Yetki engeli varsa kalan bağımsız işleri tamamlayıp tek gerekçeli Human Threshold kararıyla `GÜVENLİ_DUR`. Geçmiş başarılı test, resmî H1/H2/H3 kabulü değildir.
 
 **Kaynak:** Mühendislik PR #14 `runtime/governance.py` içindeki `ENGINEER_ROLE_AUTHORITY_SPLIT`, `ENGINEER_ROLE_OWN_THE_CLOSE`, `ENGINEER_ROLE_DECISION_READY_STOP`, `ENGINEER_ROLE_30_MEASURE`; bağlı mühendislik standardı ve oturum boot. GitHub PR review yetkili Mac OSi canonical aktivasyonundan ayrıdır.
+
+
+## 14. V23 — Ana hedefe bağlı tam mühendislik ve onar kontrol birimlik Yönetim turu
+
+**P0:** ENGÜRÜ Mac Engineer™ yerel Product Engineering Operator resmî Verified Finish/`BITTI_DUR`. **P1:** H1 4/4 → H2 4/4 → H3 4/4 → Native OSi → DoneCheck resmî kabul sırası. **P2:** İCRA güncel F01 canonical owner/reviewer Human Threshold ana ve F05 Native 0.8 kaynak incelemesi bağımsız destek; F01–F06 bütün bağımlılıklar görünür.
+
+**İCRA'nın görev alanı:** mevcut kaynak gözlemi, analiz, mimari, doğrulanmış kök neden, plan, tasarım, kod, gerçek onarım, entegrasyon, Mac build/çalıştırma, adversarial/regresyon/lifecycle, güvenlik, Git/provenance/CI, SHA/Evidence, DoneCheck sınırı, ürün kabul test matrisi, tam rapor ve engel başına uygulanabilir çözüm. Her turda yetki dahilindeki bütün güvenli işlerin tamamlanması ve tek kesin insan kararının sunumu zorunludur.
+
+**Yönetim 10 birim çalışma modeli:** son teyitli **22/100**, 30/100 ilk ara eşik, **V23 hedefi 32/100 (+10)**. Sonraki tur, kabul edilmiş gerçek N üzerinden **N+10** hedefler. Yalnız sabit 100 ID ve özgün tam kabul koşulu karşılanınca ✓; GitHub kod ilerleme, izole Swift build, hazır owner-review veya resmî 12 kriter kararı birbirinden ayrılır. H1/H2/H3 resmî 0/12 ve F01–F06 kapanan 0/6, gerçek onay receipt'i gelince güncellenir.
+
+**İCRA devir raporu:** 6 satır yönetici özeti + AudiV13 tam raporu. Raporda **bütün yapılan işler ve testleri, ID/evidence/owner gate kabul matrisi, kalan işlerin tamamı, engellerin kanıtlı nedenleri, hangi owner kararı gerektiği, her engel için çözüm önerisi ve net sonraki eylem**, preservation ve H1/H2/H3/Native/DoneCheck/Verified Finish durumu zorunlu. Yönetim her raporda gerçek tekil kontrol kapanışlarını kabul edip sayaç/mini ilerlemeyi günceller.
+
+**Tek bağlayıcı emir:** `governance/mac-engineer/progress/ENGURU_V23_BUTUNSEL_FINIS_ICRA_V1.md`. İCRA Engineer PR #14 `V23_GOAL_HIERARCHY`, `V23_FULL_SCOPE_ENGINEER`, `V23_ACCEPTANCE_FINISH`, `V23_BATCHED_MANAGEMENT_10`, `V23_FULL_REPORT_BLOCKERS` runtime guidance ile hizalanır. Gerçek yetkili approval ve local Mac canonical aktivasyonu kendi kapısında.
