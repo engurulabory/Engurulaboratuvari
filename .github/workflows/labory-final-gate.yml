@@ -226,3 +226,36 @@ jobs:
             exit 61
           fi
           echo 'STATE=PASS_GH69_EXACT_HEAD_TESTS'
+      - name: GH69 WP02-WP03 scoped attestation and ledger adversarial tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --test tests/test_enguru_management_v69_wp02_wp03_bridge.mjs 2>&1 | tee /tmp/gh69-wp02-wp03-test.log
+          grep -Eq '^# tests 44$' /tmp/gh69-wp02-wp03-test.log
+          grep -Eq '^# pass 44$' /tmp/gh69-wp02-wp03-test.log
+          grep -Eq '^# fail 0$' /tmp/gh69-wp02-wp03-test.log
+          grep -Eq '^# skipped 0$' /tmp/gh69-wp02-wp03-test.log
+      - name: Checkout bounded read-only original PR191 ledger SHA
+        uses: actions/checkout@v4
+        with:
+          ref: de63a9e34a9b05b6474c847019d8c682b5360d50
+          path: .gh69-pr191-evidence
+          persist-credentials: false
+          sparse-checkout: |
+            governance/mac-engineer/progress/ENGURU_100_BIRIM_FINIS_SAYACI_V1.json
+          sparse-checkout-cone-mode: false
+      - name: GH69 WP02-WP03 live pinned ledger and external trust HOLD
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/enguru_management_v69_wp02_wp03_bridge.mjs .gh69-pr191-evidence/governance/mac-engineer/progress/ENGURU_100_BIRIM_FINIS_SAYACI_V1.json > /tmp/gh69-wp02-wp03-real-ledger.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('/tmp/gh69-wp02-wp03-real-ledger.json').read_text())
+          assert x['state']=='HOLD_EXTERNAL_TRUST_ROOT', x
+          assert x['verifiedUnits']==27, x
+          assert x['officialPassAdded']==0 and x['verifiedFinish'] is False, x
+          assert x['ledgerBlobSha1']=='d54f48ce532a23e4e4b6eff1ef5f9c7c776e71fc',x
+          print('STATE=PASS_REAL_LEDGER_OBSERVED_EXTERNAL_AUTHORITY_SAFE_HOLD')
+          PY
