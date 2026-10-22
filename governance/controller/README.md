@@ -9,3 +9,6 @@ A bot-authored Issue #192 record includes a canonical JSON public receipt and it
 
 ### v3.4 DoneCheck™ candidate projection
 Public evidence contains `donecheck_producer_candidate` using the existing canonical contract `governance/mac-engineer/DONECHECK_AUTHORITY_MODEL_V1.md`: intent, task, success criteria, execution state, observation, evidence metadata, verifier status, failure class, correction action, bounded attempt, DoneCheck state and Human Threshold requirement. It always reports `doneCheckResult=HOLD_EXTERNAL_DONECHECK_V1_2` and `finalState=HOLD` pending authentic DoneCheck v1.2 verification and owner acceptance. This is producer evidence only; no second closure authority or invented signed receipt is created.
+
+### Bounded PR handoff failure
+A genuinely failed PR-handoff attempt preserves its task fingerprint and second-verifier observation in an authenticated `HOLD` issue receipt, with a bounded `PR_HANDOFF_<class>` failure class. GitHub worker exit 50 remains a real failure; a subsequent run can count that failed attempt against the task retry budget. Failed engineering delivery is distinct from a successful PR, and the official DoneCheck™ v1.2 and Human Threshold™ remain HOLD.
