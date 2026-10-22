@@ -62,3 +62,15 @@
 **Simülasyon örnekleri:** 8 aday/3 gerçek tam PASS/5 HOLD → N→N+3; tek owner receipt 5 ayrı ID'yi kapsar ve 5 özgün koşul ayrı ayrı tamam ise N→N+5; 8 adayın hepsi owner HOLD ise N→N ve bir toplu Human Threshold karar konusu. Hepsi teorik karar sınamalarıdır, olmuş saha kanıtı değildir.
 
 **Sistem kalite testi:** Kabul sayacı için `N` kanıtlı, `N+k` yalnız accepted özgün ID'ler; ürün tamamlanma yüzdesi ile eşitlenmez. Bitiş ancak resmî ayrı otoritelerle `100/100 + Verified Finish → BITTI_DUR`.
+
+## 7. Yönetim tarafından açık yöntem kabulü — 22.10.2026
+
+**STATE=USER_APPROVED_V2_ACTIVE / SCOPE=REVIEW_BRANCH_OPERATING_METHOD**
+
+Ürün sahibi, 22.10.2026 Yönetim oturumunda **Toplu Kanıt → Toplu Kabul Akışı V2** yöntemini açıkça benimsedi ve çalışma yöntemi olarak kaydını istedi. Etkin yöntem V2'dir. Önceki Tek Kapı V1'in **tekil özgün kontrol/kanıt/owner hükmü** korunur; **her yüzde birimi için ayrı Yönetim–İCRA turu** koşulu kaldırıldı. Bu kullanıcı onayı çalışma yöntemi kapsamındadır; canonical main merge, Secure Enclave signer, Ed25519 reviewer, Native install veya gerçek HumanReview izni değildir.
+
+**Tek ana birleşik iş, birden çok bağımsız kabul:** İCRA aynı kaynak/owner/test bağımlılıklarını gerçekten paylaşan en fazla 10 *aday* ID'yi bir mühendislik turuna alır. Önceden bildirilen sekiz ID bir **aday havuzudur**, zorunlu sekiz iş değildir. İCRA bağımlılığı kanıtlananları gruplar; owner kararı bekleyenleri hazırlar ve diğer uygun güvenli işleri bitirir. Her ID'nin kendi `ORIGINAL_CONDITION`, gerçek test ve yetki şartı ayrı. Yönetim tek devirde `k` benzersiz PASS için `N→N+k` mutabakatını yapar.
+
+**İlk gerçek saha kabul testi:** Güncel Yönetim 27/100; bir sonraki İCRA tesliminde batch adayı bazında bağımsız PASS/HOLD ile karar, JSON+Markdown eşitliği, exact HEAD ve GitHub CI. 27→32 **beş ID koşulsuz hedefi değil**, ancak beş ayrı özgün kontrolün tamamlanmış kanıtıyla gerçekleşebilecek birikimli eşiktir. `27→N` kanıta göre kararlandırılır.
+
+**Oturum devri ve çalışma ekonomisi:** Yönetim son HEAD/ledger ve V2 kaynak linkini verir; İCRA aynı kaynakları ve AudiV13 gerçek Mac receipt'lerini yeniden kullanır. Büyük 73 satırlık arşiv raporları tekrar tekrar üretilmez; yalnız **değişen ID'ler, yapılan gerçek iş, ilgili kaynak/owner ve kabul kanıtları** devredilir. Tek ortak `BATCH_ACCEPTANCE_PACKET` ve tek Yönetim kararıyla akış ilerler. Mac local source, 138 korunan dirty path ve 634/185 local-only commitler yerinde korunur.
