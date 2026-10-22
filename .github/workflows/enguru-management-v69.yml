@@ -1,0 +1,25 @@
+name: ENGURU Management V6.9 Review
+on:
+  pull_request:
+    paths:
+      - 'tools/enguru_management_v69.py'
+      - 'tests/test_enguru_management_v69.py'
+      - 'governance/management-v69/**'
+      - '.github/workflows/enguru-management-v69.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - name: Management adversarial tests
+        run: python3 -m unittest discover -s tests -p 'test_enguru_management_v69.py' -v
+      - name: No-write management example
+        run: python3 tools/enguru_management_v69.py --worklist governance/management-v69/EXAMPLE_TASKS.json
