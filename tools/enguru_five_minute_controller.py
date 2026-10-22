@@ -172,6 +172,10 @@ def prepare_repair_pr(token,task,result,commit):
         pr=github(f"https://api.github.com/repos/{REPO}/pulls/{prior}",token)
         if pr.get("state")!="open" or pr.get("base",{}).get("ref")!="main" or pr.get("head",{}).get("repo",{}).get("full_name")!=REPO:
             raise ValueError("PR_REFERENCE_AUTHORITY")
+        # A matching file SHA alone is insufficient: protect against hidden extra PR changes.
+        files=github(f"https://api.github.com/repos/{REPO}/pulls/{prior}/files?per_page=100",token)
+        if not isinstance(files,list) or len(files)!=1 or files[0].get("filename")!=path or files[0].get("status")!="modified":
+            raise ValueError("PR_REFERENCE_DIFF_SCOPE")
         linked=pr["head"]["ref"]
         blob=github(f"https://api.github.com/repos/{REPO}/contents/{path}?ref={linked}",token)
         if sha(base64.b64decode(blob["content"]))!=desired:raise ValueError("PR_REFERENCE_SOURCE_DIGEST")

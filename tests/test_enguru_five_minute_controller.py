@@ -176,6 +176,8 @@ class ControllerTests(unittest.TestCase):
         def fake(url,token,body=None,method=None):
             if "/pulls/196" in url:
                 return {"state":"open","base":{"ref":"main"},"head":{"ref":"enguru/controller-labory-repair","repo":{"full_name":REPO}},"html_url":"https://github.com/engurulabory/Engurulaboratuvari/pull/196"}
+            if "/pulls/196/files?" in url:
+                return [{"filename":"governance/controller/work/fix.txt","status":"modified"}]
             if "?ref=" in url:return {"content":base64.b64encode(b"new\n").decode()}
             raise AssertionError("UNEXPECTED_REMOTE_MUTATION")
         with patch("enguru_five_minute_controller.github",side_effect=fake):
@@ -191,4 +193,37 @@ class ControllerTests(unittest.TestCase):
         with patch("enguru_five_minute_controller.github",return_value={"state":"open","base":{"ref":"other"},"head":{"repo":{"full_name":"other/repo"}}}):
             with self.assertRaisesRegex(ValueError,"PR_REFERENCE_AUTHORITY"):
                 prepare_repair_pr("token",item,result,"b"*40)
+
+    def test_owner_pr_additional_file_is_denied(self):
+        from unittest.mock import patch
+        import base64
+        from enguru_five_minute_controller import prepare_repair_pr,REPO
+        item=t(id="LABORY_REPAIR",action="propose_exact_repair",path="governance/controller/work/fix.txt",
+               expected_sha256=sha256(b"old\n").hexdigest(),desired_sha256=sha256(b"new\n").hexdigest(),
+               replace_from="old",replace_to="new",existing_pr_number=196)
+        result={"fingerprint":"a"*64,"engineering":{"evidence":{"candidate_base64":base64.b64encode(b"new\n").decode()}}}
+        def mock_api(url,token,body=None,method=None):
+            if "/pulls/196/files?" in url:
+                return [{"filename":item["path"],"status":"modified"},{"filename":"governance/private/secret.txt","status":"modified"}]
+            if "/pulls/196" in url:
+                return {"state":"open","base":{"ref":"main"},"head":{"ref":"enguru/controller-test","repo":{"full_name":REPO}}}
+            raise AssertionError("UNEXPECTED_REMOTE_MUTATION")
+        with patch("enguru_five_minute_controller.github",side_effect=mock_api):
+            with self.assertRaisesRegex(ValueError,"PR_REFERENCE_DIFF_SCOPE"):
+                prepare_repair_pr("token",item,result,"b"*40)
+
+    def test_separate_token_privileges_for_pr_and_worker(self):
+        source=Path(__file__).resolve().parents[1]/".github"/"workflows"/"enguru-five-minute-controller.yml"
+        policy=source.read_text(encoding="utf8")
+        self.assertIn("  verify:\n",policy)
+        self.assertIn("  worker:\n",policy)
+        self.assertIn("    if: github.event_name != 'schedule'\n",policy)
+        verify=policy.split("  verify:\n",1)[1].split("  worker:\n",1)[0]
+        worker=policy.split("  worker:\n",1)[1]
+        self.assertIn("      contents: read\n",verify)
+        self.assertNotIn("issues: write",verify)
+        self.assertNotIn("pull-requests: write",verify)
+        self.assertIn("      issues: write\n",worker)
+        self.assertIn("      pull-requests: write\n",worker)
+        self.assertIn("github.event_name != 'pull_request'",worker)
 if __name__=="__main__":unittest.main()
