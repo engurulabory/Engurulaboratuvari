@@ -130,7 +130,41 @@ def finalize_receipt(result):
     result["receipt_sha256"]=sha(canonical(payload).encode())
     return result
 
-def public_receipt(result,runid):
+def donecheck_producer_candidate(result,task):
+    """Structured producer evidence; DoneCheck v1.2 and human authority decide final closure."""
+    engineering=result.get("engineering",{})
+    verification=result.get("verification",{})
+    observed=engineering.get("evidence",{}) if isinstance(engineering,dict) else {}
+    hashes={k:observed[k] for k in ("sha256","base_sha256","candidate_sha256","size","count","already_repaired") if k in observed}
+    proof=verification.get("proof") if isinstance(verification,dict) else None
+    verifier_state=verification.get("state") if isinstance(verification,dict) else "HOLD"
+    return {
+        "schema":"enguru.controller.donecheck_producer.v1",
+        "authority_contract":"governance/mac-engineer/DONECHECK_AUTHORITY_MODEL_V1.md",
+        "intent":"Complete one approved bounded GitHub controller task with observable evidence",
+        "task":{"id":task["id"],"action":task["action"],"target_repo":task["target_repo"],"path":task.get("path")},
+        "successCriteria":["exact_current_source_and_task_contract","allowlisted_engineering_execution",
+                           "second_source_or_test_verification","authentic_worker_and_commit_provenance",
+                           "owner_authority_preservation"],
+        "executionState":result["state"],
+        "observation":[{"role":"ENGINEER","state":engineering.get("state")},
+                       {"role":"VERIFIER","state":verifier_state,"proof":proof}],
+        "evidence":[{"kind":"task_fingerprint","sha256":result["fingerprint"]},
+                    {"kind":"source_commit","commit":result["source_commit"]},
+                    {"kind":"engineering_observation","metadata":hashes},
+                    {"kind":"internal_receipt","sha256":result.get("receipt_sha256")},
+                    {"kind":"pr_handoff","url":result.get("pull_request")}],
+        "verificationResult":"PASS" if verifier_state=="PASS" else "HOLD",
+        "failureClass":verification.get("reason") if isinstance(verification,dict) else None,
+        "correctionAction":"OWNER_REVIEW" if result["state"]=="PR_PENDING" else "GOVERNED_RETRY_OR_REVIEW",
+        "attempt":result.get("attempt",1),
+        "maxAttempts":result.get("max_attempts",task.get("max_attempts",2)),
+        "doneCheckResult":"HOLD_EXTERNAL_DONECHECK_V1_2",
+        "humanThresholdRequired":True,
+        "finalState":"HOLD",
+    }
+
+def public_receipt(result,runid,task=None):
     """Publish independently hashable metadata without exposing candidate source bytes."""
     producer=result.get("engineering",{})
     evidence=producer.get("evidence",{}) if isinstance(producer,dict) else {}
@@ -148,6 +182,7 @@ def public_receipt(result,runid):
        "official_verified_finish":result.get("official_verified_finish"),
     }
     if "schedule_observation" in result:receipt["schedule_observation"]=result["schedule_observation"]
+    if task is not None:receipt["donecheck_producer_candidate"]=donecheck_producer_candidate(result,task)
     return receipt
 
 def cycle(root,worklist,gate,completed=None,failed=None,commit=None,pending=None):
@@ -160,7 +195,8 @@ def cycle(root,worklist,gate,completed=None,failed=None,commit=None,pending=None
     if reason=="NO_ELIGIBLE_TASK":return {"state":"PASS_IDLE","tasks_executed":0,"owner_approval":"RESERVED"}
     if reason:return hold(reason)
     e=engineer(task,root);v=verifier(task,e,root)
-    result={"schema":"enguru.controller.v3","state":"PR_PENDING" if e["state"]=="CANDIDATE_READY" and v["state"]=="PASS" else "PASS" if e["state"]=="PASS" and v["state"]=="PASS" else "HOLD_GUVENLI_DUR","task_id":task["id"],"fingerprint":key(task,root,commit),"source_commit":commit or "0"*40,"management":"TASK_SELECTED","engineering":e,"verification":v,"tasks_executed":1,"human_final_authority":"OWNER_RESERVED","authorized_merge":False,"additional_spend_usd":0,"official_verified_finish":"HOLD_DONECHECK_HUMAN_GATE"}
+    result={"schema":"enguru.controller.v3","state":"PR_PENDING" if e["state"]=="CANDIDATE_READY" and v["state"]=="PASS" else "PASS" if e["state"]=="PASS" and v["state"]=="PASS" else "HOLD_GUVENLI_DUR","task_id":task["id"],"fingerprint":key(task,root,commit),"source_commit":commit or "0"*40,"management":"TASK_SELECTED","engineering":e,"verification":v,"tasks_executed":1,"attempt":(failed or {}).get(task["id"],0)+1,
+            "max_attempts":task.get("max_attempts",2),"human_final_authority":"OWNER_RESERVED","authorized_merge":False,"additional_spend_usd":0,"official_verified_finish":"HOLD_DONECHECK_HUMAN_GATE"}
     return finalize_receipt(result)
 def github(url,token,body=None,method=None):
     data=None if body is None else json.dumps(body).encode()
@@ -311,7 +347,7 @@ def main():
                 name=result["task_id"]
                 status="PASS" if result["state"]=="PASS" else "PR_PENDING" if result["state"]=="PR_PENDING" else "HOLD"
                 marker=MARKER+status+":"+name+":"+result["fingerprint"]+":"+runid+":"+commit
-                public=public_receipt(result,runid)
+                public=public_receipt(result,runid,next(t for t in tasks["tasks"] if t["id"]==name))
                 public_json=canonical(public)
                 public_sha=sha(public_json.encode())
                 body=(f"<!-- {marker} -->\nENGURU verified task: {name}\n"
