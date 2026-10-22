@@ -27,7 +27,7 @@ def validate(ledger, tasks, activation, actual_digests):
     ci=ledger.get("management_ci")
     if not isinstance(ci,dict) or ci.get("conclusion")!="success" or ci.get("workflow")!="ENGURU Management V6.9 Review":
         return hold("CI_PROOF")
-    if not isinstance(ci.get("run_id"),int) or ci["run_id"]<=0:return hold("CI_RUN_ID")
+    if type(ci.get("run_id")) is not int or ci["run_id"]<=0:return hold("CI_RUN_ID")
     if not isinstance(ci.get("head_sha"),str) or len(ci["head_sha"])!=40 or set(ci["head_sha"])-HEX:return hold("CI_SOURCE_HEAD")
     for task in source_tasks:
         record=keyed[task["id"]]
@@ -36,7 +36,9 @@ def validate(ledger, tasks, activation, actual_digests):
         if record.get("evidence_level")!="B_CI_SOURCE_READ" or record.get("task_execution_proven") is not False or record.get("independent_verifier")!="HOLD" or record.get("authority_acceptance")!="HOLD":
             return hold("FALSE_ACCEPTANCE_CLAIM")
     return {"state":"PASS_CROSSWALK_STRUCTURE_OFFICIAL_HOLD",
-            "task_count":len(ids),"task_ids":sorted(ids),"ci_read_verified":True,
+            "task_count":len(ids),"task_ids":sorted(ids),
+            "ci_claim_recorded":True,"ci_read_verified":False,
+            "ci_verification_reason":"EXTERNAL_GITHUB_RUN_ATTESTATION_REQUIRED",
             "task_execution_accepted":0,"independent_verifier_accepted":0,
             "authority_accepted":0,"official_finish":"HOLD",
             "next_action":"INDEPENDENT_PER_TASK_EXECUTION_EVIDENCE_AND_OWNER_DECISION"}
