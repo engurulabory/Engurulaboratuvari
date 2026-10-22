@@ -182,10 +182,20 @@ def github_source(path, commit):
     return base64.b64decode(doc["content"], validate=False)
 
 
+def write_once(path, result):
+    """Create one no-overwrite evidence report without credentials or signatures."""
+    output = Path(path)
+    fd = os.open(str(output), os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0), 0o600)
+    with os.fdopen(fd, "w", encoding="utf-8") as stream:
+        json.dump(result, stream, ensure_ascii=False, sort_keys=True, indent=2)
+        stream.write("\n")
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--live", action="store_true")
     parser.add_argument("--record", default="governance/management-v69/OPERATION_OBSERVATION.json")
+    parser.add_argument("--output", help="Write a single immutable JSON evidence projection")
     args = parser.parse_args()
     try:
         path = Path(args.record)
@@ -206,6 +216,11 @@ def main():
             result = evaluate(record, {t["id"] for t in tasks["tasks"]})
     except (OSError, ValueError, KeyError, TypeError, HTTPError, URLError, TimeoutError) as error:
         result = hold("LIVE_READ_OR_SOURCE_ERROR_" + type(error).__name__)
+    if args.output:
+        try:
+            write_once(args.output, result)
+        except (OSError, ValueError) as error:
+            result = hold("EVIDENCE_OUTPUT_" + type(error).__name__)
     print(json.dumps(result, indent=2, sort_keys=True, ensure_ascii=False))
     return 0 if result["state"].startswith("PASS_") else 50
 
