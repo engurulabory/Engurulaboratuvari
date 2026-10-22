@@ -142,6 +142,7 @@ class ControllerTests(unittest.TestCase):
         comment={"user":{"login":"github-actions[bot]"},"body":"<!-- "+entry+" -->"}
         def fake(url,token,body=None,method=None):
             if "/comments?" in url:return [comment]
+            if "/jobs?" in url:return {"jobs":[{"name":"worker","status":"completed","conclusion":"success"}]}
             return {"head_sha":commit,"path":".github/workflows/enguru-five-minute-controller.yml","status":"completed","event":"schedule","conclusion":"success"}
         with patch("enguru_five_minute_controller.github",side_effect=fake):
             done,pending,failed=receipts("token",root,[task],commit)
@@ -149,6 +150,7 @@ class ControllerTests(unittest.TestCase):
         self.assertEqual(pending,set())
         def failed_run(url,token,body=None,method=None):
             if "/comments?" in url:return [comment]
+            if "/jobs?" in url:return {"jobs":[{"name":"worker","status":"completed","conclusion":"success"}]}
             return {"head_sha":commit,"path":".github/workflows/enguru-five-minute-controller.yml","status":"completed","event":"schedule","conclusion":"failure"}
         with patch("enguru_five_minute_controller.github",side_effect=failed_run):
             done,_,_=receipts("token",root,[task],commit)
@@ -248,6 +250,7 @@ class ControllerTests(unittest.TestCase):
         comment={"user":{"login":"github-actions[bot]"},"body":"<!-- "+entry+" -->"}
         def fake(url,token,body=None,method=None):
             if "/comments?" in url:return [comment]
+            if "/jobs?" in url:return {"jobs":[{"name":"worker","status":"completed","conclusion":"success"}]}
             return {"head_sha":commit,"path":".github/workflows/enguru-five-minute-controller.yml","status":"completed","event":"push","conclusion":"success"}
         with patch("enguru_five_minute_controller.github",side_effect=fake):
             done,_,_=receipts("token",root,[task],commit)
@@ -318,5 +321,37 @@ class ControllerTests(unittest.TestCase):
         with patch("enguru_five_minute_controller.github",side_effect=fake):
             done,_,_=receipts("token",root,[task],commit)
         self.assertEqual(done,set())
+
+
+    def test_receipt_requires_actual_successful_privileged_worker(self):
+        from unittest.mock import patch
+        from enguru_five_minute_controller import receipts,MARKER
+        task=t();root=Path(".");commit="a"*40
+        entry=MARKER+"PASS:"+task["id"]+":"+key(task,root,commit)+":123:"+commit
+        comment={"user":{"login":"github-actions[bot]"},"body":"<!-- "+entry+" -->"}
+        for worker_state in ("skipped","failure","missing"):
+            def fake(url,token,body=None,method=None):
+                if "/comments?" in url:return [comment]
+                if "/jobs?" in url:
+                    if worker_state=="missing":return {"jobs":[{"name":"verify","conclusion":"success","status":"completed"}]}
+                    return {"jobs":[{"name":"worker","conclusion":worker_state,"status":"completed"}]}
+                return {"head_sha":commit,"path":".github/workflows/enguru-five-minute-controller.yml","status":"completed","event":"push","conclusion":"success"}
+            with patch("enguru_five_minute_controller.github",side_effect=fake):
+                done,pending,failed=receipts("token",root,[task],commit)
+            self.assertEqual(done,set(),worker_state)
+            self.assertEqual(pending,set(),worker_state)
+
+    def test_receipt_rejects_duplicate_worker_jobs(self):
+        from unittest.mock import patch
+        from enguru_five_minute_controller import receipts,MARKER
+        task=t();root=Path(".");commit="a"*40
+        entry=MARKER+"PASS:"+task["id"]+":"+key(task,root,commit)+":123:"+commit
+        comment={"user":{"login":"github-actions[bot]"},"body":"<!-- "+entry+" -->"}
+        def fake(url,token,body=None,method=None):
+            if "/comments?" in url:return [comment]
+            if "/jobs?" in url:return {"jobs":[{"name":"worker","conclusion":"success","status":"completed"}]*2}
+            return {"head_sha":commit,"path":".github/workflows/enguru-five-minute-controller.yml","status":"completed","event":"push","conclusion":"success"}
+        with patch("enguru_five_minute_controller.github",side_effect=fake):
+            self.assertEqual(receipts("token",root,[task],commit)[0],set())
 
 if __name__=="__main__":unittest.main()
