@@ -204,3 +204,16 @@ python3 -B tools/enguru_management_progress_v1.py --input governance/mac-enginee
 **V25 kanıt kesiti:** PR #191 F01 karar review dokümanı commit `ef0483e1af033e782e1c4513be5442b84e19060e`; PR #14 Native review patch commit `dbf34e055672ba4c93afddbac80662f288c37d3e`. Review-only yayın PASS; owner/reviewer canonical H1–H3, actual Native source diff, ikon/versiyon ve gerçek GUI kabulü HOLD. V26 görevlerin önceliği gerçek acceptance kapılarını tamamlamaktır.
 
 **Tam devir:** Altı satır gerçek sayaç/hüküm; AudiV13'te 78 açık kontrolün tamamının kabul/owner/evidence durumu, F01–F06 doğrulanmış neden/hipotez ayrımı, kod/test/onarım, insan kararı ve sonraki uygun işi içeren JSON/MD. Yönetim alındığında yeni 10'lu grubu gerçek kabul edilmiş N'den oluşturur.
+
+
+## 16. Tek Kapı Kabul Akışı — ilerleme patinajı kapanışı
+
+**Tek bağlayıcı yöntem:** [ENGURU_TEK_KAPI_KABUL_AKISI_V1.md](progress/ENGURU_TEK_KAPI_KABUL_AKISI_V1.md). Aynı canonical 100 ID ledger ve aynı sekiz Süzgeç aşaması. Yeni core, paralel progress authority, otomatik puanlama veya yeni 9. aşama kurulmaz.
+
+**Yönetim oturumu zorunluluğu:** Her İCRA devrinde, yeni VNN emri öncesinde gelen özgün Bxx-yy adaylarını aynı tur `PASS_EVIDENCE` / `READY_FOR_OWNER` / `HOLD_TECHNICAL` / `HOLD_SOURCE` olarak **tekil karara bağla**. Birinci kabul adayı ve onun `ORIGINAL_CONDITION`, `EXACT_EVIDENCE`, `MISSING_AUTHORITY`, `NEXT` alanları önceden seçilir. Kabul gerçekleşirse JSON+MD sayaç, tekil karar, kanıt mutabakatı; sonrasında exact HEAD'den doğrulama ve CI. Sahici sayaç 24/100 ile başlayan V30; +10 eşiği birikimli olup oturum başına zorunlu kota değildir.
+
+**İCRA sözleşmesi:** Raporun öncelikli bölümü tüm 76 satırın tekrarından önce yalnız **bir ana özgün kapanış ID**, gerçek kanıt paketi, pozitif/negatif sonuç, gerekli owner consent veya tek kesin eksik ve İCRA'nın bitirdiği gerçek onarımın detayını verir. Eski ZIP arşiv/test işlemi yeni bir Bxx ✓ diye kayda geçmez. Yetki eşiğinde başka uygun özgün kontrolü işleme al.
+
+**İlk açık Yönetim sorusu:** `B05-07` için V30 PR191 ve PR14 exact-head CI PASS; active required CI ruleset, accepted source HEAD/branch policy ve H2/H3 bağı olmadan yalnız gözlenen CI sonucu teknik kanıttır. B05-07 ancak kendi bütün özgün şartı gerçekten karşılandığında ledger'a ✓ yazılır. K01 owner lineage, K02 F01 canonical Ed25519, K03 F05 source review gerçek yetkili karar kapıları açık kalır.
+
+**Verimlilik ölçümü:** (i) resmî kabul **N/100**, (ii) İCRA teknik teslimleri commit/sha/CI, (iii) owner kararına hazır ID'ler, (iv) yeniden açılmadan kapanan engeller; her biri ayrı durum. Kullanıcı yalnız gerçekten kendisine ait owner kararında devreye girer.
