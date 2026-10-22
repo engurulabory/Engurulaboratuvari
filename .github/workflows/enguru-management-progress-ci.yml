@@ -9,6 +9,10 @@ on:
       - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V12_PROJECTION_INPUT.json"
       - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V13_PROJECTION_INPUT.json"
       - "tools/enguru_management_progress_v1.py"
+      - "governance/mac-engineer/progress/ENGURU_TOPLU_KANIT_TOPLU_KABUL_AKISI_V2.md"
+      - "governance/mac-engineer/progress/ENGURU_100_BIRIM_FINIS_SAYACI_V1.json"
+      - "tools/enguru_batch_evidence_gate_v2.py"
+      - "tests/test_enguru_batch_evidence_gate_v2.py"
       - "tests/test_enguru_management_progress_v1.py"
       - ".github/workflows/enguru-management-progress-ci.yml"
   push:
@@ -20,6 +24,10 @@ on:
       - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V12_PROJECTION_INPUT.json"
       - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V13_PROJECTION_INPUT.json"
       - "tools/enguru_management_progress_v1.py"
+      - "governance/mac-engineer/progress/ENGURU_TOPLU_KANIT_TOPLU_KABUL_AKISI_V2.md"
+      - "governance/mac-engineer/progress/ENGURU_100_BIRIM_FINIS_SAYACI_V1.json"
+      - "tools/enguru_batch_evidence_gate_v2.py"
+      - "tests/test_enguru_batch_evidence_gate_v2.py"
       - "tests/test_enguru_management_progress_v1.py"
       - ".github/workflows/enguru-management-progress-ci.yml"
 
@@ -127,4 +135,41 @@ jobs:
           assert result["blockers"]["closed"] == 0
           assert result["terminalProjection"] == "HOLD_PENDING_AUTHORIZED_ACCEPTANCE"
           print("STATE=PASS_V13_TECHNICAL_BUILD_AND_OFFICIAL_HOLD")
+          PY
+
+      - name: V2 evidence-coverage fail-closed regression
+        run: python3 -m unittest discover -s tests -p "test_enguru_batch_evidence_gate_v2.py" -v
+      - name: V2 read-only packet CLI simulation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          ledger = json.loads(Path("governance/mac-engineer/progress/ENGURU_100_BIRIM_FINIS_SAYACI_V1.json").read_text())
+          row = next(x for x in ledger["checks"] if x["state"] == "HOLD")
+          demo = {"schema": "enguru.batch.evidence/v2",
+                  "baseline": ledger["verified_units"],
+                  "items": [{"id": row["id"], "original_condition": row["name"],
+                             "claim": "PASS_CANDIDATE",
+                             "real_execution": "DEMO_ONLY_NOT_REAL_FIELD_EVIDENCE",
+                             "source_head": "a" * 40, "evidence_sha256": "b" * 64,
+                             "positive_test": {"state": "PASS", "receipt_sha256": "c" * 64},
+                             "negative_test": {"state": "PASS", "receipt_sha256": "d" * 64},
+                             "owner": {"required": True, "state": "HOLD",
+                                       "receipt_sha256": None}}]}
+          Path("/tmp/enguru-batch-demo.json").write_text(json.dumps(demo))
+          PY
+          python3 -B tools/enguru_batch_evidence_gate_v2.py \
+            --ledger governance/mac-engineer/progress/ENGURU_100_BIRIM_FINIS_SAYACI_V1.json \
+            --packet /tmp/enguru-batch-demo.json > /tmp/enguru-batch-gate.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          r = json.loads(Path("/tmp/enguru-batch-gate.json").read_text())
+          assert r["state"] == "PRE_SEND_STRUCTURAL_CHECK_ONLY_NOT_AUTHORITY"
+          assert r["structurally_ready"] == 0 and r["needs_completion"] == 1
+          assert "OWNER_APPROVED_SCOPE_RECEIPT" in r["items"][0]["missing"]
+          assert r["official_pass_added"] == 0
+          print("STATE=PASS_V2_EVIDENCE_GATE_FAIL_CLOSED_DEMO")
           PY
