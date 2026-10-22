@@ -33,6 +33,8 @@ jobs:
         run: python3 -m unittest discover -s tests -p 'test_enguru_management_v69_source.py' -v
       - name: Read actual controller snapshot (no execution)
         run: python3 tools/enguru_management_v69_source.py --root . --source-commit "$(git rev-parse HEAD)"
+      - name: Crosswalk authority and false-CI adversarial tests
+        run: python3 -m unittest discover -s tests -p 'test_enguru_management_v69_evidence.py' -v
       - name: Task ID evidence crosswalk (read-only)
         run: python3 tools/enguru_management_v69_evidence.py --root . --ledger governance/management-v69/EVIDENCE_CROSSWALK.json
       - name: Operational receipt negative tests
