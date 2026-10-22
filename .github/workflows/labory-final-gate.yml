@@ -259,3 +259,40 @@ jobs:
           assert x['ledgerBlobSha1']=='d54f48ce532a23e4e4b6eff1ef5f9c7c776e71fc',x
           print('STATE=PASS_REAL_LEDGER_OBSERVED_EXTERNAL_AUTHORITY_SAFE_HOLD')
           PY
+
+      - name: GH69 WP04-WP05 bounded journal 28 adversarial tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --test tests/test_enguru_management_v69_wp04_wp05_runtime.mjs 2>&1 | tee /tmp/gh69-wp0405-tests.log
+          grep -Eq '^# tests 28$' /tmp/gh69-wp0405-tests.log
+          grep -Eq '^# pass 28$' /tmp/gh69-wp0405-tests.log
+          grep -Eq '^# fail 0$' /tmp/gh69-wp0405-tests.log
+          grep -Eq '^# skipped 0$' /tmp/gh69-wp0405-tests.log
+      - name: GH69 WP04-WP05 actual pinned-ledger management-execution restart
+        shell: bash
+        env:
+          GH69_DISPOSABLE_ROOT: /tmp/gh69-${{ github.run_id }}-${{ github.run_attempt }}
+        run: |
+          set -euo pipefail
+          node tools/enguru_management_v69_wp04_wp05_runtime.mjs --pilot \
+            .gh69-pr191-evidence/governance/mac-engineer/progress/ENGURU_100_BIRIM_FINIS_SAYACI_V1.json \
+            "$GH69_DISPOSABLE_ROOT" > /tmp/gh69-wp0405-first.json
+          node tools/enguru_management_v69_wp04_wp05_runtime.mjs --pilot \
+            .gh69-pr191-evidence/governance/mac-engineer/progress/ENGURU_100_BIRIM_FINIS_SAYACI_V1.json \
+            "$GH69_DISPOSABLE_ROOT" > /tmp/gh69-wp0405-restart.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('/tmp/gh69-wp0405-first.json').read_text())
+          b=json.loads(Path('/tmp/gh69-wp0405-restart.json').read_text())
+          for x in (a,b):
+              assert x['state']=='PASS_REAL_BOUNDED_HANDOFF_EXTERNAL_AUTHORITY_HOLD',x
+              assert x['taskId']=='ENGURU-MGMT69-GH-FOUNDATION-01',x
+              assert x['events']==7 and x['finalState']=='HOLD_EXTERNAL_AUTHORITY',x
+              assert x['officialPassAdded']==0 and x['verifiedFinish'] is False,x
+              assert x['sourceLedgerBlob']=='d54f48ce532a23e4e4b6eff1ef5f9c7c776e71fc',x
+              assert x['donecheck']=='HOLD' and x['humanThreshold']=='PRESERVED',x
+          assert a['head']==b['head'],(a,b)
+          print('STATE=PASS_REAL_PINNED_LEDGER_DISPOSABLE_HANDOFF_RESTART_SAFE_HOLD')
+          PY
