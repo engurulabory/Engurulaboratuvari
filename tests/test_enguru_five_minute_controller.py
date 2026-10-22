@@ -537,4 +537,68 @@ class ControllerTests(unittest.TestCase):
             self.assertIn("ENGURU_CONTROLLER_V3:HOLD:",comments[0])
             self.assertIn("PR_HANDOFF_ValueError",comments[0])
 
+
+    def test_owner_pr_creation_placeholder_is_governed_hold(self):
+        import json,os
+        from unittest.mock import patch
+        from enguru_five_minute_controller import main as controller_main
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);sub=root/"governance/controller/work";sub.mkdir(parents=True)
+            (sub/"pilot.txt").write_bytes(b"old\\n")
+            task=t(id="LABORY_SAFE_REPAIR",action="propose_exact_repair",
+                   path="governance/controller/work/pilot.txt",
+                   expected_sha256=sha256(b"old\\n").hexdigest(),
+                   desired_sha256=sha256(b"new\\n").hexdigest(),
+                   replace_from="old",replace_to="new")
+            work=root/"TASKS.json";work.write_text(json.dumps({"tasks":[task]}))
+            gate=root/"ACTIVATION.json";gate.write_text(json.dumps(G))
+            output=root/"receipt.json"
+            args=["controller","--root",str(root),"--worklist",str(work),
+                  "--gate",str(gate),"--output",str(output)]
+            comments=[]
+            def fake(url,token,body=None,method=None):
+                if "/comments" in url and body is not None:
+                    comments.append(body["body"]);return {}
+                raise AssertionError("UNEXPECTED_GITHUB_CALL")
+            env={"GITHUB_REPOSITORY":REPO,"GITHUB_TOKEN":"test-token",
+                 "GITHUB_SHA":"a"*40,"GITHUB_RUN_ID":"123","GITHUB_EVENT_NAME":"push"}
+            with patch.dict(os.environ,env),patch.object(sys,"argv",args),\
+                 patch("enguru_five_minute_controller.receipts",return_value=(set(),set(),{})),\
+                 patch("enguru_five_minute_controller.prepare_repair_pr",return_value="OWNER_PR_CREATION_REQUIRED:branch"),\
+                 patch("enguru_five_minute_controller.github",side_effect=fake):
+                rc=controller_main()
+            result=json.loads(output.read_text())
+            self.assertEqual(rc,50)
+            self.assertEqual(result["state"],"HOLD_GUVENLI_DUR")
+            self.assertEqual(result["failure_class"],"PR_HANDOFF_ValueError")
+            self.assertNotIn("pull_request",result)
+            self.assertEqual(len(comments),1)
+            self.assertIn("ENGURU_CONTROLLER_V3:HOLD:",comments[0])
+
+    def test_cross_repo_pull_url_is_governed_hold(self):
+        import json,os
+        from unittest.mock import patch
+        from enguru_five_minute_controller import main as controller_main
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);sub=root/"governance/controller/work";sub.mkdir(parents=True)
+            (sub/"pilot.txt").write_bytes(b"old\\n")
+            task=t(id="LABORY_SAFE_REPAIR",action="propose_exact_repair",
+                   path="governance/controller/work/pilot.txt",
+                   expected_sha256=sha256(b"old\\n").hexdigest(),
+                   desired_sha256=sha256(b"new\\n").hexdigest(),
+                   replace_from="old",replace_to="new")
+            work=root/"TASKS.json";work.write_text(json.dumps({"tasks":[task]}))
+            gate=root/"ACTIVATION.json";gate.write_text(json.dumps(G))
+            output=root/"receipt.json"
+            args=["controller","--root",str(root),"--worklist",str(work),
+                  "--gate",str(gate),"--output",str(output)]
+            env={"GITHUB_REPOSITORY":REPO,"GITHUB_TOKEN":"test-token",
+                 "GITHUB_SHA":"a"*40,"GITHUB_RUN_ID":"123","GITHUB_EVENT_NAME":"push"}
+            with patch.dict(os.environ,env),patch.object(sys,"argv",args),\
+                 patch("enguru_five_minute_controller.receipts",return_value=(set(),set(),{})),\
+                 patch("enguru_five_minute_controller.prepare_repair_pr",return_value="https://github.com/other/repo/pull/1"),\
+                 patch("enguru_five_minute_controller.github",return_value={}):
+                rc=controller_main()
+            self.assertEqual(rc,50)
+            self.assertEqual(json.loads(output.read_text())["state"],"HOLD_GUVENLI_DUR")
 if __name__=="__main__":unittest.main()
