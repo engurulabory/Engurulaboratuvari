@@ -449,4 +449,37 @@ class ControllerTests(unittest.TestCase):
         with patch("enguru_five_minute_controller.github",side_effect=fake):
             self.assertEqual(receipts("token",root,[task],commit)[2],{})
 
+
+    def test_structured_donecheck_candidate_has_required_loop_fields(self):
+        from enguru_five_minute_controller import public_receipt,donecheck_producer_candidate
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);(root/"source.txt").write_bytes(b"PASS")
+            task=t()
+            result=cycle(root,{"tasks":[task]},G,commit="a"*40)
+            candidate=donecheck_producer_candidate(result,task)
+            required=("intent","task","successCriteria","executionState","observation",
+                      "evidence","verificationResult","failureClass","correctionAction",
+                      "attempt","maxAttempts","doneCheckResult","humanThresholdRequired","finalState")
+            self.assertTrue(all(k in candidate for k in required))
+            self.assertEqual(candidate["verificationResult"],"PASS")
+            self.assertEqual(candidate["doneCheckResult"],"HOLD_EXTERNAL_DONECHECK_V1_2")
+            self.assertEqual(candidate["finalState"],"HOLD")
+            self.assertTrue(candidate["humanThresholdRequired"])
+            self.assertEqual(candidate["task"]["id"],task["id"])
+            self.assertEqual(candidate["evidence"][3]["sha256"],result["receipt_sha256"])
+            self.assertEqual(public_receipt(result,"123",task)["donecheck_producer_candidate"],candidate)
+
+    def test_failed_engineer_donecheck_candidate_keeps_final_hold(self):
+        from enguru_five_minute_controller import donecheck_producer_candidate
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);(root/"source.txt").write_bytes(b"DRIFT")
+            task=t()
+            result=cycle(root,{"tasks":[task]},G,commit="b"*40,failed={task["id"]:1})
+            self.assertEqual(result["state"],"HOLD_GUVENLI_DUR")
+            producer=donecheck_producer_candidate(result,task)
+            self.assertEqual(producer["attempt"],2)
+            self.assertEqual(producer["verificationResult"],"HOLD")
+            self.assertEqual(producer["finalState"],"HOLD")
+            self.assertEqual(producer["doneCheckResult"],"HOLD_EXTERNAL_DONECHECK_V1_2")
+
 if __name__=="__main__":unittest.main()
