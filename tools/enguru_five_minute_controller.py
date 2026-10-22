@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """ENGURU governed scheduled Management -> Engineer -> Verifier, scoped to public Labory."""
 import argparse,base64,hashlib,json,os,re,subprocess,sys
+from datetime import datetime
 from pathlib import Path
 from urllib.request import Request,urlopen
 from urllib.error import HTTPError,URLError
@@ -50,7 +51,14 @@ def select(worklist,completed,pending=None):
         if not isinstance(t.get("max_attempts",2),int) or not 1<=t.get("max_attempts",2)<=3:return None,"RETRY_POLICY"
         if not isinstance(t.get("priority",100),int) or not 0<=t.get("priority",100)<=999:return None,"PRIORITY_POLICY"
     if len(ids)!=len(set(ids)):return None,"DUPLICATE_TASK_IDS"
-    if any(d not in ids for t in tasks for d in t.get("dependencies",[])):return None,"DEPENDENCY_AUTHORITY"
+    if any(not isinstance(d,str) or d not in ids for t in tasks for d in t.get("dependencies",[])):return None,"DEPENDENCY_AUTHORITY"
+    # A dependency cycle is a governed error, not successful idle work.
+    remaining={t["id"]:set(t.get("dependencies",[])) for t in tasks}
+    while remaining:
+        released={name for name,deps in remaining.items() if not deps}
+        if not released:return None,"DEPENDENCY_CYCLE"
+        for name in released:del remaining[name]
+        for deps in remaining.values():deps.difference_update(released)
     candidates=[t for t in tasks if t.get("state")=="READY" and t["id"] not in completed and t["id"] not in (pending or set()) and set(t.get("dependencies",[])).issubset(completed)]
     if not candidates:return None,"NO_ELIGIBLE_TASK"
     try:candidates.sort(key=lambda t:(int(t.get("priority",100)),t["id"]))
@@ -116,19 +124,23 @@ def verifier(task,result,root):
     m=re.search(r"Ran (\d+) tests",r.stderr)
     if r.returncode!=0 or not m or "OK" not in r.stderr or m.group(1)!=result["evidence"]["count"]:return hold("VERIFIER_TEST_DIFFERENCE")
     return {"state":"PASS","proof":"SECOND_REGRESSION_EXECUTION"}
+def finalize_receipt(result):
+    payload={k:v for k,v in result.items() if k!="receipt_sha256"}
+    result["receipt_sha256"]=sha(canonical(payload).encode())
+    return result
+
 def cycle(root,worklist,gate,completed=None,failed=None,commit=None,pending=None):
     if not gate_valid(gate):return hold("AUTHORITY_OR_ZERO_COST_GATE")
     if pending:
         return {"state":"AWAITING_HUMAN","reason":"GOVERNED_PR_REVIEW_PENDING","human_final_authority":"OWNER_RESERVED"}
     task,reason=select(worklist,set(completed or []),set(pending or []))
     if task is not None and (failed or {}).get(task["id"],0)>=task.get("max_attempts",2):
-        return hold("RETRY_BUDGET_REQUIRES_MANAGEMENT_REVIEW")
+        return {"state":"AWAITING_MANAGEMENT","reason":"RETRY_BUDGET_REQUIRES_MANAGEMENT_REVIEW","human_final_authority":"OWNER_RESERVED"}
     if reason=="NO_ELIGIBLE_TASK":return {"state":"PASS_IDLE","tasks_executed":0,"owner_approval":"RESERVED"}
     if reason:return hold(reason)
     e=engineer(task,root);v=verifier(task,e,root)
     result={"schema":"enguru.controller.v3","state":"PR_PENDING" if e["state"]=="CANDIDATE_READY" and v["state"]=="PASS" else "PASS" if e["state"]=="PASS" and v["state"]=="PASS" else "HOLD_GUVENLI_DUR","task_id":task["id"],"fingerprint":key(task,root,commit),"source_commit":commit or "0"*40,"management":"TASK_SELECTED","engineering":e,"verification":v,"tasks_executed":1,"human_final_authority":"OWNER_RESERVED","authorized_merge":False,"additional_spend_usd":0,"official_verified_finish":"HOLD_DONECHECK_HUMAN_GATE"}
-    result["receipt_sha256"]=sha(canonical(result).encode())
-    return result
+    return finalize_receipt(result)
 def github(url,token,body=None,method=None):
     data=None if body is None else json.dumps(body).encode()
     h={"Authorization":"Bearer "+token,"Accept":"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"}
@@ -154,7 +166,7 @@ def receipts(token,root,tasks,commit):
                 if runid not in run_cache:
                     run_cache[runid]=github(f"https://api.github.com/repos/{REPO}/actions/runs/{runid}",token)
                 run=run_cache[runid]
-                if run.get("head_sha")!=commit or run.get("status")!="completed" or run.get("event") not in ("schedule","workflow_dispatch"):continue
+                if run.get("head_sha")!=commit or run.get("status")!="completed" or run.get("event") not in ("schedule","workflow_dispatch","push"):continue
                 name=known[taskkey]
                 if status=="PASS" and run.get("conclusion")=="success":completed.add(name)
                 if status=="PR_PENDING" and run.get("conclusion")=="success":pending.add(name)
@@ -162,6 +174,31 @@ def receipts(token,root,tasks,commit):
             except (ValueError,KeyError,TypeError):continue
         if len(comments)<100:return completed,pending,failed
     raise ValueError("HISTORY_PAGINATION_LIMIT")
+def observe_schedule(token,runid):
+    """Report observed cron continuity; GH scheduling itself is best-effort."""
+    url=f"https://api.github.com/repos/{REPO}/actions/workflows/enguru-five-minute-controller.yml/runs?event=schedule&per_page=25"
+    try:
+        response=github(url,token)
+        runs=response["workflow_runs"]
+        if not isinstance(runs,list):raise TypeError("SCHEDULE_LIST_SCHEMA")
+        current=next((r for r in runs if str(r.get("id"))==str(runid) and r.get("event")=="schedule"),None)
+        if current is None:return {"state":"HOLD","reason":"CURRENT_SCHEDULE_NOT_OBSERVED"}
+        previous=[r for r in runs if str(r.get("id"))!=str(runid) and r.get("event")=="schedule" and r.get("created_at")]
+        if not previous:return {"state":"HOLD","reason":"PREVIOUS_SCHEDULE_NOT_OBSERVED"}
+        latest=max(previous,key=lambda r:r["created_at"])
+        now=datetime.fromisoformat(current["created_at"].replace("Z","+00:00"))
+        then=datetime.fromisoformat(latest["created_at"].replace("Z","+00:00"))
+        seconds=int((now-then).total_seconds())
+        if seconds<=0:return {"state":"HOLD","reason":"SCHEDULE_TIMESTAMP_ORDER"}
+        # Two minutes of tolerance for the five-minute best-effort GitHub timer.
+        return {"state":"PASS" if seconds<=420 else "HOLD",
+                "reason":"OBSERVED_WITHIN_TOLERANCE" if seconds<=420 else "SCHEDULE_CADENCE_GAP",
+                "gap_seconds":seconds,"expected_seconds":300,
+                "missed_slots_lower_bound":max(0,seconds//300-1),
+                "previous_run_id":latest["id"],"observed_run_id":current["id"]}
+    except (HTTPError,URLError,TimeoutError,ValueError,KeyError,TypeError,OSError):
+        return {"state":"HOLD","reason":"SCHEDULE_TELEMETRY_UNAVAILABLE"}
+
 def prepare_repair_pr(token,task,result,commit):
     path=task["path"]
     if not path.startswith("governance/controller/work/"):raise ValueError("REPAIR_SCOPE")
@@ -226,6 +263,9 @@ def main():
             if result.get("task_id") and result["state"]=="PR_PENDING":
                 candidate=next(t for t in tasks["tasks"] if t["id"]==result["task_id"])
                 result["pull_request"]=prepare_repair_pr(token,candidate,result,commit)
+            if os.getenv("GITHUB_EVENT_NAME")=="schedule":
+                result["schedule_observation"]=observe_schedule(token,runid)
+            finalize_receipt(result)
             if result.get("task_id"):
                 name=result["task_id"]
                 status="PASS" if result["state"]=="PASS" else "PR_PENDING" if result["state"]=="PR_PENDING" else "HOLD"
@@ -236,5 +276,6 @@ def main():
     Path(args.output).parent.mkdir(parents=True,exist_ok=True)
     Path(args.output).write_text(json.dumps(result,indent=2,ensure_ascii=False)+"\n")
     print("STATE="+result["state"])
-    return 0 if result["state"] in ("PASS","PASS_IDLE","PR_PENDING","AWAITING_HUMAN") or result.get("reason")=="RETRY_BUDGET_REQUIRES_MANAGEMENT_REVIEW" else 50
+    if "schedule_observation" in result:print("SCHEDULE_OBSERVATION="+canonical(result["schedule_observation"]))
+    return 0 if result["state"] in ("PASS","PASS_IDLE","PR_PENDING","AWAITING_HUMAN","AWAITING_MANAGEMENT") else 50
 if __name__=="__main__":raise SystemExit(main())
