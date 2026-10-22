@@ -27,5 +27,9 @@ jobs:
         run: python3 tools/enguru_management_v69_source.py --root . --source-commit "$(git rev-parse HEAD)"
       - name: Task ID evidence crosswalk (read-only)
         run: python3 tools/enguru_management_v69_evidence.py --root . --ledger governance/management-v69/EVIDENCE_CROSSWALK.json
+      - name: Operational receipt negative tests
+        run: python3 -m unittest discover -s tests -p 'test_enguru_management_v69_operation.py' -v
+      - name: Source-bound historical receipt classification
+        run: python3 tools/enguru_management_v69_operation.py
       - name: No-write management example
         run: python3 tools/enguru_management_v69.py --worklist governance/management-v69/EXAMPLE_TASKS.json
