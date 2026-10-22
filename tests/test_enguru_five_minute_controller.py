@@ -378,4 +378,41 @@ class ControllerTests(unittest.TestCase):
         with patch("enguru_five_minute_controller.github",side_effect=fake):
             self.assertEqual(receipts("token",root,[task],commit)[0],set())
 
+
+    def test_public_receipt_is_hashable_and_pins_run_provenance(self):
+        from enguru_five_minute_controller import public_receipt,canonical,sha,WORKFLOW
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);(root/"source.txt").write_bytes(b"PASS")
+            run=cycle(root,{"tasks":[t()]},G,commit="a"*40)
+            record=public_receipt(run,"123")
+            self.assertEqual(record["source_commit"],"a"*40)
+            self.assertEqual(record["producer_workflow"],WORKFLOW)
+            self.assertEqual(record["producer_run_id"],"123")
+            self.assertEqual(record["engineering"]["evidence"]["sha256"],sha256(b"PASS").hexdigest())
+            self.assertEqual(record["verification"]["proof"],"SECOND_SOURCE_DIGEST")
+            self.assertEqual(record["full_receipt_sha256"],run["receipt_sha256"])
+            digest=sha(canonical(record).encode())
+            self.assertEqual(len(digest),64)
+            self.assertNotEqual(digest,sha(canonical(public_receipt(run,"124")).encode()))
+
+    def test_public_receipt_keeps_repair_source_bytes_private(self):
+        from enguru_five_minute_controller import public_receipt,canonical
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);p=root/"governance/controller/work";p.mkdir(parents=True)
+            (p/"fix.txt").write_text("secret-old\\n")
+            item=t(id="LABORY_SAFE_REPAIR",action="propose_exact_repair",
+                   path="governance/controller/work/fix.txt",
+                   expected_sha256=sha256(b"secret-old\\n").hexdigest(),
+                   desired_sha256=sha256(b"secret-new\\n").hexdigest(),
+                   replace_from="secret-old",replace_to="secret-new")
+            run=cycle(root,{"tasks":[item]},G,commit="b"*40)
+            self.assertEqual(run["state"],"PR_PENDING")
+            self.assertIn("candidate_base64",run["engineering"]["evidence"])
+            record=public_receipt(run,"456")
+            rendered=canonical(record)
+            self.assertNotIn("candidate_base64",rendered)
+            self.assertNotIn("secret-old",rendered)
+            self.assertNotIn("secret-new",rendered)
+            self.assertEqual(record["engineering"]["evidence"]["candidate_sha256"],sha256(b"secret-new\\n").hexdigest())
+
 if __name__=="__main__":unittest.main()
