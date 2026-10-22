@@ -44,9 +44,7 @@ class BatchEvidenceTests(unittest.TestCase):
         self.assertEqual(result["state"], "PRE_SEND_STRUCTURAL_CHECK_ONLY_NOT_AUTHORITY")
 
     def test_three_ready_of_eight_is_partial_and_preserves_counter(self):
-        ids = [f"B03-{i:02d}" for i in range(8, 16)]
-        # All IDs in original 100 must be distinct and valid. Use B03-03..10, 8 records.
-        ids = [f"B03-{i:02d}" for i in range(3, 11)]
+        ids = [f"B04-{i:02d}" for i in range(1, 9)]
         records = []
         for cid in ids:
             x = item(cid)
