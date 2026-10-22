@@ -30,10 +30,12 @@ class ManagementTests(unittest.TestCase):
         self.assertEqual(mod.evaluate({"tasks":[task("A",deps=["MISSING"])]})["reason"],"INVALID_DEPENDENCY")
     def test_paused_excluded(self):
         r=mod.evaluate({"tasks":[task("A","PAUSED"),task("B","READY")]})
-        self.assertEqual(r["ready_candidates"],["B"])
+        self.assertEqual(r["ready_candidates"],[])
+        self.assertEqual(r["unverified_ready_candidates"],["B"])
     def test_fake_accepted_not_counted(self):
         r=mod.evaluate({"tasks":[task("A","ACCEPTED")]})
         self.assertEqual(r["record_declared_accepted"],0)
+        self.assertEqual(r["independently_accepted"],0)
     def test_self_review_not_counted(self):
         a=task("A","ACCEPTED");a["executor_id"]="same"
         for key in ("evidence","verifier","authority"):
@@ -48,6 +50,8 @@ class ManagementTests(unittest.TestCase):
         r=mod.evaluate({"tasks":[a]})
         self.assertEqual(r["record_declared_accepted"],1)
         self.assertEqual(r["evidence_authority"],"UNVERIFIED_INPUT_RECORDS")
+        self.assertEqual(r["independently_accepted"],0)
+        self.assertEqual(r["ready_candidates"],[])
     def test_dependencies(self):
         a=task("A","ACCEPTED");a["executor_id"]="executor"
         for key in ("evidence","verifier","authority"):
