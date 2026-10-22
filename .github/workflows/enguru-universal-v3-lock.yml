@@ -1,0 +1,39 @@
+name: ENGURU Universal V3 Contract Lock
+
+on:
+  pull_request:
+    paths:
+      - "governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md"
+      - "governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_V3_LOCK.json"
+      - "tools/verify_enguru_universal_v3_lock.py"
+      - "tests/test_enguru_universal_v3_lock.py"
+      - "AGENTS.md"
+      - "README.md"
+      - ".github/workflows/enguru-universal-v3-lock.yml"
+  push:
+    branches: [main]
+    paths:
+      - "governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md"
+      - "governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_V3_LOCK.json"
+      - "tools/verify_enguru_universal_v3_lock.py"
+      - "tests/test_enguru_universal_v3_lock.py"
+      - "AGENTS.md"
+      - "README.md"
+      - ".github/workflows/enguru-universal-v3-lock.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  verify-universal-v3-lock:
+    name: verify-universal-v3-lock
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Read-only SHA-256 canonical source and Git blob verification
+        run: python3 -B tools/verify_enguru_universal_v3_lock.py
+      - name: Adversarial source integrity regression
+        run: python3 -B -m unittest discover -s tests -p "test_enguru_universal_v3_lock.py" -v
