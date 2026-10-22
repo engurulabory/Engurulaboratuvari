@@ -217,3 +217,18 @@ python3 -B tools/enguru_management_progress_v1.py --input governance/mac-enginee
 **İlk açık Yönetim sorusu:** `B05-07` için V30 PR191 ve PR14 exact-head CI PASS; active required CI ruleset, accepted source HEAD/branch policy ve H2/H3 bağı olmadan yalnız gözlenen CI sonucu teknik kanıttır. B05-07 ancak kendi bütün özgün şartı gerçekten karşılandığında ledger'a ✓ yazılır. K01 owner lineage, K02 F01 canonical Ed25519, K03 F05 source review gerçek yetkili karar kapıları açık kalır.
 
 **Verimlilik ölçümü:** (i) resmî kabul **N/100**, (ii) İCRA teknik teslimleri commit/sha/CI, (iii) owner kararına hazır ID'ler, (iv) yeniden açılmadan kapanan engeller; her biri ayrı durum. Kullanıcı yalnız gerçekten kendisine ait owner kararında devreye girer.
+
+
+## 17. Toplu Kanıt → Toplu Kabul Akışı V2
+
+**Etkin yöntem (22.10.2026):** [ENGURU_TOPLU_KANIT_TOPLU_KABUL_AKISI_V2.md](progress/ENGURU_TOPLU_KANIT_TOPLU_KABUL_AKISI_V2.md). Önceki 16. bölümdeki Tek Kapı V1'in tek özgün kontrol *her yönetim turunda* kapanmalı ifadesi, **tek ana mühendislik odak + 1–10 bağımlılıkça ilişkili özgün kontrol için toplu kanıt/tek Yönetim kabul işlemi** olarak gelişti. **V1'in orijinal kriter başına bağımsız PASS/HOLD ve kanıt, owner sınırı, ikincil resmî H1/H2/H3 kapıları aynen geçerli.**
+
+**Güncel yönetim baseline:** `27 PASS/73 HOLD`; son benzersiz kabul `B05-04`. B05-06/07 korunur, H1/H2/H3 resmî `0/12`, F01–F06 `0/6`, Native/HumanReview/Verified Finish HOLD. B05-04 separate source lineages owner tanınması, B05-05 `exact parity` anlamına gelmez.
+
+**Yönetim döngüsü:** Mühendis tek `BATCH_ACCEPTANCE_PACKET` içinde en çok 10 benzersiz orijinal ID için ayrı kanıt/owner scope bildirir; Yönetim **aynı devirde ID başına ayrı hüküm** ve tek tutarlı ledger güncellemesi verir. `k` tam PASS → `N→N+k`, diğerleri somut HOLD. Çifte sayım, stale HEAD, missing signer/owner ve yanlış source parity fail-closed. Sonraki emir gerçek kaynak/CI/sayaç tekrar doğrulaması ardından üretilir.
+
+**İlerleme ekonomisi:** 73 ID'nin tamamında yalnız bir/round = 73 tur (146 iki-oturum mesajı); ortalama beş = 15, sekiz = 10 tur **ideal ve yetki kapılarına bağlı**. Eşikler `27→32→42→52→62→72→82→92→100` birikimlidir, kota değildir. Kullanıcı yalnız tam tanımlı insan kararına müdahil olur.
+
+**İlk aktif mühendislik odak:** kaynak/versiyon/yerel build-stage onarımı ve kabul hazırlığı. Ortak aday havuzu `B05-05,B06-09,B06-07,B06-08,B01-09,B01-10,B07-04,B07-06`; gerekli kaynak/owner bağı kanıtlanmış her ID ayrı bağımsız Yönetim hükmüyle ilerler. F01/H1/H2/H3/Native kabul zinciri korunur.
+
+**Sözleşme versiyon seçimi:** Yönetim ve İCRA V2'yi etkin kabul çalışma disiplini sayar. Orijinal 100 kriter, mevcut ledger ve Süzgeç 8 aşaması canonical kalır; alt yöntem tasarımı bunları değiştirmez.
