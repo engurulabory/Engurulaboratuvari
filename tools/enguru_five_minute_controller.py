@@ -210,6 +210,7 @@ def receipts(token,root,tasks,commit):
     known={t["id"]+":"+key(t,root,commit):t["id"] for t in tasks}
     run_cache={}
     worker_cache={}
+    counted_hold_runs=set()
     for page in range(1,6):
         comments=github(f"https://api.github.com/repos/{REPO}/issues/{ISSUE}/comments?per_page=100&page={page}",token)
         for c in comments:
@@ -238,7 +239,10 @@ def receipts(token,root,tasks,commit):
                 # A governed HOLD exits 50, so the real worker and workflow both fail.
                 # Its authenticated receipt must remain visible to the bounded retry budget.
                 if status=="HOLD" and worker=="failure" and run.get("conclusion")=="failure":
-                    failed[name]=failed.get(name,0)+1
+                    event=(name,runid)
+                    if event not in counted_hold_runs:
+                        counted_hold_runs.add(event)
+                        failed[name]=failed.get(name,0)+1
             except (ValueError,KeyError,TypeError):continue
         if len(comments)<100:return completed,pending,failed
     raise ValueError("HISTORY_PAGINATION_LIMIT")
