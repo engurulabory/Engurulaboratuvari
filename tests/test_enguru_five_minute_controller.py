@@ -482,4 +482,19 @@ class ControllerTests(unittest.TestCase):
             self.assertEqual(producer["finalState"],"HOLD")
             self.assertEqual(producer["doneCheckResult"],"HOLD_EXTERNAL_DONECHECK_V1_2")
 
+
+    def test_duplicate_failed_worker_comment_counts_only_one_attempt(self):
+        from unittest.mock import patch
+        from enguru_five_minute_controller import receipts,MARKER
+        task=t();root=Path(".");commit="a"*40
+        marker=MARKER+"HOLD:"+task["id"]+":"+key(task,root,commit)+":123:"+commit
+        one={"user":{"login":"github-actions[bot]"},"body":"<!-- "+marker+" -->"}
+        def fake(url,token,body=None,method=None):
+            if "/comments?" in url:return [one,one]
+            if "/jobs?" in url:return {"jobs":[{"name":"worker","status":"completed","conclusion":"failure"}]}
+            return {"head_sha":commit,"path":".github/workflows/enguru-five-minute-controller.yml",
+                    "event":"schedule","status":"completed","conclusion":"failure"}
+        with patch("enguru_five_minute_controller.github",side_effect=fake):
+            _,_,failed=receipts("token",root,[task],commit)
+        self.assertEqual(failed,{task["id"]:1})
 if __name__=="__main__":unittest.main()
