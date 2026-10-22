@@ -1,0 +1,41 @@
+{
+  "schema": "enguru.management-v69.worklist/v1",
+  "tasks": [
+    {
+      "task_id": "MGMT_V69_CANONICAL_RECONCILE",
+      "goal": "Verify the current canonical sources and establish management authority read-only",
+      "state": "READY",
+      "dependencies": [],
+      "source_ref": "engurulabory/Engurulaboratuvari:main/AGENTS.md",
+      "source_sha256": "11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc",
+      "evidence": {
+        "verified": false
+      },
+      "verifier": {
+        "verified": false
+      },
+      "authority": {
+        "verified": false
+      }
+    },
+    {
+      "task_id": "MGMT_V69_ACCEPTANCE",
+      "goal": "Independent acceptance of management only, after evidence",
+      "state": "PAUSED",
+      "dependencies": [
+        "MGMT_V69_CANONICAL_RECONCILE"
+      ],
+      "source_ref": "engurulabory/Engurulaboratuvari:main/governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md",
+      "source_sha256": "11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc",
+      "evidence": {
+        "verified": false
+      },
+      "verifier": {
+        "verified": false
+      },
+      "authority": {
+        "verified": false
+      }
+    }
+  ]
+}
