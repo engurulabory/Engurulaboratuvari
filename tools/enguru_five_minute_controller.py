@@ -247,6 +247,49 @@ def receipts(token,root,tasks,commit):
             except (ValueError,KeyError,TypeError):continue
         if len(comments)<100:return completed,pending,failed
     raise ValueError("HISTORY_PAGINATION_LIMIT")
+def audit_schedule_acceptance(token,commit,active_run_id=None):
+    """Read-only K02 proof: four previous completed native schedule runs on exact main."""
+    hold_result=lambda reason:{"state":"HOLD","reason":reason,"source_commit":commit}
+    if not re.fullmatch(r"[a-f0-9]{40}",commit):return hold_result("SOURCE_COMMIT_FORMAT")
+    try:
+        found=[]
+        for page in range(1,6):
+            response=github(
+                f"https://api.github.com/repos/{REPO}/actions/runs?event=schedule&per_page=100&page={page}",
+                token)
+            runs=response["workflow_runs"]
+            if not isinstance(runs,list):raise TypeError("SCHEDULE_RUN_LIST")
+            found.extend(r for r in runs if r.get("name")=="ENGURU Five Minute Controller"
+                         and r.get("event")=="schedule"
+                         and r.get("path")==".github/workflows/enguru-five-minute-controller.yml"
+                         and str(r.get("id"))!=str(active_run_id))
+            if len(found)>=4 or len(runs)<100:break
+        if len(found)<4:return hold_result("INSUFFICIENT_REAL_SCHEDULE_RUNS")
+        def ts(r):return datetime.fromisoformat(r["created_at"].replace("Z","+00:00"))
+        found.sort(key=lambda r:(ts(r),int(r["id"])),reverse=True)
+        window=found[:4]  # Never cherry-pick an earlier successful interval.
+        if any(r.get("head_sha")!=commit for r in window):
+            return hold_result("SCHEDULE_SOURCE_MISMATCH")
+        if any(r.get("status")!="completed" or r.get("conclusion")!="success" for r in window):
+            return hold_result("SCHEDULE_RUN_NOT_SUCCESSFUL")
+        times=[ts(r) for r in window]
+        gaps=[int((times[i]-times[i+1]).total_seconds()) for i in range(3)]
+        if any(g<=0 for g in gaps):return hold_result("SCHEDULE_TIME_ORDER")
+        if any(g>420 for g in gaps):
+            return {**hold_result("SCHEDULE_CADENCE_GAP"),"run_ids":[int(r["id"]) for r in window],
+                    "gap_seconds":gaps,"max_accepted_seconds":420}
+        for r in window:
+            jobs=github(f"https://api.github.com/repos/{REPO}/actions/runs/{int(r['id'])}/jobs?per_page=100",token)["jobs"]
+            if not isinstance(jobs,list):raise TypeError("SCHEDULE_WORKER_JOBS")
+            workers=[j for j in jobs if j.get("name")=="worker"]
+            if len(workers)!=1 or workers[0].get("status")!="completed" or workers[0].get("conclusion")!="success":
+                return hold_result("SCHEDULE_WORKER_NOT_SUCCESSFUL")
+        return {"state":"PASS","reason":"FOUR_REAL_COMPLETED_SCHEDULE_WORKERS",
+                "source_commit":commit,"run_ids":[int(r["id"]) for r in window],
+                "gap_seconds":gaps,"max_accepted_seconds":420}
+    except (HTTPError,URLError,TimeoutError,ValueError,KeyError,TypeError,OSError):
+        return hold_result("SCHEDULE_AUTHENTICITY_UNAVAILABLE")
+
 def observe_schedule(token,runid):
     """Report a bounded observed cron window; platform scheduler has no timing guarantee."""
     url=f"https://api.github.com/repos/{REPO}/actions/workflows/enguru-five-minute-controller.yml/runs?event=schedule&per_page=25"
@@ -359,7 +402,18 @@ def main():
                                              else "PR_HANDOFF_"+type(error).__name__)
             if os.getenv("GITHUB_EVENT_NAME")=="schedule":
                 result["schedule_observation"]=observe_schedule(token,runid)
+                result["k02_acceptance"]=audit_schedule_acceptance(token,commit,runid)
             finalize_receipt(result)
+            if result.get("k02_acceptance",{}).get("state")=="PASS":
+                proof=result["k02_acceptance"]
+                proof_json=canonical(proof)
+                proof_sha=sha(proof_json.encode())
+                github(f"https://api.github.com/repos/{REPO}/issues/{ISSUE}/comments",token,{
+                    "body":("<!-- ENGURU_K02_REAL_SCHEDULE_PASS:"+commit+":"+runid+" -->\n"
+                            "K02_REAL_SCHEDULE_ACCEPTANCE=PASS\n"
+                            "K02_EVIDENCE_SHA256="+proof_sha+"\n"
+                            "```json\n"+proof_json+"\n```"
+                            "\nHuman Threshold and final DoneCheck acceptance remain reserved.")})
             if result.get("task_id"):
                 name=result["task_id"]
                 status="PASS" if result["state"]=="PASS" else "PR_PENDING" if result["state"]=="PR_PENDING" else "HOLD"
@@ -379,5 +433,6 @@ def main():
     Path(args.output).write_text(json.dumps(result,indent=2,ensure_ascii=False)+"\n")
     print("STATE="+result["state"])
     if "schedule_observation" in result:print("SCHEDULE_OBSERVATION="+canonical(result["schedule_observation"]))
+    if "k02_acceptance" in result:print("K02_ACCEPTANCE="+canonical(result["k02_acceptance"]))
     return 0 if result["state"] in ("PASS","PASS_IDLE","PR_PENDING","AWAITING_HUMAN","AWAITING_MANAGEMENT") else 50
 if __name__=="__main__":raise SystemExit(main())
