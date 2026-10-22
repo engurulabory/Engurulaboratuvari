@@ -610,4 +610,65 @@ class ControllerTests(unittest.TestCase):
         self.assertEqual([b-a for a,b in zip(minute_slots,minute_slots[1:])],[5]*11)
         self.assertEqual((60-minute_slots[-1])+minute_slots[0],5)
 
+
+    def test_k02_authentic_window_accepts_four_successful_workers_on_exact_main(self):
+        from unittest.mock import patch
+        from enguru_five_minute_controller import audit_schedule_acceptance
+        commit="a"*40
+        runs=[{"id":100-i,"event":"schedule","name":"ENGURU Five Minute Controller",
+               "path":".github/workflows/enguru-five-minute-controller.yml",
+               "head_sha":commit,"status":"completed","conclusion":"success",
+               "created_at":f"2026-10-22T06:{(17-i*5):02d}:05Z"} for i in range(4)]
+        def fake(url,token):
+            if "/jobs?" in url:return {"jobs":[{"name":"worker","status":"completed","conclusion":"success"}]}
+            return {"workflow_runs":[{"id":105,"event":"schedule","name":"ENGURU Five Minute Controller",
+                      "path":".github/workflows/enguru-five-minute-controller.yml",
+                      "head_sha":commit,"status":"in_progress","conclusion":None,
+                      "created_at":"2026-10-22T06:22:05Z"}]+runs}
+        with patch("enguru_five_minute_controller.github",side_effect=fake):
+            proof=audit_schedule_acceptance("token",commit,105)
+        self.assertEqual(proof["state"],"PASS")
+        self.assertEqual(proof["run_ids"],[100,99,98,97])
+        self.assertEqual(proof["gap_seconds"],[300,300,300])
+
+    def test_k02_rejects_old_source_runs_and_time_gap(self):
+        from unittest.mock import patch
+        from enguru_five_minute_controller import audit_schedule_acceptance
+        commit="a"*40
+        runs=[{"id":100-i,"event":"schedule","name":"ENGURU Five Minute Controller",
+               "path":".github/workflows/enguru-five-minute-controller.yml",
+               "head_sha":commit,"status":"completed","conclusion":"success",
+               "created_at":f"2026-10-22T06:{(17-i*5):02d}:05Z"} for i in range(4)]
+        with patch("enguru_five_minute_controller.github",return_value={"workflow_runs":runs}):
+            self.assertEqual(audit_schedule_acceptance("token","b"*40)["reason"],"SCHEDULE_SOURCE_MISMATCH")
+        runs[1]["created_at"]="2026-10-22T06:00:05Z"
+        with patch("enguru_five_minute_controller.github",return_value={"workflow_runs":runs}):
+            self.assertEqual(audit_schedule_acceptance("token",commit)["reason"],"SCHEDULE_CADENCE_GAP")
+
+    def test_k02_rejects_failed_or_missing_worker_and_incomplete_run(self):
+        from unittest.mock import patch
+        from enguru_five_minute_controller import audit_schedule_acceptance
+        commit="a"*40
+        runs=[{"id":100-i,"event":"schedule","name":"ENGURU Five Minute Controller",
+               "path":".github/workflows/enguru-five-minute-controller.yml",
+               "head_sha":commit,"status":"completed","conclusion":"success",
+               "created_at":f"2026-10-22T06:{(17-i*5):02d}:05Z"} for i in range(4)]
+        def skipped(url,token):
+            if "/jobs?" in url:return {"jobs":[{"name":"worker","status":"completed","conclusion":"skipped"}]}
+            return {"workflow_runs":runs}
+        with patch("enguru_five_minute_controller.github",side_effect=skipped):
+            self.assertEqual(audit_schedule_acceptance("token",commit)["reason"],"SCHEDULE_WORKER_NOT_SUCCESSFUL")
+        runs[0]["status"]="in_progress"
+        with patch("enguru_five_minute_controller.github",return_value={"workflow_runs":runs}):
+            self.assertEqual(audit_schedule_acceptance("token",commit)["reason"],"SCHEDULE_RUN_NOT_SUCCESSFUL")
+
+    def test_k02_fails_closed_on_absent_or_bad_api(self):
+        from unittest.mock import patch
+        from enguru_five_minute_controller import audit_schedule_acceptance
+        with patch("enguru_five_minute_controller.github",return_value={"workflow_runs":[]}):
+            self.assertEqual(audit_schedule_acceptance("token","a"*40)["reason"],"INSUFFICIENT_REAL_SCHEDULE_RUNS")
+        with patch("enguru_five_minute_controller.github",side_effect=TypeError("BROKEN")):
+            self.assertEqual(audit_schedule_acceptance("token","a"*40)["reason"],"SCHEDULE_AUTHENTICITY_UNAVAILABLE")
+        self.assertEqual(audit_schedule_acceptance("token","BAD")["reason"],"SOURCE_COMMIT_FORMAT")
+
 if __name__=="__main__":unittest.main()
