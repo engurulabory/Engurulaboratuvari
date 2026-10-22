@@ -1,12 +1,12 @@
 {
   "schema": "enguru.100-unit-verified-finish-tracker/v1",
   "date": "2026-10-21",
-  "source_state": "V27 verified original Mac JSON SHA256=7823e1fba1b4e67d088ff4ed886afc956ae1ae5b7c74c6ecb377fff16fd426a9; Management verified canonical PR165 v0.6 final lock plus exact preserved Mac executable backup and accepted original B10-03 23→24; B05-04 owner branch/base grant HOLD; H1/H2/H3 0/12, F01–F06 0/6, Native/DoneCheck/Verified Finish HOLD",
+  "source_state": "22.10.2026 Yönetim B05-07 exact-head required CI acceptance 24→25: PR191 f211a5c4 5/5 success; PR14 6144df90 1/1 success; ENGURU_B05_07_KABUL_V1.md. B05-04 owner branch/base HOLD; F01 Ed25519/owner HOLD; F05 source owner/native live HOLD; H1/H2/H3 official 0/12, F01-F06 0/6, Verified Finish HOLD.",
   "measurement": "100 binary technical/control checkpoints; each checkpoint counted only with grounded evidence; NOT effort-time estimate and NOT official acceptance",
   "target": "H1 4/4 -> H2 4/4 -> H3 4/4 -> Native OSi -> Verified Finish -> BITTI_DUR",
   "total_units": 100,
-  "verified_units": 24,
-  "remaining_units": 76,
+  "verified_units": 25,
+  "remaining_units": 75,
   "official_h1_h2_h3": {
     "passed": 0,
     "total": 12
@@ -345,8 +345,8 @@
       "id": "B05-07",
       "block": "05",
       "name": "Gerekli exact commit CI kontrolleri PASS oldu",
-      "state": "HOLD",
-      "evidence": null
+      "state": "PASS_EVIDENCE",
+      "evidence": "B05-07 Yönetim kabul ENGURU_B05_07_KABUL_V1.md; PR191 exact head f211a5c4bb28ec960ff29ed63eeb699eaa74a3fb 5 workflow completed/success: 39732638322,39732638423,39732638419,39732638340,39732638336; PR14 exact head 6144df906d3ecca95fa25408eeb7f47952f26e01 Product CI completed/success 39732694498. Yalnız required exact-commit CI teknik kabulü; H3 official 0/4 and owner approval HOLD."
     },
     {
       "id": "B05-08",
