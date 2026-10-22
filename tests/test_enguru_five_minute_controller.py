@@ -497,4 +497,44 @@ class ControllerTests(unittest.TestCase):
         with patch("enguru_five_minute_controller.github",side_effect=fake):
             _,_,failed=receipts("token",root,[task],commit)
         self.assertEqual(failed,{task["id"]:1})
+
+    def test_failed_pr_handoff_emits_auditable_hold_and_preserves_task_identity(self):
+        import json,os
+        from unittest.mock import patch
+        from enguru_five_minute_controller import main as controller_main
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp)
+            sub=root/"governance/controller/work";sub.mkdir(parents=True)
+            (sub/"pilot.txt").write_bytes(b"old\\n")
+            task=t(id="LABORY_SAFE_REPAIR",action="propose_exact_repair",
+                   path="governance/controller/work/pilot.txt",
+                   expected_sha256=sha256(b"old\\n").hexdigest(),
+                   desired_sha256=sha256(b"new\\n").hexdigest(),
+                   replace_from="old",replace_to="new")
+            work=root/"TASKS.json";work.write_text(json.dumps({"tasks":[task]}))
+            gate=root/"ACTIVATION.json";gate.write_text(json.dumps(G))
+            output=root/"receipt.json"
+            args=["controller","--root",str(root),"--worklist",str(work),
+                  "--gate",str(gate),"--output",str(output)]
+            comments=[]
+            def fake_github(url,token,body=None,method=None):
+                if "/comments" in url and body is not None:comments.append(body["body"]);return {}
+                raise AssertionError("UNEXPECTED_API_CALL")
+            env={"GITHUB_REPOSITORY":REPO,"GITHUB_TOKEN":"test-token",
+                 "GITHUB_SHA":"a"*40,"GITHUB_RUN_ID":"123","GITHUB_EVENT_NAME":"push"}
+            with patch.dict(os.environ,env),patch.object(sys,"argv",args),\
+                 patch("enguru_five_minute_controller.receipts",return_value=(set(),set(),{})),\
+                 patch("enguru_five_minute_controller.prepare_repair_pr",side_effect=ValueError("PR_REFERENCE_DIFF_SCOPE")),\
+                 patch("enguru_five_minute_controller.github",side_effect=fake_github):
+                code=controller_main()
+            receipt=json.loads(output.read_text())
+            self.assertEqual(code,50)
+            self.assertEqual(receipt["state"],"HOLD_GUVENLI_DUR")
+            self.assertEqual(receipt["task_id"],"LABORY_SAFE_REPAIR")
+            self.assertEqual(receipt["failure_class"],"PR_HANDOFF_ValueError")
+            self.assertEqual(receipt["verification"]["state"],"PASS")
+            self.assertEqual(len(comments),1)
+            self.assertIn("ENGURU_CONTROLLER_V3:HOLD:",comments[0])
+            self.assertIn("PR_HANDOFF_ValueError",comments[0])
+
 if __name__=="__main__":unittest.main()
