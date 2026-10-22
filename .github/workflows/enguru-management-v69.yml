@@ -3,17 +3,25 @@ on:
   pull_request:
     paths:
       - 'tools/enguru_management_v69.py'
+      - 'tools/enguru_management_v69_*.py'
+      - 'tests/test_enguru_management_v69_*.py'
       - 'tests/test_enguru_management_v69.py'
       - 'governance/management-v69/**'
       - '.github/workflows/enguru-management-v69.yml'
   workflow_dispatch:
 permissions:
   contents: read
+  issues: read
+  actions: read
 jobs:
   verify:
     runs-on: ubuntu-24.04
     permissions:
       contents: read
+      issues: read
+      actions: read
+  issues: read
+  actions: read
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v5
@@ -31,5 +39,9 @@ jobs:
         run: python3 -m unittest discover -s tests -p 'test_enguru_management_v69_operation.py' -v
       - name: Source-bound historical receipt classification
         run: python3 tools/enguru_management_v69_operation.py
+      - name: Live GitHub provenance verification (read-only)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 tools/enguru_management_v69_operation.py --live
       - name: No-write management example
         run: python3 tools/enguru_management_v69.py --worklist governance/management-v69/EXAMPLE_TASKS.json
