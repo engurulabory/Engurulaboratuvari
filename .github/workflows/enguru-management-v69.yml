@@ -97,9 +97,14 @@ jobs:
           persist-credentials: false
       - name: Prepare actual DoneCheck verifyTask runtime
         run: |
-          npm install --prefix donecheck-v12 --ignore-scripts --no-audit --no-fund --no-package-lock
-          ./donecheck-v12/node_modules/.bin/esbuild \
-            donecheck-v12/src/donecheck-core.ts --bundle --platform=node --format=esm \
+          mkdir -p "$RUNNER_TEMP/donecheck-verify-build"
+          cp -R donecheck-v12/src "$RUNNER_TEMP/donecheck-verify-build/src"
+          cd "$RUNNER_TEMP/donecheck-verify-build"
+          npm init -y >/dev/null
+          npm install --no-save --no-package-lock --ignore-scripts --no-audit --no-fund \
+            zod@3.25.76 esbuild@0.25.12
+          ./node_modules/.bin/esbuild \
+            src/donecheck-core.ts --bundle --platform=node --format=esm \
             --outfile="$RUNNER_TEMP/donecheck-core-v12.mjs"
       - name: Revalidate GitHub API and execute real verifyTask
         env:
