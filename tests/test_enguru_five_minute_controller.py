@@ -142,14 +142,14 @@ class ControllerTests(unittest.TestCase):
         comment={"user":{"login":"github-actions[bot]"},"body":"<!-- "+entry+" -->"}
         def fake(url,token,body=None,method=None):
             if "/comments?" in url:return [comment]
-            return {"head_sha":commit,"status":"completed","event":"schedule","conclusion":"success"}
+            return {"head_sha":commit,"path":".github/workflows/enguru-five-minute-controller.yml","status":"completed","event":"schedule","conclusion":"success"}
         with patch("enguru_five_minute_controller.github",side_effect=fake):
             done,pending,failed=receipts("token",root,[task],commit)
         self.assertEqual(done,{task["id"]})
         self.assertEqual(pending,set())
         def failed_run(url,token,body=None,method=None):
             if "/comments?" in url:return [comment]
-            return {"head_sha":commit,"status":"completed","event":"schedule","conclusion":"failure"}
+            return {"head_sha":commit,"path":".github/workflows/enguru-five-minute-controller.yml","status":"completed","event":"schedule","conclusion":"failure"}
         with patch("enguru_five_minute_controller.github",side_effect=failed_run):
             done,_,_=receipts("token",root,[task],commit)
         self.assertEqual(done,set())
@@ -248,7 +248,7 @@ class ControllerTests(unittest.TestCase):
         comment={"user":{"login":"github-actions[bot]"},"body":"<!-- "+entry+" -->"}
         def fake(url,token,body=None,method=None):
             if "/comments?" in url:return [comment]
-            return {"head_sha":commit,"status":"completed","event":"push","conclusion":"success"}
+            return {"head_sha":commit,"path":".github/workflows/enguru-five-minute-controller.yml","status":"completed","event":"push","conclusion":"success"}
         with patch("enguru_five_minute_controller.github",side_effect=fake):
             done,_,_=receipts("token",root,[task],commit)
         self.assertEqual(done,{task["id"]})
@@ -263,7 +263,7 @@ class ControllerTests(unittest.TestCase):
         comment={"user":{"login":"github-actions[bot]"},"body":"<!-- "+entry+" -->"}
         def fake(url,token,body=None,method=None):
             if "/comments?" in url:return [comment]
-            return {"head_sha":commit,"status":"completed","event":"pull_request","conclusion":"success"}
+            return {"head_sha":commit,"path":".github/workflows/enguru-five-minute-controller.yml","status":"completed","event":"pull_request","conclusion":"success"}
         with patch("enguru_five_minute_controller.github",side_effect=fake):
             done,_,_=receipts("token",root,[task],commit)
         self.assertEqual(done,set())
@@ -303,4 +303,20 @@ class ControllerTests(unittest.TestCase):
         workflow=(Path(__file__).resolve().parents[1]/".github/workflows/enguru-five-minute-controller.yml").read_text(encoding="utf8")
         self.assertIn("      actions: read\n",workflow)
         self.assertIn("actions/checkout@v5",workflow)
+
+    def test_receipt_from_other_successful_workflow_is_rejected(self):
+        from unittest.mock import patch
+        from enguru_five_minute_controller import receipts,MARKER
+        task=t()
+        commit="a"*40
+        root=Path(".")
+        entry=MARKER+"PASS:"+task["id"]+":"+key(task,root,commit)+":123:"+commit
+        comment={"user":{"login":"github-actions[bot]"},"body":"<!-- "+entry+" -->"}
+        def fake(url,token,body=None,method=None):
+            if "/comments?" in url:return [comment]
+            return {"head_sha":commit,"path":".github/workflows/unrelated.yml","status":"completed","event":"push","conclusion":"success"}
+        with patch("enguru_five_minute_controller.github",side_effect=fake):
+            done,_,_=receipts("token",root,[task],commit)
+        self.assertEqual(done,set())
+
 if __name__=="__main__":unittest.main()
