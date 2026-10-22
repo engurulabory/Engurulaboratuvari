@@ -7,6 +7,10 @@
 
 A PASS is issued only when repository truth, Product/Core Map, Repository Order, Security Fleet, Steward, operational simplicity, DoneCheck™ and Human Threshold™ are evidence-backed.
 
+## Evrensel İCRA çalışma standardı (V3)
+
+**Bütün ürünler, projeler ve İCRA oturumları için ortak yöntem:** [ENGÜRÜ Evrensel Kanıtlı Tamamlama Talimatı™ V3](governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md). [SHA-256 kilit kaydı](governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_V3_LOCK.json) ve [oturum başlangıç rehberi](AGENTS.md). Teorik tasarım değerlendirmesi **100/100**; gerçek iş/saha/owner kabulü ilgili ürünün kendi özgün kanıt kapılarına bağlıdır.
+
 ## Start here
 1. `governance/ENGURU_SYSTEM_TRUTH_V1.json` — single machine-readable system truth.
 2. `governance/ENGURU_PRODUCT_CORE_MAP_V2.json` — current products, cores, release mirrors and planned products.
