@@ -10,6 +10,7 @@ REPO="engurulabory/Engurulaboratuvari"
 ISSUE=192
 MARKER="ENGURU_CONTROLLER_V3:"
 TEST="tests/test_enguru_five_minute_controller.py"
+WORKFLOW=".github/workflows/enguru-five-minute-controller.yml"
 def sha(data): return hashlib.sha256(data).hexdigest()
 def canonical(value):return json.dumps(value,sort_keys=True,ensure_ascii=False,separators=(",",":"))
 def hold(reason):return {"state":"HOLD_GUVENLI_DUR","reason":reason}
@@ -166,7 +167,7 @@ def receipts(token,root,tasks,commit):
                 if runid not in run_cache:
                     run_cache[runid]=github(f"https://api.github.com/repos/{REPO}/actions/runs/{runid}",token)
                 run=run_cache[runid]
-                if run.get("head_sha")!=commit or run.get("status")!="completed" or run.get("event") not in ("schedule","workflow_dispatch","push"):continue
+                if run.get("head_sha")!=commit or run.get("path")!=WORKFLOW or run.get("status")!="completed" or run.get("event") not in ("schedule","workflow_dispatch","push"):continue
                 name=known[taskkey]
                 if status=="PASS" and run.get("conclusion")=="success":completed.add(name)
                 if status=="PR_PENDING" and run.get("conclusion")=="success":pending.add(name)
