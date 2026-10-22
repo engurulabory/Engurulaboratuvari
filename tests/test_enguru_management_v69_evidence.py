@@ -50,6 +50,7 @@ class EvidenceTests(unittest.TestCase):
 
     def test_source_drift_fails_closed(self):
         ledger, tasks, gate, digests = sample()
+        ledger["source_sha256"] = dict(ledger["source_sha256"])
         ledger["source_sha256"]["governance/controller/TASKS.json"] = "0"*64
         result = mod.validate(ledger, tasks, gate, digests)
         self.assertEqual(result["reason"], "SOURCE_DRIFT")
