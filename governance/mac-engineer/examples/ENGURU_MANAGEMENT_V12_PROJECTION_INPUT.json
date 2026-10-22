@@ -1,0 +1,74 @@
+{
+  "schema": "enguru.management.handoff/v1",
+  "source": {
+    "report": "ENGURU_DORT_HEDEF_V12_F01_F05_20261021T110149917554Z.json",
+    "sha256": "06823eb5837ec1461994cd7b32dc8bc8a4b9e07188ee70afdbaa49ddc80ecd6c"
+  },
+  "goals": {
+    "H1": {
+      "passed": 0,
+      "total": 4
+    },
+    "H2": {
+      "passed": 0,
+      "total": 4
+    },
+    "H3": {
+      "passed": 0,
+      "total": 4
+    },
+    "native": "HOLD",
+    "verifiedFinish": "HOLD"
+  },
+  "blockers": [
+    {
+      "id": "F01",
+      "status": "HOLD_AUTHORITY"
+    },
+    {
+      "id": "F02",
+      "status": "HOLD_AUTHORITY"
+    },
+    {
+      "id": "F03",
+      "status": "HOLD_AUTHORITY"
+    },
+    {
+      "id": "F04",
+      "status": "HOLD_EVIDENCE"
+    },
+    {
+      "id": "F05",
+      "status": "HOLD_EVIDENCE"
+    },
+    {
+      "id": "F06",
+      "status": "BLOCKED"
+    }
+  ],
+  "scope": {
+    "activeProduct": "ENGURU_MAC_ENGINEER",
+    "nextProduct": "PILIVE",
+    "currentMilestone": "V12",
+    "nativeSourceBinding": "PASS_THREE_PINNED_BUILD_INPUTS_IN_ONE_COMMIT",
+    "nativeRecipe": "PASS_CANONICAL_AST_STAGE_RECIPE",
+    "swiftBuild": {
+      "attempted": true,
+      "returnCode": 1,
+      "errorsReceiptField": "F05.build.build_errors",
+      "cause": "NEDEN_BEKLIYOR",
+      "executableDigest": "HOLD"
+    },
+    "icon": "HOLD_CANONICAL_PROVENANCE",
+    "canonicalLockedRoadmapSource": "0ca33cc7b70fee915d02de72946bbd4bb0e40065",
+    "versionObserved": "0.8",
+    "f01": {
+      "approvedCriteria": 0,
+      "proposedCriteria": 12,
+      "proposalState": "UNAPPROVED_ENGINEERING_PROPOSAL",
+      "requiredAuthorityScope": "ENGURU_MAC_ENGINEER_H1_H2_H3_OFFICIAL_4X4_ONLY",
+      "runtimeBinding": "HOLD"
+    },
+    "note": "Projection of user supplied V12 devir kaydı; verify original JSON and Mac independently; compiler errors were not included in the text summary."
+  }
+}

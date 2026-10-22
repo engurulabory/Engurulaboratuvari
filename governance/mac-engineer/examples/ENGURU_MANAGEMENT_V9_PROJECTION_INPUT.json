@@ -1,0 +1,49 @@
+{
+  "schema": "enguru.management.handoff/v1",
+  "source": {
+    "report": "V9_2026-10-21",
+    "sha256": "cd458cc58cd98421fa064636849e04202a8e182136320563a7931149c11fdc49"
+  },
+  "goals": {
+    "H1": {
+      "passed": 0,
+      "total": 4
+    },
+    "H2": {
+      "passed": 0,
+      "total": 4
+    },
+    "H3": {
+      "passed": 0,
+      "total": 4
+    },
+    "native": "HOLD",
+    "verifiedFinish": "HOLD"
+  },
+  "blockers": [
+    {
+      "id": "F01",
+      "status": "HOLD_AUTHORITY"
+    },
+    {
+      "id": "F02",
+      "status": "HOLD_AUTHORITY"
+    },
+    {
+      "id": "F03",
+      "status": "HOLD_AUTHORITY"
+    },
+    {
+      "id": "F04",
+      "status": "HOLD_EVIDENCE"
+    },
+    {
+      "id": "F05",
+      "status": "HOLD_EVIDENCE"
+    },
+    {
+      "id": "F06",
+      "status": "BLOCKED"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "schema": "enguru.mac-engineer.b01-09.mac-source-second-pass-review/v1",
+  "task_id": "ENGURU-ME-MGMT61-B01-09-20261022-01",
+  "control_id": "B01-09",
+  "date": "2026-10-22",
+  "field_observation": {
+    "observed_at_utc": "2026-10-22T12:49:42.757271+00:00",
+    "uploaded_mac_copy_sha256": "ee295a1abc71e026702f61a0f2d6f5f235e374fd7739207777ef61aa792a1894",
+    "upload_bytes": 3382,
+    "verifier_source_code_sha256": "32f1ca0d687b531d930000da7758ae34dc0bdd26866384c0365e82e4141403cb",
+    "field_self_test": "7/7_PASS_REPORTED_FROM_MAC",
+    "field_positive_checks": "15/15_PASS_REPORTED_FROM_MAC_AND_ALL_TRUE_IN_UPLOADED_RECEIPT",
+    "mac_original_audiv13_receipt_rehashed_on_device_by_management": "NOT_EXECUTED",
+    "local_control_head": "269854b8a42a27e9419eae65a3c9e349bdcc7300",
+    "local_product_head": "26925c21c7816a90edc0eb047382aba8c696764c",
+    "local_roadmap_sha256": "36abb792318581cfe0414cc67d517aa919cc2d896720997bf94c7a81f52254bd",
+    "local_installed_app_and_source_plist_sha256": "c3260b7fc1bf3470f0421a93b3100fc972f292c64eff7551079bf537ae3c3951",
+    "local_roadmap_current": "v0.8",
+    "local_target": "v1.3",
+    "executable_binary_source_parity": "UNVERIFIED_OUT_OF_SCOPE",
+    "local_control_cached_origin_main_fresh": false
+  },
+  "github_independent_read": {
+    "authenticated_account": "engurulabory",
+    "authenticated_account_repo_permission": "admin",
+    "control_main": "1f7dfd708d652764ac74df27dcbbd393779e2b3b",
+    "product_main": "5432b9b135499cea18273c0e003877b864af92c6",
+    "pr191_head_before_this_review": "eb81432d031d881ec92144c506a8e048078eb42c",
+    "pr14_head": "f806d3e0e5d68e6f06af96a5a24a83762b49f0ab",
+    "owner_scoped_decision_blob_sha1": "537d0cef2fec5291ce8a2219da7832253ef41ace",
+    "owner_scoped_decision_value": "APPROVE_SCOPED_B0109_SOURCE_VERSION_RECONCILIATION",
+    "local_control_roadmap_vs_main": "v0.8/v1.3_LOCAL_OBSERVED_VS_v0.6/v1.1_CANONICAL_MAIN",
+    "product_pr14_plist": "v0.8_UNMERGED",
+    "preserved_b0504_blob_sha1": "36e4fc52cfa80ea5a026304cf19b53bc064b94df",
+    "preserved_b0506_blob_sha1": "c2d5d671afeeca909dabaa58e3c25b8ae10ee493",
+    "prior_review_ledger_blob_sha1": "d54f48ce532a23e4e4b6eff1ef5f9c7c776e71fc"
+  },
+  "independent_analysis": {
+    "carried_out_by": "CHATGPT_MODEL_SEPARATE_SOURCE_REVIEW_NOT_OFFICIAL_DONECHECK_OR_HUMAN_REVIEW",
+    "static_uploaded_receipt_and_github_cross_checks": "25/25_PASS",
+    "isolated_negative_predicate_checks": "5/5_PASS",
+    "negative_predicates": [
+      "TAMPERED_ROADMAP_SHA",
+      "WRONG_LOCAL_HEAD",
+      "STALE_CACHED_MAIN",
+      "OWNER_CRYPTO_UNVERIFIED",
+      "PLIST_EQUALITY_NOT_BINARY_PROVENANCE"
+    ],
+    "true_mac_reexecution": "NOT_EXECUTED_BY_CHATGPT",
+    "rehash_of_mac_original_file": "NOT_EXECUTED",
+    "github_ref_freshness": "READ_DIRECTLY_FROM_GITHUB_AFTER_RECEIPT",
+    "local_source_head_match": "MATCHES_PRIOR_OBSERVED_LOCAL_BRANCH_HEAD; NO_REMOTE_PARITY_ASSERTED",
+    "repo_local_history_preservation": "NO_MAC_REPO_MUTATION_PERFORMED"
+  },
+  "authority": {
+    "scoped_human_threshold_chat_decision": "APPROVED_AND_GITHUB_RECORDED",
+    "current_authenticated_github_authority": "admin",
+    "chat_to_github_human_crypto_binding": "NOT_ESTABLISHED",
+    "signed_independent_source_owner_authority_receipt": "NOT_VERIFIED",
+    "separate_higher_authorities": [
+      "CANONICAL_VERSION_PROMOTION",
+      "MERGE",
+      "PUSH",
+      "SIGNING",
+      "INSTALLATION",
+      "DONECHECK_V1_2",
+      "HUMAN_REVIEW",
+      "VERIFIED_FINISH"
+    ]
+  },
+  "verdict": {
+    "mac_source_identity_observation": "PASS_EVIDENCE",
+    "cross_source_scope_reconciliation": "PASS_BOUNDED_VERSION_LINE_SEPARATION",
+    "b01_09_original_condition": "HOLD_REQUIRED_AUTHENTICATED_OWNER_SOURCE_CHAIN",
+    "new_pass_evidence": 0,
+    "review_branch_progress": "27/100",
+    "official_h1_h2_h3": "0/12",
+    "verified_finish": "HOLD",
+    "state": "GUVENLI_DUR",
+    "next_exact_action": "BIND_AUTHENTICATED_OWNER_SCOPE_TO_GITHUB_SCOPED_DECISION_COMMIT_AND_CURRENT_LOCAL_SOURCE_DIGESTS_VIA_EXISTING_CANONICAL_AUTHORITY_CHAIN; OBTAIN_SEPARATE_VERIFIER_ACCEPTANCE; REASSESS_B01_09"
+  }
+}

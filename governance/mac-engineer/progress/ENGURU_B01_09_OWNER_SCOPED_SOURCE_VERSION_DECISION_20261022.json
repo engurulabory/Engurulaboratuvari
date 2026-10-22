@@ -1,0 +1,147 @@
+{
+  "schema": "enguru.mac-engineer.b01-09.owner-scoped-source-version-decision/v1",
+  "task_id": "ENGURU-ME-MGMT61-B01-09-20261022-01",
+  "decision_id": "ENGURU_B01_09_OWNER_SCOPED_SOURCE_VERSION_DECISION_20261022",
+  "date": "2026-10-22",
+  "control_id": "B01-09",
+  "original_condition": "Aktif sürüm ve yetkili kaynak sahibi zinciri doğrulandı",
+  "record_surface": "GITHUB_CONTROL_PR191_REVIEW_BRANCH_ONLY",
+  "record_kind": "USER_AUTHORIZED_SCOPE_BOUND_DECISION_WITH_EXPLICIT_UNVERIFIED_GATES",
+  "owner_decision": {
+    "value": "APPROVE_SCOPED_B0109_SOURCE_VERSION_RECONCILIATION",
+    "evidence_kind": "USER_EXPLICIT_HUMAN_THRESHOLD_APPROVAL_IN_THIS_CHAT",
+    "declared_capacity": "AUTHORIZED_SOURCE_OWNER",
+    "approved_actions": [
+      "RECOGNIZE_LOCAL_V08_AS_OBSERVED_ACTIVE_MAC_FIELD_VERSION",
+      "PRESERVE_LOCAL_V13_TARGET_AS_LOCAL_ROADMAP_RECORD",
+      "PRESERVE_GITHUB_MAIN_V06_LOCKED_AND_V11_TARGET_AS_EXISTING_CANONICAL_RELEASE_TRUTH",
+      "PRESERVE_TWO_LOCAL_GIT_HISTORIES_EXISTING_HEAD_IDENTITIES_AND_138_PROTECTED_PATHS",
+      "REGISTER_THIS_EXACT_SCOPE_DECISION_RECEIPT_ON_AUTHORIZED_GITHUB_REVIEW_BRANCH",
+      "PERFORM_FRESH_INDEPENDENT_MAC_SOURCE_IDENTITY_VERIFICATION",
+      "REASSESS_ORIGINAL_B01_09_ACCEPTANCE_AFTER_INDEPENDENT_VERIFICATION"
+    ],
+    "excluded_actions": [
+      "CANONICAL_VERSION_PROMOTION",
+      "MAIN_MERGE",
+      "REBASE",
+      "RESET",
+      "PUSH_LOCAL_BRANCH",
+      "MUTATE_LOCAL_WORKTREE",
+      "SIGNING",
+      "NATIVE_APP_INSTALLATION",
+      "PRODUCTION_PUBLICATION",
+      "ACT_AS_INDEPENDENT_REVIEWER",
+      "ISSUE_SIGNER_GRANT",
+      "ISSUE_CANONICAL_WRITER_GRANT",
+      "ASSUME_VERIFIED_FINISH"
+    ],
+    "source_owner_chat_to_github_cryptographic_binding": "NOT_ESTABLISHED",
+    "human_cryptographic_signature": "NOT_PRESENT",
+    "grant_effect": "RECONCILIATION_AND_EVIDENCE_COLLECTION_ONLY",
+    "user_approval_scope_verified_against_literal_request": true
+  },
+  "github_write_authority": {
+    "authenticated_connector_login": "engurulabory",
+    "repository": "engurulabory/Engurulaboratuvari",
+    "permission_observed": "admin",
+    "repo_write_permission_observed": true,
+    "destination_branch": "feat/mac-engineer-management-100-v1-20261021",
+    "branch_head_before_receipt": "7fd29ede311751b5801057ca2afab22aefda75f3",
+    "canonical_main_untouched": true,
+    "review_branch_ledger_count_preserved": "27/100"
+  },
+  "version_lines": {
+    "local_mac_observed": {
+      "active_product_version": "v0.8",
+      "final_target_record": "v1.3",
+      "status": "LOCAL_FIELD_OBSERVATION_NOT_MAIN_PROMOTION",
+      "control_roadmap_sha256_reported": "36abb792318581cfe0414cc67d517aa919cc2d896720997bf94c7a81f52254bd",
+      "product_checkout_plist_sha256_reported": "c3260b7fc1bf3470f0421a93b3100fc972f292c64eff7551079bf537ae3c3951",
+      "installed_app_plist_sha256_reported": "c3260b7fc1bf3470f0421a93b3100fc972f292c64eff7551079bf537ae3c3951",
+      "plist_binary_provenance": "BINARY_NOT_INDEPENDENTLY_VERIFIED"
+    },
+    "github_canonical_main": {
+      "active_version": "v0.6",
+      "existing_locked_state": "VERIFIED_FINAL_LOCKED_HISTORICAL",
+      "final_target_record": "v1.1",
+      "version_authority": "CURRENT_MAIN_RECORDED_CANONICAL_RELEASE_TRUTH",
+      "control_roadmap_git_blob_sha1": "9b62c0e4a8b85cf5764ef7bdfd98c783043f2860",
+      "product_info_plist_git_blob_sha1": "8716feaedf40736e5a18310089366b87214d8a21"
+    },
+    "github_product_pr14": {
+      "product_info_plist_version": "v0.8",
+      "product_info_plist_git_blob_sha1": "a280998cefaaa89556ca2ad1dd08101284250620",
+      "merge_state": "OPEN_NOT_MERGED"
+    },
+    "relation": "LOCAL_OBSERVED_ACTIVE_FIELD_V08_AND_GITHUB_CANONICAL_RELEASE_V06_ARE_SEPARATELY_SCOPED_FACTS; TARGETS_V13_VS_V11_ARE_SEPARATE_RECORDS; ANY_CANONICAL_TARGET_CHANGE_REQUIRES_SEPARATE_AUTHORITY"
+  },
+  "exact_source_pins": {
+    "control": {
+      "repo": "engurulabory/Engurulaboratuvari",
+      "main_head_last_verified": "1f7dfd708d652764ac74df27dcbbd393779e2b3b",
+      "review_pr": 191,
+      "review_head_before_receipt": "7fd29ede311751b5801057ca2afab22aefda75f3",
+      "local_branch_from_mac_observation": "feat/mac-engineer-v08-product-engineering-operator",
+      "local_head_from_mac_observation": "269854b8a42a27e9419eae65a3c9e349bdcc7300",
+      "cached_local_origin_main": "5907b0f3ef95a32e4c79980e341bd1483fd2a1db",
+      "local_main_freshness": "STALE_CACHED_REF_NO_FETCH"
+    },
+    "product": {
+      "repo": "engurulabory/enguru-mac-engineer",
+      "main_head_last_verified": "5432b9b135499cea18273c0e003877b864af92c6",
+      "review_pr": 14,
+      "review_head_last_verified": "f806d3e0e5d68e6f06af96a5a24a83762b49f0ab",
+      "local_branch_from_mac_observation": "feat/v08-native-productization-provenance",
+      "local_head_from_mac_observation": "26925c21c7816a90edc0eb047382aba8c696764c",
+      "cached_local_origin_main": "5432b9b135499cea18273c0e003877b864af92c6"
+    }
+  },
+  "preserved_authority": {
+    "b05_04": {
+      "decision": "OWNER_APPROVED_PRESERVE_PARALLEL_SOURCE_LINEAGES",
+      "git_blob_sha1": "36e4fc52cfa80ea5a026304cf19b53bc064b94df",
+      "limitation": "RECOGNITION_AND_PRESERVATION_NOT_SOURCE_OWNER_B01_09_FINAL_ACCEPTANCE"
+    },
+    "b05_06": {
+      "decision": "APPROVED_PRESERVE_IN_PLACE_ALL_138_PATHS",
+      "git_blob_sha1": "c2d5d671afeeca909dabaa58e3c25b8ae10ee493",
+      "protected_paths": 138,
+      "limitation": "PATH_PRESERVATION_ONLY"
+    },
+    "canonical_donecheck_v1_2": "UNCHANGED",
+    "human_threshold_final_authority": "UNCHANGED"
+  },
+  "supporting_evidence": {
+    "real_mac_readonly_copy_sha256_independently_checked": "0b986b8a9ed0e026c158b96de98cfb39a1054ecc8b2d6547be8071a5052051bb",
+    "mac_observation_utc": "2026-10-22T11:33:10.626576+00:00",
+    "zip_sha256_reported_in_verified_scope_receipt": "44448be1d546170ca82096987c316bb5ec00f1b23025467b538b719a09bc105d",
+    "zip_byte_verification_receipt_sha256_independently_checked": "6a96a2bf3b98bf0ea8d2ecaf92144a37cd290fa7dff5b66e3369811bea063382",
+    "independently_authenticated_mac_original_producer": "UNVERIFIED",
+    "independent_second_look": "PRESENT_READ_ONLY_REVIEW_CONCLUDED_B01_09_HOLD",
+    "expected_ledger_review_state": "27_PASS_EVIDENCE_73_HOLD"
+  },
+  "independent_verification_gate": {
+    "state": "HOLD_FRESH_MAC_SOURCE_BINDING",
+    "prerequisites": [
+      "READ_ONLY_MAC_FRESH_OBSERVATION_WITH_TWO_LOCAL_HEADS_AND_DIRTY_WORKTREE_DIGESTS",
+      "INDEPENDENT_SOURCE_BYTE_SHA256_FOR_LOCAL_ROADMAP_AND_BOTH_PLISTS",
+      "FRESH_GITHUB_MAIN_AND_PR_HEAD_BLOB_SHA_COMPARE_WITH_SNAPSHOT_OR_DOCUMENT_EXACT_DRIFT",
+      "AUTHENTICATED_SOURCE_OWNER_SCOPE_APPLICABILITY_AND_HUMAN_DECISION_ORIGIN_VERIFICATION",
+      "COUNTERTEST_STALE_HEAD_WRONG_SHA_UNAUTHORIZED_SCOPE_WRONG_VERSION_WITH_HOLD_ON_FAILURE",
+      "INDEPENDENT_VERIFIER_VERDICT_WITH_EVIDENCE_HASH_AND_RECORD_LINK"
+    ],
+    "source_binaries": "UNVERIFIED_NOT_ASSERTED",
+    "owner_crypto_signature": "NOT_REQUIRED_FOR_RECORDING_SCOPED_CHAT_DECISION_BUT_REQUIRED_WHEN_ANY_HIGHER_CANONICAL_AUTHORITY_SAYS_SO"
+  },
+  "outcome": {
+    "human_threshold_scoped_decision": "APPROVED_BY_USER_IN_CHAT",
+    "authorized_github_write": "READY_ON_REVIEW_BRANCH",
+    "b01_09": "HOLD_INDEPENDENT_SOURCE_BINDING_AND_OWNER_CHAIN",
+    "new_pass_evidence": 0,
+    "pr191_review_branch_progress": "27/100",
+    "official_h1_h2_h3": "0/12",
+    "verified_finish": "HOLD",
+    "next_action": "OBTAIN_FRESH_INDEPENDENT_MAC_SOURCE_RECEIPT_AND_VERIFY_OWNER_SOURCE_IDENTITY_THEN_REASSESS_B01_09",
+    "stop": "GUVENLI_DUR"
+  }
+}
