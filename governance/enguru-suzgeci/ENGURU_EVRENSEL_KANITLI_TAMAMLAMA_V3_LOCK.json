@@ -2,7 +2,7 @@
   "schema": "enguru.universal.verifiable-finish.contract-lock/v1",
   "canonical_scope": "ALL_ENGURU_PRODUCTS_PROJECTS_TASKS",
   "version": "V3",
-  "status": "USER_APPROVED_REVIEW_BRANCH_LOCK_PROPOSAL",
+  "status": "USER_APPROVED_SHA256_PINNED",
   "date": "2026-10-22",
   "source_repository": "engurulabory/Engurulaboratuvari",
   "source_ref": "governance/universal-verified-finish-v3-20261022",
@@ -16,7 +16,7 @@
   },
   "authority": {
     "user_explicitly_requested_shared_github_lock": true,
-    "repo_main_promotion": "REQUIRES_PROTECTED_BRANCH_WORKFLOW",
+    "repo_main_promotion": "GITHUB_PROTECTED_PR_REVIEW_AND_CI",
     "protected_human_thresholds_preserved": true
   },
   "norms": {
