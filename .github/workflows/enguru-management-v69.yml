@@ -21,5 +21,9 @@ jobs:
           persist-credentials: false
       - name: Management adversarial tests
         run: python3 -m unittest discover -s tests -p 'test_enguru_management_v69.py' -v
+      - name: Source-bound snapshot tests
+        run: python3 -m unittest discover -s tests -p 'test_enguru_management_v69_source.py' -v
+      - name: Read actual controller snapshot (no execution)
+        run: python3 tools/enguru_management_v69_source.py --root . --source-commit "$(git rev-parse HEAD)"
       - name: No-write management example
         run: python3 tools/enguru_management_v69.py --worklist governance/management-v69/EXAMPLE_TASKS.json
