@@ -1,6 +1,6 @@
 # ENGÜRÜ — 100 Birim Uçtan Uca Finiş Sayacı™
 
-**22.10.2026 — doğrulanmış kontrol:** **25/100** · Kalan **75/100** · **Resmî H1–H3:** 0/12 · **F01–F06 kapanış:** 0/6 · **Verified Finish:** HOLD
+**22.10.2026 — doğrulanmış kontrol:** **26/100** · Kalan **74/100** · **Resmî H1–H3:** 0/12 · **F01–F06 kapanış:** 0/6 · **Verified Finish:** HOLD
 
 **Anlamı:** 100 eşit sayımlı kontrol noktası, iş süresi veya nihai ürün tamamlanma yüzdesi tahmini değildir. Her ✓ bağımsız teknik/kanıt/tespit alt kapısının doğrulandığını belirtir; yetkili resmî kabul yalnız kendi kriterlerinde PASS olduğunda ilerler.
 
@@ -14,7 +14,7 @@
 | B02 | F01 · Yetkili kriter kararı | **2/10** | Kısmi teknik PASS |
 | B03 | H1 · P-256 signer 4/4 | **1/10** | Kısmi teknik PASS |
 | B04 | H2 · Canonical writer 4/4 | **1/10** | Kısmi teknik PASS |
-| B05 | H3 · GitHub ↔ OSi 4/4 | **3/10** | Kısmi teknik PASS; H3 resmî HOLD |
+| B05 | H3 · GitHub ↔ OSi 4/4 | **4/10** | Kısmi teknik PASS; H3 resmî HOLD |
 | B06 | F05 · Çalışan Native derleme | **6/10** | Kısmi teknik PASS |
 | B07 | F05 · Canonical kaynak ve ikon | **3/10** | Kabul/kanıt bekliyor |
 | B08 | Native · İmza, kurulum, çalışma | **0/10** | Kabul/kanıt bekliyor |
@@ -75,14 +75,14 @@
 - □ **B04-09** — Bağımsız canonical writer audit receipt doğrulandı
 - □ **B04-10** — H2 dört kriterin resmî kabulü 4/4 oldu
 
-### B05 — H3 · GitHub ↔ OSi 4/4 · 3/10
+### B05 — H3 · GitHub ↔ OSi 4/4 · 4/10
 
 - ✓ **B05-01** — Mevcut 13/13 Git syntax testi PASS korundu — *Kanıt: V15 H3 13/13 syntax PASS*
 - □ **B05-02** — H2 4/4 yetki bağı tamamlandı
 - ✓ **B05-03** — Kontrol/ürün Git remote ve kimlikleri doğrulandı — *Kanıt: V26 Mac JSON SHA-256 a60ed0d0…7c409b; control/product origin PASS; Yönetim ENGURU_V26_B05_03_YONETIM_KABUL_KARARI_V1.md*
 - □ **B05-04** — Yetkili branch, base ve ancestry izleri doğrulandı
 - □ **B05-05** — Local/remote exact HEAD mutabakatı sağlandı
-- □ **B05-06** — Dirty-path ve korunacak farkların sahipliği çözüldü
+- ✓ **B05-06** — Dirty-path ve korunacak farkların sahipliği çözüldü — *Kanıt: 138/138 benzersiz Mac path SHA, owner scope commit d4cc4cc448586b082141389f77e9773095ae24a2 ve Yönetim ENGURU_B05_06_YONETIM_KABUL_V1.md; korunma kararı kapsamıyla PASS*
 - ✓ **B05-07** — Gerekli exact commit CI kontrolleri PASS oldu — *Kanıt: PR191 HEAD f211a5c4… 5/5 SUCCESS; PR14 HEAD 6144df90… 1/1 SUCCESS; Yönetim ENGURU_B05_07_KABUL_V1.md (yalnız CI, resmî H3 0/4)*
 - □ **B05-08** — PR review/merge provenance kanıtı tamamlandı
 - □ **B05-09** — Yetkili uzak eşitleme ve bağımsız Git receipt doğrulandı
