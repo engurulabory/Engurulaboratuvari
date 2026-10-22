@@ -66,3 +66,56 @@ jobs:
             --gate governance/controller/ACTIVATION.json \
             --source-ref "github-pr-checkout" \
             --source-commit "$(git rev-parse HEAD)"
+donecheck_machine_verify:
+    if: github.event_name == 'pull_request' && github.event.pull_request.number == 203
+    needs: verify
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    permissions:
+      contents: read
+      issues: read
+      actions: read
+      pull-requests: read
+    steps:
+      - name: Checkout exact Management PR head
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: Set up Node for existing DoneCheck runtime
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Adversarial bridge self-test
+        run: node tools/enguru_management_v69_donecheck_ci.mjs --self-test
+      - name: Checkout exact existing DoneCheck v1.2 source
+        uses: actions/checkout@v5
+        with:
+          repository: engurulabory/donecheck
+          ref: 4181f48df5ea0c060d9aa9f40a471c554b44b53d
+          path: donecheck-v12
+          persist-credentials: false
+      - name: Prepare actual DoneCheck verifyTask runtime
+        run: |
+          npm install --prefix donecheck-v12 --ignore-scripts --no-audit --no-fund --no-package-lock
+          ./donecheck-v12/node_modules/.bin/esbuild \
+            donecheck-v12/src/donecheck-core.ts --bundle --platform=node --format=esm \
+            --outfile="$RUNNER_TEMP/donecheck-core-v12.mjs"
+      - name: Revalidate GitHub API and execute real verifyTask
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EXPECTED_PR_HEAD: ${{ github.event.pull_request.head.sha }}
+          DONECHECK_CORE_BUNDLE: ${{ runner.temp }}/donecheck-core-v12.mjs
+          DONECHECK_VERIFICATION_OUTPUT: ${{ runner.temp }}/enguru-management-v69-donecheck-verification.json
+        run: |
+          node tools/enguru_management_v69_donecheck_ci.mjs --live
+          sha256sum "$RUNNER_TEMP/enguru-management-v69-donecheck-verification.json"
+      - name: Preserve real DoneCheck machine evidence
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enguru-management-v69-donecheck-machine-verification
+          path: ${{ runner.temp }}/enguru-management-v69-donecheck-verification.json
+          if-no-files-found: error
+          retention-days: 90
+
