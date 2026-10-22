@@ -130,6 +130,26 @@ def finalize_receipt(result):
     result["receipt_sha256"]=sha(canonical(payload).encode())
     return result
 
+def public_receipt(result,runid):
+    """Publish independently hashable metadata without exposing candidate source bytes."""
+    producer=result.get("engineering",{})
+    evidence=producer.get("evidence",{}) if isinstance(producer,dict) else {}
+    visible={k:evidence[k] for k in ("path","sha256","size","count","base_sha256","candidate_sha256","already_repaired") if k in evidence}
+    verification=result.get("verification",{})
+    receipt={
+       "schema":"enguru.controller.public_receipt.v1",
+       "state":result["state"],"task_id":result["task_id"],
+       "fingerprint":result["fingerprint"],"source_commit":result["source_commit"],
+       "producer_workflow":WORKFLOW,"producer_run_id":str(runid),
+       "engineering":{"state":producer.get("state"),"evidence":visible},
+       "verification":{"state":verification.get("state"),"proof":verification.get("proof"),"reason":verification.get("reason")},
+       "full_receipt_sha256":result.get("receipt_sha256"),
+       "pull_request":result.get("pull_request"),
+       "official_verified_finish":result.get("official_verified_finish"),
+    }
+    if "schedule_observation" in result:receipt["schedule_observation"]=result["schedule_observation"]
+    return receipt
+
 def cycle(root,worklist,gate,completed=None,failed=None,commit=None,pending=None):
     if not gate_valid(gate):return hold("AUTHORITY_OR_ZERO_COST_GATE")
     if pending:
@@ -288,7 +308,15 @@ def main():
                 name=result["task_id"]
                 status="PASS" if result["state"]=="PASS" else "PR_PENDING" if result["state"]=="PR_PENDING" else "HOLD"
                 marker=MARKER+status+":"+name+":"+result["fingerprint"]+":"+runid+":"+commit
-                body=f"<!-- {marker} -->\nENGURU verified task: {name}\nEngineer: {result['engineering']['state']}; verifier: {result['verification']['state']}; receipt: {result['receipt_sha256']}; Human Threshold: owner; PR handoff: {result.get('pull_request', 'N/A')}."
+                public=public_receipt(result,runid)
+                public_json=canonical(public)
+                public_sha=sha(public_json.encode())
+                body=(f"<!-- {marker} -->\nENGURU verified task: {name}\n"
+                      f"Engineer: {result['engineering']['state']}; verifier: {result['verification']['state']}; "
+                      f"receipt: {result['receipt_sha256']}; Human Threshold: owner; "
+                      f"PR handoff: {result.get('pull_request', 'N/A')}.\n"
+                      f"PUBLIC_RECEIPT_SHA256={public_sha}\n"
+                      f"\x60\x60\x60json\n{public_json}\n\x60\x60\x60")
                 github(f"https://api.github.com/repos/{REPO}/issues/{ISSUE}/comments",token,{"body":body})
         except (HTTPError,URLError,TimeoutError,ValueError,KeyError,TypeError,OSError) as e:result=hold("GITHUB_EVIDENCE_TRANSPORT_"+type(e).__name__)
     Path(args.output).parent.mkdir(parents=True,exist_ok=True)
