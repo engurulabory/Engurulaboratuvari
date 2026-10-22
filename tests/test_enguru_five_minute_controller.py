@@ -50,6 +50,7 @@ class ControllerTests(unittest.TestCase):
         task=t()
         r=cycle(Path("."),{"tasks":[task]},G,failed={task["id"]:2})
         self.assertEqual(r["reason"],"RETRY_BUDGET_REQUIRES_MANAGEMENT_REVIEW")
+        self.assertEqual(r["state"],"AWAITING_MANAGEMENT")
     def test_current_source_verified_finish_separate(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d);(root/"source.txt").write_bytes(b"PASS")
@@ -226,4 +227,80 @@ class ControllerTests(unittest.TestCase):
         self.assertIn("      issues: write\n",worker)
         self.assertIn("      pull-requests: write\n",worker)
         self.assertIn("github.event_name != 'pull_request'",worker)
+
+    def test_dependency_cycles_are_governed_holds(self):
+        first=t(id="LABORY_FIRST",dependencies=["LABORY_SECOND"])
+        second=t(id="LABORY_SECOND",dependencies=["LABORY_FIRST"])
+        self.assertEqual(select({"tasks":[first,second]},set())[1],"DEPENDENCY_CYCLE")
+        self.assertEqual(cycle(Path("."),{"tasks":[t(dependencies=["LABORY_PILOT"])]},G)["reason"],"DEPENDENCY_CYCLE")
+
+    def test_dependency_schema_requires_string_ids(self):
+        task=t(dependencies=[["LABORY_PILOT"]])
+        self.assertEqual(select({"tasks":[task]},set())[1],"DEPENDENCY_AUTHORITY")
+
+    def test_successful_push_receipt_is_reusable_on_same_commit(self):
+        from unittest.mock import patch
+        from enguru_five_minute_controller import receipts,MARKER
+        task=t()
+        commit="a"*40
+        root=Path(".")
+        entry=MARKER+"PASS:"+task["id"]+":"+key(task,root,commit)+":123:"+commit
+        comment={"user":{"login":"github-actions[bot]"},"body":"<!-- "+entry+" -->"}
+        def fake(url,token,body=None,method=None):
+            if "/comments?" in url:return [comment]
+            return {"head_sha":commit,"status":"completed","event":"push","conclusion":"success"}
+        with patch("enguru_five_minute_controller.github",side_effect=fake):
+            done,_,_=receipts("token",root,[task],commit)
+        self.assertEqual(done,{task["id"]})
+
+    def test_pr_ci_receipt_cannot_count_as_worker_completion(self):
+        from unittest.mock import patch
+        from enguru_five_minute_controller import receipts,MARKER
+        task=t()
+        commit="a"*40
+        root=Path(".")
+        entry=MARKER+"PASS:"+task["id"]+":"+key(task,root,commit)+":123:"+commit
+        comment={"user":{"login":"github-actions[bot]"},"body":"<!-- "+entry+" -->"}
+        def fake(url,token,body=None,method=None):
+            if "/comments?" in url:return [comment]
+            return {"head_sha":commit,"status":"completed","event":"pull_request","conclusion":"success"}
+        with patch("enguru_five_minute_controller.github",side_effect=fake):
+            done,_,_=receipts("token",root,[task],commit)
+        self.assertEqual(done,set())
+
+    def test_schedule_cadence_reports_true_gap_and_recovery(self):
+        from unittest.mock import patch
+        from enguru_five_minute_controller import observe_schedule
+        current={"id":333,"event":"schedule","created_at":"2026-10-22T06:05:00Z"}
+        older={"id":222,"event":"schedule","created_at":"2026-10-22T05:45:00Z"}
+        with patch("enguru_five_minute_controller.github",return_value={"workflow_runs":[current,older]}):
+            gap=observe_schedule("token",333)
+        self.assertEqual(gap["state"],"HOLD")
+        self.assertEqual(gap["reason"],"SCHEDULE_CADENCE_GAP")
+        self.assertEqual(gap["missed_slots_lower_bound"],3)
+        older["created_at"]="2026-10-22T06:00:00Z"
+        with patch("enguru_five_minute_controller.github",return_value={"workflow_runs":[current,older]}):
+            good=observe_schedule("token",333)
+        self.assertEqual(good["state"],"PASS")
+        self.assertEqual(good["gap_seconds"],300)
+
+    def test_schedule_cadence_missing_observation_holds(self):
+        from unittest.mock import patch
+        from enguru_five_minute_controller import observe_schedule
+        with patch("enguru_five_minute_controller.github",return_value={"workflow_runs":[]}):
+            self.assertEqual(observe_schedule("token",333)["reason"],"CURRENT_SCHEDULE_NOT_OBSERVED")
+
+    def test_receipt_covers_pr_handoff_and_schedule_observation(self):
+        from enguru_five_minute_controller import finalize_receipt
+        result={"state":"PR_PENDING","pull_request":"https://github.com/x/y/pull/1"}
+        first=finalize_receipt(result)["receipt_sha256"]
+        result["schedule_observation"]={"state":"HOLD","gap_seconds":600}
+        self.assertNotEqual(first,finalize_receipt(result)["receipt_sha256"])
+        result["pull_request"]="https://github.com/x/y/pull/2"
+        self.assertNotEqual(first,finalize_receipt(result)["receipt_sha256"])
+
+    def test_workflow_uses_explicit_actions_read_and_supported_checkout(self):
+        workflow=(Path(__file__).resolve().parents[1]/".github/workflows/enguru-five-minute-controller.yml").read_text(encoding="utf8")
+        self.assertIn("      actions: read\n",workflow)
+        self.assertIn("actions/checkout@v5",workflow)
 if __name__=="__main__":unittest.main()
