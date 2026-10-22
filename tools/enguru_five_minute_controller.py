@@ -155,7 +155,7 @@ def donecheck_producer_candidate(result,task):
                     {"kind":"internal_receipt","sha256":result.get("receipt_sha256")},
                     {"kind":"pr_handoff","url":result.get("pull_request")}],
         "verificationResult":"PASS" if verifier_state=="PASS" else "HOLD",
-        "failureClass":verification.get("reason") if isinstance(verification,dict) else None,
+        "failureClass":result.get("failure_class") or (verification.get("reason") if isinstance(verification,dict) else None),
         "correctionAction":"OWNER_REVIEW" if result["state"]=="PR_PENDING" else "GOVERNED_RETRY_OR_REVIEW",
         "attempt":result.get("attempt",1),
         "maxAttempts":result.get("max_attempts",task.get("max_attempts",2)),
@@ -178,6 +178,7 @@ def public_receipt(result,runid,task=None):
        "engineering":{"state":producer.get("state"),"evidence":visible},
        "verification":{"state":verification.get("state"),"proof":verification.get("proof"),"reason":verification.get("reason")},
        "full_receipt_sha256":result.get("receipt_sha256"),
+       "failure_class":result.get("failure_class"),
        "pull_request":result.get("pull_request"),
        "official_verified_finish":result.get("official_verified_finish"),
     }
@@ -343,7 +344,14 @@ def main():
             result=cycle(root,tasks,gate,completed,failed,commit,pending)
             if result.get("task_id") and result["state"]=="PR_PENDING":
                 candidate=next(t for t in tasks["tasks"] if t["id"]==result["task_id"])
-                result["pull_request"]=prepare_repair_pr(token,candidate,result,commit)
+                try:
+                    result["pull_request"]=prepare_repair_pr(token,candidate,result,commit)
+                except (HTTPError,URLError,TimeoutError,ValueError,KeyError,TypeError,OSError) as error:
+                    # Preserve this exact attempt and its authenticated HOLD receipt for retries.
+                    result["state"]="HOLD_GUVENLI_DUR"
+                    result["failure_class"]=("PR_HANDOFF_HTTP_"+str(error.code)
+                                             if isinstance(error,HTTPError)
+                                             else "PR_HANDOFF_"+type(error).__name__)
             if os.getenv("GITHUB_EVENT_NAME")=="schedule":
                 result["schedule_observation"]=observe_schedule(token,runid)
             finalize_receipt(result)
