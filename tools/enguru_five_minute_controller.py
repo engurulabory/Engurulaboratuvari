@@ -194,12 +194,15 @@ def receipts(token,root,tasks,commit):
                     jobs=github(f"https://api.github.com/repos/{REPO}/actions/runs/{runid}/jobs?per_page=100",token)
                     entries=jobs.get("jobs") if isinstance(jobs,dict) else None
                     matches=[j for j in entries if isinstance(j,dict) and j.get("name")=="worker"] if isinstance(entries,list) else []
-                    worker_cache[runid]=(len(matches)==1 and matches[0].get("status")=="completed" and matches[0].get("conclusion")=="success")
-                if not worker_cache[runid]:continue
+                    worker_cache[runid]=(matches[0].get("conclusion") if len(matches)==1 and matches[0].get("status")=="completed" else None)
+                worker=worker_cache[runid]
                 name=known[taskkey]
-                if status=="PASS" and run.get("conclusion")=="success":completed.add(name)
-                if status=="PR_PENDING" and run.get("conclusion")=="success":pending.add(name)
-                if status=="HOLD" and run.get("conclusion") in ("failure","success"):failed[name]=failed.get(name,0)+1
+                if status=="PASS" and worker=="success" and run.get("conclusion")=="success":completed.add(name)
+                if status=="PR_PENDING" and worker=="success" and run.get("conclusion")=="success":pending.add(name)
+                # A governed HOLD exits 50, so the real worker and workflow both fail.
+                # Its authenticated receipt must remain visible to the bounded retry budget.
+                if status=="HOLD" and worker=="failure" and run.get("conclusion")=="failure":
+                    failed[name]=failed.get(name,0)+1
             except (ValueError,KeyError,TypeError):continue
         if len(comments)<100:return completed,pending,failed
     raise ValueError("HISTORY_PAGINATION_LIMIT")
