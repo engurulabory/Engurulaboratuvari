@@ -70,15 +70,26 @@ def evaluate(doc):
             reasons[tid] = "PAUSED_BY_MANAGEMENT"
         else:
             reasons[tid] = "OPEN_OR_HOLD"
+    # Input flags are self-asserted; they never constitute independent authority.
+    # Preserve record-level observations, but keep official acceptance at zero
+    # until a separately authenticated, source-bound verifier is integrated.
+    declared_accepted = len(accepted)
+    accepted = set()
+    if declared_accepted:
+        for tid in index:
+            if tid not in reasons and index[tid]["state"] == "ACCEPTED":
+                reasons[tid] = "EXTERNAL_AUTHORITY_PROOF_REQUIRED"
     # This report is a claim about supplied records, not authentication of those records.
     # No ACCEPTED counter is an independently verified GitHub/OSi authority receipt.
     ready = sorted(t["task_id"] for t in tasks if t["state"] == "READY" and all(d in accepted for d in t["dependencies"]))
     return {
         "state": "MANAGEMENT_REVIEW_ONLY",
         "task_count": len(tasks),
-        "record_declared_accepted": len(accepted),
-        "record_declared_open": len(tasks) - len(accepted),
-        "ready_candidates": ready,
+        "record_declared_accepted": declared_accepted,
+        "independently_accepted": 0,
+        "record_declared_open": len(tasks) - declared_accepted,
+        "ready_candidates": [],
+        "unverified_ready_candidates": ready,
         "open_reasons": reasons,
         "evidence_authority": "UNVERIFIED_INPUT_RECORDS",
         "github_writes": 0,
