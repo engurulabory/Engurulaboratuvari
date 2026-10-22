@@ -174,10 +174,10 @@ class ControllerTests(unittest.TestCase):
                replace_from="old",replace_to="new",existing_pr_number=196)
         result={"fingerprint":"a"*64,"engineering":{"evidence":{"candidate_base64":base64.b64encode(b"new\n").decode()}}}
         def fake(url,token,body=None,method=None):
-            if "/pulls/196" in url:
-                return {"state":"open","base":{"ref":"main"},"head":{"ref":"enguru/controller-labory-repair","repo":{"full_name":REPO}},"html_url":"https://github.com/engurulabory/Engurulaboratuvari/pull/196"}
             if "/pulls/196/files?" in url:
                 return [{"filename":"governance/controller/work/fix.txt","status":"modified"}]
+            if "/pulls/196" in url:
+                return {"state":"open","base":{"ref":"main"},"head":{"ref":"enguru/controller-labory-repair","repo":{"full_name":REPO}},"html_url":"https://github.com/engurulabory/Engurulaboratuvari/pull/196"}
             if "?ref=" in url:return {"content":base64.b64encode(b"new\n").decode()}
             raise AssertionError("UNEXPECTED_REMOTE_MUTATION")
         with patch("enguru_five_minute_controller.github",side_effect=fake):
