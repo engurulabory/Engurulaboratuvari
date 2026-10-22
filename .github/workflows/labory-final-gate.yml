@@ -185,3 +185,44 @@ jobs:
 
       - name: Final state
         run: echo 'ENGURU LABORY REPOSITORY FINAL GATE = PASS' >> "$GITHUB_STEP_SUMMARY"
+
+  gh69-base-exact-head:
+    name: GH69-BASE exact-HEAD canonical and adversarial verification
+    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && startsWith(github.event.pull_request.head.ref, 'feat/enguru-gh69-') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout immutable PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Exact HEAD and canonical V3 locked evidence
+        shell: bash
+        env:
+          EXPECTED_GH69_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$EXPECTED_GH69_HEAD"
+          test -f tests/test_enguru_management_v69_foundation.py
+          test -f governance/mac-engineer/ENGURU_MANAGEMENT_V69_FOUNDATION_ACCEPTANCE_V1.json
+          test -f governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md
+          python3 -B tools/verify_enguru_universal_v3_lock.py
+          python3 -B -m unittest discover -s tests -p 'test_enguru_universal_v3_lock.py' -v
+      - name: GH69-BASE exact-head 38 tests (all executed)
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B -m unittest discover -s tests -p 'test_enguru_management_v69_foundation.py' -v 2>&1 | tee /tmp/gh69-base-tests.log
+          grep -Eq '^Ran 38 tests in ' /tmp/gh69-base-tests.log
+          if grep -Eqi 'skipped=[1-9]' /tmp/gh69-base-tests.log; then
+            echo 'STATE=HOLD_GH69_TEST_SKIPPED'
+            exit 61
+          fi
+          echo 'STATE=PASS_GH69_EXACT_HEAD_TESTS'
