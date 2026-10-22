@@ -33,7 +33,7 @@ class TestOperationalObservation(unittest.TestCase):
 
  def live_fixture(self):
   import hashlib,json
-  r=item();src=b"ENGURU_CYCLE_PILOT=VERIFIED\\n"
+  r=item();src=b"ENGURU_CYCLE_PILOT=VERIFIED\n"
   task={"id":"LABORY_SAFE_REPAIR","action":"propose_exact_repair","path":m.SOURCE,
    "expected_sha256":"0"*64,"desired_sha256":m.sha(src),"replace_from":"PENDING",
    "replace_to":"VERIFIED","dependencies":[],"target_repo":m.REPO,
@@ -48,9 +48,9 @@ class TestOperationalObservation(unittest.TestCase):
        "donecheck_producer_candidate":{"doneCheckResult":"HOLD_EXTERNAL_DONECHECK_V1_2","humanThresholdRequired":True,"finalState":"HOLD"},
        "verification":{"state":"PASS"},"engineering":{"state":"PASS"}}
   r["public_receipt_sha256"]=m.sha(m.canonical(pub).encode())
-  body=(f"<!-- ENGURU_CONTROLLER_V3:PASS:{r['task_id']}:{fp}:{r['producer_run_id']}:{r['source_commit']} -->\\n"
-        f"PUBLIC_RECEIPT_SHA256={r['public_receipt_sha256']}\\n"
-        + "```json\\n"+m.canonical(pub)+"\\n```")
+  body=(f"<!-- ENGURU_CONTROLLER_V3:PASS:{r['task_id']}:{fp}:{r['producer_run_id']}:{r['source_commit']} -->\n"
+        f"PUBLIC_RECEIPT_SHA256={r['public_receipt_sha256']}\n"
+        + "```json\n"+m.canonical(pub)+"\n```")
   comment={"id":r["receipt_comment_id"],"user":{"login":m.BOT_LOGIN,"id":m.BOT_ID},
            "issue_url":"https://api.github.com/repos/"+m.REPO+"/issues/192","body":body}
   run={"id":r["producer_run_id"],"head_sha":r["source_commit"],"status":"completed","conclusion":"success",
