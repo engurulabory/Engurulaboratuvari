@@ -1,12 +1,12 @@
 {
   "schema": "enguru.100-unit-verified-finish-tracker/v1",
   "date": "2026-10-21",
-  "source_state": "22.10.2026 Yönetim B05-07 exact-head required CI acceptance 24→25: PR191 f211a5c4 5/5 success; PR14 6144df90 1/1 success; ENGURU_B05_07_KABUL_V1.md. B05-04 owner branch/base HOLD; F01 Ed25519/owner HOLD; F05 source owner/native live HOLD; H1/H2/H3 official 0/12, F01-F06 0/6, Verified Finish HOLD.",
+  "source_state": "22.10.2026 B05-06 owner-approved 138-path preservation PASS_EVIDENCE → Yönetim 25→26/100, 74 HOLD; GitHub owner decision d4cc4cc448586b082141389f77e9773095ae24a2; inventory independent local byte rehash remains unperformed; B05-04 lineage HOLD; F01/H1/H2/H3, F05 local Native acceptance and Verified Finish HOLD.",
   "measurement": "100 binary technical/control checkpoints; each checkpoint counted only with grounded evidence; NOT effort-time estimate and NOT official acceptance",
   "target": "H1 4/4 -> H2 4/4 -> H3 4/4 -> Native OSi -> Verified Finish -> BITTI_DUR",
   "total_units": 100,
-  "verified_units": 25,
-  "remaining_units": 75,
+  "verified_units": 26,
+  "remaining_units": 74,
   "official_h1_h2_h3": {
     "passed": 0,
     "total": 12
@@ -338,8 +338,8 @@
       "id": "B05-06",
       "block": "05",
       "name": "Dirty-path ve korunacak farkların sahipliği çözüldü",
-      "state": "HOLD",
-      "evidence": null
+      "state": "PASS_EVIDENCE",
+      "evidence": "Management ENGURU_B05_06_YONETIM_KABUL_V1.md; exact owner preservation decision d4cc4cc448586b082141389f77e9773095ae24a2 Git blob c2d5d671afeeca909dabaa58e3c25b8ae10ee493, unique 138/138 path SHA inventory (136 control,2 product) user scope PRESERVE_IN_PLACE; reported original Mac inventory SHA fc1f5e14921f42addbca2549dbf14c6dd5a210b4b8c7b71ec880f8e934717044 and packet SHA 6864aab52e8043199a9feae5cea15d05dc56601ce7f7d42dcaa51867852aa1c6; five CI workflows success; local inventory bytes independently un-rehashed."
     },
     {
       "id": "B05-07",
