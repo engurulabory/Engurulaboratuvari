@@ -1,5 +1,8 @@
 # ENGÜRÜ Tek Kapı Kabul Akışı™ — Yönetim / İCRA / Owner · V1
 
+**Etkin yöntem bildirimi (22.10.2026):** [**Toplu Kanıt → Toplu Kabul V2**](ENGURU_TOPLU_KANIT_TOPLU_KABUL_AKISI_V2.md) Yönetim ve Mühendislik için güncel yürütme kuralıdır. V1'in per-ID hakikat, kanıt, owner ve bağımsız Yönetim kabul ilkeleri korunur; bir ana mühendislik hedefi için aynı turda **1–10 benzersiz özgün ID** bağımsız kabul edilip tek ledger işleminde kayda geçebilir. Güncel 27/100. V1'deki her yüzde için tek tur koşulu V2 ile güncellendi.
+
+
 **Tarih:** 22.10.2026 · **Görev:** 24/100 patinajını kabul odaklı iş akışıyla çözmek; mevcut 100 özgün ID, Süzgeç sekiz aşama, owner/Human Threshold ve Ledger korunur. Yeni core, dokuzuncu aşama, paralel canonical kaynak ve otomatik sahte PASS oluşturulmaz.
 
 ## 1. İki ayrı hakikat ve açık sorumluluk
