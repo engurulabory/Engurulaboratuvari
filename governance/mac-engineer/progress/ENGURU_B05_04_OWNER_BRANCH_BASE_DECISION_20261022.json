@@ -1,0 +1,50 @@
+{
+  "schema": "enguru.b05-04.owner-lineage-scope/v1",
+  "date": "2026-10-22",
+  "control_id": "B05-04",
+  "original_condition": "Yetkili branch, base ve ancestry izleri doğrulandı",
+  "decision": "OWNER_APPROVED_PRESERVE_PARALLEL_SOURCE_LINEAGES",
+  "approval_source": "USER_EXPLICIT_APPROVAL_IN_CURRENT_MANAGEMENT_CHAT",
+  "source_owner_claim": "USER_AS_AUTHORIZED_SOURCE_OWNER",
+  "cryptographic_chat_github_binding": "NOT_ESTABLISHED",
+  "scope": {
+    "allowed": [
+      "RECOGNIZE_TWO_SEPARATE_LOCAL_MAIN_PR_SOURCE_LINEAGES",
+      "PRESERVE_EXISTING_HISTORY",
+      "PRESERVE_138_EXISTING_PATHS_IN_PLACE"
+    ],
+    "excluded": [
+      "RESET",
+      "REBASE",
+      "MERGE",
+      "PUSH",
+      "MAIN_PROMOTION",
+      "SIGNING",
+      "LIVE_NATIVE_MUTATION",
+      "HUMAN_REVIEW_SIGNATURE"
+    ]
+  },
+  "evidence": {
+    "mac_acceptance_packet_sha256": "43b68bbd8781ef4c9f9d46655546fcbc87cb3070012d89bfa5eb9924587dc0b8",
+    "mac_execution_reported": "ISOLATED_GIT_ANCESTRY_2_OF_2_PASS_SELF_TEST_13_OF_13_PASS",
+    "source_preserved": "PASS_REPORTED",
+    "independent_mac_packet_byte_rehash": "NOT_PERFORMED_BY_MANAGEMENT",
+    "b0506_owner_protection_commit": "d4cc4cc448586b082141389f77e9773095ae24a2",
+    "preserved_paths": 138,
+    "control": {
+      "local_branch": "feat/mac-engineer-v08-product-engineering-operator",
+      "local_head": "269854b8a42a27e9419eae65a3c9e349bdcc7300",
+      "github_pr_head": "8b2819ee612de896fe9237123c4a2a00c7d4df67",
+      "mac_reported_local_to_main_ahead_behind": "634/50",
+      "mac_reported_local_to_pr_ahead_behind": "634/117"
+    },
+    "product": {
+      "local_branch": "feat/v08-native-productization-provenance",
+      "local_head": "26925c21c7816a90edc0eb047382aba8c696764c",
+      "github_pr_head": "a512e1efbc5e6f9c64c8965b2cebbb474d8225d8",
+      "mac_reported_local_to_main_ahead_behind": "185/0",
+      "mac_reported_local_to_pr_ahead_behind": "185/66"
+    }
+  },
+  "management_gate": "ACCEPTANCE_REVIEW_SEPARATE"
+}
