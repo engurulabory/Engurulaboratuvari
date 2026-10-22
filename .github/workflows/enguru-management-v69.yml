@@ -42,7 +42,16 @@ jobs:
       - name: Live GitHub provenance verification (read-only)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python3 tools/enguru_management_v69_operation.py --live
+        run: |
+          python3 tools/enguru_management_v69_operation.py --live \
+            --output "$RUNNER_TEMP/enguru-management-v69-live-evidence.json"
+      - name: Preserve management evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: enguru-management-v69-live-evidence
+          path: ${{ runner.temp }}/enguru-management-v69-live-evidence.json
+          if-no-files-found: error
+          retention-days: 7
       - name: No-write management example
         run: python3 tools/enguru_management_v69.py --worklist governance/management-v69/EXAMPLE_TASKS.json
       - name: Real source adapter tests
