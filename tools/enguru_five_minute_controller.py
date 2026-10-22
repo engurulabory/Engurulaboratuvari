@@ -345,7 +345,12 @@ def main():
             if result.get("task_id") and result["state"]=="PR_PENDING":
                 candidate=next(t for t in tasks["tasks"] if t["id"]==result["task_id"])
                 try:
-                    result["pull_request"]=prepare_repair_pr(token,candidate,result,commit)
+                    handoff=prepare_repair_pr(token,candidate,result,commit)
+                    if not isinstance(handoff,str) or not re.fullmatch(
+                        rf"https://github[.]com/{REPO}/pull/[1-9][0-9]*",handoff
+                    ):
+                        raise ValueError("PR_HANDOFF_REQUIRES_OWNER")
+                    result["pull_request"]=handoff
                 except (HTTPError,URLError,TimeoutError,ValueError,KeyError,TypeError,OSError) as error:
                     # Preserve this exact attempt and its authenticated HOLD receipt for retries.
                     result["state"]="HOLD_GUVENLI_DUR"
