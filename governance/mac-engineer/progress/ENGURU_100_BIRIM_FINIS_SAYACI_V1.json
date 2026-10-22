@@ -1,12 +1,12 @@
 {
   "schema": "enguru.100-unit-verified-finish-tracker/v1",
   "date": "2026-10-21",
-  "source_state": "22.10.2026 B05-06 owner-approved 138-path preservation PASS_EVIDENCE → Yönetim 25→26/100, 74 HOLD; GitHub owner decision d4cc4cc448586b082141389f77e9773095ae24a2; inventory independent local byte rehash remains unperformed; B05-04 lineage HOLD; F01/H1/H2/H3, F05 local Native acceptance and Verified Finish HOLD.",
+  "source_state": "22.10.2026 B05-04 owner explicitly approved separate parallel local/main/PR lineages; independent management scope PASS 26→27/100; exact evidence SHA 43b68bbd8781ef4c9f9d46655546fcbc87cb3070012d89bfa5eb9924587dc0b8 (Mac self-reported, not independently rehashed here); main merge/write/H1-H3 official HOLD.",
   "measurement": "100 binary technical/control checkpoints; each checkpoint counted only with grounded evidence; NOT effort-time estimate and NOT official acceptance",
   "target": "H1 4/4 -> H2 4/4 -> H3 4/4 -> Native OSi -> Verified Finish -> BITTI_DUR",
   "total_units": 100,
-  "verified_units": 26,
-  "remaining_units": 74,
+  "verified_units": 27,
+  "remaining_units": 73,
   "official_h1_h2_h3": {
     "passed": 0,
     "total": 12
@@ -324,8 +324,8 @@
       "id": "B05-04",
       "block": "05",
       "name": "Yetkili branch, base ve ancestry izleri doğrulandı",
-      "state": "HOLD",
-      "evidence": null
+      "state": "PASS_EVIDENCE",
+      "evidence": "Owner scoped lineage approval in ENGURU_B05_04_OWNER_BRANCH_BASE_DECISION_20261022.json; decision GitHub commit e0bfa2bfdef6e55b62301da421810070d77dab7; Management acceptance ENGURU_B05_04_YONETIM_KABUL_V1.md; Mac isolated ancestry 2/2, self-test 13/13 reported, receipt SHA 43b68bbd8781ef4c9f9d46655546fcbc87cb3070012d89bfa5eb9924587dc0b8; 138 in-place preservation; no main promotion or H3 write grant."
     },
     {
       "id": "B05-05",
