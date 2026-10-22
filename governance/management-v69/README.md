@@ -24,3 +24,20 @@ A–D yerine gelene kadar `HOLD_GUVENLI_DUR`.
 
 ## Bu PR'ın teslim durumu
 Foundation candidate only. İcra v6.9 çalışmaları ayrı ilerler. Yeni canonical yetki veya Verified Finish iddiası yoktur.
+
+
+## Yönetim ürün kabulü ile yönetilen görev kabulünün ayrımı
+
+Yönetim V6.9'un ürüne ait kabul şartları: (A) kontrollü GitHub kodu ve CI, (B) güncel canonical kaynak/kimlik, (C) gerçek görev ve kanıt durumlarını yanlış yetki üretmeden okuyabilme, (D) bağımsız ürün incelemesi, yetkili merge ve gerekli post-merge gözlemidir.
+
+Mevcut Denetleyici görevleri `LABORY_PILOT_SOURCE`, `LABORY_PILOT_TEST` ve `LABORY_SAFE_REPAIR` Yönetim V6.9'un **girdi olarak izlediği** ayrı ürün işleridir. Bunların `0/3` resmî kabul sayacı, Yönetim V6.9 ürününe aktarılamaz. Yönetim; bağımsız DoneCheck ve owner kanıtı olmayan girdiye `HOLD` kararı vererek doğru çalışabilir. `README`, CI ve public receipt Yönetim V6.9'a Human Threshold yetkisi kazandırmaz.
+
+### GitHub operasyon gözlemi ve aktarılabilir kanıt
+
+`tools/enguru_management_v69_operation.py --live`, kayıtlı task ID'yi gerçek GitHub kaynak dosyasına, exact `main` SHA'ya, bot hesabına, public receipt hash'ine, görev fingerprint'ine ve gerçek worker job'a bağlar. PR CI, salt-okunur bu değerlendirmeyi `enguru-management-v69-live-evidence` adlı kısa süreli indirilebilir artefakta dönüştürür. Bu artefakt **Yönetim V6.9'un çalışan gözlem yeteneğinin kanıtıdır**; dahili Denetleyici receipt baytları ve bağımsız DoneCheck imzası yerine geçmez.
+
+**Doğrulanmış gözlem:** Kaynak, worker ve public receipt için `PASS_GITHUB_PROVENANCE_OFFICIAL_HOLD`.
+
+**Resmî ürün kabulü:** Bağımsız Yönetim V6.9 incelemesi, gereken DoneCheck™ ve owner Human Threshold™ kararı, yetkili GitHub PR merge ve post-merge gözlemine kadar `HOLD`. İnsan onayları gerçek yetkili mekanizma üzerinden verilir.
+
+**Denetleyici görev kabulü:** Kendi canonical yetki ve DoneCheck kapılarında ayrıca ilerler; mevcut `PAUSED_AUDITED` ve `READY` durumlarına Yönetim V6.9 müdahale etmez.
