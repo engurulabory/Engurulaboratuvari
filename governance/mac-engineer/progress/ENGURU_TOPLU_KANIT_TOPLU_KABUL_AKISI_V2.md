@@ -74,3 +74,20 @@
 **İlk gerçek saha kabul testi:** Güncel Yönetim 27/100; bir sonraki İCRA tesliminde batch adayı bazında bağımsız PASS/HOLD ile karar, JSON+Markdown eşitliği, exact HEAD ve GitHub CI. 27→32 **beş ID koşulsuz hedefi değil**, ancak beş ayrı özgün kontrolün tamamlanmış kanıtıyla gerçekleşebilecek birikimli eşiktir. `27→N` kanıta göre kararlandırılır.
 
 **Oturum devri ve çalışma ekonomisi:** Yönetim son HEAD/ledger ve V2 kaynak linkini verir; İCRA aynı kaynakları ve AudiV13 gerçek Mac receipt'lerini yeniden kullanır. Büyük 73 satırlık arşiv raporları tekrar tekrar üretilmez; yalnız **değişen ID'ler, yapılan gerçek iş, ilgili kaynak/owner ve kabul kanıtları** devredilir. Tek ortak `BATCH_ACCEPTANCE_PACKET` ve tek Yönetim kararıyla akış ilerler. Mac local source, 138 korunan dirty path ve 634/185 local-only commitler yerinde korunur.
+
+## 8. İcra hedefini %100 kanıta bağlayan Pre-Send tamamlama kapısı
+
+**Amaç:** Bir üreticinin `%68–74` civarında kısmi icradan sonra `BITTI` ilan etmesini önlemek. Hedef her turda **seçilen ve yetki kapsamı izin veren işlerin %100 gerçek icrası**, gerekli tüm kontrol test/receipt'lerinin tamamlanması ve Yönetim'in gerçek kabul hükmüdür. **Her görevde modelin mutlak %100 doğruluğu garanti edilmez.**
+
+**Mevcut V2'ye eklenen salt-okunur doğrulama yardımcısı:** `tools/enguru_batch_evidence_gate_v2.py`. Yeni canonical core veya 9. Süzgeç aşaması değildir; V2 teslim öncesi yapısal kanıt kapısıdır. Python 3.11 ve stdlib. `tests/test_enguru_batch_evidence_gate_v2.py` + Management Progress CI üzerinden 17 pozitif/negatif karşıt senaryo. Script gerçek dosyaların SHA-256'sını kendi başına hesaplamaz, GitHub kaynak HEAD'i veya Mac signer sahibini doğrulamaz, HumanReview imzasını üretmez ve resmî PASS kaydı yazmaz. Bu sınıra uyan çıkış `PRE_SEND_STRUCTURAL_CHECK_ONLY_NOT_AUTHORITY` ve `official_pass_added=0` biçimindedir.
+
+**İCRA içinde mevcut 8 Süzgeç aşamasında döngü:** İlk `BATCH_ACCEPTANCE_PACKET` taslağını oluştur → özgün ledger 100-ID kimlik/şart/sayaç tabanını ve her ID'nin test, source SHA, owner kapsamı ve evidence alanlarını V2 denetleyiciye ver → `HOLD_EVIDENCE` ise gereken gerçek icra/kanıt/owner işlemini gerçekleştirip tekrar kontrol et → teknik açıdan erişilebilir tamamlanmış ID'ler `READY_FOR_INDEPENDENT_MANAGER_REVIEW` olur → Yönetim gerçek kanıt ve Human Threshold doğrulamasıyla ID başına PASS/HOLD kararı verir, sonra ledger'a kümülatif işler. Owner yetkisi bekleyen ID'ler HOLD kalırken diğer bağımsız ID'ler ilerler.
+
+**Çalıştırma örneği** (paket kendi `schema: enguru.batch.evidence/v2` ve `items` alanlarını taşır):
+```sh
+python3 -B tools/enguru_batch_evidence_gate_v2.py \
+  --ledger governance/mac-engineer/progress/ENGURU_100_BIRIM_FINIS_SAYACI_V1.json \
+  --packet /path/to/BATCH_ACCEPTANCE_PACKET.json
+```
+
+**Hüküm:** `structural_coverage_percent` yüzdesi yalnız **aday paketindeki alanların eksiksizliği** için bir ön denetimdir; gerçek saha başarı puanı, özgün SHA bağımsız doğrulaması veya 100/100 Yönetim kabul puanı değildir. Kanıtlı PASS ancak gerçek bağımsız doğrulama sonrası canonical kriter için Yönetim yetkisiyle verilir. 27/100 gerçek sayaç bu V2 altyapı güncellemesiyle değişmez.
