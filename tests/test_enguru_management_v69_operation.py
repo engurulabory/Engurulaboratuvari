@@ -78,4 +78,24 @@ class TestOperationalObservation(unittest.TestCase):
  def test_live_wrong_job_hold(self):
   data=list(self.live_fixture());data[3]["jobs"][0]["conclusion"]="failure"
   self.assertEqual(m.verify_live(*data)["reason"],"WORKER_JOB_PROVENANCE")
+ def test_evidence_write_once(self):
+  import json,tempfile
+  with tempfile.TemporaryDirectory() as root:
+   dest=Path(root)/"evidence.json"
+   expected={"state":"PASS_GITHUB_PROVENANCE_OFFICIAL_HOLD","official_finish":"HOLD"}
+   m.write_once(dest,expected)
+   self.assertEqual(json.loads(dest.read_text(encoding="utf-8")),expected)
+   with self.assertRaises(FileExistsError):
+    m.write_once(dest,{"official_finish":"PASS"})
+   self.assertEqual(json.loads(dest.read_text(encoding="utf-8")),expected)
+ def test_evidence_symlink_rejected(self):
+  import tempfile
+  with tempfile.TemporaryDirectory() as root:
+   original=Path(root)/"canonical.txt"
+   original.write_text("unchanged",encoding="utf-8")
+   link=Path(root)/"evidence.json"
+   link.symlink_to(original)
+   with self.assertRaises((FileExistsError,OSError)):
+    m.write_once(link,{"state":"PASS"})
+   self.assertEqual(original.read_text(encoding="utf-8"),"unchanged")
 if __name__=="__main__":unittest.main()
