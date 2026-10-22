@@ -280,12 +280,36 @@ class ControllerTests(unittest.TestCase):
             gap=observe_schedule("token",333)
         self.assertEqual(gap["state"],"HOLD")
         self.assertEqual(gap["reason"],"SCHEDULE_CADENCE_GAP")
-        self.assertEqual(gap["missed_slots_lower_bound"],3)
+        self.assertEqual(gap["gaps_over_tolerance"],1)
         older["created_at"]="2026-10-22T06:00:00Z"
         with patch("enguru_five_minute_controller.github",return_value={"workflow_runs":[current,older]}):
+            short=observe_schedule("token",333)
+        self.assertEqual(short["state"],"HOLD")
+        self.assertEqual(short["reason"],"INSUFFICIENT_CONSECUTIVE_OBSERVATIONS")
+        history=[current,older,
+                 {"id":111,"event":"schedule","created_at":"2026-10-22T05:55:00Z"},
+                 {"id":100,"event":"schedule","created_at":"2026-10-22T05:50:00Z"}]
+        with patch("enguru_five_minute_controller.github",return_value={"workflow_runs":history}):
             good=observe_schedule("token",333)
         self.assertEqual(good["state"],"PASS")
-        self.assertEqual(good["gap_seconds"],300)
+        self.assertEqual(good["reason"],"OBSERVED_THREE_INTERVAL_WINDOW")
+        self.assertEqual(good["observed_intervals"],3)
+        self.assertEqual(good["observed_gaps_seconds"],[300,300,300])
+
+    def test_schedule_holds_if_one_of_three_observed_gaps_exceeds_tolerance(self):
+        from unittest.mock import patch
+        from enguru_five_minute_controller import observe_schedule
+        history=[
+           {"id":333,"event":"schedule","created_at":"2026-10-22T06:05:00Z"},
+           {"id":222,"event":"schedule","created_at":"2026-10-22T06:00:00Z"},
+           {"id":111,"event":"schedule","created_at":"2026-10-22T05:45:00Z"},
+           {"id":100,"event":"schedule","created_at":"2026-10-22T05:40:00Z"}
+        ]
+        with patch("enguru_five_minute_controller.github",return_value={"workflow_runs":history}):
+            proof=observe_schedule("token",333)
+        self.assertEqual(proof["state"],"HOLD")
+        self.assertEqual(proof["gaps_over_tolerance"],1)
+        self.assertEqual(proof["observed_intervals"],3)
 
     def test_schedule_cadence_missing_observation_holds(self):
         from unittest.mock import patch
