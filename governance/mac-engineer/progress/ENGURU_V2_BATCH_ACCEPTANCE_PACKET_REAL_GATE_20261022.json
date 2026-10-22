@@ -1,0 +1,227 @@
+{
+  "schema": "enguru.batch.evidence/v2",
+  "baseline": 27,
+  "verified_finish": false,
+  "official_acceptance": "NONE",
+  "source_provenance": {
+    "management_head_at_delivery": "aa725269b1f6a14216ccf233961193b839399576",
+    "product_pr14_head": "d09dc52eb4991cb55ef612c6aa8eea0b71a0dce4",
+    "original_ledger_path": "governance/mac-engineer/progress/ENGURU_100_BIRIM_FINIS_SAYACI_V1.json",
+    "source_v2_gate_git_blob": "3d1ed795932ee899f7757041c8d7b8a2dae6e37f",
+    "independent_adversarial_gate_run_sha256": "cb91ee2891ef40e7a84507fb77c9883d8aaa0211d2d5725af70263e82111877a",
+    "native_prior_real_mac_retest_sha256": "071ebe853daa38f8e1af9dac0f5d690f4ecc1b428915dfcb60ae70f44e3cf355",
+    "native_field_receipt_sha256": "d90ab55fb281d061a2e5c4946c1292ae03f74a5e563bd254c86902fc125dcfc8",
+    "mac_b0504_sha256": "43b68bbd8781ef4c9f9d46655546fcbc87cb3070012d89bfa5eb9924587dc0b8",
+    "mac_b0506_sha256": "6864aab52e8043199a9feae5cea15d05dc56601ce7f7d42dcaa51867852aa1c6",
+    "technical_method": "Existing Mac receipts reverified by exact bytes in current sandbox; NO new local Mac field execution."
+  },
+  "gate_report": {
+    "kind": "REAL_GITHUB_GATE_SOURCE_EXECUTED_IN_MODEL_SANDBOX",
+    "real_source_blob_matched": true,
+    "structurally_ready": 1,
+    "needs_completion": 7,
+    "ready_ids": [
+      "B06-09"
+    ],
+    "positive_negative_gate_cases_passed": "23/23",
+    "native_prior_mac_retest": "16/16",
+    "scope_warning": "SHAPE_ONLY: must verify actual owner, source SHA and human threshold independently",
+    "official_new_pass": 0
+  },
+  "items": [
+    {
+      "id": "B05-05",
+      "original_condition": "Local/remote exact HEAD mutabakatı sağlandı",
+      "claim": "HOLD_SOURCE",
+      "real_execution": "Mac local branch HEADs remain deliberately divergent from remote PR/main; 634/50 and 185/0 were confirmed through isolated Git; no authorized exact parity transaction",
+      "source_head": "aa725269b1f6a14216ccf233961193b839399576",
+      "evidence_sha256": "43b68bbd8781ef4c9f9d46655546fcbc87cb3070012d89bfa5eb9924587dc0b8",
+      "positive_test": {
+        "state": "PASS",
+        "receipt_sha256": "b194a61876b51db87b00f9c373725a92ca76c56eb54b509941603cf03516b2a9",
+        "scope": "PREVIOUS_OFFLINE_PRIOR_FIELD_PROOF_ASSERTIONS_NOT_LIVE_MAC"
+      },
+      "negative_test": {
+        "state": "PASS",
+        "receipt_sha256": "28c416a907f41b58d5792ba553b7e125c3f11dbec1324c61ce494a6ca812de1e",
+        "scope": "PREVIOUS_OFFLINE_FALSE_PASS_ADVERSARIAL_ASSERTIONS_NOT_LIVE_MAC"
+      },
+      "owner": {
+        "required": true,
+        "state": "PENDING",
+        "scope": "EXACT_LOCAL_REMOTE_SHA_PARITY_AND_AUTHORIZED_TRANSACTION"
+      },
+      "missing_for_original_acceptance": "EXACT_LOCAL_REMOTE_SHA_PARITY_AND_AUTHORIZED_TRANSACTION"
+    },
+    {
+      "id": "B06-09",
+      "original_condition": "Aktif Native Info.plist ve sürüm mutabakatı tamamlandı",
+      "claim": "PASS_CANDIDATE_NARROW_SCOPE",
+      "real_execution": "Prior real Mac shows local source Info.plist and two installed apps have same SHA256 c3260b7fc1bf3470f0421a93b3100fc972f292c64eff7551079bf537ae3c3951 and both version/build 0.8; current PR Info.plist Git blob a280998cefaaa89556ca2ad1dd08101284250620 also has 0.8/0.8",
+      "source_head": "d09dc52eb4991cb55ef612c6aa8eea0b71a0dce4",
+      "evidence_sha256": "c3260b7fc1bf3470f0421a93b3100fc972f292c64eff7551079bf537ae3c3951",
+      "positive_test": {
+        "state": "PASS",
+        "receipt_sha256": "b194a61876b51db87b00f9c373725a92ca76c56eb54b509941603cf03516b2a9",
+        "scope": "PREVIOUS_OFFLINE_PRIOR_FIELD_PROOF_ASSERTIONS_NOT_LIVE_MAC"
+      },
+      "negative_test": {
+        "state": "PASS",
+        "receipt_sha256": "28c416a907f41b58d5792ba553b7e125c3f11dbec1324c61ce494a6ca812de1e",
+        "scope": "PREVIOUS_OFFLINE_FALSE_PASS_ADVERSARIAL_ASSERTIONS_NOT_LIVE_MAC"
+      },
+      "owner": {
+        "required": false,
+        "state": "NOT_REQUIRED",
+        "scope": "ENGINEERING_PROPOSED_NARROW_VERSION_PARITY_ONLY_MANAGEMENT_DECIDES"
+      },
+      "missing_for_original_acceptance": "MANAGEMENT_VERIFY_ORIGINAL_NARROW_VERSION_SCOPE_AND_OWNER_REQUIREDNESS"
+    },
+    {
+      "id": "B06-07",
+      "original_condition": "Yetkili yerel HEAD ile stage source SHA eşleştirildi",
+      "claim": "HOLD_TECHNICAL_AND_OWNER",
+      "real_execution": "Local Swift SHA256 4864834bebadce99f606860a336e616837111c66e96ec807c50eba2f33e1b27f differs from source-reviewed PR Swift SHA256 8c427579a71edd24502f89bfa93039acae30f7223e85820dd930284e35e1c6cf",
+      "source_head": "d09dc52eb4991cb55ef612c6aa8eea0b71a0dce4",
+      "evidence_sha256": "43b68bbd8781ef4c9f9d46655546fcbc87cb3070012d89bfa5eb9924587dc0b8",
+      "positive_test": {
+        "state": "PASS",
+        "receipt_sha256": "b194a61876b51db87b00f9c373725a92ca76c56eb54b509941603cf03516b2a9",
+        "scope": "PREVIOUS_OFFLINE_PRIOR_FIELD_PROOF_ASSERTIONS_NOT_LIVE_MAC"
+      },
+      "negative_test": {
+        "state": "PASS",
+        "receipt_sha256": "28c416a907f41b58d5792ba553b7e125c3f11dbec1324c61ce494a6ca812de1e",
+        "scope": "PREVIOUS_OFFLINE_FALSE_PASS_ADVERSARIAL_ASSERTIONS_NOT_LIVE_MAC"
+      },
+      "owner": {
+        "required": true,
+        "state": "PENDING",
+        "scope": "REAL_OWNER_AUTHORIZED_LOCAL_STAGE_SOURCE_SHA_PARITY"
+      },
+      "missing_for_original_acceptance": "REAL_OWNER_AUTHORIZED_LOCAL_STAGE_SOURCE_SHA_PARITY"
+    },
+    {
+      "id": "B06-08",
+      "original_condition": "Kalıcı canonical Native build entrypoint doğrulandı",
+      "claim": "HOLD_SOURCE_READY_TECHNICAL",
+      "real_execution": "PR native SDK build stage Git blob c7674791990e918544782d223692198509b3708a exists and macOS CI succeeded; local Mac stage path was absent in last field receipt",
+      "source_head": "d09dc52eb4991cb55ef612c6aa8eea0b71a0dce4",
+      "evidence_sha256": "d90ab55fb281d061a2e5c4946c1292ae03f74a5e563bd254c86902fc125dcfc8",
+      "positive_test": {
+        "state": "PASS",
+        "receipt_sha256": "b194a61876b51db87b00f9c373725a92ca76c56eb54b509941603cf03516b2a9",
+        "scope": "PREVIOUS_OFFLINE_PRIOR_FIELD_PROOF_ASSERTIONS_NOT_LIVE_MAC"
+      },
+      "negative_test": {
+        "state": "PASS",
+        "receipt_sha256": "28c416a907f41b58d5792ba553b7e125c3f11dbec1324c61ce494a6ca812de1e",
+        "scope": "PREVIOUS_OFFLINE_FALSE_PASS_ADVERSARIAL_ASSERTIONS_NOT_LIVE_MAC"
+      },
+      "owner": {
+        "required": true,
+        "state": "PENDING",
+        "scope": "VERIFY_AUTHORIZED_CANONICAL_LOCAL_ENTRYPOINT_SOURCE"
+      },
+      "missing_for_original_acceptance": "VERIFY_AUTHORIZED_CANONICAL_LOCAL_ENTRYPOINT_SOURCE"
+    },
+    {
+      "id": "B01-09",
+      "original_condition": "Aktif sürüm ve yetkili kaynak sahibi zinciri doğrulandı",
+      "claim": "HOLD_AUTHORITY_AND_SOURCE",
+      "real_execution": "Product CANONICAL_SOURCE.md exists; management PRODUCT_SOURCE_CONTRACT_V1.json still says REPOSITORY_CREATION_REQUIRED while product repo exists and Native 0.8 observed",
+      "source_head": "aa725269b1f6a14216ccf233961193b839399576",
+      "evidence_sha256": "d90ab55fb281d061a2e5c4946c1292ae03f74a5e563bd254c86902fc125dcfc8",
+      "positive_test": {
+        "state": "PASS",
+        "receipt_sha256": "b194a61876b51db87b00f9c373725a92ca76c56eb54b509941603cf03516b2a9",
+        "scope": "PREVIOUS_OFFLINE_PRIOR_FIELD_PROOF_ASSERTIONS_NOT_LIVE_MAC"
+      },
+      "negative_test": {
+        "state": "PASS",
+        "receipt_sha256": "28c416a907f41b58d5792ba553b7e125c3f11dbec1324c61ce494a6ca812de1e",
+        "scope": "PREVIOUS_OFFLINE_FALSE_PASS_ADVERSARIAL_ASSERTIONS_NOT_LIVE_MAC"
+      },
+      "owner": {
+        "required": true,
+        "state": "PENDING",
+        "scope": "RECONCILE_ACTIVE_SOURCE_OWNER_VERSION_AUTHORITY"
+      },
+      "missing_for_original_acceptance": "RECONCILE_ACTIVE_SOURCE_OWNER_VERSION_AUTHORITY"
+    },
+    {
+      "id": "B01-10",
+      "original_condition": "F01–F06 için yetkili tek canonical kaynak snapshot tamamlandı",
+      "claim": "HOLD_AUTHORITY",
+      "real_execution": "V2 source, old F01-F06 governance files and 27/100 ledger observed; a single owner-authorized canonical current F01-F06 snapshot is not established",
+      "source_head": "aa725269b1f6a14216ccf233961193b839399576",
+      "evidence_sha256": "b194a61876b51db87b00f9c373725a92ca76c56eb54b509941603cf03516b2a9",
+      "positive_test": {
+        "state": "PASS",
+        "receipt_sha256": "b194a61876b51db87b00f9c373725a92ca76c56eb54b509941603cf03516b2a9",
+        "scope": "PREVIOUS_OFFLINE_PRIOR_FIELD_PROOF_ASSERTIONS_NOT_LIVE_MAC"
+      },
+      "negative_test": {
+        "state": "PASS",
+        "receipt_sha256": "28c416a907f41b58d5792ba553b7e125c3f11dbec1324c61ce494a6ca812de1e",
+        "scope": "PREVIOUS_OFFLINE_FALSE_PASS_ADVERSARIAL_ASSERTIONS_NOT_LIVE_MAC"
+      },
+      "owner": {
+        "required": true,
+        "state": "PENDING",
+        "scope": "COMPLETE_AUTHORIZED_SINGLE_F01_TO_F06_SOURCE_SNAPSHOT"
+      },
+      "missing_for_original_acceptance": "COMPLETE_AUTHORIZED_SINGLE_F01_TO_F06_SOURCE_SNAPSHOT"
+    },
+    {
+      "id": "B07-04",
+      "original_condition": "Yetkili ürün owner kaynak inceleme kararı verdi",
+      "claim": "READY_FOR_OWNER",
+      "real_execution": "Product PR14 contains repaired Swift and Info.plist but source-owner submitted PR review count observed zero",
+      "source_head": "d09dc52eb4991cb55ef612c6aa8eea0b71a0dce4",
+      "evidence_sha256": "8c427579a71edd24502f89bfa93039acae30f7223e85820dd930284e35e1c6cf",
+      "positive_test": {
+        "state": "PASS",
+        "receipt_sha256": "b194a61876b51db87b00f9c373725a92ca76c56eb54b509941603cf03516b2a9",
+        "scope": "PREVIOUS_OFFLINE_PRIOR_FIELD_PROOF_ASSERTIONS_NOT_LIVE_MAC"
+      },
+      "negative_test": {
+        "state": "PASS",
+        "receipt_sha256": "28c416a907f41b58d5792ba553b7e125c3f11dbec1324c61ce494a6ca812de1e",
+        "scope": "PREVIOUS_OFFLINE_FALSE_PASS_ADVERSARIAL_ASSERTIONS_NOT_LIVE_MAC"
+      },
+      "owner": {
+        "required": true,
+        "state": "PENDING",
+        "scope": "REAL_SUBMITTED_SCOPE_BOUND_PRODUCT_OWNER_SOURCE_REVIEW"
+      },
+      "missing_for_original_acceptance": "REAL_SUBMITTED_SCOPE_BOUND_PRODUCT_OWNER_SOURCE_REVIEW"
+    },
+    {
+      "id": "B07-06",
+      "original_condition": "Kaynak farkları PR/review/CI ile kabul edildi",
+      "claim": "READY_FOR_OWNER",
+      "real_execution": "Actual product PR source diff and exact-HEAD product-ci success observed; source-owner submitted review count zero",
+      "source_head": "d09dc52eb4991cb55ef612c6aa8eea0b71a0dce4",
+      "evidence_sha256": "b194a61876b51db87b00f9c373725a92ca76c56eb54b509941603cf03516b2a9",
+      "positive_test": {
+        "state": "PASS",
+        "receipt_sha256": "b194a61876b51db87b00f9c373725a92ca76c56eb54b509941603cf03516b2a9",
+        "scope": "PREVIOUS_OFFLINE_PRIOR_FIELD_PROOF_ASSERTIONS_NOT_LIVE_MAC"
+      },
+      "negative_test": {
+        "state": "PASS",
+        "receipt_sha256": "28c416a907f41b58d5792ba553b7e125c3f11dbec1324c61ce494a6ca812de1e",
+        "scope": "PREVIOUS_OFFLINE_FALSE_PASS_ADVERSARIAL_ASSERTIONS_NOT_LIVE_MAC"
+      },
+      "owner": {
+        "required": true,
+        "state": "PENDING",
+        "scope": "AUTHENTIC_REVIEW_AND_SOURCE_ACCEPTANCE_PROVENANCE"
+      },
+      "missing_for_original_acceptance": "AUTHENTIC_REVIEW_AND_SOURCE_ACCEPTANCE_PROVENANCE"
+    }
+  ],
+  "management_next": "Independently decide B06-09 against original condition; only if genuinely complete record 27→28/100. 7 HOLD require explicit source, Mac stage, or owner decision. No automatic authority from structural gate.",
+  "protected_local_scope": "138 owner-protected paths, 634/185 local commits, both user apps. No main, Mac worktree, sign, or install mutation."
+}
