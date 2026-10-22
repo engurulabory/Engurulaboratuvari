@@ -320,7 +320,7 @@ jobs:
           set -euo pipefail
           node tools/enguru_management_v69_wp02_wp05_source_binding.mjs --readonly \
             .gh69-pr191-evidence/governance/mac-engineer/progress/ENGURU_100_BIRIM_FINIS_SAYACI_V1.json \
-            "$GH69_DISPOSABLE_ROOT" .gh69-donecheck-source > /tmp/gh69-binder-real.json
+            "$GH69_DISPOSABLE_ROOT" .gh69-donecheck-source > /tmp/gh69-binder-real.json || { cat /tmp/gh69-binder-real.json; exit 2; }
           python3 - <<'PY'
           import json
           from pathlib import Path
