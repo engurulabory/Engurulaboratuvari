@@ -153,6 +153,7 @@ def receipts(token,root,tasks,commit):
     failed={}
     known={t["id"]+":"+key(t,root,commit):t["id"] for t in tasks}
     run_cache={}
+    worker_cache={}
     for page in range(1,6):
         comments=github(f"https://api.github.com/repos/{REPO}/issues/{ISSUE}/comments?per_page=100&page={page}",token)
         for c in comments:
@@ -168,6 +169,13 @@ def receipts(token,root,tasks,commit):
                     run_cache[runid]=github(f"https://api.github.com/repos/{REPO}/actions/runs/{runid}",token)
                 run=run_cache[runid]
                 if run.get("head_sha")!=commit or run.get("path")!=WORKFLOW or run.get("status")!="completed" or run.get("event") not in ("schedule","workflow_dispatch","push"):continue
+                # A workflow's SUCCESS alone cannot prove the privileged worker actually executed.
+                if runid not in worker_cache:
+                    jobs=github(f"https://api.github.com/repos/{REPO}/actions/runs/{runid}/jobs?per_page=100",token)
+                    entries=jobs.get("jobs") if isinstance(jobs,dict) else None
+                    matches=[j for j in entries if isinstance(j,dict) and j.get("name")=="worker"] if isinstance(entries,list) else []
+                    worker_cache[runid]=(len(matches)==1 and matches[0].get("status")=="completed" and matches[0].get("conclusion")=="success")
+                if not worker_cache[runid]:continue
                 name=known[taskkey]
                 if status=="PASS" and run.get("conclusion")=="success":completed.add(name)
                 if status=="PR_PENDING" and run.get("conclusion")=="success":pending.add(name)
