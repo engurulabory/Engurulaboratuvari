@@ -184,7 +184,7 @@ def receipts(token,root,tasks,commit):
         if len(comments)<100:return completed,pending,failed
     raise ValueError("HISTORY_PAGINATION_LIMIT")
 def observe_schedule(token,runid):
-    """Report observed cron continuity; GH scheduling itself is best-effort."""
+    """Report a bounded observed cron window; platform scheduler has no timing guarantee."""
     url=f"https://api.github.com/repos/{REPO}/actions/workflows/enguru-five-minute-controller.yml/runs?event=schedule&per_page=25"
     try:
         response=github(url,token)
@@ -192,19 +192,28 @@ def observe_schedule(token,runid):
         if not isinstance(runs,list):raise TypeError("SCHEDULE_LIST_SCHEMA")
         current=next((r for r in runs if str(r.get("id"))==str(runid) and r.get("event")=="schedule"),None)
         if current is None:return {"state":"HOLD","reason":"CURRENT_SCHEDULE_NOT_OBSERVED"}
-        previous=[r for r in runs if str(r.get("id"))!=str(runid) and r.get("event")=="schedule" and r.get("created_at")]
-        if not previous:return {"state":"HOLD","reason":"PREVIOUS_SCHEDULE_NOT_OBSERVED"}
-        latest=max(previous,key=lambda r:r["created_at"])
-        now=datetime.fromisoformat(current["created_at"].replace("Z","+00:00"))
-        then=datetime.fromisoformat(latest["created_at"].replace("Z","+00:00"))
-        seconds=int((now-then).total_seconds())
-        if seconds<=0:return {"state":"HOLD","reason":"SCHEDULE_TIMESTAMP_ORDER"}
-        # Two minutes of tolerance for the five-minute best-effort GitHub timer.
-        return {"state":"PASS" if seconds<=420 else "HOLD",
-                "reason":"OBSERVED_WITHIN_TOLERANCE" if seconds<=420 else "SCHEDULE_CADENCE_GAP",
-                "gap_seconds":seconds,"expected_seconds":300,
-                "missed_slots_lower_bound":max(0,seconds//300-1),
-                "previous_run_id":latest["id"],"observed_run_id":current["id"]}
+        def timestamp(run):
+            return datetime.fromisoformat(run["created_at"].replace("Z","+00:00"))
+        now=timestamp(current)
+        earlier=[]
+        for run in runs:
+            if str(run.get("id"))==str(runid) or run.get("event")!="schedule" or not run.get("created_at"):continue
+            observed=timestamp(run)
+            if observed<now:earlier.append((observed,run["id"]))
+        earlier.sort(reverse=True)
+        if not earlier:return {"state":"HOLD","reason":"PREVIOUS_SCHEDULE_NOT_OBSERVED"}
+        window=[(now,int(runid))]+earlier[:3]
+        gaps=[int((window[i][0]-window[i+1][0]).total_seconds()) for i in range(len(window)-1)]
+        if any(gap<=0 for gap in gaps):return {"state":"HOLD","reason":"SCHEDULE_TIMESTAMP_ORDER"}
+        over=sum(gap>420 for gap in gaps)
+        state="PASS" if len(gaps)>=3 and over==0 else "HOLD"
+        reason=("OBSERVED_THREE_INTERVAL_WINDOW" if state=="PASS" else
+                "SCHEDULE_CADENCE_GAP" if over else "INSUFFICIENT_CONSECUTIVE_OBSERVATIONS")
+        return {"state":state,"reason":reason,"last_gap_seconds":gaps[0],
+                "gap_seconds":gaps[0],"expected_seconds":300,
+                "observed_intervals":len(gaps),"observed_gaps_seconds":gaps,
+                "gaps_over_tolerance":over,"tolerance_seconds":420,
+                "previous_run_id":window[1][1],"observed_run_id":int(runid)}
     except (HTTPError,URLError,TimeoutError,ValueError,KeyError,TypeError,OSError):
         return {"state":"HOLD","reason":"SCHEDULE_TELEMETRY_UNAVAILABLE"}
 
