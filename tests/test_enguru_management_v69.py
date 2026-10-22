@@ -60,7 +60,8 @@ class ManagementTests(unittest.TestCase):
         b=task("B","READY",["A"])
         r=mod.evaluate({"tasks":[a,b]})
         self.assertEqual(r["ready_candidates"],[])
-        self.assertEqual(r["unverified_ready_candidates"],["B"])
+        self.assertEqual(r["unverified_ready_candidates"],[])
+        self.assertEqual(r["independently_accepted"],0)
     def test_hash_repeatable(self):
         self.assertEqual(mod.digest({"a":1,"b":2}),mod.digest({"b":2,"a":1}))
 
