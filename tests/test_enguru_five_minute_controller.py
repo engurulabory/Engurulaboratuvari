@@ -601,4 +601,13 @@ class ControllerTests(unittest.TestCase):
                 rc=controller_main()
             self.assertEqual(rc,50)
             self.assertEqual(json.loads(output.read_text())["state"],"HOLD_GUVENLI_DUR")
+    def test_schedule_avoids_minute_zero_and_preserves_five_minute_spacing(self):
+        from pathlib import Path
+        workflow=(Path(__file__).resolve().parents[1]/".github"/"workflows"/"enguru-five-minute-controller.yml").read_text()
+        self.assertIn("cron: '2-59/5 * * * *'",workflow)
+        minute_slots=list(range(2,60,5))
+        self.assertEqual(minute_slots,[2,7,12,17,22,27,32,37,42,47,52,57])
+        self.assertEqual([b-a for a,b in zip(minute_slots,minute_slots[1:])],[5]*11)
+        self.assertEqual((60-minute_slots[-1])+minute_slots[0],5)
+
 if __name__=="__main__":unittest.main()
