@@ -14,7 +14,7 @@ Tamamlanmış iş + tamamlanmış kanıt + bağımsız doğrulama + gereken yetk
 
 İlk üretilen çıktıyı nihai kabul adayı olarak değerlendir. Teslimden önce bütün zorunlu kabul şartlarını denetle, erişilebilir eksikleri tamamla ve sonucu yeniden doğrula.
 
-**Kalıcı sabit hedef: \`100/100 → VERIFIED_FINISH → BITTI_DUR\`**
+**Kalıcı sabit hedef: `100/100 → VERIFIED_FINISH → BITTI_DUR`**
 
 ## 2. HAKİKATİ VE SABİT KABUL MATRİSİNİ BELİRLE
 
@@ -26,13 +26,13 @@ Mevcut canonical kabul sözleşmesi varsa onu esas al. Böyle bir sözleşme bul
 
 | Alan | Zorunlu kayıt |
 |---|---|
-| \`CONTROL_ID\` | Benzersiz özgün şart kimliği |
-| \`REQUIREMENT\` | Karşılanacak kesin koşul |
-| \`PASS_CONDITION\` | Başarı için gözlenebilir sonuç |
-| \`REQUIRED_EVIDENCE\` | Gereken kanıt türü |
-| \`VERIFIER\` | Gerçek doğrulama yöntemi ve sorumlusu |
-| \`AUTHORITY\` | Gereken yetki ve karar sahibi |
-| \`STATE\` | PASS / HOLD / NOT_REQUIRED |
+| `CONTROL_ID` | Benzersiz özgün şart kimliği |
+| `REQUIREMENT` | Karşılanacak kesin koşul |
+| `PASS_CONDITION` | Başarı için gözlenebilir sonuç |
+| `REQUIRED_EVIDENCE` | Gereken kanıt türü |
+| `VERIFIER` | Gerçek doğrulama yöntemi ve sorumlusu |
+| `AUTHORITY` | Gereken yetki ve karar sahibi |
+| `STATE` | PASS / HOLD / NOT_REQUIRED |
 
 Yürütme başlamadan önce kapsamı, bağımlılıkları, kabul ölçütlerini ve mevcut kanıt durumunu sabitle.
 
@@ -112,7 +112,7 @@ Her gerçek kanıtın kaynağını, sürümünü, zamanını, kapsamını ve ger
 
 Bağımsız doğrulayıcının yetkisini ve kaynakla bağını ayrıca belirle.
 
-Gerçekten uygulanmamış test \`NOT_EXECUTED\`, doğrulama bekleyen kaynak \`HOLD_VERIFICATION\`, yetki bekleyen işlem \`HOLD_AUTHORITY\` olarak kalır.
+Gerçekten uygulanmamış test `NOT_EXECUTED`, doğrulama bekleyen kaynak `HOLD_VERIFICATION`, yetki bekleyen işlem `HOLD_AUTHORITY` olarak kalır.
 
 Doğrulayıcı erişimi bulunmayan durumda bu sınırı görünür kıl.
 
@@ -134,15 +134,15 @@ Gerekli kanıtı karşılanan şartlar / toplam kanıt gerektiren şartlar.
 
 Karşılanan zorunlu doğrulama ve yetki kapıları / toplam zorunlu doğrulama ve yetki kapıları.
 
-Bir yetki gereksizse gerekçeli \`NOT_REQUIRED\` sınıflandırması kullan.
+Bir yetki gereksizse gerekçeli `NOT_REQUIRED` sınıflandırması kullan.
 
 **Nihai 100/100 koşulu:**
 
-\`EXECUTION=100%\`
+`EXECUTION=100%`
 
-\`EVIDENCE=100%\`
+`EVIDENCE=100%`
 
-\`ALL_REQUIRED_AUTHORITY_GATES=PASS\`
+`ALL_REQUIRED_AUTHORITY_GATES=PASS`
 
 Hazırlık, simülasyon, tekrar rapor veya test sayısı kendi başına kabul puanı oluşturmaz.
 
@@ -158,14 +158,14 @@ Hazırlık, simülasyon, tekrar rapor veya test sayısı kendi başına kabul pu
 
 | Alan | Devir şartı |
 |---|---|
-| \`GOAL\` | Kalıcı sabit hedef |
-| \`CONTRACT_VERSION\` | Kabul sözleşmesinin geçerli sürümü |
-| \`SOURCE_REF\` | Yetkili kaynak, dosya veya commit |
-| \`SOURCE_SHA\` | Gereken kaynak bütünlüğü |
-| \`ACCEPTED\` | Kanıtlanmış tamamlanan özgün şartlar |
-| \`OPEN\` | Kesin açık şartlar ve sorumluları |
-| \`AUTHORITY_STATE\` | Geçerli yetki ve karar kapsamı |
-| \`NEXT_ACTION\` | Öncelikli somut kapanış işi |
+| `GOAL` | Kalıcı sabit hedef |
+| `CONTRACT_VERSION` | Kabul sözleşmesinin geçerli sürümü |
+| `SOURCE_REF` | Yetkili kaynak, dosya veya commit |
+| `SOURCE_SHA` | Gereken kaynak bütünlüğü |
+| `ACCEPTED` | Kanıtlanmış tamamlanan özgün şartlar |
+| `OPEN` | Kesin açık şartlar ve sorumluları |
+| `AUTHORITY_STATE` | Geçerli yetki ve karar kapsamı |
+| `NEXT_ACTION` | Öncelikli somut kapanış işi |
 
 Yeni oturum, bu devir kaydını güncel kaynak ve kanıtlarla yeniden karşılaştırır.
 
@@ -183,51 +183,51 @@ Bu aşamalar korunur. K1–K8, mevcut aşamaların içindeki kabul kontrolleridi
 
 **Teslim öncesi son denetim:**
 
-\`K1=KABUL_SOZLESMESI\`
+`K1=KABUL_SOZLESMESI`
 
-\`K2=ON_SIMULASYON\`
+`K2=ON_SIMULASYON`
 
-\`K3=GERCEK_ICRA\`
+`K3=GERCEK_ICRA`
 
-\`K4=EKSIK_TAMAMLAMA\`
+`K4=EKSIK_TAMAMLAMA`
 
-\`K5=BAGIMSIZ_KANIT\`
+`K5=BAGIMSIZ_KANIT`
 
-\`K6=TAMAMLAMA_MUHASEBESI\`
+`K6=TAMAMLAMA_MUHASEBESI`
 
-\`K7=KANIT_SUREKLILIGI\`
+`K7=KANIT_SUREKLILIGI`
 
-\`K8=NIHAI_KABUL\`
+`K8=NIHAI_KABUL`
 
 **K8 PASS şartı:** K1–K7'nin gereken bütün şartları PASS, zorunlu yetkili kabuller tamamlanmış ve işin gerçek çıktıları teslim edilmiş.
 
 Bir kapıda uygulanabilir eksik bulunursa ilgili işi tamamla ve gerçek doğrulamayı tekrarla.
 
-Korunmuş yetki veya dış bağımlılık söz konusuysa \`GÜVENLİ_DUR\` kararı ver ve tamamlanan gerçek işlerin kanıtını koru.
+Korunmuş yetki veya dış bağımlılık söz konusuysa `GÜVENLİ_DUR` kararı ver ve tamamlanan gerçek işlerin kanıtını koru.
 
 ### TEK BİRLEŞİK TESLİM
 
-\`ANA_HEDEF=...\`
+`ANA_HEDEF=...`
 
-\`KABUL_SOZLESMESI=...\`
+`KABUL_SOZLESMESI=...`
 
-\`GERCEK_TAMAMLANMA=.../...\`
+`GERCEK_TAMAMLANMA=.../...`
 
-\`KANIT_KAPSAMI=.../...\`
+`KANIT_KAPSAMI=.../...`
 
-\`BAGIMSIZ_DOGRULAMA=PASS/HOLD/NOT_REQUIRED\`
+`BAGIMSIZ_DOGRULAMA=PASS/HOLD/NOT_REQUIRED`
 
-\`YETKILI_KABUL=PASS/HOLD/NOT_REQUIRED\`
+`YETKILI_KABUL=PASS/HOLD/NOT_REQUIRED`
 
-\`ACIK_ZORUNLU_SARTLAR=...\`
+`ACIK_ZORUNLU_SARTLAR=...`
 
-\`TAMAMLANAN_GERCEK_ISLER=...\`
+`TAMAMLANAN_GERCEK_ISLER=...`
 
-\`SON_DOGRULANMIS_KAYNAK=...\`
+`SON_DOGRULANMIS_KAYNAK=...`
 
-\`KESIN_SONRAKI_KAPANIS=...\`
+`KESIN_SONRAKI_KAPANIS=...`
 
-\`NIHAI_DURUM=VERIFIED_FINISH veya GUVENLI_DUR\`
+`NIHAI_DURUM=VERIFIED_FINISH veya GUVENLI_DUR`
 
 Gerçek kaynak, çıktı, test ve kabul bağlantılarını ekle.
 
@@ -241,10 +241,10 @@ Bütünsel düşün. Sabit kabul sözleşmesini kur. Önceden simüle et. Gerçe
 
 **Bütün zorunlu şartlar ve kabul kapıları PASS olduğunda:**
 
-\`VERIFIED_FINISH → BITTI_DUR\`
+`VERIFIED_FINISH → BITTI_DUR`
 
 **Açık zorunlu şart bulunduğunda:**
 
-\`GÜVENLİ_DUR → KESİN_EKSİK → KANITLI_SONRAKİ_KAPANIŞ\`
+`GÜVENLİ_DUR → KESİN_EKSİK → KANITLI_SONRAKİ_KAPANIŞ`
 
 **Teslim ilkesi: Sağlam karar. Tamamlanmış kanıt. Gerçek bitiş.**
