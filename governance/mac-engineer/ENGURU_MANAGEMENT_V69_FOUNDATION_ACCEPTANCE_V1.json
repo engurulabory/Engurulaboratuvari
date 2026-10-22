@@ -1,0 +1,854 @@
+{
+  "schema": "enguru.management.v69.gh69-foundation-contract/v2",
+  "date": "2026-10-22",
+  "status": "GITHUB_REVIEW_BRANCH_CANDIDATE_NOT_CANONICAL_ACCEPTED",
+  "task_id": "ENGURU-MGMT69-GH-FOUNDATION-01",
+  "goal": "GH69-BASE_INTEGRATED_THEORETICAL_CONTRACT",
+  "governance": {
+    "eight_stages": [
+      "Hakikati gör",
+      "Değeri koru",
+      "Eksikleri/İhtiyaçları tespit et",
+      "Gerekli farkı üret",
+      "Eksikleri tamamla",
+      "Kanıtla",
+      "Sonraki ihtiyaçları belirle",
+      "İlerlet"
+    ],
+    "canonical_v3_path": "governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md",
+    "canonical_v3_sha256": "11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc",
+    "language_path": "governance/ENGURU_LANGUAGE_GOVERNANCE_V1.md",
+    "operating_v2_path": "governance/mac-engineer/progress/ENGURU_TOPLU_KANIT_TOPLU_KABUL_AKISI_V2.md",
+    "operating_v2_location": "PR191_REVIEW_BRANCH_NOT_MAIN",
+    "donecheck_path": "governance/mac-engineer/DONECHECK_AUTHORITY_MODEL_V1.md",
+    "new_core": 0,
+    "ninth_stage": false
+  },
+  "source_snapshot": {
+    "control_repo": "engurulabory/Engurulaboratuvari",
+    "control_main": "1f7dfd708d652764ac74df27dcbbd393779e2b3b",
+    "control_pr191": "de63a9e34a9b05b6474c847019d8c682b5360d50",
+    "product_repo": "engurulabory/enguru-mac-engineer",
+    "product_main": "5432b9b135499cea18273c0e003877b864af92c6",
+    "product_pr14": "f806d3e0e5d68e6f06af96a5a24a83762b49f0ab",
+    "observed_at": "2026-10-22",
+    "freshness": "READ_ONLY_OBSERVATION_RECHECK_BEFORE_WRITE",
+    "source_owner_crypto_bind": "NOT_ESTABLISHED",
+    "control_ledger": "PR191_REVIEW_ONLY",
+    "control_review_pass": 27,
+    "control_total": 100,
+    "b01_09": "HOLD",
+    "official_h1_h2_h3": "0/12"
+  },
+  "control_count": 12,
+  "controls": [
+    {
+      "CONTROL_ID": "GH69-BASE-01",
+      "REQUIREMENT": "AGENTS.md ve canonical V3, SHA-256 ve sekiz aşamanın tam kaynak eşliğini korur.",
+      "PASS_CONDITION": "V3_DIGEST_MATCH",
+      "REQUIRED_EVIDENCE": [
+        "canonical source read",
+        "lock digest",
+        "stage map"
+      ],
+      "VERIFIER": "SOURCE_AUDITOR",
+      "AUTHORITY": "CANONICAL_OWNER",
+      "STATE": "HOLD_REAL_GITHUB_EXECUTION",
+      "DEPENDENCIES": [
+        "CANONICAL_V3_PIN",
+        "SCOPE_AUTHORITY"
+      ],
+      "SOURCE_PIN": "CONTROL_MAIN_OR_EXACT_AUTHORIZED_BRANCH",
+      "RECENCY": "RECHECK_AT_GITHUB_EXECUTION",
+      "GATE_TYPE": "CANONICAL",
+      "OWNER_ACTION": "AUTHORIZE_REVIEW_BRANCH_ENGINEERING_WITH_EXACT_SCOPE"
+    },
+    {
+      "CONTROL_ID": "GH69-BASE-02",
+      "REQUIREMENT": "Kontrol ve ürün depolarının main/PR/OSi kaynaklarını exact kimlikle ve tazelikle ayırır.",
+      "PASS_CONDITION": "SOURCE_CLASSES_BOUND",
+      "REQUIRED_EVIDENCE": [
+        "control+product exact refs",
+        "observed UTC",
+        "owner scope"
+      ],
+      "VERIFIER": "SOURCE_AUDITOR",
+      "AUTHORITY": "CANONICAL_OWNER",
+      "STATE": "HOLD_REAL_GITHUB_EXECUTION",
+      "DEPENDENCIES": [
+        "SOURCE_PIN_VERIFIED"
+      ],
+      "SOURCE_PIN": "CONTROL_MAIN_OR_EXACT_AUTHORIZED_BRANCH",
+      "RECENCY": "RECHECK_AT_GITHUB_EXECUTION",
+      "GATE_TYPE": "SOURCE",
+      "OWNER_ACTION": "AUTHORIZE_REVIEW_BRANCH_ENGINEERING_WITH_EXACT_SCOPE"
+    },
+    {
+      "CONTROL_ID": "GH69-BASE-03",
+      "REQUIREMENT": "Tek canonical ve mevcut core otoritesiyle uyumlu, değişiklik sınırı sabit mühendislik önerisi üretir.",
+      "PASS_CONDITION": "NO_PARALLEL_AUTHORITY",
+      "REQUIRED_EVIDENCE": [
+        "changed path allowlist",
+        "diff",
+        "prior authorities"
+      ],
+      "VERIFIER": "SECURITY_REVIEWER",
+      "AUTHORITY": "CANONICAL_OWNER",
+      "STATE": "HOLD_REAL_GITHUB_EXECUTION",
+      "DEPENDENCIES": [
+        "CANONICAL_V3_PIN",
+        "SCOPE_AUTHORITY"
+      ],
+      "SOURCE_PIN": "CONTROL_MAIN_OR_EXACT_AUTHORIZED_BRANCH",
+      "RECENCY": "RECHECK_AT_GITHUB_EXECUTION",
+      "GATE_TYPE": "GOVERNANCE",
+      "OWNER_ACTION": "AUTHORIZE_REVIEW_BRANCH_ENGINEERING_WITH_EXACT_SCOPE"
+    },
+    {
+      "CONTROL_ID": "GH69-BASE-04",
+      "REQUIREMENT": "TASK_ID, PROJECT_ID, CONTROL_ID, acceptance revision ve scope kimliklerini birebir doğrular.",
+      "PASS_CONDITION": "TASK_IDENTITY_BOUND",
+      "REQUIRED_EVIDENCE": [
+        "identity tuple",
+        "uniqueness check",
+        "task source"
+      ],
+      "VERIFIER": "SCHEMA_REVIEWER",
+      "AUTHORITY": "TASK_OWNER",
+      "STATE": "HOLD_REAL_GITHUB_EXECUTION",
+      "DEPENDENCIES": [
+        "SOURCE_PIN_VERIFIED"
+      ],
+      "SOURCE_PIN": "CONTROL_MAIN_OR_EXACT_AUTHORIZED_BRANCH",
+      "RECENCY": "RECHECK_AT_GITHUB_EXECUTION",
+      "GATE_TYPE": "IDENTITY",
+      "OWNER_ACTION": "AUTHORIZE_REVIEW_BRANCH_ENGINEERING_WITH_EXACT_SCOPE"
+    },
+    {
+      "CONTROL_ID": "GH69-BASE-05",
+      "REQUIREMENT": "Yönetim/İcra/owner/issuer/verifier/DoneCheck/Human Threshold rollerinin yetki ayrımını doğrular.",
+      "PASS_CONDITION": "ROLE_SEPARATION_BOUND",
+      "REQUIRED_EVIDENCE": [
+        "role identity attestations",
+        "role scope",
+        "review identity"
+      ],
+      "VERIFIER": "SECURITY_REVIEWER",
+      "AUTHORITY": "HUMAN_THRESHOLD",
+      "STATE": "HOLD_REAL_GITHUB_EXECUTION",
+      "DEPENDENCIES": [
+        "CANONICAL_V3_PIN",
+        "SCOPE_AUTHORITY"
+      ],
+      "SOURCE_PIN": "CONTROL_MAIN_OR_EXACT_AUTHORIZED_BRANCH",
+      "RECENCY": "RECHECK_AT_GITHUB_EXECUTION",
+      "GATE_TYPE": "AUTHORITY",
+      "OWNER_ACTION": "AUTHORIZE_REVIEW_BRANCH_ENGINEERING_WITH_EXACT_SCOPE"
+    },
+    {
+      "CONTROL_ID": "GH69-BASE-06",
+      "REQUIREMENT": "Ham kanıt baytları, SHA-256, kaynak, süre ve iptal kontrolünün tamamını doğrular.",
+      "PASS_CONDITION": "EVIDENCE_CHAIN_BOUND",
+      "REQUIRED_EVIDENCE": [
+        "raw byte locator",
+        "SHA-256",
+        "issued/expires",
+        "revocation source"
+      ],
+      "VERIFIER": "EVIDENCE_REVIEWER",
+      "AUTHORITY": "SOURCE_OWNER",
+      "STATE": "HOLD_REAL_GITHUB_EXECUTION",
+      "DEPENDENCIES": [
+        "SOURCE_PIN_VERIFIED"
+      ],
+      "SOURCE_PIN": "CONTROL_MAIN_OR_EXACT_AUTHORIZED_BRANCH",
+      "RECENCY": "RECHECK_AT_GITHUB_EXECUTION",
+      "GATE_TYPE": "EVIDENCE",
+      "OWNER_ACTION": "AUTHORIZE_REVIEW_BRANCH_ENGINEERING_WITH_EXACT_SCOPE"
+    },
+    {
+      "CONTROL_ID": "GH69-BASE-07",
+      "REQUIREMENT": "Tek kontrol PASS_EVIDENCE, toplu ID kabulü ve proje Verified Finish kararlarını ayırır.",
+      "PASS_CONDITION": "VERDICT_SCOPES_BOUND",
+      "REQUIRED_EVIDENCE": [
+        "control set",
+        "per-ID verdict",
+        "ledger",
+        "aggregate receipts"
+      ],
+      "VERIFIER": "INDEPENDENT_REVIEWER",
+      "AUTHORITY": "DONECHECK_V12",
+      "STATE": "HOLD_REAL_GITHUB_EXECUTION",
+      "DEPENDENCIES": [
+        "SOURCE_PIN_VERIFIED"
+      ],
+      "SOURCE_PIN": "CONTROL_MAIN_OR_EXACT_AUTHORIZED_BRANCH",
+      "RECENCY": "RECHECK_AT_GITHUB_EXECUTION",
+      "GATE_TYPE": "ACCEPTANCE",
+      "OWNER_ACTION": "AUTHORIZE_REVIEW_BRANCH_ENGINEERING_WITH_EXACT_SCOPE"
+    },
+    {
+      "CONTROL_ID": "GH69-BASE-08",
+      "REQUIREMENT": "PR/yerel kaynak ve main hakikatini uzlaştırır; kaynak yükseltmesini yetkili onayına bağlar.",
+      "PASS_CONDITION": "CANONICAL_SOURCE_ONLY",
+      "REQUIRED_EVIDENCE": [
+        "main+PR refs",
+        "scope conflict",
+        "canonical decision evidence"
+      ],
+      "VERIFIER": "SOURCE_AUDITOR",
+      "AUTHORITY": "CANONICAL_OWNER",
+      "STATE": "HOLD_REAL_GITHUB_EXECUTION",
+      "DEPENDENCIES": [
+        "CANONICAL_V3_PIN",
+        "SCOPE_AUTHORITY"
+      ],
+      "SOURCE_PIN": "CONTROL_MAIN_OR_EXACT_AUTHORIZED_BRANCH",
+      "RECENCY": "RECHECK_AT_GITHUB_EXECUTION",
+      "GATE_TYPE": "PROVENANCE",
+      "OWNER_ACTION": "AUTHORIZE_REVIEW_BRANCH_ENGINEERING_WITH_EXACT_SCOPE"
+    },
+    {
+      "CONTROL_ID": "GH69-BASE-09",
+      "REQUIREMENT": "CAS, idempotency, olay günlüğü, checkpoint, restart/replay ve yan-etki tekilliği kanıtlarını tanımlar.",
+      "PASS_CONDITION": "DURABILITY_CONTRACT_BOUND",
+      "REQUIRED_EVIDENCE": [
+        "CAS ledger",
+        "uniqueness receipt",
+        "checkpoint+replay journal"
+      ],
+      "VERIFIER": "RELIABILITY_REVIEWER",
+      "AUTHORITY": "EXECUTION_OWNER",
+      "STATE": "HOLD_REAL_GITHUB_EXECUTION",
+      "DEPENDENCIES": [
+        "SOURCE_PIN_VERIFIED"
+      ],
+      "SOURCE_PIN": "CONTROL_MAIN_OR_EXACT_AUTHORIZED_BRANCH",
+      "RECENCY": "RECHECK_AT_GITHUB_EXECUTION",
+      "GATE_TYPE": "DURABILITY",
+      "OWNER_ACTION": "AUTHORIZE_REVIEW_BRANCH_ENGINEERING_WITH_EXACT_SCOPE"
+    },
+    {
+      "CONTROL_ID": "GH69-BASE-10",
+      "REQUIREMENT": "Olumlu/olumsuz fixture, bağımsız oracle ve karşıt testleri deterministik yeniden üretir.",
+      "PASS_CONDITION": "POSITIVE_NEGATIVE_ORACLE_BOUND",
+      "REQUIRED_EVIDENCE": [
+        "fixtures",
+        "expected verdict",
+        "stdout",
+        "seed",
+        "run digest"
+      ],
+      "VERIFIER": "INDEPENDENT_REVIEWER",
+      "AUTHORITY": "TEST_OWNER",
+      "STATE": "HOLD_REAL_GITHUB_EXECUTION",
+      "DEPENDENCIES": [
+        "SOURCE_PIN_VERIFIED"
+      ],
+      "SOURCE_PIN": "CONTROL_MAIN_OR_EXACT_AUTHORIZED_BRANCH",
+      "RECENCY": "RECHECK_AT_GITHUB_EXECUTION",
+      "GATE_TYPE": "TEST",
+      "OWNER_ACTION": "AUTHORIZE_REVIEW_BRANCH_ENGINEERING_WITH_EXACT_SCOPE"
+    },
+    {
+      "CONTROL_ID": "GH69-BASE-11",
+      "REQUIREMENT": "CI, exact HEAD, değişiklik sınırı, gerçek test ve kaynak bütünlüğünü mutabık kılar.",
+      "PASS_CONDITION": "EXACT_HEAD_CI_BOUND",
+      "REQUIRED_EVIDENCE": [
+        "CI job/run",
+        "exact branch HEAD",
+        "diff",
+        "SHA-256 manifest"
+      ],
+      "VERIFIER": "CI_REVIEWER",
+      "AUTHORITY": "REPOSITORY_OWNER",
+      "STATE": "HOLD_REAL_GITHUB_EXECUTION",
+      "DEPENDENCIES": [
+        "SOURCE_PIN_VERIFIED"
+      ],
+      "SOURCE_PIN": "CONTROL_MAIN_OR_EXACT_AUTHORIZED_BRANCH",
+      "RECENCY": "RECHECK_AT_GITHUB_EXECUTION",
+      "GATE_TYPE": "CI",
+      "OWNER_ACTION": "AUTHORIZE_REVIEW_BRANCH_ENGINEERING_WITH_EXACT_SCOPE"
+    },
+    {
+      "CONTROL_ID": "GH69-BASE-12",
+      "REQUIREMENT": "GH69-BASE tasarım/PR adayını ürün resmî bitişinden ayırır; yetki ve sayaçları korur.",
+      "PASS_CONDITION": "FOUNDATION_ONLY_BOUND",
+      "REQUIRED_EVIDENCE": [
+        "design verdict",
+        "preserved counters",
+        "scope-specific owner decision"
+      ],
+      "VERIFIER": "INDEPENDENT_REVIEWER",
+      "AUTHORITY": "HUMAN_THRESHOLD",
+      "STATE": "HOLD_REAL_GITHUB_EXECUTION",
+      "DEPENDENCIES": [
+        "CANONICAL_V3_PIN",
+        "SCOPE_AUTHORITY"
+      ],
+      "SOURCE_PIN": "CONTROL_MAIN_OR_EXACT_AUTHORIZED_BRANCH",
+      "RECENCY": "RECHECK_AT_GITHUB_EXECUTION",
+      "GATE_TYPE": "FINISH",
+      "OWNER_ACTION": "AUTHORIZE_REVIEW_BRANCH_ENGINEERING_WITH_EXACT_SCOPE"
+    }
+  ],
+  "role_policy": {
+    "MANAGEMENT": [
+      "plan",
+      "request",
+      "assess_candidate"
+    ],
+    "EXECUTION": [
+      "execute_scoped",
+      "collect_raw_evidence"
+    ],
+    "SOURCE_OWNER": [
+      "approve_source_scope"
+    ],
+    "INDEPENDENT_VERIFIER": [
+      "verify_with_separate_identity"
+    ],
+    "DONECHECK_V12": [
+      "verify_task_machine",
+      "record_verified_finish_if_authorized"
+    ],
+    "HUMAN_THRESHOLD": [
+      "approve_irreversible",
+      "final_human_acceptance"
+    ],
+    "GITHUB_ADMIN": [
+      "write_with_explicit_scope_only"
+    ]
+  },
+  "authority_adapter_contract": {
+    "identity": "cryptographic_subject_distinct_from_model",
+    "issuer_trust_roots": "REAL_CANONICAL_EXTERNAL_ROOTS_REQUIRED",
+    "signature": "VERIFY_OVER_CANONICAL_BYTES",
+    "scope_binding": [
+      "TASK_ID",
+      "PROJECT_ID",
+      "CONTROL_ID",
+      "SOURCE_REPO",
+      "SOURCE_SHA",
+      "OPERATION",
+      "NONCE"
+    ],
+    "time": [
+      "ISSUED_AT",
+      "EXPIRES_AT",
+      "CLOCK_SKEW_BOUND"
+    ],
+    "revocation": [
+      "REVOCATION_LOOKUP",
+      "ISSUER_STATUS"
+    ],
+    "separation": "VERIFIER_SUBJECT_DIFFERS_FROM_PRODUCER",
+    "production_status": "UNBOUND_GITHUB_OSI",
+    "fail_closed": "HOLD_EXTERNAL_BINDING"
+  },
+  "accepted_transitions": [
+    {
+      "from": "PROPOSED",
+      "to": "DESIGN_READY",
+      "guard": [
+        "SCHEMA_COMPLETE",
+        "SOURCE_SNAPSHOT_TYPED",
+        "DESIGN_TESTS_PASS"
+      ],
+      "authority": "DESIGN_REVIEWER",
+      "scope": "THEORETICAL_ONLY"
+    },
+    {
+      "from": "DESIGN_READY",
+      "to": "FOUNDATION_ENGINEERING_PASS_CANDIDATE",
+      "guard": [
+        "REAL_GITHUB_PR",
+        "EXACT_HEAD_CI",
+        "EVIDENCE_SHA",
+        "REVIEW_RESULT"
+      ],
+      "authority": "REPOSITORY_REVIEWER",
+      "scope": "GH69_BASE_ONLY"
+    },
+    {
+      "from": "HOLD",
+      "to": "CONTROL_ACCEPTED",
+      "guard": [
+        "ORIGINAL_CONTROL_REQUIREMENT",
+        "REAL_EVIDENCE",
+        "AUTHORIZED_OWNER",
+        "INDEPENDENT_VERIFICATION",
+        "LEDGER_CAS"
+      ],
+      "authority": "CANONICAL_LEDGER_OWNER",
+      "scope": "SINGLE_ORIGINAL_ID"
+    },
+    {
+      "from": "CONTROL_ACCEPTED",
+      "to": "PROJECT_VERIFIED_FINISH",
+      "guard": [
+        "ALL_ORIGINAL_CONTROLS_ACCEPTED",
+        "CANONICAL_MAIN",
+        "AGGREGATE_LEDGER",
+        "DONECHECK_V12",
+        "HUMAN_THRESHOLD",
+        "SIGNED_FINAL_RECEIPT"
+      ],
+      "authority": "AUTHORIZED_FINALIZER",
+      "scope": "PROJECT_ONLY"
+    }
+  ],
+  "approval_semantics": {
+    "model_self_assertion": "LEVEL_A_NO_AUTHORITY",
+    "test_fixture_pass": "DESIGN_ONLY",
+    "github_review_branch": "NOT_MAIN",
+    "single_control_pass": "NOT_PROJECT_FINISH",
+    "official_verified_finish": "EXTERNAL_AUTHORIZED_ONLY",
+    "first_github_branch": "USER_EXPLICIT_SCOPED_APPROVAL_REQUIRED",
+    "release_approval": "SEPARATE_HUMAN_THRESHOLD"
+  },
+  "evidence_receipt_schema": {
+    "RECEIPT_ID": "nonempty string",
+    "TASK_ID": "stable immutable id",
+    "PROJECT_ID": "stable immutable project",
+    "CONTROL_ID": "unique original ID",
+    "SOURCE_REPO": "exact authorized repo",
+    "SOURCE_REF": "immutable full 40-char SHA",
+    "SOURCE_SHA256": "64 hex digest of bytes",
+    "RAW_BYTES_LOCATOR": "readable actual file",
+    "EVIDENCE_SHA256": "64 hex actual bytes",
+    "PRODUCER_ID": "authenticated technical principal",
+    "VERIFIER_ID": "separate authenticated principal",
+    "ISSUED_AT": "UTC aware timestamp",
+    "EXPIRES_AT": "UTC aware timestamp > issued",
+    "REVOCATION_STATUS": "current trusted lookup",
+    "SCOPE": "exact action and affected objects",
+    "VALIDATOR_VERSION": "verified deterministic code digest",
+    "AUTHORITY_RECEIPT": "external verifiable record or HOLD",
+    "RAW_BYTES_MATCH_SHA256": "RECOMPUTE_SHA256_FROM_BYTES_AND_COMPARE_DIGEST"
+  },
+  "handoff_schema": {
+    "GOAL": "one fixed main goal",
+    "CONTRACT_VERSION": "pinned",
+    "SOURCE_REF": "fully specified repo+ref",
+    "SOURCE_SHA": "SHA-256",
+    "ACCEPTED": "original IDs with receipts",
+    "OPEN": "IDs with exact missing gates",
+    "AUTHORITY_STATE": "role+scope+expiry",
+    "NEXT_ACTION": "single specific eligible action",
+    "EVIDENCE_LOCATION": "immutable original receipt path",
+    "EVIDENCE_REUSE": "same SHA+scope+freshness only",
+    "LEDGER_REVISION": "CAS compare value",
+    "TASK_ID": "same across sessions"
+  },
+  "batch_v2": {
+    "scope": "ORIGINAL_PRODUCT_100_IDS_NOT_GH69_BASE_IDS",
+    "candidate_ids_min": 1,
+    "candidate_ids_max": 10,
+    "unique_original_id_only": true,
+    "shared_dependency_required": true,
+    "per_id_original_acceptance": true,
+    "one_batch_receipt_and_atomic_ledger_transaction": true,
+    "progress_formula": "N+k where k independently accepted unique original IDs; unchanged on HOLD",
+    "gh69_foundation_control_count": 12,
+    "changes_existing_product_progress": false,
+    "fixture_original_ids": [
+      "B01-09",
+      "B01-10",
+      "B05-05"
+    ],
+    "original_catalog_binding": "LOAD_100_AUTHORIZED_IDS_AND_ORIGINAL_CONDITIONS_FROM_EXACT_LEDGER_AT_REAL_EXECUTION",
+    "fixture_ids_not_production_authority": true
+  },
+  "durability_contract": {
+    "journal": "APPEND_ONLY_SEQUENCE_SHA256_CHAIN",
+    "checkpoint": "COMMITTED_LEDGER_REVISION_WITH_EVENT_OFFSET",
+    "CAS": "COMPARE_EXPECTED_VERSION_BEFORE_WRITE",
+    "idempotency_key": "SHA256(task_id|operation|scope|source_sha|logical_action_id)",
+    "external_effect": "OUTBOX_UNIQUE_OP_ID_AND_RECEIPT",
+    "retry": "REUSE_SAME_OPERATION_KEY; NO_PROGRESS_AFTER_TWO_IDENTICAL_ATTEMPTS_REQUIRES_NEW_EVIDENCE_OR_STRATEGY",
+    "replay": "VERIFY_CHAIN_AND_LAST_COMMITTED_OFFSET",
+    "crash": "RESTART_FROM_VERIFIED_CHECKPOINT",
+    "stale_writer": "HOLD_CAS_CONFLICT",
+    "timeouts": "BOUNDED_AND_RECOVERABLE_STATE"
+  },
+  "decision_output_order": [
+    "STATE",
+    "CLAIM",
+    "EVIDENCE",
+    "NEXT_ACTION",
+    "VERDICT"
+  ],
+  "decision_examples": [
+    {
+      "STATE": "HOLD_AUTHORITY",
+      "CLAIM": "GH69 kaynakları hazır; yetkili owner kapsamı açık",
+      "EVIDENCE": [
+        "review-branch source pin, unsigned owner observation"
+      ],
+      "NEXT_ACTION": "Gerçek owner scope makbuzunu doğrula",
+      "VERDICT": "HOLD"
+    },
+    {
+      "STATE": "DESIGN_READY",
+      "CLAIM": "GH69 tasarım şeması ve izole testleri karşılandı",
+      "EVIDENCE": [
+        "control matrix 12/12, deterministic tests PASS"
+      ],
+      "NEXT_ACTION": "GitHub inceleme dalı için ayrı insan yazım kararı",
+      "VERDICT": "DESIGN_PASS_ONLY"
+    }
+  ],
+  "adversarial_scenarios": [
+    {
+      "id": "A01",
+      "mutation": "wrong_v3_sha",
+      "expected": "HOLD_SOURCE",
+      "oracle": "INDEPENDENT_LITERAL_EXPECTATION"
+    },
+    {
+      "id": "A02",
+      "mutation": "stale_head",
+      "expected": "HOLD_SOURCE",
+      "oracle": "INDEPENDENT_LITERAL_EXPECTATION"
+    },
+    {
+      "id": "A03",
+      "mutation": "pr_as_main",
+      "expected": "HOLD_SOURCE",
+      "oracle": "INDEPENDENT_LITERAL_EXPECTATION"
+    },
+    {
+      "id": "A04",
+      "mutation": "wrong_control_id",
+      "expected": "HOLD_SCOPE",
+      "oracle": "INDEPENDENT_LITERAL_EXPECTATION"
+    },
+    {
+      "id": "A05",
+      "mutation": "model_claim_as_owner",
+      "expected": "HOLD_AUTHORITY",
+      "oracle": "INDEPENDENT_LITERAL_EXPECTATION"
+    },
+    {
+      "id": "A06",
+      "mutation": "fake_issuer",
+      "expected": "HOLD_AUTHORITY",
+      "oracle": "INDEPENDENT_LITERAL_EXPECTATION"
+    },
+    {
+      "id": "A07",
+      "mutation": "verified_true_only",
+      "expected": "HOLD_EXTERNAL_BINDING",
+      "oracle": "INDEPENDENT_LITERAL_EXPECTATION"
+    },
+    {
+      "id": "A08",
+      "mutation": "bad_sha",
+      "expected": "HOLD_EVIDENCE",
+      "oracle": "INDEPENDENT_LITERAL_EXPECTATION"
+    },
+    {
+      "id": "A09",
+      "mutation": "one_control_project_finish",
+      "expected": "HOLD_EXTERNAL_BINDING",
+      "oracle": "INDEPENDENT_LITERAL_EXPECTATION"
+    },
+    {
+      "id": "A10",
+      "mutation": "duplicate_batch_id",
+      "expected": "HOLD_SCOPE",
+      "oracle": "INDEPENDENT_LITERAL_EXPECTATION"
+    },
+    {
+      "id": "A11",
+      "mutation": "duplicate_external_effect",
+      "expected": "HOLD_DUPLICATE_EFFECT",
+      "oracle": "INDEPENDENT_LITERAL_EXPECTATION"
+    },
+    {
+      "id": "A12",
+      "mutation": "missing_donecheck",
+      "expected": "HOLD_EXTERNAL_BINDING",
+      "oracle": "INDEPENDENT_LITERAL_EXPECTATION"
+    },
+    {
+      "id": "A13",
+      "mutation": "valid_design",
+      "expected": "DESIGN_READY",
+      "oracle": "INDEPENDENT_LITERAL_EXPECTATION"
+    },
+    {
+      "id": "A14",
+      "mutation": "production_without_provider",
+      "expected": "HOLD_EXTERNAL_BINDING",
+      "oracle": "INDEPENDENT_LITERAL_EXPECTATION"
+    },
+    {
+      "id": "A15",
+      "mutation": "negative_retry",
+      "expected": "HOLD_RETRY",
+      "oracle": "INDEPENDENT_LITERAL_EXPECTATION"
+    },
+    {
+      "id": "A16",
+      "mutation": "bool_as_counter",
+      "expected": "HOLD_SCOPE",
+      "oracle": "INDEPENDENT_LITERAL_EXPECTATION"
+    },
+    {
+      "id": "A17",
+      "mutation": "missing_handoff",
+      "expected": "HOLD_EVIDENCE",
+      "oracle": "INDEPENDENT_LITERAL_EXPECTATION"
+    },
+    {
+      "id": "A18",
+      "mutation": "expired_receipt",
+      "expected": "HOLD_AUTHORITY",
+      "oracle": "INDEPENDENT_LITERAL_EXPECTATION"
+    },
+    {
+      "id": "A19",
+      "mutation": "same_verifier_as_producer",
+      "expected": "HOLD_AUTHORITY",
+      "oracle": "INDEPENDENT_LITERAL_EXPECTATION"
+    },
+    {
+      "id": "A20",
+      "mutation": "raw_bytes_missing",
+      "expected": "HOLD_EVIDENCE",
+      "oracle": "INDEPENDENT_LITERAL_EXPECTATION"
+    },
+    {
+      "id": "A21",
+      "mutation": "unapproved_main_write",
+      "expected": "HOLD_AUTHORITY",
+      "oracle": "INDEPENDENT_LITERAL_EXPECTATION"
+    },
+    {
+      "id": "A22",
+      "mutation": "overlapping_writer",
+      "expected": "HOLD_DUPLICATE_EFFECT",
+      "oracle": "INDEPENDENT_LITERAL_EXPECTATION"
+    },
+    {
+      "id": "A23",
+      "mutation": "valid_batch_design",
+      "expected": "DESIGN_READY",
+      "oracle": "INDEPENDENT_LITERAL_EXPECTATION"
+    },
+    {
+      "id": "A24",
+      "mutation": "out_of_range_batch",
+      "expected": "HOLD_SCOPE",
+      "oracle": "INDEPENDENT_LITERAL_EXPECTATION"
+    }
+  ],
+  "security": {
+    "stride": [
+      {
+        "threat": "SPOOFING",
+        "control": "external signature, trusted identity, separate subject",
+        "scenario_ids": [
+          "A05",
+          "A06",
+          "A19"
+        ]
+      },
+      {
+        "threat": "TAMPERING",
+        "control": "byte hash+manifest+event hash",
+        "scenario_ids": [
+          "A08",
+          "A20"
+        ]
+      },
+      {
+        "threat": "REPUDIATION",
+        "control": "signed issuer+producer and durable sequence",
+        "scenario_ids": [
+          "A07",
+          "A11"
+        ]
+      },
+      {
+        "threat": "INFORMATION_DISCLOSURE",
+        "control": "least privilege + no secret logs",
+        "scenario_ids": [
+          "A21"
+        ]
+      },
+      {
+        "threat": "DENIAL_OF_SERVICE",
+        "control": "bounded retries / checkpoint",
+        "scenario_ids": [
+          "A15",
+          "A22"
+        ]
+      },
+      {
+        "threat": "ELEVATION_OF_PRIVILEGE",
+        "control": "scope-bound human approval and PR/main distinction",
+        "scenario_ids": [
+          "A03",
+          "A09",
+          "A14"
+        ]
+      }
+    ],
+    "owasp": [
+      {
+        "control": "authentication",
+        "scenario_ids": [
+          "A05",
+          "A06"
+        ]
+      },
+      {
+        "control": "authorization",
+        "scenario_ids": [
+          "A04",
+          "A21"
+        ]
+      },
+      {
+        "control": "input_validation",
+        "scenario_ids": [
+          "A10",
+          "A16",
+          "A24"
+        ]
+      },
+      {
+        "control": "prompt_injection_resistance",
+        "scenario_ids": [
+          "A07",
+          "A09"
+        ]
+      },
+      {
+        "control": "secret_handling",
+        "scenario_ids": [
+          "A21"
+        ]
+      },
+      {
+        "control": "data_exposure",
+        "scenario_ids": [
+          "A20"
+        ]
+      },
+      {
+        "control": "audit_logging",
+        "scenario_ids": [
+          "A11",
+          "A22"
+        ]
+      },
+      {
+        "control": "freshness_revocation",
+        "scenario_ids": [
+          "A02",
+          "A18"
+        ]
+      }
+    ],
+    "pre_send": "CRITICAL_SECURITY_FINDING_HOLD_UNTIL_REVIEW"
+  },
+  "benchmark": {
+    "cohort": "SAME_FIXED_TASKS_AND_FAILURE_SEEDS",
+    "reference_runtimes": [
+      "Temporal",
+      "LangGraph",
+      "Microsoft Agent Framework"
+    ],
+    "run_count_per_scenario_min": 30,
+    "required_metrics": [
+      "false_verified_finish",
+      "false_hold",
+      "valid_completion_rate",
+      "duplicate_side_effects",
+      "crash_recovery_rate",
+      "p50_latency_ms",
+      "p95_latency_ms",
+      "run_cost",
+      "handoff_count",
+      "evidence_loss_count"
+    ],
+    "hard_acceptance": {
+      "false_verified_finish": 0,
+      "duplicate_side_effects": 0,
+      "evidence_loss_count": 0,
+      "valid_positive_has_external_authority": true
+    },
+    "relative_performance": "REPORT_MEASURED_MEDIAN_AND_P95_WITH_VARIANCE; NO_INVENTED_TIMES",
+    "run_metadata": [
+      "CPU",
+      "RAM",
+      "VERSION",
+      "FIXTURE_HASH",
+      "NETWORK",
+      "SEED",
+      "CLOCK",
+      "OS"
+    ],
+    "current_state": "NOT_MEASURED_IN_REAL_COMPETITOR_RUNTIME"
+  },
+  "protected": {
+    "github_write": 0,
+    "osi_write": 0,
+    "review_pr191_ledger_change": 0,
+    "official_12_criteria_change": 0,
+    "merge": false,
+    "side_effect_execution": "NONE"
+  },
+  "completeness_rubric": {
+    "alignment": [
+      "Sekiz aşama ve canonical V3",
+      "Süzgeç v2.4 Toplu Kanıt V2 hizası",
+      "Canonical kaynak ve yetki önceliği",
+      "Pozitif dil ve karar formatı",
+      "Özgün ID kabul matrisi",
+      "Kanıt ve SHA bütünlüğü",
+      "İnsan rolü ve yetki koruması",
+      "İlerleme ve bütünsel bitiş muhasebesi",
+      "Oturumlar arası kanıt sürekliliği",
+      "DoneCheck / nihai PASS sınırı"
+    ],
+    "technical": [
+      "Dar kaynak değişikliği ve tekrar kullanım",
+      "Kaynak HEAD/SHA/provenance",
+      "Tipli kabul şeması ve kapı invariants",
+      "Güvenlik ve STRIDE/OWASP tehdidi",
+      "Yetki rollerinin teknik sınırı",
+      "Deterministik karar / yanlış PASS",
+      "Kalıcı yürütme / CAS / idempotency",
+      "Karşıt test ve kabul planı",
+      "CI, diff ve exact HEAD kapanışı",
+      "Operasyon, hız ve benchmark tasarımı"
+    ],
+    "weight_per_dimension": 10,
+    "no_self_attested_pass": true,
+    "live_acceptance_separate": true
+  },
+  "score_scope": "INTERNAL_THEORETICAL_CONTRACT_COMPLETENESS_NOT_PRODUCTION_PERFORMANCE",
+  "github_write": "USER_APPROVED_REVIEW_BRANCH_FOUR_FILES_ONLY_2026_10_22",
+  "review_scope": {
+    "owner_instruction": "2026-10-22: Teorik temeli kapatalım. GitHub'a geçelim.",
+    "allowed_files": [
+      "governance/mac-engineer/ENGURU_MANAGEMENT_V69_GITHUB_FOUNDATION_V1.md",
+      "governance/mac-engineer/ENGURU_MANAGEMENT_V69_FOUNDATION_ACCEPTANCE_V1.json",
+      "tests/test_enguru_management_v69_foundation.py",
+      "evidence/ENGURU_MANAGEMENT_V69_FOUNDATION_REVIEW_V1.json"
+    ],
+    "branch_intent": "GH69_ISOLATED_REVIEW_BASED_ON_EXACT_MAIN",
+    "merge_authority": "NOT_GRANTED",
+    "review_branch_record": "CANDIDATE",
+    "specialized_gh69_ci": "HOLD_WORKFLOW_NOT_IN_FOUR_FILE_ALLOWLIST",
+    "product_ledger_change": 0,
+    "main_change": 0,
+    "osi_change": 0
+  }
+}

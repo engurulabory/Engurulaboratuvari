@@ -1,0 +1,37 @@
+{
+  "schema": "enguru.management.v69.foundation.review/v1",
+  "task_id": "ENGURU-MGMT69-GH-FOUNDATION-01",
+  "state": "GITHUB_REVIEW_BRANCH_CANDIDATE_CI_PENDING",
+  "date": "2026-10-22",
+  "source": {
+    "control_main": "1f7dfd708d652764ac74df27dcbbd393779e2b3b",
+    "control_pr191": "de63a9e34a9b05b6474c847019d8c682b5360d50",
+    "product_main": "5432b9b135499cea18273c0e003877b864af92c6",
+    "product_pr14": "f806d3e0e5d68e6f06af96a5a24a83762b49f0ab",
+    "v3_sha256": "11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc"
+  },
+  "github": {
+    "branch": "feat/enguru-gh69-base-v2-20261022",
+    "base_sha": "1f7dfd708d652764ac74df27dcbbd393779e2b3b",
+    "main_writes": 0,
+    "pr191_writes": 0,
+    "osi_writes": 0,
+    "ci": "AWAIT_ACTUAL_RUN",
+    "dedicated_gh69_ci": "HOLD_NOT_WIRED",
+    "independent_review": "PENDING",
+    "commit_sha": "FETCH_AFTER_COMMIT"
+  },
+  "tests": {
+    "v2_design_double_simulation": "PRIOR_LOCAL_THEORY_PASS_ONLY",
+    "github_exact_head_test": "NOT_EXECUTED_YET",
+    "adversarial_fixture_count": 24,
+    "real_competitor_benchmark": "NOT_MEASURED"
+  },
+  "authority": {
+    "verified_finish": "HOLD",
+    "donecheck": "HOLD",
+    "human_threshold": "PRESERVED",
+    "merge": "NOT_AUTHORIZED"
+  },
+  "next_action": "Re-read four files by exact branch HEAD; inspect PR diff and existing CI; dedicated GH69 CI requires separate scoped decision."
+}
