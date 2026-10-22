@@ -6,7 +6,7 @@
       "goal": "Verify the current canonical sources and establish management authority read-only",
       "state": "READY",
       "dependencies": [],
-      "source_ref": "engurulabory/Engurulaboratuvari:main/AGENTS.md",
+      "source_ref": "engurulabory/Engurulaboratuvari:main/governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md",
       "source_sha256": "11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc",
       "evidence": {
         "verified": false
