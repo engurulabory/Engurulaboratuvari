@@ -1,7 +1,4 @@
 from dataclasses import dataclass
-from hashlib import sha256
-import json
-from threading import Lock
 from decimal import Decimal
 from enum import Enum
 from typing import Protocol, Optional, Mapping
@@ -50,11 +47,6 @@ class ProviderReceipt:
 
 
 @dataclass(frozen=True)
-class BillingPending:
-    request_sha256: str
-
-
-@dataclass(frozen=True)
 class BillingResult:
     state: str
     document_type: DocumentType
@@ -77,10 +69,8 @@ class MailDelivery(Protocol):
 
 
 class IdempotencyStore(Protocol):
-    # Production implementations must reserve/commit atomically and durably.
-    def get(self, key: str) -> Optional[BillingResult | BillingPending]: ...
-    def reserve(self, key: str, request_sha256: str) -> BillingResult | BillingPending | None: ...
-    def commit(self, key: str, value: BillingResult) -> None: ...
+    def get(self, key: str) -> Optional[BillingResult]: ...
+    def put(self, key: str, value: BillingResult) -> None: ...
 
 
 class BillingCore:
@@ -95,24 +85,9 @@ class BillingCore:
     def issue_paid_order(self, request: BillingRequest) -> BillingResult:
         self._validate(request)
         key = request.idempotency_key or f"invoice:{request.order_id}"
-        request_sha256 = self._request_sha256(request)
-        # Atomic reservation protects a sequential retry after provider-side
-        # success followed by a lost acknowledgement. Pending requires manual
-        # provider reconciliation, never a blind second fiscal issue.
-        existing = self.idempotency_store.reserve(key, request_sha256)
-        if isinstance(existing, BillingPending):
-            if existing.request_sha256 != request_sha256:
-                raise BillingError("Idempotency key is reserved for another request")
-            raise BillingError("Invoice outcome pending provider reconciliation")
-        if isinstance(existing, BillingResult):
-            if existing.evidence.get("request_sha256") != request_sha256:
-                raise BillingError("Idempotency key is bound to another request or unverified legacy record")
-            if existing.state == "PASS":
-                return existing
-            raise BillingError("Prior billing state requires authorized reconciliation")
-        if existing is not None:
-            raise BillingError("Unknown idempotency state requires reconciliation")
-        # None is exclusively returned when the store creates a new reservation.
+        existing = self.idempotency_store.get(key)
+        if existing:
+            return existing
 
         is_taxpayer = self.registry.is_einvoice_taxpayer(request.tax_identifier)
         if is_taxpayer:
@@ -154,36 +129,10 @@ class BillingCore:
                 "provider_status": receipt.status,
                 "mail_message_id": message_id,
                 "idempotency_key": key,
-                "request_sha256": request_sha256,
             },
         )
-        self.idempotency_store.commit(key, result)
+        self.idempotency_store.put(key, result)
         return result
-
-    @staticmethod
-    def _request_sha256(request: BillingRequest) -> str:
-        """Bind the replay key to the exact payment and recipient request.
-
-        A digest is a comparison marker, not an authorization grant. In-flight
-        lost acknowledgements still require durable provider reconciliation.
-        """
-        fingerprint = {
-            "order_id": request.order_id,
-            "customer_name": request.customer_name,
-            "customer_email": request.customer_email,
-            "tax_identifier": request.tax_identifier,
-            "amount": str(request.amount),
-            "currency": request.currency,
-            "description": request.description,
-            "internet_sale": request.internet_sale,
-            "payment_provider": request.payment.provider,
-            "payment_id": request.payment.payment_id,
-            "payment_amount": str(request.payment.amount),
-            "payment_currency": request.payment.currency,
-            "payment_verified": request.payment.verified,
-        }
-        data = json.dumps(fingerprint, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
-        return sha256(data.encode("utf-8")).hexdigest()
 
     @staticmethod
     def _validate(request: BillingRequest) -> None:
@@ -204,35 +153,13 @@ class BillingCore:
 
 
 class MemoryIdempotencyStore:
-    """In-process test store only; not durable across process restart."""
-
     def __init__(self):
         self._items = {}
-        self._lock = Lock()
 
     def get(self, key):
-        with self._lock:
-            return self._items.get(key)
+        return self._items.get(key)
 
     def put(self, key, value):
-        # For backward-compatible fixtures/migration only.
-        with self._lock:
-            if key in self._items:
-                raise BillingError("Duplicate idempotency key")
-            self._items[key] = value
-
-    def reserve(self, key, request_sha256):
-        with self._lock:
-            if key not in self._items:
-                self._items[key] = BillingPending(request_sha256)
-                return None
-            return self._items[key]
-
-    def commit(self, key, value):
-        with self._lock:
-            pending = self._items.get(key)
-            if not isinstance(pending, BillingPending):
-                raise BillingError("Missing exclusive pending reservation")
-            if pending.request_sha256 != value.evidence.get("request_sha256"):
-                raise BillingError("Reservation/request digest mismatch")
-            self._items[key] = value
+        if key in self._items:
+            raise BillingError("Duplicate idempotency key")
+        self._items[key] = value
