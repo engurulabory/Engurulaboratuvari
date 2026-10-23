@@ -1,0 +1,585 @@
+{
+  "schema": "enguru.emus.v11.subcriterion-progress/v1",
+  "status": "REVIEW_DRAFT_NOT_CANONICAL",
+  "baseline": "19 original GitHub tasks; four candidate checkpoints per task; engineering coverage only",
+  "counting_rules": {
+    "denominator": 76,
+    "ci_evidenced_count": 11,
+    "scope": "CI checkpoints only, not original task completion or authorized acceptance",
+    "official_accepted_tasks": 0,
+    "unsupported_criteria": "HOLD_UNVERIFIED",
+    "no_double_count": "each criterion ID counted once"
+  },
+  "rows": [
+    {
+      "id": 1,
+      "name": "Source",
+      "criteria": [
+        {
+          "id": "GH-01-C1",
+          "label": "main+V3 pin",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-01-C2",
+          "label": "source integrity CI",
+          "evidence_run": "40002619844",
+          "state": "CI_EVIDENCED"
+        },
+        {
+          "id": "GH-01-C3",
+          "label": "independent authority",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-01-C4",
+          "label": "main scope review",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Inventory",
+      "criteria": [
+        {
+          "id": "GH-02-C1",
+          "label": "five cores inventory",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-02-C2",
+          "label": "current source map",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-02-C3",
+          "label": "source SHA pins",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-02-C4",
+          "label": "independent inventory",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Control map",
+      "criteria": [
+        {
+          "id": "GH-03-C1",
+          "label": "K01-K03 map",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-03-C2",
+          "label": "G01-G10 map",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-03-C3",
+          "label": "file+commit references",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-03-C4",
+          "label": "independent reconciliation",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Gaps",
+      "criteria": [
+        {
+          "id": "GH-04-C1",
+          "label": "gap matrix",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-04-C2",
+          "label": "dependency locks",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-04-C3",
+          "label": "negative gap challenge",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-04-C4",
+          "label": "independent acceptance",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Task schema",
+      "criteria": [
+        {
+          "id": "GH-05-C1",
+          "label": "task schema",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-05-C2",
+          "label": "transition rules",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-05-C3",
+          "label": "restart semantics",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-05-C4",
+          "label": "reviewed acceptance",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Reliability contract",
+      "criteria": [
+        {
+          "id": "GH-06-C1",
+          "label": "checkpoint real CI",
+          "evidence_run": "40005842575",
+          "state": "CI_EVIDENCED"
+        },
+        {
+          "id": "GH-06-C2",
+          "label": "idempotency real CI",
+          "evidence_run": "40005842575",
+          "state": "CI_EVIDENCED"
+        },
+        {
+          "id": "GH-06-C3",
+          "label": "recovery negative CI",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-06-C4",
+          "label": "independent review",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Resource budget",
+      "criteria": [
+        {
+          "id": "GH-07-C1",
+          "label": "model capacity gate",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-07-C2",
+          "label": "RAM/disk/time budget",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-07-C3",
+          "label": "real local model measurement",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-07-C4",
+          "label": "independent benchmark",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Security",
+      "criteria": [
+        {
+          "id": "GH-08-C1",
+          "label": "threat model",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-08-C2",
+          "label": "least privilege tests",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-08-C3",
+          "label": "source/grant provenance",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-08-C4",
+          "label": "owner acceptance",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Benchmark",
+      "criteria": [
+        {
+          "id": "GH-09-C1",
+          "label": "fixed benchmark cases",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-09-C2",
+          "label": "license proof",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-09-C3",
+          "label": "zero paid API validation",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-09-C4",
+          "label": "real performance data",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Source implementation",
+      "criteria": [
+        {
+          "id": "GH-10-C1",
+          "label": "source-diff plan",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-10-C2",
+          "label": "implementation test",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-10-C3",
+          "label": "regression CI",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-10-C4",
+          "label": "reviewed source",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Local adapters",
+      "criteria": [
+        {
+          "id": "GH-11-C1",
+          "label": "local router contract CI",
+          "evidence_run": "40011754582",
+          "state": "CI_EVIDENCED"
+        },
+        {
+          "id": "GH-11-C2",
+          "label": "real model adapter",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-11-C3",
+          "label": "tool capability probes",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-11-C4",
+          "label": "resource constrained CI",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Persistent ledger",
+      "criteria": [
+        {
+          "id": "GH-12-C1",
+          "label": "pinned two-store CI",
+          "evidence_run": "40005842575",
+          "state": "CI_EVIDENCED"
+        },
+        {
+          "id": "GH-12-C2",
+          "label": "restart+idempotency CI",
+          "evidence_run": "40005842575",
+          "state": "CI_EVIDENCED"
+        },
+        {
+          "id": "GH-12-C3",
+          "label": "failure recovery negative",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-12-C4",
+          "label": "reviewed durable ledger",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Skill/macOS",
+      "criteria": [
+        {
+          "id": "GH-13-C1",
+          "label": "macOS Skill guard CI",
+          "evidence_run": "40012648226",
+          "state": "CI_EVIDENCED"
+        },
+        {
+          "id": "GH-13-C2",
+          "label": "checkpoint identity CI",
+          "evidence_run": "40012648226",
+          "state": "CI_EVIDENCED"
+        },
+        {
+          "id": "GH-13-C3",
+          "label": "macOS functional routine",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-13-C4",
+          "label": "independent review",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "G01-G10 testing",
+      "criteria": [
+        {
+          "id": "GH-14-C1",
+          "label": "G01-G10 test map",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-14-C2",
+          "label": "integration CI",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-14-C3",
+          "label": "G01-G10 full negative coverage",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-14-C4",
+          "label": "independent review",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "24 adversarial",
+      "criteria": [
+        {
+          "id": "GH-15-C1",
+          "label": "24 evidence mutation CI",
+          "evidence_run": "40010446918",
+          "state": "CI_EVIDENCED"
+        },
+        {
+          "id": "GH-15-C2",
+          "label": "original 24 scenario mapping",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-15-C3",
+          "label": "real product adversarial tests",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-15-C4",
+          "label": "independent review",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "name": "CI reproducibility",
+      "criteria": [
+        {
+          "id": "GH-16-C1",
+          "label": "CI pinned sources",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-16-C2",
+          "label": "adversarial source drift",
+          "evidence_run": "40010446918",
+          "state": "CI_EVIDENCED"
+        },
+        {
+          "id": "GH-16-C3",
+          "label": "repeatable CI result",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-16-C4",
+          "label": "independent review",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "name": "Reviewer",
+      "criteria": [
+        {
+          "id": "GH-17-C1",
+          "label": "reviewer identity",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-17-C2",
+          "label": "independent findings",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-17-C3",
+          "label": "resolved objections",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-17-C4",
+          "label": "approved review",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "name": "DoneCheck authority",
+      "criteria": [
+        {
+          "id": "GH-18-C1",
+          "label": "real verifyTask CI",
+          "evidence_run": "40008569258",
+          "state": "CI_EVIDENCED"
+        },
+        {
+          "id": "GH-18-C2",
+          "label": "human signed review",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-18-C3",
+          "label": "issuer grant+ledger",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-18-C4",
+          "label": "authorized receipt",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "name": "GitHub closure",
+      "criteria": [
+        {
+          "id": "GH-19-C1",
+          "label": "19 task reconciliation",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-19-C2",
+          "label": "main merge provenance",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-19-C3",
+          "label": "authorized canonical decision",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        },
+        {
+          "id": "GH-19-C4",
+          "label": "finish receipt",
+          "evidence_run": null,
+          "state": "HOLD_UNVERIFIED"
+        }
+      ]
+    }
+  ]
+}
