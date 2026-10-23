@@ -22,7 +22,7 @@ class EmusTaskIdentityProbe(unittest.TestCase):
         if not RUNTIME or not (Path(RUNTIME) / "reliability.py").is_file():
             self.fail("SOURCE_HOLD: pinned Mac Engineer runtime path required")
         raw = (Path(RUNTIME) / "reliability.py").read_bytes()
-        blob_hash = hashlib.sha1(b"blob " + str(len(raw)).encode("ascii") + b"\\0" + raw).hexdigest()
+        blob_hash = hashlib.sha1(b"blob " + str(len(raw)).encode("ascii") + b"\0" + raw).hexdigest()
         self.assertEqual(blob_hash, PINNED_RELIABILITY_BLOB_SHA1, "SOURCE_DRIFT")
         sys.path.insert(0, RUNTIME)
         try:
