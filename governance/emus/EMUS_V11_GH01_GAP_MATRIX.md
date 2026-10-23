@@ -44,3 +44,13 @@ Tasarım kapsamı 100/100, ancak gerçek `GH-01=HOLD`; `GH-02–04=HOLD`, `OSI=H
 - Bu doğrulama bağlantının döndürdüğü kaynak metni için geçerlidir; bağımsız ham Git blob aktarımı ve OSi yerel eşleşmesi ayrı kapıdır.
 - `governance/mac-engineer/DONECHECK_AUTHORITY_MODEL_V1.md` rol sırasını açıklıyor; EMÜS'e özel geçerli reviewer/issuer/owner grant veya imza makbuzu henüz kanıtlanmadı.
 - GH-01 = PARTIAL, GH-02 = PARTIAL, GH-03/04 = HOLD; insan onayı korunur.
+
+## GH-01 — Yönetim/İcra ve gerçek yetki uzlaştırması (2026-10-23)
+- Yönetim güncel görünür aday: `governance/enguru-suzgeci/ENGURU_OSI_MUHENDISLIK_KASI_CANLI_KAYIT_V1.md` (Git blob SHA-1 `538b1ae4321488112fabffa0112739d696ab5378`), `ENGURU_MANAGEMENT_V69_PR_203` için kaynak/CI kanıtı gösteriyor. Bu kayıt PR #203'e özgüdür, EMÜS owner grant'i değildir.
+- Paylaşılan İcra mimarisi: `governance/ENGURU_VERIFIED_AGENT_OPERATING_CORE_V0_1.md` (Git blob `5ee98d4615a1764973d955543f2fb5ecdf8b8b79`) mimari VISION LOCKED, implementation evidence-gated; tek başına aktif ürün icra yetkisini kanıtlamaz.
+- Mac Engineer icra eşlemesi: `governance/mac-engineer/CAPABILITY_EXECUTION_BINDING_V1.json` (Git blob `419bff0005109644938aae08b8e0b4421af8098b`) yalnız kanıtlı/registered handler'lar üzerinden araç kullanımını kabul ediyor, eksik binding HOLD. Bu dosya yeni yetki üretmiyor.
+- Ürün/çekirdek haritası: `governance/ENGURU_PRODUCT_CORE_MAP.md` (Git blob `1b240b7a9a63aa67ad1c0898a8c78639f57d591b`) envanter durumu HOLD; tam depo ve embedded-core incelemesi açık.
+- Yönetim saha kaydına göre PR #203 için teknik verifyTask 4/4 PASS raporlanırken owner trust, Ed25519 key/grant, HumanReview, ledger ve merge HOLD. EMÜS'e aynı PASS veya yetki aktarımı yapılmaz.
+- `governance/mac-engineer/DONECHECK_AUTHORITY_MODEL_V1.md` teknik producer → DoneCheck v1.2 → Human Threshold sırasını tanımlar. EMÜS'e özgü canlı owner/reviewer/issuer grant, imza/receipt ve yetki geçerliliği bu kaynaklarda kanıtlanmadı: `HOLD_AUTHORITY`.
+- GH-01 kaynak keşif kapsamı genişletildi; gerçek canonical İcra sürüm/owner doğrulaması, özel ürün kaynak geçerliliği ve EMÜS-specific authority kanıtı hâlâ açık. Bu kaynak keşfi kaynakların yokluğunu ispatlamaz.
+- Karar: `GH01=PARTIAL`, `GH02=PARTIAL`, `GH03/04=HOLD`, `OSI_READY=HOLD`. İlgisiz ürünün grant'i EMÜS'e uygulanmaz.
