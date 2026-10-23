@@ -22,7 +22,7 @@ def audit_k12_batch(catalog, evidence):
     if not isinstance(cases, list) or len(cases) != 18 or any(not isinstance(c, dict) for c in cases):
         return {"state": "HOLD_CANONICAL_CASES"}
     ids = [c.get("case_id") for c in cases]
-    if sorted(ids) != [f"{i:02d}" for i in range(1, 19)]:
+    if any(not isinstance(cid, str) for cid in ids) or sorted(ids) != [f"{i:02d}" for i in range(1, 19)]:
         return {"state": "HOLD_CANONICAL_IDENTITIES"}
     if any(not c.get("customer") or not c.get("technology") for c in cases):
         return {"state": "HOLD_CANONICAL_IDENTITIES"}
@@ -31,7 +31,8 @@ def audit_k12_batch(catalog, evidence):
     if not isinstance(provided, list) or any(not isinstance(c, dict) for c in provided):
         return {"state": "HOLD_INPUT_FORMAT"}
     input_ids = [c.get("case_id") for c in provided]
-    if len(provided) != 18 or sorted(input_ids) != ids or len(set(input_ids)) != 18:
+    if (len(provided) != 18 or any(not isinstance(cid, str) for cid in input_ids)
+            or sorted(input_ids) != sorted(ids) or len(set(input_ids)) != 18):
         return {"state": "HOLD_18_CASE_SCOPE", "expected": 18, "received": len(provided)}
     by_id = {c["case_id"]: c for c in provided}
     out = []
@@ -71,7 +72,9 @@ def main():
     except (OSError, ValueError, UnicodeError) as exc:
         result = {"state": "HOLD_FILE_OR_JSON", "error_type": type(exc).__name__}
     print(json.dumps(result, ensure_ascii=False, sort_keys=True))
-    return 0 if result.get("state") == "CALCULATIONS_REVIEW_REQUIRED" else 2
+    # Even 18/18 illustrative calculations are unreviewed: reserve success for
+    # the separate canonical acceptance mechanism, never for this CLI.
+    return 3 if result.get("state") == "CALCULATIONS_REVIEW_REQUIRED" else 2
 
 if __name__ == "__main__":
     raise SystemExit(main())
