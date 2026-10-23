@@ -9,10 +9,11 @@ def five_year_cost(record):
     if not isinstance(periods,list) or len(periods)!=5:return {"state":"HOLD_INPUT_SCOPE"}
     values=[]
     for year in periods:
-        if set(year)!=set(REQUIRED):return {"state":"HOLD_COST_FIELDS"}
+        if not isinstance(year,dict) or set(year)!=set(REQUIRED):return {"state":"HOLD_COST_FIELDS"}
         subtotal=Decimal("0")
         for key in REQUIRED:
             item=year[key]
+            if not isinstance(item,dict):return {"state":"HOLD_SOURCE_OR_UNIT"}
             if not isinstance(item,dict) or not item.get("source_ref") or not item.get("unit") or item.get("value") is None:
                 return {"state":"HOLD_SOURCE_OR_UNIT"}
             try:
