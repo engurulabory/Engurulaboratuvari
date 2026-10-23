@@ -104,3 +104,8 @@ Bu sözleşme ADAY'dır. GH-01 tam kaynak eşleştirmesi, gerçek owner ve bağ�
 - Diğer workflow'lar PARK `39994481593`, IP Model Trust Fleet `39994481423`, IP Model Trust Gate `39994481600` `completed/success`.
 - Product CI `engurulabory/enguru-mac-engineer/.github/workflows/product-ci.yml` bağımsız özel ürün test yüzeyidir; Labory CI içine özel ürün kaynağı getiren mevcut yetkili grant bu incelemede doğrulanmadı.
 - Son hüküm: `NEGATIVE_GUARDS=PASS_CI`; `REAL_TASK_ID_RESTART=HOLD_TEST`; `DONECHECK_VERIFYTASK=HOLD_TEST`; `AUTHORITY=HOLD`. Sıradaki kabul, yetkili özel runtime çalışma kanıtıdır.
+
+## GH-03 — Doğrudan yükleyici güvenliği gerçek CI kanıtı
+- Commit `6b8007928551a93ef2325ec22eddb0e11fa417ec`; Final Gate run `40000254150`, job `120574187904`, EMÜS step 9 (syntax), step 10 (SOURCE_HOLD), step 11 (SOURCE_DRIFT + loader never called): üçü `completed/success`.
+- Aynı commit PARK `40000254047`, IP Model Trust Fleet `40000253991`, IP Model Trust Gate `40000254356` completed/success.
+- `GH03_NEGATIVE_GUARDS=PASS_CI`; gerçek özel Mac Engineer runtime ile `test_task_id_survives_two_stores_and_restart` bu CI'da çalıştırılmadı. `EMUS_TASK_ID_INTEGRATION=HOLD_TEST`, `DONECHECK_VERIFYTASK=HOLD_TEST`, `GH04=HOLD`. 19 ana işin kabul sayacı kanıtlı bağımsız tamamlanma kararı olmadan yükseltilmez.
