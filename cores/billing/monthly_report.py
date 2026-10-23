@@ -17,13 +17,13 @@ class MonthlyReporter:
     def __init__(self, evidence_store):
         self.evidence_store = evidence_store
 
-    def build(self, year: int, month: int) -> MonthlyBillingReport:
+    def build(self, year: int, month: int, *, subject=None, tenant_id=None, grant=None) -> MonthlyBillingReport:
         start = datetime(year, month, 1)
         if month == 12:
             end = datetime(year + 1, 1, 1)
         else:
             end = datetime(year, month + 1, 1)
-        records = list(self.evidence_store.between(start, end))
+        records = list(self.evidence_store.between(start, end, subject=subject, tenant_id=tenant_id, grant=grant))
         return MonthlyBillingReport(
             year=year,
             month=month,
