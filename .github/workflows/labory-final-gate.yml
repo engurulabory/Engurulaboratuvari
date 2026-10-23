@@ -198,5 +198,8 @@ jobs:
       - name: Ar-Ge Block 01 full 18 case reconciliation
         run: python -m unittest discover -s tests -p 'test_arge_block01_18_cases_v428.py' -v
 
+      - name: Ar-Ge Block 01 K12 five-year cost calculation tests
+        run: python -m unittest discover -s tests -p 'test_arge_block01_k12_tco_v1.py' -v
+
       - name: Final state
         run: echo 'ENGURU LABORY REPOSITORY FINAL GATE = PASS' >> "$GITHUB_STEP_SUMMARY"
