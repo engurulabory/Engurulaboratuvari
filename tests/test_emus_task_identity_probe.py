@@ -48,6 +48,27 @@ class EmusTaskIdentityProbe(unittest.TestCase):
             self.assertEqual(reloaded.resume_checkpoint["next_action"], "Require independent review")
             self.assertIn("ci:emus-identity", reloaded.evidence_refs)
 
+    def test_emus_final_pass_requires_evidence(self):
+        with tempfile.TemporaryDirectory() as root:
+            memory = PersistentWorkingMemory(root)
+            created = memory.create_task(
+                task_id="emus-ci-finish-gate",
+                objective="Require real evidence before final PASS",
+                authority_snapshot={"mode": "HUMAN_THRESHOLD_REQUIRED"},
+                required_capabilities=("verification",),
+            )
+            with self.assertRaisesRegex(ValueError, "pass_requires_evidence"):
+                memory.update_task(
+                    created.task_id,
+                    expected_revision=created.revision,
+                    state="PASS",
+                    reason="premature_finish",
+                    final_summary="Unverified finish",
+                )
+            after = PersistentWorkingMemory(root).load_task(created.task_id)
+            self.assertEqual(after.state, "ACTIVE")
+            self.assertEqual(after.revision, created.revision)
+
     def test_missing_pinned_runtime_fails_closed(self):
         with mock.patch.dict(
             globals(), {"RUNTIME": ""}, clear=False
