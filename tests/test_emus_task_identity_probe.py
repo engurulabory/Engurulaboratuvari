@@ -76,6 +76,8 @@ class EmusTaskIdentityProbe(unittest.TestCase):
             self.assertTrue(resumed["ok"])
             self.assertEqual(resumed["task"]["task_id"], task_id)
             self.assertEqual(resumed["checkpoint"]["task_id"], task_id)
+            self.assertEqual(resumed["checkpoint"]["payload"], {"step": 1})
+            self.assertTrue(resumed["checkpoint"]["verified"])
             self.assertEqual(
                 PersistentWorkingMemory(base / "memory").load_task(task_id).task_id,
                 task_id,
