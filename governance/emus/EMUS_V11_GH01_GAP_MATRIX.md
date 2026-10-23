@@ -75,3 +75,10 @@ Tasarım kapsamı 100/100, ancak gerçek `GH-01=HOLD`; `GH-02–04=HOLD`, `OSI=H
 - Özel repo `5432b9…` commit'i için PR-tetiklemeli koşuları döndüren sınırlı sorgu boş geldi; geçmiş tüm Product CI koşularının yokluğu sonucuna varılmaz. Labory PR #210 CI kanıtı özel Product CI yerine geçmez.
 - Dar kabul yolu: özel ürünün Product CI içinde, mevcut yetkili ürün inceleme mekanizmasıyla, gerçek kaynak üzerinde görev ID/restart testini çalıştırıp sonuç kimliğini almak; ardından yetkili iki-depo entegrasyon ortamında DoneCheck `verifyTask` bağını ayrıca göstermek. Yeni cross-repo token/grant ancak owner tarafından gerçekten verilmiş kapsam ile kullanılır.
 - `MAC_PRODUCT_CI_SOURCE=CONFIRMED`; `MAC_PRODUCT_CI_EMUS_RUN=HOLD`; `CROSS_REPO_AUTHORITY=HOLD`; `DONECHECK_INTEGRATION=HOLD`.
+
+## 2026-10-23 — Private Product CI gerçek koşu uzlaştırması
+- Özel `engurulabory/enguru-mac-engineer` Product CI run `35768412377`, commit `56a932bf98e4fc24e549bd953133401898e47eaa`: workflow ve Runtime tests step `completed/success`.
+- Run `35770832924`, commit `e90dace0e34c68af5cec28599ee94a5ddfad0a43`: workflow ve Runtime tests step `completed/success`.
+- Run `35770750418`, commit `58ef7236fb65ee6abdd536cde0c0b68c2746faad`: `Runtime tests` failure; özgün job logunda `test_persistent_idempotency` ve `test_checkpoint_restart_resume` `ok`; ayrı A07 kaynak/artifact testi `80 != 40` nedeniyle failure. Bu koşu genel PASS sayılmaz.
+- Karar: `MAC_PRODUCT_RUNTIME_TESTS=HISTORICAL_CI_PASS`, `MAC_TASK_ID_AND_RESTART=HISTORICAL_TEST_LOG_OK`; bu kaynak commit'ler gözlenen `main` HEAD `5432b9b135499cea18273c0e003877b864af92c6` ile aynı olmadığı için güncel HEAD'in EMÜS bütünleşik kabulü olarak sayılamaz.
+- `EMUS_WORKING_MEMORY_CROSS_REPO=HOLD_TEST`, `DONECHECK_VERIFYTASK=HOLD_TEST`, `EMUS_AUTHORITY=HOLD`. Sıradaki ihtiyaç: exact source/commit ile birleşik test ve yetkili sonuç.
