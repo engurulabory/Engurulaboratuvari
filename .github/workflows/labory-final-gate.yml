@@ -186,5 +186,8 @@ jobs:
       - name: A03 authority preflight review-only tests
         run: python -m unittest discover -s tests -p 'test_arge_a03_preflight_v419.py' -v
 
+      - name: Ar-Ge Block 01 nine-task adversarial tests
+        run: python -m unittest discover -s tests -p 'test_arge_block01_v423.py' -v
+
       - name: Final state
         run: echo 'ENGURU LABORY REPOSITORY FINAL GATE = PASS' >> "$GITHUB_STEP_SUMMARY"
