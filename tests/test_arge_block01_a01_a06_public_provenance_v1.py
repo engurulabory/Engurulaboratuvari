@@ -128,6 +128,32 @@ class OriginalPublicProvenance(unittest.TestCase):
                       self.review["upstream_license_review_scope"])
         self.assertEqual(self.data["rollup"]["exact_deployment_sha_pass"],0)
 
+    def test_a04_a06_eighteen_customer_release_sbom_cve_e5_all_hold(self):
+        self.assertEqual(self.data["a04_rollup"]["case_count"],18)
+        self.assertEqual(self.data["a04_rollup"]["customer_sbom_verified"],0)
+        self.assertEqual(self.data["a04_rollup"]["customer_version_scoped_cve_review_verified"],0)
+        self.assertEqual(self.data["a04_rollup"]["customer_deployed_sha256_verified"],0)
+        self.assertEqual(self.data["a04_rollup"]["independent_e5_verified"],0)
+        for case in self.cases.values():
+            with self.subTest(case=case["case_id"]):
+                entry=case["a04_upstream"]
+                self.assertEqual(entry["customer_exact_installed_release"],
+                                 "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED")
+                self.assertEqual(entry["customer_sbom_cyclonedx_or_spdx"],
+                                 "HOLD_CUSTOMER_SBOM_UNAVAILABLE")
+                self.assertEqual(entry["customer_cve_exposure_assessment"],
+                                 "HOLD_REQUIRES_INSTALLED_VERSION_AND_DEPENDENCIES")
+                self.assertEqual(entry["independent_e5_attestation"],"HOLD")
+
+    def test_kasifi_design_source_stays_separate_from_canonical_implementation(self):
+        k=self.review["a04_kasifi_source_reconciliation"]
+        self.assertEqual(k["design_status"],
+                         "PROPOSED_8_CAPABILITIES_REQUIRES_CANONICAL_RECONCILIATION")
+        self.assertEqual(k["canonical_implementation_repo"],"HOLD_NOT_ESTABLISHED")
+        self.assertEqual(k["canonical_implementation_path"],"HOLD_NOT_ESTABLISHED")
+        self.assertEqual(k["canonical_source_sha256"],"HOLD_NOT_ESTABLISHED")
+        self.assertEqual(self.data["a04_rollup"]["kasifi_canonical_source_verified"],0)
+
     def test_public_sourcing_cannot_set_any_acceptance_pass(self):
         self.assertEqual(self.review["e5_independently_verified"],0)
         self.assertEqual(self.review["deployment_pins_independently_verified"],0)
