@@ -7,7 +7,7 @@ import unittest
 from decimal import Decimal
 
 from cores.billing.billing_core import (
-    BillingCore, BillingError, BillingRequest, BillingResult, DocumentType,
+    BillingCore, BillingError, BillingRequest, BillingResult, BillingPending, DocumentType,
     MemoryIdempotencyStore, PaymentProof, ProviderReceipt
 )
 
@@ -72,6 +72,13 @@ class A07RealBillingTests(unittest.TestCase):
             self.core.issue_paid_order(request(payment=other))
         self.assertEqual(self.provider.calls, 1)
 
+    def test_g01_same_key_concurrent_pending_holds(self):
+        # Simulate an earlier in-flight reservation by the actual store.
+        self.assertIsNone(self.store.reserve("shared-key-01", "fingerprint-one"))
+        with self.assertRaises(BillingError):
+            self.core.issue_paid_order(request())
+        self.assertEqual(self.provider.calls, 0)
+
     def test_g01_legacy_entry_without_request_binding_holds(self):
         self.store.put("shared-key-01", BillingResult(
             "PASS", DocumentType.E_ARCHIVE_INTERNET,
@@ -82,18 +89,19 @@ class A07RealBillingTests(unittest.TestCase):
             self.core.issue_paid_order(request())
         self.assertEqual(self.provider.calls, 0)
 
-    def test_g01_lost_ack_exposes_unreconciled_duplicate_effect(self):
-        """A known gap: mail failure follows provider issue before store commit."""
+    def test_g01_lost_ack_requires_reconciliation_before_retry(self):
+        """A provider issue followed by mail failure leaves a guarded pending state."""
         self.mail = Mail(failures=1)
         self.core = BillingCore(Registry(), self.provider, self.mail, self.store)
         with self.assertRaises(RuntimeError):
             self.core.issue_paid_order(request())
         self.assertEqual(self.provider.calls, 1)
-        self.assertIsNone(self.store.get("shared-key-01"))
-        self.core.issue_paid_order(request())
-        # This documents the remaining G01 risk; external provider/durable
-        # in-flight ledger reconciliation is mandatory before G01 acceptance.
-        self.assertEqual(self.provider.calls, 2)
+        self.assertIsInstance(self.store.get("shared-key-01"), BillingPending)
+        with self.assertRaises(BillingError):
+            self.core.issue_paid_order(request())
+        self.assertEqual(self.provider.calls, 1)
+        # This test exercises only an in-memory store. A restart-safe provider
+        # reconciliation/durable ledger is still required for G01 acceptance.
 
 if __name__ == "__main__":
     unittest.main()
