@@ -126,3 +126,30 @@ Kapsam: #11 yerel adaptör, #13 Skill/macOS, #15 24 karşıt vaka, #17 reviewer,
 Bu puanlar 6 açık işin **resmî tamamlanma skorudur**; kod kalitesi veya teorik tasarım skoru değildir. Üç mantıksal simülasyon gerçek test, özel ürün grant'i veya insan kabulü oluşturmaz. Yeni WorkingMemory checkpoint ve authority testi Labory CI run `40000613508` job `120575404073` step 10 completed/success; dört workflow success. Kanıtsız final-PASS reddi testi commits `ec297f8c01e092dc22224577f27517630576566e` ve `257a4d95c650aa97e6306461f362e2e0f9199875` ile CI'ye eklendi; sonucu ayrıca doğrulanacak.
 
 Karar: `SIX_OPEN=6`; `SIX_ACCEPTED=0`; `GITHUB_19_ACCEPTED=0`; `GITHUB_VERIFIED_FINISH=HOLD`. Kalıcı sabit hedef tüm 19 iş için gerçek Verified Finish.
+
+## P1–P4 planı — çift simülasyonla düzeltilmiş bütünleşik yürütme
+
+Kapsam: üstteki GH-01→GH-04 **19 özgün iş** korunur; P0–P4 adları yalnız aynı işlerin geçiş kapılarıdır, yeni iş veya yeni core değildir. Bu bölüm P1–P4 sıralamasının yürütme düzeltmesidir. Paket kimliği EMUS_V11_GITHUB_19_INTEGRATED_REVIEW; yetkili bitiş hala HOLD.
+
+### Kanıtlanmış gereksinim ve düzeltmeler
+
+1. Önceki P3'te bırakılmış **kaynak/commit SHA, özel depo okuma yetkisi, V3 kilidi, G01–G10 kabul kriterleri ve 24 karşıt senaryo sürüm kilidi**, P1/P2'den **önce giriş kapısı** olarak doğrulanır. P3'te bunların bağımsız yeniden uzlaştırması yapılır.
+2. Mac Engineer özel ürün kaynağı Labory public dalına kopyalanmaz. Yetkili kaynak erişimi için mevcut ürün sahibinin grant kapsamı gerekir; bu grant görülene kadar iki-depo gerçek test HOLD.
+3. Çalıştırma sırası: **P0 kaynak/ölçüt preflight (#1–5, #8, #9) → P1 gerçek çekirdek/yerel adaptör/Skill entegrasyonu (#6, #10–13) → P2 benchmark/G01–G10/24 adversarial gerçek CI (#7, #9, #14–16) → P3 19 satırın bağımsız kanıt uzlaştırması → P4 reviewer (#17), DoneCheck verifyTask + owner/issuer/ledger (#18), yetkili kapanış (#19)**.
+4. DoneCheck verifyTask'ın makine doğrulama sonucu, bağımsız reviewer'ın kararı, owner/issuer yetkisi, imza ve resmî ledger ayrı çıktılardır. Bir PASS diğerine yetki sağlamaz.
+5. Her ana işin kapanış kaydı: TASK_ID, SOURCE_COMMIT/SHA, ACCEPTANCE_CRITERIA, EXECUTION_RUN, RAW_RESULT, NEGATIVE_CASE, VERIFIER, AUTHORITY ve STATE. Kayıt eksikse o iş PARTIAL/HOLD; resmi tamamlanma sayaç artışı 0.
+6. Model bütçesi ve 0 ücretli API, 24 karşıt testin **önceden tanımlı ve dondurulmuş** kapsamı, macOS yürütmesi ve rollback ölçülebilir koşullar olarak kalır. Simülasyon saha testi yerine geçmez.
+
+### İki tekrar karşıt simülasyon — plan tasarım puanı
+
+Puanlama şeffaf: 10 plan denetimi, her biri 10 puan. Denetimler: (A) 19/19 kapsam, (B) kaynak önkoşulu, (C) özel depo yetkisi, (D) bağımlılık sırası, (E) gerçek çift-kaynak testi, (F) benchmark kilidi, (G) 24 adversarial senaryo, (H) güvenlik/kaynak bütçesi, (I) bağımsız reviewer/issuer ayrımı, (J) gerçek kapanış ve erken-PASS koruması. Her madde plan üzerinde eksiksiz açık ise 10; eksikse 0. **Bu rakamlar yalnız plan mantıksal denetimidir; GitHub icra başarısı değildir.**
+
+| Simülasyon | Karşıt giriş | Bulunan açık | Plan puanı |
+|---|---|---|---|
+| 1 — ilk P1→P4 taslağı | Özel repo yetkisi yok, kaynak SHA değişmiş, test eşiği belirsiz | Kaynak denetimi P3'e gecikiyor; test kapsamı ve yetki önkoşulları geç yazılmış | 60/100 (A,E,F,G,I,J) |
+| 2 — düzeltilmiş kapılar | Yetkisiz checkout, 24 vaka kapsam kayması, sahte verifyTask PASS, geçmiş CI'nin yeni commit diye sayılması | P0 kaynak/grant, önceden kilitli benchmark ve ayrı resmî kabul şartlarıyla bu mantıksal açıklar kapandı | 100/100 plan mantığı |
+| 3 — yeniden karşıt doğrulama | Görev kimliği iki depoda farklı; CI yeşil fakat gerçek entegrasyon yok; reviewer imzası yok | Bu hallerin her biri HOLD olarak tanımlı; ana 19/19 sayacı yükselmiyor | 100/100 plan mantığı |
+
+**Yürütme hükmü:** `PLAN_LOGIC=100_100_SIMULATED`; `REAL_GITHUB_ACCEPTANCE=0_19` (iş bazlı bağımsız kapanış henüz yok); `GH_INTEGRATION=HOLD_TEST`; `OWNER_ISSUER_REVIEWER=HOLD`. Bu bölüm hiçbir resmî kabul veya Mac OSi saha PASS iddia etmez.
+
+**Sonraki somut icra:** P0 giriş kanıtlarını güncel HEAD ve mevcut gerçek yetkiyle pinle; özel ürünün yetkili checkout'u doğrulanırsa P1 çift-kaynak gerçek testi çalıştır. P2 ve P4 yalnız bağımlı PASS kanıtıyla kapanır.
