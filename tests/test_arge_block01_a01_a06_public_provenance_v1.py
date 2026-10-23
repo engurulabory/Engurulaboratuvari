@@ -60,6 +60,31 @@ class OriginalPublicProvenance(unittest.TestCase):
         self.assertEqual(s["freshness"],"PRODUCT_LINEAGE_ONLY")
         self.assertEqual(s["reviewed_source_role"],"AUTH0_OPENFGA_PRODUCT_LINEAGE_ONLY")
 
+    def test_seven_upstream_licensing_blobs_are_pinned(self):
+        pins=self.review["upstream_license_pins"]
+        self.assertEqual(len(pins),7)
+        self.assertEqual({p["technology"] for p in pins},
+                         {c["technology"] for c in self.cases.values()})
+        self.assertEqual(len({p["repository"] for p in pins}),7)
+        self.assertEqual(self.review["upstream_license_blob_pin_count"],7)
+        for pin in pins:
+            with self.subTest(technology=pin["technology"]):
+                blob=pin["git_blob_sha1"]
+                self.assertEqual(len(blob),40)
+                self.assertTrue(all(x in "0123456789abcdef" for x in blob))
+                self.assertIn("release",pin["evidence_scope"].lower()
+                              + self.review["upstream_license_review_scope"].lower())
+
+    def test_upstream_enterprise_licenses_require_actual_edition_pin(self):
+        by_tech={p["technology"]:p for p in self.review["upstream_license_pins"]}
+        self.assertEqual(by_tech["Meilisearch"]["observed_license"],
+                         "MIT_AND_BUSL_1_1_EDITION_SPECIFIC")
+        self.assertEqual(by_tech["Medusa"]["observed_license"],
+                         "MIT_EXCEPT_ENTERPRISE_EDITION")
+        self.assertIn("NOT SHA-256 release pins",
+                      self.review["upstream_license_review_scope"])
+        self.assertEqual(self.data["rollup"]["exact_deployment_sha_pass"],0)
+
     def test_public_sourcing_cannot_set_any_acceptance_pass(self):
         self.assertEqual(self.review["e5_independently_verified"],0)
         self.assertEqual(self.review["deployment_pins_independently_verified"],0)
