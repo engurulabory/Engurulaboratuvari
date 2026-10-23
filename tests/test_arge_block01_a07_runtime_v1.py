@@ -4,6 +4,7 @@ The G01 lost-ack test intentionally documents an observed unsatisfied guarantee.
 CI success means the regression finder worked; it is NOT G01 field PASS.
 """
 import unittest
+from threading import Event, Thread
 from decimal import Decimal
 
 from cores.billing.billing_core import (
@@ -50,6 +51,41 @@ class A07RealBillingTests(unittest.TestCase):
         self.mail = Mail()
         self.store = MemoryIdempotencyStore()
         self.core = BillingCore(Registry(), self.provider, self.mail, self.store)
+
+    def test_g01_concurrent_retry_holds_during_provider_call(self):
+        started, release = Event(), Event()
+        class BlockingProvider(Provider):
+            def issue(inner_self, request, document_type):
+                started.set()
+                if not release.wait(timeout=5):
+                    raise RuntimeError("test provider release timeout")
+                return super(BlockingProvider, inner_self).issue(request, document_type)
+        self.provider = BlockingProvider()
+        self.core = BillingCore(Registry(), self.provider, self.mail, self.store)
+        errors = []
+        def first_call():
+            try:
+                self.core.issue_paid_order(request())
+            except Exception as exc:
+                errors.append(type(exc).__name__)
+        thread = Thread(target=first_call)
+        thread.start()
+        try:
+            self.assertTrue(started.wait(timeout=5))
+            with self.assertRaises(BillingError):
+                self.core.issue_paid_order(request())
+        finally:
+            release.set()
+            thread.join(timeout=5)
+        self.assertFalse(thread.is_alive())
+        self.assertEqual(errors, [])
+        self.assertEqual(self.provider.calls, 1)
+
+    def test_g01_memory_store_restart_durability_limit(self):
+        self.core.issue_paid_order(request())
+        # A new process has a fresh MemoryStore, so a real provider could be
+        # called again after restart. Production requires durable reservations.
+        self.assertIsNone(MemoryIdempotencyStore().get("shared-key-01"))
 
     def test_g01_same_request_replay_has_one_effect(self):
         a = self.core.issue_paid_order(request())
