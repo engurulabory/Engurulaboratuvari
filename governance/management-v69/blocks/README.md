@@ -1,4 +1,4 @@
-# ENGÜRÜ Yönetim V6.9 — Kanıtlı Bütünleşik Bloklar V1.1
+# ENGÜRÜ Yönetim V6.9 — Kanıtlı Bütünleşik Bloklar V1.2
 
 **23.10.2026 · ENGÜRÜ Süzgeci™ sekiz aşama · pozitif dil · tek ana hedef**
 
@@ -32,7 +32,7 @@ Bu dosya, mevcut **G1–G6 ana iş listesinin uygulanabilir bloklara bağlanmı�
 | Kontrol | Yapılacak gerçek iş | Mevcut kanıtlı sonuç |
 |---|---|---|
 | **G1** | `ENGURU_MANAGEMENT_V69_PR_203` exact PR HEAD, GitHub bağımsız `verifyTask` 4/4 CI/kaynak/operasyon/sınır | **PASS_TECHNICAL_ONLY**; review run `39852715540`; HEAD `63fe22e7c1ce73adf94b0cbdd40924511e8211cd` |
-| **G2** | Mac OSi'de mevcut Ed25519 signer özel anahtar kontrolü ve aynı `TASK_ID + VERIFICATION_RESULT_ID` için canonical kriptografik owner grant | **HOLD_REAL_OWNER_SCOPE_PROOF**; salt-okunur Mac source raporu `PASS`, owner grant/imza ayrıca gerekli |
+| **G2** | Mac OSi'de mevcut Ed25519 signer özel anahtar kontrolü ve aynı `TASK_ID + VERIFICATION_RESULT_ID` için canonical kriptografik owner grant | **HOLD_CANONICAL_ROOT_ADMISSION**; Ed25519 possession, yeni ROOT/grant ve bağımsız kriptografi saha `PASS`; yetkili canonical trust kaydı bekleniyor |
 | **G3** | Owner'ın gerçek `HumanReview.accepted` kararı, canonical Ed25519 detached attestation ve mevcut OSi DoneCheck köprüsü | **HOLD_REAL_SIGNED_HUMAN_REVIEW**; PR #14 gerçek macOS CI adaptör testleri 20/20 PASS, gerçek owner imzası bekliyor |
 | **G4** | Mevcut DoneCheck `recordVerifiedFinish` receipt ve hash-zincirli audit ledger, pre-append ve kısmi append toparlanma kontrolü | **HOLD_CANONICAL_AUDIT**; izolasyon teknik testleri PASS, gerçek ledger ve makbuz bekliyor |
 | **G5** | Owner yetkili PR #203 review/merge, gerçek güncel main/base uzlaştırması ve merge-sonrası exact-main CI | **HOLD_OWNER_MERGE**; bu planın oluşturulduğu `main` SHA `113d8ffd18a6f36c840770f30f38da6d5900aa43` |
@@ -45,7 +45,7 @@ Bu dosya, mevcut **G1–G6 ana iş listesinin uygulanabilir bloklara bağlanmı�
 | Blok | Girdiler | Karar, işi ve durum |
 |---|---|---|
 | **B00 — Korunan tamamlanmış temel** | **G1** | 4/4 gerçek teknik sonuç `PASS_TECHNICAL_ONLY`. Aynı kaynak SHA korunur. Yeniden doğrulama yalnız kaynak değiştiğinde. |
-| **B01 — Tek birleşik resmî bitiş** | **G2 + G3 + G4 + G5 + G6** | **TEK AKTİF ÜRÜN BLOĞU.** Owner signer/grant → HumanReview imzası → DoneCheck receipt ve audit → owner merge / exact-main CI → bağımsız Verified Finish. Şimdi **G2 real owner proof HOLD**. |
+| **B01 — Tek birleşik resmî bitiş** | **G2 + G3 + G4 + G5 + G6** | **TEK AKTİF ÜRÜN BLOĞU.** Owner signer/grant → HumanReview imzası → DoneCheck receipt ve audit → owner merge / exact-main CI → bağımsız Verified Finish. Şimdi **G2 canonical ROOT admission HOLD**; gerçek kriptografik saha kanıtı korunur. |
 | **B02 — Canlı destek/öğrenme** | Mühendislik Kası™ V3, OSi blok–yanıt eşleştirmesi, regresyonlar, gerçek 5-dakika gözlemi | B01'i destekleyen paralel teknik nöbet. GitHub owner-event intake PASS; gerçek `schedule` koşusu **HOLD**; ChatGPT nöbeti saatlik. Yeni kanıtlar inceleme dalına izinli aktarılır. |
 | **B03 — Bitiş sonrası sonraki işler** | Mevcut diğer ürünlerin kendi onaylı kaynak ve özgün iş listeleri | **BEKLEME.** Owner sonraki ürünün önceliğini Verified Finish sonrası belirler; PLive P01/P02, H1–H3, Website B1 gibi işler kendi sayaçlarıyla korunur. |
 
@@ -79,6 +79,6 @@ Hakikati gör: Güncel yetkili source/HEAD. Değeri koru: Orijinal kanıtlar, SH
 
 ## Devir ve kanıt sözleşmesi
 
-`SOURCE=engurulabory/Engurulaboratuvari`; `PR203_HEAD=63fe22e7c1ce73adf94b0cbdd40924511e8211cd`; `TECHNICAL_G1=PASS`; `B01=HOLD_G2_OWNER_GRANT`; `B02=ACTIVE_PARTIAL_SCHEDULE_HOLD`; `B03=WAITING`; `PERMISSION=CANONICAL_OWNER/HUMAN_THRESHOLD`; `NEXT=G2_OWNER_SCOPE_CRYPTOGRAPHIC_PROOF`.
+`SOURCE=engurulabory/Engurulaboratuvari`; `PR203_HEAD=63fe22e7c1ce73adf94b0cbdd40924511e8211cd`; `TECHNICAL_G1=PASS`; `B01=HOLD_CANONICAL_ROOT_ADMISSION`; `B02=ACTIVE_PARTIAL_SCHEDULE_HOLD`; `B03=WAITING`; `PERMISSION=CANONICAL_OWNER/HUMAN_THRESHOLD`; `NEXT=G2_AUTHORIZED_CANONICAL_ROOT_ADMISSION`.
 
 Bu planı yeni oturumda en güncel GitHub ve yaşayan Mühendislik Kası kayıtlarıyla tekrar karşılaştır. Tasarım puanı ayrı; gerçek uygulama, bağımsız kanıt ve yetkili kabul ayrı. Sonlandırma: `VERIFIED_FINISH → BITTI_DUR`.
