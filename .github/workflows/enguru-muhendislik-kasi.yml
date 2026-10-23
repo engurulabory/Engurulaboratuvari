@@ -1,0 +1,76 @@
+name: ENGURU OSi Muhendislik Kasi - reviewed evidence intake
+
+on:
+  pull_request:
+    paths:
+      - 'tools/enguru_muhendislik_kasi.py'
+      - 'tests/test_enguru_muhendislik_kasi.py'
+      - '.github/workflows/enguru-muhendislik-kasi.yml'
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+
+jobs:
+  unit-regression:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Simulate 3 independent review cycles
+        run: |
+          for cycle in 1 2 3; do
+            echo "SIMULATION_CYCLE=$cycle"
+            python -m unittest discover -s tests -p 'test_enguru_muhendislik_kasi.py' -v
+          done
+
+  owner-comment-intake:
+    if: >-
+      github.event_name == 'issue_comment' &&
+      github.event.issue.pull_request &&
+      (github.event.issue.number == 203 || github.event.issue.number == 206) &&
+      github.event.sender.login == vars.ENGURU_MK_OWNER_LOGIN &&
+      vars.ENGURU_MK_OWNER_LOGIN != ''
+    runs-on: ubuntu-latest
+    concurrency:
+      group: enguru-mk-review-branch
+      cancel-in-progress: false
+    permissions:
+      contents: write
+    env:
+      ENGURU_MK_OWNER_LOGIN: ${{ vars.ENGURU_MK_OWNER_LOGIN }}
+    steps:
+      - name: Get living review branch, preserve canonical main
+        uses: actions/checkout@v4
+        with:
+          ref: docs/enguru-osi-muhendislik-kasi-20261023
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run regression before intake
+        run: python -m unittest discover -s tests -p 'test_enguru_muhendislik_kasi.py' -v
+      - name: Validate exact owner event, prepare review-only delta
+        run: |
+          python tools/enguru_muhendislik_kasi.py \
+            --record governance/enguru-suzgeci/ENGURU_OSI_MUHENDISLIK_KASI_CANLI_KAYIT_V1.md \
+            --github-event "$GITHUB_EVENT_PATH" \
+            --output "$RUNNER_TEMP/candidate-record.md" \
+            --receipt "$RUNNER_TEMP/enguru-mk-receipt.json"
+      - name: Stage only verified proposed learning record
+        run: |
+          cp "$RUNNER_TEMP/candidate-record.md" governance/enguru-suzgeci/ENGURU_OSI_MUHENDISLIK_KASI_CANLI_KAYIT_V1.md
+          git add -- governance/enguru-suzgeci/ENGURU_OSI_MUHENDISLIK_KASI_CANLI_KAYIT_V1.md
+          if git diff --cached --quiet; then
+            echo 'STATE=IDEMPOTENT_NO_DELTA'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'docs: ingest owner evidence into ENGURU learning review branch'
+          git push origin HEAD:refs/heads/docs/enguru-osi-muhendislik-kasi-20261023
