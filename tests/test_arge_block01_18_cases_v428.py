@@ -34,4 +34,36 @@ class ReconciliationTests(unittest.TestCase):
         x=dict(self.record)
         x["cases"]=[dict(v,**{g:"PASS_VERIFIED" for g in REQUIRED}) for v in self.record["cases"]]
         self.assertEqual(exit_decision(x),"SIMULATION_ONLY_NO_AUTHORIZED_FINISH")
+    def test_all_customer_technology_pairs_match_original(self):
+        expected = [
+            ("Bookshop.org","Meilisearch"), ("Matt Sleeps","Medusa"), ("Lush","Saleor"),
+            ("Mobbin","Supabase"), ("Resend","Supabase"), ("Hugging Face Hub","Meilisearch"),
+            ("Replit Agent","Temporal"), ("Auth0 FGA","OpenFGA"), ("Headspace","OpenFGA"),
+            ("Xendit","Supabase"), ("Mapped","OpenFGA"), ("Temporal Cloud","Temporal"),
+            ("Klarna","LangGraph"), ("LinkedIn","LangGraph"), ("Uber","LangGraph"),
+            ("Tekla","Medusa"), ("Fastweb + Vodafone","LangGraph"), ("BFI Finance","Temporal")
+        ]
+        actual = [(entry["customer"],entry["technology"]) for entry in self.record["cases"]]
+        self.assertEqual(actual,expected)
+        self.assertEqual(self.record["baseline"]["sha256"],"3906f7bd6ae07d26547babc172d1337cfdfeff85244ece95efb76c3cb448df08")
+        self.assertEqual(self.record["baseline"]["all_234_original_verdicts"],"HOLD")
+
+    def test_public_witness_coverage_is_complete_but_unofficial(self):
+        for case in self.record["cases"]:
+            with self.subTest(case_id=case["case_id"]):
+                witness = case["current_public_source"]
+                self.assertTrue(witness["url"].startswith("https://"))
+                self.assertNotEqual(witness["source_class"],"INDEPENDENT_E5")
+                self.assertEqual(witness["independent_E5_attestation"],"HOLD_NOT_ESTABLISHED")
+                self.assertEqual(witness["customer_deployment_commit_sha256"],"HOLD_NOT_ESTABLISHED")
+                self.assertEqual(witness["k12_ENGURU_NET_TCO"],"HOLD_NOT_MEASURED")
+        self.assertEqual(self.record["rollup"]["public_source_candidates"],18)
+        self.assertEqual(self.record["rollup"]["independent_e5_pass"],0)
+        self.assertEqual(self.record["rollup"]["exact_deployment_sha_pass"],0)
+
+    def test_replit_temporal_to_restate_transition_flagged(self):
+        conflicts=self.record["source_conflicts"]
+        self.assertTrue(any(c["case_id"]=="07" and c["acceptance"]=="HOLD_ON_CURRENT_TEMPORAL_USAGE" for c in conflicts))
+        self.assertEqual(self.record["cases"][6]["current_public_source"]["freshness"],"HISTORICAL_SUPERSEDED_CLAIM")
+
 if __name__=="__main__": unittest.main()
