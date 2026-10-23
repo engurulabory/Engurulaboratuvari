@@ -50,7 +50,14 @@ Bu sözleşme ADAY'dır. GH-01 tam kaynak eşleştirmesi, gerçek owner ve bağ�
 - Ana depo `governance/controller/ACTIVATION.json` blob `96b33c31197b0e70b64e21529b6fb069aad62ba7`: tek aktif görev, ilave ücret 0, insan nihai otoritesi OWNER. Bu kontrolün EMÜS'e otomatik resmî grant verdiği iddiası yoktur.
 - G02 kesin uygulama seçimi: mevcut Mac Engineer reliability bileşeni ana aday; mevcut JSON görev hafızası ile görev kimliği/yan etki uygunluğu ölçülecek. Kanıtlanan açık dışında ikinci defter veya SQLite zorunluluğu tanımlanmaz.
 - G05/G10: GitHub owner hesabı/rolleri ile gerçek DoneCheck issuer, reviewer ve imza grant ayrı düzeylerdir. EMÜS adına resmî signer/issuer yetkisi henüz HOLD.
-- Kaynakların Git blob SHA-1 değerleri dosya bayt SHA-256 kilidi yerine geçmez. V3 SHA-256 byte-level eşleştirme bekliyor.
+- Kaynakların Git blob SHA-1 değerleri SHA-256 kilidi yerine geçmez. V3 talimatının GitHub'dan alınan UTF-8 içeriği SHA-256 ile yeniden hesaplandı ve kilitle eşleşti (`11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc`); Mac OSi yerel kaynak eşitliği ayrı HOLD.
 - GH-01 eksik: yönetim/İcra güncel canonical kaynak tam envanteri; V3 byte SHA; owner/issuer/reviewer yetkisi; gerçek cihaz runtime eşleştirmesi.
 
 **Son kontrol kuralı:** Belge revizyonu sonrası yeniden fetch edilip yalnız bu ek bölümün bulunduğu, önceki G01–G10 ve GH-02→GH-03 HOLD kapılarının korunduğu doğrulanır.
+
+## 2026-10-23 — İcra bağlantısı ve yetki hükmü
+- Ürün deposu `engurulabory/enguru-mac-engineer` gözlenen main SHA: `5432b9b135499cea18273c0e003877b864af92c6`; `runtime/app.py` Git blob `e9f65981ee8b7b7daff0126f34d5fab778265f4c`. Yerel HTTP runtime, CockpitStore, RepoControl, `field_reliability`, `provider` ve yerel test bileşenlerine bağlıdır. Gerçek EMÜS görev doğrulaması yapılmadı.
+- Ana depodaki `governance/mac-engineer/CAPABILITY_EXECUTION_BINDING_V1.json` Git blob `419bff0005109644938aae08b8e0b4421af8098b`: mevcut kayıtlı action'lar ve sınırlandırılmış izinler görünür; bu belge EMÜS'e yürütme yetkisi veya owner/issuer grant üretmez.
+- EMÜS için kaynak kullanılabilirlik kararı: `SOURCE_CANDIDATE_CONFIRMED`, `CANONICAL_ACTIVE_RUNTIME_EQUIVALENCE=HOLD`, `EMUS_AUTHORITY_GRANT=HOLD`.
+- Mühendislik kuralı: Mevcut mac-engineer görev akışı ve güvenilirlik bileşeni denenmeden yeni orkestrasyon, yeni kayıt motoru veya veritabanı kurulmaz. Dar kapsamlı kod farkı gerçek başarısız test kanıtı ile belirlenir.
+- `GH01=PARTIAL`, `GH02=PARTIAL`, `GH03/04=HOLD`, `OSI_READY=HOLD`.
