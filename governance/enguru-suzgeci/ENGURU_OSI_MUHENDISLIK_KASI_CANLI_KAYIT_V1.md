@@ -1,8 +1,8 @@
 # ENGÜRÜ OSi × ChatGPT — Mühendislik Kası™
-## Yaşayan Hakikat, Fark, Hata ve Önleyici Kontrol Kaydı · V1.1
+## Yaşayan Hakikat, Fark, Hata ve Önleyici Kontrol Kaydı · V1.2
 
 **Kayıt tarihi:** 2026-10-23  
-**Son revizyon:** V1.1 · 2026-10-23 · GitHub taslak PR #206  
+**Son revizyon:** V1.2 · 2026-10-23 · GitHub taslak PR #206 · GitHub kaynak + izole signer sözleşme testi  
 **Durum:** `ACTIVE_LEARNING_RECORD / OFFICIAL_PRODUCT_FINISH_HOLD`  
 **Kapsam:** ENGÜRÜ Yönetim V6.9 / PR #203 gerçek GitHub ve Mac OSi çalışması. ENGÜRÜ Süzgeci™ v2.4'ün sekiz aşamasının içinde çalışan **yardımcı öğrenme kaydıdır**; yeni çekirdek, yeni karar otoritesi veya ayrı ürün değildir.  
 **Kaynak yönetimi:** Bu belge ayrı GitHub **inceleme dalında** sürümlenir; `main` üzerindeki V3, kaynak kilitleri, mevcut PR #203 ve Mac OSi canonical kayıtları korunur.  
@@ -51,6 +51,9 @@
 
 | **MK-17 · DOĞRULANDI** | GitHub çok adımlı yazımda dosya commit’i başarılıysa sonraki PR açma adımı da başarıyla bitecek varsayımı | `create_branch` ve `create_file` başarıyla tamamlandı; `create_pull_request` ilk çağrısı zorunlu `repository_full_name` alanı eksikliğiyle reddedildi; şema düzeltilince taslak PR #206 gerçekten açıldı | Her bağlayıcı çağrıdan önce **tam parametre şeması**, her adımdan sonra ayrı işlem receipt’i; kısmi başarıda yeniden baştan başlamak yerine **idempotent toparlama** ve uzak durumu yeniden okuma |
 
+| **MK-18 · KAYNAK DOĞRULANDI / İZOLE TEST** | Mevcut DoneCheck çekirdeğini değiştirmek veya Python köprüsüne her koşulda `private_key_pem` vermek zorunlu sanma | Pinned DoneCheck `recordVerifiedFinish` gerçek API'si **dışarıdan imzalanmış** `attestation` kabul ediyor. PEM isteği OSi `record_verified_finish` wrapper'ının yerel imza üretim tercihidir. Yerel ephemerally generated Ed25519 anahtarıyla, kaynak semantiğini tekrar eden 14/14 **izole sözleşme testi** geçti; gerçek DoneCheck derlemesi ve Mac OSi signer kullanılmadı | Mevcut `humanReviewSigningPayload` tam canonical UTF-8 bytes → owner-kontrollü yerel imza → bağımsız public verify → existing DoneCheck `recordVerifiedFinish` akışı için yeni ayrı writer yaratmadan **bridge adapter**; gerçek sahada CI+OSi+ledger testi gerekli |
+| **MK-19 · KAYNAK SÜRÜM FARKI** | Ön hazırlık JSON'undaki `machine_verification.NOT_EXECUTED` alanını bugünkü gerçek CI sonucu sanma | PR #203'ün tarihsel `DONECHECK_TASK_REGISTRATION_PREP_V1.json` dosyası hazırlık anının snapshot'ı; daha sonra GitHub CI artifact 12457199441 içinde 4/4 PASS üretildi. İki kaydın zaman ve yetki kapsamı farklı | Her durum raporu `AS_OF`, `REF_HEAD`, `EVIDENCE_KIND`, `CURRENT_VERIFIED_RESULT_ID` ile birlikte; hazırlık snapshot'ı ile sonraki bağımsız gerçek sonucu üstüne yazmak yerine uzlaştır |
+
 ### 3. OSi beklenmedik durumlar sözlüğü
 
 | Gerçek çıktı | Doğru karar semantiği | Güvenli sonraki hareket |
@@ -79,6 +82,9 @@ Bunlar **ürüne uygulanması önerilen/gereken kontrollerdir**, bu belgeyi olu�
 | `KM-09-GITHUB-LEASE` | PR expected HEAD ve base yeniden okunur; yalnız gerçek yetkili imza/receipt sonrası owner merge; exact-main yeniden test | `PR_STILL_OPEN / MERGE_HOLD` |
 | `KM-11-TOOL-TRANSACTION` | GitHub çok adımlı çağrı kasıtlı hatalı parametreyle başarısız olduğunda daha önce oluşturulan branch/dosya korunsun; eksik adım şema düzeltilerek tamamlanıp PR gerçek API üzerinden doğrulansın | `REAL_RECOVERY_PASS_PR_206 / AUTOMATED_REGRESSION_OPEN` |
 | `KM-10-LEARNING-DELTA` | Aynı olay ID tek satır; düzeltme yeni tarih/revizyon ve kaynak SHA'yla; eski kanıt korunur | `THIS_DOCUMENT_V1_INITIALIZED / FIELD_UPDATES_PENDING` |
+
+| `KM-12-EXTERNAL-ATTESTATION-BRIDGE` | Güncel OSi wrapper, mevcut DoneCheck `humanReviewSigningPayload` ve `recordVerifiedFinish` arayüzlerine bağlı, özel anahtarı JSON/stdin/GitHub'a taşımayan owner-controlled **detached-signature** yolu; orijinal Node validator ve audit kullanımı; yanılma/çift yazım testleri | `SOURCE_INTERFACE_CONFIRMED / ISOLATED_CONTRACT=14/14_PASS / MAC_BRIDGE_IMPLEMENTATION_OPEN` |
+| `KM-13-FRESHNESS-RECONCILIATION` | Eski hazırlıkta `NOT_EXECUTED`, sonraki original artifact 4/4 PASS olduğunda rapor `LATEST_TECHNICAL=PASS`, `PREP_HISTORICAL=NOT_EXECUTED`, `OFFICIAL=HOLD` olarak ayrışır | `SOURCE_RECONCILED / AUTOMATED_REGRESSION_OPEN` |
 
 ### 5. Sonraki tek gerçek ürün hareketi
 
@@ -116,8 +122,8 @@ NEXT_ACTION=...
 
 | Ölçü | Başlangıç V1.0 | Hedef ve karar kuralı |
 |---|---:|---|
-| Geçmiş olaya bağlanan tekil öğrenme kaydı | 17 | Her gerçek yeni olay kapsam doğruluğuyla eklenir; salt sayı kalite değildir |
-| Önleyici kontrol sözleşmesi | 11 | Gerçek uygulanmış ve test edilmiş yüzdesi ayrıca izlenir: başlangıç `0/11 FULLY VERIFIED` (KM-11 manuel recovery kanıtı, otomatik ürün kontrol testi değildir) |
+| Geçmiş olaya bağlanan tekil öğrenme kaydı | 19 | Her gerçek yeni olay kapsam doğruluğuyla eklenir; salt sayı kalite değildir |
+| Önleyici kontrol sözleşmesi | 13 | Gerçek uygulanmış ve test edilmiş yüzdesi ayrıca izlenir: başlangıç `0/13 FULLY VERIFIED` (KM-11 manuel recovery kanıtı, otomatik ürün kontrol testi değildir) |
 | Mac signer resmî kabul | `HOLD` | Gerçek kriptografik tasdik + yetki + audit PASS |
 | Ürün resmi bitiş | `HOLD` | `VERIFIED_FINISH` yalnız tüm G1–G6 şartları gerçek PASS olduğunda |
 | Tekrarlı etkisiz müdahale | Ölçüm başlangıcı | Aynı hipotez + aynı müdahalenin ilerleme üretmeyen tekrarını azalt |
@@ -134,3 +140,33 @@ NEXT_ACTION=...
 `2026-10-23 / MK-17 / GITHUB_CONNECTOR_SCHEMA_RECOVERY` — GitHub inceleme dalı `docs/enguru-osi-muhendislik-kasi-20261023` mevcut `main` commit `1f7dfd708d652764ac74df27dcbbd393779e2b3b` üzerinden üretildi. Öğrenme dosyasının ilk commit’i `60aaffffeba58228513570863dabd09ecf0f7c09`; dosya uzaktan okunarak yerel içerikle birebir eşlendi. İlk taslak PR çağrısı zorunlu `repository_full_name` argümanı eksik olduğu için reddedildi. Yeniden baştan kaynak üretmek yerine yalnız hatalı adım giderildi; **taslak PR #206 OPEN** olarak oluştu. Bu olay **gerçek araç/iş akışı hatası ve gerçek toparlama PASS** kaydıdır; resmi ürün kabulüne etkisi **0**. Kaynak değişimleri yalnız ayrı öğrenme inceleme dalındadır.
 
 **Güncelleme kuralı:** Bu dosya yeni kanıt geldiğinde **aynı yol** üzerinden yeni sürüm ve diff ile güncellenecek; önceki tarih ve kanıt kayıtları korunacaktır.
+
+
+### 10. V1.2 — Gerçek kalan iş listesi ve uygulanabilir signer bağlantı tasarımı
+
+**Kaynak zaman kaydı:** 2026-10-23 · GitHub API yeniden okuması: Yönetim PR #203 `OPEN`, HEAD `63fe22e7c1ce73adf94b0cbdd40924511e8211cd`, tüm 5 ilişkili Actions run `SUCCESS`, PR review = `0`; yardımcı öğrenme PR #206 `DRAFT / OPEN` HEAD `b49b7cda9444681934a64a01a3b2429dab2d172f`; İcra destek PR #14 `OPEN`, HEAD `f806d3e0e5d68e6f06af96a5a24a83762b49f0ab`. Bunlar ölçüm anı kayıtlarıdır; icrada yeniden doğrulanır.
+
+| Sıra / kapı | İş / zorunlu kanıt | Gerçek hüküm | Sorumlu / bağımlılık |
+|---|---|---|---|
+| `G1` | Exact PR #203 HEAD, canonical V3 SHA ve GitHub makine `verifyTask` 4/4 kanıtı | `PASS_TECHNICAL_ONLY` | GitHub / korunmuş orijinal artifact |
+| `G2-A` | Mevcut owner güven kökü ve Ed25519 imzalama kimliğinin gerçek özel anahtar kontrolü; public PEM match ve güvenli yerel ispat | `HOLD_OWNER_SIGNER` | Gerçek Mac OSi + owner; sohbetten özel anahtar/parola alınmaz |
+| `G2-B` | Aynı `TASK_ID + RESULT_ID + REVIEWER_ID + KEY_ID` kapsamlı owner-imzalı canonical grant (owner scope intent ile ayrı) | `HOLD_SCOPED_GRANT` | Mevcut yetkili OSi enrollment yolu; başka ürün Gate12 yetkisi kullanılamaz |
+| `G3` | Owner'un gerçek `HumanReview.accepted` kararı ve exact canonical payload'a Ed25519 imzası; DoneCheck public signature verify | `HOLD_SIGNED_REVIEW` | G2-A/B + güvenli detached-signer bridge bağlantısı |
+| `G4` | `recordVerifiedFinish` gerçek çağrı, ledger'de `human_review_authorized` + `verified_finish` olayları, doğrulanmış SHA zinciri ve receipt | `HOLD_LEDGER_RECEIPT` | G3 + mevcut ledger recovery/duplicate ID preflight |
+| `G5` | Owner yetkili PR #203 merge; sonrasında *yeni* `main` commit ve GitHub CI/exact-main kabulü | `HOLD_MERGE_EXACT_MAIN` | G4; GitHub mergeability tek başına owner release değildir |
+| `G6` | Tek resmi nihai hüküm, G1–G5 özgün kanıtı ve Human Threshold karşılaştırması | `HOLD_OFFICIAL_FINISH` | Bütün önceki kapılar; `VERIFIED_FINISH → BITTI_DUR` |
+| `AUX` | Mühendislik Kası PR #206 gözden geçirme/merge ve KM kontrollerini ürüne uygulama | `DRAFT_OPEN / INDEPENDENT` | Yardımcı öğrenme işi; G2–G6 resmî bitiş ön şartı değildir |
+
+**Mevcut DoneCheck çekirdeğini kullanarak teknik kapanış yolu (kaynak bazlı tasarım):**
+
+1. `humanReviewSigningPayload(review, signedAt)` — pinned `src/runtime/node/reviewer-attestation.ts` fonksiyonu; imzalanacak metin `canonicalJson({schema:"donecheck.reviewer-attestation/v1",signedAt,review})` UTF-8 baytlarıdır. Tasdik alanları: `scheme=ed25519`, `reviewerId`, `keyId`, `signedAt`, `signatureBase64`.
+2. Yetkili OSi owner signer **bu baytları yerelde imzalar**. Güven kökü ve görev/sonuç grant'i kaynakta gerçek doğrulanır. OSi wrapper'ın eski `private_key_pem` zorlaması yerine, yeni *girdi adaptasyonu* gerçek harici `attestation` nesnesini `recordVerifiedFinish({ verificationResult, review, attestation, authority, ledger, finishId })` işlevine aktarır. Bu tasarım kaynak API'siyle uyumludur; henüz Mac runtime üzerinde uygulanmış sayılmaz.
+3. `verifyHumanReviewAttestation` ile orijinal imza, kimlik, allowed decisions ve `VerificationResult`/HumanReview bağları test edilir. **Bu API tek başına görev kapsam grant'ini doğrulamıyor:** canonical OSi trust enrollment G2-B ayrıca bağımsız zorunlu kapıdır.
+4. `JsonlAuditLedger` mevcut hash zincirini ve duplicate event kimliklerini kontrol eder. `recordVerifiedFinish` iki **ardışık** append yapar; yarım kalmış ilk olay senaryosu için ilk gerçek yazımdan önce durdur/yeniden deneme/iyileştirme prosedürü ve ledger bağımsız doğrulaması gerekir. Çift yazımdan kaynaklanan yeni bitiş beyanı kanıtsız kalır.
+5. Owner imzası ve ledger özgün receipt doğrulandıktan sonra GitHub'daki resmî yayıma geçilir. `main` exact SHA güncellenmeden ürün bitişi PASS olamaz.
+
+**Yeni uygulanan gerçek araştırma/doğrulama farkı:** `DoneCheck` pinned `4181f48df5ea0c060d9aa9f40a471c554b44b53d` dosyalarının gerçek API gövdeleri GitHub'da okunup uzlaştırıldı; ephemeral anahtarlı local Node v22 izolasyonunda 14/14 kontrat testi PASS: başarılı detached Ed25519 verify, signedAt/taskId/resultId/reviewer/decision tamper, farklı public key, keyId/reviewer/decision grant, canonical JSON negatif testleri. **Kanıt seviyesi: izole sözleşme simülasyonu / gerçek kriptografik test, ürün Mac OSi veya gerçek DoneCheck derlemesinde production PASS değildir.** KM-12 ve KM-13 canonical ürün onarım/CI testi `OPEN`, toplam ürünle bütünleşik kontrol `0/13 FULLY_VERIFIED`.
+
+**Hemen sonraki tek ürün işi:** `G2-A/G2-B OWNER_TRUST + DETACHED_ED25519_SIGNER_ADAPTER`. Gerçek anahtar ve yetkili grant OSi üzerinde doğrulanınca `G3 → G4 → G5 → G6` bağımlılık sırasıyla tamamlanır. Yeni aynı-tür dosya taraması bağımlılık azaltmaz; yalnız mevcut gerçek signer entrypoint'i veya gerekçeli owner key enrollment farkı açılır.
+
+**V1.2 dosya kontrolü:** `MK-01`–`MK-19` olay kaydı; `KM-01`–`KM-13` önleyici kontrol sözleşmesi; korunmuş geçmiş V1.0/V1.1 kayıtları. Bu doküman kaynak kanıtlı yardımcı kayıttır, **resmî DoneCheck makbuzu veya owner yetkisi yerine geçmez.**
