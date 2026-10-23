@@ -7,7 +7,7 @@ P=json.loads(Path(__file__).with_name('plan.json').read_text())
 FAKE='a'*64
 
 def real(g):
-  return {'gateId':g,'taskId':P['taskId'],'verificationResultId':P['verificationResultId'],'kind':TYPES[g],'independentlyVerified':True,'authority':AUTH[g],'provenance':'REAL_CANONICAL_EXTERNAL','evidenceSha256':FAKE,'simulation':False,'reviewerId':P['source']['reviewer_candidate'],'keyId':P['source']['key_id'],'verifierIdentity':'OSi_CANONICAL_OWNER_TEST_FIXTURE',**({'ownerSignerControl':True,'exactScopedGrantVerified':True,'historicalGate12Used':False} if g=='G2' else {}),**({'realEd25519AttestationVerified':True,'pinnedPemDigestVerified':True} if g=='G3' else {}),**({'ledgerChainVerified':True,'canonicalReceiptVerified':True} if g=='G4' else {}),**({'ownerMergeAuthorized':True,'postMergeExactMainCiPassed':True,'currentMainShaVerified':True} if g=='G5' else {}),**({'humanThresholdAccepted':True,'officialReceiptVerified':True} if g=='G6' else {})}
+  return {'gateId':g,'taskId':P['taskId'],'verificationResultId':P['verificationResultId'],'kind':TYPES[g],'independentlyVerified':True,'authority':AUTH[g],'provenance':'REAL_CANONICAL_EXTERNAL','evidenceSha256':FAKE,'simulation':False,'reviewerId':P['source']['reviewer_candidate'],'keyId':P['source']['rotated_reviewer_key_id'],'verifierIdentity':'OSi_CANONICAL_OWNER_TEST_FIXTURE',**({'ownerSignerControl':True,'exactScopedGrantVerified':True,'historicalGate12Used':False,'canonicalRootAdmissionVerified':True,'admissionPolicySourceVerified':True,'rootKeyId':P['source']['proposed_owner_root_key_id']} if g=='G2' else {}),**({'realEd25519AttestationVerified':True,'pinnedPemDigestVerified':True} if g=='G3' else {}),**({'ledgerChainVerified':True,'canonicalReceiptVerified':True} if g=='G4' else {}),**({'ownerMergeAuthorized':True,'postMergeExactMainCiPassed':True,'currentMainShaVerified':True} if g=='G5' else {}),**({'humanThresholdAccepted':True,'officialReceiptVerified':True} if g=='G6' else {})}
 
 def fake_mismatch(g,field,value):
     e={x:real(x) for x in GATES[1:]};e[g][field]=value;return e
@@ -74,7 +74,7 @@ class BlockContract(unittest.TestCase):
     x=copy.deepcopy(P);x['invariants']['no_automatic_human_threshold_or_merge']=False;self.assertHold(lambda:validate(x))
  def test_46_private_key_protection(self):
     x=copy.deepcopy(P);x['invariants']['private_key_remains_under_mac_owner_control']=False;self.assertHold(lambda:validate(x))
- def test_47_exact_g2_no_override(self):self.assertEqual(P['next_single_action'],'ON_MAC_CONFIRM_REAL_EXISTING_SIGNER_POSSESSION_AND_CANONICAL_TASK_RESULT_OWNER_GRANT_FOR_G2')
+ def test_47_exact_g2_no_override(self):self.assertEqual(P['next_single_action'],'G2_EXISTING_CANONICAL_OSI_ROOT_ADMISSION_AUTHORIZED_POLICY_AND_VERIFIED_RECEIPT')
  def test_48_g1_no_new_authority(self):self.assertEqual(P['gates']['G1']['authority'],'TECHNICAL_VALIDATOR')
  def test_49_support_5min_best_effort(self):self.assertIn('BEST_EFFORT',P['blocks'][2]['schedule'])
  def test_50_support_no_private_relay(self):self.assertEqual(P['blocks'][2]['private_data_boundary'],'OWNER_APPROVED_REDACTED_RELAY_ONLY')
@@ -107,5 +107,37 @@ class BlockContract(unittest.TestCase):
     x=copy.deepcopy(P);x['invariants']['no_automatic_human_threshold_or_merge']=False;self.assertHold(lambda:validate(x))
  def test_65_explicit_no_official_acceptance(self):
     self.assertEqual(evaluate_real_acceptance(P,{g:real(g) for g in GATES[1:]})['official'],'REQUIRES_CANONICAL_EXTERNAL_DECISION_ALWAYS')
+
+ def test_66_v12_three_round_execution_limit(self):
+    self.assertEqual(P['pre_execution_quality_loop']['max_simulation_rounds'],3)
+ def test_67_v12_modified_max_rounds_holds(self):
+    x=copy.deepcopy(P);x['pre_execution_quality_loop']['max_simulation_rounds']=4
+    self.assertHold(lambda:validate(x))
+ def test_68_v12_rubric_100_is_enforced(self):
+    x=copy.deepcopy(P);x['pre_execution_quality_loop']['scoring']['dimensions'][0]['max']=25
+    self.assertHold(lambda:validate(x))
+ def test_69_v12_boundaries_are_required(self):
+    x=copy.deepcopy(P);x['pre_execution_quality_loop']['engineering_boundaries']=[]
+    self.assertHold(lambda:validate(x))
+ def test_70_root_admission_required_even_with_valid_signature_candidate(self):
+    e={g:real(g) for g in GATES[1:]};e['G2']['canonicalRootAdmissionVerified']=False
+    self.assertTrue(evaluate_real_acceptance(P,e)['G2'].startswith('HOLD'))
+ def test_71_authorized_admission_source_required(self):
+    e={g:real(g) for g in GATES[1:]};e['G2']['admissionPolicySourceVerified']=False
+    self.assertTrue(evaluate_real_acceptance(P,e)['G2'].startswith('HOLD'))
+ def test_72_reject_unadmitted_root_identity(self):
+    e={g:real(g) for g in GATES[1:]};e['G2']['rootKeyId']='ed25519-sha256:'+'f'*64
+    self.assertTrue(evaluate_real_acceptance(P,e)['G2'].startswith('HOLD'))
+ def test_73_historical_reviewer_cannot_qualify_rotated_g2(self):
+    e={g:real(g) for g in GATES[1:]};e['G2']['keyId']=P['source']['key_id']
+    self.assertTrue(evaluate_real_acceptance(P,e)['G2'].startswith('HOLD'))
+ def test_74_g3_technical_ready_not_human_signed_review(self):
+    x=copy.deepcopy(P);x['gates']['G3']['state']='PASS'
+    self.assertHold(lambda:validate(x))
+ def test_75_full_fake_source_proofs_never_official(self):
+    e={g:real(g) for g in GATES[1:]}
+    out=evaluate_real_acceptance(P,e)
+    self.assertEqual(out['G6'],'CANDIDATE_REQUIRES_CANONICAL_EXTERNAL_VERIFICATION')
+    self.assertEqual(out['official'],'REQUIRES_CANONICAL_EXTERNAL_DECISION_ALWAYS')
 
 if __name__=='__main__':unittest.main()
