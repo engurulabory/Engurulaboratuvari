@@ -42,3 +42,15 @@ Bu sözleşme ADAY'dır. GH-01 tam kaynak eşleştirmesi, gerçek owner ve bağ�
 
 ## Sonuç
 `GH02=PARTIAL_CONTRACT_DRAFT`; `GH01=HOLD`; `GH03=HOLD`; `GH04=HOLD`; `OSI_READY=HOLD`. Salt belge gerçek test, CI veya resmî DoneCheck yerine geçmez.
+
+## 2026-10-23 — Kaynakla doğrulanmış dar kapsamlı uzlaştırma
+- Özel ürün deposu `engurulabory/enguru-mac-engineer`, gözlenen `main` commit: `5432b9b135499cea18273c0e003877b864af92c6`. Bu commit'in yerel Mac OSi runtime ile tam eşitliği HOLD.
+- `runtime/reliability.py` blob `ee0f53e4a1fb899aecd637f059ce840979bb02d4`: QUEUED/RUNNING/CHECKPOINTED/VERIFYING/COMPLETE/HOLD/FAILED/RECOVERY_REQUIRED/ROLLBACK_REQUIRED/BLOCKED durumları, belirli geçişler, retry_limit=2/max_attempts=3, `atomic_json` ve `WriterBusy` mevcut. Bu statik kaynak doğrulamasıdır; EMÜS test PASS değildir.
+- `PROVENANCE.json` blob `302bd21f337e70396271421a40a42a91c1dcba74`: tarihi ürün kaynak kimlikleri ve SHA-256 kayıtları var. Dosyanın tarihsel değeri korunur; güncel Mac OSi durumuyla eşitlik kanıtı olarak kullanılmaz.
+- Ana depo `governance/controller/ACTIVATION.json` blob `96b33c31197b0e70b64e21529b6fb069aad62ba7`: tek aktif görev, ilave ücret 0, insan nihai otoritesi OWNER. Bu kontrolün EMÜS'e otomatik resmî grant verdiği iddiası yoktur.
+- G02 kesin uygulama seçimi: mevcut Mac Engineer reliability bileşeni ana aday; mevcut JSON görev hafızası ile görev kimliği/yan etki uygunluğu ölçülecek. Kanıtlanan açık dışında ikinci defter veya SQLite zorunluluğu tanımlanmaz.
+- G05/G10: GitHub owner hesabı/rolleri ile gerçek DoneCheck issuer, reviewer ve imza grant ayrı düzeylerdir. EMÜS adına resmî signer/issuer yetkisi henüz HOLD.
+- Kaynakların Git blob SHA-1 değerleri dosya bayt SHA-256 kilidi yerine geçmez. V3 SHA-256 byte-level eşleştirme bekliyor.
+- GH-01 eksik: yönetim/İcra güncel canonical kaynak tam envanteri; V3 byte SHA; owner/issuer/reviewer yetkisi; gerçek cihaz runtime eşleştirmesi.
+
+**Son kontrol kuralı:** Belge revizyonu sonrası yeniden fetch edilip yalnız bu ek bölümün bulunduğu, önceki G01–G10 ve GH-02→GH-03 HOLD kapılarının korunduğu doğrulanır.
