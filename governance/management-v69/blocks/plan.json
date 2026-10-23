@@ -339,5 +339,67 @@
       "single_owner_not_equivalent_to_unrestricted_signer": "OWNER_DECISION_STILL_REQUIRES_MATCHING_CRYPTOGRAPHIC_PROVENANCE_WHEN_CANONICAL_DONECHECK_APPLIES"
     },
     "immediate_workflow": "CONTINUE_TECHNICAL_BUILD_AND_INDEPENDENT_TESTS; DO_NOT_SEND_MORE_G3_PASSWORD_PACKAGES_UNTIL_FINAL_ACCEPTANCE_WINDOW"
+  },
+  "b01_local_engineering_progress": {
+    "scope": "B01_TECHNICAL_DEVELOPMENT_ONLY_ORIGINAL_G2_G6_OFFICIAL_CONTROLS_UNCHANGED",
+    "accepted_workflow": "V12_SINGLE_OWNER_LOCAL_FIRST_NO_REPEATED_OWNER_PASSWORD_CEREMONIES",
+    "work": [
+      {
+        "id": "B01-01",
+        "state": "PASS_PINNED_FIELD_SOURCE_RECONCILIATION",
+        "proof": {
+          "receiptSha256": "ad3f010be6e470c0aa92d9da5cd0110aaf0e33b853fd29714d7fe09e09313695",
+          "registrationSha256": "4f55ed2cdc36ee5bba7e1ea84671d48f769256f5b64c34d5ff907479c629801b",
+          "macG2Field": "PASS_CANONICAL_G2_BOOTSTRAP_ADMISSION_VERIFIED",
+          "receiptPreverificationState": "PENDING_INDEPENDENT_ADMISSION_VERIFIER",
+          "independentMacTerminal": "PASS_CANONICAL_CRYPTOGRAPHIC_OWNER_GRANT",
+          "crossEnvironmentLimit": "MAC_VERIFIER_TERMINAL_PASS_CONFIRMED_FROM_USER;RAW_REGISTRATION_NOT_EXTERNALLY_READ"
+        }
+      },
+      {
+        "id": "B01-02",
+        "state": "PASS_MACOS_CODE_AND_ISOLATED_REGRESSION",
+        "proof": {
+          "repository": "engurulabory/enguru-mac-engineer",
+          "pullRequest": 16,
+          "exactHead": "00d9a124c559fab1847fe7015225b2a73d27bd98",
+          "macOsCiRunId": 40016525886,
+          "detachedReadOnlyTests": "34_OF_34_PASS",
+          "grantTests": "26_OF_26_PASS",
+          "genesisTests": "25_OF_25_PASS",
+          "swiftBuild": "PASS_SHARED_NATIVE_SDK_SOURCE_BINARY_RECEIPT",
+          "newInterface": "inspectReadOnlyV69Integration",
+          "limitation": "CALLER_MUST_USE_REAL_INDEPENDENT_MAC_OWNER_SCOPE_VERIFIER;CI_USES_ISOLATED_FIXTURES"
+        }
+      },
+      {
+        "id": "B01-03",
+        "state": "PASS_READ_ONLY_GITHUB_MERGE_PREPARATION_ONLY",
+        "proof": {
+          "mainSha": "113d8ffd18a6f36c840770f30f38da6d5900aa43",
+          "pr203Head": "63fe22e7c1ce73adf94b0cbdd40924511e8211cd",
+          "pr203Mergeable": "TRUE_CLEAN_AT_OBSERVATION",
+          "pr209ReviewHead": "7be4cb8095a8b9134d675431484745abf6211f55",
+          "pr209Mergeable": "TRUE_CLEAN_AT_OBSERVATION",
+          "futureMerge": "REQUIRES_FRESH_OWNER_AUTHORIZATION_AND_EXACT_HEAD_MAIN_CI",
+          "officialG5": "HOLD_OWNER_MERGE"
+        }
+      },
+      {
+        "id": "B01-04",
+        "state": "PASS_PREEXISTING_V12_ISOLATED_3X_SIMULATION_AND_NEW_REAL_MACOS_CI",
+        "proof": {
+          "previousPlanSimulationRun": 40007805182,
+          "previousPlanSimulation": "THREE_ROUNDS_X_75_OF_75_PASS_ISOLATED_ONLY",
+          "latestMacOsProductRun": 40016525886,
+          "latestDetachedBridgeTests": "34_OF_34_PASS",
+          "officialVerifiedFinish": "HOLD"
+        }
+      }
+    ],
+    "developmentNext": "CONTINUE_NATIVE_OSI_INTEGRATION_AND_EXISTING_DONECHECK_READ_ONLY_VALIDATION_NO_ADDITIONAL_PASSWORD_PACKAGE",
+    "closureWindow": "BATCH_G3_REAL_HUMAN_REVIEW_G4_LEDGER_G5_OWNER_MERGE_G6_VERIFIED_FINISH",
+    "grantExpiryAt": "2026-10-30T17:47:11.475Z",
+    "expiringGrantHandling": "RECHECK_AT_BATCH_CLOSURE_RENEW_IN_EXISTING_OWNER_POLICY_IF_EXPIRY_WOULD_BLOCK_SCOPE"
   }
 }
