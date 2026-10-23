@@ -16,5 +16,3 @@ class InvoiceRecord:
     provider_status: str
     customer_delivery_id: str
     accounting_delivery_id: str
-    # Migration-safe default for historical records; blank ownership is unreadable.
-    tenant_id: str = ""
