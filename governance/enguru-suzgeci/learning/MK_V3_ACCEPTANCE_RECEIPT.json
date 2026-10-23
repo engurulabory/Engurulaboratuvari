@@ -1,0 +1,89 @@
+{
+  "design_gate_score": "25/25",
+  "fixed_goal": "LEARN -> VERIFY -> REDUCE_REPEAT_WORK -> OWNER_SAFE_FIELD_PROOF",
+  "generated_at_utc": "2026-10-23T12:32:23.230331+00:00",
+  "headroom": "104 unique executed cases per cycle, >=95 required for 20% reserve over prior 79",
+  "local_sha256": {
+    "tests/test_enguru_mk_contract_v3.py": "0339709f574b6f2c823c5028f2627df2934d21fff8d85d4154d6d89ed4534d06",
+    "tests/test_enguru_mk_five_minute_watch.py": "381cc2b7de99402752523ed83c3bd0f2b2d3721ab222423c5dd351256760f05a",
+    "tests/test_enguru_muhendislik_kasi.py": "edbd8d995cbb4f9a3ecce42639482c726a4f860d44ac1bc40cf0900e07beff82",
+    "tools/enguru_mk_acceptance_v3.py": "4e12597f16d734877ad1acc29bfff1e125e494c804f3957b8b15c5e937ac3b93",
+    "tools/enguru_mk_five_minute_watch.py": "4f739e1cf7b196c2352eeb0b8ccce09d336820be0b7086e31d214f69caf71146",
+    "tools/enguru_muhendislik_kasi.py": "aa3a49ffa03c3c8fda379824b4210f9877fcc33f96d2d1bbc0f3c2f1049a69b9"
+  },
+  "mac_osi_human_review": "HOLD_NOT_SIGNED",
+  "official_verified_finish": "HOLD",
+  "owner_restricted": true,
+  "private_repo_exported": false,
+  "purpose": "Evidence-grounded, owner-safe, versioned learning and regression with OSi block/response pairing",
+  "real_schedule": "HOLD_NOT_OBSERVED",
+  "rounds": [
+    {
+      "cases": 104,
+      "gate_passed": 25,
+      "gate_total": 25,
+      "missing_gates": [],
+      "required_minimum": 95,
+      "round": 1,
+      "status": "PASS",
+      "suites": [
+        {
+          "matched_successes": 33,
+          "output_sha256": "11abf267c6c13d17c08c04a213f01271a079970987a422d9986f2cf4c99204c3",
+          "passed": true,
+          "suite": "test_enguru_muhendislik_kasi.py",
+          "tests": 33
+        },
+        {
+          "matched_successes": 46,
+          "output_sha256": "07b45f5eaa37e4c9e849f0e9f4e2170b961397deffb72037677ed17400f0e552",
+          "passed": true,
+          "suite": "test_enguru_mk_five_minute_watch.py",
+          "tests": 46
+        },
+        {
+          "matched_successes": 25,
+          "output_sha256": "423d140b7b67261deabcb6ef5f32faa17f1142058af25721db55a7e540a5c018",
+          "passed": true,
+          "suite": "test_enguru_mk_contract_v3.py",
+          "tests": 25
+        }
+      ]
+    },
+    {
+      "cases": 104,
+      "gate_passed": 25,
+      "gate_total": 25,
+      "missing_gates": [],
+      "required_minimum": 95,
+      "round": 2,
+      "status": "PASS",
+      "suites": [
+        {
+          "matched_successes": 33,
+          "output_sha256": "75736d728f5855915ad070d73e227e178edbb6dca13196b632079aa53fe1f01b",
+          "passed": true,
+          "suite": "test_enguru_muhendislik_kasi.py",
+          "tests": 33
+        },
+        {
+          "matched_successes": 46,
+          "output_sha256": "0cbe3620166d8c12e2b38153fff5ad745b98b7ca19c4db467dab74fe3cf33b73",
+          "passed": true,
+          "suite": "test_enguru_mk_five_minute_watch.py",
+          "tests": 46
+        },
+        {
+          "matched_successes": 25,
+          "output_sha256": "46b88b8c5a3d57ac3e60e509dc51a463ca8d0d41dcffda44088f8e87cf0291c6",
+          "passed": true,
+          "suite": "test_enguru_mk_contract_v3.py",
+          "tests": 25
+        }
+      ]
+    }
+  ],
+  "schema": "enguru.mk.acceptance-v3/v1",
+  "simulation": "PASS_THEORETICAL_AND_ISOLATED_SIMULATION",
+  "weighted_score": 100
+}
