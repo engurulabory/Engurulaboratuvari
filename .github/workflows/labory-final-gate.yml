@@ -45,6 +45,9 @@ jobs:
       - name: EMUS real WorkingMemory checkpoint identity and authority test
         run: python -m unittest discover -s tests -p 'test_emus_task_identity_probe.py' -k emus_working_memory_checkpoint_identity_and_authority -v
 
+      - name: EMUS premature final PASS is rejected
+        run: python -m unittest discover -s tests -p 'test_emus_task_identity_probe.py' -k emus_final_pass_requires_evidence -v
+
       - name: EMUS missing private runtime fail-closed test
         run: python -m unittest discover -s tests -p 'test_emus_task_identity_probe.py' -k missing_pinned_runtime -v
 
