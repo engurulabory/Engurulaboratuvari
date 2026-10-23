@@ -10,6 +10,28 @@ from tools.arge_block01_k12_tco_v1 import compare_five_year_tco
 
 V19_SHA = "3906f7bd6ae07d26547babc172d1337cfdfeff85244ece95efb76c3cb448df08"
 REVIEW = "CALCULATION_ONLY_NEEDS_INDEPENDENT_REVIEW"
+# Independently fixed from original V19 case roster; catalog cannot redefine identities.
+ORIGINAL_V19_IDENTITIES = (
+    ("01", "Bookshop.org", "Meilisearch"),
+    ("02", "Matt Sleeps", "Medusa"),
+    ("03", "Lush", "Saleor"),
+    ("04", "Mobbin", "Supabase"),
+    ("05", "Resend", "Supabase"),
+    ("06", "Hugging Face Hub", "Meilisearch"),
+    ("07", "Replit Agent", "Temporal"),
+    ("08", "Auth0 FGA", "OpenFGA"),
+    ("09", "Headspace", "OpenFGA"),
+    ("10", "Xendit", "Supabase"),
+    ("11", "Mapped", "OpenFGA"),
+    ("12", "Temporal Cloud", "Temporal"),
+    ("13", "Klarna", "LangGraph"),
+    ("14", "LinkedIn", "LangGraph"),
+    ("15", "Uber", "LangGraph"),
+    ("16", "Tekla", "Medusa"),
+    ("17", "Fastweb + Vodafone", "LangGraph"),
+    ("18", "BFI Finance", "Temporal"),
+)
+
 
 def audit_k12_batch(catalog, evidence):
     """Fail closed on missing/duplicated/changed cases; preserve real approval gates."""
@@ -24,7 +46,7 @@ def audit_k12_batch(catalog, evidence):
     ids = [c.get("case_id") for c in cases]
     if any(not isinstance(cid, str) for cid in ids) or sorted(ids) != [f"{i:02d}" for i in range(1, 19)]:
         return {"state": "HOLD_CANONICAL_IDENTITIES"}
-    if any(not c.get("customer") or not c.get("technology") for c in cases):
+    if tuple((c.get("case_id"), c.get("customer"), c.get("technology")) for c in cases) != ORIGINAL_V19_IDENTITIES:
         return {"state": "HOLD_CANONICAL_IDENTITIES"}
 
     provided = evidence.get("cases")
