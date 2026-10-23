@@ -12,24 +12,31 @@ from cores.billing.ubl_factory import UblFactory
 from cores.billing.billing_core import BillingRequest, PaymentProof, DocumentType
 
 
+
+
+class SyntheticVerifier:
+    """Test double only; real canonical issuer signature verification is HOLD."""
+    def authorize(self, *, subject, tenant_id, resource_id, action, grant):
+        return subject == "test-subject" and grant == "TEST_ONLY" and tenant_id == "tenant-a"
+
 class BillingV1Tests(unittest.TestCase):
     def test_evidence_store_blocks_duplicates(self):
-        store = MemoryEvidenceStore()
+        store = MemoryEvidenceStore(grant_verifier=SyntheticVerifier())
         record = InvoiceRecord(
             order_id="o1", product="Builder", document_no="INT1", document_id="d1",
             document_type="E_ARCHIVE_INTERNET", amount=Decimal("100"), currency="TRY",
             issued_at=datetime(2026, 9, 1), provider_status="DELIVERED",
-            customer_delivery_id="m1", accounting_delivery_id="a1"
+            customer_delivery_id="m1", accounting_delivery_id="a1", tenant_id="tenant-a"
         )
-        store.add(record)
+        store.add(record, subject='test-subject', grant='TEST_ONLY')
         with self.assertRaises(ValueError):
             store.add(record)
 
     def test_monthly_report(self):
         store = MemoryEvidenceStore()
-        store.add(InvoiceRecord("o1","Builder","INT1","d1","E_ARCHIVE_INTERNET",Decimal("100"),"TRY",datetime(2026,9,1),"DELIVERED","m1","a1"))
-        store.add(InvoiceRecord("o2","Builder","INT2","d2","E_ARCHIVE_INTERNET",Decimal("50"),"TRY",datetime(2026,9,2),"DELIVERED","m2","a2"))
-        report = MonthlyReporter(store).build(2026, 9)
+        store.add(InvoiceRecord("o1","Builder","INT1","d1","E_ARCHIVE_INTERNET",Decimal("100"),"TRY",datetime(2026,9,1),"DELIVERED","m1","a1","tenant-a"), subject="test-subject", grant="TEST_ONLY")
+        store.add(InvoiceRecord("o2","Builder","INT2","d2","E_ARCHIVE_INTERNET",Decimal("50"),"TRY",datetime(2026,9,2),"DELIVERED","m2","a2","tenant-a"), subject="test-subject", grant="TEST_ONLY")
+        report = MonthlyReporter(store).build(2026, 9, subject='test-subject', tenant_id='tenant-a', grant='TEST_ONLY')
         self.assertEqual(report.invoice_count, 2)
         self.assertEqual(report.total_amount, Decimal("150"))
         self.assertEqual(report.delivered_count, 2)
