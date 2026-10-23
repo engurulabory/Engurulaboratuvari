@@ -51,6 +51,17 @@ class EmusTaskIdentityProbe(unittest.TestCase):
                 PersistentWorkingMemory(base / "memory").load_task(task_id).task_id,
                 task_id,
             )
+            mac.transition(task_id, "RUNNING")
+            mac.checkpoint(task_id, {"step": 1}, verified=True)
+            restarted = ReliabilityManager(base / "mac")
+            resumed = restarted.resume(task_id)
+            self.assertTrue(resumed["ok"])
+            self.assertEqual(resumed["task"]["task_id"], task_id)
+            self.assertEqual(resumed["checkpoint"]["task_id"], task_id)
+            self.assertEqual(
+                PersistentWorkingMemory(base / "memory").load_task(task_id).task_id,
+                task_id,
+            )
             duplicate = ReliabilityManager(base / "mac").begin("emus-probe-key")
             self.assertTrue(duplicate["duplicate"])
             self.assertEqual(duplicate["task"]["task_id"], task_id)
