@@ -1,8 +1,8 @@
 # ENGÜRÜ OSi × ChatGPT — Mühendislik Kası™
-## Yaşayan Hakikat, Fark, Hata ve Önleyici Kontrol Kaydı · V2.1
+## Yaşayan Hakikat, Fark, Hata ve Önleyici Kontrol Kaydı · V2.2
 
 **Kayıt tarihi:** 2026-10-23  
-**Son revizyon:** V2.1 · 2026-10-23 · gerçek GitHub güvenlik kapısı geri bildirimi ve gerçek ölçülen simülasyon rubriği  
+**Son revizyon:** V2.2 · 2026-10-23 · gerçek GitHub güvenlik kapısı geri bildirimi ve gerçek ölçülen simülasyon rubriği  
 **Durum:** `ACTIVE_LEARNING_RECORD / OFFICIAL_PRODUCT_FINISH_HOLD`  
 **Kapsam:** ENGÜRÜ Yönetim V6.9 / PR #203 gerçek GitHub ve Mac OSi çalışması. ENGÜRÜ Süzgeci™ v2.4'ün sekiz aşamasının içinde çalışan **yardımcı öğrenme kaydıdır**; yeni çekirdek, yeni karar otoritesi veya ayrı ürün değildir.  
 **Kaynak yönetimi:** Bu belge ayrı GitHub **inceleme dalında** sürümlenir; `main` üzerindeki V3, kaynak kilitleri, mevcut PR #203 ve Mac OSi canonical kayıtları korunur.  
@@ -252,3 +252,25 @@ NEXT_ACTION=...
 **Sürekli ajan/ChatGPT nöbeti:** Ayrı zamanlanmış koşul izlemesi talep doğrultusunda saatte bir açık GitHub PR/CI değişikliklerini denetlemek üzere açıldı. Gerçekten yeni kanıt geldiğinde aynı dosyada deltalı güncelleme amaçlanır; bağlayıcı kabul, özel anahtar, resmî ledger ve merge koruma altındadır. GitHub yorum-tetiklemeli Actions yazımı, iş akışı `main` üzerinde owner yetkisiyle etkinleşince ve `ENGURU_MK_OWNER_LOGIN` ayarlanınca çalışır. Mac OSi'nin dosya sistemi bu bulut otomasyonunun kendiliğinden eriştiği alan değildir.
 
 **Tek takip eden ürün hedefi:** `G2 OWNER_SIGNER + SCOPED_GRANT -> G3 DETACHED_ED25519_BRIDGE -> G4 DONECHECK_LEDGER -> G5 OWNER_MERGE_EXACT_MAIN -> G6 VERIFIED_FINISH`. Teknik G1 kanıtı korunur; owner anahtarı ve Mac yetkisi ChatGPT'ye aktarılan veri değildir.
+
+### 14. V2.2 — GitHub beş dakikalık izleme kontratı ve canlı CI kanıtı
+
+**Sabit hakikat (2026-10-23):** Varsayılan GitHub dalı `main`; Mühendislik Kası PR #206 ayrı `docs/enguru-osi-muhendislik-kasi-20261023` dalında **DRAFT/OPEN**. Mühendislik ürün PR #203 `OPEN`; Mac Engineer PR #14 `OPEN`. 
+
+**Yeni MK-23 · DOĞRULANDI (izole test düzeneği):** Sahte GitHub yorum API'sı `per_page=100&page=1` içinde yalnız `page=` alt metnini aradığı için yanlış sorgu sayfasını seçti; OSi mesajları 8 karşıt sınamada bulunmuş gibi kabul edilmedi. Kök neden **test mock parser**; sayfa parametresi `(?[&])page=` sınırı ile düzeltildi. Gerçek GitHub üretim API arayüzünün de aynı hatayı yaptığı hükmü çıkarılmaz.
+
+**Yeni MK-24 · DOĞRULANDI (gerçek GitHub CI):** `tests/test_enguru_mk_five_minute_watch.py` yerel klasör dizilimini esas aldığı için PR #206 GitHub unit job `39947578343` ilk çalışmasında `ModuleNotFoundError: enguru_mk_five_minute_watch` verdi. Testler repo `tools/` yolu için revize edildi, commit `b6f67a53cbdea983ce7ef63820a041ed3b2572c9` üzerinde beş GitHub iş akışı `5/5 PASS`; bu test ortamı uyumu düzeltmesidir.
+
+**Yeni MK-25 · DOĞRULANDI (gerçek GitHub repo yetki sınırı):** Ana `Engurulaboratuvari` deposu `public`, `enguru-mac-engineer` deposu `private`. Ana deponun varsayılan `GITHUB_TOKEN`ı özel repo PR #14 için erişim garantisi vermez. İzleyici 401/403/404 durumunda `PR14_PRIVATE_REPO_ACCESS_HOLD` sınıflandırır ve PR #203/#206 kontrolünü sürdürür. PR #14 için owner tarafından sadece okumaya yetkili ve bu repo kapsamındaki `ENGURU_MK_READONLY_GITHUB_TOKEN` secret gereksinimi kaydedildi. Secret gizli kalır. Saha token erişimi `HOLD_UNTESTED`.
+
+**Yeni korumalar:** `KM-15-SOURCE-MOCK-QUERY` tam sayfa parametre testleri; `KM-16-CI-IMPORT-PARITY` yerel + GitHub ortamı testleri; `KM-17-CROSS-REPO-ACCESS` özel repo erişim hatası ayrımı ve diğer kaynakların korunması. Bunlar test sözleşmesi ve yardımcı kod kazanımıdır; gerçek owner Mac üretim kabul kapısı yerine geçmez.
+
+**Çalışma biçimi:** GitHub `.github/workflows/enguru-muhendislik-kasi.yml` dosyasına `schedule: */5 * * * *` eklendi. İlk gerçek zamanlanmış koşu için workflow default `main` üzerine owner yetkili yayın ve en az bir gerçek `event=schedule` Actions run kaydı **zorunludur**. `5_MIN_LIVE=HOLD_DEFAULT_BRANCH_ACTIVATION`. GitHub Actions gecikebilir; SLA/eksik koşu değerlendirmesi ayrıca tutulur. ChatGPT zamanlanmış görev platform üst sınırı **saatte bir**; bu nedenle `CHATGPT_5MIN_MODEL=UNSUPPORTED`, `CHATGPT_HOURLY_WATCH=ENABLED`.
+
+**OSi blok/yanıt ingest:** Mac'ten geldiği iddia edilen metnin sohbet içinde kalması **GitHub'a otomatik giriş değildir**. GitHub'da yetkili owner yorumu başlangıcında `<!-- ENGURU_OSI_BLOCK_V1 -->` veya `<!-- ENGURU_OSI_RESPONSE_V1 -->` ve arkasında gizli veri içermeyen gözlem varsa, ilk bootstrap sonrası yorum ID ile tekil öğrenme adayı oluşturulur. `EVIDENCE_LEVEL=A / UNVERIFIED_EVIDENCE_POINTER / REVIEW_REQUIRED`. Gerçek Mac receipt, SHA, trust grant ve Human Threshold ayrı doğrulanır.
+
+**İzole simülasyon:** Eski 30 senaryo + yeni 31 watcher senaryosu × 3 tur = `183/183 PASS` (lokal). Gerçek GitHub CI `5/5 PASS` commit `b6f67a53cbdea983ce7ef63820a041ed3b2572c9` üzerinde. Bu ölçüm yalnız önceden tanımlı kapsam için PASS'tır; her beş dakikada aralıksız ChatGPT çalışması ve OSi tüm olaylarını otomatik alması kanıtı değildir.
+
+**Güncelleme kuralı:** Her yeni ChatGPT mühendislik oturumu önce GitHub'daki **son PR #206 branch HEAD ve yaşayan dosyanın SHA** değerini yeniden okuyarak hizalanır. Sonrasında yeni OSi blok / gerçek yanıt varsa kaynak gösteren, gizlisiz kayıt adayı GitHub'a ChatGPT aracılığıyla aktarılır. İki kez etkisiz tekrar olursa yeni araştırma yerine güvenli yöntem değişimi uygulanır.
+
+**Ürün kalıcı sabit hedefi:** `G2 owner Ed25519 key/grant → G3 signed HumanReview + bridge → G4 DoneCheck audit ledger → G5 owner merge/exact-main → G6 VERIFIED_FINISH → BITTI_DUR`. `G1=PASS_TECHNICAL_ONLY`, `G2..G6=HOLD`; Mühendislik Kası ilerlemesi ürün sayaçlarına aktarılmaz.
