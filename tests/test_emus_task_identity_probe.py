@@ -29,7 +29,7 @@ class EmusTaskIdentityProbe(unittest.TestCase):
     def test_source_drift_fails_before_import(self):
         with tempfile.TemporaryDirectory() as root:
             Path(root, "reliability.py").write_text(
-                "raise RuntimeError('IMPORTED_UNTRUSTED_SOURCE')\\n",
+                "raise RuntimeError('IMPORTED_UNTRUSTED_SOURCE')\n",
                 encoding="utf-8",
             )
             with mock.patch.dict(globals(), {"RUNTIME": root}, clear=False):
