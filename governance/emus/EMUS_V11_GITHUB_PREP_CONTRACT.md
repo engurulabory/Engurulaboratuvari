@@ -16,12 +16,12 @@ ENGÜRÜ Maya Üretim Sistemi™ (EMÜS), Mac OSi içinde ücretsiz ve yerel-ön
 
 ## Korunan kazanımlar
 K01: çok araçlı insan yönlendirmeli icra, görev sürekliliği.
-K02: SQLite görev defteri, checkpoint, idempotency, kurtarma ve tutarlı yan etki uzlaştırması.
+K02: mevcut kalıcı görev defterini, checkpoint, idempotency, kurtarma ve yan etki uzlaştırmasını koru; SQLite yalnız gerçek eksik bağımsız kanıtla doğrulanırsa adaydır.
 K03: risk sınıflı yetki, en dar kapsam, audit ve Human Threshold™.
 
 ## G01–G10 tasarım denetimleri
 - G01: görev yeterlilik ve model/araç kapasite kapısı; yetersiz görev `HOLD_CAPABILITY`.
-- G02: SQLite/WAL, migration, atomiklik, checkpoint, restart, idempotency ve denetlenebilir geri kazanım.
+- G02: mevcut JSON tabanlı görev belleği ile Mac Engineer kalıcı görev mekanizmalarını önce bağımsız karşılaştır; atomiklik, checkpoint, restart, idempotency ve kurtarma testleriyle gerekli backend farkını kanıtla.
 - G03: tek varsayılan yerel model çalıştırıcı; RAM/disk/süre bütçesi ve gereksinim bazlı bağımlılık.
 - G04: görev bazında beklenen çıktı, kanıt, gerçek test ve bağımsız doğrulama sözleşmesi.
 - G05: veri, sır, dosya ve ağ yetkisi; yan etki öncesi Human Threshold™ kapısı.
@@ -39,7 +39,7 @@ K03: risk sınıflı yetki, en dar kapsam, audit ve Human Threshold™.
 4. Gerçek `GAP_MATRIX` ve bağımlılık sırasını kilitli sürüm olarak hazırla.
 ### GH-02 (5)
 5. Görev şeması, durum makinesi, kabul kriterleri.
-6. SQLite/checkpoint/idempotency ve bağımsız kurtarma sözleşmesi.
+6. Mevcut kalıcı kayıt/checkpoint/idempotency ve bağımsız kurtarma sözleşmesi; SQLite için kanıtlı gereksinim kapısı.
 7. Model/RAM/disk/süre ve tek çekirdek bütçesi.
 8. Yetki/tehdit modeli/kanıt kökeni ve insan eşikleri.
 9. Gerçek görev benchmark'ı, lisans ve sıfır ücretli API sözleşmesi.
@@ -77,7 +77,7 @@ Her işte: `TASK_ID, CONTROL_ID, SOURCE_REF, SOURCE_SHA, REQUIREMENT, PASS_CONDI
 - Repo: `engurulabory/Engurulaboratuvari`, default `main`.
 - Okunan `AGENTS.md` Git blob SHA: `0a08f2e4202bbf240760cb0abd30e6a826531688`.
 - Okunan V3 kaynağı blob SHA: `7f47f3c6d3ee5c5138e53b67ae46cced37cb1a61` (lock içindeki blob ile eşleşiyor).
-- LOCK SHA256 metni: `11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc`; kaynak baytlarının ayrı SHA-256 doğrulaması sıradaki kanıt işi.
+- LOCK SHA-256 beyanı (bayt düzeyinde doğrulama HOLD): `11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc`; kaynak baytlarının ayrı SHA-256 doğrulaması sıradaki kanıt işi.
 - `EMUS` code search default branch: 0 sonuç; bu tek başına yokluk kanıtı değildir.
 - İlgili `tools/mac_engineer_control.py`, `tools/mac_engineer_local_donecheck.py` bulundu; güncel ürün/otorite kapsamı ayrıca doğrulanacak.
 - Gerçek GH-01: PARTIAL; GH-02–04: HOLD; OSi: HOLD.
