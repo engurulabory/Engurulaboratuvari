@@ -1,0 +1,203 @@
+{
+  "schema": "enguru.arge.block01.a04.upstream-pins/v1",
+  "captured_at_utc_date": "2026-10-23",
+  "scope": "A04_PINNED_UPSTREAM_LICENSE_SOURCE_ONLY",
+  "original_v19_matrix_sha256": "3906f7bd6ae07d26547babc172d1337cfdfeff85244ece95efb76c3cb448df08",
+  "case_count": 18,
+  "distinct_upstream_technologies": 7,
+  "tech": [
+    {
+      "name": "Meilisearch",
+      "repository": "meilisearch/meilisearch",
+      "default_branch": "main",
+      "source_commit_sha": "7b6f9f39bd91b04d4551673780cfeb31cb3f5e7b",
+      "license_path": "LICENSE",
+      "license_git_blob_sha": "edcaeebc4e866b1ebefc330c103560e41639601b",
+      "license_observed": "MIXED_MIT_AND_BUSINESS_SOURCE_LICENSE_EE",
+      "case_ids": [
+        "01",
+        "06"
+      ],
+      "license_evidence_url": "https://github.com/meilisearch/meilisearch/blob/7b6f9f39bd91b04d4551673780cfeb31cb3f5e7b/LICENSE",
+      "additional_license_files": [
+        {
+          "path": "LICENSE-MIT",
+          "git_blob_sha": "1ea8bbc92187d1b744d6cb802735b3f03d53cea3",
+          "source_url": "https://github.com/meilisearch/meilisearch/blob/7b6f9f39bd91b04d4551673780cfeb31cb3f5e7b/LICENSE-MIT"
+        },
+        {
+          "path": "LICENSE-EE",
+          "git_blob_sha": "87510480d5d8653a1a1583285c5ba5208b22826e",
+          "source_url": "https://github.com/meilisearch/meilisearch/blob/7b6f9f39bd91b04d4551673780cfeb31cb3f5e7b/LICENSE-EE"
+        }
+      ],
+      "latest_release_verified": false,
+      "customer_deployment_version_verified": false,
+      "customer_deployment_sha_verified": false,
+      "sbom_verified": false,
+      "cve_review_verified": false,
+      "legal_license_clearance": false,
+      "independent_e5_verified": false
+    },
+    {
+      "name": "Medusa",
+      "repository": "medusajs/medusa",
+      "default_branch": "develop",
+      "source_commit_sha": "029fb31fd077ab9c6d6fd9d68c676c17c71294c7",
+      "license_path": "LICENSE",
+      "license_git_blob_sha": "2bc747bf4b0a88864584b033fdeab86012a44c79",
+      "license_observed": "MIXED_MIT_AND_COMMERCIAL_ENTERPRISE",
+      "case_ids": [
+        "02",
+        "16"
+      ],
+      "license_evidence_url": "https://github.com/medusajs/medusa/blob/029fb31fd077ab9c6d6fd9d68c676c17c71294c7/LICENSE",
+      "additional_license_files": [
+        {
+          "path": "ENTERPRISE-LICENSE.md",
+          "git_blob_sha": "56ec107aaf946c18f88955a031ba1dec9396111d",
+          "source_url": "https://github.com/medusajs/medusa/blob/029fb31fd077ab9c6d6fd9d68c676c17c71294c7/ENTERPRISE-LICENSE.md"
+        }
+      ],
+      "latest_release_verified": false,
+      "customer_deployment_version_verified": false,
+      "customer_deployment_sha_verified": false,
+      "sbom_verified": false,
+      "cve_review_verified": false,
+      "legal_license_clearance": false,
+      "independent_e5_verified": false
+    },
+    {
+      "name": "Saleor",
+      "repository": "saleor/saleor",
+      "default_branch": "main",
+      "source_commit_sha": "01650613a0dff24e6bdfa904bea1ca3d27d1e687",
+      "license_path": "LICENSE",
+      "license_git_blob_sha": "715b42cd6fe5d7073984ff7004b49dc8304adbcc",
+      "license_observed": "BSD_3_CLAUSE_REPOSITORY_LICENSE",
+      "case_ids": [
+        "03"
+      ],
+      "license_evidence_url": "https://github.com/saleor/saleor/blob/01650613a0dff24e6bdfa904bea1ca3d27d1e687/LICENSE",
+      "additional_license_files": [],
+      "latest_release_verified": false,
+      "customer_deployment_version_verified": false,
+      "customer_deployment_sha_verified": false,
+      "sbom_verified": false,
+      "cve_review_verified": false,
+      "legal_license_clearance": false,
+      "independent_e5_verified": false
+    },
+    {
+      "name": "Supabase",
+      "repository": "supabase/supabase",
+      "default_branch": "master",
+      "source_commit_sha": "7d63d764fc9a3b13e7b0df270c5f159e6c5eb367",
+      "license_path": "LICENSE",
+      "license_git_blob_sha": "49ea124025275674563eeff03af0f653ca49fdc0",
+      "license_observed": "APACHE_2_REPOSITORY_LICENSE_COMPONENTS_MAY_DIFFER",
+      "case_ids": [
+        "04",
+        "05",
+        "10"
+      ],
+      "license_evidence_url": "https://github.com/supabase/supabase/blob/7d63d764fc9a3b13e7b0df270c5f159e6c5eb367/LICENSE",
+      "additional_license_files": [],
+      "latest_release_verified": false,
+      "customer_deployment_version_verified": false,
+      "customer_deployment_sha_verified": false,
+      "sbom_verified": false,
+      "cve_review_verified": false,
+      "legal_license_clearance": false,
+      "independent_e5_verified": false
+    },
+    {
+      "name": "Temporal",
+      "repository": "temporalio/temporal",
+      "default_branch": "main",
+      "source_commit_sha": "8a40a2663e304a79b07779ae08108648ccbc797d",
+      "license_path": "LICENSE",
+      "license_git_blob_sha": "3349f76795f4409cba6ae18ea56adf9fbd8346f3",
+      "license_observed": "MIT_REPOSITORY_LICENSE",
+      "case_ids": [
+        "07",
+        "12",
+        "18"
+      ],
+      "license_evidence_url": "https://github.com/temporalio/temporal/blob/8a40a2663e304a79b07779ae08108648ccbc797d/LICENSE",
+      "additional_license_files": [],
+      "latest_release_verified": false,
+      "customer_deployment_version_verified": false,
+      "customer_deployment_sha_verified": false,
+      "sbom_verified": false,
+      "cve_review_verified": false,
+      "legal_license_clearance": false,
+      "independent_e5_verified": false
+    },
+    {
+      "name": "OpenFGA",
+      "repository": "openfga/openfga",
+      "default_branch": "main",
+      "source_commit_sha": "22c4d5ddf4d5969bee10c24e468a5acfbcf26837",
+      "license_path": "LICENSE",
+      "license_git_blob_sha": "4959a5e50d66e62e675d8d033d66cca0f390458d",
+      "license_observed": "APACHE_2_REPOSITORY_LICENSE",
+      "case_ids": [
+        "08",
+        "09",
+        "11"
+      ],
+      "license_evidence_url": "https://github.com/openfga/openfga/blob/22c4d5ddf4d5969bee10c24e468a5acfbcf26837/LICENSE",
+      "additional_license_files": [],
+      "latest_release_verified": false,
+      "customer_deployment_version_verified": false,
+      "customer_deployment_sha_verified": false,
+      "sbom_verified": false,
+      "cve_review_verified": false,
+      "legal_license_clearance": false,
+      "independent_e5_verified": false
+    },
+    {
+      "name": "LangGraph",
+      "repository": "langchain-ai/langgraph",
+      "default_branch": "main",
+      "source_commit_sha": "eb066bd31a2bf01fc0cd58256df4800a3695c233",
+      "license_path": "LICENSE",
+      "license_git_blob_sha": "fc0602feecdd6748623c852ab534e1ca612673c7",
+      "license_observed": "MIT_REPOSITORY_LICENSE",
+      "case_ids": [
+        "13",
+        "14",
+        "15",
+        "17"
+      ],
+      "license_evidence_url": "https://github.com/langchain-ai/langgraph/blob/eb066bd31a2bf01fc0cd58256df4800a3695c233/LICENSE",
+      "additional_license_files": [],
+      "latest_release_verified": false,
+      "customer_deployment_version_verified": false,
+      "customer_deployment_sha_verified": false,
+      "sbom_verified": false,
+      "cve_review_verified": false,
+      "legal_license_clearance": false,
+      "independent_e5_verified": false
+    }
+  ],
+  "acceptance_boundary": {
+    "commit_license_file_retrieved_and_blob_checked": "7/7",
+    "extra_license_files_retrieved_and_blob_checked": "3/3",
+    "sbom": "HOLD",
+    "cve": "HOLD",
+    "customer_deployment": "HOLD_0_OF_18",
+    "independent_e5": "HOLD_0_OF_18",
+    "a04_official": "HOLD",
+    "block01_official": "0/9",
+    "total_official": "0/40"
+  },
+  "caveats": [
+    "Repo license and pinned source commit describe upstream public repository only, not customer deployments.",
+    "Meilisearch and Medusa contain additional enterprise terms; exact component and runtime scope require legal/owner assessment.",
+    "Supabase monorepo top LICENSE cannot be assumed for every separately distributed component.",
+    "Replit/Temporal case 07 historical claim is disputed by later Restate use; no current adoption concluded.",
+    "CVE/SBOM/installed version and independent customer attestation remain separate evidence obligations."
+  ]
+}
