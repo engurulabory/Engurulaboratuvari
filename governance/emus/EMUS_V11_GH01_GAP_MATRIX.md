@@ -82,3 +82,8 @@ Tasarım kapsamı 100/100, ancak gerçek `GH-01=HOLD`; `GH-02–04=HOLD`, `OSI=H
 - Run `35770750418`, commit `58ef7236fb65ee6abdd536cde0c0b68c2746faad`: `Runtime tests` failure; özgün job logunda `test_persistent_idempotency` ve `test_checkpoint_restart_resume` `ok`; ayrı A07 kaynak/artifact testi `80 != 40` nedeniyle failure. Bu koşu genel PASS sayılmaz.
 - Karar: `MAC_PRODUCT_RUNTIME_TESTS=HISTORICAL_CI_PASS`, `MAC_TASK_ID_AND_RESTART=HISTORICAL_TEST_LOG_OK`; bu kaynak commit'ler gözlenen `main` HEAD `5432b9b135499cea18273c0e003877b864af92c6` ile aynı olmadığı için güncel HEAD'in EMÜS bütünleşik kabulü olarak sayılamaz.
 - `EMUS_WORKING_MEMORY_CROSS_REPO=HOLD_TEST`, `DONECHECK_VERIFYTASK=HOLD_TEST`, `EMUS_AUTHORITY=HOLD`. Sıradaki ihtiyaç: exact source/commit ile birleşik test ve yetkili sonuç.
+
+## P0 — V3 gerçek byte kilidi CI kabulü
+- Commit `731e3a646952e10b03a81f2d2f19d22be45eeb4b`, Labory Final Gate run `40002619844`, job `120582347938`, step 10 `EMUS canonical V3 source lock byte verification`: `completed/success`.
+- Aynı job EMÜS step 9 ve 11–14 `completed/success`; genel workflow'lar PARK `40002619798`, IP Model Trust Gate `40002619793`, IP Model Trust Fleet `40002619786` `completed/success`.
+- Karar `P0_V3_BYTE_PIN=PASS_CI`; güncel kaynak yetki/grant ve özel Mac Engineer exact commit bütünleşik yürütme `HOLD`; P1 real integration `HOLD_TEST`.
