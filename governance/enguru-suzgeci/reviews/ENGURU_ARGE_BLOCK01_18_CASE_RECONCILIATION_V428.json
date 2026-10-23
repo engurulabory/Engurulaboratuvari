@@ -292,5 +292,50 @@
     "official_block01_pass": "0/9",
     "exit": "HOLD"
   },
-  "boundary": "Published third-party cases are evidence candidates, not independent E5 audit or authorized acceptance"
+  "boundary": "Published third-party cases are evidence candidates, not independent E5 audit or authorized acceptance",
+  "source_audit": {
+    "v19_exact_case_identity": "18/18_RECONCILED_FROM_ORIGINAL_CSV",
+    "v19_cells": "234/234_BASELINE_ROWS",
+    "scope_limit": "Case identities checked; source URLs do not constitute independent deployment E5 or validated ENGURU cost/ROI",
+    "cases_with_refreshed_public_sources": [
+      "01",
+      "05",
+      "06"
+    ],
+    "sources": [
+      {
+        "cases": [
+          "01",
+          "06"
+        ],
+        "url": "https://aws.amazon.com/solutions/case-studies/meilisearch-case-study/",
+        "type": "AWS publication reproducing Meilisearch claims",
+        "e5": "HOLD"
+      },
+      {
+        "cases": [
+          "01"
+        ],
+        "url": "https://kubecon.meilisearch.com/blog/bookshop-increases-search-based-purchases",
+        "type": "vendor story quoting named Bookshop CTO; 14% to 20% conversion historical",
+        "e5": "HOLD"
+      },
+      {
+        "cases": [
+          "05"
+        ],
+        "url": "https://supabase.com/customers/resend",
+        "type": "vendor-hosted interview quoting named customer CEO",
+        "e5": "HOLD"
+      },
+      {
+        "cases": [
+          "06"
+        ],
+        "url": "https://www.meilisearch.com/customers",
+        "type": "Meilisearch hosted customer quote attributed to Hugging Face engineer",
+        "e5": "HOLD"
+      }
+    ]
+  }
 }
