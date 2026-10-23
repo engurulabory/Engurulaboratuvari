@@ -39,8 +39,8 @@ jobs:
       github.event_name == 'issue_comment' &&
       github.event.issue.pull_request &&
       (github.event.issue.number == 203 || github.event.issue.number == 206) &&
-      github.event.sender.login == vars.ENGURU_MK_OWNER_LOGIN &&
-      vars.ENGURU_MK_OWNER_LOGIN != ''
+      github.event.sender.login == github.repository_owner &&
+      github.event.sender.type != 'Bot'
     runs-on: ubuntu-latest
     concurrency:
       group: enguru-mk-review-branch
@@ -48,7 +48,7 @@ jobs:
     permissions:
       contents: write
     env:
-      ENGURU_MK_OWNER_LOGIN: ${{ vars.ENGURU_MK_OWNER_LOGIN }}
+      ENGURU_MK_OWNER_LOGIN: ${{ github.repository_owner }}
     steps:
       - name: Checkout isolated learning branch
         uses: actions/checkout@v4
@@ -95,7 +95,7 @@ jobs:
       pull-requests: read
     env:
       GITHUB_TOKEN: ${{ github.token }}
-      ENGURU_MK_OWNER_LOGIN: ${{ vars.ENGURU_MK_OWNER_LOGIN }}
+      ENGURU_MK_OWNER_LOGIN: ${{ github.repository_owner }}
       ENGURU_MK_CROSS_REPO_TOKEN: ${{ secrets.ENGURU_MK_READONLY_GITHUB_TOKEN }}
     steps:
       - name: Checkout persistent learning review branch
