@@ -74,7 +74,7 @@ class BlockContract(unittest.TestCase):
     x=copy.deepcopy(P);x['invariants']['no_automatic_human_threshold_or_merge']=False;self.assertHold(lambda:validate(x))
  def test_46_private_key_protection(self):
     x=copy.deepcopy(P);x['invariants']['private_key_remains_under_mac_owner_control']=False;self.assertHold(lambda:validate(x))
- def test_47_exact_g2_no_override(self):self.assertEqual(P['next_single_action'],'G2_EXISTING_CANONICAL_OSI_ROOT_ADMISSION_AUTHORIZED_POLICY_AND_VERIFIED_RECEIPT')
+ def test_47_exact_g2_no_override(self):self.assertEqual(P['next_single_action'],'G2_FIELD_PASS_ROOT_ADMISSION_GITHUB_SOURCE_RECONCILIATION_THEN_G3_REAL_OWNER_SIGNED_HUMAN_REVIEW')
  def test_48_g1_no_new_authority(self):self.assertEqual(P['gates']['G1']['authority'],'TECHNICAL_VALIDATOR')
  def test_49_support_5min_best_effort(self):self.assertIn('BEST_EFFORT',P['blocks'][2]['schedule'])
  def test_50_support_no_private_relay(self):self.assertEqual(P['blocks'][2]['private_data_boundary'],'OWNER_APPROVED_REDACTED_RELAY_ONLY')
