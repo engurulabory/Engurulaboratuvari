@@ -62,7 +62,7 @@ def validate(p):
         require(bool(re.fullmatch('[0-9a-f]{64}',s.get(key,''))),'SHA_'+key)
     require(s['management_pr']==203 and s['engineer_private_pr']==14,'PR_SCOPE')
     require(p['progress']=={'technical_gate_pass':1,'gate_total':6,'fully_accepted_g2_g6':0,'g2_g6_total':5,'official_verified_finish':'HOLD','official_authority_pass':0},'COUNTERS')
-    require('OWNER_GRANT' in p['next_single_action'],'NEXT_G2')
+    require('ROOT_ADMISSION' in p['next_single_action'],'NEXT_G2')
     return {'design_state':'PASS_ISOLATED_PLAN_CONTRACT','official_finish':'HOLD','covered':GATES,'active':'B01'}
 
 def evaluate_real_acceptance(p, evidence):
