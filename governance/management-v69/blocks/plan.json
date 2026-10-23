@@ -23,7 +23,11 @@
     "rotated_reviewer_key_id": "ed25519-sha256:b64f6b242f96efb09c34985c4b03b9ed4df2c6d1d2386332f098ecc64bd2cc9a",
     "proposed_owner_root_key_id": "ed25519-sha256:938083a0de0a78fef1874536b2bdbc5683ab2ae49bc09cae27dec843eaf4c1e1",
     "g2_genesis_report_sha256": "5f99062045d8eee551cfe3faf6a75a2267b15acf18b9e4367f656032ba6d05b3",
-    "g2_independent_field_report_sha256": "02c65bb7724e59d69f93be9bd0328392ed22dce85bd169b06e2b2647a13fb8d6"
+    "g2_independent_field_report_sha256": "02c65bb7724e59d69f93be9bd0328392ed22dce85bd169b06e2b2647a13fb8d6",
+    "g3_technical_ci_run": 40005312121,
+    "g3_rotated_reviewer_review_head": "37153c26ca99fec8f67fcb87c154046ef1e74b00",
+    "mk_g3_learning_event": "MK-EVT-V69-G3-ROTATED-20261023",
+    "mk_g3_learning_run": 40005514734
   },
   "canonical_gate_ids": [
     "G1",
@@ -59,7 +63,16 @@
       "authority": "AUTHORIZED_HUMAN_REVIEWER",
       "prerequisites": [
         "G2"
-      ]
+      ],
+      "technical_state": "PASS_ROTATED_REVIEWER_ADAPTER_TECHNICAL_ONLY",
+      "technical_evidence": {
+        "repository": "engurulabory/enguru-mac-engineer",
+        "pr": 16,
+        "branchHead": "37153c26ca99fec8f67fcb87c154046ef1e74b00",
+        "ciRunId": 40005312121,
+        "checks": "24_OF_24_G3_FAIL_CLOSED_AND_26_OF_26_G2_GRANT_AND_25_OF_25_GENESIS_PASS",
+        "scope": "STAGED_PRIVATE_REVIEW_BRANCH_NOT_MAC_OWNER_SIGNATURE"
+      }
     },
     "G4": {
       "state": "HOLD_CANONICAL_AUDIT",
@@ -175,7 +188,7 @@
     "official_verified_finish": "HOLD",
     "official_authority_pass": 0
   },
-  "next_single_action": "AUTHORIZE_AND_INDEPENDENTLY_VERIFY_EXISTING_CANONICAL_G2_ROOT_ADMISSION_USING_PRESERVED_MAC_SHA",
+  "next_single_action": "G2_EXISTING_CANONICAL_OSI_ROOT_ADMISSION_AUTHORIZED_POLICY_AND_VERIFIED_RECEIPT",
   "pre_execution_quality_loop": {
     "schema": "enguru.v69.pre-execution-scored-simulation/v1",
     "acceptance": "OWNER_ACCEPTED_METHOD_CONTRACT_NOT_OFFICIAL_CANONICAL_GATE_AMENDMENT",
