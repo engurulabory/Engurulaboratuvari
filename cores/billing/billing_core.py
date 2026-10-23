@@ -1,4 +1,6 @@
 from dataclasses import dataclass
+from hashlib import sha256
+import json
 from decimal import Decimal
 from enum import Enum
 from typing import Protocol, Optional, Mapping
@@ -85,8 +87,13 @@ class BillingCore:
     def issue_paid_order(self, request: BillingRequest) -> BillingResult:
         self._validate(request)
         key = request.idempotency_key or f"invoice:{request.order_id}"
+        request_sha256 = self._request_sha256(request)
         existing = self.idempotency_store.get(key)
         if existing:
+            # A key reused for another order/customer/payment must never expose
+            # the prior customer receipt. Legacy entries without the digest HOLD.
+            if existing.evidence.get("request_sha256") != request_sha256:
+                raise BillingError("Idempotency key is bound to another request or unverified legacy record")
             return existing
 
         is_taxpayer = self.registry.is_einvoice_taxpayer(request.tax_identifier)
@@ -129,10 +136,36 @@ class BillingCore:
                 "provider_status": receipt.status,
                 "mail_message_id": message_id,
                 "idempotency_key": key,
+                "request_sha256": request_sha256,
             },
         )
         self.idempotency_store.put(key, result)
         return result
+
+    @staticmethod
+    def _request_sha256(request: BillingRequest) -> str:
+        """Bind the replay key to the exact payment and recipient request.
+
+        A digest is a comparison marker, not an authorization grant. In-flight
+        lost acknowledgements still require durable provider reconciliation.
+        """
+        fingerprint = {
+            "order_id": request.order_id,
+            "customer_name": request.customer_name,
+            "customer_email": request.customer_email,
+            "tax_identifier": request.tax_identifier,
+            "amount": str(request.amount),
+            "currency": request.currency,
+            "description": request.description,
+            "internet_sale": request.internet_sale,
+            "payment_provider": request.payment.provider,
+            "payment_id": request.payment.payment_id,
+            "payment_amount": str(request.payment.amount),
+            "payment_currency": request.payment.currency,
+            "payment_verified": request.payment.verified,
+        }
+        data = json.dumps(fingerprint, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
+        return sha256(data.encode("utf-8")).hexdigest()
 
     @staticmethod
     def _validate(request: BillingRequest) -> None:
