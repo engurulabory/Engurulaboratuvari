@@ -4,10 +4,15 @@ on:
   pull_request:
     paths:
       - 'tools/enguru_muhendislik_kasi.py'
+      - 'tools/enguru_mk_five_minute_watch.py'
       - 'tests/test_enguru_muhendislik_kasi.py'
+      - 'tests/test_enguru_mk_five_minute_watch.py'
       - '.github/workflows/enguru-muhendislik-kasi.yml'
   issue_comment:
     types: [created]
+  workflow_dispatch:
+  schedule:
+    - cron: '*/5 * * * *'
 
 permissions:
   contents: read
@@ -21,11 +26,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Simulate 3 independent review cycles
+      - name: Triple simulation of learning + five-minute watcher
         run: |
           for cycle in 1 2 3; do
             echo "SIMULATION_CYCLE=$cycle"
             python -m unittest discover -s tests -p 'test_enguru_muhendislik_kasi.py' -v
+            python -m unittest discover -s tests -p 'test_enguru_mk_five_minute_watch.py' -v
           done
 
   owner-comment-intake:
@@ -44,25 +50,26 @@ jobs:
     env:
       ENGURU_MK_OWNER_LOGIN: ${{ vars.ENGURU_MK_OWNER_LOGIN }}
     steps:
-      - name: Get living review branch, preserve canonical main
+      - name: Checkout isolated learning branch
         uses: actions/checkout@v4
         with:
           ref: docs/enguru-osi-muhendislik-kasi-20261023
           fetch-depth: 1
-          persist-credentials: true
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Run regression before intake
-        run: python -m unittest discover -s tests -p 'test_enguru_muhendislik_kasi.py' -v
-      - name: Validate exact owner event, prepare review-only delta
+      - name: Validate regression first
+        run: |
+          python -m unittest discover -s tests -p 'test_enguru_muhendislik_kasi.py' -q
+          python -m unittest discover -s tests -p 'test_enguru_mk_five_minute_watch.py' -q
+      - name: Validate owner-submitted structured evidence as review candidate
         run: |
           python tools/enguru_muhendislik_kasi.py \
             --record governance/enguru-suzgeci/ENGURU_OSI_MUHENDISLIK_KASI_CANLI_KAYIT_V1.md \
             --github-event "$GITHUB_EVENT_PATH" \
             --output "$RUNNER_TEMP/candidate-record.md" \
             --receipt "$RUNNER_TEMP/enguru-mk-receipt.json"
-      - name: Stage only verified proposed learning record
+      - name: Write to isolated learning branch only
         run: |
           cp "$RUNNER_TEMP/candidate-record.md" governance/enguru-suzgeci/ENGURU_OSI_MUHENDISLIK_KASI_CANLI_KAYIT_V1.md
           git add -- governance/enguru-suzgeci/ENGURU_OSI_MUHENDISLIK_KASI_CANLI_KAYIT_V1.md
@@ -73,4 +80,47 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git commit -m 'docs: ingest owner evidence into ENGURU learning review branch'
+          git push origin HEAD:refs/heads/docs/enguru-osi-muhendislik-kasi-20261023
+
+  five-minute-github-observer:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: enguru-mk-review-branch
+      cancel-in-progress: false
+    permissions:
+      contents: write
+      actions: read
+      issues: read
+      pull-requests: read
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      ENGURU_MK_OWNER_LOGIN: ${{ vars.ENGURU_MK_OWNER_LOGIN }}
+      ENGURU_MK_CROSS_REPO_TOKEN: ${{ secrets.ENGURU_MK_READONLY_GITHUB_TOKEN }}
+    steps:
+      - name: Checkout persistent learning review branch
+        uses: actions/checkout@v4
+        with:
+          ref: docs/enguru-osi-muhendislik-kasi-20261023
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Read GitHub sources and safely classify changes
+        run: |
+          python tools/enguru_mk_five_minute_watch.py \
+            --record governance/enguru-suzgeci/ENGURU_OSI_MUHENDISLIK_KASI_CANLI_KAYIT_V1.md \
+            --checkpoint governance/enguru-suzgeci/learning/MK_WATCH_CHECKPOINT.json
+      - name: Commit only factual learning files when changed
+        run: |
+          git add -- \
+            governance/enguru-suzgeci/ENGURU_OSI_MUHENDISLIK_KASI_CANLI_KAYIT_V1.md \
+            governance/enguru-suzgeci/learning/MK_WATCH_CHECKPOINT.json
+          if git diff --cached --quiet; then
+            echo 'STATE=PASS_NO_NEW_EVIDENCE'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'docs: capture new GitHub and OSi evidence in ENGURU learning record'
           git push origin HEAD:refs/heads/docs/enguru-osi-muhendislik-kasi-20261023
