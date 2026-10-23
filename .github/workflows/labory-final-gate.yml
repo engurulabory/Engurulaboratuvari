@@ -210,5 +210,8 @@ jobs:
       - name: Ar-Ge Block 01 A07 G01 real BillingCore fault replay
         run: python -m unittest discover -s tests -p 'test_arge_block01_a07_runtime_v1.py' -v
 
+      - name: Ar-Ge Block 01 G01 SQLite restart-safe adversarial tests
+        run: python -m unittest discover -s tests -p 'test_arge_block01_g01_sqlite_v1.py' -v
+
       - name: Final state
         run: echo 'ENGURU LABORY REPOSITORY FINAL GATE = PASS' >> "$GITHUB_STEP_SUMMARY"
