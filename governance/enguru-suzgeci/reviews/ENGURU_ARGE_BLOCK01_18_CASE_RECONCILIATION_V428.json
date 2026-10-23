@@ -12,7 +12,7 @@
     "all_234_original_verdicts": "HOLD",
     "all_18_e5_original_status": "HOLD"
   },
-  "public_source_check": "18/18 cases now have a dated research-cycle public source candidate. These vendor/first-party testimonials are NOT equivalent to independent audited E5, per-customer exact deployment pins, current use, live G01-G03, or measured ENGURU net ROI/TCO.",
+  "public_source_check": "2026-10-23 targeted source recheck: 18/18 source candidates retained; 02 Medusa dated vendor story, 14 LinkedIn direct customer engineering, 15 Uber supplier-only report, 17 dedicated Fastweb+Vodafone vendor customer story, 08 Auth0 FGA/OpenFGA product lineage, and 07 Temporal historical claim countered by Restate migration. Source review does not establish independent E5, exact customer deployed release/SHA, live G01-G03 or measured ENGURU K12.",
   "cases": [
     {
       "case_id": "01",
@@ -61,7 +61,10 @@
         "independent_E5_attestation": "HOLD_NOT_ESTABLISHED",
         "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
         "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
-        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED",
+        "publication_date": "2024-02-01",
+        "reviewed_source_role": "MEDUSA_VENDOR_WITH_NAMED_CUSTOMER_QUOTES",
+        "verification_note": "Medusa's dated story names Matt Sleeps and its implementation partner Webbers; customer deployment release pin unestablished."
       }
     },
     {
@@ -186,7 +189,10 @@
         "independent_E5_attestation": "HOLD_NOT_ESTABLISHED",
         "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
         "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
-        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED",
+        "reviewed_source_role": "HISTORICAL_VENDOR_CLAIM_CONFLICTED_BY_RESTATE",
+        "verification_note": "Restate explicitly reports that Replit switched from Temporal to Restate; current Temporal adoption remains HOLD.",
+        "newer_contrary_source": "https://restate.dev/use-cases/replit"
       }
     },
     {
@@ -211,7 +217,9 @@
         "independent_E5_attestation": "HOLD_NOT_ESTABLISHED",
         "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
         "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
-        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED",
+        "reviewed_source_role": "AUTH0_OPENFGA_PRODUCT_LINEAGE_ONLY",
+        "verification_note": "Auth0 documentation states Auth0 FGA is based on OpenFGA; a distinct external deployment is not demonstrated."
       }
     },
     {
@@ -361,7 +369,10 @@
         "independent_E5_attestation": "HOLD_NOT_ESTABLISHED",
         "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
         "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
-        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED",
+        "publication_date": "2024-12-09",
+        "reviewed_source_role": "CUSTOMER_ENGINEERING_FIRST_PARTY",
+        "verification_note": "LinkedIn Engineering's dated SQL Bot article explicitly names LangChain and LangGraph; independent E5 still absent."
       }
     },
     {
@@ -379,14 +390,17 @@
       "public_source_class": "PRIOR_V19_SOURCE_UNREFRESHED",
       "verified_public_reference": null,
       "current_public_source": {
-        "url": "https://www.langchain.com/built-with-langgraph",
-        "source_class": "VENDOR_APPLICATION_SHOWCASE",
-        "claim_scope": "Uber agent-based developer tooling claim from LangChain showcase",
+        "url": "https://www.langchain.com/blog/building-langgraph",
+        "source_class": "LANGGRAPH_VENDOR_GENERAL_ADOPTION_CLAIM",
+        "claim_scope": "LangChain 2025-09-04 engineering article names Uber as a production LangGraph adopter; no case-specific customer engineering source verified.",
         "freshness": "HISTORICAL_PUBLISHED",
         "independent_E5_attestation": "HOLD_NOT_ESTABLISHED",
         "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
         "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
-        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED",
+        "publication_date": "2025-09-04",
+        "reviewed_source_role": "VENDOR_ASSERTION_ONLY",
+        "verification_note": "General vendor declaration confirms only a supplier claim, not an Uber-signed implementation report."
       }
     },
     {
@@ -429,14 +443,17 @@
       "public_source_class": "PRIOR_V19_SOURCE_UNREFRESHED",
       "verified_public_reference": null,
       "current_public_source": {
-        "url": "https://www.langchain.com/blog/customer-experience-cx-agents-in-production-lessons-from-lyft-vodafone-and-latam-airlines",
-        "source_class": "VENDOR_CASE_STUDY_NAMED_CUSTOMER",
-        "claim_scope": "Fastweb Vodafone graph agents, published 90% correctness and 82% resolution, independent definitions unavailable",
+        "url": "https://www.langchain.com/blog/customers-vodafone-italy",
+        "source_class": "LANGGRAPH_VENDOR_DEDICATED_CUSTOMER_CASE",
+        "claim_scope": "LangChain dedicated Fastweb+Vodafone case study reports LangGraph Super TOBi and Super Agent, 90% correctness and 82% resolution as supplier-reported metrics.",
         "freshness": "HISTORICAL_PUBLISHED",
         "independent_E5_attestation": "HOLD_NOT_ESTABLISHED",
         "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
         "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
-        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED",
+        "publication_date": "2025-12-16",
+        "reviewed_source_role": "VENDOR_DEDICATED_CASE",
+        "verification_note": "Source identifies a named customer and metrics, but independently audited definitions, customer deployment SHA and E5 still absent."
       }
     },
     {
