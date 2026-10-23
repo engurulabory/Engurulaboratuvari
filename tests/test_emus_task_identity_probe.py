@@ -26,6 +26,16 @@ class EmusTaskIdentityProbe(unittest.TestCase):
             with self.assertRaisesRegex(AssertionError, "SOURCE_HOLD"):
                 self.test_task_id_survives_two_stores_and_restart()
 
+    def test_source_drift_fails_before_import(self):
+        with tempfile.TemporaryDirectory() as root:
+            Path(root, "reliability.py").write_text(
+                "raise RuntimeError('IMPORTED_UNTRUSTED_SOURCE')\\n",
+                encoding="utf-8",
+            )
+            with mock.patch.dict(globals(), {"RUNTIME": root}, clear=False):
+                with self.assertRaisesRegex(AssertionError, "SOURCE_DRIFT"):
+                    self.test_task_id_survives_two_stores_and_restart()
+
     def test_task_id_survives_two_stores_and_restart(self):
         if not RUNTIME or not (Path(RUNTIME) / "reliability.py").is_file():
             self.fail("SOURCE_HOLD: pinned Mac Engineer runtime path required")
