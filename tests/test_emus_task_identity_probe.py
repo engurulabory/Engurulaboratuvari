@@ -4,6 +4,7 @@ Run from the Labory repo with ENGURU_MAC_ENGINEER_RUNTIME pointing at a
 checked-out, source-pinned Mac Engineer runtime directory.
 This tests an explicit handoff, not an already-installed runtime adapter.
 """
+import hashlib
 import os
 import sys
 import tempfile
@@ -13,12 +14,16 @@ from pathlib import Path
 from shared_ai.working_memory import PersistentWorkingMemory
 
 RUNTIME = os.environ.get("ENGURU_MAC_ENGINEER_RUNTIME", "")
+PINNED_RELIABILITY_BLOB_SHA1 = "ee0f53e4a1fb899aecd637f059ce840979bb02d4"
 
 
 class EmusTaskIdentityProbe(unittest.TestCase):
     def test_task_id_survives_two_stores_and_restart(self):
         if not RUNTIME or not (Path(RUNTIME) / "reliability.py").is_file():
             self.fail("SOURCE_HOLD: pinned Mac Engineer runtime path required")
+        raw = (Path(RUNTIME) / "reliability.py").read_bytes()
+        blob_hash = hashlib.sha1(b"blob " + str(len(raw)).encode("ascii") + b"\\0" + raw).hexdigest()
+        self.assertEqual(blob_hash, PINNED_RELIABILITY_BLOB_SHA1, "SOURCE_DRIFT")
         sys.path.insert(0, RUNTIME)
         try:
             from reliability import ReliabilityManager
