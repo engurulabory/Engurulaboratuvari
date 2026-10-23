@@ -85,3 +85,16 @@ python3 -B tools/arge_block01_a05_a06_evidence_intake_v1.py \
 `tools/arge_block01_a05_a06_evidence_intake_v1.py` dosyasının testleri özgün 18 vakanın tamamını, dört vaka eksikliği, yinelenen kimlik, belge değiştirme, geçersiz SBOM, sahte bağımsızlık, symlink ve dosya yolundan dışarı çıkış senaryolarını kapsar.
 
 **NEXT:** Gerçek yetkili customer/owner ve independent E5 belgeleri sahada temin edilince dosya bütünlüğünü bu read-only araçla denetle; ardından ayrı canonical kriptografik güven doğrulayıcısına ve bağımsız insan kabulüne geçir. `main`, ürün kaynakları ve yetkiler korunur.
+
+## 5. Aynı dağıtım bağının zorunlu alanları
+
+SHA-256 bütünlüğü doğrulandıktan sonra araç aşağıdaki **JSON beyan alanlarını** da birbirine bağlar:
+
+- `deployed_manifest`: `case_id`, `customer`, `technology`, `release`, `edition`, `source_commit`. Alanlar packet içindeki aynı müşteri ve gerçek release bilgileriyle birebir eşleşir.
+- `customer_assertion`: `case_id`, `customer`, `owner_id`, `manifest_sha256`. İmza referansının alındığı müşteri beyanı aynı manifest SHA-256 kimliğini içerir.
+- `e5.report`: `case_id`, `customer`, `technology`, `observed_manifest_sha256`, `verifier_identity`. E5 gözlemi aynı kurulu manifesti işaret eder.
+- `e5.verifier_assertion`: `case_id`, `report_sha256`, `verifier_identity`. Bağımsız denetim beyanı birebir rapor hashine bağlanır.
+
+Dış müşteri belgelerinin kaynağı PDF ya da farklı yapıdaysa canonical sahibi tarafından yetkili, kanıt dosyasına imzalı ve kaynak byte hashleriyle bağlı JSON projeksiyonu sağlanır. Bu projeksiyonun varlığı gerçek imzanın geçerlilik hükmü değildir; ayrı canonical doğrulayıcı kapısı sürer.
+
+**Karşıt kanıt:** Farklı müşterinin manifesti, başka manifesti gösteren owner beyanı, başka manifesti gösteren E5 raporu ve A05 HOLD iken A06 aday durumunun yükselmesi testlerde güvenli HOLD verir. `tests/test_arge_block01_a05_a06_evidence_intake_v1.py` kapsamı **16 adversarial test**. Kanıt dönüştürme kapsamında kişisel veriler ve özel anahtarlar özel yerel delil alanında korunur.
