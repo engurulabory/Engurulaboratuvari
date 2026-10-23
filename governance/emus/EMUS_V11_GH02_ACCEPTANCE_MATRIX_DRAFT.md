@@ -61,3 +61,10 @@ Bu sözleşme ADAY'dır. GH-01 tam kaynak eşleştirmesi, gerçek owner ve bağ�
 - EMÜS için kaynak kullanılabilirlik kararı: `SOURCE_CANDIDATE_CONFIRMED`, `CANONICAL_ACTIVE_RUNTIME_EQUIVALENCE=HOLD`, `EMUS_AUTHORITY_GRANT=HOLD`.
 - Mühendislik kuralı: Mevcut mac-engineer görev akışı ve güvenilirlik bileşeni denenmeden yeni orkestrasyon, yeni kayıt motoru veya veritabanı kurulmaz. Dar kapsamlı kod farkı gerçek başarısız test kanıtı ile belirlenir.
 - `GH01=PARTIAL`, `GH02=PARTIAL`, `GH03/04=HOLD`, `OSI_READY=HOLD`.
+
+## 2026-10-23 — Görev kimliği ve DoneCheck yetki kapsamı
+- DoneCheck `src/domain/donecheck/ids.ts` (blob `286d23c8977665d1dc7d29c83f80e62d92044788`) `TaskId` ve `VerificationResultId` için string sözleşmesi kullanır. Tek başına ürün adı/kimliği veya yetki grant'i tanımlamaz.
+- DoneCheck `src/domain/donecheck/human-review.ts` (blob `2b106bf1cde33850ec1b3a130fe9e446857d5e5e`) `HumanReview` içinde `taskId`, `verificationResultId`, `decision`, `reviewerId`, `reviewedAt`, `reason` ve kayıt ID'sini bağlar.
+- Minimum gerekli bağ: EMÜS'in yetkili görev ID'si → aynı `taskId` ile gerçek `VerificationResult` PASS → aynı `verificationResultId`'ye bağlı imzalı `HumanReview` → yetkili reviewer public key/grant → DoneCheck ledger ve Verified Finish receipt. Görev kimliği üretiminden önce mevcut canonical görev ID kaynağı uzlaştırılacaktır.
+- EMÜS adına aktif canonical görev ID, imzalı reviewer grant/receipt ve OSi runtime denkliği bu incelemede doğrulanmadı. `TASK_ID_AUTHORITY=HOLD`, `REVIEWER_GRANT=HOLD`, `OSI_RUNTIME_EQUIVALENCE=HOLD`.
+- Bu belge yalnız sözleşme ve kaynak eşleştirmesidir; gerçek görev yaratımı, imza, runtime kod değişimi, yetki devri veya bağımsız test gerçekleştirildiği iddiası yoktur.
