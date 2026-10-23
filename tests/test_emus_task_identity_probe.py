@@ -69,6 +69,23 @@ class EmusTaskIdentityProbe(unittest.TestCase):
             self.assertEqual(after.state, "ACTIVE")
             self.assertEqual(after.revision, created.revision)
 
+    def test_emus_v3_lock_pin_matches_contract(self):
+        import json
+
+        root = Path(__file__).resolve().parents[1]
+        lock_path = root / "governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_V3_LOCK.json"
+        source_path = root / "governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md"
+        lock = json.loads(lock_path.read_text(encoding="utf-8"))
+        raw = source_path.read_bytes()
+        self.assertEqual(lock["sha256"], hashlib.sha256(raw).hexdigest(), "V3_SOURCE_DRIFT")
+        self.assertEqual(
+            lock["git_blob_sha1"],
+            hashlib.sha1(
+                b"blob " + str(len(raw)).encode("ascii") + b"\\0" + raw
+            ).hexdigest(),
+            "V3_BLOB_DRIFT",
+        )
+
     def test_missing_pinned_runtime_fails_closed(self):
         with mock.patch.dict(
             globals(), {"RUNTIME": ""}, clear=False
