@@ -98,3 +98,13 @@ SHA-256 bütünlüğü doğrulandıktan sonra araç aşağıdaki **JSON beyan al
 Dış müşteri belgelerinin kaynağı PDF ya da farklı yapıdaysa canonical sahibi tarafından yetkili, kanıt dosyasına imzalı ve kaynak byte hashleriyle bağlı JSON projeksiyonu sağlanır. Bu projeksiyonun varlığı gerçek imzanın geçerlilik hükmü değildir; ayrı canonical doğrulayıcı kapısı sürer.
 
 **Karşıt kanıt:** Farklı müşterinin manifesti, başka manifesti gösteren owner beyanı, başka manifesti gösteren E5 raporu ve A05 HOLD iken A06 aday durumunun yükselmesi testlerde güvenli HOLD verir. `tests/test_arge_block01_a05_a06_evidence_intake_v1.py` kapsamı **16 adversarial test**. Kanıt dönüştürme kapsamında kişisel veriler ve özel anahtarlar özel yerel delil alanında korunur.
+
+
+## 6. Tek okumalı dosya bütünlüğü / TOCTOU sınırı
+
+- Kanıt dosyaları POSIX `O_NOFOLLOW` ve dizin dosya tanıtıcıları (`dir_fd`) kullanılarak açılır; son dosya `fstat` ile düzenli dosya olarak doğrulanır. FIFO, sembolik bağlantı ve kapsam dışı yollar güvenli HOLD üretir.
+- Dosya SHA-256 kontrolü ve JSON alan/beyan bağları **aynı bellekte tutulan dosya baytları üzerinden** değerlendirilir. Doğrulama sonrası aynı belgeyi yeniden okuma yolu kaldırılmıştır.
+- Boyut üst sınırı okuma sırasında da uygulanır (25 MiB/artifact). Sağlayıcı imzası ile güven kökü için yetkili Ed25519/issuer değerlendirmesi yine canonical ayrı doğrulayıcıda yapılır.
+- `tests/test_arge_block01_a05_a06_evidence_intake_v1.py` içinde **19 test**; tek-okuma regresyonu, dizin symlink ve FIFO saldırıları dâhildir. Test PASS, gerçek müşteri imzası veya E5 yetkili kabulü anlamına gelmez.
+
+**Kanıt:** PR #207 review-only; exact HEAD `050e56e5beb0dde44a72283858a6063bbd7964ed`, 4/4 GitHub Actions PASS, Labory Final Gate run `40004468046`, ilgili A05–A06 test adımı PASS. `main` ve üretim kaynakları korunur. Resmî A05/A06 HOLD.
