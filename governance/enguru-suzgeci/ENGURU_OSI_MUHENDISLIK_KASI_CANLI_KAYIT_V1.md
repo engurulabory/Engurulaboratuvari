@@ -342,3 +342,12 @@ NEXT_ACTION=...
 
 **Ürün kalıcı sabit hedefi:** `G2_OWNER_SIGNER → G3_SIGNED_HUMAN_REVIEW → G4_DONECHECK_AUDIT → G5_OWNER_MERGE_EXACT_MAIN → G6_VERIFIED_FINISH → BITTI_DUR`. Mühendislik Kası 100/100 tasarım ve PASS izole test sonucu G2-G6'yı otomatik tamamlamaz.
 
+
+### 18. V3.1 — GitHub PR #208 ilk gerçek CI, saha cron ayrımı (23.10.2026)
+
+**Kaynak:** PR #208 açık ve draft; kaynak HEAD `f662ca4c3e0cb9549e70cd508373c60aef024160`. GitHub Actions run `39954860471` `event=pull_request`, `completed/success`, `unit-regression=completed/success`, `Triple simulation of learning + five-minute watcher=success`. Aynı HEAD'de dört ayrı repository CI run'ı da success (`39954860584`, `39954860474`, `39954860464`, `39954860455`). **Hüküm:** `V3_GITHUB_PR_REGRESSION=PASS_EXACT_HEAD`; yalnız PR test iş akışının kanıtıdır. V3 `tools/enguru_mk_acceptance_v3.py` dosyasının gerçek GitHub schedule yolundaki bağımsız çalışması henüz kanıtlanmadı.
+
+**Cron ve checkpoint:** Varsayılan `main=ce526e6da4eed6608640d7a4ab19ffacb839231b`, `workflow blob=977aafb678e55a97510b4167d1e4db2fdac04d4f`, `schedule=*/5 * * * *`. Gerçek GitHub Actions `event=schedule` listesindeki **aynı isimli** Mühendislik Kası run sayısı `0`; dört ardışık gerçek run ve üç aralık `0/4, 0/3`. `learning/MK_WATCH_CHECKPOINT.json` review dalında henüz bulunamadı (404): bootstrap/run checkpoint `HOLD_NOT_OBSERVED`. Diğer workflow'ların schedule koşuları bu sayıya dahil edilmedi. Owner-comment `39948966044` success ayrı kanıt, `39951344341` issue_comment skipped ayrı olay.
+
+**Yetki ayrımı:** `GITHUB_PR_CI=PASS`; `REAL_SCHEDULE=HOLD`; `CHECKPOINT=HOLD`; `MAC_OWNER_SIGNER_DONECHECK=HOLD`. PR #203 açık `63fe22e7c1ce73adf94b0cbdd40924511e8211cd`; PR #206 merged; özel PR #14 açık `29381eb81c60aaac7cc5d90b03a2ec4969639f8a`. Sıradaki gözlem ilk gerçek schedule run ve gerçek checkpoint; GitHub Actions owner tarafından etkinlik durumu ve manuel `workflow_dispatch` ile bootstrap ayrıca kontrol edilebilir. Manuel dispatch sonucu `schedule` kabulüne eşdeğer değildir.
+
