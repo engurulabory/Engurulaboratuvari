@@ -93,3 +93,8 @@ Bu sözleşme ADAY'dır. GH-01 tam kaynak eşleştirmesi, gerçek owner ve bağ�
 ## GH-03 güvenli duruş CI kanıtı — 2026-10-23
 - Commit `e34bd9aedf07f968518458d2b01c82752ced4906`; Final Gate run `39993766974`, job `120551868991`: EMÜS sözdizimi step 9 ve `SOURCE_HOLD` negatif testi step 10, her ikisi `completed/success`.
 - Karar: `SOURCE_MISSING_FAIL_CLOSED=PASS_CI`. Özel runtime görev kimliği entegrasyonu, DoneCheck verifyTask ve resmî owner/reviewer/issuer yetkisi ayrı `HOLD`.
+
+## GH-03 — Kaynak kayması negatif test CI kanıtı (2026-10-23)
+- Commit `a318c3013c6264b5412ed896738fcf447be3c973`; Labory Final Gate run `39994167178`, job `120553255924`: EMÜS sözdizimi step 9, eksik özel runtime güvenli duruş step 10, farklı SHA kaynak yüklemeden duruş step 11; üçü de `completed/success`.
+- Aynı commit'in genel CI koşuları: PARK `39994167063`, IP Model Trust Fleet `39994167246`, IP Model Trust Gate `39994167137` `completed/success`.
+- Kesin hüküm: `EMUS_SOURCE_MISSING_FAIL_CLOSED=PASS_CI`; `EMUS_SOURCE_DRIFT_FAIL_CLOSED=PASS_CI`; `EMUS_REAL_TASK_ID_BINDING=HOLD_TEST`; `EMUS_DONECHECK_VERIFYTASK=HOLD_TEST`; `EMUS_AUTHORITY=HOLD`. Test sonucu emniyet kontrollerine aittir, ürün Verified Finish değildir.
