@@ -290,5 +290,19 @@
   "a04_sbom_independently_verified": 0,
   "a04_customer_cve_applicability_verified": 0,
   "a04_release_sha256_verified": 0,
-  "a04_scope_judgment": "UPSTREAM_LICENSE_PLUS_DEPENDENCY_MANIFEST_PINS_ONLY__CUSTOMER_RELEASE_SBOM_CVE_E5_HOLD"
+  "a04_scope_judgment": "UPSTREAM_LICENSE_PLUS_DEPENDENCY_MANIFEST_PINS_ONLY__CUSTOMER_RELEASE_SBOM_CVE_E5_HOLD",
+  "a04_kasifi_source_reconciliation": {
+    "scope": "AR_KASIFI_DISCOVERY_RESEARCH_DESIGN_CANDIDATE",
+    "design_filename": "ENGURU_KASIFI_V42_40_IS_ESLESTIRME_V1.json",
+    "design_source_version": "V4.2",
+    "design_source_sha256": "047dd97c5816cd73f6c7b82eb2a3a6b18698a779fd9fb30b970ee06a100067a3",
+    "design_status": "PROPOSED_8_CAPABILITIES_REQUIRES_CANONICAL_RECONCILIATION",
+    "prior_candidate_decision": "Kaşif/Kasif/Kashif exact identity unresolved; external candidate profiles are HARVEST_ADAY only",
+    "repo_search_2026_10_23": "No exact kasifi/Kâşifi repository found in scoped engurulabory name search and Engurulaboratuvari code index",
+    "canonical_implementation_repo": "HOLD_NOT_ESTABLISHED",
+    "canonical_implementation_path": "HOLD_NOT_ESTABLISHED",
+    "canonical_source_sha256": "HOLD_NOT_ESTABLISHED",
+    "accepted_authority": "HOLD_OWNER_SOURCE_CONFIRMATION",
+    "effect_on_A04": "HOLD; design capability crosswalk alone is not source provenance or authority"
+  }
 }
