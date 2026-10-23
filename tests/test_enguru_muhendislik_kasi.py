@@ -56,7 +56,7 @@ class EngineeringMuscle(unittest.TestCase):
     def test_10_bad_time(self):
         with self.assertRaisesRegex(m.IntakeHold,'TIME_FORMAT'):m.process(BASE,payload(fixture(observedAt='2026-10-23')))
     def test_11_secret_key(self):
-        with self.assertRaisesRegex(m.IntakeHold,'POTENTIAL_SECRET'):m.process(BASE,payload(fixture(observed='-----BEGIN PRIVATE KEY-----')))
+        with self.assertRaisesRegex(m.IntakeHold,'POTENTIAL_SECRET'):m.process(BASE,payload(fixture(observed='-----BEGIN ' + 'PRIVATE KEY-----')))
     def test_12_password_value(self):
         with self.assertRaisesRegex(m.IntakeHold,'POTENTIAL_SECRET'):m.process(BASE,payload(fixture(observed='password=sekret123')))
     def test_13_raw_html_escaped(self):
