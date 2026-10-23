@@ -19,6 +19,35 @@ PINNED_RELIABILITY_BLOB_SHA1 = "ee0f53e4a1fb899aecd637f059ce840979bb02d4"
 
 
 class EmusTaskIdentityProbe(unittest.TestCase):
+    def test_emus_working_memory_checkpoint_identity_and_authority(self):
+        with tempfile.TemporaryDirectory() as root:
+            memory = PersistentWorkingMemory(root)
+            created = memory.create_task(
+                task_id="emus-ci-task-01",
+                objective="Keep one task identity through a verified checkpoint",
+                authority_snapshot={"mode": "READ_ONLY_PROBE", "human_threshold": ["finish"]},
+                required_capabilities=("verification",),
+            )
+            updated = memory.update_task(
+                created.task_id,
+                expected_revision=created.revision,
+                evidence_refs=("ci:emus-identity",),
+                checkpoint={
+                    "checkpoint_id": "emus-ci-checkpoint-01",
+                    "summary": "Identity persisted",
+                    "next_action": "Require independent review",
+                    "evidence_refs": ["ci:emus-identity"],
+                },
+            )
+            reloaded = PersistentWorkingMemory(root).resume_task(
+                created.task_id, checkpoint_id="emus-ci-checkpoint-01"
+            )
+            self.assertEqual(reloaded.task_id, created.task_id)
+            self.assertEqual(reloaded.revision, updated.revision)
+            self.assertEqual(reloaded.authority_snapshot, created.authority_snapshot)
+            self.assertEqual(reloaded.resume_checkpoint["next_action"], "Require independent review")
+            self.assertIn("ci:emus-identity", reloaded.evidence_refs)
+
     def test_missing_pinned_runtime_fails_closed(self):
         with mock.patch.dict(
             globals(), {"RUNTIME": ""}, clear=False
