@@ -432,3 +432,17 @@ NEXT_ACTION=...
 - **Kaynak:** https://github.com/engurulabory/enguru-mac-engineer/pull/16#issuecomment-6373196149 · SHA-256 `ad3f010be6e470c0aa92d9da5cd0110aaf0e33b853fd29714d7fe09e09313695`.
 - **OSi eşleşme kimliği:** `G2_REAL_MAC_BOOTSTRAP_20261023`.
 - **Karar:** `REVIEW_REQUIRED`; ürün kabul sayacı değişimi `0`; kontroller: SOURCE_REVIEW.
+
+### 21. V3.2.2 — İkinci gerçek GitHub schedule; ölçülen süreklilik farkı (23.10.2026)
+
+**Olay kimliği:** `MK-GITHUB-SCHEDULE-SECOND-40014413518` · **Kanıt:** [GitHub Actions #40014413518](https://github.com/engurulabory/Engurulaboratuvari/actions/runs/40014413518) · [ilk koşu #39982613081](https://github.com/engurulabory/Engurulaboratuvari/actions/runs/39982613081).
+
+**Gerçek GitHub doğrulaması:** `event=schedule`, tam workflow adı `ENGURU OSi Muhendislik Kasi - reviewed evidence intake`, `head_branch=main`, `head_sha=113d8ffd18a6f36c840770f30f38da6d5900aa43` (sorgu anındaki exact current-main). İkinci koşu `2026-10-23T19:49:16Z` (Türkiye 22:49:16) başladı ve `completed/success` ile sonuçlandı; `five-minute-github-observer=completed/success`, iki farklı event koşullu job `skipped`. Önceki aynı workflow gerçek `schedule` koşusu `2026-10-23T15:56:50Z` (Türkiye 18:56:50) idi. **Gerçek ölçülen aralık: 3 saat 52 dakika 26 saniye (13.946 saniye)**. Başka workflow'ların schedule koşuları bu sayaca dahil edilmedi.
+
+**Gerçek job gözlemi:** `ROUND_1=104/104_PASS`, `ROUND_2=104/104_PASS`; observer `PASS_OBSERVATION_ONLY`, `eventsReviewed=4`, `candidateAdded=0`, `macLocalFilesAccessed=0`, `officialAcceptance=UNCHANGED_HOLD`. İş akışının aynı koşu içindeki kendi tetiklenmesini observer'ın görmesi ayrıca doğrulanmış bir şart değildir; GitHub Actions metadata sorgusu bağımsız kaynak olarak esas alındı. Mevcut checkpoint blob `64d4c2b2726405ce25dd06c0f22a5181dbaa11e0` ile gözlendi; ikinci schedule için otomatik öğrenme delta'sı üretilmedi.
+
+**Özgün kabul muhasebesi:** `EXACT_MAIN=PASS`; `SECOND_REAL_SCHEDULE=PASS`; `OBSERVED_SAME_WORKFLOW_SUCCESS=2/4`; `MEASURED_INTER_RUN_INTERVALS=1/3`; `FIVE_MINUTE_CONTINUITY=HOLD_LONG_INTERVAL`; `OWNER_OSI_BLOCK_RESPONSE_NEW=0`; `G3-G6=HOLD`; `VERIFIED_FINISH=HOLD`. İki gözlenen başarı, beş dakikalık güvenilir süreklilik PASS hükmü oluşturmaz. Cron `*/5` hedefi süre garantisi değildir; uzun aralığın kesin kök nedeni `UNKNOWN` olarak korunur.
+
+**İyileştirme ihtiyacı:** Her yeni nöbette yalnız aynı workflow + `event=schedule` + exact current-main + job success koşularını say; dört gerçek ardışık başarı ve üç aralığı ayrı ölç. Uzun aralıkları ve muhtemel atlanan tetikleri görünür tut; GitHub scheduler davranışını kesin nedene dönüştürmek için ayrı bağımsız kanıt bekle. Yeni owner onaylı `TASK_ID+BLOCK_ID` olaylarında unmatched/replay/secret kapıları korunur. Özel PR #14 içerikleri yalnız owner onaylı gizlisiz relay üzerinden işlenir.
+
+**Kayıt statüsü:** `PASS_SECOND_REAL_SCHEDULE_EVIDENCE` · `HOLD_SCHEDULE_CONTINUITY` · `REVIEW_ONLY_LEARNING`. Kaynak PR #203 ve V3 canonical kabul kapıları korunur.
