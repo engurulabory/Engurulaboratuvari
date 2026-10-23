@@ -28,6 +28,9 @@ TAGS = {'<!-- ENGURU_OSI_BLOCK_V1 -->': 'NEW_REQUIREMENT',
         '<!-- ENGURU_OSI_RESPONSE_V1 -->': 'UNEXPECTED'}
 CODE_FENCE = re.compile(r'^\s*```enguru-mk-event\s*\n(\{.*\})\s*\n```\s*$', re.S)
 MAX_COMMENTS = 500
+# Public learning branch stays free of private-repository metadata and comments.
+PRIVATE_SOURCE_HOLD = 'PR14_PRIVATE_SOURCE_REQUIRES_OWNER_APPROVED_RELAY'
+PAIR_ID = re.compile(r'^[A-Z0-9][A-Z0-9_-]{5,70}$')
 
 
 def canon(obj):
@@ -108,6 +111,8 @@ def snapshot(fetch, repo, number, kind):
 
 def event_for_comment(c, repo, number, owner):
     """Conservative parsing: user-owned, explicit tags only, never raw or implicit chat sync."""
+    if repo == 'engurulabory/enguru-mac-engineer':
+        return None  # Public review branch must not copy private source content.
     user = c.get('user') or {}
     if not owner or user.get('login') != owner or user.get('type') == 'Bot':
         return None
@@ -122,7 +127,7 @@ def event_for_comment(c, repo, number, owner):
         except muscle.IntakeHold:
             return None
     for tag, kind in TAGS.items():
-        if body.startswith(tag + '\n'):
+        if body.startswith(tag + '\n') or body.startswith(tag + '\r\n'):
             observed = body[len(tag):].strip()
             if not (2 <= len(observed) <= 3500):
                 return None
@@ -136,6 +141,15 @@ def event_for_comment(c, repo, number, owner):
             except (ValueError, TypeError):
                 return None
             comment_id = int(c['id'])
+            # Exact task and optional block ID allow an OSi request/response pair
+            # to be traced without interpreting any text as a command.
+            lines = observed.splitlines()
+            task_marker = next((line[len('TASK_ID='):] for line in lines if line.startswith('TASK_ID=')), None)
+            block_marker = next((line[len('BLOCK_ID='):] for line in lines if line.startswith('BLOCK_ID=')), None)
+            if task_marker is not None and task_marker != muscle.TASK_ID:
+                return None
+            if block_marker is not None and not PAIR_ID.fullmatch(block_marker):
+                return None
             obj = {
                 'schema': muscle.SCHEMA, 'eventId': f'MK-EVT-OSI-{number}-{comment_id}',
                 'taskId': muscle.TASK_ID, 'observedAt': created,
@@ -147,6 +161,8 @@ def event_for_comment(c, repo, number, owner):
                 'fixProposal': 'OSi kaynak kanıtı ve görev kapsamı bağımsız incelensin',
                 'testState': 'NOT_EXECUTED',
             }
+            if block_marker:
+                obj['correlationId'] = block_marker
             return muscle.parse_event(canon(obj))
     return None
 
@@ -179,6 +195,14 @@ def evaluate(fetch, original, checkpoint, owner, now):
     inaccessible = []
     for repo, number, tag in TARGETS:
         k = key(repo, number)
+        if tag == 'OSIBRIDGE':
+            # Hard boundary: this watcher runs in a PUBLIC repository.
+            # A private PR may only be used via an owner-approved, redacted
+            # relay on PR203 or PR206, not direct private metadata export.
+            inaccessible.append(PRIVATE_SOURCE_HOLD)
+            if k in previous:
+                next_targets[k] = previous[k]
+            continue
         try:
             state = snapshot(fetch, repo, number, tag)
             all_comments = comments(fetch, repo, number)
@@ -191,7 +215,10 @@ def evaluate(fetch, original, checkpoint, owner, now):
             raise
         prev = previous.get(k)
         last_id = max((int(c['id']) for c in all_comments), default=0)
-        next_targets[k] = {'snapshot': state, 'commentMaxId': last_id}
+        known_blocks = list((prev or {}).get('osiBlockIds', []))
+        if not isinstance(known_blocks, list) or any(not isinstance(x, str) or not PAIR_ID.fullmatch(x) for x in known_blocks) or len(known_blocks) > 1000:
+            raise ValueError('HOLD_OSI_PAIR_CHECKPOINT')
+        next_targets[k] = {'snapshot': state, 'commentMaxId': last_id, 'osiBlockIds': known_blocks}
         if prev is None:  # Bootstrap only; do not pretend historical messages just arrived.
             continue
         earlier = prev['snapshot']
@@ -204,6 +231,18 @@ def evaluate(fetch, original, checkpoint, owner, now):
             if int(c['id']) > cursor:
                 e = event_for_comment(c, repo, number, owner)
                 if e is not None:
+                    pair = e.get('correlationId')
+                    if pair:
+                        if e['type'] == 'NEW_REQUIREMENT':
+                            if pair not in known_blocks:
+                                if len(known_blocks) >= 1000:
+                                    raise ValueError('HOLD_OSI_PAIR_CAPACITY')
+                                known_blocks.append(pair)
+                        elif e['type'] == 'UNEXPECTED':
+                            if pair in known_blocks:
+                                e['expected'] += ' / PAIR_MATCHED_REVIEW_ONLY'
+                            else:
+                                e['expected'] += ' / PAIR_MISSING_REVIEW_REQUIRED'
                     events.append(e)
     next_checkpoint = {'schema': SCHEMA, 'targets': next_targets, 'accessHolds': inaccessible}
     record, outcomes = original, []
