@@ -1,0 +1,44 @@
+name: ENGURU Management V6.9 block plan contract
+
+on:
+  pull_request:
+    paths:
+      - 'governance/management-v69/blocks/**'
+      - '.github/workflows/enguru-management-v69-blocks.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  plan-isolated-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check pinned ENGURU universal V3 source SHA256
+        run: |
+          python - <<'PY'
+          import json,hashlib,pathlib
+          b=pathlib.Path('governance/enguru-suzgeci')
+          lock=json.loads((b/'ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_V3_LOCK.json').read_text())
+          got=hashlib.sha256((b/'ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md').read_bytes()).hexdigest()
+          assert got==lock['sha256']=='11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc'
+          print('STATE=PASS_CANONICAL_V3_PIN')
+          PY
+      - name: Validate G1-G6 source and B00-B03 integration
+        run: python governance/management-v69/blocks/verify_blocks.py --check
+      - name: Two independent adversarial simulations
+        run: python governance/management-v69/blocks/simulate_blocks.py
+      - name: Technical PASS and final official HOLD stay separate
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open('governance/management-v69/blocks/simulation_receipt.json'))
+          assert r['rubric']['score']==100
+          assert all(a['state']=='PASS_ISOLATED' and a['distinct_cases']>=60 for a in r['final_independent_rounds'])
+          assert r['official_verified_finish'].startswith('HOLD_')
+          print('PASS_PLAN_SIMULATION_ONLY; OWNER_ACCEPTANCE=HOLD')
+          PY
