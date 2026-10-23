@@ -79,7 +79,7 @@ class MailDelivery(Protocol):
 class IdempotencyStore(Protocol):
     # Production implementations must reserve/commit atomically and durably.
     def get(self, key: str) -> Optional[BillingResult | BillingPending]: ...
-    def reserve(self, key: str, request_sha256: str) -> BillingResult | BillingPending: ...
+    def reserve(self, key: str, request_sha256: str) -> BillingResult | BillingPending | None: ...
     def commit(self, key: str, value: BillingResult) -> None: ...
 
 
@@ -104,13 +104,15 @@ class BillingCore:
             if existing.request_sha256 != request_sha256:
                 raise BillingError("Idempotency key is reserved for another request")
             raise BillingError("Invoice outcome pending provider reconciliation")
-        if not isinstance(existing, BillingResult):
+        if isinstance(existing, BillingResult):
+            if existing.evidence.get("request_sha256") != request_sha256:
+                raise BillingError("Idempotency key is bound to another request or unverified legacy record")
+            if existing.state == "PASS":
+                return existing
+            raise BillingError("Prior billing state requires authorized reconciliation")
+        if existing is not None:
             raise BillingError("Unknown idempotency state requires reconciliation")
-        if existing.evidence.get("request_sha256") != request_sha256:
-            raise BillingError("Idempotency key is bound to another request or unverified legacy record")
-        if existing.state == "PASS":
-            return existing
-        raise BillingError("Prior billing state requires authorized reconciliation")
+        # None is exclusively returned when the store creates a new reservation.
 
         is_taxpayer = self.registry.is_einvoice_taxpayer(request.tax_identifier)
         if is_taxpayer:
@@ -223,6 +225,7 @@ class MemoryIdempotencyStore:
         with self._lock:
             if key not in self._items:
                 self._items[key] = BillingPending(request_sha256)
+                return None
             return self._items[key]
 
     def commit(self, key, value):
