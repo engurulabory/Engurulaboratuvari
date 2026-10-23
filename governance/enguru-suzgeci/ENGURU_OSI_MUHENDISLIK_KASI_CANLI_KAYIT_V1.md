@@ -1,8 +1,8 @@
 # ENGÜRÜ OSi × ChatGPT — Mühendislik Kası™
-## Yaşayan Hakikat, Fark, Hata ve Önleyici Kontrol Kaydı · V2.0
+## Yaşayan Hakikat, Fark, Hata ve Önleyici Kontrol Kaydı · V2.1
 
 **Kayıt tarihi:** 2026-10-23  
-**Son revizyon:** V2.0 · 2026-10-23 · olay-güdümlü öğrenme adaptörü / 3x kontrat simülasyonu / taslak PR #206  
+**Son revizyon:** V2.1 · 2026-10-23 · gerçek GitHub güvenlik kapısı geri bildirimi ve gerçek ölçülen simülasyon rubriği  
 **Durum:** `ACTIVE_LEARNING_RECORD / OFFICIAL_PRODUCT_FINISH_HOLD`  
 **Kapsam:** ENGÜRÜ Yönetim V6.9 / PR #203 gerçek GitHub ve Mac OSi çalışması. ENGÜRÜ Süzgeci™ v2.4'ün sekiz aşamasının içinde çalışan **yardımcı öğrenme kaydıdır**; yeni çekirdek, yeni karar otoritesi veya ayrı ürün değildir.  
 **Kaynak yönetimi:** Bu belge ayrı GitHub **inceleme dalında** sürümlenir; `main` üzerindeki V3, kaynak kilitleri, mevcut PR #203 ve Mac OSi canonical kayıtları korunur.  
@@ -239,3 +239,16 @@ NEXT_ACTION=...
 **Mühendislik kası ayrı puan disiplini:** `THEORETICAL_DESIGN=100/100`, `ISOLATED_TESTS=90/90_PASS`, `PRODUCTION_AUTOMATION=HOLD_NOT_ACTIVATED`, `MAC_OSI_END_TO_END=HOLD`, `13/13 ÜRÜNE ENTEGRE KONTROL=0`, `G1=PASS_TECHNICAL_ONLY; G2..G6=HOLD`. Önceki V1.3 `65/100` **gerçek ürün ve olgunluk puanı** eski ölçüm bazında saklanır; bu puan teorik 100'e dönüştürülmüş sayılmaz.
 
 **Kalıcı sabit sonraki gerçek ürün işi:** Önce bu yardımcı otomatik öğrenme adaptörü owner incelemesi ile aktive edilir. Ardından Mac OSi `donecheck_v12_bridge.py` mevcut güven köküyle Ed25519 harici tasdik adaptasyonu gerçek kaynakta uygulanıp sınanır. Gerçek Mac owner private-key kontrolü ve task/result grant PASS sonrası sıralama: `HumanReview.accepted -> DoneCheck recordVerifiedFinish -> audit ledger -> yetkili PR #203 merge -> exact-main -> Verified Finish -> BITTI_DUR`. OSi private key ve parola yalnız Mac yerel güvenlik alanında kalır.
+### 13. V2.1 — Gerçek GitHub CI'den otomatik öğrenmeye dönen karşıt kanıt
+
+**Gözlem 1 / MK-21 · DOĞRULANDI:** PR #206'da `b548aabf262d745b9301263b96f6eeaef36f3adb` commit'inin gerçek [IP Model Trust Fleet run 39942920445](https://github.com/engurulabory/Engurulaboratuvari/actions/runs/39942920445) kontrolü `secret_zero_violation` ile FAIL verdi. Kök neden: `tests/test_enguru_muhendislik_kasi.py` test fixture'ında özel anahtar PEM başlığı tek parça düz metindi; depodaki mevcut güvenlik tarayıcısı bunun karşısında fail-closed yaptı. Gizli anahtarın kendisi saklanmadı. Onarım: fixture başlığı yalnız **test çalışma anında iki sabit parçadan birleştirildi**, negatif test semantiği aynı kaldı. `ecd21755365fb1142bad947761dfde87fb7e485d` HEAD üzerinde [IP Model Trust Fleet 39943116053](https://github.com/engurulabory/Engurulaboratuvari/actions/runs/39943116053) ve Labory Final Gate, IP Model Trust Gate, PARK Adapter, Mühendislik Kası workflow'u **5/5 PASS** doğrulandı. Yeni koruma `KM-14-TEST-FIXTURE-SECRET-SCAN`: güvenlik regresyon fixture'ı tarama politikasını bozmadan testte gerçek şablon biçimini üretmeli ve bütün repo güvenlik CI sonucu izlenmeli.
+
+**Gözlem 2 / MK-22 · DOĞRULANDI:** V2 ilk simülasyonundaki 10 kabul rubriği değerinin tamamı kaynak davranışından **dinamik hesaplanan ölçüm yerine sabit `true`** olarak atanmıştı. Bu, teorik 100/100 skorunun güven değerini zayıflatır. Uygulanan fark: `tools/enguru_muhendislik_kasi_simulation_3x.py` içindeki 10 kontrolü test adları, üç tur 30/30 başarı, kaynak alanları, kısıtlanmış otomatik GitHub branch push ve owner guard işaretleri üzerinden hesaplayan ölçümle değiştirdik. Yeni `MK_V2_VERIFIED_SIMULATION_RECEIPT.json` gerçek üç turu ve ölçümleri taşır. Yine de bu statik işaret+izole test kontrolüdür; **gerçek sahada 100/100 üretim kabulü olduğu iddiası oluşturmaz.**
+
+**Otomatik giriş ispatı:** `MK-EVT-ENGINE-V2-20261023` gerçek yerel simülasyon receipt SHA'sını dosya baytlarıyla doğrulayarak V2.0 dosyasına tek aday olarak eklendi; ürünün yetki sayacı sıfır değişti. Olayın önce kısa yerel rapor yolu kullanması, gerçek kalıcı GitHub receipt yoluna düzeltilerek olay tekrar üretildi. Düzeltme, önceki canonical güven kayıtlarını ve ilk simülasyon makbuzu SHA'sını korur.
+
+**En güncel sayım:** `MK-01..MK-22 = 22` kuratörlü olay, `MK-EVT-ENGINE-V2-20261023 = 1` ayrı makineli intake adayı; `KM-01..KM-14 = 14` tasarlanmış kontrol; `0/14` tamamı ürün/gerçek Mac saha entegrasyonu kanıtlı kontrol. `THEORETICAL_MODEL=100/100`, `ISOLATED_TEST=90/90_PASS`, `GITHUB_REGRESSION_5_5_PASS_AT_HEAD=ecd21755365fb1142bad947761dfde87fb7e485d`, `GITHUB_AUTOMATIC_OWNER_EVENT_WRITE=NOT_YET_ACTIVATED`, `MAC_OSI_SIGNER=HOLD`.
+
+**Sürekli ajan/ChatGPT nöbeti:** Ayrı zamanlanmış koşul izlemesi talep doğrultusunda saatte bir açık GitHub PR/CI değişikliklerini denetlemek üzere açıldı. Gerçekten yeni kanıt geldiğinde aynı dosyada deltalı güncelleme amaçlanır; bağlayıcı kabul, özel anahtar, resmî ledger ve merge koruma altındadır. GitHub yorum-tetiklemeli Actions yazımı, iş akışı `main` üzerinde owner yetkisiyle etkinleşince ve `ENGURU_MK_OWNER_LOGIN` ayarlanınca çalışır. Mac OSi'nin dosya sistemi bu bulut otomasyonunun kendiliğinden eriştiği alan değildir.
+
+**Tek takip eden ürün hedefi:** `G2 OWNER_SIGNER + SCOPED_GRANT -> G3 DETACHED_ED25519_BRIDGE -> G4 DONECHECK_LEDGER -> G5 OWNER_MERGE_EXACT_MAIN -> G6 VERIFIED_FINISH`. Teknik G1 kanıtı korunur; owner anahtarı ve Mac yetkisi ChatGPT'ye aktarılan veri değildir.
