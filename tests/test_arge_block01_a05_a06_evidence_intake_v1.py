@@ -32,13 +32,13 @@ class A05A06EvidenceIntake(unittest.TestCase):
         for item in self.catalog["cases"]:
             cid=item["case_id"]
             manifests=pinned(self.root, cid+"/deployed.json",
-                             json.dumps({"deployment":cid}).encode())
+                             json.dumps({"case_id":cid,"customer":item["customer"],"technology":item["technology"],"release":"test-only","edition":"unknown-test","source_commit":"a"*40}).encode())
             sbom=pinned(self.root, cid+"/sbom.json",
                         json.dumps({"bomFormat":"CycloneDX","specVersion":"1.5","components":[]}).encode())
-            owner=pinned(self.root, cid+"/owner.json",json.dumps({"owner":cid}).encode())
+            owner=pinned(self.root, cid+"/owner.json",json.dumps({"case_id":cid,"customer":item["customer"],"owner_id":"test-owner-"+cid,"manifest_sha256":manifests[1]}).encode())
             owner_sig=pinned(self.root, cid+"/owner.sig",b"unsigned-test-owner-"+cid.encode())
-            report=pinned(self.root, cid+"/e5-report.json",json.dumps({"independent_observation":cid}).encode())
-            e5=pinned(self.root, cid+"/e5.json",json.dumps({"observer":cid}).encode())
+            report=pinned(self.root, cid+"/e5-report.json",json.dumps({"case_id":cid,"customer":item["customer"],"technology":item["technology"],"observed_manifest_sha256":manifests[1],"verifier_identity":"test-external-reviewer-"+cid}).encode())
+            e5=pinned(self.root, cid+"/e5.json",json.dumps({"case_id":cid,"report_sha256":report[1],"verifier_identity":"test-external-reviewer-"+cid}).encode())
             e5_sig=pinned(self.root, cid+"/e5.sig",b"unsigned-test-e5-"+cid.encode())
             self.packet["cases"].append({
                 "case_id":cid,"customer":item["customer"],"technology":item["technology"],
@@ -131,6 +131,48 @@ class A05A06EvidenceIntake(unittest.TestCase):
         symlink.symlink_to(outside)
         self.assertEqual(file_pin(self.root,"01/linked.txt",hashlib.sha256(data).hexdigest()),"HOLD_SYMLINK")
         self.assertEqual(file_pin(self.root,"../other-file.txt",hashlib.sha256(data).hexdigest()),"HOLD_FILE_PATH_SCOPE")
+
+    def test_rehashed_manifest_for_wrong_customer_is_rejected(self):
+        # File checksum is correct after manipulation; semantic case identity differs.
+        p=copy.deepcopy(self.packet)
+        manifest=self.root/p["cases"][0]["deployment"]["deployed_manifest"]
+        document=json.loads(manifest.read_text(encoding="utf-8"))
+        document["customer"]="Another Customer"
+        manifest.write_text(json.dumps(document),encoding="utf-8")
+        p["cases"][0]["deployment"]["manifest_sha256"]=hashlib.sha256(manifest.read_bytes()).hexdigest()
+        self.assertEqual(audit_packet(self.catalog,p,self.root)["cases"][0]["a05"],
+                         "HOLD_DEPLOYMENT_DOCUMENT_BINDING")
+
+    def test_owner_assertion_cannot_bind_another_deployment(self):
+        p=copy.deepcopy(self.packet)
+        owner=self.root/p["cases"][0]["deployment"]["customer_assertion"]
+        document=json.loads(owner.read_text(encoding="utf-8"))
+        document["manifest_sha256"]="b"*64
+        owner.write_text(json.dumps(document),encoding="utf-8")
+        p["cases"][0]["deployment"]["customer_assertion_sha256"]=hashlib.sha256(owner.read_bytes()).hexdigest()
+        self.assertEqual(audit_packet(self.catalog,p,self.root)["cases"][0]["a05"],
+                         "HOLD_DEPLOYMENT_DOCUMENT_BINDING")
+
+    def test_e5_report_rehashed_but_points_to_another_manifest(self):
+        p=copy.deepcopy(self.packet)
+        report=self.root/p["cases"][0]["e5"]["report"]
+        document=json.loads(report.read_text(encoding="utf-8"))
+        document["observed_manifest_sha256"]="c"*64
+        report.write_text(json.dumps(document),encoding="utf-8")
+        p["cases"][0]["e5"]["report_sha256"]=hashlib.sha256(report.read_bytes()).hexdigest()
+        self.assertEqual(audit_packet(self.catalog,p,self.root)["cases"][0]["a06"],
+                         "HOLD_E5_DOCUMENT_BINDING")
+
+    def test_e5_cannot_advance_when_a05_evidence_is_unbound(self):
+        p=copy.deepcopy(self.packet)
+        owner=self.root/p["cases"][0]["deployment"]["customer_assertion"]
+        document=json.loads(owner.read_text(encoding="utf-8"))
+        document["owner_id"]="DIFFERENT OWNER"
+        owner.write_text(json.dumps(document),encoding="utf-8")
+        p["cases"][0]["deployment"]["customer_assertion_sha256"]=hashlib.sha256(owner.read_bytes()).hexdigest()
+        r=audit_packet(self.catalog,p,self.root)["cases"][0]
+        self.assertEqual(r["a05"],"HOLD_DEPLOYMENT_DOCUMENT_BINDING")
+        self.assertEqual(r["a06"],"HOLD_DEPLOYMENT_EVIDENCE_DEPENDENCY")
 
     def test_catalog_sha_tamper_holds(self):
         catalog=copy.deepcopy(self.catalog)
