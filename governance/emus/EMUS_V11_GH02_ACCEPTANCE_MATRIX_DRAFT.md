@@ -83,3 +83,9 @@ Bu sözleşme ADAY'dır. GH-01 tam kaynak eşleştirmesi, gerçek owner ve bağ�
 - Commit `92daa4e538b3fa31e0f59a52cd18647dd1df202d`, GitHub `ENGURU Labory Final Gate` run `39991208795`, job `120543122620`: `EMUS task identity probe syntax (integration execution remains gated)` adımı GitHub API üzerinden `completed/success` doğrulandı.
 - Aynı commit'te PARK Adapter CI `39991208529`, IP Model Trust Fleet `39991208536`, IP Model Trust Gate `39991208553` completed/success. Kapsam yalnız ilgili workflow adımlarıdır.
 - Karar `EMUS_TEST_SYNTAX_CI=PASS`; `EMUS_TASK_ID_INTEGRATION=HOLD_TEST`; `EMUS_AUTHORITY=HOLD`. Başarılı sözdizimi adımı gerçek özel runtime entegrasyon testi değildir.
+
+## 2026-10-23 — Güncel CI ve DoneCheck verifyTask giriş sınırı
+- Commit `21db054067be4d3df38382e3bfd96a2bd9ab4ace`: ENGURU Labory Final Gate run `39991715950`, job `120544847391`, EMUS sözdizimi adımı `completed/success`. Aynı commit PARK Adapter `39991715667`, IP Model Trust Fleet `39991715710`, IP Model Trust Gate `39991715741` `completed/success`.
+- DoneCheck `src/domain/donecheck/verification-engine.ts` blob `e7c8d97f8adaec07742e1f9cd1c9e9fc026cc73e` `verifyTask` girdileri: `task`, `criteria`, `aiOutput`, `evidence`, `resultId`, `verifiedAt`, opsiyonel `policy`. Kaynakta `trustedProducerIds` allowlist'inin kriptografik kimlik doğrulaması olmadığı açıkça belirtilir.
+- Mevcut Python EMUS probe `DoneCheck TaskId` için string eşitliği kontrol eder; TypeScript `verifyTask` çağırmaz. Doğru sonraki fark, iki ürünün source-pinned ortamında gerçek `verifyTask` fixture çalıştırılması ve sonuç/evidence kimliklerini karşılaştırmaktır; reviewer imzası ve issuer/owner yetkisi ayrı HOLD.
+- Hüküm: `EMUS_SYNTAX_CI=PASS`, `EMUS_VERIFYTASK_EXECUTION=HOLD_TEST`, `EMUS_OWNER_REVIEWER_ISSUER=HOLD`, `GH01/GH02/GH03=PARTIAL`, `GH04/OSI_READY=HOLD`.
