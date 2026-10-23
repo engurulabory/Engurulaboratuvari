@@ -9,6 +9,7 @@ import importlib.util
 import os
 import tempfile
 import unittest
+from unittest import mock
 from pathlib import Path
 
 from shared_ai.working_memory import PersistentWorkingMemory
@@ -18,6 +19,13 @@ PINNED_RELIABILITY_BLOB_SHA1 = "ee0f53e4a1fb899aecd637f059ce840979bb02d4"
 
 
 class EmusTaskIdentityProbe(unittest.TestCase):
+    def test_missing_pinned_runtime_fails_closed(self):
+        with mock.patch.dict(
+            globals(), {"RUNTIME": ""}, clear=False
+        ):
+            with self.assertRaisesRegex(AssertionError, "SOURCE_HOLD"):
+                self.test_task_id_survives_two_stores_and_restart()
+
     def test_task_id_survives_two_stores_and_restart(self):
         if not RUNTIME or not (Path(RUNTIME) / "reliability.py").is_file():
             self.fail("SOURCE_HOLD: pinned Mac Engineer runtime path required")
