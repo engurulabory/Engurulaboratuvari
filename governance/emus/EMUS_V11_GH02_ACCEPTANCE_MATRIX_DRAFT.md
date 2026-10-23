@@ -109,3 +109,9 @@ Bu sözleşme ADAY'dır. GH-01 tam kaynak eşleştirmesi, gerçek owner ve bağ�
 - Commit `6b8007928551a93ef2325ec22eddb0e11fa417ec`; Final Gate run `40000254150`, job `120574187904`, EMÜS step 9 (syntax), step 10 (SOURCE_HOLD), step 11 (SOURCE_DRIFT + loader never called): üçü `completed/success`.
 - Aynı commit PARK `40000254047`, IP Model Trust Fleet `40000253991`, IP Model Trust Gate `40000254356` completed/success.
 - `GH03_NEGATIVE_GUARDS=PASS_CI`; gerçek özel Mac Engineer runtime ile `test_task_id_survives_two_stores_and_restart` bu CI'da çalıştırılmadı. `EMUS_TASK_ID_INTEGRATION=HOLD_TEST`, `DONECHECK_VERIFYTASK=HOLD_TEST`, `GH04=HOLD`. 19 ana işin kabul sayacı kanıtlı bağımsız tamamlanma kararı olmadan yükseltilmez.
+
+## 2026-10-23 — Gerçek P1→DoneCheck verifyTask birleşik CI kanıtı
+- Özel Mac Engineer PR #17 commit `72856598e97f3d8c76aaa5b3ecbccd9376f07e6b`: GitHub Product CI run `40008569258`, job `120602706459`, `completed/success`.
+- Aynı job içinde pinned Labory checkout, gerçek iki-depo TaskId/checkpoint/restart testi, pinned DoneCheck checkout, gerçek P1 artifact'iyle `verifyTask` testi ve artifact yayın adımları `success`.
+- Artifact: `emus-p1-task-identity`, artifact ID `12525586560`, `expired=false` (sınırlı saklama süresi); DoneCheck testinde PASS/FAIL/inconclusive karşıt sınamalar çalışır.
+- Kesin kapsam: `P1_REAL_TWO_STORE_CI=PASS`; `P1_TO_DONECHECK_VERIFYTASK_TEST=PASS_CI`. Bunlar test verisiyle makine doğrulamasıdır; yetkili human review/owner/issuer/ledger ve GH-04 resmî kabul `HOLD`.
