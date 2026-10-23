@@ -8,6 +8,13 @@ from cores.billing.invoice_record import InvoiceRecord
 from cores.billing.persistent_store import JsonFileEvidenceStore
 
 
+
+
+class SyntheticVerifier:
+    """Test double only; real canonical issuer signature verification is HOLD."""
+    def authorize(self, *, subject, tenant_id, resource_id, action, grant):
+        return subject == "test-subject" and grant == "TEST_ONLY" and tenant_id == "tenant-a"
+
 class PersistentStoreTests(unittest.TestCase):
     def make_record(self, order_id="o1", document_id="d1"):
         return InvoiceRecord(
@@ -22,13 +29,14 @@ class PersistentStoreTests(unittest.TestCase):
             provider_status="DELIVERED",
             customer_delivery_id="m1",
             accounting_delivery_id="a1",
+            tenant_id="tenant-a",
         )
 
     def test_round_trip(self):
         with tempfile.TemporaryDirectory() as tmp:
-            store = JsonFileEvidenceStore(Path(tmp) / "billing.json")
-            store.add(self.make_record())
-            rows = store.between(datetime(2026, 9, 1), datetime(2026, 10, 1))
+            store = JsonFileEvidenceStore(Path(tmp) / "billing.json", grant_verifier=SyntheticVerifier())
+            store.add(self.make_record(), subject='test-subject', grant='TEST_ONLY')
+            rows = store.between(datetime(2026, 9, 1), datetime(2026, 10, 1), subject="test-subject", tenant_id="tenant-a", grant="TEST_ONLY")
             self.assertEqual(len(rows), 1)
             self.assertEqual(rows[0].order_id, "o1")
 
@@ -37,7 +45,7 @@ class PersistentStoreTests(unittest.TestCase):
             store = JsonFileEvidenceStore(Path(tmp) / "billing.json")
             store.add(self.make_record())
             with self.assertRaises(ValueError):
-                store.add(self.make_record(document_id="d2"))
+                store.add(self.make_record(document_id="d2"), subject="test-subject", grant="TEST_ONLY")
 
 
 if __name__ == "__main__":
