@@ -37,6 +37,16 @@
         "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
         "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
         "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      },
+      "a04_upstream": {
+        "technology_source_ref": "ENGURU_ARGE_BLOCK01_PUBLIC_SOURCES_V427.json",
+        "observed_upstream_scope": "LICENSE_AND_DEPENDENCY_MANIFEST_2_EDITION_TERMS",
+        "customer_exact_installed_release": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_edition": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_source_sha256": "HOLD_SOURCE_PIN_UNAVAILABLE",
+        "customer_sbom_cyclonedx_or_spdx": "HOLD_CUSTOMER_SBOM_UNAVAILABLE",
+        "customer_cve_exposure_assessment": "HOLD_REQUIRES_INSTALLED_VERSION_AND_DEPENDENCIES",
+        "independent_e5_attestation": "HOLD"
       }
     },
     {
@@ -65,6 +75,16 @@
         "publication_date": "2024-02-01",
         "reviewed_source_role": "MEDUSA_VENDOR_WITH_NAMED_CUSTOMER_QUOTES",
         "verification_note": "Medusa's dated story names Matt Sleeps and its implementation partner Webbers; customer deployment release pin unestablished."
+      },
+      "a04_upstream": {
+        "technology_source_ref": "ENGURU_ARGE_BLOCK01_PUBLIC_SOURCES_V427.json",
+        "observed_upstream_scope": "LICENSE_AND_DEPENDENCY_MANIFEST_2_EDITION_TERMS",
+        "customer_exact_installed_release": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_edition": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_source_sha256": "HOLD_SOURCE_PIN_UNAVAILABLE",
+        "customer_sbom_cyclonedx_or_spdx": "HOLD_CUSTOMER_SBOM_UNAVAILABLE",
+        "customer_cve_exposure_assessment": "HOLD_REQUIRES_INSTALLED_VERSION_AND_DEPENDENCIES",
+        "independent_e5_attestation": "HOLD"
       }
     },
     {
@@ -90,6 +110,16 @@
         "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
         "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
         "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      },
+      "a04_upstream": {
+        "technology_source_ref": "ENGURU_ARGE_BLOCK01_PUBLIC_SOURCES_V427.json",
+        "observed_upstream_scope": "LICENSE_AND_DEPENDENCY_MANIFEST",
+        "customer_exact_installed_release": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_edition": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_source_sha256": "HOLD_SOURCE_PIN_UNAVAILABLE",
+        "customer_sbom_cyclonedx_or_spdx": "HOLD_CUSTOMER_SBOM_UNAVAILABLE",
+        "customer_cve_exposure_assessment": "HOLD_REQUIRES_INSTALLED_VERSION_AND_DEPENDENCIES",
+        "independent_e5_attestation": "HOLD"
       }
     },
     {
@@ -115,6 +145,16 @@
         "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
         "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
         "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      },
+      "a04_upstream": {
+        "technology_source_ref": "ENGURU_ARGE_BLOCK01_PUBLIC_SOURCES_V427.json",
+        "observed_upstream_scope": "LICENSE_AND_DEPENDENCY_MANIFEST_ROOT_MONOREPO",
+        "customer_exact_installed_release": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_edition": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_source_sha256": "HOLD_SOURCE_PIN_UNAVAILABLE",
+        "customer_sbom_cyclonedx_or_spdx": "HOLD_CUSTOMER_SBOM_UNAVAILABLE",
+        "customer_cve_exposure_assessment": "HOLD_REQUIRES_INSTALLED_VERSION_AND_DEPENDENCIES",
+        "independent_e5_attestation": "HOLD"
       }
     },
     {
@@ -140,6 +180,16 @@
         "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
         "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
         "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      },
+      "a04_upstream": {
+        "technology_source_ref": "ENGURU_ARGE_BLOCK01_PUBLIC_SOURCES_V427.json",
+        "observed_upstream_scope": "LICENSE_AND_DEPENDENCY_MANIFEST_ROOT_MONOREPO",
+        "customer_exact_installed_release": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_edition": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_source_sha256": "HOLD_SOURCE_PIN_UNAVAILABLE",
+        "customer_sbom_cyclonedx_or_spdx": "HOLD_CUSTOMER_SBOM_UNAVAILABLE",
+        "customer_cve_exposure_assessment": "HOLD_REQUIRES_INSTALLED_VERSION_AND_DEPENDENCIES",
+        "independent_e5_attestation": "HOLD"
       }
     },
     {
@@ -165,6 +215,16 @@
         "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
         "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
         "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      },
+      "a04_upstream": {
+        "technology_source_ref": "ENGURU_ARGE_BLOCK01_PUBLIC_SOURCES_V427.json",
+        "observed_upstream_scope": "LICENSE_AND_DEPENDENCY_MANIFEST_2_EDITION_TERMS",
+        "customer_exact_installed_release": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_edition": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_source_sha256": "HOLD_SOURCE_PIN_UNAVAILABLE",
+        "customer_sbom_cyclonedx_or_spdx": "HOLD_CUSTOMER_SBOM_UNAVAILABLE",
+        "customer_cve_exposure_assessment": "HOLD_REQUIRES_INSTALLED_VERSION_AND_DEPENDENCIES",
+        "independent_e5_attestation": "HOLD"
       }
     },
     {
@@ -193,6 +253,16 @@
         "reviewed_source_role": "HISTORICAL_VENDOR_CLAIM_CONFLICTED_BY_RESTATE",
         "verification_note": "Restate explicitly reports that Replit switched from Temporal to Restate; current Temporal adoption remains HOLD.",
         "newer_contrary_source": "https://restate.dev/use-cases/replit"
+      },
+      "a04_upstream": {
+        "technology_source_ref": "ENGURU_ARGE_BLOCK01_PUBLIC_SOURCES_V427.json",
+        "observed_upstream_scope": "LICENSE_AND_GO_SUM_SERVER_NOT_CLOUD",
+        "customer_exact_installed_release": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_edition": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_source_sha256": "HOLD_SOURCE_PIN_UNAVAILABLE",
+        "customer_sbom_cyclonedx_or_spdx": "HOLD_CUSTOMER_SBOM_UNAVAILABLE",
+        "customer_cve_exposure_assessment": "HOLD_REQUIRES_INSTALLED_VERSION_AND_DEPENDENCIES",
+        "independent_e5_attestation": "HOLD"
       }
     },
     {
@@ -220,6 +290,16 @@
         "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED",
         "reviewed_source_role": "AUTH0_OPENFGA_PRODUCT_LINEAGE_ONLY",
         "verification_note": "Auth0 documentation states Auth0 FGA is based on OpenFGA; a distinct external deployment is not demonstrated."
+      },
+      "a04_upstream": {
+        "technology_source_ref": "ENGURU_ARGE_BLOCK01_PUBLIC_SOURCES_V427.json",
+        "observed_upstream_scope": "LICENSE_AND_GO_SUM_SELF_HOSTED_NOT_AUTH0",
+        "customer_exact_installed_release": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_edition": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_source_sha256": "HOLD_SOURCE_PIN_UNAVAILABLE",
+        "customer_sbom_cyclonedx_or_spdx": "HOLD_CUSTOMER_SBOM_UNAVAILABLE",
+        "customer_cve_exposure_assessment": "HOLD_REQUIRES_INSTALLED_VERSION_AND_DEPENDENCIES",
+        "independent_e5_attestation": "HOLD"
       }
     },
     {
@@ -245,6 +325,16 @@
         "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
         "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
         "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      },
+      "a04_upstream": {
+        "technology_source_ref": "ENGURU_ARGE_BLOCK01_PUBLIC_SOURCES_V427.json",
+        "observed_upstream_scope": "LICENSE_AND_GO_SUM_SELF_HOSTED_NOT_AUTH0",
+        "customer_exact_installed_release": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_edition": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_source_sha256": "HOLD_SOURCE_PIN_UNAVAILABLE",
+        "customer_sbom_cyclonedx_or_spdx": "HOLD_CUSTOMER_SBOM_UNAVAILABLE",
+        "customer_cve_exposure_assessment": "HOLD_REQUIRES_INSTALLED_VERSION_AND_DEPENDENCIES",
+        "independent_e5_attestation": "HOLD"
       }
     },
     {
@@ -270,6 +360,16 @@
         "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
         "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
         "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      },
+      "a04_upstream": {
+        "technology_source_ref": "ENGURU_ARGE_BLOCK01_PUBLIC_SOURCES_V427.json",
+        "observed_upstream_scope": "LICENSE_AND_DEPENDENCY_MANIFEST_ROOT_MONOREPO",
+        "customer_exact_installed_release": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_edition": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_source_sha256": "HOLD_SOURCE_PIN_UNAVAILABLE",
+        "customer_sbom_cyclonedx_or_spdx": "HOLD_CUSTOMER_SBOM_UNAVAILABLE",
+        "customer_cve_exposure_assessment": "HOLD_REQUIRES_INSTALLED_VERSION_AND_DEPENDENCIES",
+        "independent_e5_attestation": "HOLD"
       }
     },
     {
@@ -295,6 +395,16 @@
         "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
         "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
         "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      },
+      "a04_upstream": {
+        "technology_source_ref": "ENGURU_ARGE_BLOCK01_PUBLIC_SOURCES_V427.json",
+        "observed_upstream_scope": "LICENSE_AND_GO_SUM_SELF_HOSTED_NOT_AUTH0",
+        "customer_exact_installed_release": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_edition": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_source_sha256": "HOLD_SOURCE_PIN_UNAVAILABLE",
+        "customer_sbom_cyclonedx_or_spdx": "HOLD_CUSTOMER_SBOM_UNAVAILABLE",
+        "customer_cve_exposure_assessment": "HOLD_REQUIRES_INSTALLED_VERSION_AND_DEPENDENCIES",
+        "independent_e5_attestation": "HOLD"
       }
     },
     {
@@ -320,6 +430,16 @@
         "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
         "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
         "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      },
+      "a04_upstream": {
+        "technology_source_ref": "ENGURU_ARGE_BLOCK01_PUBLIC_SOURCES_V427.json",
+        "observed_upstream_scope": "LICENSE_AND_GO_SUM_SERVER_NOT_CLOUD",
+        "customer_exact_installed_release": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_edition": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_source_sha256": "HOLD_SOURCE_PIN_UNAVAILABLE",
+        "customer_sbom_cyclonedx_or_spdx": "HOLD_CUSTOMER_SBOM_UNAVAILABLE",
+        "customer_cve_exposure_assessment": "HOLD_REQUIRES_INSTALLED_VERSION_AND_DEPENDENCIES",
+        "independent_e5_attestation": "HOLD"
       }
     },
     {
@@ -345,6 +465,16 @@
         "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
         "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
         "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      },
+      "a04_upstream": {
+        "technology_source_ref": "ENGURU_ARGE_BLOCK01_PUBLIC_SOURCES_V427.json",
+        "observed_upstream_scope": "LICENSE_AND_PACKAGE_MANIFEST_NOT_DEPENDENCY_LOCKFILE",
+        "customer_exact_installed_release": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_edition": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_source_sha256": "HOLD_SOURCE_PIN_UNAVAILABLE",
+        "customer_sbom_cyclonedx_or_spdx": "HOLD_CUSTOMER_SBOM_UNAVAILABLE",
+        "customer_cve_exposure_assessment": "HOLD_REQUIRES_INSTALLED_VERSION_AND_DEPENDENCIES",
+        "independent_e5_attestation": "HOLD"
       }
     },
     {
@@ -373,6 +503,16 @@
         "publication_date": "2024-12-09",
         "reviewed_source_role": "CUSTOMER_ENGINEERING_FIRST_PARTY",
         "verification_note": "LinkedIn Engineering's dated SQL Bot article explicitly names LangChain and LangGraph; independent E5 still absent."
+      },
+      "a04_upstream": {
+        "technology_source_ref": "ENGURU_ARGE_BLOCK01_PUBLIC_SOURCES_V427.json",
+        "observed_upstream_scope": "LICENSE_AND_PACKAGE_MANIFEST_NOT_DEPENDENCY_LOCKFILE",
+        "customer_exact_installed_release": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_edition": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_source_sha256": "HOLD_SOURCE_PIN_UNAVAILABLE",
+        "customer_sbom_cyclonedx_or_spdx": "HOLD_CUSTOMER_SBOM_UNAVAILABLE",
+        "customer_cve_exposure_assessment": "HOLD_REQUIRES_INSTALLED_VERSION_AND_DEPENDENCIES",
+        "independent_e5_attestation": "HOLD"
       }
     },
     {
@@ -401,6 +541,16 @@
         "publication_date": "2025-09-04",
         "reviewed_source_role": "VENDOR_ASSERTION_ONLY",
         "verification_note": "General vendor declaration confirms only a supplier claim, not an Uber-signed implementation report."
+      },
+      "a04_upstream": {
+        "technology_source_ref": "ENGURU_ARGE_BLOCK01_PUBLIC_SOURCES_V427.json",
+        "observed_upstream_scope": "LICENSE_AND_PACKAGE_MANIFEST_NOT_DEPENDENCY_LOCKFILE",
+        "customer_exact_installed_release": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_edition": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_source_sha256": "HOLD_SOURCE_PIN_UNAVAILABLE",
+        "customer_sbom_cyclonedx_or_spdx": "HOLD_CUSTOMER_SBOM_UNAVAILABLE",
+        "customer_cve_exposure_assessment": "HOLD_REQUIRES_INSTALLED_VERSION_AND_DEPENDENCIES",
+        "independent_e5_attestation": "HOLD"
       }
     },
     {
@@ -426,6 +576,16 @@
         "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
         "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
         "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      },
+      "a04_upstream": {
+        "technology_source_ref": "ENGURU_ARGE_BLOCK01_PUBLIC_SOURCES_V427.json",
+        "observed_upstream_scope": "LICENSE_AND_DEPENDENCY_MANIFEST_2_EDITION_TERMS",
+        "customer_exact_installed_release": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_edition": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_source_sha256": "HOLD_SOURCE_PIN_UNAVAILABLE",
+        "customer_sbom_cyclonedx_or_spdx": "HOLD_CUSTOMER_SBOM_UNAVAILABLE",
+        "customer_cve_exposure_assessment": "HOLD_REQUIRES_INSTALLED_VERSION_AND_DEPENDENCIES",
+        "independent_e5_attestation": "HOLD"
       }
     },
     {
@@ -454,6 +614,16 @@
         "publication_date": "2025-12-16",
         "reviewed_source_role": "VENDOR_DEDICATED_CASE",
         "verification_note": "Source identifies a named customer and metrics, but independently audited definitions, customer deployment SHA and E5 still absent."
+      },
+      "a04_upstream": {
+        "technology_source_ref": "ENGURU_ARGE_BLOCK01_PUBLIC_SOURCES_V427.json",
+        "observed_upstream_scope": "LICENSE_AND_PACKAGE_MANIFEST_NOT_DEPENDENCY_LOCKFILE",
+        "customer_exact_installed_release": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_edition": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_source_sha256": "HOLD_SOURCE_PIN_UNAVAILABLE",
+        "customer_sbom_cyclonedx_or_spdx": "HOLD_CUSTOMER_SBOM_UNAVAILABLE",
+        "customer_cve_exposure_assessment": "HOLD_REQUIRES_INSTALLED_VERSION_AND_DEPENDENCIES",
+        "independent_e5_attestation": "HOLD"
       }
     },
     {
@@ -479,6 +649,16 @@
         "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
         "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
         "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      },
+      "a04_upstream": {
+        "technology_source_ref": "ENGURU_ARGE_BLOCK01_PUBLIC_SOURCES_V427.json",
+        "observed_upstream_scope": "LICENSE_AND_GO_SUM_SERVER_NOT_CLOUD",
+        "customer_exact_installed_release": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_edition": "UNKNOWN_CUSTOMER_CONFIRMATION_REQUIRED",
+        "customer_deployed_source_sha256": "HOLD_SOURCE_PIN_UNAVAILABLE",
+        "customer_sbom_cyclonedx_or_spdx": "HOLD_CUSTOMER_SBOM_UNAVAILABLE",
+        "customer_cve_exposure_assessment": "HOLD_REQUIRES_INSTALLED_VERSION_AND_DEPENDENCIES",
+        "independent_e5_attestation": "HOLD"
       }
     }
   ],
@@ -549,5 +729,18 @@
       "state": "TEMPORAL_HISTORICAL_ADOPTION_RESTATE_LATER_MIGRATION_CLAIM",
       "acceptance": "HOLD_ON_CURRENT_TEMPORAL_USAGE"
     }
-  ]
+  ],
+  "a04_rollup": {
+    "upstream_license_pin_technology_count": 7,
+    "upstream_manifest_pin_technology_count": 7,
+    "case_count": 18,
+    "actual_customer_installed_release_verified": 0,
+    "actual_customer_edition_verified": 0,
+    "customer_deployed_sha256_verified": 0,
+    "customer_sbom_verified": 0,
+    "customer_version_scoped_cve_review_verified": 0,
+    "independent_e5_verified": 0,
+    "kasifi_canonical_source_verified": 0,
+    "official": "HOLD"
+  }
 }
