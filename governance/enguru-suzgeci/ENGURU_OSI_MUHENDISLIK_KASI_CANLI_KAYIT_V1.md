@@ -1,8 +1,8 @@
 # ENGÜRÜ OSi × ChatGPT — Mühendislik Kası™
-## Yaşayan Hakikat, Fark, Hata ve Önleyici Kontrol Kaydı · V1.2
+## Yaşayan Hakikat, Fark, Hata ve Önleyici Kontrol Kaydı · V1.3
 
 **Kayıt tarihi:** 2026-10-23  
-**Son revizyon:** V1.2 · 2026-10-23 · GitHub taslak PR #206 · GitHub kaynak + izole signer sözleşme testi  
+**Son revizyon:** V1.3 · 2026-10-23 · GitHub taslak PR #206 · GitHub kaynak + izole signer sözleşme testi  
 **Durum:** `ACTIVE_LEARNING_RECORD / OFFICIAL_PRODUCT_FINISH_HOLD`  
 **Kapsam:** ENGÜRÜ Yönetim V6.9 / PR #203 gerçek GitHub ve Mac OSi çalışması. ENGÜRÜ Süzgeci™ v2.4'ün sekiz aşamasının içinde çalışan **yardımcı öğrenme kaydıdır**; yeni çekirdek, yeni karar otoritesi veya ayrı ürün değildir.  
 **Kaynak yönetimi:** Bu belge ayrı GitHub **inceleme dalında** sürümlenir; `main` üzerindeki V3, kaynak kilitleri, mevcut PR #203 ve Mac OSi canonical kayıtları korunur.  
@@ -53,6 +53,7 @@
 
 | **MK-18 · KAYNAK DOĞRULANDI / İZOLE TEST** | Mevcut DoneCheck çekirdeğini değiştirmek veya Python köprüsüne her koşulda `private_key_pem` vermek zorunlu sanma | Pinned DoneCheck `recordVerifiedFinish` gerçek API'si **dışarıdan imzalanmış** `attestation` kabul ediyor. PEM isteği OSi `record_verified_finish` wrapper'ının yerel imza üretim tercihidir. Yerel ephemerally generated Ed25519 anahtarıyla, kaynak semantiğini tekrar eden 14/14 **izole sözleşme testi** geçti; gerçek DoneCheck derlemesi ve Mac OSi signer kullanılmadı | Mevcut `humanReviewSigningPayload` tam canonical UTF-8 bytes → owner-kontrollü yerel imza → bağımsız public verify → existing DoneCheck `recordVerifiedFinish` akışı için yeni ayrı writer yaratmadan **bridge adapter**; gerçek sahada CI+OSi+ledger testi gerekli |
 | **MK-19 · KAYNAK SÜRÜM FARKI** | Ön hazırlık JSON'undaki `machine_verification.NOT_EXECUTED` alanını bugünkü gerçek CI sonucu sanma | PR #203'ün tarihsel `DONECHECK_TASK_REGISTRATION_PREP_V1.json` dosyası hazırlık anının snapshot'ı; daha sonra GitHub CI artifact 12457199441 içinde 4/4 PASS üretildi. İki kaydın zaman ve yetki kapsamı farklı | Her durum raporu `AS_OF`, `REF_HEAD`, `EVIDENCE_KIND`, `CURRENT_VERIFIED_RESULT_ID` ile birlikte; hazırlık snapshot'ı ile sonraki bağımsız gerçek sonucu üstüne yazmak yerine uzlaştır |
+| **MK-20 · DOĞRULANDI / ÖNLEYİCİ DÜZELTME** | Yaşayan dosyanın kendi sayaç ve örnek olay ID şablonunu güncel tutacağı beklentisi | V1.2 değerlendirme tablosu “Başlangıç V1.0” sütununda 19 olay saydı; asıl V1.0 16 idi. Yeni olay şablonu mevcut MK-18 ID’sini örnek verdi ve kopyalamada tekrar ID riski taşıyordu. | Her güncellemede gerçek olay ID kümesi, tarihsel başlangıç sayısı, şablonun sıradaki boş ID olması ve GitHub remote exact blob test edilsin; dönemsel sayı ve güncel sayı ayrı kaydedilsin |
 
 ### 3. OSi beklenmedik durumlar sözlüğü
 
@@ -81,7 +82,7 @@ Bunlar **ürüne uygulanması önerilen/gereken kontrollerdir**, bu belgeyi olu�
 | `KM-08-ANTI-LOOP` | Aynı hipotez+aynı işlem 2 kez fark üretmeyince yöntem yeniden değerlendirilir | `SPECIFIED / ADOPTION_OPEN` |
 | `KM-09-GITHUB-LEASE` | PR expected HEAD ve base yeniden okunur; yalnız gerçek yetkili imza/receipt sonrası owner merge; exact-main yeniden test | `PR_STILL_OPEN / MERGE_HOLD` |
 | `KM-11-TOOL-TRANSACTION` | GitHub çok adımlı çağrı kasıtlı hatalı parametreyle başarısız olduğunda daha önce oluşturulan branch/dosya korunsun; eksik adım şema düzeltilerek tamamlanıp PR gerçek API üzerinden doğrulansın | `REAL_RECOVERY_PASS_PR_206 / AUTOMATED_REGRESSION_OPEN` |
-| `KM-10-LEARNING-DELTA` | Aynı olay ID tek satır; düzeltme yeni tarih/revizyon ve kaynak SHA'yla; eski kanıt korunur | `THIS_DOCUMENT_V1_INITIALIZED / FIELD_UPDATES_PENDING` |
+| `KM-10-LEARNING-DELTA` | Aynı olay ID tek satır; düzeltme yeni tarih/revizyon ve kaynak SHA'yla; eski kanıt korunur | `V1.3_DELTA_REMOTE_EXACT_MATCH_PASS / AUTOMATED_REGRESSION_OPEN` |
 
 | `KM-12-EXTERNAL-ATTESTATION-BRIDGE` | Güncel OSi wrapper, mevcut DoneCheck `humanReviewSigningPayload` ve `recordVerifiedFinish` arayüzlerine bağlı, özel anahtarı JSON/stdin/GitHub'a taşımayan owner-controlled **detached-signature** yolu; orijinal Node validator ve audit kullanımı; yanılma/çift yazım testleri | `SOURCE_INTERFACE_CONFIRMED / ISOLATED_CONTRACT=14/14_PASS / MAC_BRIDGE_IMPLEMENTATION_OPEN` |
 | `KM-13-FRESHNESS-RECONCILIATION` | Eski hazırlıkta `NOT_EXECUTED`, sonraki original artifact 4/4 PASS olduğunda rapor `LATEST_TECHNICAL=PASS`, `PREP_HISTORICAL=NOT_EXECUTED`, `OFFICIAL=HOLD` olarak ayrışır | `SOURCE_RECONCILED / AUTOMATED_REGRESSION_OPEN` |
@@ -106,7 +107,7 @@ Geçerli public reviewer kaydıyla aynı Ed25519 özel anahtarın gerçekten own
 **Yazım formatı (bir sonraki yeni olay için aynı dosyada çoğalt):**
 
 ```text
-MK-18 | WHEN=YYYY-MM-DDThh:mm:ssZ | TYPE=... | EVIDENCE_LEVEL=A/B/C/D
+MK-<SONRAKI_BOS_ID> | WHEN=YYYY-MM-DDThh:mm:ssZ | TYPE=... | EVIDENCE_LEVEL=A/B/C/D
 EXPECTED=...
 OBSERVED=...
 SEARCH_SCOPE/ENV=...
@@ -122,7 +123,7 @@ NEXT_ACTION=...
 
 | Ölçü | Başlangıç V1.0 | Hedef ve karar kuralı |
 |---|---:|---|
-| Geçmiş olaya bağlanan tekil öğrenme kaydı | 19 | Her gerçek yeni olay kapsam doğruluğuyla eklenir; salt sayı kalite değildir |
+| Geçmiş olaya bağlanan tekil öğrenme kaydı | 16 (V1.0) → 20 (V1.3) | Gerçek yeni olaylar özgün ID ile eklenir; salt sayı kalite değildir |
 | Önleyici kontrol sözleşmesi | 13 | Gerçek uygulanmış ve test edilmiş yüzdesi ayrıca izlenir: başlangıç `0/13 FULLY VERIFIED` (KM-11 manuel recovery kanıtı, otomatik ürün kontrol testi değildir) |
 | Mac signer resmî kabul | `HOLD` | Gerçek kriptografik tasdik + yetki + audit PASS |
 | Ürün resmi bitiş | `HOLD` | `VERIFIED_FINISH` yalnız tüm G1–G6 şartları gerçek PASS olduğunda |
@@ -170,3 +171,36 @@ NEXT_ACTION=...
 **Hemen sonraki tek ürün işi:** `G2-A/G2-B OWNER_TRUST + DETACHED_ED25519_SIGNER_ADAPTER`. Gerçek anahtar ve yetkili grant OSi üzerinde doğrulanınca `G3 → G4 → G5 → G6` bağımlılık sırasıyla tamamlanır. Yeni aynı-tür dosya taraması bağımlılık azaltmaz; yalnız mevcut gerçek signer entrypoint'i veya gerekçeli owner key enrollment farkı açılır.
 
 **V1.2 dosya kontrolü:** `MK-01`–`MK-19` olay kaydı; `KM-01`–`KM-13` önleyici kontrol sözleşmesi; korunmuş geçmiş V1.0/V1.1 kayıtları. Bu doküman kaynak kanıtlı yardımcı kayıttır, **resmî DoneCheck makbuzu veya owner yetkisi yerine geçmez.**
+
+### 11. V1.3 — Mühendislik Kası™ bağımsız kalite puanı ve sabit icra kararı
+
+**Değerlendirme tarihi:** 2026-10-23. **Puan türü:** gerekçeli, **model mühendislik rubriği**; DoneCheck™ yetki kararı, saha kabulü veya bilimsel hata oranı istatistiği değildir. V1.2'nin kanıtlı çalışmaları ve güncel GitHub kaynak durumu esas alındı.
+
+| Ölçüm boyutu | Ölçülen puan | Ağırlık | Gerekçe ve gerçek sınır |
+|---|---:|---:|---|
+| Mimari ve ENGÜRÜ Süzgeci™ bütünlüğü | 92/100 | %25 | Tek yaşayan dosya, sekiz aşama, tekil ID, yetki kapıları ve tek ana hedef |
+| Kaynağa bağlı kanıt / izlenebilirlik | 90/100 | %25 | 19 V1.2 olayının tarihçe ve kaynak bağlantıları; SHA/PR bağları; kaynak tazeliği otomasyonu açık |
+| Önleyici sınama ve öğrenme yöntemi | 75/100 | %20 | 14/14 izole Ed25519 kontrat testi ve gerçek GitHub kısmi işlem toparlaması; otomatik regresyon kapsamı henüz tam değil |
+| Ürüne yerleşmiş gerçek saha önleme yeteneği | 15/100 | %30 | 13/13 kontrol tanımlı, **0/13 tam üretim entegrasyon + saha kabulü PASS**; Mac owner signer ve son ledger hâlen HOLD |
+| **Ağırlıklı değerlendirme** | **65/100** | **%100** | `92×0,25 + 90×0,25 + 75×0,20 + 15×0,30 = 65` |
+
+**Sıfır hata hedefi:** Yön tayini olarak korunur. İşleyen uygulamada hata olasılığının sıfır olduğu **kanıtlanmış değildir**. Hata sınıfı başına test, sahadan geri dönüş, kaçan hata oranı ve bağımsız örneklem ile iyileşme ölçülür.
+
+**Gözlenen kesin eksikler ve tamamlanma koşulları:**
+
+1. **`KM-01..KM-13` ürün entegrasyonu:** 13 kuralın özellik tanımı hazır; tam ürün CI + gerçek saha kabulü `0/13`. Aynı kontrolleri bağımsız yeni bir motor kurmadan mevcut araç/CI/saha akışına göm; her özgün ID için test ve receipt iste.
+2. **`G2-A/G2-B` güvenli owner imzası:** Geçerli reviewer public PEM kimliği görüldü, ama aynı private-key kontrolü ve Yönetim V6.9 task/result kapsamlı canonical trust grant sahada doğrulanmadı. Mevcut OSi owner kaynağı esas; kimlik doğrulama macOS'un yerel güvenli arayüzünde olabilir; ChatGPT içinde şifre/private key tüketilmez.
+3. **`G3` teknik köprü uyarlaması:** Pinned DoneCheck core mevcut `recordVerifiedFinish` için **önceden oluşturulmuş `attestation`** kabul eder. Mevcut Python OSi wrapper `private_key_pem` ile kendi imzasını üretir. Tek mevcut köprüde owner-controlled detached-Ed25519 tasdikini alacak kontrollü adaptasyon ve gerçek Mac testleri açık. Başka trust kökü veya DoneCheck core açılmaz.
+4. **`G4` ledger recovery:** `human_review_authorized` ve `verified_finish` iki ardışık yazım olduğu için gerçek commit öncesi duplicate/partial/restart senaryolarını test et; resmî makbuz + bağımsız ledger head kontrolü gerçek PASS olsun.
+5. **`G5/G6` yayın ve nihai kabul:** Owner yetkisiyle [PR #203](https://github.com/engurulabory/Engurulaboratuvari/pull/203) merge, yeni `main` exact SHA'da GitHub CI/saha kabulü; ancak tüm kapılar PASS ise `VERIFIED_FINISH → BITTI_DUR`.
+
+**Bilinçli öncelik ve bağımlılık:**
+
+`G1=PASS_TECHNICAL_4/4 → G2 (OWNER SIGNER + SCOPED GRANT) → G3 (GERÇEK SIGNED HUMAN REVIEW + BRIDGE) → G4 (LEDGER + RECEIPT) → G5 (OWNER MERGE + EXACT_MAIN) → G6 (VERIFIED_FINISH)`
+
+**Tek sonraki gerçek icra hareketi:** `OWNER_CONTROLLED_DETACHED_ED25519_ATTESTATION_BRIDGE`. Önce mevcut OSi'deki gerçek signer/owner trust arayüzünü *işlevsel uyumluluğa* bağla; sonra dar kapsamlı köprü uyarlamasını farklı görev/anahtar/karar negatifleriyle test ederek owner'ın **tek yerel onay etkileşimi** için hazırla. Gerçek owner imzası için yetkili özel anahtar ve grant kanıtı zorunludur; yalnız cihazın açılış şifresi her durumda Ed25519 trust grant olarak yeterli sayılmaz.
+
+**MK-20 düzeltme denetimi:** V1.0 başlangıcı **16**; V1.1 **17**; V1.2 **19**; V1.3 **20** özgün öğrenme olayı. Yeni şablonda mevcut ID tekrarına yol açan örnek giderildi. KM sözleşmesi **13**, tam üretim entegrasyonu ve saha PASS **0/13**. Bu düzeltme **kayıt kalitesi** kazanımıdır; ürün G2–G6 statüsünde ilerleme iddiası yaratmaz.
+
+**Sürüm sınırı:** V1.3 yalnız `docs/enguru-osi-muhendislik-kasi-20261023` inceleme dalındaki bu dosyayı değiştirir. Canonical V3, `main`, PR #203 HEAD, gerçek Mac OSi, trust grant, özel anahtar, ledger ve owner merge korunur. Bir sonraki güncellemede önce SHA/HEAD yeniden okunur ve yalnız kanıtlı yeni delta işlenir.
+
