@@ -49,6 +49,7 @@ class G03Tests(unittest.TestCase):
 
     def test_stale_holds(self):
         a = sample(self.catalog["cases"][0])
+        a["temporal_evidence"]["published_at"] = "2025-12-01T00:00:00Z"
         a["temporal_evidence"]["observed_at"] = "2026-01-01T00:00:00Z"
         self.assertEqual(asof_case_check(a, CLOCK)["state"], "HOLD_SOURCE_STALE")
 
