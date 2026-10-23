@@ -207,7 +207,7 @@
     "official_verified_finish": "HOLD",
     "official_authority_pass": 0
   },
-  "next_single_action": "G2_FIELD_PASS_RECONCILE_CANONICAL_REVIEW_THEN_G3_REAL_OWNER_SIGNED_HUMAN_REVIEW",
+  "next_single_action": "G2_FIELD_PASS_ROOT_ADMISSION_GITHUB_SOURCE_RECONCILIATION_THEN_G3_REAL_OWNER_SIGNED_HUMAN_REVIEW",
   "pre_execution_quality_loop": {
     "schema": "enguru.v69.pre-execution-scored-simulation/v1",
     "acceptance": "OWNER_ACCEPTED_METHOD_CONTRACT_NOT_OFFICIAL_CANONICAL_GATE_AMENDMENT",
