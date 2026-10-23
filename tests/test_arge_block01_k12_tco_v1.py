@@ -15,6 +15,12 @@ class K12Tests(unittest.TestCase):
     def test_negative_cost_hold(self):
         x=fixture(10);x["years"][1]["risk"]["value"]=-1
         self.assertEqual(five_year_cost(x)["state"],"HOLD_COST_VALUE")
+    def test_malformed_year_holds(self):
+        x=fixture(10);x["years"][1]=None
+        self.assertEqual(five_year_cost(x)["state"],"HOLD_COST_FIELDS")
+    def test_malformed_cost_item_holds(self):
+        x=fixture(10);x["years"][1]["license"]="bad"
+        self.assertEqual(five_year_cost(x)["state"],"HOLD_SOURCE_OR_UNIT")
     def test_sensitivity_calculation_only(self):
         y=five_year_cost(fixture(10))
         self.assertEqual(y["state"],"CALCULATION_ONLY_NEEDS_INDEPENDENT_REVIEW")
