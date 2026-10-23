@@ -6,6 +6,27 @@
 
 Bu dosya, mevcut **G1–G6 ana iş listesinin uygulanabilir bloklara bağlanmış icra kaydıdır**. Canonical DoneCheck™ v1.2, owner/issuer, Human Threshold™ ve mevcut V3 SHA-256 kilidi aynı yetkiyle korunur. Yeni gate, issuer veya resmî ürün sayacı oluşmaz.
 
+## Kabul edilmiş V1.2 çalışma yöntemi — Planla, puanla, terminali önceden sınayarak ilerle
+
+**OWNER KARARI:** 23.10.2026 · Yönetim V6.9 için kullanıcı kabulü · sekiz aşamalı ENGÜRÜ Süzgeci™ içinde uygulanacak **icra öncesi alt yöntem**. Evrensel V3, sabit G1–G6 kabul şartları, mevcut DoneCheck™ ve Human Threshold™ yetkileri korunur. Planın kodla okunabilir sözleşmesi [plan.json](plan.json) içindeki `pre_execution_quality_loop` alanıdır.
+
+**Bütünleşik tek döngü:**
+
+1. **PLANLA:** Önümüzdeki gerçek işleri, özgün kontrol ID'lerini, bağımlılıkları, mevcut SHA ile kanıt durumunu ve yetkili kabul şartlarını birlikte belirle.
+2. **PUANLA-1:** İlk planı 100 puanlık ölçekte somut gerekçe/kanıtla değerlendir: teknik doğruluk **20**, gerçek uygulanabilirlik **20**, güvenlik ve yetki **20**, sadelik **15**, dayanıklılık/toparlanma **10**, uçtan uca bitirme kapasitesi **15**.
+3. **TERMİNAL GİBİ SİMÜLE ET:** Komut argümanları, mevcut dosya yolları, SHA, owner izinleri, OS koşulları, dönüş kodları, eksik dosya, sahte yetki, yanlış kapsam, zaman aşımı, tekrar çalıştırma, kısmi kayıt, toparlanma ve final makbuzunu gerçek uygulama öncesi karşıt sınamaya tabi tut. Bu aşamadaki dosya değişimleri **izole simülasyon** kapsamındadır.
+4. **GÖR–TAMAMLA–DÜZELT:** Eksikleri, hataları, ihtiyaçları ve gereksinimleri sınıflandır; doğrulanmış kök nedenleri esas al; düzeltmeyi aynı plan ve kod içinde entegre et; önceki başarılı kanıtı koru.
+5. **PUANLA-2 → SİMÜLASYON-2/3:** Düzeltmeleri gerekçeli olarak yeniden puanla, karşıt testleri tekrarla. Azami **3 puanlı simülasyon turu** vardır. Her tur sonunda `PLAN_SCORE`, `SIMULATION_SCORE`, `CRITICAL_BLOCKERS`, `NEXT_ACTION` ayrı raporlanır.
+6. **GERÇEK İCRA → KANITLI KABUL:** Kritik iç hata çözülmüş, ilgili simülasyon doğrulayıcısı PASS olmuş ve saha yetkisi mevcutsa gerçek OSi/GitHub icrasına geç. Sahada `REAL_EXECUTION`, `INDEPENDENT_VERIFICATION`, `OWNER_AUTHORITY`, `DONECHECK` ve `VERIFIED_FINISH` ayrı kanıtlanır.
+
+**Mühendislik sınırı 1 — Teori / simülasyon / saha ayrı:** `PLAN_SCORE=100/100` ve `SIMULATION_SCORE=100/100` yalnız sınanmış tasarım kapsamındaki hedeflerdir. Gerçek Mac izinleri, imzalı owner kabulü, canlı audit ledger, yetkili merge ve resmî `VERIFIED_FINISH` kendi doğrulayıcısından PASS aldıktan sonra kabul edilir. Sayaca simülasyondan resmî ilerleme aktarılmaz. Puanın 100 olması, çözülmemiş kritik yetki açığını telafi etmez.
+
+**Mühendislik sınırı 2 — Sonlu düzeltme:** Simülasyon **en fazla 3 tur** sürer. Kritik **dış yetki/erişim bağımlılığı** daha erken ortaya çıkarsa `GUVENLI_DUR_EXTERNAL_AUTHORITY`; üçüncü tur sonrasında teknik eksik sürerse `HOLD_SIMULATION_LIMIT_REACHED`. Her iki durumda yalnız `EXACT_BLOCKER + REUSED_EVIDENCE + SINGLE_NEXT_AUTHORIZED_ACTION` verilir. Tekrar eden Mac kabul töreni ve anahtar üretimi ancak gerçek kaynak veya kapsam değişimiyle gerekçelendirilir.
+
+**G2'de somut uygulama:** İki aşamalı bağımsız ROOT ve scoped-grant Ed25519 kriptografisi **PASS** (Mac raporu SHA `02c65bb7724e59d69f93be9bd0328392ed22dce85bd169b06e2b2647a13fb8d6`). Resmî G2 `HOLD_CANONICAL_ROOT_ADMISSION`: tek sonraki yetkili hareket mevcut canonical owner trust kaynağında sürümlü ROOT admission ve bağımsız yetki makbuzudur. Mühendislik Kası™ V3 öğrenme kaydı olayı `MK-EVT-G2-ROOT-ADMISSION-20261023` mevcut; danışman süreçtir ve G2 kabul otoritesi değildir.
+
+**100/100 hedef kuralı:** Tasarım puanı, simülasyon puanı ve gerçek Verified Finish ayrı gösterilir. Kullanıcının onayladığı çalışma yöntemi tasarım sözleşmesine işlendi; 100/100 gerçek simülasyon veya canlı saha PASS iddiası, yalnız ölçülen sonuçlarla yazılır.
+
 ## Ana iş listesi — özgün altı kapı
 
 | Kontrol | Yapılacak gerçek iş | Mevcut kanıtlı sonuç |
@@ -40,7 +61,7 @@ Bu dosya, mevcut **G1–G6 ana iş listesinin uygulanabilir bloklara bağlanmı�
 
 **G5–G6 bitiş ölçütü:** Current-main diff/mergeability/bağımsız gözden geçirme ve owner merge yetkisi doğrulanır. Resmî merge sonrası yeni `main` exact SHA/CI doğrulanır; `VERIFIED_FINISH` yalnız gerçek DoneCheck ledger + yetkili Human Threshold kabulüyle ilan edilir.
 
-**Tek fiilî sonraki hareket:** OSi'de **G2 mevcut owner kontrollü signer sahipliği ve `ENGURU_MANAGEMENT_V69_PR_203` / `MGMT69_VR_GITHUB_RUN_39852715540` kriptografik scope grant kanıtını** üretip doğrulamak. Bu turda private key, resmî audit ve merge yazımı yapılmaz.
+**Tek fiilî sonraki hareket:** Mevcut Mac OSi Ed25519 ROOT ve grant kanıtlarıyla **G2 canonical ROOT admission için mevcut yetkili kaynak ve insan kabulünün resmî bağını** tamamlamak. Bu aşamada mevcut şifreli issuer anahtarı ve önceki saha kanıtları korunur; yeni yetki yazımı yalnız canonical owner mekanizmasının bağımsız kabulünden sonra gerçekleştirilir.
 
 ## Süzgeç ve kontrol disiplini
 
