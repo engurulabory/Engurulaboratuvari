@@ -303,6 +303,42 @@
     "canonical_implementation_path": "HOLD_NOT_ESTABLISHED",
     "canonical_source_sha256": "HOLD_NOT_ESTABLISHED",
     "accepted_authority": "HOLD_OWNER_SOURCE_CONFIRMATION",
-    "effect_on_A04": "HOLD; design capability crosswalk alone is not source provenance or authority"
+    "effect_on_A04": "HOLD; design capability crosswalk alone is not source provenance or authority",
+    "actual_source_review": {
+      "candidate_design_issue": "https://github.com/engurulabory/enguru-website-factory/issues/251",
+      "issue_scope": "PRECONSTRUCTION_HOLD / RESEARCH_DESIGN_ACTIVE / OSi_PROTECTED",
+      "explicit_authority_limit": "Issue #251: design and preparatory AR capability only; not canonical implementation, working core, deployment or construction authorization",
+      "related_earlier_labory_issue": "https://github.com/engurulabory/Engurulaboratuvari/issues/186",
+      "canonical_implementation_status": "HOLD_REAL_AUTHORITY_SOURCE",
+      "donecheck_authority_repo": "https://github.com/engurulabory/donecheck",
+      "donecheck_reviewer_auth_file": "src/runtime/node/reviewer-attestation.ts",
+      "donecheck_finish_file": "src/runtime/node/verified-finish-runtime.ts",
+      "donecheck_precondition": "automated verification outcome pass + cryptographically authorized human accepted + append-only audit ledger",
+      "source_classification": "DESIGN_CANDIDATE_NOT_ACTUAL_DEPLOYED_KASIFI",
+      "official_a04_status": "HOLD"
+    }
+  },
+  "a05_a06_donecheck_real_api": {
+    "repo": "engurulabory/donecheck",
+    "core": "src/donecheck-core.ts",
+    "reviewer_validation": "src/domain/donecheck/human-review-validation.ts",
+    "reviewer_attestation": "src/runtime/node/reviewer-attestation.ts",
+    "finish_runtime": "src/runtime/node/verified-finish-runtime.ts",
+    "supported_attestation_scheme": "ed25519",
+    "review_signing_schema": "donecheck.reviewer-attestation/v1",
+    "finish_receipt_schema": "donecheck.verified-finish/v1",
+    "required_real_inputs": [
+      "verified_machine_result_pass",
+      "valid_human_review_accepted",
+      "independently_trusted_reviewer_authority",
+      "valid_reviewer_ed25519_attestation",
+      "durable_audit_ledger"
+    ],
+    "distinctions": [
+      "File SHA256 match is an untrusted evidence-intake candidate",
+      "DoneCheck reviewer attestation does not independently authenticate external customers or third-party E5 witnesses",
+      "Actual customer and independent E5 authentication require separate owner/trust-chain verification"
+    ],
+    "official_state": "HOLD_NO_REAL_CUSTOMER_E5_SIGNATURE_OR_REVIEWER_AUTHORITY"
   }
 }
