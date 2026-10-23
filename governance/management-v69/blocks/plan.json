@@ -1,0 +1,173 @@
+{
+  "schema": "enguru.management-v69.execution-block-plan/v1",
+  "version": "1.1",
+  "date": "2026-10-23",
+  "role": "REVIEW_ONLY_EXECUTION_ORCHESTRATION_NOT_NEW_CANONICAL_AUTHORITY",
+  "goal": "ENGURU_MANAGEMENT_V69_PR_203 → VERIFIED_FINISH → BITTI_DUR",
+  "taskId": "ENGURU_MANAGEMENT_V69_PR_203",
+  "verificationResultId": "MGMT69_VR_GITHUB_RUN_39852715540",
+  "source": {
+    "management_repo": "engurulabory/Engurulaboratuvari",
+    "management_pr": 203,
+    "management_head": "63fe22e7c1ce73adf94b0cbdd40924511e8211cd",
+    "last_main": "113d8ffd18a6f36c840770f30f38da6d5900aa43",
+    "reviewer_candidate": "enguru-mac-local-human-authority",
+    "key_id": "ed25519-sha256:40c6a9cc82815ea5a9755cd4b843d35cd701b4b90d8f65ecb656f1c37a4ef64f",
+    "mac_os_contract_report_sha256": "2e524438fc647b79d64e4f4b4fa47424b8ae77c93a0af29b6649fca23208ae24",
+    "canonical_v3_source_sha256": "11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc",
+    "v3_git_blob_sha1": "7f47f3c6d3ee5c5138e53b67ae46cced37cb1a61",
+    "mac_ci_run": 39959341258,
+    "donecheck_ci_run": 39852715540,
+    "engineer_private_pr": 14,
+    "base_drift_note": "PR203 baseline 1f7dfd708d652764ac74df27dcbbd393779e2b3b; current-main recorded 113d8ffd18a6f36c840770f30f38da6d5900aa43. Revalidate PR203 HEAD, permission, and exact current main immediately before authorized G5 merge."
+  },
+  "canonical_gate_ids": [
+    "G1",
+    "G2",
+    "G3",
+    "G4",
+    "G5",
+    "G6"
+  ],
+  "gates": {
+    "G1": {
+      "state": "PASS_TECHNICAL_ONLY",
+      "acceptance": "MGMT69-A-CI/B-SOURCE/C-OPERATIONS/BOUNDARY 4/4 validated on exact PR203 HEAD",
+      "evidence_type": "REAL_GITHUB_VERIFICATION",
+      "authority": "TECHNICAL_VALIDATOR",
+      "prerequisites": []
+    },
+    "G2": {
+      "state": "HOLD_REAL_OWNER_SCOPE_PROOF",
+      "acceptance": "Existing canonical OSi Ed25519 owner signer control + cryptographically verified grant for exact task/result/reviewer/key/accepted; preserve key local; historical Gate12 excluded",
+      "evidence_type": "REAL_OSI_OWNER_CRYPTOGRAPHIC_SCOPE_PROOF",
+      "authority": "OSi_CANONICAL_OWNER_TRUST",
+      "prerequisites": [
+        "G1"
+      ]
+    },
+    "G3": {
+      "state": "HOLD_REAL_SIGNED_HUMAN_REVIEW",
+      "acceptance": "Real HumanReview.accepted and canonical detached Ed25519 attestation, pinned public PEM UTF-8 SHA identity, immutable exact task/result binding, verified via pinned DoneCheck and existing OSi bridge",
+      "evidence_type": "REAL_OWNER_SIGNED_REVIEW_AND_BRIDGE",
+      "authority": "AUTHORIZED_HUMAN_REVIEWER",
+      "prerequisites": [
+        "G2"
+      ]
+    },
+    "G4": {
+      "state": "HOLD_CANONICAL_AUDIT",
+      "acceptance": "Real existing DoneCheck recordVerifiedFinish receipt and verified hash-linked audit ledger; pre-write chain validation; recovery of partial append; original SHA and receipt",
+      "evidence_type": "CANONICAL_DONECHECK_RECEIPT_AND_AUDIT",
+      "authority": "DONECHECK_AUTHORIZED_RUNTIME",
+      "prerequisites": [
+        "G3"
+      ]
+    },
+    "G5": {
+      "state": "HOLD_OWNER_MERGE",
+      "acceptance": "Authorized PR203 review and merge, updated base/head conflict check, exact post-merge main commit and full required CI/independent review",
+      "evidence_type": "AUTHORIZED_MERGE_AND_POST_MERGE_EXACT_MAIN_CI",
+      "authority": "HUMAN_OWNER_RESERVED_MERGE",
+      "prerequisites": [
+        "G4"
+      ]
+    },
+    "G6": {
+      "state": "HOLD_VERIFIED_FINISH",
+      "acceptance": "Independent consolidated G1-G5 verification, valid official DoneCheck/Human Threshold acceptance, final official receipt and ledger/source exact-main reconciliation",
+      "evidence_type": "INDEPENDENT_OFFICIAL_VERIFIED_FINISH",
+      "authority": "CANONICAL_HUMAN_THRESHOLD",
+      "prerequisites": [
+        "G5"
+      ]
+    }
+  },
+  "blocks": [
+    {
+      "id": "B00",
+      "name": "Korunan teknik temel",
+      "gate_ids": [
+        "G1"
+      ],
+      "mode": "PRESERVE_COMPLETED",
+      "owner": "GITHUB_TECHNICAL_VERIFIER",
+      "next": "B01",
+      "state": "PASS_TECHNICAL_ONLY"
+    },
+    {
+      "id": "B01",
+      "name": "Tek bütünleşik yetkili kapanış",
+      "gate_ids": [
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6"
+      ],
+      "mode": "SINGLE_ACTIVE_INTEGRATED_EXECUTION",
+      "owner": "OSi_CANONICAL_OWNER_AND_DONECHECK",
+      "sequence": [
+        "AUTHENTICATE_EXISTING_SIGNER",
+        "VERIFY_EXACT_TASK_RESULT_GRANT",
+        "SIGN_CANONICAL_HUMAN_REVIEW",
+        "VERIFY_DETACHED_ATTESTATION",
+        "CANONICAL_DONECHECK_LEDGER",
+        "RECONCILE_LEDGER_AFTER_INTERRUPTION",
+        "REFRESH_EXACT_CURRENT_MAIN_AND_REVIEW",
+        "AUTHORIZED_PR203_MERGE",
+        "POST_MERGE_EXACT_MAIN_CI",
+        "VERIFY_INDEPENDENT_DONECHECK_AND_HUMAN_THRESHOLD",
+        "INDEPENDENT_VERIFIED_FINISH"
+      ],
+      "state": "HOLD_REAL_OWNER_SCOPE_PROOF",
+      "acceptance": "G2→G6 original gates, one integrated execution. An initial G2 HOLD preserves downstream G3–G6. Real owner evidence is evaluated by existing canonical tools, not this plan verifier."
+    },
+    {
+      "id": "B02",
+      "name": "Mühendislik Kası V3 sürekli öğrenme destek nöbeti",
+      "gate_ids": [],
+      "mode": "PARALLEL_NON_BLOCKING_SUPPORT",
+      "owner": "GITHUB_MK_WATCH_AND_CHATGPT_HOURLY",
+      "state": "ACTIVE_TECHNICAL_LEARNING_SCHEDULE_FIELD_HOLD",
+      "schedule": "GITHUB_CRON_5_MIN_BEST_EFFORT_CHATGPT_HOURLY",
+      "acceptance": "Real new source evidence → dedup/review record + regression; 4 real completed schedule runs needed for separate cadence field PASS",
+      "private_data_boundary": "OWNER_APPROVED_REDACTED_RELAY_ONLY"
+    },
+    {
+      "id": "B03",
+      "name": "Sonraki ürün işleri — korunan bekleme listesi",
+      "gate_ids": [],
+      "mode": "DEFER_AFTER_VERIFIED_FINISH",
+      "owner": "OWNER_PRIORITIZED_AFTER_B01",
+      "state": "WAITING_CURRENT_PRODUCT_FINISH",
+      "acceptance": "Post-finish owner confirms next canonical product and its original task list; historical PLive/P01/P02, H1-H3, Website B1 are separate project scopes, no borrowed counters"
+    }
+  ],
+  "invariants": {
+    "single_active_product_block": "B01",
+    "no_parallel_gate_authority": true,
+    "main_and_pr203_immutable_until_authorized_merge": true,
+    "never_use_historical_gate12_as_v69_grant": true,
+    "private_key_remains_under_mac_owner_control": true,
+    "no_automatic_human_threshold_or_merge": true,
+    "simulation_cannot_produce_official_pass": true,
+    "official_finished_requires_all_six_independently_verified": true,
+    "resume_requires_current_github_and_canonical_authority_read": true,
+    "new_conversation_reads_latest_mk_record": true,
+    "positive_language_and_eight_stages": true,
+    "stop_reason": "GUVENLI_DUR → EXACT_MISSING_PROOF → OWNER_SCOPE_ACTION; earlier evidence protected",
+    "evidence_claims_are_never_self_authorizing": true,
+    "audit_partial_append_recovery_before_retry": true,
+    "private_repo_data_owner_redacted_relay_only": true
+  },
+  "progress": {
+    "technical_gate_pass": 1,
+    "gate_total": 6,
+    "fully_accepted_g2_g6": 0,
+    "g2_g6_total": 5,
+    "official_verified_finish": "HOLD",
+    "official_authority_pass": 0
+  },
+  "next_single_action": "ON_MAC_CONFIRM_REAL_EXISTING_SIGNER_POSSESSION_AND_CANONICAL_TASK_RESULT_OWNER_GRANT_FOR_G2"
+}
