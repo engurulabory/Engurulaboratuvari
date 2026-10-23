@@ -10,7 +10,7 @@ SCOPE: A01–A09 = nine **Ar-Ge architecture** tasks. Mac Engineer V07 A-ID'leri
 |---|---|---|---|
 | A01 | 18 vaka, altı alan, kaynak ve senaryo envanteri | V4.5 yapısal hazırlık, özgün müşteri kanıtı açık | HOLD |
 | A02 | 234 benzersiz K01–K13 hücre ve kaynak izlenebilirliği | V4.5 yapısal hazırlık, bağımsız E5 açık | HOLD |
-| A03 | Kabul sözleşmesi, owner/issuer, reviewer, yetki | PR #207 özel CI PASS, imzalı grant açık | HOLD |
+| A03 | K01–K13/E5 canonical kabul sözleşmesi, owner/issuer, reviewer, yetki | PR #207 özel CI PASS, owner imzalı grant ve kaynak SHA açık | HOLD |
 | A04 | Upstream kanıt denetimi: 18 vakanın sürüm/tarih/lisans/CVE/SBOM durumu | Erişilebilir upstream kanıt ve Kâşifi gerçek canonical kimlik doğrulaması açık | HOLD |
 | A05 | Müşteri dağıtım doğrulama: 18 kurulu sürüm ve iddia sınıfı | 18 gerçek deployment pin ve müşteri teyidi açık; UNKNOWN ayrı | HOLD |
 | A06 | E5 bağımsız kabul: 18 doğrulama kararı veya yetkili kapsam kararı | 18 vakanın gerçek bağımsız E5 doğrulaması açık | HOLD |
