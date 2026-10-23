@@ -99,5 +99,73 @@
   ],
   "evidence_date": "2026-10-23",
   "e5_independently_verified": 0,
-  "deployment_pins_independently_verified": 0
+  "deployment_pins_independently_verified": 0,
+  "upstream_license_pins": [
+    {
+      "technology": "Meilisearch",
+      "repository": "meilisearch/meilisearch",
+      "ref": "main",
+      "file": "LICENSE",
+      "git_blob_sha1": "edcaeebc4e866b1ebefc330c103560e41639601b",
+      "observed_license": "MIT_AND_BUSL_1_1_EDITION_SPECIFIC",
+      "evidence_scope": "Root LICENSE notes MIT community portions and Enterprise Business Source License 1.1; actual customer edition not established"
+    },
+    {
+      "technology": "Medusa",
+      "repository": "medusajs/medusa",
+      "ref": "develop",
+      "file": "LICENSE",
+      "git_blob_sha1": "2bc747bf4b0a88864584b033fdeab86012a44c79",
+      "observed_license": "MIT_EXCEPT_ENTERPRISE_EDITION",
+      "evidence_scope": "Root LICENSE excludes explicitly identified Enterprise Edition materials from MIT; actual customer edition not established"
+    },
+    {
+      "technology": "Saleor",
+      "repository": "saleor/saleor",
+      "ref": "main",
+      "file": "LICENSE",
+      "git_blob_sha1": "715b42cd6fe5d7073984ff7004b49dc8304adbcc",
+      "observed_license": "BSD_3_CLAUSE_REPOSITORY_ROOT",
+      "evidence_scope": "Observed repository root license only; customer deployed exact release and add-on licenses unverified"
+    },
+    {
+      "technology": "Supabase",
+      "repository": "supabase/supabase",
+      "ref": "master",
+      "file": "LICENSE",
+      "git_blob_sha1": "49ea124025275674563eeff03af0f653ca49fdc0",
+      "observed_license": "APACHE_2_0_MONOREPO_ROOT",
+      "evidence_scope": "Umbrella repository root license only; individual Supabase components may have distinct licensing"
+    },
+    {
+      "technology": "Temporal",
+      "repository": "temporalio/temporal",
+      "ref": "main",
+      "file": "LICENSE",
+      "git_blob_sha1": "3349f76795f4409cba6ae18ea56adf9fbd8346f3",
+      "observed_license": "MIT_TEMPORAL_SERVER",
+      "evidence_scope": "Temporal server repository licensing; customer installed version/Temporal Cloud service terms not established"
+    },
+    {
+      "technology": "OpenFGA",
+      "repository": "openfga/openfga",
+      "ref": "main",
+      "file": "LICENSE",
+      "git_blob_sha1": "4959a5e50d66e62e675d8d033d66cca0f390458d",
+      "observed_license": "APACHE_2_0_OPENFGA_REPOSITORY",
+      "evidence_scope": "OpenFGA upstream license; Auth0 FGA managed offering and customer license terms distinct"
+    },
+    {
+      "technology": "LangGraph",
+      "repository": "langchain-ai/langgraph",
+      "ref": "main",
+      "file": "LICENSE",
+      "git_blob_sha1": "fc0602feecdd6748623c852ab534e1ca612673c7",
+      "observed_license": "MIT_LANGGRAPH_REPOSITORY",
+      "evidence_scope": "LangGraph upstream root license; hosted services/enterprise contractual scope separate"
+    }
+  ],
+  "upstream_license_review_scope": "GitHub API source reads on 2026-10-23, observed full root LICENSE blobs. Hashes are Git blob SHA-1 content identities, NOT SHA-256 release pins or production installed versions. All 18 customer exact release/edition/SBOM/CVE checks remain HOLD.",
+  "upstream_license_blob_pin_count": 7,
+  "upstream_technology_count": 7
 }
