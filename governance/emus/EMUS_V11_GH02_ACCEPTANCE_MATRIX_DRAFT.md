@@ -89,3 +89,7 @@ Bu sözleşme ADAY'dır. GH-01 tam kaynak eşleştirmesi, gerçek owner ve bağ�
 - DoneCheck `src/domain/donecheck/verification-engine.ts` blob `e7c8d97f8adaec07742e1f9cd1c9e9fc026cc73e` `verifyTask` girdileri: `task`, `criteria`, `aiOutput`, `evidence`, `resultId`, `verifiedAt`, opsiyonel `policy`. Kaynakta `trustedProducerIds` allowlist'inin kriptografik kimlik doğrulaması olmadığı açıkça belirtilir.
 - Mevcut Python EMUS probe `DoneCheck TaskId` için string eşitliği kontrol eder; TypeScript `verifyTask` çağırmaz. Doğru sonraki fark, iki ürünün source-pinned ortamında gerçek `verifyTask` fixture çalıştırılması ve sonuç/evidence kimliklerini karşılaştırmaktır; reviewer imzası ve issuer/owner yetkisi ayrı HOLD.
 - Hüküm: `EMUS_SYNTAX_CI=PASS`, `EMUS_VERIFYTASK_EXECUTION=HOLD_TEST`, `EMUS_OWNER_REVIEWER_ISSUER=HOLD`, `GH01/GH02/GH03=PARTIAL`, `GH04/OSI_READY=HOLD`.
+
+## GH-03 güvenli duruş CI kanıtı — 2026-10-23
+- Commit `e34bd9aedf07f968518458d2b01c82752ced4906`; Final Gate run `39993766974`, job `120551868991`: EMÜS sözdizimi step 9 ve `SOURCE_HOLD` negatif testi step 10, her ikisi `completed/success`.
+- Karar: `SOURCE_MISSING_FAIL_CLOSED=PASS_CI`. Özel runtime görev kimliği entegrasyonu, DoneCheck verifyTask ve resmî owner/reviewer/issuer yetkisi ayrı `HOLD`.
