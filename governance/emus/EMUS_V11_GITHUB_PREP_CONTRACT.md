@@ -113,3 +113,16 @@ Paket: EMUS_V11_GITHUB_19_INTEGRATED_REVIEW; kaynak: PR #210. PASS yalnız tam t
 Bütünleşik kabul bağımlılıkları: canonical kaynak SHA ve yetki → Mac Engineer/WorkingMemory kaynak-pinned görev kimliği ve restart gerçek testi → DoneCheck verifyTask gerçek sonucu → G01–G10 ve 24 adversarial senaryo → CI/lock → bağımsız reviewer → owner/issuer/ledger → yetkili GH-04 kabulü.
 
 Negatif koruma testleri Labory CI üzerinde PASS; özel Mac Engineer testleri tarihsel Product CI ile kanıtlandı. Bunlar birleşik entegrasyon, 24 adversarial senaryo ve insan yetkisi yerine sayılmaz. Eksik herhangi bir zorunlu kanıt için iş OPEN veya PARTIAL kalır. GITHUB_VERIFIED_FINISH=HOLD.
+
+## Altı açık iş — üç turlu karşıt değerlendirme (2026-10-23)
+Kapsam: #11 yerel adaptör, #13 Skill/macOS, #15 24 karşıt vaka, #17 reviewer, #18 DoneCheck/owner/issuer/ledger, #19 GitHub kapanışı. Puanlama: her iş için zorunlu test, kanıt ve yetki birlikte PASS ise 1, aksi halde 0; bu altı işin kapanışı 6/6 = 100/100.
+
+| Tur | Değerlendirme | Sonuç / puan |
+|---|---|---|
+| 1 — İşlevsel simülasyon (mantıksal) | #11 gerçek yerel adaptör testi, #13 gerçek Skill/macOS testleri ve #15 tam 24 adversarial koşu kanıtı arandı | 0/6 kapanış = 0/100; üç teknik iş OPEN |
+| 2 — Karşıt güvenlik simülasyonu (mantıksal) | Özel Mac Engineer kaynağı, sürüm kilidi, görev kimliği, yanlış SHA ve kanıtsız erken PASS senaryoları kontrol edildi | 0/6 kapanış = 0/100; Labory negatif CI kanıtları PASS, yeni final-PASS negatif testi CI sonucu bekliyor |
+| 3 — Yetki/kapanış simülasyonu (mantıksal) | #17 bağımsız reviewer, #18 gerçek DoneCheck verifyTask + owner/issuer/ledger ve #19 tüm bağımlılıklar kontrol edildi | 0/6 kapanış = 0/100; yetkili kabul HOLD |
+
+Bu puanlar 6 açık işin **resmî tamamlanma skorudur**; kod kalitesi veya teorik tasarım skoru değildir. Üç mantıksal simülasyon gerçek test, özel ürün grant'i veya insan kabulü oluşturmaz. Yeni WorkingMemory checkpoint ve authority testi Labory CI run `40000613508` job `120575404073` step 10 completed/success; dört workflow success. Kanıtsız final-PASS reddi testi commits `ec297f8c01e092dc22224577f27517630576566e` ve `257a4d95c650aa97e6306461f362e2e0f9199875` ile CI'ye eklendi; sonucu ayrıca doğrulanacak.
+
+Karar: `SIX_OPEN=6`; `SIX_ACCEPTED=0`; `GITHUB_19_ACCEPTED=0`; `GITHUB_VERIFIED_FINISH=HOLD`. Kalıcı sabit hedef tüm 19 iş için gerçek Verified Finish.
