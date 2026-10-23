@@ -73,3 +73,8 @@ Bu sözleşme ADAY'dır. GH-01 tam kaynak eşleştirmesi, gerçek owner ve bağ�
 - Mac Engineer `runtime/tests/test_reliability.py` blob `5754324423a688a0c6d5a5ae8e512f238f510e71`: `test_persistent_idempotency` aynı idempotency anahtarını yeni `ReliabilityManager` örneğinde tekrar kullanıp aynı `task_id` bekler; `test_checkpoint_restart_resume` yeni manager ile checkpoint'ten devamı kontrol eder.
 - Bu mevcut birim testleri EMÜS→WorkingMemory→DoneCheck bütünleşik görev kimliği eşitliğini tek başına kanıtlamaz.
 - Kabul edilecek küçük test farkı: gerçek kaynak üzerinde tek görev kimliği ile tekrar/yeniden başlama ve DoneCheck TaskId eşitliği; kanıt yokken `TASK_ID_BINDING=HOLD_TEST`.
+
+## 2026-10-23 — Gerçek CI kapsam ayrımı
+- `dccdd9705aeab4a493e66150d5390b5ec9ddc60a` commit'ine bağlı GitHub workflow sonuçları: PARK Adapter CI `39985686137` success; IP Model Trust Fleet `39985686186` success; ENGURU Labory Final Gate `39985686480` success; IP Model Trust Gate `39985686182` success.
+- `.github/workflows/labory-final-gate.yml` (blob `376b791dcdf0f9596fbdc2ddfadb43745960a423`) mevcut WorkingMemory birim testlerini çalıştırır; `test_emus_task_identity_probe.py` çağrısı içermez. Bu dört yeşil workflow EMÜS üçlü kimlik entegrasyon testinin PASS kanıtı değildir.
+- `TASK_ID_BINDING=HOLD_TEST`; kaynak pin düzeltmesi GitHub dosya geri-okuması PASS. Sıradaki dar ihtiyaç: özel Mac Engineer runtime'ın sabit sürümü için yetkili ve tekrar üretilebilir koşu, test çıktısı ve bağımsız kontrol. Geçerli grant ve owner kabulü ayrı HOLD.
