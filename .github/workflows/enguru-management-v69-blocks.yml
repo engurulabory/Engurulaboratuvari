@@ -30,15 +30,16 @@ jobs:
           PY
       - name: Validate G1-G6 source and B00-B03 integration
         run: python governance/management-v69/blocks/verify_blocks.py --check
-      - name: Two independent adversarial simulations
+      - name: Three bounded independent adversarial simulations
         run: python governance/management-v69/blocks/simulate_blocks.py
       - name: Technical PASS and final official HOLD stay separate
         run: |
           python - <<'PY'
           import json
           r=json.load(open('governance/management-v69/blocks/simulation_receipt.json'))
-          assert r['rubric']['score']==100
-          assert all(a['state']=='PASS_ISOLATED' and a['distinct_cases']>=60 for a in r['final_independent_rounds'])
+          assert r['rubric']['score']==100 and r['rubric']['passed']==30 and r['rubric']['required']==30
+          assert len(r['final_independent_rounds'])==3
+          assert all(a['state']=='PASS_ISOLATED' and a['distinct_cases']>=75 for a in r['final_independent_rounds'])
           assert r['official_verified_finish'].startswith('HOLD_')
           print('PASS_PLAN_SIMULATION_ONLY; OWNER_ACCEPTANCE=HOLD')
           PY
