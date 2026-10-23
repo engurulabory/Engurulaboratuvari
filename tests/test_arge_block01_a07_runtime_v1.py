@@ -7,7 +7,7 @@ import unittest
 from threading import Event, Thread
 from decimal import Decimal
 
-from cores.billing.billing_core import (
+from tools.arge_block01_g01_billing_core_prototype_v1 import (
     BillingCore, BillingError, BillingRequest, BillingResult, BillingPending, DocumentType,
     MemoryIdempotencyStore, PaymentProof, ProviderReceipt
 )
