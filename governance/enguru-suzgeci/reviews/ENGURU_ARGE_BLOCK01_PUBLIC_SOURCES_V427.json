@@ -35,18 +35,69 @@
     }
   ],
   "task_links": {
-    "A01": "candidate source case coverage only",
-    "A02": "source metadata candidates; 234 matrix cells still without independent line-by-line verification",
-    "A03": "authority HOLD",
-    "A04": "upstream authenticity partially checked; Kâşifi source HOLD",
-    "A05": "E5 0/18 independent PASS",
-    "A06": "G01 G02 G03 HOLD",
-    "A07": "comparison case hypotheses only",
-    "A08": "K12 ROI/TCO HOLD",
-    "A09": "combined official report HOLD"
+    "A01": "18 unique cases in six domains; customer/technology identity and public source URL candidates; canonical reviewer HOLD",
+    "A02": "234 V19 K01-K13 source cells: exact V19 baseline SHA preserved; each cell needs independent evidence/review",
+    "A03": "K01-K13 and E5 canonical contract and exact-scope owner/issuer signed authority: HOLD",
+    "A04": "18 upstream release/date/license/CVE/SBOM evidence and canonical Kasifi identity: partial source research / HOLD",
+    "A05": "18 customer actual installed versions, classification and exact customer deployment SHA: 0/18, UNKNOWN requires explicit record",
+    "A06": "18 independent E5 decisions and verifier attestation: 0/18, independent authority HOLD",
+    "A07": "G01 external effect, G02 relational authorization, G03 temporal provenance attacks and oracles: GitHub research only / field HOLD",
+    "A08": "K12 18-case sourced five-year TCO, +/-20% sensitivity and independent measured ENGURU ROI: HOLD",
+    "A09": "A01-A08 signed, independent and DoneCheck owner final: HOLD"
   },
   "decision": "RESEARCH_SOURCE_CANDIDATES_ONLY",
   "official": "0/9",
   "field": "0/100",
-  "comment": "Source evidence is not equivalent to independent E5 nor task acceptance; preserve 6-block plan."
+  "comment": "Source evidence is not equivalent to independent E5 nor task acceptance; preserve 6-block plan.",
+  "reverified_primary_sources": [
+    {
+      "case_id": "02",
+      "url": "https://medusajs.com/blog/matt-sleeps",
+      "publication_date": "2024-02-01",
+      "role": "VENDOR_CASE_WITH_NAMED_IMPLEMENTATION_PARTNER",
+      "claim": "Matt Sleeps uses Medusa according to Medusa's case study",
+      "limits": "Supplier assertion; independent E5 and customer deployment SHA HOLD"
+    },
+    {
+      "case_id": "07",
+      "url": "https://restate.dev/use-cases/replit",
+      "role": "COUNTERCLAIM_NEWER_VENDOR_CASE_WITH_REPLIT_EXEC_QUOTE",
+      "claim": "Replit moved Replit Agent durable execution from Temporal to Restate",
+      "limits": "Migration date and deployment artifacts not independently audited; current Temporal use HOLD"
+    },
+    {
+      "case_id": "08",
+      "url": "https://docs.fga.dev/openfga-vs-auth0-fga",
+      "role": "AUTH0_PRODUCT_LINEAGE_FIRST_PARTY_DOCS",
+      "claim": "Auth0 FGA is based on OpenFGA",
+      "limits": "This is product lineage, not independent adopter E5"
+    },
+    {
+      "case_id": "14",
+      "url": "https://www.linkedin.com/blog/engineering/ai/practical-text-to-sql-for-data-analytics",
+      "publication_date": "2024-12-09",
+      "role": "CUSTOMER_FIRST_PARTY_ENGINEERING",
+      "claim": "LinkedIn SQL Bot names LangChain and LangGraph",
+      "limits": "First-party use account is not independent E5 or deployment SHA"
+    },
+    {
+      "case_id": "15",
+      "url": "https://www.langchain.com/blog/building-langgraph",
+      "publication_date": "2025-09-04",
+      "role": "VENDOR_GENERAL_ADOPTER_CLAIM",
+      "claim": "LangChain names Uber among production adopters",
+      "limits": "No customer-specific independent Uber deployment proof"
+    },
+    {
+      "case_id": "17",
+      "url": "https://www.langchain.com/blog/customers-vodafone-italy",
+      "publication_date": "2025-12-16",
+      "role": "VENDOR_DEDICATED_NAMED_CUSTOMER_CASE",
+      "claim": "Fastweb+Vodafone Super TOBi and Super Agent use LangGraph according to supplier",
+      "limits": "Supplier-reported performance metrics; independently audited E5/production SHA HOLD"
+    }
+  ],
+  "evidence_date": "2026-10-23",
+  "e5_independently_verified": 0,
+  "deployment_pins_independently_verified": 0
 }
