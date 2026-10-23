@@ -108,3 +108,12 @@ Dış müşteri belgelerinin kaynağı PDF ya da farklı yapıdaysa canonical sa
 - `tests/test_arge_block01_a05_a06_evidence_intake_v1.py` içinde **19 test**; tek-okuma regresyonu, dizin symlink ve FIFO saldırıları dâhildir. Test PASS, gerçek müşteri imzası veya E5 yetkili kabulü anlamına gelmez.
 
 **Kanıt:** PR #207 review-only; exact HEAD `050e56e5beb0dde44a72283858a6063bbd7964ed`, 4/4 GitHub Actions PASS, Labory Final Gate run `40004468046`, ilgili A05–A06 test adımı PASS. `main` ve üretim kaynakları korunur. Resmî A05/A06 HOLD.
+
+
+## 7. Kanonik DoneCheck gerçek API devri ve Kâşifi kaynak sınırı
+
+Kaynak kökleri: [DoneCheck™](https://github.com/engurulabory/donecheck) `main` içindeki `src/domain/donecheck/human-review-validation.ts`, `src/runtime/node/reviewer-attestation.ts` ve `src/runtime/node/verified-finish-runtime.ts`. Son kaynak okuması, `HumanReview` alanlarının `taskId`, `verificationResultId`, `decision`, `reason`, `reviewerId`, `reviewedAt` olduğunu doğrular. `ReviewerAttestation` Ed25519, `keyId`, `reviewerId`, `signedAt` ve `signatureBase64` taşıyarak önceden yetkili `ReviewerAuthority` ile doğrulanır. `recordVerifiedFinish()` ön koşulları: makina `pass`, yetkili insan `accepted`, güvenilir reviewer key ve denetlenebilir ledger. Bu sözleşmelerden gerçek E5 müşteri kimlik doğrulaması veya A03 imzalı yetki kendiliğinden çıkmaz.
+
+A05/A06 **hazır aday dosya** çıkışı → bağımsız ve scope-bound dış müşteri/E5 imza ve yetki doğrulaması → canonical `verifyTask` machine PASS → yetkili `HumanReview` + Ed25519 reviewer attestation → DoneCheck ledger/Verified Finish → ayrı Human Threshold™ saha kararı. Burada yer alan `0/18` ve `0/9` sayaçları gerçek kanıt gelinceye kadar korunur; `verifyTask` ve `recordVerifiedFinish` sahte çağrılarla tetiklenmez.
+
+**A04 Kâşifi:** [enguru-website-factory issue #251](https://github.com/engurulabory/enguru-website-factory/issues/251) mevcut AR Kâşifi yeteneklerinin ön-inşaat tasarımı olduğunu ve `GE_IMPLEMENTATION=NOT_AUTHORIZED` sınırını açıkça belirtir. Kâşifi gerçek runtime kaynağı, sahibi, kaynak SHA-256 ve yetkili kabulü `HOLD_REAL_AUTHORITY_SOURCE` olarak kalır. `ENGURU_ARGE_BLOCK01_PUBLIC_SOURCES_V427.json` aynı kanıt köklerine işaret eder.
