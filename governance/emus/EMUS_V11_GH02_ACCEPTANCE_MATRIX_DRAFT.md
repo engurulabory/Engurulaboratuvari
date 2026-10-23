@@ -68,3 +68,8 @@ Bu sözleşme ADAY'dır. GH-01 tam kaynak eşleştirmesi, gerçek owner ve bağ�
 - Minimum gerekli bağ: EMÜS'in yetkili görev ID'si → aynı `taskId` ile gerçek `VerificationResult` PASS → aynı `verificationResultId`'ye bağlı imzalı `HumanReview` → yetkili reviewer public key/grant → DoneCheck ledger ve Verified Finish receipt. Görev kimliği üretiminden önce mevcut canonical görev ID kaynağı uzlaştırılacaktır.
 - EMÜS adına aktif canonical görev ID, imzalı reviewer grant/receipt ve OSi runtime denkliği bu incelemede doğrulanmadı. `TASK_ID_AUTHORITY=HOLD`, `REVIEWER_GRANT=HOLD`, `OSI_RUNTIME_EQUIVALENCE=HOLD`.
 - Bu belge yalnız sözleşme ve kaynak eşleştirmesidir; gerçek görev yaratımı, imza, runtime kod değişimi, yetki devri veya bağımsız test gerçekleştirildiği iddiası yoktur.
+
+## Kaynak incelemesi — görev kimliği sürekliliği (2026-10-23)
+- Mac Engineer `runtime/tests/test_reliability.py` blob `5754324423a688a0c6d5a5ae8e512f238f510e71`: `test_persistent_idempotency` aynı idempotency anahtarını yeni `ReliabilityManager` örneğinde tekrar kullanıp aynı `task_id` bekler; `test_checkpoint_restart_resume` yeni manager ile checkpoint'ten devamı kontrol eder.
+- Bu mevcut birim testleri EMÜS→WorkingMemory→DoneCheck bütünleşik görev kimliği eşitliğini tek başına kanıtlamaz.
+- Kabul edilecek küçük test farkı: gerçek kaynak üzerinde tek görev kimliği ile tekrar/yeniden başlama ve DoneCheck TaskId eşitliği; kanıt yokken `TASK_ID_BINDING=HOLD_TEST`.
