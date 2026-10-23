@@ -183,5 +183,8 @@ jobs:
       - name: Repository Steward scheduled runner smoke
         run: node steward/run-scheduled-cycle.mjs
 
+      - name: A03 authority preflight review-only tests
+        run: python -m unittest discover -s tests -p 'test_arge_a03_preflight_v419.py' -v
+
       - name: Final state
         run: echo 'ENGURU LABORY REPOSITORY FINAL GATE = PASS' >> "$GITHUB_STEP_SUMMARY"
