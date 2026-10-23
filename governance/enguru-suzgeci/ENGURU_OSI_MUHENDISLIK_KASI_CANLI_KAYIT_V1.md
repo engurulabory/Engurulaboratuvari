@@ -1,7 +1,8 @@
 # ENGÜRÜ OSi × ChatGPT — Mühendislik Kası™
-## Yaşayan Hakikat, Fark, Hata ve Önleyici Kontrol Kaydı · V1.0
+## Yaşayan Hakikat, Fark, Hata ve Önleyici Kontrol Kaydı · V1.1
 
 **Kayıt tarihi:** 2026-10-23  
+**Son revizyon:** V1.1 · 2026-10-23 · GitHub taslak PR #206  
 **Durum:** `ACTIVE_LEARNING_RECORD / OFFICIAL_PRODUCT_FINISH_HOLD`  
 **Kapsam:** ENGÜRÜ Yönetim V6.9 / PR #203 gerçek GitHub ve Mac OSi çalışması. ENGÜRÜ Süzgeci™ v2.4'ün sekiz aşamasının içinde çalışan **yardımcı öğrenme kaydıdır**; yeni çekirdek, yeni karar otoritesi veya ayrı ürün değildir.  
 **Kaynak yönetimi:** Bu belge ayrı GitHub **inceleme dalında** sürümlenir; `main` üzerindeki V3, kaynak kilitleri, mevcut PR #203 ve Mac OSi canonical kayıtları korunur.  
@@ -48,6 +49,8 @@
 | **MK-15 · DOĞRULANDI** | Sohbet sahibi tek kullanıcı olduğundan kapsam onayının otomatik kriptografik grant olabileceği yorumu | Owner `onaylıyorum` kapsam niyeti var; bağımsız Ed25519 grant ve `HumanReview.accepted` yok | `OWNER_INTENT`, `SIGNED_GRANT`, `SIGNED_HUMAN_REVIEW`, `AUDIT_RECEIPT` ayrı kimlikler; tamamlanma ilanı son üçlü özgün kanıta bağlı |
 | **MK-16 · SÜREÇ SINIRI** | ChatGPT'nin oturum dışında otomatik dosya izlemesi/güncellemesi beklentisi | Canlı oturumda GitHub dosyası güncellenebilir; kendi başına kesintisiz arka plan yürütme yok | Her yeni gerçek raporda aynı dosyayı bağlı GitHub üzerinden oku, yalnız delta ekle, SHA/commit kaydet; gerekirse ayrı açık planlanmış görev oluştur |
 
+| **MK-17 · DOĞRULANDI** | GitHub çok adımlı yazımda dosya commit’i başarılıysa sonraki PR açma adımı da başarıyla bitecek varsayımı | `create_branch` ve `create_file` başarıyla tamamlandı; `create_pull_request` ilk çağrısı zorunlu `repository_full_name` alanı eksikliğiyle reddedildi; şema düzeltilince taslak PR #206 gerçekten açıldı | Her bağlayıcı çağrıdan önce **tam parametre şeması**, her adımdan sonra ayrı işlem receipt’i; kısmi başarıda yeniden baştan başlamak yerine **idempotent toparlama** ve uzak durumu yeniden okuma |
+
 ### 3. OSi beklenmedik durumlar sözlüğü
 
 | Gerçek çıktı | Doğru karar semantiği | Güvenli sonraki hareket |
@@ -74,6 +77,7 @@ Bunlar **ürüne uygulanması önerilen/gereken kontrollerdir**, bu belgeyi olu�
 | `KM-07-PRE-SEND-FILTER` | Son yanıtta kanıtsız `PASS`, `VERIFIED_FINISH`, `main merged` ifadelerine otomatik engel | `SPECIFIED / TEST_OPEN` |
 | `KM-08-ANTI-LOOP` | Aynı hipotez+aynı işlem 2 kez fark üretmeyince yöntem yeniden değerlendirilir | `SPECIFIED / ADOPTION_OPEN` |
 | `KM-09-GITHUB-LEASE` | PR expected HEAD ve base yeniden okunur; yalnız gerçek yetkili imza/receipt sonrası owner merge; exact-main yeniden test | `PR_STILL_OPEN / MERGE_HOLD` |
+| `KM-11-TOOL-TRANSACTION` | GitHub çok adımlı çağrı kasıtlı hatalı parametreyle başarısız olduğunda daha önce oluşturulan branch/dosya korunsun; eksik adım şema düzeltilerek tamamlanıp PR gerçek API üzerinden doğrulansın | `REAL_RECOVERY_PASS_PR_206 / AUTOMATED_REGRESSION_OPEN` |
 | `KM-10-LEARNING-DELTA` | Aynı olay ID tek satır; düzeltme yeni tarih/revizyon ve kaynak SHA'yla; eski kanıt korunur | `THIS_DOCUMENT_V1_INITIALIZED / FIELD_UPDATES_PENDING` |
 
 ### 5. Sonraki tek gerçek ürün hareketi
@@ -96,7 +100,7 @@ Geçerli public reviewer kaydıyla aynı Ed25519 özel anahtarın gerçekten own
 **Yazım formatı (bir sonraki yeni olay için aynı dosyada çoğalt):**
 
 ```text
-MK-17 | WHEN=YYYY-MM-DDThh:mm:ssZ | TYPE=... | EVIDENCE_LEVEL=A/B/C/D
+MK-18 | WHEN=YYYY-MM-DDThh:mm:ssZ | TYPE=... | EVIDENCE_LEVEL=A/B/C/D
 EXPECTED=...
 OBSERVED=...
 SEARCH_SCOPE/ENV=...
@@ -112,8 +116,8 @@ NEXT_ACTION=...
 
 | Ölçü | Başlangıç V1.0 | Hedef ve karar kuralı |
 |---|---:|---|
-| Geçmiş olaya bağlanan tekil öğrenme kaydı | 16 | Her gerçek yeni olay kapsam doğruluğuyla eklenir; salt sayı kalite değildir |
-| Önleyici kontrol sözleşmesi | 10 | Gerçek uygulanmış ve test edilmiş yüzdesi ayrıca izlenir: başlangıç `0/10 FULLY VERIFIED` |
+| Geçmiş olaya bağlanan tekil öğrenme kaydı | 17 | Her gerçek yeni olay kapsam doğruluğuyla eklenir; salt sayı kalite değildir |
+| Önleyici kontrol sözleşmesi | 11 | Gerçek uygulanmış ve test edilmiş yüzdesi ayrıca izlenir: başlangıç `0/11 FULLY VERIFIED` (KM-11 manuel recovery kanıtı, otomatik ürün kontrol testi değildir) |
 | Mac signer resmî kabul | `HOLD` | Gerçek kriptografik tasdik + yetki + audit PASS |
 | Ürün resmi bitiş | `HOLD` | `VERIFIED_FINISH` yalnız tüm G1–G6 şartları gerçek PASS olduğunda |
 | Tekrarlı etkisiz müdahale | Ölçüm başlangıcı | Aynı hipotez + aynı müdahalenin ilerleme üretmeyen tekrarını azalt |
@@ -124,3 +128,9 @@ NEXT_ACTION=...
 ### 8. V1.0 kayıt hareketi
 
 `2026-10-23 / INITIAL_LEDGER_CREATED` — PR #203 ve Mac OSi saha kanıtlarından öğrenme olayları derlendi; mevcut yetkili V3 `main` içeriğine dayanan sınırlarla hizalandı; ürünün resmî durumuna veya owner trust kaydına müdahale edilmedi. **Sonraki sürüm bu dosyaya delta ekler.**
+
+### 9. V1.1 canlı öğrenme ve GitHub kurtarma kaydı
+
+`2026-10-23 / MK-17 / GITHUB_CONNECTOR_SCHEMA_RECOVERY` — GitHub inceleme dalı `docs/enguru-osi-muhendislik-kasi-20261023` mevcut `main` commit `1f7dfd708d652764ac74df27dcbbd393779e2b3b` üzerinden üretildi. Öğrenme dosyasının ilk commit’i `60aaffffeba58228513570863dabd09ecf0f7c09`; dosya uzaktan okunarak yerel içerikle birebir eşlendi. İlk taslak PR çağrısı zorunlu `repository_full_name` argümanı eksik olduğu için reddedildi. Yeniden baştan kaynak üretmek yerine yalnız hatalı adım giderildi; **taslak PR #206 OPEN** olarak oluştu. Bu olay **gerçek araç/iş akışı hatası ve gerçek toparlama PASS** kaydıdır; resmi ürün kabulüne etkisi **0**. Kaynak değişimleri yalnız ayrı öğrenme inceleme dalındadır.
+
+**Güncelleme kuralı:** Bu dosya yeni kanıt geldiğinde **aynı yol** üzerinden yeni sürüm ve diff ile güncellenecek; önceki tarih ve kanıt kayıtları korunacaktır.
