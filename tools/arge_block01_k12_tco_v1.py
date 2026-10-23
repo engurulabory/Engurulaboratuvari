@@ -28,3 +28,21 @@ def five_year_cost(record):
     return {"state":"CALCULATION_ONLY_NEEDS_INDEPENDENT_REVIEW","total":str(sum(values,Decimal("0"))),
             "sensitivity_minus_20pct":str(sum(values,Decimal("0"))*Decimal("0.8")),
             "sensitivity_plus_20pct":str(sum(values,Decimal("0"))*Decimal("1.2"))}
+
+def compare_five_year_tco(baseline, candidate):
+    """Reject unmatched currencies/bases and return illustrative cost delta only."""
+    left=five_year_cost(baseline)
+    right=five_year_cost(candidate)
+    if left["state"]!="CALCULATION_ONLY_NEEDS_INDEPENDENT_REVIEW":
+        return {"state":"HOLD_BASELINE","reason":left["state"]}
+    if right["state"]!="CALCULATION_ONLY_NEEDS_INDEPENDENT_REVIEW":
+        return {"state":"HOLD_CANDIDATE","reason":right["state"]}
+    if baseline["years"][0]["license"]["unit"]!=candidate["years"][0]["license"]["unit"]:
+        return {"state":"HOLD_CURRENCY_MISMATCH"}
+    for key in ("workload_ref","measurement_period","price_basis"):
+        if not baseline.get(key) or baseline.get(key)!=candidate.get(key):
+            return {"state":"HOLD_COMPARABILITY_"+key.upper()}
+    saving=Decimal(left["total"])-Decimal(right["total"])
+    return {"state":"CALCULATION_ONLY_NEEDS_INDEPENDENT_REVIEW",
+            "absolute_five_year_saving":str(saving),
+            "baseline_total":left["total"],"candidate_total":right["total"]}
