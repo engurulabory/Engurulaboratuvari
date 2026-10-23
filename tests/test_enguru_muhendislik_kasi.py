@@ -132,3 +132,14 @@ class EngineeringMuscle(unittest.TestCase):
             self.assertFalse(out.exists());self.assertEqual(rec.read_text(),BASE)
 
 if __name__=='__main__':unittest.main(verbosity=1)
+
+class PairSchemaRegressions(unittest.TestCase):
+    def test_pair_id_allows_trace_without_claiming_signature(self):
+        _,receipt=m.process(BASE,payload(fixture(correlationId='OSIBLOCK-20261023-A',type='UNEXPECTED')))
+        self.assertEqual(receipt['officialAcceptance'],'UNCHANGED_HOLD')
+    def test_pair_id_wrong_format_rejected(self):
+        with self.assertRaisesRegex(m.IntakeHold,'CORRELATION_ID'):
+            m.process(BASE,payload(fixture(correlationId='../../bad')))
+    def test_pair_id_type_rejected(self):
+        with self.assertRaisesRegex(m.IntakeHold,'CORRELATION_ID'):
+            m.process(BASE,payload(fixture(correlationId=123)))

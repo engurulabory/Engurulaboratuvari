@@ -7,6 +7,8 @@ on:
       - 'tools/enguru_mk_five_minute_watch.py'
       - 'tests/test_enguru_muhendislik_kasi.py'
       - 'tests/test_enguru_mk_five_minute_watch.py'
+      - 'tests/test_enguru_mk_contract_v3.py'
+      - 'tools/enguru_mk_acceptance_v3.py'
       - '.github/workflows/enguru-muhendislik-kasi.yml'
   issue_comment:
     types: [created]
@@ -32,6 +34,7 @@ jobs:
             echo "SIMULATION_CYCLE=$cycle"
             python -m unittest discover -s tests -p 'test_enguru_muhendislik_kasi.py' -v
             python -m unittest discover -s tests -p 'test_enguru_mk_five_minute_watch.py' -v
+            python -m unittest discover -s tests -p 'test_enguru_mk_contract_v3.py' -v
           done
 
   owner-comment-intake:
@@ -63,6 +66,9 @@ jobs:
         run: |
           python -m unittest discover -s tests -p 'test_enguru_muhendislik_kasi.py' -q
           python -m unittest discover -s tests -p 'test_enguru_mk_five_minute_watch.py' -q
+          python -m unittest discover -s tests -p 'test_enguru_mk_contract_v3.py' -q
+      - name: Enforce two-round 25-gate engineering contract with 20 percent reserve
+        run: python tools/enguru_mk_acceptance_v3.py
       - name: Validate owner-submitted structured evidence as review candidate
         run: |
           python tools/enguru_muhendislik_kasi.py \
@@ -97,7 +103,6 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ github.token }}
       ENGURU_MK_OWNER_LOGIN: ${{ github.repository_owner }}
-      ENGURU_MK_CROSS_REPO_TOKEN: ${{ secrets.ENGURU_MK_READONLY_GITHUB_TOKEN }}
     steps:
       - name: Checkout persistent learning review branch
         uses: actions/checkout@v4
@@ -107,6 +112,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Enforce two-round engineering acceptance before reading live events
+        run: python tools/enguru_mk_acceptance_v3.py
       - name: Read GitHub sources and safely classify changes
         run: |
           python tools/enguru_mk_five_minute_watch.py \

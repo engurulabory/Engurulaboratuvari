@@ -55,7 +55,8 @@ class WatchContract(unittest.TestCase):
     def test_01_bootstrap_preserves_history(self):
         self.assertEqual(self.rec,BASE)
     def test_02_bootstrap_all_targets(self):
-        self.assertEqual(len(self.ck['targets']),3)
+        self.assertEqual(len(self.ck['targets']),2)
+        self.assertIn(w.PRIVATE_SOURCE_HOLD, self.ck['accessHolds'])
     def test_03_same_run_no_delta(self):
         self.assertEqual(self.run_cycle(),[])
     def test_04_same_run_no_mutation(self):
@@ -67,9 +68,10 @@ class WatchContract(unittest.TestCase):
     def test_06_learning_head_change_ignored(self):
         self.gh.pr[w.TARGETS[1][:2]]['head']['sha']=SHA2
         self.assertEqual(self.run_cycle(),[])
-    def test_07_osibridge_head_change_captured(self):
+    def test_07_private_head_metadata_not_exported(self):
         self.gh.pr[w.TARGETS[2][:2]]['head']['sha']=SHA2
-        self.run_cycle();self.assertIn('MK-EVT-GH-OSIBRIDGE',self.rec)
+        self.run_cycle();self.assertNotIn('MK-EVT-GH-OSIBRIDGE',self.rec)
+        self.assertIn(w.PRIVATE_SOURCE_HOLD, self.ck['accessHolds'])
     def test_08_mgmt_ci_failure_captured(self):
         k=w.TARGETS[0][:2]
         self.gh.runs[k]=[{'id':100,'head_sha':SHA1,'name':'CI','conclusion':'failure','status':'completed'}]
@@ -102,9 +104,9 @@ class WatchContract(unittest.TestCase):
         self.gh.comments[w.TARGETS[0][:2]]=[comment(108,'<!-- ENGURU_OSI_BLOCK_V1 -->\nvalid event')]
         self.run_cycle();prior=self.rec
         self.assertEqual(self.run_cycle(),[]);self.assertEqual(self.rec,prior)
-    def test_17_comment_new_fork_pr14(self):
-        self.gh.comments[w.TARGETS[2][:2]]=[comment(109,'<!-- ENGURU_OSI_RESPONSE_V1 -->\nSHA verification output',number=14)]
-        self.run_cycle();self.assertIn('MK-EVT-OSI-14-109',self.rec)
+    def test_17_private_comment_never_exported(self):
+        self.gh.comments[w.TARGETS[2][:2]]=[comment(109,'<!-- ENGURU_OSI_RESPONSE_V1 -->\nprivate OSi source',number=14)]
+        self.run_cycle();self.assertNotIn('private OSi source',self.rec)
     def test_18_source_mismatch_prevents_false_accept(self):
         self.gh.comments[w.TARGETS[0][:2]]=[comment(110,'<!-- ENGURU_OSI_RESPONSE_V1 -->\nPASS=4_4')]
         self.run_cycle();self.assertIn('ürün kabul sayacı değişimi `0`',self.rec)
@@ -156,7 +158,7 @@ class WatchContract(unittest.TestCase):
             return base(endpoint)
         record,ck,events=w.evaluate(restricted,self.rec,self.ck,'owner',NOW)
         self.assertEqual(record,BASE)
-        self.assertEqual(ck['accessHolds'],['PR14_PRIVATE_REPO_ACCESS_HOLD'])
+        self.assertEqual(ck['accessHolds'],[w.PRIVATE_SOURCE_HOLD])
         self.assertIn(w.key(*w.TARGETS[0][:2]),ck['targets'])
         self.assertIn(w.key(*w.TARGETS[1][:2]),ck['targets'])
 
@@ -165,3 +167,78 @@ class WatchContract(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'PAGINATION_LIMIT'):w.evaluate(self.gh,self.rec,self.ck,'owner',NOW)
 
 if __name__=='__main__':unittest.main()
+
+class NewRegressions(unittest.TestCase):
+    def setUp(self):
+        self.gh=FakeGH()
+        self.rec,self.ck,_=w.evaluate(self.gh,BASE,None,'owner',NOW)
+    def check(self):
+        self.rec,self.ck,out=w.evaluate(self.gh,self.rec,self.ck,'owner',NOW)
+        return out
+    def test_32_pair_block_and_response(self):
+        k=w.TARGETS[0][:2]
+        self.gh.comments[k]=[comment(210,'<!-- ENGURU_OSI_BLOCK_V1 -->\nTASK_ID='+m.TASK_ID+'\nBLOCK_ID=OSIBLOCK-20261023-A\nCommand source'),
+           comment(211,'<!-- ENGURU_OSI_RESPONSE_V1 -->\nTASK_ID='+m.TASK_ID+'\nBLOCK_ID=OSIBLOCK-20261023-A\nOutput reviewed')]
+        self.check();self.assertEqual(self.rec.count('**OSi eşleşme kimliği:** `OSIBLOCK-20261023-A`'),2)
+    def test_33_wrong_task_tag_fail_closed(self):
+        k=w.TARGETS[0][:2];self.gh.comments[k]=[comment(212,'<!-- ENGURU_OSI_BLOCK_V1 -->\nTASK_ID=OTHER\nBLOCK_ID=OSIBLOCK-20261023-A\nFoo')]
+        self.check();self.assertEqual(self.rec,BASE)
+    def test_34_invalid_block_id_fail_closed(self):
+        k=w.TARGETS[0][:2];self.gh.comments[k]=[comment(213,'<!-- ENGURU_OSI_BLOCK_V1 -->\nBLOCK_ID=../broken\nFoo')]
+        self.check();self.assertEqual(self.rec,BASE)
+    def test_35_crlf_owner_marker(self):
+        k=w.TARGETS[0][:2];self.gh.comments[k]=[comment(214,'<!-- ENGURU_OSI_RESPONSE_V1 -->\r\nBLOCK_ID=OSIBLOCK-20261023-A\r\nSTATE=HOLD')]
+        self.check();self.assertIn('MK-EVT-OSI-203-214',self.rec)
+    def test_36_private_metadata_response_block_never_public(self):
+        k=w.TARGETS[2][:2];self.gh.pr[k]['head']['sha']='a'*40
+        self.gh.comments[k]=[comment(215,'<!-- ENGURU_OSI_RESPONSE_V1 -->\nSECRET_INTERNAL_TITLE',number=14)]
+        self.check();self.assertNotIn('SECRET_INTERNAL_TITLE',self.rec)
+        self.assertNotIn('a'*40,self.rec)
+    def test_37_existing_public_tracking_survives_private_hold(self):
+        self.gh.pr[w.TARGETS[0][:2]]['head']['sha']=SHA2
+        self.check();self.assertIn('MK-EVT-GH-MGMT',self.rec)
+    def test_38_response_correlation_not_cryptographic_acceptance(self):
+        k=w.TARGETS[0][:2]
+        self.gh.comments[k]=[comment(218,'<!-- ENGURU_OSI_RESPONSE_V1 -->\nBLOCK_ID=OSIBLOCK-20261023-A\nSTATE=PASS')]
+        self.check();self.assertIn('OSi eşleşme kimliği',self.rec)
+        self.assertIn('ürün kabul sayacı değişimi `0`',self.rec)
+    def test_39_private_default_even_with_fetcher_permitted(self):
+        def forbids_private(endpoint):
+            if 'enguru-mac-engineer' in endpoint: raise AssertionError('private HTTP touched')
+            return self.gh(endpoint)
+        w.evaluate(forbids_private,self.rec,self.ck,'owner',NOW)
+    def test_40_replay_paired_osi_comment_idempotent(self):
+        k=w.TARGETS[0][:2];self.gh.comments[k]=[comment(220,'<!-- ENGURU_OSI_BLOCK_V1 -->\nBLOCK_ID=OSIBLOCK-20261023-A\nblock')]
+        self.check();state=self.rec;self.check();self.assertEqual(self.rec,state)
+
+class PairingAssertions(unittest.TestCase):
+    def setUp(self):
+        self.gh=FakeGH()
+        self.doc,self.ck,_=w.evaluate(self.gh,BASE,None,'owner',NOW)
+    def cycle(self):
+        self.doc,self.ck,_=w.evaluate(self.gh,self.doc,self.ck,'owner',NOW)
+    def test_41_explicit_matched_request_response(self):
+        k=w.TARGETS[0][:2]
+        self.gh.comments[k]=[comment(301,'<!-- ENGURU_OSI_BLOCK_V1 -->\nBLOCK_ID=OSIBLOCK-AAA999\nCommand'),comment(302,'<!-- ENGURU_OSI_RESPONSE_V1 -->\nBLOCK_ID=OSIBLOCK-AAA999\nOutput')]
+        self.cycle();self.assertIn('PAIR_MATCHED_REVIEW_ONLY',self.doc)
+    def test_42_unmatched_response_remains_hold(self):
+        k=w.TARGETS[0][:2]
+        self.gh.comments[k]=[comment(303,'<!-- ENGURU_OSI_RESPONSE_V1 -->\nBLOCK_ID=OSIBLOCK-AAA999\nOrphan')]
+        self.cycle();self.assertIn('PAIR_MISSING_REVIEW_REQUIRED',self.doc)
+    def test_43_checkpoint_survives_two_cycles(self):
+        k=w.TARGETS[0][:2]
+        self.gh.comments[k]=[comment(304,'<!-- ENGURU_OSI_BLOCK_V1 -->\nBLOCK_ID=OSIBLOCK-AAA999\nCommand')]
+        self.cycle()
+        self.gh.comments[k].append(comment(305,'<!-- ENGURU_OSI_RESPONSE_V1 -->\nBLOCK_ID=OSIBLOCK-AAA999\nOutput'))
+        self.cycle();self.assertIn('PAIR_MATCHED_REVIEW_ONLY',self.doc)
+    def test_44_invalid_pair_checkpoint_rejected(self):
+        k=w.key(*w.TARGETS[0][:2]);self.ck['targets'][k]['osiBlockIds']=['../../evil']
+        with self.assertRaisesRegex(ValueError,'OSI_PAIR_CHECKPOINT'):self.cycle()
+    def test_45_private_pairs_never_enter_public_checkpoint(self):
+        k=w.TARGETS[2][:2]
+        self.gh.comments[k]=[comment(309,'<!-- ENGURU_OSI_BLOCK_V1 -->\nBLOCK_ID=OSIBLOCK-PRIVATE\nPrivate',number=14)]
+        self.cycle();self.assertNotIn(w.key(*k),self.ck['targets'])
+    def test_46_pair_result_preserves_human_threshold(self):
+        k=w.TARGETS[0][:2]
+        self.gh.comments[k]=[comment(306,'<!-- ENGURU_OSI_BLOCK_V1 -->\nBLOCK_ID=OSIBLOCK-AAA999\nCommand'),comment(307,'<!-- ENGURU_OSI_RESPONSE_V1 -->\nBLOCK_ID=OSIBLOCK-AAA999\nSTATE=VERIFIED_FINISH')]
+        self.cycle();self.assertIn('ürün kabul sayacı değişimi `0`',self.doc)

@@ -24,7 +24,7 @@ ALLOWED_TYPES = frozenset({"UNEXPECTED", "ERROR", "MISMATCH", "REGRESSION", "IMP
 ALLOWED_LEVELS = frozenset({"A", "B", "C", "D"})
 ALLOWED_CAUSES = frozenset({"HYPOTHESIS", "CONFIRMED", "UNKNOWN"})
 ALLOWED_TEST_STATES = frozenset({"NOT_EXECUTED", "PASS", "HOLD", "FAIL"})
-FIELDS = frozenset({"schema", "eventId", "taskId", "observedAt", "type", "evidenceLevel", "sourceUri", "sourceSha256", "sourcePath", "expected", "observed", "causeStatus", "fixProposal", "testState", "examinedCount", "impact", "suggestedCheck"})
+FIELDS = frozenset({"schema", "eventId", "taskId", "observedAt", "type", "evidenceLevel", "sourceUri", "sourceSha256", "sourcePath", "expected", "observed", "causeStatus", "fixProposal", "testState", "examinedCount", "impact", "suggestedCheck", "correlationId"})
 REQUIRED = frozenset({"schema", "eventId", "taskId", "observedAt", "type", "evidenceLevel", "sourceUri", "sourceSha256", "expected", "observed", "causeStatus", "fixProposal", "testState"})
 TASK_ID = "ENGURU_MANAGEMENT_V69_PR_203"
 ID_RE = re.compile(r"MK-EVT-[A-Z0-9][A-Z0-9_-]{4,70}\Z")
@@ -92,6 +92,8 @@ def parse_event(raw: bytes) -> dict:
         raise IntakeHold("HOLD_COVERAGE_TYPE")
     if "sourcePath" in event and (not isinstance(event["sourcePath"], str) or len(event["sourcePath"]) > 1000):
         raise IntakeHold("HOLD_SOURCE_PATH")
+    if 'correlationId' in event and (not isinstance(event['correlationId'], str) or not re.fullmatch(r'[A-Z0-9][A-Z0-9_-]{5,70}', event['correlationId'])):
+        raise IntakeHold('HOLD_CORRELATION_ID')
     if SECRET_RE.search(canonical(event).decode("utf-8")):
         raise IntakeHold("HOLD_POTENTIAL_SECRET")
     return event
@@ -122,6 +124,8 @@ def classify(event: dict, evidence_state: str) -> dict:
         issues.append("CAUSE_CLAIM_REQUIRES_INDEPENDENT_CONFIRMATION")
     if event["evidenceLevel"] in {"B", "C", "D"} and evidence_state != "PASS_BYTE_SHA_ONLY":
         issues.append("EVIDENCE_LEVEL_CLAIM_NOT_INDEPENDENTLY_AUTHENTICATED")
+    if event.get('correlationId') and event['type'] == 'UNEXPECTED':
+        issues.append('OSI_RESPONSE_CORRELATION_REVIEW_REQUIRED')
     # Even a local hash match proves bytes only, not independent verifier or owner signature.
     if event["evidenceLevel"] == "D":
         issues.append("OWNER_ATTESTATION_REQUIRES_EXTERNAL_CANONICAL_VERIFIER")
@@ -170,6 +174,7 @@ def add_event(record: str, event: dict, classification: dict):
         f"- **Beklenti:** {text(event['expected'])}\n"
         f"- **Önerilen fark:** {text(event['fixProposal'])}\n"
         f"- **Kaynak:** {text(event['sourceUri'])} · SHA-256 `{event['sourceSha256']}`.\n"
+        f"- **OSi eşleşme kimliği:** `{event.get('correlationId', 'UNSPECIFIED')}`.\n"
         f"- **Karar:** `REVIEW_REQUIRED`; ürün kabul sayacı değişimi `0`; kontroller: {', '.join(classification['issues']) or 'SOURCE_REVIEW'}.\n"
     )
     return record.rstrip("\n") + "\n" + appended, "NEW_REVIEW_CANDIDATE"
