@@ -11,11 +11,11 @@ SCOPE: A01–A09 = nine **Ar-Ge architecture** tasks. Mac Engineer V07 A-ID'leri
 | A01 | 18 vaka, altı alan, kaynak ve senaryo envanteri | V4.5 yapısal hazırlık, özgün müşteri kanıtı açık | HOLD |
 | A02 | 234 benzersiz K01–K13 hücre ve kaynak izlenebilirliği | V4.5 yapısal hazırlık, bağımsız E5 açık | HOLD |
 | A03 | Kabul sözleşmesi, owner/issuer, reviewer, yetki | PR #207 özel CI PASS, imzalı grant açık | HOLD |
-| A04 | Özgünlük, lisans, risk ve Kâşifi kaynak tespiti | Kâşifi gerçek canonical kaynak açık | HOLD |
-| A05 | E1–E5 gerçek kullanım/kanıt seviyesi | 18 vakanın E5 bağımsız doğrulaması açık | HOLD |
-| A06 | G01 dış etki, G02 ilişkisel yetki, G03 zaman doğruluğu | gerçek müşteri/saha testleri açık | HOLD |
-| A07 | ENGÜRÜ mevcut yetenek ile fark değerlendirmesi | benchmark ve gerçek kaynak pinleri açık | HOLD |
-| A08 | Koruma/hasat/kazanım, maliyet, K12 ROI/TCO | ölçülmüş maliyet/fayda açık | HOLD |
+| A04 | Upstream kanıt denetimi: 18 vakanın sürüm/tarih/lisans/CVE/SBOM durumu | Erişilebilir upstream kanıt ve Kâşifi gerçek canonical kimlik doğrulaması açık | HOLD |
+| A05 | Müşteri dağıtım doğrulama: 18 kurulu sürüm ve iddia sınıfı | 18 gerçek deployment pin ve müşteri teyidi açık; UNKNOWN ayrı | HOLD |
+| A06 | E5 bağımsız kabul: 18 doğrulama kararı veya yetkili kapsam kararı | 18 vakanın gerçek bağımsız E5 doğrulaması açık | HOLD |
+| A07 | G01 dış etki, G02 ilişkisel yetki, G03 zaman doğruluğu mimari garantileri | saldırı girdisi + beklenen orakel + gereksinim/test ayrımı; gerçek saha testleri açık | HOLD |
+| A08 | 18 vaka K12: 5 yıllık TCO, açık varsayımlar ve ±20% duyarlılık | kaynaklı gerçek müşteri/ENGÜRÜ maliyet ölçümü ve bağımsız review açık | HOLD |
 | A09 | Birleşik Mimarlık Ar-Ge kanıt dosyası ve AR→GE devri | tam 9 kontrol kabulü ve reviewer açık | HOLD |
 
 Temalar V4.2 KSF aday eşleştirmesi ve #205 Ar-Ge kapsamından hazırlanmıştır. Ayrıntılı task-specific canonical tanımlar OWNER doğrulamasına bağlıdır. İş ID'leri korunur; kesinleşmeyen alt anlamlar taslak niteliğindedir.
@@ -36,3 +36,6 @@ BLOCK FINISH: ancak dokuz gerçek yetkili PASS ile. Bu dokümanın hazırlanmas�
 Teorik kapsam 100/100 (öz değerlendirme); GitHub hazırlık 50/100; OSi saha 0/100; resmî 0/40.
 Kâşifi canonical kaynak / A03 grant / 18 E5 / gerçek G01–G03 ve K12 ayrı HOLD.
 NEXT: Birleşik giriş testini CI'de pinle; blok eksiklerini yetkili belgeye bağla; çıkış simülasyonunu aynı dokuz iş üzerinden tamamla.
+
+## V4.2 kanonik görev kimliği uzlaştırması
+A04 upstream; A05 müşteri deployment; A06 bağımsız E5; A07 G01–G03; A08 beş yıllık K12 TCO. V423 önceki konu satırlarında A06/A07 görev kayması düzeltildi; özgün A01–A09 sayacı ve resmî 0/9 korunur. G01–G03 tasarım testleri gerçek saha kabulü yerine geçmez. Bağlayıcı görev sahibi ve reviewer yetkileri canonical source/DoneCheck üzerinden doğrulanır.
