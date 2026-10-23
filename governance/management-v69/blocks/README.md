@@ -29,6 +29,23 @@ Bu dosya, mevcut **G1–G6 ana iş listesinin uygulanabilir bloklara bağlanmı�
 
 **23.10.2026 iş listesi ilerleme eki:** G3 eski reviewer-key bağımlılığı gerçek review dalında düzeltilerek yeni anahtar doğrulandı. Gerçek macOS CI #40005312121: G3 24/24, G2 grant 26/26, ROOT genesis 25/25, native Swift PASS. Mühendislik Kası™ V3 bu düzeltmeyi `MK-EVT-V69-G3-ROTATED-20261023` olarak gerçek GitHub koşusu #40005514734 ile kaydetti. Bu sonuç **G3_TECHNICAL_READY**; G2 yetkili canonical admission ve G3 insan imzası resmî HOLD. Tek sonraki hareket mevcut yetkili ROOT admission kaynağının bağımsız kabul makbuzudur.
 
+## Kabul edilen tek kullanıcı yerel mühendislik kararı — 23.10.2026
+
+**Owner kabulü:** Mevcut V1.2 `single_owner_local_engineering` politika alanı esas; kullanıcı son kararı tekrar kabul ederek kayda ve bir sonraki gerçek iş bloğuna hizalanmayı istedi. **Çalışma düzeni:** gerçek yerel uygulama inşası, bağımsız test, GitHub inceleme dalları ve SHA-256 kanıtları öncelikli; resmî G3 imzası, G4 DoneCheck audit yazımı, G5 yetkili birleştirme ve G6 Human Threshold/Verified Finish **nihai toplu kabul** aşamasında. Mevcut macOS izinleri, yerel şifreli anahtarlar, eski owner trust, V3 ve canonical DoneCheck korunur. Bu karar tek başına G2–G6 resmî PASS oluşturmaz.
+
+**Son gerçek G2 saha kanıtı:** Kullanıcı Mac OSi Terminal'i `PASS_CANONICAL_G2_BOOTSTRAP_ADMISSION_VERIFIED` ve `PASS_CANONICAL_CRYPTOGRAPHIC_OWNER_GRANT` bildirdi. Bağımsız SHA eşleşmeli saha raporu `ad3f010be6e470c0aa92d9da5cd0110aaf0e33b853fd29714d7fe09e09313695`, registration SHA `4f55ed2cdc36ee5bba7e1ea84671d48f769256f5b64c34d5ff907479c629801b`, grant geçerlilik sonu `2026-10-30T17:47:11.475Z`. Terminalin son doğrulama PASS sonucu ile ön-doğrulama makbuzunun HOLD ibaresi farklı aşamaları gösterir. GitHub canonical resmî kabul hâlen ayrı inceleme kapısıdır.
+
+**Sıradaki tek uygulanabilir çalışma bloğu: `B01 / YEREL_TEKNIK_ENTEGRASYON`.** Özgün B01 G2–G6 kapsamının teknik hazırlık **alt aşaması**; B00, B02 ve B03 kimlikleri değişmez.
+
+- **B01-01:** Güncel Mac Engineer ve DoneCheck canonical kaynaklarını, reviewer anahtar bağını ve G2 sürümlü kayıt makbuzu SHA'sını salt-okunur uzlaştır.
+- **B01-02:** G3 gerçek imza prosedüründen bağımsız teknik veri yolunu ve G4 DoneCheck köprüsünün test/izole ledger davranışını mevcut kod üzerinde bütünleştir; CI ve karşıt testlerle doğrula.
+- **B01-03:** G5 güncel main/PR karşılaştırması ve G6 özgün bağımsız kanıt matrisi için **salt-okunur** hazır oluş kanıtı üret. Yetkili merge, gerçek ledger yazımı ve nihai Human Threshold için tek toplu kabul penceresi bırak.
+- **B01-04:** V1.2 puanla → eksikleri düzelt → azami üç bağımsız simülasyon → gerçek GitHub CI → kanıtlı teknik hazırlık. İzole simülasyon ile Mac gerçek saha ve resmî Verified Finish sonuçları ayrı kaydedilir.
+
+**Günlük kullanıcı etkileşimi:** Kaynak, test, build, simülasyon ve yerel teknik geliştirme için tekrar parola/ROOT töreni yok. Gerçek OS erişim sınırında yalnız gerektiğinde bir owner onayı. Şifreli reviewer kimliği ve yetkili G3–G6 kapanışı korunarak bitiş aşamasına taşınır.
+
+**Sonraki ana blok durumu:** `B00=PASS_TECHNICAL`; `B01=ACTIVE_LOCAL_TECHNICAL_PREPARATION_WITH_OFFICIAL_HOLD`; `B02=ACTIVE_NONBLOCKING_LEARNING`; `B03=DEFERRED_OTHER_PRODUCT_WORKLIST`. Mevcut `plan.json` içindeki orijinal B01 kabul zinciri bağlayıcıdır; alt aşama yeni canonical gate veya alternatif yetki oluşturmaz.
+
 ## Ana iş listesi — özgün altı kapı
 
 | Kontrol | Yapılacak gerçek iş | Mevcut kanıtlı sonuç |
