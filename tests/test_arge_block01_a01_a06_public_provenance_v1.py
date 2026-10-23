@@ -75,6 +75,49 @@ class OriginalPublicProvenance(unittest.TestCase):
                 self.assertIn("release",pin["evidence_scope"].lower()
                               + self.review["upstream_license_review_scope"].lower())
 
+    def test_real_upstream_manifest_blob_pins_and_non_sbom_semantics(self):
+        expected={
+            "Meilisearch":("Cargo.lock","d018e8060a179a9d53c350d78ee04005422abc22"),
+            "Medusa":("yarn.lock","660081e74b9be3799b3a0f25d5631df4e1cf0658"),
+            "Saleor":("uv.lock","a71a6f59ffdec55dae1e5975a083abf969a89130"),
+            "Supabase":("pnpm-lock.yaml","57212ada2d941ca4f1ad02d6d23c043072969191"),
+            "Temporal":("go.sum","7bb84062f0806238f63f3a71ccc70375a98f8968"),
+            "OpenFGA":("go.sum","46f0cd6c60028577eb92bf5a4be0af82c705edaa"),
+            "LangGraph":("libs/langgraph/pyproject.toml","6aac18d6162e9f516e3f66113ce064f5da698b9a"),
+        }
+        manifests={p["technology"]:p for p in self.review["a04_upstream_dependency_evidence"]}
+        self.assertEqual(set(manifests),set(expected))
+        for technology,(path,sha) in expected.items():
+            with self.subTest(technology=technology):
+                record=manifests[technology]
+                self.assertEqual((record["path"],record["git_blob_sha1"]),(path,sha))
+                self.assertEqual(record["sbom_status"],"HOLD_NO_VERIFIED_SIGNED_SBOM")
+                self.assertEqual(record["cve_status"],"HOLD_CUSTOMER_VERSION_UNRESOLVED")
+                self.assertEqual(record["customer_release_status"],
+                                 "HOLD_EXACT_DEPLOYED_RELEASE_UNAVAILABLE")
+        self.assertEqual(self.review["a04_sbom_independently_verified"],0)
+        self.assertEqual(self.review["a04_customer_cve_applicability_verified"],0)
+        self.assertEqual(self.review["a04_release_sha256_verified"],0)
+
+    def test_exact_license_and_enterprise_source_identity(self):
+        verified={
+            "Meilisearch":"edcaeebc4e866b1ebefc330c103560e41639601b",
+            "Medusa":"2bc747bf4b0a88864584b033fdeab86012a44c79",
+            "Saleor":"715b42cd6fe5d7073984ff7004b49dc8304adbcc",
+            "Supabase":"49ea124025275674563eeff03af0f653ca49fdc0",
+            "Temporal":"3349f76795f4409cba6ae18ea56adf9fbd8346f3",
+            "OpenFGA":"4959a5e50d66e62e675d8d033d66cca0f390458d",
+            "LangGraph":"fc0602feecdd6748623c852ab534e1ca612673c7",
+        }
+        observed={p["technology"]:p["git_blob_sha1"] for p in self.review["upstream_license_pins"]}
+        self.assertEqual(observed,verified)
+        licenses={e["technology"]:e["git_blob_sha1"]
+                  for e in self.review["a04_enterprise_licensing_documents"]}
+        self.assertEqual(licenses,{
+            "Meilisearch":"87510480d5d8653a1a1583285c5ba5208b22826e",
+            "Medusa":"56ec107aaf946c18f88955a031ba1dec9396111d"
+        })
+
     def test_upstream_enterprise_licenses_require_actual_edition_pin(self):
         by_tech={p["technology"]:p for p in self.review["upstream_license_pins"]}
         self.assertEqual(by_tech["Meilisearch"]["observed_license"],
