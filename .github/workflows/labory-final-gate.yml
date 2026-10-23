@@ -42,6 +42,9 @@ jobs:
       - name: EMUS task identity probe syntax (integration execution remains gated)
         run: python -m py_compile tests/test_emus_task_identity_probe.py
 
+      - name: EMUS canonical V3 source lock byte verification
+        run: python -m unittest discover -s tests -p 'test_emus_task_identity_probe.py' -k emus_v3_lock_pin_matches_contract -v
+
       - name: EMUS real WorkingMemory checkpoint identity and authority test
         run: python -m unittest discover -s tests -p 'test_emus_task_identity_probe.py' -k emus_working_memory_checkpoint_identity_and_authority -v
 
