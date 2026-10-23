@@ -45,6 +45,9 @@ jobs:
       - name: EMUS missing private runtime fail-closed test
         run: python -m unittest discover -s tests -p 'test_emus_task_identity_probe.py' -k missing_pinned_runtime -v
 
+      - name: EMUS private runtime source drift fail-closed test
+        run: python -m unittest discover -s tests -p 'test_emus_task_identity_probe.py' -k source_drift_fails_before_import -v
+
       - name: Mac Engineer Package 3 persistent working memory tests
         run: python -m unittest discover -s tests -p 'test_working_memory.py' -v
 
