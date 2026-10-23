@@ -78,3 +78,8 @@ Bu sözleşme ADAY'dır. GH-01 tam kaynak eşleştirmesi, gerçek owner ve bağ�
 - `dccdd9705aeab4a493e66150d5390b5ec9ddc60a` commit'ine bağlı GitHub workflow sonuçları: PARK Adapter CI `39985686137` success; IP Model Trust Fleet `39985686186` success; ENGURU Labory Final Gate `39985686480` success; IP Model Trust Gate `39985686182` success.
 - `.github/workflows/labory-final-gate.yml` (blob `376b791dcdf0f9596fbdc2ddfadb43745960a423`) mevcut WorkingMemory birim testlerini çalıştırır; `test_emus_task_identity_probe.py` çağrısı içermez. Bu dört yeşil workflow EMÜS üçlü kimlik entegrasyon testinin PASS kanıtı değildir.
 - `TASK_ID_BINDING=HOLD_TEST`; kaynak pin düzeltmesi GitHub dosya geri-okuması PASS. Sıradaki dar ihtiyaç: özel Mac Engineer runtime'ın sabit sürümü için yetkili ve tekrar üretilebilir koşu, test çıktısı ve bağımsız kontrol. Geçerli grant ve owner kabulü ayrı HOLD.
+
+## 2026-10-23 — EMÜS CI sözdizimi gerçek çalışma kanıtı
+- Commit `92daa4e538b3fa31e0f59a52cd18647dd1df202d`, GitHub `ENGURU Labory Final Gate` run `39991208795`, job `120543122620`: `EMUS task identity probe syntax (integration execution remains gated)` adımı GitHub API üzerinden `completed/success` doğrulandı.
+- Aynı commit'te PARK Adapter CI `39991208529`, IP Model Trust Fleet `39991208536`, IP Model Trust Gate `39991208553` completed/success. Kapsam yalnız ilgili workflow adımlarıdır.
+- Karar `EMUS_TEST_SYNTAX_CI=PASS`; `EMUS_TASK_ID_INTEGRATION=HOLD_TEST`; `EMUS_AUTHORITY=HOLD`. Başarılı sözdizimi adımı gerçek özel runtime entegrasyon testi değildir.
