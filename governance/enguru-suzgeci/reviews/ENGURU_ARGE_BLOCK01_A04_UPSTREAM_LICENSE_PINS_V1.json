@@ -37,7 +37,17 @@
       "sbom_verified": false,
       "cve_review_verified": false,
       "legal_license_clearance": false,
-      "independent_e5_verified": false
+      "independent_e5_verified": false,
+      "security_disclosure_policy_found_in_checked_paths": true,
+      "security_policy_check_paths": [
+        "SECURITY.md",
+        ".github/SECURITY.md"
+      ],
+      "security_policy": {
+        "path": "SECURITY.md",
+        "git_blob_sha": "374dc4198126b988baa3e6343fb8c64f9d2f9aa0",
+        "source_url": "https://github.com/meilisearch/meilisearch/blob/7b6f9f39bd91b04d4551673780cfeb31cb3f5e7b/SECURITY.md"
+      }
     },
     {
       "name": "Medusa",
@@ -65,7 +75,17 @@
       "sbom_verified": false,
       "cve_review_verified": false,
       "legal_license_clearance": false,
-      "independent_e5_verified": false
+      "independent_e5_verified": false,
+      "security_disclosure_policy_found_in_checked_paths": true,
+      "security_policy_check_paths": [
+        "SECURITY.md",
+        ".github/SECURITY.md"
+      ],
+      "security_policy": {
+        "path": "SECURITY.md",
+        "git_blob_sha": "be51b12006580c25e2d7ca5cb938e5f1d35bb374",
+        "source_url": "https://github.com/medusajs/medusa/blob/029fb31fd077ab9c6d6fd9d68c676c17c71294c7/SECURITY.md"
+      }
     },
     {
       "name": "Saleor",
@@ -86,7 +106,17 @@
       "sbom_verified": false,
       "cve_review_verified": false,
       "legal_license_clearance": false,
-      "independent_e5_verified": false
+      "independent_e5_verified": false,
+      "security_disclosure_policy_found_in_checked_paths": true,
+      "security_policy_check_paths": [
+        "SECURITY.md",
+        ".github/SECURITY.md"
+      ],
+      "security_policy": {
+        "path": "SECURITY.md",
+        "git_blob_sha": "1ed76fffcebfbf73747e291dd418468eba298ae1",
+        "source_url": "https://github.com/saleor/saleor/blob/01650613a0dff24e6bdfa904bea1ca3d27d1e687/SECURITY.md"
+      }
     },
     {
       "name": "Supabase",
@@ -109,7 +139,12 @@
       "sbom_verified": false,
       "cve_review_verified": false,
       "legal_license_clearance": false,
-      "independent_e5_verified": false
+      "independent_e5_verified": false,
+      "security_disclosure_policy_found_in_checked_paths": false,
+      "security_policy_check_paths": [
+        "SECURITY.md",
+        ".github/SECURITY.md"
+      ]
     },
     {
       "name": "Temporal",
@@ -132,7 +167,12 @@
       "sbom_verified": false,
       "cve_review_verified": false,
       "legal_license_clearance": false,
-      "independent_e5_verified": false
+      "independent_e5_verified": false,
+      "security_disclosure_policy_found_in_checked_paths": false,
+      "security_policy_check_paths": [
+        "SECURITY.md",
+        ".github/SECURITY.md"
+      ]
     },
     {
       "name": "OpenFGA",
@@ -155,7 +195,12 @@
       "sbom_verified": false,
       "cve_review_verified": false,
       "legal_license_clearance": false,
-      "independent_e5_verified": false
+      "independent_e5_verified": false,
+      "security_disclosure_policy_found_in_checked_paths": false,
+      "security_policy_check_paths": [
+        "SECURITY.md",
+        ".github/SECURITY.md"
+      ]
     },
     {
       "name": "LangGraph",
@@ -179,7 +224,12 @@
       "sbom_verified": false,
       "cve_review_verified": false,
       "legal_license_clearance": false,
-      "independent_e5_verified": false
+      "independent_e5_verified": false,
+      "security_disclosure_policy_found_in_checked_paths": false,
+      "security_policy_check_paths": [
+        "SECURITY.md",
+        ".github/SECURITY.md"
+      ]
     }
   ],
   "acceptance_boundary": {
@@ -191,13 +241,15 @@
     "independent_e5": "HOLD_0_OF_18",
     "a04_official": "HOLD",
     "block01_official": "0/9",
-    "total_official": "0/40"
+    "total_official": "0/40",
+    "security_disclosure_policy_pins": "3_OF_7_STANDARD_PATHS_FOUND"
   },
   "caveats": [
     "Repo license and pinned source commit describe upstream public repository only, not customer deployments.",
     "Meilisearch and Medusa contain additional enterprise terms; exact component and runtime scope require legal/owner assessment.",
     "Supabase monorepo top LICENSE cannot be assumed for every separately distributed component.",
     "Replit/Temporal case 07 historical claim is disputed by later Restate use; no current adoption concluded.",
-    "CVE/SBOM/installed version and independent customer attestation remain separate evidence obligations."
+    "CVE/SBOM/installed version and independent customer attestation remain separate evidence obligations.",
+    "Security disclosure policy file is only a reporting process; it is not a CVE scan or vulnerability clearance. Missing two default paths does not establish lack of an upstream security policy."
   ]
 }
