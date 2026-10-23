@@ -7,6 +7,8 @@ Official acceptance is owned exclusively by canonical DoneCheck/Human Threshold.
 import argparse
 import hashlib
 import json
+import os
+import stat
 import re
 from datetime import datetime
 from pathlib import Path
@@ -28,52 +30,79 @@ def _date(value):
     except ValueError:
         return False
 
-def file_pin(root, name, expected, *, kind="file"):
-    """Verify bytes without following filesystem symlinks or leaving evidence root."""
-    if not isinstance(name, str) or not name or not isinstance(expected, str) or not SHA256.fullmatch(expected):
-        return "HOLD_FILE_NAME_OR_SHA256"
-    p = Path(name)
-    if p.is_absolute() or any(x in ("..", ".") for x in p.parts):
-        return "HOLD_FILE_PATH_SCOPE"
-    try:
-        if root.is_symlink() or not root.is_dir():
-            return "HOLD_ARTIFACT_ROOT"
-        scope = root.resolve(strict=True)
-        path = scope / p
-        if any(x.is_symlink() for x in (path, *path.parents) if x != scope and scope in x.parents):
-            return "HOLD_SYMLINK"
-        target = path.resolve(strict=True)
-        target.relative_to(scope)
-        if not target.is_file() or target.stat().st_size > MAX_FILE_BYTES:
-            return "HOLD_FILE_TYPE_OR_SIZE"
-        h = hashlib.sha256()
-        with target.open("rb") as stream:
-            while block := stream.read(65536):
-                h.update(block)
-        if h.hexdigest() != expected:
-            return "HOLD_FILE_SHA256_MISMATCH"
-        if kind == "sbom":
-            document = json.loads(target.read_text(encoding="utf-8"))
-            if not isinstance(document, dict):
-                return "HOLD_SBOM_SCHEMA"
-            if not (document.get("bomFormat") == "CycloneDX" and document.get("specVersion")
-                    or str(document.get("spdxVersion", "")).startswith("SPDX-")):
-                return "HOLD_SBOM_FORMAT"
-        return "BYTE_SHA256_MATCH_UNTRUSTED_SOURCE"
-    except (OSError, ValueError, UnicodeError, json.JSONDecodeError):
-        return "HOLD_FILE_READ_OR_SCHEMA"
+def _pinned_artifact(root, name, expected, *, kind="file", parse_json=False):
+    """Read once via no-follow directory descriptors, hash then parse SAME bytes.
 
-def _bound_json(root, relative, required):
-    """Parse an already hash-pinned JSON file and compare exact case bindings.
-
-    A digest supplied by a packet is not an authenticated record. Binding only
-    prevents accidental or adversarial swapping of genuine-looking artifacts.
+    SHA-256 alone proves byte consistency with the supplied digest; canonical
+    issuer/signature/reviewer authority remains an external HOLD.
     """
+    if not isinstance(name, str) or not name or not isinstance(expected, str) or not SHA256.fullmatch(expected):
+        return "HOLD_FILE_NAME_OR_SHA256", None
+    p = Path(name)
+    if (p.is_absolute() or any(part in (".", "..", "") for part in p.parts)
+            or not p.parts):
+        return "HOLD_FILE_PATH_SCOPE", None
+    if not all(hasattr(os, attr) for attr in ("O_NOFOLLOW", "O_DIRECTORY")):
+        return "HOLD_PLATFORM_NO_SAFE_FILE_OPEN", None
+    if Path(root).is_symlink():
+        return "HOLD_ARTIFACT_ROOT", None
+    flags = os.O_RDONLY | os.O_NOFOLLOW
+    directories = flags | os.O_DIRECTORY
+    opened = []
     try:
-        doc = json.loads((Path(root) / relative).read_text(encoding="utf-8"))
-    except (OSError, ValueError, TypeError, UnicodeError):
-        return False
-    return isinstance(doc, dict) and all(doc.get(k) == v for k, v in required.items())
+        parent_fd = os.open(str(root), directories)
+        opened.append(parent_fd)
+        for part in p.parts[:-1]:
+            child_fd = os.open(part, directories, dir_fd=parent_fd)
+            opened.append(child_fd)
+            parent_fd = child_fd
+        # O_NONBLOCK also guards against a FIFO substituted for a regular file.
+        fd = os.open(p.parts[-1], flags | getattr(os, "O_NONBLOCK", 0), dir_fd=parent_fd)
+        opened.append(fd)
+        metadata = os.fstat(fd)
+        if not stat.S_ISREG(metadata.st_mode) or metadata.st_size > MAX_FILE_BYTES:
+            return "HOLD_FILE_TYPE_OR_SIZE", None
+        with os.fdopen(os.dup(fd), "rb") as handle:
+            data = handle.read(MAX_FILE_BYTES + 1)
+        if len(data) > MAX_FILE_BYTES:
+            return "HOLD_FILE_TYPE_OR_SIZE", None
+        if hashlib.sha256(data).hexdigest() != expected:
+            return "HOLD_FILE_SHA256_MISMATCH", None
+        doc = None
+        if kind == "sbom" or parse_json:
+            try:
+                doc = json.loads(data.decode("utf-8"))
+            except (UnicodeError, ValueError):
+                return "HOLD_SBOM_SCHEMA" if kind == "sbom" else "HOLD_DOCUMENT_JSON", None
+            if not isinstance(doc, dict):
+                return "HOLD_SBOM_SCHEMA" if kind == "sbom" else "HOLD_DOCUMENT_JSON", None
+            if kind == "sbom" and not (
+                (doc.get("bomFormat") == "CycloneDX" and doc.get("specVersion"))
+                or str(doc.get("spdxVersion", "")).startswith("SPDX-")
+            ):
+                return "HOLD_SBOM_FORMAT", None
+        return "BYTE_SHA256_MATCH_UNTRUSTED_SOURCE", doc
+    except OSError as exc:
+        if getattr(exc, "errno", None) in (40,):  # ELOOP: symlink traversal
+            return "HOLD_SYMLINK", None
+        # Intermediate O_DIRECTORY|O_NOFOLLOW can return ENOTDIR for a link.
+        if getattr(exc, "errno", None) in (20,):
+            return "HOLD_SYMLINK_OR_NON_DIRECTORY", None
+        return "HOLD_FILE_READ_OR_SCHEMA", None
+    finally:
+        for descriptor in reversed(opened):
+            os.close(descriptor)
+
+
+def file_pin(root, name, expected, *, kind="file"):
+    """Compatibility status API; no second open or read."""
+    return _pinned_artifact(root, name, expected, kind=kind)[0]
+
+
+def _bound_json(document, required):
+    """Match fields from exactly the already hash-verified bytes."""
+    return isinstance(document, dict) and all(document.get(k) == v for k, v in required.items())
+
 
 def audit_case(case, evidence, root):
     cid = case["case_id"]
@@ -97,18 +126,21 @@ def audit_case(case, evidence, root):
                       ("customer_sbom", "sbom_sha256", "sbom"),
                       ("customer_assertion", "customer_assertion_sha256", "file"),
                       ("customer_signature", "customer_signature_sha256", "file"))
-            checks = [file_pin(root, deploy.get(name), deploy.get(digest), kind=kind)
-                      for name, digest, kind in fields]
+            checked = [_pinned_artifact(root, deploy.get(name), deploy.get(digest),
+                                        kind=kind, parse_json=name in ("deployed_manifest", "customer_assertion"))
+                       for name, digest, kind in fields]
+            checks = [state for state, _ in checked]
             if any(x != "BYTE_SHA256_MATCH_UNTRUSTED_SOURCE" for x in checks):
                 result["a05"] = next(x for x in checks if x != "BYTE_SHA256_MATCH_UNTRUSTED_SOURCE")
             else:
+                document_by_field = {name: item[1] for (name, _, _), item in zip(fields, checked)}
                 manifest_expected = {k: evidence[k] for k in ("case_id", "customer", "technology")}
                 manifest_expected.update({k: deploy[k] for k in ("release", "edition", "source_commit")})
                 owner_expected = {"case_id": cid, "customer": case["customer"],
                                   "owner_id": deploy["customer_owner_id"],
                                   "manifest_sha256": deploy["manifest_sha256"]}
-                if (_bound_json(root, deploy["deployed_manifest"], manifest_expected)
-                        and _bound_json(root, deploy["customer_assertion"], owner_expected)):
+                if (_bound_json(document_by_field["deployed_manifest"], manifest_expected)
+                        and _bound_json(document_by_field["customer_assertion"], owner_expected)):
                     result["a05"] = CANDIDATE
                 else:
                     result["a05"] = "HOLD_DEPLOYMENT_DOCUMENT_BINDING"
@@ -127,7 +159,11 @@ def audit_case(case, evidence, root):
             fields = (("report", "report_sha256"),
                       ("verifier_assertion", "verifier_assertion_sha256"),
                       ("verifier_signature", "verifier_signature_sha256"))
-            checks = [file_pin(root, e5.get(name), e5.get(digest)) for name, digest in fields]
+            checked = [_pinned_artifact(root, e5.get(name), e5.get(digest),
+                                        parse_json=name in ("report", "verifier_assertion"))
+                       for name, digest in fields]
+            checks = [state for state, _ in checked]
+            document_by_field = {name: item[1] for (name, _), item in zip(fields, checked)}
             if any(x != "BYTE_SHA256_MATCH_UNTRUSTED_SOURCE" for x in checks):
                 result["a06"] = next(x for x in checks if x != "BYTE_SHA256_MATCH_UNTRUSTED_SOURCE")
             elif result["a05"] != CANDIDATE:
@@ -140,8 +176,8 @@ def audit_case(case, evidence, root):
                 assertion_expected = {"case_id": cid,
                                       "report_sha256": e5["report_sha256"],
                                       "verifier_identity": verifier}
-                if (_bound_json(root, e5["report"], report_expected) and
-                        _bound_json(root, e5["verifier_assertion"], assertion_expected)):
+                if (_bound_json(document_by_field["report"], report_expected) and
+                        _bound_json(document_by_field["verifier_assertion"], assertion_expected)):
                     result["a06"] = CANDIDATE
                 else:
                     result["a06"] = "HOLD_E5_DOCUMENT_BINDING"
