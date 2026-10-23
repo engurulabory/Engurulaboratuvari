@@ -63,6 +63,21 @@ def validate(p):
     require(s['management_pr']==203 and s['engineer_private_pr']==14,'PR_SCOPE')
     require(p['progress']=={'technical_gate_pass':1,'gate_total':6,'fully_accepted_g2_g6':0,'g2_g6_total':5,'official_verified_finish':'HOLD','official_authority_pass':0},'COUNTERS')
     require('ROOT_ADMISSION' in p['next_single_action'],'NEXT_G2')
+    require(p.get('version')=='1.2','V12_VERSION')
+    require(g['G2']['state']=='HOLD_CANONICAL_ROOT_ADMISSION','G2_ROOT_ADMISSION_HOLD')
+    require(g['G3']['state']=='HOLD_REAL_SIGNED_HUMAN_REVIEW','G3_HUMAN_REVIEW_HOLD')
+    require(g['G3'].get('technical_state')=='PASS_ROTATED_REVIEWER_ADAPTER_TECHNICAL_ONLY','G3_TECHNICAL_ONLY')
+    require(s.get('rotated_reviewer_key_id')=='ed25519-sha256:b64f6b242f96efb09c34985c4b03b9ed4df2c6d1d2386332f098ecc64bd2cc9a','ROTATED_REVIEWER')
+    require(s.get('proposed_owner_root_key_id')=='ed25519-sha256:938083a0de0a78fef1874536b2bdbc5683ab2ae49bc09cae27dec843eaf4c1e1','ROOT_CANDIDATE_ID')
+    loop=p.get('pre_execution_quality_loop')
+    require(isinstance(loop,dict) and loop.get('version')=='1.2','V12_QUALITY_LOOP')
+    require(loop.get('max_simulation_rounds')==3 and loop.get('iteration_policy',{}).get('max_rounds')==3,'MAX_THREE_ROUNDS')
+    weights=[v.get('max') for v in loop.get('scoring',{}).get('dimensions',[]) if isinstance(v,dict)]
+    require(weights==[20,20,20,15,10,15] and sum(weights)==100,'EXACT_SCORE_100')
+    boundaries=loop.get('engineering_boundaries',[])
+    require(isinstance(boundaries,list) and {v.get('id') for v in boundaries if isinstance(v,dict)}=={'B01_SIMULATION_VS_REALITY','B02_BOUNDED_CORRECTION_LOOP'},'TWO_ENGINEERING_LIMITS')
+    require('ARE_SEPARATE' in boundaries[0].get('obligation',''),'REAL_VS_SIM_SEPARATED')
+    require('GUVENLI_DUR' in loop.get('iteration_policy',{}).get('critical_external_dependency',''),'EXTERNAL_AUTHORITY_HOLD')
     return {'design_state':'PASS_ISOLATED_PLAN_CONTRACT','official_finish':'HOLD','covered':GATES,'active':'B01'}
 
 def evaluate_real_acceptance(p, evidence):
@@ -82,10 +97,14 @@ def evaluate_real_acceptance(p, evidence):
           isinstance(e.get('evidenceSha256'),str) and bool(re.fullmatch('[0-9a-f]{64}',e['evidenceSha256'])) and
           e.get('simulation') is False and
           e.get('reviewerId')==p['source']['reviewer_candidate'] and
-          e.get('keyId')==p['source']['key_id'] and
+          e.get('keyId')==p['source']['rotated_reviewer_key_id'] and
           isinstance(e.get('verifierIdentity'),str) and len(e.get('verifierIdentity'))>=8)
         if gate=='G2':
-            valid=valid and e.get('ownerSignerControl') is True and e.get('exactScopedGrantVerified') is True and e.get('historicalGate12Used') is False
+            valid=(valid and e.get('ownerSignerControl') is True and e.get('exactScopedGrantVerified') is True
+                   and e.get('historicalGate12Used') is False
+                   and e.get('canonicalRootAdmissionVerified') is True
+                   and e.get('admissionPolicySourceVerified') is True
+                   and e.get('rootKeyId')==p['source']['proposed_owner_root_key_id'])
         if gate=='G3': valid=valid and e.get('realEd25519AttestationVerified') is True and e.get('pinnedPemDigestVerified') is True
         if gate=='G4': valid=valid and e.get('ledgerChainVerified') is True and e.get('canonicalReceiptVerified') is True
         if gate=='G5': valid=valid and e.get('ownerMergeAuthorized') is True and e.get('postMergeExactMainCiPassed') is True and e.get('currentMainShaVerified') is True
