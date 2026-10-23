@@ -222,5 +222,8 @@ jobs:
       - name: Ar-Ge Block 01 pinned production billing boundary
         run: python -m unittest discover -s tests -p 'test_arge_block01_product_boundary_v1.py' -v
 
+      - name: Ar-Ge Block 01 A04 upstream Git/license provenance test
+        run: python -m unittest discover -s tests -p 'test_arge_block01_a04_upstream_pins_v1.py' -v
+
       - name: Final state
         run: echo 'ENGURU LABORY REPOSITORY FINAL GATE = PASS' >> "$GITHUB_STEP_SUMMARY"
