@@ -167,5 +167,128 @@
   ],
   "upstream_license_review_scope": "GitHub API source reads on 2026-10-23, observed full root LICENSE blobs. Hashes are Git blob SHA-1 content identities, NOT SHA-256 release pins or production installed versions. All 18 customer exact release/edition/SBOM/CVE checks remain HOLD.",
   "upstream_license_blob_pin_count": 7,
-  "upstream_technology_count": 7
+  "upstream_technology_count": 7,
+  "a04_upstream_dependency_evidence": [
+    {
+      "technology": "Meilisearch",
+      "repository": "meilisearch/meilisearch",
+      "ref": "main",
+      "path": "Cargo.lock",
+      "git_blob_sha1": "d018e8060a179a9d53c350d78ee04005422abc22",
+      "type": "DEPENDENCY_LOCKFILE",
+      "verified_scope": "UPSTREAM_BRANCH_FILE_ONLY",
+      "sbom_status": "HOLD_NO_VERIFIED_SIGNED_SBOM",
+      "cve_status": "HOLD_CUSTOMER_VERSION_UNRESOLVED",
+      "customer_release_status": "HOLD_EXACT_DEPLOYED_RELEASE_UNAVAILABLE"
+    },
+    {
+      "technology": "Medusa",
+      "repository": "medusajs/medusa",
+      "ref": "develop",
+      "path": "yarn.lock",
+      "git_blob_sha1": "660081e74b9be3799b3a0f25d5631df4e1cf0658",
+      "type": "DEPENDENCY_LOCKFILE",
+      "verified_scope": "UPSTREAM_BRANCH_FILE_ONLY",
+      "sbom_status": "HOLD_NO_VERIFIED_SIGNED_SBOM",
+      "cve_status": "HOLD_CUSTOMER_VERSION_UNRESOLVED",
+      "customer_release_status": "HOLD_EXACT_DEPLOYED_RELEASE_UNAVAILABLE"
+    },
+    {
+      "technology": "Saleor",
+      "repository": "saleor/saleor",
+      "ref": "main",
+      "path": "uv.lock",
+      "git_blob_sha1": "a71a6f59ffdec55dae1e5975a083abf969a89130",
+      "type": "DEPENDENCY_LOCKFILE",
+      "verified_scope": "UPSTREAM_BRANCH_FILE_ONLY",
+      "sbom_status": "HOLD_NO_VERIFIED_SIGNED_SBOM",
+      "cve_status": "HOLD_CUSTOMER_VERSION_UNRESOLVED",
+      "customer_release_status": "HOLD_EXACT_DEPLOYED_RELEASE_UNAVAILABLE"
+    },
+    {
+      "technology": "Supabase",
+      "repository": "supabase/supabase",
+      "ref": "master",
+      "path": "pnpm-lock.yaml",
+      "git_blob_sha1": "57212ada2d941ca4f1ad02d6d23c043072969191",
+      "type": "GIT_BLOB_ONLY_LARGE_FILE_CONTENT_UNINSPECTED",
+      "verified_scope": "UPSTREAM_BRANCH_FILE_ONLY",
+      "sbom_status": "HOLD_NO_VERIFIED_SIGNED_SBOM",
+      "cve_status": "HOLD_CUSTOMER_VERSION_UNRESOLVED",
+      "customer_release_status": "HOLD_EXACT_DEPLOYED_RELEASE_UNAVAILABLE"
+    },
+    {
+      "technology": "Temporal",
+      "repository": "temporalio/temporal",
+      "ref": "main",
+      "path": "go.sum",
+      "git_blob_sha1": "7bb84062f0806238f63f3a71ccc70375a98f8968",
+      "type": "DEPENDENCY_CHECKSUM_MANIFEST",
+      "verified_scope": "UPSTREAM_BRANCH_FILE_ONLY",
+      "sbom_status": "HOLD_NO_VERIFIED_SIGNED_SBOM",
+      "cve_status": "HOLD_CUSTOMER_VERSION_UNRESOLVED",
+      "customer_release_status": "HOLD_EXACT_DEPLOYED_RELEASE_UNAVAILABLE"
+    },
+    {
+      "technology": "OpenFGA",
+      "repository": "openfga/openfga",
+      "ref": "main",
+      "path": "go.sum",
+      "git_blob_sha1": "46f0cd6c60028577eb92bf5a4be0af82c705edaa",
+      "type": "DEPENDENCY_CHECKSUM_MANIFEST",
+      "verified_scope": "UPSTREAM_BRANCH_FILE_ONLY",
+      "sbom_status": "HOLD_NO_VERIFIED_SIGNED_SBOM",
+      "cve_status": "HOLD_CUSTOMER_VERSION_UNRESOLVED",
+      "customer_release_status": "HOLD_EXACT_DEPLOYED_RELEASE_UNAVAILABLE"
+    },
+    {
+      "technology": "LangGraph",
+      "repository": "langchain-ai/langgraph",
+      "ref": "main",
+      "path": "libs/langgraph/pyproject.toml",
+      "git_blob_sha1": "6aac18d6162e9f516e3f66113ce064f5da698b9a",
+      "type": "PYTHON_PACKAGE_MANIFEST_NOT_LOCKFILE",
+      "verified_scope": "UPSTREAM_BRANCH_FILE_ONLY",
+      "sbom_status": "HOLD_NO_VERIFIED_SIGNED_SBOM",
+      "cve_status": "HOLD_CUSTOMER_VERSION_UNRESOLVED",
+      "customer_release_status": "HOLD_EXACT_DEPLOYED_RELEASE_UNAVAILABLE"
+    }
+  ],
+  "a04_upstream_security_policies": [
+    {
+      "technology": "Meilisearch",
+      "repository": "meilisearch/meilisearch",
+      "ref": "main",
+      "path": "SECURITY.md",
+      "git_blob_sha1": "374dc4198126b988baa3e6343fb8c64f9d2f9aa0",
+      "supported_versions_statement": "Latest stable release only; actual customer version UNKNOWN"
+    },
+    {
+      "technology": "Saleor",
+      "repository": "saleor/saleor",
+      "ref": "main",
+      "path": "SECURITY.md",
+      "git_blob_sha1": "1ed76fffcebfbf73747e291dd418468eba298ae1",
+      "supported_versions_statement": "Report requires affected version and environment; actual customer version UNKNOWN"
+    }
+  ],
+  "a04_enterprise_licensing_documents": [
+    {
+      "technology": "Meilisearch",
+      "path": "LICENSE-EE",
+      "git_blob_sha1": "87510480d5d8653a1a1583285c5ba5208b22826e",
+      "terms": "Business Source License 1.1 enterprise production use requires commercial agreement; actual customer edition UNKNOWN"
+    },
+    {
+      "technology": "Medusa",
+      "path": "ENTERPRISE-LICENSE.md",
+      "git_blob_sha1": "56ec107aaf946c18f88955a031ba1dec9396111d",
+      "terms": "Enterprise materials excluded from MIT and require separate commercial agreement; customer edition UNKNOWN"
+    }
+  ],
+  "a04_source_manifest_pins_verified": 7,
+  "a04_sbom_independently_verified": 0,
+  "a04_customer_cve_applicability_verified": 0,
+  "a04_release_sha256_verified": 0,
+  "a04_scope_judgment": "UPSTREAM_LICENSE_PLUS_DEPENDENCY_MANIFEST_PINS_ONLY__CUSTOMER_RELEASE_SBOM_CVE_E5_HOLD"
 }
