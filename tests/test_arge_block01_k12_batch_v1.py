@@ -64,6 +64,14 @@ class K12BatchTests(unittest.TestCase):
         self.assertEqual(x["state"], "HOLD_K12_SOURCE_OR_COMPARABILITY")
         self.assertEqual(x["cases"][2]["state"], "HOLD_CUSTOMER_TECH_IDENTITY")
 
+    def test_catalog_and_evidence_collusion_still_holds(self):
+        mutated_catalog = copy.deepcopy(self.catalog)
+        mutated_evidence = copy.deepcopy(self.data)
+        mutated_catalog["cases"][9]["technology"] = "Forged Technology"
+        mutated_evidence["cases"][9]["technology"] = "Forged Technology"
+        self.assertEqual(audit_k12_batch(mutated_catalog, mutated_evidence)["state"],
+                         "HOLD_CANONICAL_IDENTITIES")
+
     def test_missing_cost_source_holds(self):
         t = copy.deepcopy(self.data)
         t["cases"][0]["candidate"]["years"][0]["license"]["source_ref"] = ""
