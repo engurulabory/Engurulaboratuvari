@@ -122,3 +122,12 @@ Bu sözleşme ADAY'dır. GH-01 tam kaynak eşleştirmesi, gerçek owner ve bağ�
 - Aynı run P1 pinned iki-defter restart testi `completed/success`; workflow'un bütününün nihai kararı bu kayıt anında `in_progress`.
 - Kapsam yalnız `G04_EVIDENCE_INTEGRITY` ve `G09_SOURCE_PIN_INTEGRITY` alt testleridir. Yerel model yeteneği (G01/G03), macOS Skill (G08/G09), güven ve insan eşikleri (G05), gerçek benchmark (G07), diğer G01–G10 fonksiyonel ve bütün ürün kapsamındaki özgün #15 karşıt senaryolar `HOLD`.
 - Kanıtlı test kapsamı ile özgün #14/#15 ana işlerin resmî kabulü ayrı tutulur; `GITHUB_19_ACCEPTED=0` değişmez.
+
+## Yönetim ilerleme sayacı V1 — görünür mühendislik ve resmî kabul ayrımı (2026-10-23)
+- Kaynak ana liste: 19 özgün GH-01–GH-04 işi. Mevcut durum **13 PARTIAL + 6 OPEN + 0 ACCEPTED**.
+- **Çalışılmış iş kapsamı** = 13/19 = **%68,4**. Bu değer tamamlanma yüzdesi değildir: bir işte en az bir kanıtlı çalışma vardır, özgün işin tüm şartları henüz karşılanmamıştır.
+- **Kanıtlanmış alt kazanımlar** = P0 V3 byte lock (run 40002619844), iki-defter TaskId+restart (run 40005842575), gerçek P1→DoneCheck verifyTask (run 40008569258), 24 G04/G09 karşıt bozma testi (run 40010446918), yerel router G01/G03 sözleşme testleri (run 40011754582), macOS Skill/görev sürekliliği sözleşme testleri (run 40012648226). Her belirtilen run completed/success sonucuyla sorgulandı.
+- **Resmî tam kabul** = 0/19 = **%0**; zorunlu bağımsız reviewer/owner/issuer/ledger ve özgün iş bazında bütün kabul koşulları henüz sağlanmadı.
+- İlerleme güncelleme ilkesi: Her yeni gerçek CI/test kanıtı ilgili özgün iş ID'sinin ALT_KANIT alanına yazılır; PARTIAL korunabilir. ACCEPTED ancak o ID'nin bütün zorunlu kabul kontrolleri ve gereken yetki PASS olduğunda tek defa artar.
+- **Kanıt sayacı** alt kazanımlar için 6 doğrulanmış CI dönüm noktası gösterir; bunlar birbirinden bütünüyle bağımsız alt işler ve % tamamlanma olarak yorumlanmaz. Kayıt sırasındaki toplam yürütülen test vakası toplamı ayrı ölçülmedi.
+- **Korunan hüküm:** EVIDENCE_MILESTONES=6; WORK_TOUCHED=13/19; OFFICIAL_ACCEPTED=0/19; GITHUB_VERIFIED_FINISH=HOLD.
