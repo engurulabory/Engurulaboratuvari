@@ -1,0 +1,52 @@
+{
+  "schema": "enguru.arge.block01.public-source-review/v1",
+  "date": "2026-10-23",
+  "scope": "A01-A09",
+  "sources": [
+    {
+      "case": "Bookshop.org / Meilisearch",
+      "url": "https://aws.amazon.com/solutions/case-studies/meilisearch-case-study/",
+      "provenance": "AWS third-party testimonial of Meilisearch",
+      "claim": "AWS reports Bookshop.org search conversion +43%",
+      "classification": "THIRD_PARTY_CORROBORATION",
+      "e5": "HOLD_NOT_INDEPENDENT_PRIMARY_CUSTOMER_ATTESTATION",
+      "g01_g03": "HOLD_NO_LIVE_ENGURU_TEST",
+      "k12": "HOLD_NO_ENGURU_COST_BASIS"
+    },
+    {
+      "case": "Resend / Supabase",
+      "url": "https://supabase.com/customers/resend",
+      "provenance": "Supabase vendor customer story with customer quotes",
+      "claim": "5,000+ paying customers and millions of daily emails, according to published story",
+      "classification": "VENDOR_CUSTOMER_CASE",
+      "e5": "HOLD_NEEDS_INDEPENDENT_CUSTOMER_VALIDATION",
+      "g01_g03": "HOLD_NO_LIVE_ENGURU_TEST",
+      "k12": "HOLD_NO_ENGURU_COST_BASIS"
+    },
+    {
+      "case": "OpenFGA authorization",
+      "url": "https://github.com/openfga",
+      "provenance": "OpenFGA upstream open-source organization",
+      "claim": "ReBAC/ABAC authorization engine project exists",
+      "classification": "UPSTREAM_CAPABILITY_NOT_HEADSPACE_DEPLOYMENT",
+      "e5": "HOLD_NO_INDEPENDENT_HEADSPACE_PROOF_IN_THIS_TURN",
+      "g01_g03": "HOLD_NO_LIVE_ENGURU_TEST",
+      "k12": "HOLD_NO_ENGURU_COST_BASIS"
+    }
+  ],
+  "task_links": {
+    "A01": "candidate source case coverage only",
+    "A02": "source metadata candidates; 234 matrix cells still without independent line-by-line verification",
+    "A03": "authority HOLD",
+    "A04": "upstream authenticity partially checked; Kâşifi source HOLD",
+    "A05": "E5 0/18 independent PASS",
+    "A06": "G01 G02 G03 HOLD",
+    "A07": "comparison case hypotheses only",
+    "A08": "K12 ROI/TCO HOLD",
+    "A09": "combined official report HOLD"
+  },
+  "decision": "RESEARCH_SOURCE_CANDIDATES_ONLY",
+  "official": "0/9",
+  "field": "0/100",
+  "comment": "Source evidence is not equivalent to independent E5 nor task acceptance; preserve 6-block plan."
+}
