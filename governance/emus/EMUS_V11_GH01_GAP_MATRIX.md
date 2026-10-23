@@ -17,7 +17,7 @@ STATE: PARTIAL_READ_ONLY_DISCOVERY / GAP_MATRIX_PRELIMINARY / GH01_HOLD
 | Kontrol | Mevcut aday | Durum | Gerekli gerçek hareket |
 |---|---|---|---|
 | K01 çok araçlı icra | Mac Engineer control plane | PARTIAL | Aktif ürün deposu ve görev çalışma sözleşmesiyle bire bir eşleştirme |
-| K02 dayanıklılık | shared_ai.working_memory, package3 test | PARTIAL | SQLite/WAL, idempotency, crash recovery ve görev tekrarları karşılaştırması |
+| K02 dayanıklılık | shared_ai.working_memory, package3 test | PARTIAL | Mevcut kalıcı görev mekanizmaları, idempotency, crash recovery ve tekrar testlerini karşılaştır; SQLite yalnız kanıtlı fark için aday |
 | K03 yetki | DoneCheck Authority Model v1 | PARTIAL | Yetkili owner/reviewer/issuer kaynağı, canlı grant ve audit uzlaştırması |
 | G01 görev yeterliliği | V3 kabul matrisi | PARTIAL | Model/araç yetenek testi ve görev kabul sözleşmesini ölçme |
 | G02 kalıcı defter | PersistentWorkingMemory adayı | PARTIAL | Şema, backend, checkpoint ve failover incelemesi |
@@ -33,7 +33,7 @@ STATE: PARTIAL_READ_ONLY_DISCOVERY / GAP_MATRIX_PRELIMINARY / GH01_HOLD
 ## Kesin kalan GH-01 işleri
 1. Yönetim/İcra/Mac Engineer ürün depolarının gerçek default branch ve HEAD kimliklerini bağımsız doğrula.
 2. V3 GitHub API'den alınan UTF-8 içeriğinin SHA-256 kilidi eşleşti: `11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc`; Git blob SHA-1 da eşleşti. Diğer ürün dosyalarının SHA-256 bütünlüğü ve yerel OSi kaynağı ayrıca karşılaştırılacak.
-3. Her kontrol için üretim kodu, test, CI ve yetki kanıtı topla; ardından EXITS/PARTIAL/MISSING/UNKNOWN sınıflarını güncelle.
+3. Her kontrol için üretim kodu, test, CI ve yetki kanıtı topla; ardından EXISTS/PARTIAL/MISSING/UNKNOWN sınıflarını güncelle.
 4. Yetki kökü ve owner kararına göre GH-01 bağımsız tamamlanma hükmünü ver.
 
 ## Korunan hüküm
