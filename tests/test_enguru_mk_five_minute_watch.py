@@ -5,7 +5,9 @@ import unittest
 from copy import deepcopy
 from datetime import datetime
 
-sys.path.insert(0,str(pathlib.Path(__file__).resolve().parent))
+ROOT = pathlib.Path(__file__).resolve()
+TOOLS = ROOT.parents[1]/'tools' if (ROOT.parents[1]/'tools').is_dir() else ROOT.parent
+sys.path.insert(0, str(TOOLS))
 import enguru_mk_five_minute_watch as w
 import enguru_muhendislik_kasi as m
 
