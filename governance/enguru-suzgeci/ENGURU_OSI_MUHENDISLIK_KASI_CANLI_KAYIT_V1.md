@@ -370,3 +370,13 @@ NEXT_ACTION=...
 - **Kaynak:** https://github.com/engurulabory/Engurulaboratuvari/pull/203 · SHA-256 `2e524438fc647b79d64e4f4b4fa47424b8ae77c93a0af29b6649fca23208ae24`.
 - **OSi eşleşme kimliği:** `OSIBLOCK-V69-OWNERBRIDGE-20261023`.
 - **Karar:** `REVIEW_REQUIRED`; ürün kabul sayacı değişimi `0`; kontroller: CAUSE_CLAIM_REQUIRES_INDEPENDENT_CONFIRMATION, EVIDENCE_LEVEL_CLAIM_NOT_INDEPENDENTLY_AUTHENTICATED.
+
+### 19. V3.2 — İlk gerçek GitHub schedule ve checkpoint gözlemi (23.10.2026)
+
+**Olay kimliği:** `MK-GITHUB-SCHEDULE-FIRST-39982613081` · **Kaynak:** [Actions run #39982613081](https://github.com/engurulabory/Engurulaboratuvari/actions/runs/39982613081). GitHub REST `event=schedule`, workflow adı `ENGURU OSi Muhendislik Kasi - reviewed evidence intake`, `head_branch=main`, `head_sha=113d8ffd18a6f36c840770f30f38da6d5900aa43` (sorgu anındaki exact current-main), `run_attempt=1`, `created_at=2026-10-23T15:56:50Z` (Türkiye 18:56:50), `completed/success`, `updated_at=2026-10-23T15:57:04Z`. **İlk gerçek schedule PASS (olay varlığı ve job sonucu); 4 ardışık run kabulü `1/4`, 3 gözlenen aralık `0/3`, `SCHEDULE_CONTINUITY=HOLD`.** GitHub cron `*/5 * * * *` bir süre garantisi değildir.
+
+**Job kanıtı:** `five-minute-github-observer=completed/success`, `unit-regression=skipped` ve `owner-comment-intake=skipped` (bu event için koşul dışı). Gerçek job logunda `ROUND_1=104/104_PASS`, `ROUND_2=104/104_PASS`; `PASS_OBSERVATION_ONLY`, `candidateAdded=0`, `eventsReviewed=0`, `macLocalFilesAccessed=0`, `officialAcceptance=UNCHANGED_HOLD`. Job içindeki `REAL_SCHEDULE=HOLD_NOT_OBSERVED` çıktısı, aynı koşunun tamamlanmasını o anda henüz göremeyen self-check sonucudur; tamamlanmış schedule kanıtı GitHub Actions API üzerinden **sonradan** bağımsız doğrulandı.
+
+**İlk kalıcı checkpoint:** `governance/enguru-suzgeci/learning/MK_WATCH_CHECKPOINT.json` review dalında oluşturuldu; GitHub blob SHA-1 `4827f35b8378db4f4721fc54a343d0cc4febf7e4`. Bot review-branch commit `cfd8b7803c0e8c8b18d7b0cd634c1f93442fb8e7`. Checkpoint `PR203.commentMaxId=6366516000`, `PR206.commentMaxId=6364210937`, `osiBlockIds=[]`; `PR14_PRIVATE_SOURCE_REQUIRES_OWNER_APPROVED_RELAY` sınırı korunuyor. Bu SHA bir **Git blob SHA-1** kimliğidir; kaynak dosya SHA-256 beyanı olarak kullanılmaz.
+
+**Güncel karar:** `FIRST_REAL_SCHEDULE=PASS`; `CHECKPOINT_CREATED=PASS`; `FOUR_CONSECUTIVE=1/4_HOLD`; `THREE_INTERVALS=0/3_HOLD`; `OSi_BLOCK_RESPONSE_NEW=0`; `G2-G6=HOLD`; `VERIFIED_FINISH=HOLD`. Sonraki gözlem aynı workflow + `event=schedule` + exact-main için üç yeni ardışık `completed/success` koşu ve üç gerçek zaman aralığı; kaynak kaymasında seri yeniden değerlendirilir. Özel Mac Engineer PR #14 bilgileri otomatik relay kapsamına alınmaz.
