@@ -84,3 +84,32 @@ Her işte: `TASK_ID, CONTROL_ID, SOURCE_REF, SOURCE_SHA, REQUIREMENT, PASS_CONDI
 
 ## GitHub kapsam sınırı
 Bu dosya yalnız inceleme dalında bir hazırlık sözleşmesidir. `main` değişikliği, merge, resmî yetki ve Mac OSi kurulumu ayrıca kanıt/insan karar kapısına bağlıdır.
+
+## Tek bütünleşik 19 işlik GitHub icra paketi — 2026-10-23
+Paket: EMUS_V11_GITHUB_19_INTEGRATED_REVIEW; kaynak: PR #210. PASS yalnız tam test, kanıt ve ilgili yetkili kabul sonrası yazılır. OPEN/PARTIAL değerleri mevcut kanıtın sınırıdır.
+
+| İş | Gerekli çalışma | Kanıt hükmü |
+|---:|---|---|
+| 1 | Main, kaynak ve V3 kilidi | PARTIAL |
+| 2 | Beş çekirdek envanteri | PARTIAL |
+| 3 | K01–K03 / G01–G10 kaynak haritası | PARTIAL |
+| 4 | Gap matrisi ve bağımlılık kilidi | PARTIAL |
+| 5 | Görev şeması ve durum makinesi | PARTIAL |
+| 6 | Defter, checkpoint, idempotency, recovery | PARTIAL |
+| 7 | Tek model ve kaynak bütçesi | PARTIAL |
+| 8 | Yetki, tehdit, köken ve insan eşikleri | PARTIAL |
+| 9 | Benchmark, lisans, ücretsiz API | PARTIAL |
+| 10 | Kanıtlı çekirdek kod farkı | PARTIAL |
+| 11 | Yerel model ve araç adaptörleri | OPEN |
+| 12 | Dayanıklı defter ve restart | PARTIAL |
+| 13 | Skill zinciri ve macOS rutinleri | OPEN |
+| 14 | G01–G10 birim/entegrasyon/karşıt testleri | PARTIAL |
+| 15 | 24 gerçek karşıt senaryo | OPEN |
+| 16 | CI, lock ve yeniden üretilebilirlik | PARTIAL |
+| 17 | Bağımsız reviewer | OPEN |
+| 18 | DoneCheck, owner, issuer, ledger | OPEN |
+| 19 | Yetkili GitHub kapanışı | OPEN |
+
+Bütünleşik kabul bağımlılıkları: canonical kaynak SHA ve yetki → Mac Engineer/WorkingMemory kaynak-pinned görev kimliği ve restart gerçek testi → DoneCheck verifyTask gerçek sonucu → G01–G10 ve 24 adversarial senaryo → CI/lock → bağımsız reviewer → owner/issuer/ledger → yetkili GH-04 kabulü.
+
+Negatif koruma testleri Labory CI üzerinde PASS; özel Mac Engineer testleri tarihsel Product CI ile kanıtlandı. Bunlar birleşik entegrasyon, 24 adversarial senaryo ve insan yetkisi yerine sayılmaz. Eksik herhangi bir zorunlu kanıt için iş OPEN veya PARTIAL kalır. GITHUB_VERIFIED_FINISH=HOLD.
