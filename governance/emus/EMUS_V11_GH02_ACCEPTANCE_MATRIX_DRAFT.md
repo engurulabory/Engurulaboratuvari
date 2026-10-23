@@ -38,7 +38,7 @@ Her özgün şart bir kez sayılır. `DESIGN_PASS`, `EXECUTION_PASS`, `EVIDENCE_
 - 100/100 yalnız sabit kabul setinin tamamı, bağımsız doğrulama ve yetkili insan eşiği mevcutsa gerçek kabul değeridir.
 
 ## GH-02 → GH-03 kapısı
-Bu sözleşme ADAY'dır. GH-01 tam kaynak eşleştirmesi, gerçek owner ve bağımsız reviewer, görev şeması, tehdit modeli, seçili runtime ve fixture fixture/benchmark kaynağı kapanınca GH-02 PASS verilebilir. GH-03 kod farkı ancak bu kanıtla daralır.
+Bu sözleşme ADAY'dır. GH-01 tam kaynak eşleştirmesi, gerçek owner ve bağımsız reviewer, görev şeması, tehdit modeli, seçili runtime ve fixture/benchmark kaynağı kapanınca GH-02 PASS verilebilir. GH-03 kod farkı ancak bu kanıtla daralır.
 
 ## Sonuç
 `GH02=PARTIAL_CONTRACT_DRAFT`; `GH01=HOLD`; `GH03=HOLD`; `GH04=HOLD`; `OSI_READY=HOLD`. Salt belge gerçek test, CI veya resmî DoneCheck yerine geçmez.
@@ -51,7 +51,7 @@ Bu sözleşme ADAY'dır. GH-01 tam kaynak eşleştirmesi, gerçek owner ve bağ�
 - G02 kesin uygulama seçimi: mevcut Mac Engineer reliability bileşeni ana aday; mevcut JSON görev hafızası ile görev kimliği/yan etki uygunluğu ölçülecek. Kanıtlanan açık dışında ikinci defter veya SQLite zorunluluğu tanımlanmaz.
 - G05/G10: GitHub owner hesabı/rolleri ile gerçek DoneCheck issuer, reviewer ve imza grant ayrı düzeylerdir. EMÜS adına resmî signer/issuer yetkisi henüz HOLD.
 - Kaynakların Git blob SHA-1 değerleri SHA-256 kilidi yerine geçmez. V3 talimatının GitHub'dan alınan UTF-8 içeriği SHA-256 ile yeniden hesaplandı ve kilitle eşleşti (`11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc`); Mac OSi yerel kaynak eşitliği ayrı HOLD.
-- GH-01 eksik: yönetim/İcra güncel canonical kaynak tam envanteri; V3 byte SHA; owner/issuer/reviewer yetkisi; gerçek cihaz runtime eşleştirmesi.
+- GH-01 eksik: yönetim/İcra güncel canonical kaynak tam envanteri; V3 kilidi GitHub UTF-8 içeriği üzerinden PASS; owner/issuer/reviewer yetkisi ve gerçek cihaz runtime eşleştirmesi HOLD.
 
 **Son kontrol kuralı:** Belge revizyonu sonrası yeniden fetch edilip yalnız bu ek bölümün bulunduğu, önceki G01–G10 ve GH-02→GH-03 HOLD kapılarının korunduğu doğrulanır.
 
