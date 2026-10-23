@@ -98,3 +98,9 @@ Bu sözleşme ADAY'dır. GH-01 tam kaynak eşleştirmesi, gerçek owner ve bağ�
 - Commit `a318c3013c6264b5412ed896738fcf447be3c973`; Labory Final Gate run `39994167178`, job `120553255924`: EMÜS sözdizimi step 9, eksik özel runtime güvenli duruş step 10, farklı SHA kaynak yüklemeden duruş step 11; üçü de `completed/success`.
 - Aynı commit'in genel CI koşuları: PARK `39994167063`, IP Model Trust Fleet `39994167246`, IP Model Trust Gate `39994167137` `completed/success`.
 - Kesin hüküm: `EMUS_SOURCE_MISSING_FAIL_CLOSED=PASS_CI`; `EMUS_SOURCE_DRIFT_FAIL_CLOSED=PASS_CI`; `EMUS_REAL_TASK_ID_BINDING=HOLD_TEST`; `EMUS_DONECHECK_VERIFYTASK=HOLD_TEST`; `EMUS_AUTHORITY=HOLD`. Test sonucu emniyet kontrollerine aittir, ürün Verified Finish değildir.
+
+## GH-03 — Son negatif test düzeltmesinin CI kabulü (2026-10-23)
+- Commit `fbad5b0483a3405460be4597679d5c20eaa9578b`; ENGURU Labory Final Gate run `39994481444`, job `120554326429`: syntax step 9, missing-private-runtime step 10, source-drift-before-import step 11, her üçü `completed/success`.
+- Diğer workflow'lar PARK `39994481593`, IP Model Trust Fleet `39994481423`, IP Model Trust Gate `39994481600` `completed/success`.
+- Product CI `engurulabory/enguru-mac-engineer/.github/workflows/product-ci.yml` bağımsız özel ürün test yüzeyidir; Labory CI içine özel ürün kaynağı getiren mevcut yetkili grant bu incelemede doğrulanmadı.
+- Son hüküm: `NEGATIVE_GUARDS=PASS_CI`; `REAL_TASK_ID_RESTART=HOLD_TEST`; `DONECHECK_VERIFYTASK=HOLD_TEST`; `AUTHORITY=HOLD`. Sıradaki kabul, yetkili özel runtime çalışma kanıtıdır.
