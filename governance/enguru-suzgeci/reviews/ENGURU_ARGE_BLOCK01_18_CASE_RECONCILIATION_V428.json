@@ -6,9 +6,13 @@
     "file_library_ref": "file_0000000000d082119c754627bd28524b",
     "rows": 234,
     "cases": 18,
-    "criteria": 13
+    "criteria": 13,
+    "sha256": "3906f7bd6ae07d26547babc172d1337cfdfeff85244ece95efb76c3cb448df08",
+    "verified_from_library_csv": true,
+    "all_234_original_verdicts": "HOLD",
+    "all_18_e5_original_status": "HOLD"
   },
-  "public_source_check": "Only 3 cases have separately specified public external sources in this record; other 15 retain prior source status awaiting refreshed independent proof.",
+  "public_source_check": "18/18 cases now have a dated research-cycle public source candidate. These vendor/first-party testimonials are NOT equivalent to independent audited E5, per-customer exact deployment pins, current use, live G01-G03, or measured ENGURU net ROI/TCO.",
   "cases": [
     {
       "case_id": "01",
@@ -23,7 +27,17 @@
       "k12": "HOLD_NO_MEASURED_ENGURU_TCO",
       "exact_customer_deployment_sha": "HOLD",
       "public_source_class": "THIRD_PARTY_AWS_PLUS_VENDOR_CUSTOMER_CASE",
-      "verified_public_reference": "https://aws.amazon.com/solutions/case-studies/meilisearch-case-study/"
+      "verified_public_reference": "https://aws.amazon.com/solutions/case-studies/meilisearch-case-study/",
+      "current_public_source": {
+        "url": "https://www.meilisearch.com/customers",
+        "source_class": "VENDOR_CUSTOMER_QUOTE",
+        "claim_scope": "Bookshop.org CEO quoted; +43% historical conversion claim",
+        "freshness": "HISTORICAL_PUBLISHED",
+        "independent_E5_attestation": "HOLD_NOT_ESTABLISHED",
+        "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
+        "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
+        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      }
     },
     {
       "case_id": "02",
@@ -38,7 +52,17 @@
       "k12": "HOLD_NO_MEASURED_ENGURU_TCO",
       "exact_customer_deployment_sha": "HOLD",
       "public_source_class": "PRIOR_V19_SOURCE_UNREFRESHED",
-      "verified_public_reference": null
+      "verified_public_reference": null,
+      "current_public_source": {
+        "url": "https://medusajs.com/blog/matt-sleeps",
+        "source_class": "VENDOR_CASE_STUDY",
+        "claim_scope": "Matt Sleeps ecommerce implementation described by Medusa",
+        "freshness": "HISTORICAL_PUBLISHED",
+        "independent_E5_attestation": "HOLD_NOT_ESTABLISHED",
+        "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
+        "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
+        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      }
     },
     {
       "case_id": "03",
@@ -53,7 +77,17 @@
       "k12": "HOLD_NO_MEASURED_ENGURU_TCO",
       "exact_customer_deployment_sha": "HOLD",
       "public_source_class": "PRIOR_V19_SOURCE_UNREFRESHED",
-      "verified_public_reference": null
+      "verified_public_reference": null,
+      "current_public_source": {
+        "url": "https://saleor.io/case-study/lush",
+        "source_class": "VENDOR_CASE_STUDY_CUSTOMER_QUOTES",
+        "claim_scope": "Lush global platform and scale claims on Saleor site",
+        "freshness": "HISTORICAL_PUBLISHED",
+        "independent_E5_attestation": "HOLD_NOT_ESTABLISHED",
+        "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
+        "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
+        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      }
     },
     {
       "case_id": "04",
@@ -68,7 +102,17 @@
       "k12": "HOLD_NO_MEASURED_ENGURU_TCO",
       "exact_customer_deployment_sha": "HOLD",
       "public_source_class": "PRIOR_V19_SOURCE_UNREFRESHED",
-      "verified_public_reference": null
+      "verified_public_reference": null,
+      "current_public_source": {
+        "url": "https://supabase.com/customers/mobbin",
+        "source_class": "VENDOR_CASE_STUDY_CUSTOMER_QUOTES",
+        "claim_scope": "Mobbin Firebase migration; no independently verified costs",
+        "freshness": "HISTORICAL_PUBLISHED",
+        "independent_E5_attestation": "HOLD_NOT_ESTABLISHED",
+        "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
+        "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
+        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      }
     },
     {
       "case_id": "05",
@@ -83,7 +127,17 @@
       "k12": "HOLD_NO_MEASURED_ENGURU_TCO",
       "exact_customer_deployment_sha": "HOLD",
       "public_source_class": "VENDOR_CUSTOMER_STORY",
-      "verified_public_reference": "https://supabase.com/customers/resend"
+      "verified_public_reference": "https://supabase.com/customers/resend",
+      "current_public_source": {
+        "url": "https://supabase.com/customers/resend",
+        "source_class": "VENDOR_CASE_STUDY_CUSTOMER_QUOTES",
+        "claim_scope": "Resend growth and Supabase adoption on vendor customer page",
+        "freshness": "HISTORICAL_PUBLISHED",
+        "independent_E5_attestation": "HOLD_NOT_ESTABLISHED",
+        "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
+        "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
+        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      }
     },
     {
       "case_id": "06",
@@ -98,7 +152,17 @@
       "k12": "HOLD_NO_MEASURED_ENGURU_TCO",
       "exact_customer_deployment_sha": "HOLD",
       "public_source_class": "VENDOR_AND_AWS_TESTIMONIAL",
-      "verified_public_reference": "https://aws.amazon.com/solutions/case-studies/meilisearch-case-study/"
+      "verified_public_reference": "https://aws.amazon.com/solutions/case-studies/meilisearch-case-study/",
+      "current_public_source": {
+        "url": "https://www.meilisearch.com/customers",
+        "source_class": "VENDOR_CUSTOMER_QUOTE",
+        "claim_scope": "Hugging Face engineer quoted on Meilisearch discoverability",
+        "freshness": "HISTORICAL_PUBLISHED",
+        "independent_E5_attestation": "HOLD_NOT_ESTABLISHED",
+        "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
+        "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
+        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      }
     },
     {
       "case_id": "07",
@@ -113,7 +177,17 @@
       "k12": "HOLD_NO_MEASURED_ENGURU_TCO",
       "exact_customer_deployment_sha": "HOLD",
       "public_source_class": "PRIOR_V19_SOURCE_UNREFRESHED",
-      "verified_public_reference": null
+      "verified_public_reference": null,
+      "current_public_source": {
+        "url": "https://temporal.io/resources/case-studies/replit-uses-temporal-to-power-replit-agent-reliably-at-scale",
+        "source_class": "VENDOR_CASE_STUDY_CONFLICTING_LATER_VENDOR_REPORT",
+        "claim_scope": "2025 Temporal Replit usage; Restate reports subsequent migration",
+        "freshness": "HISTORICAL_SUPERSEDED_CLAIM",
+        "independent_E5_attestation": "HOLD_NOT_ESTABLISHED",
+        "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
+        "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
+        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      }
     },
     {
       "case_id": "08",
@@ -128,7 +202,17 @@
       "k12": "HOLD_NO_MEASURED_ENGURU_TCO",
       "exact_customer_deployment_sha": "HOLD",
       "public_source_class": "PRIOR_V19_SOURCE_UNREFRESHED",
-      "verified_public_reference": null
+      "verified_public_reference": null,
+      "current_public_source": {
+        "url": "https://docs.fga.dev/openfga-vs-auth0-fga",
+        "source_class": "OFFICIAL_PRODUCT_LINEAGE_NOT_INDEPENDENT_CUSTOMER",
+        "claim_scope": "Auth0 FGA service built on OpenFGA upstream",
+        "freshness": "PRODUCT_LINEAGE_ONLY",
+        "independent_E5_attestation": "HOLD_NOT_ESTABLISHED",
+        "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
+        "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
+        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      }
     },
     {
       "case_id": "09",
@@ -143,7 +227,17 @@
       "k12": "HOLD_NO_MEASURED_ENGURU_TCO",
       "exact_customer_deployment_sha": "HOLD",
       "public_source_class": "PRIOR_V19_SOURCE_UNREFRESHED",
-      "verified_public_reference": null
+      "verified_public_reference": null,
+      "current_public_source": {
+        "url": "https://github.com/openfga/community/blob/main/ADOPTERS.md",
+        "source_class": "UPSTREAM_ADOPTER_SELF_REPORT",
+        "claim_scope": "Headspace subscription/region entitlement reported in OpenFGA adopters list",
+        "freshness": "HISTORICAL_UPSTREAM_ADOPTER",
+        "independent_E5_attestation": "HOLD_NOT_ESTABLISHED",
+        "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
+        "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
+        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      }
     },
     {
       "case_id": "10",
@@ -158,7 +252,17 @@
       "k12": "HOLD_NO_MEASURED_ENGURU_TCO",
       "exact_customer_deployment_sha": "HOLD",
       "public_source_class": "PRIOR_V19_SOURCE_UNREFRESHED",
-      "verified_public_reference": null
+      "verified_public_reference": null,
+      "current_public_source": {
+        "url": "https://supabase.com/customers/xendit",
+        "source_class": "VENDOR_CASE_STUDY_CUSTOMER_QUOTES",
+        "claim_scope": "Xendit compliance search production reference",
+        "freshness": "HISTORICAL_PUBLISHED",
+        "independent_E5_attestation": "HOLD_NOT_ESTABLISHED",
+        "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
+        "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
+        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      }
     },
     {
       "case_id": "11",
@@ -173,7 +277,17 @@
       "k12": "HOLD_NO_MEASURED_ENGURU_TCO",
       "exact_customer_deployment_sha": "HOLD",
       "public_source_class": "PRIOR_V19_SOURCE_UNREFRESHED",
-      "verified_public_reference": null
+      "verified_public_reference": null,
+      "current_public_source": {
+        "url": "https://github.com/openfga/community/blob/main/ADOPTERS.md",
+        "source_class": "UPSTREAM_ADOPTER_SELF_REPORT",
+        "claim_scope": "Mapped identity and OAuth permissions reported in adopter list",
+        "freshness": "HISTORICAL_UPSTREAM_ADOPTER",
+        "independent_E5_attestation": "HOLD_NOT_ESTABLISHED",
+        "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
+        "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
+        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      }
     },
     {
       "case_id": "12",
@@ -188,7 +302,17 @@
       "k12": "HOLD_NO_MEASURED_ENGURU_TCO",
       "exact_customer_deployment_sha": "HOLD",
       "public_source_class": "PRIOR_V19_SOURCE_UNREFRESHED",
-      "verified_public_reference": null
+      "verified_public_reference": null,
+      "current_public_source": {
+        "url": "https://cloud.google.com/customers/temporal",
+        "source_class": "THIRD_PARTY_CLOUD_PLATFORM_PROFILE",
+        "claim_scope": "Google Cloud features for Temporal organization, not proof of specific Temporal Cloud build hash",
+        "freshness": "HISTORICAL_PUBLISHED",
+        "independent_E5_attestation": "HOLD_NOT_ESTABLISHED",
+        "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
+        "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
+        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      }
     },
     {
       "case_id": "13",
@@ -203,7 +327,17 @@
       "k12": "HOLD_NO_MEASURED_ENGURU_TCO",
       "exact_customer_deployment_sha": "HOLD",
       "public_source_class": "PRIOR_V19_SOURCE_UNREFRESHED",
-      "verified_public_reference": null
+      "verified_public_reference": null,
+      "current_public_source": {
+        "url": "https://www.langchain.com/blog/customers-klarna",
+        "source_class": "VENDOR_CASE_STUDY_CUSTOMER_QUOTES",
+        "claim_scope": "Klarna LangGraph case reports time/automation metrics, no audited ENGURU TCO",
+        "freshness": "HISTORICAL_PUBLISHED",
+        "independent_E5_attestation": "HOLD_NOT_ESTABLISHED",
+        "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
+        "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
+        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      }
     },
     {
       "case_id": "14",
@@ -218,7 +352,17 @@
       "k12": "HOLD_NO_MEASURED_ENGURU_TCO",
       "exact_customer_deployment_sha": "HOLD",
       "public_source_class": "PRIOR_V19_SOURCE_UNREFRESHED",
-      "verified_public_reference": null
+      "verified_public_reference": null,
+      "current_public_source": {
+        "url": "https://www.linkedin.com/blog/engineering/ai/practical-text-to-sql-for-data-analytics",
+        "source_class": "CUSTOMER_FIRST_PARTY_ENGINEERING",
+        "claim_scope": "LinkedIn engineering describes LangGraph/LangChain SQL Bot",
+        "freshness": "HISTORICAL_PUBLISHED",
+        "independent_E5_attestation": "HOLD_NOT_ESTABLISHED",
+        "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
+        "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
+        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      }
     },
     {
       "case_id": "15",
@@ -233,7 +377,17 @@
       "k12": "HOLD_NO_MEASURED_ENGURU_TCO",
       "exact_customer_deployment_sha": "HOLD",
       "public_source_class": "PRIOR_V19_SOURCE_UNREFRESHED",
-      "verified_public_reference": null
+      "verified_public_reference": null,
+      "current_public_source": {
+        "url": "https://www.langchain.com/built-with-langgraph",
+        "source_class": "VENDOR_APPLICATION_SHOWCASE",
+        "claim_scope": "Uber agent-based developer tooling claim from LangChain showcase",
+        "freshness": "HISTORICAL_PUBLISHED",
+        "independent_E5_attestation": "HOLD_NOT_ESTABLISHED",
+        "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
+        "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
+        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      }
     },
     {
       "case_id": "16",
@@ -248,7 +402,17 @@
       "k12": "HOLD_NO_MEASURED_ENGURU_TCO",
       "exact_customer_deployment_sha": "HOLD",
       "public_source_class": "PRIOR_V19_SOURCE_UNREFRESHED",
-      "verified_public_reference": null
+      "verified_public_reference": null,
+      "current_public_source": {
+        "url": "https://medusajs.com/blog/tekla",
+        "source_class": "VENDOR_CASE_STUDY_CUSTOMER_CLAIM",
+        "claim_scope": "Tekla ecommerce conversion +70% as published by vendor; audited baseline unavailable",
+        "freshness": "HISTORICAL_PUBLISHED",
+        "independent_E5_attestation": "HOLD_NOT_ESTABLISHED",
+        "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
+        "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
+        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      }
     },
     {
       "case_id": "17",
@@ -263,7 +427,17 @@
       "k12": "HOLD_NO_MEASURED_ENGURU_TCO",
       "exact_customer_deployment_sha": "HOLD",
       "public_source_class": "PRIOR_V19_SOURCE_UNREFRESHED",
-      "verified_public_reference": null
+      "verified_public_reference": null,
+      "current_public_source": {
+        "url": "https://www.langchain.com/blog/customer-experience-cx-agents-in-production-lessons-from-lyft-vodafone-and-latam-airlines",
+        "source_class": "VENDOR_CASE_STUDY_NAMED_CUSTOMER",
+        "claim_scope": "Fastweb Vodafone graph agents, published 90% correctness and 82% resolution, independent definitions unavailable",
+        "freshness": "HISTORICAL_PUBLISHED",
+        "independent_E5_attestation": "HOLD_NOT_ESTABLISHED",
+        "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
+        "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
+        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      }
     },
     {
       "case_id": "18",
@@ -278,7 +452,17 @@
       "k12": "HOLD_NO_MEASURED_ENGURU_TCO",
       "exact_customer_deployment_sha": "HOLD",
       "public_source_class": "PRIOR_V19_SOURCE_UNREFRESHED",
-      "verified_public_reference": null
+      "verified_public_reference": null,
+      "current_public_source": {
+        "url": "https://temporal.io/resources/case-studies/bfi",
+        "source_class": "VENDOR_CASE_STUDY_CUSTOMER_INTERVIEW",
+        "claim_scope": "BFI loan origination and 4k daily digital-partnership loans as reported by Temporal",
+        "freshness": "HISTORICAL_PUBLISHED",
+        "independent_E5_attestation": "HOLD_NOT_ESTABLISHED",
+        "customer_deployment_commit_sha256": "HOLD_NOT_ESTABLISHED",
+        "g01_g02_g03_ENGURU_FIELD": "HOLD_NOT_PERFORMED",
+        "k12_ENGURU_NET_TCO": "HOLD_NOT_MEASURED"
+      }
     }
   ],
   "rollup": {
@@ -290,7 +474,9 @@
     "g03_real_pass": 0,
     "k12_real_pass": 0,
     "official_block01_pass": "0/9",
-    "exit": "HOLD"
+    "exit": "HOLD",
+    "public_source_candidates": 18,
+    "exact_deployment_sha_pass": 0
   },
   "boundary": "Published third-party cases are evidence candidates, not independent E5 audit or authorized acceptance",
   "source_audit": {
@@ -337,5 +523,14 @@
         "e5": "HOLD"
       }
     ]
-  }
+  },
+  "source_conflicts": [
+    {
+      "case_id": "07",
+      "earlier_source": "https://temporal.io/resources/case-studies/replit-uses-temporal-to-power-replit-agent-reliably-at-scale",
+      "subsequent_source": "https://restate.dev/use-cases/replit",
+      "state": "TEMPORAL_HISTORICAL_ADOPTION_RESTATE_LATER_MIGRATION_CLAIM",
+      "acceptance": "HOLD_ON_CURRENT_TEMPORAL_USAGE"
+    }
+  ]
 }
