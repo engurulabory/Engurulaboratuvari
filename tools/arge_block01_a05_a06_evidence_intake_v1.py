@@ -63,6 +63,18 @@ def file_pin(root, name, expected, *, kind="file"):
     except (OSError, ValueError, UnicodeError, json.JSONDecodeError):
         return "HOLD_FILE_READ_OR_SCHEMA"
 
+def _bound_json(root, relative, required):
+    """Parse an already hash-pinned JSON file and compare exact case bindings.
+
+    A digest supplied by a packet is not an authenticated record. Binding only
+    prevents accidental or adversarial swapping of genuine-looking artifacts.
+    """
+    try:
+        doc = json.loads((Path(root) / relative).read_text(encoding="utf-8"))
+    except (OSError, ValueError, TypeError, UnicodeError):
+        return False
+    return isinstance(doc, dict) and all(doc.get(k) == v for k, v in required.items())
+
 def audit_case(case, evidence, root):
     cid = case["case_id"]
     result = {"case_id": cid, "customer": case["customer"], "technology": case["technology"],
@@ -87,7 +99,19 @@ def audit_case(case, evidence, root):
                       ("customer_signature", "customer_signature_sha256", "file"))
             checks = [file_pin(root, deploy.get(name), deploy.get(digest), kind=kind)
                       for name, digest, kind in fields]
-            result["a05"] = CANDIDATE if all(x == "BYTE_SHA256_MATCH_UNTRUSTED_SOURCE" for x in checks) else next(x for x in checks if x != "BYTE_SHA256_MATCH_UNTRUSTED_SOURCE")
+            if any(x != "BYTE_SHA256_MATCH_UNTRUSTED_SOURCE" for x in checks):
+                result["a05"] = next(x for x in checks if x != "BYTE_SHA256_MATCH_UNTRUSTED_SOURCE")
+            else:
+                manifest_expected = {k: evidence[k] for k in ("case_id", "customer", "technology")}
+                manifest_expected.update({k: deploy[k] for k in ("release", "edition", "source_commit")})
+                owner_expected = {"case_id": cid, "customer": case["customer"],
+                                  "owner_id": deploy["customer_owner_id"],
+                                  "manifest_sha256": deploy["manifest_sha256"]}
+                if (_bound_json(root, deploy["deployed_manifest"], manifest_expected)
+                        and _bound_json(root, deploy["customer_assertion"], owner_expected)):
+                    result["a05"] = CANDIDATE
+                else:
+                    result["a05"] = "HOLD_DEPLOYMENT_DOCUMENT_BINDING"
 
     e5 = evidence.get("e5")
     if isinstance(e5, dict):
@@ -104,7 +128,23 @@ def audit_case(case, evidence, root):
                       ("verifier_assertion", "verifier_assertion_sha256"),
                       ("verifier_signature", "verifier_signature_sha256"))
             checks = [file_pin(root, e5.get(name), e5.get(digest)) for name, digest in fields]
-            result["a06"] = CANDIDATE if all(x == "BYTE_SHA256_MATCH_UNTRUSTED_SOURCE" for x in checks) else next(x for x in checks if x != "BYTE_SHA256_MATCH_UNTRUSTED_SOURCE")
+            if any(x != "BYTE_SHA256_MATCH_UNTRUSTED_SOURCE" for x in checks):
+                result["a06"] = next(x for x in checks if x != "BYTE_SHA256_MATCH_UNTRUSTED_SOURCE")
+            elif result["a05"] != CANDIDATE:
+                result["a06"] = "HOLD_DEPLOYMENT_EVIDENCE_DEPENDENCY"
+            else:
+                report_expected = {"case_id": cid, "customer": case["customer"],
+                                   "technology": case["technology"],
+                                   "observed_manifest_sha256": deploy["manifest_sha256"],
+                                   "verifier_identity": verifier}
+                assertion_expected = {"case_id": cid,
+                                      "report_sha256": e5["report_sha256"],
+                                      "verifier_identity": verifier}
+                if (_bound_json(root, e5["report"], report_expected) and
+                        _bound_json(root, e5["verifier_assertion"], assertion_expected)):
+                    result["a06"] = CANDIDATE
+                else:
+                    result["a06"] = "HOLD_E5_DOCUMENT_BINDING"
     return result
 
 def audit_packet(catalog, packet, root):
