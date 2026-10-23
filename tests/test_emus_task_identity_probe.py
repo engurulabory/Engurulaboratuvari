@@ -5,8 +5,8 @@ checked-out, source-pinned Mac Engineer runtime directory.
 This tests an explicit handoff, not an already-installed runtime adapter.
 """
 import hashlib
+import importlib.util
 import os
-import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -24,11 +24,14 @@ class EmusTaskIdentityProbe(unittest.TestCase):
         raw = (Path(RUNTIME) / "reliability.py").read_bytes()
         blob_hash = hashlib.sha1(b"blob " + str(len(raw)).encode("ascii") + b"\0" + raw).hexdigest()
         self.assertEqual(blob_hash, PINNED_RELIABILITY_BLOB_SHA1, "SOURCE_DRIFT")
-        sys.path.insert(0, RUNTIME)
-        try:
-            from reliability import ReliabilityManager
-        finally:
-            sys.path.pop(0)
+        spec = importlib.util.spec_from_file_location(
+            "_emus_pinned_reliability", Path(RUNTIME) / "reliability.py"
+        )
+        self.assertIsNotNone(spec)
+        self.assertIsNotNone(spec.loader)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        ReliabilityManager = module.ReliabilityManager
 
         with tempfile.TemporaryDirectory() as root:
             base = Path(root)
