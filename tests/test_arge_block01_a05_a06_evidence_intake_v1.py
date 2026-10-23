@@ -8,6 +8,7 @@ import hashlib
 import json
 import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 from tools.arge_block01_a05_a06_evidence_intake_v1 import SCHEMA, CANDIDATE, audit_packet, file_pin
@@ -173,6 +174,33 @@ class A05A06EvidenceIntake(unittest.TestCase):
         r=audit_packet(self.catalog,p,self.root)["cases"][0]
         self.assertEqual(r["a05"],"HOLD_DEPLOYMENT_DOCUMENT_BINDING")
         self.assertEqual(r["a06"],"HOLD_DEPLOYMENT_EVIDENCE_DEPENDENCY")
+
+    def test_once_verified_json_is_never_reopened_for_parsing(self):
+        # Prevent a hash/parse gap: audit must parse only pinned in-memory bytes.
+        with patch.object(Path, "read_text", side_effect=AssertionError("reopened artifact")):
+            result=audit_packet(self.catalog,self.packet,self.root)
+        self.assertEqual(result["a05_files_hash_matched_untrusted"],18)
+        self.assertEqual(result["a06_files_hash_matched_untrusted"],18)
+        self.assertEqual(result["a06_independent_e5_verified"],0)
+
+    def test_intermediate_directory_symlink_denied(self):
+        outside=Path(self.folder.name)/"outside-dir"
+        outside.mkdir(exist_ok=True)
+        (outside/"report.json").write_text('{"valid":true}',encoding="utf-8")
+        link=self.root/"linked-directory"
+        link.symlink_to(outside,target_is_directory=True)
+        blob=(outside/"report.json").read_bytes()
+        status=file_pin(self.root,"linked-directory/report.json",hashlib.sha256(blob).hexdigest())
+        self.assertIn(status,("HOLD_SYMLINK", "HOLD_SYMLINK_OR_NON_DIRECTORY"))
+
+    def test_fifo_is_not_read_as_evidence(self):
+        import os
+        if not hasattr(os,"mkfifo"):
+            self.skipTest("platform lacks FIFO")
+        fifo=self.root/"candidate.fifo"
+        os.mkfifo(fifo)
+        self.assertEqual(file_pin(self.root,"candidate.fifo",hashlib.sha256(b"").hexdigest()),
+                         "HOLD_FILE_TYPE_OR_SIZE")
 
     def test_catalog_sha_tamper_holds(self):
         catalog=copy.deepcopy(self.catalog)
