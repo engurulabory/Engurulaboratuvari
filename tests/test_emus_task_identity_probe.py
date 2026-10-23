@@ -33,8 +33,10 @@ class EmusTaskIdentityProbe(unittest.TestCase):
                 encoding="utf-8",
             )
             with mock.patch.dict(globals(), {"RUNTIME": root}, clear=False):
-                with self.assertRaisesRegex(AssertionError, "SOURCE_DRIFT"):
-                    self.test_task_id_survives_two_stores_and_restart()
+                with mock.patch("importlib.util.spec_from_file_location") as loader:
+                    with self.assertRaisesRegex(AssertionError, "SOURCE_DRIFT"):
+                        self.test_task_id_survives_two_stores_and_restart()
+                    loader.assert_not_called()
 
     def test_task_id_survives_two_stores_and_restart(self):
         if not RUNTIME or not (Path(RUNTIME) / "reliability.py").is_file():
