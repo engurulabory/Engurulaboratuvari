@@ -189,5 +189,8 @@ jobs:
       - name: Ar-Ge Block 01 nine-task adversarial tests
         run: python -m unittest discover -s tests -p 'test_arge_block01_v423.py' -v
 
+      - name: Ar-Ge Block 01 exit evidence replay
+        run: python -m unittest discover -s tests -p 'test_arge_block01_exit_v424.py' -v
+
       - name: Final state
         run: echo 'ENGURU LABORY REPOSITORY FINAL GATE = PASS' >> "$GITHUB_STEP_SUMMARY"
