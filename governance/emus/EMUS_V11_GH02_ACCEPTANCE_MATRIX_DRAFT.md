@@ -115,3 +115,10 @@ Bu sözleşme ADAY'dır. GH-01 tam kaynak eşleştirmesi, gerçek owner ve bağ�
 - Aynı job içinde pinned Labory checkout, gerçek iki-depo TaskId/checkpoint/restart testi, pinned DoneCheck checkout, gerçek P1 artifact'iyle `verifyTask` testi ve artifact yayın adımları `success`.
 - Artifact: `emus-p1-task-identity`, artifact ID `12525586560`, `expired=false` (sınırlı saklama süresi); DoneCheck testinde PASS/FAIL/inconclusive karşıt sınamalar çalışır.
 - Kesin kapsam: `P1_REAL_TWO_STORE_CI=PASS`; `P1_TO_DONECHECK_VERIFYTASK_TEST=PASS_CI`. Bunlar test verisiyle makine doğrulamasıdır; yetkili human review/owner/issuer/ledger ve GH-04 resmî kabul `HOLD`.
+
+## Blok 3 — G04/G09 ilk 24 gerçek karşıt test (2026-10-23)
+- Mac Engineer özel PR #17 commit `75230a82dd2f609c8bfaa5cd969691033c9202f5`; CI run `40010446918`, job `120609147504`.
+- `EMUS G04 G09 24 adversarial P1 artifact integrity tests` adımı `completed/success`: gerçek P1 görev kimliği artifact'i üzerinde 24 ayrı alan/kimlik/checkpoint/commit/otorite bozma mutasyonu.
+- Aynı run P1 pinned iki-defter restart testi `completed/success`; workflow'un bütününün nihai kararı bu kayıt anında `in_progress`.
+- Kapsam yalnız `G04_EVIDENCE_INTEGRITY` ve `G09_SOURCE_PIN_INTEGRITY` alt testleridir. Yerel model yeteneği (G01/G03), macOS Skill (G08/G09), güven ve insan eşikleri (G05), gerçek benchmark (G07), diğer G01–G10 fonksiyonel ve bütün ürün kapsamındaki özgün #15 karşıt senaryolar `HOLD`.
+- Kanıtlı test kapsamı ile özgün #14/#15 ana işlerin resmî kabulü ayrı tutulur; `GITHUB_19_ACCEPTED=0` değişmez.
