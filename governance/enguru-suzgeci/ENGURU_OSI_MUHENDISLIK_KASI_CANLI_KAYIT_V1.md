@@ -446,3 +446,17 @@ NEXT_ACTION=...
 **İyileştirme ihtiyacı:** Her yeni nöbette yalnız aynı workflow + `event=schedule` + exact current-main + job success koşularını say; dört gerçek ardışık başarı ve üç aralığı ayrı ölç. Uzun aralıkları ve muhtemel atlanan tetikleri görünür tut; GitHub scheduler davranışını kesin nedene dönüştürmek için ayrı bağımsız kanıt bekle. Yeni owner onaylı `TASK_ID+BLOCK_ID` olaylarında unmatched/replay/secret kapıları korunur. Özel PR #14 içerikleri yalnız owner onaylı gizlisiz relay üzerinden işlenir.
 
 **Kayıt statüsü:** `PASS_SECOND_REAL_SCHEDULE_EVIDENCE` · `HOLD_SCHEDULE_CONTINUITY` · `REVIEW_ONLY_LEARNING`. Kaynak PR #203 ve V3 canonical kabul kapıları korunur.
+
+### 22. V3.2.3 — Üçüncü gerçek GitHub schedule; iki bağımsız aralık ölçümü (24.10.2026)
+
+**Olay kimliği:** `MK-GITHUB-SCHEDULE-THIRD-40035133331`. **Doğrudan GitHub kanıtı:** [yeni schedule #40035133331](https://github.com/engurulabory/Engurulaboratuvari/actions/runs/40035133331), [önceki #40014413518](https://github.com/engurulabory/Engurulaboratuvari/actions/runs/40014413518), [ilk #39982613081](https://github.com/engurulabory/Engurulaboratuvari/actions/runs/39982613081).
+
+**Güncel kaynak:** Workflow ID `393938055`, tam adı `ENGURU OSi Muhendislik Kasi - reviewed evidence intake`; `event=schedule`, `head_branch=main`, `head_sha=113d8ffd18a6f36c840770f30f38da6d5900aa43` = doğrulama anındaki exact current-main. Üçüncü gerçek koşu `2026-10-23T22:40:34Z` (Türkiye `2026-10-24 01:40:34`), `run_attempt=1`, `completed/success`. Bağımsız GitHub jobs API: `five-minute-github-observer=completed/success`, `unit-regression=skipped`, `owner-comment-intake=skipped` (event koşullarına uygun).
+
+**Gerçek ölçülen ardışık başlangıçlar:** `2026-10-23T15:56:50Z` → `19:49:16Z` → `22:40:34Z`. Aralık-1 **3 saat 52 dakika 26 saniye (13.946 saniye)**; aralık-2 **2 saat 51 dakika 18 saniye (10.278 saniye)**. Üçü de aynı workflow, gerçek `schedule`, exact-main ve `completed/success` koşullarını karşılıyor. `OBSERVED_SUCCESSFUL_SCHEDULE=3/4`; `MEASURED_REAL_INTERVALS=2/3`; `FIVE_MINUTE_CONTINUITY=HOLD_LONG_INTERVALS`. Cron `*/5` hedefi SLA değildir; gözlenen gecikmenin doğrulanmış kök nedeni `UNKNOWN`.
+
+**İşçi kanıtı:** Üçüncü observer job logunda `ROUND_1=104/104_PASS`, `ROUND_2=104/104_PASS`, `PASS_OBSERVATION_ONLY`, `eventsReviewed=0`, `candidateAdded=0`, `macLocalFilesAccessed=0`, `officialAcceptance=UNCHANGED_HOLD`, `STATE=PASS_NO_NEW_EVIDENCE`. Worker'ın kabul testindeki `REAL_SCHEDULE=HOLD_NOT_OBSERVED` sabit test hükmü, GitHub'ın bağımsız gerçek run metadata'sıyla aynı ölçüm değildir. Olay, gerçek Actions metadata'sından bu inceleme kaydına bir kez aktarılmıştır; yeni owner OSi `TASK_ID+BLOCK_ID` eşleşmesi iddia edilmez. Checkpoint'te gerçek yeni aday olmadığı için dosya yazımı gerekmemiştir.
+
+**Sınırlar ve kapılar:** `PR208=MERGED`; `PR203=OPEN`; özel `enguru-mac-engineer PR14=OPEN`; özel kaynak için yalnız owner onaylı gizlisiz relay. `G2_OWNER_CANONICAL_ADMISSION=HOLD_INDEPENDENT_ACCEPTANCE`; `G3–G6=HOLD`; `VERIFIED_FINISH=HOLD`. Bu GitHub süreklilik gözlemi ürün owner imzası veya DoneCheck kabulü değildir.
+
+**Kayıt kararı:** `PASS_THIRD_REAL_SCHEDULE_EVIDENCE` · `HOLD_FOURTH_SCHEDULE_AND_THIRD_INTERVAL` · `HOLD_FIVE_MINUTE_CONTINUITY` · `REVIEW_ONLY_LEARNING`. **Sıradaki kanıt:** dördüncü aynı-workflow exact-main `schedule` run'ının gerçek `completed/success` job sonucu ve üçüncü gerçek aralığı; beş dakikalık hedefe göre ayrı değerlendirme.
