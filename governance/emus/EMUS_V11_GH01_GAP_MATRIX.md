@@ -54,3 +54,10 @@ Tasarım kapsamı 100/100, ancak gerçek `GH-01=HOLD`; `GH-02–04=HOLD`, `OSI=H
 - `governance/mac-engineer/DONECHECK_AUTHORITY_MODEL_V1.md` teknik producer → DoneCheck v1.2 → Human Threshold sırasını tanımlar. EMÜS'e özgü canlı owner/reviewer/issuer grant, imza/receipt ve yetki geçerliliği bu kaynaklarda kanıtlanmadı: `HOLD_AUTHORITY`.
 - GH-01 kaynak keşif kapsamı genişletildi; gerçek canonical İcra sürüm/owner doğrulaması, özel ürün kaynak geçerliliği ve EMÜS-specific authority kanıtı hâlâ açık. Bu kaynak keşfi kaynakların yokluğunu ispatlamaz.
 - Karar: `GH01=PARTIAL`, `GH02=PARTIAL`, `GH03/04=HOLD`, `OSI_READY=HOLD`. İlgisiz ürünün grant'i EMÜS'e uygulanmaz.
+
+## 2026-10-23 — DoneCheck yetki uygulaması kaynak keşfi
+- Canonical ürün deposu `engurulabory/donecheck` GitHub bağlantısında bulundu; `main` üzerinde `src/domain/donecheck/verification-engine.ts` gerçek `verifyTask` uygulaması, `src/runtime/node/reviewer-attestation.ts` imzalı reviewer doğrulama altyapısı ve `src/runtime/node/verified-finish-runtime.ts` kapanış uygulaması kaynakları görüldü.
+- `README.md` DoneCheck'in Ed25519 reviewer kimlik doğrulaması, reviewer-karar yetkilendirmesi, değişiklik izli JSONL ledger ve ancak makine PASS + kriptografik yetkili insan kabulü sonrası `recordVerifiedFinish()` makbuzu tanımladığını bildiriyor. Bu satırlar **ürün yeteneği kaynak kanıtıdır**; EMÜS için verilmiş grant, kayıtlı reviewer, gerçek imza veya makbuz değildir.
+- EMÜS görev kimliğiyle eşlenen canlı reviewer public key/allowlist, issuer grant, imzalı human review, yetkili ledger ve exact-main receipt henüz doğrulanmadı: `EMUS_AUTHORITY=HOLD`.
+- Sade yöntem: mevcut DoneCheck yetki kökünü kullan; yeni reviewer, issuer, ikinci ledger veya bağımsız kabul motoru kurma. EMÜS görev kapsamı ve mevcut güven kökü ayrı kanıtlarla uzlaştırıldığında kabulü değerlendir.
+- Bu tur salt kaynak keşfi + kayıt; `GH01_PARTIAL / GH02_PARTIAL / GH03_HOLD / GH04_HOLD / OSI_READY_HOLD`.
