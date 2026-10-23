@@ -1,0 +1,38 @@
+{
+  "schema": "enguru.mk.theoretical-acceptance-simulation/v1",
+  "theoretical_design_score": 100,
+  "max_theoretical_score": 100,
+  "test_runs": [
+    {
+      "run": 1,
+      "tests": "30/30_PASS",
+      "exit": 0
+    },
+    {
+      "run": 2,
+      "tests": "30/30_PASS",
+      "exit": 0
+    },
+    {
+      "run": 3,
+      "tests": "30/30_PASS",
+      "exit": 0
+    }
+  ],
+  "checks": {
+    "K01_SCOPE_AND_TARGET": true,
+    "K02_SCHEMA_VALIDATION": true,
+    "K03_REAL_EVIDENCE_SEPARATION": true,
+    "K04_IDEMPOTENT_EVENT": true,
+    "K05_SECRET_AND_PROMPT_SAFETY": true,
+    "K06_ZERO_COVERAGE_HOLD": true,
+    "K07_3X_NEGATIVE_SIMULATION": true,
+    "K08_OWNER_SIGNER_SEPARATION": true,
+    "K09_REVIEW_BRANCH_ONLY": true,
+    "K10_FUTURE_EVENT_PROPOSAL_AND_HUMAN_GATE": true
+  },
+  "real_github_action_execution": "NOT_EXECUTED",
+  "real_mac_osi_integration": "NOT_EXECUTED",
+  "official_product_finish": "HOLD",
+  "total_isolated_tests": 90
+}
