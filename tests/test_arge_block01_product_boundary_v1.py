@@ -20,7 +20,7 @@ MAIN_BLOBS = {
 }
 
 def git_blob_sha(content):
-    return hashlib.sha1(b"blob " + str(len(content)).encode() + b"\\0" + content).hexdigest()
+    return hashlib.sha1(b"blob " + str(len(content)).encode() + bytes((0,)) + content).hexdigest()
 
 
 class ResearchBoundaryTests(unittest.TestCase):
