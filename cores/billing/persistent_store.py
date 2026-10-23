@@ -5,7 +5,6 @@ from decimal import Decimal
 from pathlib import Path
 
 from cores.billing.invoice_record import InvoiceRecord
-from cores.billing.access_gate import BillingAccessDenied, require_grant
 
 
 class JsonFileEvidenceStore:
@@ -15,8 +14,7 @@ class JsonFileEvidenceStore:
     the Billing Core contract.
     """
 
-    def __init__(self, path, *, grant_verifier=None):
-        self.grant_verifier = grant_verifier
+    def __init__(self, path):
         self.path = Path(path)
         self.path.parent.mkdir(parents=True, exist_ok=True)
         if not self.path.exists():
@@ -39,7 +37,6 @@ class JsonFileEvidenceStore:
                     provider_status=item["provider_status"],
                     customer_delivery_id=item["customer_delivery_id"],
                     accounting_delivery_id=item["accounting_delivery_id"],
-                    tenant_id=item.get("tenant_id", ""),
                 )
             )
         return items
@@ -53,9 +50,7 @@ class JsonFileEvidenceStore:
             payload.append(row)
         self.path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
-    def add(self, record, *, subject=None, grant=None):
-        require_grant(self.grant_verifier, subject=subject, tenant_id=record.tenant_id,
-                      resource_id=record.document_id, action="billing.invoice.write", grant=grant)
+    def add(self, record):
         items = self._load()
         if any(x.order_id == record.order_id for x in items):
             raise ValueError("duplicate order")
@@ -64,14 +59,5 @@ class JsonFileEvidenceStore:
         items.append(record)
         self._save(items)
 
-    def between(self, start, end, *, subject=None, tenant_id=None, grant=None):
-        require_grant(self.grant_verifier, subject=subject, tenant_id=tenant_id,
-                      resource_id=tenant_id, action="billing.invoice.list", grant=grant)
-        found = []
-        for row in self._load():
-            if row.tenant_id != tenant_id or not (start <= row.issued_at < end):
-                continue
-            require_grant(self.grant_verifier, subject=subject, tenant_id=tenant_id,
-                          resource_id=row.document_id, action="billing.invoice.read", grant=grant)
-            found.append(row)
-        return found
+    def between(self, start, end):
+        return [x for x in self._load() if start <= x.issued_at < end]
