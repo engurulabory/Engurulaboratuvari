@@ -1,8 +1,8 @@
 # ENGÜRÜ OSi × ChatGPT — Mühendislik Kası™
-## Yaşayan Hakikat, Fark, Hata ve Önleyici Kontrol Kaydı · V1.3
+## Yaşayan Hakikat, Fark, Hata ve Önleyici Kontrol Kaydı · V2.0
 
 **Kayıt tarihi:** 2026-10-23  
-**Son revizyon:** V1.3 · 2026-10-23 · GitHub taslak PR #206 · GitHub kaynak + izole signer sözleşme testi  
+**Son revizyon:** V2.0 · 2026-10-23 · olay-güdümlü öğrenme adaptörü / 3x kontrat simülasyonu / taslak PR #206  
 **Durum:** `ACTIVE_LEARNING_RECORD / OFFICIAL_PRODUCT_FINISH_HOLD`  
 **Kapsam:** ENGÜRÜ Yönetim V6.9 / PR #203 gerçek GitHub ve Mac OSi çalışması. ENGÜRÜ Süzgeci™ v2.4'ün sekiz aşamasının içinde çalışan **yardımcı öğrenme kaydıdır**; yeni çekirdek, yeni karar otoritesi veya ayrı ürün değildir.  
 **Kaynak yönetimi:** Bu belge ayrı GitHub **inceleme dalında** sürümlenir; `main` üzerindeki V3, kaynak kilitleri, mevcut PR #203 ve Mac OSi canonical kayıtları korunur.  
@@ -204,3 +204,38 @@ NEXT_ACTION=...
 
 **Sürüm sınırı:** V1.3 yalnız `docs/enguru-osi-muhendislik-kasi-20261023` inceleme dalındaki bu dosyayı değiştirir. Canonical V3, `main`, PR #203 HEAD, gerçek Mac OSi, trust grant, özel anahtar, ledger ve owner merge korunur. Bir sonraki güncellemede önce SHA/HEAD yeniden okunur ve yalnız kanıtlı yeni delta işlenir.
 
+### Otomatik öğrenme adayı — MK-EVT-ENGINE-V2-20261023
+<!-- ENGURU_MK_EVENT_V1:eyJjYXVzZVN0YXR1cyI6IkNPTkZJUk1FRCIsImV2ZW50SWQiOiJNSy1FVlQtRU5HSU5FLVYyLTIwMjYxMDIzIiwiZXZpZGVuY2VMZXZlbCI6IkIiLCJleGFtaW5lZENvdW50IjozMCwiZXhwZWN0ZWQiOiJLYW5pdGEgYmFnbGkgb2xheSBnaXJpc2luaW4gYXluaSB5YXNheWFuIGRvc3lheWEgZ8O8dmVubGkgdmUgdGVrcmFyIGVkaWxlYmlsaXIgYmnDp2ltZGUgZWtsZW5tZXNpIiwiZml4UHJvcG9zYWwiOiJHaXRIdWIgaW5jZWxlbWUgZGFsaW5kYSBvd25lciBjb21tZW50IGV2ZW50IG1vZGVsaSArIHPEsWvEsSBKU09OIGludGFrZSArIGdlcsOnZWsga2F5bmFrIFNIQSArIGluY2VsZW1lIGFkYXlpIiwiaW1wYWN0IjoiR2Vyw6dlayBvbGF5IGRlZ2lzdGlnaSBhbmRhIGtvbnRyb2wgZ2VyZWtzaW5pbWkgb2x1c3R1cnVsYWJpbGlyIiwib2JzZXJ2ZWQiOiIzMCBheXLEsSBpem9sYXN5b24gdGVzdGkgMyBrZXogOTAvOTAgUEFTUzsgMTAgdGFzYXLEsW0gaWxrZXNpIDEwMC8xMDA7IGdlcsOnZWsgR2l0SHViIHdvcmtmbG93IHZlIE1hYyBwcm9kdWN0aW9uIG9uYXnEsSBoZW7DvHogUEFTUyBkZcSfaWwiLCJvYnNlcnZlZEF0IjoiMjAyNi0xMC0yM1QxMzowMDowMCswMzowMCIsInNjaGVtYSI6ImVuZ3VydS5tay5ldmlkZW5jZS1ldmVudC92MSIsInNvdXJjZVBhdGgiOiJnb3Zlcm5hbmNlL2VuZ3VydS1zdXpnZWNpL2xlYXJuaW5nL01LX1YyX1NJTVVMQVRJT05fUkVDRUlQVC5qc29uIiwic291cmNlU2hhMjU2IjoiZTRlOTFjNzA3MTRiYWMyOTM4NDU4M2U5MjJiOWQwMDU1NDY3YzU4MTFiNmM5YmJmOGM3ODI1ZWRjMjg5YjU4ZCIsInNvdXJjZVVyaSI6Imh0dHBzOi8vZ2l0aHViLmNvbS9lbmd1cnVsYWJvcnkvRW5ndXJ1bGFib3JhdHV2YXJpL3B1bGwvMjA2Iiwic3VnZ2VzdGVkQ2hlY2siOiJnaXRodWJfYWN0aW9uX3Jldmlld19icmFuY2hfYWN0dWFsX2V2ZW50X3RyaWdnZXIiLCJ0YXNrSWQiOiJFTkdVUlVfTUFOQUdFTUVOVF9WNjlfUFJfMjAzIiwidGVzdFN0YXRlIjoiUEFTUyIsInR5cGUiOiJJTVBST1ZFTUVOVCJ9:c73b92fd4b3804d997539b3826dad7e10f4dd0ed0177f4d67c9d0fb73c12872b -->
+- **Tür:** `IMPROVEMENT` · **Seviye iddiası:** `B` · **Kanıt kontrolü:** `PASS_BYTE_SHA_ONLY`.
+- **Gözlem:** 30 ayrı izolasyon testi 3 kez 90/90 PASS; 10 tasarım ilkesi 100/100; gerçek GitHub workflow ve Mac production onayı henüz PASS değil
+- **Beklenti:** Kanita bagli olay girisinin ayni yasayan dosyaya güvenli ve tekrar edilebilir biçimde eklenmesi
+- **Önerilen fark:** GitHub inceleme dalinda owner comment event modeli + sıkı JSON intake + gerçek kaynak SHA + inceleme adayi
+- **Kaynak:** https://github.com/engurulabory/Engurulaboratuvari/pull/206 · SHA-256 `e4e91c70714bac29384583e922b9d0055467c5811b6c9bbf8c7825edc289b58d`.
+- **Karar:** `REVIEW_REQUIRED`; ürün kabul sayacı değişimi `0`; kontroller: SOURCE_REVIEW.
+
+### 12. V2.0 — 100/100 tasarım kası; gerçek olaylarla yaşayan otomatik döngü
+
+**Tasarım sözleşmesi:** `OLAY -> GÜVENLİ_VERİ_GİRİŞİ -> KAPSAM/SHA -> İDempotent -> ÖĞRENME_ADAYI -> NEGATİF_TEST -> OWNER_REVIEW -> AYNI_DOSYADA_DELTA`. Bu, ENGÜRÜ Süzgeci™ mevcut sekiz aşamasının içinde çalışan **yardımcı adaptördür**, ayrı core veya trust root değildir.
+
+**Saha öncesi düzeltme:** İlk simülasyon receipt işaretçisi `simulation_receipt.json` yerel kısa yolundaydı. Ingest tekrarında `governance/enguru-suzgeci/learning/MK_V2_SIMULATION_RECEIPT.json` GitHub kalıcı konumuna hizalandı; olay kimliği sabit kaldı, aday özgün kayıttan yeniden üretildi. `PROVENANCE_PATH_TEST=PASS_LOCAL`, GitHub uzak API ve Actions otomatik tetikleme ayrı doğrulanır.
+
+**Tamamlanan gerçek yardımcı uygulama (inceleme dalı):**
+- `tools/enguru_muhendislik_kasi.py`: şema/çift JSON anahtarını reddetme, task ID kapısı, SHA-256 kanıt dosyası incelemesi, güvenlik filtresi, zero-coverage hata algılama, owner dışı yorum ret, tekrar/idempotent replay, exact-content ayrı `candidate.md` ve karar receipt'i. Ürün kodunu veya mevcut canonical dosyayı kendiliğinden değiştirmez.
+- `tests/test_enguru_muhendislik_kasi.py`: **30/30 PASS × üç gerçek bağımsız çalıştırma = 90/90 izole PASS**. Bu testler Mac OSi signer/DoneCheck üretim kabulü değildir.
+- `tools/enguru_muhendislik_kasi_simulation_3x.py` ve `governance/enguru-suzgeci/learning/MK_V2_SIMULATION_RECEIPT.json`: 10 tasarım kapısı × 10 puan; **model tasarım/izole simülasyon skoru 100/100**. Gerçek sahada ispatlanmış hata sıfır iddiası yoktur.
+- `.github/workflows/enguru-muhendislik-kasi.yml`: `pull_request` test ve `issue_comment` owner-onaylı güvenli intake hedefli GitHub Actions yapılandırması. **GitHub varsayılan dalına yetkili merge yapılıncaya, `ENGURU_MK_OWNER_LOGIN` gerçek GitHub username ile ayarlanıncaya ve Actions yazma izni sağlanıncaya kadar otomatik GitHub tetikleme `HOLD_NOT_ACTIVATED`.** PR #206 yalnız ayrı inceleme dalıdır.
+- `governance/enguru-suzgeci/learning/ENGURU_MK_V2_README.md`: olay formatı, canlı tetikleme ve sınırlar.
+
+**Gelen bilgi kararları:**
+| Girdi | Otomatik iş | Resmî karar |
+|---|---|---|
+| Mac saha raporu, SHA gerçek baytlarla doğrulanmış | Tekil `MK-EVT` öğrenme adayı + yeni kontrol önerisi | `REVIEW_REQUIRED` |
+| GitHub'da yetkili owner yorumu ve geçerli şema | Tekil dosyaya bot kontrollü review-branch delta | `REVIEW_REQUIRED`; yalnız etkin workflow sonrası |
+| Kaynak SHA sadece işaretçi, baytlar erişilemez | `UNVERIFIED_EVIDENCE_POINTER` | `HOLD_VERIFICATION` |
+| Aynı içerik/ID | `IDEMPOTENT`, tekrar kaydı `0` | Korunmuş önceki karar |
+| Aynı ID/farklı içerik veya owner dışı mesaj | `HOLD` | Mevcut kaynak korunur |
+| Yeni kök neden / ihtiyaç | Regresyon ve onarım adayı | Gerçek test ve owner incelemesi açık |
+
+**Mühendislik kası ayrı puan disiplini:** `THEORETICAL_DESIGN=100/100`, `ISOLATED_TESTS=90/90_PASS`, `PRODUCTION_AUTOMATION=HOLD_NOT_ACTIVATED`, `MAC_OSI_END_TO_END=HOLD`, `13/13 ÜRÜNE ENTEGRE KONTROL=0`, `G1=PASS_TECHNICAL_ONLY; G2..G6=HOLD`. Önceki V1.3 `65/100` **gerçek ürün ve olgunluk puanı** eski ölçüm bazında saklanır; bu puan teorik 100'e dönüştürülmüş sayılmaz.
+
+**Kalıcı sabit sonraki gerçek ürün işi:** Önce bu yardımcı otomatik öğrenme adaptörü owner incelemesi ile aktive edilir. Ardından Mac OSi `donecheck_v12_bridge.py` mevcut güven köküyle Ed25519 harici tasdik adaptasyonu gerçek kaynakta uygulanıp sınanır. Gerçek Mac owner private-key kontrolü ve task/result grant PASS sonrası sıralama: `HumanReview.accepted -> DoneCheck recordVerifiedFinish -> audit ledger -> yetkili PR #203 merge -> exact-main -> Verified Finish -> BITTI_DUR`. OSi private key ve parola yalnız Mac yerel güvenlik alanında kalır.
