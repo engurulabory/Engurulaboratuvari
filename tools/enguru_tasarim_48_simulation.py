@@ -14,6 +14,11 @@ MATRIX = ROOT / "governance/enguru-suzgeci/ENGURU_TASARIM_48_KONTROL_MATRISI_V1.
 LOCK_PIN = "11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc"
 REQUIRED_KEYS = ("id", "area_id", "criterion", "pass_design_condition",
                  "reject_case", "canonical_source", "peer_refs", "design_status")
+BASELINE_VECTOR = (
+    5,5,4,4, 5,5,5,4, 5,4,5,4, 5,4,4,4,
+    5,5,4,4, 5,5,4,4, 4,4,4,3, 4,5,4,4,
+    5,5,5,4, 5,5,4,5, 4,5,4,4, 4,4,4,4
+)
 
 BASE = dict(
     canonical=True, source_match=True, fresh_head=True, unique_ids=True,
@@ -83,30 +88,70 @@ SCENARIOS = (
     ("N24_design_only_no_execution", "executed", "HOLD_EXECUTION")
 )
 
+def validate_matrix(m):
+    controls = m.get("controls", [])
+    ids = [c.get("id") for c in controls]
+    expected = [f"D{i:02}" for i in range(1, 49)]
+    errors = []
+    if ids != expected:
+        errors.append("CONTROL_IDS_OR_ORDER")
+    if len(m.get("areas", [])) != 12:
+        errors.append("AREA_COUNT")
+    if m.get("canonical_v3_sha256") != LOCK_PIN:
+        errors.append("V3_PIN")
+    if len(controls) != 48:
+        errors.append("CONTROL_COUNT")
+    for i, c in enumerate(controls):
+        if any(not c.get(k) for k in REQUIRED_KEYS):
+            errors.append("INCOMPLETE_" + str(c.get("id")))
+        if not isinstance(c.get("peer_refs"), list) or not c["peer_refs"]:
+            errors.append("MISSING_PEER_" + str(c.get("id")))
+        if c.get("design_status") != "SPECIFIED":
+            errors.append("NOT_SPECIFIED_" + str(c.get("id")))
+        if c.get("implementation_state") != "NOT_ASSESSED":
+            errors.append("IMPLEMENTATION_CONFUSION_" + str(c.get("id")))
+        if c.get("real_field_state") != "NOT_ASSESSED":
+            errors.append("FIELD_CLAIM_" + str(c.get("id")))
+        if i < len(BASELINE_VECTOR) and c.get("baseline_design_points") != BASELINE_VECTOR[i]:
+            errors.append("BASELINE_DRIFT_" + str(c.get("id")))
+        if c.get("candidate_design_points") != 5:
+            errors.append("DESIGN_POINTS_" + str(c.get("id")))
+    if m.get("baseline_20261024", {}).get("raw_points") != 211:
+        errors.append("BASELINE_TOTAL")
+    if m.get("design_target", {}).get("raw_points") != 240:
+        errors.append("CANDIDATE_TOTAL")
+    return errors
+
+def test_matrix_mutations(m):
+    import copy
+    mutations = (
+        ("missing_acceptance", lambda x: x["controls"][0].pop("pass_design_condition")),
+        ("duplicate_id", lambda x: x["controls"][4].update(id=x["controls"][3]["id"])),
+        ("missing_reject_case", lambda x: x["controls"][7].update(reject_case="")),
+        ("missing_peer", lambda x: x["controls"][9].update(peer_refs=[])),
+        ("baseline_fudged", lambda x: x["controls"][30].update(baseline_design_points=5)),
+        ("field_claim_forged", lambda x: x["controls"][47].update(real_field_state="PASS")),
+        ("not_specified", lambda x: x["controls"][33].update(design_status="OPEN")),
+        ("missing_area", lambda x: x["areas"].pop())
+    )
+    failed = []
+    for name, modify in mutations:
+        candidate = copy.deepcopy(m)
+        modify(candidate)
+        if not validate_matrix(candidate):
+            failed.append(name)
+    return {"cases": len(mutations), "pass_count": len(mutations) - len(failed), "failed": failed}
+
 def run():
     raw = MATRIX.read_bytes()
     m = json.loads(raw)
     controls = m.get("controls", [])
-    ids = [c.get("id") for c in controls]
-    expected = [f"D{i:02}" for i in range(1, 49)]
-    structural_errors = []
-    if ids != expected:
-        structural_errors.append("CONTROL_IDS_OR_ORDER")
-    if len(m.get("areas", [])) != 12:
-        structural_errors.append("AREA_COUNT")
-    if m.get("canonical_v3_sha256") != LOCK_PIN:
-        structural_errors.append("V3_PIN")
-    for c in controls:
-        if any(not c.get(k) for k in REQUIRED_KEYS):
-            structural_errors.append("INCOMPLETE_" + str(c.get("id")))
-        if c.get("design_status") != "SPECIFIED":
-            structural_errors.append("NOT_SPECIFIED_" + str(c.get("id")))
-        if c.get("implementation_state") != "NOT_ASSESSED":
-            structural_errors.append("IMPLEMENTATION_CONFUSION_" + str(c.get("id")))
+    structural_errors = validate_matrix(m)
     if len(SCENARIOS) != 24 or len({x[0] for x in SCENARIOS}) != 24:
         structural_errors.append("SCENARIO_COUNT")
     rounds = []
     false_pass = 0
+    mutation_results = []
     for ix in range(1, 4):
         cases = []
         for name, changed_key, expected_verdict in SCENARIOS:
@@ -118,6 +163,7 @@ def run():
             if not ok and actual in ("EXTERNAL_AUTHORITIES_REQUIRED", "SIMULATED_ACCEPTANCE_ONLY"):
                 false_pass += 1
             cases.append({"id": name, "expect": expected_verdict, "actual": actual, "pass": ok})
+        mutation_results.append(test_matrix_mutations(m))
         rounds.append({
             "round": ix, "kind": ("BASELINE_FALSIFICATION" if ix == 1 else
                                   "DESIGN_REPAIR_VERIFY" if ix == 2 else
@@ -127,6 +173,7 @@ def run():
             "failures": [c for c in cases if not c["pass"]]
         })
     ok = (not structural_errors and all(r["pass_count"] == 24 for r in rounds)
+          and all(r["pass_count"] == 8 for r in mutation_results)
           and false_pass == 0)
     return {
         "schema": "enguru.methods.design48.simulation-receipt/v1",
@@ -136,6 +183,7 @@ def run():
         "design_control_coverage": f"{len(controls)}/48",
         "matrix_sha256": hashlib.sha256(raw).hexdigest(),
         "rounds": rounds, "scenarios_per_round": 24, "total_simulated_cases": 72,
+        "mutation_rounds": mutation_results, "total_matrix_mutations": 24,
         "critical_false_pass": false_pass, "structural_errors": structural_errors,
         "independent_review": "HOLD_NOT_EXECUTED",
         "github_exact_head_ci": "SEPARATE_VERIFICATION_REQUIRED",
