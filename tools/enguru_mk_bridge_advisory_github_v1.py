@@ -5,7 +5,7 @@ import json
 import os
 from pathlib import Path
 import tempfile
-from tools import enguru_mk_bridge_github_v1 as prior
+import enguru_mk_bridge_github_v1 as prior
 
 SCHEMA="enguru.mk.peer-advisory/v1"
 MAP={
