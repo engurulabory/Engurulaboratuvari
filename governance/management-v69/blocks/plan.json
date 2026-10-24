@@ -480,6 +480,29 @@
         "presentationCaveat": "EXACT_G2_LINE_IN_EXISTING_DONECHECK_MODAL_NOT_YET_SCREEN_OBSERVED",
         "sourceOfAuthority": "REAL_OWNER_MAC_HTTP_READ_ONLY_VERIFIER_RESPONSE_NOT_FINAL_HUMAN_REVIEW"
       }
+    },
+    "visibleG2Status": {
+      "technicalState": "PASS_GITHUB_MACOS_CI_NATIVE_DRAWER_FIELD_PENDING",
+      "previousG2LiveMacStatus": "PASS_INDEPENDENTLY_VERIFIED_MAC_OSI",
+      "repo": "engurulabory/enguru-mac-engineer",
+      "branch": "review/v69-g2-authorized-scoped-grant-20261023",
+      "sourceHead": "64de962063af9c60a9482136ad5918d8d62016e6",
+      "sourceUiGitBlob": "8fa4b7d8ebb433ccca4a38259d7f523029641e54",
+      "ciRunId": 40072710258,
+      "uiNegativeTests": "18_OF_18_PASS",
+      "donecheckAdapterTests": "34_OF_34_PASS",
+      "implementation": "EXISTING_STATUS_DRAWER_ON_OPEN_FETCHES_READ_ONLY_G2_API_THEN_SHOWS_ONE_SCOPED_STATUS_ROW",
+      "noNewTopLevelSurface": true,
+      "noSecurityCeremonies": true,
+      "preserveExistingMacUiSha256": "5e98d3634496cfc34e7bcaf9a5fcd0681481c2bfafacfa7f06f47b6972a332ed",
+      "macFieldInstaller": "ENGURU_V69_NATIVE_DRAWER_PATCH_V1_20261024.zip",
+      "macFieldInstallerSha256": "08f994a6aaf35a59fafbe74c5d3ebba846790d966d9cbb9129cf500a114da979",
+      "isolatedInstallerSimulations": "3_X_12_OF_12_PASS",
+      "atomicAndRollbackSimulation": "PASS",
+      "realMacUpdatedDrawer": "HOLD_NOT_YET_EXECUTED",
+      "G3_G6_OFFICIAL": "HOLD",
+      "evidenceUrl": "https://github.com/engurulabory/enguru-mac-engineer/pull/16#issuecomment-6381304461",
+      "next": "MAC_RUN_ONE_PINNED_UI_PATCH_AND_REFRESH_EXISTING_APP_STATUS_DRAWER"
     }
   }
 }
