@@ -1,0 +1,406 @@
+{
+  "schema": "enguru.arge.management.b01-m01-integrated-handoff/v1",
+  "title": "ENGÜRÜ Hakikat ve Yetenek Mimarisi 2Final — B01-M01 Yönetim İcrası",
+  "generated_date": "2026-10-24",
+  "binding_state": "USER_ACCEPTED_MANAGEMENT_METHOD",
+  "source": {
+    "repository": "engurulabory/Engurulaboratuvari",
+    "review_pr": 207,
+    "review_branch": "review/arge-a03-trust-evidence-v419",
+    "evidence_head_before_management_record": "c809c416535de52bd40fbc540ee7260b9b6279b8",
+    "case_reconciliation_blob_sha1": "34a1d4254e07c99b2c108156bff1095d9796da48",
+    "public_source_blob_sha1": "5da85f17301edb75f1b67077a107cdf9ca968ee9",
+    "case_baseline_sha256": "3906f7bd6ae07d26547babc172d1337cfdfeff85244ece95efb76c3cb448df08",
+    "universal_v3_sha256": "11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc"
+  },
+  "scope": {
+    "all_blocks": 6,
+    "all_original_tasks": 40,
+    "active_block": "BLOK_01",
+    "active_block_ids": [
+      "A01",
+      "A02",
+      "A03",
+      "A04",
+      "A05",
+      "A06",
+      "A07",
+      "A08",
+      "A09"
+    ],
+    "active_package": "B01-M01",
+    "package_ids": [
+      "A03",
+      "A04",
+      "A05",
+      "A06"
+    ],
+    "preserved_dependencies": [
+      "A01",
+      "A02",
+      "A07",
+      "A08",
+      "A09"
+    ],
+    "case_count": 18,
+    "criteria_per_case": 13,
+    "total_cells": 234,
+    "upstream_technologies": 7
+  },
+  "roles": {
+    "this_session": "MANAGEMENT_ONLY",
+    "management_actions": [
+      "read exact source",
+      "combine dependency-aligned jobs",
+      "plan and model-test",
+      "record scored governance evidence",
+      "prepare application handoff",
+      "reconcile independent acceptance outcomes"
+    ],
+    "application_is_separate": true,
+    "application_requires_independent_actual_authorization": true
+  },
+  "evidence_contract": {
+    "A03": [
+      "exact task and scope-bound owner authorization",
+      "issuer public key/trust root and revocation/freshness",
+      "separate independent PR reviewer identity and reviewer grant",
+      "versioned canonical acceptance contract"
+    ],
+    "A04": [
+      "7 upstream pinned component/edition license and dependency manifests",
+      "customer installed release/edition-specific SBOM and CVE applicability",
+      "AR Kâşifi research/preconstruction authority and canonical implementation status decision"
+    ],
+    "A05": [
+      "customer-authorized release, edition, source commit",
+      "deployed manifest and manifest SHA-256",
+      "customer SPDX/CycloneDX SBOM and SHA-256",
+      "signed customer assertion, signer identity and verified scope"
+    ],
+    "A06": [
+      "independent real-use observation at recorded time",
+      "same A05 deployment manifest SHA-256 reference",
+      "E5 report+assertion+signature digests",
+      "separate verifier identity, trusted key, valid grant and independent acceptance"
+    ],
+    "customer_documents_location": "AUTHORIZED_PRIVATE_LOCAL_STORAGE_ONLY",
+    "github_output": "REDACTED_STATUS_AND_REFERENCES_ONLY",
+    "file_hash_vs_signature": "SHA256_INTEGRITY_IS_NOT_CRYPTOGRAPHIC_SIGNATURE_VALIDATION",
+    "reviewer_vs_producer": "DISTINCT_AUTHORIZED_IDENTITIES",
+    "same_manifest_binding": "CUSTOMER_CLAIM_AND_E5_REPORT_LINK_TO_IDENTICAL_AUTHORIZED_DEPLOYMENT_MANIFEST"
+  },
+  "case_intake": [
+    {
+      "case_id": "01",
+      "customer": "Bookshop.org",
+      "technology": "Meilisearch",
+      "domain": "Web",
+      "public_source_class": "VENDOR_CUSTOMER_QUOTE",
+      "public_reference": "https://www.meilisearch.com/customers",
+      "current_deployment_state": "HOLD_NO_AUTHENTICATED_CUSTOMER_DEPLOYMENT",
+      "independent_e5_state": "HOLD_NO_AUTHENTICATED_INDEPENDENT_OBSERVATION",
+      "owner_request": "AUTHENTICATED_CUSTOMER_SIGNED_DEPLOYMENT_AND_SBOM",
+      "observer_request": "AUTHORIZED_THIRD_PARTY_SIGNED_SAME_DEPLOYMENT_E5"
+    },
+    {
+      "case_id": "02",
+      "customer": "Matt Sleeps",
+      "technology": "Medusa",
+      "domain": "Web",
+      "public_source_class": "VENDOR_CASE_STUDY",
+      "public_reference": "https://medusajs.com/blog/matt-sleeps",
+      "current_deployment_state": "HOLD_NO_AUTHENTICATED_CUSTOMER_DEPLOYMENT",
+      "independent_e5_state": "HOLD_NO_AUTHENTICATED_INDEPENDENT_OBSERVATION",
+      "owner_request": "AUTHENTICATED_CUSTOMER_SIGNED_DEPLOYMENT_AND_SBOM",
+      "observer_request": "AUTHORIZED_THIRD_PARTY_SIGNED_SAME_DEPLOYMENT_E5"
+    },
+    {
+      "case_id": "03",
+      "customer": "Lush",
+      "technology": "Saleor",
+      "domain": "Web",
+      "public_source_class": "VENDOR_CASE_STUDY_CUSTOMER_QUOTES",
+      "public_reference": "https://saleor.io/case-study/lush",
+      "current_deployment_state": "HOLD_NO_AUTHENTICATED_CUSTOMER_DEPLOYMENT",
+      "independent_e5_state": "HOLD_NO_AUTHENTICATED_INDEPENDENT_OBSERVATION",
+      "owner_request": "AUTHENTICATED_CUSTOMER_SIGNED_DEPLOYMENT_AND_SBOM",
+      "observer_request": "AUTHORIZED_THIRD_PARTY_SIGNED_SAME_DEPLOYMENT_E5"
+    },
+    {
+      "case_id": "04",
+      "customer": "Mobbin",
+      "technology": "Supabase",
+      "domain": "Uygulama",
+      "public_source_class": "VENDOR_CASE_STUDY_CUSTOMER_QUOTES",
+      "public_reference": "https://supabase.com/customers/mobbin",
+      "current_deployment_state": "HOLD_NO_AUTHENTICATED_CUSTOMER_DEPLOYMENT",
+      "independent_e5_state": "HOLD_NO_AUTHENTICATED_INDEPENDENT_OBSERVATION",
+      "owner_request": "AUTHENTICATED_CUSTOMER_SIGNED_DEPLOYMENT_AND_SBOM",
+      "observer_request": "AUTHORIZED_THIRD_PARTY_SIGNED_SAME_DEPLOYMENT_E5"
+    },
+    {
+      "case_id": "05",
+      "customer": "Resend",
+      "technology": "Supabase",
+      "domain": "Uygulama",
+      "public_source_class": "VENDOR_CASE_STUDY_CUSTOMER_QUOTES",
+      "public_reference": "https://supabase.com/customers/resend",
+      "current_deployment_state": "HOLD_NO_AUTHENTICATED_CUSTOMER_DEPLOYMENT",
+      "independent_e5_state": "HOLD_NO_AUTHENTICATED_INDEPENDENT_OBSERVATION",
+      "owner_request": "AUTHENTICATED_CUSTOMER_SIGNED_DEPLOYMENT_AND_SBOM",
+      "observer_request": "AUTHORIZED_THIRD_PARTY_SIGNED_SAME_DEPLOYMENT_E5"
+    },
+    {
+      "case_id": "06",
+      "customer": "Hugging Face Hub",
+      "technology": "Meilisearch",
+      "domain": "Uygulama",
+      "public_source_class": "VENDOR_CUSTOMER_QUOTE",
+      "public_reference": "https://www.meilisearch.com/customers",
+      "current_deployment_state": "HOLD_NO_AUTHENTICATED_CUSTOMER_DEPLOYMENT",
+      "independent_e5_state": "HOLD_NO_AUTHENTICATED_INDEPENDENT_OBSERVATION",
+      "owner_request": "AUTHENTICATED_CUSTOMER_SIGNED_DEPLOYMENT_AND_SBOM",
+      "observer_request": "AUTHORIZED_THIRD_PARTY_SIGNED_SAME_DEPLOYMENT_E5"
+    },
+    {
+      "case_id": "07",
+      "customer": "Replit Agent",
+      "technology": "Temporal",
+      "domain": "Motor",
+      "public_source_class": "VENDOR_CASE_STUDY_CONFLICTING_LATER_VENDOR_REPORT",
+      "public_reference": "https://temporal.io/resources/case-studies/replit-uses-temporal-to-power-replit-agent-reliably-at-scale",
+      "current_deployment_state": "HOLD_NO_AUTHENTICATED_CUSTOMER_DEPLOYMENT",
+      "independent_e5_state": "HOLD_NO_AUTHENTICATED_INDEPENDENT_OBSERVATION",
+      "owner_request": "AUTHENTICATED_CUSTOMER_SIGNED_DEPLOYMENT_AND_SBOM",
+      "observer_request": "AUTHORIZED_THIRD_PARTY_SIGNED_SAME_DEPLOYMENT_E5"
+    },
+    {
+      "case_id": "08",
+      "customer": "Auth0 FGA",
+      "technology": "OpenFGA",
+      "domain": "Motor",
+      "public_source_class": "OFFICIAL_PRODUCT_LINEAGE_NOT_INDEPENDENT_CUSTOMER",
+      "public_reference": "https://docs.fga.dev/openfga-vs-auth0-fga",
+      "current_deployment_state": "HOLD_NO_AUTHENTICATED_CUSTOMER_DEPLOYMENT",
+      "independent_e5_state": "HOLD_NO_AUTHENTICATED_INDEPENDENT_OBSERVATION",
+      "owner_request": "AUTHENTICATED_CUSTOMER_SIGNED_DEPLOYMENT_AND_SBOM",
+      "observer_request": "AUTHORIZED_THIRD_PARTY_SIGNED_SAME_DEPLOYMENT_E5"
+    },
+    {
+      "case_id": "09",
+      "customer": "Headspace",
+      "technology": "OpenFGA",
+      "domain": "Motor",
+      "public_source_class": "UPSTREAM_ADOPTER_SELF_REPORT",
+      "public_reference": "https://github.com/openfga/community/blob/main/ADOPTERS.md",
+      "current_deployment_state": "HOLD_NO_AUTHENTICATED_CUSTOMER_DEPLOYMENT",
+      "independent_e5_state": "HOLD_NO_AUTHENTICATED_INDEPENDENT_OBSERVATION",
+      "owner_request": "AUTHENTICATED_CUSTOMER_SIGNED_DEPLOYMENT_AND_SBOM",
+      "observer_request": "AUTHORIZED_THIRD_PARTY_SIGNED_SAME_DEPLOYMENT_E5"
+    },
+    {
+      "case_id": "10",
+      "customer": "Xendit",
+      "technology": "Supabase",
+      "domain": "Çekirdek",
+      "public_source_class": "VENDOR_CASE_STUDY_CUSTOMER_QUOTES",
+      "public_reference": "https://supabase.com/customers/xendit",
+      "current_deployment_state": "HOLD_NO_AUTHENTICATED_CUSTOMER_DEPLOYMENT",
+      "independent_e5_state": "HOLD_NO_AUTHENTICATED_INDEPENDENT_OBSERVATION",
+      "owner_request": "AUTHENTICATED_CUSTOMER_SIGNED_DEPLOYMENT_AND_SBOM",
+      "observer_request": "AUTHORIZED_THIRD_PARTY_SIGNED_SAME_DEPLOYMENT_E5"
+    },
+    {
+      "case_id": "11",
+      "customer": "Mapped",
+      "technology": "OpenFGA",
+      "domain": "Çekirdek",
+      "public_source_class": "UPSTREAM_ADOPTER_SELF_REPORT",
+      "public_reference": "https://github.com/openfga/community/blob/main/ADOPTERS.md",
+      "current_deployment_state": "HOLD_NO_AUTHENTICATED_CUSTOMER_DEPLOYMENT",
+      "independent_e5_state": "HOLD_NO_AUTHENTICATED_INDEPENDENT_OBSERVATION",
+      "owner_request": "AUTHENTICATED_CUSTOMER_SIGNED_DEPLOYMENT_AND_SBOM",
+      "observer_request": "AUTHORIZED_THIRD_PARTY_SIGNED_SAME_DEPLOYMENT_E5"
+    },
+    {
+      "case_id": "12",
+      "customer": "Temporal Cloud",
+      "technology": "Temporal",
+      "domain": "Çekirdek",
+      "public_source_class": "THIRD_PARTY_CLOUD_PLATFORM_PROFILE",
+      "public_reference": "https://cloud.google.com/customers/temporal",
+      "current_deployment_state": "HOLD_NO_AUTHENTICATED_CUSTOMER_DEPLOYMENT",
+      "independent_e5_state": "HOLD_NO_AUTHENTICATED_INDEPENDENT_OBSERVATION",
+      "owner_request": "AUTHENTICATED_CUSTOMER_SIGNED_DEPLOYMENT_AND_SBOM",
+      "observer_request": "AUTHORIZED_THIRD_PARTY_SIGNED_SAME_DEPLOYMENT_E5"
+    },
+    {
+      "case_id": "13",
+      "customer": "Klarna",
+      "technology": "LangGraph",
+      "domain": "Ajan",
+      "public_source_class": "VENDOR_CASE_STUDY_CUSTOMER_QUOTES",
+      "public_reference": "https://www.langchain.com/blog/customers-klarna",
+      "current_deployment_state": "HOLD_NO_AUTHENTICATED_CUSTOMER_DEPLOYMENT",
+      "independent_e5_state": "HOLD_NO_AUTHENTICATED_INDEPENDENT_OBSERVATION",
+      "owner_request": "AUTHENTICATED_CUSTOMER_SIGNED_DEPLOYMENT_AND_SBOM",
+      "observer_request": "AUTHORIZED_THIRD_PARTY_SIGNED_SAME_DEPLOYMENT_E5"
+    },
+    {
+      "case_id": "14",
+      "customer": "LinkedIn",
+      "technology": "LangGraph",
+      "domain": "Ajan",
+      "public_source_class": "CUSTOMER_FIRST_PARTY_ENGINEERING",
+      "public_reference": "https://www.linkedin.com/blog/engineering/ai/practical-text-to-sql-for-data-analytics",
+      "current_deployment_state": "HOLD_NO_AUTHENTICATED_CUSTOMER_DEPLOYMENT",
+      "independent_e5_state": "HOLD_NO_AUTHENTICATED_INDEPENDENT_OBSERVATION",
+      "owner_request": "AUTHENTICATED_CUSTOMER_SIGNED_DEPLOYMENT_AND_SBOM",
+      "observer_request": "AUTHORIZED_THIRD_PARTY_SIGNED_SAME_DEPLOYMENT_E5"
+    },
+    {
+      "case_id": "15",
+      "customer": "Uber",
+      "technology": "LangGraph",
+      "domain": "Ajan",
+      "public_source_class": "LANGGRAPH_VENDOR_GENERAL_ADOPTION_CLAIM",
+      "public_reference": "https://www.langchain.com/blog/building-langgraph",
+      "current_deployment_state": "HOLD_NO_AUTHENTICATED_CUSTOMER_DEPLOYMENT",
+      "independent_e5_state": "HOLD_NO_AUTHENTICATED_INDEPENDENT_OBSERVATION",
+      "owner_request": "AUTHENTICATED_CUSTOMER_SIGNED_DEPLOYMENT_AND_SBOM",
+      "observer_request": "AUTHORIZED_THIRD_PARTY_SIGNED_SAME_DEPLOYMENT_E5"
+    },
+    {
+      "case_id": "16",
+      "customer": "Tekla",
+      "technology": "Medusa",
+      "domain": "Ticari",
+      "public_source_class": "VENDOR_CASE_STUDY_CUSTOMER_CLAIM",
+      "public_reference": "https://medusajs.com/blog/tekla",
+      "current_deployment_state": "HOLD_NO_AUTHENTICATED_CUSTOMER_DEPLOYMENT",
+      "independent_e5_state": "HOLD_NO_AUTHENTICATED_INDEPENDENT_OBSERVATION",
+      "owner_request": "AUTHENTICATED_CUSTOMER_SIGNED_DEPLOYMENT_AND_SBOM",
+      "observer_request": "AUTHORIZED_THIRD_PARTY_SIGNED_SAME_DEPLOYMENT_E5"
+    },
+    {
+      "case_id": "17",
+      "customer": "Fastweb + Vodafone",
+      "technology": "LangGraph",
+      "domain": "Ticari",
+      "public_source_class": "LANGGRAPH_VENDOR_DEDICATED_CUSTOMER_CASE",
+      "public_reference": "https://www.langchain.com/blog/customers-vodafone-italy",
+      "current_deployment_state": "HOLD_NO_AUTHENTICATED_CUSTOMER_DEPLOYMENT",
+      "independent_e5_state": "HOLD_NO_AUTHENTICATED_INDEPENDENT_OBSERVATION",
+      "owner_request": "AUTHENTICATED_CUSTOMER_SIGNED_DEPLOYMENT_AND_SBOM",
+      "observer_request": "AUTHORIZED_THIRD_PARTY_SIGNED_SAME_DEPLOYMENT_E5"
+    },
+    {
+      "case_id": "18",
+      "customer": "BFI Finance",
+      "technology": "Temporal",
+      "domain": "Ticari",
+      "public_source_class": "VENDOR_CASE_STUDY_CUSTOMER_INTERVIEW",
+      "public_reference": "https://temporal.io/resources/case-studies/bfi",
+      "current_deployment_state": "HOLD_NO_AUTHENTICATED_CUSTOMER_DEPLOYMENT",
+      "independent_e5_state": "HOLD_NO_AUTHENTICATED_INDEPENDENT_OBSERVATION",
+      "owner_request": "AUTHENTICATED_CUSTOMER_SIGNED_DEPLOYMENT_AND_SBOM",
+      "observer_request": "AUTHORIZED_THIRD_PARTY_SIGNED_SAME_DEPLOYMENT_E5"
+    }
+  ],
+  "management_gates": [
+    "current source/branch pin and existing universal governance",
+    "single active combined package and six-block 40-task preservation",
+    "V19 18x13 234-cell baseline pinned",
+    "all 18 unique case identities and 7 upstream technologies",
+    "A03-A06 active; A01-A02 and A07-A09 preserved",
+    "A03/A04 real-source authority and licensing requirements",
+    "A05 per-customer exact deployment and private evidence requirements",
+    "A06 independent observer distinct from customer/provider, same manifest binding",
+    "management-only, failure-closed, human/secret boundaries",
+    "rehearsed adverse cases, explicit handoff and separate official counters"
+  ],
+  "management_workflow": [
+    "PIN_SOURCE",
+    "SELECT_COMBINED_SCOPE",
+    "SIMULATE_END_TO_END",
+    "SCORE_TEN_GATES",
+    "FIX_MISSING_ITEMS",
+    "SATISFY_REQUIRED_INPUTS",
+    "CORRECT_VERIFIED_ERRORS",
+    "RESCORE_AND_RESIMULATE",
+    "ISSUE_MANAGEMENT_HANDOFF_CANDIDATE_ON_100",
+    "RECONCILE_RETURNED_REAL_EVIDENCE"
+  ],
+  "handoff": {
+    "application_entry": [
+      "revalidate exact source and role authority",
+      "inspect task-specific owner/issuer grant",
+      "acquire customer-approved private evidence",
+      "verify independent E5 signature and provenance",
+      "run existing reviewed intake in authorized environment",
+      "submit separate real code/field/DoneCheck and human acceptance"
+    ],
+    "ready_meaning": "PLAN_SIMULATION_ONLY",
+    "dispatch_status": "HOLD_PENDING_REAL_EXTERNAL_GRANTS_AND_CUSTOMER_EVIDENCE",
+    "pr_review_required": true,
+    "official_acceptance_not_earned": true
+  },
+  "unchanged_counters": {
+    "theoretical_design_self_assessed": "100/100",
+    "github_preparation_last_reported": "50/100",
+    "mac_osi_field": "0/100",
+    "block01_official": "0/9",
+    "total_official": "0/40",
+    "independent_e5": "0/18",
+    "authenticated_customer_deployments": "0/18",
+    "independent_pr_reviews": 0
+  },
+  "known_limits": [
+    "Kâşifi canonical implemented runtime unverified; existing preconstruction research design only",
+    "public upstream Git blobs are not customer release/SBOM/CVE proof",
+    "Replit Temporal is historical; subsequent Restate migration is contrary evidence",
+    "Auth0 FGA/OpenFGA product lineage is not independent adopter E5",
+    "generic supplier mention for Uber is not Uber-signed production evidence",
+    "A07 live G01/G02/G03; A08 5-year measured K12; A09 9/9 handoff remain HOLD"
+  ],
+  "invariants": {
+    "producer_code_writes": 0,
+    "main_writes": 0,
+    "mac_field_operations": 0,
+    "private_customer_documents_in_github": 0,
+    "official_receipts_created": 0,
+    "owner_grants_fabricated": 0,
+    "independent_reviews_fabricated": 0,
+    "verified_finish": false
+  },
+  "final_authority": "OFFICIAL_HOLD",
+  "management_simulation": {
+    "type": "LOCAL_DETERMINISTIC_DESIGN_SIMULATION_NOT_EXTERNAL_ACCEPTANCE",
+    "rubric": "10 structural gates each worth 10 points; 0 for missing gate; theoretical only",
+    "rounds": [
+      {
+        "round": 1,
+        "score": 100,
+        "adversarial_passed": 25,
+        "adversarial_total": 25
+      },
+      {
+        "round": 2,
+        "score": 100,
+        "adversarial_passed": 25,
+        "adversarial_total": 25
+      },
+      {
+        "round": 3,
+        "score": 100,
+        "adversarial_passed": 25,
+        "adversarial_total": 25
+      }
+    ],
+    "total_negative_checks": 75,
+    "total_expected_results": 75,
+    "management_plan_score": "100/100",
+    "official_fulfillment": "HOLD"
+  }
+}

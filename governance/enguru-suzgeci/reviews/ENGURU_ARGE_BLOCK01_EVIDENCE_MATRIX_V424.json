@@ -1,0 +1,83 @@
+{
+  "schema": "enguru.arge.block01.evidence/v1",
+  "block": "BLOCK01",
+  "tasks": {
+    "A01": {
+      "scope": "AR_GE_ARCHITECTURE",
+      "official": "HOLD",
+      "evidence_status": "PARTIAL_OR_UNVERIFIED",
+      "authority": "HOLD"
+    },
+    "A02": {
+      "scope": "AR_GE_ARCHITECTURE",
+      "official": "HOLD",
+      "evidence_status": "PARTIAL_OR_UNVERIFIED",
+      "authority": "HOLD"
+    },
+    "A03": {
+      "scope": "AR_GE_ARCHITECTURE",
+      "official": "HOLD",
+      "evidence_status": "PARTIAL_OR_UNVERIFIED",
+      "authority": "HOLD"
+    },
+    "A04": {
+      "scope": "AR_GE_ARCHITECTURE",
+      "official": "HOLD",
+      "evidence_status": "PARTIAL_OR_UNVERIFIED",
+      "authority": "HOLD"
+    },
+    "A05": {
+      "scope": "AR_GE_ARCHITECTURE",
+      "official": "HOLD",
+      "evidence_status": "PARTIAL_OR_UNVERIFIED",
+      "authority": "HOLD"
+    },
+    "A06": {
+      "scope": "AR_GE_ARCHITECTURE",
+      "official": "HOLD",
+      "evidence_status": "PARTIAL_OR_UNVERIFIED",
+      "authority": "HOLD"
+    },
+    "A07": {
+      "scope": "AR_GE_ARCHITECTURE",
+      "official": "HOLD",
+      "evidence_status": "PARTIAL_OR_UNVERIFIED",
+      "authority": "HOLD"
+    },
+    "A08": {
+      "scope": "AR_GE_ARCHITECTURE",
+      "official": "HOLD",
+      "evidence_status": "PARTIAL_OR_UNVERIFIED",
+      "authority": "HOLD"
+    },
+    "A09": {
+      "scope": "AR_GE_ARCHITECTURE",
+      "official": "HOLD",
+      "evidence_status": "PARTIAL_OR_UNVERIFIED",
+      "authority": "HOLD"
+    }
+  },
+  "reconciled": {
+    "source_inventory": "STRUCTURAL_PREPARATION_ONLY",
+    "case_count": 18,
+    "domain_count": 6,
+    "k_cells": 234,
+    "independent_e5": "0/18_VERIFIED",
+    "g01_external_effect": "HOLD",
+    "g02_relational_authorization": "HOLD",
+    "g03_temporal_knowledge": "HOLD",
+    "k12_measured_roi_tco": "HOLD",
+    "kasifi_canonical_identity": "HOLD",
+    "a03_scope_bound_grant": "HOLD",
+    "independent_reviewer": "HOLD",
+    "authorized_donecheck": "HOLD"
+  },
+  "evidence_refs": [
+    "Issue #205 V4.5/V4.6 evidence statements",
+    "PR #207 A03 CI step success",
+    "ENGURU_ARGE_BLOCK01_A01_A09_V423.md"
+  ],
+  "review_scope": "GITHUB_ONLY_NO_FIELD_AUTHORITY",
+  "block_finish": "HOLD",
+  "official_pass": "0/9"
+}

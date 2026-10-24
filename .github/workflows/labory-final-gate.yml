@@ -183,5 +183,53 @@ jobs:
       - name: Repository Steward scheduled runner smoke
         run: node steward/run-scheduled-cycle.mjs
 
+      - name: A03 authority preflight review-only tests
+        run: python -m unittest discover -s tests -p 'test_arge_a03_preflight_v419.py' -v
+
+      - name: Ar-Ge Block 01 nine-task adversarial tests
+        run: python -m unittest discover -s tests -p 'test_arge_block01_v423.py' -v
+
+      - name: Ar-Ge Block 01 exit evidence replay
+        run: python -m unittest discover -s tests -p 'test_arge_block01_exit_v424.py' -v
+
+      - name: Ar-Ge Block 01 provenance inventory tests
+        run: python -m unittest discover -s tests -p 'test_arge_block01_provenance_v425.py' -v
+
+      - name: Ar-Ge Block 01 full 18 case reconciliation
+        run: python -m unittest discover -s tests -p 'test_arge_block01_18_cases_v428.py' -v
+
+      - name: Ar-Ge Block 01 K12 five-year cost calculation tests
+        run: python -m unittest discover -s tests -p 'test_arge_block01_k12_tco_v1.py' -v
+
+      - name: Ar-Ge Block 01 K12 18-case evidence intake tests
+        run: python -m unittest discover -s tests -p 'test_arge_block01_k12_batch_v1.py' -v
+
+      - name: Ar-Ge Block 01 original task identity regression
+        run: python -m unittest discover -s tests -p 'test_arge_block01_task_semantics_v1.py' -v
+
+      - name: Ar-Ge Block 01 A07 G01 real BillingCore fault replay
+        run: python -m unittest discover -s tests -p 'test_arge_block01_a07_runtime_v1.py' -v
+
+      - name: Ar-Ge Block 01 G01 SQLite restart-safe adversarial tests
+        run: python -m unittest discover -s tests -p 'test_arge_block01_g01_sqlite_v1.py' -v
+
+      - name: Ar-Ge Block 01 G03 source-time and conflict adversarial tests
+        run: python -m unittest discover -s tests -p 'test_arge_block01_g03_temporal_v1.py' -v
+
+      - name: Ar-Ge Block 01 G02 actual evidence access gap characterization
+        run: python -m unittest discover -s tests -p 'test_arge_block01_g02_existing_gap_v1.py' -v
+
+      - name: Ar-Ge Block 01 pinned production billing boundary
+        run: python -m unittest discover -s tests -p 'test_arge_block01_product_boundary_v1.py' -v
+
+      - name: Ar-Ge Block 01 A04 upstream Git/license provenance test
+        run: python -m unittest discover -s tests -p 'test_arge_block01_a04_upstream_pins_v1.py' -v
+
+      - name: Ar-Ge Block 01 A01-A06 dated public provenance regression
+        run: python -m unittest discover -s tests -p 'test_arge_block01_a01_a06_public_provenance_v1.py' -v
+
+      - name: Ar-Ge Block 01 A05-A06 external evidence 18-case intake
+        run: python -m unittest discover -s tests -p 'test_arge_block01_a05_a06_evidence_intake_v1.py' -v
+
       - name: Final state
         run: echo 'ENGURU LABORY REPOSITORY FINAL GATE = PASS' >> "$GITHUB_STEP_SUMMARY"

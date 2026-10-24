@@ -1,0 +1,152 @@
+{
+  "schema": "enguru.arge.block01.evidence-provenance/v1",
+  "block": "BLOCK01",
+  "version": "V4.25",
+  "principle": "Evidence provenance cannot be inferred from task status, fixture PASS or PR CI",
+  "required_categories": {
+    "A01": [
+      "canonical_case_inventory",
+      "source_revision"
+    ],
+    "A02": [
+      "case_by_k01_k13_matrix",
+      "cell_source_links"
+    ],
+    "A03": [
+      "authorized_acceptance_contract",
+      "task_scope_signed_owner_issuer_grant"
+    ],
+    "A04": [
+      "kasifi_canonical_repo_commit",
+      "license_security_review"
+    ],
+    "A05": [
+      "e5_independent_evidence_18_cases",
+      "source_freshness"
+    ],
+    "A06": [
+      "g01_external_effect_test",
+      "g02_relational_auth_test",
+      "g03_temporal_truth_test"
+    ],
+    "A07": [
+      "baseline_and_competitor_benchmark",
+      "capability_gap_independent_review"
+    ],
+    "A08": [
+      "k12_actual_roi_tco_data",
+      "value_preservation_decision"
+    ],
+    "A09": [
+      "combined_research_report",
+      "independent_reviewer_attestation",
+      "donecheck_human_authority"
+    ]
+  },
+  "verified_sources": {},
+  "unverified_categories": [
+    {
+      "task_id": "A01",
+      "category": "canonical_case_inventory",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A01",
+      "category": "source_revision",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A02",
+      "category": "case_by_k01_k13_matrix",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A02",
+      "category": "cell_source_links",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A03",
+      "category": "authorized_acceptance_contract",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A03",
+      "category": "task_scope_signed_owner_issuer_grant",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A04",
+      "category": "kasifi_canonical_repo_commit",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A04",
+      "category": "license_security_review",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A05",
+      "category": "e5_independent_evidence_18_cases",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A05",
+      "category": "source_freshness",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A06",
+      "category": "g01_external_effect_test",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A06",
+      "category": "g02_relational_auth_test",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A06",
+      "category": "g03_temporal_truth_test",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A07",
+      "category": "baseline_and_competitor_benchmark",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A07",
+      "category": "capability_gap_independent_review",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A08",
+      "category": "k12_actual_roi_tco_data",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A08",
+      "category": "value_preservation_decision",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A09",
+      "category": "combined_research_report",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A09",
+      "category": "independent_reviewer_attestation",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A09",
+      "category": "donecheck_human_authority",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    }
+  ],
+  "acceptance": "HOLD",
+  "osi": "NOT_STARTED",
+  "source_rule": "Do not promote document/CI links to real grants, customer evidence, or DoneCheck receipts."
+}
