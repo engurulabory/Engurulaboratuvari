@@ -39,6 +39,11 @@ jobs:
       - name: Shared AI behavior tests
         run: python -m unittest discover -s tests -p 'test_shared_ai_behavior.py' -v
 
+      - name: EMUS GH-05 original task schema and negative acceptance cases
+        run: |
+          python tools/emus_task_schema_gate.py
+          python -m unittest discover -s tests -p 'test_emus_task_schema_gate.py' -v
+
       - name: EMUS 19-task progress evidence count and adversarial identity gate
         run: |
           python tools/emus_progress_gate.py
