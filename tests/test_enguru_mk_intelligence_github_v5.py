@@ -55,4 +55,24 @@ class GithubParity(unittest.TestCase):
    mac.candidate(db,'CASE-ABCDEFGH','ACK_RECONCILE','FAIL','1'*64)
    with self.assertRaises(mac.Hold):mac.promote(db,'CASE-ABCDEFGH',None)
    self.assertEqual(mac.trusted_stats(db),{})
+ def test_provisional_outcomes_have_zero_learning_authority(self):
+  import sqlite3
+  with sqlite3.connect(':memory:') as db:
+   code='PACKAGE_SHA_AUDIT'
+   for i in range(3):
+    self.assertEqual(mac.candidate(db,'CASE-PROV%08d'%i,code,'PASS','a'*64),'PROVISIONAL')
+   self.assertEqual(mac.trusted_stats(db),{})
+   ev=self.sample('PACKAGE_ABSENT','GITHUB_MK')
+   report=mac.assess(ev,mac.trusted_stats(db))
+   self.assertTrue(all(alt['verifiedCases']==0 for alt in report['alternatives']))
+   self.assertEqual(report['rootCause'],'UNCONFIRMED')
+ def test_wrong_actor_and_same_proof_never_verify(self):
+  import sqlite3
+  with sqlite3.connect(':memory:') as db:
+   mac.candidate(db,'CASE-CIPROOF00000001','SOURCE_AUDIT','PASS','b'*64)
+   with self.assertRaises(mac.Hold):
+    mac.promote(db,'CASE-CIPROOF00000001',lambda case,proof:('UNTRUSTED','c'*64))
+   with self.assertRaises(mac.Hold):
+    mac.promote(db,'CASE-CIPROOF00000001',lambda case,proof:('INDEPENDENT_CI','b'*64))
+   self.assertEqual(mac.trusted_stats(db),{})
 if __name__=='__main__':unittest.main()
