@@ -1,0 +1,101 @@
+{
+  "schema": "enguru.management-v69.donecheck-registration-preparation/v1",
+  "product": "ENGURU_MANAGEMENT_V69",
+  "scope": "MANAGEMENT_V69_PRODUCT_ONLY",
+  "registration_authority": "PENDING_EXISTING_DONECHECK_AUTHORIZED_ENROLLMENT",
+  "authorization": {
+    "decision": "APPROVED_SCOPE_PREPARATION_ONLY",
+    "source": "OWNER_EXPLICIT_CHAT_APPROVAL_2026-10-22",
+    "cryptographic_human_review": "NOT_GRANTED",
+    "ed25519_attestation": "NOT_ISSUED",
+    "reviewer_trust": "HOLD_EXISTING_OWNER_AUTHORITY_ENROLLMENT",
+    "permissions": "PREPARE_TASK_AND_EVIDENCE_ONLY",
+    "main_merge": "OWNER_RESERVED"
+  },
+  "source_candidate": {
+    "filename": "ENGURU_MANAGEMENT_V69_DONECHECK_TASK_REGISTRATION_CANDIDATE_V1.json",
+    "sha256": "62f57c0fa8bf988a56585b488f1ccb4de08c74c6a05559f48e3ede14d3b82104",
+    "prior_scope_observation_sha256": "b33f9241e7e362169a903f40b6abeda70f6fbd372837e97c72fcae5c112664dc"
+  },
+  "reviewed_github_source": {
+    "repository": "engurulabory/Engurulaboratuvari",
+    "pr": 203,
+    "original_review_head": "1e8dbeba943ca8285e3e6fac021c26530fa3aafc",
+    "original_main": "1f7dfd708d652764ac74df27dcbbd393779e2b3b",
+    "reason": "Baseline technical CI PASS applies to original_review_head only; new head needs renewed CI verification",
+    "technical_ci_run": 39816921298,
+    "original_live_artifact_id": 12442497977
+  },
+  "donecheck_task": {
+    "id": "ENGURU_MANAGEMENT_V69_PR_203",
+    "title": "ENGÜRÜ Yönetim V6.9 — PR #203 teknik ve yetkili bitiş",
+    "requestText": "Yönetim V6.9 PR #203 teknik ve güvenlik kapsamını bağımsız gerçek kanıtla doğrula; mevcut DoneCheck v1.2 ve yetkili insan kararıyla Verified Finish üret.",
+    "description": "Yalnız Yönetim V6.9 ürün kabulü. Denetleyici görevleri, İcra V6.9, PLive ve Cockpit sayaçları ayrıdır.",
+    "status": "in_progress",
+    "createdAt": "2026-10-22T20:09:36+00:00"
+  },
+  "success_criteria": [
+    {
+      "id": "MGMT69-A-CI",
+      "taskId": "ENGURU_MANAGEMENT_V69_PR_203",
+      "kind": "objective",
+      "required": true,
+      "statement": "PR #203 exact güncel HEAD için GitHub CI ve kontrol testleri başarılı.",
+      "verificationInstruction": "GitHub API run.head_sha ve gerçek verify job conclusion=success ile PR güncel HEAD eşleşir."
+    },
+    {
+      "id": "MGMT69-B-SOURCE",
+      "taskId": "ENGURU_MANAGEMENT_V69_PR_203",
+      "kind": "objective",
+      "required": true,
+      "statement": "Canonical AGENTS.md, V3 lock ve PR kaynak sınırları doğrulanmış.",
+      "verificationInstruction": "Güncel GitHub main SHA, V3 SHA256 ve PR diff yalnız Yönetim V6.9 ile sınırlı."
+    },
+    {
+      "id": "MGMT69-C-OPERATIONS",
+      "taskId": "ENGURU_MANAGEMENT_V69_PR_203",
+      "kind": "objective",
+      "required": true,
+      "statement": "Gerçek kontrol görevleri, worker ve public receipt kaynak zinciri bağımsız doğrulanmış.",
+      "verificationInstruction": "GitHub API task ID, bot identity, worker run/job, receipt SHA ve source fingerprint doğrulanır."
+    },
+    {
+      "id": "MGMT69-BOUNDARY",
+      "taskId": "ENGURU_MANAGEMENT_V69_PR_203",
+      "kind": "objective",
+      "required": true,
+      "statement": "Denetleyici, İcra ve korunmuş Human Threshold/DoneCheck yetki sınırları korunmuş.",
+      "verificationInstruction": "Tam PR diff, negatif testler ve kaynak yazım sınırları kontrol edilir; CI sahibi kabulü olarak sınıflandırılmaz."
+    }
+  ],
+  "existing_reviewer_candidate": {
+    "reviewerId": "enguru-mac-local-human-authority",
+    "keyId": "ed25519-sha256:40c6a9cc82815ea5a9755cd4b843d35cd701b4b90d8f65ecb656f1c37a4ef64f",
+    "key_structure": "PASS_ED25519_SPKI_STRUCTURE",
+    "canonical_trust": "HOLD",
+    "task_authorization": "HOLD"
+  },
+  "machine_verification": {
+    "verificationResultId": null,
+    "outcome": "NOT_EXECUTED",
+    "required": "Genuine DoneCheck verifyTask on exact approved task with authenticated independent, criterion-bound evidence"
+  },
+  "human_review": {
+    "reviewId": null,
+    "decision": "PENDING",
+    "attestation": "NOT_SIGNED",
+    "policy": "Requires same taskId and verificationResultId, enrolled reviewer authority, actual authorized Ed25519 signature"
+  },
+  "audit_ledger": {
+    "receipt": "NOT_CREATED",
+    "schema_expected": "donecheck.verified-finish/v1"
+  },
+  "official_finish": "HOLD",
+  "next_action": "REVERIFY_NEW_PR_HEAD_AND_IMPORT_AUTHENTICATED_EVIDENCE_IN_EXISTING_DONECHECK_THEN_OWNER_HUMAN_REVIEW",
+  "preserved_boundaries": {
+    "main_writes": 0,
+    "signing_operations": 0,
+    "new_reviewer_keys": 0,
+    "new_runtime_engines": 0
+  }
+}
