@@ -11,7 +11,8 @@ def evaluate(payload):
         score=sum(values.values())
         result[area]={"score":score,"state":"PASS_MODEL_ASSERTIONS" if score==100 else "HOLD_MISSING_ASSERTIONS"}
     result["triple_theoretical_candidate"]=all(result[k]["score"]==100 and result[k]["state"]=="PASS_MODEL_ASSERTIONS" for k in AREAS)
-    result["independent_real_evidence"]="HOLD","field_acceptance"]="HOLD"
+    result["independent_real_evidence"]="HOLD"
+    result["field_acceptance"]="HOLD"
     return result
 def simulate():
     good={a:{f"{a}_{n:03d}":True for n in range(1,101)} for a in AREAS}
