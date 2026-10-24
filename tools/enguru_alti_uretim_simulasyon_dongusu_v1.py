@@ -78,13 +78,26 @@ def simulate(spec, domain):
         raise ValueError("HOLD_INITIAL_FIXTURE")
     store = {c["id"]: synth_observation(c) for c in controls if c["id"] in initial}
     scores, log, meta = [], [], []
+    first_gap_ids = [x for x in ids if x not in initial]
+    taxonomy = {cid: CATEGORIES[i % len(CATEGORIES)]
+                for i, cid in enumerate(first_gap_ids)}
+    # Typed diagnostics are hypotheses about deliberately absent design evidence;
+    # no operational root cause is claimed from a synthetic fixture.
     for round_id in range(1, MAX_ROUNDS + 1):
         verdict = grade(controls, store)
         scores.append(verdict["score"])
+        diagnostic = [
+            {"id": cid, "classification": taxonomy[cid],
+             "observation": "SYNTHETIC_CONTROL_EVIDENCE_MISSING",
+             "root_cause_status": "SYNTHETIC_GAP_OBSERVED_NOT_FIELD_CAUSE",
+             "required_change": next(c["required"] for c in controls if c["id"] == cid)}
+            for cid in verdict["gaps"]
+        ]
         log.append({"round": round_id, "kind": (
             "USER_FIRST_DRAFT_SYNTHETIC" if round_id == 1
             else "AFTER_DIAGNOSIS_REPAIR_AND_RE_SIMULATION"),
-            "checked": len(controls), "raw": verdict["raw"],
+            "checked": len(controls), "diagnostic": diagnostic,
+            "raw": verdict["raw"],
             "score": verdict["score"], "gaps": verdict["gaps"],
             "verdict": verdict["verdict"],
             "root_cause": "missing synthetic contract evidence" if verdict["gaps"]
@@ -103,20 +116,35 @@ def simulate(spec, domain):
                 or len(verdict["gaps"]) - len(after["gaps"]) != len(to_repair)):
             raise ValueError("HOLD_NO_MEASURED_DESIGN_IMPROVEMENT")
         meta.append({"after_round": round_id, "gap_analysis": gaps,
-                     "repair_ids": to_repair, "before_score": verdict["score"],
+                     "repair_ids": to_repair,
+                     "repair_evidence": [
+                         {"control_id": cid, "classification": taxonomy[cid],
+                          "before": "EVIDENCE_MISSING",
+                          "after": "SYNTHETIC_CONTROL_SPECIFIED",
+                          "source": "FIXED_CONTROL_CONTRACT"}
+                         for cid in to_repair
+                     ],
+                     "before_score": verdict["score"],
                      "score_after_repair": after["score"],
                      "remaining": after["gaps"],
                      "proof": "SYNTHETIC_CONTRACT_FIXTURE_ONLY"})
     bad = adversarial(controls, store)
     final = grade(controls, store)
     all_repaired = {cid for step in meta for cid in step["repair_ids"]}
+    diagnosed_types = {x["classification"] for x in log[0]["diagnostic"]}
+    repair_evidence = [x for step in meta for x in step["repair_evidence"]]
     ok = (scores == [62.5, 87.5, 100.0] and bad["caught"] == 48
+          and diagnosed_types == set(CATEGORIES)
+          and len(repair_evidence) == 6
+          and all(x["before"] != x["after"] for x in repair_evidence)
           and len(all_repaired) == 6 and len(meta) == 2
           and final["verdict"] == "PASS_SYNTHETIC_DESIGN")
     return {"id": domain["id"], "area": domain["name"],
             "shared_controls": 12, "specific_controls": 4,
             "fixed_denominator": 16, "simulation_scores": scores,
-            "rounds": log, "repairs": meta, "adversarial": bad,
+            "rounds": log, "repairs": meta,
+            "diagnostic_classifications": sorted(diagnosed_types),
+            "adversarial": bad,
             "theoretical_adapter": "PASS_3_ROUND_REPAIR_DESIGN" if ok else "HOLD",
             "owner_real_co_design": "HOLD_PENDING_CASE_SPECIFIC_USER_DECISION",
             "actual_products_completed": 0}
