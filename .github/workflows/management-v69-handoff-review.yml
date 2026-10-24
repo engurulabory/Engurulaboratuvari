@@ -1,0 +1,83 @@
+name: Management V69 Handoff Review
+on:
+  pull_request:
+    paths:
+      - 'governance/management-v69/handoff/**'
+      - 'tools/management_v69_handoff_verify.py'
+      - 'tools/management_v69_osi_dry_run.py'
+      - 'tools/management_v69_atomic_install_sim.py'
+      - 'tools/management_v69_bundle.py'
+      - 'tests/test_management_v69_bundle.py'
+      - 'governance/management-v69/handoff/THEORETICAL_FINAL_V2.md'
+      - 'tools/management_v69_theoretical_v2_sim.py'
+      - 'tools/management_v69_formal70.py'
+      - 'tools/management_v69_state_machine.py'
+      - 'tools/management_v69_cross_repo_contract.py'
+      - 'tools/management_v69_architecture_acceptance.py'
+      - 'governance/management-v69/handoff/NINE_CAPABILITY_SEQUENCE_V3.md'
+      - 'governance/management-v69/handoff/ENGINEER_CONTRACT_EXCERPT_V1.txt'
+      - 'tools/management_v69_architecture_source_check.py'
+      - 'tools/management_v69_target02_execution.py'
+      - 'tools/management_v69_architecture_four_gates.py'
+      - 'governance/management-v69/handoff/ENGINEER_CONTRACT_PINNED_SOURCE_V1.md'
+      - 'tests/test_management_v69_handoff.py'
+      - 'tests/test_management_v69_single_owner.py'
+      - 'tests/test_management_v69_pilot_proof_gates.py'
+      - 'tools/management_v69_pilot_proof_gates.py'
+      - 'tools/management_v69_live_provenance_reconcile.py'
+      - 'tests/test_management_v69_live_provenance_reconcile.py'
+      - 'tests/test_management_v69_current_main_source_observe.py'
+      - 'tools/management_v69_current_main_source_observe.py'
+      - '.github/workflows/management-v69-handoff-review.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Python reviewer contract tests
+        run: python3 -m unittest discover -s tests -p 'test_management_v69_handoff.py' -v
+      - name: Deterministic bundle tests
+        run: python3 -m unittest discover -s tests -p 'test_management_v69_bundle.py' -v
+      - name: Synthetic OSi pipeline 3x dry-run
+        run: python3 tools/management_v69_osi_dry_run.py
+      - name: Isolated atomic install rollback three rounds
+        run: python3 tools/management_v69_atomic_install_sim.py
+      - name: Three-round theoretical adversarial simulation
+        run: python3 tools/management_v69_theoretical_v2_sim.py
+      - name: Seventy theoretical criteria 3x
+        run: python3 tools/management_v69_formal70.py
+      - name: State transitions 3x
+        run: python3 tools/management_v69_state_machine.py
+      - name: Cross-repository handoff 3x
+        run: python3 tools/management_v69_cross_repo_contract.py
+      - name: Architecture graph acceptance three rounds
+        run: python3 tools/management_v69_architecture_acceptance.py
+      - name: Source-bound architecture three rounds
+        run: python3 tools/management_v69_architecture_source_check.py
+      - name: Target 02 theoretical task execution model
+        run: python3 tools/management_v69_target02_execution.py
+      - name: Four architecture proof gates three rounds
+        run: python3 tools/management_v69_architecture_four_gates.py
+      - name: Single owner review-only policy tests
+        run: python3 -m unittest discover -s tests -p 'test_management_v69_single_owner.py' -v
+      - name: Pilot source SHA and owner authority adversarial tests
+        run: python3 -m unittest discover -s tests -p 'test_management_v69_pilot_proof_gates.py' -v
+      - name: Historical main source drift reconciliation
+        run: python3 -m unittest discover -s tests -p 'test_management_v69_live_provenance_reconcile.py' -v
+      - name: Current main canonical source observation regression
+        run: python3 -m unittest discover -s tests -p 'test_management_v69_current_main_source_observe.py' -v
+      - name: Current main authenticated source observation
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 tools/management_v69_current_main_source_observe.py --output "$RUNNER_TEMP/v69-current-main-source.json"
+      - name: Preserve current main source observation
+        uses: actions/upload-artifact@v4
+        with:
+          name: v69-current-main-source-observation
+          path: ${{ runner.temp }}/v69-current-main-source.json
+          if-no-files-found: error
+      - name: Source syntax
+        run: python3 -m py_compile tools/management_v69_handoff_verify.py
