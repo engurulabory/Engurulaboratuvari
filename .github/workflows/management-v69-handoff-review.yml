@@ -42,6 +42,7 @@ on:
       - 'tests/test_management_v69_concrete_pilot_controls.py'
       - 'tools/management_v69_triple100_distinctness_audit.py'
       - 'tests/test_management_v69_triple100_distinctness_audit.py'
+      - 'tests/test_management_v69_concrete_pilot_controls_expanded.py'
       - 'tests/test_management_v69_historical_ci_classify.py'
       - 'tools/management_v69_current_main_source_observe.py'
       - '.github/workflows/management-v69-handoff-review.yml'
@@ -125,5 +126,7 @@ jobs:
         run: python3 -m unittest discover -s tests -p 'test_management_v69_concrete_pilot_controls.py' -v
       - name: Triple 100 unique assertion audit regression
         run: python3 -m unittest discover -s tests -p 'test_management_v69_triple100_distinctness_audit.py' -v
+      - name: Expanded distinct Pilot behavior assertions
+        run: python3 -m unittest discover -s tests -p 'test_management_v69_concrete_pilot_controls_expanded.py' -v
       - name: Source syntax
         run: python3 -m py_compile tools/management_v69_handoff_verify.py
