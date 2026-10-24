@@ -36,6 +36,7 @@ def collect(repo, ref):
         result=provider.chat([{"role":"user","content":"Return precisely EMUS_G07_ROUTE_PASS"}])
         r["elapsed_s"]=round(time.monotonic()-started,3)
         r["chat_ok"]=result.get("ok") is True
+        r["provider_error"]=str(result.get("error", ""))[:160] if not r["chat_ok"] else None
         route=result.get("route_evidence",{})
         r["route"]={k:route.get(k) for k in ("provider","model","attempts","fallback_path","reason","estimated_cost")}
         r["response_match"]=result.get("text","").strip()=="EMUS_G07_ROUTE_PASS"
@@ -44,7 +45,7 @@ def collect(repo, ref):
         r["vm_after"]=vm.stdout[:4000]
         # A source-pinned call confirms the adapter contract; independent GUI/app
         # acceptance and actual network-billing records are separately gated.
-        r["state"]="FIELD_COLLECTED_ACCEPTANCE_PENDING"
+        r["state"]="FIELD_COLLECTED_ACCEPTANCE_PENDING" if r["chat_ok"] and r["route"].get("estimated_cost")==0 and r["route"].get("provider")=="local_runtime" else "HOLD_LIVE_ROUTE_UNVERIFIED"
     except Exception as ex:
         r["reason"]=type(ex).__name__
     return r
