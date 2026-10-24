@@ -4,7 +4,7 @@
   "baseline": "19 original GitHub tasks; four candidate checkpoints per task; engineering coverage only",
   "counting_rules": {
     "denominator": 76,
-    "ci_evidenced_count": 12,
+    "ci_evidenced_count": 13,
     "scope": "CI checkpoints only, not original task completion or authorized acceptance",
     "official_accepted_tasks": 0,
     "unsupported_criteria": "HOLD_UNVERIFIED",
@@ -234,8 +234,8 @@
         {
           "id": "GH-08-C2",
           "label": "least privilege tests",
-          "evidence_run": null,
-          "state": "HOLD_UNVERIFIED"
+          "evidence_run": "40069517460",
+          "state": "CI_EVIDENCED"
         },
         {
           "id": "GH-08-C3",
