@@ -39,6 +39,9 @@ jobs:
       - name: Shared AI behavior tests
         run: python -m unittest discover -s tests -p 'test_shared_ai_behavior.py' -v
 
+      - name: EMUS GH-04 dependency locks and final field separation
+        run: python -m unittest discover -s tests -p 'test_emus_dependency_lock.py' -v
+
       - name: EMUS GH-04 real 19-task evidence gap matrix and negative tests
         run: |
           python tools/emus_gap_matrix.py
