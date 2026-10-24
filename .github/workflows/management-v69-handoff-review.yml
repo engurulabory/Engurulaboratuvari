@@ -15,6 +15,8 @@ on:
       - 'tools/management_v69_cross_repo_contract.py'
       - 'tools/management_v69_architecture_acceptance.py'
       - 'governance/management-v69/handoff/NINE_CAPABILITY_SEQUENCE_V3.md'
+      - 'governance/management-v69/handoff/ENGINEER_CONTRACT_EXCERPT_V1.txt'
+      - 'tools/management_v69_architecture_source_check.py'
       - 'tests/test_management_v69_handoff.py'
       - '.github/workflows/management-v69-handoff-review.yml'
   workflow_dispatch:
@@ -43,5 +45,7 @@ jobs:
         run: python3 tools/management_v69_cross_repo_contract.py
       - name: Architecture graph acceptance three rounds
         run: python3 tools/management_v69_architecture_acceptance.py
+      - name: Source-bound architecture three rounds
+        run: python3 tools/management_v69_architecture_source_check.py
       - name: Source syntax
         run: python3 -m py_compile tools/management_v69_handoff_verify.py
