@@ -1,0 +1,228 @@
+{
+  "schema": "enguru.arge.b01-m01.management-decision-handoff/v1",
+  "title": "ENGÜRÜ B01-M01 — A03/A04 birleşik yönetim kararı ve güvenli devir",
+  "governance": {
+    "task_mode": "MANAGEMENT_EXECUTION_ONLY",
+    "application_executor": "SEPARATE_AUTHORIZED_EXECUTION",
+    "repository": "engurulabory/Engurulaboratuvari",
+    "pr": 207,
+    "branch": "review/arge-a03-trust-evidence-v419",
+    "parent_head": "df237ea6a0b33002a7f3c95987571e81817912af",
+    "issue": 205,
+    "fixed_goal": "6_BLOK→GITHUB_100/100→AUTHORIZED_OSI_TRANSFER→REAL_FIELD→40/40→FINAL_SIMULATION→VERIFIED_FINISH→BITTI_DUR",
+    "pins": {
+      "universal_v3_sha256": "11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc",
+      "V19_18x13_sha256": "3906f7bd6ae07d26547babc172d1337cfdfeff85244ece95efb76c3cb448df08",
+      "previous_gate_blob_sha1": "5b54efa2d3326eac2238ab45fb10dda7b30fa718",
+      "donecheck_reviewer_sha1": "07a498195598daf4b5e9d3b5f7328593b3f5d9f4",
+      "donecheck_review_schema_sha1": "24c30b4513e46fcbc7bd9e796f09bd74a36b1292",
+      "donecheck_finish_runtime_sha1": "4d43505a568caef023e7488d15c017355ce58f11",
+      "hybrid_template_sha1": "b4e1bc0fa1669e59211c6f2de4228f16e9e7b5fe",
+      "quality_review_contract_sha1": "88469153f8dfe854a0adf13feed217a960f4776c"
+    }
+  },
+  "preserved_scope": {
+    "active_package": "B01-M01",
+    "chosen": [
+      "A03",
+      "A04",
+      "A05",
+      "A06"
+    ],
+    "block01": [
+      "A01",
+      "A02",
+      "A03",
+      "A04",
+      "A05",
+      "A06",
+      "A07",
+      "A08",
+      "A09"
+    ],
+    "blocks": 6,
+    "original_tasks": 40,
+    "cases": 18,
+    "cells": 234,
+    "case_mapping_ref": "governance/enguru-suzgeci/reviews/ENGURU_ARGE_BLOCK01_18_CASE_RECONCILIATION_V428.json",
+    "case_source_ref": "governance/enguru-suzgeci/reviews/ENGURU_ARGE_BLOCK01_PUBLIC_SOURCES_V427.json"
+  },
+  "A03": {
+    "verification_implementation": "OBSERVED_IN_DONECHECK_SOURCE",
+    "observed_code": "ReviewerAuthority carries reviewerId,keyId,publicKeyPem,allowedDecisions?; verifyHumanReviewAttestation checks Ed25519, taskId is structural HumanReview datum",
+    "interpretation": "An Ed25519 signature check alone cannot demonstrate which canonical issuer authorized this A03 task and exact review scope.",
+    "required_task_ids": [
+      "A03",
+      "A04",
+      "A05",
+      "A06"
+    ],
+    "trusted_owner_id": null,
+    "issuer_id": null,
+    "real_owner_grant_ref": null,
+    "authentic_scope_grant_ref": null,
+    "trust_anchor_ref": null,
+    "public_signer_key_id": null,
+    "revocation_proof_ref": null,
+    "freshness_policy_ref": null,
+    "independent_reviewer_id": null,
+    "independent_review_url": null,
+    "requirements": [
+      "actual canonical owner with A03 authority",
+      "source-versioned task-scope grant, issuer signature and key trust origin",
+      "revocation/freshness validation",
+      "different producer and reviewer with authentic task rights",
+      "human threshold scope decision"
+    ],
+    "reviewer_separate_from_producer": true,
+    "owner_action": "Provide authoritative real source refs + scoped grant and independent reviewer identity; validated by separate authority verifier.",
+    "decision": "HOLD_REAL_A03_OWNER_ISSUER_REVIEWER_AUTHORITY"
+  },
+  "A04": {
+    "source": "https://github.com/engurulabory/enguru-website-factory/issues/251",
+    "current_real_state": "PRECONSTRUCTION_HOLD / RESEARCH_DESIGN_ACTIVE / OSi_PROTECTED",
+    "documented_GE_execution": "NOT_AUTHORIZED",
+    "canonical_runtime_source": null,
+    "owner_approved_implementation": null,
+    "authorized_resolution_paths": [
+      {
+        "id": "IMPLEMENTED_RUNTIME_PROOF",
+        "required": [
+          "owner-authorized canonical repository/ref/path/commit SHA",
+          "demonstrated actual source runtime and version",
+          "licensing/security scope",
+          "independent review and owner decision"
+        ],
+        "state": "HOLD"
+      },
+      {
+        "id": "RESEARCH_ONLY_SCOPE_DECISION",
+        "required": [
+          "owner-issued task-specific written A04 research-only decision",
+          "crosswalk to original A04 criteria",
+          "GE implementation HOLD preserved",
+          "independent acceptance as applicable"
+        ],
+        "state": "HOLD"
+      }
+    ],
+    "decision": "HOLD_OWNER_CANONICAL_SCOPE",
+    "caution": "Research existence is real; canonical implemented engine, customer deployments, E5 and A04 official PASS remain unverified."
+  },
+  "A05_A06": {
+    "customer_deployment": "0/18",
+    "independent_e5": "0/18",
+    "required_customer_evidence": "private customer-owner release/edition/source commit, deployed manifest SHA256, SPDX or CycloneDX SBOM, verified real signature and role",
+    "required_independent_e5": "independent third-party observed use report, dated signature, verified reviewer trust; binds SAME customer deployment manifest SHA256",
+    "private_location": "AUTHORIZED_PRIVATE_STORE",
+    "publication_boundary": "ONLY_REDACTED_STATUS_LINKS_ON_GITHUB",
+    "sha256_rule": "FILE_INTEGRITY_DOES_NOT_AUTHENTICATE_SIGNER"
+  },
+  "A07_A09_dependent": {
+    "A07": "G01 G02 G03 live adversarial field evidence HOLD",
+    "A08": "K12 18-case measured five-year TCO and ±20% sensitivity HOLD",
+    "A09": "A01-A09 full authority + verified AR→GE transfer HOLD"
+  },
+  "reuse_handoff": {
+    "source": "governance/mac-engineer/ENGURU_MAC_ENGINEER_HYBRID_HANDOFF_TEMPLATE_V1.json",
+    "kind": "REFERENCE_TEMPLATE_ONLY__NO_MAC_ENGINEER_AUTHORITY_INHERITED",
+    "fields": [
+      "projectId",
+      "executionMode",
+      "canonicalRepo",
+      "sourceRef",
+      "sourceCommit",
+      "artifactDigest",
+      "toolchain",
+      "testEvidence",
+      "negativeEvidence",
+      "licenseSecurity",
+      "osiInstallPlan",
+      "rollbackPlan",
+      "doneCheckRef",
+      "humanAuthorityScope",
+      "progressProjectBinding",
+      "finalizerRef",
+      "verifiedFinish"
+    ],
+    "exact_head_freeze": "at authorized handoff verify latest HEAD, artifact digest, task source and independent review; drift returns HOLD",
+    "idem": "Original task ID single count; same case+manifest SHA256 replay is idempotent",
+    "rollback": "Separate authorized application executor validates reversible steps, preserves OSi local changes and returns safe HOLD on drift",
+    "OSi_live_preflight": "ONLY_AFTER_GITHUB_PREPARATION_100_AND_AUTHORIZED_TRANSFER",
+    "transfer_state": "HOLD_EXTERNAL_AUTHORITY"
+  },
+  "donecheck_human": {
+    "requires_machine_pass": true,
+    "requires_human_accepted": true,
+    "requires_trusted_ed25519_review": true,
+    "requires_separate_task_scope_grant": true,
+    "requires_append_only_audit_ledger": true,
+    "donecheck_real_action": "NONE_IN_MANAGEMENT",
+    "real_final_state": "HOLD"
+  },
+  "management_simulation": {
+    "method": "select one combined package → simulate → score → repair missing+requirements+errors → rescore → resimulate → apply approved management documentation only",
+    "max_score": 100,
+    "criterion_count": 10,
+    "points_per_criterion": 10,
+    "round_history": [
+      {
+        "stage": 1,
+        "score": 70,
+        "failed": [
+          "A03",
+          "A04",
+          "E5_private"
+        ],
+        "fixes": [
+          "A03 grant/issuer/revocation matrix",
+          "A04 owner source versus research-only decision branches"
+        ]
+      },
+      {
+        "stage": 2,
+        "score": 90,
+        "failed": [
+          "E5_private"
+        ],
+        "fixes": [
+          "bind independent E5 to exact A05 manifest and private signer provenance"
+        ]
+      },
+      {
+        "stage": 3,
+        "score": 100,
+        "failed": [],
+        "fixes": [
+          "correct rubric: official Hybrid Handoff template has 17 (not 16) fields"
+        ]
+      }
+    ],
+    "adversarial": {
+      "total": 51,
+      "expected_HOLD": 51,
+      "missed": [],
+      "disposition": "MODEL_ONLY_NO_AUTHORITY"
+    },
+    "interpretation": "100 denotes management decision completeness (self-evaluated); cannot replace owner, reviewer, E5, customer, field or official acceptance."
+  },
+  "current_counters": {
+    "management_design": "SELF_EVALUATED_100/100",
+    "github_preparation": "50/100",
+    "osi_field": "0/100",
+    "block01_official": "0/9",
+    "overall_official": "0/40",
+    "pr_reviews": 0
+  },
+  "protected_operations": {
+    "main_writes": 0,
+    "production_code_writes": 0,
+    "osi_actions": 0,
+    "external_customer_evidence_reads": 0,
+    "actual_owner_grants_created": 0,
+    "actual_independent_reviews_created": 0,
+    "donecheck_ledger_writes": 0,
+    "official_finishes_created": 0
+  },
+  "state": "MANAGEMENT_DECISION_DESIGN_READY__REAL_AUTHORITY_HOLD__APPLICATION_EXECUTION_HOLD"
+}
