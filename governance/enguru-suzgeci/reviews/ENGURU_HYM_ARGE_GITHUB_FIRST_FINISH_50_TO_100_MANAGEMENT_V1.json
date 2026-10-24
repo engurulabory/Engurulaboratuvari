@@ -1,0 +1,595 @@
+{
+  "schema": "enguru.hym.arge.github-first-finish.management/v1",
+  "date": "2026-10-24",
+  "names": [
+    "ENGÜRÜ Hakikat ve Yetenek Mimarisi™",
+    "ENGÜRÜ Mimarlık ve Mühendislik Ar-Ge Finali™"
+  ],
+  "source": {
+    "repo": "engurulabory/Engurulaboratuvari",
+    "issue": 205,
+    "pr": 207,
+    "branch": "review/arge-a03-trust-evidence-v419",
+    "head_before_write": "7a8fd089f15c711639f1d76b6bb806e3fa4338b4",
+    "universal_v3_sha256": "11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc",
+    "v19_sha256": "3906f7bd6ae07d26547babc172d1337cfdfeff85244ece95efb76c3cb448df08",
+    "V428_blob_sha1": "34a1d4254e07c99b2c108156bff1095d9796da48",
+    "last_management_blob_sha1": "42c694116b74a1692469e64af2440c89d3a52307",
+    "hybrid_template_blob_sha1": "b4e1bc0fa1669e59211c6f2de4228f16e9e7b5fe"
+  },
+  "goal": "6 BLOK → GITHUB 100/100 → YETKİLİ OSi DEVİR → GERÇEK SAHA → 40/40 → BİRLEŞİK FİNAL → VERIFIED_FINISH → BITTI_DUR",
+  "roles": {
+    "current": "MANAGEMENT_EXECUTION_ONLY",
+    "product_application": "SEPARATE_AUTHORIZED_APPLICATION_EXECUTION",
+    "source_owner": "CANONICAL_HUMAN",
+    "independent_acceptance": "AUTHORIZED_DISTINCT_REVIEWER"
+  },
+  "active_package": {
+    "id": "B01-M01",
+    "tasks": [
+      "A03",
+      "A04",
+      "A05",
+      "A06"
+    ],
+    "preserved_A01_A09": [
+      "A01",
+      "A02",
+      "A03",
+      "A04",
+      "A05",
+      "A06",
+      "A07",
+      "A08",
+      "A09"
+    ]
+  },
+  "scope": {
+    "task_count": 40,
+    "blocks_count": 6,
+    "case_count": 18,
+    "cells": 234,
+    "blocks": [
+      {
+        "block": "01",
+        "ids": [
+          "A01",
+          "A02",
+          "A03",
+          "A04",
+          "A05",
+          "A06",
+          "A07",
+          "A08",
+          "A09"
+        ],
+        "scope": "Hakikat ve Yetenek Mimarisi"
+      },
+      {
+        "block": "02",
+        "ids": [
+          "B01",
+          "B02",
+          "B03",
+          "B04",
+          "B05",
+          "B06",
+          "B07",
+          "B08",
+          "B09"
+        ],
+        "scope": "Mühendislik araştırması ve muadil/benchmark"
+      },
+      {
+        "block": "03",
+        "ids": [
+          "C01",
+          "C02",
+          "C03",
+          "D01",
+          "D02",
+          "D03",
+          "D04"
+        ],
+        "scope": "Mühendislik mimarisi, çekirdek ve bağımlılıklar"
+      },
+      {
+        "block": "04",
+        "ids": [
+          "C04",
+          "C05",
+          "C06",
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ],
+        "scope": "Mühendislik sistemleri ve doğrulama"
+      },
+      {
+        "block": "05",
+        "ids": [
+          "F01",
+          "F02",
+          "F03",
+          "F04"
+        ],
+        "scope": "Karşıt test, kalite ve saha koşulları"
+      },
+      {
+        "block": "06",
+        "ids": [
+          "G01",
+          "G02",
+          "G03",
+          "G04"
+        ],
+        "scope": "Final bütünleşik kanıt ve kabul"
+      }
+    ],
+    "original_case_catalog": [
+      {
+        "case_id": "01",
+        "customer": "Bookshop.org",
+        "technology": "Meilisearch",
+        "installed": "HOLD_CUSTOMER_DEPLOYMENT",
+        "independent_e5": "HOLD_OBSERVER"
+      },
+      {
+        "case_id": "02",
+        "customer": "Matt Sleeps",
+        "technology": "Medusa",
+        "installed": "HOLD_CUSTOMER_DEPLOYMENT",
+        "independent_e5": "HOLD_OBSERVER"
+      },
+      {
+        "case_id": "03",
+        "customer": "Lush",
+        "technology": "Saleor",
+        "installed": "HOLD_CUSTOMER_DEPLOYMENT",
+        "independent_e5": "HOLD_OBSERVER"
+      },
+      {
+        "case_id": "04",
+        "customer": "Mobbin",
+        "technology": "Supabase",
+        "installed": "HOLD_CUSTOMER_DEPLOYMENT",
+        "independent_e5": "HOLD_OBSERVER"
+      },
+      {
+        "case_id": "05",
+        "customer": "Resend",
+        "technology": "Supabase",
+        "installed": "HOLD_CUSTOMER_DEPLOYMENT",
+        "independent_e5": "HOLD_OBSERVER"
+      },
+      {
+        "case_id": "06",
+        "customer": "Hugging Face Hub",
+        "technology": "Meilisearch",
+        "installed": "HOLD_CUSTOMER_DEPLOYMENT",
+        "independent_e5": "HOLD_OBSERVER"
+      },
+      {
+        "case_id": "07",
+        "customer": "Replit Agent",
+        "technology": "Temporal",
+        "installed": "HOLD_CUSTOMER_DEPLOYMENT",
+        "independent_e5": "HOLD_OBSERVER"
+      },
+      {
+        "case_id": "08",
+        "customer": "Auth0 FGA",
+        "technology": "OpenFGA",
+        "installed": "HOLD_CUSTOMER_DEPLOYMENT",
+        "independent_e5": "HOLD_OBSERVER"
+      },
+      {
+        "case_id": "09",
+        "customer": "Headspace",
+        "technology": "OpenFGA",
+        "installed": "HOLD_CUSTOMER_DEPLOYMENT",
+        "independent_e5": "HOLD_OBSERVER"
+      },
+      {
+        "case_id": "10",
+        "customer": "Xendit",
+        "technology": "Supabase",
+        "installed": "HOLD_CUSTOMER_DEPLOYMENT",
+        "independent_e5": "HOLD_OBSERVER"
+      },
+      {
+        "case_id": "11",
+        "customer": "Mapped",
+        "technology": "OpenFGA",
+        "installed": "HOLD_CUSTOMER_DEPLOYMENT",
+        "independent_e5": "HOLD_OBSERVER"
+      },
+      {
+        "case_id": "12",
+        "customer": "Temporal Cloud",
+        "technology": "Temporal",
+        "installed": "HOLD_CUSTOMER_DEPLOYMENT",
+        "independent_e5": "HOLD_OBSERVER"
+      },
+      {
+        "case_id": "13",
+        "customer": "Klarna",
+        "technology": "LangGraph",
+        "installed": "HOLD_CUSTOMER_DEPLOYMENT",
+        "independent_e5": "HOLD_OBSERVER"
+      },
+      {
+        "case_id": "14",
+        "customer": "LinkedIn",
+        "technology": "LangGraph",
+        "installed": "HOLD_CUSTOMER_DEPLOYMENT",
+        "independent_e5": "HOLD_OBSERVER"
+      },
+      {
+        "case_id": "15",
+        "customer": "Uber",
+        "technology": "LangGraph",
+        "installed": "HOLD_CUSTOMER_DEPLOYMENT",
+        "independent_e5": "HOLD_OBSERVER"
+      },
+      {
+        "case_id": "16",
+        "customer": "Tekla",
+        "technology": "Medusa",
+        "installed": "HOLD_CUSTOMER_DEPLOYMENT",
+        "independent_e5": "HOLD_OBSERVER"
+      },
+      {
+        "case_id": "17",
+        "customer": "Fastweb + Vodafone",
+        "technology": "LangGraph",
+        "installed": "HOLD_CUSTOMER_DEPLOYMENT",
+        "independent_e5": "HOLD_OBSERVER"
+      },
+      {
+        "case_id": "18",
+        "customer": "BFI Finance",
+        "technology": "Temporal",
+        "installed": "HOLD_CUSTOMER_DEPLOYMENT",
+        "independent_e5": "HOLD_OBSERVER"
+      }
+    ]
+  },
+  "github_first_finish": {
+    "meaning": "AUTHENTICATED_GITHUB_PREPARATION_100_100_WITH_REAL_INDEPENDENT_AND_OWNER_APPROVAL",
+    "excludes": "REAL_OSI_FIELD_OR_OFFICIAL_40_TASK_PASS",
+    "reference": "Issue #205 V4.7 V4.11 V4.12 canonical policy",
+    "original_5_of_10_score": "50/100 (last official evidence)",
+    "candidate_trace_gates": [
+      {
+        "id": "GH01",
+        "title": "Exact V3 authority and source HEAD",
+        "pass_condition": "Source-owner pin of main V3 SHA256, reviewed PR commit and dependency digests",
+        "verifier": "Repository owner / independent reviewer",
+        "required_evidence": "Main AGENTS.md; V3 lock; PR207",
+        "source_state": "GITHUB_SOURCE_OBSERVED",
+        "officially_accepted": false
+      },
+      {
+        "id": "GH02",
+        "title": "Six-block original list",
+        "pass_condition": "All original 40 distinct IDs, stable six block groups",
+        "verifier": "Canonical issue owner",
+        "required_evidence": "#205 V4.6/11",
+        "source_state": "GITHUB_SOURCE_OBSERVED",
+        "officially_accepted": false
+      },
+      {
+        "id": "GH03",
+        "title": "Research evidence identities",
+        "pass_condition": "All 18 distinct customer-tech cases and 234 K01-K13 cells linked to V19 pinned baseline",
+        "verifier": "Independent AR reviewer",
+        "required_evidence": "V428, V19 SHA",
+        "source_state": "GITHUB_SOURCE_OBSERVED",
+        "officially_accepted": false
+      },
+      {
+        "id": "GH04",
+        "title": "Exact head CI",
+        "pass_condition": "Four actual successful matched-head GitHub Actions runs; no implication of A03 authority",
+        "verifier": "GitHub Actions and reviewer",
+        "required_evidence": "PR207 exact workflows",
+        "source_state": "GITHUB_SOURCE_OBSERVED",
+        "officially_accepted": false
+      },
+      {
+        "id": "GH05",
+        "title": "Private customer evidence plan",
+        "pass_condition": "A05/A06 input schema, private custody, hash consistency and adversarial gates",
+        "verifier": "Customer source-owner + verifier",
+        "required_evidence": "Existing private intake contract",
+        "source_state": "GITHUB_SOURCE_OBSERVED",
+        "officially_accepted": false
+      },
+      {
+        "id": "GH06",
+        "title": "A03 signed grant",
+        "pass_condition": "Real scope-bound owner/issuer signed A03 grant, trusted key, expiry/revocation, different authorized reviewer",
+        "verifier": "Canonical owner, issuer, independent verifier",
+        "required_evidence": "REAL_GRANT_REF_REQUIRED",
+        "source_state": "HOLD_EXTERNAL_AUTHORITY",
+        "officially_accepted": false
+      },
+      {
+        "id": "GH07",
+        "title": "A04 canonical Kâşifi scope",
+        "pass_condition": "Owner-approved actual canonical runtime pin OR authorized A04 research-only acceptance interpretation",
+        "verifier": "Kâşifi owner + reviewer",
+        "required_evidence": "Factory #251 PRECONSTRUCTION_HOLD",
+        "source_state": "HOLD_OWNER_SCOPE",
+        "officially_accepted": false
+      },
+      {
+        "id": "GH08",
+        "title": "Independent actual review",
+        "pass_condition": "Submitted independent GitHub review of exact current HEAD, reviewer authorization and separate producer",
+        "verifier": "Independent reviewer",
+        "required_evidence": "PR207 reviews = 0",
+        "source_state": "HOLD_INDEPENDENT_REVIEW",
+        "officially_accepted": false
+      },
+      {
+        "id": "GH09",
+        "title": "Authenticated OSi handoff",
+        "pass_condition": "Real artifact bytes SHA256 + canonical source provenance, idempotency, rollback, private transfer, accepted source-pinned scope",
+        "verifier": "Canonical GitHub transfer owner",
+        "required_evidence": "Hybrid Handoff V1 17-field reference only",
+        "source_state": "HOLD_TRANSFER_AUTHORITY",
+        "officially_accepted": false
+      },
+      {
+        "id": "GH10",
+        "title": "DoneCheck/Human Threshold path",
+        "pass_condition": "Valid A03 task grant, real authorized reviewer, machine verification route, scoped owner Human Threshold, OSi field deferred",
+        "verifier": "DoneCheck authority and human owner",
+        "required_evidence": "DoneCheck reviewer + verified-finish APIs",
+        "source_state": "HOLD_HUMAN_SCOPE",
+        "officially_accepted": false
+      }
+    ],
+    "note": "GH01–GH10 is a proposed traceability register, NOT the original authoritative 10 item scorecard. Only owner can map and rescore existing V4.7 gates."
+  },
+  "integrated_finish_work": [
+    {
+      "id": "P1",
+      "scope": [
+        "A03",
+        "A04",
+        "A05",
+        "A06"
+      ],
+      "actor": "MANAGEMENT",
+      "action": "Source pin V3/V19/current HEAD, 40 identities, 18 cases, counterevidence and actual CI readback",
+      "real_state": "SOURCE_RECONCILIATION_COMPLETE"
+    },
+    {
+      "id": "P2",
+      "scope": [
+        "A03"
+      ],
+      "actor": "CANONICAL_OWNER_ISSUER",
+      "action": "Authenticated task scope, owner/issuer grant and trust root, expiry, revocation and independent reviewer permission",
+      "real_state": "HOLD_REAL_AUTHORITY"
+    },
+    {
+      "id": "P3",
+      "scope": [
+        "A04"
+      ],
+      "actor": "KASIFI_SOURCE_OWNER",
+      "action": "Signed implementation source/pin or real authorized research-only scope interpretation with independent reviewer",
+      "real_state": "HOLD_OWNER_SCOPE"
+    },
+    {
+      "id": "P4",
+      "scope": [
+        "A03",
+        "A04",
+        "A05",
+        "A06"
+      ],
+      "actor": "MANAGEMENT_HANDOFF_PLANNING",
+      "action": "Adapt existing Hybrid Handoff 17-field schema, real bytes/pin, private evidence intake, idempotency, recovery/rollback, OSi protocol and Human Threshold; all false success fields remain HOLD",
+      "real_state": "PLAN_READY_REAL_PIN_PENDING"
+    },
+    {
+      "id": "P5",
+      "scope": [
+        "A03",
+        "A04",
+        "A05",
+        "A06"
+      ],
+      "actor": "SEPARATE_GITHUB_REVIEWER",
+      "action": "Review exact frozen source diff and authority scope; reread current HEAD and matched 4/4 CI; sign accepted decision",
+      "real_state": "HOLD_ZERO_REVIEWS"
+    },
+    {
+      "id": "P6",
+      "scope": [
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09"
+      ],
+      "actor": "CANONICAL_GITHUB_ACCEPTANCE_OWNER",
+      "action": "Apply original V4.7/V4.11 canonical rubric; verify each source/authority gate, approve GitHub readiness 100 then release OSi_TRANSFER_PACKET to separate executor",
+      "real_state": "HOLD_FIRST_FINISH"
+    }
+  ],
+  "dependency_requests": [
+    {
+      "gate": "GH06",
+      "task": "A03",
+      "realOwner": "CANONICAL_OWNER_AND_ISSUER",
+      "required": "Valid authentic scope-bound signed grant; trusted trust root, expiry/revocation and independent reviewer",
+      "state": "HOLD"
+    },
+    {
+      "gate": "GH07",
+      "task": "A04",
+      "realOwner": "KASIFI_SOURCE_OWNER",
+      "required": "Owner-signed real implementation source or owner-approved research-only scoped acceptance within canonical A04",
+      "state": "HOLD"
+    },
+    {
+      "gate": "GH08",
+      "task": "A03/A09",
+      "realOwner": "AUTHORIZED_INDEPENDENT_REVIEWER",
+      "required": "Actual submitted review on frozen PR207 HEAD, independent actor and proper scope",
+      "state": "HOLD"
+    },
+    {
+      "gate": "GH09",
+      "task": "A03–A09",
+      "realOwner": "CANONICAL_GITHUB_HANDOFF_OWNER",
+      "required": "Real SHA256 of package bytes, exact trusted source pin, idempotency/recovery/rollback, private intake and OSi admission contract",
+      "state": "HOLD"
+    },
+    {
+      "gate": "GH10",
+      "task": "A03/A09",
+      "realOwner": "DONECHECK_HUMAN_OWNER",
+      "required": "Real role/scope/issuer and Human Threshold acceptance to use existing verified-finish interface; true field only after authorized transfer",
+      "state": "HOLD"
+    }
+  ],
+  "handoff": {
+    "template": "governance/mac-engineer/ENGURU_MAC_ENGINEER_HYBRID_HANDOFF_TEMPLATE_V1.json",
+    "template_required_17": [
+      "projectId",
+      "executionMode",
+      "canonicalRepo",
+      "sourceRef",
+      "sourceCommit",
+      "artifactDigest",
+      "toolchain",
+      "testEvidence",
+      "negativeEvidence",
+      "licenseSecurity",
+      "osiInstallPlan",
+      "rollbackPlan",
+      "doneCheckRef",
+      "humanAuthorityScope",
+      "progressProjectBinding",
+      "finalizerRef",
+      "verifiedFinish"
+    ],
+    "status": "NOT_AUTHORIZED_TO_TRANSFER",
+    "artifact_digest": "HOLD_REAL_AUTHENTICATED_BYTES",
+    "task_identity": "ENGURU-HYM-AR-GE-BLOCK01-B01-M01",
+    "freeze_rule": "AFTER_LAST_WRITE_REVIEW_EXACT_HEAD_CI_AND_AUTHORITY",
+    "idempotency": "TASK_ID_CASE_ID_MANIFEST_SHA_CONSISTENT_REPLAY",
+    "rollback": "PRESERVE_EXISTING_OSI_AND_NATIVE_STATE",
+    "field_state": "UNVERIFIED",
+    "donecheck": "HOLD",
+    "human": "HOLD"
+  },
+  "genuine_evidence_boundary": {
+    "A05_customer_deployments": "0/18",
+    "A06_independent_E5": "0/18",
+    "customer_data_location": "AUTHORIZED_PRIVATE_LOCAL_ONLY",
+    "github_data": "PUBLIC_REDACTED_REFERENCES_ONLY",
+    "sha256_meaning": "BYTE_INTEGRITY_NOT_EXTERNAL_SIGNATURE_AUTHENTICATION",
+    "stage": "ACTUAL_CUSTOMER_E5_FIELD_AND_OFFICIAL_GATES_LATER; GITHUB_STILL_REQUIRES_AUTHORIZED_PLAN"
+  },
+  "known_critical_contradictions": [
+    "V4.14 validator accepts format-correct all-zero source/digest fixture: source authenticity must be independent.",
+    "DoneCheck reviewer Ed25519 checks given reviewer key; does not itself prove issuer authorization of A03 scope.",
+    "Factory #251 Kâşifi is PRECONSTRUCTION_HOLD/RESEARCH_DESIGN_ACTIVE; design is not deployed canonical runtime.",
+    "Vendor cases (07 Replit,08 Auth0 FGA,12 Temporal Cloud,15 Uber) cannot automatically satisfy current independent E5.",
+    "Simulated 100/100 managerial plan is distinct from actual first GitHub preparation finish; exact live CI and independent review required."
+  ],
+  "critical_rules": [
+    "V4.7/V4.11 canonical rubric remains authoritative; auxiliary trace GH01–GH10 cannot silently change score.",
+    "Prove source byte authenticity; a regex matching 40/64 hex cannot prove a real digest.",
+    "Owner/issuer scope-bound grant + trust root, revocation/freshness and independent reviewer required.",
+    "40 immutable original tasks across 6 blocks, 18 cases, 234 cells; 8-of-40 missing task risk test => HOLD.",
+    "Kâşifi source acceptance: real canonical runtime OR actual owner authorization for research-only A04 scope.",
+    "Reviewer identity different from producer, true PR review on exact final HEAD.",
+    "17-field Hybrid Handoff is a REUSE reference; current Mac Engineer grants cannot transfer into this project.",
+    "Transfer packet must use authentic artifact bytes SHA-256, rerunnable rollback/idempotency, source/head freeze and approved admission.",
+    "GH readiness first finish PRECEDES actual Mac OSi preflight; human/DoneCheck official only after field evidence.",
+    "Management writes allowed only in review branch and canonical issue; official 40/40, grant/reviewer/private files preserved."
+  ],
+  "accounting": {
+    "management_theoretical_last": "100/100_SELF_EVALUATED",
+    "github_first_finish_actual": "50/100_HOLD",
+    "gitHub_review_count": 0,
+    "mac_osi_field": "0/100",
+    "block01_official": "0/9",
+    "total_official": "0/40",
+    "real_A03_grant": false,
+    "real_A04_owner_scope": false,
+    "real_transfer": false
+  },
+  "simulations": {
+    "method": "3 design rounds; conditional state machine; signed external approvals are hypothetical positive fixture only, NEVER real evidence",
+    "rubric": "10 fixed managerial quality guards ×10; real readiness remains separately measured",
+    "rounds": [
+      {
+        "round": 1,
+        "score": 60,
+        "failed": [
+          "K5",
+          "K6",
+          "K7",
+          "K9"
+        ],
+        "corrective_action": "Reconcile signed A03 grant, owner A04 scope, distinct reviewer, all 6 dependent phases"
+      },
+      {
+        "round": 2,
+        "score": 80,
+        "failed": [
+          "K7",
+          "K9"
+        ],
+        "corrective_action": "Complete authentic bytes/digest HOLD + anti-spoof + 20% loss + canonical-rubric protection"
+      },
+      {
+        "round": 3,
+        "score": 100,
+        "failed": [],
+        "corrective_action": "All 10 managerial design requirements met"
+      }
+    ],
+    "adversarial": {
+      "passed": 76,
+      "of": 76,
+      "failures": [],
+      "real_observed_state": "HOLD_GUVENLI_DUR",
+      "missing_actual_evidence_classes": [
+        "issuer",
+        "kasifi",
+        "review",
+        "handoff",
+        "donecheck",
+        "final"
+      ],
+      "interpretation": "Only synthetic all-authenticated fixture would pass. No real issuer signatures, independent reviews or OSi field approvals fabricated."
+    }
+  },
+  "invariants": {
+    "main_writes": 0,
+    "production_writes": 0,
+    "osi_writes": 0,
+    "real_grants_created": 0,
+    "real_reviews_created": 0,
+    "customer_secrets_published": 0,
+    "ledger_written": 0,
+    "official_counter_increments": 0
+  },
+  "final_decision": "MANAGEMENT_DESIGN_SELF_EVALUATED_100_100__REAL_GITHUB_PREPARATION_50_100_HOLD__FIRST_FINISH_NOT_EARNED"
+}
