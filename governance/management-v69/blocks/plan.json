@@ -502,7 +502,7 @@
       "realMacUpdatedDrawer": "PASS_MAC_SOURCE_INSTALLED_HOLD_VISUAL_G2_ROW_ABSENT",
       "G3_G6_OFFICIAL": "HOLD",
       "evidenceUrl": "https://github.com/engurulabory/enguru-mac-engineer/pull/16#issuecomment-6381304461",
-      "next": "READ_ONLY_MAP_VISIBLE_DURUM_COMPONENT_AND_G2_DRAWER_DOM_ROUTE_BEFORE_FURTHER_PATCH",
+      "next": "MAC_SHA_PINNED_V3_REAL_PO_DRAWER_INSTALL_THEN_APP_REOPEN_AND_SCREENSHOT_G2_RESULT",
       "fieldV1Outcome": {
         "result": "HOLD_SAFE_NO_UNVERIFIED_ACCEPTANCE",
         "reason": "HOLD_GITHUB_REVIEW_EXACT_BLOB_IDENTITY",
@@ -566,6 +566,39 @@
           "evidenceUrl": "https://github.com/engurulabory/enguru-mac-engineer/pull/16#issuecomment-6381810286",
           "next": "MAP_REAL_VISIBLE_STATUS_DRAWER_TRIGGER_AND_TECHNICAL_DETAILS_DOM_SOURCE_READ_ONLY"
         }
+      },
+      "productOperatorVisibleDrawer": {
+        "canonicalTaskId": "ENGURU_MANAGEMENT_V69_PR_203",
+        "state": "PASS_ROOT_CAUSE_ISOLATED_AND_V3_FIELD_READY_MAC_VISUAL_PENDING",
+        "rootCause": "V2_ADDED_G2_TO_LEGACY_DRAWER_WHILE_VISIBLE_STATUS_WAS_SEPARATE_PRODUCT_OPERATOR_PO_DRAWER",
+        "source": "REAL_OWNER_MAC_READ_ONLY_SOURCE_CONTEXT_LINES_1456_2379_8519",
+        "productDrawerMarkers": [
+          "poDrawerHealth",
+          "poTechnicalDetails",
+          "poStatusBlock",
+          "poTechnicalBody"
+        ],
+        "existingLegacyDrawerMarkers": [
+          "drawer",
+          "dV69",
+          "toggleDrawer(on)"
+        ],
+        "lastVerifiedSourceSha256": "be8de9a630ec83996aae170e5714b6c78eba34181b14d0786ad3864331606db1",
+        "lastVerifiedSourceGitBlob": "1912ccb102962c029a1f8ae91efe5b790d663da7",
+        "localNativeApi": "PASS_INDEPENDENTLY_VERIFIED_MAC_OSI",
+        "v3FieldArtifact": "ENGURU_V69_PRODUCT_OPERATOR_STATUS_V3_20261024.zip",
+        "v3FieldArtifactSha256": "d303be43aaeef0bc87959374bf997782dceae3bda0b12d7c899d0cbcdd240604",
+        "v3InstallerScriptSha256": "afa7b5659eaba8c673895f227de63130ff630485d959e6efe7ba64c4d425bfe3",
+        "isolatedTests": "24_OF_24_PASS",
+        "nodeSyntax": "PASS",
+        "jsFunctional": "3_OF_3_PASS",
+        "dryRunOnSyntheticMac": "PASS_PUBLISH_BACKUP_RECEIPT_ROLLBACK",
+        "macActualFieldInstall": "HOLD_NOT_YET_EXECUTED",
+        "visualG2Row": "HOLD_NOT_YET_OBSERVED_IN_REAL_PRODUCT_OPERATOR_DRAWER",
+        "scope": "ONLY_EXISTING_PREMIUM_RUNTIME_STATIC_INDEX_HTML",
+        "officialG3G6": "HOLD",
+        "reviewedEngineeringDoc": "https://github.com/engurulabory/enguru-mac-engineer/blob/review/v69-g2-authorized-scoped-grant-20261023/docs/ENGURU_V69_REAL_PO_DRAWER_G2_BRIDGE_V3.md",
+        "evidenceComment": "https://github.com/engurulabory/enguru-mac-engineer/pull/16#issuecomment-6382711652"
       }
     }
   }
