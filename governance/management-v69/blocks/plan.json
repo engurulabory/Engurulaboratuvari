@@ -404,7 +404,7 @@
   },
   "native_runtime_binding": {
     "id": "B01_LOCAL_NATIVE_RUNTIME_READONLY_STATUS",
-    "state": "PASS_REAL_MAC_SOURCE_INSTALLED_APP_REOPEN_PENDING",
+    "state": "PASS_REAL_MAC_APP_UI_OBSERVED_G2_LIVE_VERIFIER_PENDING",
     "scope": "REAL_PYTHON_HTTP_NATIVE_SHELL_PLUS_CONTEXTUAL_DONECHECK_STATUS",
     "repository": "engurulabory/enguru-mac-engineer",
     "pr": 16,
@@ -430,7 +430,7 @@
     "automatedMerge": false,
     "separateMacOwnerInstallVerification": "PASS_REAL_MAC_FILE_INSTALL_AND_RECEIPT_SHA256_MATCH",
     "G3_G6_OFFICIAL": "HOLD_UNCHANGED",
-    "next": "OWNER_REOPEN_EXISTING_MAC_APP_AND_VERIFY_LIVE_G2_IN_EXISTING_DONECHECK_MODAL",
+    "next": "RUN_READ_ONLY_LOCAL_HTTP_STATUS_AND_G2_VERIFIER_ROUTE_RECONCILIATION;VERIFY_LOADED_RUNTIME_MATCHES_INSTALLED_SHA",
     "installedRuntimeEvidence": {
       "scope": "MAC_OSI_NATIVE_EXISTING_RUNTIME_USER_TERMINAL_AND_NONSECRET_RECEIPT",
       "status": "PASS_NATIVE_SOURCE_INSTALLED_FIELD_APP_REOPEN_REQUIRED",
@@ -448,9 +448,17 @@
       "macOwnerTrustWrites": 0,
       "canonicalLedgerWrites": 0,
       "githubMerges": 0,
-      "realNativeAppReopen": "HOLD_NOT_YET_OBSERVED",
-      "liveDonecheckModal": "HOLD_NOT_YET_OBSERVED",
-      "evidenceComment": "https://github.com/engurulabory/enguru-mac-engineer/pull/16#issuecomment-6380913232"
+      "realNativeAppReopen": "PASS_APP_COCKPIT_AND_STATUS_SCREENSHOTS_OBSERVED",
+      "liveDonecheckModal": "HOLD_EXACT_V69_G2_STATE_ABSENT_IN_SCREENSHOTS",
+      "evidenceComment": "https://github.com/engurulabory/enguru-mac-engineer/pull/16#issuecomment-6380913232",
+      "observedScreens": {
+        "source": "USER_UPLOADED_MAC_OSI_SCREENSHOTS_2026-10-24_0939_0940",
+        "applicationDisplay": "ENGURU_MAC_ENGINEER_COCKPIT_VISIBLE",
+        "applicationStatusText": "MAC_ENGINEER_CALISIYOR",
+        "separateDisplayedWork": "T100_THEORETICAL_100_16_OF_16_VERIFIED",
+        "v69G2Line": "NOT_VISIBLE",
+        "evidenceRule": "DISPLAYED_VERIFIED_T100_IS_NOT_V69_G2_OR_OFFICIAL_G3_G6_VERIFIED_FINISH"
+      }
     }
   }
 }
