@@ -475,3 +475,17 @@ NEXT_ACTION=...
 **Korunan sınırlar:** `PR208=MERGED`; `PR203=OPEN`; özel kaynaklar için owner onaylı gizlisiz relay; `G2_CANONICAL_OWNER_ADMISSION=HOLD_INDEPENDENT_ACCEPTANCE`; `G3–G6=HOLD`; `VERIFIED_FINISH=HOLD`. Bu kayıt yalnız GitHub schedule gözlemini kabul eder; owner imzası, DoneCheck makbuzu, ürün merge veya Mac OSi saha kabulü hükmü üretmez.
 
 **Kayıt kararı:** `PASS_FOUR_REAL_SCHEDULE_OBSERVATIONS` · `PASS_THREE_MEASURED_INTERVALS` · `HOLD_FIVE_MINUTE_CADENCE_RELIABILITY` · `REVIEW_ONLY_LEARNING`. **Sıradaki gerçek ihtiyaç:** schedule gecikmesinin bağımsız kanıtlı analizi; yeni owner kanıtı varsa ayrı kapsam/yetki kabulü.
+
+### 24. V3.2.5 — Beşinci gerçek GitHub schedule; yeni en uzun gözlenen aralık (24.10.2026)
+
+**Olay kimliği:** `MK-GITHUB-SCHEDULE-FIFTH-40067582819`. **Bağımsız GitHub kanıtı:** [beşinci koşu #40067582819](https://github.com/engurulabory/Engurulaboratuvari/actions/runs/40067582819) ve [dördüncü koşu #40048308698](https://github.com/engurulabory/Engurulaboratuvari/actions/runs/40048308698).
+
+**Kaynak kimliği:** Aynı `ENGURU OSi Muhendislik Kasi - reviewed evidence intake` workflow; `event=schedule`, `head_branch=main`, `head_sha=113d8ffd18a6f36c840770f30f38da6d5900aa43` = sorgu anındaki exact current-main. Yeni koşu `2026-10-24T05:46:42Z` (Türkiye `2026-10-24 08:46:42`), `run_attempt=1`, `completed/success`. Bağımsız jobs API: `five-minute-github-observer=completed/success`; `unit-regression=skipped`, `owner-comment-intake=skipped` (event koşullarına uygun).
+
+**Gerçek süreklilik ölçümü:** Gözlenen aynı-workflow exact-main başarılı `schedule` koşuları toplam **5/5**; en güncel dört ardışık koşu **4/4 PASS**, bunlar arasındaki üç gerçek aralık **3/3 ölçüldü**. Önceki dördüncü koşu `2026-10-24T01:07:06Z` ile beşinci `2026-10-24T05:46:42Z` arasındaki yeni aralık **4 saat 39 dakika 36 saniye (16.776 saniye)**. Bu, önceki en uzun gözlenen 3 saat 52 dakika 26 saniyeyi aştı. Beş koşuluk tam dizinin dört ölçülmüş aralığı sırasıyla **13.946, 10.278, 8.792, 16.776 saniye**. `FIVE_MINUTE_CADENCE_RELIABILITY=HOLD_LONG_INTERVALS`; `cron=*/5` zaman garantisi değildir. Gecikmenin kesin kök nedeni `UNKNOWN`; varsayım, bağımsız neden kanıtı yerine geçmez.
+
+**Gerçek işçi logu:** `ROUND_1=104/104_PASS`, `ROUND_2=104/104_PASS`; `PASS_OBSERVATION_ONLY`, `eventsReviewed=0`, `candidateAdded=0`, `macLocalFilesAccessed=0`, `officialAcceptance=UNCHANGED_HOLD`, `STATE=PASS_NO_NEW_EVIDENCE`. `MK_WATCH_CHECKPOINT.json` mevcut blob `64d4c2b2726405ce25dd06c0f22a5181dbaa11e0` olarak korundu. PR #203 / #206 yorumlarının son gözlenen kimlikleri checkpoint ile uyumlu; yeni owner `TASK_ID+BLOCK_ID` çifti gözlenmedi. Özel kaynak içeriği açık kayda aktarılmadı.
+
+**Kabul sınırları:** `PR208=MERGED`, `PR203=OPEN`, özel `PR14=OPEN`; `G2_CANONICAL_OWNER_ADMISSION=HOLD_INDEPENDENT_ACCEPTANCE`, `G3–G6=HOLD`, `VERIFIED_FINISH=HOLD`. Gerçek schedule ve regresyon başarıları resmî Mac OSi owner yetkisi, HumanReview imzası, DoneCheck ledger veya yetkili merge hükmü oluşturmaz.
+
+**Kayıt kararı:** `PASS_FIFTH_REAL_SCHEDULE` · `PASS_FOUR_LATEST_SUCCESS_AND_THREE_INTERVALS` · `HOLD_FIVE_MINUTE_CADENCE_RELIABILITY` · `REVIEW_ONLY_LEARNING`. **Sonraki kanıt:** yeni koşuların gerçek süre aralıkları ve varsa gecikmenin bağımsız kaynaklı nedeni; G2–G6 ayrı canonical kabul zincirinde kalır.
