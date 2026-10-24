@@ -131,3 +131,8 @@ Bu sözleşme ADAY'dır. GH-01 tam kaynak eşleştirmesi, gerçek owner ve bağ�
 - İlerleme güncelleme ilkesi: Her yeni gerçek CI/test kanıtı ilgili özgün iş ID'sinin ALT_KANIT alanına yazılır; PARTIAL korunabilir. ACCEPTED ancak o ID'nin bütün zorunlu kabul kontrolleri ve gereken yetki PASS olduğunda tek defa artar.
 - **Kanıt sayacı** alt kazanımlar için 6 doğrulanmış CI dönüm noktası gösterir; bunlar birbirinden bütünüyle bağımsız alt işler ve % tamamlanma olarak yorumlanmaz. Kayıt sırasındaki toplam yürütülen test vakası toplamı ayrı ölçülmedi.
 - **Korunan hüküm:** EVIDENCE_MILESTONES=6; WORK_TOUCHED=13/19; OFFICIAL_ACCEPTED=0/19; GITHUB_VERIFIED_FINISH=HOLD.
+
+## G07 runtime benchmark — CI nihai sonucu (2026-10-24)
+- Mac Engineer PR #17 commit `e95d9801fbafc7cffec87b3a958107b6380582b8` Product CI run `40013986474` completed/success; Runtime tests success.
+- Üç sabit runtime senaryosu: checkpoint/restart; yetki kapısında Git işlemi HOLD; yerel router erişimi yokken güvenli sonuç. Kapsam: CI runtime davranışı. Gerçek model inference/RAM/disk/maliyet saha benchmark'ı ayrıca HOLD.
+- G05/G06 güvenlik testi oluşturma girişimi araç güvenlik kontrolünde engellendi; yeni kod/CI kanıtı yazılmış sayılmaz. Mevcut auth_broker.py, mac_mobility.py ve provider.py kaynakları okundu; canlı yetki, köken ve gerçek saha kabulü HOLD.
