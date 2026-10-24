@@ -7,7 +7,13 @@
   {
     "id": "02",
     "path": "enguru_target02/target02_v3.py",
-    "source_sha256": "d4548a3fc39928bbe3d9b07edd83b20c3a8019353e197a31a908c2d38efd3c58"
+    "source_sha256": "d4548a3fc39928bbe3d9b07edd83b20c3a8019353e197a31a908c2d38efd3c58",
+    "dependencies": [
+      {
+        "path": "enguru_target02/target02_v2.py",
+        "source_sha256": "aa2f2927c411d7847bd7097cbe9a0d5bebd5c20adefdc6e85c3aa25b928bf1f7"
+      }
+    ]
   },
   {
     "id": "03",
@@ -22,7 +28,13 @@
   {
     "id": "05",
     "path": "enguru_target05/flow_v2.py",
-    "source_sha256": "ed3695064da126d65752deac9ed039ca8447d4b5f336d8293d1907bc472c3821"
+    "source_sha256": "ed3695064da126d65752deac9ed039ca8447d4b5f336d8293d1907bc472c3821",
+    "dependencies": [
+      {
+        "path": "enguru_target05/flow.py",
+        "source_sha256": "e50ddffd150593d4e9b9fedfcca56655515e7fe7b390308232b427114becd327"
+      }
+    ]
   },
   {
     "id": "06",
