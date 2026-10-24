@@ -38,6 +38,22 @@ class Pilot:
    self.event(task,'TEST_FINISH',{'proof_sha256':expected_hash,'source_sha256':row[1],'scope':'THEORETICAL_ONLY'})
    self.db.execute('COMMIT');return 'PASS_TEST_ONLY'
   except BaseException:self.db.execute('ROLLBACK');raise
+ def finish_signed(self,task,goal,source,artifact,generation,receipt,signature,public_key_bytes):
+  """Atomic test-only verified finish; fail-closed and isolated from owner approval."""
+  from signed_verifier import verify
+  self.db.execute('BEGIN IMMEDIATE')
+  try:
+   row=self.db.execute('SELECT goal,source,state FROM task WHERE id=?',(task,)).fetchone()
+   if row!=(goal,source,'ACTIVE'):
+    self.db.execute('ROLLBACK');return 'HOLD_TASK'
+   verdict=verify(public_key_bytes,task,goal,source,artifact,generation,receipt,signature)
+   if verdict!='PASS_TEST_VERIFIER':
+    self.db.execute('ROLLBACK');return verdict
+   evidence=digest(artifact)
+   self.db.execute("UPDATE task SET state='TEST_FINISHED',proof=? WHERE id=?",(evidence,task))
+   self.event(task,'SIGNED_TEST_FINISH',{'source_sha256':source,'artifact_sha256':evidence,'generation':generation,'receipt_sha256':digest(stable(receipt)),'signature_sha256':digest(signature),'scope':'TEST_ONLY_VERIFIER'})
+   self.db.execute('COMMIT');return 'PASS_SIGNED_TEST_ONLY'
+  except BaseException:self.db.execute('ROLLBACK');raise
  def verify(self):
   prev='GENESIS'
   for seq,task,kind,body,previous,value in self.db.execute('SELECT * FROM events ORDER BY seq'):
