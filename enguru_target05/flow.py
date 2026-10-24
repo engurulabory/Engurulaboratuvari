@@ -67,6 +67,7 @@ def run():
   results['17_repeat_finish']=a.step('T05',src,'anything')=='HOLD_STATE'
   results['18_next_target']=a.start('T06',src)=='STARTED'
   a.close()
+  # Different SQLite connections racing to initialize same next project, with unique active lock.
   db2=str(Path(d)/'race.db');barrier=threading.Barrier(2)
   def contender(x):
    f=Flow(db2);barrier.wait();v=f.start(x,src);f.close();return v
