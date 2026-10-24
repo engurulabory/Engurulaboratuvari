@@ -51,4 +51,4 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          PYTHONDONTWRITEBYTECODE=1 python -B tools/enguru_mk_b09_source_outcome_v1.py
+          PYTHONDONTWRITEBYTECODE=1 python -B -m tools.enguru_mk_b09_source_outcome_v1
