@@ -94,5 +94,15 @@ jobs:
         run: python3 tools/management_v69_pilot_four_round_sim.py
       - name: Historical provenance safe classification tests
         run: python3 -m unittest discover -s tests -p 'test_management_v69_historical_ci_classify.py' -v
+      - name: Validate provenance workflow separation
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          s = Path('.github/workflows/enguru-management-v69.yml').read_text()
+          assert 'CURRENT_MAIN_SOURCE_DRIFT' in s
+          assert 'management_v69_current_main_source_observe.py' in s
+          assert 'exit "$code"' in s
+          print('PROVENANCE_WORKFLOW_SEPARATION=PASS_SOURCE_CHECK')
+          PY
       - name: Source syntax
         run: python3 -m py_compile tools/management_v69_handoff_verify.py
