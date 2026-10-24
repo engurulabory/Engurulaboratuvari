@@ -1,0 +1,605 @@
+{
+  "schema": "enguru.management-v69.execution-block-plan/v1",
+  "version": "1.2",
+  "date": "2026-10-23",
+  "role": "REVIEW_ONLY_EXECUTION_ORCHESTRATION_NOT_NEW_CANONICAL_AUTHORITY",
+  "goal": "ENGURU_MANAGEMENT_V69_PR_203 → VERIFIED_FINISH → BITTI_DUR",
+  "taskId": "ENGURU_MANAGEMENT_V69_PR_203",
+  "verificationResultId": "MGMT69_VR_GITHUB_RUN_39852715540",
+  "source": {
+    "management_repo": "engurulabory/Engurulaboratuvari",
+    "management_pr": 203,
+    "management_head": "63fe22e7c1ce73adf94b0cbdd40924511e8211cd",
+    "last_main": "113d8ffd18a6f36c840770f30f38da6d5900aa43",
+    "reviewer_candidate": "enguru-mac-local-human-authority",
+    "key_id": "ed25519-sha256:40c6a9cc82815ea5a9755cd4b843d35cd701b4b90d8f65ecb656f1c37a4ef64f",
+    "mac_os_contract_report_sha256": "2e524438fc647b79d64e4f4b4fa47424b8ae77c93a0af29b6649fca23208ae24",
+    "canonical_v3_source_sha256": "11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc",
+    "v3_git_blob_sha1": "7f47f3c6d3ee5c5138e53b67ae46cced37cb1a61",
+    "mac_ci_run": 39959341258,
+    "donecheck_ci_run": 39852715540,
+    "engineer_private_pr": 14,
+    "base_drift_note": "PR203 baseline 1f7dfd708d652764ac74df27dcbbd393779e2b3b; current-main recorded 113d8ffd18a6f36c840770f30f38da6d5900aa43. Revalidate PR203 HEAD, permission, and exact current main immediately before authorized G5 merge.",
+    "rotated_reviewer_key_id": "ed25519-sha256:b64f6b242f96efb09c34985c4b03b9ed4df2c6d1d2386332f098ecc64bd2cc9a",
+    "proposed_owner_root_key_id": "ed25519-sha256:938083a0de0a78fef1874536b2bdbc5683ab2ae49bc09cae27dec843eaf4c1e1",
+    "g2_genesis_report_sha256": "5f99062045d8eee551cfe3faf6a75a2267b15acf18b9e4367f656032ba6d05b3",
+    "g2_independent_field_report_sha256": "02c65bb7724e59d69f93be9bd0328392ed22dce85bd169b06e2b2647a13fb8d6",
+    "g3_technical_ci_run": 40005312121,
+    "g3_rotated_reviewer_review_head": "37153c26ca99fec8f67fcb87c154046ef1e74b00",
+    "mk_g3_learning_event": "MK-EVT-V69-G3-ROTATED-20261023",
+    "mk_g3_learning_run": 40005514734
+  },
+  "canonical_gate_ids": [
+    "G1",
+    "G2",
+    "G3",
+    "G4",
+    "G5",
+    "G6"
+  ],
+  "gates": {
+    "G1": {
+      "state": "PASS_TECHNICAL_ONLY",
+      "acceptance": "MGMT69-A-CI/B-SOURCE/C-OPERATIONS/BOUNDARY 4/4 validated on exact PR203 HEAD",
+      "evidence_type": "REAL_GITHUB_VERIFICATION",
+      "authority": "TECHNICAL_VALIDATOR",
+      "prerequisites": []
+    },
+    "G2": {
+      "state": "HOLD_CANONICAL_ROOT_ADMISSION",
+      "acceptance": "Existing canonical OSi Ed25519 owner signer control + cryptographically verified grant for exact task/result/reviewer/key/accepted; preserve key local; historical Gate12 excluded",
+      "evidence_type": "REAL_OSI_OWNER_CRYPTOGRAPHIC_SCOPE_PROOF",
+      "authority": "OSi_CANONICAL_OWNER_TRUST",
+      "prerequisites": [
+        "G1"
+      ],
+      "field_evidence": "PASS_ED25519_POSSESSION_GENESIS_AND_INDEPENDENT_SCOPED_GRANT_ONLY",
+      "pending_official_proof": "GITHUB_SOURCE_RECONCILIATION_OF_REAL_MAC_SCOPE_ADMISSION_AND_INDEPENDENT_REGISTRATION_RECORD",
+      "mac_field_result": "PASS_CANONICAL_G2_BOOTSTRAP_ADMISSION_VERIFIED",
+      "mac_field_evidence": {
+        "taskId": "ENGURU_MANAGEMENT_V69_PR_203",
+        "verificationResultId": "MGMT69_VR_GITHUB_RUN_39852715540",
+        "source": "USER_SUPPLIED_MAC_OSI_TERMINAL_AND_HASH_VERIFIED_RECEIPT",
+        "reportSha256": "ad3f010be6e470c0aa92d9da5cd0110aaf0e33b853fd29714d7fe09e09313695",
+        "registrationSha256": "4f55ed2cdc36ee5bba7e1ea84671d48f769256f5b64c34d5ff907479c629801b",
+        "rootKeyId": "ed25519-sha256:938083a0de0a78fef1874536b2bdbc5683ab2ae49bc09cae27dec843eaf4c1e1",
+        "reviewerKeyId": "ed25519-sha256:b64f6b242f96efb09c34985c4b03b9ed4df2c6d1d2386332f098ecc64bd2cc9a",
+        "approvedOwnerCommentId": 6372790732,
+        "independentVerifierTerminalState": "PASS_CANONICAL_CRYPTOGRAPHIC_OWNER_GRANT",
+        "aggregateTerminalState": "PASS_CANONICAL_G2_BOOTSTRAP_ADMISSION_VERIFIED",
+        "preVerificationReceiptState": "PENDING_INDEPENDENT_ADMISSION_VERIFIER",
+        "grantExpiresAt": "2026-10-30T17:47:11.475Z",
+        "evidenceGitHubComment": "https://github.com/engurulabory/enguru-mac-engineer/pull/16#issuecomment-6373196149",
+        "authorityScope": "SCOPED_ONE_TASK_ONE_RESULT",
+        "externalSourceRead": "LOCAL_REGISTRATION_RAW_BYTES_NOT_UPLOADED",
+        "transition": "MAC_FIELD_PASS_GITHUB_CANONICAL_STATE_RECONCILIATION_REQUIRED"
+      }
+    },
+    "G3": {
+      "state": "HOLD_REAL_SIGNED_HUMAN_REVIEW",
+      "acceptance": "Real HumanReview.accepted and canonical detached Ed25519 attestation, pinned public PEM UTF-8 SHA identity, immutable exact task/result binding, verified via pinned DoneCheck and existing OSi bridge",
+      "evidence_type": "REAL_OWNER_SIGNED_REVIEW_AND_BRIDGE",
+      "authority": "AUTHORIZED_HUMAN_REVIEWER",
+      "prerequisites": [
+        "G2"
+      ],
+      "technical_state": "PASS_ROTATED_REVIEWER_ADAPTER_TECHNICAL_ONLY",
+      "technical_evidence": {
+        "repository": "engurulabory/enguru-mac-engineer",
+        "pr": 16,
+        "branchHead": "37153c26ca99fec8f67fcb87c154046ef1e74b00",
+        "ciRunId": 40005312121,
+        "checks": "24_OF_24_G3_FAIL_CLOSED_AND_26_OF_26_G2_GRANT_AND_25_OF_25_GENESIS_PASS",
+        "scope": "STAGED_PRIVATE_REVIEW_BRANCH_NOT_MAC_OWNER_SIGNATURE"
+      }
+    },
+    "G4": {
+      "state": "HOLD_CANONICAL_AUDIT",
+      "acceptance": "Real existing DoneCheck recordVerifiedFinish receipt and verified hash-linked audit ledger; pre-write chain validation; recovery of partial append; original SHA and receipt",
+      "evidence_type": "CANONICAL_DONECHECK_RECEIPT_AND_AUDIT",
+      "authority": "DONECHECK_AUTHORIZED_RUNTIME",
+      "prerequisites": [
+        "G3"
+      ]
+    },
+    "G5": {
+      "state": "HOLD_OWNER_MERGE",
+      "acceptance": "Authorized PR203 review and merge, updated base/head conflict check, exact post-merge main commit and full required CI/independent review",
+      "evidence_type": "AUTHORIZED_MERGE_AND_POST_MERGE_EXACT_MAIN_CI",
+      "authority": "HUMAN_OWNER_RESERVED_MERGE",
+      "prerequisites": [
+        "G4"
+      ]
+    },
+    "G6": {
+      "state": "HOLD_VERIFIED_FINISH",
+      "acceptance": "Independent consolidated G1-G5 verification, valid official DoneCheck/Human Threshold acceptance, final official receipt and ledger/source exact-main reconciliation",
+      "evidence_type": "INDEPENDENT_OFFICIAL_VERIFIED_FINISH",
+      "authority": "CANONICAL_HUMAN_THRESHOLD",
+      "prerequisites": [
+        "G5"
+      ]
+    }
+  },
+  "blocks": [
+    {
+      "id": "B00",
+      "name": "Korunan teknik temel",
+      "gate_ids": [
+        "G1"
+      ],
+      "mode": "PRESERVE_COMPLETED",
+      "owner": "GITHUB_TECHNICAL_VERIFIER",
+      "next": "B01",
+      "state": "PASS_TECHNICAL_ONLY"
+    },
+    {
+      "id": "B01",
+      "name": "Tek bütünleşik yetkili kapanış",
+      "gate_ids": [
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6"
+      ],
+      "mode": "SINGLE_ACTIVE_INTEGRATED_EXECUTION",
+      "owner": "OSi_CANONICAL_OWNER_AND_DONECHECK",
+      "sequence": [
+        "AUTHENTICATE_EXISTING_SIGNER",
+        "VERIFY_EXACT_TASK_RESULT_GRANT",
+        "SIGN_CANONICAL_HUMAN_REVIEW",
+        "VERIFY_DETACHED_ATTESTATION",
+        "CANONICAL_DONECHECK_LEDGER",
+        "RECONCILE_LEDGER_AFTER_INTERRUPTION",
+        "REFRESH_EXACT_CURRENT_MAIN_AND_REVIEW",
+        "AUTHORIZED_PR203_MERGE",
+        "POST_MERGE_EXACT_MAIN_CI",
+        "VERIFY_INDEPENDENT_DONECHECK_AND_HUMAN_THRESHOLD",
+        "INDEPENDENT_VERIFIED_FINISH"
+      ],
+      "state": "HOLD_CANONICAL_ROOT_ADMISSION",
+      "acceptance": "G2 real Mac independent bootstrap verifier PASS with pinned receipt and time-limited grant; GitHub canonical plan still HOLD until authorized source review, G3–G6 official acceptance separate. Preserve old trust, original gates and V1.2 bounded method."
+    },
+    {
+      "id": "B02",
+      "name": "Mühendislik Kası V3 sürekli öğrenme destek nöbeti",
+      "gate_ids": [],
+      "mode": "PARALLEL_NON_BLOCKING_SUPPORT",
+      "owner": "GITHUB_MK_WATCH_AND_CHATGPT_HOURLY",
+      "state": "ACTIVE_TECHNICAL_LEARNING_SCHEDULE_FIELD_HOLD",
+      "schedule": "GITHUB_CRON_5_MIN_BEST_EFFORT_CHATGPT_HOURLY",
+      "acceptance": "Real new source evidence → dedup/review record + regression; 4 real completed schedule runs needed for separate cadence field PASS",
+      "private_data_boundary": "OWNER_APPROVED_REDACTED_RELAY_ONLY"
+    },
+    {
+      "id": "B03",
+      "name": "Sonraki ürün işleri — korunan bekleme listesi",
+      "gate_ids": [],
+      "mode": "DEFER_AFTER_VERIFIED_FINISH",
+      "owner": "OWNER_PRIORITIZED_AFTER_B01",
+      "state": "WAITING_CURRENT_PRODUCT_FINISH",
+      "acceptance": "Post-finish owner confirms next canonical product and its original task list; historical PLive/P01/P02, H1-H3, Website B1 are separate project scopes, no borrowed counters"
+    }
+  ],
+  "invariants": {
+    "single_active_product_block": "B01",
+    "no_parallel_gate_authority": true,
+    "main_and_pr203_immutable_until_authorized_merge": true,
+    "never_use_historical_gate12_as_v69_grant": true,
+    "private_key_remains_under_mac_owner_control": true,
+    "no_automatic_human_threshold_or_merge": true,
+    "simulation_cannot_produce_official_pass": true,
+    "official_finished_requires_all_six_independently_verified": true,
+    "resume_requires_current_github_and_canonical_authority_read": true,
+    "new_conversation_reads_latest_mk_record": true,
+    "positive_language_and_eight_stages": true,
+    "stop_reason": "GUVENLI_DUR → EXACT_MISSING_PROOF → OWNER_SCOPE_ACTION; earlier evidence protected",
+    "evidence_claims_are_never_self_authorizing": true,
+    "audit_partial_append_recovery_before_retry": true,
+    "private_repo_data_owner_redacted_relay_only": true
+  },
+  "progress": {
+    "technical_gate_pass": 1,
+    "gate_total": 6,
+    "fully_accepted_g2_g6": 0,
+    "g2_g6_total": 5,
+    "official_verified_finish": "HOLD",
+    "official_authority_pass": 0
+  },
+  "next_single_action": "G2_FIELD_PASS_ROOT_ADMISSION_GITHUB_SOURCE_RECONCILIATION_THEN_G3_REAL_OWNER_SIGNED_HUMAN_REVIEW",
+  "pre_execution_quality_loop": {
+    "schema": "enguru.v69.pre-execution-scored-simulation/v1",
+    "acceptance": "OWNER_ACCEPTED_METHOD_CONTRACT_NOT_OFFICIAL_CANONICAL_GATE_AMENDMENT",
+    "version": "1.2",
+    "authority": "REVIEW_BRANCH_EXECUTION_SUPPORT_UNDER_LOCKED_V3_AND_ORIGINAL_G1_G6",
+    "fixed_target": "100/100_PLAN_AND_SIMULATION_READINESS_WITH_SEPARATE_REAL_VERIFIED_FINISH",
+    "max_simulation_rounds": 3,
+    "sequence": [
+      "PLAN_NEXT_ACTIONS_AND_DEPENDENCIES",
+      "SCORE_INITIAL_PLAN",
+      "SIMULATE_AS_IF_IN_TERMINAL_END_TO_END_WITHOUT_FIELD_WRITES",
+      "CLASSIFY_GAPS_ERRORS_NEEDS_REQUIREMENTS_AND_VERIFIED_ROOT_CAUSES",
+      "INTEGRATE_FIXES_IN_THE_SAME_PLAN",
+      "RESCORE_AND_REPEAT_ADVERSARIAL_SIMULATION_UP_TO_THREE_ROUNDS",
+      "RELEASE_VALIDATED_PLAN_TO_AUTHORIZED_REAL_FIELD_EXECUTION",
+      "MEASURE_REAL_RESULT_INDEPENDENTLY_AND_OBTAIN_AUTHORIZED_ACCEPTANCE"
+    ],
+    "scoring": {
+      "target": 100,
+      "dimensions": [
+        {
+          "id": "TECHNICAL_CORRECTNESS",
+          "max": 20
+        },
+        {
+          "id": "REAL_EXECUTABILITY",
+          "max": 20
+        },
+        {
+          "id": "SECURITY_AND_AUTHORITY",
+          "max": 20
+        },
+        {
+          "id": "SIMPLICITY",
+          "max": 15
+        },
+        {
+          "id": "RESILIENCE_AND_RECOVERY",
+          "max": 10
+        },
+        {
+          "id": "END_TO_END_FINISH_CAPABILITY",
+          "max": 15
+        }
+      ],
+      "rule": "SUM_0_TO_100; EVIDENCE_LINKS_REQUIRED; ANY_CRITICAL_SECURITY_OR_AUTHORITY_MISREPRESENTATION_IS_HOLD_REGARDLESS_OF_SCORE",
+      "scores": {
+        "initial_plan": "MEASURE_ON_EACH_RUN",
+        "simulation": "MEASURE_ON_EACH_RUN",
+        "real_field": "SEPARATE_MEASURE_ONLY_AFTER_REAL_OSI_OR_GITHUB_EXECUTION",
+        "independent_verification": "SEPARATE_PASS_HOLD",
+        "human_authority": "SEPARATE_PASS_HOLD"
+      }
+    },
+    "terminal_simulation_matrix": [
+      "PRECHECK_SOURCE_SHA_AND_EXACT_CURRENT_TASK_STATE",
+      "SIMULATE_COMMAND_ARGUMENTS_PATHS_ENV_PERMISSIONS_AND_OS_COMPATIBILITY",
+      "SIMULATE_CANONICAL_OWNER_GATE_WITHOUT_CONSTRUCTED_OR_SELF_PROCLAIMED_AUTHORITY",
+      "SIMULATE_ABSENT_FILE_WRONG_SHA_WRONG_OWNER_WRONG_SCOPE_AND_EXPIRED_GRANT",
+      "SIMULATE_PARTIAL_WRITE_CRASH_RESTART_DUPLICATE_RETRY_AND_IDEMPOTENCY",
+      "SIMULATE_EXPECTED_LOGS_EXIT_STATUS_RECEIPT_SHA_AND_SAFE_ROLLBACK",
+      "SIMULATE_POST_ACTION_INDEPENDENT_REVERIFICATION_AND_VERIFIED_FINISH_GATES"
+    ],
+    "engineering_boundaries": [
+      {
+        "id": "B01_SIMULATION_VS_REALITY",
+        "obligation": "DESIGN_SCORE_SIMULATION_SCORE_REAL_EXECUTION_SCORE_AND_CANONICAL_AUTHORITY_PASS_ARE_SEPARATE",
+        "impact": "100_100_SIMULATION_NEVER_UPGRADES_OWNER_GRANT_LEDGER_MERGE_OR_VERIFIED_FINISH"
+      },
+      {
+        "id": "B02_BOUNDED_CORRECTION_LOOP",
+        "obligation": "AT_MOST_3_SCORED_SIMULATION_ROUNDS; STOP_EARLY_AT_CRITICAL_EXTERNAL_DEPENDENCY",
+        "impact": "IF_UNRESOLVED_THEN_GUVENLI_DUR_WITH_EXACT_BLOCKER_REUSABLE_EVIDENCE_AND_SINGLE_NEXT_OWNER_ACTION"
+      }
+    ],
+    "iteration_policy": {
+      "max_rounds": 3,
+      "stop_on": "ALL_REQUIRED_SIMULATION_ASSERTIONS_PASS_AND_NO_CRITICAL_INTERNAL_DEFECT",
+      "critical_external_dependency": "GUVENLI_DUR_EXTERNAL_AUTHORITY; REPORT_ONE_EXACT_ADMISSION_ACTION; PRESERVE_PREVIOUS_PROOFS",
+      "after_third_unresolved": "HOLD_SIMULATION_LIMIT_REACHED_AND_SINGLE_ACTION",
+      "new_requirements": "INTEGRATE_ONLY_WITH_ORIGINAL_SCOPE_AND_AUTHORITIES_RETAINED",
+      "repeat_proven_field_tests": "ONLY_ON_SOURCE_OR_SCOPE_DRIFT_OR_VERIFIER_REQUIREMENT"
+    },
+    "authority_invariants": [
+      "CANONICAL_V3_SHA256_AND_ORIGINAL_G1_G6_UNCHANGED",
+      "HUMAN_THRESHOLD_OWNER_AND_ISSUER_RIGHTS_REMAIN_EXTERNAL",
+      "MUSCLE_IS_REVIEW_ONLY_NOT_AUTHORITY_OR_ISSUER",
+      "MAIN_PR203_AND_EXISTING_OSI_TRUST_LEDGER_PRESERVED_UNTIL_AUTHORIZED_ACTION",
+      "100_100_TARGET_IS_NOT_A_CLAIM_OF_REACHED_REAL_ACCEPTANCE"
+    ],
+    "current_example": {
+      "task": "G2_CANONICAL_ROOT_ADMISSION",
+      "known_crypto": "MAC_ED25519_ROOT_AND_GRANT_TWO_STAGE_INDEPENDENT_PASS",
+      "current_official": "G2_HOLD_CANONICAL_TRUST_ADMISSION",
+      "next": "EXISTING_AUTHORIZED_ADMISSION_POLICY_AND_OFFICIAL_RECEIPT_ONLY; REUSE_EXISTING_MAC_EVIDENCE"
+    }
+  },
+  "single_owner_local_engineering": {
+    "policy": "USER_APPROVED_SINGLE_OWNER_LOCAL_FIRST_WITH_BATCH_FINAL_ACCEPTANCE",
+    "effective_scope": "OSi_LOCAL_DEVELOPMENT_AND_ISOLATED_GITHUB_REVIEW_ONLY",
+    "user_intent": "BUILD_AND_VALIDATE_ALL_OSi_SYSTEMS_FIRST_THEN_COMMISSION_CONSOLIDATED_SECURITY_AND_FORMAL_ACCEPTANCE",
+    "day_to_day": {
+      "terminal_prompts": "ONLY_FOR_REAL_OS_PERMISSION_OR_IRREVERSIBLE_SCOPE_CHANGE",
+      "per_step_private_key_password": "NOT_REQUIRED_FOR_READ_ONLY_TEST_BUILD_SIMULATION_AND_LOCAL_DEVELOPMENT",
+      "repeated_owner_genesis_ceremony": "SKIP_USE_PRESERVED_G2_FIELD_PROOF",
+      "repeat_confirmation_chains": "GROUP_REQUIRED_HUMAN_ACCEPTANCE_AT_FINAL_COMMISSIONING",
+      "engineering_work": "CONTINUE_ALLOWED_REPO_TEST_NATIVE_BUILD_AND_LOCAL_APPLICATION_VALIDATION"
+    },
+    "minimum_security_kept": [
+      "NATIVE_MACOS_USER_AND_FILE_PERMISSIONS",
+      "SOURCE_AND_ARTIFACT_SHA256_PROVENANCE",
+      "KEEP_ENCRYPTED_PRIVATE_KEYS_LOCAL_TO_OWNER_MAC",
+      "PROTECT_OLD_CANONICAL_TRUST_AND_DONECHECK_LEDGER",
+      "HUMAN_THRESHOLD_FOR_GENUINELY_CONSEQUENTIAL_ACTIONS"
+    ],
+    "deferred_to_final_acceptance": [
+      "G3_REAL_ED25519_HUMANREVIEW_AND_EXISTING_REVIEWER_KEY_PASSWORD_OR_SUPPORTED_MACOS_KEYCHAIN_UNLOCK",
+      "G4_CANONICAL_DONECHECK_RECORD_AND_AUDIT",
+      "G5_OWNER_AUTHORIZED_PR203_MERGE_AND_EXACT_MAIN_CI",
+      "G6_INDEPENDENT_VERIFIED_FINISH_AND_HUMAN_FINAL_ACCEPTANCE",
+      "OPTIONAL_EXTRA_SECURITY_HARDENING_ONLY_WHEN_PRODUCT_READY"
+    ],
+    "boundaries": {
+      "canonical_v3_and_locked_donecheck": "UNCHANGED",
+      "original_g1_to_g6_authorities": "UNCHANGED_AND_HOLD_UNTIL_REAL_PROOF",
+      "existing_g2_mac_field": "PASS_PRESERVED",
+      "product_verified_finish": "HOLD_UNTIL_FINAL_GATES",
+      "external_network_secrets_payments_deploy": "PRESERVE_APPLICABLE_EXPLICIT_AUTHORITY",
+      "single_owner_not_equivalent_to_unrestricted_signer": "OWNER_DECISION_STILL_REQUIRES_MATCHING_CRYPTOGRAPHIC_PROVENANCE_WHEN_CANONICAL_DONECHECK_APPLIES"
+    },
+    "immediate_workflow": "CONTINUE_TECHNICAL_BUILD_AND_INDEPENDENT_TESTS; DO_NOT_SEND_MORE_G3_PASSWORD_PACKAGES_UNTIL_FINAL_ACCEPTANCE_WINDOW"
+  },
+  "b01_local_engineering_progress": {
+    "scope": "B01_TECHNICAL_DEVELOPMENT_ONLY_ORIGINAL_G2_G6_OFFICIAL_CONTROLS_UNCHANGED",
+    "accepted_workflow": "V12_SINGLE_OWNER_LOCAL_FIRST_NO_REPEATED_OWNER_PASSWORD_CEREMONIES",
+    "work": [
+      {
+        "id": "B01-01",
+        "state": "PASS_PINNED_FIELD_SOURCE_RECONCILIATION",
+        "proof": {
+          "receiptSha256": "ad3f010be6e470c0aa92d9da5cd0110aaf0e33b853fd29714d7fe09e09313695",
+          "registrationSha256": "4f55ed2cdc36ee5bba7e1ea84671d48f769256f5b64c34d5ff907479c629801b",
+          "macG2Field": "PASS_CANONICAL_G2_BOOTSTRAP_ADMISSION_VERIFIED",
+          "receiptPreverificationState": "PENDING_INDEPENDENT_ADMISSION_VERIFIER",
+          "independentMacTerminal": "PASS_CANONICAL_CRYPTOGRAPHIC_OWNER_GRANT",
+          "crossEnvironmentLimit": "MAC_VERIFIER_TERMINAL_PASS_CONFIRMED_FROM_USER;RAW_REGISTRATION_NOT_EXTERNALLY_READ"
+        }
+      },
+      {
+        "id": "B01-02",
+        "state": "PASS_MACOS_CODE_AND_ISOLATED_REGRESSION",
+        "proof": {
+          "repository": "engurulabory/enguru-mac-engineer",
+          "pullRequest": 16,
+          "exactHead": "00d9a124c559fab1847fe7015225b2a73d27bd98",
+          "macOsCiRunId": 40016525886,
+          "detachedReadOnlyTests": "34_OF_34_PASS",
+          "grantTests": "26_OF_26_PASS",
+          "genesisTests": "25_OF_25_PASS",
+          "swiftBuild": "PASS_SHARED_NATIVE_SDK_SOURCE_BINARY_RECEIPT",
+          "newInterface": "inspectReadOnlyV69Integration",
+          "limitation": "CALLER_MUST_USE_REAL_INDEPENDENT_MAC_OWNER_SCOPE_VERIFIER;CI_USES_ISOLATED_FIXTURES"
+        }
+      },
+      {
+        "id": "B01-03",
+        "state": "PASS_READ_ONLY_GITHUB_MERGE_PREPARATION_ONLY",
+        "proof": {
+          "mainSha": "113d8ffd18a6f36c840770f30f38da6d5900aa43",
+          "pr203Head": "63fe22e7c1ce73adf94b0cbdd40924511e8211cd",
+          "pr203Mergeable": "TRUE_CLEAN_AT_OBSERVATION",
+          "pr209ReviewHead": "7be4cb8095a8b9134d675431484745abf6211f55",
+          "pr209Mergeable": "TRUE_CLEAN_AT_OBSERVATION",
+          "futureMerge": "REQUIRES_FRESH_OWNER_AUTHORIZATION_AND_EXACT_HEAD_MAIN_CI",
+          "officialG5": "HOLD_OWNER_MERGE"
+        }
+      },
+      {
+        "id": "B01-04",
+        "state": "PASS_PREEXISTING_V12_ISOLATED_3X_SIMULATION_AND_NEW_REAL_MACOS_CI",
+        "proof": {
+          "previousPlanSimulationRun": 40007805182,
+          "previousPlanSimulation": "THREE_ROUNDS_X_75_OF_75_PASS_ISOLATED_ONLY",
+          "latestMacOsProductRun": 40016525886,
+          "latestDetachedBridgeTests": "34_OF_34_PASS",
+          "officialVerifiedFinish": "HOLD"
+        }
+      }
+    ],
+    "developmentNext": "CONTINUE_NATIVE_OSI_INTEGRATION_AND_EXISTING_DONECHECK_READ_ONLY_VALIDATION_NO_ADDITIONAL_PASSWORD_PACKAGE",
+    "closureWindow": "BATCH_G3_REAL_HUMAN_REVIEW_G4_LEDGER_G5_OWNER_MERGE_G6_VERIFIED_FINISH",
+    "grantExpiryAt": "2026-10-30T17:47:11.475Z",
+    "expiringGrantHandling": "RECHECK_AT_BATCH_CLOSURE_RENEW_IN_EXISTING_OWNER_POLICY_IF_EXPIRY_WOULD_BLOCK_SCOPE"
+  },
+  "native_runtime_binding": {
+    "id": "B01_LOCAL_NATIVE_RUNTIME_READONLY_STATUS",
+    "state": "PASS_REAL_MAC_NATIVE_RUNTIME_API_G2_INDEPENDENTLY_VERIFIED",
+    "scope": "REAL_PYTHON_HTTP_NATIVE_SHELL_PLUS_CONTEXTUAL_DONECHECK_STATUS",
+    "repository": "engurulabory/enguru-mac-engineer",
+    "pr": 16,
+    "sourceHead": "ece80be94ef6b5b64a1e1bfc142420367551a779",
+    "macosProductCiRun": 40069358999,
+    "runtimeTests": "18_OF_18_NATIVE_READINESS_PASS",
+    "detachedBridgeTests": "34_OF_34_PASS",
+    "ownerGrantTests": "26_OF_26_PASS",
+    "genesisTests": "25_OF_25_PASS",
+    "nativeSwiftCompile": "PASS_SHARED_NATIVE_SDK_SOURCE_BINARY_RECEIPT",
+    "route": "GET_/api/v69/readiness",
+    "presentation": "EXISTING_DONECHECK_CONTEXTUAL_MODAL",
+    "independentG2Source": "PINNED_EXISTING_G2_ZIP_VERIFY_ONLY",
+    "sourceLocations": [
+      "DOWNLOADS",
+      "DESKTOP_AUDIV13"
+    ],
+    "rootId": "ed25519-sha256:938083a0de0a78fef1874536b2bdbc5683ab2ae49bc09cae27dec843eaf4c1e1",
+    "originalRegistrationSha256": "4f55ed2cdc36ee5bba7e1ea84671d48f769256f5b64c34d5ff907479c629801b",
+    "grantExpiresAt": "2026-10-30T17:47:11.475Z",
+    "privateKeyPasswordsRequested": 0,
+    "canonicalAuditWrites": 0,
+    "automatedMerge": false,
+    "separateMacOwnerInstallVerification": "PASS_LOCAL_INSTALL_AND_LIVE_HTTP_G2_VERIFIER",
+    "G3_G6_OFFICIAL": "HOLD_UNCHANGED",
+    "next": "CONTINUE_SINGLE_OWNER_LOCAL_ENGINEERING_WITH_NATIVE_G2_API_FIELD_PASS;BATCH_G3_G6_FINAL_ACCEPTANCE_AT_END",
+    "installedRuntimeEvidence": {
+      "scope": "MAC_OSI_NATIVE_EXISTING_RUNTIME_USER_TERMINAL_AND_NONSECRET_RECEIPT",
+      "status": "PASS_NATIVE_SOURCE_INSTALLED_FIELD_APP_REOPEN_REQUIRED",
+      "originalReceiptSha256": "d9fe4a95c48af61328337dceae7fbcbfabd278b554c0529f25d1bed6d52ecf3d",
+      "shaRecomputed": "PASS_EXACT",
+      "installerZipSha256": "a5c00654d1432779ad994e2c6111cb4a93a9eb6f1ce80d9222f4f4b1c5fdf691",
+      "runtimeAppSha256": "2a09781e4f4d5a368f5d9e4e7801e66ad40a7e00bb97ce39e1d1fa82c3cbaf0e",
+      "runtimeUiSha256": "5e98d3634496cfc34e7bcaf9a5fcd0681481c2bfafacfa7f06f47b6972a332ed",
+      "readinessModuleSha256": "cf4dff63d00bcd407ae34ba51b2d9c1395f2545008ae361c1de310b08005660f",
+      "readinessModuleGitBlob": "dc1aa446cc1dea6402aaca178fcf926c5b28aa2f",
+      "archivedExistingSources": "PASS_ORIGINAL_TWO_FILES_BACKED_UP",
+      "archives": "~/Desktop/AudiV13/ENGURU_V69_NATIVE_BINDING_20261024T062646578865Z",
+      "localPackageTests": "9_OF_9_PASS",
+      "zeroPasswordPrompts": true,
+      "macOwnerTrustWrites": 0,
+      "canonicalLedgerWrites": 0,
+      "githubMerges": 0,
+      "realNativeAppReopen": "PASS_APP_COCKPIT_AND_STATUS_SCREENSHOTS_OBSERVED",
+      "liveDonecheckModal": "HOLD_EXACT_V69_G2_STATE_ABSENT_IN_SCREENSHOTS",
+      "evidenceComment": "https://github.com/engurulabory/enguru-mac-engineer/pull/16#issuecomment-6380913232",
+      "observedScreens": {
+        "source": "USER_UPLOADED_MAC_OSI_SCREENSHOTS_2026-10-24_0939_0940",
+        "applicationDisplay": "ENGURU_MAC_ENGINEER_COCKPIT_VISIBLE",
+        "applicationStatusText": "MAC_ENGINEER_CALISIYOR",
+        "separateDisplayedWork": "T100_THEORETICAL_100_16_OF_16_VERIFIED",
+        "v69G2Line": "NOT_VISIBLE",
+        "evidenceRule": "DISPLAYED_VERIFIED_T100_IS_NOT_V69_G2_OR_OFFICIAL_G3_G6_VERIFIED_FINISH"
+      },
+      "liveHttp": {
+        "source": "USER_REPORTED_RAW_LOCAL_OSI_HTTP_2026-10-24T06:54:36Z",
+        "endpoint": "http://127.0.0.1:8765/api/v69/readiness",
+        "statusCode": 200,
+        "status": "PASS_G2_NATIVE_READ_ONLY_CRYPTOGRAPHIC_VERIFICATION",
+        "G2": "PASS_INDEPENDENTLY_VERIFIED_MAC_OSI",
+        "taskId": "ENGURU_MANAGEMENT_V69_PR_203",
+        "rootKeyId": "ed25519-sha256:938083a0de0a78fef1874536b2bdbc5683ab2ae49bc09cae27dec843eaf4c1e1",
+        "registrationSha256": "4f55ed2cdc36ee5bba7e1ea84671d48f769256f5b64c34d5ff907479c629801b",
+        "grantExpiresAt": "2026-10-30T17:47:11.475Z",
+        "writes": 0,
+        "passwordPrompts": 0,
+        "G3": "HOLD_REAL_HUMAN_REVIEW",
+        "G4": "HOLD_CANONICAL_AUDIT",
+        "G5": "HOLD_OWNER_MERGE",
+        "G6": "HOLD_VERIFIED_FINISH",
+        "officialVerifiedFinish": "HOLD",
+        "evidenceComment": "https://github.com/engurulabory/enguru-mac-engineer/pull/16#issuecomment-6381159013",
+        "presentationCaveat": "EXACT_G2_LINE_IN_EXISTING_DONECHECK_MODAL_NOT_YET_SCREEN_OBSERVED",
+        "sourceOfAuthority": "REAL_OWNER_MAC_HTTP_READ_ONLY_VERIFIER_RESPONSE_NOT_FINAL_HUMAN_REVIEW"
+      }
+    },
+    "visibleG2Status": {
+      "technicalState": "PASS_GITHUB_MACOS_CI_NATIVE_DRAWER_FIELD_PENDING",
+      "previousG2LiveMacStatus": "PASS_INDEPENDENTLY_VERIFIED_MAC_OSI",
+      "repo": "engurulabory/enguru-mac-engineer",
+      "branch": "review/v69-g2-authorized-scoped-grant-20261023",
+      "sourceHead": "64de962063af9c60a9482136ad5918d8d62016e6",
+      "sourceUiGitBlob": "8fa4b7d8ebb433ccca4a38259d7f523029641e54",
+      "ciRunId": 40072710258,
+      "uiNegativeTests": "18_OF_18_PASS",
+      "donecheckAdapterTests": "34_OF_34_PASS",
+      "implementation": "EXISTING_STATUS_DRAWER_ON_OPEN_FETCHES_READ_ONLY_G2_API_THEN_SHOWS_ONE_SCOPED_STATUS_ROW",
+      "noNewTopLevelSurface": true,
+      "noSecurityCeremonies": true,
+      "preserveExistingMacUiSha256": "5e98d3634496cfc34e7bcaf9a5fcd0681481c2bfafacfa7f06f47b6972a332ed",
+      "macFieldInstaller": "ENGURU_V69_NATIVE_DRAWER_PATCH_V1_20261024.zip",
+      "macFieldInstallerSha256": "08f994a6aaf35a59fafbe74c5d3ebba846790d966d9cbb9129cf500a114da979",
+      "isolatedInstallerSimulations": "3_X_12_OF_12_PASS",
+      "atomicAndRollbackSimulation": "PASS",
+      "realMacUpdatedDrawer": "PASS_MAC_SOURCE_INSTALLED_HOLD_VISUAL_G2_ROW_ABSENT",
+      "G3_G6_OFFICIAL": "HOLD",
+      "evidenceUrl": "https://github.com/engurulabory/enguru-mac-engineer/pull/16#issuecomment-6381304461",
+      "next": "MAC_SHA_PINNED_V3_REAL_PO_DRAWER_INSTALL_THEN_APP_REOPEN_AND_SCREENSHOT_G2_RESULT",
+      "fieldV1Outcome": {
+        "result": "HOLD_SAFE_NO_UNVERIFIED_ACCEPTANCE",
+        "reason": "HOLD_GITHUB_REVIEW_EXACT_BLOB_IDENTITY",
+        "isolates": "12_OF_12_PASS",
+        "evidenceType": "REAL_OSI_TERMINAL",
+        "stage": "PRE_MUTATION_PREFLIGHT",
+        "designCorrection": "ON_DEVICE_PREMIUM_BASE_BLOB_DIFFERS_FROM_GITHUB_BASE_BLOB"
+      },
+      "fieldV2": {
+        "status": "PASS_REAL_MAC_PREMIUM_UI_INSTALLED_REFRESH_ACCEPTANCE_OPEN",
+        "artifact": "ENGURU_V69_NATIVE_DRAWER_PATCH_V2_20261024.zip",
+        "sha256": "27aae0ec96a96b0d0950669de126d6eb880ec948685417a3482a1f7dc3b2cf12",
+        "scriptSha256": "b4c19513fdef0108a9340ce4b649d2eeb5dd18e1124e8a99bc738bd32be84307",
+        "macPremiumExistingBlob": "092a9f8909bf477c6a142d58f89c8d2d3c36eb82",
+        "macPremiumExistingSha256": "5e98d3634496cfc34e7bcaf9a5fcd0681481c2bfafacfa7f06f47b6972a332ed",
+        "githubOlderSourceBlob": "a6673c10d395afffd6e2df651d3d2de35d1c95b2",
+        "githubReviewedVariantBlob": "8fa4b7d8ebb433ccca4a38259d7f523029641e54",
+        "sourcePreservation": "EXACT_REVERSE_TRANSFORM_TO_PREVIOUS_MAC_PREMIUM_SOURCE",
+        "macNewBlob": "1912ccb102962c029a1f8ae91efe5b790d663da7",
+        "githubReviewDoc": "https://github.com/engurulabory/enguru-mac-engineer/blob/review/v69-g2-authorized-scoped-grant-20261023/docs/ENGURU_V69_NATIVE_G2_DRAWER_PREMIUM_VARIANT_V2.md",
+        "evidenceComment": "https://github.com/engurulabory/enguru-mac-engineer/pull/16#issuecomment-6381664239",
+        "expectedFieldResult": "PASS_NATIVE_G2_DRAWER_UI_INSTALLED_FIELD_REFRESH_REQUIRED",
+        "noTrustWrites": true,
+        "noLedgerWrites": true,
+        "noPasswords": true,
+        "officialG3G6": "HOLD",
+        "macNewSha256": "be8de9a630ec83996aae170e5714b6c78eba34181b14d0786ad3864331606db1",
+        "macReceiptSha256": "3da0b57c780d7a5422b5f0e1dc6ef20a231e0236c934664c6b2826cb1e49d18e",
+        "macReceiptHashIndependentlyVerified": "PASS_EXACT",
+        "macFieldTests": "16_OF_16_PASS",
+        "macLocalRoundtrip": "PASS",
+        "macArchivedPreviousSha256": "5e98d3634496cfc34e7bcaf9a5fcd0681481c2bfafacfa7f06f47b6972a332ed",
+        "realDeviceWrites": "ONLY_EXISTING_RUNTIME_STATIC_INDEX_HTML",
+        "passwordPrompts": 0,
+        "trustWrites": 0,
+        "ledgerWrites": 0,
+        "macVisualAcceptance": "HOLD_REAL_OSI_SCREENSHOT_NO_V69_G2_ROW",
+        "actualServedUiShaCheck": "PASS_REAL_OSI_EXACT_SOURCE",
+        "screenshotObserved": {
+          "source": "USER_SUPPLIED_SCREENSHOT_EKRAN_RESMI_2026_10_24_105737",
+          "showsNativeRunning": true,
+          "showsExistingStatusDrawer": true,
+          "shownTask": "T100_THEORETICAL_100_VERIFIED_16_OF_16",
+          "exactV69G2RowVisible": false,
+          "rootCause": "HOLD_ACTUAL_RENDER_SURFACE_TO_BE_RECONCILED_WITH_PINNED_ON_DISK_UI",
+          "receiptSha256": "3da0b57c780d7a5422b5f0e1dc6ef20a231e0236c934664c6b2826cb1e49d18e",
+          "evidenceUrl": "https://github.com/engurulabory/enguru-mac-engineer/pull/16#issuecomment-6381748525"
+        },
+        "servedHtmlAfterMacRefresh": {
+          "state": "PASS_SERVED_HTML_EXACT_SOURCE_REAL_OSI",
+          "htmlSha256": "be8de9a630ec83996aae170e5714b6c78eba34181b14d0786ad3864331606db1",
+          "httpStatus": 200,
+          "liveEqualsInstalled": true,
+          "versionV2Correct": true,
+          "containsG2Row": true,
+          "containsG2Function": true,
+          "containsDrawerFunction": true,
+          "containsStaticT100": false,
+          "containsTechnicalDetailsText": true,
+          "activeRenderedG2": "HOLD_REAL_SCREENSHOT_G2_ROW_NOT_VISIBLE",
+          "evidenceUrl": "https://github.com/engurulabory/enguru-mac-engineer/pull/16#issuecomment-6381810286",
+          "next": "MAP_REAL_VISIBLE_STATUS_DRAWER_TRIGGER_AND_TECHNICAL_DETAILS_DOM_SOURCE_READ_ONLY"
+        }
+      },
+      "productOperatorVisibleDrawer": {
+        "canonicalTaskId": "ENGURU_MANAGEMENT_V69_PR_203",
+        "state": "PASS_ROOT_CAUSE_ISOLATED_AND_V3_FIELD_READY_MAC_VISUAL_PENDING",
+        "rootCause": "V2_ADDED_G2_TO_LEGACY_DRAWER_WHILE_VISIBLE_STATUS_WAS_SEPARATE_PRODUCT_OPERATOR_PO_DRAWER",
+        "source": "REAL_OWNER_MAC_READ_ONLY_SOURCE_CONTEXT_LINES_1456_2379_8519",
+        "productDrawerMarkers": [
+          "poDrawerHealth",
+          "poTechnicalDetails",
+          "poStatusBlock",
+          "poTechnicalBody"
+        ],
+        "existingLegacyDrawerMarkers": [
+          "drawer",
+          "dV69",
+          "toggleDrawer(on)"
+        ],
+        "lastVerifiedSourceSha256": "be8de9a630ec83996aae170e5714b6c78eba34181b14d0786ad3864331606db1",
+        "lastVerifiedSourceGitBlob": "1912ccb102962c029a1f8ae91efe5b790d663da7",
+        "localNativeApi": "PASS_INDEPENDENTLY_VERIFIED_MAC_OSI",
+        "v3FieldArtifact": "ENGURU_V69_PRODUCT_OPERATOR_STATUS_V3_20261024.zip",
+        "v3FieldArtifactSha256": "d303be43aaeef0bc87959374bf997782dceae3bda0b12d7c899d0cbcdd240604",
+        "v3InstallerScriptSha256": "afa7b5659eaba8c673895f227de63130ff630485d959e6efe7ba64c4d425bfe3",
+        "isolatedTests": "24_OF_24_PASS",
+        "nodeSyntax": "PASS",
+        "jsFunctional": "3_OF_3_PASS",
+        "dryRunOnSyntheticMac": "PASS_PUBLISH_BACKUP_RECEIPT_ROLLBACK",
+        "macActualFieldInstall": "HOLD_NOT_YET_EXECUTED",
+        "visualG2Row": "HOLD_NOT_YET_OBSERVED_IN_REAL_PRODUCT_OPERATOR_DRAWER",
+        "scope": "ONLY_EXISTING_PREMIUM_RUNTIME_STATIC_INDEX_HTML",
+        "officialG3G6": "HOLD",
+        "reviewedEngineeringDoc": "https://github.com/engurulabory/enguru-mac-engineer/blob/review/v69-g2-authorized-scoped-grant-20261023/docs/ENGURU_V69_REAL_PO_DRAWER_G2_BRIDGE_V3.md",
+        "evidenceComment": "https://github.com/engurulabory/enguru-mac-engineer/pull/16#issuecomment-6382711652"
+      }
+    }
+  }
+}
