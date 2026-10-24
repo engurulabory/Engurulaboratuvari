@@ -29,7 +29,7 @@ def main():
    (design,sequence.replace("| 09 |","| XX |"),engineer,"HOLD_NINE_TARGETS"),
    (design,sequence,engineer.replace(b"rollback_plan",b"rollback_none"),"HOLD_ENGINEER_FIELDS"),
    (design,sequence,engineer+b"\n", "HOLD_ENGINEER_SOURCE_DRIFT"),
-   (design.replace("Human Threshold","Human X",1),sequence,engineer,"HOLD_AUTHORITY_BOUNDARY")]
+   (design.replace("Human Threshold","Human X"),sequence,engineer,"HOLD_AUTHORITY_BOUNDARY")]
   for d,s,e,expected in tests:
    result=verify(d,s,e)
    assert result==expected,(result,expected)
