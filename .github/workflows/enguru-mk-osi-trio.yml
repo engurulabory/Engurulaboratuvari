@@ -1,0 +1,67 @@
+name: ENGURU MK OSi Transfer Trio Review
+
+on:
+  pull_request:
+    paths:
+      - 'tools/enguru_mk_osi_field_v1.py'
+      - 'tests/test_enguru_mk_osi_field_v1.py'
+      - 'governance/enguru-suzgeci/learning/ENGURU_MK_OSI_TRANSFER_TRIO_V1.md'
+      - '.github/workflows/enguru-mk-osi-trio.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bounded-linux-regression:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Preserve all existing 104 cases plus 30 transfer cases
+        shell: bash
+        run: |
+          set -euo pipefail
+          for round in 1 2 3; do
+            echo "SIMULATION_ROUND=$round"
+            for pattern in test_enguru_muhendislik_kasi.py test_enguru_mk_five_minute_watch.py test_enguru_mk_contract_v3.py test_enguru_mk_osi_field_v1.py; do
+              python3 -m unittest discover -s tests -p "$pattern" -q
+            done
+          done
+  bounded-macos-node26:
+    runs-on: macos-15
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '26'
+      - name: Verify actual Node 26 TAP and Python 3.14
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 --version
+          node --version
+          echo "import test from 'node:test'; test('tap-reporter', () => {});" > "$RUNNER_TEMP/enguru-tap.test.mjs"
+          node --test --test-reporter=tap "$RUNNER_TEMP/enguru-tap.test.mjs" | tee "$RUNNER_TEMP/enguru-tap.log"
+          grep -q '^# pass 1$' "$RUNNER_TEMP/enguru-tap.log"
+      - name: Three real macOS isolated simulations, no field authority writes
+        shell: bash
+        run: |
+          set -euo pipefail
+          for round in 1 2 3; do
+            echo "MACOS_ROUND=$round"
+            for pattern in test_enguru_muhendislik_kasi.py test_enguru_mk_five_minute_watch.py test_enguru_mk_contract_v3.py test_enguru_mk_osi_field_v1.py; do
+              python3 -m unittest discover -s tests -p "$pattern" -q
+            done
+          done
