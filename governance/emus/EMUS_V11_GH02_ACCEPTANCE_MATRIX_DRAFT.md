@@ -136,3 +136,9 @@ Bu sözleşme ADAY'dır. GH-01 tam kaynak eşleştirmesi, gerçek owner ve bağ�
 - Mac Engineer PR #17 commit `e95d9801fbafc7cffec87b3a958107b6380582b8` Product CI run `40013986474` completed/success; Runtime tests success.
 - Üç sabit runtime senaryosu: checkpoint/restart; yetki kapısında Git işlemi HOLD; yerel router erişimi yokken güvenli sonuç. Kapsam: CI runtime davranışı. Gerçek model inference/RAM/disk/maliyet saha benchmark'ı ayrıca HOLD.
 - G05/G06 güvenlik testi oluşturma girişimi araç güvenlik kontrolünde engellendi; yeni kod/CI kanıtı yazılmış sayılmaz. Mevcut auth_broker.py, mac_mobility.py ve provider.py kaynakları okundu; canlı yetki, köken ve gerçek saha kabulü HOLD.
+
+## 2026-10-24 — G05/G06 kaynak kapıları ve G07 kanıt sınırı
+- G05/G06 kaynaklar: `governance/security/SECURITY_REVIEW_CONTRACT_V1.md` (STRIDE/OWASP), `shared_ai/security_review.py` (HOLD güven sınırları), `tests/test_security_review.py`; EMÜS source lock canonical V3 ile ayrıdır. GitHub Labory CI `40070506618` job `120802706104` EMUS G05/G06 step `completed/success` (workflow nihai sonucu ayrı izlenir).
+- Önceki run `40070452877` G05/G06 koruma testinde eski doğrulanmış DoneCheck CI kazanımını HOLD varsaydığı için FAIL verdi; test `12f4507399e4e1f79498cccedc5fa3a8766212bf` commit ile düzeltildi: makine verifyTask PASS, insan/issuer/ledger HOLD korunur.
+- G07 çalışma sınırı: gerçek model kimliği+sürümü, model lisans metni ve kullanım şartı, ücretsiz API kanıtı, cihaz başına RAM/disk/gerçek çıkarım ölçümü bu incelemede henüz tam doğrulanmış değildir. Bunlar için GH-09-C2/C3/C4 HOLD korunur. Sabit üç senaryolu CI benchmark yalnız GH-09-C1 kapsamındadır.
+- Resmî sayaç `13/76 CI_EVIDENCED`, `0/19 OFFICIAL_ACCEPTED`; G05/G06 var olan genel tehdit modelinin EMÜS'e özgü gerçek kapsam ve yetki incelemesi tamamlanana kadar GH-08-C1/C3 HOLD.
