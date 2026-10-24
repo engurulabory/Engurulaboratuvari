@@ -404,7 +404,7 @@
   },
   "native_runtime_binding": {
     "id": "B01_LOCAL_NATIVE_RUNTIME_READONLY_STATUS",
-    "state": "PASS_REAL_MAC_APP_UI_OBSERVED_G2_LIVE_VERIFIER_PENDING",
+    "state": "PASS_REAL_MAC_NATIVE_RUNTIME_API_G2_INDEPENDENTLY_VERIFIED",
     "scope": "REAL_PYTHON_HTTP_NATIVE_SHELL_PLUS_CONTEXTUAL_DONECHECK_STATUS",
     "repository": "engurulabory/enguru-mac-engineer",
     "pr": 16,
@@ -428,9 +428,9 @@
     "privateKeyPasswordsRequested": 0,
     "canonicalAuditWrites": 0,
     "automatedMerge": false,
-    "separateMacOwnerInstallVerification": "PASS_REAL_MAC_FILE_INSTALL_AND_RECEIPT_SHA256_MATCH",
+    "separateMacOwnerInstallVerification": "PASS_LOCAL_INSTALL_AND_LIVE_HTTP_G2_VERIFIER",
     "G3_G6_OFFICIAL": "HOLD_UNCHANGED",
-    "next": "RUN_READ_ONLY_LOCAL_HTTP_STATUS_AND_G2_VERIFIER_ROUTE_RECONCILIATION;VERIFY_LOADED_RUNTIME_MATCHES_INSTALLED_SHA",
+    "next": "CONTINUE_SINGLE_OWNER_LOCAL_ENGINEERING_WITH_NATIVE_G2_API_FIELD_PASS;BATCH_G3_G6_FINAL_ACCEPTANCE_AT_END",
     "installedRuntimeEvidence": {
       "scope": "MAC_OSI_NATIVE_EXISTING_RUNTIME_USER_TERMINAL_AND_NONSECRET_RECEIPT",
       "status": "PASS_NATIVE_SOURCE_INSTALLED_FIELD_APP_REOPEN_REQUIRED",
@@ -458,6 +458,27 @@
         "separateDisplayedWork": "T100_THEORETICAL_100_16_OF_16_VERIFIED",
         "v69G2Line": "NOT_VISIBLE",
         "evidenceRule": "DISPLAYED_VERIFIED_T100_IS_NOT_V69_G2_OR_OFFICIAL_G3_G6_VERIFIED_FINISH"
+      },
+      "liveHttp": {
+        "source": "USER_REPORTED_RAW_LOCAL_OSI_HTTP_2026-10-24T06:54:36Z",
+        "endpoint": "http://127.0.0.1:8765/api/v69/readiness",
+        "statusCode": 200,
+        "status": "PASS_G2_NATIVE_READ_ONLY_CRYPTOGRAPHIC_VERIFICATION",
+        "G2": "PASS_INDEPENDENTLY_VERIFIED_MAC_OSI",
+        "taskId": "ENGURU_MANAGEMENT_V69_PR_203",
+        "rootKeyId": "ed25519-sha256:938083a0de0a78fef1874536b2bdbc5683ab2ae49bc09cae27dec843eaf4c1e1",
+        "registrationSha256": "4f55ed2cdc36ee5bba7e1ea84671d48f769256f5b64c34d5ff907479c629801b",
+        "grantExpiresAt": "2026-10-30T17:47:11.475Z",
+        "writes": 0,
+        "passwordPrompts": 0,
+        "G3": "HOLD_REAL_HUMAN_REVIEW",
+        "G4": "HOLD_CANONICAL_AUDIT",
+        "G5": "HOLD_OWNER_MERGE",
+        "G6": "HOLD_VERIFIED_FINISH",
+        "officialVerifiedFinish": "HOLD",
+        "evidenceComment": "https://github.com/engurulabory/enguru-mac-engineer/pull/16#issuecomment-6381159013",
+        "presentationCaveat": "EXACT_G2_LINE_IN_EXISTING_DONECHECK_MODAL_NOT_YET_SCREEN_OBSERVED",
+        "sourceOfAuthority": "REAL_OWNER_MAC_HTTP_READ_ONLY_VERIFIER_RESPONSE_NOT_FINAL_HUMAN_REVIEW"
       }
     }
   }
