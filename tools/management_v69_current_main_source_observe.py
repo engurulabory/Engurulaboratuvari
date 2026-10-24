@@ -41,7 +41,11 @@ def main():
     sha=api("commits/main",token)["sha"]
     doc=api("contents/"+SOURCE+"?ref="+quote(sha),token)
     raw=base64.b64decode(doc["content"])
-    result=observe(sha,raw,hashlib.sha256(raw).hexdigest())
+    tasks=api("contents/governance/controller/TASKS.json?ref="+quote(sha),token)
+    task_doc=json.loads(base64.b64decode(tasks["content"]))
+    matches=[t for t in task_doc.get("tasks",[]) if t.get("id")=="LABORY_SAFE_REPAIR" and t.get("path")==SOURCE and t.get("target_repo")==REPO]
+    expected=matches[0].get("desired_sha256","") if len(matches)==1 else ""
+    result=observe(sha,raw,expected)
     if result["state"].startswith("PASS_"):
         import pathlib
         dst=pathlib.Path(args.output)
