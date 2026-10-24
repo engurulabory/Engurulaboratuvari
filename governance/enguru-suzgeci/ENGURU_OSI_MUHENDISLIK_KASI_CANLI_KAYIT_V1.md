@@ -523,3 +523,23 @@ NEXT_ACTION=...
 - **Kaynak:** https://github.com/engurulabory/Engurulaboratuvari/pull/203 · SHA-256 `3de88e0889b4fb0240d22970783ccb4e133e339c7c4cf5e982786b3165e6f69b`.
 - **OSi eşleşme kimliği:** `UNSPECIFIED`.
 - **Karar:** `REVIEW_REQUIRED`; ürün kabul sayacı değişimi `0`; kontroller: SOURCE_REVIEW.
+
+### 27. V3.2.8 — Yeni exact-main üzerinde ilk gerçek Mühendislik Kası schedule (24.10.2026)
+
+**Özgün olay kimliği:** `MK-GITHUB-SCHEDULE-NEWMAIN-FIRST-40099097226`. **Doğrudan kaynak:** [Actions run #40099097226](https://github.com/engurulabory/Engurulaboratuvari/actions/runs/40099097226). Bağımsız GitHub run API: `workflow_id=393938055`, `name=ENGURU OSi Muhendislik Kasi - reviewed evidence intake`, `event=schedule`, `head_branch=main`, `head_sha=f5bd85da2c60db4c11bccd74067eef7fc3a6942f` (gözlem anındaki exact current-main), `run_attempt=1`, `2026-10-24T13:39:43Z` (Türkiye 16.39.43), `completed/success`. Jobs API: `five-minute-github-observer=completed/success` (job `120887372164`); `unit-regression` ve `owner-comment-intake` event koşullarına uygun `skipped`.
+
+**Gerçek worker gözlemi:** Logda `ROUND_1=104/104_PASS`, `ROUND_2=104/104_PASS`; `eventsReviewed=1`, `candidateAdded=1`, `macLocalFilesAccessed=0`, `officialAcceptance=UNCHANGED_HOLD`. Worker yalnız inceleme dalına yeni `REVIEW_REQUIRED` GitHub durum adayını yazdı; bu aday canonical Mac OSi yetkili kabulü değildir. Teknik checkpoint ve özgün olay tekilleştirme ayrıca korunur. Bu satır, worker'ın otomatik olay adayının ikinci kopyası değildir; GitHub'ın bağımsız schedule run metadata'sını kaydeder.
+
+**Kaynak sürümüyle ayrılmış sayaç:** Önceki `113d8ffd18a6f36c840770f30f38da6d5900aa43` main için altı gerçek başarılı schedule tarihsel kanıt olarak korunur. Yeni `f5bd85da2c60db4c11bccd74067eef7fc3a6942f` main için `OBSERVED_SUCCESSFUL_SCHEDULE=1/4`, `MEASURED_NEW_MAIN_INTERVALS=0/3`; `FIVE_MINUTE_CADENCE_RELIABILITY=HOLD`. `cron=*/5` bir SLA değildir; uzun aralıkların kesin nedeni `UNKNOWN`.
+
+**Yetki ve gizlilik:** `PR208=MERGED`, `PR203=MERGED`, özel `enguru-mac-engineer PR14=OPEN`; özel kaynak ayrıntıları bu kayda aktarılmadı. Yeni onaylı `TASK_ID+BLOCK_ID` OSi yanıt eşleşmesi bağımsız kanıtla doğrulanmadı. `G6_VERIFIED_FINISH=HOLD`; owner private key, Human Threshold™, signed HumanReview, DoneCheck audit ve exact-main yetkili kabulü ayrı canonical kapılardır.
+
+**Karar:** `PASS_FIRST_NEW_MAIN_REAL_SCHEDULE` · `HOLD_NEW_MAIN_4_RUNS_3_INTERVALS` · `HOLD_CADENCE_RELIABILITY` · `REVIEW_ONLY_LEARNING`. **Sonraki kanıt:** Aynı workflow ve aynı exact-main üzerinde üç yeni ardışık `completed/success` schedule ile üç gerçek başlangıç aralığı.
+
+### 28. V3.2.9 — Yönetim PR #211 CI güvenli duruşu: current-main kaynak kayması (24.10.2026)
+
+**Özgün olay kimliği:** `MK-GITHUB-PR211-CI-SOURCE-DRIFT-40098692519`. **Açık GitHub kaynakları:** [PR #211](https://github.com/engurulabory/Engurulaboratuvari/pull/211), [başarısız CI run #40098692519](https://github.com/engurulabory/Engurulaboratuvari/actions/runs/40098692519). PR `open/merged=false`, HEAD `21f20da606cff9da7b30e64718baa8442dbe4cd2`; PR base SHA `113d8ffd18a6f36c840770f30f38da6d5900aa43` önceki main'e işaret ederken gerçek current-main `f5bd85da2c60db4c11bccd74067eef7fc3a6942f`.
+
+**Doğrudan job logu:** `ENGURU Management V6.9 Review` `verify` job'u `completed/failure`; `tools/enguru_management_v69_operation.py --live` çıktı olarak `reason=CURRENT_MAIN_SOURCE_DRIFT`, `state=HOLD_GUVENLI_DUR`, `official_finish=HOLD` verdi; exit code `50`. Aynı logdaki 14 operasyon testi PASS; bu test sonucu canlı kaynak kayması kapısını geçersiz kılmaz. `donecheck_machine_verify=skipped`. Bu kanıt, kaynak sürümü korumasının gerçek güvenli duruşudur; kesin kök neden için gözlenen main/base farkı yeterlidir, bağımsız başka neden iddiası kurulmaz.
+
+**Karar:** `PASS_OBSERVED_CI_SOURCE_DRIFT_HOLD` · `PR211_REVIEW_CI=HOLD` · `OFFICIAL_FINISH=HOLD`. **Sonraki yetkili mühendislik hareketi:** PR #211 kaynak dayanağını exact current-main ile uzlaştır, gerekli kod/kanıt farkını inceleme dalında gider, gerçek CI'yi yeniden çalıştır ve son HEAD'e bağla. Bu öğrenme kaydı PR merge, owner imzası, özel kaynak aktarımı veya ürün kabulü üretmez.
