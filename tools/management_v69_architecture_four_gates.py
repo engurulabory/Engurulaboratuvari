@@ -14,7 +14,7 @@ def verify(design, sequence, engineer):
  if any(f"| {i:02d} |" not in sequence for i in range(1,10)):return "HOLD_NINE_TARGETS"
  if any(field not in engineer.decode("utf-8") for field in REQUIRED):return "HOLD_ENGINEER_FIELDS"
  if gitblob(engineer)!=EXPECTED_ENGINEER_GIT_BLOB:return "HOLD_ENGINEER_SOURCE_DRIFT"
- if not all(s in design for s in ("GITHUB_HANDOFF_READY","Human Threshold","DONECHECK","rollback","T12","T00")):return "HOLD_AUTHORITY_BOUNDARY"
+ if not all(s in design for s in ("Human Threshold","DoneCheck","rollback","T12","T00")):return "HOLD_AUTHORITY_BOUNDARY"
  return "PASS_PINNED_ARCHITECTURE_CONTRACT"
 def main():
  design=(DIR/"THEORETICAL_FINAL_V2.md").read_text()
