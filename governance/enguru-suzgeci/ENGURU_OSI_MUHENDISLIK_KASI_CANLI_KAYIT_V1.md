@@ -582,3 +582,24 @@ NEXT_ACTION=...
 **OSi ve yetki sınırları:** PR #203 ve #208 birleşmiş; özel `enguru-mac-engineer` PR #14 açık. PR #203/#206 onaylı yorumlarında yeni bağımsız `TASK_ID + BLOCK_ID` yanıt çifti gözlenmedi; unmatched/replay/secret ve özel içerik sınırları korunur. Owner'ın özel kaynakları, PR #14 commit/yorum/CI veya Mac yerel verileri bu açık kayda aktarılmadı. G2–G6 resmî canonical yetki ve Mac DoneCheck audit/HumanReview kabulü ayrı; `VERIFIED_FINISH=HOLD`.
 
 **Karar:** `PASS_DISTINCT_WORKFLOW_IDENTIFICATION` · `HOLD_PR215_LATEST_HEAD_CI_ACTION_REQUIRED` · `HOLD_V3_CURRENT_MAIN_SCHEDULE_1_OF_4` · `REVIEW_ONLY_LEARNING`. **Sonraki hareket:** Son PR #215 HEAD için Actions `action_required` sebebini yetkili GitHub kontrolüyle belirle; gerçek son-HEAD job PASS kanıtını ayrıca topla. Aynı exact-main ve aynı Mühendislik Kası workflow'unda üç ek gerçek `schedule` koşusu ve üç aralık gözle. Owner/DoneCheck/Human Threshold yetkileri korunur.
+
+
+### 32. V3.2.13 — Güncel exact-main üzerinde ikinci gerçek Mühendislik Kası schedule (24.10.2026)
+
+**Özgün olay kimliği:** `MK-GITHUB-SCHEDULE-NEWMAIN-SECOND-40113958525`. **Doğrudan kanıt:** [GitHub Actions run #40113958525](https://github.com/engurulabory/Engurulaboratuvari/actions/runs/40113958525), GitHub run ve jobs API; `workflow_id=393938055`, `event=schedule`, `head_branch=main`, `head_sha=f5bd85da2c60db4c11bccd74067eef7fc3a6942f` (gözlemdeki exact current-main), `run_attempt=1`, `created_at=2026-10-24T16:58:01Z`, `completed/success`. Gerçek `five-minute-github-observer` job `120931272075=completed/success`; diğer event'e özgü işler `skipped`.
+
+**Gerçek log:** `ROUND_1=104/104_PASS`, `ROUND_2=104/104_PASS`; `eventsReviewed=0`, `candidateAdded=0`, `macLocalFilesAccessed=0`, `officialAcceptance=UNCHANGED_HOLD`, `STATE=PASS_NO_NEW_EVIDENCE`. Worker'ın test çıktısındaki `REAL_SCHEDULE=HOLD_NOT_OBSERVED` ifadesi gerçek GitHub run API'siyle ölçülen schedule olayının yerine geçmez; izole test/simülasyon ile dış schedule kanıtı ayrıdır.
+
+**Sürüm-bağlı ölçüm:** Aynı `f5bd85da...` main üzerinde önceki [run #40099097226](https://github.com/engurulabory/Engurulaboratuvari/actions/runs/40099097226) başlangıcı `2026-10-24T13:39:43Z`, yeni başlangıç `2026-10-24T16:58:01Z`; gerçek başlangıç aralığı **3 saat 18 dakika 18 saniye**. `CURRENT_MAIN_MK_SCHEDULE=2/4`, `CURRENT_MAIN_INTERVALS=1/3`; `FIVE_MINUTE_CADENCE_RELIABILITY=HOLD`. Ayrı Five Minute Controller koşuları bu sayaca katılmaz. Uzun aralığın kesin nedeni `UNKNOWN`; cron beş dakikalık deneme hedefidir, SLA değildir.
+
+**Gizlilik ve resmî kabul:** Owner PR #203/#206 yorumlarında yeni bağımsız onaylı `TASK_ID + BLOCK_ID` yanıt çifti gözlenmedi; `MK_WATCH_CHECKPOINT.json` unmatched/replay/secret sınırları korunur. Özel PR #14 içerikleri aktarılmadı. `G2–G6` resmî Mac OSi/DoneCheck ve `VERIFIED_FINISH=HOLD`. **Karar:** `PASS_SECOND_CURRENT_MAIN_REAL_SCHEDULE` · `HOLD_4_RUN_3_INTERVAL_ACCEPTANCE` · `REVIEW_ONLY_LEARNING`.
+
+
+### 33. V3.2.14 — Yönetim PR #211 yeni HEAD üzerinde iki ayrı CI güvenli duruşu (24.10.2026)
+
+**Özgün olay kimliği:** `MK-GITHUB-PR211-HEAD7E31-DUAL-CI-40117592025-40117592029`. **Kaynak:** [PR #211](https://github.com/engurulabory/Engurulaboratuvari/pull/211) `open/merged=false`, güncel HEAD `7e31024a00d3d345229ae568d025ed5875fcd226`; canonical `main=f5bd85da2c60db4c11bccd74067eef7fc3a6942f`. Bu, önceki PR #211 HEAD kayıtlarından ayrı yeni commit ve yeni CI run çiftidir.
+
+**Doğrudan CI ve log:** [Management V6.9 Review #40117592025](https://github.com/engurulabory/Engurulaboratuvari/actions/runs/40117592025) `completed/failure`, gerçek `verify` job `120942029791=failure`; canlı adım `reason=CURRENT_MAIN_SOURCE_DRIFT`, `state=HOLD_GUVENLI_DUR`, `official_finish=HOLD`, exit `50`; `donecheck_machine_verify=skipped`. [V69 Integrated V3 Pinned Source #40117592029](https://github.com/engurulabory/Engurulaboratuvari/actions/runs/40117592029) `completed/failure`, `integrated-v3` job `120942029521=failure`: log `V3_CI=HOLD_EXACT_SOURCE` ve `MISSING_OR_OUTSIDE` sınıfında 10 source path raporladı (01/02/03/05/06/07/09/10 kapsamları). Beş ayrı eşzamanlı CI (Handoff, Final Gate, PARK, IP Gate, IP Fleet) `completed/success`; bu sonuçlar iki başarısız canonical kapının yerine geçmez.
+
+**Karar ayrımı:** Management `CURRENT_MAIN_SOURCE_DRIFT` daha önce gözlenen engel sınıfının yeni HEAD'de sürdüğünü kanıtlar; Integrated V3 `HOLD_EXACT_SOURCE` ayrıca gözlenen gerçek kaynak kapsama engelidir. Kesin düzeltme kök nedeni, kaynak yolları ile canonical manifest'in bağımsız uzlaştırılmasına bağlıdır. `PR211_CURRENT_HEAD_CANONICAL_CI=HOLD`, `OWNER_MERGE=HOLD`; Human Threshold™, private key, imzalı HumanReview, DoneCheck audit, exact-main yetkili merge ve `VERIFIED_FINISH=HOLD` korunur. **Sonraki hareket:** PR #211 HEAD/manifest/source path kanıtını güncel main'e göre uzlaştır; iki başarısız CI kapısını son HEAD üzerinde yeniden ölç. Bu kayıt yalnız review branch öğrenme deltasına aittir.
+
