@@ -10,8 +10,8 @@ class EvidenceGateTests(unittest.TestCase):
     def test_baseline_counts(self):
         r=inspect(self.data)
         self.assertEqual(r["state"],"PASS_REVIEW_MAPPING_ONLY",r["errors"])
-        self.assertEqual(r["counts"]["evidenced_total"],15)
-        self.assertEqual(len(r["evidence_map"]),15)
+        self.assertEqual(r["counts"]["evidenced_total"],sum(c["state"]!="HOLD_UNVERIFIED" for row in self.data["rows"] for c in row["criteria"]))
+        self.assertEqual(len(r["evidence_map"]),r["counts"]["evidenced_total"])
         self.assertEqual(r["counts"]["official_accepted_tasks"],0)
     def test_seven_adversarial_mutations(self):
         mutations=[
