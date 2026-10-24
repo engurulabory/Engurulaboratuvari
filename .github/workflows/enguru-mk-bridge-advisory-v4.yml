@@ -1,0 +1,70 @@
+name: ENGURU MK Bridge V4 Peer Advisories
+on:
+  push:
+    branches:
+      - feat/enguru-mk-bridge-advisory-v4-20261024
+    paths:
+      - 'tools/enguru_mk_bridge_advisory_github_v1.py'
+      - '.github/workflows/enguru-mk-bridge-advisory-v4.yml'
+      - 'governance/enguru-suzgeci/learning/bridge/pilot/streams/mac/**'
+      - 'governance/enguru-suzgeci/learning/bridge/pilot/advice/mac/**'
+  pull_request:
+    paths:
+      - 'tools/enguru_mk_bridge_advisory_github_v1.py'
+      - '.github/workflows/enguru-mk-bridge-advisory-v4.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  advisory-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run original and advisory regressions three rounds
+        run: |
+          for round in 1 2 3; do
+            echo GH_ADVISORY_ROUND=$round
+            python -B tools/enguru_mk_bridge_github_v1.py --self-test
+            python -B tools/enguru_mk_bridge_advisory_github_v1.py --self-test
+          done
+  owner-review-advice:
+    if: github.event_name == 'push' && github.ref_name == 'feat/enguru-mk-bridge-advisory-v4-20261024' && github.actor == github.repository_owner
+    needs: advisory-tests
+    runs-on: ubuntu-latest
+    concurrency:
+      group: enguru-mk-v4-advisory-owner
+      cancel-in-progress: false
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/enguru-mk-bridge-advisory-v4-20261024
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Reconcile existing V1 transport
+        env:
+          ENGURU_MK_OWNER: ${{ github.repository_owner }}
+          ENGURU_MK_ACTOR: ${{ github.actor }}
+        run: python -B tools/enguru_mk_bridge_github_v1.py
+      - name: Accept review-only peer advisories
+        env:
+          ENGURU_MK_OWNER: ${{ github.repository_owner }}
+          ENGURU_MK_ACTOR: ${{ github.actor }}
+        run: python -B tools/enguru_mk_bridge_advisory_github_v1.py
+      - name: Publish review evidence only
+        run: |
+          git add -- governance/enguru-suzgeci/learning/bridge/pilot/
+          if git diff --cached --quiet; then
+            echo STATE=PASS_IDEMPOTENT_NO_DELTA
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'docs(mk): append bounded advisory and next-step receipt'
+          git push origin HEAD:refs/heads/feat/enguru-mk-bridge-advisory-v4-20261024
