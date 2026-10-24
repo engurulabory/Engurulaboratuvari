@@ -33,7 +33,7 @@ jobs:
             echo "V5_GITHUB_ROUND=$round"
             result=$(PYTHONDONTWRITEBYTECODE=1 python -B -m unittest discover -s tests -p test_enguru_mk_intelligence_github_v5.py -q 2>&1)
             echo "$result"
-            echo "$result" | grep -q 'Ran 9 tests'
+            echo "$result" | grep -q 'Ran 11 tests'
             echo "$result" | grep -q '^OK$'
           done
   owner-sanitized-diagnostics:
