@@ -94,3 +94,52 @@ Simülasyon tekrarları yeni puan üreten iş sayısı değildir. Bir testin var
 3. Yetkili bağımsız reviewer → DoneCheck v1.2 → gereken Human Threshold → only then VERIFIED_FINISH.
 
 **STATE → CLAIM → EVIDENCE → NEXT ACTION → VERDICT**. Hedef: ölçütleri gevşeterek değil, onları test edilebilir kılarak 100/100 tasarım kapsamı.
+
+
+## H. 2026-10-24 — G01/G02/G03 tasarım güçlendirme V2 kapanış eki
+
+Bu bölüm önceki temel şema ve sabit D01–D48 kontrol kimliklerini koruyan ek kanıt kaydıdır.
+
+### G01 — Her kontrolün ayrı tasarım oracle'ı
+- [48 ayrı pozitif/negatif/eksik veri fixture'ı](ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json) `ORACLE_D01 ... ORACLE_D48` şeklinde bağlanmıştır.
+- Her `Dnn` matriste bir `oracle_binding` ve tekil sinyal/olumlu/karşıt değer taşır.
+- [Bağımsız tasarım denetleyicisi](../../tools/enguru_tasarim_48_validation_v2.py) olumlu örneğin `DESIGN_CASE_PASS_ONLY`, negatif/eksik örneğin `HOLD_DESIGN_CASE` olduğunu her kontrol için her turda sınar.
+- Bu oracle'lar tasarım sözleşmesinin sentetik örnekleridir. Gerçek uygulama, user experience, native Mac, üretici ve DoneCheck sonucu değildir.
+
+### G02 — Puanın beyan yerine kurallardan hesaplanması
+- Önceki `baseline=211/240` ve `D01..D48` paydası korunmuştur.
+- Puanlayıcı her kontrol için 5 ayrı kanıt kategorisini hesaba katar: `identity`, `contract`, `golden_oracle`, `adversarial_oracle`, `peer_provenance`.
+- `candidate_design_points` alanı okunarak puan verilmez. 48 kayıtta bu beyan alanını `0` yapan bozma simülasyonu bağımsız hesaplamayı değiştirmemiştir.
+- 48 kontrolün her birinde oracle, kaynak veya binding bozma durumlarının tümü toplam puanı düşürür; kritik eksikler olumlu hükme taşınmaz.
+
+### G03 — Muadil kaynak izi
+- Sekiz kaynak ailesinin gerçekten erişilebilir resmî sayfaları; NIST AI RMF, NIST SSDF, DORA, SLSA, OpenSSF Scorecard, LangGraph, Anthropic agent evals ve Google SRE — kontrol bazında URL, kaynak kimliği, mekanizma ve ENGÜRÜ'ye uygulanma gerekçesi olarak [matrise](ENGURU_TASARIM_48_KONTROL_MATRISI_V1.json) eklenmiştir.
+- Uygulama bağı `METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION` olarak sınıflandırılır. 48/48 URL ve kaynak ID eşleşmesi programla doğrulanır; dış metnin her yorumunun akademik akran onayı bu turda verilmemiştir.
+
+### Üç turlu gerçek GitHub kanıtı
+
+- **Commit (ilk doğrulanmış V2):** `96cc2d184ad2e6fc991ba33c8fb4868361310368`.
+- **GitHub Actions:** [ENGURU Design48 Theoretical Falsification #40128561076](https://github.com/engurulabory/Engurulaboratuvari/actions/runs/40128561076).
+- **3 tur × 48 olumlu + 48 negatif + 48 eksik veri = 432 per-control oracle sınaması.**
+- **3 tur × 145 bozma/invariance denemesi = 435/435.**
+- **3 tur × 48 uluslararası kaynak izi = 144/144.**
+- Sabit kurala göre hesaplanan tasarım puanı **her tur 240/240 = 100/100 teorik**.
+- Eski V1 genel karar simülasyonu ve G01/G02/G03 V2 denetimi aynı koşuda `PASS`.
+- Bu iş akışı ayrıca eski tasarım doğrulayıcısını korur; yeni V2 onu yeniden adlandırmaz veya silmez.
+
+### Hüküm ve korunacak sınırlar
+
+```text
+G01_PER_CONTROL_DESIGN_ORACLE=PASS_THEORETICAL
+G02_INDEPENDENTLY_DERIVED_SCORE=PASS_240_240
+G03_SOURCE_MAPPED_PEER_COMPARISON=PASS_DESIGN_CROSSWALK
+THEORETICAL_DESIGN_GATE=PASS_100_100
+INDEPENDENT_HUMAN_DESIGN_REVIEW=HOLD
+PRODUCT_RUNTIME_EVIDENCE=HOLD
+MAC_OSI_FIELD=HOLD
+DONECHECK_OFFICIAL=HOLD
+HUMAN_THRESHOLD_WHEN_REQUIRED=HOLD
+VERIFIED_FINISH=HOLD
+```
+
+Teorik tasarım, baştan kilitlenmiş 48 kontrolün sentetik ve yapısal kanıtı bakımından kapatılmıştır. Sonraki işler önce bağımsız tasarım incelemesi, sonra ürün ve saha kanıtıyla olgunlaştırma olarak ayrı kapılarda korunur. GitHub PR #221 izole inceleme dalıdır, canonical `main` için merge ve yetkili karar ayrıdır.
