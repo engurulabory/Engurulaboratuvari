@@ -1,0 +1,855 @@
+{
+  "schema": "enguru.methods.design48.v1",
+  "baseline_20261024": {
+    "score": "88/100",
+    "kind": "PREVIOUS_EXPERT_DESIGN_ESTIMATE",
+    "not_recomputed": true
+  },
+  "design_target": {
+    "score": "100/100",
+    "kind": "THEORETICAL_48_CONTROL_COMPLETENESS",
+    "requires": "48 of 48 specified plus critical adversarial zero false PASS; independent reviewer separate"
+  },
+  "scope": "ENGURU_LABORY_DESIGN_ONLY",
+  "canonical_v3_sha256": "11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc",
+  "areas": [
+    {
+      "id": "A01",
+      "name": "Niyet, amaç ve strateji",
+      "control_count": 4
+    },
+    {
+      "id": "A02",
+      "name": "ENGÜRÜ Süzgeci™ ve yöntem disiplini",
+      "control_count": 4
+    },
+    {
+      "id": "A03",
+      "name": "Sistem ve yazılım mimarisi",
+      "control_count": 4
+    },
+    {
+      "id": "A04",
+      "name": "Tutarlılık, kaynak ve terminoloji",
+      "control_count": 4
+    },
+    {
+      "id": "A05",
+      "name": "Gereksinim, planlama, iş yönetimi",
+      "control_count": 4
+    },
+    {
+      "id": "A06",
+      "name": "Kurgu, simülasyon, puanlama",
+      "control_count": 4
+    },
+    {
+      "id": "A07",
+      "name": "Mühendislik ve gerçek icra",
+      "control_count": 4
+    },
+    {
+      "id": "A08",
+      "name": "Test, kalite, karşıt değerlendirme",
+      "control_count": 4
+    },
+    {
+      "id": "A09",
+      "name": "Kanıt, bağımsız doğrulama, bitiş",
+      "control_count": 4
+    },
+    {
+      "id": "A10",
+      "name": "Güvenlik, etik, yetki, maliyet",
+      "control_count": 4
+    },
+    {
+      "id": "A11",
+      "name": "Dayanıklılık, süreklilik, otomasyon",
+      "control_count": 4
+    },
+    {
+      "id": "A12",
+      "name": "Yetenek, kullanıcı faydası, uçtan uca hizmet",
+      "control_count": 4
+    }
+  ],
+  "controls": [
+    {
+      "id": "D01",
+      "area_id": "A01",
+      "area": "Niyet, amaç ve strateji",
+      "criterion": "Niyetin açıklığı",
+      "pass_design_condition": "Amaç gerçek kullanıcı faydası ve tek başarı cümlesi taşır",
+      "reject_case": "Fayda belirsizse DESIGN_HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "NIST_AI_RMF"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D02",
+      "area_id": "A01",
+      "area": "Niyet, amaç ve strateji",
+      "criterion": "Tek ana hedef ve başarının tanımı",
+      "pass_design_condition": "Tek GOAL ve sayılabilir özgün kabul kriterleri sabitlenir",
+      "reject_case": "Birden çok bağımsız hedef aynı puana alınırsa HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "NIST_AI_RMF"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D03",
+      "area_id": "A01",
+      "area": "Niyet, amaç ve strateji",
+      "criterion": "Kilitli kararların korunması",
+      "pass_design_condition": "Korunan karar/ref/authority sürüm listesi ve değişiklik kapısı vardır",
+      "reject_case": "Kilitli karar sessizce değiştirilirse HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "NIST_AI_RMF"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D04",
+      "area_id": "A01",
+      "area": "Niyet, amaç ve strateji",
+      "criterion": "Fayda ve gerçek etki ölçümü",
+      "pass_design_condition": "Baseline, ölçüm kaynağı, hedef etki, ölçüm zamanı ve veri yokken HOLD tanımlıdır",
+      "reject_case": "Gerçek metrik olmadan kullanıcı faydası PASS sayılırsa HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "NIST_AI_RMF"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D05",
+      "area_id": "A02",
+      "area": "ENGÜRÜ Süzgeci™ ve yöntem disiplini",
+      "criterion": "Sekiz aşamalı disiplin",
+      "pass_design_condition": "Sekiz aşama açık ve sıra korunur",
+      "reject_case": "Dokuzuncu zorunlu aşama açılırsa HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "NIST_AI_RMF"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D06",
+      "area_id": "A02",
+      "area": "ENGÜRÜ Süzgeci™ ve yöntem disiplini",
+      "criterion": "K1–K8 kabul kontrolleri",
+      "pass_design_condition": "K1–K8 sekiz aşamanın iç kontrolleridir; özgün ID korunur",
+      "reject_case": "Yeni bir core veya ikinci otorite sayılırsa HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "NIST_AI_RMF"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D07",
+      "area_id": "A02",
+      "area": "ENGÜRÜ Süzgeci™ ve yöntem disiplini",
+      "criterion": "İLERLE / GÜVENLİ_DUR kararları",
+      "pass_design_condition": "Araç/kanıt/otoriteye bağlı ilerleme ve durma kararı birlikte belirtilir",
+      "reject_case": "Yetki yokken İLERLE çıkarsa HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "NIST_AI_RMF"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D08",
+      "area_id": "A02",
+      "area": "ENGÜRÜ Süzgeci™ ve yöntem disiplini",
+      "criterion": "Pozitif dilin sistem genelinde uygulanması",
+      "pass_design_condition": "Her katman STATE CLAIM EVIDENCE NEXT_ACTION VERDICT ve olumlu eylem dili taşır",
+      "reject_case": "Kanıtsız kesin PASS üretilirse HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "NIST_AI_RMF"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D09",
+      "area_id": "A03",
+      "area": "Sistem ve yazılım mimarisi",
+      "criterion": "Control Plane / Execution Plane ayrımı",
+      "pass_design_condition": "GitHub, ürün kaynağı, OSi, verifier ve otorite sınırları ayrılır",
+      "reject_case": "GitHub CI doğrudan Mac saha sonucu sayılırsa HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "LANGGRAPH"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D10",
+      "area_id": "A03",
+      "area": "Sistem ve yazılım mimarisi",
+      "criterion": "REUSE → EXTEND → ADAPTER ilkesi",
+      "pass_design_condition": "Yeni core yalnız mevcut üç seçenek kanıtla yetersiz olduğunda önerilir",
+      "reject_case": "Yeni ikiz canonical core yaratılırsa HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "LANGGRAPH"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D11",
+      "area_id": "A03",
+      "area": "Sistem ve yazılım mimarisi",
+      "criterion": "Ürün, çekirdek ve yetki sınırları",
+      "pass_design_condition": "Her bileşende owner, capability, allowed scope ve authority bellidir",
+      "reject_case": "Başka ürün izni otomatik aktarılırsa HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "LANGGRAPH"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D12",
+      "area_id": "A03",
+      "area": "Sistem ve yazılım mimarisi",
+      "criterion": "Sistemler arası gerçek entegrasyon",
+      "pass_design_condition": "Giriş/çıkış şema, toolchain, adapter, timeout ve yetki handoff'u tanımlıdır",
+      "reject_case": "Arayüz uyumu olmadan entegrasyon PASS ise HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "LANGGRAPH"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D13",
+      "area_id": "A04",
+      "area": "Tutarlılık, kaynak ve terminoloji",
+      "criterion": "Canonical V3 ve kaynak kilidi",
+      "pass_design_condition": "V3 SHA-256 ve doğru canonical path kaydedilir",
+      "reject_case": "V3 pin uyumsuzken PASS ise HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "SLSA"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D14",
+      "area_id": "A04",
+      "area": "Tutarlılık, kaynak ve terminoloji",
+      "criterion": "Sürüm / HEAD / kaynak güncelliği",
+      "pass_design_condition": "Her kanıtta ref, commit, artifact, zaman, kapsam ve tazelik bulunur",
+      "reject_case": "Eski HEAD yeni kanıta eş sayılırsa HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "SLSA"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D15",
+      "area_id": "A04",
+      "area": "Tutarlılık, kaynak ve terminoloji",
+      "criterion": "Terminoloji ve sözleşme tutarlılığı",
+      "pass_design_condition": "Değişim tekil ID ile kaynak değişiklik kaydına işlenir",
+      "reject_case": "Aynı terim çelişkili iki hüküm taşırsa HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "SLSA"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D16",
+      "area_id": "A04",
+      "area": "Tutarlılık, kaynak ve terminoloji",
+      "criterion": "Bütün ürün depolarında eşleşme",
+      "pass_design_condition": "Her gerçek ürün için kapsamlı kaynak envanteri ve bağımsız reconcile kapısı vardır",
+      "reject_case": "İncelenmemiş depo tamamlandı sayılırsa HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "SLSA"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D17",
+      "area_id": "A05",
+      "area": "Gereksinim, planlama, iş yönetimi",
+      "criterion": "Ölçülebilir kabul matrisi",
+      "pass_design_condition": "ID REQUIREMENT PASS_CONDITION EVIDENCE VERIFIER AUTHORITY STATE her özgün kontrolde vardır",
+      "reject_case": "Sahipsiz kabul kriteri PASS sayılırsa HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "DORA"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D18",
+      "area_id": "A05",
+      "area": "Gereksinim, planlama, iş yönetimi",
+      "criterion": "Bağımlılık ve kritik yol analizi",
+      "pass_design_condition": "Bağımlılık grafiği, döngü, dış eşik ve kritik yol işaretlidir",
+      "reject_case": "Döngü tespitine rağmen yürütülürse HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "DORA"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D19",
+      "area_id": "A05",
+      "area": "Gereksinim, planlama, iş yönetimi",
+      "criterion": "Bütünleşik iş blokları",
+      "pass_design_condition": "Ortak kaynak bağımlılıklar tek bütünleşik turda korunmuş sırayla işlenir",
+      "reject_case": "Bağımsız kanıt 2 kere sayılırsa HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "DORA"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D20",
+      "area_id": "A05",
+      "area": "Gereksinim, planlama, iş yönetimi",
+      "criterion": "Gerçek devir ve görev sürekliliği",
+      "pass_design_condition": "Handoff GOAL SOURCE_SHA ACCEPTED OPEN AUTHORITY NEXT_ACTION içerir",
+      "reject_case": "Eski sohbet yeni main'in önüne geçirilirse HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "DORA"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D21",
+      "area_id": "A06",
+      "area": "Kurgu, simülasyon, puanlama",
+      "criterion": "Ön simülasyon ve negatif senaryolar",
+      "pass_design_condition": "Mutlu yol, kanıtsızlık, drift, yetki ve kısmi kesinti senaryoları bulunur",
+      "reject_case": "Yalnız mutlu yoldan tam puan verilirse HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "ANTHROPIC_EVALS"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D22",
+      "area_id": "A06",
+      "area": "Kurgu, simülasyon, puanlama",
+      "criterion": "İki/üç turlu değerlendirme",
+      "pass_design_condition": "Özgün 48 ID ve sınama kümesi turlar boyunca sabit kalır",
+      "reject_case": "Tur tekrarı yeni gereksinim sayılırsa HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "ANTHROPIC_EVALS"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D23",
+      "area_id": "A06",
+      "area": "Kurgu, simülasyon, puanlama",
+      "criterion": "Eksik analizi ve rubrik",
+      "pass_design_condition": "Eksik kanıt ile hipotez ve doğrulanmış kök neden ayrı alanlardır",
+      "reject_case": "Hipotez gerçek kök neden sayılırsa HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "ANTHROPIC_EVALS"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D24",
+      "area_id": "A06",
+      "area": "Kurgu, simülasyon, puanlama",
+      "criterion": "Ürünler arası tekrarlanabilir uygulama",
+      "pass_design_condition": "Her senaryo input expected verdict forbidden claim oracle ve source içerir",
+      "reject_case": "Test oracle olmadan PASS verilir ise HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "ANTHROPIC_EVALS"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D25",
+      "area_id": "A07",
+      "area": "Mühendislik ve gerçek icra",
+      "criterion": "GitHub üzerinden kaynak değişikliği",
+      "pass_design_condition": "Yetkili branch, scoped diff, PR, CI ve exact-head durumları ayrı kaydedilir",
+      "reject_case": "Başarılı commit otomatik merge sayılsa HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "DORA"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D26",
+      "area_id": "A07",
+      "area": "Mühendislik ve gerçek icra",
+      "criterion": "Gerçek görev onarımı ve yürütme",
+      "pass_design_condition": "Gerçek çalıştırma output, yan etki ve görev fingerprint'iyle bağlanır",
+      "reject_case": "Sadece tasarım anlatımı gerçek icra sayılırsa HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "DORA"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D27",
+      "area_id": "A07",
+      "area": "Mühendislik ve gerçek icra",
+      "criterion": "Mac OSi / GitHub icra bağlaması",
+      "pass_design_condition": "GitHub artefakt sha ile OSi uygulama/restart/çıktı ayrı kabul edilir",
+      "reject_case": "Sahaya gitmeden OSi PASS sayılırsa HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "DORA"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D28",
+      "area_id": "A07",
+      "area": "Mühendislik ve gerçek icra",
+      "criterion": "Tam otomatik uçtan uca görev döngüsü",
+      "pass_design_condition": "Sadece izinli capability, bounded retry, checkpoint ve human gate ile işleyebilir",
+      "reject_case": "Otomasyon yetki engelini aşıyorsa HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "DORA"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D29",
+      "area_id": "A08",
+      "area": "Test, kalite, karşıt değerlendirme",
+      "criterion": "Gerçek birim ve regresyon testleri",
+      "pass_design_condition": "Her özgün kabul için golden ve regression oracle yolu kayıtlıdır",
+      "reject_case": "NOT_EXECUTED test PASS sayılırsa HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "ANTHROPIC_EVALS"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D30",
+      "area_id": "A08",
+      "area": "Test, kalite, karşıt değerlendirme",
+      "criterion": "Negatif ve güvenlik senaryoları",
+      "pass_design_condition": "Şema, secret, prompt injection, kaynak drift ve yetki negatifleri tanımlıdır",
+      "reject_case": "Sahte makbuz geçerse HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "ANTHROPIC_EVALS"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D31",
+      "area_id": "A08",
+      "area": "Test, kalite, karşıt değerlendirme",
+      "criterion": "PR üzerinde gözlenen CI",
+      "pass_design_condition": "Run id status conclusion exact-head ve kapsam zorunludur",
+      "reject_case": "Yeşil farklı HEAD güncel PASS sayılsa HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "ANTHROPIC_EVALS"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D32",
+      "area_id": "A08",
+      "area": "Test, kalite, karşıt değerlendirme",
+      "criterion": "Bağımsız reviewer kabulü",
+      "pass_design_condition": "Producer ve reviewer bağımsızlığı kimlik ve metotla sınanır",
+      "reject_case": "Kendini doğrulayan producer bağımsız kabul edilirse HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "ANTHROPIC_EVALS"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D33",
+      "area_id": "A09",
+      "area": "Kanıt, bağımsız doğrulama, bitiş",
+      "criterion": "STATE / CLAIM / EVIDENCE ayrımı",
+      "pass_design_condition": "Her iddia açık kaynak ve gerçek gözleme bağlanır",
+      "reject_case": "Model beyanı tek kanıt olarak kullanılırsa HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "SLSA"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D34",
+      "area_id": "A09",
+      "area": "Kanıt, bağımsız doğrulama, bitiş",
+      "criterion": "SHA-256 ve provenance",
+      "pass_design_condition": "Source, builder, toolchain, artifact ve üretim olayı bağlanır",
+      "reject_case": "Sadece hash gerçek build provenance sayılırsa HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "SLSA"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D35",
+      "area_id": "A09",
+      "area": "Kanıt, bağımsız doğrulama, bitiş",
+      "criterion": "Bağımsız ikinci doğrulama",
+      "pass_design_condition": "Ayrı reviewer ya da bağımsız mekanizma ve kaynak tazeliği aranır",
+      "reject_case": "Aynı imzasız üretici kaydı bağımsız sayılırsa HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "SLSA"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D36",
+      "area_id": "A09",
+      "area": "Kanıt, bağımsız doğrulama, bitiş",
+      "criterion": "Üçlü gerçek tamamlanma muhasebesi",
+      "pass_design_condition": "Execution, Evidence, Authority ayrı paydalarla hesaplanır",
+      "reject_case": "Tasarım 100 iken resmî finish verilirse HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "SLSA"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D37",
+      "area_id": "A10",
+      "area": "Güvenlik, etik, yetki, maliyet",
+      "criterion": "Gizli bilgi ve veri sınırları",
+      "pass_design_condition": "Secret, privacy class, egress policy ve güvenli inceleme kapısı tanımlıdır",
+      "reject_case": "Private içerik kamusal PR'ye çıkarsa BLOCKED",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "NIST_SSDF"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D38",
+      "area_id": "A10",
+      "area": "Güvenlik, etik, yetki, maliyet",
+      "criterion": "Human Threshold™ yetki ayrımı",
+      "pass_design_condition": "Owner scope, signer, reviewer, grant, expiry ve real decision ayrıdır",
+      "reject_case": "Sohbet onayı cryptographic grant sayılırsa HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "NIST_SSDF"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D39",
+      "area_id": "A10",
+      "area": "Güvenlik, etik, yetki, maliyet",
+      "criterion": "Fail-closed / HOLD / BLOCKED",
+      "pass_design_condition": "Belirsizlik HOLD, kanıtlı engel BLOCKED ve gerçek PASS şartları tanımlıdır",
+      "reject_case": "Eksik kritik delile PASS denirse HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "NIST_SSDF"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D40",
+      "area_id": "A10",
+      "area": "Güvenlik, etik, yetki, maliyet",
+      "criterion": "Sıfır ek maliyetin gerçek doğrulanması",
+      "pass_design_condition": "Cost boundary, existing quota, local alternative ve charge-before threshold belirtilir",
+      "reject_case": "Ücretli işlem harcama izni olmadan yapılırsa BLOCKED",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "NIST_SSDF"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D41",
+      "area_id": "A11",
+      "area": "Dayanıklılık, süreklilik, otomasyon",
+      "criterion": "Kalıcı kayıt / checkpoint",
+      "pass_design_condition": "TASK_ID, fingerprint, checkpoint, resume koşulu ve audit bağlanır",
+      "reject_case": "Kesintide state kaybolmasına rağmen PASS ise HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "LANGGRAPH"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D42",
+      "area_id": "A11",
+      "area": "Dayanıklılık, süreklilik, otomasyon",
+      "criterion": "Idempotent yeniden yürütme",
+      "pass_design_condition": "Duplicate event, partial side-effect ve replay-key olaylarına karşı kural tanımlıdır",
+      "reject_case": "İki defa yan etkiyle PASS ise HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "LANGGRAPH"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D43",
+      "area_id": "A11",
+      "area": "Dayanıklılık, süreklilik, otomasyon",
+      "criterion": "Gerçek zamanlanmış denetim güvenilirliği",
+      "pass_design_condition": "Config cron ve gerçek run timestamp/interval SLA ayrılır",
+      "reject_case": "Schedule tanımı teslim garantisi sayılırsa HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "LANGGRAPH"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D44",
+      "area_id": "A11",
+      "area": "Dayanıklılık, süreklilik, otomasyon",
+      "criterion": "Saha restart / recovery kabulü",
+      "pass_design_condition": "Restart, rollback, old-head ve recovery test kanıtı zorunludur",
+      "reject_case": "Restart test edilmeden native PASS denirse HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "LANGGRAPH"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D45",
+      "area_id": "A12",
+      "area": "Yetenek, kullanıcı faydası, uçtan uca hizmet",
+      "criterion": "Yöntemlere tek yerden erişim",
+      "pass_design_condition": "Tek atlas, source link ve okunabilir sistem haritası mevcuttur",
+      "reject_case": "Belgesiz yöntem global kanonik sayılırsa HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "GOOGLE_SRE"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D46",
+      "area_id": "A12",
+      "area": "Yetenek, kullanıcı faydası, uçtan uca hizmet",
+      "criterion": "Kullanıcı için kolay ve tek hareketli icra",
+      "pass_design_condition": "Owner müdahaleleri ölçülür, otomasyon/saha yetki işi ayrılır",
+      "reject_case": "İnsan şifresi otomasyona taşınırsa BLOCKED",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "GOOGLE_SRE"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D47",
+      "area_id": "A12",
+      "area": "Yetenek, kullanıcı faydası, uçtan uca hizmet",
+      "criterion": "Gerçek maliyet / süre kazanımının ölçümü",
+      "pass_design_condition": "Lead-time, rework, intervention count ve ölçülen maliyet baseline'a bağlıdır",
+      "reject_case": "Ölçüm yokken yüzde kazanım verilirse HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "GOOGLE_SRE"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    },
+    {
+      "id": "D48",
+      "area_id": "A12",
+      "area": "Yetenek, kullanıcı faydası, uçtan uca hizmet",
+      "criterion": "Baştan sona teslim edilen kullanıcı işi",
+      "pass_design_condition": "Gerçek kabul ve teslim gözlemi, kullanıcı etki metriği ve DoneCheck sonrası kayıtlıdır",
+      "reject_case": "Yalnız rapor üretildi diye ürün bitişi verilirse HOLD",
+      "implementation_scope": "DESIGN_CONTRACT_ONLY",
+      "canonical_source": "governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md",
+      "peer_refs": [
+        "GOOGLE_SRE"
+      ],
+      "design_status": "SPECIFIED",
+      "implementation_state": "NOT_ASSESSED",
+      "real_field_state": "NOT_ASSESSED"
+    }
+  ],
+  "authority": {
+    "self_assessed": true,
+    "independent_review": "HOLD",
+    "github_ci": "SEPARATE",
+    "osi_field": "HOLD",
+    "verified_finish": "HOLD"
+  },
+  "international_comparison": "8 design reference families; source URLs and mapping in linked protocol"
+}
