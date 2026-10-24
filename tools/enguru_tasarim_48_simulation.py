@@ -32,6 +32,11 @@ BASE = dict(
 
 # A synthetic PASS is explicitly different from an actual production acceptance.
 def decision(facts):
+    # Strict, fail-closed type boundary. Python treats "false" as truthy.
+    if type(facts) is not dict or set(facts) != set(BASE):
+        return "HOLD_INVALID_FACTS"
+    if any(type(value) is not bool for value in facts.values()):
+        return "HOLD_INVALID_FACTS"
     if not facts["secret_safe"] or not facts["cost_approved"]:
         return "BLOCKED_RISK"
     ordered = (
@@ -88,6 +93,42 @@ SCENARIOS = (
     ("N24_design_only_no_execution", "executed", "HOLD_EXECUTION")
 )
 
+# Independent edge inputs: typed anomalies, missing fields, multiple simultaneous
+# faults and real-vs-synthetic result boundaries. Three rounds use same fixed oracle.
+EDGE_CASES = (
+    ("E01_false_as_string", {"source_match": "false"}, (), "HOLD_INVALID_FACTS"),
+    ("E02_secret_false_as_string", {"secret_safe": "false"}, (), "HOLD_INVALID_FACTS"),
+    ("E03_missing_owner_key", {}, ("owner_valid",), "HOLD_INVALID_FACTS"),
+    ("E04_extra_untrusted_key", {"self_granted": True}, (), "HOLD_INVALID_FACTS"),
+    ("E05_integer_as_truth", {"source_match": 1}, (), "HOLD_INVALID_FACTS"),
+    ("E06_none_as_owner", {"owner_valid": None}, (), "HOLD_INVALID_FACTS"),
+    ("E07_list_input", None, (), "HOLD_INVALID_FACTS"),
+    ("E08_multi_block_secret_drift", {"secret_safe": False, "source_match": False}, (), "BLOCKED_RISK"),
+    ("E09_multi_drift_donecheck", {"source_match": False, "donecheck_valid": False}, (), "HOLD_SOURCE_DRIFT"),
+    ("E10_not_simulated_not_authorized", {"simulated": False}, (), "EXTERNAL_AUTHORITIES_REQUIRED"),
+    ("E11_missing_evidence_and_owner", {"evidence_valid": False, "owner_valid": False}, (), "HOLD_EVIDENCE"),
+    ("E12_none_simulation", {"simulated": None}, (), "HOLD_INVALID_FACTS")
+)
+
+PEER_KEYS = frozenset({
+    "NIST_AI_RMF", "NIST_SSDF", "DORA", "SLSA",
+    "OPENSSF", "LANGGRAPH", "ANTHROPIC_EVALS", "GOOGLE_SRE"
+})
+
+def test_edge_cases():
+    failed = []
+    for case_id, update, drop, expected in EDGE_CASES:
+        candidate = dict(BASE) if update is not None else []
+        if update is not None:
+            candidate.update(update)
+            for key in drop:
+                candidate.pop(key)
+        actual = decision(candidate)
+        if actual != expected:
+            failed.append({"case": case_id, "expected": expected, "observed": actual})
+    return {"cases": len(EDGE_CASES), "passed": len(EDGE_CASES) - len(failed),
+            "failures": failed}
+
 def validate_matrix(m):
     controls = m.get("controls", [])
     ids = [c.get("id") for c in controls]
@@ -104,8 +145,17 @@ def validate_matrix(m):
     for i, c in enumerate(controls):
         if any(not c.get(k) for k in REQUIRED_KEYS):
             errors.append("INCOMPLETE_" + str(c.get("id")))
-        if not isinstance(c.get("peer_refs"), list) or not c["peer_refs"]:
-            errors.append("MISSING_PEER_" + str(c.get("id")))
+        if (not isinstance(c.get("peer_refs"), list) or not c["peer_refs"]
+                or any(key not in PEER_KEYS for key in c["peer_refs"])):
+            errors.append("MISSING_OR_UNKNOWN_PEER_" + str(c.get("id")))
+        canonical = c.get("canonical_source")
+        if (not isinstance(canonical, str) or not canonical.startswith("governance/")
+                or not (ROOT / canonical).is_file()):
+            errors.append("SOURCE_PATH_" + str(c.get("id")))
+        if not isinstance(c.get("pass_design_condition"), str) or len(c["pass_design_condition"].strip()) < 24:
+            errors.append("WEAK_PASS_RULE_" + str(c.get("id")))
+        if not isinstance(c.get("reject_case"), str) or not any(x in c["reject_case"] for x in ("HOLD", "BLOCKED")):
+            errors.append("WEAK_REJECT_RULE_" + str(c.get("id")))
         if c.get("design_status") != "SPECIFIED":
             errors.append("NOT_SPECIFIED_" + str(c.get("id")))
         if c.get("implementation_state") != "NOT_ASSESSED":
@@ -152,6 +202,7 @@ def run():
     rounds = []
     false_pass = 0
     mutation_results = []
+    edge_results = []
     for ix in range(1, 4):
         cases = []
         for name, changed_key, expected_verdict in SCENARIOS:
@@ -164,6 +215,7 @@ def run():
                 false_pass += 1
             cases.append({"id": name, "expect": expected_verdict, "actual": actual, "pass": ok})
         mutation_results.append(test_matrix_mutations(m))
+        edge_results.append(test_edge_cases())
         rounds.append({
             "round": ix, "kind": ("BASELINE_FALSIFICATION" if ix == 1 else
                                   "DESIGN_REPAIR_VERIFY" if ix == 2 else
@@ -174,6 +226,7 @@ def run():
         })
     ok = (not structural_errors and all(r["pass_count"] == 24 for r in rounds)
           and all(r["pass_count"] == 8 for r in mutation_results)
+          and all(r["passed"] == 12 for r in edge_results)
           and false_pass == 0)
     return {
         "schema": "enguru.methods.design48.simulation-receipt/v1",
@@ -184,6 +237,7 @@ def run():
         "matrix_sha256": hashlib.sha256(raw).hexdigest(),
         "rounds": rounds, "scenarios_per_round": 24, "total_simulated_cases": 72,
         "mutation_rounds": mutation_results, "total_matrix_mutations": 24,
+        "edge_rounds": edge_results, "total_edge_cases": 36,
         "critical_false_pass": false_pass, "structural_errors": structural_errors,
         "independent_review": "HOLD_NOT_EXECUTED",
         "github_exact_head_ci": "SEPARATE_VERIFICATION_REQUIRED",
