@@ -27,6 +27,8 @@ on:
       - 'tools/management_v69_live_provenance_reconcile.py'
       - 'tests/test_management_v69_live_provenance_reconcile.py'
       - 'tests/test_management_v69_current_main_source_observe.py'
+      - 'tools/management_v69_pilot_dual_acceptance.py'
+      - 'tests/test_management_v69_pilot_dual_acceptance.py'
       - 'tools/management_v69_current_main_source_observe.py'
       - '.github/workflows/management-v69-handoff-review.yml'
   workflow_dispatch:
@@ -79,5 +81,7 @@ jobs:
           name: v69-current-main-source-observation
           path: ${{ runner.temp }}/v69-current-main-source.json
           if-no-files-found: error
+      - name: Pilot dual theoretical and field acceptance safety tests
+        run: python3 -m unittest discover -s tests -p 'test_management_v69_pilot_dual_acceptance.py' -v
       - name: Source syntax
         run: python3 -m py_compile tools/management_v69_handoff_verify.py
