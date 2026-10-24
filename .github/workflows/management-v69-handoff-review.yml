@@ -4,6 +4,7 @@ on:
     paths:
       - 'governance/management-v69/handoff/**'
       - 'tools/management_v69_handoff_verify.py'
+      - 'tools/management_v69_osi_dry_run.py'
       - 'tests/test_management_v69_handoff.py'
       - '.github/workflows/management-v69-handoff-review.yml'
   workflow_dispatch:
@@ -16,5 +17,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Python reviewer contract tests
         run: python3 -m unittest discover -s tests -p 'test_management_v69_handoff.py' -v
+      - name: Synthetic OSi pipeline 3x dry-run
+        run: python3 tools/management_v69_osi_dry_run.py
       - name: Source syntax
         run: python3 -m py_compile tools/management_v69_handoff_verify.py
