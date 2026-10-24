@@ -4,13 +4,13 @@
   "baseline": "19 original GitHub tasks; four candidate checkpoints per task; engineering coverage only",
   "counting_rules": {
     "denominator": 76,
-    "ci_evidenced_count": 14,
+    "ci_evidenced_count": 15,
     "scope": "CI and SHA-verified supplied Mac OSi field evidence counted separately; NOT full task or human acceptance",
     "official_accepted_tasks": 0,
     "unsupported_criteria": "HOLD_UNVERIFIED",
     "no_double_count": "each criterion ID counted once",
     "field_evidenced_count": 2,
-    "evidenced_total": 16
+    "evidenced_total": 17
   },
   "rows": [
     {
@@ -110,8 +110,9 @@
         {
           "id": "GH-04-C1",
           "label": "gap matrix",
-          "evidence_run": null,
-          "state": "HOLD_UNVERIFIED"
+          "evidence_run": "40086336570",
+          "state": "CI_EVIDENCED",
+          "note": "Deterministic 19-task gap matrix from existing 76-criterion registry, negative missing-task/criterion tests PASS; full independent gap acceptance stays HOLD."
         },
         {
           "id": "GH-04-C2",
