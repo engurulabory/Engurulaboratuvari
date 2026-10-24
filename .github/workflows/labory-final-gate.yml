@@ -39,6 +39,9 @@ jobs:
       - name: Shared AI behavior tests
         run: python -m unittest discover -s tests -p 'test_shared_ai_behavior.py' -v
 
+      - name: EMUS G07 source-pinned Mac provider live field probe safety
+        run: python -m unittest discover -s tests -p 'test_emus_g07_mac_provider_live_field.py' -v
+
       - name: EMUS G07 zero-cost provider and paid fallback adversarial checks
         run: python -m unittest discover -s tests -p 'test_emus_g07_zero_cost_routes.py' -v
 
