@@ -1,0 +1,62 @@
+name: ENGURU MK Bridge Pilot V1
+on:
+  push:
+    branches:
+      - feat/enguru-mk-bridge-pilot-v1-20261024
+    paths:
+      - 'governance/enguru-suzgeci/learning/bridge/pilot/streams/mac/**'
+      - 'tools/enguru_mk_bridge_github_v1.py'
+      - '.github/workflows/enguru-mk-bridge-pilot-v1.yml'
+  pull_request:
+    paths:
+      - 'tools/enguru_mk_bridge_github_v1.py'
+      - '.github/workflows/enguru-mk-bridge-pilot-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  isolated-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Three GitHub bridge pilot self-test rounds
+        run: |
+          for round in 1 2 3; do
+            echo "GH_BRIDGE_ROUND=$round"
+            python -B tools/enguru_mk_bridge_github_v1.py --self-test
+          done
+  owner-reviewed-delivery:
+    if: github.event_name == 'push' && github.ref_name == 'feat/enguru-mk-bridge-pilot-v1-20261024' && github.actor == github.repository_owner
+    runs-on: ubuntu-latest
+    concurrency:
+      group: enguru-mk-bridge-pilot-owner
+      cancel-in-progress: false
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/enguru-mk-bridge-pilot-v1-20261024
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Append-only event verification and ACK
+        env:
+          ENGURU_MK_OWNER: ${{ github.repository_owner }}
+          ENGURU_MK_ACTOR: ${{ github.actor }}
+        run: python -B tools/enguru_mk_bridge_github_v1.py
+      - name: Publish review-branch replies only
+        run: |
+          git add -- governance/enguru-suzgeci/learning/bridge/pilot/
+          if git diff --cached --quiet; then
+            echo "STATE=IDEMPOTENT_NO_NEW_RECORD"
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'docs(mk): append verified transport ACK and reverse pilot event'
+          git push origin HEAD:refs/heads/feat/enguru-mk-bridge-pilot-v1-20261024
