@@ -8,7 +8,7 @@ AGENTS=ROOT/"AGENTS.md"
 STAGES=[f"T{i:02d}" for i in range(13)]
 def evaluate(content, spec, engineer_excerpt):
  if not all(s in content for s in STAGES):return "HOLD_STAGE_COVERAGE"
- if any(content.count(s+" ")!=1 for s in STAGES):return "HOLD_DUPLICATE_STAGE"
+ if any(sum(line.startswith(s+" ") for line in content.splitlines())!=1 for s in STAGES):return "HOLD_DUPLICATE_STAGE"
  if not all(x in content for x in ("SHA256","rollback","reviewer","owner","HOLD","exact HEAD")):return "HOLD_SAFETY_CONTRACT"
  if not all(x in engineer_excerpt for x in ("canonical_source_commit","required_evidence","rollback_plan","independent_reviewer","target_inventory_pin")):return "HOLD_ENGINEER_CONTRACT"
  if not all(x in spec for x in ("01 | Mimarlık","02 | İş yapma","08 | Mühendislik","09 | İç işleyiş")):return "HOLD_SEQUENCE"
