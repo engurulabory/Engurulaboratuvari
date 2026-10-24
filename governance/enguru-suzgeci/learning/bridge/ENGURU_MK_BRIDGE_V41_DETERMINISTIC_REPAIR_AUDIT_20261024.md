@@ -17,8 +17,8 @@ Mac çıktısında V4 paketinin `--self-test` çalışması 107/107 ×3 PASS; `-
 - Ek regresyon kapsamı: gerçek `python -B <ZIP> --activate/--cycle/--status`; Mac aktivasyon taklidi; mevcut paketle yeniden deneme; beklenen launchd geri dönüşü; yedek çakışması ve SQLite kapatma; yeniden üretilebilir ZIP.
 - **126 özgün test × 3 ayrı subprocess turu = 378/378 PASS.**
 - **Teorik deterministik rubrik 100/100**: CLI yönlendirme 20, hatada kesin HOLD 20, salt-okunur sorgu 20, yedek/rollback 20, bayt düzeyinde yeniden üretim 20.
-- Paket SHA-256: `583da8502a5f18940db0dd13961879be6252ee34db05f51c6bcab7433de52719`.
-- Kanıt makbuzu SHA-256: `9413b3240890cb706c19f26be18c41ef3e4147eecfa6e2f295bd973f7eaf4cb4`.
+- Paket SHA-256: `af033fbb7a5768b870f9c76aded36d5161026fd194d54503fdffa2da27e4bb4e`.
+- Kanıt makbuzu SHA-256: `c7370b4f146b3ca76877302b38129da2907b3fe4069ef66b8dcc4227c097ad25`.
 
 ## Bağımsız saha kabul sınırı
 - GitHub kaynak ZIP CI exact SHA, gerçek Mac V4.1 aktivasyonu, `launchd` yeni agent, SQLite inbox/ack ve iki yönlü öneri+nextStep uygulaması ayrıca gerçek kanıt ister.
