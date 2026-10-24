@@ -28,14 +28,15 @@ def three_rounds(receipts):
     if any(r["outcome"]!="PASS" or not isinstance(r["tests"],int) or isinstance(r["tests"],bool) or r["tests"]<1 for r in receipts):return "HOLD_TEST_EVIDENCE"
     return "PASS_THREE_RECEIPT_STRUCTURE_ONLY"
 
-if __name__=="__main__":
-    if len(sys.argv)!=2:raise SystemExit("Usage: python management_v69_handoff_verify.py JSON_PATH")
-    with open(sys.argv[1],encoding="utf8") as f:
-        data=json.load(f,object_pairs_hook=lambda pairs: strict_pairs(pairs))
-    print(validate(data))
 def strict_pairs(pairs):
     d={}
     for k,v in pairs:
         if k in d:raise ValueError("duplicate key: "+k)
         d[k]=v
     return d
+
+if __name__=="__main__":
+    if len(sys.argv)!=2:raise SystemExit("Usage: python management_v69_handoff_verify.py JSON_PATH")
+    with open(sys.argv[1],encoding="utf8") as f:
+        data=json.load(f,object_pairs_hook=strict_pairs)
+    print(validate(data))
