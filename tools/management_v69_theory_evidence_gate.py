@@ -1,6 +1,6 @@
 """Evidence-bound theoretical acceptance: proof tuples for all 70 formal controls."""
 import re
-from management_v69_formal70 import IDS
+from tools.management_v69_formal70 import IDS
 HEX=re.compile(r"^[0-9a-f]{64}$")
 def assess(records):
     if not isinstance(records,dict):
