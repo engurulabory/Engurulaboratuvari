@@ -45,7 +45,7 @@ def main(paths):
                    "donecheck_v12":"HOLD_CANONICAL_MACHINE_AUTHORITY",
                    "human_threshold":"HOLD_OWNER_APPROVAL_REQUIRED",
                    "verified_finish":"HOLD"},
-        "exact_main_merge":"HOLD_DRAFT_PR_221",
+        "exact_main_merge":"HOLD_UNMERGED_PR_221_READY_FOR_REVIEW",
         "immutable_authority":"DONECHECK_V12_AND_HUMAN_THRESHOLD",
         "next_actions":[
             "Independent reviewer with different authorized identity submits actual GitHub PR review",
