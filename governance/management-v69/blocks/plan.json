@@ -404,7 +404,7 @@
   },
   "native_runtime_binding": {
     "id": "B01_LOCAL_NATIVE_RUNTIME_READONLY_STATUS",
-    "state": "PASS_GITHUB_MACOS_CI_FIELD_INSTALL_PENDING",
+    "state": "PASS_REAL_MAC_SOURCE_INSTALLED_APP_REOPEN_PENDING",
     "scope": "REAL_PYTHON_HTTP_NATIVE_SHELL_PLUS_CONTEXTUAL_DONECHECK_STATUS",
     "repository": "engurulabory/enguru-mac-engineer",
     "pr": 16,
@@ -428,8 +428,29 @@
     "privateKeyPasswordsRequested": 0,
     "canonicalAuditWrites": 0,
     "automatedMerge": false,
-    "separateMacOwnerInstallVerification": "HOLD_NOT_YET_OBSERVED_ON_OWNER_DEVICE",
+    "separateMacOwnerInstallVerification": "PASS_REAL_MAC_FILE_INSTALL_AND_RECEIPT_SHA256_MATCH",
     "G3_G6_OFFICIAL": "HOLD_UNCHANGED",
-    "next": "VERIFY_REAL_NATIVE_MAC_INSTALL_AND_CONTEXTUAL_READ_ONLY_G2_RUNTIME_STATUS_WITHOUT_PASSWORDS"
+    "next": "OWNER_REOPEN_EXISTING_MAC_APP_AND_VERIFY_LIVE_G2_IN_EXISTING_DONECHECK_MODAL",
+    "installedRuntimeEvidence": {
+      "scope": "MAC_OSI_NATIVE_EXISTING_RUNTIME_USER_TERMINAL_AND_NONSECRET_RECEIPT",
+      "status": "PASS_NATIVE_SOURCE_INSTALLED_FIELD_APP_REOPEN_REQUIRED",
+      "originalReceiptSha256": "d9fe4a95c48af61328337dceae7fbcbfabd278b554c0529f25d1bed6d52ecf3d",
+      "shaRecomputed": "PASS_EXACT",
+      "installerZipSha256": "a5c00654d1432779ad994e2c6111cb4a93a9eb6f1ce80d9222f4f4b1c5fdf691",
+      "runtimeAppSha256": "2a09781e4f4d5a368f5d9e4e7801e66ad40a7e00bb97ce39e1d1fa82c3cbaf0e",
+      "runtimeUiSha256": "5e98d3634496cfc34e7bcaf9a5fcd0681481c2bfafacfa7f06f47b6972a332ed",
+      "readinessModuleSha256": "cf4dff63d00bcd407ae34ba51b2d9c1395f2545008ae361c1de310b08005660f",
+      "readinessModuleGitBlob": "dc1aa446cc1dea6402aaca178fcf926c5b28aa2f",
+      "archivedExistingSources": "PASS_ORIGINAL_TWO_FILES_BACKED_UP",
+      "archives": "~/Desktop/AudiV13/ENGURU_V69_NATIVE_BINDING_20261024T062646578865Z",
+      "localPackageTests": "9_OF_9_PASS",
+      "zeroPasswordPrompts": true,
+      "macOwnerTrustWrites": 0,
+      "canonicalLedgerWrites": 0,
+      "githubMerges": 0,
+      "realNativeAppReopen": "HOLD_NOT_YET_OBSERVED",
+      "liveDonecheckModal": "HOLD_NOT_YET_OBSERVED",
+      "evidenceComment": "https://github.com/engurulabory/enguru-mac-engineer/pull/16#issuecomment-6380913232"
+    }
   }
 }
