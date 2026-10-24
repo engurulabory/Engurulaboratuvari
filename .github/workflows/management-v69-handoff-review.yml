@@ -24,6 +24,8 @@ on:
       - 'tests/test_management_v69_single_owner.py'
       - 'tests/test_management_v69_pilot_proof_gates.py'
       - 'tools/management_v69_pilot_proof_gates.py'
+      - 'tools/management_v69_live_provenance_reconcile.py'
+      - 'tests/test_management_v69_live_provenance_reconcile.py'
       - '.github/workflows/management-v69-handoff-review.yml'
   workflow_dispatch:
 permissions:
@@ -61,5 +63,7 @@ jobs:
         run: python3 -m unittest discover -s tests -p 'test_management_v69_single_owner.py' -v
       - name: Pilot source SHA and owner authority adversarial tests
         run: python3 -m unittest discover -s tests -p 'test_management_v69_pilot_proof_gates.py' -v
+      - name: Historical main source drift reconciliation
+        run: python3 -m unittest discover -s tests -p 'test_management_v69_live_provenance_reconcile.py' -v
       - name: Source syntax
         run: python3 -m py_compile tools/management_v69_handoff_verify.py
