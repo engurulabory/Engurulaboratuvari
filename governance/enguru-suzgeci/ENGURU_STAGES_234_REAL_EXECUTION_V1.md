@@ -51,10 +51,22 @@ A3_REAL_USER_CO_DESIGN_PER_PRODUCT=HOLD_CASE_SPECIFIC_DECISION
 A4_EVIDENCE_READINESS=CI_TO_BE_CHECKED
 A4_DONECHECK_V12=HOLD_CANONICAL_AUTHORITY
 A4_HUMAN_THRESHOLD=HOLD_OWNER_APPROVAL
-PR221_MAIN_MERGE=HOLD_DRAFT_AND_REVIEW
+PR221_MAIN_MERGE=HOLD_REVIEW_READY_UNMERGED
 VERIFIED_FINISH=HOLD
 ```
 
 **Sıralı gerçek kapanış:** (i) farklı yetkili reviewer'ın PR incelemesi → (ii) kullanıcıyla seçilmiş gerçek ürün kurgusu + OSi yerel saha icrası ve imzalı/doğrulanmış delil → (iii) korunmuş branch review/merge, exact-main ve DoneCheck v1.2 doğrulaması → (iv) gereken Human Threshold™ → `VERIFIED_FINISH → BITTI_DUR`.
 
 **Kalıcılık:** Üç aşamanın gerçekten tamamlanan alt işlerinin kanıtı korunur; gerçek bitiş yetkisi oluşana kadar açık şartlar ayrı HOLD kalır.
+
+
+## Gerçek GitHub kanıtı — Aşama 2–4 teknik kaydı
+
+- İlk gerçek bütünleşik koşu: [GitHub Actions #40131176035](https://github.com/engurulabory/Engurulaboratuvari/actions/runs/40131176035), commit `966ea16bee7f281f4fde550beb310b555e383599`.
+- Bu koşuda Design48 + Labory Final Gate + IP Model Trust Gate + IP Model Trust Fleet + PARK Adapter CI: **5/5 completed/success**.
+- Aşama 2 `TECHNICAL_SECOND_LOOK=PASS_10_OF_10`; `HUMAN_REVIEW_COUNT=0` (son kontrol).
+- Aşama 3 `REAL_GITHUB_ENGINE_PILOT=PASS_6_OF_6`: tek kalıcı SQLite satırı, değişmeyen gerçek kaynak SHA, iki ayrı Python süreci, eski kaynak reddi, değiştirilmiş makbuz reddi, onarım sonrası bağımsız mekanizma doğrulaması.
+- Aşama 4 `PASS_READINESS_EVIDENCE_OFFICIAL_HOLD`: DoneCheck v1.2, gerçek Mac OSi ve gereken Human Threshold kabulü `HOLD`.
+- Makbuz: [enguru-design48-theory-receipt #12574713394](https://github.com/engurulabory/Engurulaboratuvari/actions/runs/40131176035/artifacts/12574713394).
+- PR #221 bağımsız reviewer erişimi için **ready for review** durumuna geçirildi; `merged=false`. Reviewer kimliği/kararı ayrı kabul kapısı olarak beklenir.
+- Bu ek kaydın ardından daha yeni commitler oluşursa **son HEAD'in CI koşusu ayrıca doğrulanır**.
