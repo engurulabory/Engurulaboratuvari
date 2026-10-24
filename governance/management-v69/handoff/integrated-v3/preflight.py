@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ENGURU V6.9 V3 source-bound CI preflight. Safe HOLD until all 10 source modules are committed."""
 import hashlib,json,pathlib,sys
-ROOT=pathlib.Path(__file__).resolve().parents[3]
+ROOT=pathlib.Path(__file__).resolve().parents[4]
 MANIFEST=pathlib.Path(__file__).with_name("source_manifest.json")
 def main():
     entries=json.loads(MANIFEST.read_text(encoding="utf-8"))
