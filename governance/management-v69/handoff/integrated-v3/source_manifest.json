@@ -1,0 +1,52 @@
+[
+  {
+    "id": "01",
+    "path": "enguru_v69_sim_v2/pilot_v2.py",
+    "source_sha256": "d331e876c9f3aa06caef203df5b3ec18811555cda23b46c6be75b6737d928327"
+  },
+  {
+    "id": "02",
+    "path": "enguru_target02/target02_v3.py",
+    "source_sha256": "d4548a3fc39928bbe3d9b07edd83b20c3a8019353e197a31a908c2d38efd3c58"
+  },
+  {
+    "id": "03",
+    "path": "enguru_target03/finish_v2.py",
+    "source_sha256": "ea7348006b9fd4500fc167b7280cb05e5f31b0a9dcae21684d6e2aed5a6792ec"
+  },
+  {
+    "id": "04",
+    "path": "enguru_target04/comfort_v1.py",
+    "source_sha256": "392639d41e2d5d3a6f42ebcfffe88b59cfcdef69fc8cab6594431309d5d2c273"
+  },
+  {
+    "id": "05",
+    "path": "enguru_target05/flow_v2.py",
+    "source_sha256": "ed3695064da126d65752deac9ed039ca8447d4b5f336d8293d1907bc472c3821"
+  },
+  {
+    "id": "06",
+    "path": "enguru_target06_v2/security_v2.py",
+    "source_sha256": "cb319ac926b5f1bb28682168c220467a34624f19dcd2047c3f8753332f42c31d"
+  },
+  {
+    "id": "07",
+    "path": "enguru_target07_v2/install_v2.py",
+    "source_sha256": "df9df8d3907bed62380294de08add3f8822c9432720b64394e669a7e7e078cb9"
+  },
+  {
+    "id": "08",
+    "path": "enguru_target08_v1/engineering_v1.py",
+    "source_sha256": "8f5510b2a4c78a6b6312eaa79f319b70a9976837d6718027c9e0d682a50e7a85"
+  },
+  {
+    "id": "09",
+    "path": "enguru_t09/pilot_t09_v2.py",
+    "source_sha256": "12fcf01aecd701ab6d71bc0bcb6ad29f32198ae43ffeb97078d1750e28f241b6"
+  },
+  {
+    "id": "10",
+    "path": "enguru_t10/model.py",
+    "source_sha256": "94da9f11077841e88ebf548ce6fc5fcf8c736f47b7187682eee716bda49c5e81"
+  }
+]
