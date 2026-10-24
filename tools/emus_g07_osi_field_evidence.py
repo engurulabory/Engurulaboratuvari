@@ -39,7 +39,8 @@ def inspect(model: str, *, run_inference: bool = False) -> dict:
         return result
     result["ollama_version"] = command("ollama", "--version")
     result["models"] = command("ollama", "list")
-    result["model_details"] = command("ollama", "show", model, "--json")
+    result["model_details"] = command("ollama", "show", model, "--verbose")
+    result["installed_license"] = command("ollama", "show", model, "--license")
     result["loaded_models"] = command("ollama", "ps")
     result["system_memory"] = command("sysctl", "-n", "hw.memsize")
     result["vm_stat_before"] = command("vm_stat")
