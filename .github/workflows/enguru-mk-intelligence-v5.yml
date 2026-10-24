@@ -6,7 +6,7 @@ on:
     paths:
       - 'tools/enguru_mk_intelligence_v5.py'
       - 'tools/enguru_mk_intelligence_github_v5.py'
-      - 'tests/test_enguru_mk_intelligence_v5.py'
+      - 'tests/test_enguru_mk_intelligence_github_v5.py'
       - '.github/workflows/enguru-mk-intelligence-v5.yml'
       - 'governance/enguru-suzgeci/learning/bridge/pilot/streams/mac/**'
       - 'governance/enguru-suzgeci/learning/bridge/pilot/streams/github/**'
@@ -14,7 +14,7 @@ on:
     paths:
       - 'tools/enguru_mk_intelligence_v5.py'
       - 'tools/enguru_mk_intelligence_github_v5.py'
-      - 'tests/test_enguru_mk_intelligence_v5.py'
+      - 'tests/test_enguru_mk_intelligence_github_v5.py'
       - '.github/workflows/enguru-mk-intelligence-v5.yml'
   workflow_dispatch:
 permissions:
@@ -31,7 +31,45 @@ jobs:
         run: |
           for round in 1 2 3; do
             echo "V5_GITHUB_ROUND=$round"
-            PYTHONDONTWRITEBYTECODE=1 python -B -m unittest discover -s tests -p test_enguru_mk_intelligence_v5.py -q
+            result=$(PYTHONDONTWRITEBYTECODE=1 python -B -m unittest discover -s tests -p test_enguru_mk_intelligence_github_v5.py -q 2>&1)
+            echo "$result"
+            echo "$result" | grep -q 'Ran 9 tests'
+            echo "$result" | grep -q '^OK
+          done
+  owner-sanitized-diagnostics:
+    needs: evidence-tests
+    if: github.event_name == 'push' && github.ref_name == 'feat/enguru-mk-bridge-intelligence-v5-20261024' && github.actor == github.repository_owner
+    runs-on: ubuntu-latest
+    concurrency:
+      group: enguru-mk-v5-owner-reviewed
+      cancel-in-progress: false
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/enguru-mk-bridge-intelligence-v5-20261024
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Derive evidence-bound symmetric suggestions
+        env:
+          ENGURU_MK_OWNER: ${{ github.repository_owner }}
+          ENGURU_MK_ACTOR: ${{ github.actor }}
+        run: PYTHONDONTWRITEBYTECODE=1 python -B tools/enguru_mk_intelligence_github_v5.py
+      - name: Store immutable review records
+        run: |
+          git add -- governance/enguru-suzgeci/learning/bridge/pilot/diagnostics/
+          if git diff --cached --quiet; then
+            echo 'STATE=PASS_IDEMPOTENT_DIAGNOSTICS'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'docs(mk): retain sanitized evidence-bound V5 suggestions'
+          git push origin HEAD:refs/heads/feat/enguru-mk-bridge-intelligence-v5-20261024
+
           done
   owner-sanitized-diagnostics:
     needs: evidence-tests
