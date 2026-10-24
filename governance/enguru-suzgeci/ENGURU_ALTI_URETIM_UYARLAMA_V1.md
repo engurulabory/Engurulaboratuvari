@@ -70,3 +70,10 @@ Altı alanda toplam **18 ayrı simülasyon turu**, **12 tanımlı onarım olayı
 - **Aşama 4, kanıtlı olgunluk ve resmî kapanış:** Altı alan hedefi üzerinde gerçek kullanıcı işi ve geçerli kanıt kapsamı ölçülür. Gerekli bağımsız doğrulayıcı, DoneCheck v1.2, Human Threshold ve yetkili nihai kabul ile `VERIFIED_FINISH → BITTI_DUR` yürütülür.
 
 **Kalıcı sabit hedef:** Teori ve tasarımda sağlam karar, gerçek icrada tamamlanmış kanıt, saha üzerinde yetkili gerçek bitiş. `STATE → CLAIM → EVIDENCE → NEXT ACTION → VERDICT`.
+
+
+### Simülasyon teşhis kalitesi — makbuz sözleşmesi
+
+Üç turlu teorik prova, tespit edilen açıklar için `diagnostic` içinde `CONTROL_ID`, `classification`, `observation`, `root_cause_status`, `required_change` kaydeder. **Beş sınıf birlikte aranır:** `missing` (eksik), `need` (ihtiyaç), `requirement` (gereksinim), `error` (hata), `incorrectness` (yanlış). Her uygulanmış tasarım onarımına `before/after`, kaynak ve kontrol kimliği bağlanır.
+
+Örnek kurgunun eksik veri sınıflaması sentetik fixture'larda deterministik bir varsayımdır; sahada gerçek kök neden tespiti için gerçek gözlem ve ayrı doğrulama gerekir. Onarımın puana etkisi her turda sabit 16 kontrol paydasına karşı yeniden hesaplanır.
