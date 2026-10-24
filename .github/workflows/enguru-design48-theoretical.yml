@@ -8,6 +8,11 @@ on:
       - 'tools/enguru_tasarim_48_validation_v2.py'
       - 'tools/enguru_ana_terazi_v1.py'
       - 'tools/enguru_alti_uretim_simulasyon_dongusu_v1.py'
+      - 'tools/enguru_method_second_look_v1.py'
+      - 'tools/enguru_method_github_pilot_v1.py'
+      - 'tools/enguru_method_github_pilot_verify_v1.py'
+      - 'tools/enguru_method_closeout_readiness_v1.py'
+      - 'governance/enguru-suzgeci/ENGURU_STAGES_234_REAL_EXECUTION_V1.md'
       - 'governance/enguru-suzgeci/ENGURU_ALTI_URETIM_ALANI_V1.json'
       - 'governance/enguru-suzgeci/ENGURU_ALTI_URETIM_UYARLAMA_V1.md'
       - 'governance/enguru-suzgeci/ENGURU_ANA_TERAZI_5X100_V1.md'
@@ -89,6 +94,46 @@ jobs:
           assert r["verified_finish"]=="HOLD"
           PY
           cat "$RUNNER_TEMP/enguru-six-domain-repair.json"
+      - name: Stage 2 read-only distinct-mechanism source review
+        run: |
+          python -B tools/enguru_method_second_look_v1.py > "$RUNNER_TEMP/enguru-second-look.json"
+          python -B - "$RUNNER_TEMP/enguru-second-look.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert r["technical_second_look"]=="PASS_10_OF_10"
+          assert len(r["checks"])==10
+          assert r["human_reviewer_approval"]=="HOLD_NO_APPROVAL_RECORD"
+          PY
+          cat "$RUNNER_TEMP/enguru-second-look.json"
+      - name: Stage 3 real GitHub engine pilot SQLite restart tamper and provenance
+        run: |
+          python -B tools/enguru_method_github_pilot_v1.py > "$RUNNER_TEMP/enguru-github-engine-pilot.json"
+          python -B - "$RUNNER_TEMP/enguru-github-engine-pilot.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert r["status"]=="PASS_GITHUB_REAL_ENGINE_PILOT"
+          assert r["checked"]==r["passed"]==6
+          assert r["native_mac_osi_field"]=="HOLD"
+          assert r["donecheck_v12"]=="HOLD"
+          PY
+          cat "$RUNNER_TEMP/enguru-github-engine-pilot.json"
+      - name: Stage 4 evidence reconciliation and official safety HOLD
+        run: |
+          python -B tools/enguru_method_closeout_readiness_v1.py \
+            "$RUNNER_TEMP/enguru-second-look.json" \
+            "$RUNNER_TEMP/enguru-github-engine-pilot.json" \
+            "$RUNNER_TEMP/enguru-ana-terazi-v1.json" \
+            "$RUNNER_TEMP/enguru-six-domain-repair.json" \
+            > "$RUNNER_TEMP/enguru-stage234-readiness.json"
+          python -B - "$RUNNER_TEMP/enguru-stage234-readiness.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert r["verdict"]=="PASS_READINESS_EVIDENCE_OFFICIAL_HOLD"
+          assert r["stage_2"]["official_state"]=="HOLD"
+          assert r["stage_3"]["official_state"]=="HOLD"
+          assert r["stage_4"]["verified_finish"]=="HOLD"
+          PY
+          cat "$RUNNER_TEMP/enguru-stage234-readiness.json"
       - name: Attach theoretical receipt, separate from official DoneCheck
         uses: actions/upload-artifact@v4
         with:
@@ -98,4 +143,7 @@ jobs:
             ${{ runner.temp }}/design48-v2-receipt.json
             ${{ runner.temp }}/enguru-ana-terazi-v1.json
             ${{ runner.temp }}/enguru-six-domain-repair.json
+            ${{ runner.temp }}/enguru-second-look.json
+            ${{ runner.temp }}/enguru-github-engine-pilot.json
+            ${{ runner.temp }}/enguru-stage234-readiness.json
           if-no-files-found: error
