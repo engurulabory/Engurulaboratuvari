@@ -1,0 +1,41 @@
+name: ENGURU Design48 Theoretical Falsification
+on:
+  pull_request:
+    paths:
+      - 'governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md'
+      - 'governance/enguru-suzgeci/ENGURU_TASARIM_48_KONTROL_MATRISI_V1.json'
+      - 'tools/enguru_tasarim_48_simulation.py'
+      - '.github/workflows/enguru-design48-theoretical.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  design48-isolated-simulation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Reproducible 48-control and three-round 24-scenario design verification
+        run: |
+          python -B tools/enguru_tasarim_48_simulation.py > "$RUNNER_TEMP/design48-receipt.json"
+          python -B - "$RUNNER_TEMP/design48-receipt.json" <<'PY'
+          import json, sys
+          r = json.load(open(sys.argv[1], encoding="utf-8"))
+          assert r["verdict"] == "DESIGN_THEORY_CANDIDATE_PASS"
+          assert r["design_control_coverage"] == "48/48"
+          assert r["total_simulated_cases"] == 72
+          assert r["critical_false_pass"] == 0
+          assert all(row["pass_count"] == 24 for row in r["rounds"])
+          assert r["verified_finish"] == "HOLD"
+          assert r["mac_osi_field"] == "HOLD_NOT_EXECUTED"
+          PY
+          cat "$RUNNER_TEMP/design48-receipt.json"
+      - name: Attach theoretical receipt, separate from official DoneCheck
+        uses: actions/upload-artifact@v4
+        with:
+          name: enguru-design48-theory-receipt
+          path: ${{ runner.temp }}/design48-receipt.json
+          if-no-files-found: error
