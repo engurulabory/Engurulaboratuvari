@@ -4,13 +4,13 @@
   "baseline": "19 original GitHub tasks; four candidate checkpoints per task; engineering coverage only",
   "counting_rules": {
     "denominator": 76,
-    "ci_evidenced_count": 13,
+    "ci_evidenced_count": 14,
     "scope": "CI and SHA-verified supplied Mac OSi field evidence counted separately; NOT full task or human acceptance",
     "official_accepted_tasks": 0,
     "unsupported_criteria": "HOLD_UNVERIFIED",
     "no_double_count": "each criterion ID counted once",
     "field_evidenced_count": 2,
-    "evidenced_total": 15
+    "evidenced_total": 16
   },
   "rows": [
     {
@@ -140,8 +140,9 @@
         {
           "id": "GH-05-C1",
           "label": "task schema",
-          "evidence_run": null,
-          "state": "HOLD_UNVERIFIED"
+          "evidence_run": "40085969096",
+          "state": "CI_EVIDENCED",
+          "note": "GH-05 original task acceptance schema 19/19 candidate fixtures and adversarial authority cases; Final Gate GH-05 step PASS; actual per-task source authority and independent acceptance remain HOLD."
         },
         {
           "id": "GH-05-C2",
