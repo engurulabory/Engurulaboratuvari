@@ -6,9 +6,9 @@ DIR=ROOT/"governance/management-v69/handoff"
 EXPECTED_ENGINEER_GIT_BLOB="f5621c13916c497a081a63e8bdb84816311deb9a"
 REQUIRED=("task_id","canonical_source_commit","canonical_source_sha256","required_evidence","executor_scope","rollback_plan","producer","independent_reviewer","owner_grant_ref","accepted_control_ids","open_control_ids","target_inventory_pin","exact_head","acceptance_state")
 def gitblob(content):
- return hashlib.sha1(b"blob "+str(len(content)).encode()+b"\\0"+content).hexdigest()
+ return hashlib.sha1(b"blob "+str(len(content)).encode()+b"\0"+content).hexdigest()
 def verify(design, sequence, engineer):
- defs=[re.match(r"^(T\\d\\d) ",line) for line in design.splitlines()]
+ defs=[re.match(r"^(T\d\d) ",line) for line in design.splitlines()]
  defs=[m.group(1) for m in defs if m]
  if defs!=[f"T{i:02d}" for i in range(13)]:return "HOLD_STAGE_GRAPH"
  if any(f"| {i:02d} |" not in sequence for i in range(1,10)):return "HOLD_NINE_TARGETS"
@@ -28,7 +28,7 @@ def main():
    (design.replace("T06 ","TXX ",1),sequence,engineer,"HOLD_STAGE_GRAPH"),
    (design,sequence.replace("| 09 |","| XX |"),engineer,"HOLD_NINE_TARGETS"),
    (design,sequence,engineer.replace(b"rollback_plan",b"rollback_none"),"HOLD_ENGINEER_FIELDS"),
-   (design,sequence,engineer+b"\\n", "HOLD_ENGINEER_SOURCE_DRIFT"),
+   (design,sequence,engineer+b"\n", "HOLD_ENGINEER_SOURCE_DRIFT"),
    (design.replace("Human Threshold","Human X",1),sequence,engineer,"HOLD_AUTHORITY_BOUNDARY")]
   for d,s,e,expected in tests:
    result=verify(d,s,e)
