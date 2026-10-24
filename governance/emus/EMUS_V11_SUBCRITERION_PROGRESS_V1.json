@@ -4,7 +4,7 @@
   "baseline": "19 original GitHub tasks; four candidate checkpoints per task; engineering coverage only",
   "counting_rules": {
     "denominator": 76,
-    "ci_evidenced_count": 11,
+    "ci_evidenced_count": 12,
     "scope": "CI checkpoints only, not original task completion or authorized acceptance",
     "official_accepted_tasks": 0,
     "unsupported_criteria": "HOLD_UNVERIFIED",
@@ -258,8 +258,8 @@
         {
           "id": "GH-09-C1",
           "label": "fixed benchmark cases",
-          "evidence_run": null,
-          "state": "HOLD_UNVERIFIED"
+          "evidence_run": "40013986474",
+          "state": "CI_EVIDENCED"
         },
         {
           "id": "GH-09-C2",
