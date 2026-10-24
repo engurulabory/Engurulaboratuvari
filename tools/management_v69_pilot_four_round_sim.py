@@ -1,5 +1,5 @@
 """Four-round Pilot theoretical acceptance simulation; all field authority remains external."""
-from tools.management_v69_pilot_dual_acceptance import assess, THEORY_KEYS, FIELD_KEYS
+from management_v69_pilot_dual_acceptance import assess, THEORY_KEYS, FIELD_KEYS
 
 def simulate():
     cases = [
