@@ -9,11 +9,13 @@ def main():
         print("HOLD_MANIFEST_COUNT");return 1
     bad=[]
     for entry in entries:
-        path=(ROOT/entry["path"]).resolve()
-        if not path.is_relative_to(ROOT) or not path.is_file():
-            bad.append((entry["id"],"MISSING_OR_OUTSIDE"));continue
-        observed=hashlib.sha256(path.read_bytes()).hexdigest()
-        if observed!=entry["source_sha256"]:bad.append((entry["id"],"SHA_DRIFT"))
+        for item in [entry, *entry.get("dependencies", [])]:
+            path=(ROOT/item["path"]).resolve()
+            label=entry["id"]+":"+item["path"]
+            if not path.is_relative_to(ROOT) or not path.is_file():
+                bad.append((label,"MISSING_OR_OUTSIDE"));continue
+            observed=hashlib.sha256(path.read_bytes()).hexdigest()
+            if observed!=item["source_sha256"]:bad.append((label,"SHA_DRIFT"))
     if bad:
         for n,why in bad:print("HOLD_SOURCE",n,why)
         print("V3_CI=HOLD_EXACT_SOURCE");return 1
