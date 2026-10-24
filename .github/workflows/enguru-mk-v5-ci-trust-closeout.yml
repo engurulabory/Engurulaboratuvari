@@ -1,0 +1,89 @@
+name: ENGURU MK V5 Readonly Authenticated CI Gate
+on:
+  push:
+    branches:
+      - feat/enguru-mk-v5-ci-trust-closeout-20261024
+    paths:
+      - '.github/workflows/enguru-mk-v5-ci-trust-closeout.yml'
+  pull_request:
+    paths:
+      - '.github/workflows/enguru-mk-v5-ci-trust-closeout.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  authenticated-historical-correction:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Three rounds of V5 and real-case independent regression
+        run: |
+          set -euo pipefail
+          for round in 1 2 3; do
+            echo "TRUST_GATE_ROUND=$round"
+            python -B -m unittest discover -s tests -p test_enguru_mk_intelligence_github_v5.py -q
+            python -B -m unittest discover -s tests -p test_mk_real_regression_case_v1.py -q
+          done
+      - name: Verify immutable source pins and authenticated historical GitHub CI
+        env:
+          GH_AUTH: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib, json, os, urllib.request
+          root='engurulabory/Engurulaboratuvari'
+          owner='engurulabory'
+          commit='80b2ca7fde92ec74c3e08229ac179ff8f5c27a3b'
+          branch='feat/enguru-mk-verified-learning-regression-20261024'
+          regression='.github/workflows/enguru-mk-v5-real-regression-verify.yml'
+          pins={
+            'governance/enguru-suzgeci/learning/bridge/evidence/v4_dispatch_legacy_entrypoint.txt':'ac9c058ad8b0e05c5702da61b6462b1353adee1b284656675f0699bd87476d98',
+            'governance/enguru-suzgeci/learning/bridge/evidence/v4_dispatch_repaired_entrypoint.txt':'d23588e0996d1e20ce1a17974d1c3fd4d1cd4b39333371f36de7cd456b19f0da',
+            'tests/test_mk_real_regression_case_v1.py':'60741ff3f537fd979652bf1ec147e82bc2d65b834f40af1ad0314b6368d00d04',
+            regression:'05d1809d3d0bd869d7b814d73ea46a47bed2e8a874463fa73e00e8b549b71790',
+          }
+          for path,digest in pins.items():
+            assert hashlib.sha256(open(path,'rb').read()).hexdigest()==digest, 'HOLD_PIN:'+path
+          token=os.environ.get('GH_AUTH','')
+          assert len(token)>12, 'HOLD_API_AUTH'
+          def get(path):
+            req=urllib.request.Request('https://api.github.com'+path,headers={
+              'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json',
+              'X-GitHub-Api-Version':'2022-11-28'})
+            with urllib.request.urlopen(req,timeout=20) as res:
+              assert res.status==200, 'HOLD_HTTP'
+              data=res.read(1024*1024+1)
+              assert len(data)<=1024*1024, 'HOLD_RESPONSE_SIZE'
+              return json.loads(data)
+          runs={
+            40116582389:('push',regression),
+            40116627850:('pull_request',regression),
+            40116627848:('pull_request','.github/workflows/ip-model-trust-fleet.yml'),
+          }
+          for run_id,(event,path) in runs.items():
+            r=get('/repos/'+root+'/actions/runs/'+str(run_id))
+            assert r['id']==run_id and r['event']==event and r['path']==path, 'HOLD_RUN_ID'
+            assert r['head_sha']==commit and r['head_branch']==branch, 'HOLD_RUN_SOURCE'
+            assert r['repository']['full_name']==root and r['actor']['login']==owner, 'HOLD_RUN_ACTOR'
+            assert r['status']=='completed' and r['conclusion']=='success', 'HOLD_RUN_CONCLUSION'
+          jobs=get('/repos/'+root+'/actions/runs/40116627850/jobs?per_page=100')['jobs']
+          assert len([j for j in jobs if j.get('name')=='independent-regression' and
+            j.get('status')=='completed' and j.get('conclusion')=='success'])==1, 'HOLD_INDEPENDENT_JOB'
+          pr=get('/repos/'+root+'/pulls/218')
+          assert pr['head']['sha']==commit and pr['head']['ref']==branch and pr['state']=='open', 'HOLD_PR_SOURCE'
+          assert pr['base']['sha']=='aa5bf2d481c0fe937cb14ced798bcf1201fa19c6','HOLD_PR_BASE'
+          receipt={
+            'schema':'enguru.mk.ci-trust-proof/v1','caseId':'CASE-V4SILENTCLI20261024',
+            'sourceCommit':commit,'verifiedWorkflowRuns':sorted(runs),'sourcePins':len(pins),
+            'correctionEvidence':'PASS_AUTHENTICATED_GITHUB_CI_SOURCE_LEVEL',
+            'verifiedLearning':'HOLD_MULTI_CASE_INDEPENDENT_OUTCOMES',
+            'v5ExactHeadCI':'HOLD_PR217_CURRENT_HEAD',
+            'officialAcceptance':'HOLD_CANONICAL_DONECHECK',
+            'productWrites':0,
+          }
+          print(json.dumps(receipt,sort_keys=True))
+          PY
