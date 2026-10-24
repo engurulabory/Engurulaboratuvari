@@ -499,10 +499,10 @@
       "macFieldInstallerSha256": "08f994a6aaf35a59fafbe74c5d3ebba846790d966d9cbb9129cf500a114da979",
       "isolatedInstallerSimulations": "3_X_12_OF_12_PASS",
       "atomicAndRollbackSimulation": "PASS",
-      "realMacUpdatedDrawer": "PASS_SOURCE_INSTALLED_FIELD_RENDER_HOLD",
+      "realMacUpdatedDrawer": "PASS_MAC_SOURCE_INSTALLED_HOLD_VISUAL_G2_ROW_ABSENT",
       "G3_G6_OFFICIAL": "HOLD",
       "evidenceUrl": "https://github.com/engurulabory/enguru-mac-engineer/pull/16#issuecomment-6381304461",
-      "next": "VERIFY_LIVE_SERVE_STATIC_UI_MATCHES_NEW_MAC_SHA_AND_PRESENTS_G2_LOCAL_PASS_IN_EXISTING_STATUS_DRAWER",
+      "next": "MAC_READ_ONLY_COMPARE_SERVED_HTML_SHA_WITH_EXPECTED_V2_SOURCE_AND_CHECK_V69_DOM_MARKERS_BEFORE_PROPOSING_ANOTHER_PATCH",
       "fieldV1Outcome": {
         "result": "HOLD_SAFE_NO_UNVERIFIED_ACCEPTANCE",
         "reason": "HOLD_GITHUB_REVIEW_EXACT_BLOB_IDENTITY",
@@ -539,8 +539,18 @@
         "passwordPrompts": 0,
         "trustWrites": 0,
         "ledgerWrites": 0,
-        "macVisualAcceptance": "HOLD_USER_APP_REFRESH_REQUIRED",
-        "actualServedUiShaCheck": "HOLD_PENDING_LIVE_HTTP"
+        "macVisualAcceptance": "HOLD_REAL_OSI_SCREENSHOT_NO_V69_G2_ROW",
+        "actualServedUiShaCheck": "HOLD_PENDING_LIVE_HTTP",
+        "screenshotObserved": {
+          "source": "USER_SUPPLIED_SCREENSHOT_EKRAN_RESMI_2026_10_24_105737",
+          "showsNativeRunning": true,
+          "showsExistingStatusDrawer": true,
+          "shownTask": "T100_THEORETICAL_100_VERIFIED_16_OF_16",
+          "exactV69G2RowVisible": false,
+          "rootCause": "HOLD_ACTUAL_RENDER_SURFACE_TO_BE_RECONCILED_WITH_PINNED_ON_DISK_UI",
+          "receiptSha256": "3da0b57c780d7a5422b5f0e1dc6ef20a231e0236c934664c6b2826cb1e49d18e",
+          "evidenceUrl": "https://github.com/engurulabory/enguru-mac-engineer/pull/16#issuecomment-6381748525"
+        }
       }
     }
   }
