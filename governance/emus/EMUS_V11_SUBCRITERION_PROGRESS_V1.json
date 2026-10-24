@@ -9,8 +9,8 @@
     "official_accepted_tasks": 0,
     "unsupported_criteria": "HOLD_UNVERIFIED",
     "no_double_count": "each criterion ID counted once",
-    "field_evidenced_count": 1,
-    "evidenced_total": 14
+    "field_evidenced_count": 2,
+    "evidenced_total": 15
   },
   "rows": [
     {
@@ -282,7 +282,10 @@
           "id": "GH-09-C4",
           "label": "real performance data",
           "evidence_run": null,
-          "state": "HOLD_UNVERIFIED"
+          "state": "FIELD_EVIDENCED",
+          "evidence_file": "EMUS_G07_OSI_V2_20261024T075239Z.json",
+          "evidence_sha256": "ab0b6ed8d92ff49a3d45d94f81f1d02289bd8fe4d4bdac6a4b3b8ac51c5fad7e",
+          "note": "OSi qwen3:14b digest bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8; Q4_K_M; ollama /api/ps size_vram 9769446276 bytes; 3.485s inference; response_match=true; eval_count=8; full product memory budget separate HOLD."
         }
       ]
     },
