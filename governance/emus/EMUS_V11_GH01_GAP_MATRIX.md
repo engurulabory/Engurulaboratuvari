@@ -1,0 +1,89 @@
+# EMÜS V1.1 — GH-01 Kaynak Envanteri ve GAP_MATRIX (ilk doğrulanmış kesit)
+Tarih: 2026-10-23
+Base main: 113d8ffd18a6f36c840770f30f38da6d5900aa43
+STATE: PARTIAL_READ_ONLY_DISCOVERY / GAP_MATRIX_PRELIMINARY / GH01_HOLD
+
+## Kaynak kanıtları (Git blob SHA-1; SHA-256 ile karıştırılmamalı)
+| Kaynak | Blob SHA-1 | Gözlem |
+|---|---|---|
+| AGENTS.md | 0a08f2e4202bbf240760cb0abd30e6a826531688 | Sekiz aşama, V3 kaynak önceliği, yetki sınırı |
+| governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md | 7f47f3c6d3ee5c5138e53b67ae46cced37cb1a61 | K1–K8, bağımsız kanıt düzeyleri, tamamlama muhasebesi |
+| governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_V3_LOCK.json | b5ba280e60924f33f601a826aa0b243c74f5674f | V3 kaynak blob SHA eşleşiyor; GitHub bağlantısından okunan UTF-8 içeriğin SHA-256 değeri canonical lock ile eşleşti (2026-10-23) |
+| tools/mac_engineer_control.py | 906336b57e32bcffca6d68df544a5c1a866bffad | Tek kontrol noktası adayı; v0.6 bağlantıları; mevcut ürünün tamamı doğrulanmadı |
+| tools/package3_working_memory_donecheck.py | abbf8cf62f2d9c1bbfd71923ed44b4532c1d8829 | PersistentWorkingMemory restart/revision test örnekleri var |
+| governance/mac-engineer/DONECHECK_AUTHORITY_MODEL_V1.md | a3fa94c6a65ae768259dea40f066e09ede5ace63 | DoneCheck v1.2 ve Human Threshold™ birbirinden ayrılmış; resmî yetki bu belgeyle PASS değildir |
+
+## İlk gerekli fark değerlendirmesi
+| Kontrol | Mevcut aday | Durum | Gerekli gerçek hareket |
+|---|---|---|---|
+| K01 çok araçlı icra | Mac Engineer control plane | PARTIAL | Aktif ürün deposu ve görev çalışma sözleşmesiyle bire bir eşleştirme |
+| K02 dayanıklılık | shared_ai.working_memory, package3 test | PARTIAL | Mevcut kalıcı görev mekanizmaları, idempotency, crash recovery ve tekrar testlerini karşılaştır; SQLite yalnız kanıtlı fark için aday |
+| K03 yetki | DoneCheck Authority Model v1 | PARTIAL | Yetkili owner/reviewer/issuer kaynağı, canlı grant ve audit uzlaştırması |
+| G01 görev yeterliliği | V3 kabul matrisi | PARTIAL | Model/araç yetenek testi ve görev kabul sözleşmesini ölçme |
+| G02 kalıcı defter | PersistentWorkingMemory adayı | PARTIAL | Şema, backend, checkpoint ve failover incelemesi |
+| G03 kaynak bütçesi | Mac Engineer kontrol girişi | UNKNOWN | Gerçek yerel model/RAM/disk limit testleri |
+| G04 kanıt | V3 ve DoneCheck | PARTIAL | EMÜS görev kanıt zarfı ve oracle |
+| G05 güven | Human Threshold™ canonical ilkeleri | PARTIAL | EMÜS etkili araç izin matrisi |
+| G06 köken/hafıza | shared_ai adayı | UNKNOWN | Canonical hafıza ve veri yaşam döngüsü incelemesi |
+| G07 benchmark | V3 kabul standardı | PARTIAL | EMÜS sabit gerçek görev benchmark'ı |
+| G08 kurulum | Mac Engineer preflight adayları | PARTIAL | Güncel model ağırlığı lisansı, offline ve rollback |
+| G09 sürüm | V3 kaynak kilidi | PARTIAL | EMÜS model/Skill/görev lock matrisi |
+| G10 geçiş | V3 K1–K8 | PARTIAL | GH-04 resmî kabul ve ayrı OSi readiness gate |
+
+## Kesin kalan GH-01 işleri
+1. Yönetim/İcra/Mac Engineer ürün depolarının gerçek default branch ve HEAD kimliklerini bağımsız doğrula.
+2. V3 GitHub API'den alınan UTF-8 içeriğinin SHA-256 kilidi eşleşti: `11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc`; Git blob SHA-1 da eşleşti. Diğer ürün dosyalarının SHA-256 bütünlüğü ve yerel OSi kaynağı ayrıca karşılaştırılacak.
+3. Her kontrol için üretim kodu, test, CI ve yetki kanıtı topla; ardından EXISTS/PARTIAL/MISSING/UNKNOWN sınıflarını güncelle.
+4. Yetki kökü ve owner kararına göre GH-01 bağımsız tamamlanma hükmünü ver.
+
+## Korunan hüküm
+Tasarım kapsamı 100/100, ancak gerçek `GH-01=HOLD`; `GH-02–04=HOLD`, `OSI=HOLD`. Yeni review PR, canonical merge veya resmî DoneCheck makbuzu anlamına gelmez.
+
+## 2026-10-23 — Kanıtlı SHA ve yetki ayrımı
+- GitHub `main` V3 kaynağı doğrudan okundu; SHA-256, salt JavaScript uygulamasıyla UTF-8 içerikten hesaplandı. `sha256('abc')` bilinen test vektörü PASS; hesaplanan V3 SHA-256 canonical kilit değeriyle eşleşti. Git blob SHA-1 de kilitle eşleşti.
+- Bu doğrulama bağlantının döndürdüğü kaynak metni için geçerlidir; bağımsız ham Git blob aktarımı ve OSi yerel eşleşmesi ayrı kapıdır.
+- `governance/mac-engineer/DONECHECK_AUTHORITY_MODEL_V1.md` rol sırasını açıklıyor; EMÜS'e özel geçerli reviewer/issuer/owner grant veya imza makbuzu henüz kanıtlanmadı.
+- GH-01 = PARTIAL, GH-02 = PARTIAL, GH-03/04 = HOLD; insan onayı korunur.
+
+## GH-01 — Yönetim/İcra ve gerçek yetki uzlaştırması (2026-10-23)
+- Yönetim güncel görünür aday: `governance/enguru-suzgeci/ENGURU_OSI_MUHENDISLIK_KASI_CANLI_KAYIT_V1.md` (Git blob SHA-1 `538b1ae4321488112fabffa0112739d696ab5378`), `ENGURU_MANAGEMENT_V69_PR_203` için kaynak/CI kanıtı gösteriyor. Bu kayıt PR #203'e özgüdür, EMÜS owner grant'i değildir.
+- Paylaşılan İcra mimarisi: `governance/ENGURU_VERIFIED_AGENT_OPERATING_CORE_V0_1.md` (Git blob `5ee98d4615a1764973d955543f2fb5ecdf8b8b79`) mimari VISION LOCKED, implementation evidence-gated; tek başına aktif ürün icra yetkisini kanıtlamaz.
+- Mac Engineer icra eşlemesi: `governance/mac-engineer/CAPABILITY_EXECUTION_BINDING_V1.json` (Git blob `419bff0005109644938aae08b8e0b4421af8098b`) yalnız kanıtlı/registered handler'lar üzerinden araç kullanımını kabul ediyor, eksik binding HOLD. Bu dosya yeni yetki üretmiyor.
+- Ürün/çekirdek haritası: `governance/ENGURU_PRODUCT_CORE_MAP.md` (Git blob `1b240b7a9a63aa67ad1c0898a8c78639f57d591b`) envanter durumu HOLD; tam depo ve embedded-core incelemesi açık.
+- Yönetim saha kaydına göre PR #203 için teknik verifyTask 4/4 PASS raporlanırken owner trust, Ed25519 key/grant, HumanReview, ledger ve merge HOLD. EMÜS'e aynı PASS veya yetki aktarımı yapılmaz.
+- `governance/mac-engineer/DONECHECK_AUTHORITY_MODEL_V1.md` teknik producer → DoneCheck v1.2 → Human Threshold sırasını tanımlar. EMÜS'e özgü canlı owner/reviewer/issuer grant, imza/receipt ve yetki geçerliliği bu kaynaklarda kanıtlanmadı: `HOLD_AUTHORITY`.
+- GH-01 kaynak keşif kapsamı genişletildi; gerçek canonical İcra sürüm/owner doğrulaması, özel ürün kaynak geçerliliği ve EMÜS-specific authority kanıtı hâlâ açık. Bu kaynak keşfi kaynakların yokluğunu ispatlamaz.
+- Karar: `GH01=PARTIAL`, `GH02=PARTIAL`, `GH03/04=HOLD`, `OSI_READY=HOLD`. İlgisiz ürünün grant'i EMÜS'e uygulanmaz.
+
+## 2026-10-23 — DoneCheck yetki uygulaması kaynak keşfi
+- Canonical ürün deposu `engurulabory/donecheck` GitHub bağlantısında bulundu; `main` üzerinde `src/domain/donecheck/verification-engine.ts` gerçek `verifyTask` uygulaması, `src/runtime/node/reviewer-attestation.ts` imzalı reviewer doğrulama altyapısı ve `src/runtime/node/verified-finish-runtime.ts` kapanış uygulaması kaynakları görüldü.
+- `README.md` DoneCheck'in Ed25519 reviewer kimlik doğrulaması, reviewer-karar yetkilendirmesi, değişiklik izli JSONL ledger ve ancak makine PASS + kriptografik yetkili insan kabulü sonrası `recordVerifiedFinish()` makbuzu tanımladığını bildiriyor. Bu satırlar **ürün yeteneği kaynak kanıtıdır**; EMÜS için verilmiş grant, kayıtlı reviewer, gerçek imza veya makbuz değildir.
+- EMÜS görev kimliğiyle eşlenen canlı reviewer public key/allowlist, issuer grant, imzalı human review, yetkili ledger ve exact-main receipt henüz doğrulanmadı: `EMUS_AUTHORITY=HOLD`.
+- Sade yöntem: mevcut DoneCheck yetki kökünü kullan; yeni reviewer, issuer, ikinci ledger veya bağımsız kabul motoru kurma. EMÜS görev kapsamı ve mevcut güven kökü ayrı kanıtlarla uzlaştırıldığında kabulü değerlendir.
+- Bu tur salt kaynak keşfi + kayıt; `GH01_PARTIAL / GH02_PARTIAL / GH03_HOLD / GH04_HOLD / OSI_READY_HOLD`.
+
+## 2026-10-23 — DoneCheck v1.2 gerçek kapanış kapıları (kaynak kodu)
+- `engurulabory/donecheck/src/runtime/node/reviewer-attestation.ts` Git blob SHA-1 `07a498195598daf4b5e9d3b5f7328593b3f5d9f4`: `ReviewerAuthority` kaydı `reviewerId`, `keyId`, `publicKeyPem`, opsiyonel `allowedDecisions` alanlarını taşır; `verifyHumanReviewAttestation` imza, kimlik, keyId, zaman ve izin verilen kararı denetler.
+- `engurulabory/donecheck/src/runtime/node/verified-finish-runtime.ts` Git blob `4d43505a568caef023e7488d15c017355ce58f11`: `recordVerifiedFinish()` geçerli reviewer attestation, `VerificationResult.outcome=pass`, insan `accepted` kararı ve iki ledger olayı ister; makbuzda `taskId`, `verificationResultId`, `reviewerId`, `auditHeadHash` bulunur.
+- `engurulabory/donecheck/docs/FULL_PRODUCT_CONTROLS.md` Git blob `491b9c0e7bbadead04e5a8e3442dd36c8fadceef`: release authority ayrıca `main SHA → merged PR provenance → CI → release receipt` zinciridir; ürün Verified Finish makbuzu ile GitHub release kanıtı ayrı tutulur.
+- EMÜS özelinde gereken kapanış kanıtları: göreve bağlı gerçek makine PASS sonucu; görev kapsamı için yetkili gerçek reviewer identity/public key ve geçerli grant; reviewer'ın gerçek Ed25519 imzalı HumanReview `accepted` kararı; bütünlük doğrulanmış audit ledger başlığı; `recordVerifiedFinish` makbuzu. Mevcut bu tur erişimi canlı EMÜS grant ya da imza içermiyor.
+- Hüküm: `DONECHECK_RUNTIME_SOURCE=CONFIRMED`; `EMUS_SIGNED_AUTHORITY=HOLD`; `EMUS_VERIFIED_FINISH=HOLD`. Kaynak kodu doğrulaması gerçek issuer/owner kabulü yerine geçmez. GH-01/GH-02 PARTIAL, GH-03/GH-04/OSI HOLD.
+
+## 2026-10-23 — Özel Mac Engineer Product CI yolunun kesin kapsamı
+- `engurulabory/enguru-mac-engineer` gözlenen `main` HEAD `5432b9b135499cea18273c0e003877b864af92c6`. `.github/workflows/product-ci.yml` blob `a1bd1fc913527c6a0b6718df0405b901f8f98114`: `pull_request` ve main push tetiklerinde macOS üzerinde Python 3.14, runtime compile, `python -m unittest discover -s runtime/tests -v`, native Swift derleme denetimleri içerir. Bu gerçek ve mevcut **özel ürünün kendi yetkili CI yüzeyidir**.
+- `runtime/tests/test_reliability.py` blob `5754324423a688a0c6d5a5ae8e512f238f510e71` içinde `test_persistent_idempotency` ve `test_checkpoint_restart_resume` mevcut. Bunlar ayrı ürün testleri; EMÜS→WorkingMemory→DoneCheck entegrasyon kanıtı değildir.
+- Özel repo `5432b9…` commit'i için PR-tetiklemeli koşuları döndüren sınırlı sorgu boş geldi; geçmiş tüm Product CI koşularının yokluğu sonucuna varılmaz. Labory PR #210 CI kanıtı özel Product CI yerine geçmez.
+- Dar kabul yolu: özel ürünün Product CI içinde, mevcut yetkili ürün inceleme mekanizmasıyla, gerçek kaynak üzerinde görev ID/restart testini çalıştırıp sonuç kimliğini almak; ardından yetkili iki-depo entegrasyon ortamında DoneCheck `verifyTask` bağını ayrıca göstermek. Yeni cross-repo token/grant ancak owner tarafından gerçekten verilmiş kapsam ile kullanılır.
+- `MAC_PRODUCT_CI_SOURCE=CONFIRMED`; `MAC_PRODUCT_CI_EMUS_RUN=HOLD`; `CROSS_REPO_AUTHORITY=HOLD`; `DONECHECK_INTEGRATION=HOLD`.
+
+## 2026-10-23 — Private Product CI gerçek koşu uzlaştırması
+- Özel `engurulabory/enguru-mac-engineer` Product CI run `35768412377`, commit `56a932bf98e4fc24e549bd953133401898e47eaa`: workflow ve Runtime tests step `completed/success`.
+- Run `35770832924`, commit `e90dace0e34c68af5cec28599ee94a5ddfad0a43`: workflow ve Runtime tests step `completed/success`.
+- Run `35770750418`, commit `58ef7236fb65ee6abdd536cde0c0b68c2746faad`: `Runtime tests` failure; özgün job logunda `test_persistent_idempotency` ve `test_checkpoint_restart_resume` `ok`; ayrı A07 kaynak/artifact testi `80 != 40` nedeniyle failure. Bu koşu genel PASS sayılmaz.
+- Karar: `MAC_PRODUCT_RUNTIME_TESTS=HISTORICAL_CI_PASS`, `MAC_TASK_ID_AND_RESTART=HISTORICAL_TEST_LOG_OK`; bu kaynak commit'ler gözlenen `main` HEAD `5432b9b135499cea18273c0e003877b864af92c6` ile aynı olmadığı için güncel HEAD'in EMÜS bütünleşik kabulü olarak sayılamaz.
+- `EMUS_WORKING_MEMORY_CROSS_REPO=HOLD_TEST`, `DONECHECK_VERIFYTASK=HOLD_TEST`, `EMUS_AUTHORITY=HOLD`. Sıradaki ihtiyaç: exact source/commit ile birleşik test ve yetkili sonuç.
+
+## P0 — V3 gerçek byte kilidi CI kabulü
+- Commit `731e3a646952e10b03a81f2d2f19d22be45eeb4b`, Labory Final Gate run `40002619844`, job `120582347938`, step 10 `EMUS canonical V3 source lock byte verification`: `completed/success`.
+- Aynı job EMÜS step 9 ve 11–14 `completed/success`; genel workflow'lar PARK `40002619798`, IP Model Trust Gate `40002619793`, IP Model Trust Fleet `40002619786` `completed/success`.
+- Karar `P0_V3_BYTE_PIN=PASS_CI`; güncel kaynak yetki/grant ve özel Mac Engineer exact commit bütünleşik yürütme `HOLD`; P1 real integration `HOLD_TEST`.
