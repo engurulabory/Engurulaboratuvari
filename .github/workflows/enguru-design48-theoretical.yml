@@ -7,6 +7,9 @@ on:
       - 'tools/enguru_tasarim_48_simulation.py'
       - 'tools/enguru_tasarim_48_validation_v2.py'
       - 'tools/enguru_ana_terazi_v1.py'
+      - 'tools/enguru_alti_uretim_simulasyon_dongusu_v1.py'
+      - 'governance/enguru-suzgeci/ENGURU_ALTI_URETIM_ALANI_V1.json'
+      - 'governance/enguru-suzgeci/ENGURU_ALTI_URETIM_UYARLAMA_V1.md'
       - 'governance/enguru-suzgeci/ENGURU_ANA_TERAZI_5X100_V1.md'
       - 'governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json'
       - '.github/workflows/enguru-design48-theoretical.yml'
@@ -70,6 +73,22 @@ jobs:
           assert r["verified_finish"]=="HOLD"
           PY
           cat "$RUNNER_TEMP/enguru-ana-terazi-v1.json"
+      - name: Six production domains with diagnose repair rescore three-round cycle
+        run: |
+          python -B tools/enguru_alti_uretim_simulasyon_dongusu_v1.py > "$RUNNER_TEMP/enguru-six-domain-repair.json"
+          python -B - "$RUNNER_TEMP/enguru-six-domain-repair.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert r["verdict"]=="PASS_6_AREAS_3_ROUND_DESIGN"
+          assert r["production_areas"]==6
+          assert r["simulated_rounds"]==18 and r["repair_events"]==12
+          assert r["falsification_pass"]==288
+          assert all(x["simulation_scores"]==[62.5,87.5,100.0] for x in r["domains"])
+          assert all(x["owner_real_co_design"].startswith("HOLD") for x in r["domains"])
+          assert r["independent_design_review"]=="HOLD"
+          assert r["verified_finish"]=="HOLD"
+          PY
+          cat "$RUNNER_TEMP/enguru-six-domain-repair.json"
       - name: Attach theoretical receipt, separate from official DoneCheck
         uses: actions/upload-artifact@v4
         with:
@@ -78,4 +97,5 @@ jobs:
             ${{ runner.temp }}/design48-receipt.json
             ${{ runner.temp }}/design48-v2-receipt.json
             ${{ runner.temp }}/enguru-ana-terazi-v1.json
+            ${{ runner.temp }}/enguru-six-domain-repair.json
           if-no-files-found: error
