@@ -31,8 +31,11 @@ class EmusSecuritySourceBoundaryTests(unittest.TestCase):
         matrix = (ROOT / "governance/emus/EMUS_V11_SUBCRITERION_PROGRESS_V1.json")
         data = json.loads(matrix.read_text(encoding="utf8"))
         self.assertEqual(data["counting_rules"]["official_accepted_tasks"], 0)
-        for item in (17, 18, 19):
+        for item in (17, 19):
             self.assertTrue(all(c["state"] == "HOLD_UNVERIFIED" for c in data["rows"][item - 1]["criteria"]))
+        donecheck = data["rows"][17]["criteria"]
+        self.assertEqual(donecheck[0]["state"], "CI_EVIDENCED")
+        self.assertTrue(all(c["state"] == "HOLD_UNVERIFIED" for c in donecheck[1:]))
 
 
 if __name__ == "__main__":
