@@ -401,5 +401,35 @@
     "closureWindow": "BATCH_G3_REAL_HUMAN_REVIEW_G4_LEDGER_G5_OWNER_MERGE_G6_VERIFIED_FINISH",
     "grantExpiryAt": "2026-10-30T17:47:11.475Z",
     "expiringGrantHandling": "RECHECK_AT_BATCH_CLOSURE_RENEW_IN_EXISTING_OWNER_POLICY_IF_EXPIRY_WOULD_BLOCK_SCOPE"
+  },
+  "native_runtime_binding": {
+    "id": "B01_LOCAL_NATIVE_RUNTIME_READONLY_STATUS",
+    "state": "PASS_GITHUB_MACOS_CI_FIELD_INSTALL_PENDING",
+    "scope": "REAL_PYTHON_HTTP_NATIVE_SHELL_PLUS_CONTEXTUAL_DONECHECK_STATUS",
+    "repository": "engurulabory/enguru-mac-engineer",
+    "pr": 16,
+    "sourceHead": "ece80be94ef6b5b64a1e1bfc142420367551a779",
+    "macosProductCiRun": 40069358999,
+    "runtimeTests": "18_OF_18_NATIVE_READINESS_PASS",
+    "detachedBridgeTests": "34_OF_34_PASS",
+    "ownerGrantTests": "26_OF_26_PASS",
+    "genesisTests": "25_OF_25_PASS",
+    "nativeSwiftCompile": "PASS_SHARED_NATIVE_SDK_SOURCE_BINARY_RECEIPT",
+    "route": "GET_/api/v69/readiness",
+    "presentation": "EXISTING_DONECHECK_CONTEXTUAL_MODAL",
+    "independentG2Source": "PINNED_EXISTING_G2_ZIP_VERIFY_ONLY",
+    "sourceLocations": [
+      "DOWNLOADS",
+      "DESKTOP_AUDIV13"
+    ],
+    "rootId": "ed25519-sha256:938083a0de0a78fef1874536b2bdbc5683ab2ae49bc09cae27dec843eaf4c1e1",
+    "originalRegistrationSha256": "4f55ed2cdc36ee5bba7e1ea84671d48f769256f5b64c34d5ff907479c629801b",
+    "grantExpiresAt": "2026-10-30T17:47:11.475Z",
+    "privateKeyPasswordsRequested": 0,
+    "canonicalAuditWrites": 0,
+    "automatedMerge": false,
+    "separateMacOwnerInstallVerification": "HOLD_NOT_YET_OBSERVED_ON_OWNER_DEVICE",
+    "G3_G6_OFFICIAL": "HOLD_UNCHANGED",
+    "next": "VERIFY_REAL_NATIVE_MAC_INSTALL_AND_CONTEXTUAL_READ_ONLY_G2_RUNTIME_STATUS_WITHOUT_PASSWORDS"
   }
 }
