@@ -1,14 +1,18 @@
 {
   "schema": "enguru.methods.design48.v1",
   "baseline_20261024": {
-    "score": "88/100",
-    "kind": "PREVIOUS_EXPERT_DESIGN_ESTIMATE",
-    "not_recomputed": true
+    "score": "87.92/100 ≈ 88/100",
+    "raw_points": 211,
+    "max_points": 240,
+    "kind": "PREVIOUS_48_ITEM_EXPERT_DESIGN_ESTIMATE",
+    "not_a_measured_product_benchmark": true
   },
   "design_target": {
     "score": "100/100",
-    "kind": "THEORETICAL_48_CONTROL_COMPLETENESS",
-    "requires": "48 of 48 specified plus critical adversarial zero false PASS; independent reviewer separate"
+    "raw_points": 240,
+    "max_points": 240,
+    "kind": "48_ITEM_THEORETICAL_SPECIFICATION_COMPLETENESS",
+    "review_caveat": "Independent quality review is separate; no field outcome is asserted."
   },
   "scope": "ENGURU_LABORY_DESIGN_ONLY",
   "canonical_v3_sha256": "11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc",
@@ -89,7 +93,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 5,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D02",
@@ -105,7 +112,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 5,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D03",
@@ -121,7 +131,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 4,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D04",
@@ -137,7 +150,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 4,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D05",
@@ -153,7 +169,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 5,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D06",
@@ -169,7 +188,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 5,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D07",
@@ -185,7 +207,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 5,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D08",
@@ -201,7 +226,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 4,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D09",
@@ -217,7 +245,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 5,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D10",
@@ -233,7 +264,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 4,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D11",
@@ -249,7 +283,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 5,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D12",
@@ -265,7 +302,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 4,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D13",
@@ -281,7 +321,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 5,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D14",
@@ -297,7 +340,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 4,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D15",
@@ -313,7 +359,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 4,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D16",
@@ -329,7 +378,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 4,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D17",
@@ -345,7 +397,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 5,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D18",
@@ -361,7 +416,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 5,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D19",
@@ -377,7 +435,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 4,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D20",
@@ -393,7 +454,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 4,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D21",
@@ -409,7 +473,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 5,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D22",
@@ -425,7 +492,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 5,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D23",
@@ -441,7 +511,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 4,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D24",
@@ -457,7 +530,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 4,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D25",
@@ -473,7 +549,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 4,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D26",
@@ -489,7 +568,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 4,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D27",
@@ -505,7 +587,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 4,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D28",
@@ -521,7 +606,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 3,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D29",
@@ -537,7 +625,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 4,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D30",
@@ -553,7 +644,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 5,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D31",
@@ -569,7 +663,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 4,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D32",
@@ -585,7 +682,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 4,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D33",
@@ -601,7 +701,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 5,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D34",
@@ -617,7 +720,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 5,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D35",
@@ -633,7 +739,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 5,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D36",
@@ -649,7 +758,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 4,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D37",
@@ -665,7 +777,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 5,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D38",
@@ -681,7 +796,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 5,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D39",
@@ -697,7 +815,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 4,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D40",
@@ -713,7 +834,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 5,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D41",
@@ -729,7 +853,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 4,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D42",
@@ -745,7 +872,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 5,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D43",
@@ -761,7 +891,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 4,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D44",
@@ -777,7 +910,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 4,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D45",
@@ -793,7 +929,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 4,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D46",
@@ -809,7 +948,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 4,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D47",
@@ -825,7 +967,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 4,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     },
     {
       "id": "D48",
@@ -841,7 +986,10 @@
       ],
       "design_status": "SPECIFIED",
       "implementation_state": "NOT_ASSESSED",
-      "real_field_state": "NOT_ASSESSED"
+      "real_field_state": "NOT_ASSESSED",
+      "baseline_design_points": 4,
+      "candidate_design_points": 5,
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
     }
   ],
   "authority": {
