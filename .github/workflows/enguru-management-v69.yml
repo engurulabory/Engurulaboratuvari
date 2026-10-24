@@ -1,0 +1,137 @@
+name: ENGURU Management V6.9 Review
+on:
+  pull_request:
+    paths:
+      - 'tools/enguru_management_v69.py'
+      - 'tools/enguru_management_v69_source_adapter.py'
+      - 'tests/test_enguru_management_v69_source_adapter.py'
+      - 'tools/enguru_management_v69_*.py'
+      - 'tests/test_enguru_management_v69_*.py'
+      - 'tests/test_enguru_management_v69.py'
+      - 'governance/management-v69/**'
+      - 'tools/management_v69_current_main_source_observe.py'
+      - '.github/workflows/enguru-management-v69.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: read
+  actions: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      issues: read
+      actions: read
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - name: Management adversarial tests
+        run: python3 -m unittest discover -s tests -p 'test_enguru_management_v69.py' -v
+      - name: Source-bound snapshot tests
+        run: python3 -m unittest discover -s tests -p 'test_enguru_management_v69_source.py' -v
+      - name: Read actual controller snapshot (no execution)
+        run: python3 tools/enguru_management_v69_source.py --root . --source-commit "$(git rev-parse HEAD)"
+      - name: Crosswalk authority and false-CI adversarial tests
+        run: python3 -m unittest discover -s tests -p 'test_enguru_management_v69_evidence.py' -v
+      - name: Task ID evidence crosswalk (read-only)
+        run: python3 tools/enguru_management_v69_evidence.py --root . --ledger governance/management-v69/EVIDENCE_CROSSWALK.json
+      - name: Operational receipt negative tests
+        run: python3 -m unittest discover -s tests -p 'test_enguru_management_v69_operation.py' -v
+      - name: Source-bound historical receipt classification
+        run: python3 tools/enguru_management_v69_operation.py
+      - name: Live GitHub provenance verification (read-only)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +e
+          python3 tools/enguru_management_v69_operation.py --live \
+            --output "$RUNNER_TEMP/enguru-management-v69-live-evidence.json"
+          code=$?
+          set -e
+          if [ "$code" -eq 50 ]; then
+            python3 -c 'import json,sys; x=json.load(open(sys.argv[1])); assert x.get("state")=="HOLD_GUVENLI_DUR" and x.get("reason")=="CURRENT_MAIN_SOURCE_DRIFT", x' "$RUNNER_TEMP/enguru-management-v69-live-evidence.json"
+            echo "Historical receipt safely classified: current-main acceptance remains HOLD"
+            python3 tools/management_v69_current_main_source_observe.py --output "$RUNNER_TEMP/enguru-management-v69-current-source.json"
+          elif [ "$code" -ne 0 ]; then
+            exit "$code"
+          fi
+          sha256sum "$RUNNER_TEMP/enguru-management-v69-live-evidence.json"
+      - name: Preserve management evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: enguru-management-v69-live-evidence
+          path: ${{ runner.temp }}/enguru-management-v69-live-evidence.json
+          if-no-files-found: error
+          retention-days: 90
+      - name: No-write management example
+        run: python3 tools/enguru_management_v69.py --worklist governance/management-v69/EXAMPLE_TASKS.json
+      - name: Real source adapter tests
+        run: python3 -m unittest discover -s tests -p 'test_enguru_management_v69_source_adapter.py' -v
+      - name: Read-only real controller reconciliation
+        run: |
+          python3 tools/enguru_management_v69_source_adapter.py \
+            --tasks governance/controller/TASKS.json \
+            --gate governance/controller/ACTIVATION.json \
+            --source-ref "github-pr-checkout" \
+            --source-commit "$(git rev-parse HEAD)"
+  donecheck_machine_verify:
+    if: github.event_name == 'pull_request' && github.event.pull_request.number == 203
+    needs: verify
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    permissions:
+      contents: read
+      issues: read
+      actions: read
+      pull-requests: read
+    steps:
+      - name: Checkout exact Management PR head
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: Set up Node for existing DoneCheck runtime
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Adversarial bridge self-test
+        run: node tools/enguru_management_v69_donecheck_ci.mjs --self-test
+      - name: Checkout exact existing DoneCheck v1.2 source
+        uses: actions/checkout@v5
+        with:
+          repository: engurulabory/donecheck
+          ref: 4181f48df5ea0c060d9aa9f40a471c554b44b53d
+          path: donecheck-v12
+          persist-credentials: false
+      - name: Prepare actual DoneCheck verifyTask runtime
+        run: |
+          mkdir -p "$RUNNER_TEMP/donecheck-verify-build"
+          cp -R donecheck-v12/src "$RUNNER_TEMP/donecheck-verify-build/src"
+          cd "$RUNNER_TEMP/donecheck-verify-build"
+          npm init -y >/dev/null
+          npm install --no-save --no-package-lock --ignore-scripts --no-audit --no-fund \
+            zod@3.25.76 esbuild@0.25.12
+          ./node_modules/.bin/esbuild \
+            src/donecheck-core.ts --bundle --platform=node --format=esm \
+            --outfile="$RUNNER_TEMP/donecheck-core-v12.mjs"
+      - name: Revalidate GitHub API and execute real verifyTask
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EXPECTED_PR_HEAD: ${{ github.event.pull_request.head.sha }}
+          DONECHECK_CORE_BUNDLE: ${{ runner.temp }}/donecheck-core-v12.mjs
+          DONECHECK_VERIFICATION_OUTPUT: ${{ runner.temp }}/enguru-management-v69-donecheck-verification.json
+        run: |
+          node tools/enguru_management_v69_donecheck_ci.mjs --live
+          sha256sum "$RUNNER_TEMP/enguru-management-v69-donecheck-verification.json"
+      - name: Preserve real DoneCheck machine evidence
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enguru-management-v69-donecheck-machine-verification
+          path: ${{ runner.temp }}/enguru-management-v69-donecheck-verification.json
+          if-no-files-found: error
+          retention-days: 90
+
