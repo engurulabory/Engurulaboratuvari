@@ -32,3 +32,36 @@ def assess(records):
 if __name__=="__main__":
  import json
  print(json.dumps(assess({}),sort_keys=True))
+
+def verify_against_sources(records, root, exact_head, independently_verified_runs):
+    """Verify candidate control evidence against actual bytes and confirmed run IDs.
+
+    Caller must source exact_head and run IDs from an independent GitHub API
+    observation; this code never promotes the result to owner/field approval.
+    """
+    import hashlib
+    from pathlib import Path
+    base = Path(root).resolve()
+    result = assess(records)
+    valid = []
+    if not isinstance(exact_head, str) or not re.fullmatch(r"[0-9a-f]{40}", exact_head):
+        return {"state":"HOLD_EXACT_HEAD","confirmed_controls":0,"total":len(IDS)}
+    for key in IDS:
+        p = records.get(key) if isinstance(records, dict) else None
+        if not isinstance(p, dict) or key in result["missing_controls"]:
+            continue
+        src = base / p["source_path"]
+        if src.is_symlink() or not src.is_file() or not src.resolve().is_relative_to(base):
+            continue
+        if hashlib.sha256(src.read_bytes()).hexdigest()!=p["source_sha256"]:
+            continue
+        if p["test_run_id"] not in independently_verified_runs:
+            continue
+        run = independently_verified_runs[p["test_run_id"]]
+        if run.get("head_sha")!=exact_head or run.get("conclusion")!="success":
+            continue
+        valid.append(key)
+    return {"state":"HOLD_INDEPENDENT_FINAL_REVIEW" if len(valid)==len(IDS) else "HOLD_EVIDENCE_GAPS",
+            "confirmed_controls":len(valid),"total":len(IDS),
+            "missing_controls":[i for i in IDS if i not in valid],
+            "theory_final":"HOLD","field_final":"HOLD","osi_mutation":0}
