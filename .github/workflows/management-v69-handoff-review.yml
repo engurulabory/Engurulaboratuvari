@@ -26,6 +26,8 @@ on:
       - 'tools/management_v69_pilot_proof_gates.py'
       - 'tools/management_v69_live_provenance_reconcile.py'
       - 'tests/test_management_v69_live_provenance_reconcile.py'
+      - 'tests/test_management_v69_current_main_source_observe.py'
+      - 'tools/management_v69_current_main_source_observe.py'
       - '.github/workflows/management-v69-handoff-review.yml'
   workflow_dispatch:
 permissions:
@@ -65,5 +67,17 @@ jobs:
         run: python3 -m unittest discover -s tests -p 'test_management_v69_pilot_proof_gates.py' -v
       - name: Historical main source drift reconciliation
         run: python3 -m unittest discover -s tests -p 'test_management_v69_live_provenance_reconcile.py' -v
+      - name: Current main canonical source observation regression
+        run: python3 -m unittest discover -s tests -p 'test_management_v69_current_main_source_observe.py' -v
+      - name: Current main authenticated source observation
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 tools/management_v69_current_main_source_observe.py --output "$RUNNER_TEMP/v69-current-main-source.json"
+      - name: Preserve current main source observation
+        uses: actions/upload-artifact@v4
+        with:
+          name: v69-current-main-source-observation
+          path: ${{ runner.temp }}/v69-current-main-source.json
+          if-no-files-found: error
       - name: Source syntax
         run: python3 -m py_compile tools/management_v69_handoff_verify.py
