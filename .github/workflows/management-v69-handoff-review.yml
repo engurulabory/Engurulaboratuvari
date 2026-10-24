@@ -1,0 +1,20 @@
+name: Management V69 Handoff Review
+on:
+  pull_request:
+    paths:
+      - 'governance/management-v69/handoff/**'
+      - 'tools/management_v69_handoff_verify.py'
+      - 'tests/test_management_v69_handoff.py'
+      - '.github/workflows/management-v69-handoff-review.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Python reviewer contract tests
+        run: python3 -m unittest discover -s tests -p 'test_management_v69_handoff.py' -v
+      - name: Source syntax
+        run: python3 -m py_compile tools/management_v69_handoff_verify.py
