@@ -1,0 +1,54 @@
+name: ENGURU MK B09 Authenticated Outcome
+on:
+  push:
+    branches:
+      - feat/enguru-mk-b09-authenticated-outcome-20261024
+    paths:
+      - 'tools/enguru_mk_b09_source_outcome_v1.py'
+      - 'tests/test_enguru_mk_b09_source_outcome_v1.py'
+      - '.github/workflows/enguru-mk-b09-authenticated-outcome.yml'
+  pull_request:
+    paths:
+      - 'tools/enguru_mk_b09_source_outcome_v1.py'
+      - 'tests/test_enguru_mk_b09_source_outcome_v1.py'
+      - '.github/workflows/enguru-mk-b09-authenticated-outcome.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  adversarial-three-rounds:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Three independent adversarial test rounds
+        run: |
+          set -euo pipefail
+          for round in 1 2 3; do
+            echo "B09_ROUND=$round"
+            result=$(PYTHONDONTWRITEBYTECODE=1 python -B -m unittest discover -s tests -p test_enguru_mk_b09_source_outcome_v1.py -q 2>&1)
+            echo "$result"
+            echo "$result" | grep -q 'Ran 22 tests'
+            echo "$result" | grep -q '^OK$'
+          done
+  owner-authenticated-outcome:
+    needs: adversarial-three-rounds
+    if: github.event_name == 'push' && github.actor == github.repository_owner && github.ref_name == 'feat/enguru-mk-b09-authenticated-outcome-20261024'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Authenticate exact-HEAD real regression and bind one historical outcome
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          PYTHONDONTWRITEBYTECODE=1 python -B -m tools.enguru_mk_b09_source_outcome_v1
