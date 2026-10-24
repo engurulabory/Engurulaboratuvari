@@ -6,6 +6,8 @@ on:
       - 'governance/enguru-suzgeci/ENGURU_TASARIM_48_KONTROL_MATRISI_V1.json'
       - 'tools/enguru_tasarim_48_simulation.py'
       - 'tools/enguru_tasarim_48_validation_v2.py'
+      - 'tools/enguru_ana_terazi_v1.py'
+      - 'governance/enguru-suzgeci/ENGURU_ANA_TERAZI_5X100_V1.md'
       - 'governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json'
       - '.github/workflows/enguru-design48-theoretical.yml'
   workflow_dispatch:
@@ -50,6 +52,24 @@ jobs:
           assert r["official_donecheck"]=="HOLD" and r["verified_finish"]=="HOLD"
           PY
           cat "$RUNNER_TEMP/design48-v2-receipt.json"
+      - name: Five independent score gates THEORY DESIGN SIM1 SIM2 SIM3
+        run: |
+          python -B tools/enguru_ana_terazi_v1.py > "$RUNNER_TEMP/enguru-ana-terazi-v1.json"
+          python -B - "$RUNNER_TEMP/enguru-ana-terazi-v1.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert r["verdict"]=="PASS_THEORETICAL_PREPARATION_5X100"
+          assert set(r["scores"])=={"THEORY","DESIGN","SIM1","SIM2","SIM3"}
+          assert all(x==100 for x in r["scores"].values())
+          assert r["theory_falsification"]["caught"]==10
+          assert len(r["three_simulations"])==3
+          assert all(x["passed"]==144 and x["total"]==144 for x in r["three_simulations"])
+          assert not r["self_claimed_points_used"]
+          assert r["human_independent_design_review"]=="HOLD"
+          assert r["official_donecheck"]=="HOLD"
+          assert r["verified_finish"]=="HOLD"
+          PY
+          cat "$RUNNER_TEMP/enguru-ana-terazi-v1.json"
       - name: Attach theoretical receipt, separate from official DoneCheck
         uses: actions/upload-artifact@v4
         with:
@@ -57,4 +77,5 @@ jobs:
           path: |
             ${{ runner.temp }}/design48-receipt.json
             ${{ runner.temp }}/design48-v2-receipt.json
+            ${{ runner.temp }}/enguru-ana-terazi-v1.json
           if-no-files-found: error
