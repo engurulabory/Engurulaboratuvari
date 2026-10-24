@@ -35,6 +35,7 @@ on:
       - 'tools/management_v69_historical_ci_classify.py'
       - 'tools/management_v69_theory_evidence_gate.py'
       - 'tests/test_management_v69_theory_evidence_gate.py'
+      - 'tests/test_management_v69_evidence_recheck.py'
       - 'tests/test_management_v69_historical_ci_classify.py'
       - 'tools/management_v69_current_main_source_observe.py'
       - '.github/workflows/management-v69-handoff-review.yml'
@@ -108,5 +109,7 @@ jobs:
           PY
       - name: Theory 70-control evidence-bound fail-closed tests
         run: python3 -m unittest discover -s tests -p 'test_management_v69_theory_evidence_gate.py' -v
+      - name: Independent exact-head CI and SHA evidence recheck
+        run: python3 -m unittest discover -s tests -p 'test_management_v69_evidence_recheck.py' -v
       - name: Source syntax
         run: python3 -m py_compile tools/management_v69_handoff_verify.py
