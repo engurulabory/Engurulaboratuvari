@@ -499,10 +499,10 @@
       "macFieldInstallerSha256": "08f994a6aaf35a59fafbe74c5d3ebba846790d966d9cbb9129cf500a114da979",
       "isolatedInstallerSimulations": "3_X_12_OF_12_PASS",
       "atomicAndRollbackSimulation": "PASS",
-      "realMacUpdatedDrawer": "HOLD_NOT_YET_EXECUTED",
+      "realMacUpdatedDrawer": "PASS_SOURCE_INSTALLED_FIELD_RENDER_HOLD",
       "G3_G6_OFFICIAL": "HOLD",
       "evidenceUrl": "https://github.com/engurulabory/enguru-mac-engineer/pull/16#issuecomment-6381304461",
-      "next": "MAC_OSI_SHA_PINNED_V2_PREMIUM_DRAWER_ONE_FILE_INSTALL_THEN_REFRESH_AND_OBSERVE",
+      "next": "VERIFY_LIVE_SERVE_STATIC_UI_MATCHES_NEW_MAC_SHA_AND_PRESENTS_G2_LOCAL_PASS_IN_EXISTING_STATUS_DRAWER",
       "fieldV1Outcome": {
         "result": "HOLD_SAFE_NO_UNVERIFIED_ACCEPTANCE",
         "reason": "HOLD_GITHUB_REVIEW_EXACT_BLOB_IDENTITY",
@@ -512,7 +512,7 @@
         "designCorrection": "ON_DEVICE_PREMIUM_BASE_BLOB_DIFFERS_FROM_GITHUB_BASE_BLOB"
       },
       "fieldV2": {
-        "status": "PASS_ISOLATED_CORRECTION_3_X_16_OF_16_MAC_EXECUTION_PENDING",
+        "status": "PASS_REAL_MAC_PREMIUM_UI_INSTALLED_REFRESH_ACCEPTANCE_OPEN",
         "artifact": "ENGURU_V69_NATIVE_DRAWER_PATCH_V2_20261024.zip",
         "sha256": "27aae0ec96a96b0d0950669de126d6eb880ec948685417a3482a1f7dc3b2cf12",
         "scriptSha256": "b4c19513fdef0108a9340ce4b649d2eeb5dd18e1124e8a99bc738bd32be84307",
@@ -521,14 +521,26 @@
         "githubOlderSourceBlob": "a6673c10d395afffd6e2df651d3d2de35d1c95b2",
         "githubReviewedVariantBlob": "8fa4b7d8ebb433ccca4a38259d7f523029641e54",
         "sourcePreservation": "EXACT_REVERSE_TRANSFORM_TO_PREVIOUS_MAC_PREMIUM_SOURCE",
-        "macNewBlob": "DERIVE_FROM_VERIFIED_PINNED_MAC_BASE_AT_FIELD_EXECUTION",
+        "macNewBlob": "1912ccb102962c029a1f8ae91efe5b790d663da7",
         "githubReviewDoc": "https://github.com/engurulabory/enguru-mac-engineer/blob/review/v69-g2-authorized-scoped-grant-20261023/docs/ENGURU_V69_NATIVE_G2_DRAWER_PREMIUM_VARIANT_V2.md",
-        "evidenceComment": "https://github.com/engurulabory/enguru-mac-engineer/pull/16#issuecomment-6381539179",
+        "evidenceComment": "https://github.com/engurulabory/enguru-mac-engineer/pull/16#issuecomment-6381664239",
         "expectedFieldResult": "PASS_NATIVE_G2_DRAWER_UI_INSTALLED_FIELD_REFRESH_REQUIRED",
         "noTrustWrites": true,
         "noLedgerWrites": true,
         "noPasswords": true,
-        "officialG3G6": "HOLD"
+        "officialG3G6": "HOLD",
+        "macNewSha256": "be8de9a630ec83996aae170e5714b6c78eba34181b14d0786ad3864331606db1",
+        "macReceiptSha256": "3da0b57c780d7a5422b5f0e1dc6ef20a231e0236c934664c6b2826cb1e49d18e",
+        "macReceiptHashIndependentlyVerified": "PASS_EXACT",
+        "macFieldTests": "16_OF_16_PASS",
+        "macLocalRoundtrip": "PASS",
+        "macArchivedPreviousSha256": "5e98d3634496cfc34e7bcaf9a5fcd0681481c2bfafacfa7f06f47b6972a332ed",
+        "realDeviceWrites": "ONLY_EXISTING_RUNTIME_STATIC_INDEX_HTML",
+        "passwordPrompts": 0,
+        "trustWrites": 0,
+        "ledgerWrites": 0,
+        "macVisualAcceptance": "HOLD_USER_APP_REFRESH_REQUIRED",
+        "actualServedUiShaCheck": "HOLD_PENDING_LIVE_HTTP"
       }
     }
   }
