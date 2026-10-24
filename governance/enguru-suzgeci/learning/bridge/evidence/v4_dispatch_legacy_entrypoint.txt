@@ -1,0 +1,54 @@
+"""ENGURU MK bridge pilot ZIPapp V3, sha256-controlled, no new authority."""
+from pathlib import Path
+import hashlib
+import json
+import os
+import subprocess
+import sys
+import tempfile
+import zipfile
+
+FILES=('__main__.py', 'tools/__init__.py', 'tools/enguru_mk_bridge_v1.py', 'tools/enguru_mk_autopilot_v1.py', 'tools/enguru_mk_advisory_v1.py', 'tools/enguru_mk_autopilot_v4.py', 'tests/test_enguru_mk_bridge_v1.py', 'tests/test_enguru_mk_autopilot_v1.py', 'tests/test_enguru_mk_advisory_v1.py', 'docs/README_TR.md', 'docs/README_V4_TR.md', '.github/workflows/enguru-mk-bridge-pilot-v1.yml', '.github/workflows/enguru-mk-bridge-advisory-v4.yml')
+
+def verify():
+    archive=Path(sys.argv[0]);
+    if archive.is_symlink() or not archive.is_file():raise SystemExit('STATE=HOLD_PACKAGE_ARCHIVE')
+    with zipfile.ZipFile(archive) as z:
+        names=z.namelist()
+        if len(names)!=len(set(names)) or set(names)!=set(FILES)|{'MANIFEST.json'}:raise SystemExit('STATE=HOLD_PACKAGE_CONTENTS')
+        manifest=json.loads(z.read('MANIFEST.json'))
+        if set(manifest)!=set(FILES):raise SystemExit('STATE=HOLD_PACKAGE_MANIFEST')
+        for name in FILES:
+            info=z.getinfo(name)
+            if info.is_dir() or info.file_size>1_000_000 or info.file_size>200*max(1,info.compress_size):raise SystemExit('STATE=HOLD_PACKAGE_SIZE')
+            if hashlib.sha256(z.read(name)).hexdigest()!=manifest[name]:raise SystemExit('STATE=HOLD_PACKAGE_SHA256')
+    print('PACKAGE_MANIFEST=PASS_SHA256')
+
+def self_test():
+    with zipfile.ZipFile(sys.argv[0]) as z,tempfile.TemporaryDirectory(prefix='enguru-mk-auto-test-') as td:
+        for name in ('tools/__init__.py','tools/enguru_mk_bridge_v1.py',
+                     'tools/enguru_mk_autopilot_v1.py',
+ 'tools/enguru_mk_autopilot_v4.py','tools/enguru_mk_advisory_v1.py','tests/test_enguru_mk_bridge_v1.py',
+                     'tests/test_enguru_mk_autopilot_v1.py','tests/test_enguru_mk_advisory_v1.py'):
+            path=Path(td)/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(z.read(name))
+        for round_index in (1,2,3):
+            cmd=[sys.executable,'-B','-m','unittest','discover','-s',str(Path(td)/'tests'),'-p','test_enguru_mk_*.py','-q']
+            env=os.environ.copy();env['PYTHONDONTWRITEBYTECODE']='1'
+            r=subprocess.run(cmd,cwd=td,env=env,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True,timeout=45)
+            if r.returncode or 'OK' not in r.stderr:
+                print(r.stdout+r.stderr)
+                raise SystemExit('STATE=HOLD_ISOLATED_ROUND_'+str(round_index))
+            print('ISOLATED_ROUND_'+str(round_index)+'='+str(__import__('re').search(r'Ran (\d+) tests',r.stderr).group(1))+'_PASS')
+        print('STATE=PASS_V4_ADVISORY_ISOLATED_TESTS_ONLY')
+
+verify()
+if sys.argv[1:]==['--self-test']:
+    self_test()
+elif sys.argv[1:] in (['--activate'],['--cycle'],['--status']):
+    from tools.enguru_mk_autopilot_v4 import main
+elif sys.argv[1:]==['--stop']:
+    from tools.enguru_mk_autopilot_v1 import main
+    main()
+else:
+    from tools.enguru_mk_bridge_v1 import main
+    main()
