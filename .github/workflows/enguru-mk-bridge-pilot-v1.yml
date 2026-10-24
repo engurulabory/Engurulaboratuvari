@@ -51,6 +51,10 @@ jobs:
         run: python -B tools/enguru_mk_bridge_github_v1.py
       - name: Publish review-branch replies only
         run: |
+          if ! find governance/enguru-suzgeci/learning/bridge/pilot/acks/mac governance/enguru-suzgeci/learning/bridge/pilot/streams/github -type f -name '*.json' | grep -q .; then
+            echo 'STATE=PASS_EMPTY_PILOT_NO_EVENT'
+            exit 0
+          fi
           git add -- governance/enguru-suzgeci/learning/bridge/pilot/
           if git diff --cached --quiet; then
             echo "STATE=IDEMPOTENT_NO_NEW_RECORD"
