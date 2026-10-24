@@ -1,0 +1,52 @@
+name: ENGURU MK V5 Independent Regression Evidence
+on:
+  push:
+    branches:
+      - feat/enguru-mk-verified-learning-regression-20261024
+    paths:
+      - 'tests/test_mk_real_regression_case_v1.py'
+      - 'governance/enguru-suzgeci/learning/bridge/evidence/v4_dispatch_*.txt'
+      - 'governance/enguru-suzgeci/learning/bridge/evidence/ENGURU_V5_DISPATCH_REAL_CASE_V1.md'
+      - '.github/workflows/enguru-mk-v5-real-regression-verify.yml'
+  pull_request:
+    paths:
+      - 'tests/test_mk_real_regression_case_v1.py'
+      - 'governance/enguru-suzgeci/learning/bridge/evidence/v4_dispatch_*.txt'
+      - 'governance/enguru-suzgeci/learning/bridge/evidence/ENGURU_V5_DISPATCH_REAL_CASE_V1.md'
+      - '.github/workflows/enguru-mk-v5-real-regression-verify.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independent-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Source pins and deterministic rounds
+        run: |
+          set -euo pipefail
+          sha256sum governance/enguru-suzgeci/learning/bridge/evidence/v4_dispatch_*.txt
+          for round in 1 2 3; do
+            echo "INDEPENDENT_CI_ROUND=$round"
+            PYTHONDONTWRITEBYTECODE=1 python -B -m unittest discover -s tests -p test_mk_real_regression_case_v1.py -q 2>&1 | tee "/tmp/mk-verifier-round-${round}.txt"
+            grep -q 'Ran 12 tests' "/tmp/mk-verifier-round-${round}.txt"
+            grep -q '^OK$' "/tmp/mk-verifier-round-${round}.txt"
+          done
+      - name: Show bounded measured correction and HOLD authority
+        run: |
+          set -euo pipefail
+          PYTHONDONTWRITEBYTECODE=1 python -B tests/test_mk_real_regression_case_v1.py --evidence | tee /tmp/enguru-real-case-evidence.json
+          python - <<'PY'
+          import json
+          x=json.load(open('/tmp/enguru-real-case-evidence.json'))
+          assert x['beforeDispatchSuccess']==0 and x['afterDispatchSuccess']==1
+          assert x['learningPromotion']=='HOLD_CANONICAL_VERIFIER'
+          assert x['officialAcceptance']=='HOLD'
+          assert x['productWrites']==0
+          print('STATE=PASS_INDEPENDENT_REAL_HISTORIC_REGRESSION_ONLY')
+          print('LEARNING_PROMOTION=HOLD_CANONICAL_VERIFIER')
+          print('OFFICIAL_VERIFIED_FINISH=HOLD')
+          PY
