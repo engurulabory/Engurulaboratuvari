@@ -96,7 +96,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 5,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D01",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "user_outcome",
+        "expected_design_value": "measurable_benefit",
+        "negative_value": "vague_benefit"
+      },
+      "peer_evidence": {
+        "source_id": "NIST_AI_RMF",
+        "url": "https://airc.nist.gov/airmf-resources/playbook/",
+        "source_title": "NIST AI RMF Playbook",
+        "source_section": "Govern / Map / Measure / Manage",
+        "mechanism": "MAP",
+        "design_transfer_rationale": "İnsan ihtiyacı ve gerçek etki haritası",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D02",
@@ -115,7 +131,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 5,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D02",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "goal_scope",
+        "expected_design_value": "single_measurable_goal",
+        "negative_value": "competing_goals"
+      },
+      "peer_evidence": {
+        "source_id": "DORA",
+        "url": "https://dora.dev/guides/dora-metrics/",
+        "source_title": "DORA software delivery performance metrics",
+        "source_section": "Five delivery metrics",
+        "mechanism": "throughput",
+        "design_transfer_rationale": "Bir hedefte ölçülebilir teslim sınırı",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D03",
@@ -134,7 +166,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 4,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D03",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "locked_decisions",
+        "expected_design_value": "version_pinned",
+        "negative_value": "silently_changed"
+      },
+      "peer_evidence": {
+        "source_id": "SLSA",
+        "url": "https://slsa.dev/spec/v1.2/provenance",
+        "source_title": "SLSA v1.2 provenance",
+        "source_section": "Source and build provenance",
+        "mechanism": "source_provenance",
+        "design_transfer_rationale": "Karar ve değişiklik geçmişi",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D04",
@@ -153,7 +201,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 4,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D04",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "impact_baseline",
+        "expected_design_value": "baseline_with_observation",
+        "negative_value": "claim_without_baseline"
+      },
+      "peer_evidence": {
+        "source_id": "GOOGLE_SRE",
+        "url": "https://sre.google/workbook/implementing-slos/",
+        "source_title": "Google SRE Implementing SLOs",
+        "source_section": "SLI / SLO / error budget",
+        "mechanism": "service_level_indicator",
+        "design_transfer_rationale": "Kullanıcı etkisini gözlem ve baz çizgiyle bağlama",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D05",
@@ -172,7 +236,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 5,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D05",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "suzgec_phases",
+        "expected_design_value": "eight_stages_preserved",
+        "negative_value": "missing_stages"
+      },
+      "peer_evidence": {
+        "source_id": "NIST_AI_RMF",
+        "url": "https://airc.nist.gov/airmf-resources/playbook/",
+        "source_title": "NIST AI RMF Playbook",
+        "source_section": "Govern / Map / Measure / Manage",
+        "mechanism": "governance_lifecycle",
+        "design_transfer_rationale": "Döngüsel risk ve karar disiplini",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D06",
@@ -191,7 +271,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 5,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D06",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "acceptance_gates",
+        "expected_design_value": "k1_to_k8_nested",
+        "negative_value": "new_untrusted_authority"
+      },
+      "peer_evidence": {
+        "source_id": "NIST_SSDF",
+        "url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+        "source_title": "NIST SSDF SP 800-218 v1.1",
+        "source_section": "Secure development practices",
+        "mechanism": "practices_and_tasks",
+        "design_transfer_rationale": "Kontrollerin mevcut mühendislik döngüsüne gömülmesi",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D07",
@@ -210,7 +306,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 5,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D07",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "stop_decision",
+        "expected_design_value": "evidence_bounded",
+        "negative_value": "auto_advance_without_proof"
+      },
+      "peer_evidence": {
+        "source_id": "NIST_AI_RMF",
+        "url": "https://airc.nist.gov/airmf-resources/playbook/",
+        "source_title": "NIST AI RMF Playbook",
+        "source_section": "Govern / Map / Measure / Manage",
+        "mechanism": "risk_management",
+        "design_transfer_rationale": "Risk eksikse güvenli durma koşulu",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D08",
@@ -229,7 +341,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 4,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D08",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "language_contract",
+        "expected_design_value": "state_claim_evidence_next",
+        "negative_value": "unsupported_pass"
+      },
+      "peer_evidence": {
+        "source_id": "ANTHROPIC_EVALS",
+        "url": "https://www.anthropic.com/research/demystifying-evals-for-ai-agents",
+        "source_title": "Demystifying evals for AI agents",
+        "source_section": "Grader / outcome / regression",
+        "mechanism": "outcome_grading",
+        "design_transfer_rationale": "İddiayı gözlenebilir sonuca bağlama",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D09",
@@ -248,7 +376,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 5,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D09",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "control_execution_planes",
+        "expected_design_value": "producer_verifier_owner_separate",
+        "negative_value": "same_authority_everywhere"
+      },
+      "peer_evidence": {
+        "source_id": "SLSA",
+        "url": "https://slsa.dev/spec/v1.2/provenance",
+        "source_title": "SLSA v1.2 provenance",
+        "source_section": "Source and build provenance",
+        "mechanism": "provenance",
+        "design_transfer_rationale": "Kaynak ve üreten aktör ayrımı",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D10",
@@ -267,7 +411,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 4,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D10",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "reuse_priority",
+        "expected_design_value": "reuse_extend_adapter_first",
+        "negative_value": "duplicate_core"
+      },
+      "peer_evidence": {
+        "source_id": "NIST_SSDF",
+        "url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+        "source_title": "NIST SSDF SP 800-218 v1.1",
+        "source_section": "Secure development practices",
+        "mechanism": "software_lifecycle",
+        "design_transfer_rationale": "Tekrarlı mekanizma yerine kontrollü geliştirme",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D11",
@@ -286,7 +446,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 5,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D11",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "capability_scope",
+        "expected_design_value": "least_privilege_per_task",
+        "negative_value": "cross_product_grant"
+      },
+      "peer_evidence": {
+        "source_id": "OPENSSF",
+        "url": "https://openssf.org/projects/scorecard/",
+        "source_title": "OpenSSF Scorecard",
+        "source_section": "Automated security checks",
+        "mechanism": "token_permissions",
+        "design_transfer_rationale": "Yetki sınırını otomatik güvenlik kontrolüyle inceleme",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D12",
@@ -305,7 +481,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 4,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D12",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "integration_handshake",
+        "expected_design_value": "schema_timeout_authority",
+        "negative_value": "unspecified_adapter"
+      },
+      "peer_evidence": {
+        "source_id": "LANGGRAPH",
+        "url": "https://github.com/langchain-ai/docs/blob/main/src/oss/langgraph/persistence.mdx",
+        "source_title": "LangGraph Persistence",
+        "source_section": "Checkpointer / store",
+        "mechanism": "graph_execution_state",
+        "design_transfer_rationale": "Arayüz ve yürütme durumu bağlama",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D13",
@@ -324,7 +516,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 5,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D13",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "v3_lock",
+        "expected_design_value": "canonical_sha_match",
+        "negative_value": "unverified_digest"
+      },
+      "peer_evidence": {
+        "source_id": "SLSA",
+        "url": "https://slsa.dev/spec/v1.2/provenance",
+        "source_title": "SLSA v1.2 provenance",
+        "source_section": "Source and build provenance",
+        "mechanism": "source_provenance",
+        "design_transfer_rationale": "Kanonik belge ve gerçek içerik kimliği",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D14",
@@ -343,7 +551,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 4,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D14",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "head_freshness",
+        "expected_design_value": "exact_head_provenance",
+        "negative_value": "stale_branch"
+      },
+      "peer_evidence": {
+        "source_id": "SLSA",
+        "url": "https://slsa.dev/spec/v1.2/provenance",
+        "source_title": "SLSA v1.2 provenance",
+        "source_section": "Source and build provenance",
+        "mechanism": "source_provenance",
+        "design_transfer_rationale": "Çalıştırılmış sürüm kimliğinin takibi",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D15",
@@ -362,7 +586,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 4,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D15",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "naming_governance",
+        "expected_design_value": "single_canonical_term",
+        "negative_value": "drifted_names"
+      },
+      "peer_evidence": {
+        "source_id": "NIST_AI_RMF",
+        "url": "https://airc.nist.gov/airmf-resources/playbook/",
+        "source_title": "NIST AI RMF Playbook",
+        "source_section": "Govern / Map / Measure / Manage",
+        "mechanism": "govern",
+        "design_transfer_rationale": "Yönetişimde sorumluluk ve terim birliği",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D16",
@@ -381,7 +621,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 4,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D16",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "repo_reconciliation",
+        "expected_design_value": "explicit_repo_coverage",
+        "negative_value": "unexamined_repos_counted"
+      },
+      "peer_evidence": {
+        "source_id": "OPENSSF",
+        "url": "https://openssf.org/projects/scorecard/",
+        "source_title": "OpenSSF Scorecard",
+        "source_section": "Automated security checks",
+        "mechanism": "repo_security_checks",
+        "design_transfer_rationale": "Taranmış kapsam ile iddia ayrımı",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D17",
@@ -400,7 +656,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 5,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D17",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "acceptance_matrix",
+        "expected_design_value": "ids_verifiers_and_evidence",
+        "negative_value": "unowned_conditions"
+      },
+      "peer_evidence": {
+        "source_id": "ANTHROPIC_EVALS",
+        "url": "https://www.anthropic.com/research/demystifying-evals-for-ai-agents",
+        "source_title": "Demystifying evals for AI agents",
+        "source_section": "Grader / outcome / regression",
+        "mechanism": "task_grader",
+        "design_transfer_rationale": "Açık görev ve değerlendirme ölçütleri",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D18",
@@ -419,7 +691,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 5,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D18",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "dependency_graph",
+        "expected_design_value": "acyclic_with_external_gates",
+        "negative_value": "hidden_cycle"
+      },
+      "peer_evidence": {
+        "source_id": "DORA",
+        "url": "https://dora.dev/guides/dora-metrics/",
+        "source_title": "DORA software delivery performance metrics",
+        "source_section": "Five delivery metrics",
+        "mechanism": "flow_efficiency",
+        "design_transfer_rationale": "Teslim akışının darboğaz haritası",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D19",
@@ -438,7 +726,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 4,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D19",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "work_blocks",
+        "expected_design_value": "dependency_preserving_batches",
+        "negative_value": "double_counted_evidence"
+      },
+      "peer_evidence": {
+        "source_id": "DORA",
+        "url": "https://dora.dev/guides/dora-metrics/",
+        "source_title": "DORA software delivery performance metrics",
+        "source_section": "Five delivery metrics",
+        "mechanism": "change_lead_time",
+        "design_transfer_rationale": "Gereksiz iş çevrimlerini azaltma",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D20",
@@ -457,7 +761,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 4,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D20",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "session_handoff",
+        "expected_design_value": "source_pinned_continuity",
+        "negative_value": "memory_overrides_head"
+      },
+      "peer_evidence": {
+        "source_id": "LANGGRAPH",
+        "url": "https://github.com/langchain-ai/docs/blob/main/src/oss/langgraph/persistence.mdx",
+        "source_title": "LangGraph Persistence",
+        "source_section": "Checkpointer / store",
+        "mechanism": "checkpoint_thread",
+        "design_transfer_rationale": "Durumun denetlenebilir devri",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D21",
@@ -476,7 +796,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 5,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D21",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "preflight_scenarios",
+        "expected_design_value": "happy_negative_disruption",
+        "negative_value": "happy_path_only"
+      },
+      "peer_evidence": {
+        "source_id": "ANTHROPIC_EVALS",
+        "url": "https://www.anthropic.com/research/demystifying-evals-for-ai-agents",
+        "source_title": "Demystifying evals for AI agents",
+        "source_section": "Grader / outcome / regression",
+        "mechanism": "regression_evals",
+        "design_transfer_rationale": "Birden çok başarısızlık yolunun sınanması",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D22",
@@ -495,7 +831,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 5,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D22",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "simulation_rounds",
+        "expected_design_value": "three_fixed_denominator",
+        "negative_value": "inflated_round_score"
+      },
+      "peer_evidence": {
+        "source_id": "ANTHROPIC_EVALS",
+        "url": "https://www.anthropic.com/research/demystifying-evals-for-ai-agents",
+        "source_title": "Demystifying evals for AI agents",
+        "source_section": "Grader / outcome / regression",
+        "mechanism": "trial_consistency",
+        "design_transfer_rationale": "Aynı vaka kümesiyle karşılaştırılabilir yeniden sınama",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D23",
@@ -514,7 +866,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 4,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D23",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "root_cause_standard",
+        "expected_design_value": "evidence_before_remediation",
+        "negative_value": "hypothesis_promoted"
+      },
+      "peer_evidence": {
+        "source_id": "NIST_SSDF",
+        "url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+        "source_title": "NIST SSDF SP 800-218 v1.1",
+        "source_section": "Secure development practices",
+        "mechanism": "root_cause",
+        "design_transfer_rationale": "Giderimin doğrulanmış neden üzerinden yapılması",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D24",
@@ -533,7 +901,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 4,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D24",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "scenario_oracle",
+        "expected_design_value": "expected_and_forbidden_verdict",
+        "negative_value": "test_without_oracle"
+      },
+      "peer_evidence": {
+        "source_id": "ANTHROPIC_EVALS",
+        "url": "https://www.anthropic.com/research/demystifying-evals-for-ai-agents",
+        "source_title": "Demystifying evals for AI agents",
+        "source_section": "Grader / outcome / regression",
+        "mechanism": "code_graders",
+        "design_transfer_rationale": "Her vaka için beklenen sonuç ve reddedici ölçüt",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D25",
@@ -552,7 +936,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 4,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D25",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "git_change_control",
+        "expected_design_value": "scoped_pr_ci_exact_head",
+        "negative_value": "commit_called_merge"
+      },
+      "peer_evidence": {
+        "source_id": "SLSA",
+        "url": "https://slsa.dev/spec/v1.2/provenance",
+        "source_title": "SLSA v1.2 provenance",
+        "source_section": "Source and build provenance",
+        "mechanism": "source_integrity",
+        "design_transfer_rationale": "Değişim geçmişini gerçek kaynakla bağlama",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D26",
@@ -571,7 +971,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 4,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D26",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "runtime_observation",
+        "expected_design_value": "real_executor_receipt",
+        "negative_value": "design_claim_as_run"
+      },
+      "peer_evidence": {
+        "source_id": "DORA",
+        "url": "https://dora.dev/guides/dora-metrics/",
+        "source_title": "DORA software delivery performance metrics",
+        "source_section": "Five delivery metrics",
+        "mechanism": "change_delivery",
+        "design_transfer_rationale": "İcra iddiası ve gerçekten teslim edilen iş ayrımı",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D27",
@@ -590,7 +1006,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 4,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D27",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "github_osi_binding",
+        "expected_design_value": "artifact_and_native_proof",
+        "negative_value": "ci_as_osi_proof"
+      },
+      "peer_evidence": {
+        "source_id": "SLSA",
+        "url": "https://slsa.dev/spec/v1.2/provenance",
+        "source_title": "SLSA v1.2 provenance",
+        "source_section": "Source and build provenance",
+        "mechanism": "build_provenance",
+        "design_transfer_rationale": "Ürün inşa kanıtını saha kanıtından ayırma",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D28",
@@ -609,7 +1041,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 3,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D28",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "automated_loop",
+        "expected_design_value": "bounded_and_checkpointed",
+        "negative_value": "unauthorized_autonomy"
+      },
+      "peer_evidence": {
+        "source_id": "LANGGRAPH",
+        "url": "https://github.com/langchain-ai/docs/blob/main/src/oss/langgraph/persistence.mdx",
+        "source_title": "LangGraph Persistence",
+        "source_section": "Checkpointer / store",
+        "mechanism": "persistence",
+        "design_transfer_rationale": "Sınırlı yürütme ve duruma geri dönme",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D29",
@@ -628,7 +1076,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 4,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D29",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "regression_suite",
+        "expected_design_value": "golden_and_regression",
+        "negative_value": "unexecuted_test_pass"
+      },
+      "peer_evidence": {
+        "source_id": "ANTHROPIC_EVALS",
+        "url": "https://www.anthropic.com/research/demystifying-evals-for-ai-agents",
+        "source_title": "Demystifying evals for AI agents",
+        "source_section": "Grader / outcome / regression",
+        "mechanism": "regression_evals",
+        "design_transfer_rationale": "Eski davranışın korunmasını ölçme",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D30",
@@ -647,7 +1111,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 5,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D30",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "security_negatives",
+        "expected_design_value": "prompt_secret_negative_tests",
+        "negative_value": "unsafe_fixture_pass"
+      },
+      "peer_evidence": {
+        "source_id": "NIST_SSDF",
+        "url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+        "source_title": "NIST SSDF SP 800-218 v1.1",
+        "source_section": "Secure development practices",
+        "mechanism": "vulnerability_prevention",
+        "design_transfer_rationale": "Güvenlik negatiflerinin test edilmesi",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D31",
@@ -666,7 +1146,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 4,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D31",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "ci_evidence",
+        "expected_design_value": "run_sha_and_conclusion",
+        "negative_value": "green_different_commit"
+      },
+      "peer_evidence": {
+        "source_id": "OPENSSF",
+        "url": "https://openssf.org/projects/scorecard/",
+        "source_title": "OpenSSF Scorecard",
+        "source_section": "Automated security checks",
+        "mechanism": "ci_checks",
+        "design_transfer_rationale": "Gerçek CI kontrolü ve kaynak eşleştirmesi",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D32",
@@ -685,7 +1181,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 4,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D32",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "review_independence",
+        "expected_design_value": "different_reviewer_identity",
+        "negative_value": "producer_self_approval"
+      },
+      "peer_evidence": {
+        "source_id": "ANTHROPIC_EVALS",
+        "url": "https://www.anthropic.com/research/demystifying-evals-for-ai-agents",
+        "source_title": "Demystifying evals for AI agents",
+        "source_section": "Grader / outcome / regression",
+        "mechanism": "human_grading",
+        "design_transfer_rationale": "Bağımsız değerlendirme rolü",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D33",
@@ -704,7 +1216,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 5,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D33",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "evidence_claim_binding",
+        "expected_design_value": "claim_tied_to_observation",
+        "negative_value": "llm_claim_only"
+      },
+      "peer_evidence": {
+        "source_id": "ANTHROPIC_EVALS",
+        "url": "https://www.anthropic.com/research/demystifying-evals-for-ai-agents",
+        "source_title": "Demystifying evals for AI agents",
+        "source_section": "Grader / outcome / regression",
+        "mechanism": "outcome_grading",
+        "design_transfer_rationale": "Söz yerine gerçek sonucun okunması",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D34",
@@ -723,7 +1251,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 5,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D34",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "build_provenance",
+        "expected_design_value": "builder_source_artifact_chain",
+        "negative_value": "hash_without_builder"
+      },
+      "peer_evidence": {
+        "source_id": "SLSA",
+        "url": "https://slsa.dev/spec/v1.2/provenance",
+        "source_title": "SLSA v1.2 provenance",
+        "source_section": "Source and build provenance",
+        "mechanism": "build_provenance",
+        "design_transfer_rationale": "Üretim zincirinin gerçek kökeni",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D35",
@@ -742,7 +1286,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 5,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D35",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "independent_recheck",
+        "expected_design_value": "second_method_and_freshness",
+        "negative_value": "duplicate_receipt_as_review"
+      },
+      "peer_evidence": {
+        "source_id": "SLSA",
+        "url": "https://slsa.dev/spec/v1.2/provenance",
+        "source_title": "SLSA v1.2 provenance",
+        "source_section": "Source and build provenance",
+        "mechanism": "provenance_verification",
+        "design_transfer_rationale": "Farklı kanıt üreticisinin yeniden ölçümü",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D36",
@@ -761,7 +1321,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 4,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D36",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "finish_accounting",
+        "expected_design_value": "execution_evidence_authority",
+        "negative_value": "simulation_as_finish"
+      },
+      "peer_evidence": {
+        "source_id": "NIST_AI_RMF",
+        "url": "https://airc.nist.gov/airmf-resources/playbook/",
+        "source_title": "NIST AI RMF Playbook",
+        "source_section": "Govern / Map / Measure / Manage",
+        "mechanism": "measure",
+        "design_transfer_rationale": "Güvenilir sonuç göstergeleri",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D37",
@@ -780,7 +1356,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 5,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D37",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "privacy_boundary",
+        "expected_design_value": "classified_secret_egress",
+        "negative_value": "private_to_public"
+      },
+      "peer_evidence": {
+        "source_id": "NIST_SSDF",
+        "url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+        "source_title": "NIST SSDF SP 800-218 v1.1",
+        "source_section": "Secure development practices",
+        "mechanism": "secure_build",
+        "design_transfer_rationale": "Gizli verinin güvenli işlem hattı",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D38",
@@ -799,7 +1391,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 5,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D38",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "human_authority",
+        "expected_design_value": "scoped_signer_review",
+        "negative_value": "chat_ack_as_signature"
+      },
+      "peer_evidence": {
+        "source_id": "NIST_AI_RMF",
+        "url": "https://airc.nist.gov/airmf-resources/playbook/",
+        "source_title": "NIST AI RMF Playbook",
+        "source_section": "Govern / Map / Measure / Manage",
+        "mechanism": "govern",
+        "design_transfer_rationale": "Karar sahibi ve yetki sorumluluğu",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D39",
@@ -818,7 +1426,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 4,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D39",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "fail_closed",
+        "expected_design_value": "hold_or_blocked_on_unknown",
+        "negative_value": "unknown_as_pass"
+      },
+      "peer_evidence": {
+        "source_id": "OPENSSF",
+        "url": "https://openssf.org/projects/scorecard/",
+        "source_title": "OpenSSF Scorecard",
+        "source_section": "Automated security checks",
+        "mechanism": "risk_assessment",
+        "design_transfer_rationale": "Eksik güvenlik kanıtına güvenli hüküm",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D40",
@@ -837,7 +1461,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 5,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D40",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "cost_guard",
+        "expected_design_value": "budget_before_paid_action",
+        "negative_value": "unapproved_spend"
+      },
+      "peer_evidence": {
+        "source_id": "DORA",
+        "url": "https://dora.dev/guides/dora-metrics/",
+        "source_title": "DORA software delivery performance metrics",
+        "source_section": "Five delivery metrics",
+        "mechanism": "delivery_cost_tradeoff",
+        "design_transfer_rationale": "İş akışında maliyet gözlemi ve ön izin",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D41",
@@ -856,7 +1496,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 4,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D41",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "durable_checkpoint",
+        "expected_design_value": "task_id_and_fingerprint",
+        "negative_value": "lost_state_after_restart"
+      },
+      "peer_evidence": {
+        "source_id": "LANGGRAPH",
+        "url": "https://github.com/langchain-ai/docs/blob/main/src/oss/langgraph/persistence.mdx",
+        "source_title": "LangGraph Persistence",
+        "source_section": "Checkpointer / store",
+        "mechanism": "checkpoint_thread",
+        "design_transfer_rationale": "Kesinti sonrası aynı göreve dönüş",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D42",
@@ -875,7 +1531,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 5,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D42",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "idempotent_replay",
+        "expected_design_value": "single_effect_per_fingerprint",
+        "negative_value": "duplicate_side_effect"
+      },
+      "peer_evidence": {
+        "source_id": "LANGGRAPH",
+        "url": "https://github.com/langchain-ai/docs/blob/main/src/oss/langgraph/persistence.mdx",
+        "source_title": "LangGraph Persistence",
+        "source_section": "Checkpointer / store",
+        "mechanism": "pending_writes",
+        "design_transfer_rationale": "Tekrarın kontrol altına alınması",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D43",
@@ -894,7 +1566,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 4,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D43",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "schedule_observability",
+        "expected_design_value": "timestamps_not_only_cron",
+        "negative_value": "cron_claim_as_proof"
+      },
+      "peer_evidence": {
+        "source_id": "GOOGLE_SRE",
+        "url": "https://sre.google/workbook/implementing-slos/",
+        "source_title": "Google SRE Implementing SLOs",
+        "source_section": "SLI / SLO / error budget",
+        "mechanism": "reliability_sli",
+        "design_transfer_rationale": "Hizmetin gerçek çalışmasının ölçümü",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D44",
@@ -913,7 +1601,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 4,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D44",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "recovery_acceptance",
+        "expected_design_value": "restart_and_rollback_receipts",
+        "negative_value": "restart_claim_only"
+      },
+      "peer_evidence": {
+        "source_id": "GOOGLE_SRE",
+        "url": "https://sre.google/workbook/implementing-slos/",
+        "source_title": "Google SRE Implementing SLOs",
+        "source_section": "SLI / SLO / error budget",
+        "mechanism": "error_budget",
+        "design_transfer_rationale": "Kurtarma başarısının gözlenmesi",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D45",
@@ -932,7 +1636,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 4,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D45",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "atlas_traceability",
+        "expected_design_value": "source_linked_single_index",
+        "negative_value": "unlinked_canonical_claim"
+      },
+      "peer_evidence": {
+        "source_id": "SLSA",
+        "url": "https://slsa.dev/spec/v1.2/provenance",
+        "source_title": "SLSA v1.2 provenance",
+        "source_section": "Source and build provenance",
+        "mechanism": "source_provenance",
+        "design_transfer_rationale": "Kaynak iziyle görünür bütünleşik envanter",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D46",
@@ -951,7 +1671,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 4,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D46",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "human_friction",
+        "expected_design_value": "single_clear_next_action",
+        "negative_value": "manual_every_step"
+      },
+      "peer_evidence": {
+        "source_id": "GOOGLE_SRE",
+        "url": "https://sre.google/workbook/implementing-slos/",
+        "source_title": "Google SRE Implementing SLOs",
+        "source_section": "SLI / SLO / error budget",
+        "mechanism": "user_facing_sli",
+        "design_transfer_rationale": "Kullanıcı deneyimindeki sürtünmeyi ölçme",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D47",
@@ -970,7 +1706,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 4,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D47",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "impact_metrics",
+        "expected_design_value": "baseline_leadtime_rework",
+        "negative_value": "percent_gain_without_data"
+      },
+      "peer_evidence": {
+        "source_id": "DORA",
+        "url": "https://dora.dev/guides/dora-metrics/",
+        "source_title": "DORA software delivery performance metrics",
+        "source_section": "Five delivery metrics",
+        "mechanism": "five_delivery_metrics",
+        "design_transfer_rationale": "Teslim performansını birkaç metrikle değerlendirme",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     },
     {
       "id": "D48",
@@ -989,7 +1741,23 @@
       "real_field_state": "NOT_ASSESSED",
       "baseline_design_points": 4,
       "candidate_design_points": 5,
-      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only"
+      "points_awarded_basis": "criterion+falsifier+scope+canonical source+international crosswalk; theoretical document sufficiency only",
+      "oracle_binding": {
+        "case_id": "ORACLE_D48",
+        "fixture_ref": "governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json",
+        "input_key": "verified_service",
+        "expected_design_value": "real_delivery_and_acceptance",
+        "negative_value": "report_as_product_finish"
+      },
+      "peer_evidence": {
+        "source_id": "ANTHROPIC_EVALS",
+        "url": "https://www.anthropic.com/research/demystifying-evals-for-ai-agents",
+        "source_title": "Demystifying evals for AI agents",
+        "source_section": "Grader / outcome / regression",
+        "mechanism": "outcome_grading",
+        "design_transfer_rationale": "Gerçek sonucun beyanın ötesinde denetlenmesi",
+        "claim_type": "METHODOLOGICAL_ANALOGY_NOT_CERTIFICATION"
+      }
     }
   ],
   "authority": {
@@ -999,5 +1767,16 @@
     "osi_field": "HOLD",
     "verified_finish": "HOLD"
   },
-  "international_comparison": "8 design reference families; source URLs and mapping in linked protocol"
+  "international_comparison": "8 design reference families; source URLs and mapping in linked protocol",
+  "design_v2": {
+    "schema": "enguru.design48.behavioral-score/v2",
+    "fixed_denominator": 240,
+    "rules": [
+      "original baseline immutable",
+      "candidate_design_points informational only",
+      "derived points computed in independent scorer",
+      "no field or authority claim",
+      "all 48 individualized mock oracles positive negative missing"
+    ]
+  }
 }
