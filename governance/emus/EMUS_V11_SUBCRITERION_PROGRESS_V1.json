@@ -4,13 +4,13 @@
   "baseline": "19 original GitHub tasks; four candidate checkpoints per task; engineering coverage only",
   "counting_rules": {
     "denominator": 76,
-    "ci_evidenced_count": 15,
+    "ci_evidenced_count": 16,
     "scope": "CI and SHA-verified supplied Mac OSi field evidence counted separately; NOT full task or human acceptance",
     "official_accepted_tasks": 0,
     "unsupported_criteria": "HOLD_UNVERIFIED",
     "no_double_count": "each criterion ID counted once",
     "field_evidenced_count": 2,
-    "evidenced_total": 17
+    "evidenced_total": 18
   },
   "rows": [
     {
@@ -117,8 +117,9 @@
         {
           "id": "GH-04-C2",
           "label": "dependency locks",
-          "evidence_run": null,
-          "state": "HOLD_UNVERIFIED"
+          "evidence_run": "40087600777",
+          "state": "CI_EVIDENCED",
+          "note": "B1–B5 gap-aware dependency locks and negative readiness scenarios PASS on real Labory Final Gate; independent review and Mac OSi field remain HOLD."
         },
         {
           "id": "GH-04-C3",
