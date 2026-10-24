@@ -5,10 +5,12 @@
   "counting_rules": {
     "denominator": 76,
     "ci_evidenced_count": 13,
-    "scope": "CI checkpoints only, not original task completion or authorized acceptance",
+    "scope": "CI and SHA-verified supplied Mac OSi field evidence counted separately; NOT full task or human acceptance",
     "official_accepted_tasks": 0,
     "unsupported_criteria": "HOLD_UNVERIFIED",
-    "no_double_count": "each criterion ID counted once"
+    "no_double_count": "each criterion ID counted once",
+    "field_evidenced_count": 1,
+    "evidenced_total": 14
   },
   "rows": [
     {
@@ -265,7 +267,10 @@
           "id": "GH-09-C2",
           "label": "license proof",
           "evidence_run": null,
-          "state": "HOLD_UNVERIFIED"
+          "state": "FIELD_EVIDENCED",
+          "evidence_file": "EMUS_G07_OSI_20261024T070319Z.json",
+          "evidence_sha256": "3376076390447c41f5b30c139541a5e3b6b6287fbbba305ff8fbafd65a9b2cab",
+          "note": "Ollama qwen3:14b installed license text Apache-2.0; complete artifact digest / full redistribution provenance separate HOLD"
         },
         {
           "id": "GH-09-C3",
