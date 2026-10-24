@@ -31,6 +31,7 @@ on:
       - 'tests/test_management_v69_pilot_dual_acceptance.py'
       - 'tools/management_v69_architecture_theory_independent.py'
       - 'tests/test_management_v69_architecture_theory_independent.py'
+      - 'tools/management_v69_pilot_four_round_sim.py'
       - 'tools/management_v69_current_main_source_observe.py'
       - '.github/workflows/management-v69-handoff-review.yml'
   workflow_dispatch:
@@ -87,5 +88,7 @@ jobs:
         run: python3 -m unittest discover -s tests -p 'test_management_v69_pilot_dual_acceptance.py' -v
       - name: Independent Pilot architecture source proof
         run: python3 -m unittest discover -s tests -p 'test_management_v69_architecture_theory_independent.py' -v
+      - name: Pilot four-round integrated theoretical decision simulation
+        run: python3 tools/management_v69_pilot_four_round_sim.py
       - name: Source syntax
         run: python3 -m py_compile tools/management_v69_handoff_verify.py
