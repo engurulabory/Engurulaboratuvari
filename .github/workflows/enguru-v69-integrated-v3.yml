@@ -21,6 +21,8 @@ jobs:
         run: python governance/management-v69/handoff/integrated-v3/preflight.py
       - name: Shared Pilot contract adversarial tests
         run: python governance/management-v69/handoff/integrated-v3/test_pilot_contract.py
+      - name: Independent Ed25519 test receipt adversarial checks
+        run: python governance/management-v69/handoff/integrated-v3/test_signed_verifier.py
       - name: Execute real module entrypoints
         run: python governance/management-v69/handoff/integrated-v3/runner.py --run /tmp/enguru-v69-v3
       - name: Independently validate receipts
