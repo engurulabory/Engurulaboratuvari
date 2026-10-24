@@ -15,7 +15,7 @@ class EvidenceGateTests(unittest.TestCase):
         self.assertEqual(r["counts"]["official_accepted_tasks"],0)
     def test_seven_adversarial_mutations(self):
         mutations=[
-          lambda d:d["counting_rules"].__setitem__("evidenced_total",16),
+          lambda d:d["counting_rules"].__setitem__("evidenced_total",d["counting_rules"]["evidenced_total"]+1),
           lambda d:d["rows"][0]["criteria"][0].__setitem__("id","GH-01-C2"),
           lambda d:d["rows"][0]["criteria"][1].__setitem__("evidence_run",None),
           lambda d:d["rows"][8]["criteria"][1].__setitem__("evidence_sha256","invalid"),
