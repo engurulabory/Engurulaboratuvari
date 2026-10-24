@@ -25,3 +25,10 @@ State: ROUTER_NEGATIVE_CI_PASS / LIVE_END_TO_END_ZERO_PAID_HOLD
 GH-09-C3=HOLD_UNVERIFIED because deterministic zero-cost router negative tests PASS but current exact Mac field environment, runtime-to-router live cost evidence and any alternate fallback paths need independently collected real end-to-end evidence.
 GH-09-C4=FIELD_EVIDENCED for real local inference and observed loaded model memory. Full product memory budget HOLD in separately tracked requirement.
 No additional criteria counted in this packet. SUBCRITERIA=15/76, OFFICIAL_ACCEPTANCE=0/19, GITHUB_VERIFIED_FINISH=HOLD.
+
+## 2026-10-24 Mac Engineer → Shared AI → Ollama actual field attempt
+- File `EMUS_G07_ROUTE_20261024T093740Z.json`, SHA-256 `b275896e9a9476f9f7ac2e64b40b40bc2831cc340b94271d535c2f949d3d1878`, checked from provided byte-for-byte field artifact.
+- Product source ref `a91a876c6b48457d94858bb8ccf0002e2cb9d2b2`, runtime/provider.py SHA-256 `6605ee6830bc552f7c838c93ae67cf3667c86803ed085f9670f35303b056b856`.
+- `chat_ok=false`; `response_match=false`; `elapsed_s=0.002`; loaded_before/after empty; all route fields null, including provider and estimated_cost. No live zero-cost route PASS may be assigned. Exact root cause unknown; possible router availability/configuration requires diagnostic evidence.
+- Collector had misleading generic `FIELD_COLLECTED_ACCEPTANCE_PENDING` after failed chat. Fail-closed correction commit `823666de4ebcce807541da7a0ac39c87ce36334d` records bounded error and writes `HOLD_LIVE_ROUTE_UNVERIFIED` on unavailable provider/cost route.
+- GH-09-C3=HOLD, GH-09-C4 prior separate Ollama direct field evidence retained; total 15/76, official 0/19.
