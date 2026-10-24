@@ -591,5 +591,77 @@
     "ledger_written": 0,
     "official_counter_increments": 0
   },
-  "final_decision": "MANAGEMENT_DESIGN_SELF_EVALUATED_100_100__REAL_GITHUB_PREPARATION_50_100_HOLD__FIRST_FINISH_NOT_EARNED"
+  "final_decision": "GITHUB_OWNER_ACCOUNT_PROVENANCE_VERIFIED__A03_CRYPTO_A04_SCOPE_REVIEW_HOLD__REAL_GITHUB_PREP_50_100",
+  "owner_github_identity_provenance": {
+    "status": "PASS_CONNECTED_GITHUB_REPOSITORY_ADMIN_IDENTITY_ONLY",
+    "observed_date": "2026-10-24",
+    "subject": "ENGURU-HYM-AR-GE / B01-M01 / A03 owner identity and A04 source ownership candidate",
+    "authenticated_github_login": "engurulabory",
+    "authenticated_numeric_github_user_id": 281390783,
+    "repositories": [
+      {
+        "repo": "engurulabory/Engurulaboratuvari",
+        "ownerLogin": "engurulabory",
+        "ownerId": 281390783,
+        "connectedAdmin": true,
+        "collaboratorPermission": "admin"
+      },
+      {
+        "repo": "engurulabory/enguru-website-factory",
+        "ownerLogin": "engurulabory",
+        "ownerId": 281390783,
+        "connectedAdmin": true,
+        "collaboratorPermission": "admin"
+      }
+    ],
+    "factory_issue_251": {
+      "github_issue": "https://github.com/engurulabory/enguru-website-factory/issues/251",
+      "issue_author_matches_authenticated_login": true,
+      "canonical_runtime_state": "PRECONSTRUCTION_HOLD"
+    },
+    "scope_boundary": {
+      "user_asserted_one_human_owner": "USER_ASSERTED",
+      "github_account_and_repository_admin_verified": true,
+      "only_repo_admin_in_all_accounts": "NOT_EVALUATED",
+      "owner_source_identity": "VERIFIED_AT_GITHUB_ACCOUNT_ADMIN_LEVEL",
+      "A03_actual_task_bound_ed25519_signed_grant": "HOLD",
+      "A04_owner_signed_task_scope_decision": "HOLD",
+      "independent_authorized_PR_review": "HOLD_ZERO_SUBMITTED_REVIEWS",
+      "source_or_runtime_deployed": "NOT_ATTESTED",
+      "separate_application_execution": "PRESERVED"
+    },
+    "canonical_rules": "Github account ownership/admin permission is source identity evidence, NOT cryptographic task grant, real signature, independent authorized review, or full A04 acceptance. Verify exact scoped source and signer in existing authorized mechanisms.",
+    "adversarial_identity_tests": {
+      "passed": 5,
+      "total": 5,
+      "tests": [
+        {
+          "test": "observed_owner",
+          "result": true,
+          "expected": true
+        },
+        {
+          "test": "wrong_connected_account",
+          "result": false,
+          "expected": false
+        },
+        {
+          "test": "admin_revoked",
+          "result": false,
+          "expected": false
+        },
+        {
+          "test": "wrong_account_id",
+          "result": false,
+          "expected": false
+        },
+        {
+          "test": "Kâşifi_issue_owner_mismatch",
+          "result": false,
+          "expected": false
+        }
+      ]
+    },
+    "next": "Use verified GitHub identity as owner account provenance; collect only necessary scope-bound A03 signature and A04 source decision through existing user-controlled signing route. No new role, fee, or reviewer identity assumption."
+  }
 }
