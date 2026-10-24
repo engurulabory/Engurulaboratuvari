@@ -73,3 +73,15 @@ VERIFIED_FINISH → BITTI_DUR
 Beş alandan herhangi biri **100'ün altındaysa** `THEORETICAL_PREPARATION_GATE=HOLD`: eksik aksiyom/ölçüt/scenario ID ile kaydedilir, mevcut kaynak en küçük doğrulanabilir farkla iyileştirilir, beş puan **yeniden** hesaplanır. Tekrarlanan aynı test, kanıt değeri olmayan bir puan artışı üretmez.
 
 **Sabit bitiş iddiası:** Teorik PASS, gerçek iş/kanıt/otorite tamamlanmasına dönüştürülerek resmî kabul üretir. Bu belgenin tek başına `VERIFIED_FINISH` veya imza verme yetkisi bulunmaz.
+
+
+## VI. Kalıcı kullanım alanları ve simülasyon onarım döngüsü — 24 Ekim 2026
+
+Kullanıcı tarafından kapsamı sabitlenen hizmet alanları: **Çekirdek üretimi, Motor üretimi, Agent üretimi, Web üretimi, Uygulama/App üretimi ve Ticari üretimler**. Bunlara yönelik ortak yöntem ve özgün tasarım adaptörleri [Altı Üretim Alanı V1](ENGURU_ALTI_URETIM_UYARLAMA_V1.md) ile [makine-okunur altı alan sözleşmesinde](ENGURU_ALTI_URETIM_ALANI_V1.json) kayıtlıdır.
+
+**Kullanıcıyla ilk kurgu esastır:** gerçek işin ilk tasarım/simülasyonuna kullanıcı ihtiyacı ve kabul sınırlarıyla başlanır. **Simülasyon döngüsü** şu sırayla işler:
+`KULLANICIYLA İLK KURGU → SİMÜLASYON 1 → PUANLA → EKSİK/İHTİYAÇ/GEREKSİNİM/HATA/YANLIŞ TESPİTİ → ONARIM → SİMÜLASYON 2 → YENİDEN PUANLA/ONAR → SİMÜLASYON 3 → 100/100 VE KARŞIT DOĞRULAMA → TEORİK KAPI`.
+
+Bu üç döngü **ardışık düzeltici tasarım turlarıdır**. Yukarıdaki beşli Ana Terazi'deki üç **ayrı simülasyon test ailesi** ise sabit hazırlık güvencesi oluşturur; amaçları farklıdır ve her iki kanıt türü ayrı makbuzda sayılır.
+
+Her turda yalnız gerçekten kapanan özgün kontrol ID'leri puanı artırır. Üçüncü turun sonucu 100 altındaysa `HOLD` ve kesin eksik/onarım kanıtı verilir; sonraki hakiki müdahale yetkili çalışma planına alınır. Sentetik kullanıcı ilk kurgusu gerçek onay oluşturmaz; kullanıcı kararı/bağımsız inceleme/OSi/DoneCheck/Human Threshold ayrı kapılarda kalır. Mevcut canonical V3 ve 48 kontrolün paydası korunmuştur.
