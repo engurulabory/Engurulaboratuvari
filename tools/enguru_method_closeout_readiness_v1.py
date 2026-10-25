@@ -45,13 +45,13 @@ def main(paths):
                    "donecheck_v12":"HOLD_CANONICAL_MACHINE_AUTHORITY",
                    "human_threshold":"HOLD_OWNER_APPROVAL_REQUIRED",
                    "verified_finish":"HOLD"},
-        "exact_main_merge":"HOLD_UNMERGED_PR_221_READY_FOR_REVIEW",
+        "exact_main_merge":"EXTERNALLY_VERIFIED_ONLY_SEPARATE_GITHUB_MAIN_CHECK",
         "immutable_authority":"DONECHECK_V12_AND_HUMAN_THRESHOLD",
         "next_actions":[
             "Independent reviewer with different authorized identity submits actual GitHub PR review",
             "User and engineer select real CORE/ENGINE/AGENT/WEB/APP/COMMERCE case and capture first-design decision",
             "Authorized Mac OSi executor performs signed/pinned real local commissioning and evidence",
-            "Merge only under existing required GitHub branch protections and owner approval",
+            "Read current GitHub main HEAD and actual merged PR provenance independently of this static receipt",
             "Canonical DoneCheck v1.2 + required Human Threshold issue official acceptance and ledger"
         ]
     }
