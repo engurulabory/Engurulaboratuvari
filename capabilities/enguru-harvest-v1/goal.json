@@ -1,0 +1,37 @@
+{
+  "schema": "enguru.harvest.goal/v1.1",
+  "state": "GOAL_DESIGN_CANDIDATE_GITHUB_REVIEW",
+  "baseline": 91,
+  "method": "ZULFIKAR_V1_3",
+  "goal": "Kanıtlı kaynak ve beceri hasadı; gerçek fayda ölçümü; GitHub kaynak ve Mac OSi saha ayrımı",
+  "libraries": [
+    "skills",
+    "advanced_prompts",
+    "proven_sources",
+    "data_knowledge",
+    "engineering_recipes",
+    "evidence"
+  ],
+  "controls": [
+    "H01",
+    "H02",
+    "H03",
+    "H04",
+    "H05",
+    "H06",
+    "H07",
+    "H08",
+    "H09",
+    "H10"
+  ],
+  "promotion": [
+    "CANDIDATE",
+    "TESTED",
+    "PROVEN",
+    "ADOPTED"
+  ],
+  "mandatory_paid_api": 0,
+  "video_methods": "HOLD_UNVERIFIED",
+  "osi_field": "HOLD",
+  "official_finish": "HOLD"
+}
