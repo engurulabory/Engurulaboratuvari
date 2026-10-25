@@ -129,7 +129,8 @@ def _normalize_record(vid,record):
                 if isinstance(event,dict) and isinstance(event.get("fixed"),str):
                     fixes.append({"ecosystem":pkg.get("ecosystem"),"package":pkg.get("name"),
                                   "fixed_event":event["fixed"],"range_type":rng.get("type")})
-    return {"id":vid,"summary":str(record.get("summary",""))[:240],
+    return {"id":vid,"database_specific":record.get("database_specific",{}),
+            "summary":str(record.get("summary",""))[:240],
             "modified":record.get("modified"),"published":record.get("published"),
             "cvss_vectors":vectors,"affected":affected,
             "fix_events":fixes,"url":"https://osv.dev/vulnerability/"+urllib.parse.quote(vid,safe="")}
