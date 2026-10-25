@@ -2,7 +2,7 @@
 import copy
 import unittest
 from tools.enguru_method_osi_handoff_gate_v1 import review_full_chain, OSI_REQUIRED
-from tests.test_enguru_method_three_phase_gate_v1 import plan, verifier, digest
+from test_enguru_method_three_phase_gate_v1 import plan, verifier, digest
 
 GITHUB_HEAD = "a"*40
 
