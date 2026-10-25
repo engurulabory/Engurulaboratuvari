@@ -44,7 +44,7 @@ class UpstreamHypothesisTests(unittest.TestCase):
     @given(st.lists(st.text(max_size=12),max_size=30))
     def test_duplicates_are_conservative(self,ids):
         result=execute("duplicate-check",{"identifiers":ids})
-        expected="HOLD" if len(ids)!=len(set(ids)) else "UNIQUE"
+        expected="HOLD" if any(not value for value in ids) or len(ids)!=len(set(ids)) else "UNIQUE"
         self.assertEqual(result["state"],expected)
 
 if __name__=="__main__":
