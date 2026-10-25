@@ -181,6 +181,9 @@ jobs:
       - name: ENGURU design theory GitHub 3 plus 2 maturation policy tests
         run: python -B -m unittest discover -s tests -p 'test_enguru_method_three_phase_gate_v1.py' -v
 
+      - name: ENGURU user goal to OSi read-only handoff four-stage adversarial tests
+        run: python -B -m unittest discover -s tests -p 'test_enguru_method_osi_handoff_gate_v1.py' -v
+
       - name: End-to-end project preparation and authority boundary tests
         run: python -B -m unittest discover -s tools/hybrid_handoff -p 'test_*.py' -v
 
