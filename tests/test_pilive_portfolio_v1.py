@@ -101,6 +101,14 @@ class PortfolioReaderTests(unittest.TestCase):
         with patch.object(probe.subprocess,'run',return_value=SimpleNamespace(returncode=1,stdout=b'')) as run:
             with self.assertRaisesRegex(ValueError,'CORE_API_FAILURE'):probe.core_call('/scope','project','/tmp','academy')
         self.assertIn('-I',run.call_args.args[0]);self.assertIn('-S',run.call_args.args[0])
+    def test_core_failure_detail_stays_private_not_in_screen_model(self):
+        proc=SimpleNamespace(returncode=2,stdout=b'',stderr=b'private diagnostic /Users/example')
+        with patch.object(probe.subprocess,'run',return_value=proc):
+            with self.assertRaises(probe.CoreAPIHold) as caught:probe.core_call('/scope','project','/tmp','academy')
+        r,f,i=portfolio_fixture();f['academy']={'error':'CORE_API_FAILURE','privateDiagnostic':caught.exception.diagnostic}
+        model=a.build_portfolio(r,f,**i)
+        self.assertNotIn('/Users/',json.dumps(model));self.assertIn('/Users/',caught.exception.diagnostic['stderrTail'])
+        self.assertEqual(model['factCoverage']['qualifiedCounters'],14)
     def test_portfolio_manifest_drift_does_not_publish_snapshot(self):
         r,_,_=portfolio_fixture();empty={'pins':{'x':'b'*64},'errors':{}}
         changed={'pins':{'x':'c'*64},'errors':{}}

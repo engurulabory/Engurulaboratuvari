@@ -19,6 +19,12 @@ from tools import pilive_core_snapshot_adapter_v1 as adapter
 
 def now():return datetime.now(timezone.utc).isoformat()
 
+class CoreAPIHold(ValueError):
+    def __init__(self, returncode, stderr):
+        super().__init__('CORE_API_FAILURE')
+        self.diagnostic={'returncode':returncode,'stderrTail':stderr.decode('utf-8',errors='replace')[-4096:],
+                         'visibility':'PRIVATE_RECEIPT_ONLY'}
+
 def strict_json(raw):
     def pairs(items):
         result={}
@@ -88,7 +94,7 @@ def core_call(root, action, workdir, key=None, timeout=12):
     args=[sys.executable,'-I','-B','-S','-c',WORKER,package_root,str(root),action]
     if key is not None:args.append(key)
     p=subprocess.run(args,cwd=workdir,capture_output=True,timeout=timeout)
-    if p.returncode:raise ValueError('CORE_API_FAILURE')
+    if p.returncode:raise CoreAPIHold(p.returncode,getattr(p,'stderr',b''))
     if len(p.stdout)>2*1024*1024:raise ValueError('CORE_OUTPUT_LIMIT')
     return strict_json(p.stdout)
 
@@ -103,7 +109,9 @@ def portfolio_read(home, workdir):
     rev_before=revision(root);discovery=contract_inputs(root)
     globals_before=source_manifest(root,set(safe.CORE_PINS)|discovery)
     if globals_before['errors']:return {'state':'HOLD_DISCOVERY_SOURCE','executed':False,'sources':globals_before}
-    registry=core_call(root,'registry',workdir)
+    try:registry=core_call(root,'registry',workdir)
+    except CoreAPIHold as exc:
+        return {'state':'HOLD_CORE_REGISTRY','executed':True,'privateDiagnostic':exc.diagnostic,'sources':globals_before}
     entries=registry.get('projects',{})
     if not isinstance(entries,dict) or not 0<len(entries)<=1000:raise ValueError('HOLD_CORE_PROJECT_SET')
     all_paths=set(safe.CORE_PINS)|discovery;project_paths={}
@@ -123,8 +131,11 @@ def portfolio_read(home, workdir):
             pair=core_call(root,'project',workdir,key,timeout=min(12,remaining))
             pair['sourceReadAt']=now();facts[key]=pair
         except subprocess.TimeoutExpired:facts[key]={'error':'CORE_TIMEOUT'}
+        except CoreAPIHold as exc:facts[key]={'error':'CORE_API_FAILURE','privateDiagnostic':exc.diagnostic}
         except (OSError,ValueError,KeyError,TypeError):facts[key]={'error':'CORE_API_FAILURE'}
-    registry_after=core_call(root,'registry',workdir)
+    try:registry_after=core_call(root,'registry',workdir)
+    except CoreAPIHold as exc:
+        return {'state':'HOLD_CORE_REGISTRY_READBACK','executed':True,'privateDiagnostic':exc.diagnostic,'facts':facts}
     after=source_manifest(root,all_paths);rev_after=revision(root)
     if registry!=registry_after or discovery!=contract_inputs(root) or before!=after or rev_before!=rev_after:
         return {'state':'HOLD_PORTFOLIO_SOURCE_DRIFT','executed':True,'before':before,'after':after,

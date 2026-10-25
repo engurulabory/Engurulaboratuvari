@@ -123,9 +123,11 @@ Yönetim gerçek Mac 203/203, 15/15 key/projectId ve P02 read-only PASS'i kabul 
 
 - [x] Core'un registry/summarize/structural_verify API'lerini tüm keşfedilen projeler için kullanan bounded collector geliştirildi. Core'un doğrulanmış byte'ları çalıştırılır; canonical kod/politika değiştirilmez. Keşif girdileri ve proje state/worklist/contract kaynakları SHA çerçevesine alınır.
 - [x] Tek portfolio veri sözleşmesi: qualified gerçek sayaç, ayrı canonicalFinish/finish/officialAcceptance, aktif iş/paket ve ayrı kaynak okuma/adapter/UI zamanları. Veri hatası olan proje görünür HOLD/N/A; diğer projeler korunur. Global revision/pin/kimlik kayması bütün modele HOLD.
-- [x] Ondört yeni karşıt test; mevcut/yeni tüm testler 217/217 üç ayrı tur PASS. Gerçek 15 key/ID üzerinde sayısal olgular test fixture'ıdır; native saha verisi gibi sunulmaz.
+- [x] On beş yeni karşıt test; mevcut/yeni tüm testler 218/218 üç ayrı tur PASS. Gerçek 15 key/ID üzerinde sayısal olgular test fixture'ıdır; native saha verisi gibi sunulmaz.
 - [x] Exact kopyalanmış Core/P02 ile Linux kaynak tekrarında 8 proje keşfi, P02 0/12 ve P02.S01.01, diğer kaynakları eksik 7 satır görünür HOLD. Test Git HEAD sabiti kullanımı raporlandı.
 - [x] Swift/binary zincirinin gerçek açıkları ayrı tanımlandı; bir sonraki native pakete kurulu binary SHA, güncel Swift sürümü ve yerel codesign metadata/verify salt-okunur gözlemi eklendi. Tarihsel recipe/toolchain/signing manifesti kendi kapısında HOLD.
 - [ ] Tek native portföy paketi: tüm testler, keşfedilen 15 projenin kaynaklı API olguları, tüm ilgili source SHA braketleri ve binary metadata. Yeni gerçek makbuz gelene kadar P02 dışındaki 14 proje teknik olguları HOLD.
 
 U01/U02/U03/U04/U05/U09/U10/U12 alt şartları ilerletilir. Sessiz Orman Cockpit™ görsel sözleşmesi beklenir; gerçek SwiftUI, U06/U07/U08/U11, tüm U kabulü ve ayrı resmî P02/Verified Finish HOLD kalır. Mevcut canonical writer, kas ve kurulu app değiştirilmez.
+
+Core API hatalarında bounded stderr yalnız özel makbuza alınır; ekran modeline ve public özete taşınmaz. Böylece proje HOLD nedeni sonraki inceleme için kaybolmaz.

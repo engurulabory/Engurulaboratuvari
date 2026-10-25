@@ -22,6 +22,8 @@ Bu sözleşme dört ekranın görsel tasarımı veya kullanıcı estetik kabulü
 
 Bir proje timeout, bozuk JSON, erişilemeyen kaynak, yanlış sayaç, kimlik veya digest uyuşmazlığı yaşarsa o satır görünür HOLD/N/A kalır. Diğer projelerin geçerli sonuçları korunur. Eski cache veya kısmi sayaç bu boşluğu güncel veri gibi doldurmaz. Bilinmeyen dış fact veya duplicate canonical kimlik, global kapsam uyuşmazlığıdır ve tüm model HOLD olur.
 
+Bu ayrım Core registry() otoritesinin geçerli bir küme döndürmesine bağlıdır. Core'un kendisi bir Work Contract veya eksik zorunlu keşif girdisi nedeniyle registry() üretemezse portföy global HOLD olur; adaptör yeni bir keşif veya eski cache kümesiyle bu otoritenin yerine geçmez. Ayrıntılı hata yalnız özel makbuzda korunur.
+
 ## Zaman ve sunum
 
 `sourceReadAt` koleksiyon başlangıcındaki muhafazakâr kaynak gözlem zamanı; `sourceObservations[key].sourceReadAt` o projenin Core API okuması tamamlandığı andır. Bunlar ilerleme olay zamanı veya file mtime değildir. `adapterBuiltAt` ayrı; `uiRenderedAt=null` ve `uiPublication=NOT_EXECUTED` gerçek ekran bağlanana kadar korunur. Yaş sınırı caller'ın açık eşiğidir; stale durumunda STALE ve sourceAgeSeconds gösterilir. Projection digest zaman metadata'sını dışarıda bırakır; aynı kaynak/sonuç sabit sırayla aynı digest'i verir.
