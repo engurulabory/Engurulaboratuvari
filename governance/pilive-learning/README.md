@@ -41,3 +41,11 @@ Mevcut kas sözleşmesi: 104 test × iki temiz subprocess turu, 25/25 amaç kap�
 `TASARIM=87/100` A ve `85/100` B önceki öz değerlendirmesi korunuyor; bağımsız görsel doğrulama ve yaratıcı kullanıcı kabulü açık. PiLive U01–U12, P02 12/4/7, G3, P01/P06 ve native Verified Finish kendi kaynak/kanıt/yetki kapılarında kalır. Mac kaynak makbuzunun AudiV13 orijinali ile Masaüstü kopyasının güncel yerel readback karşılaştırması ayrıca yürütülecek; yüklenen tek kopya bu eşliği tek başına kanıtlamaz.
 
 **Sonraki somut hareket:** Aynı exact GitHub kaynak paketini Mac'te ayrı geçici test alanında sınamak, mevcut yerel kas dosyalarının kapsam/SHA eşliğini okumak ve sonuç makbuzunu mevcut PiLive öğrenme adaptörüne geri bağlamak.
+
+## Native tekrar probu
+
+`tools/pilive_native_learning_probe_v1.py` yalnız Darwin CLI girişinde, manifestte SHA'sı sabitlenmiş GitHub testlerini sahipliği belli geçici dizinde çalıştırır: mevcut 104 + PiLive adaptörü 26 + probe sınırları 6 = 136 özgün test. Kurulu yerel kası içe aktarmadan iki bilinen repo kökünde yedi exact kaynak yolunun içerik/SHA/görev sabitlerini okur; bulunmayan dosya `MISSING_IN_EXACT_SCOPE` olarak raporlanır. Bu sınırlı kapsam bütün Mac'te yokluk hükmü oluşturmaz.
+
+Sekiz native Core/canonical kaynak SHA'sı eşleşirse mevcut `enguru_progress.py plive-p02-user-screen --verify`, `-B -S` ile ve PYTHONPATH kaldırılarak çalıştırılır. Önce/sonra source SHA eşliği ve gerçek verify alanları kaydedilir. Uygulama açılışı, Keychain, ağ, canonical yazım ve yerel kas yazımı 0. Testlerin kendi fixture/checkpoint yazımları yalnız yeni geçici test alanındadır. İki önceki makbuzun AudiV13 orijinali ve Masaüstü kopyası aynı exact pinlerle yeniden okunur. Yeni sonuç orijinali ve SHA eş kopyası benzersiz adla kaydedilir.
+
+Probe'un Linux test kancası yalnız izole paket sınaması içindir; CLI Darwin kapısını korur. Native başarı ancak gerçek Mac sonuç makbuzuyla verilir. Bu probun PASS'i kullanıcı ekranı, owner estetik kabulü, resmî P02 veya Verified Finish yerine geçmez.
