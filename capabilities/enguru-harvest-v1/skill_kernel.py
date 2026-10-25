@@ -9,7 +9,7 @@ import math
 import re
 from pathlib import Path
 from harvest import evaluate, _valid_https_url
-from evidence_gate import validate, safe_local_assets
+from evidence_gate import validate
 
 OPERATIONS = (
     "fingerprint", "source-url", "source-candidate", "catalog-check",
