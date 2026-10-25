@@ -100,6 +100,15 @@ class RehearsalTests(unittest.TestCase):
         for path,expected in prov["files"].items():
             self.assertEqual(hashlib.sha256((ROOT/path).read_bytes()).hexdigest(),expected,path)
 
+    def test_malformed_plan_and_repository_metadata_return_value_error_or_hold(self):
+        plan=json.loads((ROOT/"governance/pilive-preparation-v2/PLAN.json").read_text())
+        for bad in ([],None,True,"plan"):
+            with self.subTest(plan=bad),self.assertRaises(ValueError):
+                prep.evaluate(b'{}',bad)
+        for repos in (None,[],{},[None],[{"historical_plive_pins":None}]):
+            r=prep.evaluate(prep.canonical({"repositories":repos}),plan)
+            self.assertEqual(r["GITHUB_PREPARED"],"HOLD")
+
     def test_plan_dependency_graph_has_exact_ids_and_no_cycles(self):
         plan=json.loads((ROOT/"governance/pilive-preparation-v2/PLAN.json").read_text())
         graph={x["id"]:set(x["requires"]) for x in plan["blocks"]}

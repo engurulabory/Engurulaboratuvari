@@ -4,7 +4,7 @@
 
 **CLAIM:** Mevcut Brain V3 modelini kaynak SHA ile yeniden kullan; gerçek Mac keşfini sınırlı kanıt olarak değerlendir; G00–G09'u tek plana bağla. Kanıtlanan açıklara yalnız gereken hazırlık farkını uygula.
 
-**EVIDENCE:** `PLAN.json`, `REUSE_PROVENANCE.json`, `tools/pilive_prepare_v2.py`, `tools/pilive_osi_source_observer_v2.py`, özgün 51 Brain testi ve yeni 15 regresyon. Exact PR HEAD ve CI ayrıca okunur. Ekli saha raporunun orijinal SHA-256 pini `17cd00711ac8eed82ef802f69769400f9fade7414a0e27d6e1faccf94d18fbb0`.
+**EVIDENCE:** `PLAN.json`, `REUSE_PROVENANCE.json`, `tools/pilive_prepare_v2.py`, `tools/pilive_osi_source_observer_v2.py`, özgün 51 Brain testi ve yeni 16 regresyon. Exact PR HEAD ve CI ayrıca okunur. Ekli saha raporunun orijinal SHA-256 pini `17cd00711ac8eed82ef802f69769400f9fade7414a0e27d6e1faccf94d18fbb0`.
 
 **JUDGMENT:** Genel yöntem ve Hybrid yapısal 5×100, PiLive'ın gerçek canonical kaynak/uygulama bağı ölçümünden ayrı tutulur. Birleşik hazırlık her eksende bu ölçümlerin asgari değeridir. PiLive semantik kontrolünde açık kaynak şartı varsa `GITHUB_PREPARED=HOLD` sürer. Yeşil CI bu HOLD'un doğru korunmasını da sınar.
 

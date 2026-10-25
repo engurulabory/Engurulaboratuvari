@@ -146,15 +146,19 @@ def evaluate(discovery_bytes, plan, source_root=ROOT):
     report = parse(discovery_bytes)
     if not isinstance(report, dict):
         raise ValueError("DISCOVERY_OBJECT_REQUIRED")
+    if not isinstance(plan, dict):
+        raise ValueError("PLAN_OBJECT_REQUIRED")
     rows = {a: [] for a in AXES}
     def add(axis, label, ok, evidence):
         rows[axis].append({"id": f"{axis}.{len(rows[axis])+1:02d}", "requirement": label,
                            "state": "PASS" if ok else "HOLD", "points": 10 if ok else 0,
                            "evidence": evidence})
     locked = digest((source_root/"governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md").read_bytes()) == V3_PIN
-    source = report.get("repositories", [{}])[0]
+    repositories = report.get("repositories")
+    source = repositories[0] if isinstance(repositories, list) and repositories and isinstance(repositories[0], dict) else {}
     pins = source.get("historical_plive_pins", {})
-    pin_ok = set(pins) == set(PINS) and all(pins[p].get("sha256") == PINS[p] for p in PINS)
+    pin_ok = isinstance(pins, dict) and set(pins) == set(PINS) and all(
+        isinstance(pins[p], dict) and pins[p].get("sha256") == PINS[p] for p in PINS)
     # Actual canonical bytes and native bindings are absent from this discovery.
     # No JSON flag supplied by a caller can award these controls.
     for label, ok, ev in [
