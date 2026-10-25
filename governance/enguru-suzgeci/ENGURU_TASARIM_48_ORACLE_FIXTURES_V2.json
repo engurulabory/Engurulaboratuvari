@@ -1,0 +1,775 @@
+{
+  "schema": "enguru.design48.positive_negative_oracles/v2",
+  "scope": "THEORETICAL_CONTRACT_ONLY",
+  "origin": "G01 G02 G03 design hardening",
+  "fixtures": [
+    {
+      "control_id": "D01",
+      "case_id": "ORACLE_D01",
+      "input_key": "user_outcome",
+      "positive": {
+        "user_outcome": "measurable_benefit"
+      },
+      "negative": {
+        "user_outcome": "vague_benefit"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "NIST_AI_RMF"
+    },
+    {
+      "control_id": "D02",
+      "case_id": "ORACLE_D02",
+      "input_key": "goal_scope",
+      "positive": {
+        "goal_scope": "single_measurable_goal"
+      },
+      "negative": {
+        "goal_scope": "competing_goals"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "DORA"
+    },
+    {
+      "control_id": "D03",
+      "case_id": "ORACLE_D03",
+      "input_key": "locked_decisions",
+      "positive": {
+        "locked_decisions": "version_pinned"
+      },
+      "negative": {
+        "locked_decisions": "silently_changed"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "SLSA"
+    },
+    {
+      "control_id": "D04",
+      "case_id": "ORACLE_D04",
+      "input_key": "impact_baseline",
+      "positive": {
+        "impact_baseline": "baseline_with_observation"
+      },
+      "negative": {
+        "impact_baseline": "claim_without_baseline"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "GOOGLE_SRE"
+    },
+    {
+      "control_id": "D05",
+      "case_id": "ORACLE_D05",
+      "input_key": "suzgec_phases",
+      "positive": {
+        "suzgec_phases": "eight_stages_preserved"
+      },
+      "negative": {
+        "suzgec_phases": "missing_stages"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "NIST_AI_RMF"
+    },
+    {
+      "control_id": "D06",
+      "case_id": "ORACLE_D06",
+      "input_key": "acceptance_gates",
+      "positive": {
+        "acceptance_gates": "k1_to_k8_nested"
+      },
+      "negative": {
+        "acceptance_gates": "new_untrusted_authority"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "NIST_SSDF"
+    },
+    {
+      "control_id": "D07",
+      "case_id": "ORACLE_D07",
+      "input_key": "stop_decision",
+      "positive": {
+        "stop_decision": "evidence_bounded"
+      },
+      "negative": {
+        "stop_decision": "auto_advance_without_proof"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "NIST_AI_RMF"
+    },
+    {
+      "control_id": "D08",
+      "case_id": "ORACLE_D08",
+      "input_key": "language_contract",
+      "positive": {
+        "language_contract": "state_claim_evidence_next"
+      },
+      "negative": {
+        "language_contract": "unsupported_pass"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "ANTHROPIC_EVALS"
+    },
+    {
+      "control_id": "D09",
+      "case_id": "ORACLE_D09",
+      "input_key": "control_execution_planes",
+      "positive": {
+        "control_execution_planes": "producer_verifier_owner_separate"
+      },
+      "negative": {
+        "control_execution_planes": "same_authority_everywhere"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "SLSA"
+    },
+    {
+      "control_id": "D10",
+      "case_id": "ORACLE_D10",
+      "input_key": "reuse_priority",
+      "positive": {
+        "reuse_priority": "reuse_extend_adapter_first"
+      },
+      "negative": {
+        "reuse_priority": "duplicate_core"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "NIST_SSDF"
+    },
+    {
+      "control_id": "D11",
+      "case_id": "ORACLE_D11",
+      "input_key": "capability_scope",
+      "positive": {
+        "capability_scope": "least_privilege_per_task"
+      },
+      "negative": {
+        "capability_scope": "cross_product_grant"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "OPENSSF"
+    },
+    {
+      "control_id": "D12",
+      "case_id": "ORACLE_D12",
+      "input_key": "integration_handshake",
+      "positive": {
+        "integration_handshake": "schema_timeout_authority"
+      },
+      "negative": {
+        "integration_handshake": "unspecified_adapter"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "LANGGRAPH"
+    },
+    {
+      "control_id": "D13",
+      "case_id": "ORACLE_D13",
+      "input_key": "v3_lock",
+      "positive": {
+        "v3_lock": "canonical_sha_match"
+      },
+      "negative": {
+        "v3_lock": "unverified_digest"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "SLSA"
+    },
+    {
+      "control_id": "D14",
+      "case_id": "ORACLE_D14",
+      "input_key": "head_freshness",
+      "positive": {
+        "head_freshness": "exact_head_provenance"
+      },
+      "negative": {
+        "head_freshness": "stale_branch"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "SLSA"
+    },
+    {
+      "control_id": "D15",
+      "case_id": "ORACLE_D15",
+      "input_key": "naming_governance",
+      "positive": {
+        "naming_governance": "single_canonical_term"
+      },
+      "negative": {
+        "naming_governance": "drifted_names"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "NIST_AI_RMF"
+    },
+    {
+      "control_id": "D16",
+      "case_id": "ORACLE_D16",
+      "input_key": "repo_reconciliation",
+      "positive": {
+        "repo_reconciliation": "explicit_repo_coverage"
+      },
+      "negative": {
+        "repo_reconciliation": "unexamined_repos_counted"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "OPENSSF"
+    },
+    {
+      "control_id": "D17",
+      "case_id": "ORACLE_D17",
+      "input_key": "acceptance_matrix",
+      "positive": {
+        "acceptance_matrix": "ids_verifiers_and_evidence"
+      },
+      "negative": {
+        "acceptance_matrix": "unowned_conditions"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "ANTHROPIC_EVALS"
+    },
+    {
+      "control_id": "D18",
+      "case_id": "ORACLE_D18",
+      "input_key": "dependency_graph",
+      "positive": {
+        "dependency_graph": "acyclic_with_external_gates"
+      },
+      "negative": {
+        "dependency_graph": "hidden_cycle"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "DORA"
+    },
+    {
+      "control_id": "D19",
+      "case_id": "ORACLE_D19",
+      "input_key": "work_blocks",
+      "positive": {
+        "work_blocks": "dependency_preserving_batches"
+      },
+      "negative": {
+        "work_blocks": "double_counted_evidence"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "DORA"
+    },
+    {
+      "control_id": "D20",
+      "case_id": "ORACLE_D20",
+      "input_key": "session_handoff",
+      "positive": {
+        "session_handoff": "source_pinned_continuity"
+      },
+      "negative": {
+        "session_handoff": "memory_overrides_head"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "LANGGRAPH"
+    },
+    {
+      "control_id": "D21",
+      "case_id": "ORACLE_D21",
+      "input_key": "preflight_scenarios",
+      "positive": {
+        "preflight_scenarios": "happy_negative_disruption"
+      },
+      "negative": {
+        "preflight_scenarios": "happy_path_only"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "ANTHROPIC_EVALS"
+    },
+    {
+      "control_id": "D22",
+      "case_id": "ORACLE_D22",
+      "input_key": "simulation_rounds",
+      "positive": {
+        "simulation_rounds": "three_fixed_denominator"
+      },
+      "negative": {
+        "simulation_rounds": "inflated_round_score"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "ANTHROPIC_EVALS"
+    },
+    {
+      "control_id": "D23",
+      "case_id": "ORACLE_D23",
+      "input_key": "root_cause_standard",
+      "positive": {
+        "root_cause_standard": "evidence_before_remediation"
+      },
+      "negative": {
+        "root_cause_standard": "hypothesis_promoted"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "NIST_SSDF"
+    },
+    {
+      "control_id": "D24",
+      "case_id": "ORACLE_D24",
+      "input_key": "scenario_oracle",
+      "positive": {
+        "scenario_oracle": "expected_and_forbidden_verdict"
+      },
+      "negative": {
+        "scenario_oracle": "test_without_oracle"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "ANTHROPIC_EVALS"
+    },
+    {
+      "control_id": "D25",
+      "case_id": "ORACLE_D25",
+      "input_key": "git_change_control",
+      "positive": {
+        "git_change_control": "scoped_pr_ci_exact_head"
+      },
+      "negative": {
+        "git_change_control": "commit_called_merge"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "SLSA"
+    },
+    {
+      "control_id": "D26",
+      "case_id": "ORACLE_D26",
+      "input_key": "runtime_observation",
+      "positive": {
+        "runtime_observation": "real_executor_receipt"
+      },
+      "negative": {
+        "runtime_observation": "design_claim_as_run"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "DORA"
+    },
+    {
+      "control_id": "D27",
+      "case_id": "ORACLE_D27",
+      "input_key": "github_osi_binding",
+      "positive": {
+        "github_osi_binding": "artifact_and_native_proof"
+      },
+      "negative": {
+        "github_osi_binding": "ci_as_osi_proof"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "SLSA"
+    },
+    {
+      "control_id": "D28",
+      "case_id": "ORACLE_D28",
+      "input_key": "automated_loop",
+      "positive": {
+        "automated_loop": "bounded_and_checkpointed"
+      },
+      "negative": {
+        "automated_loop": "unauthorized_autonomy"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "LANGGRAPH"
+    },
+    {
+      "control_id": "D29",
+      "case_id": "ORACLE_D29",
+      "input_key": "regression_suite",
+      "positive": {
+        "regression_suite": "golden_and_regression"
+      },
+      "negative": {
+        "regression_suite": "unexecuted_test_pass"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "ANTHROPIC_EVALS"
+    },
+    {
+      "control_id": "D30",
+      "case_id": "ORACLE_D30",
+      "input_key": "security_negatives",
+      "positive": {
+        "security_negatives": "prompt_secret_negative_tests"
+      },
+      "negative": {
+        "security_negatives": "unsafe_fixture_pass"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "NIST_SSDF"
+    },
+    {
+      "control_id": "D31",
+      "case_id": "ORACLE_D31",
+      "input_key": "ci_evidence",
+      "positive": {
+        "ci_evidence": "run_sha_and_conclusion"
+      },
+      "negative": {
+        "ci_evidence": "green_different_commit"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "OPENSSF"
+    },
+    {
+      "control_id": "D32",
+      "case_id": "ORACLE_D32",
+      "input_key": "review_independence",
+      "positive": {
+        "review_independence": "different_reviewer_identity"
+      },
+      "negative": {
+        "review_independence": "producer_self_approval"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "ANTHROPIC_EVALS"
+    },
+    {
+      "control_id": "D33",
+      "case_id": "ORACLE_D33",
+      "input_key": "evidence_claim_binding",
+      "positive": {
+        "evidence_claim_binding": "claim_tied_to_observation"
+      },
+      "negative": {
+        "evidence_claim_binding": "llm_claim_only"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "ANTHROPIC_EVALS"
+    },
+    {
+      "control_id": "D34",
+      "case_id": "ORACLE_D34",
+      "input_key": "build_provenance",
+      "positive": {
+        "build_provenance": "builder_source_artifact_chain"
+      },
+      "negative": {
+        "build_provenance": "hash_without_builder"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "SLSA"
+    },
+    {
+      "control_id": "D35",
+      "case_id": "ORACLE_D35",
+      "input_key": "independent_recheck",
+      "positive": {
+        "independent_recheck": "second_method_and_freshness"
+      },
+      "negative": {
+        "independent_recheck": "duplicate_receipt_as_review"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "SLSA"
+    },
+    {
+      "control_id": "D36",
+      "case_id": "ORACLE_D36",
+      "input_key": "finish_accounting",
+      "positive": {
+        "finish_accounting": "execution_evidence_authority"
+      },
+      "negative": {
+        "finish_accounting": "simulation_as_finish"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "NIST_AI_RMF"
+    },
+    {
+      "control_id": "D37",
+      "case_id": "ORACLE_D37",
+      "input_key": "privacy_boundary",
+      "positive": {
+        "privacy_boundary": "classified_secret_egress"
+      },
+      "negative": {
+        "privacy_boundary": "private_to_public"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "NIST_SSDF"
+    },
+    {
+      "control_id": "D38",
+      "case_id": "ORACLE_D38",
+      "input_key": "human_authority",
+      "positive": {
+        "human_authority": "scoped_signer_review"
+      },
+      "negative": {
+        "human_authority": "chat_ack_as_signature"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "NIST_AI_RMF"
+    },
+    {
+      "control_id": "D39",
+      "case_id": "ORACLE_D39",
+      "input_key": "fail_closed",
+      "positive": {
+        "fail_closed": "hold_or_blocked_on_unknown"
+      },
+      "negative": {
+        "fail_closed": "unknown_as_pass"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "OPENSSF"
+    },
+    {
+      "control_id": "D40",
+      "case_id": "ORACLE_D40",
+      "input_key": "cost_guard",
+      "positive": {
+        "cost_guard": "budget_before_paid_action"
+      },
+      "negative": {
+        "cost_guard": "unapproved_spend"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "DORA"
+    },
+    {
+      "control_id": "D41",
+      "case_id": "ORACLE_D41",
+      "input_key": "durable_checkpoint",
+      "positive": {
+        "durable_checkpoint": "task_id_and_fingerprint"
+      },
+      "negative": {
+        "durable_checkpoint": "lost_state_after_restart"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "LANGGRAPH"
+    },
+    {
+      "control_id": "D42",
+      "case_id": "ORACLE_D42",
+      "input_key": "idempotent_replay",
+      "positive": {
+        "idempotent_replay": "single_effect_per_fingerprint"
+      },
+      "negative": {
+        "idempotent_replay": "duplicate_side_effect"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "LANGGRAPH"
+    },
+    {
+      "control_id": "D43",
+      "case_id": "ORACLE_D43",
+      "input_key": "schedule_observability",
+      "positive": {
+        "schedule_observability": "timestamps_not_only_cron"
+      },
+      "negative": {
+        "schedule_observability": "cron_claim_as_proof"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "GOOGLE_SRE"
+    },
+    {
+      "control_id": "D44",
+      "case_id": "ORACLE_D44",
+      "input_key": "recovery_acceptance",
+      "positive": {
+        "recovery_acceptance": "restart_and_rollback_receipts"
+      },
+      "negative": {
+        "recovery_acceptance": "restart_claim_only"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "GOOGLE_SRE"
+    },
+    {
+      "control_id": "D45",
+      "case_id": "ORACLE_D45",
+      "input_key": "atlas_traceability",
+      "positive": {
+        "atlas_traceability": "source_linked_single_index"
+      },
+      "negative": {
+        "atlas_traceability": "unlinked_canonical_claim"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "SLSA"
+    },
+    {
+      "control_id": "D46",
+      "case_id": "ORACLE_D46",
+      "input_key": "human_friction",
+      "positive": {
+        "human_friction": "single_clear_next_action"
+      },
+      "negative": {
+        "human_friction": "manual_every_step"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "GOOGLE_SRE"
+    },
+    {
+      "control_id": "D47",
+      "case_id": "ORACLE_D47",
+      "input_key": "impact_metrics",
+      "positive": {
+        "impact_metrics": "baseline_leadtime_rework"
+      },
+      "negative": {
+        "impact_metrics": "percent_gain_without_data"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "DORA"
+    },
+    {
+      "control_id": "D48",
+      "case_id": "ORACLE_D48",
+      "input_key": "verified_service",
+      "positive": {
+        "verified_service": "real_delivery_and_acceptance"
+      },
+      "negative": {
+        "verified_service": "report_as_product_finish"
+      },
+      "missing": {},
+      "expect_positive": "DESIGN_CASE_PASS_ONLY",
+      "expect_negative": "HOLD_DESIGN_CASE",
+      "expect_missing": "HOLD_DESIGN_CASE",
+      "mechanism_ref": "ANTHROPIC_EVALS"
+    }
+  ]
+}

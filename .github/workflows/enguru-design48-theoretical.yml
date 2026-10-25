@@ -1,0 +1,149 @@
+name: ENGURU Design48 Theoretical Falsification
+on:
+  pull_request:
+    paths:
+      - 'governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md'
+      - 'governance/enguru-suzgeci/ENGURU_TASARIM_48_KONTROL_MATRISI_V1.json'
+      - 'tools/enguru_tasarim_48_simulation.py'
+      - 'tools/enguru_tasarim_48_validation_v2.py'
+      - 'tools/enguru_ana_terazi_v1.py'
+      - 'tools/enguru_alti_uretim_simulasyon_dongusu_v1.py'
+      - 'tools/enguru_method_second_look_v1.py'
+      - 'tools/enguru_method_github_pilot_v1.py'
+      - 'tools/enguru_method_github_pilot_verify_v1.py'
+      - 'tools/enguru_method_closeout_readiness_v1.py'
+      - 'governance/enguru-suzgeci/ENGURU_STAGES_234_REAL_EXECUTION_V1.md'
+      - 'governance/enguru-suzgeci/ENGURU_ALTI_URETIM_ALANI_V1.json'
+      - 'governance/enguru-suzgeci/ENGURU_ALTI_URETIM_UYARLAMA_V1.md'
+      - 'governance/enguru-suzgeci/ENGURU_ANA_TERAZI_5X100_V1.md'
+      - 'governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json'
+      - '.github/workflows/enguru-design48-theoretical.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  design48-isolated-simulation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Reproducible 48-control and three-round 24-scenario design verification
+        run: |
+          python -B tools/enguru_tasarim_48_simulation.py > "$RUNNER_TEMP/design48-receipt.json"
+          python -B - "$RUNNER_TEMP/design48-receipt.json" <<'PY'
+          import json, sys
+          r = json.load(open(sys.argv[1], encoding="utf-8"))
+          assert r["verdict"] == "DESIGN_THEORY_CANDIDATE_PASS"
+          assert r["design_control_coverage"] == "48/48"
+          assert r["total_simulated_cases"] == 72
+          assert r["critical_false_pass"] == 0
+          assert all(row["pass_count"] == 24 for row in r["rounds"])
+          assert r["verified_finish"] == "HOLD"
+          assert r["mac_osi_field"] == "HOLD_NOT_EXECUTED"
+          PY
+          cat "$RUNNER_TEMP/design48-receipt.json"
+      - name: Independent 48-control design scoring and adversarial provenance verification
+        run: |
+          python -B tools/enguru_tasarim_48_validation_v2.py > "$RUNNER_TEMP/design48-v2-receipt.json"
+          python -B - "$RUNNER_TEMP/design48-v2-receipt.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert r["verdict"] == "PASS_THEORETICAL_DESIGN_48"
+          assert r["self_reported_candidate_points_used"] is False
+          assert all(x["raw_points"]==240 for x in r["rounds"])
+          assert all(x["per_control_adversarial"]==48 for x in r["rounds"])
+          assert all(x["crosswalk_verified"]==48 for x in r["rounds"])
+          assert all(x["mutation_checks"]==145 for x in r["rounds"])
+          assert r["official_donecheck"]=="HOLD" and r["verified_finish"]=="HOLD"
+          PY
+          cat "$RUNNER_TEMP/design48-v2-receipt.json"
+      - name: Five independent score gates THEORY DESIGN SIM1 SIM2 SIM3
+        run: |
+          python -B tools/enguru_ana_terazi_v1.py > "$RUNNER_TEMP/enguru-ana-terazi-v1.json"
+          python -B - "$RUNNER_TEMP/enguru-ana-terazi-v1.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert r["verdict"]=="PASS_THEORETICAL_PREPARATION_5X100"
+          assert set(r["scores"])=={"THEORY","DESIGN","SIM1","SIM2","SIM3"}
+          assert all(x==100 for x in r["scores"].values())
+          assert r["theory_falsification"]["caught"]==10
+          assert len(r["three_simulations"])==3
+          assert all(x["passed"]==144 and x["total"]==144 for x in r["three_simulations"])
+          assert not r["self_claimed_points_used"]
+          assert r["human_independent_design_review"]=="HOLD"
+          assert r["official_donecheck"]=="HOLD"
+          assert r["verified_finish"]=="HOLD"
+          PY
+          cat "$RUNNER_TEMP/enguru-ana-terazi-v1.json"
+      - name: Six production domains with diagnose repair rescore three-round cycle
+        run: |
+          python -B tools/enguru_alti_uretim_simulasyon_dongusu_v1.py > "$RUNNER_TEMP/enguru-six-domain-repair.json"
+          python -B - "$RUNNER_TEMP/enguru-six-domain-repair.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert r["verdict"]=="PASS_6_AREAS_3_ROUND_DESIGN"
+          assert r["production_areas"]==6
+          assert r["simulated_rounds"]==18 and r["repair_events"]==12
+          assert r["falsification_pass"]==288
+          assert all(x["simulation_scores"]==[62.5,87.5,100.0] for x in r["domains"])
+          assert all(x["owner_real_co_design"].startswith("HOLD") for x in r["domains"])
+          assert r["independent_design_review"]=="HOLD"
+          assert r["verified_finish"]=="HOLD"
+          PY
+          cat "$RUNNER_TEMP/enguru-six-domain-repair.json"
+      - name: Stage 2 read-only distinct-mechanism source review
+        run: |
+          python -B tools/enguru_method_second_look_v1.py > "$RUNNER_TEMP/enguru-second-look.json"
+          python -B - "$RUNNER_TEMP/enguru-second-look.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert r["technical_second_look"]=="PASS_10_OF_10"
+          assert len(r["checks"])==10
+          assert r["human_reviewer_approval"]=="HOLD_NO_APPROVAL_RECORD"
+          PY
+          cat "$RUNNER_TEMP/enguru-second-look.json"
+      - name: Stage 3 real GitHub engine pilot SQLite restart tamper and provenance
+        run: |
+          python -B tools/enguru_method_github_pilot_v1.py > "$RUNNER_TEMP/enguru-github-engine-pilot.json"
+          python -B - "$RUNNER_TEMP/enguru-github-engine-pilot.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert r["status"]=="PASS_GITHUB_REAL_ENGINE_PILOT"
+          assert r["checked"]==r["passed"]==6
+          assert r["native_mac_osi_field"]=="HOLD"
+          assert r["donecheck_v12"]=="HOLD"
+          PY
+          cat "$RUNNER_TEMP/enguru-github-engine-pilot.json"
+      - name: Stage 4 evidence reconciliation and official safety HOLD
+        run: |
+          python -B tools/enguru_method_closeout_readiness_v1.py \
+            "$RUNNER_TEMP/enguru-second-look.json" \
+            "$RUNNER_TEMP/enguru-github-engine-pilot.json" \
+            "$RUNNER_TEMP/enguru-ana-terazi-v1.json" \
+            "$RUNNER_TEMP/enguru-six-domain-repair.json" \
+            > "$RUNNER_TEMP/enguru-stage234-readiness.json"
+          python -B - "$RUNNER_TEMP/enguru-stage234-readiness.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert r["verdict"]=="PASS_READINESS_EVIDENCE_OFFICIAL_HOLD"
+          assert r["stage_2"]["official_state"]=="HOLD"
+          assert r["stage_3"]["official_state"]=="HOLD"
+          assert r["stage_4"]["verified_finish"]=="HOLD"
+          PY
+          cat "$RUNNER_TEMP/enguru-stage234-readiness.json"
+      - name: Attach theoretical receipt, separate from official DoneCheck
+        uses: actions/upload-artifact@v4
+        with:
+          name: enguru-design48-theory-receipt
+          path: |
+            ${{ runner.temp }}/design48-receipt.json
+            ${{ runner.temp }}/design48-v2-receipt.json
+            ${{ runner.temp }}/enguru-ana-terazi-v1.json
+            ${{ runner.temp }}/enguru-six-domain-repair.json
+            ${{ runner.temp }}/enguru-second-look.json
+            ${{ runner.temp }}/enguru-github-engine-pilot.json
+            ${{ runner.temp }}/enguru-stage234-readiness.json
+          if-no-files-found: error
