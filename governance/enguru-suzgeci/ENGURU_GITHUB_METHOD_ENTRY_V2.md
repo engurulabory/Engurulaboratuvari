@@ -13,6 +13,20 @@
 6. [Dışarıdan karşıt senaryolar](../../tools/enguru_method_dynamic_adversarial_v2.py), özgün kabul paydası, sentetik/gerçek test ayrımı ve eylem yetkisi ayrı kontrol edilir.
 7. Erişilebilir gerçek mühendislik ve GitHub CI çalıştırılır; somut kaynak, commit, job, çıktı ve SHA kaydedilir. DoneCheck™ v1.2 ve gereken Human Threshold™ yalnız canonical kabul zinciri üzerinden kullanılabilir.
 
+## Nihai kullanıcı hedefi → GitHub → OSi devir hazırlığı → DUR sözleşmesi (25 Ekim 2026)
+
+**Kullanıcı hedefi ve ürünün özgün kabul ID/paydasını başta sabitle.** ENGÜRÜ'nün sıralı çalışma sözleşmesi:
+
+`KULLANICI HEDEFİ → TASARIM (3 temel, gerekirse +1/+2 kanıtlı tur, 100/100) → TEORİ (3+2, 100/100) → GITHUB KAYNAK VE TEST HAZIRLIĞI (3+2, beşli 100/100 ve exact-source CI PASS) → OSİ SALT-OKUNUR DEVİR HAZIRLIĞI (3+2, 100/100) → İNSAN KARARINDA DUR`.
+
+**Aşama ilerlemesi:** Her aşama mevcut kaynağı puanlar, özgün eksik kontrol ID ve nedenini gösterir, yetkili yürütücü gerekli farkı üretir, gerçek yeni kanıtla yeniden puanlar. Tasarım → Teori → GitHub geçişi sıra zorunluluğudur. Teknik kaynak değişince önceki tasarım ve teori, **son GitHub kaynak SHA ile yeniden doğrulanır**. Bir tur yeni kanıt üretirse iz bırakır; dördüncü/beşinci tur özgün açık kontrolü gerçekten kapatır. En fazla beş turda açık varsa `HOLD + kesin sonraki kaynak/kanıt ihtiyacı`; otomatik 100 veya kabul kapsamı azaltması geçiş yolu değildir.
+
+**GitHub finali:** Başarılı tasarım+teori, gerçek kod/CI ve **birbirinden farklı üç SIM1/SIM2/SIM3** kanıtlanır. GitHub PASS, OSi üzerine yazma/çalıştırma yetkisi doğurmaz. GitHub sonrasında OSi'ye geçiş **yalnız hazırlık** olarak, yerel güncel kaynak/dal, araç/disk bütçesi, korunmuş dirty worktree, taşıma kapsamı, geri alma/checkpoint, güven kökü ve tam insan karar kapsamı kontrol edilir; gerçek OSi yetkili salt-okunur fiili inceleme bu kapının zorunlu girdisidir. GitHub'ın sentetik OSi planı **gerçek native preflight değildir**.
+
+**OSi hazırlık son kapısı:** Var olan `tools/enguru_method_three_phase_gate_v1.py` önceki üç aşama içindir. [Dördüncü bağlı politika denetleyicisi](../../tools/enguru_method_osi_handoff_gate_v1.py) onu bozmadan, exact-HEAD/CI için dış doğrulayıcı, son GitHub source hash üzerinde teori/tasarım revalidation, yerel **read-only** OSi gözlem makbuzu ve sekiz sabit devir kontrolünü üç-beş kanıtlı turda ister. Bu, uygulamayı kurmaz, dosya değiştirmez ve owner imzası üretmez. Salt politika testinin PASS'i gerçek GitHub CI veya OSi saha hazırlığı PASS'i değildir; ürünün kendi özgün doğrulayıcısı ve insanı kanıtları ayrıca onaylar.
+
+**Son hükümler ayrı:** `GITHUB_PREPARED`, `OSI_HANDOFF_PREPARED`, `OSI_FIELD_READY`, `HUMAN_AUTHORIZED`, `VERIFIED_FINISH`. İlki gerçek exact CI ile, ikincisi gerçek read-only OSi saha reçetesiyle ve özgün geçiş kontrolleriyle, kalanları kendi gerçek yürütme/kabul yetkileriyle ilerler. Hedef sınır: **`OSI_HANDOFF_PREPARED=PASS → READY_FOR_OSI_TRANSFER_HUMAN_DECISION → DUR`**.
+
 ## Ürün ve proje için üç aşamalı 3+2 olgunlaştırma
 
 **Çalışma sırası:** `TASARIM → TEORİ → GITHUB HAZIRLIĞI`. Her aşamada **ön değerlendirme → karşıt simülasyon/onarım → bağımsız yeniden değerlendirme**, toplam **3 tur**. Gerçek kanıt/onarım ilerlemesine bağlı **en çok 2 ek tur** ile **3–5 tur**. Her aşamanın 100/100 hedefi ayrı; eksik özgün kontrol varsa HOLD ve gerçek neden/sonraki hareket.
