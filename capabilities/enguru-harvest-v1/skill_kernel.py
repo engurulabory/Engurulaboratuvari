@@ -56,7 +56,10 @@ def execute(operation, payload):
                 return result("HOLD","UNSUPPORTED_SOURCE_PIN_CLAIM")
             if entry.get("license")!="UNVERIFIED" or entry.get("security")!="PENDING" or entry.get("state")!="SOURCE_OBSERVED_ONLY":
                 return result("HOLD","PREMATURE_ACCEPTANCE")
-            libraries.add(entry.get("library"))
+            library=entry.get("library")
+            if not isinstance(library,str):
+                return result("HOLD","INVALID_LIBRARY_TYPE")
+            libraries.add(library)
         if not libraries.issubset(("skills","advanced_prompts","proven_sources","data_knowledge","engineering_recipes","evidence")):
             return result("HOLD","UNKNOWN_LIBRARY")
         return result("CATALOG_FORMAT_PASS","30_READMES_OBSERVED; NO_LICENSE_OR_SOURCE_ACCEPTANCE",count=30)
