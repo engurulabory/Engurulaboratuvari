@@ -1,0 +1,278 @@
+{
+  "schema": "enguru.harvest.root-license-observations/v1.0",
+  "scope": "Exact root license-file Git blob identity only; no legal clearance and no source acceptance",
+  "scan_date": "2026-10-25",
+  "candidates_expected": 30,
+  "observations": [
+    {
+      "repository": "openai/codex",
+      "path": "LICENSE",
+      "git_blob_sha1": "4606e72e042564097e8780d66c1d4dcb611869bd",
+      "content_signal": "APACHE_2_TEXT",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "anthropics/claude-code",
+      "path": "LICENSE.md",
+      "git_blob_sha1": "645a5d67c6d1e16437bec850dad5bd3b6c81f77c",
+      "content_signal": "COMMERCIAL_TERMS_REFERENCE",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "modelcontextprotocol/servers",
+      "path": "LICENSE",
+      "git_blob_sha1": "4a93985763241755401a10678395303de4e720ba",
+      "content_signal": "MCP_LICENSE_TRANSITION",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "promptfoo/promptfoo",
+      "path": "LICENSE",
+      "git_blob_sha1": "af3fa111d9303b3041d225fb851534e50a4bbec2",
+      "content_signal": "MIT_STYLE_TEXT",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "ollama/ollama",
+      "path": "LICENSE",
+      "git_blob_sha1": "8e3dc978a7ca8c53f56bbedc5b558116140fc02e",
+      "content_signal": "MIT_TEXT",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "agentskills/agentskills",
+      "path": "LICENSE",
+      "git_blob_sha1": "a20f4476df158a57a68409015ea607c738856f57",
+      "content_signal": "APACHE_2_TEXT",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "openai/openai-agents-python",
+      "path": "LICENSE",
+      "git_blob_sha1": "e5ad2c5aa30343f143a5c418004ca1a8d2cfaff4",
+      "content_signal": "MIT_TEXT",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "openai/openai-cookbook",
+      "path": "LICENSE",
+      "git_blob_sha1": "e5ad2c5aa30343f143a5c418004ca1a8d2cfaff4",
+      "content_signal": "MIT_TEXT",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "openai/evals",
+      "path": "LICENSE.md",
+      "git_blob_sha1": "405cc0eb38b5f0fafdf33bacacc3b16c14e3d2b4",
+      "content_signal": "MIT_TEXT",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "anthropics/skills",
+      "path": null,
+      "git_blob_sha1": null,
+      "content_signal": "ROOT_LICENSE_NOT_FOUND",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "anthropics/claude-code-action",
+      "path": "LICENSE",
+      "git_blob_sha1": "3fa6a64e52f30d3ad836f98b3f0da6f4b6263bb8",
+      "content_signal": "MIT_TEXT",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "anthropics/claude-agent-sdk-python",
+      "path": "LICENSE",
+      "git_blob_sha1": "3fa6a64e52f30d3ad836f98b3f0da6f4b6263bb8",
+      "content_signal": "MIT_TEXT",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "modelcontextprotocol/python-sdk",
+      "path": "LICENSE",
+      "git_blob_sha1": "3d48435454b105021b4f777c11b6b07d8d2ffea3",
+      "content_signal": "MIT_TEXT",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "modelcontextprotocol/typescript-sdk",
+      "path": "LICENSE",
+      "git_blob_sha1": "4a93985763241755401a10678395303de4e720ba",
+      "content_signal": "MCP_LICENSE_TRANSITION",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "modelcontextprotocol/quickstart-resources",
+      "path": "LICENSE",
+      "git_blob_sha1": "4a93985763241755401a10678395303de4e720ba",
+      "content_signal": "MCP_LICENSE_TRANSITION",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "modelcontextprotocol/registry",
+      "path": "LICENSE",
+      "git_blob_sha1": "4a93985763241755401a10678395303de4e720ba",
+      "content_signal": "MCP_LICENSE_TRANSITION",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "EleutherAI/lm-evaluation-harness",
+      "path": "LICENSE.md",
+      "git_blob_sha1": "12e6063183935e876e232db276568baf4954b492",
+      "content_signal": "MIT_TEXT",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "microsoft/promptflow",
+      "path": "LICENSE",
+      "git_blob_sha1": "9e841e7a26e4eb057b24511e7b92d42b257a80e5",
+      "content_signal": "MIT_TEXT",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "ggml-org/llama.cpp",
+      "path": "LICENSE",
+      "git_blob_sha1": "e7dca554bcb802f98408383a864404e3aa4eacca",
+      "content_signal": "MIT_TEXT",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "ml-explore/mlx",
+      "path": "LICENSE",
+      "git_blob_sha1": "98ff47b9ef9d4ac9f1a4bde3db13dd27456c5ea1",
+      "content_signal": "MIT_TEXT",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "ml-explore/mlx-lm",
+      "path": "LICENSE",
+      "git_blob_sha1": "98ff47b9ef9d4ac9f1a4bde3db13dd27456c5ea1",
+      "content_signal": "MIT_TEXT",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "chroma-core/chroma",
+      "path": "LICENSE",
+      "git_blob_sha1": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+      "content_signal": "APACHE_2_TEXT",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "qdrant/qdrant",
+      "path": "LICENSE",
+      "git_blob_sha1": "456fb05e0e936f439cf42c517b19797dafd53ff9",
+      "content_signal": "APACHE_2_TEXT",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "meilisearch/meilisearch",
+      "path": "LICENSE",
+      "git_blob_sha1": "edcaeebc4e866b1ebefc330c103560e41639601b",
+      "content_signal": "MIXED_COMMUNITY_ENTERPRISE",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "pgvector/pgvector",
+      "path": "LICENSE",
+      "git_blob_sha1": "fc5f177fa5d9c0d20a949f4b4faa028999977008",
+      "content_signal": "POSTGRESQL_STYLE_TEXT",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "HypothesisWorks/hypothesis",
+      "path": "LICENSE.txt",
+      "git_blob_sha1": "a37c2bca372e6c2c58fba6ddb50122d0d4536793",
+      "content_signal": "MPL_2_TEXT",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "astral-sh/ruff",
+      "path": "LICENSE",
+      "git_blob_sha1": "655a0c76fc5539b2f8e63b673741a5fd0e0c5799",
+      "content_signal": "MIT_TEXT",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "astral-sh/uv",
+      "path": "LICENSE-MIT",
+      "git_blob_sha1": "014835144877ea9c926d027ece3e1a26290cf481",
+      "content_signal": "MIT_TEXT_PARTIAL_SCAN",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "semgrep/semgrep",
+      "path": "LICENSE",
+      "git_blob_sha1": "8000a6faacf471c537530805ab29523c7732e11a",
+      "content_signal": "LGPL_2_1_TEXT",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    },
+    {
+      "repository": "huggingface/transformers",
+      "path": "LICENSE",
+      "git_blob_sha1": "68b7d66c97d66c58de883ed0c451af2b3183e6f3",
+      "content_signal": "APACHE_2_TEXT",
+      "state": "ROOT_LICENSE_TEXT_OBSERVED_ONLY",
+      "redistribution_approval": "HOLD",
+      "source_sha256": "UNVERIFIED"
+    }
+  ]
+}
