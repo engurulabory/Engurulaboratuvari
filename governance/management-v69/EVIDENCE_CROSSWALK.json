@@ -1,0 +1,44 @@
+{
+  "schema": "enguru.management-v69.evidence-crosswalk/v1",
+  "source_ref": "main",
+  "source_sha256": {
+    "governance/controller/TASKS.json": "3fc4950ae994399ac587cb80be3dabc25e712d7ddc9e21815d42afecbc4bd92a",
+    "governance/controller/ACTIVATION.json": "a9a11b35e686e58c3d8f368eafebb1b2ad665ed7bdaddb5e4db8d55287f307e9"
+  },
+  "management_ci": {
+    "workflow": "ENGURU Management V6.9 Review",
+    "run_id": 39807436553,
+    "head_sha": "fc5f01209bd6d22339b025490f5bf0c5cf632c29",
+    "conclusion": "success",
+    "proof_scope": "PR CI read and unit test, not actual controller execution"
+  },
+  "records": [
+    {
+      "task_id": "LABORY_PILOT_SOURCE",
+      "observed_controller_state": "PAUSED_AUDITED",
+      "evidence_level": "B_CI_SOURCE_READ",
+      "task_execution_proven": false,
+      "independent_verifier": "HOLD",
+      "authority_acceptance": "HOLD"
+    },
+    {
+      "task_id": "LABORY_PILOT_TEST",
+      "observed_controller_state": "PAUSED_AUDITED",
+      "evidence_level": "B_CI_SOURCE_READ",
+      "task_execution_proven": false,
+      "independent_verifier": "HOLD",
+      "authority_acceptance": "HOLD"
+    },
+    {
+      "task_id": "LABORY_SAFE_REPAIR",
+      "observed_controller_state": "READY",
+      "evidence_level": "B_CI_SOURCE_READ",
+      "task_execution_proven": false,
+      "independent_verifier": "HOLD",
+      "authority_acceptance": "HOLD"
+    }
+  ],
+  "human_threshold": "OWNER_RESERVED",
+  "donecheck": "HOLD",
+  "official_finish": "HOLD"
+}

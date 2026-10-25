@@ -1,0 +1,22 @@
+{
+  "schema": "enguru.management-v69.operational-observation/v1",
+  "task_id": "LABORY_SAFE_REPAIR",
+  "source_commit": "1f7dfd708d652764ac74df27dcbbd393779e2b3b",
+  "source_ref": "main",
+  "receipt_comment_id": 6341660472,
+  "receipt_url": "https://github.com/engurulabory/Engurulaboratuvari/issues/192#issuecomment-6341660472",
+  "receipt_author": "github-actions[bot]",
+  "producer_run_id": 39785064215,
+  "worker_job_id": 119845951859,
+  "worker_job_conclusion": "success",
+  "receipt_state": "PASS",
+  "receipt_verification": "PASS",
+  "receipt_verification_proof": "REPAIR_FINAL_SOURCE_RECHECK",
+  "receipt_full_sha256": "bf5cfec005ba0787aeb8c7c155caae64923ca42b78e08ffec233b085260690b9",
+  "public_receipt_sha256": "c4239641685392237618e0915c0146028faa0a4731696efb234f4abf07e903da",
+  "donecheck_state": "HOLD_EXTERNAL_DONECHECK_V1_2",
+  "official_finish": "HOLD_DONECHECK_HUMAN_GATE",
+  "identity_authentication": "HOLD_EXTERNAL_ATTESTATION",
+  "task_owner_acceptance": "HOLD",
+  "scope": "historical GitHub provenance observation, pending exact-current-main and trusted authority recheck"
+}

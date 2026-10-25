@@ -1,0 +1,351 @@
+{
+  "schema": "enguru.production6.methods-adapter/v1",
+  "date": "2026-10-24",
+  "source_pr": 221,
+  "source_canonical": "governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md",
+  "main_balance": "governance/enguru-suzgeci/ENGURU_ANA_TERAZI_5X100_V1.md",
+  "version": "V1",
+  "scope": "THEORETICAL_ADAPTERS_ONLY",
+  "authority": {
+    "owner_real_co_design": "HOLD_PENDING_REAL_USER_CONSENSUS",
+    "human_independent_review": "HOLD",
+    "real_product_execution": "HOLD",
+    "osi_field": "HOLD",
+    "official_donecheck": "HOLD"
+  },
+  "shared_controls": [
+    {
+      "id": "U01_USER_CO_DESIGN",
+      "title": "Kullanıcıyla ilk kurgu ve hedef paylaşımı",
+      "key": "user_goal_boundary",
+      "required": "Gerçek kullanıcıyla ilk kurguda hedef, fayda, sınır ve beklentiler anlaşılır; sentetik demo ayrı sınıflandırılır",
+      "negative": "Kullanıcı tercihleri varsayım olarak benimsenirse HOLD"
+    },
+    {
+      "id": "U02_GOAL",
+      "title": "Tek ana hedef",
+      "key": "fixed_goal",
+      "required": "Tek somut çıktı ve başarılı teslim şartı anlaşılır",
+      "negative": "İki farklı amaç bir kabul sayacına konulursa HOLD"
+    },
+    {
+      "id": "U03_ACCEPTANCE",
+      "title": "Özgün kabul ölçütleri",
+      "key": "acceptance_matrix",
+      "required": "Her zorunlu şart özgün ID, PASS ölçütü ve istenen kanıt ile sabitlenir",
+      "negative": "Payda simülasyon içinde düşürülürse HOLD"
+    },
+    {
+      "id": "U04_DEPENDENCIES",
+      "title": "Bağımlılıklar ve kritik yol",
+      "key": "dependency_graph",
+      "required": "Teknik, ürün, entegrasyon ve dış yetki bağımlılıkları önceden çizilir",
+      "negative": "Eksik zorunlu kaynakla İLERLE olursa HOLD"
+    },
+    {
+      "id": "U05_FEASIBILITY",
+      "title": "Kaynak/yetenek/maliyet ön uçuşu",
+      "key": "capability_budget",
+      "required": "Mevcut yetenek ve bütçe sınırı, ücretsiz alternatif ve güvenli durma durumu tanımlıdır",
+      "negative": "Desteksiz yetenek veya izinsiz maliyet PASS sayılırsa HOLD"
+    },
+    {
+      "id": "U06_NEGATIVE_ORACLE",
+      "title": "Olumlu ve karşıt senaryo",
+      "key": "simulation_oracles",
+      "required": "Mutlu yol ile en az bir risk, kötü girdi ve başarısızlık oracle'ı ayrı beklenen hüküm taşır",
+      "negative": "Sadece olumlu senaryodan 100 puan verilirse HOLD"
+    },
+    {
+      "id": "U07_CRITICAL_CAUSE",
+      "title": "Kök neden ve fark üretimi",
+      "key": "root_cause_repair",
+      "required": "Eksik, ihtiyaç, gereksinim, hata ve yanlış ayrılır; her onarım kanıtlanmış nedene bağlanır",
+      "negative": "Hipotez kesin kök neden olarak kabul edilirse HOLD"
+    },
+    {
+      "id": "U08_RESCORING",
+      "title": "Sabit payda ve üç turlu yeniden puan",
+      "key": "fixed_rubric",
+      "required": "Her tur aynı kontrol ID'lerini ve bağımsız puanlamayı korur",
+      "negative": "Tekrar edilen aynı çıktı yeni ilerleme sayılırsa HOLD"
+    },
+    {
+      "id": "U09_EVIDENCE",
+      "title": "Source/HEAD/artefakt izlenebilirliği",
+      "key": "evidence_chain",
+      "required": "Kaynak sürüm, commit, üretilen test ve kanıt kapsamı ayrıdır",
+      "negative": "Dış kaynaksız üretici beyanı saha kanıtı sayılırsa HOLD"
+    },
+    {
+      "id": "U10_VERIFIER",
+      "title": "Bağımsız kontrol/otorite sınırı",
+      "key": "verifier_authority",
+      "required": "Producer, verifier, owner, DoneCheck ve Human Threshold kimlikleri ayrılır",
+      "negative": "Kendini onaylayan üretici bağımsız reviewer sayılırsa HOLD"
+    },
+    {
+      "id": "U11_RECOVERY",
+      "title": "Recovery/rollback ve güvenli durma",
+      "key": "recovery_plan",
+      "required": "Kısmi icra, idempotency, onarım ve rollback rotası tasarımda gösterilir",
+      "negative": "İkinci kez oluşan yan etki PASS olursa HOLD"
+    },
+    {
+      "id": "U12_VALUE",
+      "title": "Hizmet etkisi ve teslim ölçüsü",
+      "key": "outcome_measure",
+      "required": "Kullanıcı faydası, ölçüm, maliyet, süre ve teslim sonrası takip sinyali tanımlıdır",
+      "negative": "Bilinmeyen fayda yüzdesi gerçek kazanım sayılırsa HOLD"
+    }
+  ],
+  "domains": [
+    {
+      "id": "CORE",
+      "name": "Çekirdek üretimi",
+      "scope": "Abstraction / shared logic / platform kernel",
+      "kind": "canonical core engineering",
+      "domain_controls": [
+        {
+          "id": "C01_API",
+          "title": "API ve sözleşme sürümü",
+          "key": "api_compatibility",
+          "required": "Dışa açık arayüz ve geriye dönük sözleşme kontrolü",
+          "negative": "Sürüm kırılmasına rağmen stabil PASS ise HOLD"
+        },
+        {
+          "id": "C02_DETERMINISM",
+          "title": "Deterministik çıktı",
+          "key": "deterministic_behavior",
+          "required": "Aynı girdide aynı gözlenebilir çekirdek davranışının test tasarımı",
+          "negative": "Tekrarlanamaz çekirdek davranışı PASS ise HOLD"
+        },
+        {
+          "id": "C03_MIGRATION",
+          "title": "Uyum ve göç",
+          "key": "compatibility_migration",
+          "required": "Mevcut tüketiciler ve kontrollü sürüm geçiş planı",
+          "negative": "Migrasyon yolu olmadan core release PASS ise HOLD"
+        },
+        {
+          "id": "C04_PROVENANCE",
+          "title": "Derleme ve kök kaynak",
+          "key": "source_provenance",
+          "required": "Tekil canonical core, bağımlılıklar ve build kökeni görünür",
+          "negative": "Kopya çekirdek aynı otoriteyi taşıyorsa HOLD"
+        }
+      ]
+    },
+    {
+      "id": "ENGINE",
+      "name": "Motor üretimi",
+      "scope": "Task engine / workflow / orchestration",
+      "kind": "persistent engineering engine",
+      "domain_controls": [
+        {
+          "id": "E01_STATE",
+          "title": "Durum ve checkpoint",
+          "key": "checkpoint_schema",
+          "required": "Task id, durable state ve resume sözleşmesi",
+          "negative": "Kesinti sonrası state yokken PASS ise HOLD"
+        },
+        {
+          "id": "E02_IDEMPOTENCY",
+          "title": "Yan etki bütünlüğü",
+          "key": "idempotent_execution",
+          "required": "At-least-once girişte çift yan etkinin önleyici kabul ölçütü",
+          "negative": "Replay iki kez işlem üretirse HOLD"
+        },
+        {
+          "id": "E03_BUDGET",
+          "title": "Yürütücü sınırları",
+          "key": "runtime_budget",
+          "required": "CPU/bellek, süre, yeniden deneme ve bütçe sınırlamaları",
+          "negative": "Sonsuz döngü ve sınırsız bütçe PASS ise HOLD"
+        },
+        {
+          "id": "E04_FAILURE",
+          "title": "Hata toparlama",
+          "key": "engine_failure_recovery",
+          "required": "Durma, geri dönüş ve güvenli yeniden yürütme sırası",
+          "negative": "Kurtarma kanıtsızsa HOLD"
+        }
+      ]
+    },
+    {
+      "id": "AGENT",
+      "name": "Agent üretimi",
+      "scope": "Autonomous / assisted intelligent task agent",
+      "kind": "agentic task execution",
+      "domain_controls": [
+        {
+          "id": "A01_TOOLS",
+          "title": "Araç ve eylem yetkileri",
+          "key": "tool_permission_scope",
+          "required": "Araç kullanımı en dar görev yetkisine ve insan eşiğine bağlanır",
+          "negative": "Yetkisiz dış işlem PASS ise HOLD"
+        },
+        {
+          "id": "A02_INJECTION",
+          "title": "Güvenilmeyen içerik",
+          "key": "prompt_injection_resistance",
+          "required": "Prompt injection, veri manipülasyonu ve secret negatif testleri",
+          "negative": "Untrusted tool output komut gibi yürürse HOLD"
+        },
+        {
+          "id": "A03_EVAL",
+          "title": "Görev sonucunun bağımsız eval'i",
+          "key": "agent_outcome_evaluation",
+          "required": "Gerçek görev başarısı code/insan grader ile ayrışır",
+          "negative": "Model kendini tam PASS sayarsa HOLD"
+        },
+        {
+          "id": "A04_MEMORY",
+          "title": "Bellek ve bağlam sürekliliği",
+          "key": "agent_state_memory",
+          "required": "Güncel kaynak önceliği, bellek sınırı ve context handoff",
+          "negative": "Bayat bellek canonical kaynağı bastırırsa HOLD"
+        }
+      ]
+    },
+    {
+      "id": "WEB",
+      "name": "Web üretimi",
+      "scope": "Public web sites / web apps / services",
+      "kind": "website engineering",
+      "domain_controls": [
+        {
+          "id": "W01_ACCESSIBILITY",
+          "title": "Erişilebilirlik ve responsive",
+          "key": "accessibility_responsive",
+          "required": "Klavye, temel WCAG hedefi ve çoklu ekran test sözleşmesi",
+          "negative": "Klavyesiz erişim kabul edilirse HOLD"
+        },
+        {
+          "id": "W02_SECURITY",
+          "title": "Web güvenliği",
+          "key": "web_security",
+          "required": "Auth, input validation, secrets, rate-limit ve risk sınırı",
+          "negative": "Yetkisiz endpoint erişimi PASS ise HOLD"
+        },
+        {
+          "id": "W03_SEO",
+          "title": "İçerik ve erişilebilir bilgi",
+          "key": "web_performance_seo",
+          "required": "Ürün ihtiyacı varsa SEO, performans ve içerik keşfi şartı",
+          "negative": "Sayfa performansı ölçülmeden hız PASS ise HOLD"
+        },
+        {
+          "id": "W04_BROWSER",
+          "title": "Gerçek tarayıcı senaryoları",
+          "key": "browser_e2e",
+          "required": "Route, hata sayfası, form ve gerçek uçtan uca tarayıcı testleri",
+          "negative": "Yalnız unit test ile üretim web PASS ise HOLD"
+        }
+      ]
+    },
+    {
+      "id": "APP",
+      "name": "Uygulama / App üretimi",
+      "scope": "Native / hybrid desktop mobile apps",
+      "kind": "application productization",
+      "domain_controls": [
+        {
+          "id": "P01_PLATFORM",
+          "title": "Platform ve paketleme",
+          "key": "platform_requirements",
+          "required": "macOS/iOS/Android veya hedef cihaz yetenekleri ve yayın formatı",
+          "negative": "Hedef cihaz belirtilmeden native PASS ise HOLD"
+        },
+        {
+          "id": "P02_PRIVACY",
+          "title": "Uygulama veri yaşam döngüsü",
+          "key": "app_privacy_storage",
+          "required": "Yerel/veri/senkronizasyon/gizlilik ve izin davranışları",
+          "negative": "İzinsiz veri çıkışı PASS ise HOLD"
+        },
+        {
+          "id": "P03_LIFECYCLE",
+          "title": "Kurulum ve yeniden açılış",
+          "key": "install_restart_update",
+          "required": "Kurulum, restart, update, rollback ve gerçek çalıştırma testleri",
+          "negative": "Sadece build ile app bitişi verildiyse HOLD"
+        },
+        {
+          "id": "P04_SIGNING",
+          "title": "İmza ve mağaza kabul eşiği",
+          "key": "app_signing_release",
+          "required": "Platformun gerektirdiği signing, notarization/store ve owner yetkisi",
+          "negative": "Yetkisiz imza yayın PASS ise HOLD"
+        }
+      ]
+    },
+    {
+      "id": "COMMERCE",
+      "name": "Ticari üretimler",
+      "scope": "Sellable services / subscriptions / commercialization",
+      "kind": "commercial product delivery",
+      "domain_controls": [
+        {
+          "id": "B01_OFFER",
+          "title": "Değer önerisi ve alıcı problemi",
+          "key": "commercial_offer",
+          "required": "Müşteri ihtiyacı, teklif, hedef segment ve fayda varsayımları ölçülür",
+          "negative": "Doğrulanmamış talep satış garantisi sayılırsa HOLD"
+        },
+        {
+          "id": "B02_PRICING",
+          "title": "Fiyat, tahsilat ve finansal sınır",
+          "key": "pricing_payment",
+          "required": "Fiyat/satış/maliyet varsayımları, ödeme yetkisi ve tahsilat sınırı",
+          "negative": "Gerçek ödeme olmadan gelir PASS ise HOLD"
+        },
+        {
+          "id": "B03_LEGAL",
+          "title": "Sözleşme, veri ve mevzuat kontrolü",
+          "key": "legal_privacy_review",
+          "required": "Gerekli lisans, KVKK/GDPR, fatura/vergi/sözleşme incelemesi uzman ve yetki kapısına bağlıdır",
+          "negative": "Hukuki inceleme yokken mevzuat uygunluğu PASS ise HOLD"
+        },
+        {
+          "id": "B04_SUPPORT",
+          "title": "Teslim, iade ve müşteri hizmeti",
+          "key": "fulfillment_support",
+          "required": "Teslim kanıtı, destek, iade/iptal ve müşteri geri bildirim ölçüsü",
+          "negative": "Yalnız teklif belgesi ticari teslim PASS ise HOLD"
+        }
+      ]
+    }
+  ],
+  "simulation_loop": {
+    "max_rounds": 3,
+    "rounds": [
+      "FIRST_DRAFT_AND_USER_CO_DESIGN",
+      "AFTER_GAP_ANALYSIS_AND_REPAIR_1",
+      "AFTER_GAP_ANALYSIS_AND_REPAIR_2"
+    ],
+    "fixed_control_count_per_domain": 16,
+    "pass_theory_design_simulation": 100,
+    "first_real_project_requires_owner_co_design": true,
+    "score_only_after_simulation": true,
+    "discover": [
+      "missing",
+      "need",
+      "requirement",
+      "error",
+      "incorrectness"
+    ],
+    "repair_must_be_recorded": true,
+    "synthetic_sample_rounds": [
+      10,
+      14,
+      16
+    ],
+    "real_rounds": "CASE_SPECIFIC_NO_AUTO_PASS"
+  },
+  "no_claims": [
+    "USER_APPROVED_REAL_CASE",
+    "INDEPENDENT_REVIEW",
+    "PRODUCT_VERIFIED_FINISH"
+  ]
+}

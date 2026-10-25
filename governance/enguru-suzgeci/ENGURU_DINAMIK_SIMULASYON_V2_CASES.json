@@ -1,0 +1,739 @@
+{
+  "schema": "enguru.methods.dynamic-six-area-scenarios/v2",
+  "version": 2,
+  "scope": "SYNTHETIC_CASES_NO_HUMAN_ACCEPTANCE",
+  "cases": [
+    {
+      "id": "CORE_recover_three",
+      "area": "CORE",
+      "description": "recover_three",
+      "init": "SYNTHETIC_FIRST_DRAFT_ONLY",
+      "faults": [
+        {
+          "control": "U03_ACCEPTANCE",
+          "kind": "missing"
+        },
+        {
+          "control": "C01_API",
+          "kind": "error"
+        },
+        {
+          "control": "C02_DETERMINISM",
+          "kind": "need"
+        }
+      ],
+      "budgets": [
+        1,
+        2
+      ],
+      "unrepairable": [],
+      "oracle_expected_final": "PASS"
+    },
+    {
+      "id": "CORE_recover_five",
+      "area": "CORE",
+      "description": "recover_five",
+      "init": "SYNTHETIC_FIRST_DRAFT_ONLY",
+      "faults": [
+        {
+          "control": "U04_DEPENDENCIES",
+          "kind": "requirement"
+        },
+        {
+          "control": "U05_FEASIBILITY",
+          "kind": "incorrectness"
+        },
+        {
+          "control": "U06_NEGATIVE_ORACLE",
+          "kind": "missing"
+        },
+        {
+          "control": "C03_MIGRATION",
+          "kind": "error"
+        },
+        {
+          "control": "C04_PROVENANCE",
+          "kind": "provenance"
+        }
+      ],
+      "budgets": [
+        2,
+        3
+      ],
+      "unrepairable": [],
+      "oracle_expected_final": "PASS"
+    },
+    {
+      "id": "CORE_insufficient_budget",
+      "area": "CORE",
+      "description": "insufficient_budget",
+      "init": "SYNTHETIC_FIRST_DRAFT_ONLY",
+      "faults": [
+        {
+          "control": "U04_DEPENDENCIES",
+          "kind": "missing"
+        },
+        {
+          "control": "U06_NEGATIVE_ORACLE",
+          "kind": "missing"
+        },
+        {
+          "control": "C01_API",
+          "kind": "error"
+        },
+        {
+          "control": "C02_DETERMINISM",
+          "kind": "need"
+        },
+        {
+          "control": "C03_MIGRATION",
+          "kind": "incorrectness"
+        }
+      ],
+      "budgets": [
+        1,
+        1
+      ],
+      "unrepairable": [],
+      "oracle_expected_final": "HOLD"
+    },
+    {
+      "id": "CORE_owner_repair_hold",
+      "area": "CORE",
+      "description": "owner_repair_hold",
+      "init": "SYNTHETIC_FIRST_DRAFT_ONLY",
+      "faults": [
+        {
+          "control": "U10_VERIFIER",
+          "kind": "provenance"
+        },
+        {
+          "control": "C04_PROVENANCE",
+          "kind": "missing"
+        },
+        {
+          "control": "U08_RESCORING",
+          "kind": "requirement"
+        }
+      ],
+      "budgets": [
+        3,
+        3
+      ],
+      "unrepairable": [
+        "U10_VERIFIER"
+      ],
+      "oracle_expected_final": "HOLD"
+    },
+    {
+      "id": "ENGINE_recover_three",
+      "area": "ENGINE",
+      "description": "recover_three",
+      "init": "SYNTHETIC_FIRST_DRAFT_ONLY",
+      "faults": [
+        {
+          "control": "U03_ACCEPTANCE",
+          "kind": "missing"
+        },
+        {
+          "control": "E01_STATE",
+          "kind": "error"
+        },
+        {
+          "control": "E02_IDEMPOTENCY",
+          "kind": "need"
+        }
+      ],
+      "budgets": [
+        1,
+        2
+      ],
+      "unrepairable": [],
+      "oracle_expected_final": "PASS"
+    },
+    {
+      "id": "ENGINE_recover_five",
+      "area": "ENGINE",
+      "description": "recover_five",
+      "init": "SYNTHETIC_FIRST_DRAFT_ONLY",
+      "faults": [
+        {
+          "control": "U04_DEPENDENCIES",
+          "kind": "requirement"
+        },
+        {
+          "control": "U05_FEASIBILITY",
+          "kind": "incorrectness"
+        },
+        {
+          "control": "U06_NEGATIVE_ORACLE",
+          "kind": "missing"
+        },
+        {
+          "control": "E03_BUDGET",
+          "kind": "error"
+        },
+        {
+          "control": "E04_FAILURE",
+          "kind": "provenance"
+        }
+      ],
+      "budgets": [
+        2,
+        3
+      ],
+      "unrepairable": [],
+      "oracle_expected_final": "PASS"
+    },
+    {
+      "id": "ENGINE_insufficient_budget",
+      "area": "ENGINE",
+      "description": "insufficient_budget",
+      "init": "SYNTHETIC_FIRST_DRAFT_ONLY",
+      "faults": [
+        {
+          "control": "U04_DEPENDENCIES",
+          "kind": "missing"
+        },
+        {
+          "control": "U06_NEGATIVE_ORACLE",
+          "kind": "missing"
+        },
+        {
+          "control": "E01_STATE",
+          "kind": "error"
+        },
+        {
+          "control": "E02_IDEMPOTENCY",
+          "kind": "need"
+        },
+        {
+          "control": "E03_BUDGET",
+          "kind": "incorrectness"
+        }
+      ],
+      "budgets": [
+        1,
+        1
+      ],
+      "unrepairable": [],
+      "oracle_expected_final": "HOLD"
+    },
+    {
+      "id": "ENGINE_owner_repair_hold",
+      "area": "ENGINE",
+      "description": "owner_repair_hold",
+      "init": "SYNTHETIC_FIRST_DRAFT_ONLY",
+      "faults": [
+        {
+          "control": "U10_VERIFIER",
+          "kind": "provenance"
+        },
+        {
+          "control": "E04_FAILURE",
+          "kind": "missing"
+        },
+        {
+          "control": "U08_RESCORING",
+          "kind": "requirement"
+        }
+      ],
+      "budgets": [
+        3,
+        3
+      ],
+      "unrepairable": [
+        "U10_VERIFIER"
+      ],
+      "oracle_expected_final": "HOLD"
+    },
+    {
+      "id": "AGENT_recover_three",
+      "area": "AGENT",
+      "description": "recover_three",
+      "init": "SYNTHETIC_FIRST_DRAFT_ONLY",
+      "faults": [
+        {
+          "control": "U03_ACCEPTANCE",
+          "kind": "missing"
+        },
+        {
+          "control": "A01_TOOLS",
+          "kind": "error"
+        },
+        {
+          "control": "A02_INJECTION",
+          "kind": "need"
+        }
+      ],
+      "budgets": [
+        1,
+        2
+      ],
+      "unrepairable": [],
+      "oracle_expected_final": "PASS"
+    },
+    {
+      "id": "AGENT_recover_five",
+      "area": "AGENT",
+      "description": "recover_five",
+      "init": "SYNTHETIC_FIRST_DRAFT_ONLY",
+      "faults": [
+        {
+          "control": "U04_DEPENDENCIES",
+          "kind": "requirement"
+        },
+        {
+          "control": "U05_FEASIBILITY",
+          "kind": "incorrectness"
+        },
+        {
+          "control": "U06_NEGATIVE_ORACLE",
+          "kind": "missing"
+        },
+        {
+          "control": "A03_EVAL",
+          "kind": "error"
+        },
+        {
+          "control": "A04_MEMORY",
+          "kind": "provenance"
+        }
+      ],
+      "budgets": [
+        2,
+        3
+      ],
+      "unrepairable": [],
+      "oracle_expected_final": "PASS"
+    },
+    {
+      "id": "AGENT_insufficient_budget",
+      "area": "AGENT",
+      "description": "insufficient_budget",
+      "init": "SYNTHETIC_FIRST_DRAFT_ONLY",
+      "faults": [
+        {
+          "control": "U04_DEPENDENCIES",
+          "kind": "missing"
+        },
+        {
+          "control": "U06_NEGATIVE_ORACLE",
+          "kind": "missing"
+        },
+        {
+          "control": "A01_TOOLS",
+          "kind": "error"
+        },
+        {
+          "control": "A02_INJECTION",
+          "kind": "need"
+        },
+        {
+          "control": "A03_EVAL",
+          "kind": "incorrectness"
+        }
+      ],
+      "budgets": [
+        1,
+        1
+      ],
+      "unrepairable": [],
+      "oracle_expected_final": "HOLD"
+    },
+    {
+      "id": "AGENT_owner_repair_hold",
+      "area": "AGENT",
+      "description": "owner_repair_hold",
+      "init": "SYNTHETIC_FIRST_DRAFT_ONLY",
+      "faults": [
+        {
+          "control": "U10_VERIFIER",
+          "kind": "provenance"
+        },
+        {
+          "control": "A04_MEMORY",
+          "kind": "missing"
+        },
+        {
+          "control": "U08_RESCORING",
+          "kind": "requirement"
+        }
+      ],
+      "budgets": [
+        3,
+        3
+      ],
+      "unrepairable": [
+        "U10_VERIFIER"
+      ],
+      "oracle_expected_final": "HOLD"
+    },
+    {
+      "id": "WEB_recover_three",
+      "area": "WEB",
+      "description": "recover_three",
+      "init": "SYNTHETIC_FIRST_DRAFT_ONLY",
+      "faults": [
+        {
+          "control": "U03_ACCEPTANCE",
+          "kind": "missing"
+        },
+        {
+          "control": "W01_ACCESSIBILITY",
+          "kind": "error"
+        },
+        {
+          "control": "W02_SECURITY",
+          "kind": "need"
+        }
+      ],
+      "budgets": [
+        1,
+        2
+      ],
+      "unrepairable": [],
+      "oracle_expected_final": "PASS"
+    },
+    {
+      "id": "WEB_recover_five",
+      "area": "WEB",
+      "description": "recover_five",
+      "init": "SYNTHETIC_FIRST_DRAFT_ONLY",
+      "faults": [
+        {
+          "control": "U04_DEPENDENCIES",
+          "kind": "requirement"
+        },
+        {
+          "control": "U05_FEASIBILITY",
+          "kind": "incorrectness"
+        },
+        {
+          "control": "U06_NEGATIVE_ORACLE",
+          "kind": "missing"
+        },
+        {
+          "control": "W03_SEO",
+          "kind": "error"
+        },
+        {
+          "control": "W04_BROWSER",
+          "kind": "provenance"
+        }
+      ],
+      "budgets": [
+        2,
+        3
+      ],
+      "unrepairable": [],
+      "oracle_expected_final": "PASS"
+    },
+    {
+      "id": "WEB_insufficient_budget",
+      "area": "WEB",
+      "description": "insufficient_budget",
+      "init": "SYNTHETIC_FIRST_DRAFT_ONLY",
+      "faults": [
+        {
+          "control": "U04_DEPENDENCIES",
+          "kind": "missing"
+        },
+        {
+          "control": "U06_NEGATIVE_ORACLE",
+          "kind": "missing"
+        },
+        {
+          "control": "W01_ACCESSIBILITY",
+          "kind": "error"
+        },
+        {
+          "control": "W02_SECURITY",
+          "kind": "need"
+        },
+        {
+          "control": "W03_SEO",
+          "kind": "incorrectness"
+        }
+      ],
+      "budgets": [
+        1,
+        1
+      ],
+      "unrepairable": [],
+      "oracle_expected_final": "HOLD"
+    },
+    {
+      "id": "WEB_owner_repair_hold",
+      "area": "WEB",
+      "description": "owner_repair_hold",
+      "init": "SYNTHETIC_FIRST_DRAFT_ONLY",
+      "faults": [
+        {
+          "control": "U10_VERIFIER",
+          "kind": "provenance"
+        },
+        {
+          "control": "W04_BROWSER",
+          "kind": "missing"
+        },
+        {
+          "control": "U08_RESCORING",
+          "kind": "requirement"
+        }
+      ],
+      "budgets": [
+        3,
+        3
+      ],
+      "unrepairable": [
+        "U10_VERIFIER"
+      ],
+      "oracle_expected_final": "HOLD"
+    },
+    {
+      "id": "APP_recover_three",
+      "area": "APP",
+      "description": "recover_three",
+      "init": "SYNTHETIC_FIRST_DRAFT_ONLY",
+      "faults": [
+        {
+          "control": "U03_ACCEPTANCE",
+          "kind": "missing"
+        },
+        {
+          "control": "P01_PLATFORM",
+          "kind": "error"
+        },
+        {
+          "control": "P02_PRIVACY",
+          "kind": "need"
+        }
+      ],
+      "budgets": [
+        1,
+        2
+      ],
+      "unrepairable": [],
+      "oracle_expected_final": "PASS"
+    },
+    {
+      "id": "APP_recover_five",
+      "area": "APP",
+      "description": "recover_five",
+      "init": "SYNTHETIC_FIRST_DRAFT_ONLY",
+      "faults": [
+        {
+          "control": "U04_DEPENDENCIES",
+          "kind": "requirement"
+        },
+        {
+          "control": "U05_FEASIBILITY",
+          "kind": "incorrectness"
+        },
+        {
+          "control": "U06_NEGATIVE_ORACLE",
+          "kind": "missing"
+        },
+        {
+          "control": "P03_LIFECYCLE",
+          "kind": "error"
+        },
+        {
+          "control": "P04_SIGNING",
+          "kind": "provenance"
+        }
+      ],
+      "budgets": [
+        2,
+        3
+      ],
+      "unrepairable": [],
+      "oracle_expected_final": "PASS"
+    },
+    {
+      "id": "APP_insufficient_budget",
+      "area": "APP",
+      "description": "insufficient_budget",
+      "init": "SYNTHETIC_FIRST_DRAFT_ONLY",
+      "faults": [
+        {
+          "control": "U04_DEPENDENCIES",
+          "kind": "missing"
+        },
+        {
+          "control": "U06_NEGATIVE_ORACLE",
+          "kind": "missing"
+        },
+        {
+          "control": "P01_PLATFORM",
+          "kind": "error"
+        },
+        {
+          "control": "P02_PRIVACY",
+          "kind": "need"
+        },
+        {
+          "control": "P03_LIFECYCLE",
+          "kind": "incorrectness"
+        }
+      ],
+      "budgets": [
+        1,
+        1
+      ],
+      "unrepairable": [],
+      "oracle_expected_final": "HOLD"
+    },
+    {
+      "id": "APP_owner_repair_hold",
+      "area": "APP",
+      "description": "owner_repair_hold",
+      "init": "SYNTHETIC_FIRST_DRAFT_ONLY",
+      "faults": [
+        {
+          "control": "U10_VERIFIER",
+          "kind": "provenance"
+        },
+        {
+          "control": "P04_SIGNING",
+          "kind": "missing"
+        },
+        {
+          "control": "U08_RESCORING",
+          "kind": "requirement"
+        }
+      ],
+      "budgets": [
+        3,
+        3
+      ],
+      "unrepairable": [
+        "U10_VERIFIER"
+      ],
+      "oracle_expected_final": "HOLD"
+    },
+    {
+      "id": "COMMERCE_recover_three",
+      "area": "COMMERCE",
+      "description": "recover_three",
+      "init": "SYNTHETIC_FIRST_DRAFT_ONLY",
+      "faults": [
+        {
+          "control": "U03_ACCEPTANCE",
+          "kind": "missing"
+        },
+        {
+          "control": "B01_OFFER",
+          "kind": "error"
+        },
+        {
+          "control": "B02_PRICING",
+          "kind": "need"
+        }
+      ],
+      "budgets": [
+        1,
+        2
+      ],
+      "unrepairable": [],
+      "oracle_expected_final": "PASS"
+    },
+    {
+      "id": "COMMERCE_recover_five",
+      "area": "COMMERCE",
+      "description": "recover_five",
+      "init": "SYNTHETIC_FIRST_DRAFT_ONLY",
+      "faults": [
+        {
+          "control": "U04_DEPENDENCIES",
+          "kind": "requirement"
+        },
+        {
+          "control": "U05_FEASIBILITY",
+          "kind": "incorrectness"
+        },
+        {
+          "control": "U06_NEGATIVE_ORACLE",
+          "kind": "missing"
+        },
+        {
+          "control": "B03_LEGAL",
+          "kind": "error"
+        },
+        {
+          "control": "B04_SUPPORT",
+          "kind": "provenance"
+        }
+      ],
+      "budgets": [
+        2,
+        3
+      ],
+      "unrepairable": [],
+      "oracle_expected_final": "PASS"
+    },
+    {
+      "id": "COMMERCE_insufficient_budget",
+      "area": "COMMERCE",
+      "description": "insufficient_budget",
+      "init": "SYNTHETIC_FIRST_DRAFT_ONLY",
+      "faults": [
+        {
+          "control": "U04_DEPENDENCIES",
+          "kind": "missing"
+        },
+        {
+          "control": "U06_NEGATIVE_ORACLE",
+          "kind": "missing"
+        },
+        {
+          "control": "B01_OFFER",
+          "kind": "error"
+        },
+        {
+          "control": "B02_PRICING",
+          "kind": "need"
+        },
+        {
+          "control": "B03_LEGAL",
+          "kind": "incorrectness"
+        }
+      ],
+      "budgets": [
+        1,
+        1
+      ],
+      "unrepairable": [],
+      "oracle_expected_final": "HOLD"
+    },
+    {
+      "id": "COMMERCE_owner_repair_hold",
+      "area": "COMMERCE",
+      "description": "owner_repair_hold",
+      "init": "SYNTHETIC_FIRST_DRAFT_ONLY",
+      "faults": [
+        {
+          "control": "U10_VERIFIER",
+          "kind": "provenance"
+        },
+        {
+          "control": "B04_SUPPORT",
+          "kind": "missing"
+        },
+        {
+          "control": "U08_RESCORING",
+          "kind": "requirement"
+        }
+      ],
+      "budgets": [
+        3,
+        3
+      ],
+      "unrepairable": [
+        "U10_VERIFIER"
+      ],
+      "oracle_expected_final": "HOLD"
+    }
+  ]
+}
