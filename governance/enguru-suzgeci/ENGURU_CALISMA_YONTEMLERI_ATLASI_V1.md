@@ -139,5 +139,6 @@ Yöntem bütünleşik; **yetki ve kanıt hükümleri ayrık**. Bir teorik PASS, 
 1. Önce [AGENTS.md](../../AGENTS.md) ve [V3](ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md) ile kaynağı ve görevi sabitle.
 2. Tasarım/puanlama, hata/karşıt simülasyon ve gerçek icra ayrımını [Uçtan Uca Kılavuz](ENGURU_YONTEM_UCTAN_UCA_SIMULASYON_V1.md) ile uygula.
 3. Gerçek test, bağımsız kanıt, yetki ve kapanışta ürüne özgü canonical sözleşmeyi esas al.
+4. Farklı proje türlerinin bütünsel hazırlığı için [Uçtan Uca Proje İcra Modu™ V1](ENGURU_GITHUB_METHOD_ENTRY_V2.md) üzerinden mevcut Hybrid handoff aracını kullan; saha ve yetkili kabul kapılarını ayrı tut.
 
 **Nihai atlas hükmü:** GITHUB_SOURCE_INTEGRATED / PR_221_MERGED / REAL_PRODUCT_ACCEPTANCE_HOLD. Kaynakların haritalanması yeni bir ürün kabulü değildir.
