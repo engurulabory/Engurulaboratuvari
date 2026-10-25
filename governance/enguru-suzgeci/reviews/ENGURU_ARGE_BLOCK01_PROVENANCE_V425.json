@@ -83,7 +83,7 @@
     {
       "task_id": "A04",
       "category": "license_security_review",
-      "state": "HOLD_SOURCE_NOT_VERIFIED"
+      "state": "HOLD_PARTIAL_RESEARCH_SOURCE_VERIFIED"
     },
     {
       "task_id": "A05",
@@ -148,5 +148,46 @@
   ],
   "acceptance": "HOLD",
   "osi": "NOT_STARTED",
-  "source_rule": "Do not promote document/CI links to real grants, customer evidence, or DoneCheck receipts."
+  "source_rule": "Public-source license/security byte provenance may be PARTIAL_SOURCE_VERIFIED only with pinned Git blob evidence and successful exact-head real CI. Source evidence never promotes task acceptance, signed grants, customer E5, deployment, DoneCheck, or Human Threshold.",
+  "partial_research_source_proofs": {
+    "A04.license_security_review": {
+      "state": "PASS_SCOPED_SOURCE_PROVENANCE_ONLY",
+      "scope": "SEVEN_UPSTREAM_REPOS_SOURCE_ONLY_NOT_CUSTOMER_PRODUCT",
+      "source_pins_manifest": "governance/enguru-suzgeci/reviews/ENGURU_ARGE_BLOCK01_A04_UPSTREAM_LICENSE_PINS_V1.json",
+      "source_pins_manifest_git_blob_sha1": "86dbf7a09997854019448a3a8266f1de1885694f",
+      "source_counts": {
+        "upstream_repos": 7,
+        "license_and_security_files_byte_match": 13,
+        "dependency_seed_files_byte_match": 7
+      },
+      "source_scoped_osv": {
+        "component_candidates_queried": 3559,
+        "package_advisory_matches": 216,
+        "distinct_advisory_ids": 188,
+        "classified_metadata_ids": 188,
+        "disposable_patch_regression": "PASS_PROXY_ADDR_2_0_7_TO_2_0_8"
+      },
+      "exact_pr_head_tested": "0f84e7181a5dc15d6a9212c458d786c4be1f57ed",
+      "exact_ci_url": "https://github.com/engurulabory/Engurulaboratuvari/actions/runs/40206547243",
+      "source_proof_refs": [
+        "tools/arge_block01_a04_live_verify_v1.py",
+        "tools/arge_block01_a04_dependency_seeds_v1.py",
+        "tools/arge_block01_a04_osv_source_review_v1.py",
+        "tools/arge_block01_a04_osv_triage_v1.py",
+        "tests/hym2_a04_proxy_addr_207_208_runtime.cjs"
+      ],
+      "original_acceptance_remaining": {
+        "kasifi_canonical_source": "HOLD",
+        "official_A04": "HOLD",
+        "real_installed_version": "HOLD",
+        "customer_deployment_sbom": "HOLD",
+        "legal_license_clearance": "HOLD",
+        "customer_e5": "HOLD_0_OF_18",
+        "mac_osi_field": "HOLD",
+        "donecheck_human": "HOLD"
+      },
+      "provenance_boundary": "Git blob SHA1 source identity, source-byte SHA256 and exact PR CI are technical proof only; they do not grant owner authority or prove deployment.",
+      "owner": "SINGLE_HUMAN_OWNER; HUMAN_ACCEPTANCE_IN_OWN_CANONICAL_GATE"
+    }
+  }
 }
