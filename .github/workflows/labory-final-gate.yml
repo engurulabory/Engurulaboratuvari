@@ -217,6 +217,39 @@ jobs:
       - name: Ar-Ge Block 01 provenance inventory tests
         run: python -m unittest discover -s tests -p 'test_arge_block01_provenance_v425.py' -v
 
+      - name: HYM2 Zulfikar source-bound goal design theory and 3 simulation families
+        run: python -B -m unittest discover -s tests -p 'test_arge_hym2_zulfikar_phase_reconciliation_v1.py' -v
+
+      - name: HYM2 Zulfikar project-specific 3x100 scoped diagnosis with original 50 HOLD
+        run: |
+          python -B -m tools.arge_hym2_zulfikar_phase_reconciliation_v1 \
+            --receipt "$RUNNER_TEMP/HYM2_ZULFIKAR_PHASE_DIAGNOSIS_V1.json"
+          python -B - "$RUNNER_TEMP/HYM2_ZULFIKAR_PHASE_DIAGNOSIS_V1.json" <<'PY'
+          import json,sys
+          x=json.load(open(sys.argv[1],encoding="utf8"))
+          assert x["state"]=="PASS_SCOPED_GOAL_DESIGN_THEORY_EVIDENCE_ONLY"
+          assert all(v["score"]==100 and v["total"]==10 for v in x["goal_design_theory"].values())
+          assert x["three_simulations"]["state"]=="PASS_THREE_DISTINCT_SIMULATION_FAMILIES"
+          assert x["three_simulations"]["passed"]==9
+          assert len(x["original_40_work_ids"])==40
+          assert len(x["original_blocks"])==6
+          assert x["legacy_github_preparation"]=="50/100_HOLD"
+          assert x["official_progress"]=="0/40" and x["verified_finish"]=="HOLD"
+          print(json.dumps({"scope":"GOAL_DESIGN_THEORY_PRE_FIELD_SOURCE_EVIDENCE",
+             "scores":{k:v["score"] for k,v in x["goal_design_theory"].items()},
+             "adversarialSimulations":9,"githubTechnicalCI":"THIS_STEP_RUN_SUCCESS",
+             "originalGithubReadiness":x["legacy_github_preparation"],
+             "official":x["official_progress"]},sort_keys=True))
+          PY
+
+      - name: Upload HYM2 Zulfikar stage deadlock diagnosis (NOT canonical release)
+        uses: actions/upload-artifact@v4
+        with:
+          name: hym2-zulfikar-stage-boundary-proof
+          path: ${{ runner.temp }}/HYM2_ZULFIKAR_PHASE_DIAGNOSIS_V1.json
+          retention-days: 3
+          if-no-files-found: error
+
       - name: HYM2 Hedef 1 Zulfikar V1.2 original 40 task adversarial integration tests
         run: python -B -m unittest discover -s tests -p 'test_arge_hym2_zulfikar_v12_bridge.py' -v
 
