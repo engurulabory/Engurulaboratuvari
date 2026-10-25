@@ -35,7 +35,7 @@ def _component(ecosystem, name, version, parent, relation):
     # Coordinates are URL encoded, keeping slashes used by Go module and
     # scoped npm names while avoiding corruption of special chars in PURLs.
     purl_type = {"cargo": "cargo", "pypi": "pypi", "npm": "npm", "golang": "golang"}[ecosystem]
-    normalized = urllib.parse.quote(name, safe="/@")
+    normalized = urllib.parse.quote(name, safe="/")
     component_purl = f"pkg:{purl_type}/{normalized}@{urllib.parse.quote(version,safe='.+-')}"
     return {"type": "library", "name": name, "version": version,
             "purl": component_purl, "bom-ref": component_purl,
@@ -84,8 +84,12 @@ def parse_locked(tech, body):
                 m=YARN_VER.match(line)
                 if m:
                     current["version"]=m.group(1).strip('"')
-        # Final entry normally ends at next header; do not silently assume any
-        # missing trailing resolution is present.
+        if current.get("resolution"):
+            m=re.fullmatch(r"(.+)@npm:([^#\\s]+)",current["resolution"])
+            version=current.get("version")
+            if m and version and VERSION.fullmatch(version) and m.group(2)==version:
+                result.append(_component("npm",m.group(1),version,tech,
+                                         "LOCKFILE_EXACT_CANDIDATE"))
     else:
         raise ValueError("UNSUPPORTED_LOCK_ECOSYSTEM")
     if not result:
@@ -218,7 +222,7 @@ def main():
         u=json.loads(args.upstream.read_text(encoding="utf-8"),object_pairs_hook=_unique)
         receipt,bom=assemble(m,u)
         if bom is not None:
-            args.output_cdx.write_text(json.dumps(bom,ensure_ascii=False,sort_keys=True,separators=(",",":"))+"\n",
+            args.output_cdx.write_text(json.dumps(bom,ensure_ascii=False,sort_keys=True,separators=(",",":")),
                                        encoding="utf-8")
     except (OSError,ValueError,TypeError,UnicodeError) as err:
         receipt={"state":"HOLD_INPUT_OR_WRITE","error_type":type(err).__name__}
