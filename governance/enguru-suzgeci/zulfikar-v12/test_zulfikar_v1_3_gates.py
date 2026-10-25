@@ -5,11 +5,12 @@ import json
 from pathlib import Path
 import subprocess
 import sys
+import tempfile
 import unittest
 
 from test_zulfikar_v1_2 import golden
 from zulfikar_v1_2_engine import assess
-from zulfikar_v1_3_gates import HERE, GOAL_IDS, INFRA_IDS, score, goal_gate, dag_ok
+from zulfikar_v1_3_gates import HERE, GOAL_IDS, INFRA_IDS, score, goal_gate, dag_ok, source_matches_checkout_head
 
 
 class TestGoalGate(unittest.TestCase):
@@ -58,6 +59,30 @@ class TestGoalGate(unittest.TestCase):
         broken=copy.deepcopy(dependencies);broken["C02"]=["UNKNOWN"]
         self.assertFalse(dag_ok(broken,set(broken)))
 
+    def test_non_text_and_unhashable_inputs_hold_without_crash(self):
+        injections=[
+          ("goal_id_number", lambda x: x.update(goal_id=17), "H01"),
+          ("goal_text_number", lambda x: x.update(single_goal=17), "H01"),
+          ("value_list", lambda x: x.update(user_value=["fake"]), "H02"),
+          ("metric_not_text", lambda x: x["measurement"].update(metric=["fake"]), "H02"),
+          ("unhashable_control_id", lambda x: x["controls"][0].update(id=[]), "H03"),
+          ("unhashable_dag_reference", lambda x: x["dependencies"]["C02"].append([]), "H05"),
+        ]
+        for label,corrupt,expected_gate in injections:
+            with self.subTest(case=label):
+                altered=copy.deepcopy(self.baseline)
+                corrupt(altered)
+                got=goal_gate(altered)
+                self.assertEqual(got["verdict"],"HOLD_GOAL_SPECIFICATION")
+                self.assertIn(expected_gate,got["assessment"]["open_ids"])
+
+    def test_dag_unhashable_reference_fail_closed(self):
+        for item in ([],{},42,None):
+            with self.subTest(item=repr(item)):
+                broken=copy.deepcopy(self.baseline["dependencies"])
+                broken["C02"].append(item)
+                self.assertFalse(dag_ok(broken,set(broken)))
+
     def test_immutable_denominators(self):
         self.assertEqual(len(GOAL_IDS),10)
         self.assertEqual(len(INFRA_IDS),10)
@@ -72,6 +97,24 @@ class TestOperationalCommands(unittest.TestCase):
     def call(self,command,stdin=None):
         return subprocess.run([sys.executable,"-B",str(HERE/"zulfikar_v1_3_gates.py"),command],
                               input=stdin,capture_output=True,text=True,timeout=20)
+
+    def test_exact_git_head_source_bytes_and_mutation(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder)
+            source=root/"source.txt"
+            source.write_text("trusted bytes",encoding="utf8")
+            subprocess.run(["git","-C",folder,"init","-q"],check=True)
+            subprocess.run(["git","-C",folder,"add","source.txt"],check=True)
+            subprocess.run(
+              ["git","-C",folder,"-c","user.name=ENGURU Test",
+               "-c","user.email=local-test@example.invalid",
+               "commit","-qm","source pin"],check=True,
+            )
+            self.assertTrue(source_matches_checkout_head(root,(source,)))
+            source.write_text("modified bytes",encoding="utf8")
+            self.assertFalse(source_matches_checkout_head(root,(source,)))
+            source.unlink()
+            self.assertFalse(source_matches_checkout_head(root,(source,)))
 
     def test_status_available_without_side_effects(self):
         r=self.call("status")
