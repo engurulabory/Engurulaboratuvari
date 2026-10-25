@@ -162,6 +162,22 @@ jobs:
       - name: ENGURU Billing Core tests
         run: python -m unittest discover -s tests -p 'test_billing_core.py' -v
 
+      - name: ENGURU mandatory THEORY DESIGN SIM1 SIM2 SIM3 five-by-100 preparation
+        run: |
+          python -B tools/enguru_ana_terazi_v1.py > "$RUNNER_TEMP/enguru-project-five100-method.json"
+          python -B - "$RUNNER_TEMP/enguru-project-five100-method.json" <<'PY'
+          import json,sys
+          result=json.load(open(sys.argv[1], encoding="utf-8"))
+          axes=("THEORY","DESIGN","SIM1","SIM2","SIM3")
+          assert result["verdict"]=="PASS_THEORETICAL_PREPARATION_5X100"
+          assert set(result["scores"])==set(axes)
+          assert all(type(result["scores"][a]) in (int,float)
+                     and result["scores"][a]==100 for a in axes)
+          assert result["mac_osi_field"]=="HOLD"
+          assert result["verified_finish"]=="HOLD"
+          print("ENGURU_5X100_METHOD=PASS; OSI_FIELD=HOLD; VERIFIED_FINISH=HOLD")
+          PY
+
       - name: End-to-end project preparation and authority boundary tests
         run: python -B -m unittest discover -s tools/hybrid_handoff -p 'test_*.py' -v
 
