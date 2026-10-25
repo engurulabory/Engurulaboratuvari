@@ -78,8 +78,9 @@ def root_matches():
 def dag_ok(edges, ids):
     if not isinstance(edges, dict) or set(edges) != ids:
         return False
-    if any(not isinstance(v, list) or len(v) != len(set(v))
-           or any(not isinstance(p, str) or p not in ids for p in v) for v in edges.values()):
+    if any(not isinstance(v, list)
+           or any(not isinstance(p, str) or p not in ids for p in v)
+           or len(v) != len(set(v)) for v in edges.values()):
         return False
     seen, active = set(), set()
     def walk(x):
