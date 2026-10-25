@@ -225,6 +225,27 @@ jobs:
       - name: Ar-Ge Block 01 A04 upstream Git/license provenance test
         run: python -m unittest discover -s tests -p 'test_arge_block01_a04_upstream_pins_v1.py' -v
 
+      - name: HYM2 Hedef 1 A04 real upstream-byte verifier adversarial tests
+        run: python -B -m unittest discover -s tests -p 'test_arge_block01_a04_live_verify_v1.py' -v
+
+      - name: HYM2 Hedef 1 A04 live pinned upstream license and security source verification
+        run: |
+          python -B tools/arge_block01_a04_live_verify_v1.py \
+            --manifest governance/enguru-suzgeci/reviews/ENGURU_ARGE_BLOCK01_A04_UPSTREAM_LICENSE_PINS_V1.json \
+            > "$RUNNER_TEMP/hym2-a04-live-source-receipt.json"
+          python -B - "$RUNNER_TEMP/hym2-a04-live-source-receipt.json" <<'PY'
+          import json, sys
+          result=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert result["state"]=="PASS_PINNED_PUBLIC_BYTES_ONLY"
+          assert result["checked"]==result["matched"]==result["expected"]==13
+          assert len(result["files"])==13
+          assert all(row["state"]=="PASS_PINNED_BYTES" and len(row["bytes_sha256"])==64 for row in result["files"])
+          assert result["a04_official"]==result["verified_finish"]=="HOLD"
+          assert result["cve"]==result["sbom"]==result["legal_clearance"]=="HOLD"
+          assert result["independent_e5"]=="HOLD_0_OF_18"
+          PY
+          cat "$RUNNER_TEMP/hym2-a04-live-source-receipt.json"
+
       - name: Ar-Ge Block 01 A01-A06 dated public provenance regression
         run: python -m unittest discover -s tests -p 'test_arge_block01_a01_a06_public_provenance_v1.py' -v
 
