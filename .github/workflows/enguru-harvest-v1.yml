@@ -26,7 +26,11 @@ jobs:
       - name: Execute real Python regressions for 12 local operations
         run: |
           cd capabilities/enguru-harvest-v1
-          python -B -m unittest -v test_harvest test_evidence_gate test_skill_kernel
+          python -B -m unittest -v test_harvest test_evidence_gate test_skill_kernel test_license_gate test_external_skill_plan
+      - name: Verify upstream root-license observation join
+        run: |
+          cd capabilities/enguru-harvest-v1
+          python -B license_gate.py
       - name: Execute three Zulfikar-aligned logical simulations
         run: |
           cd capabilities/enguru-harvest-v1
