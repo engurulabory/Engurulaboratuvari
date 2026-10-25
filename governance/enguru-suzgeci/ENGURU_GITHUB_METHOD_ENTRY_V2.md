@@ -13,6 +13,14 @@
 6. [Dışarıdan karşıt senaryolar](../../tools/enguru_method_dynamic_adversarial_v2.py), özgün kabul paydası, sentetik/gerçek test ayrımı ve eylem yetkisi ayrı kontrol edilir.
 7. Erişilebilir gerçek mühendislik ve GitHub CI çalıştırılır; somut kaynak, commit, job, çıktı ve SHA kaydedilir. DoneCheck™ v1.2 ve gereken Human Threshold™ yalnız canonical kabul zinciri üzerinden kullanılabilir.
 
+## Ürün ve proje için üç aşamalı 3+2 olgunlaştırma
+
+**Çalışma sırası:** `TASARIM → TEORİ → GITHUB HAZIRLIĞI`. Her aşamada **ön değerlendirme → karşıt simülasyon/onarım → bağımsız yeniden değerlendirme**, toplam **3 tur**. Gerçek kanıt/onarım ilerlemesine bağlı **en çok 2 ek tur** ile **3–5 tur**. Her aşamanın 100/100 hedefi ayrı; eksik özgün kontrol varsa HOLD ve gerçek neden/sonraki hareket.
+
+`TASARIM=100` ⇒ TEORİ kapısı açılır. `TEORİ=100` ⇒ GITHUB TEKNİK hazırlık kapısı açılır. Son aşamada gerçek test/regresyon ve **üç ayrı final SIM1, SIM2, SIM3** zorunludur. Beş ayrı `100/100` + gerçek SHA ve exact commit CI doğrulanınca `GITHUB_PREPARED=PASS → READY_FOR_OSI_HANDOFF → DUR`. Kurulu Mac, gerçek kullanıcı ekranı, ayrı yetki ve canonical Verified Finish bu hükmün kapsamı dışındadır.
+
+**Bağlayıcı araç:** [Üç aşama / 3+2 politika denetimi](../../tools/enguru_method_three_phase_gate_v1.py), [Ana Terazi](ENGURU_ANA_TERAZI_5X100_V1.md), [mevcut proje doğrulayıcı](../../tools/hybrid_handoff/validate_hybrid_handoff.py). Aşama politikası veri ve puan uydurmaz; gerçek kaynak-evidence oracle işlevi zorunlu, politika PASS gerçek GitHub CI PASS değildir. Ek turda kapanan özgün kontrol kanıtı aranır; kaynak ve kanıt aynıysa `GÜVENLİ_DUR`.
+
 ## Kalıcı yöntem kuralı — proje başına beş ayrı 100/100 (25 Ekim 2026)
 
 **Bağlayıcı hazırlık eşiği:** Her yeni ENGÜRÜ projesi için **TEORİ=100/100; TASARIM=100/100; SİM-1=100/100; SİM-2=100/100; SİM-3=100/100** ayrı kaynak ve ayrı sabit payda ile gerçekten sınanır. Beş koşul birlikte PASS olunca `GITHUB_PREPARED=PASS` yalnız ilgili exact source ve başarılı GitHub CI üzerinde raporlanabilir. Tek bir koşulun açık kalması `GITHUB_PREPARED=HOLD` gerektirir. Kabul kapsamı bu hedefe uyacak diye küçültülmez; puanlar kullanıcı beyanıyla atanmaz.
