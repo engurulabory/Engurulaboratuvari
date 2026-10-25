@@ -114,50 +114,28 @@ def simulations(d):
     baseline=score(d)["grades"]
     if any(v["score"]!=100 for v in baseline.values()):
         return {"state":"HOLD_BASELINE_GAPS","failed":[k for k,v in baseline.items() if v["score"]!=100]}
+    # Three independent mutation families, each re-scored against actual data.
     cases=[
-        ("SIM1_SOURCE_GOAL",
-         (("cases","baseline","rows",999),"GOAL")),
-        ("SIM1_SOURCE_DESIGN",
-         (("lock","sha256","x"*64),"DESIGN")),
-        ("SIM1_SOURCE_THEORY",
-         (("zulfi","benchmark_state","FICTIONAL_REAL_BENCHMARK"),"THEORY")),
-        ("SIM2_FALSE_A04",
-         (("provenance","a04_canonical_scope_boundary","status","PASS_OFFICIAL"),"GOAL")),
-        ("SIM2_FALSE_OWNER",
-         (("provenance","a04_canonical_scope_boundary","owner_authority","SECOND_OWNER"),"DESIGN")),
-        ("SIM2_FAKE_GH",
-         (("gate","proposed_readiness_trace_gates",5,"management_state","PASS_UNPROVEN"),"DESIGN")),
-        ("SIM3_FAKE_E5",
-         (("gate","score_accounting","independent_e5","18/18"),"THEORY")),
-        ("SIM3_PREMATURE_FIN",
-         (("matrix","official_pass","9/9"),"GOAL")),
-        ("SIM3_OWNER_GRANT_SHORTCUT",
-         (("provenance","a04_canonical_scope_boundary","owner_scope_decision","PASS_NO_SOURCE"),"THEORY")),
+        ("SIM1_GOAL_234","GOAL",("cases","baseline","rows"),999),
+        ("SIM1_DESIGN_LOCK","DESIGN",("lock","sha256"),"x"*64),
+        ("SIM1_THEORY_BENCH","THEORY",("zulfi","benchmark_state"),"FICTIONAL_REAL_BENCHMARK"),
+        ("SIM2_A04_FALSE_PASS","GOAL",("provenance","a04_canonical_scope_boundary","status"),"PASS_OFFICIAL"),
+        ("SIM2_SECOND_OWNER","DESIGN",("provenance","a04_canonical_scope_boundary","owner_authority"),"SECOND_OWNER"),
+        ("SIM2_GH_FAKE_PASS","DESIGN",("gate","proposed_readiness_trace_gates",5,"management_state"),"PASS_UNPROVEN"),
+        ("SIM3_E5_FALSE_PASS","THEORY",("gate","score_accounting","independent_e5"),"18/18"),
+        ("SIM3_EARLY_FIN","GOAL",("matrix","official_pass"),"9/9"),
+        ("SIM3_OWNER_SHORTCUT","THEORY",("provenance","a04_canonical_scope_boundary","owner_scope_decision"),"PASS_NO_SOURCE"),
     ]
     observed={}
-    for name,(path,phase) in cases:
+    for name,phase,path,replacement in cases:
         case=copy.deepcopy({k:v for k,v in d.items() if k!="zulfi_mod"})
-        obj=case
-        for key in path[:-2 if len(path)>2 and isinstance(path[-2],int) else 1]:
-            obj=obj[key]
-        # Mutations are explicit and independently scored with unchanged denominators.
-        if isinstance(path[-2],int):
-            obj=case
-            for key in path[:-1]:obj=obj[key]
-            obj[path[-1]]=None # overwritten below
-        else:
-            obj[path[-1]]=None
-        # Locate parent exactly and apply adversarial value.
-        # All tuples except the six-component GH row mutation end in value.
-        # Reconstruct from pristine object for deterministic outcome.
-        case=copy.deepcopy({k:v for k,v in d.items() if k!="zulfi_mod"})
-        keys=list(path)
-        newval=keys.pop()
-        dest=case
-        for key in keys[:-1]:dest=dest[key]
-        dest[keys[-1]]=newval
+        parent=case
+        for key in path[:-1]:
+            parent=parent[key]
+        parent[path[-1]]=replacement
         verdict=score(case)["grades"][phase]
-        observed[name]={"expected":"HOLD","result":"PASS_EXPECTED_HOLD" if verdict["score"]<100 else "FAIL_FALSE_PASS",
+        observed[name]={"expected":"HOLD",
+                        "result":"PASS_EXPECTED_HOLD" if verdict["score"]<100 else "FAIL_FALSE_PASS",
                         "affectedPhase":phase,"detectedFailedIds":verdict["failedIds"]}
     total=sum(v["result"]=="PASS_EXPECTED_HOLD" for v in observed.values())
     return {"state":"PASS_THREE_DISTINCT_SIMULATION_FAMILIES" if total==len(cases) else "HOLD_MUTATION_ESCAPED",
