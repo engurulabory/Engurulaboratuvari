@@ -136,14 +136,25 @@ class BillingCore:
 
     @staticmethod
     def _validate(request: BillingRequest) -> None:
-        if not request.payment.verified:
+        # Dataclass annotations do not validate runtime input. This is a local
+        # adapter contract check, not authentication of an external payment.
+        if not isinstance(request.payment, PaymentProof):
+            raise BillingError("Payment proof has an invalid type")
+        if request.payment.verified is not True:
             raise BillingError("Payment proof is not verified")
+        for value in (request.payment.provider, request.payment.payment_id):
+            if not isinstance(value, str) or not value.strip():
+                raise BillingError("Payment provider and payment_id are required")
+        for value in (request.amount, request.payment.amount):
+            if not isinstance(value, Decimal) or not value.is_finite() or value <= 0:
+                raise BillingError("Invoice and payment amounts must be finite positive Decimals")
+        for value in (request.currency, request.payment.currency):
+            if not isinstance(value, str) or not value.strip():
+                raise BillingError("Invoice and payment currencies are required")
         if request.payment.amount != request.amount:
             raise BillingError("Payment amount mismatch")
         if request.payment.currency != request.currency:
             raise BillingError("Payment currency mismatch")
-        if request.amount <= 0:
-            raise BillingError("Invoice amount must be positive")
         if not request.order_id.strip():
             raise BillingError("order_id is required")
         if "@" not in request.customer_email:
