@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import math
 import os
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
@@ -41,8 +42,14 @@ def build_runtime_from_env() -> SharedAIRuntime:
 RUNTIME = build_runtime_from_env()
 
 
+def reject_json_constant(value):
+    raise ValueError("non_finite_json_number")
+
+
 class Handler(BaseHTTPRequestHandler):
     server_version = "EnguruSharedAI/0.1"
+    max_body_bytes = 1024 * 1024
+    body_read_timeout = 5.0
 
     def _send(self, status: int, payload: dict) -> None:
         body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
@@ -54,6 +61,11 @@ class Handler(BaseHTTPRequestHandler):
 
     def log_message(self, format: str, *args) -> None:
         return
+
+    def _reject(self, status: int, reason: str) -> None:
+        # Keep unread or ambiguous body bytes outside subsequent requests.
+        self.close_connection = True
+        self._send(status, {"state": "BLOCKED", "reason": reason})
 
     def do_GET(self) -> None:
         if self.path == "/health":
@@ -70,14 +82,49 @@ class Handler(BaseHTTPRequestHandler):
         if self.path != "/v1/enguru/respond":
             self._send(404, {"state": "BLOCKED", "reason": "not_found"})
             return
+        lengths = self.headers.get_all("Content-Length", [])
+        if self.headers.get_all("Transfer-Encoding", []):
+            self._reject(400, "unsupported_transfer_encoding")
+            return
+        if len(lengths) != 1:
+            self._reject(411 if not lengths else 400, "single_content_length_required")
+            return
+        raw_length = lengths[0].strip()
+        if not raw_length.isascii() or not raw_length.isdecimal():
+            self._reject(400, "invalid_content_length")
+            return
         try:
-            length = int(self.headers.get("Content-Length", "0"))
-            payload = json.loads(self.rfile.read(length).decode("utf-8"))
+            length = int(raw_length)
+        except ValueError:
+            self._reject(400, "invalid_content_length")
+            return
+        if length > self.max_body_bytes:
+            self._reject(413, "request_body_too_large")
+            return
+        previous_timeout = self.connection.gettimeout()
+        try:
+            self.connection.settimeout(self.body_read_timeout)
+            body = self.rfile.read(length)
+        except TimeoutError:
+            self._reject(408, "request_body_timeout")
+            return
+        finally:
+            self.connection.settimeout(previous_timeout)
+        if len(body) != length:
+            self._reject(400, "incomplete_request_body")
+            return
+        try:
+            payload = json.loads(body.decode("utf-8"), parse_constant=reject_json_constant)
+            if type(payload) is not dict:
+                raise ValueError("request_object_required")
+            cost = payload.get("cost_ceiling", 0)
+            if type(cost) not in (int, float) or not math.isfinite(cost) or cost < 0:
+                raise ValueError("finite_nonnegative_cost_required")
             request = RequestEnvelope.from_dict(payload)
             result = RUNTIME.execute(request)
             self._send(200 if result.state == "PASS" else 503, result.as_dict())
-        except (KeyError, ValueError, TypeError, json.JSONDecodeError) as exc:
-            self._send(400, {"state": "BLOCKED", "reason": type(exc).__name__})
+        except (KeyError, ValueError, TypeError, RecursionError, OverflowError) as exc:
+            self._reject(400, type(exc).__name__)
 
 
 def main() -> None:

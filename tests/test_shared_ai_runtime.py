@@ -1,9 +1,12 @@
 import json
+import http.client
+import socket
 import threading
 import time
 import unittest
 import urllib.error
 import urllib.request
+from unittest.mock import patch
 from http.server import ThreadingHTTPServer
 
 import shared_ai.http_server as http_server
@@ -127,6 +130,34 @@ class HTTPServerTests(unittest.TestCase):
         cls.server.shutdown()
         cls.server.server_close()
 
+    def setUp(self):
+        original = http_server.RUNTIME
+        http_server.RUNTIME = SharedAIRuntime([])
+        self.addCleanup(setattr, http_server, "RUNTIME", original)
+
+    def wire_post(self, headers, body=b"", half_close=True):
+        with socket.create_connection(("127.0.0.1", self.port), timeout=2) as connection:
+            raw = ("POST /v1/enguru/respond HTTP/1.1\r\nHost: localhost\r\n" +
+                   headers + "\r\n\r\n").encode("ascii") + body
+            connection.sendall(raw)
+            if half_close:
+                connection.shutdown(socket.SHUT_WR)
+            response = http.client.HTTPResponse(connection)
+            response.begin()
+            return response.status, json.loads(response.read())
+
+    def valid_body(self, **changes):
+        payload = {"request_id": "web-acceptance", "task_type": "test", "data_class": "PUBLIC",
+                   "required_capabilities": ["text"], "cost_ceiling": 0, "input": "hello",
+                   "intent": "verify the HTTP boundary", "success_criteria": ["observed response"]}
+        payload.update(changes)
+        return json.dumps(payload).encode()
+
+    def assert_health_up(self):
+        with urllib.request.urlopen(f"http://127.0.0.1:{self.port}/health", timeout=2) as response:
+            self.assertEqual(response.status, 200)
+            self.assertEqual(json.loads(response.read())["runtime"], "UP")
+
     def test_health_endpoint(self):
         with urllib.request.urlopen(f"http://127.0.0.1:{self.port}/health", timeout=2) as r:
             payload = json.loads(r.read())
@@ -158,6 +189,60 @@ class HTTPServerTests(unittest.TestCase):
             self.assertEqual(ctx.exception.code, 503)
         finally:
             http_server.RUNTIME = old
+
+    def test_real_http_success_200_with_local_test_adapter(self):
+        adapter = FakeAdapter(output="http-boundary-ok")
+        http_server.RUNTIME = SharedAIRuntime([provider("http-local-test", adapter=adapter, local=True)])
+        body = self.valid_body()
+        status, payload = self.wire_post(f"Content-Length: {len(body)}", body)
+        self.assertEqual(status, 200)
+        self.assertEqual(payload["state"], "PASS")
+        self.assertEqual(payload["route_evidence"]["provider"], "http-local-test")
+        self.assertEqual(adapter.calls, 1)
+        print("WEB_REAL_HTTP_SUCCESS=200; PROVIDER=LOCAL_TEST_ADAPTER; OUTBOUND_PROVIDER_CALLS=0")
+
+    def test_real_http_rejects_ambiguous_or_invalid_body_framing(self):
+        body = self.valid_body()
+        cases = [("Content-Length: -1", body, 400), ("Content-Length: +1", body, 400),
+                 ("Content-Length: invalid", body, 400),
+                 (f"Content-Length: {len(body)}\r\nContent-Length: {len(body)+1}", body, 400),
+                 (f"Transfer-Encoding: chunked\r\nContent-Length: {len(body)}", body, 400),
+                 ("", b"", 411),
+                 (f"Content-Length: {http_server.Handler.max_body_bytes+1}", b"", 413),
+                 ("Content-Length: 5", b"{}", 400)]
+        with patch.object(http_server.RUNTIME, "execute", wraps=http_server.RUNTIME.execute) as execute:
+            for headers, data, expected in cases:
+                with self.subTest(headers=headers):
+                    status, payload = self.wire_post(headers, data)
+                    self.assertEqual(status, expected)
+                    self.assertEqual(payload["state"], "BLOCKED")
+                    self.assert_health_up()
+            execute.assert_not_called()
+        print("WEB_REAL_HTTP_FRAMING=400,411,413; INVALID_REQUEST_DISPATCHES=0; HEALTH=200")
+
+    def test_real_http_incomplete_body_has_idle_timeout(self):
+        with patch.object(http_server.Handler, "body_read_timeout", 0.1):
+            with patch.object(http_server.RUNTIME, "execute", wraps=http_server.RUNTIME.execute) as execute:
+                status, payload = self.wire_post("Content-Length: 10", b"{", half_close=False)
+                self.assertEqual(status, 408)
+                self.assertEqual(payload["reason"], "request_body_timeout")
+                execute.assert_not_called()
+        self.assert_health_up()
+        print("WEB_REAL_HTTP_IDLE_TIMEOUT=408; HEALTH=200")
+
+    def test_real_http_rejects_malformed_json_and_invalid_cost_before_runtime(self):
+        bodies = [b"null", b"[]", b"{invalid", b"\xff", b"["*2000+b"]"*2000]
+        bodies += [self.valid_body(cost_ceiling=value) for value in
+                   (float("nan"), float("inf"), "NaN", "Infinity", True, -1, {}, [])]
+        with patch.object(http_server.RUNTIME, "execute", wraps=http_server.RUNTIME.execute) as execute:
+            for body in bodies:
+                with self.subTest(body=body[:50]):
+                    status, payload = self.wire_post(f"Content-Length: {len(body)}", body)
+                    self.assertEqual(status, 400)
+                    self.assertEqual(payload["state"], "BLOCKED")
+                    self.assert_health_up()
+            execute.assert_not_called()
+        print("WEB_REAL_HTTP_BAD_JSON_AND_COST=400; INVALID_REQUEST_DISPATCHES=0; HEALTH=200")
 
 
 if __name__ == "__main__":
