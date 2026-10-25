@@ -1,0 +1,29 @@
+{
+  "schema": "enguru.pilive.portfolio-regression/v1",
+  "scope": "Linux isolated fixtures and copied captured Core. Full 15-project facts require actual Mac.",
+  "newPortfolioTests": 14,
+  "allTestRounds": [
+    {
+      "cycle": 1,
+      "tests": 217,
+      "errors": 0,
+      "failures": 0
+    },
+    {
+      "cycle": 2,
+      "tests": 217,
+      "errors": 0,
+      "failures": 0
+    },
+    {
+      "cycle": 3,
+      "tests": 217,
+      "errors": 0,
+      "failures": 0
+    }
+  ],
+  "previousNativeTests": 203,
+  "newNativePortfolio": "NOT_EXECUTED",
+  "independentReviewer": "HOLD",
+  "verifiedFinish": "HOLD"
+}

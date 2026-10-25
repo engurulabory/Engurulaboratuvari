@@ -62,7 +62,7 @@ def build(registry, facts, *, revision_before, revision_after, pins_before,
         row={'key':key,'projectId':pid,'status':'HOLD','reason':'CORE_FACTS_UNAVAILABLE',
              'done':None,'total':None,'percent':None,'activeItem':None,
              'activePackage':None,'nextAction':None,'finish':'HOLD',
-             'officialAcceptance':'HOLD','closed':False}
+             'canonicalFinish':None,'officialAcceptance':'HOLD','closed':False}
         pair=facts.get(key)
         if pair is not None:
             require(isinstance(pair,dict),'HOLD_PROJECT_FACTS')
@@ -73,6 +73,14 @@ def build(registry, facts, *, revision_before, revision_after, pins_before,
             for field,digest_field in (('state','stateDigest'),('worklist','worklistDigest')):
                 require(isinstance(entry.get(field),str) and entry[field] in pins_before
                         and summary.get(digest_field)==pins_before[entry[field]],'HOLD_PROJECT_SOURCE_BINDING')
+            source_finish=summary.get('verifiedFinish')
+            require(isinstance(source_finish,str) and re.fullmatch('[A-Z][A-Z0-9_]{0,63}',source_finish),
+                    'HOLD_FINISH_SCHEMA')
+            row['canonicalFinish']=source_finish
+            if all(verify.get(c)=='PASS' for c in checks[:6]):
+                for name in ('activeItem','activePackage','nextAction'):
+                    require(isinstance(summary.get(name),str) and bool(summary[name]),'HOLD_CORE_FOCUS')
+                    row[name]=summary[name]
             if all(verify.get(c)=='PASS' for c in checks) and verify.get('stateDrift')=='NONE':
                 done,total=verify.get('countedPass'),summary.get('total')
                 require(type(done) is int and type(total) is int and 0<=done<=total
@@ -85,8 +93,7 @@ def build(registry, facts, *, revision_before, revision_after, pins_before,
                         'HOLD_COUNTER_AGREEMENT')
                 for name in ('activeItem','activePackage','nextAction'):
                     require(isinstance(summary.get(name),str) and bool(summary[name]),'HOLD_CORE_FOCUS')
-                require(summary.get('verifiedFinish') in ('HOLD','VERIFIED','LOCKED','PENDING','INTERNAL_P01_ONLY')
-                        and isinstance(verify.get('finishState'),str),'HOLD_FINISH_SCHEMA')
+                require(verify.get('finishState') in ('HOLD','VERIFIED'),'HOLD_FINISH_SCHEMA')
                 require(not(done<total and verify['finishState'] in
                             ('VERIFIED','LOCKED','VERIFIED_FINISH','VERIFIED_LOCKED')),'HOLD_EARLY_FINISH')
                 row.update(status='PASS_CORE_READ_ONLY',reason='QUALIFIED_CORE_FACTS',done=done,
@@ -111,3 +118,41 @@ def freshness(snapshot, *, now, stale_after_seconds):
     require(age>=0,'HOLD_SOURCE_FROM_FUTURE')
     return {'state':'STALE' if age>stale_after_seconds else 'WITHIN_CALLER_AGE_LIMIT',
             'sourceAgeSeconds':age,'cacheAcceptance':'UNCHANGED_HOLD'}
+
+def build_portfolio(registry, facts, **identity):
+    """One screen model; isolate project failures, reject global identity drift.
+
+    registry() remains the only project-set authority. Per-project build() reuses
+    the existing counter/source checks. No partial or cached data is promoted.
+    """
+    require(isinstance(facts,dict),'HOLD_PROJECT_FACTS')
+    model=build(registry,{},**identity)
+    require(not(set(facts)-set(registry['projects'])),'HOLD_EXTRA_PROJECT_FACTS')
+    observations={}
+    for index,row in enumerate(model['projects']):
+        key=row['key'];pair=facts.get(key)
+        if pair is None:continue
+        try:
+            require(isinstance(pair,dict),'HOLD_PROJECT_FACTS')
+            if 'error' in pair:
+                code=pair['error']
+                row['reason']=code if isinstance(code,str) and re.fullmatch('[A-Z][A-Z0-9_]{0,95}',code) else 'HOLD_CORE_READ'
+                continue
+            read_at=pair.get('sourceReadAt')
+            require(stamp(identity['source_read_at'])<=stamp(read_at)<=stamp(identity['adapter_built_at']),
+                    'HOLD_PROJECT_TIME')
+            single={'schema':registry['schema'],'projects':{key:registry['projects'][key]}}
+            result=build(single,{key:pair},**identity)
+            model['projects'][index]=result['projects'][0]
+            observations[key]={'sourceReadAt':read_at,'meaning':'CORE_API_READ_COMPLETED; NOT_PROGRESS_EVENT_TIME'}
+        except (Hold,TypeError,ValueError,KeyError) as exc:
+            code=str(exc)
+            row['reason']=code if re.fullmatch('HOLD_[A-Z_]+',code) else 'HOLD_PROJECT_FACTS'
+    content={k:model[k] for k in ('sourceRevision','sourcePins','projects','canonicalWrite',
+                                  'productionGrant','verifiedFinish','technicalPassIsOfficial')}
+    model.update(schema='enguru.pilive.core-portfolio/v1',
+                 projectionDigest=hashlib.sha256(canonical(content)).hexdigest(),
+                 sourceObservations=observations,
+                 factCoverage={'projects':len(model['projects']),'sourceBoundObservations':len(observations),
+                               'qualifiedCounters':sum(r['status']=='PASS_CORE_READ_ONLY' for r in model['projects'])})
+    return model

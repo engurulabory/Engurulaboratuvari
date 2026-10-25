@@ -451,3 +451,13 @@ NEXT_ACTION=...
 - **Kaynak:** urn:enguru:pilive:reviewed-diagnostic:9b40348a36065af4302cba65d1117046ed7446670e94ee10eae648f4fbbbf858 · SHA-256 `9b40348a36065af4302cba65d1117046ed7446670e94ee10eae648f4fbbbf858`.
 - **OSi eşleşme kimliği:** `OSIBLOCK-PILIVE-CANONICAL-KEY`.
 - **Karar:** `REVIEW_REQUIRED`; ürün kabul sayacı değişimi `0`; kontroller: SOURCE_REVIEW.
+
+### Otomatik öğrenme adayı — MK-EVT-PILIVE-NATIVE-KEY-SUCCESS-39C28D1C4177
+<!-- ENGURU_MK_EVENT_V1:eyJjYXVzZVN0YXR1cyI6IlVOS05PV04iLCJjb3JyZWxhdGlvbklkIjoiT1NJQkxPQ0stUElMSVZFLU5BVElWRS1LRVktUkVQRUFUIiwiZXZlbnRJZCI6Ik1LLUVWVC1QSUxJVkUtTkFUSVZFLUtFWS1TVUNDRVNTLTM5QzI4RDFDNDE3NyIsImV2aWRlbmNlTGV2ZWwiOiJBIiwiZXhwZWN0ZWQiOiJSZXRhaW4gYWxsIGNhbm9uaWNhbCBrZXlzIGFuZCByZWFkIFAwMiB0aHJvdWdoIHRoZSBleGlzdGluZyBwaW5uZWQgQ29yZS4iLCJmaXhQcm9wb3NhbCI6IlByZXNlcnZlIHRoaXMgYmFzZWxpbmUgYW5kIGNvbGxlY3QgdGhlIHJlbWFpbmluZyBwb3J0Zm9saW8gZmFjdHMgdGhyb3VnaCB0aGUgc2FtZSBDb3JlIEFQSXMgd2l0aCBzb3VyY2UgaGFzaCBicmFja2V0cy4iLCJvYnNlcnZlZCI6IlRoZSBhY3R1YWwgTWFjIHJlcGVhdCBwYXNzZWQgMjAzIHRlc3RzLCBwcmVzZXJ2ZWQgMTUga2V5IGFuZCBwcm9qZWN0IGlkZW50aXR5IHBhaXJzLCBhbmQgcHJvamVjdGVkIFAwMiBhcyB6ZXJvIG9mIHR3ZWx2ZS4gRm91cnRlZW4gb3RoZXIgcHJvamVjdCBjb3VudGVycyB3ZXJlIG5vdCByZWFkLiIsIm9ic2VydmVkQXQiOiIyMDI2LTEwLTI1VDE5OjI1OjAyLjQ0NzkyNyswMDowMCIsInNjaGVtYSI6ImVuZ3VydS5tay5ldmlkZW5jZS1ldmVudC92MSIsInNvdXJjZVNoYTI1NiI6IjM5YzI4ZDFjNDE3NzdjMTRkZWNjN2E2N2QwMzRkMTNjMzRmMjQyYTdiNGMyNjFjMmE1MjRmZDc2NmM1NGI4MDgiLCJzb3VyY2VVcmkiOiJ1cm46ZW5ndXJ1OnBpbGl2ZTpuYXRpdmUtYWRhcHRlci1yZXBlYXQ6MzljMjhkMWM0MTc3N2MxNGRlY2M3YTY3ZDAzNGQxM2MzNGYyNDJhN2I0YzI2MWMyYTUyNGZkNzY2YzU0YjgwOCIsInRhc2tJZCI6IkVOR1VSVV9QTElWRV9QMDJfVVNFUl9TQ1JFRU4iLCJ0ZXN0U3RhdGUiOiJQQVNTIiwidHlwZSI6IlNVQ0NFU1MifQ==:099ab33feed43eee6c95459de7cf64e873bf2a625349d3e6629c8020758a8643 -->
+- **Tür:** `SUCCESS` · **Seviye iddiası:** `A` · **Kanıt kontrolü:** `UNVERIFIED_EVIDENCE_POINTER`.
+- **Gözlem:** The actual Mac repeat passed 203 tests, preserved 15 key and project identity pairs, and projected P02 as zero of twelve. Fourteen other project counters were not read.
+- **Beklenti:** Retain all canonical keys and read P02 through the existing pinned Core.
+- **Önerilen fark:** Preserve this baseline and collect the remaining portfolio facts through the same Core APIs with source hash brackets.
+- **Kaynak:** urn:enguru:pilive:native-adapter-repeat:39c28d1c41777c14decc7a67d034d13c34f242a7b4c261c2a524fd766c54b808 · SHA-256 `39c28d1c41777c14decc7a67d034d13c34f242a7b4c261c2a524fd766c54b808`.
+- **OSi eşleşme kimliği:** `OSIBLOCK-PILIVE-NATIVE-KEY-REPEAT`.
+- **Karar:** `REVIEW_REQUIRED`; ürün kabul sayacı değişimi `0`; kontroller: SOURCE_REVIEW.

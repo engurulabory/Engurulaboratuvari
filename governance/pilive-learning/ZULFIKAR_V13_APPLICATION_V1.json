@@ -2,7 +2,7 @@
   "gates": {
     "Başarı Kası": {
       "eventClassification": "PASS_METADATA_ONLY",
-      "evidence": "Existing reviewed learning record; native fixture failure/repair/repeat",
+      "evidence": "Actual native underscore repair repeat: 203 tests and 15 identities, P02 qualified read-only. Three-task transfer remains HOLD.",
       "transfer": "HOLD_THREE_REAL_COMPARABLE_TASKS_AND_INDEPENDENT_REVIEW"
     },
     "FİN Verici": {
@@ -11,6 +11,7 @@
       "state": "HOLD"
     },
     "Hedef": {
+      "activeEngineeringGoal": "Bind facts from every Core-discovered project into one source-bound screen data contract.",
       "evidence": "governance/plive/ENGURU_PILIVE_URUN_HEDEFI_V4.md; latest user execution order",
       "originalControls": [
         "U01",
@@ -36,24 +37,28 @@
         "PROJECT_SET_REPLAY_V1.json",
         "RUNTIME_DEPENDENCY_REVIEW_V1.json",
         "CORE_ADAPTER_REPLAY_V1.json",
-        "CORE_ADAPTER_REGRESSION_V1.json"
+        "CORE_ADAPTER_REGRESSION_V1.json",
+        "NATIVE_PORTFOLIO_BASELINE_V1.json",
+        "PORTFOLIO_DATA_CONTRACT_V1.md",
+        "PORTFOLIO_CORE_REPLAY_V1.json",
+        "PORTFOLIO_REGRESSION_V1.json"
       ],
-      "open": "Native adapter dry-run, remaining named dependencies and exact Swift/build/toolchain/signing/binary manifest",
+      "open": "Actual remaining fourteen project facts and broader native source brackets; UI integration and exact historical binary build manifest.",
       "state": "PARTIAL_PASS_NATIVE_CHAIN_HOLD"
     },
     "Tutarlılık Kası": {
-      "evidence": "Historical 8 vs 7 reproduced; repaired pure adapter 8 vs 8 in bounded Linux copied-Core replay, P02 exactly once 0/12; native/UI parity pending",
+      "evidence": "Actual native P02 snapshot and fifteen identity pairs verified; full portfolio API collector/model tested in isolation, new native receipt pending.",
       "open": "Same-revision actual runtime/canonical/UI parity; nine-hop user-outcome/authority chain",
       "state": "HOLD"
     }
   },
-  "latestNativeReceiptSha256": "150c772bbec5d536f884888e84f1e9ee47bb6b6b870cbfe7ec4263df1b6c88b7",
+  "latestNativeReceiptSha256": "39c28d1c41777c14decc7a67d034d13c34f242a7b4c261c2a524fd766c54b808",
   "mainMutation": false,
   "methodPr": 242,
   "methodPublication": "OPEN_REVIEW_BRANCH; NOT_MAIN",
   "methodSourceCommit": "5720cd0de67f959d44ea8ace42a3a716753077f1",
   "nativeWrites": 0,
-  "nextAction": "Run the single native adapter probe package: isolated tests + pinned existing Core P02 dry-run + two source-named dependencies. Return original/copy SHA receipt.",
+  "nextAction": "Run the single portfolio package after GitHub exact-head CI: all tests, all discovered Core project API reads, expanded source hash brackets, current binary/toolchain/signature metadata. Preserve unique AudiV13 original and Desktop copy.",
   "oracleInput": {
     "Z02_EVENT": {
       "cause_status": "UNKNOWN",
@@ -149,7 +154,7 @@
     "state": "SIMULATED_HOLD"
   },
   "oracleScope": "OFFLINE_POLICY_REVIEW_ONLY; NOT_NATIVE_VERIFIER",
-  "pendingReceiptSchema": "enguru.pilive.native-core-adapter-observation/v1",
+  "pendingReceiptSchema": "enguru.pilive.native-portfolio-observation/v1",
   "schema": "enguru.pilive.zulfikar-v13-application/v1",
   "scope": "Advisory evaluation of declared PiLive evidence. No external authority or product acceptance issued.",
   "verifiedFinish": "HOLD"

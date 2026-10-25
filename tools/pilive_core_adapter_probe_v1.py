@@ -77,7 +77,7 @@ def dependencies(home):
             rows.append(row)
     return rows
 
-def run(archive, home, *, self_test=False):
+def run(archive, home, *, self_test=False, reader=None):
     with zipfile.ZipFile(archive) as z:
         manifest_raw=z.read('MANIFEST.json');manifest=json.loads(manifest_raw)
         if not isinstance(manifest['files'],dict) or len(manifest['files'])>30:raise ValueError('MANIFEST_SCOPE')
@@ -99,17 +99,17 @@ def run(archive, home, *, self_test=False):
                    'outputSha256':safe.digest(logs.encode()),'failureOutput':logs[:16000] if p.returncode else ''}
             if self_test:return {'state':'PASS_PACKAGE_SELF_TEST_ONLY' if tests['state']=='PASS' else 'HOLD_PACKAGE_TESTS','tests':tests}
             try:
-                native=native_read(home,temp) if tests['state']=='PASS' else {'state':'NOT_EXECUTED_TESTS_HOLD','executed':False}
+                native=(reader or native_read)(home,temp) if tests['state']=='PASS' else {'state':'NOT_EXECUTED_TESTS_HOLD','executed':False}
             except (OSError,ValueError,KeyError,TypeError,subprocess.SubprocessError) as exc:
                 native={'state':'HOLD_NATIVE_READ_DIAGNOSTIC','reason':type(exc).__name__,
                         'verifiedFinish':'HOLD','executionCompletion':'UNKNOWN_AFTER_EXCEPTION'}
-            good=tests['state']=='PASS' and native['state']=='PASS_NATIVE_P02_ADAPTER_DRY_RUN_ONLY'
+            good=tests['state']=='PASS' and native['state'] in ('PASS_NATIVE_P02_ADAPTER_DRY_RUN_ONLY','PASS_NATIVE_PORTFOLIO_CAPTURE_ONLY')
             return {'schema':'enguru.pilive.native-core-adapter-observation/v1',
               'observedAtUtc':datetime.now(timezone.utc).isoformat(),'platform':platform.system(),
               'packageSourceCommit':manifest['sourceCommit'],'packageManifestSha256':safe.digest(manifest_raw),
               'parentReceiptSha256':'150c772bbec5d536f884888e84f1e9ee47bb6b6b870cbfe7ec4263df1b6c88b7',
-              'tests':tests,'nativeAdapter':native,'dependencies':dependencies(home),
-              'state':'PASS_NATIVE_TESTS_AND_P02_DRY_RUN_ONLY' if good else 'HOLD_NATIVE_ADAPTER_REVIEW',
+              'tests':tests,'nativeAdapter':native,'dependencies':dependencies(home) if reader is None else [],
+              'state':('PASS_NATIVE_TESTS_AND_PORTFOLIO_CAPTURE_ONLY' if reader else 'PASS_NATIVE_TESTS_AND_P02_DRY_RUN_ONLY') if good else 'HOLD_NATIVE_ADAPTER_REVIEW',
               'canonicalWrites':0,'nativeMuscleWrites':0,'sqliteConnections':0,'networkRequests':0,
               'keychainReads':0,'appLaunches':0,'runtimeActivations':0,'installedAppWrites':0,
               'temporaryTestWrites':'OWNED_TEMPORARY_DIRECTORY_ONLY',

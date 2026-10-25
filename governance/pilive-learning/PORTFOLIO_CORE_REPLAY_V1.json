@@ -1,0 +1,22 @@
+{
+  "coverage": {
+    "projects": 8,
+    "qualifiedCounters": 1,
+    "sourceBoundObservations": 1
+  },
+  "environment": "Linux isolated copies of exact captured Core/registry/P02 sources; Git revision stubbed; not real Mac",
+  "nativePortfolioFacts": "HOLD_PENDING_NEW_MAC_RECEIPT",
+  "otherProjects": "Source files absent in this narrow fixture, visible HOLD; no native facts substituted",
+  "p02": {
+    "activeItem": "P02.S01.01",
+    "done": 0,
+    "officialAcceptance": "HOLD",
+    "total": 12
+  },
+  "projects": 8,
+  "schema": "enguru.pilive.portfolio-core-replay/v1",
+  "scope": "Eight projects in narrow copied Core discovery; actual Mac previously discovered fifteen",
+  "sourceFiles": 9,
+  "state": "PASS_NATIVE_PORTFOLIO_CAPTURE_ONLY",
+  "verifiedFinish": "HOLD"
+}
