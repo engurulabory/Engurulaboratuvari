@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 """Counter-tests for operational Zulfikar goal and infra gates."""
 import copy
+import hashlib
 import json
 from pathlib import Path
 import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from test_zulfikar_v1_2 import golden
 from zulfikar_v1_2_engine import assess
-from zulfikar_v1_3_gates import HERE, GOAL_IDS, INFRA_IDS, score, goal_gate, dag_ok, source_matches_checkout_head
+from zulfikar_v1_3_gates import HERE, GOAL_IDS, INFRA_IDS, score, goal_gate, dag_ok, source_matches_checkout_head, root_matches
 
 
 class TestGoalGate(unittest.TestCase):
@@ -114,6 +116,39 @@ class TestGoalGate(unittest.TestCase):
                 result=goal_gate(altered)
                 self.assertEqual(result["verdict"],"HOLD_GOAL_SPECIFICATION")
                 self.assertIn(expected,result["assessment"]["open_ids"])
+
+    def test_fixed_verifier_mapping_and_authority_class(self):
+        corruptions=[
+            ("verifier_forged", "C01", "verifier", "fake.check.H01"),
+            ("verifier_swapped", "C02", "verifier", "goal_gate.H01"),
+            ("reviewer_turned_owner", "C03", "authority", "Human Threshold"),
+            ("human_turned_reviewer", "C04", "authority", "Independent reviewer"),
+            ("last_human_turns_reviewer", "C10", "authority", "Independent reviewer"),
+        ]
+        for label,identity,key,alteration in corruptions:
+            with self.subTest(label=label):
+                modified=copy.deepcopy(self.baseline)
+                next(c for c in modified["controls"] if c["id"]==identity)[key]=alteration
+                verdict=goal_gate(modified)
+                self.assertEqual(verdict["verdict"],"HOLD_GOAL_SPECIFICATION")
+                self.assertIn("H03",verdict["assessment"]["open_ids"])
+
+    def test_canonical_lock_requires_object_and_digest(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder)
+            v3=root/"V3.md"
+            v3.write_bytes(b"canonical gate test")
+            sha=hashlib.sha256(v3.read_bytes()).hexdigest()
+            lock=root/"V3_LOCK.json"
+            with patch("zulfikar_v1_3_gates.V3",v3), \\
+                 patch("zulfikar_v1_3_gates.LOCK",lock), \\
+                 patch("zulfikar_v1_3_gates.V3_PIN",sha):
+                lock.write_text(json.dumps({"sha256":sha}),encoding="utf8")
+                self.assertTrue(root_matches())
+                for corrupt in ([],[{"sha256":sha}],None,"bad",True,{},{"sha256":"0"*64}):
+                    with self.subTest(lock=repr(corrupt)):
+                        lock.write_text(json.dumps(corrupt),encoding="utf8")
+                        self.assertFalse(root_matches())
 
     def test_immutable_denominators(self):
         self.assertEqual(len(GOAL_IDS),10)
