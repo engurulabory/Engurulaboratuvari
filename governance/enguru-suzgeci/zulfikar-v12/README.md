@@ -47,3 +47,23 @@ Projeye özgü beş kapı, **THEORY/DESIGN/SIM1/SIM2/SIM3** için bağımsız pa
 `GITHUB_PREPARED`, ilgili **exact source/head başarılı CI, özgün kabul matrisi ve gereken bağımsız inceleme** ile ayrıca kararlandırılır. `VERIFIED_FINISH`, gerçek ürünün DoneCheck/Human Threshold mekanizmalarına aittir.
 
 Bu inceleme dalı, PiLive Work oturumunu ve korunan `main` kaynaklarını değiştirmez. PiLive çıktısı geldiğinde özgün kabul ID'leri ve SHA kanıtlarıyla ayrıca uzlaştırılır.
+
+## V1.3 — Hedef 100 ve Teknik Altyapı 100
+
+Bu sürüm mevcut V1.2 motorunun üzerinde bir **uyarlamadır**. Sekiz ENGÜRÜ Süzgeci aşaması, canonical V3 SHA-256, DoneCheck ve Human Threshold korunur.
+
+**GOAL=100/100:** ZULFIKAR_GOAL_V1_3.json içindeki 10 sabit özgün hedef kontrolü; kullanıcı değeri, payda, kaynak, yetki, bağımlılık DAG, risk, negatif sınama, kanıt izi, canonical SHA, rollback ve bütçe. Sonuç HEDEFİN TANIM KALİTESİDİR, gerçek kullanıcı faydası değildir.
+
+**INFRA_GITHUB_CODE=100/100:** 10 kapı gerçekten GitHub checkout byte kaynakları üzerinde Python sürümü, dosya varlığı, SHA kimliği, V3 kaynağı, AST syntax, 45 negatif senaryo, imzasız hüküm, subprocess unittest ve gerçek CLI JSON roundtrip sınar. Sonuç gerçek GitHub kod altyapısı test adaylığıdır; gerçek Mac runtime değildir.
+
+**Sabit sıra:** HEDEF → TASARIM → TEORİ → GITHUB KODU/TEKNİK ALTYAPI → EXACT-HEAD CI/BAĞIMSIZ İNCELEME → ayrı OSİ TEKNİK ALTYAPI ve saha → ürün kabulü → mevcut DoneCheck/Human Threshold/Verified Finish.
+
+**Çalıştırılabilir komutlar** (bu dizinde):
+```bash
+python3 -B zulfikar_v1_3_gates.py status
+python3 -B zulfikar_v1_3_gates.py goal
+python3 -B zulfikar_v1_3_gates.py infra
+python3 -B -m unittest -q test_zulfikar_v1_2 test_zulfikar_v1_3_gates
+```
+
+**Hüküm sınırı:** Goal/specification, altyapı kod testi, exact-head CI, bağımsız reviewer, OSi ve gerçek ürün ayrı değerlendirilir. GitHub testinin PASS olması resmî Verified Finish üretmez. PiLive Work ve orijinal Mac kaynakları korunur.
