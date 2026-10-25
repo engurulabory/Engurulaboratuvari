@@ -13,6 +13,16 @@
 6. [Dışarıdan karşıt senaryolar](../../tools/enguru_method_dynamic_adversarial_v2.py), özgün kabul paydası, sentetik/gerçek test ayrımı ve eylem yetkisi ayrı kontrol edilir.
 7. Erişilebilir gerçek mühendislik ve GitHub CI çalıştırılır; somut kaynak, commit, job, çıktı ve SHA kaydedilir. DoneCheck™ v1.2 ve gereken Human Threshold™ yalnız canonical kabul zinciri üzerinden kullanılabilir.
 
+## Kalıcı yöntem kuralı — proje başına beş ayrı 100/100 (25 Ekim 2026)
+
+**Bağlayıcı hazırlık eşiği:** Her yeni ENGÜRÜ projesi için **TEORİ=100/100; TASARIM=100/100; SİM-1=100/100; SİM-2=100/100; SİM-3=100/100** ayrı kaynak ve ayrı sabit payda ile gerçekten sınanır. Beş koşul birlikte PASS olunca `GITHUB_PREPARED=PASS` yalnız ilgili exact source ve başarılı GitHub CI üzerinde raporlanabilir. Tek bir koşulun açık kalması `GITHUB_PREPARED=HOLD` gerektirir. Kabul kapsamı bu hedefe uyacak diye küçültülmez; puanlar kullanıcı beyanıyla atanmaz.
+
+- **Genel yöntem koruması:** [Ana Terazi 5×100](ENGURU_ANA_TERAZI_5X100_V1.md) mevcut bağımsız 10-aksiyom/48-kontrol/3×144 sentetik karşıt testleriyle kendi beş puanını üretir. Her projede bunların güncel gerçek sonuçları yeniden hesaplanır.
+- **Proje düzeyi kanıt:** [Mevcut Hybrid Project doğrulayıcısı](../../tools/hybrid_handoff/validate_hybrid_handoff.py) tek projede sırasıyla kaynaklı teori bağı, 20×5 tasarım kontrolü, 20×5 olumlu hazırlık sınaması, 10×10 karşıt senaryo ve 4×25 bağımsız bütünlük/tekrar/koruma sınaması yapar. Birleşik puan her gözde **genel yöntem ve proje değerlendirmesinin asgari değeri**dir. Beşinin 100 olması zorunludur; herhangi bir çalıştırma ya da genel terazi ulaşılamazsa sonuç HOLD.
+- **Geliştirme turları ayrı tarihtir:** T1→T2→T3 tasarım onarım puanları (ör. 65→90→96) yalnız o turlardaki gerçek durumu gösterir ve geçmişten silinmez. Bunlar birbirinden bağımsız SIM-1/2/3 kapılarının puanı yerine geçirilmez. Yeni kritik kusur ilgili onarıma geri döner; ardından bütün beş göz yeniden sınanır.
+- **GitHub hazırlık sınırı:** Kanıtlı beş 100, sabit gerçek kaynak SHA, karşıt testler ve **exact-head/exact-main CI** ile `GITHUB_PREPARED=PASS` olur. Bu sonuç **OSi'ye taşımaya hazır** anlamındadır; `FIELD_READY`, `HUMAN_AUTHORIZED`, `VERIFIED_FINISH` kendi yetkili gerçek saha kapılarında HOLD kalır. **`READY_FOR_OSI_HANDOFF → DUR`**. Yerel Mac hazırlık incelemesi/gerçek aktarım ancak ayrıca açık insan kararıyla yürütülür.
+- **Özgün otorite:** Süzgeç sekiz aşama, canonical V3 SHA kilidi, ayrı ürün Work Contract/DoneCheck/Human Threshold ve değer koruma geçerlidir. Yeni çekirdek, dokuzuncu aşama veya kendiliğinden üretici izni oluşturulmaz.
+
 ## Altı alanda TRUE / deterministik karar sınırı
 
 CORE, ENGINE, AGENT, WEB, APP ve COMMERCE için **12 ortak + 4 alan kontrolü** sabittir. Gerçek işin kabul sonucu; ilk kurguda sabitlenmiş başarı ölçütü, gerçek kaynak kimliği, bağımsız kanıt ve gerekli yetkili karar üzerinden hesaplanır. Aynı **dondurulmuş doğrulanmış girdi ve kanıt anlık görüntüsü** aynı sonuç/aynı makbuz SHA-256 üretir. GitHub CI, gerçek kaynak üzerinde çalışmış olsa da özgün altı ürünün tamamlanması anlamına gelmez.
