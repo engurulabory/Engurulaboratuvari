@@ -1,45 +1,63 @@
-"""ENGÜRÜ harvest gate: stdlib-only, conservative evidence decisions."""
+"""ENGÜRÜ source candidate classification. External claims never grant adoption.
+
+Only metadata filtering and verified source-byte matching are provided here.
+Independent issuer/reviewer and Human Threshold remain canonical authority.
+"""
 import hashlib
 import json
 from pathlib import Path
+from urllib.parse import urlsplit
 
 LIBRARIES = ("skills", "advanced_prompts", "proven_sources", "data_knowledge", "engineering_recipes", "evidence")
 STATES = ("CANDIDATE", "TESTED", "PROVEN", "ADOPTED")
-PROOF = ("source_sha256", "license", "security_review", "test_receipt", "real_task_receipt", "independent_review", "human_authority")
 
 def sha256(data: bytes) -> str:
+    if not isinstance(data, bytes):
+        raise TypeError("source bytes required")
     return hashlib.sha256(data).hexdigest()
 
+def _valid_digest(value):
+    return isinstance(value, str) and len(value) == 64 and all(c in "0123456789abcdef" for c in value)
+
+def _valid_https_url(value):
+    if not isinstance(value, str) or any(c.isspace() for c in value):
+        return False
+    try:
+        url = urlsplit(value)
+        return url.scheme == "https" and bool(url.hostname) and not url.username and not url.password and not url.fragment
+    except ValueError:
+        return False
+
 def evaluate(record: dict) -> dict:
-    """Never execute third-party content; only classify asserted evidence."""
+    """Return candidate or HOLD, never a self-declared PROVEN/ADOPTED."""
     if not isinstance(record, dict):
         return {"state": "HOLD", "reason": "INVALID_RECORD"}
     required = ("id", "library", "source_url", "source_sha256", "license", "security_review", "mandatory_paid_api")
-    if any(not record.get(k) and record.get(k) != 0 for k in required):
+    if any(key not in record for key in required):
         return {"state": "HOLD", "reason": "MISSING_REQUIRED_SOURCE_OR_REVIEW"}
-    if record["library"] not in LIBRARIES:
+    if not isinstance(record["id"], str) or not record["id"].strip():
+        return {"state": "HOLD", "reason": "INVALID_ID"}
+    if not isinstance(record["library"], str) or record["library"] not in LIBRARIES:
         return {"state": "HOLD", "reason": "UNKNOWN_LIBRARY"}
-    digest = record["source_sha256"]
-    if not isinstance(digest, str) or len(digest) != 64 or any(c not in "0123456789abcdef" for c in digest):
+    if not _valid_https_url(record["source_url"]):
+        return {"state": "HOLD", "reason": "INVALID_SOURCE_URL"}
+    if not _valid_digest(record["source_sha256"]):
         return {"state": "HOLD", "reason": "INVALID_SHA256"}
-    if record["mandatory_paid_api"] != 0:
-        return {"state": "HOLD", "reason": "PAID_DEPENDENCY"}
-    if record["license"] in ("unknown", "unverified", "proprietary-restricted"):
+    if type(record["mandatory_paid_api"]) is not int or record["mandatory_paid_api"] != 0:
+        return {"state": "HOLD", "reason": "PAID_OR_UNKNOWN_DEPENDENCY"}
+    license_name = record["license"]
+    if not isinstance(license_name, str) or not license_name.strip() or license_name.lower() in ("unknown", "unverified", "proprietary-restricted"):
         return {"state": "HOLD", "reason": "LICENSE_REVIEW"}
     if record["security_review"] != "PASS":
         return {"state": "HOLD", "reason": "SECURITY_REVIEW"}
-    if record.get("test_receipt") is None:
-        return {"state": "CANDIDATE", "reason": "AWAITING_REAL_TEST"}
-    if record.get("real_task_receipt") is None:
-        return {"state": "TESTED", "reason": "AWAITING_REAL_TASK"}
-    if record.get("independent_review") != "PASS":
-        return {"state": "TESTED", "reason": "INDEPENDENT_REVIEW_REQUIRED"}
-    if record.get("human_authority") != "PASS":
-        return {"state": "PROVEN", "reason": "HUMAN_THRESHOLD"}
-    return {"state": "ADOPTED", "reason": "EVIDENCE_GATED"}
+    # Claims such as test_receipt, independent_review or human_authority from
+    # an untrusted manifest cannot authenticate themselves.
+    return {"state": "CANDIDATE", "reason": "CLAIMS_PRESENT; BYTE_AND_AUTHORITY_EVIDENCE_REQUIRED"}
 
 def verify_bytes(record: dict, source: bytes) -> dict:
-    if not isinstance(record, dict) or sha256(source) != record.get("source_sha256"):
+    if not isinstance(record, dict) or not isinstance(source, bytes):
+        return {"state": "HOLD", "reason": "SOURCE_BYTES_REQUIRED"}
+    if sha256(source) != record.get("source_sha256"):
         return {"state": "HOLD", "reason": "SOURCE_HASH_MISMATCH"}
     return evaluate(record)
 
