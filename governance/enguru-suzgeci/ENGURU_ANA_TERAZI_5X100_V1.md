@@ -57,6 +57,16 @@ AŞAMA 4: KANITLI OLGUNLUK, YETKİLİ KABUL
 VERIFIED_FINISH → BITTI_DUR
 ```
 
+### Kalıcı beşli 100/100 kuralının proje icrasına uygulanması (25 Ekim 2026)
+
+**Her proje için hedef:** `TEORI=100/100 AND TASARIM=100/100 AND SIM1=100/100 AND SIM2=100/100 AND SIM3=100/100`. Birleşik beşli hazırlık geçişi **ancak her biri gerçekten hesaplanmış 100 puanda** mümkündür. Farklı ölçütlerin ortalaması, düşük puanı maskeleyerek geçiş sağlamaz.
+
+Bu belgedeki beşli sentetik **ortak yöntem Ana Terazisi** ile ilgili projenin **özgün beşli hazırlık değerlendirmesi** birbirinden ayrı ölçülür. İlgili [Uçtan Uca Proje İcra Modu](../../tools/hybrid_handoff/validate_hybrid_handoff.py) genel beş puanı kaynakta yeniden çalıştırır, proje düzeyinde teori/şema bağı, gerçek Git snapshot, yapısal tasarım, olumlu senaryo, karşıt senaryolar, bağımsız arşiv ve replay kaynak kanıtlarını değerlendirir. Her göz için asgari puan kullanılır. Güncel kanıt yetersizse HOLD ve özgün eksik gösterilir.
+
+**Üç düzeltici tur**, üç ayrı simülasyon ailesinin yerine geçmez: T1/T2/T3 tarihsel onarım ölçümleri başlangıç kanıtı olarak kalır. Düzeltme ardından **beş kapının tamamı yeniden** sınanır; kritik başarısızlıkta ilgili onarım turuna dönülür.
+
+**GitHub hazırlığı 100:** Beş ayrı 100/100 + gerçek karşıt test + exact SHA + ilgili GitHub CI PASS → `GITHUB_PREPARED=PASS` ve **`READY_FOR_OSI_HANDOFF → DUR`**. Bu hüküm gerçek Mac kurulum, aktarım, insan yetkisi veya canonical Verified Finish değildir; o kapılar gerçek saha ve ayrı açık insan kararıyla ilerler.
+
 ### Gerçeklik/puan korunumu
 
 - `THEORY=100` yalnız seçilmiş **10 mimari önermenin iç tutarlılığına** karşılık gelir; ampirik bilimsel teorinin doğrulanması anlamına gelmez.
