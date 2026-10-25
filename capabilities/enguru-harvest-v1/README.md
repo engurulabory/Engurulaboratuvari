@@ -1,21 +1,33 @@
-# ENGÜRÜ Yetenek Hasadı™ V1.1 — GitHub inceleme adayı
+# ENGÜRÜ Yetenek Hasadı ve Kanıtlı Kaynak Fabrikası™ V1.1
 
-Kaynak: ENGÜRÜ Zülfikar™ V1.3, mevcut AGENTS.md ve canonical V3. Bu paket yardımcı yetenek adaptörüdür; yeni owner, issuer veya yönetişim çekirdeği kurmaz.
+**Durum:** GitHub mühendislik inceleme adayı. `main`, diğer ürünler, canonical V3, Zülfikar V1.3 ve Human Threshold™ korunur.
 
-## Hedef
+## Üretim hattı
 
-Altı kütüphane: skills, advanced_prompts, proven_sources, data_knowledge, engineering_recipes, evidence.
+Kaynak gözlemi → lisans/güvenlik/bütçe → kaynak SHA-256 → tekrarlı test → gerçek görev karşılaştırması → bağımsız inceleme → gereken insan kararı → ENGÜRÜ Mühendislik Kası.
 
-Akış: CANDIDATE → TESTED → PROVEN → ADOPTED. Ücretli API gereksinimi sıfır. Gerçek kaynak byte doğrulaması, lisans, güvenlik, tekrarlı test, gerçek görev, bağımsız inceleme ve insan yetkisi ayrı kapılardır.
+Altı kütüphane: Skills · Advanced Prompts · Proven Sources · Data & Knowledge · Engineering Recipes · Evidence.
 
-## Sınırlar
+- `source_candidates.json`: GitHub connector üzerinden README'si gözlenmiş 30 kaynak adayı ve README Git SHA-1 blob kimlikleri. Bunlar repo commit SHA'sı veya tüm kaynak SHA-256'sı değildir. Lisans = UNVERIFIED, güvenlik = PENDING.
+- `skill_kernel.py`: 12 taşınabilir, yerel Python işlevi; hiçbir ücretli API veya haricî kod çağrısı yapmaz.
+- `harvest.py`: kendiliğinden PASS/ADOPTED terfisine kapalı kaynak sınıflandırıcı.
+- `evidence_gate.py`: SHA-256 ve makbuz aşaması uyumu; sonucu yalnız EVIDENCE_CANDIDATE.
+- `run_three_simulations.py`: mantıksal SIM1/SIM2/SIM3, gerçek sahayla ayrıştırılmış.
+- `verify_head.py`: tam Git HEAD çalışma baytları ve V3 canonical SHA-256 denetimi.
+- `ACCEPTANCE_MATRIX.md`: H01–H10 kanıt tablosu.
+- `OSI_HANDOFF_PREPARATION.md`: yalnız gelecekteki Mac OSi sahası için geçiş hazırlığı.
 
-Buradaki kayıtlardan hiçbiri dış kodu çalıştırmaz. 'PASS' şeklindeki beyanlar bağımsız doğrulamanın yerine geçmez; mevcut kapı sınıflayıcısı ilk çekirdektir. Haricî YouTube videosunun iki özgün yöntemi henüz teyit edilmedi. OSi saha, GitHub exact-head CI, bağımsız reviewer ve resmî DoneCheck ayrı HOLD kalır. Dış kaynaklar içeri alınmadan önce köken ve lisans doğrulanır.
+## Çalıştırılabilir GitHub testleri
 
-## Test
+```bash
+cd capabilities/enguru-harvest-v1
+python3 -B -m unittest -v test_harvest test_evidence_gate test_skill_kernel
+python3 -B run_three_simulations.py
+python3 -B verify_head.py
+```
 
-`cd capabilities/enguru-harvest-v1 && python3 -B -m unittest -v test_harvest`
+Codex keşif adaptörü `.agents/skills/enguru-evidence-harvest/SKILL.md`, Claude Code keşif adaptörü `.claude/skills/enguru-evidence-harvest/SKILL.md`. Ortak beceri kaynağı aynıdır; sağlayıcıya ait hesap/ücret gereksinimleri bu modüle aktarılmaz.
 
-Gelecek kabul: gerçek 30 aday, 12 beceri, saha görevleri, üç gerçek simülasyon, exact-head CI ve bağımsız reviewer. Sadece sınıflayıcı testinden ürün tamamlanma hükmü çıkmaz.
+## Doğruluk sınırı
 
-Main korunur; bu dalın değişiklikleri bağımsız PR incelemesindedir.
+Kaynak kayıtları gerçek 30 açık repo README gözlemine dayanır. 12 yerel deterministik işlev, 12 haricî PROVEN becerisi olarak gösterilmez. Lisans onayı, gerçek kullanıcı değeri, dış beceri çalıştırma, bağımsız PR incelemesi ve resmî Verified Finish kendi kanıtlarıyla HOLD. OSi yürütme 0.
