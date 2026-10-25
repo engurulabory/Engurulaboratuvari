@@ -350,7 +350,7 @@
       "repository": "astral-sh/ruff",
       "url": "https://github.com/astral-sh/ruff",
       "library": "engineering_recipes",
-      "readme_git_blob_sha1": "9e55650ba461e249c1376a20434e5cd1149dd21",
+      "readme_git_blob_sha1": "9e55650ba461e249c1376a20434e5cd1149dd21f",
       "source_commit_sha": null,
       "source_archive_sha256": null,
       "license": "UNVERIFIED",
