@@ -1,0 +1,34 @@
+{
+  "acceptanceIds": [
+    "U02",
+    "U05",
+    "U10",
+    "U12"
+  ],
+  "coreProjectCountInReplay": 8,
+  "coreSourceSha256": "f3e2610c6e325f6fd620baa84ec412437a015109dde88ac38cab7f08b2a365b4",
+  "counterReader": "Injected HOLD-only stub; no invented or executed project counters",
+  "environment": "Linux; exact captured source functions; no actual Mac app execution",
+  "nativeRuntimeParity": "HOLD_PENDING_NEW_RECEIPT",
+  "projectedProjectCountInReplay": 7,
+  "registrySha256": "515748a88acffdd60be6afd4c837a2581a48a3bbeccd74c4a413ae3f986c4a80",
+  "repairScope": "Identity-set guard implemented on review branch; installed adapter remains unchanged",
+  "result": {
+    "coreProjectCount": 8,
+    "duplicateIdentity": false,
+    "extraProjectIds": [],
+    "missingProjectIds": [
+      "ENGURU_PLIVE_P02_USER_SCREEN"
+    ],
+    "nativeParity": "REQUIRES_SAME_REVISION_NATIVE_EVIDENCE",
+    "officialAcceptance": "UNCHANGED_HOLD",
+    "productAcceptance": "HOLD",
+    "projectedProjectCount": 7,
+    "state": "HOLD_PROJECT_SET"
+  },
+  "schema": "enguru.pilive.bounded-project-set-replay/v1",
+  "scope": "Captured seven-entry registry plus the captured P02 Work Contract. Other native Work Contracts not replayed.",
+  "snapshotSourceSha256": "87dc579efb7f7a60541bc8439f9fc74e06983a10b7f829640d9403ac193c6edf",
+  "unregisteredCandidatesInReplay": 0,
+  "verifiedFinish": "HOLD"
+}

@@ -76,3 +76,15 @@ Native kasın gerçek kökü `~/Enguru/Runtime/MacEngineer/state/mk-bridge`, ZIP
 **Sonraki mühendislik hareketi:** Gerçek LiveProgress/v4 bağımlılık kapanımını ve güncel canonical pinlerini birlikte salt-okunur yakala; eski üç receipt'in exact konum/readback açığını ayrı kaydet. Kaynak→Core→adaptör proje kümesi ve sayım eşliği bu gerçek byte'lara karşı sınansın. Mevcut kası aktive etme, SQLite açma, eski binary'yi yeniden kurma veya canonical yazma gerekmez. Nihai dört ekran sözleşmesi geldiğinde yeni SwiftUI'ı bu doğrulanmış sınıra bağla; yeni build kendi source/toolchain/recipe/signing/binary manifestini üretir.
 
 Tam kanıt zinciri, U01–U12, bağımsız GUI/işlevsel doğrulama ve yetkili kabul açık. Tasarım/teori/GitHub hazırlık puanları yeni kaynak gözlemiyle otomatik 100 yapılmaz. Ayrıntılı gizlisiz sonuç: `RUNTIME_SOURCE_REVIEW_V1.json`.
+
+## Zülfikar V1.3 — 25 Ekim devam emri
+
+V1.3 kaynağı PR #242 @ `5720cd0de67f959d44ea8ace42a3a716753077f1` üzerinden okundu. Açık inceleme dalı; main yayını ve PiLive ürün puanı olarak aktarılmıyor. Hedef / Teknik Altyapı / Başarı Kası / Tutarlılık Kası / FİN Verici uygulama kaydı: `ZULFIKAR_V13_APPLICATION_V1.json`. U01–U12 özgün paydası ve resmî P02 kabulü ayrı korunur.
+
+- [x] Captured Core ve snapshot kaynak SHA'larıyla sınırlı replay: Core registry + P02 Work Contract = 8 proje; eski snapshot assemble = 7 proje; P02 yok. Eski isim filtresi P02 `WORKLIST_V1.json` dosyasını da keşfetmiyor. Bu sonuç gerçek güncel Mac ekranı gözlemi değildir.
+- [x] Exact proje-ID kümesi karşılaştırması eklendi: eksik, fazladan, çift veya boş canonical küme HOLD; aynı küme yalnız verilen ID'lerin eşliğini kanıtlar. Yeni keşif veya sayım çekirdeği kurulmadı.
+- [x] Sekiz yeni regresyonla PiLive izole testleri 65/65; üç temel turda PASS. Önceki 137/137 Mac kazanımı kendi kaynak sürümünde korunur; yeni testlerin Mac çalışması NOT_EXECUTED.
+- [x] Yeni gizlisiz olay mevcut öğrenme kaydına REVIEW_REQUIRED adayı olarak bağlandı. Mevcut pilot ve Yönetim V6.9 görevleri korunur.
+- [ ] `enguru.pilive.runtime-dependency-observation/v1` yeni gerçek makbuzu henüz teslim edilmedi. Önceki Terminal devri geçerlidir; aynı gözlem komutunu tekrar çalıştırmaya gerek yok, üretilmişse ORIGINAL JSON yeterlidir.
+
+**Özgün kabul etkisi:** U02 proje kümesi açığı yeniden üretildi; U05 eksik/çift proje görünürlüğü sınırına koruma eklendi; U10 karşıt regresyonu ve U12 kaynak izi genişledi. Bu alt kanıtlar U01–U12'nin tam PASS'i değildir. Sonraki tek hareket, gerçek runtime makbuzunu okuyup kaynak içeriklerini ve sekiz pini aynı gözlem kapsamında uzlaştırmaktır. Güncel pin eşliği ve eski makbuz konumları yeni veri gelene kadar HOLD kalır.

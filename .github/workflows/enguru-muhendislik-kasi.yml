@@ -16,6 +16,7 @@ on:
       - 'tools/pilive_runtime_lineage_observer_v1.py'
       - 'tests/test_pilive_runtime_lineage_observer_v1.py'
       - 'tests/test_pilive_runtime_review_v1.py'
+      - 'tests/test_pilive_project_set_v1.py'
       - 'governance/pilive-learning/**'
       - '.github/workflows/enguru-muhendislik-kasi.yml'
   issue_comment:
@@ -47,6 +48,7 @@ jobs:
             python -m unittest discover -s tests -p 'test_pilive_native_learning_probe_v1.py' -v
             python -m unittest discover -s tests -p 'test_pilive_runtime_lineage_observer_v1.py' -v
             python -m unittest discover -s tests -p 'test_pilive_runtime_review_v1.py' -v
+            python -m unittest discover -s tests -p 'test_pilive_project_set_v1.py' -v
           done
 
   owner-comment-intake:

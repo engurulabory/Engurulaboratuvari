@@ -21,6 +21,10 @@ SCHEMA_V2 = 'enguru.pilive.source-observation/v2'
 SCHEMA_V3 = 'enguru.pilive.source-link-observation/v3'
 HASH = re.compile(r'[0-9a-f]{64}\Z')
 FACTS = {
+ 'BUNDLED_PROJECT_SET_GAP': (
+  'Projected project identity sets must equal the qualified canonical Core set.',
+  'A bounded replay of the pinned historical snapshot omits P02 from the registry rows and filename-based discovery.',
+  'Compare exact project ID sets from Core and projection; keep missing, extra or duplicate identities on HOLD before UI publication.'),
  'RUNTIME_SCOPE_RECONCILED': (
   'Runtime identity, task scope and PiLive acceptance remain separate.',
   'The V5 runtime member digests match reviewed GitHub sources; its task is the existing bridge pilot, not PiLive.',
@@ -121,6 +125,27 @@ def exact_counts(done,total):
     """Display boundary validation only; Progress Core remains the counter authority."""
     require(type(done) is int and type(total) is int and 0<=done<=total and total>0,'HOLD_DISPLAY_COUNTS')
     return {'done':done,'total':total,'percentNumerator':done*100,'percentDenominator':total}
+
+def project_set_evidence(core_project_ids, projected_project_ids):
+    """Compare caller-supplied identities; no discovery, counters or acceptance.
+
+    The caller must supply the qualified Core set for the same exact revision.
+    Set equality alone never proves its provenance or current native UI parity.
+    """
+    groups=[]
+    for values in (core_project_ids,projected_project_ids):
+        require(isinstance(values,list) and len(values)<=5000,'HOLD_PROJECT_SET_SHAPE')
+        require(all(isinstance(v,str) and re.fullmatch(r'[A-Za-z0-9_.-]{1,128}',v)
+                    for v in values),'HOLD_PROJECT_ID')
+        groups.append(set(values))
+    core,projected=groups
+    duplicates=(len(core)!=len(core_project_ids) or len(projected)!=len(projected_project_ids))
+    good=bool(core) and core==projected and not duplicates
+    return {'state':'PASS_SUPPLIED_PROJECT_SET_EQUALITY_ONLY' if good else 'HOLD_PROJECT_SET',
+      'missingProjectIds':sorted(core-projected),'extraProjectIds':sorted(projected-core),
+      'duplicateIdentity':duplicates,'coreProjectCount':len(core),
+      'projectedProjectCount':len(projected),'nativeParity':'REQUIRES_SAME_REVISION_NATIVE_EVIDENCE',
+      'productAcceptance':'HOLD','officialAcceptance':'UNCHANGED_HOLD'}
 
 def verify_runtime_receipt(raw, *, expected_sha, expected_manifest, expected_observer_commit,
                            expected_v5_members):

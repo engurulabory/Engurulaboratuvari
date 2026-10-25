@@ -421,3 +421,13 @@ NEXT_ACTION=...
 - **Kaynak:** urn:enguru:pilive:reviewed-source:d91557b11abe20363f1a8ff89fb55267ec0549376c3c76839e2f80ea278349fa · SHA-256 `d91557b11abe20363f1a8ff89fb55267ec0549376c3c76839e2f80ea278349fa`.
 - **OSi eşleşme kimliği:** `OSIBLOCK-PILIVE-RUNTIME`.
 - **Karar:** `REVIEW_REQUIRED`; ürün kabul sayacı değişimi `0`; kontroller: GENERATE_NEGATIVE_REGRESSION_CANDIDATE.
+
+### Otomatik öğrenme adayı — MK-EVT-PILIVE-BUNDLED_PROJECT_SET_GAP-D91557B11ABE
+<!-- ENGURU_MK_EVENT_V1:eyJjYXVzZVN0YXR1cyI6IlVOS05PV04iLCJjb3JyZWxhdGlvbklkIjoiT1NJQkxPQ0stUElMSVZFLVBST0pFQ1QtU0VUIiwiZXZlbnRJZCI6Ik1LLUVWVC1QSUxJVkUtQlVORExFRF9QUk9KRUNUX1NFVF9HQVAtRDkxNTU3QjExQUJFIiwiZXZpZGVuY2VMZXZlbCI6IkEiLCJleHBlY3RlZCI6IlByb2plY3RlZCBwcm9qZWN0IGlkZW50aXR5IHNldHMgbXVzdCBlcXVhbCB0aGUgcXVhbGlmaWVkIGNhbm9uaWNhbCBDb3JlIHNldC4iLCJmaXhQcm9wb3NhbCI6IkNvbXBhcmUgZXhhY3QgcHJvamVjdCBJRCBzZXRzIGZyb20gQ29yZSBhbmQgcHJvamVjdGlvbjsga2VlcCBtaXNzaW5nLCBleHRyYSBvciBkdXBsaWNhdGUgaWRlbnRpdGllcyBvbiBIT0xEIGJlZm9yZSBVSSBwdWJsaWNhdGlvbi4iLCJvYnNlcnZlZCI6IkEgYm91bmRlZCByZXBsYXkgb2YgdGhlIHBpbm5lZCBoaXN0b3JpY2FsIHNuYXBzaG90IG9taXRzIFAwMiBmcm9tIHRoZSByZWdpc3RyeSByb3dzIGFuZCBmaWxlbmFtZS1iYXNlZCBkaXNjb3ZlcnkuIiwib2JzZXJ2ZWRBdCI6IjIwMjYtMTAtMjVUMTc6NDQ6MjcuMDAyNzAxKzAwOjAwIiwic2NoZW1hIjoiZW5ndXJ1Lm1rLmV2aWRlbmNlLWV2ZW50L3YxIiwic291cmNlU2hhMjU2IjoiZDkxNTU3YjExYWJlMjAzNjNmMWE4ZmY4OWZiNTUyNjdlYzA1NDkzNzZjM2M3NjgzOWUyZjgwZWEyNzgzNDlmYSIsInNvdXJjZVVyaSI6InVybjplbmd1cnU6cGlsaXZlOnJldmlld2VkLXNvdXJjZTpkOTE1NTdiMTFhYmUyMDM2M2YxYThmZjg5ZmI1NTI2N2VjMDU0OTM3NmMzYzc2ODM5ZTJmODBlYTI3ODM0OWZhIiwidGFza0lkIjoiRU5HVVJVX1BMSVZFX1AwMl9VU0VSX1NDUkVFTiIsInRlc3RTdGF0ZSI6Ik5PVF9FWEVDVVRFRCIsInR5cGUiOiJORVdfUkVRVUlSRU1FTlQifQ==:df4b11a6cc53aa5516bcdad54604350030e925dcf42c275a5c85d536625acdff -->
+- **Tür:** `NEW_REQUIREMENT` · **Seviye iddiası:** `A` · **Kanıt kontrolü:** `UNVERIFIED_EVIDENCE_POINTER`.
+- **Gözlem:** A bounded replay of the pinned historical snapshot omits P02 from the registry rows and filename-based discovery.
+- **Beklenti:** Projected project identity sets must equal the qualified canonical Core set.
+- **Önerilen fark:** Compare exact project ID sets from Core and projection; keep missing, extra or duplicate identities on HOLD before UI publication.
+- **Kaynak:** urn:enguru:pilive:reviewed-source:d91557b11abe20363f1a8ff89fb55267ec0549376c3c76839e2f80ea278349fa · SHA-256 `d91557b11abe20363f1a8ff89fb55267ec0549376c3c76839e2f80ea278349fa`.
+- **OSi eşleşme kimliği:** `OSIBLOCK-PILIVE-PROJECT-SET`.
+- **Karar:** `REVIEW_REQUIRED`; ürün kabul sayacı değişimi `0`; kontroller: GENERATE_NEGATIVE_REGRESSION_CANDIDATE.
