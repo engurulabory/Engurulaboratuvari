@@ -1,0 +1,31 @@
+{
+  "schema": "enguru.zulfikar.peer-benchmark-plan.v1.2",
+  "date": "2026-10-25",
+  "state": "DESIGN_PREPARED_REAL_PEER_EXECUTION_HOLD",
+  "note": "Capability reference pool, NOT a performance ranking; access, versions and actual outputs are unverified.",
+  "fairness_policy": {
+    "frozen_task_manifest": "REQUIRED_BEFORE_REAL_TRIALS",
+    "task_family_separation": ["ENGINE_CODE_REPAIR", "AGENT_MULTI_STEP", "WEB_UI_VISUAL", "MAC_NATIVE_ONLY_IF_PEER_SUPPORTS"],
+    "shared_inputs_and_rubric": true,
+    "sample_size_min_per_peer_pair": 5,
+    "seed_and_trial_identification": "REQUIRED",
+    "blinded_scoring_and_reviewer": "REQUIRED",
+    "resource_budget_and_runtime_disclosure": "REQUIRED",
+    "non_comparable_peers": "EXCLUDE_FROM_HEAD_TO_HEAD_PERFORMANCE_CLAIM; KEEP_CAPABILITY_MAPPING",
+    "outcome_metrics": ["SUCCESS_BY_FROZEN_ACCEPTANCE_ID", "FALSE_PASS_COUNT", "REGRESSION_RATE", "INTERVENTION_COUNT", "WALL_CLOCK_TIME", "TOTAL_EXPENDITURE", "RECOVERY_TIME", "OBSERVED_USER_VALUE"],
+    "unproven_comparison_verdict": "HOLD_NOT_MEASURED"
+  },
+  "candidate_reference_pool": [
+    {"name":"OpenAI Codex", "version":"NOT_VERIFIED", "trials":"NOT_RUN"},
+    {"name":"Claude Code", "version":"NOT_VERIFIED", "trials":"NOT_RUN"},
+    {"name":"Cursor", "version":"NOT_VERIFIED", "trials":"NOT_RUN"},
+    {"name":"GitHub Copilot", "version":"NOT_VERIFIED", "trials":"NOT_RUN"},
+    {"name":"Devin", "version":"NOT_VERIFIED", "trials":"NOT_RUN"},
+    {"name":"OpenHands", "version":"NOT_VERIFIED", "trials":"NOT_RUN"},
+    {"name":"Replit Agent", "version":"NOT_VERIFIED", "trials":"NOT_RUN"},
+    {"name":"Kiro", "version":"NOT_VERIFIED", "trials":"NOT_RUN"},
+    {"name":"Cline", "version":"NOT_VERIFIED", "trials":"NOT_RUN"},
+    {"name":"Lovable", "version":"NOT_VERIFIED", "trials":"NOT_RUN"}
+  ],
+  "real_overall_result":"NOT_MEASURED"
+}
