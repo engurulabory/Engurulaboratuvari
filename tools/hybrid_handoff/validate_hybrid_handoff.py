@@ -7,6 +7,7 @@ import io
 import json
 import re
 import subprocess
+import sys
 import tarfile
 from pathlib import Path
 
@@ -15,6 +16,7 @@ MODES = {"GITHUB_FIRST", "OSI_FIRST", "HYBRID"}
 HEX64 = re.compile(r"^[0-9a-fA-F]{64}$")
 HEX40 = re.compile(r"^[0-9a-fA-F]{40}$")
 GATES = ("state", "claim", "evidence", "judgment", "nextAction")
+FIVE_AXES = ("THEORY", "DESIGN", "SIM1", "SIM2", "SIM3")
 
 
 def validate(data, *, mode="template"):
@@ -182,6 +184,32 @@ def project_checks(data, snapshot):
     return rows
 
 
+def read_theoretical_main_balance():
+    """Reuse the existing ENGURU Ana Terazi evaluator; missing proof is HOLD."""
+    runner = Path(__file__).resolve().parents[1] / "enguru_ana_terazi_v1.py"
+    try:
+        run = subprocess.run([sys.executable, "-B", str(runner)],
+                             capture_output=True, text=True, timeout=60, check=False)
+        receipt = json.loads(run.stdout)
+        raw = receipt.get("scores", {})
+        scores = {axis: raw.get(axis, 0) if type(raw.get(axis)) in (int, float) else 0
+                  for axis in FIVE_AXES}
+        valid = (run.returncode == 0
+                 and receipt.get("verdict") == "PASS_THEORETICAL_PREPARATION_5X100"
+                 and set(raw) == set(FIVE_AXES)
+                 and all(scores[axis] == 100 for axis in FIVE_AXES))
+        return {"state": "PASS" if valid else "HOLD",
+                "verdict": receipt.get("verdict", "HOLD"),
+                "scores": scores,
+                "source": "tools/enguru_ana_terazi_v1.py",
+                "scope": "GENERAL_SYNTHETIC_METHOD_ORACLES"}
+    except (OSError, ValueError, TypeError, subprocess.SubprocessError, RecursionError):
+        return {"state": "HOLD", "verdict": "HOLD_UNAVAILABLE_ANA_TERAZI",
+                "scores": {axis: 0 for axis in FIVE_AXES},
+                "source": "tools/enguru_ana_terazi_v1.py",
+                "scope": "GENERAL_SYNTHETIC_METHOD_ORACLES"}
+
+
 def assess_project(data, root):
     errors = validate(data, mode="project")
     snapshot = None
@@ -193,16 +221,17 @@ def assess_project(data, root):
     rows = project_checks(data, snapshot) if isinstance(data, dict) and not errors else []
     scores = {d: sum(r["points"] for r in rows if r["dimension"] == d) for d in DIMENSIONS}
     prepared = not errors and len(rows) == 20 and all(r["state"] == "PASS" for r in rows)
-    return {"state": "PASS_PROJECT_PREPARATION" if prepared else "HOLD_PROJECT_PREPARATION",
+    return {"state": "PASS_PROJECT_STRUCTURE_ONLY" if prepared else "HOLD_PROJECT_STRUCTURE",
+            "structureReady": "PASS" if prepared else "HOLD",
             "planDigest": digest(data), "acceptanceDigest": digest(data.get("projectPlan", {}).get("acceptance"))
                 if isinstance(data, dict) and isinstance(data.get("projectPlan"), dict) else None,
-            "gates": {"PREPARED": "PASS" if prepared else "HOLD", "FIELD_READY": "HOLD",
+            "gates": {"PREPARED": "HOLD", "FIELD_READY": "HOLD",
                       "HUMAN_AUTHORIZED": "HOLD", "VERIFIED_FINISH": "HOLD"},
             "scores": scores, "preparationChecklistScore": sum(scores.values()), "checks": rows,
             "rubricScope": "STRUCTURAL_PREPARATION_ONLY_SEMANTIC_REVIEW_SEPARATE",
             "errors": errors, "source": snapshot,
             "authorityVerification": "DELEGATED_TO_CANONICAL_DONECHECK_AND_HUMAN_THRESHOLD",
-            "nextAction": "AUTHORIZED_LOCAL_RUNNER_READ_ONLY_TARGET_PREFLIGHT" if prepared else "REPAIR_PREPARATION_GAPS"}
+            "nextAction": "VERIFY_FIVE_INDEPENDENT_100_GATES" if prepared else "REPAIR_PREPARATION_GAPS"}
 
 
 def independent_source_check(data, root):
@@ -221,8 +250,10 @@ def independent_source_check(data, root):
 def simulate_project(data, root):
     """Read-only bounded preparation simulations; never an OSi transfer."""
     baseline = assess_project(data, root)
-    if baseline["gates"]["PREPARED"] != "PASS":
-        return {"state": "HOLD", "gates": baseline["gates"], "baseline": baseline, "cases": []}
+    if baseline["structureReady"] != "PASS":
+        return {"state": "HOLD", "gates": baseline["gates"], "baseline": baseline,
+                "scores": {axis: 0 for axis in FIVE_AXES}, "cases": [],
+                "nextAction": "REPAIR_PREPARATION_GAPS"}
     mutations = {
         "interruption": lambda x: x["projectPlan"]["scenarios"].pop("interruption"),
         "replay": lambda x: x["projectPlan"]["acceptance"].append(copy.deepcopy(x["projectPlan"]["acceptance"][0])),
@@ -240,14 +271,38 @@ def simulate_project(data, root):
         candidate = copy.deepcopy(data)
         mutate(candidate)
         result = assess_project(candidate, root)
-        cases.append({"scenario": name, "expected": "HOLD", "observed": result["gates"]["PREPARED"]})
+        cases.append({"scenario": name, "expected": "HOLD", "observed": result["structureReady"]})
     independent = independent_source_check(data, root)
     after = assess_project(data, root)
-    ok = independent and after == baseline and all(c["observed"] == c["expected"] for c in cases)
-    return {"state": "PASS_PREPARATION_SIMULATION" if ok else "HOLD", "baseline": baseline,
-            "gates": dict(baseline["gates"], PREPARED="PASS" if ok else "HOLD"),
-            "cases": cases, "independentCommittedBytes": "PASS" if independent else "HOLD",
-            "readOnlyReplay": after == baseline, "fieldExecution": "NOT_EXECUTED"}
+    source_unchanged = source_snapshot(root) == baseline["source"]
+    authority_held = all(after["gates"][k] == "HOLD" for k in
+                         ("FIELD_READY", "HUMAN_AUTHORIZED", "VERIFIED_FINISH"))
+    negative_caught = sum(c["observed"] == c["expected"] for c in cases[1:])
+    local_scores = {
+        "THEORY": 100 if (baseline["structureReady"] == "PASS"
+                          and baseline["source"] is not None) else 0,
+        "DESIGN": baseline["preparationChecklistScore"],
+        "SIM1": 5 * sum(r["state"] == "PASS" for r in baseline["checks"]),
+        "SIM2": 10 * negative_caught,
+        "SIM3": 25 * sum((independent, after == baseline, source_unchanged, authority_held)),
+    }
+    general = read_theoretical_main_balance()
+    scores = {axis: min(local_scores[axis], general["scores"][axis]) for axis in FIVE_AXES}
+    ready = (general["state"] == "PASS"
+             and all(scores[axis] == 100 for axis in FIVE_AXES))
+    open_axes = [axis for axis in FIVE_AXES if scores[axis] < 100]
+    return {
+        "state": "PASS_GITHUB_PREPARATION_5X100" if ready else "HOLD",
+        "baseline": baseline, "theoreticalMainBalance": general,
+        "localProjectScores": local_scores, "scores": scores,
+        "fixedDenominators": "THEORY canonical+source; DESIGN 20x5; SIM1 20x5; SIM2 10x10; SIM3 4x25",
+        "gates": dict(baseline["gates"], PREPARED="PASS" if ready else "HOLD"),
+        "cases": cases, "independentCommittedBytes": "PASS" if independent else "HOLD",
+        "readOnlyReplay": after == baseline, "sourceUnchanged": source_unchanged,
+        "fieldExecution": "NOT_EXECUTED",
+        "nextAction": "STOP_FOR_OSI_READ_ONLY_PREFLIGHT_AND_HUMAN_DECISION" if ready
+                      else "REPAIR_FIVE_AXIS_PREPARATION:" + ",".join(open_axes),
+    }
 
 
 def main():
@@ -278,7 +333,7 @@ def main():
             print("STATE=HOLD\nREASON=PROJECT_INPUT_OR_SOURCE_INVALID")
             return 2
         print(json.dumps(result, ensure_ascii=False, sort_keys=True, indent=2))
-        return 0 if result["state"] == "PASS_PREPARATION_SIMULATION" else 2
+        return 0 if result["state"] == "PASS_GITHUB_PREPARATION_5X100" else 2
     errors = validate(data, mode=args.mode)
     if errors:
         print("STATE=HOLD\nREASON=" + ",".join(errors))

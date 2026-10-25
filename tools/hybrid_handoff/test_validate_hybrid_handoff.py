@@ -2,6 +2,7 @@
 import copy
 import json
 import unittest
+from unittest.mock import patch
 import os
 import selectors
 import subprocess
@@ -117,12 +118,16 @@ class ProjectPreparationTests(unittest.TestCase):
     def test_normal_three_stage_preparation_keeps_authority_hold(self):
         before = source_snapshot(self.source)
         result = simulate_project(self.data, self.source)
-        self.assertEqual(result["state"], "PASS_PREPARATION_SIMULATION")
+        self.assertEqual(result["state"], "PASS_GITHUB_PREPARATION_5X100")
+        self.assertEqual(result["scores"], {key: 100 for key in
+            ("THEORY", "DESIGN", "SIM1", "SIM2", "SIM3")})
+        self.assertEqual(result["gates"]["PREPARED"], "PASS")
+        self.assertEqual(result["nextAction"], "STOP_FOR_OSI_READ_ONLY_PREFLIGHT_AND_HUMAN_DECISION")
         self.assertEqual(len(result["cases"]), 11)
         self.assertTrue(all(x["observed"] == x["expected"] for x in result["cases"]))
         self.assertEqual(result["baseline"]["scores"], {d: 20 for d in
             ("scope", "feasibility", "resilience", "authoritySafety", "provability")})
-        self.assertEqual(result["baseline"]["gates"], {"PREPARED": "PASS", "FIELD_READY": "HOLD",
+        self.assertEqual(result["baseline"]["gates"], {"PREPARED": "HOLD", "FIELD_READY": "HOLD",
             "HUMAN_AUTHORIZED": "HOLD", "VERIFIED_FINISH": "HOLD"})
         self.assertEqual(result["independentCommittedBytes"], "PASS")
         self.assertEqual(source_snapshot(self.source), before)
@@ -194,7 +199,7 @@ class ProjectPreparationTests(unittest.TestCase):
         self.assertEqual(result["gates"]["PREPARED"], "HOLD")
         self.assertTrue(any("GÜVENLİ_DUR_REDIAGNOSE" in c["evidence"] for c in result["checks"]))
         x["projectPlan"]["attempts"][-1]["evidenceDigest"] = "b"*64
-        self.assertEqual(assess_project(x, self.source)["gates"]["PREPARED"], "PASS")
+        self.assertEqual(assess_project(x, self.source)["structureReady"], "PASS")
 
     def test_critical_third_stage_archive_mismatch_holds_preparation(self):
         (self.source / ".gitattributes").write_text("keep.txt export-ignore\n")
@@ -204,11 +209,48 @@ class ProjectPreparationTests(unittest.TestCase):
         x = copy.deepcopy(self.data)
         x.update(sourceCommit=snap["commit"], artifactDigest=snap["artifactDigest"])
         x["projectPlan"]["refsDigest"] = snap["refsDigest"]
-        self.assertEqual(assess_project(x, self.source)["gates"]["PREPARED"], "PASS")
+        self.assertEqual(assess_project(x, self.source)["structureReady"], "PASS")
         result = simulate_project(x, self.source)
         self.assertEqual(result["independentCommittedBytes"], "HOLD")
         self.assertEqual(result["state"], "HOLD")
         self.assertEqual(result["gates"]["PREPARED"], "HOLD")
+
+    def test_structure_alone_is_not_github_prepared(self):
+        result = assess_project(self.data, self.source)
+        self.assertEqual(result["structureReady"], "PASS")
+        self.assertEqual(result["preparationChecklistScore"], 100)
+        self.assertEqual(result["gates"]["PREPARED"], "HOLD")
+        self.assertEqual(result["nextAction"], "VERIFY_FIVE_INDEPENDENT_100_GATES")
+
+    def test_any_one_global_five_axis_shortfall_holds_entire_handoff(self):
+        for axis in ("THEORY", "DESIGN", "SIM1", "SIM2", "SIM3"):
+            scores = {key: 100 for key in ("THEORY", "DESIGN", "SIM1", "SIM2", "SIM3")}
+            scores[axis] = 99
+            with self.subTest(axis=axis), patch(
+                    "validate_hybrid_handoff.read_theoretical_main_balance",
+                    return_value={"state": "HOLD", "scores": scores, "verdict": "HOLD_TEST"}):
+                result = simulate_project(self.data, self.source)
+                self.assertEqual(result["scores"][axis], 99)
+                self.assertEqual(result["state"], "HOLD")
+                self.assertEqual(result["gates"]["PREPARED"], "HOLD")
+                self.assertEqual(result["gates"]["FIELD_READY"], "HOLD")
+
+    def test_unavailable_theoretical_verifier_fails_closed(self):
+        with patch("validate_hybrid_handoff.read_theoretical_main_balance",
+                   return_value={"state": "HOLD",
+                       "scores": {key: 0 for key in ("THEORY", "DESIGN", "SIM1", "SIM2", "SIM3")}}):
+            result = simulate_project(self.data, self.source)
+        self.assertEqual(result["state"], "HOLD")
+        self.assertTrue(all(score == 0 for score in result["scores"].values()))
+        self.assertEqual(result["gates"]["PREPARED"], "HOLD")
+
+    def test_fake_input_scores_do_not_authorize_preparation(self):
+        fake = copy.deepcopy(self.data)
+        fake.update(scores={"THEORY": 100, "DESIGN": 100,
+                            "SIM1": 100, "SIM2": 100, "SIM3": 100},
+                    fieldReady=True, authorized=True)
+        fake["projectPlan"]["tools"] = []
+        self.assertEqual(simulate_project(fake, self.source)["state"], "HOLD")
 
     def test_actual_cli_exit_and_malformed_json(self):
         manifest = Path(self.temp.name) / "plan.json"
