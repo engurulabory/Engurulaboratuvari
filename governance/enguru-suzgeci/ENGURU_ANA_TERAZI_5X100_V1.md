@@ -67,6 +67,22 @@ Bu belgedeki beşli sentetik **ortak yöntem Ana Terazisi** ile ilgili projenin 
 
 **GitHub hazırlığı 100:** Beş ayrı 100/100 + gerçek karşıt test + exact SHA + ilgili GitHub CI PASS → `GITHUB_PREPARED=PASS` ve **`READY_FOR_OSI_HANDOFF → DUR`**. Bu hüküm gerçek Mac kurulum, aktarım, insan yetkisi veya canonical Verified Finish değildir; o kapılar gerçek saha ve ayrı açık insan kararıyla ilerler.
 
+### Kalıcı üç aşamalı olgunlaştırma sırası — TASARIM → TEORİ → GITHUB (25 Ekim 2026)
+
+**Yeni bağlayıcı sıra:** Başlangıçta ürünün özgün kullanıcı hedefi ve kabul paydası korunur. Üç ardışık **olgunlaştırma aşaması** ayrı yürütülür:
+
+**AŞAMA 1 · TASARIM:** Ürün/proje taslağını hazırla; gerçek özgün kabul kriterlerine göre puanla; gözlemlenen eksik/yanlış/ihtiyacı tespit edip kaynaklı onar; üç amaçlı denetim turunda tasarımın bütünlüğünü yeniden simüle et ve yeniden puanla. Hedef `TASARIM=100/100`.
+
+**AŞAMA 2 · TEORİ:** Tasarım kapısı kanıtlı tam puan olduğunda dayanak hipotezleri, canonical sözleşme, mimari/karar/bağımlılık ispatını ayrı karşıt kurallarla üç tur incele, onar, yeniden puanla. Hedef `TEORİ=100/100`. Teori bulgusu tasarımı etkiliyorsa tasarımın ilgili kapılarını yeniden değerlendir.
+
+**AŞAMA 3 · GITHUB HAZIRLIĞI:** Kaynak/uygulama planı, entegrasyon, regresyon ve geri dönüşü üç amaçlı turda doğrula ve kanıtlı teknik farkı tamamla. Ardından **ayrı üç sabit simülasyon ailesini** `SIM1`, `SIM2`, `SIM3` özgün test/oracle ve sabit payda ile çalıştır. Teori ve tasarım da kaynak değişikliğinden sonra yeniden ölçülür. `TEORİ=100`, `TASARIM=100`, `SIM1=100`, `SIM2=100`, `SIM3=100` ve exact kaynak/CI başarıyla `GITHUB_PREPARED=PASS → READY_FOR_OSI_HANDOFF → DUR`.
+
+**Tur kuralı:** Her aşamada **temel 3 tur**: (1) mevcut durumun ölçülmesi, (2) karşıt teşhis / kaynaklı onarım, (3) farklı oracle ile bağımsız uçtan uca göz. Tam puana ulaşılamazsa yalnız **gerçek yeni kanıt/onarım farkı** için tur 4 ve gerekirse tur 5 uygulanır. `MAX_ROUNDS=5`; beşinci turda kalan açık kaynak için `HOLD + eksik ID + kesin sonraki ihtiyaç`. Aynı kaynak ve aynı kanıtı yineleyip puan yükseltme, kapsam küçültme veya sonuç uydurma geçersizdir.
+
+**Tur ≠ simülasyon ailesi:** Her aşamanın üç-beş **onarım/değerlendirme turu**, GitHub finalinin üç **bağımsız SIM1/2/3** ailesinin yerine geçmez. Final SIM3 yalnız ayrı kaynak–adaptör–çıktı/oracle ispatıyla 100 olur; TASARIM/TEORİ 100 olduğu için kendiliğinden 100 olmaz.
+
+**Makine denetimi:** [Mevcut yönteme bağlı üç aşama / 3+2 tur kapısı](../../tools/enguru_method_three_phase_gate_v1.py) bağımsız evaluator sonuçlarının kontrol ID, SHA ve tur ilerlemesini denetler. Kendi sonucu **POLICY_REQUIRES_EXTERNAL_CI** seviyesindedir; gerçek özgün kaynak testini ve exact GitHub CI'ı yalnız onların özgün yetkili doğrulayıcıları kanıtlar. P01/P02/DoneCheck/Human Threshold ve gerçek Mac kurulum yetkisi ayrı kapılardadır.
+
 ### Gerçeklik/puan korunumu
 
 - `THEORY=100` yalnız seçilmiş **10 mimari önermenin iç tutarlılığına** karşılık gelir; ampirik bilimsel teorinin doğrulanması anlamına gelmez.

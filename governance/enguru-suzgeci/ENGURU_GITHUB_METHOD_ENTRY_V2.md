@@ -9,9 +9,17 @@
 2. [AGENTS.md](../../AGENTS.md) → [canonical V3](ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md) ve [kilidi](ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_V3_LOCK.json) → ürünün özgün kabul sözleşmesini sırayla doğrula.
 3. İşin türünü belirle: [Altı alan](ENGURU_ALTI_URETIM_ALANI_V1.json): CORE / ENGINE / AGENT / WEB / APP / COMMERCE. İş birden fazla alanı kapsarsa özgün şartları bir kez sayıp uygun adaptörleri birlikte uygula.
 4. Kullanıcıyla ilk kurguda gerçek amaç, maliyet, risk, başarı ölçütü, karşıt örnek ve yetkiyi sabitle. [Ana Terazi](ENGURU_ANA_TERAZI_5X100_V1.md) teoriyi / tasarımı / üç farklı karşıt simülasyon ailesini ayrı değerlendirir.
-5. [Dinamik tasarım döngüsü](../../tools/enguru_method_dynamic_loop_v2.py): **ilk kurgu → simüle et → puanla → eksik/ihtiyaç/gereksinim/hata/yanlış/kaynak hatasını teşhis et → kanıta bağlı düzelt → yeniden simüle et**. En fazla üç tasarım turu hedefi 100/100; açıklar varsa gerekçeli HOLD.
+5. [Dinamik tasarım döngüsü](../../tools/enguru_method_dynamic_loop_v2.py): **ilk kurgu → simüle et → puanla → eksik/ihtiyaç/gereksinim/hata/yanlış/kaynak hatasını teşhis et → kanıta bağlı düzelt → yeniden simüle et**. Temel üç tasarım turundan sonra kanıtlı açık için en çok iki ek tur; tam puan için gerçek kanıt, aksi hâlde gerekçeli HOLD.
 6. [Dışarıdan karşıt senaryolar](../../tools/enguru_method_dynamic_adversarial_v2.py), özgün kabul paydası, sentetik/gerçek test ayrımı ve eylem yetkisi ayrı kontrol edilir.
 7. Erişilebilir gerçek mühendislik ve GitHub CI çalıştırılır; somut kaynak, commit, job, çıktı ve SHA kaydedilir. DoneCheck™ v1.2 ve gereken Human Threshold™ yalnız canonical kabul zinciri üzerinden kullanılabilir.
+
+## Ürün ve proje için üç aşamalı 3+2 olgunlaştırma
+
+**Çalışma sırası:** `TASARIM → TEORİ → GITHUB HAZIRLIĞI`. Her aşamada **ön değerlendirme → karşıt simülasyon/onarım → bağımsız yeniden değerlendirme**, toplam **3 tur**. Gerçek kanıt/onarım ilerlemesine bağlı **en çok 2 ek tur** ile **3–5 tur**. Her aşamanın 100/100 hedefi ayrı; eksik özgün kontrol varsa HOLD ve gerçek neden/sonraki hareket.
+
+`TASARIM=100` ⇒ TEORİ kapısı açılır. `TEORİ=100` ⇒ GITHUB TEKNİK hazırlık kapısı açılır. Son aşamada gerçek test/regresyon ve **üç ayrı final SIM1, SIM2, SIM3** zorunludur. Beş ayrı `100/100` + gerçek SHA ve exact commit CI doğrulanınca `GITHUB_PREPARED=PASS → READY_FOR_OSI_HANDOFF → DUR`. Kurulu Mac, gerçek kullanıcı ekranı, ayrı yetki ve canonical Verified Finish bu hükmün kapsamı dışındadır.
+
+**Bağlayıcı araç:** [Üç aşama / 3+2 politika denetimi](../../tools/enguru_method_three_phase_gate_v1.py), [Ana Terazi](ENGURU_ANA_TERAZI_5X100_V1.md), [mevcut proje doğrulayıcı](../../tools/hybrid_handoff/validate_hybrid_handoff.py). Aşama politikası veri ve puan uydurmaz; gerçek kaynak-evidence oracle işlevi zorunlu, politika PASS gerçek GitHub CI PASS değildir. Ek turda kapanan özgün kontrol kanıtı aranır; kaynak ve kanıt aynıysa `GÜVENLİ_DUR`.
 
 ## Kalıcı yöntem kuralı — proje başına beş ayrı 100/100 (25 Ekim 2026)
 
