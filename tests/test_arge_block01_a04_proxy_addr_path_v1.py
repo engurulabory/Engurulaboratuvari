@@ -32,6 +32,9 @@ def fixture():
         (MEDUSA,MEDUSA_COMMIT,"yarn.lock"):yarn.encode(),
         (MEDUSA,MEDUSA_COMMIT,"packages/medusa/package.json"):json.dumps(app).encode(),
         (MEDUSA,MEDUSA_COMMIT,"packages/core/framework/package.json"):json.dumps(framework).encode(),
+        (MEDUSA,MEDUSA_COMMIT,"packages/core/framework/src/http/express-loader.ts"):b'app.set("trust proxy", 1)',
+        (MEDUSA,MEDUSA_COMMIT,"packages/core/framework/src/http/__fixtures__/server/index.ts"):b'app.set("trust proxy", 1)',
+        (MEDUSA,MEDUSA_COMMIT,"packages/medusa/src/instrumentation/__fixtures__/server/index.ts"):b'app.set("trust proxy", 1)',
         (ADVISORY_REPO,ADVISORY_COMMIT,ADVISORY_PATH):json.dumps(advisory).encode(),
     }
 
@@ -52,10 +55,12 @@ class SourceFixPath(unittest.TestCase):
             tool.PINS.clear()
             tool.PINS.update(original)
         self.assertEqual(receipt["state"],"PASS_SOURCE_FIX_COMPATIBILITY_ONLY")
-        self.assertEqual(receipt["sources_verified"],4)
+        self.assertEqual(receipt["sources_verified"],7)
         self.assertTrue(receipt["patch_in_existing_express_selector"])
         self.assertEqual(receipt["fixed_version"],"2.0.8")
         self.assertEqual(len(receipt["source_paths"]),2)
+        self.assertEqual(len(receipt["source_trust_proxy_configs"]),3)
+        self.assertFalse(receipt["application_default_directly_uses_cidr"])
         for k in ("medusa_installation_proven","application_proxy_trust_config_proven",
                   "real_customer_exposure","regression_for_real_installation",
                   "a04_official","verified_finish"):
@@ -75,7 +80,7 @@ class SourceFixPath(unittest.TestCase):
         receipt=verify(fetch=self.mock_fetch(data))
         # Static production pins never match synthetic fixtures.
         self.assertEqual(receipt["state"],"HOLD")
-        self.assertLess(receipt["sources_verified"],4)
+        self.assertLess(receipt["sources_verified"],7)
 
     def test_broken_express_proxy_edge_fails(self):
         import tools.arge_block01_a04_proxy_addr_path_v1 as tool
@@ -91,7 +96,7 @@ class SourceFixPath(unittest.TestCase):
             tool.PINS.clear()
             tool.PINS.update(saved)
         self.assertEqual(result["state"],"HOLD")
-        self.assertEqual(result["sources_verified"],4)
+        self.assertEqual(result["sources_verified"],7)
 
     def test_advisory_fixed_event_forgery_fails(self):
         import tools.arge_block01_a04_proxy_addr_path_v1 as tool
@@ -126,6 +131,22 @@ class SourceFixPath(unittest.TestCase):
             tool.PINS.clear()
             tool.PINS.update(saved)
         self.assertEqual(result["state"],"HOLD")
+
+    def test_cidr_trust_override_is_not_mistaken_for_first_hop_default(self):
+        import tools.arge_block01_a04_proxy_addr_path_v1 as tool
+        data=fixture()
+        key=(MEDUSA,MEDUSA_COMMIT,"packages/core/framework/src/http/express-loader.ts")
+        data[key]=b'app.set("trust proxy", "::ffff:10.0.0.0/8")'
+        saved=tool.PINS.copy()
+        try:
+            tool.PINS.clear()
+            tool.PINS.update({k:git_blob(v) for k,v in data.items()})
+            result=verify(fetch=self.mock_fetch(data))
+        finally:
+            tool.PINS.clear()
+            tool.PINS.update(saved)
+        self.assertEqual(result["state"],"HOLD")
+        self.assertEqual(result["a04_official"],"HOLD")
 
     def test_unreachable_authority_keeps_result_hold(self):
         def denied(repo,commit,path):
