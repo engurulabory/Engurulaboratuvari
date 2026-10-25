@@ -1,0 +1,56 @@
+name: ENGURU Zulfikar V1.2 Isolated Design Theory GitHub
+on:
+  pull_request:
+    paths:
+      - 'governance/enguru-suzgeci/zulfikar-v12/**'
+      - '.github/workflows/enguru-zulfikar-v12.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  zulfikar-v12-gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Canonical ENGURU Ana Terazi five score families
+        run: |
+          python3 -B tools/enguru_ana_terazi_v1.py > "$RUNNER_TEMP/enguru-ana-terazi.json"
+          python3 - "$RUNNER_TEMP/enguru-ana-terazi.json" <<'PY'
+          import json,sys
+          result=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert result["verdict"]=="PASS_THEORETICAL_PREPARATION_5X100"
+          assert set(result["scores"])=={"THEORY","DESIGN","SIM1","SIM2","SIM3"}
+          assert all(v==100 for v in result["scores"].values())
+          assert result["verified_finish"]=="HOLD"
+          PY
+      - name: Zulfikar 8 local unittest methods / 3 different simulation families
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: python3 -B -m unittest -v test_zulfikar_v1_2
+      - name: Project-specific theory design SIM1 SIM2 SIM3
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: |
+          python3 -B zulfikar_v1_2_five_gate.py > "$RUNNER_TEMP/zulfikar-five-gate.json"
+          python3 - "$RUNNER_TEMP/zulfikar-five-gate.json" <<'PY'
+          import json,sys
+          result=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert result["state"]=="LOCAL_FIVE_GATE_CANDIDATE_PASS"
+          assert set(result["scores"])=={"THEORY","DESIGN","SIM1","SIM2","SIM3"}
+          assert all(v==100 for v in result["scores"].values())
+          assert result["official_verified_finish"]=="HOLD"
+          PY
+      - name: Regenerate local non-official evidence
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: python3 -B build_receipt_and_report.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: enguru-zulfikar-v12-pr-fixture-evidence
+          path: |
+            ${{ runner.temp }}/enguru-ana-terazi.json
+            ${{ runner.temp }}/zulfikar-five-gate.json
+            governance/enguru-suzgeci/zulfikar-v12/zulfikar_v1_2_receipt.json
+            governance/enguru-suzgeci/zulfikar-v12/zulfikar_v1_2_test_log.txt
+          retention-days: 14
