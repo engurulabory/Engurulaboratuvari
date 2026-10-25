@@ -6,6 +6,16 @@ Bu depo ENGÜRÜ ürün, proje ve iş oturumlarının ortak çalışma talimatı
 
 Önce [ENGÜRÜ Evrensel Kanıtlı Tamamlama Talimatı™ V3](governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md) metnini oku. Sonra [SHA-256 kilit kaydı](governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_V3_LOCK.json) ile kaynak bütünlüğünü doğrula. V3 **bütün ENGÜRÜ İCRA oturumlarının genel çalışma disiplini**; ürünün kendi yetkili canonical sözleşmesi ve insan onayları önceliklidir.
 
+## Kalıcı sekiz aşamalı disiplin ve Pozitif Dil Evreni
+
+**Her ENGÜRÜ oturumunda bağlayıcı çalışma referansı:** [ENGÜRÜ Kalıcı Çalışma Disiplini™ V1](governance/enguru-suzgeci/ENGURU_KALICI_CALISMA_DISIPLINI_V1.md) — `governance/enguru-suzgeci/ENGURU_KALICI_CALISMA_DISIPLINI_V1.md`; [SHA-256 kilidi](governance/enguru-suzgeci/ENGURU_KALICI_CALISMA_DISIPLINI_V1_LOCK.json). CI baytları ve sekiz sıralı aşamayı doğrular.
+
+**Hakikati gör → Değeri koru → Eksikleri ve ihtiyaçları tespit et → Gerekli farkı üret → Eksikleri tamamla → Kanıtla → Sonraki ihtiyaçları belirle → İlerlet.**
+
+**Kalıcı sabit hedef:** Eksikleri tamamlanmış. Uçtan uca tam bitmiş. Gerçek testlerle kanıtlanmış. Yetkili kabulü alınmış.
+
+Bu yöntem, mevcut canonical V3 ile özgün ürün kabul şartlarını birlikte korur. Kurulum, gerçek ürün PASS'i ve Human Threshold kendi kanıtlı yetki sınırında ilerler.
+
 ## 2. Tek ortak yöntem
 
 - **Tek ana hedef, bütünleşik yürütme, aynı turda erişilebilir eksikleri tamamlama.**
