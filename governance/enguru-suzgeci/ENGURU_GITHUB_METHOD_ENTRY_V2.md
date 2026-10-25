@@ -3,6 +3,14 @@
 **Konum:** `engurulabory/Engurulaboratuvari` → güncel `main`.
 **Statü:** GitHub üzerindeki ana yöntem için giriş rehberi. **Yeni çekirdek, üretim motoru veya otorite içermez.**
 
+## Kullanıcı tarafından kilitlenen kalıcı sekiz aşama
+
+**İlk okuma:** [ENGÜRÜ Kalıcı Çalışma Disiplini™ V1](ENGURU_KALICI_CALISMA_DISIPLINI_V1.md) ve [SHA-256 kilit kaydı](ENGURU_KALICI_CALISMA_DISIPLINI_V1_LOCK.json). Tam ifade: **Hakikati gör → Değeri koru → Eksikleri ve ihtiyaçları tespit et → Gerekli farkı üret → Eksikleri tamamla → Kanıtla → Sonraki ihtiyaçları belirle → İlerlet.**
+
+**Pozitif tamamlanma dili:** Eksikleri tamamlanmış. Uçtan uca tam bitmiş. Bütün gerekli teknik kanıt ve yetkili kabulü tamamlanmış.
+
+**PiLive güncel hedefi:** [PiLive Ürün Hedefi V4 — yeni yaratıcı kullanıcı deneyimi ve U01–U12](../plive/ENGURU_PILIVE_URUN_HEDEFI_V4.md). Kurulu eski V3.1 görünür yüzeyi başarısız bir deneme olarak değerlendirilir; yeni görsel kabul sıfırdan oluşur. Kaynak/progress/Swift teknik kazanımları bağımsız doğrulamayla yeniden kullanılır.
+
 ## Tek oturum başlangıcı
 
 1. GitHub bağlantısını aç, `main` dalındaki **anlık HEAD** kimliğini kaydet.
