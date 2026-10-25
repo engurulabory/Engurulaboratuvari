@@ -1,4 +1,6 @@
 import json
+import os
+import tempfile
 from dataclasses import asdict
 from datetime import datetime
 from decimal import Decimal
@@ -48,7 +50,25 @@ class JsonFileEvidenceStore:
             row["amount"] = str(item.amount)
             row["issued_at"] = item.issued_at.isoformat()
             payload.append(row)
-        self.path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+        # Publish a complete snapshot on the same filesystem. A failed write or
+        # pre-publication interruption keeps the last committed evidence intact.
+        # This is still a single-writer store; no cross-process transaction or
+        # live fiscal/provider authority is introduced by atomic publication.
+        content = json.dumps(payload, ensure_ascii=False, indent=2)
+        pending = None
+        try:
+            with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8",
+                                             dir=self.path.parent,
+                                             prefix=f".{self.path.name}.", suffix=".tmp",
+                                             delete=False) as handle:
+                pending = Path(handle.name)
+                handle.write(content)
+                handle.flush()
+                os.fsync(handle.fileno())
+            os.replace(pending, self.path)
+        finally:
+            if pending is not None:
+                pending.unlink(missing_ok=True)
 
     def add(self, record):
         items = self._load()
