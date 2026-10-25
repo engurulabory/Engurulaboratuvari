@@ -298,11 +298,22 @@ jobs:
 
       - name: HYM2 Hedef 1 A04 real pinned source CycloneDX candidate with exact SHA256
         run: |
-          python -B -m tools.arge_block01_a04_sbom_candidates_v1 \
+          if ! python -B -m tools.arge_block01_a04_sbom_candidates_v1 \
             --manifest governance/enguru-suzgeci/reviews/ENGURU_ARGE_A04_DEPENDENCY_SEEDS_V1.json \
             --upstream governance/enguru-suzgeci/reviews/ENGURU_ARGE_BLOCK01_A04_UPSTREAM_LICENSE_PINS_V1.json \
             --output-cdx "$RUNNER_TEMP/HYM2_H1_A04_SOURCE_SCOPED_CDX_CANDIDATE.json" \
-            > "$RUNNER_TEMP/HYM2_H1_A04_CANDIDATE_RECEIPT.json"
+            > "$RUNNER_TEMP/HYM2_H1_A04_CANDIDATE_RECEIPT.json"; then
+            python -B - "$RUNNER_TEMP/HYM2_H1_A04_CANDIDATE_RECEIPT.json" <<'PY'
+          import json,sys
+          d=json.load(open(sys.argv[1],encoding="utf-8"))
+          print(json.dumps({"state":d.get("state"),"verified":d.get("source_count_verified"),
+                            "sources":[{"technology":x.get("technology"),"state":x.get("state"),
+                                        "error":x.get("error_reason"),"error_type":x.get("error_type")}
+                                       for x in d.get("source_summary",[]) if x.get("state")!="PASS_SOURCE_PARSED"]},
+                           sort_keys=True))
+          PY
+            exit 2
+          fi
           python -B - "$RUNNER_TEMP/HYM2_H1_A04_CANDIDATE_RECEIPT.json" "$RUNNER_TEMP/HYM2_H1_A04_SOURCE_SCOPED_CDX_CANDIDATE.json" <<'PY'
           import hashlib, json, pathlib,sys
           receipt=json.loads(pathlib.Path(sys.argv[1]).read_text())
