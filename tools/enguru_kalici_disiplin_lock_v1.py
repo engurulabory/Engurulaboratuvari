@@ -85,7 +85,12 @@ def verify(root: Path = ROOT) -> dict:
         if "ENGURU_KALICI_CALISMA_DISIPLINI_V1.md" not in entry:
             errors.append("METHOD_ENTRY_LINK")
         product = (root / PRODUCT).read_text(encoding="utf-8")
-        if not all(word in product for word in PRODUCT_REQUIREMENTS):
+        official_acceptance = (
+            "**P02 12/12 özgün iş + 4/4 DoneCheck + 7/7 saha şartı + "
+            "G3 gerçek owner/issuer/exact grant/durable writer + Human Threshold + native Verified Finish**"
+        )
+        if (not all(word in product for word in PRODUCT_REQUIREMENTS)
+                or official_acceptance not in product):
             errors.append("PILIVE_TARGET_CONTRACT")
     except (OSError, ValueError, UnicodeError, TypeError, KeyError) as exc:
         errors.append("SOURCE_UNREADABLE:" + type(exc).__name__)
