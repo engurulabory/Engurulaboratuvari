@@ -7,6 +7,7 @@ from datetime import datetime,timezone
 import json
 from pathlib import Path
 import platform
+import re
 import subprocess
 import sys
 import tempfile
@@ -43,11 +44,18 @@ def native_read(home, workdir):
     require_size=len(p.stdout.encode())<=2*1024*1024
     if not require_size:raise ValueError('CORE_OUTPUT_LIMIT')
     data=json.loads(p.stdout)
-    snapshot=adapter.build(data['registry'],data['facts'],revision_before=rev_before,
-      revision_after=rev_after,pins_before={r['path']:r['sha256'] for r in before},
-      pins_after={r['path']:r['sha256'] for r in after},
-      source_read_at=datetime.now(timezone.utc).isoformat(),
-      adapter_built_at=datetime.now(timezone.utc).isoformat())
+    try:
+        snapshot=adapter.build(data['registry'],data['facts'],revision_before=rev_before,
+          revision_after=rev_after,pins_before={r['path']:r['sha256'] for r in before},
+          pins_after={r['path']:r['sha256'] for r in after},
+          source_read_at=datetime.now(timezone.utc).isoformat(),
+          adapter_built_at=datetime.now(timezone.utc).isoformat())
+    except adapter.Hold as exc:
+        code=str(exc)
+        return {'state':'HOLD_ADAPTER_VALIDATION','reason':code if re.fullmatch(r'HOLD_[A-Z_]+',code) else 'HOLD_UNCLASSIFIED_VALIDATION',
+          'executed':True,'before':before,'after':after,'revisionBefore':rev_before,
+          'revisionAfter':rev_after,'coreRegistry':data['registry'],'coreFacts':data['facts'],
+          'diagnosticVisibility':'PRIVATE_RECEIPT_ONLY','verifiedFinish':'HOLD'}
     p02=[r for r in snapshot['projects'] if r['projectId']=='ENGURU_PLIVE_P02_USER_SCREEN']
     good=len(p02)==1 and p02[0]['status']=='PASS_CORE_READ_ONLY'
     return {'state':'PASS_NATIVE_P02_ADAPTER_DRY_RUN_ONLY' if good else 'HOLD_P02_ADAPTER',
@@ -90,7 +98,11 @@ def run(archive, home, *, self_test=False):
                    'state':'PASS' if p.returncode==0 and counts else 'HOLD',
                    'outputSha256':safe.digest(logs.encode()),'failureOutput':logs[:16000] if p.returncode else ''}
             if self_test:return {'state':'PASS_PACKAGE_SELF_TEST_ONLY' if tests['state']=='PASS' else 'HOLD_PACKAGE_TESTS','tests':tests}
-            native=native_read(home,temp) if tests['state']=='PASS' else {'state':'NOT_EXECUTED_TESTS_HOLD','executed':False}
+            try:
+                native=native_read(home,temp) if tests['state']=='PASS' else {'state':'NOT_EXECUTED_TESTS_HOLD','executed':False}
+            except (OSError,ValueError,KeyError,TypeError,subprocess.SubprocessError) as exc:
+                native={'state':'HOLD_NATIVE_READ_DIAGNOSTIC','reason':type(exc).__name__,
+                        'verifiedFinish':'HOLD','executionCompletion':'UNKNOWN_AFTER_EXCEPTION'}
             good=tests['state']=='PASS' and native['state']=='PASS_NATIVE_P02_ADAPTER_DRY_RUN_ONLY'
             return {'schema':'enguru.pilive.native-core-adapter-observation/v1',
               'observedAtUtc':datetime.now(timezone.utc).isoformat(),'platform':platform.system(),

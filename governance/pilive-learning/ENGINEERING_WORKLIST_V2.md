@@ -101,3 +101,7 @@ V1.3 kaynağı PR #242 @ `5720cd0de67f959d44ea8ace42a3a716753077f1` üzerinden o
 - [ ] Sonraki tek paket: Mac'te tüm paket testleri + pin kontrollü mevcut Core API üzerinden P02 adaptör dry-run + adı kaynaktan çıkan iki runtime dosyası ve bundle projection_v6 içeriği. Uygulama/LaunchAgent aktivasyonu, canonical/kas/kurulu app yazımı, ağ, SQLite ve Keychain 0; yalnız owned temp test alanı ve yeni receipt/kopya.
 
 U01 kaynak bağı alt kanıtı ilerledi; exact Swift/build/toolchain/signing/binary zinciri HOLD. U02/U05 proje kümesi onarımı kod ve sınırlı replay kapsamıyla PASS; gerçek Mac dry-run ve UI eşliği açık. U09 üç zaman ayrımı/deterministik digest, U10 yirmi regresyon, U12 gizlisiz kanıt izi ilerledi. U01–U12 tam kabulü ve P02 resmî bitişi kendi kapısında HOLD. Nihai dört ekran sözleşmesi beklenir.
+
+## Native adaptör HOLD — tanı onarımı
+
+Kullanıcı V1 paketinden `REASON=Hold` bildirdi. Gerçek durma şartı henüz bilinmiyor; 189 testin Mac sonucu makbuzla alınmadı. Araç, exception sınıfını yazıp ayrıntıyı kaybediyordu. Hata raporlama onarıldı: izinli HOLD kodu, özel Core olguları, revision/pin çerçevesi ve test sonucu HOLD makbuzunda korunur. Üç yeni regresyon dahil 88/88 PiLive testi üç izole turda PASS. Adaptör kabul koşulları korunur. Aynı SHA sabitli V1 paketini kullanan dar tanı komutu, testleri tekrar etmeden kesin HOLD nedenini ve kalan üç dependency kaynağını yeni orijinal/kopya makbuzuna alır. Native onarım hükmü bu makbuz gelene kadar HOLD.
