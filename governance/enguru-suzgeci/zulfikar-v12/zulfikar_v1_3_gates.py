@@ -24,6 +24,9 @@ V3 = REPO / "governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMAT
 LOCK = REPO / "governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_V3_LOCK.json"
 V3_PIN = "11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc"
 GOAL_IDS = tuple(f"H{i:02d}" for i in range(1, 11))
+CONTROL_IDS = tuple(f"C{i:02d}" for i in range(1, 11))
+NEGATIVE_IDS = frozenset(("INVALID_GOAL", "MISSING_SOURCE",
+                          "MISSING_AUTHORITY", "INCOMPLETE_DEPENDENCIES"))
 INFRA_IDS = tuple(f"TA{i:02d}" for i in range(1, 11))
 SRC = ("zulfikar_v1_2_engine.py","test_zulfikar_v1_2.py",
        "zulfikar_v1_2_five_gate.py","zulfikar_v1_3_gates.py",
@@ -101,7 +104,7 @@ def goal_gate(data):
     if not isinstance(controls, list): controls = []
     identities = [c.get("id") for c in controls if isinstance(c, dict)]
     valid_controls = len(controls) == 10 and len(identities) == 10 and (
-        all(has_text(i) for i in identities) and len(set(identities)) == 10)
+        all(has_text(i) for i in identities) and set(identities) == set(CONTROL_IDS))
     rights = data.get("authority") if isinstance(data.get("authority"), dict) else {}
     budget = data.get("budget") if isinstance(data.get("budget"), dict) else {}
     metrics = data.get("measurement") if isinstance(data.get("measurement"), dict) else {}
@@ -109,16 +112,18 @@ def goal_gate(data):
     negatives = data.get("negative_cases") if isinstance(data.get("negative_cases"), list) else []
     canonical = data.get("canonical") if isinstance(data.get("canonical"), dict) else {}
     checks = {
-      "H01": has_text(data.get("goal_id")) and has_text(data.get("single_goal"),30),
+      "H01": data.get("goal_id") == "ZULFIKAR-OPERATIONAL-GITHUB-V13" and has_text(data.get("single_goal"),30),
       "H02": has_text(data.get("user_value"),20) and all(has_text(metrics.get(k)) for k in ("metric","unit","baseline_source","target","observation")),
-      "H03": valid_controls and all(all(c.get(k) for k in ("acceptance","verifier","authority")) for c in controls),
+      "H03": valid_controls and all(all(has_text(c.get(k)) for k in ("acceptance","verifier","authority")) for c in controls),
       "H04": rights.get("scope")=="SINGLE_GOAL" and rights.get("owner_review")=="HUMAN_THRESHOLD" and rights.get("issuer")=="EXISTING_CANONICAL_ONLY",
       "H05": valid_controls and dag_ok(data.get("dependencies"),set(identities)),
-      "H06": len(risks)>=3 and all(isinstance(x,dict) and all(x.get(k) for k in ("risk","mitigation","negative_test")) for x in risks),
-      "H07": len(negatives)>=4 and all(isinstance(x,dict) and x.get("expected")=="HOLD" for x in negatives),
-      "H08": valid_controls and all(c.get("evidence_source") and c.get("state")=="HOLD_PENDING_REAL_EVIDENCE" for c in controls),
+      "H06": len(risks)>=3 and all(isinstance(x,dict) and all(has_text(x.get(k)) for k in ("risk","mitigation","negative_test")) for x in risks),
+      "H07": len(negatives)>=4 and all(isinstance(x,dict) and has_text(x.get("case_id")) and x.get("expected")=="HOLD" for x in negatives)
+             and len({x["case_id"] for x in negatives}) == len(negatives)
+             and NEGATIVE_IDS.issubset({x["case_id"] for x in negatives}),
+      "H08": valid_controls and all(has_text(c.get("evidence_source")) and c.get("state")=="HOLD_PENDING_REAL_EVIDENCE" for c in controls),
       "H09": root_matches() and canonical.get("v3_sha256")==V3_PIN and canonical.get("repository")=="engurulabory/Engurulaboratuvari",
-      "H10": data.get("core")=="REUSE_EXISTING" and data.get("rollback")=="REVERT_ISOLATED_BRANCH" and budget.get("paid_api")==0 and data.get("osi_field")=="HOLD",
+      "H10": data.get("core")=="REUSE_EXISTING" and data.get("rollback")=="REVERT_ISOLATED_BRANCH" and type(budget.get("paid_api")) is int and budget.get("paid_api")==0 and data.get("osi_field")=="HOLD",
     }
     result = score(checks)
     return {"phase":"GOAL","assessment":result,
