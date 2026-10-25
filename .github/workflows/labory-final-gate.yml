@@ -217,6 +217,42 @@ jobs:
       - name: Ar-Ge Block 01 provenance inventory tests
         run: python -m unittest discover -s tests -p 'test_arge_block01_provenance_v425.py' -v
 
+      - name: HYM2 Hedef 1 Zulfikar V1.2 original 40 task adversarial integration tests
+        run: python -B -m unittest discover -s tests -p 'test_arge_hym2_zulfikar_v12_bridge.py' -v
+
+      - name: HYM2 Hedef 1 real pinned Zulfikar V1.2 oracle and 40 task crosswalk
+        run: |
+          python -B tools/arge_hym2_zulfikar_v12_bridge.py \
+            --receipt "$RUNNER_TEMP/HYM2_H1_ZULFIKAR_V12_CROSSWALK_RECEIPT.json"
+          python -B - "$RUNNER_TEMP/HYM2_H1_ZULFIKAR_V12_CROSSWALK_RECEIPT.json" <<'PY'
+          import json,sys
+          x=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert x["state"]=="PASS_PINNED_ZULFIKAR_ADVISORY_INTEGRATION_ONLY"
+          assert len(x["zulfikar_source_pins"])==2
+          assert x["preservation"]["original_task_count"]==40
+          assert x["preservation"]["original_block_count"]==6
+          assert x["preservation"]["official_tasks"]=="0/40"
+          assert len(x["k01_k04_advisory_crosswalk"])==40
+          assert x["h1_zulfikar_live_advisory_checks"]["assessment_state"]=="SIMULATED_HOLD"
+          assert x["h1_zulfikar_live_advisory_checks"]["owner_official_decision"]=="HOLD"
+          assert x["h1_a03"]=="HOLD_REAL_OWNER_SCOPE_GRANT"
+          assert x["h1_a04"]=="HOLD_CANONICAL_KASIFI_OR_OWNER_RESEARCH_SCOPE"
+          assert x["verified_finish"]==x["mac_osi_handoff"]=="HOLD"
+          print(json.dumps({"state":x["state"],
+                            "zulfikar_ref":x["zulfikar_source_commit"],
+                            "original_tasks":40,
+                            "official":"0/40",
+                            "field":"HOLD"},sort_keys=True))
+          PY
+
+      - name: Upload HYM2 Hedef 1 Zulfikar real pinned source crosswalk (NOT authority)
+        uses: actions/upload-artifact@v4
+        with:
+          name: hym2-h1-zulfikar-v12-source-advisory
+          path: ${{ runner.temp }}/HYM2_H1_ZULFIKAR_V12_CROSSWALK_RECEIPT.json
+          retention-days: 3
+          if-no-files-found: error
+
       - name: Ar-Ge Block 01 full 18 case reconciliation
         run: python -m unittest discover -s tests -p 'test_arge_block01_18_cases_v428.py' -v
 
