@@ -24,6 +24,9 @@ PINS = {
     (MEDUSA, MEDUSA_COMMIT, "yarn.lock"): "660081e74b9be3799b3a0f25d5631df4e1cf0658",
     (MEDUSA, MEDUSA_COMMIT, "packages/medusa/package.json"): "098f88ef04510bad2bf330c0569801aa2de12296",
     (MEDUSA, MEDUSA_COMMIT, "packages/core/framework/package.json"): "70bb89084b8864818d2387bf7178bda5d4db39fd",
+    (MEDUSA, MEDUSA_COMMIT, "packages/core/framework/src/http/express-loader.ts"): "e2ec6fe9b77f6b577c85e3deceb7f4dbf0c8ef44",
+    (MEDUSA, MEDUSA_COMMIT, "packages/core/framework/src/http/__fixtures__/server/index.ts"): "f0bb4f771b57c8ef50ba53d162eb91b96aadea68",
+    (MEDUSA, MEDUSA_COMMIT, "packages/medusa/src/instrumentation/__fixtures__/server/index.ts"): "dbe8167a23f20d6c0318aad5662124af353897b3",
     (ADVISORY_REPO, ADVISORY_COMMIT, ADVISORY_PATH): "1c5f475a60a2b179ac48f5a22138944728f11eb1",
 }
 MAX_SOURCE_BYTES = 2_000_000
@@ -83,6 +86,20 @@ def _validate(data:dict[tuple[str,str,str],bytes])->dict:
     app=json.loads(data[(MEDUSA,MEDUSA_COMMIT,"packages/medusa/package.json")])
     framework=json.loads(data[(MEDUSA,MEDUSA_COMMIT,"packages/core/framework/package.json")])
     advisory=json.loads(data[(ADVISORY_REPO,ADVISORY_COMMIT,ADVISORY_PATH)])
+    trust_config=[]
+    for path in (
+        "packages/core/framework/src/http/express-loader.ts",
+        "packages/core/framework/src/http/__fixtures__/server/index.ts",
+        "packages/medusa/src/instrumentation/__fixtures__/server/index.ts",
+    ):
+        body=data[(MEDUSA, MEDUSA_COMMIT, path)].decode("utf-8")
+        if body.count('app.set("trust proxy", 1)')!=1:
+            raise ValueError("TRUST_PROXY_DEFAULT_DRIFT_"+path)
+        if re.search(r'app\.set\(["\']trust proxy["\']\s*,\s*["\']', body):
+            raise ValueError("CIDR_TRUST_OVERRIDE_SOURCE_"+path)
+        trust_config.append({"path":path,"trust_proxy_value":"1",
+                             "scope":"SOURCE_LITERAL_NUMERIC_FIRST_HOP_ONLY"})
+
     for item,name in ((app,"@medusajs/medusa"),(framework,"@medusajs/framework")):
         if item.get("name")!=name or item.get("dependencies",{}).get("express")!="^4.21.0":
             raise ValueError("WORKSPACE_EXPRESS_PATH_CHANGED_"+name)
@@ -129,6 +146,9 @@ def _validate(data:dict[tuple[str,str,str],bytes])->dict:
         "cve":"CVE-2026-90711",
         "fixed_version":patched,
         "patch_in_existing_express_selector":True,
+        "source_trust_proxy_configs":trust_config,
+        "application_default_directly_uses_cidr":False,
+        "proxy_setter_observed":"app.set(\"trust proxy\", 1)",
         "conditional_trigger":"Short-prefix IPv4-mapped IPv6 or zero-leading-bit IPv6 trusted proxy subnet (application configuration)"
     }
 
