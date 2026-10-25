@@ -1,0 +1,306 @@
+[
+  {
+    "CONTROL_ID": "GH-01",
+    "TASK_ID": "GH-01",
+    "SOURCE_REPO": "engurulabory/Engurulaboratuvari",
+    "SOURCE_COMMIT": "260c395f4e1a71bbf402b820e3f4bdcf47990d8c",
+    "ACCEPTANCE_VERSION": "V1_CANDIDATE",
+    "REQUIRED_EVIDENCE": [
+      "real source, CI and independent evidence required"
+    ],
+    "INDEPENDENT_VERIFIER": "UNVERIFIED",
+    "OWNER_AUTHORITY": "UNVERIFIED",
+    "EXECUTION_STATE": "HOLD",
+    "EVIDENCE_STATE": "HOLD",
+    "AUTHORITY_STATE": "HOLD",
+    "NEXT_ACTION": "Reconcile original acceptance requirement and source provenance"
+  },
+  {
+    "CONTROL_ID": "GH-02",
+    "TASK_ID": "GH-02",
+    "SOURCE_REPO": "engurulabory/Engurulaboratuvari",
+    "SOURCE_COMMIT": "260c395f4e1a71bbf402b820e3f4bdcf47990d8c",
+    "ACCEPTANCE_VERSION": "V1_CANDIDATE",
+    "REQUIRED_EVIDENCE": [
+      "real source, CI and independent evidence required"
+    ],
+    "INDEPENDENT_VERIFIER": "UNVERIFIED",
+    "OWNER_AUTHORITY": "UNVERIFIED",
+    "EXECUTION_STATE": "HOLD",
+    "EVIDENCE_STATE": "HOLD",
+    "AUTHORITY_STATE": "HOLD",
+    "NEXT_ACTION": "Reconcile original acceptance requirement and source provenance"
+  },
+  {
+    "CONTROL_ID": "GH-03",
+    "TASK_ID": "GH-03",
+    "SOURCE_REPO": "engurulabory/Engurulaboratuvari",
+    "SOURCE_COMMIT": "260c395f4e1a71bbf402b820e3f4bdcf47990d8c",
+    "ACCEPTANCE_VERSION": "V1_CANDIDATE",
+    "REQUIRED_EVIDENCE": [
+      "real source, CI and independent evidence required"
+    ],
+    "INDEPENDENT_VERIFIER": "UNVERIFIED",
+    "OWNER_AUTHORITY": "UNVERIFIED",
+    "EXECUTION_STATE": "HOLD",
+    "EVIDENCE_STATE": "HOLD",
+    "AUTHORITY_STATE": "HOLD",
+    "NEXT_ACTION": "Reconcile original acceptance requirement and source provenance"
+  },
+  {
+    "CONTROL_ID": "GH-04",
+    "TASK_ID": "GH-04",
+    "SOURCE_REPO": "engurulabory/Engurulaboratuvari",
+    "SOURCE_COMMIT": "260c395f4e1a71bbf402b820e3f4bdcf47990d8c",
+    "ACCEPTANCE_VERSION": "V1_CANDIDATE",
+    "REQUIRED_EVIDENCE": [
+      "real source, CI and independent evidence required"
+    ],
+    "INDEPENDENT_VERIFIER": "UNVERIFIED",
+    "OWNER_AUTHORITY": "UNVERIFIED",
+    "EXECUTION_STATE": "HOLD",
+    "EVIDENCE_STATE": "HOLD",
+    "AUTHORITY_STATE": "HOLD",
+    "NEXT_ACTION": "Reconcile original acceptance requirement and source provenance"
+  },
+  {
+    "CONTROL_ID": "GH-05",
+    "TASK_ID": "GH-05",
+    "SOURCE_REPO": "engurulabory/Engurulaboratuvari",
+    "SOURCE_COMMIT": "260c395f4e1a71bbf402b820e3f4bdcf47990d8c",
+    "ACCEPTANCE_VERSION": "V1_CANDIDATE",
+    "REQUIRED_EVIDENCE": [
+      "real source, CI and independent evidence required"
+    ],
+    "INDEPENDENT_VERIFIER": "UNVERIFIED",
+    "OWNER_AUTHORITY": "UNVERIFIED",
+    "EXECUTION_STATE": "HOLD",
+    "EVIDENCE_STATE": "HOLD",
+    "AUTHORITY_STATE": "HOLD",
+    "NEXT_ACTION": "Reconcile original acceptance requirement and source provenance"
+  },
+  {
+    "CONTROL_ID": "GH-06",
+    "TASK_ID": "GH-06",
+    "SOURCE_REPO": "engurulabory/Engurulaboratuvari",
+    "SOURCE_COMMIT": "260c395f4e1a71bbf402b820e3f4bdcf47990d8c",
+    "ACCEPTANCE_VERSION": "V1_CANDIDATE",
+    "REQUIRED_EVIDENCE": [
+      "real source, CI and independent evidence required"
+    ],
+    "INDEPENDENT_VERIFIER": "UNVERIFIED",
+    "OWNER_AUTHORITY": "UNVERIFIED",
+    "EXECUTION_STATE": "HOLD",
+    "EVIDENCE_STATE": "HOLD",
+    "AUTHORITY_STATE": "HOLD",
+    "NEXT_ACTION": "Reconcile original acceptance requirement and source provenance"
+  },
+  {
+    "CONTROL_ID": "GH-07",
+    "TASK_ID": "GH-07",
+    "SOURCE_REPO": "engurulabory/Engurulaboratuvari",
+    "SOURCE_COMMIT": "260c395f4e1a71bbf402b820e3f4bdcf47990d8c",
+    "ACCEPTANCE_VERSION": "V1_CANDIDATE",
+    "REQUIRED_EVIDENCE": [
+      "real source, CI and independent evidence required"
+    ],
+    "INDEPENDENT_VERIFIER": "UNVERIFIED",
+    "OWNER_AUTHORITY": "UNVERIFIED",
+    "EXECUTION_STATE": "HOLD",
+    "EVIDENCE_STATE": "HOLD",
+    "AUTHORITY_STATE": "HOLD",
+    "NEXT_ACTION": "Reconcile original acceptance requirement and source provenance"
+  },
+  {
+    "CONTROL_ID": "GH-08",
+    "TASK_ID": "GH-08",
+    "SOURCE_REPO": "engurulabory/Engurulaboratuvari",
+    "SOURCE_COMMIT": "260c395f4e1a71bbf402b820e3f4bdcf47990d8c",
+    "ACCEPTANCE_VERSION": "V1_CANDIDATE",
+    "REQUIRED_EVIDENCE": [
+      "real source, CI and independent evidence required"
+    ],
+    "INDEPENDENT_VERIFIER": "UNVERIFIED",
+    "OWNER_AUTHORITY": "UNVERIFIED",
+    "EXECUTION_STATE": "HOLD",
+    "EVIDENCE_STATE": "HOLD",
+    "AUTHORITY_STATE": "HOLD",
+    "NEXT_ACTION": "Reconcile original acceptance requirement and source provenance"
+  },
+  {
+    "CONTROL_ID": "GH-09",
+    "TASK_ID": "GH-09",
+    "SOURCE_REPO": "engurulabory/Engurulaboratuvari",
+    "SOURCE_COMMIT": "260c395f4e1a71bbf402b820e3f4bdcf47990d8c",
+    "ACCEPTANCE_VERSION": "V1_CANDIDATE",
+    "REQUIRED_EVIDENCE": [
+      "real source, CI and independent evidence required"
+    ],
+    "INDEPENDENT_VERIFIER": "UNVERIFIED",
+    "OWNER_AUTHORITY": "UNVERIFIED",
+    "EXECUTION_STATE": "HOLD",
+    "EVIDENCE_STATE": "HOLD",
+    "AUTHORITY_STATE": "HOLD",
+    "NEXT_ACTION": "Reconcile original acceptance requirement and source provenance"
+  },
+  {
+    "CONTROL_ID": "GH-10",
+    "TASK_ID": "GH-10",
+    "SOURCE_REPO": "engurulabory/Engurulaboratuvari",
+    "SOURCE_COMMIT": "260c395f4e1a71bbf402b820e3f4bdcf47990d8c",
+    "ACCEPTANCE_VERSION": "V1_CANDIDATE",
+    "REQUIRED_EVIDENCE": [
+      "real source, CI and independent evidence required"
+    ],
+    "INDEPENDENT_VERIFIER": "UNVERIFIED",
+    "OWNER_AUTHORITY": "UNVERIFIED",
+    "EXECUTION_STATE": "HOLD",
+    "EVIDENCE_STATE": "HOLD",
+    "AUTHORITY_STATE": "HOLD",
+    "NEXT_ACTION": "Reconcile original acceptance requirement and source provenance"
+  },
+  {
+    "CONTROL_ID": "GH-11",
+    "TASK_ID": "GH-11",
+    "SOURCE_REPO": "engurulabory/Engurulaboratuvari",
+    "SOURCE_COMMIT": "260c395f4e1a71bbf402b820e3f4bdcf47990d8c",
+    "ACCEPTANCE_VERSION": "V1_CANDIDATE",
+    "REQUIRED_EVIDENCE": [
+      "real source, CI and independent evidence required"
+    ],
+    "INDEPENDENT_VERIFIER": "UNVERIFIED",
+    "OWNER_AUTHORITY": "UNVERIFIED",
+    "EXECUTION_STATE": "HOLD",
+    "EVIDENCE_STATE": "HOLD",
+    "AUTHORITY_STATE": "HOLD",
+    "NEXT_ACTION": "Reconcile original acceptance requirement and source provenance"
+  },
+  {
+    "CONTROL_ID": "GH-12",
+    "TASK_ID": "GH-12",
+    "SOURCE_REPO": "engurulabory/Engurulaboratuvari",
+    "SOURCE_COMMIT": "260c395f4e1a71bbf402b820e3f4bdcf47990d8c",
+    "ACCEPTANCE_VERSION": "V1_CANDIDATE",
+    "REQUIRED_EVIDENCE": [
+      "real source, CI and independent evidence required"
+    ],
+    "INDEPENDENT_VERIFIER": "UNVERIFIED",
+    "OWNER_AUTHORITY": "UNVERIFIED",
+    "EXECUTION_STATE": "HOLD",
+    "EVIDENCE_STATE": "HOLD",
+    "AUTHORITY_STATE": "HOLD",
+    "NEXT_ACTION": "Reconcile original acceptance requirement and source provenance"
+  },
+  {
+    "CONTROL_ID": "GH-13",
+    "TASK_ID": "GH-13",
+    "SOURCE_REPO": "engurulabory/Engurulaboratuvari",
+    "SOURCE_COMMIT": "260c395f4e1a71bbf402b820e3f4bdcf47990d8c",
+    "ACCEPTANCE_VERSION": "V1_CANDIDATE",
+    "REQUIRED_EVIDENCE": [
+      "real source, CI and independent evidence required"
+    ],
+    "INDEPENDENT_VERIFIER": "UNVERIFIED",
+    "OWNER_AUTHORITY": "UNVERIFIED",
+    "EXECUTION_STATE": "HOLD",
+    "EVIDENCE_STATE": "HOLD",
+    "AUTHORITY_STATE": "HOLD",
+    "NEXT_ACTION": "Reconcile original acceptance requirement and source provenance"
+  },
+  {
+    "CONTROL_ID": "GH-14",
+    "TASK_ID": "GH-14",
+    "SOURCE_REPO": "engurulabory/Engurulaboratuvari",
+    "SOURCE_COMMIT": "260c395f4e1a71bbf402b820e3f4bdcf47990d8c",
+    "ACCEPTANCE_VERSION": "V1_CANDIDATE",
+    "REQUIRED_EVIDENCE": [
+      "real source, CI and independent evidence required"
+    ],
+    "INDEPENDENT_VERIFIER": "UNVERIFIED",
+    "OWNER_AUTHORITY": "UNVERIFIED",
+    "EXECUTION_STATE": "HOLD",
+    "EVIDENCE_STATE": "HOLD",
+    "AUTHORITY_STATE": "HOLD",
+    "NEXT_ACTION": "Reconcile original acceptance requirement and source provenance"
+  },
+  {
+    "CONTROL_ID": "GH-15",
+    "TASK_ID": "GH-15",
+    "SOURCE_REPO": "engurulabory/Engurulaboratuvari",
+    "SOURCE_COMMIT": "260c395f4e1a71bbf402b820e3f4bdcf47990d8c",
+    "ACCEPTANCE_VERSION": "V1_CANDIDATE",
+    "REQUIRED_EVIDENCE": [
+      "real source, CI and independent evidence required"
+    ],
+    "INDEPENDENT_VERIFIER": "UNVERIFIED",
+    "OWNER_AUTHORITY": "UNVERIFIED",
+    "EXECUTION_STATE": "HOLD",
+    "EVIDENCE_STATE": "HOLD",
+    "AUTHORITY_STATE": "HOLD",
+    "NEXT_ACTION": "Reconcile original acceptance requirement and source provenance"
+  },
+  {
+    "CONTROL_ID": "GH-16",
+    "TASK_ID": "GH-16",
+    "SOURCE_REPO": "engurulabory/Engurulaboratuvari",
+    "SOURCE_COMMIT": "260c395f4e1a71bbf402b820e3f4bdcf47990d8c",
+    "ACCEPTANCE_VERSION": "V1_CANDIDATE",
+    "REQUIRED_EVIDENCE": [
+      "real source, CI and independent evidence required"
+    ],
+    "INDEPENDENT_VERIFIER": "UNVERIFIED",
+    "OWNER_AUTHORITY": "UNVERIFIED",
+    "EXECUTION_STATE": "HOLD",
+    "EVIDENCE_STATE": "HOLD",
+    "AUTHORITY_STATE": "HOLD",
+    "NEXT_ACTION": "Reconcile original acceptance requirement and source provenance"
+  },
+  {
+    "CONTROL_ID": "GH-17",
+    "TASK_ID": "GH-17",
+    "SOURCE_REPO": "engurulabory/Engurulaboratuvari",
+    "SOURCE_COMMIT": "260c395f4e1a71bbf402b820e3f4bdcf47990d8c",
+    "ACCEPTANCE_VERSION": "V1_CANDIDATE",
+    "REQUIRED_EVIDENCE": [
+      "real source, CI and independent evidence required"
+    ],
+    "INDEPENDENT_VERIFIER": "UNVERIFIED",
+    "OWNER_AUTHORITY": "UNVERIFIED",
+    "EXECUTION_STATE": "HOLD",
+    "EVIDENCE_STATE": "HOLD",
+    "AUTHORITY_STATE": "HOLD",
+    "NEXT_ACTION": "Reconcile original acceptance requirement and source provenance"
+  },
+  {
+    "CONTROL_ID": "GH-18",
+    "TASK_ID": "GH-18",
+    "SOURCE_REPO": "engurulabory/Engurulaboratuvari",
+    "SOURCE_COMMIT": "260c395f4e1a71bbf402b820e3f4bdcf47990d8c",
+    "ACCEPTANCE_VERSION": "V1_CANDIDATE",
+    "REQUIRED_EVIDENCE": [
+      "real source, CI and independent evidence required"
+    ],
+    "INDEPENDENT_VERIFIER": "UNVERIFIED",
+    "OWNER_AUTHORITY": "UNVERIFIED",
+    "EXECUTION_STATE": "HOLD",
+    "EVIDENCE_STATE": "HOLD",
+    "AUTHORITY_STATE": "HOLD",
+    "NEXT_ACTION": "Reconcile original acceptance requirement and source provenance"
+  },
+  {
+    "CONTROL_ID": "GH-19",
+    "TASK_ID": "GH-19",
+    "SOURCE_REPO": "engurulabory/Engurulaboratuvari",
+    "SOURCE_COMMIT": "260c395f4e1a71bbf402b820e3f4bdcf47990d8c",
+    "ACCEPTANCE_VERSION": "V1_CANDIDATE",
+    "REQUIRED_EVIDENCE": [
+      "real source, CI and independent evidence required"
+    ],
+    "INDEPENDENT_VERIFIER": "UNVERIFIED",
+    "OWNER_AUTHORITY": "UNVERIFIED",
+    "EXECUTION_STATE": "HOLD",
+    "EVIDENCE_STATE": "HOLD",
+    "AUTHORITY_STATE": "HOLD",
+    "NEXT_ACTION": "Reconcile original acceptance requirement and source provenance"
+  }
+]

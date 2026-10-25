@@ -39,6 +39,57 @@ jobs:
       - name: Shared AI behavior tests
         run: python -m unittest discover -s tests -p 'test_shared_ai_behavior.py' -v
 
+      - name: EMUS GH-04 dependency locks and final field separation
+        run: python -m unittest discover -s tests -p 'test_emus_dependency_lock.py' -v
+
+      - name: EMUS GH-04 real 19-task evidence gap matrix and negative tests
+        run: |
+          python tools/emus_gap_matrix.py
+          python -m unittest discover -s tests -p 'test_emus_gap_matrix.py' -v
+
+      - name: EMUS GH-05 original task schema and negative acceptance cases
+        run: |
+          python tools/emus_task_schema_gate.py
+          python -m unittest discover -s tests -p 'test_emus_task_schema_gate.py' -v
+
+      - name: EMUS 19-task progress evidence count and adversarial identity gate
+        run: |
+          python tools/emus_progress_gate.py
+          python -m unittest discover -s tests -p 'test_emus_progress_gate.py' -v
+
+      - name: EMUS G07 source-pinned Mac provider live field probe safety
+        run: python -m unittest discover -s tests -p 'test_emus_g07_mac_provider_live_field.py' -v
+
+      - name: EMUS G07 zero-cost provider and paid fallback adversarial checks
+        run: python -m unittest discover -s tests -p 'test_emus_g07_zero_cost_routes.py' -v
+
+      - name: EMUS G07 V2 exact digest and loaded memory safety probes
+        run: python -m unittest discover -s tests -p 'test_emus_g07_osi_field_v2.py' -v
+
+      - name: EMUS G07 Mac field collector fail closed and read only contract
+        run: python -m unittest discover -s tests -p 'test_emus_g07_field_collector.py' -v
+
+      - name: EMUS G05 G06 existing threat model and source provenance verification
+        run: python -m unittest discover -s tests -p 'test_emus_g05_g06_source_boundary.py' -v
+
+      - name: EMUS task identity probe syntax (integration execution remains gated)
+        run: python -m py_compile tests/test_emus_task_identity_probe.py
+
+      - name: EMUS canonical V3 source lock byte verification
+        run: python -m unittest discover -s tests -p 'test_emus_task_identity_probe.py' -k emus_v3_lock_pin_matches_contract -v
+
+      - name: EMUS real WorkingMemory checkpoint identity and authority test
+        run: python -m unittest discover -s tests -p 'test_emus_task_identity_probe.py' -k emus_working_memory_checkpoint_identity_and_authority -v
+
+      - name: EMUS premature final PASS is rejected
+        run: python -m unittest discover -s tests -p 'test_emus_task_identity_probe.py' -k emus_final_pass_requires_evidence -v
+
+      - name: EMUS missing private runtime fail-closed test
+        run: python -m unittest discover -s tests -p 'test_emus_task_identity_probe.py' -k missing_pinned_runtime -v
+
+      - name: EMUS private runtime source drift fail-closed test
+        run: python -m unittest discover -s tests -p 'test_emus_task_identity_probe.py' -k source_drift_fails_before_import -v
+
       - name: Mac Engineer Package 3 persistent working memory tests
         run: python -m unittest discover -s tests -p 'test_working_memory.py' -v
 
