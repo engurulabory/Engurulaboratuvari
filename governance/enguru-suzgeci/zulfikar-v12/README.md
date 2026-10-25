@@ -77,3 +77,14 @@ python3 -B -m unittest -q test_zulfikar_v1_2 test_zulfikar_v1_3_gates
 - **Güven sınırı:** TA05, **yerel checkout/HEAD tutarlılığı** kanıtıdır; uzaktan doğrulanmış SHA, bağımsız inceleme, yetkili signer, gerçek OSi runtime, müşteri etkisi veya saha kabulü değildir. Remote exact-head CI ayrıca kontrol edilir.
 - **İcra yeri:** `infra` kapısı Git HEAD bulunan **gerçek checkout** içinde değerlendirilir; yalnız dosya kopyasıyla çalıştırıldığında TA05 `HOLD` verir.
 - **Kabul:** Yeni commit'in exact-head CI ve bağımsız PR incelemesi ayrı kanıttır. `OSI_FIELD=HOLD`; `OFFICIAL_VERIFIED_FINISH=HOLD`. Korunan `main`, PiLive ve Human Threshold sınırları geçerlidir.
+
+
+## Final 3 — R03 sabit kabul kimliği koruması
+
+**Kaynak incelemesi bulgusu:** Önceki H03 kapısı özgün on kontrol kimliğini, yalnız sayı ve benzersizlik düzeyinde sınadığı için, tüm bağımlılıkları birlikte değiştirilmiş bir `C01 → C11` yeniden adlandırmasını geçerli tasarım adayı sayabilirdi. Bu kabul kimliği kayması iş listesi ve kanıt eşleştirmesine risk taşır.
+
+**Gerekli fark:** `C01–C10` özgün kimlik kümesi sabitlendi; hedef sözleşmesi kimliği, kabul/verifier/yetki metin türleri, risk açıklaması, kanıt adresi, dört özgün negatif kontrol örneği ve sıfır ücretli API bütçesinin tamsayı kimliği fail-closed denetlenir. Önceden düzgün görünerek yanlış kabul alabilecek değişiklikler H01/H03/H06/H07/H08/H10 üzerinden `HOLD_GOAL_SPECIFICATION` üretir.
+
+**Karşıt test:** Tutarlı sahte kontrol ID yeniden yazımı, sayı/list türünde kanıt, veri tipi kayması, tekrar veya silinmiş negatif vaka, `paid_api=False` ve özgün hedef ID sapması. Teknik CI ve ayrı bağımsız kaynak incelemesi ayrı kapılardır.
+
+**Korunan hüküm:** GOAL=100/100 yalnız donmuş hedef tanımının teknik rubrik PASS'idir; `INDEPENDENT_REVIEW=HOLD`, `OSI_FIELD=HOLD`, `VERIFIED_FINISH=HOLD`. Sekiz aşama, canonical V3, PiLive Work, korunmuş `main` ve Human Threshold devam eder.
