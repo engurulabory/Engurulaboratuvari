@@ -26,3 +26,16 @@
 ## GitHub teknik PASS / resmî Verified Finish ayrımı
 
 Teknik GitHub PASS ancak aynı PR HEAD üzerinde bütün zorunlu CI işlerinin SUCCESS ve kaynak kimliklerinin PASS olmasıyla raporlanır. Resmî `GITHUB_VERIFIED_FINISH`, ayrı bağımsız inceleme, özgün kabul ID'leri ve Human Threshold şartları gerçekleştiğinde değerlendirilebilir. Mac OSi kurulumu bu PR'de 0.
+
+## Kanıta dayalı kaynak/lisans uzlaştırması (2026-10-25)
+
+- `source_candidates.json`: 30 README Git blob SHA-1 kimliği.
+- `root_license_observations.json`: 29/30 kök lisans dosyasının Git blob SHA-1 kimliği ve yalnız metin sinyali gözlendi.
+- `anthropics/skills`: kök lisans dosyası standart adlarda bulunamadı; içerik/beceri bazlı lisans incelemesi gerekiyor.
+- `anthropics/claude-code`: kök lisans ticari şartlara yönlendiriyor; otomatik yeniden kullanım kabulü 0.
+- `meilisearch/meilisearch`: karma lisans, ilgili dosya/özellik düzeyinde ayrı kabul gerektiriyor.
+- `semgrep/semgrep`: kök LGPL 2.1 metni gözlendi; koşullu kullanım değerlendirmesi ayrı.
+- `modelcontextprotocol` depoları: lisans geçiş bildirimi var; kaynağa ve sürüme özgü inceleme gerekiyor.
+- `license_gate.py` + `test_license_gate.py`: 30 kayıt eşleştirmesi, köken biçimi ve kanıtsız hukuki PASS'in engellenmesi.
+- `external_skill_proof_plan.json` + `test_external_skill_plan.py`: 12 ayrı dış kaynak deney vakası; gerçek bağımsız test/skill `PROVEN=0/12`.
+- Bu kayıtlar araçların ücretsiz kullanılabilirliği, üçüncü taraf yazılımın hukuki kullanımı veya nihai yetkili ürün kabulünü garanti etmez.
