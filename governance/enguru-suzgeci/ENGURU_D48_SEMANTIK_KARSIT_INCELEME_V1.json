@@ -1,0 +1,601 @@
+{
+  "schema": "enguru.method.semantic-crosswalk-second-look/v1",
+  "date": "2026-10-25",
+  "scope": "DESKTOP_AI_SOURCE_SEMANTIC_AUDIT_NO_SEPARATE_HUMAN_REVIEW",
+  "total_controls": 48,
+  "source_matrix": "governance/enguru-suzgeci/ENGURU_TASARIM_48_KONTROL_MATRISI_V1.json",
+  "references": [
+    {
+      "source_id": "NIST_AI_RMF",
+      "url": "https://airc.nist.gov/airmf-resources/playbook/",
+      "verified_scope": "GOVERN MAP MEASURE MANAGE risk-governance framework"
+    },
+    {
+      "source_id": "DORA",
+      "url": "https://dora.dev/guides/dora-metrics/",
+      "verified_scope": "Five software delivery throughput/stability metrics, not zero-cost validation"
+    },
+    {
+      "source_id": "SLSA",
+      "url": "https://slsa.dev/spec/v1.2/provenance",
+      "verified_scope": "Source and build provenance, not UX or user decision proof"
+    },
+    {
+      "source_id": "GOOGLE_SRE",
+      "url": "https://sre.google/workbook/implementing-slos/",
+      "verified_scope": "SLIs SLOs and error budgets for reliability"
+    },
+    {
+      "source_id": "NIST_SSDF",
+      "url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+      "verified_scope": "Secure software development and vulnerability root cause"
+    },
+    {
+      "source_id": "ANTHROPIC_EVALS",
+      "url": "https://www.anthropic.com/research/demystifying-evals-for-ai-agents",
+      "verified_scope": "Evaluation tasks trials graders cost-per-task and human calibration"
+    },
+    {
+      "source_id": "OPENSSF",
+      "url": "https://openssf.org/projects/scorecard/",
+      "verified_scope": "Automated repo security checks, only on scoped repositories"
+    },
+    {
+      "source_id": "LANGGRAPH",
+      "url": "https://github.com/langchain-ai/docs/blob/main/src/oss/langgraph/persistence.mdx",
+      "verified_scope": "Checkpoint thread persistence and durable state, not external side effect idempotency"
+    }
+  ],
+  "counts": {
+    "LIMITED_ANALOGY": 22,
+    "EVIDENCE_NOT_EQUIVALENT": 9,
+    "MECHANISM_ALIGNED": 17
+  },
+  "rows": [
+    {
+      "control_id": "D01",
+      "criterion": "Niyetin açıklığı",
+      "source_id": "NIST_AI_RMF",
+      "source_url": "https://airc.nist.gov/airmf-resources/playbook/",
+      "original_mechanism": "MAP",
+      "classification": "LIMITED_ANALOGY",
+      "note": "NIST MAP helps assess impacts; the exact user outcome is ENGURU's criterion.",
+      "claim_boundary": "CONCEPTUAL_TRANSFER_NOT_NORMATIVE",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D02",
+      "criterion": "Tek ana hedef ve başarının tanımı",
+      "source_id": "DORA",
+      "source_url": "https://dora.dev/guides/dora-metrics/",
+      "original_mechanism": "throughput",
+      "classification": "EVIDENCE_NOT_EQUIVALENT",
+      "note": "DORA five delivery metrics do not assert one business goal; source does not justify normative single-target requirement.",
+      "claim_boundary": "REQUIRE_ENGURU_SPECIFIC_PROOF",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D03",
+      "criterion": "Kilitli kararların korunması",
+      "source_id": "SLSA",
+      "source_url": "https://slsa.dev/spec/v1.2/provenance",
+      "original_mechanism": "source_provenance",
+      "classification": "LIMITED_ANALOGY",
+      "note": "SLSA source revisions can be traced; ENGURU locked decisions need own authority record.",
+      "claim_boundary": "CONCEPTUAL_TRANSFER_NOT_NORMATIVE",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D04",
+      "criterion": "Fayda ve gerçek etki ölçümü",
+      "source_id": "GOOGLE_SRE",
+      "source_url": "https://sre.google/workbook/implementing-slos/",
+      "original_mechanism": "service_level_indicator",
+      "classification": "MECHANISM_ALIGNED",
+      "note": "Google SRE defines service level indicators and objectives.",
+      "claim_boundary": "MECHANISM_ONLY_NO_FIELD_CERTIFICATION",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D05",
+      "criterion": "Sekiz aşamalı disiplin",
+      "source_id": "NIST_AI_RMF",
+      "source_url": "https://airc.nist.gov/airmf-resources/playbook/",
+      "original_mechanism": "governance_lifecycle",
+      "classification": "LIMITED_ANALOGY",
+      "note": "NIST RMF has four functions, not the same eight steps as ENGURU.",
+      "claim_boundary": "CONCEPTUAL_TRANSFER_NOT_NORMATIVE",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D06",
+      "criterion": "K1–K8 kabul kontrolleri",
+      "source_id": "NIST_SSDF",
+      "source_url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+      "original_mechanism": "practices_and_tasks",
+      "classification": "MECHANISM_ALIGNED",
+      "note": "NIST SSDF provides secure development practices and tasks.",
+      "claim_boundary": "MECHANISM_ONLY_NO_FIELD_CERTIFICATION",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D07",
+      "criterion": "İLERLE / GÜVENLİ_DUR kararları",
+      "source_id": "NIST_AI_RMF",
+      "source_url": "https://airc.nist.gov/airmf-resources/playbook/",
+      "original_mechanism": "risk_management",
+      "classification": "MECHANISM_ALIGNED",
+      "note": "NIST RMF Govern and Manage cover risk-decision discipline.",
+      "claim_boundary": "MECHANISM_ONLY_NO_FIELD_CERTIFICATION",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D08",
+      "criterion": "Pozitif dilin sistem genelinde uygulanması",
+      "source_id": "ANTHROPIC_EVALS",
+      "source_url": "https://www.anthropic.com/research/demystifying-evals-for-ai-agents",
+      "original_mechanism": "outcome_grading",
+      "classification": "EVIDENCE_NOT_EQUIVALENT",
+      "note": "Anthropic graders can assess style compliance but do not prescribe ENGURU positive-language rules.",
+      "claim_boundary": "REQUIRE_ENGURU_SPECIFIC_PROOF",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D09",
+      "criterion": "Control Plane / Execution Plane ayrımı",
+      "source_id": "SLSA",
+      "source_url": "https://slsa.dev/spec/v1.2/provenance",
+      "original_mechanism": "provenance",
+      "classification": "LIMITED_ANALOGY",
+      "note": "Build/source provenance is related to but distinct from control and execution plane roles.",
+      "claim_boundary": "CONCEPTUAL_TRANSFER_NOT_NORMATIVE",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D10",
+      "criterion": "REUSE → EXTEND → ADAPTER ilkesi",
+      "source_id": "NIST_SSDF",
+      "source_url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+      "original_mechanism": "software_lifecycle",
+      "classification": "EVIDENCE_NOT_EQUIVALENT",
+      "note": "NIST SSDF secure software practices do not prescribe REUSE EXTEND ADAPTER priority.",
+      "claim_boundary": "REQUIRE_ENGURU_SPECIFIC_PROOF",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D11",
+      "criterion": "Ürün, çekirdek ve yetki sınırları",
+      "source_id": "OPENSSF",
+      "source_url": "https://openssf.org/projects/scorecard/",
+      "original_mechanism": "token_permissions",
+      "classification": "LIMITED_ANALOGY",
+      "note": "OpenSSF token permission assesses one dimension, not all authority rules.",
+      "claim_boundary": "CONCEPTUAL_TRANSFER_NOT_NORMATIVE",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D12",
+      "criterion": "Sistemler arası gerçek entegrasyon",
+      "source_id": "LANGGRAPH",
+      "source_url": "https://github.com/langchain-ai/docs/blob/main/src/oss/langgraph/persistence.mdx",
+      "original_mechanism": "graph_execution_state",
+      "classification": "EVIDENCE_NOT_EQUIVALENT",
+      "note": "LangGraph persistence supports state; full inter-product integration needs separate integration tests.",
+      "claim_boundary": "REQUIRE_ENGURU_SPECIFIC_PROOF",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D13",
+      "criterion": "Canonical V3 ve kaynak kilidi",
+      "source_id": "SLSA",
+      "source_url": "https://slsa.dev/spec/v1.2/provenance",
+      "original_mechanism": "source_provenance",
+      "classification": "LIMITED_ANALOGY",
+      "note": "SLSA shows provenance mechanism; ENGURU V3 document hash remains its own assurance.",
+      "claim_boundary": "CONCEPTUAL_TRANSFER_NOT_NORMATIVE",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D14",
+      "criterion": "Sürüm / HEAD / kaynak güncelliği",
+      "source_id": "SLSA",
+      "source_url": "https://slsa.dev/spec/v1.2/provenance",
+      "original_mechanism": "source_provenance",
+      "classification": "MECHANISM_ALIGNED",
+      "note": "SLSA provenance tracks verifiable revisions and build inputs.",
+      "claim_boundary": "MECHANISM_ONLY_NO_FIELD_CERTIFICATION",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D15",
+      "criterion": "Terminoloji ve sözleşme tutarlılığı",
+      "source_id": "NIST_AI_RMF",
+      "source_url": "https://airc.nist.gov/airmf-resources/playbook/",
+      "original_mechanism": "govern",
+      "classification": "LIMITED_ANALOGY",
+      "note": "NIST governance supports accountability; positive terminology is ENGURU-internal.",
+      "claim_boundary": "CONCEPTUAL_TRANSFER_NOT_NORMATIVE",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D16",
+      "criterion": "Bütün ürün depolarında eşleşme",
+      "source_id": "OPENSSF",
+      "source_url": "https://openssf.org/projects/scorecard/",
+      "original_mechanism": "repo_security_checks",
+      "classification": "EVIDENCE_NOT_EQUIVALENT",
+      "note": "OpenSSF checks individual scanned repositories; it cannot establish all ENGURU repositories were audited.",
+      "claim_boundary": "REQUIRE_ENGURU_SPECIFIC_PROOF",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D17",
+      "criterion": "Ölçülebilir kabul matrisi",
+      "source_id": "ANTHROPIC_EVALS",
+      "source_url": "https://www.anthropic.com/research/demystifying-evals-for-ai-agents",
+      "original_mechanism": "task_grader",
+      "classification": "MECHANISM_ALIGNED",
+      "note": "Anthropic evaluates task acceptance with graders and checks.",
+      "claim_boundary": "MECHANISM_ONLY_NO_FIELD_CERTIFICATION",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D18",
+      "criterion": "Bağımlılık ve kritik yol analizi",
+      "source_id": "DORA",
+      "source_url": "https://dora.dev/guides/dora-metrics/",
+      "original_mechanism": "flow_efficiency",
+      "classification": "EVIDENCE_NOT_EQUIVALENT",
+      "note": "DORA throughput helps locate delivery friction but does not determine a project's critical-path dependency graph.",
+      "claim_boundary": "REQUIRE_ENGURU_SPECIFIC_PROOF",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D19",
+      "criterion": "Bütünleşik iş blokları",
+      "source_id": "DORA",
+      "source_url": "https://dora.dev/guides/dora-metrics/",
+      "original_mechanism": "change_lead_time",
+      "classification": "LIMITED_ANALOGY",
+      "note": "DORA change lead time and batch size relate to work grouping but do not define ENGURU blocks.",
+      "claim_boundary": "CONCEPTUAL_TRANSFER_NOT_NORMATIVE",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D20",
+      "criterion": "Gerçek devir ve görev sürekliliği",
+      "source_id": "LANGGRAPH",
+      "source_url": "https://github.com/langchain-ai/docs/blob/main/src/oss/langgraph/persistence.mdx",
+      "original_mechanism": "checkpoint_thread",
+      "classification": "MECHANISM_ALIGNED",
+      "note": "LangGraph checkpoints store resumable thread state.",
+      "claim_boundary": "MECHANISM_ONLY_NO_FIELD_CERTIFICATION",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D21",
+      "criterion": "Ön simülasyon ve negatif senaryolar",
+      "source_id": "ANTHROPIC_EVALS",
+      "source_url": "https://www.anthropic.com/research/demystifying-evals-for-ai-agents",
+      "original_mechanism": "regression_evals",
+      "classification": "MECHANISM_ALIGNED",
+      "note": "Anthropic regression tests and negative cases exercise failure behaviours.",
+      "claim_boundary": "MECHANISM_ONLY_NO_FIELD_CERTIFICATION",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D22",
+      "criterion": "İki/üç turlu değerlendirme",
+      "source_id": "ANTHROPIC_EVALS",
+      "source_url": "https://www.anthropic.com/research/demystifying-evals-for-ai-agents",
+      "original_mechanism": "trial_consistency",
+      "classification": "LIMITED_ANALOGY",
+      "note": "Anthropic repeats trials, not mandatory three rounds of design repair.",
+      "claim_boundary": "CONCEPTUAL_TRANSFER_NOT_NORMATIVE",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D23",
+      "criterion": "Eksik analizi ve rubrik",
+      "source_id": "NIST_SSDF",
+      "source_url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+      "original_mechanism": "root_cause",
+      "classification": "LIMITED_ANALOGY",
+      "note": "NIST SSDF root-cause principles focus on security weaknesses, extended by analogy.",
+      "claim_boundary": "CONCEPTUAL_TRANSFER_NOT_NORMATIVE",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D24",
+      "criterion": "Ürünler arası tekrarlanabilir uygulama",
+      "source_id": "ANTHROPIC_EVALS",
+      "source_url": "https://www.anthropic.com/research/demystifying-evals-for-ai-agents",
+      "original_mechanism": "code_graders",
+      "classification": "LIMITED_ANALOGY",
+      "note": "Anthropic code graders require per-task criteria, not default cross-product transfer.",
+      "claim_boundary": "CONCEPTUAL_TRANSFER_NOT_NORMATIVE",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D25",
+      "criterion": "GitHub üzerinden kaynak değişikliği",
+      "source_id": "SLSA",
+      "source_url": "https://slsa.dev/spec/v1.2/provenance",
+      "original_mechanism": "source_integrity",
+      "classification": "MECHANISM_ALIGNED",
+      "note": "SLSA source track links source changes to provenance.",
+      "claim_boundary": "MECHANISM_ONLY_NO_FIELD_CERTIFICATION",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D26",
+      "criterion": "Gerçek görev onarımı ve yürütme",
+      "source_id": "DORA",
+      "source_url": "https://dora.dev/guides/dora-metrics/",
+      "original_mechanism": "change_delivery",
+      "classification": "LIMITED_ANALOGY",
+      "note": "DORA measures deployed changes; user task completion needs separate outcomes.",
+      "claim_boundary": "CONCEPTUAL_TRANSFER_NOT_NORMATIVE",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D27",
+      "criterion": "Mac OSi / GitHub icra bağlaması",
+      "source_id": "SLSA",
+      "source_url": "https://slsa.dev/spec/v1.2/provenance",
+      "original_mechanism": "build_provenance",
+      "classification": "LIMITED_ANALOGY",
+      "note": "SLSA build provenance is separate from Mac OSi native runtime evidence.",
+      "claim_boundary": "CONCEPTUAL_TRANSFER_NOT_NORMATIVE",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D28",
+      "criterion": "Tam otomatik uçtan uca görev döngüsü",
+      "source_id": "LANGGRAPH",
+      "source_url": "https://github.com/langchain-ai/docs/blob/main/src/oss/langgraph/persistence.mdx",
+      "original_mechanism": "persistence",
+      "classification": "LIMITED_ANALOGY",
+      "note": "LangGraph persistence alone cannot establish autonomous end-to-end task completion.",
+      "claim_boundary": "CONCEPTUAL_TRANSFER_NOT_NORMATIVE",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D29",
+      "criterion": "Gerçek birim ve regresyon testleri",
+      "source_id": "ANTHROPIC_EVALS",
+      "source_url": "https://www.anthropic.com/research/demystifying-evals-for-ai-agents",
+      "original_mechanism": "regression_evals",
+      "classification": "MECHANISM_ALIGNED",
+      "note": "Anthropic evaluation regression suites test retained behaviours.",
+      "claim_boundary": "MECHANISM_ONLY_NO_FIELD_CERTIFICATION",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D30",
+      "criterion": "Negatif ve güvenlik senaryoları",
+      "source_id": "NIST_SSDF",
+      "source_url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+      "original_mechanism": "vulnerability_prevention",
+      "classification": "MECHANISM_ALIGNED",
+      "note": "NIST SSDF describes vulnerability-prevention controls.",
+      "claim_boundary": "MECHANISM_ONLY_NO_FIELD_CERTIFICATION",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D31",
+      "criterion": "PR üzerinde gözlenen CI",
+      "source_id": "OPENSSF",
+      "source_url": "https://openssf.org/projects/scorecard/",
+      "original_mechanism": "ci_checks",
+      "classification": "MECHANISM_ALIGNED",
+      "note": "OpenSSF Scorecard evaluates repositories through automated checks.",
+      "claim_boundary": "MECHANISM_ONLY_NO_FIELD_CERTIFICATION",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D32",
+      "criterion": "Bağımsız reviewer kabulü",
+      "source_id": "ANTHROPIC_EVALS",
+      "source_url": "https://www.anthropic.com/research/demystifying-evals-for-ai-agents",
+      "original_mechanism": "human_grading",
+      "classification": "LIMITED_ANALOGY",
+      "note": "Anthropic human graders are an analogy, not proof of authorized independent PR reviewer.",
+      "claim_boundary": "CONCEPTUAL_TRANSFER_NOT_NORMATIVE",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D33",
+      "criterion": "STATE / CLAIM / EVIDENCE ayrımı",
+      "source_id": "ANTHROPIC_EVALS",
+      "source_url": "https://www.anthropic.com/research/demystifying-evals-for-ai-agents",
+      "original_mechanism": "outcome_grading",
+      "classification": "MECHANISM_ALIGNED",
+      "note": "Anthropic recommends grading observed outcome, not merely claims.",
+      "claim_boundary": "MECHANISM_ONLY_NO_FIELD_CERTIFICATION",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D34",
+      "criterion": "SHA-256 ve provenance",
+      "source_id": "SLSA",
+      "source_url": "https://slsa.dev/spec/v1.2/provenance",
+      "original_mechanism": "build_provenance",
+      "classification": "MECHANISM_ALIGNED",
+      "note": "SLSA build provenance binds artifacts to build inputs.",
+      "claim_boundary": "MECHANISM_ONLY_NO_FIELD_CERTIFICATION",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D35",
+      "criterion": "Bağımsız ikinci doğrulama",
+      "source_id": "SLSA",
+      "source_url": "https://slsa.dev/spec/v1.2/provenance",
+      "original_mechanism": "provenance_verification",
+      "classification": "LIMITED_ANALOGY",
+      "note": "SLSA attestation verification is distinct from human-review identity.",
+      "claim_boundary": "CONCEPTUAL_TRANSFER_NOT_NORMATIVE",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D36",
+      "criterion": "Üçlü gerçek tamamlanma muhasebesi",
+      "source_id": "NIST_AI_RMF",
+      "source_url": "https://airc.nist.gov/airmf-resources/playbook/",
+      "original_mechanism": "measure",
+      "classification": "LIMITED_ANALOGY",
+      "note": "NIST measure risk; execution/evidence/authority three-account design belongs to ENGURU.",
+      "claim_boundary": "CONCEPTUAL_TRANSFER_NOT_NORMATIVE",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D37",
+      "criterion": "Gizli bilgi ve veri sınırları",
+      "source_id": "NIST_SSDF",
+      "source_url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+      "original_mechanism": "secure_build",
+      "classification": "LIMITED_ANALOGY",
+      "note": "SSDF security practices are broad; actual secret-boundary control is implementation specific.",
+      "claim_boundary": "CONCEPTUAL_TRANSFER_NOT_NORMATIVE",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D38",
+      "criterion": "Human Threshold™ yetki ayrımı",
+      "source_id": "NIST_AI_RMF",
+      "source_url": "https://airc.nist.gov/airmf-resources/playbook/",
+      "original_mechanism": "govern",
+      "classification": "MECHANISM_ALIGNED",
+      "note": "NIST Govern defines risk roles and oversight principles.",
+      "claim_boundary": "MECHANISM_ONLY_NO_FIELD_CERTIFICATION",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D39",
+      "criterion": "Fail-closed / HOLD / BLOCKED",
+      "source_id": "OPENSSF",
+      "source_url": "https://openssf.org/projects/scorecard/",
+      "original_mechanism": "risk_assessment",
+      "classification": "LIMITED_ANALOGY",
+      "note": "OpenSSF risk checks do not define ENGURU HOLD/BLOCKED machine states.",
+      "claim_boundary": "CONCEPTUAL_TRANSFER_NOT_NORMATIVE",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D40",
+      "criterion": "Sıfır ek maliyetin gerçek doğrulanması",
+      "source_id": "DORA",
+      "source_url": "https://dora.dev/guides/dora-metrics/",
+      "original_mechanism": "delivery_cost_tradeoff",
+      "classification": "EVIDENCE_NOT_EQUIVALENT",
+      "note": "DORA delivery metrics do not establish zero additional paid costs; verify actual spend and budgets separately.",
+      "claim_boundary": "REQUIRE_ENGURU_SPECIFIC_PROOF",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D41",
+      "criterion": "Kalıcı kayıt / checkpoint",
+      "source_id": "LANGGRAPH",
+      "source_url": "https://github.com/langchain-ai/docs/blob/main/src/oss/langgraph/persistence.mdx",
+      "original_mechanism": "checkpoint_thread",
+      "classification": "MECHANISM_ALIGNED",
+      "note": "LangGraph provides durable state via checkpointers.",
+      "claim_boundary": "MECHANISM_ONLY_NO_FIELD_CERTIFICATION",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D42",
+      "criterion": "Idempotent yeniden yürütme",
+      "source_id": "LANGGRAPH",
+      "source_url": "https://github.com/langchain-ai/docs/blob/main/src/oss/langgraph/persistence.mdx",
+      "original_mechanism": "pending_writes",
+      "classification": "EVIDENCE_NOT_EQUIVALENT",
+      "note": "LangGraph checkpointers do not guarantee once-only external effects; use effect ledger/idempotency test.",
+      "claim_boundary": "REQUIRE_ENGURU_SPECIFIC_PROOF",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D43",
+      "criterion": "Gerçek zamanlanmış denetim güvenilirliği",
+      "source_id": "GOOGLE_SRE",
+      "source_url": "https://sre.google/workbook/implementing-slos/",
+      "original_mechanism": "reliability_sli",
+      "classification": "MECHANISM_ALIGNED",
+      "note": "Google SRE SLI/SLO support reliability indicators.",
+      "claim_boundary": "MECHANISM_ONLY_NO_FIELD_CERTIFICATION",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D44",
+      "criterion": "Saha restart / recovery kabulü",
+      "source_id": "GOOGLE_SRE",
+      "source_url": "https://sre.google/workbook/implementing-slos/",
+      "original_mechanism": "error_budget",
+      "classification": "LIMITED_ANALOGY",
+      "note": "SRE error budgets measure reliability but not native Mac restart acceptance.",
+      "claim_boundary": "CONCEPTUAL_TRANSFER_NOT_NORMATIVE",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D45",
+      "criterion": "Yöntemlere tek yerden erişim",
+      "source_id": "SLSA",
+      "source_url": "https://slsa.dev/spec/v1.2/provenance",
+      "original_mechanism": "source_provenance",
+      "classification": "EVIDENCE_NOT_EQUIVALENT",
+      "note": "SLSA provenance tracks artifact origins rather than one UX entry point; ENGURU entry needs its own tests.",
+      "claim_boundary": "REQUIRE_ENGURU_SPECIFIC_PROOF",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D46",
+      "criterion": "Kullanıcı için kolay ve tek hareketli icra",
+      "source_id": "GOOGLE_SRE",
+      "source_url": "https://sre.google/workbook/implementing-slos/",
+      "original_mechanism": "user_facing_sli",
+      "classification": "LIMITED_ANALOGY",
+      "note": "SRE service indicators can measure experience only when user-friction metric is defined.",
+      "claim_boundary": "CONCEPTUAL_TRANSFER_NOT_NORMATIVE",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D47",
+      "criterion": "Gerçek maliyet / süre kazanımının ölçümü",
+      "source_id": "DORA",
+      "source_url": "https://dora.dev/guides/dora-metrics/",
+      "original_mechanism": "five_delivery_metrics",
+      "classification": "LIMITED_ANALOGY",
+      "note": "DORA delivery metrics do not quantify all real money or user-time savings.",
+      "claim_boundary": "CONCEPTUAL_TRANSFER_NOT_NORMATIVE",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    },
+    {
+      "control_id": "D48",
+      "criterion": "Baştan sona teslim edilen kullanıcı işi",
+      "source_id": "ANTHROPIC_EVALS",
+      "source_url": "https://www.anthropic.com/research/demystifying-evals-for-ai-agents",
+      "original_mechanism": "outcome_grading",
+      "classification": "MECHANISM_ALIGNED",
+      "note": "Anthropic graders measure task outcomes against explicit criteria.",
+      "claim_boundary": "MECHANISM_ONLY_NO_FIELD_CERTIFICATION",
+      "reviewed_by": "AI_SOURCE_SECOND_LOOK_NOT_INDEPENDENT_HUMAN"
+    }
+  ],
+  "watchlist": [
+    "D02",
+    "D08",
+    "D10",
+    "D12",
+    "D16",
+    "D18",
+    "D40",
+    "D42",
+    "D45"
+  ],
+  "status": "AI_SEMANTIC_SECOND_LOOK_COMPLETED_HUMAN_AUTHORITY_HOLD",
+  "limits": [
+    "Source analogy not certification",
+    "Human independent reviewer remains HOLD",
+    "OSi/official DoneCheck remains HOLD"
+  ]
+}

@@ -18,6 +18,9 @@ on:
       - 'governance/enguru-suzgeci/ENGURU_ANA_TERAZI_5X100_V1.md'
       - 'governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json'
       - '.github/workflows/enguru-design48-theoretical.yml'
+      - 'governance/enguru-suzgeci/ENGURU_D48_SEMANTIK_INCELEME_SON_RAPOR_V1.md'
+      - 'tools/enguru_d48_semantic_adversarial_v1.py'
+      - 'governance/enguru-suzgeci/ENGURU_D48_SEMANTIK_KARSIT_INCELEME_V1.json'
       - 'tools/enguru_method_dynamic_loop_v2.py'
       - 'tools/enguru_method_dynamic_adversarial_v2.py'
       - 'governance/enguru-suzgeci/ENGURU_DINAMIK_SIMULASYON_V2_CASES.json'
@@ -50,6 +53,9 @@ on:
       - 'governance/enguru-suzgeci/ENGURU_GITHUB_METHOD_ENTRY_V2.md'
       - 'governance/enguru-suzgeci/ENGURU_METHOD_DESKTOP_AUDIT_V2.md'
       - 'governance/enguru-suzgeci/ENGURU_CALISMA_YONTEMLERI_ATLASI_V1.md'
+      - 'governance/enguru-suzgeci/ENGURU_D48_SEMANTIK_KARSIT_INCELEME_V1.json'
+      - 'tools/enguru_d48_semantic_adversarial_v1.py'
+      - 'governance/enguru-suzgeci/ENGURU_D48_SEMANTIK_INCELEME_SON_RAPOR_V1.md'
   workflow_dispatch:
 permissions:
   contents: read
@@ -193,6 +199,54 @@ jobs:
           assert r["independent_human_review"]=="HOLD"
           print("ADVERSARIAL_TEST=PASS; MUTATIONS=576; SCENARIO_ASSERTIONS=52; FALSE_POSITIVE=0")
           PY
+      - name: Peer mapping semantic crosswalk falsification SOURCE round
+        run: |
+          python -B tools/enguru_d48_semantic_adversarial_v1.py SOURCE > "$RUNNER_TEMP/enguru-d48-crosswalk-source.json"
+          python -B - "$RUNNER_TEMP/enguru-d48-crosswalk-source.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert r["verdict"]=="PASS_SEMANTIC_SCOPE_TEST"
+          assert r["mode"]=="SOURCE"
+          assert r["control_count"]==48 and r["source_count"]==8
+          assert r["mutation_attempts"]==r["caught"]
+          assert r["false_pass"]==[]
+          assert r["classifications"]=={"MECHANISM_ALIGNED":17,"LIMITED_ANALOGY":22,"EVIDENCE_NOT_EQUIVALENT":9}
+          assert r["independent_human_review"]=="HOLD"
+          assert r["official_donecheck"]=="HOLD"
+          print("PEER_CROSSWALK_SOURCE=PASS; MUTATIONS="+str(r["caught"])+"; CLAIM_INFLATION=0")
+          PY
+      - name: Peer mapping semantic crosswalk falsification SEMANTIC round
+        run: |
+          python -B tools/enguru_d48_semantic_adversarial_v1.py SEMANTIC > "$RUNNER_TEMP/enguru-d48-crosswalk-semantic.json"
+          python -B - "$RUNNER_TEMP/enguru-d48-crosswalk-semantic.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert r["verdict"]=="PASS_SEMANTIC_SCOPE_TEST"
+          assert r["mode"]=="SEMANTIC"
+          assert r["control_count"]==48 and r["source_count"]==8
+          assert r["mutation_attempts"]==r["caught"]
+          assert r["false_pass"]==[]
+          assert r["classifications"]=={"MECHANISM_ALIGNED":17,"LIMITED_ANALOGY":22,"EVIDENCE_NOT_EQUIVALENT":9}
+          assert r["independent_human_review"]=="HOLD"
+          assert r["official_donecheck"]=="HOLD"
+          print("PEER_CROSSWALK_SEMANTIC=PASS; MUTATIONS="+str(r["caught"])+"; CLAIM_INFLATION=0")
+          PY
+      - name: Peer mapping semantic crosswalk falsification AUTHORITY round
+        run: |
+          python -B tools/enguru_d48_semantic_adversarial_v1.py AUTHORITY > "$RUNNER_TEMP/enguru-d48-crosswalk-authority.json"
+          python -B - "$RUNNER_TEMP/enguru-d48-crosswalk-authority.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert r["verdict"]=="PASS_SEMANTIC_SCOPE_TEST"
+          assert r["mode"]=="AUTHORITY"
+          assert r["control_count"]==48 and r["source_count"]==8
+          assert r["mutation_attempts"]==r["caught"]
+          assert r["false_pass"]==[]
+          assert r["classifications"]=={"MECHANISM_ALIGNED":17,"LIMITED_ANALOGY":22,"EVIDENCE_NOT_EQUIVALENT":9}
+          assert r["independent_human_review"]=="HOLD"
+          assert r["official_donecheck"]=="HOLD"
+          print("PEER_CROSSWALK_AUTHORITY=PASS; MUTATIONS="+str(r["caught"])+"; CLAIM_INFLATION=0")
+          PY
       - name: Attach theoretical receipt, separate from official DoneCheck
         uses: actions/upload-artifact@v4
         with:
@@ -207,4 +261,7 @@ jobs:
             ${{ runner.temp }}/enguru-stage234-readiness.json
             ${{ runner.temp }}/enguru-dynamic-loop-v2.json
             ${{ runner.temp }}/enguru-dynamic-adversarial-v2.json
+            ${{ runner.temp }}/enguru-d48-crosswalk-source.json
+            ${{ runner.temp }}/enguru-d48-crosswalk-semantic.json
+            ${{ runner.temp }}/enguru-d48-crosswalk-authority.json
           if-no-files-found: error
