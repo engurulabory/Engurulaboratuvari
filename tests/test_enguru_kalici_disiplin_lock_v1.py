@@ -76,6 +76,14 @@ class EightStageLockTests(unittest.TestCase):
         self.modify(PRODUCT, lambda s: s.replace("P02 12/12", "P02 9/12"))
         self.assertIn("PILIVE_TARGET_CONTRACT", verify(self.root)["errors"])
 
+    def test_pilive_donecheck_four_requirement_is_mandatory(self):
+        self.modify(PRODUCT, lambda s: s.replace("4/4 DoneCheck", "3/4 DoneCheck"))
+        self.assertIn("PILIVE_TARGET_CONTRACT", verify(self.root)["errors"])
+
+    def test_pilive_seven_field_conditions_are_mandatory(self):
+        self.modify(PRODUCT, lambda s: s.replace("7/7 saha şartı", "6/7 saha şartı"))
+        self.assertIn("PILIVE_TARGET_CONTRACT", verify(self.root)["errors"])
+
 
 if __name__ == "__main__":
     unittest.main()
