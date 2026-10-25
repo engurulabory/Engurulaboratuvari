@@ -8,7 +8,7 @@ from pathlib import Path
 
 FILE = Path(__file__).resolve().parents[1] / "governance/enguru-suzgeci/reviews/ENGURU_ARGE_BLOCK01_PROVENANCE_V425.json"
 IDS = {f"A{x:02d}" for x in range(1, 10)}
-ROOT = FILE.parents[1]
+ROOT = FILE.parents[3]  # FILE is under governance/enguru-suzgeci/reviews/
 A04_PARTIAL = ("A04", "license_security_review")
 PINNED_BLOB = "86dbf7a09997854019448a3a8266f1de1885694f"
 
