@@ -12,6 +12,7 @@ SOURCES=(
     "run_three_simulations.py","OSI_HANDOFF_PREPARATION.md","ACCEPTANCE_MATRIX.md","README.md",
     "root_license_observations.json","license_gate.py","test_license_gate.py",
     "external_skill_proof_plan.json","test_external_skill_plan.py",
+    "test_upstream_hypothesis.py","run_real_upstream_trials.py",
 )
 V3="governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md"
 V3_SHA="11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc"
