@@ -45,12 +45,16 @@ def build(registry, facts, *, revision_before, revision_after, pins_before,
     require(isinstance(entries,dict) and 0<len(entries)<=1000 and isinstance(facts,dict),
             'HOLD_PROJECT_SET')
     require(not (set(facts)-set(entries)),'HOLD_EXTRA_PROJECT_FACTS')
+    # Core bindings permit nonempty names; this presentation boundary admits the
+    # observed ASCII slug alphabet, including canonical suzgec_v24 unchanged.
+    # Check before sorting so malformed mixed key types also produce HOLD.
+    require(all(isinstance(k,str) and re.fullmatch('[a-z0-9][a-z0-9_-]{0,127}',k)
+                for k in entries),'HOLD_PROJECT_KEY')
     rows=[];seen=set()
     checks=('worklist','state','itemSetAgreement','singleActivePackage','singleActiveItem',
             'deterministicProjection','evidenceQualification','progressIntegrity')
     for key,entry in sorted(entries.items()):
-        require(isinstance(key,str) and re.fullmatch('[a-z0-9][a-z0-9-]{0,127}',key)
-                and isinstance(entry,dict),'HOLD_PROJECT_KEY')
+        require(isinstance(entry,dict),'HOLD_PROJECT_KEY')
         pid=entry.get('projectId')
         require(isinstance(pid,str) and re.fullmatch('[A-Za-z0-9_.-]{1,128}',pid)
                 and pid not in seen,'HOLD_PROJECT_ID')

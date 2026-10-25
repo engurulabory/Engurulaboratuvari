@@ -441,3 +441,13 @@ NEXT_ACTION=...
 - **Kaynak:** urn:enguru:pilive:reviewed-source:150c772bbec5d536f884888e84f1e9ee47bb6b6b870cbfe7ec4263df1b6c88b7 · SHA-256 `150c772bbec5d536f884888e84f1e9ee47bb6b6b870cbfe7ec4263df1b6c88b7`.
 - **OSi eşleşme kimliği:** `OSIBLOCK-PILIVE-RUNTIME-DEPENDENCY`.
 - **Karar:** `REVIEW_REQUIRED`; ürün kabul sayacı değişimi `0`; kontroller: GENERATE_NEGATIVE_REGRESSION_CANDIDATE.
+
+### Otomatik öğrenme adayı — MK-EVT-PILIVE-CANONICAL-KEY-REPAIR-9B40348A3606
+<!-- ENGURU_MK_EVENT_V1:eyJjYXVzZVN0YXR1cyI6IlVOS05PV04iLCJjb3JyZWxhdGlvbklkIjoiT1NJQkxPQ0stUElMSVZFLUNBTk9OSUNBTC1LRVkiLCJldmVudElkIjoiTUstRVZULVBJTElWRS1DQU5PTklDQUwtS0VZLVJFUEFJUi05QjQwMzQ4QTM2MDYiLCJldmlkZW5jZUxldmVsIjoiQSIsImV4cGVjdGVkIjoiUHJlc2VydmUgY2Fub25pY2FsIENvcmUga2V5cyBhbmQgcHJvamVjdCBpZGVudGl0aWVzIGF0IHRoZSBwcmVzZW50YXRpb24gYm91bmRhcnkuIiwiZml4UHJvcG9zYWwiOiJSZXRhaW4gdGhlIHVuZGVyc2NvcmUgc2x1ZyBhbmQgaWRlbnRpdHksIGNvdW50ZXIgYW5kIHNvdXJjZSBndWFyZHM7IHJlcXVpcmUgdGhlIGFjdHVhbCBuYXRpdmUgcmVwZWF0IGJlZm9yZSBwcm9kdWN0IGFjY2VwdGFuY2UuIiwib2JzZXJ2ZWQiOiJUaGUgY2FwdHVyZWQgbmF0aXZlIGlucHV0IHJlcHJvZHVjZWQgSE9MRF9QUk9KRUNUX0tFWS4gVGhlIHJlcGFpcmVkIGxvY2FsIHJlcGxheSByZXRhaW5zIGFsbCAxNSBpZGVudGl0aWVzIGFuZCBQMDIgY291bnRlZCB6ZXJvIG9mIHR3ZWx2ZS4gTmF0aXZlIHJlcGFpciBhY2NlcHRhbmNlIHJlbWFpbnMgSE9MRC4iLCJvYnNlcnZlZEF0IjoiMjAyNi0xMC0yNVQxOToxMDozMC40NDM0OTJaIiwic2NoZW1hIjoiZW5ndXJ1Lm1rLmV2aWRlbmNlLWV2ZW50L3YxIiwic291cmNlU2hhMjU2IjoiOWI0MDM0OGEzNjA2NWFmNDMwMmNiYTY1ZDExMTcwNDZlZDc0NDY2NzBlOTRlZTEwZWFlNjQ4ZjRmYmJiZjg1OCIsInNvdXJjZVVyaSI6InVybjplbmd1cnU6cGlsaXZlOnJldmlld2VkLWRpYWdub3N0aWM6OWI0MDM0OGEzNjA2NWFmNDMwMmNiYTY1ZDExMTcwNDZlZDc0NDY2NzBlOTRlZTEwZWFlNjQ4ZjRmYmJiZjg1OCIsInRhc2tJZCI6IkVOR1VSVV9QTElWRV9QMDJfVVNFUl9TQ1JFRU4iLCJ0ZXN0U3RhdGUiOiJQQVNTIiwidHlwZSI6IlNVQ0NFU1MifQ==:5d1f3010ec267ea666236cf24146bf3a86acfb12b8eb1e4ec1a3a791450ea090 -->
+- **Tür:** `SUCCESS` · **Seviye iddiası:** `A` · **Kanıt kontrolü:** `UNVERIFIED_EVIDENCE_POINTER`.
+- **Gözlem:** The captured native input reproduced HOLD_PROJECT_KEY. The repaired local replay retains all 15 identities and P02 counted zero of twelve. Native repair acceptance remains HOLD.
+- **Beklenti:** Preserve canonical Core keys and project identities at the presentation boundary.
+- **Önerilen fark:** Retain the underscore slug and identity, counter and source guards; require the actual native repeat before product acceptance.
+- **Kaynak:** urn:enguru:pilive:reviewed-diagnostic:9b40348a36065af4302cba65d1117046ed7446670e94ee10eae648f4fbbbf858 · SHA-256 `9b40348a36065af4302cba65d1117046ed7446670e94ee10eae648f4fbbbf858`.
+- **OSi eşleşme kimliği:** `OSIBLOCK-PILIVE-CANONICAL-KEY`.
+- **Karar:** `REVIEW_REQUIRED`; ürün kabul sayacı değişimi `0`; kontroller: SOURCE_REVIEW.

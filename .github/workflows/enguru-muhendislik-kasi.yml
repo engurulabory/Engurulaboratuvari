@@ -21,6 +21,8 @@ on:
       - 'tools/pilive_core_adapter_probe_v1.py'
       - 'tests/test_pilive_core_snapshot_adapter_v1.py'
       - 'tests/test_pilive_core_probe_diagnostic_v1.py'
+      - 'tests/test_pilive_canonical_keys_v1.py'
+      - 'tests/fixtures/pilive_core_keys_15_v1.json'
       - 'governance/pilive-learning/**'
       - '.github/workflows/enguru-muhendislik-kasi.yml'
   issue_comment:
@@ -55,6 +57,7 @@ jobs:
             python -m unittest discover -s tests -p 'test_pilive_project_set_v1.py' -v
             python -m unittest discover -s tests -p 'test_pilive_core_snapshot_adapter_v1.py' -v
             python -m unittest discover -s tests -p 'test_pilive_core_probe_diagnostic_v1.py' -v
+            python -m unittest discover -s tests -p 'test_pilive_canonical_keys_v1.py' -v
           done
 
   owner-comment-intake:

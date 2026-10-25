@@ -1,0 +1,22 @@
+{
+  "coreKeysAndProjectIds": {
+    "academy": "ENGURU_SOFTWARE_ENGINEERING_ACADEMY",
+    "ai-role-capability-integration": "ENGURU_AI_ROLE_CAPABILITY_INTEGRATION",
+    "ana-pilot": "ANA_PILOT_OPERATING_ARCHITECTURE_V01",
+    "enguru-contract-standard-v11-pilot": "ENGURU_CONTRACT_STANDARD_V11_PILOT",
+    "mac-engineer-product-harbor01": "ENGURU_MAC_ENGINEER_PRODUCT_HARBOR01_V26",
+    "mac-engineer-product-harbor01-osi-local": "ENGURU_MAC_ENGINEER_PRODUCT_HARBOR01_OSI_LOCAL_V26",
+    "mac-engineer-quality-baseline-v1": "ENGURU_MAC_ENGINEER_QUALITY_BASELINE_V1",
+    "operator-fabric-100": "ENGURU_OPERATOR_FABRIC_PERFORMANCE_100_V1",
+    "osi-foundation-100": "ENGURU_OSI_FOUNDATION_100",
+    "plive-p01-authorized-field": "ENGURU_PLIVE_P01_AUTHORIZED_FIELD",
+    "plive-p02-user-screen": "ENGURU_PLIVE_P02_USER_SCREEN",
+    "progress-core": "ENGURU_PROGRESS_CORE",
+    "suzgec-c03": "ENGURU_SUZGEC_C03",
+    "suzgec_v24": "ENGURU_SUZGEC_V24",
+    "visual-cockpit-premium-v1": "ENGURU_MAC_ENGINEER_PREMIUM_VISUAL_COCKPIT_V1"
+  },
+  "schema": "enguru.pilive.sanitized-core-identity-fixture/v1",
+  "scope": "Only Core keys and projectId identities; no private paths, Python content or progress facts",
+  "sourceReceiptSha256": "9b40348a36065af4302cba65d1117046ed7446670e94ee10eae648f4fbbbf858"
+}

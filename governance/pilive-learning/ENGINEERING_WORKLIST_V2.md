@@ -105,3 +105,14 @@ U01 kaynak bağı alt kanıtı ilerledi; exact Swift/build/toolchain/signing/bin
 ## Native adaptör HOLD — tanı onarımı
 
 Kullanıcı V1 paketinden `REASON=Hold` bildirdi. Gerçek durma şartı henüz bilinmiyor; 189 testin Mac sonucu makbuzla alınmadı. Araç, exception sınıfını yazıp ayrıntıyı kaybediyordu. Hata raporlama onarıldı: izinli HOLD kodu, özel Core olguları, revision/pin çerçevesi ve test sonucu HOLD makbuzunda korunur. Üç yeni regresyon dahil 88/88 PiLive testi üç izole turda PASS. Adaptör kabul koşulları korunur. Aynı SHA sabitli V1 paketini kullanan dar tanı komutu, testleri tekrar etmeden kesin HOLD nedenini ve kalan üç dependency kaynağını yeni orijinal/kopya makbuzuna alır. Native onarım hükmü bu makbuz gelene kadar HOLD.
+
+## Kesin canonical anahtar onarımı
+
+Native tanı makbuzu `9b40348a36065af4302cba65d1117046ed7446670e94ee10eae648f4fbbbf858` 15 gerçek Core projesi ve meşru `suzgec_v24` anahtarını içerir. Aynı özel girdiyle onarım öncesi HOLD_PROJECT_KEY yeniden üretildi. Core sözleşmesinin name alanı nonempty string; keşif anahtarı aynen korunur. Adaptörün dar ASCII sınırına yalnız `_` eklendi; tip doğrulaması sıralamadan önce yapılarak bozuk karma tipler de HOLD oldu. `projectId` ayrı kaldı.
+
+- [x] Tam 15 kimlikli makbuz tekrarında 15→15; P02 tekil 0/12 ve P02.S01.01, resmî HOLD. Diğer 14 proje olguları okunmadığından görünür HOLD.
+- [x] On bir yeni canonical-key regresyonu; tüm mevcut/yeni testler üç ayrı turda 203/203 PASS. Eksik/fazla küme mevcut Core-kümesi eşlik kontrolüyle, güvensiz/bozuk anahtar ve kimlik çakışması adaptör sınırında HOLD.
+- [x] Yalnız gizlisiz 15 key/projectId test fixture'ı; özel yollar, native Python ve ham makbuz yayımlanmadı.
+- [ ] Exact GitHub kaynaklarından native V2 test paketi + SHA; yerel onarım tekrarı ve tam saha/UI kabulü kendi kapısında.
+
+U01/U02/U05/U10/U12 alt kanıtları ilerledi. U01–U12 gerçek Mac kullanıcı kabulü, UI entegrasyonu, exact Swift/build/toolchain/signing/binary zinciri ve ayrı P02 resmî kabulü HOLD.
