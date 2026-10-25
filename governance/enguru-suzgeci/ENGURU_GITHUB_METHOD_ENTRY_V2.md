@@ -13,6 +13,18 @@
 6. [Dışarıdan karşıt senaryolar](../../tools/enguru_method_dynamic_adversarial_v2.py), özgün kabul paydası, sentetik/gerçek test ayrımı ve eylem yetkisi ayrı kontrol edilir.
 7. Erişilebilir gerçek mühendislik ve GitHub CI çalıştırılır; somut kaynak, commit, job, çıktı ve SHA kaydedilir. DoneCheck™ v1.2 ve gereken Human Threshold™ yalnız canonical kabul zinciri üzerinden kullanılabilir.
 
+## Altı alanda TRUE / deterministik karar sınırı
+
+CORE, ENGINE, AGENT, WEB, APP ve COMMERCE için **12 ortak + 4 alan kontrolü** sabittir. Gerçek işin kabul sonucu; ilk kurguda sabitlenmiş başarı ölçütü, gerçek kaynak kimliği, bağımsız kanıt ve gerekli yetkili karar üzerinden hesaplanır. Aynı **dondurulmuş doğrulanmış girdi ve kanıt anlık görüntüsü** aynı sonuç/aynı makbuz SHA-256 üretir. GitHub CI, gerçek kaynak üzerinde çalışmış olsa da özgün altı ürünün tamamlanması anlamına gelmez.
+
+- [Gerçek GitHub kaynak altı alan kapısı](../../tools/enguru_method_real_ci_gate_v2.py) gerçek GitHub REST commit/run verilerini okur; her alanda sabit 16 kontrolü muhafaza eder. [Bağımsız yazılmış negatif testler](../../tests/test_enguru_method_real_ci_gate_v2.py), bozuk SHA, başka repo, başarısız/eski CI ve kendiliğinden ürün PASS'i için `HOLD` bekler.
+- Gerçek kullanıcının işe başlama/bitme zamanı, müdahale ve onarım sayısı, yürütme maliyeti ve hedefe ulaşma kanıtı ilgili **özgün görev kaydında** ölçülür.
+- Önceden sabit üç tur sonuçları zorlama biçimde `100`e çıkarılmaz; sonuç `X/16` veya özgün kabul sözleşmesindeki gerçek paydadır. Kapsam dışı durumlarda `HOLD` ve kesin ihtiyaç verilir.
+- Tek kaynaklı veya kendini onaylayan yazılım testi yalnız **makine denetimi** sayılır. Bağımsız insan / gerçek issuer / DoneCheck™ / Human Threshold™ gerektiren kararlar özgün kapılarında tutulur.
+- Dış dünyadan gelen sonuçlar değişebilir; **aynı sabit girdinin ve doğrulanmış kanıtın hükmü deterministik**, yeni girdi/kanıtla yeniden hesaplama ve önceki makbuzun korunması esastır.
+
+**Gerçek sonuç ölçüsü:** Kanıtlı olarak tamamlanan özgün görev/iş. Kontrol/test/belge adedi gerçek ürün ilerleme sayacı değildir.
+
 ## Tek çıktı sözleşmesi
 
 ```text
