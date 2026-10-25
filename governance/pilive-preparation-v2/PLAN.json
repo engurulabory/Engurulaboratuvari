@@ -1,0 +1,241 @@
+{
+  "schema": "enguru.pilive.preparation-plan/v2",
+  "scope": "PREPARATION_ONLY",
+  "acceptanceSeparation": [
+    "SCREEN",
+    "P02",
+    "P01",
+    "P06"
+  ],
+  "p02Denominators": [
+    12,
+    4,
+    7
+  ],
+  "areas": [
+    "motor",
+    "core",
+    "web",
+    "app",
+    "agent"
+  ],
+  "methodDomains": 6,
+  "counterPolicy": "G00-G09 hazırlık kimlikleri P02 resmî sayacından ayrı; teknik model/test adedi özgün iş kabulü sayılmaz.",
+  "dependencyPolicy": "DAG_AND_SEPARATE_SCREEN_P02_BRANCHES",
+  "blocks": [
+    {
+      "id": "G00",
+      "title": "Donanım ve araç yeterliliği",
+      "requires": [],
+      "requirement": "arm64/M5 Pro/24 GiB/795.02 GiB ve altı araç envanteri; sürüm/SDK/izin/derleme ayrıca ölçülür.",
+      "passEvidence": "Rapor pini + native araç sürümleri/SDK/boş disk.",
+      "state": "ENVANTER_PASS_TOOLCHAIN_BUILD_HOLD",
+      "owner": "GitHub hazırlık mühendisi / gereken native işlerde yetkili yerel yürütücü"
+    },
+    {
+      "id": "G01",
+      "title": "Kaynak ve iç yönetişim uzlaştırması",
+      "requires": [
+        "G00"
+      ],
+      "requirement": "GitHub main, #188, #189 ve iki yerel HEAD; yedi kaynak içeriği, 11+2 dirty dosya ve yetkili sözleşme.",
+      "passEvidence": "Exact kaynak SHA + içerik + native readback; farklı dallar ayrı kaydedilir.",
+      "state": "HOLD_CANONICAL_CONTENT",
+      "owner": "GitHub hazırlık mühendisi / gereken native işlerde yetkili yerel yürütücü"
+    },
+    {
+      "id": "G02",
+      "title": "Mevcut PiLive V3.1 çalışma kabiliyeti",
+      "requires": [
+        "G01"
+      ],
+      "requirement": "V3.1 bundle ve binary korunur; mevcut build kaynağı bulunur, ayrı adayda açılış/kapanış/Finder yeniden açılış ölçülür.",
+      "passEvidence": "Kaynak→derleme manifesti→codesign kimliği→binary; GUI kaydı ve üç yaşam döngüsü.",
+      "state": "PLAN_PASS_NATIVE_HOLD",
+      "owner": "GitHub hazırlık mühendisi / gereken native işlerde yetkili yerel yürütücü"
+    },
+    {
+      "id": "G03",
+      "title": "Tek canonical veri omurgası",
+      "requires": [
+        "G01"
+      ],
+      "requirement": "Work Contract/Worklist/State → mevcut Progress Core verify → mevcut adaptör → salt-okunur UI.",
+      "passEvidence": "Gerçek komut/şema/sürüm; gerçek projeler ve canonical primaryArea/facet eşlemesi.",
+      "state": "HOLD_NATIVE_SCHEMA",
+      "owner": "GitHub hazırlık mühendisi / gereken native işlerde yetkili yerel yürütücü"
+    },
+    {
+      "id": "G04",
+      "title": "Deterministik iş ve ilerleme",
+      "requires": [
+        "G03"
+      ],
+      "requirement": "Gerçek ad/aşama/tek aktif iş/teknik pay/payda/resmî pay/payda; yüzde türetilir, kimlik bir kez sayılır.",
+      "passEvidence": "Altın kaynak örneği + ayrı oracle; aynı revizyonda aynı içerik SHA.",
+      "state": "MODEL_PASS_REAL_PARITY_HOLD",
+      "owner": "GitHub hazırlık mühendisi / gereken native işlerde yetkili yerel yürütücü"
+    },
+    {
+      "id": "G05",
+      "title": "Görünür ekran yüzeyi",
+      "requires": [
+        "G02",
+        "G04"
+      ],
+      "requirement": "Sessiz Orman Cockpit/Emin Baykuş; Genel Durum/Şimdi/Projeler/kanıt çekmecesi; beş sabit alan.",
+      "passEvidence": "Gerçek Mac ekranı, klavye/VoiceOver/Reduce Motion/dar pencere; owner görsel kabulü.",
+      "state": "CONTRACT_PASS_NATIVE_HOLD",
+      "owner": "GitHub hazırlık mühendisi / gereken native işlerde yetkili yerel yürütücü"
+    },
+    {
+      "id": "G06",
+      "title": "Yenileme ve performans",
+      "requires": [
+        "G03",
+        "G04"
+      ],
+      "requirement": "Atomik snapshot, tazelik, süre sınırı, bozuk veri ve yeniden doğrulama.",
+      "passEvidence": "100 proje adayı; 30 açılış/100 yenileme p50/p95/max; ham zaman makbuzu.",
+      "state": "PLAN_PASS_NATIVE_HOLD",
+      "owner": "GitHub hazırlık mühendisi / gereken native işlerde yetkili yerel yürütücü"
+    },
+    {
+      "id": "G07",
+      "title": "Dayanıklılık ve kalite",
+      "requires": [
+        "G05",
+        "G06"
+      ],
+      "requirement": "SIGKILL/uygulama restart/OS restart ayrı; JSON bozulması, kaynak kayması, tekrar, arşiv koruması ve erişilebilirlik.",
+      "passEvidence": "Ayrı test adayında ham native testler; önce/sonra SHA; recovery ve rollback readback.",
+      "state": "MODEL_PASS_NATIVE_HOLD",
+      "owner": "GitHub hazırlık mühendisi / gereken native işlerde yetkili yerel yürütücü"
+    },
+    {
+      "id": "G08",
+      "title": "P02 canonical finiş zinciri",
+      "requires": [
+        "G01",
+        "G03"
+      ],
+      "requirement": "S01–S04 özgün 12 iş; G3 issuer/grant/writer; 4 DoneCheck/7 saha koşulu/güvenlik/insan/native finiş.",
+      "passEvidence": "Gerçek canonical ID/koşul dökümü, mevcut policy bağı, bounded grant, yetkili writer, bağımsız readback.",
+      "state": "HOLD_CANONICAL_AUTHORITY",
+      "owner": "GitHub hazırlık mühendisi / gereken native işlerde yetkili yerel yürütücü"
+    },
+    {
+      "id": "G09",
+      "title": "GitHub hazırlığı ve Work devir kabulü",
+      "requires": [
+        "G02",
+        "G04",
+        "G05",
+        "G06",
+        "G07",
+        "G08"
+      ],
+      "requirement": "Genel yöntem + Hybrid + PiLive semantiği asgari puan; exact kaynak PR/CI, bağımsız inceleme, tek devir.",
+      "passEvidence": "Beş sabit 100/100 + exact-head CI; saha ve yetki ayrı HOLD.",
+      "state": "HOLD_FULL_FIVE_AXIS",
+      "owner": "GitHub hazırlık mühendisi / gereken native işlerde yetkili yerel yürütücü"
+    }
+  ],
+  "visual": {
+    "identity": [
+      "Sessiz Orman Cockpit",
+      "Emin Baykuş"
+    ],
+    "regions": [
+      "Genel Durum",
+      "Şimdi",
+      "Projeler",
+      "Kanıt çekmecesi"
+    ],
+    "labels": {
+      "empty": "Kayıtlı iş yok",
+      "unclassified": "Sınıflandırma bekliyor",
+      "stale": "Son doğrulanmış okuma"
+    },
+    "criteria": [
+      "Koyu orman; sakin tipografi; semantik Mac renkleri; dinamik yazı boyutu",
+      "Normal metin 4.5:1, büyük metin/odak ve UI öğeleri 3:1 kontrast hedefi; native ölçüm",
+      "VoiceOver sırası ve adları; Tab/Shift-Tab; ⌘R; odak korunumu",
+      "Reduce Motion: hareketi azaltan statik güncelleme; durum yalnız renkle aktarılmaz",
+      "Baykuş var olan assetten yeniden kullanılır; gerçek asset kaynağı bekleniyor"
+    ]
+  },
+  "snapshotProtocol": [
+    "Mevcut canonical writerın revision/CAS protokolü kaynak incelemesinde belirlenir.",
+    "Native verify sonucunun aynı kaynak revizyonu/digestleriyle atomik snapshotı; atomik dosya değişimi + dizin fsync yolu mevcut writer sözleşmesine bağlıdır.",
+    "Reader dosya tanıtıcısından sınırlı okur; kaynak başlıkları/şema/benzersiz kimlikler doğrulanır; ikinci okuma revizyon ve hashleri karşılaştırır.",
+    "Salt önce/sonra hash eşitliği ABA veya aradaki geçici değişim için tam atomiklik kanıtı sayılmaz; generation/revision bağı gelene kadar HOLD.",
+    "Son doğrulanmış snapshot kendi okuma zamanı ile korunur; kaynak hatasında taze veya VERIFIED hükmü yerine hata ve kesin sonraki hareket görünür."
+  ],
+  "performance": {
+    "status": "PROPOSED_TARGETS_NOT_MEASURED",
+    "dataset": "100 proje; özgün source fixture ve payload bayt boyutu manifestte",
+    "launch_p95_seconds": 3,
+    "refresh_p95_seconds": 1,
+    "read_timeout_seconds": 5,
+    "refresh_cadence_seconds": 5,
+    "stale_threshold_seconds": 30,
+    "max_payload_bytes": 2097152,
+    "memory_rss_mib_target": 250,
+    "samples": {
+      "cold_warm_launch": 30,
+      "refresh": 100
+    },
+    "measurement": "monotonic clock; soğuk/sıcak ayrı; en yakın sıra p95=sorted[ceil(.95*n)-1]; p50/p95/max/RSS; araç sürümü ve ham örnekler",
+    "limits": "300 saniye Brain V3 fixture örneğidir; 30 saniye öneri, native baseline ile yetkili karar bekler. Watcher eventleri debounce/coalesce; en fazla tek okuma; erişilebilir elle ⌘R."
+  },
+  "authority": {
+    "P01": "Önceki 2/2 VERIFIED/LOCKED; yedi metadata pininden ikisi eş; güncel native verification bekliyor.",
+    "P02": "Önceki 0/12 HOLD; resmî geçiş yalnız kendi writer/kabul zincirinde.",
+    "P06": "Ayrı güvenlik otoritesi; P01 veya yöntem kabulünden devralınan izin yok.",
+    "ProgressCore": "Mevcut reader/projection; tools/enguru_progress.py içeriği/CLI/sürümü okunup nitelendirilecek.",
+    "G3_A": "19 Ekim politika kaydı kaynak belgesinde PASS; cihaz signer/user-presence/provisioning bağı ayrı açık.",
+    "G3_B": "Gerçek project/item/action/HEAD/preimage/evidence/expiry/nonce scope grant; ayrı açık kullanıcı pilot kararı.",
+    "G3_C": "Mevcut yetkili bounded writer; CAS/nonce/append-only journal/revocation; JSON/SQLite durability sınırı ayrı.",
+    "G3_D": "P02.S01.01 ilk özgün geçiş + ön/son SHA + native readback + S01 DoneCheck.",
+    "DoneCheck": "4 özgün paket doğrulayıcısı ve producer provenance; adlar/CLI/authority gerçek canonical dosyalardan çıkarılır.",
+    "HumanThreshold": "Politika kararı, cihaz kimlik doğrulaması, grant, ürün kullanıcı kabulü ve final yetki ayrı scope.",
+    "historicalFailure": "PR #189 kaynak belgesi signingIdentityCount=1 / eligibleAuthorizedProfileCount=0 / SecItemAdd=-34018 bildiriyor; ham receipt incelenmediği için bu turda bağımsız kök neden hükmü HOLD."
+  },
+  "preserve": [
+    "Ana yerel repo 11 tracked değişiklik; dosya isimleri/içerik SHA henüz keşifte yok",
+    "Mac Engineer repo 2 tracked değişiklik; bu hazırlıkta repo yazımı 0",
+    "/Applications/ENGURU-PLive-V31.app binary pini ve bundle",
+    "AudiV13 orijinalleri, imzalar, tarihi sürümler ve masaüstü doğrulanmış kopyaları",
+    "P01/P02/P06 canonical kayıt/sayaç, özel anahtarlar, .env ve Keychain"
+  ],
+  "rollback": [
+    "GitHub inceleme dalı; main ve eski taslaklar kendi kimliklerinde korunur.",
+    "Mac icrası ayrı kapsam kararı sonrası yeni ve manifestle sahipliği doğrulanmış staging/test app bundle içinde.",
+    "Kurulu V3.1 yerine yazma ayrı karar kapısı; kaynak manifest ve korunmuş önceki binary önce/sonra eşleşir.",
+    "Belirsiz/kısmi resmî geçişte eski nonce ile otomatik tekrar yerine mevcut canonical recovery/verifier ve bağımsız readback.",
+    "Geri dönüş yalnız bu göreve ait staging/aday kapsamını kapsar; arşiv ve mevcut kullanıcı dosyaları korunur."
+  ],
+  "humanScope": {
+    "currentlyAuthorized": "GitHub hazırlık, test, taslak PR ve salt-okunur saha planı.",
+    "futureReadOnly": "Yedi açıkça adlandırılmış canonical dosya içeriği ve ilgili tracked kaynak adaylarının isim/SHA envanteri; stdout makbuzu. Uygulama açılışı, native Python yürütmesi, ağ ve Keychain erişimi 0.",
+    "futureMutation": "Exact source SHA + hedef staging/build/app yolları + gereken değişiklikler + korunacaklar + rollback + maliyet ayrı açık insan kararı.",
+    "officialP02": "G3 scope ve gerçek bağımsız otorite/DoneCheck/native kabul ayrıca doğrulanır."
+  },
+  "cost": {
+    "purchasedCredits": 0,
+    "paidApi": 0,
+    "newPurchases": 0,
+    "actionsBilling": "HOLD_ACCOUNT_LEDGER_NOT_READ",
+    "runtimeDependencies": "Python stdlib + mevcut Git; ücretli model/API bağı 0"
+  },
+  "openCanonicalQuestions": [
+    "12 özgün işin güncel adları/bağımlılıkları/kabul şartları",
+    "7 saha önkoşulunun özgün ID ve gerçek verifierı",
+    "4 DoneCheck komutu/provenance/yetkili issuer",
+    "Gerçek Progress Core şema/CLI/proje çözümleme ve mevcut adaptör",
+    "V3.1 Swift/build kaynağı, entitlements ve bundle kaynak manifesti",
+    "Yedi gerçek projenin primaryArea/facet kaydı; commerce alanının gerçek kayıt politikası",
+    "19 Ekim ham signer/provisioning/Keychain ve final gate makbuzları"
+  ]
+}
