@@ -67,3 +67,13 @@ python3 -B -m unittest -q test_zulfikar_v1_2 test_zulfikar_v1_3_gates
 ```
 
 **Hüküm sınırı:** Goal/specification, altyapı kod testi, exact-head CI, bağımsız reviewer, OSi ve gerçek ürün ayrı değerlendirilir. GitHub testinin PASS olması resmî Verified Finish üretmez. PiLive Work ve orijinal Mac kaynakları korunur.
+
+
+## Final 3 — R01/R02 gerçek kaynak onarımı (2026-10-25)
+
+- **R01 tür ve şema güvenliği:** `goal_gate` H01/H02 değerlerini metin türü ve dolu içerik olarak sınar; kontrol ID'leri ve DAG referanslarının hash işlemlerinden önce türü doğrulanır. Bozuk girdiler `HOLD_GOAL_SPECIFICATION` olarak değerlendirilir.
+- **R02 TA05 kaynak bütünlüğü:** Altı `SRC` dosyası `git show HEAD:<repo-relative-path>` üzerinden git commit'inin takip edilen baytlarıyla doğrudan karşılaştırılır. Eksik, symlink, değiştirilmiş, HEAD'de takip edilmeyen veya Git çalışma ağacı olmayan kaynaklar TA05'i kapatır. SHA-256 özetleri ayrıca raporlanır.
+- **Karşıt regresyonlar:** Sayı/list türündeki hedef, unhashable kontrol ve DAG referansları, temp Git deposunda gerçek committed-byte eşleşmesi, yerel değişiklik ve silinen dosya denetlenir.
+- **Güven sınırı:** TA05, **yerel checkout/HEAD tutarlılığı** kanıtıdır; uzaktan doğrulanmış SHA, bağımsız inceleme, yetkili signer, gerçek OSi runtime, müşteri etkisi veya saha kabulü değildir. Remote exact-head CI ayrıca kontrol edilir.
+- **İcra yeri:** `infra` kapısı Git HEAD bulunan **gerçek checkout** içinde değerlendirilir; yalnız dosya kopyasıyla çalıştırıldığında TA05 `HOLD` verir.
+- **Kabul:** Yeni commit'in exact-head CI ve bağımsız PR incelemesi ayrı kanıttır. `OSI_FIELD=HOLD`; `OFFICIAL_VERIFIED_FINISH=HOLD`. Korunan `main`, PiLive ve Human Threshold sınırları geçerlidir.
