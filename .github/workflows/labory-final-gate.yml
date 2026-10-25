@@ -162,6 +162,9 @@ jobs:
       - name: ENGURU Billing Core tests
         run: python -m unittest discover -s tests -p 'test_billing_core.py' -v
 
+      - name: End-to-end project preparation and authority boundary tests
+        run: python -B -m unittest discover -s tools/hybrid_handoff -p 'test_*.py' -v
+
       - name: PARK adapter mock tests
         run: python -m unittest discover -s tests -p 'test_park_mock.py' -v
 

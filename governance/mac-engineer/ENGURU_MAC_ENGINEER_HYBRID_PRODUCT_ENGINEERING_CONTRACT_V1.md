@@ -78,3 +78,7 @@ Test schema incompatibility; unsupported DoneCheck producerKind; missing Python/
 `PROPOSED → REVIEWED → GITHUB_PREPARED → OSI_FIELD_TESTED → HUMAN_ACCEPTED → VERIFIED_FINISH_LOCKED`. These are protocol projections, not a substitute for existing product-specific gate values. Merge/release and actual state promotion require applicable independent authorizations. This PR is **PROPOSED / GITHUB_PREPARATION** and does not claim OSi acceptance.
 
 **CLOSURE_CONDITION:** GitHub source integrity and PR review, signed artifact provenance, real OSi install/regression/DoneCheck, authorized Human Threshold, approved versioned finalizer and independently verified canonical Progress projection all PASS in one scoped final receipt.
+
+## Reusable project preparation adapter
+
+[Uçtan Uca Proje İcra Modu™ V1](../enguru-suzgeci/ENGURU_GITHUB_METHOD_ENTRY_V2.md) extends the existing handoff validator with `--mode project`. T1 plan/source preparation, T2 bounded adversarial simulations and T3 independent committed-byte verification remain within this contract. Shape validation, PREPARED, FIELD_READY, HUMAN_AUTHORIZED and VERIFIED_FINISH are separate. The project adapter performs read-only preparation; OSi installation, actual human authority, canonical DoneCheck and product finalization remain with their existing authorized mechanisms. The original handoff schema and historical receipts retain their scope.

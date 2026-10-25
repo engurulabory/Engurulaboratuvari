@@ -1,0 +1,213 @@
+{
+  "schema": "enguru.mac-engineer.hybrid-handoff/v1",
+  "state": "PENDING",
+  "projectId": "labory-mac-osi-transfer",
+  "subproduct": "Labory source handoff",
+  "executionMode": "HYBRID",
+  "canonicalRepo": "engurulabory/Engurulaboratuvari",
+  "sourceRef": "refs/heads/main",
+  "sourceCommit": "c1b6281163d2a52e7cb1ae4af0d50ae9a83a22c2",
+  "artifactDigest": "e67d334db503a280bc6399963ea4ee04d7e504b6481b891b34261dfbf17309ad",
+  "toolchain": {},
+  "testEvidence": [],
+  "negativeEvidence": [],
+  "licenseSecurity": {
+    "state": "HOLD",
+    "references": []
+  },
+  "osiInstallPlan": {
+    "state": "PENDING",
+    "steps": []
+  },
+  "rollbackPlan": {
+    "state": "PENDING",
+    "steps": []
+  },
+  "doneCheckRef": null,
+  "humanAuthorityScope": {
+    "state": "HOLD",
+    "scope": null
+  },
+  "progressProjectBinding": {
+    "state": "HOLD",
+    "projectId": null
+  },
+  "finalizerRef": null,
+  "verifiedFinish": "HOLD",
+  "authorityNote": "Template only. CI PASS is not local Verified Finish. Do not promote without OSi evidence.",
+  "suzgec": {
+    "state": "PENDING",
+    "claim": "UNVERIFIED",
+    "evidence": [],
+    "judgment": "HOLD",
+    "nextAction": "RECONCILE_CANONICAL_OSI_TRUTH",
+    "currentTruth": {
+      "githubCommit": null,
+      "osiHead": null,
+      "worktree": null,
+      "observedAt": null
+    },
+    "necessaryDifference": null,
+    "preservedArtifacts": [],
+    "preSendFilter": "HOLD"
+  },
+  "preflight": {
+    "wholeChainSimulation": "PENDING",
+    "schema": "HOLD",
+    "toolchains": "HOLD",
+    "nativeBinding": "HOLD",
+    "authority": "HOLD",
+    "negativeScenarios": [],
+    "rollback": "HOLD"
+  },
+  "fieldReceipt": {
+    "osiFieldState": "UNVERIFIED",
+    "nativeRegression": "HOLD",
+    "doneCheckFresh": "HOLD",
+    "humanAcceptance": "HOLD",
+    "authorizedFinalizer": "HOLD",
+    "progressReread": "HOLD"
+  },
+  "projectPlan": {
+    "version": "1",
+    "goal": "Labory kaynaklarını yetkili Mac OSi aktarımına hazırlama; bu örnek salt okunur hazırlıktır.",
+    "owner": "Abdal Dede — yerel hedef ve uygulama kapsamı kararı bekliyor",
+    "acceptance": [
+      {
+        "CONTROL_ID": "KAYNAK",
+        "REQUIREMENT": "Yetkili repo, HEAD ve izlenen dosyalar",
+        "PASS_CONDITION": "HEAD/origin/digest eşleşir",
+        "REQUIRED_EVIDENCE": "Git gözlemi + GitHub main",
+        "VERIFIER": "Git + GitHub API",
+        "AUTHORITY": "Kaynak incelemesi",
+        "STATE": "HOLD"
+      },
+      {
+        "CONTROL_ID": "KORUMA",
+        "REQUIREMENT": "Mevcut yerel dosya ve kayıtlar korunur",
+        "PASS_CONDITION": "Yeni staging; çakışmada HOLD",
+        "REQUIRED_EVIDENCE": "Mac salt okunur envanter + SHA",
+        "VERIFIER": "Yetkili yerel yürütücü",
+        "AUTHORITY": "Yerel kapsam kararı",
+        "STATE": "HOLD"
+      },
+      {
+        "CONTROL_ID": "AKTARIM",
+        "REQUIREMENT": "Geçmiş, dallar, dosyalar ve GitHub kayıt kapsamı ayrılır",
+        "PASS_CONDITION": "Tam ancestry ve seçilmiş refs doğrulanır",
+        "REQUIRED_EVIDENCE": "bundle/mirror verify + kayıt envanteri",
+        "VERIFIER": "Git fsck/archive + ayrı inceleme",
+        "AUTHORITY": "Aktarım için Human Threshold",
+        "STATE": "HOLD"
+      },
+      {
+        "CONTROL_ID": "FINIS",
+        "REQUIREMENT": "Yetkili gerçek saha ve canonical kabul",
+        "PASS_CONDITION": "DoneCheck/Human Threshold ve son durum eşleşir",
+        "REQUIRED_EVIDENCE": "Gerçek Mac receipt + canonical kabul",
+        "VERIFIER": "Yetkili finalizer",
+        "AUTHORITY": "DoneCheck + Human Threshold",
+        "STATE": "HOLD"
+      }
+    ],
+    "inventory": {
+      "history": "SOURCE_COMMIT_ANCESTORS: hazırlık kaynağı tam ancestry; uygulamada git bundle verify + git fsck --full.",
+      "files": "SHA256_MANIFEST: Git izlenen dosyalar; untracked/ignored, .git verisi ve secrets ayrı kapsam.",
+      "branches": "OBSERVED_LOCAL_REFS_ONLY: refsDigest yalnız gözlenen refs; uygulama öncesi remote heads/tags yeniden okunur, merge/promotion ayrı yetki.",
+      "githubRecords": "SCOPED_METADATA_ONLY: CORE #228 ENGINE #229 AGENT #230 WEB #231 COMMERCE #232 ve private APP #19 URL/HEAD/CI; issues, tüm PR yorumları, Actions logs/artifacts Git clone kapsamının dışındadır; gerekli kayıtlar ayrıca yetkili API/export ile envanterlenir.",
+      "secrets": "Yerel .env/Keychain/runtime secrets Mac üzerinde korunur; taşıma artefaktına yalnız izinli izlenen kaynak alınır."
+    },
+    "target": {
+      "platform": "macOS OSi — UNVERIFIED",
+      "path": "/Users/abdal/ENGURU/Engurulaboratuvari",
+      "collisionPolicy": "HOLD_PRESERVE_EXISTING",
+      "preserve": [
+        "Mevcut hedefin bütün dosyaları",
+        "dirty worktree ve dallar",
+        "Keychain/.env/runtime",
+        "imzalı tarihsel makbuzlar"
+      ]
+    },
+    "dependencies": [
+      {
+        "id": "source",
+        "requires": []
+      },
+      {
+        "id": "target-preflight",
+        "requires": [
+          "source"
+        ]
+      },
+      {
+        "id": "human-decision",
+        "requires": [
+          "target-preflight"
+        ]
+      },
+      {
+        "id": "staging",
+        "requires": [
+          "human-decision"
+        ]
+      },
+      {
+        "id": "verify",
+        "requires": [
+          "staging"
+        ]
+      },
+      {
+        "id": "accept",
+        "requires": [
+          "verify"
+        ]
+      }
+    ],
+    "tools": [
+      "Git: git --version, git bundle verify, git fsck --full, git archive",
+      "Python 3: python3 --version; stdlib test runner",
+      "Mac: sw_vers; df -k hedef; hedef izinleri ve araç sürümleri yerel gözlem bekliyor"
+    ],
+    "budget": {
+      "purchasedCredits": 0,
+      "paidApi": 0,
+      "purchases": 0,
+      "actionsBilling": "Public standart Ubuntu runner ücretsiz politika; hesap dökümü ayrı HOLD."
+    },
+    "steps": [
+      "Yetkili API ile main, HEAD ve scoped GitHub kayıtlarını yeniden oku; kaynak kaymasında yeniden hazırlık.",
+      "Yerel yürütücü hedef/disk/araç/dal/dirty/korunacak dosyaları salt okunur gözlesin; hedef yolu öneridir.",
+      "İnsan kararı tam repo/HEAD/hedef/işlem/rollback kapsamıyla alınsın.",
+      "Yetkili yerel yürütücü ayrı yeni staging içinde git clone --mirror ve doğrulanmış refs/bundle üretsin; GitHub kayıtları ayrı export kapsamıdır.",
+      "Ayrı staging worktree içinde exact SHA checkout; manifest, history/refs ve negatif/regresyon testlerini doğrula.",
+      "Yalnız doğrulanmış sahipli staging kapsamını yetkili kararla aktar; existing hedefte HOLD; native saha, DoneCheck ve Human Threshold ayrı kabul."
+    ],
+    "scenarios": {
+      "normal": "HEAD/manifest/history/refs eşleşir; staging ve saha kontrolüne sunulur.",
+      "interruption": "Commit/publish öncesi kesintide önceki hedef korunur; staging günlüğü ve digest tekrar okunur.",
+      "replay": "Aynı kaynak ve korunmuş staging yeniden doğrulanır; ikinci hedef veya ikinci kabul üretilmez.",
+      "collision": "Var olan hedef/foreign dosya/dirty worktree HOLD; kapsamlı insan kararı bekler.",
+      "wrongSource": "Repo/origin/HEAD/digest uyuşmazlığı HOLD.",
+      "missingAuthority": "Tam yerel kapsam onayı ve canonical finalizer erişimi gelene kadar saha/uygulama HOLD.",
+      "sourceDrift": "Hazırlık sonrası remote HEAD/ref değişirse yeni pin ve yeniden doğrulama gerekir.",
+      "disk": "Yerel disk/izin yetersizliğinde staging yazımı öncesi HOLD; korunmuş hedef sürer.",
+      "tool": "Git/Python/native bağımlılık eksiği FIELD_READY HOLD.",
+      "partial": "Eksik clone/export/artefakt veya digest farkında sonuç kabulü HOLD; özgün tamamlanan iş korunur.",
+      "rollback": "Yalnız manifestle sahipliği doğrulanan staging yetkili geri alma kapsamıdır; foreign/hedef dosyalar korunur."
+    },
+    "humanDecisionScope": "Önerilen repo/HEAD/hedef/aktarılacak refs/kayıtlar ve rollback kapsamına tam karar; mevcut izin yalnız GitHub hazırlığı.",
+    "risks": [
+      "Mac hedef gerçekliği ve izinleri UNVERIFIED",
+      "GitHub main ile yerel feature branch ayrışması",
+      "Git clone GitHub kayıtlarını kapsamaz",
+      "İmza/owner/finalizer yetkisi ayrı canonical zincirde"
+    ],
+    "rollback": {
+      "scope": "Yalnız bu işe ait manifestle doğrulanan yeni staging; mevcut hedef ve geçmiş kayıtlar korunur.",
+      "steps": "Kesintide staged veriyi karantinaya al ve yeniden doğrula; temizleme/yer değiştirme yetkili yerel kapsam kararını izler.",
+      "verification": "Önceki hedefin SHA/refs/dosya envanteri aynı; kaynak/pin ve restore gözlemi bağımsız doğrulanır."
+    },
+    "refsDigest": "a81c7e810ad799a5caee2e4522de419a34c53287677e4f15bd2a1d6ec9b31e44"
+  }
+}
