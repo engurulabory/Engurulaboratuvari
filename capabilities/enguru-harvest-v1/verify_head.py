@@ -9,7 +9,7 @@ BASE="capabilities/enguru-harvest-v1/"
 SOURCES=(
     "goal.json","source_candidates.json","harvest.py","evidence_gate.py",
     "skill_kernel.py","test_harvest.py","test_evidence_gate.py","test_skill_kernel.py",
-    "run_three_simulations.py","OSI_HANDOFF_PREPARATION.md","README.md",
+    "run_three_simulations.py","OSI_HANDOFF_PREPARATION.md","ACCEPTANCE_MATRIX.md","README.md",
 )
 V3="governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md"
 V3_SHA="11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc"
