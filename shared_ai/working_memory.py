@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field, replace
+from contextlib import contextmanager
 from datetime import datetime, timezone
 import json
 import os
@@ -8,6 +9,11 @@ from pathlib import Path
 import re
 import tempfile
 from typing import Any
+
+try:
+    import fcntl
+except ImportError:  # The current native runtime is POSIX; preserve fail-closed behavior elsewhere.
+    fcntl = None
 
 from shared_ai.harvest_controls import EvidenceGatedSkillLearning
 
@@ -151,7 +157,36 @@ class PersistentWorkingMemory(_JsonStore):
     def _task_path(self, task_id: str) -> Path:
         return self.root / "tasks" / f"{self._id(task_id, 'task_id')}.json"
 
+    @contextmanager
+    def _task_lock(self, task_id: str):
+        if fcntl is None:
+            raise WorkingMemoryError("task_lock_platform_unsupported")
+        path = self._task_path(task_id).with_suffix(".json.lock")
+        path.parent.mkdir(parents=True, exist_ok=True)
+        fd = os.open(path, os.O_RDWR | os.O_CREAT | getattr(os, "O_NOFOLLOW", 0), 0o600)
+        try:
+            # The stable lock file is separate from the atomically replaced
+            # record. Never unlink it: all writers must lock the same inode.
+            # Closing the descriptor (including SIGKILL) releases ownership.
+            fcntl.flock(fd, fcntl.LOCK_EX)
+            yield
+        finally:
+            os.close(fd)
+
     def create_task(
+        self,
+        *,
+        task_id: str,
+        objective: str,
+        authority_snapshot: dict[str, Any],
+        required_capabilities: tuple[str, ...],
+    ) -> DurableTaskRecord:
+        with self._task_lock(task_id):
+            return self._create_task(
+                task_id=task_id, objective=objective, authority_snapshot=authority_snapshot,
+                required_capabilities=required_capabilities)
+
+    def _create_task(
         self,
         *,
         task_id: str,
@@ -192,6 +227,25 @@ class PersistentWorkingMemory(_JsonStore):
         return record
 
     def update_task(
+        self,
+        task_id: str,
+        *,
+        expected_revision: int,
+        state: str | None = None,
+        reason: str = "",
+        artifact_refs: tuple[str, ...] = tuple(),
+        evidence_refs: tuple[str, ...] = tuple(),
+        human_decision: dict[str, str] | None = None,
+        checkpoint: dict[str, Any] | None = None,
+        final_summary: str | None = None,
+    ) -> DurableTaskRecord:
+        with self._task_lock(task_id):
+            return self._update_task(
+                task_id, expected_revision=expected_revision, state=state, reason=reason,
+                artifact_refs=artifact_refs, evidence_refs=evidence_refs,
+                human_decision=human_decision, checkpoint=checkpoint, final_summary=final_summary)
+
+    def _update_task(
         self,
         task_id: str,
         *,
