@@ -8,7 +8,7 @@ from pathlib import Path
 
 FILE = Path(__file__).resolve().parents[1] / "governance/enguru-suzgeci/reviews/ENGURU_ARGE_BLOCK01_PROVENANCE_V425.json"
 IDS = {f"A{x:02d}" for x in range(1, 10)}
-ROOT = FILE.parents[3]
+ROOT = FILE.parents[1]
 A04_PARTIAL = ("A04", "license_security_review")
 PINNED_BLOB = "86dbf7a09997854019448a3a8266f1de1885694f"
 
@@ -33,7 +33,7 @@ def reconcile(value):
     manifest=ROOT / str(proof.get("source_pins_manifest",""))
     if not manifest.is_file():return "HOLD_SOURCE_PIN_MISSING"
     body=manifest.read_bytes()
-    calculated=hashlib.sha1(b"blob "+str(len(body)).encode()+b"\\0"+body).hexdigest()
+    calculated=hashlib.sha1(b"blob "+str(len(body)).encode()+b"\0"+body).hexdigest()
     if calculated!=proof.get("source_pins_manifest_git_blob_sha1") or calculated!=PINNED_BLOB:
         return "HOLD_SOURCE_PIN_DRIFT"
     counts=proof.get("source_counts",{})
