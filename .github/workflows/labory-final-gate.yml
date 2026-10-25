@@ -18,6 +18,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Canonical 5×100 source/history/refs verification requires full Git ancestry
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -245,6 +247,27 @@ jobs:
           assert result["independent_e5"]=="HOLD_0_OF_18"
           PY
           cat "$RUNNER_TEMP/hym2-a04-live-source-receipt.json"
+
+      - name: HYM2 Hedef 1 theory design three independent simulations on real Git source
+        run: |
+          python -B -m tools.arge_hym2_h1_five_axis_v1 \
+            > "$RUNNER_TEMP/hym2-h1-five-axis-receipt.json"
+          python -B - "$RUNNER_TEMP/hym2-h1-five-axis-receipt.json" <<'PY'
+          import json, sys
+          report=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert report["state"]=="PASS_GITHUB_PREPARATION_5X100"
+          assert report["scores"]==dict.fromkeys(
+              ("THEORY","DESIGN","SIM1","SIM2","SIM3"),100)
+          assert report["originalBlocks"]==6
+          assert report["originalTaskCount"]==40
+          assert len(report["h1Tasks"])==9
+          assert report["a03RealSignedGrant"]=="HOLD"
+          assert report["a04CveSbomAndLegal"]=="HOLD"
+          assert report["gates"]["VERIFIED_FINISH"]=="HOLD"
+          assert report["verifiedFinish"]=="HOLD"
+          assert report["osiField"]=="NOT_EXECUTED"
+          PY
+          cat "$RUNNER_TEMP/hym2-h1-five-axis-receipt.json"
 
       - name: Ar-Ge Block 01 A01-A06 dated public provenance regression
         run: python -m unittest discover -s tests -p 'test_arge_block01_a01_a06_public_provenance_v1.py' -v
