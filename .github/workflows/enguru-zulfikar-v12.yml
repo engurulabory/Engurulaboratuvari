@@ -42,6 +42,32 @@ jobs:
           assert all(v==100 for v in result["scores"].values())
           assert result["official_verified_finish"]=="HOLD"
           PY
+      - name: Zulfikar V1.3 fixed GOAL 100 from real canonical bytes
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: |
+          python3 -B zulfikar_v1_3_gates.py goal > "$RUNNER_TEMP/zulfikar-goal-v13.json"
+          python3 - "$RUNNER_TEMP/zulfikar-goal-v13.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1],encoding="utf8"))
+          assert r["phase"]=="GOAL" and r["assessment"]["score"]==100
+          assert len(r["assessment"]["passed_ids"])==10
+          assert r["actual_user_goal_success"]=="HOLD_NOT_OBSERVED"
+          assert r["human_authority"]=="HOLD"
+          PY
+      - name: Zulfikar V1.3 real checked-out GitHub infrastructure
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: |
+          python3 -B zulfikar_v1_3_gates.py infra > "$RUNNER_TEMP/zulfikar-infra-v13.json"
+          python3 - "$RUNNER_TEMP/zulfikar-infra-v13.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1],encoding="utf8"))
+          assert r["phase"]=="INFRA_GITHUB_CODE" and r["assessment"]["score"]==100
+          assert len(r["assessment"]["passed_ids"])==10
+          assert r["python_unittest_exit_code"]==0
+          assert r["cli_roundtrip"] is True
+          assert r["osi_infrastructure"]=="HOLD_NOT_EXECUTED"
+          assert r["official_finish"]=="HOLD"
+          PY
       - name: Regenerate local non-official evidence
         working-directory: governance/enguru-suzgeci/zulfikar-v12
         run: python3 -B build_receipt_and_report.py
@@ -51,6 +77,8 @@ jobs:
           path: |
             ${{ runner.temp }}/enguru-ana-terazi.json
             ${{ runner.temp }}/zulfikar-five-gate.json
+            ${{ runner.temp }}/zulfikar-goal-v13.json
+            ${{ runner.temp }}/zulfikar-infra-v13.json
             governance/enguru-suzgeci/zulfikar-v12/zulfikar_v1_2_receipt.json
             governance/enguru-suzgeci/zulfikar-v12/zulfikar_v1_2_test_log.txt
           retention-days: 14
