@@ -27,6 +27,8 @@ on:
       - 'governance/enguru-suzgeci/ENGURU_GITHUB_METHOD_ENTRY_V2.md'
       - 'governance/enguru-suzgeci/ENGURU_METHOD_DESKTOP_AUDIT_V2.md'
       - 'governance/enguru-suzgeci/ENGURU_CALISMA_YONTEMLERI_ATLASI_V1.md'
+      - 'tools/enguru_method_real_ci_gate_v2.py'
+      - 'tests/test_enguru_method_real_ci_gate_v2.py'
   push:
     branches:
       - main
@@ -56,6 +58,8 @@ on:
       - 'governance/enguru-suzgeci/ENGURU_D48_SEMANTIK_KARSIT_INCELEME_V1.json'
       - 'tools/enguru_d48_semantic_adversarial_v1.py'
       - 'governance/enguru-suzgeci/ENGURU_D48_SEMANTIK_INCELEME_SON_RAPOR_V1.md'
+      - 'tools/enguru_method_real_ci_gate_v2.py'
+      - 'tests/test_enguru_method_real_ci_gate_v2.py'
   workflow_dispatch:
 permissions:
   contents: read
@@ -247,6 +251,22 @@ jobs:
           assert r["official_donecheck"]=="HOLD"
           print("PEER_CROSSWALK_AUTHORITY=PASS; MUTATIONS="+str(r["caught"])+"; CLAIM_INFLATION=0")
           PY
+      - name: Six domain deterministic true GitHub source and CI boundary
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python -B -m unittest discover -s tests -p 'test_enguru_method_real_ci_gate_v2.py' -v
+          python -B tools/enguru_method_real_ci_gate_v2.py --commit "$(git rev-parse HEAD)" --output "$RUNNER_TEMP/enguru-six-domains-real-github-evidence.json"
+          python -B - "$RUNNER_TEMP/enguru-six-domains-real-github-evidence.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert r["verdict"]=="PASS_SOURCE_METHOD_VERIFIED_PRODUCTS_HOLD"
+          assert r["pass_count_real_source"]==6
+          assert r["pass_count_real_products"]==0
+          assert len(r["areas"])==6
+          assert all(x["fixed_denominator"]==16 and x["official_donecheck"]=="HOLD_NOT_EXECUTED" for x in r["areas"])
+          print("REAL_GITHUB_SOURCE_SIX_AREAS=PASS; METHOD_PRODUCT_FINISH=HOLD; DETERMINISM=PASS")
+          PY
       - name: Attach theoretical receipt, separate from official DoneCheck
         uses: actions/upload-artifact@v4
         with:
@@ -264,4 +284,5 @@ jobs:
             ${{ runner.temp }}/enguru-d48-crosswalk-source.json
             ${{ runner.temp }}/enguru-d48-crosswalk-semantic.json
             ${{ runner.temp }}/enguru-d48-crosswalk-authority.json
+            ${{ runner.temp }}/enguru-six-domains-real-github-evidence.json
           if-no-files-found: error
