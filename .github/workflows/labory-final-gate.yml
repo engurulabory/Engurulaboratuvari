@@ -396,6 +396,58 @@ jobs:
           retention-days: 3
           if-no-files-found: error
 
+      - name: HYM2 Hedef 1 A04 public OSV advisory metadata triage adversarial tests
+        run: python -B -m unittest discover -s tests -p 'test_arge_block01_a04_osv_triage_v1.py' -v
+
+      - name: HYM2 Hedef 1 A04 live advisory metadata and fix-event evidence
+        run: |
+          if ! python -B -m tools.arge_block01_a04_osv_triage_v1 \
+            --snapshot "$RUNNER_TEMP/HYM2_H1_A04_OSV_SOURCE_SNAPSHOT.json" \
+            --summary "$RUNNER_TEMP/HYM2_H1_A04_OSV_SOURCE_SUMMARY.json" \
+            --output "$RUNNER_TEMP/HYM2_H1_A04_TRIAGE_DETAIL.json" \
+            --workers 6 > "$RUNNER_TEMP/HYM2_H1_A04_TRIAGE_RECEIPT.json"; then
+              cat "$RUNNER_TEMP/HYM2_H1_A04_TRIAGE_RECEIPT.json"
+              exit 2
+          fi
+          python -B - "$RUNNER_TEMP/HYM2_H1_A04_TRIAGE_RECEIPT.json" \
+                        "$RUNNER_TEMP/HYM2_H1_A04_TRIAGE_DETAIL.json" <<'PY'
+          import json,hashlib,pathlib,sys
+          receipt=json.loads(pathlib.Path(sys.argv[1]).read_text())
+          raw=pathlib.Path(sys.argv[2]).read_bytes()
+          triage=json.loads(raw)
+          assert receipt["state"]=="PASS_PUBLIC_OSV_METADATA_TRIAGE_ONLY"
+          assert receipt["advisory_matches"]==receipt["source_advisory_total"]
+          assert receipt["advisory_ids_total"]==receipt["metadata_records_observed"]
+          assert receipt["affected_package_total"]==receipt["matched_source_components"]
+          assert len(triage["priority_queue"])==receipt["affected_package_total"]
+          assert receipt["security_clearance"]=="HOLD"
+          assert receipt["actual_deployed_sbom"]=="HOLD"
+          assert receipt["license_legal"]=="HOLD"
+          assert receipt["a03_official"]==receipt["a04_official"]==receipt["verified_finish"]=="HOLD"
+          print(json.dumps({
+              "state":receipt["state"],
+              "source_advisory_matches":receipt["source_advisory_total"],
+              "distinct_advisory_ids":receipt["advisory_ids_total"],
+              "metadata_records":receipt["metadata_records_observed"],
+              "affected_source_candidates":receipt["affected_package_total"],
+              "severity":receipt["explicit_severity_distribution"],
+              "upstream":receipt["upstream_match_counts"],
+              "triage_detail_sha256":hashlib.sha256(raw).hexdigest(),
+              "authority":"HOLD",
+              "risk_clearance":"HOLD"
+          },sort_keys=True))
+          PY
+
+      - name: Upload HYM2 A04 triage (source candidates; NOT deployed risk clearance)
+        uses: actions/upload-artifact@v4
+        with:
+          name: hym2-a04-public-advisory-metadata-triage
+          path: |
+            ${{ runner.temp }}/HYM2_H1_A04_TRIAGE_DETAIL.json
+            ${{ runner.temp }}/HYM2_H1_A04_TRIAGE_RECEIPT.json
+          retention-days: 3
+          if-no-files-found: error
+
       - name: Ar-Ge Block 01 A01-A06 dated public provenance regression
         run: python -m unittest discover -s tests -p 'test_arge_block01_a01_a06_public_provenance_v1.py' -v
 
