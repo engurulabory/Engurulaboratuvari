@@ -140,9 +140,9 @@ class TestGoalGate(unittest.TestCase):
             v3.write_bytes(b"canonical gate test")
             sha=hashlib.sha256(v3.read_bytes()).hexdigest()
             lock=root/"V3_LOCK.json"
-            with patch("zulfikar_v1_3_gates.V3",v3), \\
-                 patch("zulfikar_v1_3_gates.LOCK",lock), \\
-                 patch("zulfikar_v1_3_gates.V3_PIN",sha):
+            with (patch("zulfikar_v1_3_gates.V3",v3),
+                  patch("zulfikar_v1_3_gates.LOCK",lock),
+                  patch("zulfikar_v1_3_gates.V3_PIN",sha)):
                 lock.write_text(json.dumps({"sha256":sha}),encoding="utf8")
                 self.assertTrue(root_matches())
                 for corrupt in ([],[{"sha256":sha}],None,"bad",True,{},{"sha256":"0"*64}):
