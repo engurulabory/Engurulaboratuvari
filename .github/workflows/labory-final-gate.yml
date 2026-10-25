@@ -250,6 +250,36 @@ jobs:
           retention-days: 3
           if-no-files-found: error
 
+      - name: HYM2 Zulfikar V1.3 source-pinned reuse offline adversarial tests
+        run: python -B -m unittest discover -s tests -p 'test_arge_hym2_zulfikar_v13_reuse.py' -v
+
+      - name: HYM2 Zulfikar V1.3 real pinned goal and executable GitHub infrastructure gates
+        run: |
+          python -B -m tools.arge_hym2_zulfikar_v13_reuse \
+            --output "$RUNNER_TEMP/HYM2_ZULFIKAR_V13_REUSE_RECEIPT.json"
+          python -B - "$RUNNER_TEMP/HYM2_ZULFIKAR_V13_REUSE_RECEIPT.json" <<'PY'
+          import json,sys
+          a=json.load(open(sys.argv[1],encoding="utf8"))
+          assert a["state"]=="PASS_Z13_PINNED_OPERATIONAL_ADAPTER_ONLY"
+          assert a["source_blob_count"]==6
+          assert a["z13_goal_specification"]==a["z13_infra_github_code"]==100
+          assert a["original_V47_github_readiness"]=="50/100_HOLD"
+          assert a["original_40_official"]=="0/40"
+          assert a["osi_handoff"]==a["product_acceptance"]==a["verified_finish"]=="HOLD"
+          assert a["new_core"]==a["main_writes"]==a["product_code_writes"]==0
+          print(json.dumps({"source":"ZULFIKAR_V13_EXACT_PR242_PIN",
+            "v13_goal":100,"v13_github_code":100,
+            "hym2_original_V47":"50/100_HOLD","hym2_official":"0/40"},sort_keys=True))
+          PY
+
+      - name: Upload HYM2 Zulfikar V1.3 verified adapter receipt (NOT original V4.7 clearance)
+        uses: actions/upload-artifact@v4
+        with:
+          name: hym2-zulfikar-v13-real-source-gate
+          path: ${{ runner.temp }}/HYM2_ZULFIKAR_V13_REUSE_RECEIPT.json
+          retention-days: 3
+          if-no-files-found: error
+
       - name: HYM2 Hedef 1 Zulfikar V1.2 original 40 task adversarial integration tests
         run: python -B -m unittest discover -s tests -p 'test_arge_hym2_zulfikar_v12_bridge.py' -v
 
