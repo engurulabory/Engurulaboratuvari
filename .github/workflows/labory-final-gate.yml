@@ -459,7 +459,9 @@ jobs:
           import json,sys
           receipt=json.load(open(sys.argv[1],encoding="utf-8"))
           assert receipt["state"]=="PASS_SOURCE_FIX_COMPATIBILITY_ONLY"
-          assert receipt["sources_verified"]==receipt["expected_sources"]==4
+          assert receipt["sources_verified"]==receipt["expected_sources"]==7
+          assert len(receipt["source_trust_proxy_configs"])==3
+          assert receipt["application_default_directly_uses_cidr"] is False
           assert receipt["resolved_proxy_addr"]=="2.0.7"
           assert receipt["fixed_version"]=="2.0.8"
           assert receipt["patch_in_existing_express_selector"] is True
