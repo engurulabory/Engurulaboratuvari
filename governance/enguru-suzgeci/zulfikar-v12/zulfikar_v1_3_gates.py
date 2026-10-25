@@ -25,6 +25,9 @@ LOCK = REPO / "governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_V3_LO
 V3_PIN = "11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc"
 GOAL_IDS = tuple(f"H{i:02d}" for i in range(1, 11))
 CONTROL_IDS = tuple(f"C{i:02d}" for i in range(1, 11))
+CONTROL_VERIFIERS = {f"C{i:02d}": f"goal_gate.H{i:02d}" for i in range(1, 11)}
+CONTROL_AUTHORITIES = {id_: ("Human Threshold" if id_ in ("C04", "C10")
+                            else "Independent reviewer") for id_ in CONTROL_IDS}
 NEGATIVE_IDS = frozenset(("INVALID_GOAL", "MISSING_SOURCE",
                           "MISSING_AUTHORITY", "INCOMPLETE_DEPENDENCIES"))
 INFRA_IDS = tuple(f"TA{i:02d}" for i in range(1, 11))
@@ -72,7 +75,8 @@ def score(checks):
 def root_matches():
     try:
         data = json.loads(LOCK.read_text(encoding="utf8"))
-        return (hashlib.sha256(V3.read_bytes()).hexdigest() == V3_PIN
+        return (isinstance(data, dict)
+                and hashlib.sha256(V3.read_bytes()).hexdigest() == V3_PIN
                 and data.get("sha256") == V3_PIN)
     except (ValueError, OSError):
         return False
@@ -114,7 +118,11 @@ def goal_gate(data):
     checks = {
       "H01": data.get("goal_id") == "ZULFIKAR-OPERATIONAL-GITHUB-V13" and has_text(data.get("single_goal"),30),
       "H02": has_text(data.get("user_value"),20) and all(has_text(metrics.get(k)) for k in ("metric","unit","baseline_source","target","observation")),
-      "H03": valid_controls and all(all(has_text(c.get(k)) for k in ("acceptance","verifier","authority")) for c in controls),
+      "H03": valid_controls and all(
+            has_text(c.get("acceptance"))
+            and c.get("verifier") == CONTROL_VERIFIERS[c["id"]]
+            and c.get("authority") == CONTROL_AUTHORITIES[c["id"]]
+            for c in controls),
       "H04": rights.get("scope")=="SINGLE_GOAL" and rights.get("owner_review")=="HUMAN_THRESHOLD" and rights.get("issuer")=="EXISTING_CANONICAL_ONLY",
       "H05": valid_controls and dag_ok(data.get("dependencies"),set(identities)),
       "H06": len(risks)>=3 and all(isinstance(x,dict) and all(has_text(x.get(k)) for k in ("risk","mitigation","negative_test")) for x in risks),
