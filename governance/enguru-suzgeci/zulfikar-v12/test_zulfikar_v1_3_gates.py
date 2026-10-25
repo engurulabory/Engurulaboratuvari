@@ -83,6 +83,38 @@ class TestGoalGate(unittest.TestCase):
                 broken["C02"].append(item)
                 self.assertFalse(dag_ok(broken,set(broken)))
 
+    def test_fixed_original_control_ids_survive_consistent_rewrite_attack(self):
+        altered=copy.deepcopy(self.baseline)
+        altered["controls"][0]["id"]="C11"
+        altered["dependencies"]={
+            ("C11" if k=="C01" else k):
+            [("C11" if dep=="C01" else dep) for dep in val]
+            for k,val in altered["dependencies"].items()
+        }
+        result=goal_gate(altered)
+        self.assertEqual(result["verdict"],"HOLD_GOAL_SPECIFICATION")
+        self.assertIn("H03",result["assessment"]["open_ids"])
+
+    def test_acceptance_identity_and_typed_evidence_fail_closed(self):
+        injections=[
+          ("goal_id_rewrite",lambda x:x.update(goal_id="OTHER-GOAL"),"H01"),
+          ("nontext_acceptance",lambda x:x["controls"][0].update(acceptance=42),"H03"),
+          ("nontext_verifier",lambda x:x["controls"][0].update(verifier=["self"]),"H03"),
+          ("nontext_authority",lambda x:x["controls"][0].update(authority=1),"H03"),
+          ("nontext_risk",lambda x:x["risks"][0].update(mitigation={"fake":"claim"}),"H06"),
+          ("duplicated_negative",lambda x:x["negative_cases"][1].update(case_id=x["negative_cases"][0]["case_id"]),"H07"),
+          ("lost_negative",lambda x:x["negative_cases"][0].update(case_id="OTHER_CASE"),"H07"),
+          ("nontext_evidence",lambda x:x["controls"][0].update(evidence_source=["fake"]),"H08"),
+          ("bool_budget",lambda x:x["budget"].update(paid_api=False),"H10"),
+        ]
+        for label,mutate,expected in injections:
+            with self.subTest(label=label):
+                altered=copy.deepcopy(self.baseline)
+                mutate(altered)
+                result=goal_gate(altered)
+                self.assertEqual(result["verdict"],"HOLD_GOAL_SPECIFICATION")
+                self.assertIn(expected,result["assessment"]["open_ids"])
+
     def test_immutable_denominators(self):
         self.assertEqual(len(GOAL_IDS),10)
         self.assertEqual(len(INFRA_IDS),10)
