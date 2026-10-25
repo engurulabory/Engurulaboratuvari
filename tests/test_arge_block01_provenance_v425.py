@@ -58,6 +58,24 @@ def reconcile(value):
             "legal_license_clearance":"HOLD", "customer_e5":"HOLD_0_OF_18",
             "mac_osi_field":"HOLD","donecheck_human":"HOLD"}
     if holds!=needed:return "HOLD_PREMATURE_ACCEPTANCE"
+    gate=value.get("a04_canonical_scope_boundary",{})
+    expected_boundary={
+        "status":"HOLD_OWNER_PRIVATE_CANONICAL_OR_EXPLICIT_RESEARCH_SCOPE",
+        "public_review_contract":"ONLY_NONSECRET_STATUS_REFERENCES_AND_BOUNDED_EVIDENCE",
+        "canonical_scope":"A04 kasifi_canonical_repo_commit OR AUTHORIZED_RESEARCH_ONLY_OWNER_SCOPE_DECISION",
+        "private_source_provenance":"OWNER_PRIVATE_SOURCE_ATTESTATION_REQUIRED",
+        "owner_scope_decision":"HOLD_EXPLICIT_DECISION_PENDING",
+        "independent_verification":"HOLD_NO_AUTHORIZED_PRIVATE_ATTESTATION",
+        "allowed_public_metadata":["A04","HOLD","owner_review_required","non_secret_source_digest_if_owner_approved"],
+        "permitted_public_evidence":"RESEARCH_SOURCE_PARTIAL_ONLY",
+        "actual_kasifi_runtime":"HOLD_NOT_ESTABLISHED",
+        "release_or_osi_authority":"HOLD",
+        "official_a04":"HOLD",
+        "official_all_tasks":"0/40",
+        "owner_authority":"SINGLE_HUMAN_OWNER",
+        "boundary_rule":"Owner-private Factory source payload, tokens, grants and private implementation remain in their authorized private context. An owner-approved minimal public digest is optional, and its presence alone never changes official acceptance."
+    }
+    if gate!=expected_boundary:return "HOLD_PRIVATE_SOURCE_AND_OWNER_SCOPE"
     if value.get("acceptance")!="HOLD" or value.get("osi")!="NOT_STARTED": return "HOLD_PREMATURE_ACCEPTANCE"
     return "INVENTORY_PARTIAL_SOURCE_PROVEN_ACCEPTANCE_HOLD"
 
@@ -96,6 +114,23 @@ class InventoryTests(unittest.TestCase):
                 elif change=="wrong_count":evidence["source_scoped_osv"]["component_candidates_queried"]=1
                 self.assertNotEqual(reconcile(x),
                                     "INVENTORY_PARTIAL_SOURCE_PROVEN_ACCEPTANCE_HOLD")
+
+    def test_private_owner_scope_boundary_adversarial(self):
+        variants=[
+            ("scope_to_runtime","status","PASS_CANONICAL_RUNTIME"),
+            ("fake_owner_approval","owner_scope_decision","PASS_OWNER"),
+            ("fake_independence","independent_verification","PASS"),
+            ("false_a04","official_a04","PASS"),
+            ("false_40","official_all_tasks","40/40"),
+            ("private_payload","private_implementation","SOURCE_PAYLOAD"),
+            ("public_mirror","public_review_contract","COPY_OWNER_PRIVATE_SOURCE"),
+            ("false_release","release_or_osi_authority","PASS"),
+        ]
+        for name,field,value in variants:
+            with self.subTest(name=name):
+                item=copy.deepcopy(self.item)
+                item["a04_canonical_scope_boundary"][field]=value
+                self.assertEqual(reconcile(item),"HOLD_PRIVATE_SOURCE_AND_OWNER_SCOPE")
 
     def test_claimed_verified_source_needs_independent_validation(self):
         x=dict(self.item)
