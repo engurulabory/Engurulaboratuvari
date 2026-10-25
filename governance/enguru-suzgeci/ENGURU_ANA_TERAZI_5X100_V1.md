@@ -67,6 +67,14 @@ Bu belgedeki beşli sentetik **ortak yöntem Ana Terazisi** ile ilgili projenin 
 
 **GitHub hazırlığı 100:** Beş ayrı 100/100 + gerçek karşıt test + exact SHA + ilgili GitHub CI PASS → `GITHUB_PREPARED=PASS` ve **`READY_FOR_OSI_HANDOFF → DUR`**. Bu hüküm gerçek Mac kurulum, aktarım, insan yetkisi veya canonical Verified Finish değildir; o kapılar gerçek saha ve ayrı açık insan kararıyla ilerler.
 
+### Dördüncü uygulama-koruma kapısı — OSi geçiş hazırlığı (25 Ekim 2026)
+
+**Nihai yürütme sırası:** Kullanıcının özgün ürün hedefi → **TASARIM 100** (3+2 tur) → **TEORİ 100** (3+2 tur) → **GITHUB 5×100** (3+2 tur + üç ayrı final SIM oracle + exact CI) → **OSi geçiş hazırlığı 100** (3+2 tur) → **DUR**. Bu, Ana Terazi'nin beşli teorik ölçümünün üzerine **yeni puan türü ekleyen bir beşli terazi değildir**; OSi son adımı, mevcut kaynakları ve yetkileri koruyan **ayrı operasyonel devir planı kapısıdır**.
+
+Gerçek read-only Mac envanteri, GitHub HEAD'den taşınacak exact içerik/SHA, değişmiş yerel dosyalar ve sahipliği, disk/araç, sağlam rollback/checkpoint, yetkili kapsam ve yerel güven önkoşulları **sekiz sabit OSi kontrolüne** bağlanır. Tüm kontroller 100 kanıtlanmadan `OSI_HANDOFF_PREPARED=HOLD`. GitHub PASS olsa dahi Mac aracı/güncel source gözlemi olmadığı sürece HOLD.
+
+Mevcut [üç aşamalı denetim](../../tools/enguru_method_three_phase_gate_v1.py) korunur; [dördüncü OSi handoff denetimi](../../tools/enguru_method_osi_handoff_gate_v1.py) ona bağlanır. Araç yalnız kaynak/evidence callback sözleşmesini doğrular; gerçek teknik düzeltmeler özgün yürütücü ve testlerle yapılır. Final çıktısı OSi'de kod icrası/aktarımı, canonical state yazımı veya Human Threshold değildir. **Gerçek OSi ön uçuşu ve açık kapsamlı insan kararı** kendi kapısında kalır. `OSI_HANDOFF_PREPARED=PASS → İNSAN KARARINDA DUR`.
+
 ### Kalıcı üç aşamalı olgunlaştırma sırası — TASARIM → TEORİ → GITHUB (25 Ekim 2026)
 
 **Yeni bağlayıcı sıra:** Başlangıçta ürünün özgün kullanıcı hedefi ve kabul paydası korunur. Üç ardışık **olgunlaştırma aşaması** ayrı yürütülür:
