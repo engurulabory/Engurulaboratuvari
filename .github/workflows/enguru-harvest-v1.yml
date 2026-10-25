@@ -18,7 +18,7 @@ jobs:
       - name: Run evidence classification regression
         run: |
           cd capabilities/enguru-harvest-v1
-          python -B -m unittest -v test_harvest
+          python -B -m unittest -v test_harvest test_evidence_gate
       - name: Verify target contract structure
         run: |
           python - <<'PY'
