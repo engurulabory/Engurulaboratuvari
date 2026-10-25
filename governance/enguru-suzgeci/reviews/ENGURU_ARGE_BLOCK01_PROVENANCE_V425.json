@@ -189,5 +189,26 @@
       "provenance_boundary": "Git blob SHA1 source identity, source-byte SHA256 and exact PR CI are technical proof only; they do not grant owner authority or prove deployment.",
       "owner": "SINGLE_HUMAN_OWNER; HUMAN_ACCEPTANCE_IN_OWN_CANONICAL_GATE"
     }
+  },
+  "a04_canonical_scope_boundary": {
+    "status": "HOLD_OWNER_PRIVATE_CANONICAL_OR_EXPLICIT_RESEARCH_SCOPE",
+    "public_review_contract": "ONLY_NONSECRET_STATUS_REFERENCES_AND_BOUNDED_EVIDENCE",
+    "canonical_scope": "A04 kasifi_canonical_repo_commit OR AUTHORIZED_RESEARCH_ONLY_OWNER_SCOPE_DECISION",
+    "private_source_provenance": "OWNER_PRIVATE_SOURCE_ATTESTATION_REQUIRED",
+    "owner_scope_decision": "HOLD_EXPLICIT_DECISION_PENDING",
+    "independent_verification": "HOLD_NO_AUTHORIZED_PRIVATE_ATTESTATION",
+    "allowed_public_metadata": [
+      "A04",
+      "HOLD",
+      "owner_review_required",
+      "non_secret_source_digest_if_owner_approved"
+    ],
+    "permitted_public_evidence": "RESEARCH_SOURCE_PARTIAL_ONLY",
+    "actual_kasifi_runtime": "HOLD_NOT_ESTABLISHED",
+    "release_or_osi_authority": "HOLD",
+    "official_a04": "HOLD",
+    "official_all_tasks": "0/40",
+    "owner_authority": "SINGLE_HUMAN_OWNER",
+    "boundary_rule": "Owner-private Factory source payload, tokens, grants and private implementation remain in their authorized private context. An owner-approved minimal public digest is optional, and its presence alone never changes official acceptance."
   }
 }
