@@ -448,6 +448,30 @@ jobs:
           retention-days: 3
           if-no-files-found: error
 
+      - name: HYM2 Hedef 1 A04 proxy-addr source graph offline adversarial regression
+        run: python -B -m unittest discover -s tests -p 'test_arge_block01_a04_proxy_addr_path_v1.py' -v
+
+      - name: HYM2 Hedef 1 A04 real proxy-addr Express pinned graph and patched range proof
+        run: |
+          python -B -m tools.arge_block01_a04_proxy_addr_path_v1 \
+            --receipt "$RUNNER_TEMP/HYM2_H1_A04_PROXY_ADDR_SOURCE_RECEIPT.json"
+          python -B - "$RUNNER_TEMP/HYM2_H1_A04_PROXY_ADDR_SOURCE_RECEIPT.json" <<'PY'
+          import json,sys
+          receipt=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert receipt["state"]=="PASS_SOURCE_FIX_COMPATIBILITY_ONLY"
+          assert receipt["sources_verified"]==receipt["expected_sources"]==4
+          assert receipt["resolved_proxy_addr"]=="2.0.7"
+          assert receipt["fixed_version"]=="2.0.8"
+          assert receipt["patch_in_existing_express_selector"] is True
+          assert len(receipt["source_paths"])==2
+          for field in ("medusa_installation_proven",
+                        "application_proxy_trust_config_proven",
+                        "real_customer_exposure",
+                        "regression_for_real_installation",
+                        "a04_official","verified_finish"):
+              assert receipt[field]=="HOLD"
+          PY
+
       - name: Ar-Ge Block 01 A01-A06 dated public provenance regression
         run: python -m unittest discover -s tests -p 'test_arge_block01_a01_a06_public_provenance_v1.py' -v
 
