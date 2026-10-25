@@ -93,6 +93,14 @@ class A03PreflightTests(unittest.TestCase):
                 case[name] = bad
                 self.assertIn(blocker, self.assert_external_hold(case)["blockers"])
 
+    def test_plausible_hashes_alone_are_not_source_authentication(self):
+        case = fixture()
+        case["source_commit"] = "f" * 40
+        case["artifact_sha256"] = "e" * 64
+        result = self.assert_external_hold(case)
+        self.assertEqual(result["structural_preflight"], "PASS_FORMAT_ONLY")
+        self.assertIn("EXTERNAL_AUTHORITY_VERIFICATION_REQUIRED", result["blockers"])
+
     def test_cross_task_record_holds(self):
         case = fixture()
         case["task_id"] = "A04"
