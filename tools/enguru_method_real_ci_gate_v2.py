@@ -22,6 +22,25 @@ AREAS=("CORE","ENGINE","AGENT","WEB","APP","COMMERCE")
 HEX40=re.compile(r"^[0-9a-f]{40}$")
 RUN_ID=40167298239  # Historical exact-main source-method CI, not new task delivery
 RUN_SHA="f754b3a48e46224251d2717f1b28e6cf60bf2812"
+WORKFLOW_PATH=".github/workflows/enguru-design48-theoretical.yml"
+WORKFLOW_ID=395375091
+# Semantic projection of the existing V1 controls at main 5623bfae. A contract
+# change requires explicit review of this pin; caller claims stay non-authoritative.
+CONTROLS_SHA256="8e7ced3e9d30c98d3237b68171bac6269b67e29a3aa185571d74b4e9aade3f09"
+
+
+def control_projection(spec):
+    return {"shared_controls":spec["shared_controls"],
+            "domains":[{"id":d["id"],"domain_controls":d["domain_controls"]}
+                       for d in spec["domains"]]}
+
+
+def nested(record, *keys):
+    for key in keys:
+        if type(record) is not dict:
+            return None
+        record=record.get(key)
+    return record
 
 
 def canonical(value):
@@ -44,31 +63,34 @@ def actual_github(path):
 
 def evaluate(spec,current_sha,commit_record,run_record):
     """Pure deterministic gate: identical verified snapshots => identical bytes."""
-    if (type(spec)!=dict or
-        len(spec.get("shared_controls",[]))!=12 or
-        tuple(d.get("id") for d in spec.get("domains",[]))!=AREAS or
-        not HEX40.fullmatch(str(current_sha))):
+    if (type(spec) is not dict or type(spec.get("shared_controls")) is not list
+        or len(spec["shared_controls"])!=12
+        or type(spec.get("domains")) is not list
+        or any(type(d) is not dict for d in spec["domains"])
+        or tuple(d.get("id") for d in spec["domains"])!=AREAS
+        or type(current_sha) is not str or not HEX40.fullmatch(current_sha)):
         return {"verdict":"HOLD_CANONICAL_OR_SHA_INPUT"}
-    control_ids=[c.get("id") for c in spec["shared_controls"]]
-    if len(set(control_ids))!=12:
-        return {"verdict":"HOLD_FIXED_SCOPE"}
-    for d in spec["domains"]:
-        ids=[c.get("id") for c in d.get("domain_controls",[])]
-        if (len(ids)!=4 or len(set(ids))!=4 or
-            set(ids).intersection(control_ids) or
-            any(not c.get("required") or not c.get("negative") for c in d["domain_controls"])):
+    try:
+        projection=control_projection(spec)
+        if digest(projection)!=CONTROLS_SHA256:
             return {"verdict":"HOLD_FIXED_SCOPE"}
-    current_valid=(type(commit_record)==dict
-                   and commit_record.get("sha")==current_sha
-                   and bool(re.fullmatch(r"[0-9a-f]{40}",
-                       str(commit_record.get("commit",{}).get("tree",{}).get("sha","")))))
-    run_valid=(type(run_record)==dict
-              and run_record.get("id")==RUN_ID
-              and run_record.get("head_sha")==RUN_SHA
-              and run_record.get("event")=="push"
-              and run_record.get("status")=="completed"
-              and run_record.get("conclusion")=="success"
-              and run_record.get("head_repository",{}).get("full_name")==REPO)
+    except (KeyError, TypeError, ValueError):
+        return {"verdict":"HOLD_FIXED_SCOPE"}
+    control_ids=[c["id"] for c in spec["shared_controls"]]
+    current_valid=(nested(commit_record,"sha")==current_sha
+                   and nested(commit_record,"url")==
+                       "https://api.github.com/repos/"+REPO+"/commits/"+current_sha
+                   and bool(HEX40.fullmatch(str(nested(commit_record,"commit","tree","sha")))))
+    run_valid=(type(nested(run_record,"id")) is int
+              and nested(run_record,"id")==RUN_ID
+              and nested(run_record,"head_sha")==RUN_SHA
+              and nested(run_record,"event")=="push"
+              and nested(run_record,"status")=="completed"
+              and nested(run_record,"conclusion")=="success"
+              and nested(run_record,"head_repository","full_name")==REPO
+              and nested(run_record,"repository","full_name")==REPO
+              and nested(run_record,"path")==WORKFLOW_PATH
+              and nested(run_record,"workflow_id")==WORKFLOW_ID)
     # "GitHub verified" applies only to this source/method snapshot; it has
     # no authority to declare any product's 16 distinct controls completed.
     source_result="PASS_REAL_GITHUB_COMMIT_IDENTITY" if current_valid else "HOLD_SOURCE_IDENTITY"
@@ -88,12 +110,18 @@ def evaluate(spec,current_sha,commit_record,run_record):
     receipt={
       "schema":"enguru.methods.real-github-source-six-domains/v2",
       "current_source_commit":current_sha,
+      "canonical_controls_sha256":CONTROLS_SHA256,
+      "commit_snapshot_sha256":digest(commit_record),
+      "historical_ci_snapshot_sha256":digest(run_record),
+      "current_commit_ci":"HOLD_REQUIRES_SEPARATE_COMPLETED_EXACT_COMMIT_RUN",
       "historic_method_ci_run_id":RUN_ID,
       "historic_method_ci_sha":RUN_SHA,
       "source_evidence":source_result,"ci_evidence":history_result,
       "areas":results,
       "pass_count_real_source":sum(x["source_evidence"].startswith("PASS")
                                    and x["method_ci_evidence"].startswith("PASS") for x in results),
+      "unique_source_commits_verified":int(current_valid),
+      "unique_historical_ci_runs_verified":int(run_valid),
       "pass_count_real_products":0,
       "safety":"PRODUCT_PASS_REQUIRES_ITS_OWN_REAL_EVIDENCE_AND_AUTHORITY",
       "verdict":"PASS_SOURCE_METHOD_VERIFIED_PRODUCTS_HOLD" if current_valid and run_valid

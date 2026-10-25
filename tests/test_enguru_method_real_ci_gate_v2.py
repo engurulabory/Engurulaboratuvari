@@ -3,16 +3,17 @@ import copy
 import json
 import unittest
 from tools.enguru_method_real_ci_gate_v2 import (
-    AREAS, REPO, RUN_ID, RUN_SHA, SPEC, canonical, evaluate, digest
+    AREAS, REPO, RUN_ID, RUN_SHA, WORKFLOW_PATH, WORKFLOW_ID, SPEC, canonical, evaluate, digest
 )
 
 SHA="c"*40
 TREE="d"*40
 
 def records():
-    commit={"sha":SHA,"commit":{"tree":{"sha":TREE}}}
+    commit={"sha":SHA,"url":"https://api.github.com/repos/"+REPO+"/commits/"+SHA,"commit":{"tree":{"sha":TREE}}}
     run={"id":RUN_ID,"head_sha":RUN_SHA,"event":"push","status":"completed",
-         "conclusion":"success","head_repository":{"full_name":REPO}}
+         "conclusion":"success","head_repository":{"full_name":REPO},
+         "repository":{"full_name":REPO},"path":WORKFLOW_PATH,"workflow_id":WORKFLOW_ID}
     return commit,run
 
 class SixDomainDeterministicEvidenceTests(unittest.TestCase):
@@ -103,6 +104,50 @@ class SixDomainDeterministicEvidenceTests(unittest.TestCase):
         for d in r["areas"]:
             self.assertNotEqual(d["product_verified_finish"],"PASS")
         self.assertEqual(r["safety"],"PRODUCT_PASS_REQUIRES_ITS_OWN_REAL_EVIDENCE_AND_AUTHORITY")
+
+    def test_contract_semantics_mutations_hold_in_all_six_areas(self):
+        # One unchanged denominator can still hide rewritten acceptance semantics.
+        for index in range(36):
+            for field in ("id", "key", "required", "negative"):
+                spec=copy.deepcopy(self.spec)
+                controls=spec["shared_controls"] if index<12 else spec["domains"][(index-12)//4]["domain_controls"]
+                control=controls[index if index<12 else (index-12)%4]
+                control[field]="FORGED_ACCEPTANCE"
+                with self.subTest(index=index,field=field):
+                    self.assertEqual(self.evaluate(spec=spec)["verdict"],"HOLD_FIXED_SCOPE")
+
+    def test_wrong_workflow_and_repository_hold(self):
+        for key,value in (("path","wrong.yml"),("workflow_id",0),
+                          ("repository",{"full_name":"untrusted/forgery"})):
+            c,r=records();r[key]=value
+            with self.subTest(key=key):
+                self.assertEqual(self.evaluate(run=r)["pass_count_real_source"],0)
+        c,r=records();c["url"]="https://api.github.com/repos/untrusted/forgery/commits/"+SHA
+        self.assertEqual(self.evaluate(commit=c)["pass_count_real_source"],0)
+
+    def test_malformed_contracts_return_hold(self):
+        for value in (None,False,17,"invalid",{},[] ,{"shared_controls":None},
+                      {"shared_controls":[None]*12,"domains":[None]*6}):
+            with self.subTest(value=value):
+                c,r=records()
+                self.assertTrue(evaluate(value,SHA,c,r)["verdict"].startswith("HOLD"))
+        for field in ("shared_controls","domains"):
+            spec=copy.deepcopy(self.spec);spec[field]=None
+            self.assertTrue(self.evaluate(spec=spec)["verdict"].startswith("HOLD"))
+
+    def test_malformed_api_snapshots_return_hold(self):
+        for bad in (None,False,[],"bad",{"commit":None},{"commit":{"tree":None}}):
+            c,r=records()
+            self.assertEqual(evaluate(self.spec,SHA,bad,r)["pass_count_real_source"],0)
+            self.assertEqual(evaluate(self.spec,SHA,c,bad)["pass_count_real_source"],0)
+
+    def test_receipt_binds_snapshots_and_reserves_current_ci(self):
+        c,r=records();first=self.evaluate(commit=c,run=r)
+        c["commit"]["message"]="different observed evidence"
+        second=self.evaluate(commit=c,run=r)
+        self.assertNotEqual(first["receipt_sha256"],second["receipt_sha256"])
+        self.assertTrue(first["current_commit_ci"].startswith("HOLD"))
+        self.assertEqual(first["pass_count_real_products"],0)
 
 if __name__=="__main__":
     unittest.main()
