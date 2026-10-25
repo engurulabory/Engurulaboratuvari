@@ -61,6 +61,16 @@ class PhaseBoundaryEvidenceTests(unittest.TestCase):
         self.assertLess(v["DESIGN"]["score"],100)
         self.assertLess(v["THEORY"]["score"],100)
 
+    def test_proposed_management_gates_cannot_be_authoritative_v47_score(self):
+        score_accounting=self.orig["gate"]["score_accounting"]
+        self.assertIn("NOT a replacement authoritative 5/10 measurement",
+                      score_accounting["proposed_gate_register"])
+        d=copy.deepcopy({k:v for k,v in self.orig.items() if k!="zulfi_mod"})
+        d["gate"]["score_accounting"]["proposed_gate_register"]="10/10 all requirements PASS"
+        grades=score(d)["grades"]
+        self.assertLess(grades["DESIGN"]["score"],100)
+        self.assertLess(grades["THEORY"]["score"],100)
+
     def test_zulfikar_official_signer_is_still_false(self):
         mod=self.orig["zulfi_mod"]
         verdict=mod.assess({})
