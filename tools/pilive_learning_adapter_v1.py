@@ -21,6 +21,10 @@ SCHEMA_V2 = 'enguru.pilive.source-observation/v2'
 SCHEMA_V3 = 'enguru.pilive.source-link-observation/v3'
 HASH = re.compile(r'[0-9a-f]{64}\Z')
 FACTS = {
+ 'RUNTIME_DEPENDENCY_RECONCILED': (
+  'Runtime dependency claims follow captured source paths and current byte identities.',
+  'Four runtime or bundled Python contents matched their digests; eight Core pins stayed unchanged; all three prior originals were found. The active source chain names two further runtime dependencies.',
+  'Use the Core-discovered registry for projection, inspect only the two named dependencies, and keep native UI and build provenance on their own acceptance gates.'),
  'BUNDLED_PROJECT_SET_GAP': (
   'Projected project identity sets must equal the qualified canonical Core set.',
   'A bounded replay of the pinned historical snapshot omits P02 from the registry rows and filename-based discovery.',

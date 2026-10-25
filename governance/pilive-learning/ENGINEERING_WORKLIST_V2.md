@@ -88,3 +88,16 @@ V1.3 kaynağı PR #242 @ `5720cd0de67f959d44ea8ace42a3a716753077f1` üzerinden o
 - [ ] `enguru.pilive.runtime-dependency-observation/v1` yeni gerçek makbuzu henüz teslim edilmedi. Önceki Terminal devri geçerlidir; aynı gözlem komutunu tekrar çalıştırmaya gerek yok, üretilmişse ORIGINAL JSON yeterlidir.
 
 **Özgün kabul etkisi:** U02 proje kümesi açığı yeniden üretildi; U05 eksik/çift proje görünürlüğü sınırına koruma eklendi; U10 karşıt regresyonu ve U12 kaynak izi genişledi. Bu alt kanıtlar U01–U12'nin tam PASS'i değildir. Sonraki tek hareket, gerçek runtime makbuzunu okuyup kaynak içeriklerini ve sekiz pini aynı gözlem kapsamında uzlaştırmaktır. Güncel pin eşliği ve eski makbuz konumları yeni veri gelene kadar HOLD kalır.
+
+## Gerçek runtime makbuzu ve adaptör onarımı — 18:49Z
+
+- [x] Makbuz `150c772bbec5d536f884888e84f1e9ee47bb6b6b870cbfe7ec4263df1b6c88b7` upload byte'ları Terminal SHA ile aynı; parent `d91557b11abe20363f1a8ff89fb55267ec0549376c3c76839e2f80ea278349fa`.
+- [x] Dört runtime/bundle Python içeriği SHA ve byte boyuyla doğrulandı; sekiz Core/canonical pininin dört gözlem listesi birebir aynı ve beklenen pinlerle eş.
+- [x] Üç önceki orijinal AudiV13 altında gerçek SHA ile bulundu. Eski Desktop kopyaları exact üst seviyede gözlenmedi. Önceki pair HOLD sonucu orijinalin kaybolduğu anlamına taşınmıyor. Arama ValueError limiti genel yokluk üretmez.
+- [x] LiveProgress/v4 altında bulunmayan `projection_v6.py` tahminî bir yoldu; kurulu `plive_v3_base_projection.py` doğrudan runtime `snapshot_v52.py` çağırır. Eksik yol bu aşamada gerekli bağımlılık sayılmaz. Gerçek `snapshot.py` iki ek dosyaya bağlıdır: `bridge.py`, `legacy_snapshot.py`.
+- [x] Saf adaptör mevcut Core `registry()` çıktısını tüketir; Work Contract ile bulunan P02 dahil her proje bir kez görünür. Yeni keşif veya sayaç kurulmadı. Core summary/verify olguları aynı project ID ve state/worklist digest'lerine bağlanır. Eksik olgulu projeler görünür HOLD kalır.
+- [x] Exact kaynak kopyalarıyla sınırlı Linux Core API tekrarında 8→8, P02 tekil 0/12, aktif P02.S01.01, resmî HOLD. Test fixture Git HEAD sabiti kullanıldı; gerçek Mac/revizyon sonucu olarak aktarılmaz.
+- [x] Yirmi yeni karşıt kontrol dahil 85/85 PiLive testi üç tur PASS. Önceki gerçek Mac 137/137 korunur; yeni native paket sınaması bekler.
+- [ ] Sonraki tek paket: Mac'te tüm paket testleri + pin kontrollü mevcut Core API üzerinden P02 adaptör dry-run + adı kaynaktan çıkan iki runtime dosyası ve bundle projection_v6 içeriği. Uygulama/LaunchAgent aktivasyonu, canonical/kas/kurulu app yazımı, ağ, SQLite ve Keychain 0; yalnız owned temp test alanı ve yeni receipt/kopya.
+
+U01 kaynak bağı alt kanıtı ilerledi; exact Swift/build/toolchain/signing/binary zinciri HOLD. U02/U05 proje kümesi onarımı kod ve sınırlı replay kapsamıyla PASS; gerçek Mac dry-run ve UI eşliği açık. U09 üç zaman ayrımı/deterministik digest, U10 yirmi regresyon, U12 gizlisiz kanıt izi ilerledi. U01–U12 tam kabulü ve P02 resmî bitişi kendi kapısında HOLD. Nihai dört ekran sözleşmesi beklenir.

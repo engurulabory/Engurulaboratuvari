@@ -33,23 +33,27 @@
       "evidence": [
         "NATIVE_REPEAT_SUCCESS_V1.json",
         "RUNTIME_SOURCE_REVIEW_V1.json",
-        "PROJECT_SET_REPLAY_V1.json"
+        "PROJECT_SET_REPLAY_V1.json",
+        "RUNTIME_DEPENDENCY_REVIEW_V1.json",
+        "CORE_ADAPTER_REPLAY_V1.json",
+        "CORE_ADAPTER_REGRESSION_V1.json"
       ],
-      "open": "Current runtime dependency receipt and exact Swift source/build/signing/binary manifest",
+      "open": "Native adapter dry-run, remaining named dependencies and exact Swift/build/toolchain/signing/binary manifest",
       "state": "PARTIAL_PASS_NATIVE_CHAIN_HOLD"
     },
     "Tutarlılık Kası": {
-      "evidence": "PROJECT_SET_REPLAY_V1.json: bounded Core set 8 vs historical projection 7",
+      "evidence": "Historical 8 vs 7 reproduced; repaired pure adapter 8 vs 8 in bounded Linux copied-Core replay, P02 exactly once 0/12; native/UI parity pending",
       "open": "Same-revision actual runtime/canonical/UI parity; nine-hop user-outcome/authority chain",
       "state": "HOLD"
     }
   },
+  "latestNativeReceiptSha256": "150c772bbec5d536f884888e84f1e9ee47bb6b6b870cbfe7ec4263df1b6c88b7",
   "mainMutation": false,
   "methodPr": 242,
   "methodPublication": "OPEN_REVIEW_BRANCH; NOT_MAIN",
   "methodSourceCommit": "5720cd0de67f959d44ea8ace42a3a716753077f1",
   "nativeWrites": 0,
-  "nextAction": "Read actual ORIGINAL JSON from the previously delivered pinned Terminal dependency capture; evaluate five source paths, eight Core pins and prior receipt locations.",
+  "nextAction": "Run the single native adapter probe package: isolated tests + pinned existing Core P02 dry-run + two source-named dependencies. Return original/copy SHA receipt.",
   "oracleInput": {
     "Z02_EVENT": {
       "cause_status": "UNKNOWN",
@@ -145,7 +149,7 @@
     "state": "SIMULATED_HOLD"
   },
   "oracleScope": "OFFLINE_POLICY_REVIEW_ONLY; NOT_NATIVE_VERIFIER",
-  "pendingReceiptSchema": "enguru.pilive.runtime-dependency-observation/v1",
+  "pendingReceiptSchema": "enguru.pilive.native-core-adapter-observation/v1",
   "schema": "enguru.pilive.zulfikar-v13-application/v1",
   "scope": "Advisory evaluation of declared PiLive evidence. No external authority or product acceptance issued.",
   "verifiedFinish": "HOLD"

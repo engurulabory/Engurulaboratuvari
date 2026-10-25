@@ -1,0 +1,26 @@
+{
+  "environment": "Linux copied exact captured Core/contract/state/worklist sources. Git HEAD function stubbed to a fixed test sentinel; no actual Mac execution.",
+  "officialAcceptance": "HOLD",
+  "otherRows": "Visible with HOLD because only P02 facts were read",
+  "p02": {
+    "activeItem": "P02.S01.01",
+    "activePackage": "P02.S01",
+    "closed": false,
+    "done": 0,
+    "finish": "HOLD",
+    "key": "plive-p02-user-screen",
+    "nextAction": "P02 kayıt otoritesi → Şimdi güncel iş kimliği → G03/G04 gerçek saha kabulü",
+    "officialAcceptance": "HOLD",
+    "percent": 0.0,
+    "projectId": "ENGURU_PLIVE_P02_USER_SCREEN",
+    "reason": "QUALIFIED_CORE_FACTS",
+    "status": "PASS_CORE_READ_ONLY",
+    "total": 12
+  },
+  "projectIdsUnique": true,
+  "qualifiedP02Rows": 1,
+  "registryProjects": 8,
+  "schema": "enguru.pilive.core-adapter-bounded-replay/v1",
+  "source": "tools/pilive_core_snapshot_adapter_v1.py; tools/pilive_core_adapter_probe_v1.py",
+  "verifiedFinish": "HOLD"
+}
