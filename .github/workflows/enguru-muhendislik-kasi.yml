@@ -9,6 +9,9 @@ on:
       - 'tests/test_enguru_mk_five_minute_watch.py'
       - 'tests/test_enguru_mk_contract_v3.py'
       - 'tools/enguru_mk_acceptance_v3.py'
+      - 'tools/pilive_learning_adapter_v1.py'
+      - 'tests/test_pilive_learning_adapter_v1.py'
+      - 'governance/pilive-learning/**'
       - '.github/workflows/enguru-muhendislik-kasi.yml'
   issue_comment:
     types: [created]
@@ -35,6 +38,7 @@ jobs:
             python -m unittest discover -s tests -p 'test_enguru_muhendislik_kasi.py' -v
             python -m unittest discover -s tests -p 'test_enguru_mk_five_minute_watch.py' -v
             python -m unittest discover -s tests -p 'test_enguru_mk_contract_v3.py' -v
+            python -m unittest discover -s tests -p 'test_pilive_learning_adapter_v1.py' -v
           done
 
   owner-comment-intake:

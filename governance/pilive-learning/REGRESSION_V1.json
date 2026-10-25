@@ -1,0 +1,25 @@
+{
+  "nativeExecution": "NOT_EXECUTED",
+  "productGatesModified": 0,
+  "rounds": [
+    {
+      "outputSha256": "6fa89a3e6972808072047b8e8887eb24276f515a6e717897f8a3b359c9a0f15f",
+      "round": 1,
+      "state": "PASS",
+      "tests": 26
+    },
+    {
+      "outputSha256": "b835c19104c2eb483c729c90684bc9778c424d286ffaef85c070c4838e392b8f",
+      "round": 2,
+      "state": "PASS",
+      "tests": 26
+    },
+    {
+      "outputSha256": "17de229dec8ea79ef267c5141cb7d0f22869747c8a8cd6a2cde869c9eaebe582",
+      "round": 3,
+      "state": "PASS",
+      "tests": 26
+    }
+  ],
+  "scope": "LEARNING_ADAPTER_ONLY_NOT_PILIVE_PRODUCT_GATE"
+}

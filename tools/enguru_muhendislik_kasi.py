@@ -27,6 +27,8 @@ ALLOWED_TEST_STATES = frozenset({"NOT_EXECUTED", "PASS", "HOLD", "FAIL"})
 FIELDS = frozenset({"schema", "eventId", "taskId", "observedAt", "type", "evidenceLevel", "sourceUri", "sourceSha256", "sourcePath", "expected", "observed", "causeStatus", "fixProposal", "testState", "examinedCount", "impact", "suggestedCheck", "correlationId"})
 REQUIRED = frozenset({"schema", "eventId", "taskId", "observedAt", "type", "evidenceLevel", "sourceUri", "sourceSha256", "expected", "observed", "causeStatus", "fixProposal", "testState"})
 TASK_ID = "ENGURU_MANAGEMENT_V69_PR_203"
+PILIVE_TASK_ID = "ENGURU_PLIVE_P02_USER_SCREEN"
+REVIEW_TASK_SCOPES = frozenset({TASK_ID, PILIVE_TASK_ID})
 ID_RE = re.compile(r"MK-EVT-[A-Z0-9][A-Z0-9_-]{4,70}\Z")
 HASH_RE = re.compile(r"[0-9a-f]{64}\Z")
 MARK_RE = re.compile(r"<!-- ENGURU_MK_EVENT_V1:([A-Za-z0-9_\-=]+):([0-9a-f]{64}) -->")
@@ -55,7 +57,10 @@ def canonical(obj) -> bytes:
     return json.dumps(obj, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode("utf-8")
 
 
-def parse_event(raw: bytes) -> dict:
+def parse_event(raw: bytes, *, expected_task_id: str = TASK_ID) -> dict:
+    # The entry point chooses a fixed reviewed scope; an event cannot choose it.
+    if not isinstance(expected_task_id, str) or expected_task_id not in REVIEW_TASK_SCOPES:
+        raise IntakeHold("HOLD_REVIEW_ADAPTER_SCOPE")
     if len(raw) > MAX_EVENT_BYTES:
         raise IntakeHold("HOLD_EVENT_SIZE")
     try:
@@ -68,7 +73,7 @@ def parse_event(raw: bytes) -> dict:
         raise IntakeHold("HOLD_EVENT_SCHEMA_FIELDS")
     if event["schema"] != SCHEMA or not isinstance(event["eventId"], str) or not ID_RE.fullmatch(event["eventId"]):
         raise IntakeHold("HOLD_EVENT_ID_SCHEMA")
-    if event["taskId"] != TASK_ID:
+    if event["taskId"] != expected_task_id:
         raise IntakeHold("HOLD_TASK_SCOPE")
     for k in ("expected", "observed", "fixProposal", "sourceUri", "impact", "suggestedCheck"):
         if k in event and (not isinstance(event[k], str) or len(event[k]) > 4000):
@@ -180,8 +185,8 @@ def add_event(record: str, event: dict, classification: dict):
     return record.rstrip("\n") + "\n" + appended, "NEW_REVIEW_CANDIDATE"
 
 
-def process(record: str, event_bytes: bytes) -> tuple[str, dict]:
-    event = parse_event(event_bytes)
+def process(record: str, event_bytes: bytes, *, expected_task_id: str = TASK_ID) -> tuple[str, dict]:
+    event = parse_event(event_bytes, expected_task_id=expected_task_id)
     status = inspect_evidence(event)
     if status.startswith("HOLD_"):
         raise IntakeHold(status)

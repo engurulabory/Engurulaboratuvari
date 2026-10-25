@@ -342,3 +342,32 @@ NEXT_ACTION=...
 
 **Ürün kalıcı sabit hedefi:** `G2_OWNER_SIGNER → G3_SIGNED_HUMAN_REVIEW → G4_DONECHECK_AUDIT → G5_OWNER_MERGE_EXACT_MAIN → G6_VERIFIED_FINISH → BITTI_DUR`. Mühendislik Kası 100/100 tasarım ve PASS izole test sonucu G2-G6'yı otomatik tamamlamaz.
 
+### Otomatik öğrenme adayı — MK-EVT-PILIVE-SOURCE_SCOPE-BD64DA51F2B7
+<!-- ENGURU_MK_EVENT_V1:eyJjYXVzZVN0YXR1cyI6IlVOS05PV04iLCJjb3JyZWxhdGlvbklkIjoiT1NJQkxPQ0stUElMSVZFLVNPVVJDRS1WMyIsImV2ZW50SWQiOiJNSy1FVlQtUElMSVZFLVNPVVJDRV9TQ09QRS1CRDY0REE1MUYyQjciLCJldmlkZW5jZUxldmVsIjoiQSIsImV4cGVjdGVkIjoiVHJhY2tlZCBmaWxlbmFtZSBzY29wZSBhbmQgYm91bmRlZCBuYXRpdmUgc291cmNlIHNjb3BlIGFyZSByZXBvcnRlZCBzZXBhcmF0ZWx5LiIsImZpeFByb3Bvc2FsIjoiUmV0YWluIGV4YW1pbmVkLWZpbGUgY291bnQsIHNlYXJjaCByb290cywgZGVwdGggYW5kIGxpbWl0IGV2aWRlbmNlIGZvciBldmVyeSBhYnNlbmNlIGNsYWltLiIsIm9ic2VydmVkIjoiVGhlIHRyYWNrZWQgaW52ZW50b3J5IGhhZCB6ZXJvIFN3aWZ0IGNhbmRpZGF0ZXM7IHRoZSBib3VuZGVkIGFyY2hpdmUgY2FwdHVyZSBjb250YWluZWQgU3dpZnQgc291cmNlcy4iLCJvYnNlcnZlZEF0IjoiMjAyNi0xMC0yNVQxNToyNjowMFoiLCJzY2hlbWEiOiJlbmd1cnUubWsuZXZpZGVuY2UtZXZlbnQvdjEiLCJzb3VyY2VTaGEyNTYiOiJiZDY0ZGE1MWYyYjcwOGQ1NWMzNThjZjQzMDdmMmU3NDZkOGRkZDMzZjU4MTQ2OTBlZDBmZjM3OTE2NTJlMWVkIiwic291cmNlVXJpIjoidXJuOmVuZ3VydTpwaWxpdmU6cmV2aWV3ZWQtc291cmNlOmJkNjRkYTUxZjJiNzA4ZDU1YzM1OGNmNDMwN2YyZTc0NmQ4ZGRkMzNmNTgxNDY5MGVkMGZmMzc5MTY1MmUxZWQiLCJ0YXNrSWQiOiJFTkdVUlVfUExJVkVfUDAyX1VTRVJfU0NSRUVOIiwidGVzdFN0YXRlIjoiTk9UX0VYRUNVVEVEIiwidHlwZSI6Ik5FV19SRVFVSVJFTUVOVCJ9:9805bfbc1f19aa56f83672f2a06d5fd69aa4defebcb0c6f35f6414cee321f171 -->
+- **Tür:** `NEW_REQUIREMENT` · **Seviye iddiası:** `A` · **Kanıt kontrolü:** `UNVERIFIED_EVIDENCE_POINTER`.
+- **Gözlem:** The tracked inventory had zero Swift candidates; the bounded archive capture contained Swift sources.
+- **Beklenti:** Tracked filename scope and bounded native source scope are reported separately.
+- **Önerilen fark:** Retain examined-file count, search roots, depth and limit evidence for every absence claim.
+- **Kaynak:** urn:enguru:pilive:reviewed-source:bd64da51f2b708d55c358cf4307f2e746d8ddd33f5814690ed0ff3791652e1ed · SHA-256 `bd64da51f2b708d55c358cf4307f2e746d8ddd33f5814690ed0ff3791652e1ed`.
+- **OSi eşleşme kimliği:** `OSIBLOCK-PILIVE-SOURCE-V3`.
+- **Karar:** `REVIEW_REQUIRED`; ürün kabul sayacı değişimi `0`; kontroller: GENERATE_NEGATIVE_REGRESSION_CANDIDATE.
+
+### Otomatik öğrenme adayı — MK-EVT-PILIVE-SOURCE_BINARY_LINEAGE-BD64DA51F2B7
+<!-- ENGURU_MK_EVENT_V1:eyJjYXVzZVN0YXR1cyI6IlVOS05PV04iLCJjb3JyZWxhdGlvbklkIjoiT1NJQkxPQ0stUElMSVZFLVNPVVJDRS1WMyIsImV2ZW50SWQiOiJNSy1FVlQtUElMSVZFLVNPVVJDRV9CSU5BUllfTElORUFHRS1CRDY0REE1MUYyQjciLCJldmlkZW5jZUxldmVsIjoiQSIsImV4cGVjdGVkIjoiQW4gaW5zdGFsbGVkIGJpbmFyeSBkaWdlc3QgYW5kIGhpc3RvcmljYWwgc291cmNlIHBpbnMgaGF2ZSBkaXN0aW5jdCBwcm9vZiBzY29wZS4iLCJmaXhQcm9wb3NhbCI6IlJlcXVpcmUgZXhhY3Qgc291cmNlLCBidWlsZCByZWNpcGUsIHRvb2xjaGFpbiwgc2lnbmluZyB0cmFuc2Zvcm1hdGlvbiBhbmQgcmVzdWx0aW5nIGJpbmFyeSBpZGVudGl0eS4iLCJvYnNlcnZlZCI6Ikhpc3RvcmljYWwgU3dpZnQgc291cmNlIHBpbnMgbWF0Y2hlZCBjYXB0dXJlZCBieXRlczsgUHl0aG9uIHByb2plY3Rpb24gcGlucyBhbmQgZXhhY3QgYnVpbGQgbGluZWFnZSByZW1haW4gb3Blbi4iLCJvYnNlcnZlZEF0IjoiMjAyNi0xMC0yNVQxNToyNjowMFoiLCJzY2hlbWEiOiJlbmd1cnUubWsuZXZpZGVuY2UtZXZlbnQvdjEiLCJzb3VyY2VTaGEyNTYiOiJiZDY0ZGE1MWYyYjcwOGQ1NWMzNThjZjQzMDdmMmU3NDZkOGRkZDMzZjU4MTQ2OTBlZDBmZjM3OTE2NTJlMWVkIiwic291cmNlVXJpIjoidXJuOmVuZ3VydTpwaWxpdmU6cmV2aWV3ZWQtc291cmNlOmJkNjRkYTUxZjJiNzA4ZDU1YzM1OGNmNDMwN2YyZTc0NmQ4ZGRkMzNmNTgxNDY5MGVkMGZmMzc5MTY1MmUxZWQiLCJ0YXNrSWQiOiJFTkdVUlVfUExJVkVfUDAyX1VTRVJfU0NSRUVOIiwidGVzdFN0YXRlIjoiTk9UX0VYRUNVVEVEIiwidHlwZSI6Ik5FV19SRVFVSVJFTUVOVCJ9:c81d82ddf2108a099c140e5135e31e007c8bb7600ba8235e01c6a19c4863b57e -->
+- **Tür:** `NEW_REQUIREMENT` · **Seviye iddiası:** `A` · **Kanıt kontrolü:** `UNVERIFIED_EVIDENCE_POINTER`.
+- **Gözlem:** Historical Swift source pins matched captured bytes; Python projection pins and exact build lineage remain open.
+- **Beklenti:** An installed binary digest and historical source pins have distinct proof scope.
+- **Önerilen fark:** Require exact source, build recipe, toolchain, signing transformation and resulting binary identity.
+- **Kaynak:** urn:enguru:pilive:reviewed-source:bd64da51f2b708d55c358cf4307f2e746d8ddd33f5814690ed0ff3791652e1ed · SHA-256 `bd64da51f2b708d55c358cf4307f2e746d8ddd33f5814690ed0ff3791652e1ed`.
+- **OSi eşleşme kimliği:** `OSIBLOCK-PILIVE-SOURCE-V3`.
+- **Karar:** `REVIEW_REQUIRED`; ürün kabul sayacı değişimi `0`; kontroller: GENERATE_NEGATIVE_REGRESSION_CANDIDATE.
+
+### Otomatik öğrenme adayı — MK-EVT-PILIVE-COUNT_INTEGRITY-BD64DA51F2B7
+<!-- ENGURU_MK_EVENT_V1:eyJjYXVzZVN0YXR1cyI6IlVOS05PV04iLCJjb3JyZWxhdGlvbklkIjoiT1NJQkxPQ0stUElMSVZFLVNPVVJDRS1WMyIsImV2ZW50SWQiOiJNSy1FVlQtUElMSVZFLUNPVU5UX0lOVEVHUklUWS1CRDY0REE1MUYyQjciLCJldmlkZW5jZUxldmVsIjoiQSIsImV4cGVjdGVkIjoiRGlzcGxheSBjb3VudGVycyBjb25zdW1lIGNhbm9uaWNhbCBxdWFsaWZpZWQgaW50ZWdlciB2YWx1ZXMuIiwiZml4UHJvcG9zYWwiOiJBY2NlcHQgZXhhY3Qgbm9uLWJvb2xlYW4gaW50ZWdlcnMgYW5kIGRlcml2ZSB0aGUgZGlzcGxheWVkIHBlcmNlbnRhZ2UgZnJvbSB0aGUgdmVyaWZpZWQgbnVtZXJhdG9yIGFuZCBkZW5vbWluYXRvci4iLCJvYnNlcnZlZCI6IkFuIGFyY2hpdmVkIFN3aWZ0IGJyaWRnZSBjb252ZXJ0cyBOU051bWJlciB1c2luZyBpbnRWYWx1ZSBhbmQgcGVybWl0cyBhIHBlcmNlbnRhZ2UgdG9sZXJhbmNlLiIsIm9ic2VydmVkQXQiOiIyMDI2LTEwLTI1VDE1OjI2OjAwWiIsInNjaGVtYSI6ImVuZ3VydS5tay5ldmlkZW5jZS1ldmVudC92MSIsInNvdXJjZVNoYTI1NiI6ImJkNjRkYTUxZjJiNzA4ZDU1YzM1OGNmNDMwN2YyZTc0NmQ4ZGRkMzNmNTgxNDY5MGVkMGZmMzc5MTY1MmUxZWQiLCJzb3VyY2VVcmkiOiJ1cm46ZW5ndXJ1OnBpbGl2ZTpyZXZpZXdlZC1zb3VyY2U6YmQ2NGRhNTFmMmI3MDhkNTVjMzU4Y2Y0MzA3ZjJlNzQ2ZDhkZGQzM2Y1ODE0NjkwZWQwZmYzNzkxNjUyZTFlZCIsInRhc2tJZCI6IkVOR1VSVV9QTElWRV9QMDJfVVNFUl9TQ1JFRU4iLCJ0ZXN0U3RhdGUiOiJOT1RfRVhFQ1VURUQiLCJ0eXBlIjoiTkVXX1JFUVVJUkVNRU5UIn0=:0a31df525b6940d38cdc00fdee37b7cf2ef41f065451dac266e41d29fca9f31a -->
+- **Tür:** `NEW_REQUIREMENT` · **Seviye iddiası:** `A` · **Kanıt kontrolü:** `UNVERIFIED_EVIDENCE_POINTER`.
+- **Gözlem:** An archived Swift bridge converts NSNumber using intValue and permits a percentage tolerance.
+- **Beklenti:** Display counters consume canonical qualified integer values.
+- **Önerilen fark:** Accept exact non-boolean integers and derive the displayed percentage from the verified numerator and denominator.
+- **Kaynak:** urn:enguru:pilive:reviewed-source:bd64da51f2b708d55c358cf4307f2e746d8ddd33f5814690ed0ff3791652e1ed · SHA-256 `bd64da51f2b708d55c358cf4307f2e746d8ddd33f5814690ed0ff3791652e1ed`.
+- **OSi eşleşme kimliği:** `OSIBLOCK-PILIVE-SOURCE-V3`.
+- **Karar:** `REVIEW_REQUIRED`; ürün kabul sayacı değişimi `0`; kontroller: GENERATE_NEGATIVE_REGRESSION_CANDIDATE.
