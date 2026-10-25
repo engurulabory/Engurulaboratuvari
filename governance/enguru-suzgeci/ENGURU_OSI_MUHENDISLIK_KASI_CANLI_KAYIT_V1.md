@@ -381,3 +381,13 @@ NEXT_ACTION=...
 - **Kaynak:** urn:enguru:pilive:reviewed-source:8485dbab50bd10e626db07ff6245feabe07d35f09faa7287b4f9809c026b22a8 · SHA-256 `8485dbab50bd10e626db07ff6245feabe07d35f09faa7287b4f9809c026b22a8`.
 - **OSi eşleşme kimliği:** `OSIBLOCK-PILIVE-NATIVE-REPAIR`.
 - **Karar:** `REVIEW_REQUIRED`; ürün kabul sayacı değişimi `0`; kontroller: GENERATE_NEGATIVE_REGRESSION_CANDIDATE.
+
+### Otomatik öğrenme adayı — MK-EVT-PILIVE-NATIVE-SUCCESS-81CF6112EA6F
+<!-- ENGURU_MK_EVENT_V1:eyJjYXVzZVN0YXR1cyI6IlVOS05PV04iLCJjb3JyZWxhdGlvbklkIjoiT1NJQkxPQ0stUElMSVZFLU5BVElWRS1SRVBBSVIiLCJldmVudElkIjoiTUstRVZULVBJTElWRS1OQVRJVkUtU1VDQ0VTUy04MUNGNjExMkVBNkYiLCJldmlkZW5jZUxldmVsIjoiQSIsImV4YW1pbmVkQ291bnQiOjEzNywiZXhwZWN0ZWQiOiJUaGUgcmVwYWlyZWQgZml4dHVyZSBjb250cmFjdCBwYXNzZXMgaW4gdGhlIGFjdHVhbCBuYXRpdmUgZW52aXJvbm1lbnQgd2hpbGUgc291cmNlIHByb3RlY3Rpb25zIHJlbWFpbiBpbnRhY3QuIiwiZml4UHJvcG9zYWwiOiJSZXRhaW4gdGhlIG93bmVkLWZpeHR1cmUgYWxpYXMgcmVncmVzc2lvbiBhbmQgcmVwcm9kdWNlIGZ1dHVyZSBzb3VyY2UgY2hhbmdlcyBvbiBib3RoIEdpdEh1YiBhbmQgdGhlIG5hdGl2ZSBlbnZpcm9ubWVudC4iLCJvYnNlcnZlZCI6IjEzNyBuYXRpdmUgdGVzdHMgcGFzc2VkOyBwaW5uZWQgQ29yZSB2ZXJpZnkgYW5kIHRocmVlIHByaW9yIHJlY2VpcHQtY29weSBwYWlycyBwYXNzZWQuIFByb2R1Y3QgYWNjZXB0YW5jZSByZW1haW5zIEhPTEQuIiwib2JzZXJ2ZWRBdCI6IjIwMjYtMTAtMjVUMTY6MDM6NDAuNjAxOTU4KzAwOjAwIiwic2NoZW1hIjoiZW5ndXJ1Lm1rLmV2aWRlbmNlLWV2ZW50L3YxIiwic291cmNlU2hhMjU2IjoiODFjZjYxMTJlYTZmYWYxNGVhMDJjNzUwMzczYTIzYWIwOGI1ZTdkMjhmZDljZDk1MGEwNjBlYjBhOGM3MWE3YSIsInNvdXJjZVVyaSI6InVybjplbmd1cnU6cGlsaXZlOnJldmlld2VkLW5hdGl2ZS1yZXBlYXQ6ODFjZjYxMTJlYTZmYWYxNGVhMDJjNzUwMzczYTIzYWIwOGI1ZTdkMjhmZDljZDk1MGEwNjBlYjBhOGM3MWE3YSIsInRhc2tJZCI6IkVOR1VSVV9QTElWRV9QMDJfVVNFUl9TQ1JFRU4iLCJ0ZXN0U3RhdGUiOiJQQVNTIiwidHlwZSI6IlNVQ0NFU1MifQ==:fe27ae9e1e6a22df8ac2e7c5810b187a73c83770a19341c4f82684576544b82e -->
+- **Tür:** `SUCCESS` · **Seviye iddiası:** `A` · **Kanıt kontrolü:** `UNVERIFIED_EVIDENCE_POINTER`.
+- **Gözlem:** 137 native tests passed; pinned Core verify and three prior receipt-copy pairs passed. Product acceptance remains HOLD.
+- **Beklenti:** The repaired fixture contract passes in the actual native environment while source protections remain intact.
+- **Önerilen fark:** Retain the owned-fixture alias regression and reproduce future source changes on both GitHub and the native environment.
+- **Kaynak:** urn:enguru:pilive:reviewed-native-repeat:81cf6112ea6faf14ea02c750373a23ab08b5e7d28fd9cd950a060eb0a8c71a7a · SHA-256 `81cf6112ea6faf14ea02c750373a23ab08b5e7d28fd9cd950a060eb0a8c71a7a`.
+- **OSi eşleşme kimliği:** `OSIBLOCK-PILIVE-NATIVE-REPAIR`.
+- **Karar:** `REVIEW_REQUIRED`; ürün kabul sayacı değişimi `0`; kontroller: SOURCE_REVIEW.

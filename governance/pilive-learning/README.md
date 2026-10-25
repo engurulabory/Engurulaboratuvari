@@ -60,3 +60,12 @@ Gerçek Mac'te ilk 130 test ve probe'un 2 testi geçti; kalan 4 probe testi geç
 Hata kaynağı: test fixture'ının geçici dizin yolu, üretim okuyucusunun her bileşende uyguladığı O_NOFOLLOW sınırına ulaşıyor. Symlink içeren TMPDIR ile aynı 2 failure + 2 error Linux'ta yeniden üretildi. Onarım yalnız sahipliği belli fixture köklerini `resolve(strict=True)` ile hazırlıyor; üretim `directory_fd` ve `read_file` gövdeleri korunuyor. Yeni karşıt test, alias kökünün üretim okuyucusunda reddedildiğini, çözümlenmiş fixture kökünün okunduğunu ve leaf symlink'in yine reddedildiğini birlikte sınar.
 
 Yeni probe test sayısı 7; toplam aktarım 137 özgün test. 33 yeni test, normal ve alias TMPDIR altında üçer tur PASS; mevcut 104 test iki temiz tur PASS. Native yeni tekrar kendi gerçek makbuzunu bekler. Önceki 136 testlik makbuz tarihsel kanıt olarak korunur. Yeni paket önceki native makbuzun orijinal/kopya eşliğini de okur. Bu onarım aynı yaşayan kayda ayrı PiLive öğrenme adayı olarak bağlandı.
+
+## Native onarımın gerçek tekrar kanıtı
+
+25 Ekim 2026 19:03:40 Türkiye saati. Yeni makbuz SHA-256 `81cf6112ea6faf14ea02c750373a23ab08b5e7d28fd9cd950a060eb0a8c71a7a`.
+Exact paket kaynağı `9ac7f9555f0a7e265a650aca8b76533cb5952b2d`; manifest SHA-256 `d8318496adda0331340ab9168022b69e4527a094266cead7cb2e29b7a20dad44`. Makbuzdaki iki değer, teslim edilen V2 paketin gerçek manifest baytlarıyla eşleştirildi.
+
+**Gerçek Mac: 137/137 test PASS.** Suite sayıları 33 + 46 + 25 + 26 + 7. Native Core verify yeniden PASS, sekiz kaynak pini önce/sonra aynı. Üç önceki makbuzun orijinal/kopya/pin eşliği 3/3 PASS. P02 countedPass=0, finishState=HOLD. Canonical, yerel kas, Keychain, ağ ve uygulama açılışı sayıları 0.
+
+Native onarım başarılıdır; özgün ürün kabulleri ayrı kalır. İki bilinen repo kökünde incelenen 14 exact kas yolu yine bulunmadı; gerçek yerel kas konumu ve görev kapsamı HOLD. GitHub paketinin Mac'te geçici test edilmesi, kurulu yerel kasın değiştirildiği anlamına gelmez. Aynı yaşayan kayda gizlisiz SUCCESS inceleme adayı eklendi; ham kaynaklar taşınmadı.

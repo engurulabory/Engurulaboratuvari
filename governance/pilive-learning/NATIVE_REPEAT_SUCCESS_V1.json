@@ -1,0 +1,40 @@
+{
+  "canonicalWrites": 0,
+  "nativeCore": {
+    "countedPass": 0,
+    "finishState": "HOLD",
+    "sourcePinsStable": 8,
+    "state": "PASS_NATIVE_CORE_VERIFY_READ_ONLY"
+  },
+  "nativeMuscleInventory": {
+    "examinedExactPaths": 14,
+    "globalAbsence": "NOT_CLAIMED",
+    "observedFiles": 0,
+    "reconciliation": "HOLD_EXACT_NATIVE_LOCATION",
+    "scope": "TWO_KNOWN_REPOSITORY_ROOTS_ONLY"
+  },
+  "nativeMuscleWrites": 0,
+  "nativeTests": {
+    "passed": 137,
+    "suiteCounts": [
+      33,
+      46,
+      25,
+      26,
+      7
+    ],
+    "total": 137
+  },
+  "observedAtUtc": "2026-10-25T16:03:40.601958+00:00",
+  "packageManifestSha256": "d8318496adda0331340ab9168022b69e4527a094266cead7cb2e29b7a20dad44",
+  "packageSourceCommit": "9ac7f9555f0a7e265a650aca8b76533cb5952b2d",
+  "priorReceiptPairs": {
+    "passed": 3,
+    "total": 3
+  },
+  "productAcceptance": "HOLD",
+  "rawNativeContentExported": false,
+  "receiptSha256": "81cf6112ea6faf14ea02c750373a23ab08b5e7d28fd9cd950a060eb0a8c71a7a",
+  "schema": "enguru.pilive.reviewed-native-repeat/v1",
+  "verifiedFinish": "HOLD"
+}
