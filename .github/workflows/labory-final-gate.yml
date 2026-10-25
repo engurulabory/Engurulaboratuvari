@@ -162,6 +162,11 @@ jobs:
       - name: ENGURU Billing Core tests
         run: python -m unittest discover -s tests -p 'test_billing_core.py' -v
 
+      - name: SHA-256 locked eight-stage ENGURU positive discipline and PiLive V4 target
+        run: |
+          python -B tools/enguru_kalici_disiplin_lock_v1.py
+          python -B -m unittest discover -s tests -p 'test_enguru_kalici_disiplin_lock_v1.py' -v
+
       - name: ENGURU mandatory THEORY DESIGN SIM1 SIM2 SIM3 five-by-100 preparation
         run: |
           python -B tools/enguru_ana_terazi_v1.py > "$RUNNER_TEMP/enguru-project-five100-method.json"
