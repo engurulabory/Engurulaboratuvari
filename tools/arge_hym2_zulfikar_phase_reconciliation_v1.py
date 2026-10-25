@@ -77,7 +77,7 @@ def checks(d):
         "D02_DISCIPLINE_LOCK":dlock==EXPECTED_DISCIPLINE_SHA and lock.get("sha256")==EXPECTED_DISCIPLINE_SHA,
         "D03_TEN_ORIGINAL_GH_KEYS":[x.get("gate_id") for x in reg]==[f"GH{i:02d}" for i in range(1,11)],
         "D04_FIXED_GH_BOUNDARY":state==EXPECTED_GH_STATES,
-        "D05_TWO_SEPARATE_SCORES":g["score_accounting"].get("github_preparation_last_authoritative_record")=="50/100",
+        "D05_TWO_SEPARATE_SCORES":g["score_accounting"].get("github_preparation_last_authoritative_record")=="50/100" and "NOT a replacement authoritative 5/10 measurement" in g["score_accounting"].get("proposed_gate_register",""),
         "D06_PRIVATE_CANONICAL":scope.get("public_review_contract")=="ONLY_NONSECRET_STATUS_REFERENCES_AND_BOUNDED_EVIDENCE",
         "D07_A03_A04_ORIGINAL":all(m["tasks"][x].get("official")=="HOLD" for x in ("A03","A04")),
         "D08_ZULFI_FOUR_PACKAGES":set(z.get("packages",{}))=={"K01","K02","K03","K04"},
@@ -89,7 +89,7 @@ def checks(d):
         "T01_SOURCE_BOUND_Z":len(d["zulfi_pins"])==len(SOURCE_PINS)==2,
         "T02_Z_DESIGN_ONLY":z.get("scope")=="DESIGN_ONLY / LOCAL_OFFLINE_VALIDATOR",
         "T03_Z_NO_CORE_OR_OWNER":z.get("new_owner_created") is False and z.get("new_core_created") is False,
-        "T04_CI_VS_CANONICAL":g["score_accounting"].get("github_preparation_original_rubric","").startswith("V4.7 5/10"),
+        "T04_CI_VS_CANONICAL":g["score_accounting"].get("github_preparation_original_rubric","").startswith("V4.7 5/10") and "no promotion from documentation alone" in g["score_accounting"].get("proposed_gate_register",""),
         "T05_LATER_STAGES_SEPARATE":state[5:]==EXPECTED_GH_STATES[5:],
         "T06_EXTERNAL_E5_HOLD":g["score_accounting"].get("independent_e5")=="0/18",
         "T07_AUTHORITY_HOLD":p.get("verified_sources")=={} and scope.get("owner_scope_decision")=="HOLD_EXPLICIT_DECISION_PENDING",
@@ -155,7 +155,8 @@ def run(root=ROOT,fetch=None):
         s=score(d);sim=simulations(d)
         out.update(goal_design_theory=s["grades"],source_sha256=s["source_sha256"],
             three_simulations=sim,
-            source_of_deadlock="V4.7_GH06_GH10_LATER_AUTHORITY_EVIDENCE_BLOCKS_PREFIELD_GITHUB_SCORE",
+            source_of_deadlock="V4_7_AUTHORITATIVE_5_OF_10_NOT_RECONCILED_WITH_PROPOSED_GH01_GH10_AND_METHOD_5X100",
+            GH01_GH10_register_authority="PROPOSED_MANAGEMENT_TRACE_ONLY_NOT_ORIGINAL_V47_SCORER",
             original_GH06_GH10=[{"id":x["gate_id"],"state":x["management_state"]}
                 for x in d["gate"]["proposed_readiness_trace_gates"][5:]],
             original_40_work_ids=list(TASKS),original_blocks=[list(x) for x in BLOCKS],
