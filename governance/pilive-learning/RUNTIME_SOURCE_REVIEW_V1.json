@@ -1,0 +1,37 @@
+{
+  "bridgeTask": "ENGURU_MK_BRIDGE_PILOT_V1",
+  "canonicalFreshness": "NOT_RECAPTURED",
+  "installedBinarySha256": "32d533bed479434f77f848fd030c4330a2a33447e8e28d281f215bcb7b6db466",
+  "observedAtUtc": "2026-10-25T17:44:27.002701+00:00",
+  "piliveRuntimeIntegration": "HOLD_SEPARATE_TASK_ADAPTER",
+  "priorEvidence": "Native receipt 81cf6112ea6faf14ea02c750373a23ab08b5e7d28fd9cd950a060eb0a8c71a7a retains 137/137 and 3/3 prior receipt pairs at its earlier observation time.",
+  "priorReceiptPairsPassed": 0,
+  "priorReceiptPairsTotal": 3,
+  "productAcceptance": "HOLD",
+  "pythonContentRecordsVerified": 4,
+  "pythonPinLocations": {
+    "projection_v6.py": 2,
+    "snapshot_v52.py": 2
+  },
+  "rawNativeContentExported": false,
+  "receiptSha256": "d91557b11abe20363f1a8ff89fb55267ec0549376c3c76839e2f80ea278349fa",
+  "reviewedV5GitHubCommit": "74bc3741b876c064da48b44f16eaa9ccfc05a14d",
+  "reviewedV5MemberSha256": {
+    "tools/enguru_mk_autopilot_v5.py": "1df7c2f392fb839ff033ebf1f03d2fb07b51148672508ce0f497e9af3304b8a0",
+    "tools/enguru_mk_bridge_v1.py": "f44bb3cf11787fa5f6c46b2b0ac5a9408c98a7c5fd974f94986fd10bcd48e1c9",
+    "tools/enguru_mk_intelligence_github_v5.py": "1320d3627762e833cd6e22c2e276fe331fd3831fee7949e125e35c28bdfd6f78",
+    "tools/enguru_mk_intelligence_v5.py": "541e0a713cd489839b4673345c80641cb3554b476f98652d4152c0acd01a68b3"
+  },
+  "scheduleContinuity": "NOT_PROVEN_BY_LAUNCHD_STATE",
+  "schema": "enguru.pilive.reviewed-runtime/v1",
+  "sourceReviewFindings": [
+    "Bundled projection_v6 reads snapshot_v52 from a separate LiveProgress/v4 runtime path, not its own bundle directory.",
+    "snapshot_v52 iterates only explicit registry entries; native P02 Core discovery also uses Work Contract files. Complete project-set parity is not established.",
+    "Four historical Swift pins plus two Python pins are matched. Exact compiler/toolchain/build/signing manifest remains unavailable."
+  ],
+  "swiftBinaryBuildBinding": "HOLD_EXACT_BUILD_MANIFEST",
+  "v5ActiveAtObservation": true,
+  "v5ReviewedMemberMatches": 4,
+  "v5RuntimeSha256": "060aaf6cbbaaac75fae1f79a2483bd141a1fc29a26b506110faed6a12e182f82",
+  "verifiedFinish": "HOLD"
+}

@@ -13,7 +13,11 @@
 - [x] Hata/onarım/başarı gizlisiz adayları mevcut GitHub kasına PR #241 üzerinden geri bağlandı; Yönetim V6.9 varsayılan görevi korunuyor.
 - [x] A yaratıcı yönü ve B'nin beş alan yaklaşımının Projeler'e alınması kullanıcı kararıyla sabitlendi.
 - [x] Zülfikar V1.2 kaynakları PR #242 @ `5b189e04b91dab4eb8099891188ca908f67bc816` üzerinden okundu; main'de yayımlanmış olduğu beyanı kurulmadı. Kullanıcının açık talimatıyla yardımcı inceleme çerçevesi olarak uygulanıyor.
-- [x] Kasın GitHub V5 kaynakları PR #220 @ `74bc3741b876c064da48b44f16eaa9ccfc05a14d` üzerinden incelendi. `Enguru/Runtime/MacEngineer/state/mk-bridge`, V5 ZIP/LaunchAgent ve `ENGURU_MK_BRIDGE_PILOT_V1` görevi kaynakta görüldü. Mac'te gerçek eşliği sonraki probe'da ölçülecek.
+- [x] Kasın GitHub V5 kaynakları PR #220 @ `74bc3741b876c064da48b44f16eaa9ccfc05a14d` üzerinden incelendi. `Enguru/Runtime/MacEngineer/state/mk-bridge`, V5 ZIP/LaunchAgent ve `ENGURU_MK_BRIDGE_PILOT_V1` görevi kaynakta görüldü. Yeni native makbuzda gerçek konum görüldü; dört V5 üye SHA'sı bu GitHub kaynağıyla eşleşti.
+
+- [x] Yeni native makbuzun SHA ve paket manifest bağı doğrulandı; V5 LaunchAgent active/exit 0, eski V1/V4 launchctl sonucu 113 olarak ayrı korundu. Bu tek anlık gözlemdir.
+- [x] İki tarihsel Python pini arşiv ve kurulu Resources'ta 4/4 içerik özetiyle bulundu; dört Swift piniyle birlikte tarihsel altı source pini içerik bazında eşleşti. Tam build bağı HOLD.
+- [x] Yeni makbuzun üç önceki receipt çifti FileNotFoundError gözlemi kaydedildi; önceki 3/3 PASS kendi zamanında korundu. Taşınma/silinme nedeni kanıtlanmadı.
 
 Bu işaretler yardımcı mühendislik hareketleridir; canonical P02 sayacı ve U01–U12 paydası yerine geçmez.
 
@@ -25,6 +29,8 @@ Bu işaretler yardımcı mühendislik hareketleridir; canonical P02 sayacı ve U
 | Native başarı makbuzu | `81cf6112ea6faf14ea02c750373a23ab08b5e7d28fd9cd950a060eb0a8c71a7a` |
 | Native test edilen paket kaynağı | `9ac7f9555f0a7e265a650aca8b76533cb5952b2d` |
 | Native başarı GitHub dönüşü | `3997fd61e1c208bdd73370d5629aaf9fd8a8c9f1` / 5/5 CI PASS |
+| Yeni runtime makbuzu | `d91557b11abe20363f1a8ff89fb55267ec0549376c3c76839e2f80ea278349fa` |
+| Native V5 ZIP | `060aaf6cbbaaac75fae1f79a2483bd141a1fc29a26b506110faed6a12e182f82` |
 | Native Core | `f3e2610c6e325f6fd620baa84ec412437a015109dde88ac38cab7f08b2a365b4` |
 | P02 Work Contract | `1dc9b0bae00a13672a142fb91f6b1fe603f151bcebaa64482e297029deda7512` |
 | P02 State | `ad29d034c8a97be75d69d972fca1c6e7ee207e7f7f1339e79b74e1ce6c40f432` |
@@ -61,8 +67,12 @@ Resmî P02: 0/12 counted PASS, 0/4 DoneCheck; 7 saha şartı/G3/Human Threshold/
 | Z10_CONCURRENCY | Yalnız PR #241 inceleme dalı; expected-head lease; Mac canonical/kas writer sayısı 0. Ürün writer yetkisi kendi kapısında |
 | Z10_SAFE_FIN | Ürün bitişi HOLD; hazırlık/test PASS resmî kabule aktarılmıyor |
 
-## Sonraki tek birleşik hareket
+## Güncel kaynak incelemesi ve sonraki tek birleşik hareket
 
-`pilive_runtime_lineage_observer_v1.py`: runtime V5 LaunchAgent plist'lerinden yalnız izinli metadata, ZIP manifest/SHA ve AST görev sabitlerini; SQLite dosyasının yalnız stat bilgisini; kurulu V3.1 binary kimliğini ve iki eski Python source pininin sınırlı kapsamda eşleşmesini toplar. Yerel native kodu import/execute, cycle/status/activate, SQLite bağlantısı, ağ, Keychain ve ürün/kas yazımı 0. Launchctl print'in tüm çıktısı kaydedilmez; yalnız state/pid/exit alanları alınır. Eski pilot görevi PiLive'a çevrilmez. Görev uyumu görülünce gerekli PiLive adaptörü ayrı sözleşmeyle değerlendirilir.
+Native kasın gerçek kökü `~/Enguru/Runtime/MacEngineer/state/mk-bridge`, ZIP `pilot/enguru-mk-bridge-pilot-v5.zip`; SQLite yalnız stat ile görüldü, bağlantı açılmadı. ZIP'teki dört V5 üye SHA'sı PR #220 exact kaynağıyla eşleşti. Mevcut görev `ENGURU_MK_BRIDGE_PILOT_V1`; PiLive görevi ayrı kalır. Yönetim V6.9 varsayılanı korunur. Aktif ajan görüntüsü beş dakikalık süreklilik veya PiLive öğrenme trafiği kanıtı oluşturmaz.
 
-Arama kapsamı: bilinen V3.1 arşivi ve kurulu app Resources, ayrıca yalnız owner UID'sine ait isim filtresiyle `/private/tmp` üst seviyesi. Limitler ve eksik dizinler raporlanır; kaynak bulunmaması genel yokluk veya build kökeni PASS'i oluşturmaz. Kanıt tamamlanamazsa eski binary korunur; yeni SwiftUI ürününün kendi source/build/binary manifesti nihai ekran sözleşmesine bağlanır.
+`projection_v6.py` kurulu app Resources içinde bulunsa da snapshot'ı `~/Library/Application Support/ENGURU/LiveProgress/v4/snapshot_v52.py` yolundan çalıştırıyor. Bulunan bundle dosyasının SHA'sı, bu ayrı runtime dosyasının güncel SHA'sı yerine geçmez. `snapshot_v52.py` açık registry girişlerini dolaşıyor; native Core'un Work Contract ile dinamik keşfettiği P02 kümesiyle tam eşlik henüz ölçülmedi. Eski ürünün görünür yüzey kabulü sıfır kalır.
+
+**Sonraki mühendislik hareketi:** Gerçek LiveProgress/v4 bağımlılık kapanımını ve güncel canonical pinlerini birlikte salt-okunur yakala; eski üç receipt'in exact konum/readback açığını ayrı kaydet. Kaynak→Core→adaptör proje kümesi ve sayım eşliği bu gerçek byte'lara karşı sınansın. Mevcut kası aktive etme, SQLite açma, eski binary'yi yeniden kurma veya canonical yazma gerekmez. Nihai dört ekran sözleşmesi geldiğinde yeni SwiftUI'ı bu doğrulanmış sınıra bağla; yeni build kendi source/toolchain/recipe/signing/binary manifestini üretir.
+
+Tam kanıt zinciri, U01–U12, bağımsız GUI/işlevsel doğrulama ve yetkili kabul açık. Tasarım/teori/GitHub hazırlık puanları yeni kaynak gözlemiyle otomatik 100 yapılmaz. Ayrıntılı gizlisiz sonuç: `RUNTIME_SOURCE_REVIEW_V1.json`.

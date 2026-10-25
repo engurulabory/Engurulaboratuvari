@@ -21,6 +21,18 @@ SCHEMA_V2 = 'enguru.pilive.source-observation/v2'
 SCHEMA_V3 = 'enguru.pilive.source-link-observation/v3'
 HASH = re.compile(r'[0-9a-f]{64}\Z')
 FACTS = {
+ 'RUNTIME_SCOPE_RECONCILED': (
+  'Runtime identity, task scope and PiLive acceptance remain separate.',
+  'The V5 runtime member digests match reviewed GitHub sources; its task is the existing bridge pilot, not PiLive.',
+  'Preserve the pilot and management tasks; review an explicit PiLive learning boundary before any native integration.'),
+ 'BUNDLED_SOURCE_RUNTIME_BOUNDARY': (
+  'Bundled source equality does not prove the runtime file used by a projection.',
+  'Two historical Python pins match both archived and installed resources; the projection points to a separate runtime snapshot path.',
+  'Bind the actual runtime dependency closure and the new SwiftUI build manifest to exact sources before U01 or U02 acceptance.'),
+ 'RECEIPT_LOCATION_BOUNDARY': (
+  'Prior receipt-copy equality is time and path scoped.',
+  'Three prior pairs passed in an earlier capture but were not found at the exact paths in the latest observation.',
+  'Keep both timestamped observations and restore read-only location evidence without creating replacement originals.'),
  'TEMP_DIRECTORY_ALIAS': (
   'Test-owned temporary roots and governed source roots retain distinct path policies.',
   'A native fixture run failed at a temporary-root alias while pinned Core verify and receipt-copy readback passed.',
@@ -109,6 +121,71 @@ def exact_counts(done,total):
     """Display boundary validation only; Progress Core remains the counter authority."""
     require(type(done) is int and type(total) is int and 0<=done<=total and total>0,'HOLD_DISPLAY_COUNTS')
     return {'done':done,'total':total,'percentNumerator':done*100,'percentDenominator':total}
+
+def verify_runtime_receipt(raw, *, expected_sha, expected_manifest, expected_observer_commit,
+                           expected_v5_members):
+    """In-memory review of a pinned observer receipt; no native import or authority.
+
+    Expected identities come from separately reviewed package/GitHub bytes. A plist
+    self-pin alone is insufficient. Returned fields contain no native paths/source.
+    A launchd observation proves one point in time, not schedule continuity.
+    """
+    for pin in (expected_sha,expected_manifest):
+        require(isinstance(pin,str) and HASH.fullmatch(pin),'HOLD_RUNTIME_EXPECTED_PIN')
+    require(digest(raw)==expected_sha,'HOLD_RUNTIME_RECEIPT_PIN')
+    r=strict_receipt(raw)
+    require(r.get('schema')=='enguru.pilive.runtime-lineage-observation/v1','HOLD_RUNTIME_SCHEMA')
+    require(r.get('packageManifestSha256')==expected_manifest and
+            r.get('observerSourceCommit')==expected_observer_commit,'HOLD_OBSERVER_IDENTITY')
+    require(r.get('errors')==[],'HOLD_OBSERVER_ERRORS')
+    for key in ('canonicalWrites','nativeMuscleWrites','sqliteConnections','keychainReads',
+                'networkRequests','runtimeActivations','appLaunches'):
+        require(type(r.get(key)) is int and r[key]==0,'HOLD_OBSERVER_SCOPE')
+    agents=r.get('agents');require(isinstance(agents,list),'HOLD_RUNTIME_AGENTS')
+    v5=[a for a in agents if isinstance(a,dict) and a.get('label')=='com.enguru.mk.bridge.pilot-v5']
+    require(len(v5)==1,'HOLD_V5_IDENTITY')
+    agent=v5[0];archives=agent.get('runtimes')
+    require(isinstance(archives,list) and len(archives)==1,'HOLD_V5_ARCHIVE')
+    archive=archives[0]
+    require(archive.get('installedPinState')=='PASS_PIN_MATCH' and
+            archive.get('sha256')==agent.get('installedSha256') and
+            isinstance(archive.get('sha256'),str) and HASH.fullmatch(archive['sha256']),
+            'HOLD_V5_INSTALLED_PIN')
+    require(agent.get('nonAllowlistedEnvironmentValuesExported') is False,'HOLD_RUNTIME_ENVIRONMENT')
+    inventory=archive.get('sourceInventory');require(isinstance(inventory,list),'HOLD_RUNTIME_INVENTORY')
+    members={row.get('member'):row for row in inventory if isinstance(row,dict)}
+    require(len(members)==len(inventory),'HOLD_RUNTIME_DUPLICATE_MEMBER')
+    require(isinstance(expected_v5_members,dict) and len(expected_v5_members)>=4,
+            'HOLD_V5_REVIEWED_SOURCES')
+    for name,pin in expected_v5_members.items():
+        require(isinstance(pin,str) and HASH.fullmatch(pin) and
+                members.get(name,{}).get('sha256')==pin,'HOLD_V5_SOURCE_MISMATCH')
+    require(members.get('tools/enguru_mk_bridge_v1.py',{}).get('scopeConstants',{}).get('TASK')
+            =='ENGURU_MK_BRIDGE_PILOT_V1','HOLD_BRIDGE_TASK_SCOPE')
+    lineage=r.get('lineage',{});matches=lineage.get('matchedPythonPins',[])
+    require(isinstance(matches,list),'HOLD_PYTHON_CONTENT_GROUP')
+    pins={'projection_v6.py':'d9efb5a7ec6c045f697396d566868d09dbec590f45d54c67339dec8ef626118c',
+          'snapshot_v52.py':'87dc579efb7f7a60541bc8439f9fc74e06983a10b7f829640d9403ac193c6edf'}
+    paths={name:set() for name in pins}
+    for row in matches:
+        require(isinstance(row,dict) and row.get('pinName') in pins and
+                isinstance(row.get('contentUtf8'),str),'HOLD_PYTHON_CONTENT')
+        require(digest(row['contentUtf8'].encode())==row.get('sha256')==pins[row['pinName']],
+                'HOLD_PYTHON_CONTENT_SHA')
+        require(isinstance(row.get('path'),str),'HOLD_PYTHON_PATH')
+        require(row['path'] not in paths[row['pinName']],'HOLD_PYTHON_DUPLICATE_PATH')
+        paths[row['pinName']].add(row['path'])
+    launch=agent.get('launchd',{})
+    active=type(launch.get('returncode')) is int and launch['returncode']==0 and launch.get('fields',{}).get('state')=='active'
+    pairs=r.get('priorReceiptPairs');require(isinstance(pairs,list),'HOLD_PRIOR_PAIRS')
+    return {'schema':'enguru.pilive.reviewed-runtime/v1','receiptSha256':expected_sha,
+      'v5ReviewedMemberMatches':len(expected_v5_members),'v5ActiveAtObservation':active,
+      'bridgeTask':'ENGURU_MK_BRIDGE_PILOT_V1','piliveRuntimeIntegration':'HOLD_SEPARATE_TASK_ADAPTER',
+      'pythonContentRecordsVerified':len(matches),'pythonPinLocations':{k:len(v) for k,v in paths.items()},
+      'priorReceiptPairsPassed':sum(x.get('state')=='PASS_ORIGINAL_COPY_PIN' for x in pairs),
+      'priorReceiptPairsTotal':len(pairs),'scheduleContinuity':'NOT_PROVEN_BY_LAUNCHD_STATE',
+      'canonicalFreshness':'NOT_RECAPTURED','swiftBinaryBuildBinding':'HOLD_EXACT_BUILD_MANIFEST',
+      'productAcceptance':'HOLD','verifiedFinish':'HOLD','rawNativeContentExported':False}
 
 def schedule_evidence(runs, *, workflow_id, current_sha):
     require(isinstance(runs,list) and type(workflow_id) is int and isinstance(current_sha,str),'HOLD_SCHEDULE_INPUT')
