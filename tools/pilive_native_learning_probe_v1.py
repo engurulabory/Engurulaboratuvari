@@ -22,7 +22,8 @@ import zipfile
 V2_NAME='ENGURU_PILIVE_SOURCE_V2_20261025T145700544425Z_6a6ea0b04143.json'
 V3_NAME='ENGURU_PILIVE_SOURCE_LINK_V3_20261025T152600420363Z_f313fd930933.json'
 RECEIPT_PINS={V2_NAME:'0dac03bf15579f28bccd3da5fc3daa36fb81c5d368b209216a0c32769d6327a8',
- V3_NAME:'bd64da51f2b708d55c358cf4307f2e746d8ddd33f5814690ed0ff3791652e1ed'}
+ V3_NAME:'bd64da51f2b708d55c358cf4307f2e746d8ddd33f5814690ed0ff3791652e1ed',
+ 'ENGURU_PILIVE_KAS_NATIVE_V1_20261025T155028653442Z_17e040e91952.json':'8485dbab50bd10e626db07ff6245feabe07d35f09faa7287b4f9809c026b22a8'}
 CORE_PINS={
  'tools/enguru_progress.py':'f3e2610c6e325f6fd620baa84ec412437a015109dde88ac38cab7f08b2a365b4',
  'tools/enguru_progress_adapters.py':'2508089ed161070abe1d520325ff610fd6165c8a726db3ea2a456d772b6faa92',
@@ -165,7 +166,7 @@ def run_package(archive,*,home=None,allow_non_mac=False,execute_core=True):
                   'state':'PASS' if p.returncode==0 and counts else 'HOLD','outputSha256':digest(logs.encode()),'failureOutput':logs[:16000] if p.returncode else ''})
             core=native_core_verify(home,temp) if execute_core else {'state':'NOT_EXECUTED_ISOLATED_PACKAGE_TEST','executed':False}
             pairs=receipt_pairs(home);inventory=native_muscle_inventory(home)
-            ok=all(t['state']=='PASS' for t in tests) and sum(t['tests'] for t in tests)==136 and core['state']=='PASS_NATIVE_CORE_VERIFY_READ_ONLY' and all(p['state']=='PASS_ORIGINAL_COPY_PIN' for p in pairs)
+            ok=all(t['state']=='PASS' for t in tests) and sum(t['tests'] for t in tests)==137 and core['state']=='PASS_NATIVE_CORE_VERIFY_READ_ONLY' and all(p['state']=='PASS_ORIGINAL_COPY_PIN' for p in pairs)
             return {'schema':'enguru.pilive.native-learning-repeat/v1','observedAtUtc':datetime.now(timezone.utc).isoformat(),
               'platform':platform.system(),'packageSourceCommit':manifest['sourceCommit'],'packageManifestSha256':digest(z.read('MANIFEST.json')),
               'tests':tests,'nativeCore':core,'receiptPairs':pairs,'existingNativeMuscle':inventory,

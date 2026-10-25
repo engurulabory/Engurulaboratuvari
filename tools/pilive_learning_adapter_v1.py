@@ -21,6 +21,10 @@ SCHEMA_V2 = 'enguru.pilive.source-observation/v2'
 SCHEMA_V3 = 'enguru.pilive.source-link-observation/v3'
 HASH = re.compile(r'[0-9a-f]{64}\Z')
 FACTS = {
+ 'TEMP_DIRECTORY_ALIAS': (
+  'Test-owned temporary roots and governed source roots retain distinct path policies.',
+  'A native fixture run failed at a temporary-root alias while pinned Core verify and receipt-copy readback passed.',
+  'Resolve only the owned test fixture root; retain production O_NOFOLLOW and add an alias regression.'),
  'SOURCE_SCOPE': (
   'Tracked filename scope and bounded native source scope are reported separately.',
   'The tracked inventory had zero Swift candidates; the bounded archive capture contained Swift sources.',

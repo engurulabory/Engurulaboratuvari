@@ -371,3 +371,13 @@ NEXT_ACTION=...
 - **Kaynak:** urn:enguru:pilive:reviewed-source:bd64da51f2b708d55c358cf4307f2e746d8ddd33f5814690ed0ff3791652e1ed · SHA-256 `bd64da51f2b708d55c358cf4307f2e746d8ddd33f5814690ed0ff3791652e1ed`.
 - **OSi eşleşme kimliği:** `OSIBLOCK-PILIVE-SOURCE-V3`.
 - **Karar:** `REVIEW_REQUIRED`; ürün kabul sayacı değişimi `0`; kontroller: GENERATE_NEGATIVE_REGRESSION_CANDIDATE.
+
+### Otomatik öğrenme adayı — MK-EVT-PILIVE-TEMP_DIRECTORY_ALIAS-8485DBAB50BD
+<!-- ENGURU_MK_EVENT_V1:eyJjYXVzZVN0YXR1cyI6IlVOS05PV04iLCJjb3JyZWxhdGlvbklkIjoiT1NJQkxPQ0stUElMSVZFLU5BVElWRS1SRVBBSVIiLCJldmVudElkIjoiTUstRVZULVBJTElWRS1URU1QX0RJUkVDVE9SWV9BTElBUy04NDg1REJBQjUwQkQiLCJldmlkZW5jZUxldmVsIjoiQSIsImV4cGVjdGVkIjoiVGVzdC1vd25lZCB0ZW1wb3Jhcnkgcm9vdHMgYW5kIGdvdmVybmVkIHNvdXJjZSByb290cyByZXRhaW4gZGlzdGluY3QgcGF0aCBwb2xpY2llcy4iLCJmaXhQcm9wb3NhbCI6IlJlc29sdmUgb25seSB0aGUgb3duZWQgdGVzdCBmaXh0dXJlIHJvb3Q7IHJldGFpbiBwcm9kdWN0aW9uIE9fTk9GT0xMT1cgYW5kIGFkZCBhbiBhbGlhcyByZWdyZXNzaW9uLiIsIm9ic2VydmVkIjoiQSBuYXRpdmUgZml4dHVyZSBydW4gZmFpbGVkIGF0IGEgdGVtcG9yYXJ5LXJvb3QgYWxpYXMgd2hpbGUgcGlubmVkIENvcmUgdmVyaWZ5IGFuZCByZWNlaXB0LWNvcHkgcmVhZGJhY2sgcGFzc2VkLiIsIm9ic2VydmVkQXQiOiIyMDI2LTEwLTI1VDE1OjUwOjI4WiIsInNjaGVtYSI6ImVuZ3VydS5tay5ldmlkZW5jZS1ldmVudC92MSIsInNvdXJjZVNoYTI1NiI6Ijg0ODVkYmFiNTBiZDEwZTYyNmRiMDdmZjYyNDVmZWFiZTA3ZDM1ZjA5ZmFhNzI4N2I0Zjk4MDljMDI2YjIyYTgiLCJzb3VyY2VVcmkiOiJ1cm46ZW5ndXJ1OnBpbGl2ZTpyZXZpZXdlZC1zb3VyY2U6ODQ4NWRiYWI1MGJkMTBlNjI2ZGIwN2ZmNjI0NWZlYWJlMDdkMzVmMDlmYWE3Mjg3YjRmOTgwOWMwMjZiMjJhOCIsInRhc2tJZCI6IkVOR1VSVV9QTElWRV9QMDJfVVNFUl9TQ1JFRU4iLCJ0ZXN0U3RhdGUiOiJOT1RfRVhFQ1VURUQiLCJ0eXBlIjoiTkVXX1JFUVVJUkVNRU5UIn0=:4a0d8a8a2c8f9607a3f67bcabe2a6cc59e1574af87145cd12a674bc9bae26199 -->
+- **Tür:** `NEW_REQUIREMENT` · **Seviye iddiası:** `A` · **Kanıt kontrolü:** `UNVERIFIED_EVIDENCE_POINTER`.
+- **Gözlem:** A native fixture run failed at a temporary-root alias while pinned Core verify and receipt-copy readback passed.
+- **Beklenti:** Test-owned temporary roots and governed source roots retain distinct path policies.
+- **Önerilen fark:** Resolve only the owned test fixture root; retain production O_NOFOLLOW and add an alias regression.
+- **Kaynak:** urn:enguru:pilive:reviewed-source:8485dbab50bd10e626db07ff6245feabe07d35f09faa7287b4f9809c026b22a8 · SHA-256 `8485dbab50bd10e626db07ff6245feabe07d35f09faa7287b4f9809c026b22a8`.
+- **OSi eşleşme kimliği:** `OSIBLOCK-PILIVE-NATIVE-REPAIR`.
+- **Karar:** `REVIEW_REQUIRED`; ürün kabul sayacı değişimi `0`; kontroller: GENERATE_NEGATIVE_REGRESSION_CANDIDATE.

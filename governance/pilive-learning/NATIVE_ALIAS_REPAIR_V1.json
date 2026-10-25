@@ -1,0 +1,55 @@
+{
+  "isolatedReproduction": "SAME_2_FAILURES_2_ERRORS_BEFORE_FIX",
+  "nativeCoreVerify": "PASS_READ_ONLY",
+  "nativeOldTestResult": "132/136_PASS_4_PROBE_FAILURES",
+  "nativeReceiptSha256": "8485dbab50bd10e626db07ff6245feabe07d35f09faa7287b4f9809c026b22a8",
+  "newNativeRepeat": "HOLD_NOT_EXECUTED",
+  "priorReceiptPairs": "2/2_PASS",
+  "productionSymlinkPolicy": "UNCHANGED_NOFOLLOW",
+  "repair": "RESOLVE_OWNED_TEST_FIXTURES_ONLY",
+  "rounds": [
+    {
+      "environment": "regular",
+      "newTests": 33,
+      "outputSha256": "88685317dd32d45e0b7b35c1b1f46b779a1b5a7daae7ff5b2da04d9c0eb024e7",
+      "round": 1,
+      "state": "PASS"
+    },
+    {
+      "environment": "regular",
+      "newTests": 33,
+      "outputSha256": "1ceb9342eab8166f950a68a48bbff1b1e6385e271050ddbc9897fe06d5e27fc5",
+      "round": 2,
+      "state": "PASS"
+    },
+    {
+      "environment": "regular",
+      "newTests": 33,
+      "outputSha256": "f14d5cb5d18bb25c8d1c6fb04a3bab4f9a785c24dc3e76525344411c4905a4aa",
+      "round": 3,
+      "state": "PASS"
+    },
+    {
+      "environment": "alias",
+      "newTests": 33,
+      "outputSha256": "f14d5cb5d18bb25c8d1c6fb04a3bab4f9a785c24dc3e76525344411c4905a4aa",
+      "round": 1,
+      "state": "PASS"
+    },
+    {
+      "environment": "alias",
+      "newTests": 33,
+      "outputSha256": "1ceb9342eab8166f950a68a48bbff1b1e6385e271050ddbc9897fe06d5e27fc5",
+      "round": 2,
+      "state": "PASS"
+    },
+    {
+      "environment": "alias",
+      "newTests": 33,
+      "outputSha256": "1ceb9342eab8166f950a68a48bbff1b1e6385e271050ddbc9897fe06d5e27fc5",
+      "round": 3,
+      "state": "PASS"
+    }
+  ],
+  "scope": "TEST_FIXTURE_REPAIR_NOT_PRODUCT_ACCEPTANCE"
+}

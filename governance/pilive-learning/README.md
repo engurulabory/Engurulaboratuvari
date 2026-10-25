@@ -49,3 +49,14 @@ Mevcut kas sözleşmesi: 104 test × iki temiz subprocess turu, 25/25 amaç kap�
 Sekiz native Core/canonical kaynak SHA'sı eşleşirse mevcut `enguru_progress.py plive-p02-user-screen --verify`, `-B -S` ile ve PYTHONPATH kaldırılarak çalıştırılır. Önce/sonra source SHA eşliği ve gerçek verify alanları kaydedilir. Uygulama açılışı, Keychain, ağ, canonical yazım ve yerel kas yazımı 0. Testlerin kendi fixture/checkpoint yazımları yalnız yeni geçici test alanındadır. İki önceki makbuzun AudiV13 orijinali ve Masaüstü kopyası aynı exact pinlerle yeniden okunur. Yeni sonuç orijinali ve SHA eş kopyası benzersiz adla kaydedilir.
 
 Probe'un Linux test kancası yalnız izole paket sınaması içindir; CLI Darwin kapısını korur. Native başarı ancak gerçek Mac sonuç makbuzuyla verilir. Bu probun PASS'i kullanıcı ekranı, owner estetik kabulü, resmî P02 veya Verified Finish yerine geçmez.
+
+## Gerçek native tekrar ve fixture onarımı
+
+Native makbuz SHA-256: `8485dbab50bd10e626db07ff6245feabe07d35f09faa7287b4f9809c026b22a8`.
+GitHub kaynağı `52feb13810b8a7166f92c3a06521ee7ca7d0ee13`, paket manifest SHA-256 `9b0eafd9bbb1bda80ac77520db79e9c6fd92f32549a73cfe7b976c393d6cfb29`.
+
+Gerçek Mac'te ilk 130 test ve probe'un 2 testi geçti; kalan 4 probe testi geçici test kökünde hata verdi: 2 failure + 2 error. Gerçek native Core verify PASS; 8/8 kaynak pini önce/sonra aynı, P02 countedPass=0, stateDrift=NONE ve finishState=HOLD. V2/V3 makbuzlarının AudiV13 orijinal ve Masaüstü kopyaları exact SHA ile 2/2 PASS. İki bilinen repo kökünde sorgulanan 14 exact kas yolu bulunmadı; bu bulgu bütün OSi üzerinde kas yokluğu hükmü oluşturmaz. Yerel kasın gerçek konumu ve görev kapsamı açık.
+
+Hata kaynağı: test fixture'ının geçici dizin yolu, üretim okuyucusunun her bileşende uyguladığı O_NOFOLLOW sınırına ulaşıyor. Symlink içeren TMPDIR ile aynı 2 failure + 2 error Linux'ta yeniden üretildi. Onarım yalnız sahipliği belli fixture köklerini `resolve(strict=True)` ile hazırlıyor; üretim `directory_fd` ve `read_file` gövdeleri korunuyor. Yeni karşıt test, alias kökünün üretim okuyucusunda reddedildiğini, çözümlenmiş fixture kökünün okunduğunu ve leaf symlink'in yine reddedildiğini birlikte sınar.
+
+Yeni probe test sayısı 7; toplam aktarım 137 özgün test. 33 yeni test, normal ve alias TMPDIR altında üçer tur PASS; mevcut 104 test iki temiz tur PASS. Native yeni tekrar kendi gerçek makbuzunu bekler. Önceki 136 testlik makbuz tarihsel kanıt olarak korunur. Yeni paket önceki native makbuzun orijinal/kopya eşliğini de okur. Bu onarım aynı yaşayan kayda ayrı PiLive öğrenme adayı olarak bağlandı.
