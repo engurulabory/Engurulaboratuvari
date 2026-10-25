@@ -374,7 +374,7 @@ jobs:
           assert len(scan["observations"])==summary["query_coverage"]
           assert summary["source_candidate_sha256"]==scan["source_candidate_sha256"]
           assert summary["cve_security_clearance"]==summary["complete_sbom"]=="HOLD"
-          assert summary["legal_license_clearance"]==summary["a04_official"]=="HOLD"
+          assert summary["license_legal_clearance"]==summary["a04_official"]=="HOLD"
           assert summary["verified_finish"]=="HOLD"
           print(json.dumps({
               "state":summary["state"],"query_coverage":summary["query_coverage"],
