@@ -1,0 +1,96 @@
+{
+  "schema": "enguru.hym2.a04.dependency-source-seeds/v1",
+  "research_scope": "A04_7_UPSTREAM_TECHNOLOGIES_18_ORIGINAL_CASES",
+  "date": "2026-10-25",
+  "source_license_manifest": "governance/enguru-suzgeci/reviews/ENGURU_ARGE_BLOCK01_A04_UPSTREAM_LICENSE_PINS_V1.json",
+  "seed_intent": "Immutable upstream dependency seed identity only, NOT complete SBOM or security/production approval.",
+  "sources": [
+    {
+      "technology": "Meilisearch",
+      "repository": "meilisearch/meilisearch",
+      "source_commit_sha": "7b6f9f39bd91b04d4551673780cfeb31cb3f5e7b",
+      "dependency_path": "Cargo.lock",
+      "dependency_git_blob_sha1": "d018e8060a179a9d53c350d78ee04005422abc22",
+      "coverage": "LOCK_FILE",
+      "security_policy_status": "SOURCE_PINNED_SECURITY_POLICY"
+    },
+    {
+      "technology": "Medusa",
+      "repository": "medusajs/medusa",
+      "source_commit_sha": "029fb31fd077ab9c6d6fd9d68c676c17c71294c7",
+      "dependency_path": "yarn.lock",
+      "dependency_git_blob_sha1": "660081e74b9be3799b3a0f25d5631df4e1cf0658",
+      "coverage": "LOCK_FILE",
+      "security_policy_status": "SOURCE_PINNED_SECURITY_POLICY"
+    },
+    {
+      "technology": "Saleor",
+      "repository": "saleor/saleor",
+      "source_commit_sha": "01650613a0dff24e6bdfa904bea1ca3d27d1e687",
+      "dependency_path": "uv.lock",
+      "dependency_git_blob_sha1": "a71a6f59ffdec55dae1e5975a083abf969a89130",
+      "coverage": "LOCK_FILE",
+      "security_policy_status": "SOURCE_PINNED_SECURITY_POLICY"
+    },
+    {
+      "technology": "Supabase",
+      "repository": "supabase/supabase",
+      "source_commit_sha": "7d63d764fc9a3b13e7b0df270c5f159e6c5eb367",
+      "dependency_path": "package.json",
+      "dependency_git_blob_sha1": "53c5e91aa9de0c6e8893f8b0a1ce3d63ace48a58",
+      "coverage": "BUILD_MANIFEST_ONLY_MULTI_PACKAGE_SCOPE",
+      "security_policy_status": "STANDARD_SECURITY_POLICY_PATHS_NOT_FOUND_AT_PIN"
+    },
+    {
+      "technology": "Temporal",
+      "repository": "temporalio/temporal",
+      "source_commit_sha": "8a40a2663e304a79b07779ae08108648ccbc797d",
+      "dependency_path": "go.mod",
+      "dependency_git_blob_sha1": "b58f656dc5fb62f7e1c9fc6d9d8aa2b871af4a23",
+      "coverage": "MODULE_MANIFEST_ONLY",
+      "security_policy_status": "STANDARD_SECURITY_POLICY_PATHS_NOT_FOUND_AT_PIN"
+    },
+    {
+      "technology": "OpenFGA",
+      "repository": "openfga/openfga",
+      "source_commit_sha": "22c4d5ddf4d5969bee10c24e468a5acfbcf26837",
+      "dependency_path": "go.mod",
+      "dependency_git_blob_sha1": "d01586d0b64cd38eb66eca7ae983d4a5f249e040",
+      "coverage": "MODULE_MANIFEST_ONLY",
+      "security_policy_status": "STANDARD_SECURITY_POLICY_PATHS_NOT_FOUND_AT_PIN"
+    },
+    {
+      "technology": "LangGraph",
+      "repository": "langchain-ai/langgraph",
+      "source_commit_sha": "eb066bd31a2bf01fc0cd58256df4800a3695c233",
+      "dependency_path": "libs/langgraph/pyproject.toml",
+      "dependency_git_blob_sha1": "6aac18d6162e9f516e3f66113ce064f5da698b9a",
+      "coverage": "MODULE_MANIFEST_ONLY",
+      "security_policy_status": "STANDARD_SECURITY_POLICY_PATHS_NOT_FOUND_AT_PIN"
+    }
+  ],
+  "security_policy_standard_paths_checked": [
+    "SECURITY.md",
+    ".github/SECURITY.md",
+    "docs/SECURITY.md"
+  ],
+  "security_path_check_scope": "Only four repo pinned commits and three standard paths; absence at these paths does not prove no policy anywhere.",
+  "expected": {
+    "technologies": 7,
+    "dependency_seeds": 7,
+    "root_or_module_lockfiles": 3,
+    "non_lock_manifests": 4,
+    "source_pinned_standard_security_policies": 3,
+    "standard_path_policy_gaps": 4
+  },
+  "acceptance_boundary": {
+    "dependency_source_bytes": "PENDING_LIVE_SHA_VERIFY",
+    "sbom_generated_and_verified": "HOLD",
+    "cve_review_for_exact_versions": "HOLD",
+    "license_legal_clearance": "HOLD",
+    "kasifi_canonical_source_scope": "HOLD",
+    "independent_customer_e5": "HOLD_0_OF_18",
+    "a04_official": "HOLD",
+    "verified_finish": "HOLD"
+  }
+}
