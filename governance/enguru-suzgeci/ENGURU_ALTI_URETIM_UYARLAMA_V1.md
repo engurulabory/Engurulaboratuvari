@@ -4,7 +4,7 @@
 **Karar:** Önceden kabul edilen [Ana Terazi™ 5 × 100/100](ENGURU_ANA_TERAZI_5X100_V1.md) korunur. Bu belge onun altı üretim alanındaki uygulama adaptörüdür.  
 **Kaynak:** [Altı alan sözleşmesi](ENGURU_ALTI_URETIM_ALANI_V1.json) · [Üç turlu sentetik onarım simülatörü](../../tools/enguru_alti_uretim_simulasyon_dongusu_v1.py).  
 **Otorite:** Canonical [ENGÜRÜ Evrensel V3](ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md), ürünün kendi kabul sözleşmesi, DoneCheck™ v1.2 ve gereken Human Threshold™.  
-**STATE:** SIX_AREA_ADAPTER_DESIGN_CANDIDATE. Bağımsız tasarım incelemesi, gerçek kullanıcıyla ürün kurgusu, saha pilotu ve nihai kabul kendi kapılarında HOLD.
+**STATE:** SIX_AREA_ADAPTER_SOURCE_MERGED_MAIN / REAL_USER_PRODUCT_FIELD_ACCEPTANCE_HOLD. Ana yöntem PR #221 ile `main`e birleşti; altı alanın gerçek ürün kurgu, semantik inceleme, saha pilotu ve nihai kabul kapıları ayrı kalır.
 
 ## I. Hizmet alanları — altı alan, tek ortak çalışma disiplini
 

@@ -1,8 +1,9 @@
 # ENGÜRÜ Çalışma Yöntemleri™ — Birleşik Yöntem Atlası V1
 **Envanter tarihi:** 2026-10-24  
 **Kapsam:** ENGÜRÜ Labory kontrol düzleminin erişilebilir GitHub main kaynakları  
-**Başlangıç kaynak pini:** engurulabory/Engurulaboratuvari @ f5bd85da2c60db4c11bccd74067eef7fc3a6942f  
-**Durum:** REVIEW_CANDIDATE / SOURCE_INDEXED / FIELD_ACCEPTANCE_NOT_CLAIMED  
+**Tarihsel başlangıç kaynak pini:** engurulabory/Engurulaboratuvari @ f5bd85da2c60db4c11bccd74067eef7fc3a6942f  
+**Doğrulanmış PR #221 birleşme kimliği:** 9900f4ca7a17f99898521bdab1bfbe86784ecc07 (25 Ekim 2026); en güncel HEAD her oturumda GitHub üzerinden yeniden çözülür  
+**Durum:** GITHUB_MAIN_SOURCE_DELIVERED / FIELD_ACCEPTANCE_HOLD / HISTORICAL_ATLAS_CONTENT  
 **Rol:** Okunabilir ve bağlantılı envanter. Yeni core, yeni issuer, yeni yürütücü veya yeni kabul yetkisi oluşturmaz.
 
 ## 1. Merkez ve hiyerarşi
@@ -129,7 +130,7 @@ Yöntem bütünleşik; **yetki ve kanıt hükümleri ayrık**. Bir teorik PASS, 
 - **SOURCE_INDEXED:** Yukarıdaki dosyalar 2026-10-24 tarihinde GitHub main üzerinden okunarak eşleştirildi; başlangıç HEAD pini bu belgede kayıtlı.
 - **HISTORICAL_SIMULATION_EVIDENCE:** MK V3 makbuzunda iki × 104 izole vaka PASS bildiriliyor; yeni dal için yeniden test ve CI sonucu ayrıca gerekir.
 - **SOURCE/STATUS_BOUNDARIES:** Bazı metinler CANONICAL, bazıları CANDIDATE, bazıları DESIGN/VISION LOCKED veya EXPERIMENT HOLD durumunda. Tablo bunları tek üretim PASS'ine dönüştürmez.
-- **OPEN:** Bu atlasın kendi draft PR incelemesi, kaynak bağlantı kontrolü, gereken bağımsız review ve eventual exact-main.
+- **OPEN:** Bu atlasın PR #221 GitHub birleşmesi ve exact-main 3/3 CI başarıyla kapandı; alanların gerçek kullanıcı, semantik reviewer ve saha kabulü kendi kapılarında izlenir.
 - **OUT_OF_SCOPE:** Mac OSi kurulumu, signer yetkisi, canlı schedule, ürün PR birleştirmesi, resmî Verified Finish; bu derlemenin işi yalnız mevcut yöntemi görünür kılmaktır.
 - **ENVANTER SINIRI:** Bu sürüm merkezi Labory main üzerindeki doğrulanmış yöntemleri toplar. Diğer ürün depolarının bütün özel sözleşmeleri ayrı kapsamlı tam envanter olarak incelenmiş sayılmaz.
 
@@ -139,4 +140,4 @@ Yöntem bütünleşik; **yetki ve kanıt hükümleri ayrık**. Bir teorik PASS, 
 2. Tasarım/puanlama, hata/karşıt simülasyon ve gerçek icra ayrımını [Uçtan Uca Kılavuz](ENGURU_YONTEM_UCTAN_UCA_SIMULASYON_V1.md) ile uygula.
 3. Gerçek test, bağımsız kanıt, yetki ve kapanışta ürüne özgü canonical sözleşmeyi esas al.
 
-**Nihai atlas hükmü:** SOURCE_CATALOG_PREPARED / REVIEW_HOLD. Kaynakların haritalanması yeni bir ürün kabulü değildir.
+**Nihai atlas hükmü:** GITHUB_SOURCE_INTEGRATED / PR_221_MERGED / REAL_PRODUCT_ACCEPTANCE_HOLD. Kaynakların haritalanması yeni bir ürün kabulü değildir.

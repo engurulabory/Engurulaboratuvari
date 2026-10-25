@@ -18,6 +18,38 @@ on:
       - 'governance/enguru-suzgeci/ENGURU_ANA_TERAZI_5X100_V1.md'
       - 'governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json'
       - '.github/workflows/enguru-design48-theoretical.yml'
+      - 'tools/enguru_method_dynamic_loop_v2.py'
+      - 'tools/enguru_method_dynamic_adversarial_v2.py'
+      - 'governance/enguru-suzgeci/ENGURU_DINAMIK_SIMULASYON_V2_CASES.json'
+      - 'governance/enguru-suzgeci/ENGURU_GITHUB_METHOD_ENTRY_V2.md'
+      - 'governance/enguru-suzgeci/ENGURU_METHOD_DESKTOP_AUDIT_V2.md'
+      - 'governance/enguru-suzgeci/ENGURU_CALISMA_YONTEMLERI_ATLASI_V1.md'
+  push:
+    branches:
+      - main
+    paths:
+      - 'governance/enguru-suzgeci/ENGURU_TASARIM_100_KARSILASTIRMALI_PROTOKOL_V1.md'
+      - 'governance/enguru-suzgeci/ENGURU_TASARIM_48_KONTROL_MATRISI_V1.json'
+      - 'tools/enguru_tasarim_48_simulation.py'
+      - 'tools/enguru_tasarim_48_validation_v2.py'
+      - 'tools/enguru_ana_terazi_v1.py'
+      - 'tools/enguru_alti_uretim_simulasyon_dongusu_v1.py'
+      - 'tools/enguru_method_second_look_v1.py'
+      - 'tools/enguru_method_github_pilot_v1.py'
+      - 'tools/enguru_method_github_pilot_verify_v1.py'
+      - 'tools/enguru_method_closeout_readiness_v1.py'
+      - 'governance/enguru-suzgeci/ENGURU_STAGES_234_REAL_EXECUTION_V1.md'
+      - 'governance/enguru-suzgeci/ENGURU_ALTI_URETIM_ALANI_V1.json'
+      - 'governance/enguru-suzgeci/ENGURU_ALTI_URETIM_UYARLAMA_V1.md'
+      - 'governance/enguru-suzgeci/ENGURU_ANA_TERAZI_5X100_V1.md'
+      - 'governance/enguru-suzgeci/ENGURU_TASARIM_48_ORACLE_FIXTURES_V2.json'
+      - '.github/workflows/enguru-design48-theoretical.yml'
+      - 'tools/enguru_method_dynamic_loop_v2.py'
+      - 'tools/enguru_method_dynamic_adversarial_v2.py'
+      - 'governance/enguru-suzgeci/ENGURU_DINAMIK_SIMULASYON_V2_CASES.json'
+      - 'governance/enguru-suzgeci/ENGURU_GITHUB_METHOD_ENTRY_V2.md'
+      - 'governance/enguru-suzgeci/ENGURU_METHOD_DESKTOP_AUDIT_V2.md'
+      - 'governance/enguru-suzgeci/ENGURU_CALISMA_YONTEMLERI_ATLASI_V1.md'
   workflow_dispatch:
 permissions:
   contents: read
@@ -134,6 +166,33 @@ jobs:
           assert r["stage_4"]["verified_finish"]=="HOLD"
           PY
           cat "$RUNNER_TEMP/enguru-stage234-readiness.json"
+      - name: Dynamic six-domain diagnosis and genuinely variable three-round scores
+        run: |
+          python -B tools/enguru_method_dynamic_loop_v2.py > "$RUNNER_TEMP/enguru-dynamic-loop-v2.json"
+          python -B - "$RUNNER_TEMP/enguru-dynamic-loop-v2.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert r["verdict"]=="PASS_VARIABLE_DIAGNOSTIC_DESIGN"
+          assert r["cases"]==24 and r["pass_cases"]==12 and r["hold_cases"]==12
+          assert len(r["area_coverage"])==6 and all(x==4 for x in r["area_coverage"].values())
+          assert r["score_sequences"]>=3
+          assert all(x["fixed_denominator"]==16 and len(x["rounds"])==3 for x in r["cases_detail"])
+          assert all(x["real_user_decision"]=="HOLD" and x["official_verified_finish"]=="HOLD" for x in r["cases_detail"])
+          print("DYNAMIC_SIX_AREAS=PASS; CASES=24; FAIL_CLOSED=12; SEQUENCES="+str(r["score_sequences"]))
+          PY
+      - name: Separate adversarial oracle with control perturbations and claims invariance
+        run: |
+          python -B tools/enguru_method_dynamic_adversarial_v2.py > "$RUNNER_TEMP/enguru-dynamic-adversarial-v2.json"
+          python -B - "$RUNNER_TEMP/enguru-dynamic-adversarial-v2.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert r["verdict"]=="PASS_ADVERSARIAL_SOURCE_CHALLENGES"
+          assert r["control_mutations"]==576
+          assert r["scenario_checks"]==52
+          assert r["false_positive_count"]==0
+          assert r["independent_human_review"]=="HOLD"
+          print("ADVERSARIAL_TEST=PASS; MUTATIONS=576; SCENARIO_ASSERTIONS=52; FALSE_POSITIVE=0")
+          PY
       - name: Attach theoretical receipt, separate from official DoneCheck
         uses: actions/upload-artifact@v4
         with:
@@ -146,4 +205,6 @@ jobs:
             ${{ runner.temp }}/enguru-second-look.json
             ${{ runner.temp }}/enguru-github-engine-pilot.json
             ${{ runner.temp }}/enguru-stage234-readiness.json
+            ${{ runner.temp }}/enguru-dynamic-loop-v2.json
+            ${{ runner.temp }}/enguru-dynamic-adversarial-v2.json
           if-no-files-found: error

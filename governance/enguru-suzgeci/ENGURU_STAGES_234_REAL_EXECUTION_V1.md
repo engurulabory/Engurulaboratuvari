@@ -70,3 +70,8 @@ VERIFIED_FINISH=HOLD
 - Makbuz: [enguru-design48-theory-receipt #12574713394](https://github.com/engurulabory/Engurulaboratuvari/actions/runs/40131176035/artifacts/12574713394).
 - PR #221 bağımsız reviewer erişimi için **ready for review** durumuna geçirildi; `merged=false`. Reviewer kimliği/kararı ayrı kabul kapısı olarak beklenir.
 - Bu ek kaydın ardından daha yeni commitler oluşursa **son HEAD'in CI koşusu ayrıca doğrulanır**.
+
+
+## 25 Ekim 2026 — Birleşme sonrası hakikat güncellemesi
+
+Bu belgenin önceki `PR221_MAIN_MERGE=HOLD` ve review-ready satırları **24 Ekim tarihli ara durumun tarihsel kaydıdır**. Gerçek PR #221 25 Ekim'de exact HEAD `bbbebb4e8fdd7951567013e91a67fb7667644f83` üzerinden `main` commit `9900f4ca7a17f99898521bdab1bfbe86784ecc07` olarak birleşti. Üç `main` push CI kontrolü PASS. GitHub main ruleset #22452401, gerekli GitHub reviewer sayısını **0** ve gerekli CI'ı `labory-final-gate` olarak belirtiyor. Bağımsız tasarımın anlamsal incelemesi bir mühendislik kalite ihtiyacıdır; repo koruma kuralının zorunlu ikinci GitHub hesabı koşulu şeklinde sunulamaz. Mac OSi ve resmî DoneCheck™ sahası HOLD kalır.
