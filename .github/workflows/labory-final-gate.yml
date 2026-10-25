@@ -268,6 +268,31 @@ jobs:
           PY
           cat "$RUNNER_TEMP/hym2-a04-live-source-receipt.json"
 
+      - name: HYM2 Hedef 1 A04 seven dependency-seed adversarial tests
+        run: python -B -m unittest discover -s tests -p 'test_arge_block01_a04_dependency_seeds_v1.py' -v
+
+      - name: HYM2 Hedef 1 A04 live dependency source bytes not SBOM-CVE clearance
+        run: |
+          python -B tools/arge_block01_a04_dependency_seeds_v1.py \
+            --manifest governance/enguru-suzgeci/reviews/ENGURU_ARGE_A04_DEPENDENCY_SEEDS_V1.json \
+            --upstream governance/enguru-suzgeci/reviews/ENGURU_ARGE_BLOCK01_A04_UPSTREAM_LICENSE_PINS_V1.json \
+            > "$RUNNER_TEMP/hym2-a04-dependency-seeds.json"
+          python -B - "$RUNNER_TEMP/hym2-a04-dependency-seeds.json" <<'PY'
+          import json, sys
+          receipt=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert receipt["state"]=="PASS_7_PINNED_DEPENDENCY_SEEDS_ONLY"
+          assert receipt["matched"]==receipt["checked"]==receipt["expected"]==7
+          assert len(receipt["sources"])==7
+          assert all(x["state"]=="PASS_SOURCE_BYTES" and len(x["observed_file_sha256"])==64
+                     for x in receipt["sources"])
+          assert receipt["security_policies_with_pinned_files"]==3
+          assert receipt["standard_path_policy_gaps"]==4
+          for field in ("complete_sbom","exact_version_cve_review","legal_clearance",
+                        "a04_official","verified_finish"):
+              assert receipt[field]=="HOLD"
+          PY
+          cat "$RUNNER_TEMP/hym2-a04-dependency-seeds.json"
+
       - name: Ar-Ge Block 01 A01-A06 dated public provenance regression
         run: python -m unittest discover -s tests -p 'test_arge_block01_a01_a06_public_provenance_v1.py' -v
 
