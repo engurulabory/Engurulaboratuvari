@@ -63,7 +63,7 @@ VERIFIED_FINISH → BITTI_DUR
 - `DESIGN=100`, ilgili 48 sözleşmenin sentetik oracle ve kaynak izi yeterliliğidir; 48 ürün davranışının sahada başarılı olduğuna dair hüküm değildir.
 - `SIM1/2/3=100`, sırasıyla üç **farklı sentetik test kümesinin** denetim çıktısıdır; modele veya gerçek kullanıcı ortamına karşı kör deney / bağımsız insan değerlendirmesi değildir.
 - `GITHUB_CI=PASS`, gerçekte koşmuş tasarım simülasyonunu kanıtlar; aynı kapsamda `OSI_FIELD=HOLD` olabilir.
-- `INDEPENDENT_DESIGN_REVIEW=HOLD`, `MAIN_MERGE=HOLD`, `DONECHECK=HOLD`, `HUMAN_THRESHOLD=HOLD`, `VERIFIED_FINISH=HOLD` ayrı gerçek kabul kapılarıdır.
+- `INDEPENDENT_DESIGN_REVIEW=HOLD`, `DONECHECK=HOLD`, `HUMAN_THRESHOLD=HOLD`, `VERIFIED_FINISH=HOLD` ayrı kabul kapılarıdır. Tarihsel PR #221 için `GITHUB_MAIN_MERGE=PASS_20261025`; sonraki her PR'nin merge durumu ayrı güncel GitHub kaynağından doğrulanır.
 - Kaynak kilidi, V3, tüm ürün canonical sözleşmeleri ve özgün 48 kontrol ID'si korunur.
 - Puanlayıcı `candidate_design_points` alanından puan almaz; puanı puanlayıcının doğrulanmış beş şartı belirler.
 - Önceki 24'lü V1 karar simülasyonu ve V2 tasarım denetimi bu ana teraziye **ek olarak** CI'da yaşamaya devam eder.
