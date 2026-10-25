@@ -1,0 +1,34 @@
+name: ENGURU Harvest V1 Gate
+on:
+  pull_request:
+    paths:
+      - 'capabilities/enguru-harvest-v1/**'
+      - '.github/workflows/enguru-harvest-v1.yml'
+  workflow_dispatch:
+jobs:
+  harvest:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run evidence classification regression
+        run: |
+          cd capabilities/enguru-harvest-v1
+          python -B -m unittest -v test_harvest
+      - name: Verify target contract structure
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('capabilities/enguru-harvest-v1/goal.json').read_text())
+          assert x['controls']==[f'H{i:02d}' for i in range(1,11)]
+          assert len(x['libraries'])==6
+          assert x['mandatory_paid_api']==0
+          assert x['osi_field']=='HOLD'
+          assert x['official_finish']=='HOLD'
+          print('GOAL_CONTRACT=PASS; OFFICIAL_FIELD=HOLD')
+          PY
