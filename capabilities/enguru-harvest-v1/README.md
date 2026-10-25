@@ -31,3 +31,11 @@ Codex keşif adaptörü `.agents/skills/enguru-evidence-harvest/SKILL.md`, Claud
 ## Doğruluk sınırı
 
 Kaynak kayıtları gerçek 30 açık repo README gözlemine dayanır. 12 yerel deterministik işlev, 12 haricî PROVEN becerisi olarak gösterilmez. Lisans onayı, gerçek kullanıcı değeri, dış beceri çalıştırma, bağımsız PR incelemesi ve resmî Verified Finish kendi kanıtlarıyla HOLD. OSi yürütme 0.
+
+## 2026-10-25 gerçek kaynak inceleme kazanımı
+
+30 kaynağın README Git kimlikleri ve 29 kaynağın kök lisans dosyası Git kimlikleri gözlendi. Lisans dosyasının gözlemlenmesi tek başına yeniden dağıtım/çalıştırma izni vermez; bütün kaynaklar için `REDISTRIBUTION_APPROVAL=HOLD`. Kök lisans taraması eksik olan `anthropics/skills` için beceri bazında inceleme gerekir.
+
+`license_gate.py` ile 30 kayıt eşleştirmesi; `external_skill_proof_plan.json` ile 12 somut dış beceri gerçek görev kabul vakası tanımlandı. Henüz kanıtlanmış **haricî** beceri sayısı 0/12'dir. Bu rakam, CI'de çalışan 12 bağımsız yerel Python operasyonundan ayrı tutulur.
+
+OSi saha icrası 0; bu paket yerel kurulum/emir değildir.
