@@ -31,6 +31,33 @@ SRC = ("zulfikar_v1_2_engine.py","test_zulfikar_v1_2.py",
 HEX64 = re.compile(r"^[a-f0-9]{64}$")
 
 
+def has_text(value, minimum=1):
+    return isinstance(value, str) and len(value.strip()) >= minimum
+
+
+def source_matches_checkout_head(repo_root: Path, source_paths) -> bool:
+    """Compare actual bytes with immutable tracked blobs at this checkout HEAD.
+
+    This is checkout integrity, not an independent reviewer or remote attestation.
+    """
+    try:
+        if not (repo_root / ".git").exists():
+            return False
+        for source in source_paths:
+            if not source.is_file() or source.is_symlink():
+                return False
+            rel = source.relative_to(repo_root).as_posix()
+            recorded = subprocess.run(
+                ["git", "-C", str(repo_root), "show", f"HEAD:{rel}"],
+                capture_output=True, timeout=10,
+            )
+            if recorded.returncode != 0 or recorded.stdout != source.read_bytes():
+                return False
+        return True
+    except (OSError, ValueError, subprocess.TimeoutExpired):
+        return False
+
+
 def score(checks):
     return {"score": sum(10 for ok in checks.values() if ok is True),
             "fixed_denominator": 100,
@@ -52,7 +79,7 @@ def dag_ok(edges, ids):
     if not isinstance(edges, dict) or set(edges) != ids:
         return False
     if any(not isinstance(v, list) or len(v) != len(set(v))
-           or any(p not in ids for p in v) for v in edges.values()):
+           or any(not isinstance(p, str) or p not in ids for p in v) for v in edges.values()):
         return False
     seen, active = set(), set()
     def walk(x):
@@ -73,7 +100,7 @@ def goal_gate(data):
     if not isinstance(controls, list): controls = []
     identities = [c.get("id") for c in controls if isinstance(c, dict)]
     valid_controls = len(controls) == 10 and len(identities) == 10 and (
-        len(set(identities)) == 10 and all(isinstance(i,str) and i for i in identities))
+        all(has_text(i) for i in identities) and len(set(identities)) == 10)
     rights = data.get("authority") if isinstance(data.get("authority"), dict) else {}
     budget = data.get("budget") if isinstance(data.get("budget"), dict) else {}
     metrics = data.get("measurement") if isinstance(data.get("measurement"), dict) else {}
@@ -81,8 +108,8 @@ def goal_gate(data):
     negatives = data.get("negative_cases") if isinstance(data.get("negative_cases"), list) else []
     canonical = data.get("canonical") if isinstance(data.get("canonical"), dict) else {}
     checks = {
-      "H01": isinstance(data.get("goal_id"),str) and bool(data["goal_id"].strip()) and len(data.get("single_goal",""))>=30,
-      "H02": isinstance(data.get("user_value"),str) and len(data["user_value"])>=20 and all(metrics.get(k) for k in ("metric","unit","baseline_source","target","observation")),
+      "H01": has_text(data.get("goal_id")) and has_text(data.get("single_goal"),30),
+      "H02": has_text(data.get("user_value"),20) and all(has_text(metrics.get(k)) for k in ("metric","unit","baseline_source","target","observation")),
       "H03": valid_controls and all(all(c.get(k) for k in ("acceptance","verifier","authority")) for c in controls),
       "H04": rights.get("scope")=="SINGLE_GOAL" and rights.get("owner_review")=="HUMAN_THRESHOLD" and rights.get("issuer")=="EXISTING_CANONICAL_ONLY",
       "H05": valid_controls and dag_ok(data.get("dependencies"),set(identities)),
@@ -131,7 +158,8 @@ def infra_gate():
       "TA02":present,
       "TA03":root_matches(),
       "TA04":syntax,
-      "TA05":len(digest)==len(SRC) and all(HEX64.fullmatch(d) for d in digest.values()),
+      "TA05":len(digest)==len(SRC) and all(HEX64.fullmatch(d) for d in digest.values())
+             and source_matches_checkout_head(REPO, tuple(HERE/n for n in SRC)),
       "TA06":positive,
       "TA07":len(MUTATIONS)==45 and negative,
       "TA08":guard and canonical_digest(result)==canonical_digest(assess(golden())),
