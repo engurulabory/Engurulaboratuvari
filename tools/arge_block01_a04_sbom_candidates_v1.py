@@ -23,6 +23,7 @@ LOCKED = frozenset({"Meilisearch", "Medusa", "Saleor"})
 GO = frozenset({"Temporal", "OpenFGA"})
 RANGE = frozenset({"Supabase", "LangGraph"})
 VERSION = re.compile(r"^\d+\.\d+\.\d+(?:[-+][A-Za-z0-9.-]+)?$")
+PEP440 = re.compile(r"^\d+(?:\.\d+)*(?:(?:a|b|rc|dev|post)\d+)?(?:\.(?:post|dev)\d+)?(?:\+[A-Za-z0-9.]+)?$")
 GO_VERSION = re.compile(r"^v\d+\.\d+\.\d+(?:[-+][A-Za-z0-9.-]+)?(?:-\d{14}-[a-f0-9]+)?$")
 YARN_HEADER = re.compile(r'^"(.+)":\s*$')
 YARN_RES = re.compile(r'^  resolution:\s*"?(.+?)"?\s*$')
@@ -53,7 +54,7 @@ def parse_locked(tech, body):
         ecosystem = "cargo" if tech == "Meilisearch" else "pypi"
         for item in doc.get("package", []):
             name,version = item.get("name"),item.get("version")
-            if not name or not version or not VERSION.fullmatch(version):
+            if not name or not version or not (VERSION if tech=="Meilisearch" else PEP440).fullmatch(version):
                 raise ValueError("MALFORMED_LOCK_PACKAGE")
             source = item.get("source")
             if tech=="Meilisearch" and not source:
