@@ -21,3 +21,9 @@ Canonical V3, AGENTS.md, Zülfikar V1.3, ENGÜRÜ Süzgeci™ sekiz aşama, Done
 - DoneCheck™ ve saha Human Threshold™.
 
 Bu belge kurulum betiği değildir. Yerel Mac OSi'ye aktarım yapılmamıştır.
+
+## Güncellenmiş geçiş eşiği
+
+GitHub'ın kendi mühendislik çekirdeği için exact-head CI ve SHA testleri gerekli koşuldur. Ürün seviyesindeki geçiş için bunlara ek olarak 12 haricî beceri gerçek görev makbuzu, kaynağa özel lisans/yetki incelemesi, kaynak ve bağımlılık kilitleri, bağımsız reviewer kabulü ve resmî yetkili karar gerekir. `root_license_observations.json` içindeki 29 dosya kimliği **hukuki kabulün yerine geçmez**.
+
+`OSI_EXECUTION=0`, `MAIN_WRITE=0`, `MERGE=0` sınırları korunur.
