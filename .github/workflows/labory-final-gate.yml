@@ -250,8 +250,7 @@ jobs:
 
       - name: HYM2 Hedef 1 theory design three independent simulations on real Git source
         run: |
-          python -B -m tools.arge_hym2_h1_five_axis_v1 \
-            > "$RUNNER_TEMP/hym2-h1-five-axis-receipt.json"
+          python -B -m tools.arge_hym2_h1_five_axis_v1 | tee "$RUNNER_TEMP/hym2-h1-five-axis-receipt.json"
           python -B - "$RUNNER_TEMP/hym2-h1-five-axis-receipt.json" <<'PY'
           import json, sys
           report=json.load(open(sys.argv[1],encoding="utf-8"))
