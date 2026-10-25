@@ -351,6 +351,51 @@ jobs:
           retention-days: 3
           if-no-files-found: error
 
+      - name: HYM2 Hedef 1 A04 OSV advisory snapshot offline adversarial tests
+        run: python -B -m unittest discover -s tests -p 'test_arge_block01_a04_osv_source_review_v1.py' -v
+
+      - name: HYM2 Hedef 1 A04 real OSV advisory batch review source-only
+        run: |
+          if ! python -B -m tools.arge_block01_a04_osv_source_review_v1 \
+            --cdx "$RUNNER_TEMP/HYM2_H1_A04_SOURCE_SCOPED_CDX_CANDIDATE.json" \
+            --source-receipt "$RUNNER_TEMP/HYM2_H1_A04_CANDIDATE_RECEIPT.json" \
+            --output "$RUNNER_TEMP/HYM2_H1_A04_OSV_SOURCE_SNAPSHOT.json" \
+            --batch-size 400 > "$RUNNER_TEMP/HYM2_H1_A04_OSV_SOURCE_SUMMARY.json"; then
+              cat "$RUNNER_TEMP/HYM2_H1_A04_OSV_SOURCE_SUMMARY.json"
+              exit 2
+          fi
+          python -B - "$RUNNER_TEMP/HYM2_H1_A04_OSV_SOURCE_SUMMARY.json" \
+                        "$RUNNER_TEMP/HYM2_H1_A04_OSV_SOURCE_SNAPSHOT.json" <<'PY'
+          import json,sys,pathlib
+          summary=json.loads(pathlib.Path(sys.argv[1]).read_text())
+          scan=json.loads(pathlib.Path(sys.argv[2]).read_text())
+          assert summary["state"]=="PASS_OSV_SOURCE_SNAPSHOT_ONLY"
+          assert summary["query_coverage"]==summary["eligible_source_components"] > 100
+          assert len(scan["observations"])==summary["query_coverage"]
+          assert summary["source_candidate_sha256"]==scan["source_candidate_sha256"]
+          assert summary["cve_security_clearance"]==summary["complete_sbom"]=="HOLD"
+          assert summary["legal_license_clearance"]==summary["a04_official"]=="HOLD"
+          assert summary["verified_finish"]=="HOLD"
+          print(json.dumps({
+              "state":summary["state"],"query_coverage":summary["query_coverage"],
+              "advisory_matches":summary["advisory_matches"],
+              "affected_package_candidates":summary["affected_package_candidates"],
+              "unresolved_ranges":summary["unresolved_range_count"],
+              "osv_batch_requests":summary["batch_requests_with_pagination"],
+              "clearance":summary["cve_security_clearance"],"A04":summary["a04_official"]
+          },sort_keys=True))
+          PY
+
+      - name: Upload HYM2 A04 source-scoped OSV advisory snapshot (NOT security clearance)
+        uses: actions/upload-artifact@v4
+        with:
+          name: hym2-a04-osv-source-advisory-snapshot
+          path: |
+            ${{ runner.temp }}/HYM2_H1_A04_OSV_SOURCE_SNAPSHOT.json
+            ${{ runner.temp }}/HYM2_H1_A04_OSV_SOURCE_SUMMARY.json
+          retention-days: 3
+          if-no-files-found: error
+
       - name: Ar-Ge Block 01 A01-A06 dated public provenance regression
         run: python -m unittest discover -s tests -p 'test_arge_block01_a01_a06_public_provenance_v1.py' -v
 
