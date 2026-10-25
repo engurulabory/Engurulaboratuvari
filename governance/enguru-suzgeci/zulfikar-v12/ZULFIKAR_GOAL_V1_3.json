@@ -1,0 +1,177 @@
+{
+  "schema": "enguru.zulfikar.goal-contract/v1.3",
+  "goal_id": "ZULFIKAR-OPERATIONAL-GITHUB-V13",
+  "single_goal": "ENGÜRÜ Zülfikar yönteminin hedefi ve teknik altyapıyı kaynak, kanıt ve insan yetkisiyle sınırlı olarak GitHub'da çalışan bir inceleme ürünü haline getirmek.",
+  "user_value": "Aynı hedef ve kanıt üzerinden yazılım mühendisliği işleri güvenilir ve ölçülebilir biçimde bitirilsin.",
+  "measurement": {
+    "metric": "Özgün kabul ID ve gerçek teknik test kapsamı",
+    "unit": "kontrol/100",
+    "baseline_source": "PR #242 V1.2 canonical source and test receipt",
+    "target": "GOAL=100/100; INFRA_GITHUB_CODE=100/100; OSi FIELD=HOLD",
+    "observation": "actual checked-out SHA, subprocess unittest, CLI smoke and exact-head GitHub CI"
+  },
+  "authority": {
+    "scope": "SINGLE_GOAL",
+    "owner_review": "HUMAN_THRESHOLD",
+    "issuer": "EXISTING_CANONICAL_ONLY"
+  },
+  "canonical": {
+    "v3_sha256": "11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc",
+    "repository": "engurulabory/Engurulaboratuvari"
+  },
+  "controls": [
+    {
+      "id": "C01",
+      "acceptance": "Tek amaç ve özgün hedef",
+      "verifier": "goal_gate.H01",
+      "authority": "Independent reviewer",
+      "evidence_source": "source contract and GitHub CI observation for C01",
+      "state": "HOLD_PENDING_REAL_EVIDENCE"
+    },
+    {
+      "id": "C02",
+      "acceptance": "Kullanıcı değeri ve ölçüm",
+      "verifier": "goal_gate.H02",
+      "authority": "Independent reviewer",
+      "evidence_source": "source contract and GitHub CI observation for C02",
+      "state": "HOLD_PENDING_REAL_EVIDENCE"
+    },
+    {
+      "id": "C03",
+      "acceptance": "Sabit kabul ID",
+      "verifier": "goal_gate.H03",
+      "authority": "Independent reviewer",
+      "evidence_source": "source contract and GitHub CI observation for C03",
+      "state": "HOLD_PENDING_REAL_EVIDENCE"
+    },
+    {
+      "id": "C04",
+      "acceptance": "İnsan ve kaynak yetkisi",
+      "verifier": "goal_gate.H04",
+      "authority": "Human Threshold",
+      "evidence_source": "source contract and GitHub CI observation for C04",
+      "state": "HOLD_PENDING_REAL_EVIDENCE"
+    },
+    {
+      "id": "C05",
+      "acceptance": "Bağımlılık DAG",
+      "verifier": "goal_gate.H05",
+      "authority": "Independent reviewer",
+      "evidence_source": "source contract and GitHub CI observation for C05",
+      "state": "HOLD_PENDING_REAL_EVIDENCE"
+    },
+    {
+      "id": "C06",
+      "acceptance": "Risk ve yanıt",
+      "verifier": "goal_gate.H06",
+      "authority": "Independent reviewer",
+      "evidence_source": "source contract and GitHub CI observation for C06",
+      "state": "HOLD_PENDING_REAL_EVIDENCE"
+    },
+    {
+      "id": "C07",
+      "acceptance": "Karşıt örnek ve hata kapısı",
+      "verifier": "goal_gate.H07",
+      "authority": "Independent reviewer",
+      "evidence_source": "source contract and GitHub CI observation for C07",
+      "state": "HOLD_PENDING_REAL_EVIDENCE"
+    },
+    {
+      "id": "C08",
+      "acceptance": "Kanıt ve bağımsız doğrulama",
+      "verifier": "goal_gate.H08",
+      "authority": "Independent reviewer",
+      "evidence_source": "source contract and GitHub CI observation for C08",
+      "state": "HOLD_PENDING_REAL_EVIDENCE"
+    },
+    {
+      "id": "C09",
+      "acceptance": "Canonical kaynak SHA-256 eşliği",
+      "verifier": "goal_gate.H09",
+      "authority": "Independent reviewer",
+      "evidence_source": "source contract and GitHub CI observation for C09",
+      "state": "HOLD_PENDING_REAL_EVIDENCE"
+    },
+    {
+      "id": "C10",
+      "acceptance": "Dar kapsam, bütçe, rollback",
+      "verifier": "goal_gate.H10",
+      "authority": "Human Threshold",
+      "evidence_source": "source contract and GitHub CI observation for C10",
+      "state": "HOLD_PENDING_REAL_EVIDENCE"
+    }
+  ],
+  "dependencies": {
+    "C01": [],
+    "C02": [
+      "C01"
+    ],
+    "C03": [
+      "C01"
+    ],
+    "C04": [
+      "C03"
+    ],
+    "C05": [
+      "C03"
+    ],
+    "C06": [
+      "C05"
+    ],
+    "C07": [
+      "C06"
+    ],
+    "C08": [
+      "C07"
+    ],
+    "C09": [
+      "C03"
+    ],
+    "C10": [
+      "C04",
+      "C08",
+      "C09"
+    ]
+  },
+  "risks": [
+    {
+      "risk": "Kaynak kayması",
+      "mitigation": "Byte-based SHA and fail closed HOLD",
+      "negative_test": "V3 pin tamper"
+    },
+    {
+      "risk": "Sentetik PASS'i saha kabulü sanma",
+      "mitigation": "Distinct Github/OSI official gates",
+      "negative_test": "field required without proof"
+    },
+    {
+      "risk": "Birden çok Work yazıcısı",
+      "mitigation": "Isolated PR, one writer and rollback",
+      "negative_test": "parallel writer collision"
+    }
+  ],
+  "negative_cases": [
+    {
+      "case_id": "INVALID_GOAL",
+      "expected": "HOLD"
+    },
+    {
+      "case_id": "MISSING_SOURCE",
+      "expected": "HOLD"
+    },
+    {
+      "case_id": "MISSING_AUTHORITY",
+      "expected": "HOLD"
+    },
+    {
+      "case_id": "INCOMPLETE_DEPENDENCIES",
+      "expected": "HOLD"
+    }
+  ],
+  "core": "REUSE_EXISTING",
+  "rollback": "REVERT_ISOLATED_BRANCH",
+  "budget": {
+    "paid_api": 0
+  },
+  "osi_field": "HOLD"
+}
