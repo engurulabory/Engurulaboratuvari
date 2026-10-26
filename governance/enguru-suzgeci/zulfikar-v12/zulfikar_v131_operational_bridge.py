@@ -103,7 +103,8 @@ def ordered_errors(mission, binding, actions, actual_head):
             b=matches[0]
             if b.get("BINDING_TYPE")!="REGISTERED_ACTION" or b.get("ACTION")!=mission.get("actionId"):
                 failures.append("HOLD_UNBOUND_OR_MISMATCHED_ACTION")
-            action=mapping.get(mission.get("actionId"))
+            requested_action=mission.get("actionId")
+            action=mapping.get(requested_action) if text_id(requested_action) else None
             if not isinstance(action,dict) or not action.get("handler") or \
                     action.get("handler")!=b.get("REGISTERED_HANDLER") or \
                     action.get("authority")!=b.get("AUTHORITY"):
