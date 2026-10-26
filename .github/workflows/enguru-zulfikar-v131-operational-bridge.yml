@@ -76,6 +76,31 @@ jobs:
           assert p["githubExactHeadCI"]=="EXTERNAL_GITHUB_ACTIONS_VERIFICATION_REQUIRED"
           print("ZULFIKAR_PREPARATION=3x100/100_SOURCE_PASS_FIELD_HOLD")
           PY
+      - name: Single six-domain acceptance and Goal2 lock - three adversarial rounds
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: |
+          python -m py_compile zulfikar_v131_single_acceptance.py
+          for cycle in 1 2 3; do
+            echo "ZULFIKAR_SINGLE_ACCEPTANCE_ROUND=$cycle"
+            python -B -m unittest -v test_zulfikar_v131_single_acceptance
+          done
+          python -B zulfikar_v131_single_acceptance.py --mode status > "$RUNNER_TEMP/z131_single_authority.json"
+          python - "$RUNNER_TEMP/z131_single_authority.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1]))
+          assert r['contractValid'] is True
+          assert len(r['sixDomains'])==6
+          assert [d['recordedScore'] for d in r['sixDomains']]==[100,100,100,98,90,65]
+          assert r['recordedOverall']==91
+          assert len(r['operations'])==3
+          assert len(r['existingExecutorPaths'])==3
+          assert all(x['binding']['matchingExistingRegistry'] for x in r['existingExecutorPaths'])
+          assert all(x['binding']['actualHandlerInvoked'] is False for x in r['existingExecutorPaths'])
+          assert r['goal1']=='HOLD_REAL_TASK_AND_OWNER_AUTHORITY'
+          assert r['goal2']=='LOCKED_UNTIL_GOAL1_VERIFIED_FINISH'
+          assert r['officialVerifiedFinish']=='HOLD'
+          print('SINGLE_SCORECARD_CONTRACT=PASS_SOURCE_ONLY; GOAL1_FIELD=HOLD; GOAL2=LOCKED')
+          PY
       - name: Audit weighted overall readiness without false 100
         working-directory: governance/enguru-suzgeci/zulfikar-v12
         run: |
