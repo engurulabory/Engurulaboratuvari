@@ -1,0 +1,160 @@
+{
+  "id": "ENGURU_DOM_V1_0",
+  "name": "ENGÜRÜ Döngü Onarım™ V1.0",
+  "status": "PRE_GITHUB_LOCAL_ENGINEERING_REVIEW",
+  "approvedConceptualParent": "ENGURU_ZULFIKAR_V1_4_1",
+  "scope": "PRE_GITHUB_PREPARATION_AND_DISPOSABLE_TESTS_ONLY",
+  "fixedPurpose": "Her kapıda aynı kullanıcı hedefinin kanıtlı 100/100 hazırlanmasını destekleyen; eksik tespiti, güvenli onarım, gerçek test ve yeniden değerlendirme döngüsü",
+  "executiveLoop": [
+    "HEDEF_KILIDI",
+    "MIMARI_KONTROL",
+    "SIMULASYON",
+    "PUANLAMA",
+    "EKSIK_TESPITI",
+    "ONARIM",
+    "GERCEK_TEST",
+    "YENIDEN_SIMULASYON",
+    "YENIDEN_PUANLAMA",
+    "YENI_IHTIYACLAR",
+    "TEKRAR_YA_DA_KANIT_KAPISI"
+  ],
+  "threshold": {
+    "numericAcceptedStageScore": 100,
+    "belowHundred": "ONLY_INTERNAL_DIAGNOSIS",
+    "atHundred": "CANDIDATE_UNTIL_INDEPENDENT_SCOPE_AUTHORITY",
+    "stop": "STAGE_SCOPE_VERIFIED_100_THEN_HANDOFF",
+    "boundedExecution": "MAX_12_PER_CALL_CONTINUE_AS_AUTHORIZED_JOB"
+  },
+  "fiveEqualWeightEngineeringRequirements": [
+    {
+      "id": "D01",
+      "name": "Hedef/kimlik ve bağlam bütünlüğü",
+      "weight": 20,
+      "requirements": [
+        "Tek goalId, stage, acceptanceIds ve source SHA",
+        "Hedef kayması reddi",
+        "Aşamaların kaynak/öncelik sırası",
+        "Onay dışında yeni kapsam açılmaması"
+      ],
+      "evidenceTests": [
+        "test_09_resume_requires_same_contract",
+        "test_25_wrong_target_ids_rejected",
+        "test_36_source_sha_is_checked_from_real_bytes",
+        "test_37_source_drift_during_test_rejected"
+      ]
+    },
+    {
+      "id": "D02",
+      "name": "Eksik–onarım–yeniden değerlendirme",
+      "weight": 20,
+      "requirements": [
+        "Simülasyon ve puanlama",
+        "Açık kriterleri onarma",
+        "Her onarımda yeniden test/simülasyon/puanlama",
+        "Regresyon ve ilerlemesiz işlem reddi"
+      ],
+      "evidenceTests": [
+        "test_01_four_real_repair_cycles",
+        "test_02_order_of_first_round",
+        "test_19_nonprogress_repair_rejected",
+        "test_21_rollback_proven_gain_rejected"
+      ]
+    },
+    {
+      "id": "D03",
+      "name": "Gerçek test ve sonuç kanıtı",
+      "weight": 20,
+      "requirements": [
+        "Ayrı gerçek işlem çalıştırma",
+        "Bağımsız hash/mekanizma kontrolü",
+        "Gerçek işlem başarısızlığında güvenli ret",
+        "Sahte PASS ve sentetik kanıt reddi"
+      ],
+      "evidenceTests": [
+        "test_05_real_subprocess_four_times",
+        "test_15_nonzero_real_test",
+        "test_16_fake_subprocess_claim_missing",
+        "test_18_independent_verifier_rejects"
+      ]
+    },
+    {
+      "id": "D04",
+      "name": "Döngü sürekliliği ve kalıcı kazanım",
+      "weight": 20,
+      "requirements": [
+        "SHA zincirli makbuz defteri",
+        "Kaldığı durumdan kaynak tutarlı devam",
+        "100 sonucu tekrar çalıştırmayan idempotency",
+        "Çoklu yazar/değişmiş günlük reddi"
+      ],
+      "evidenceTests": [
+        "test_06_journal_is_hash_chained",
+        "test_08_detect_concurrent_writer_drift",
+        "test_11_resume_after_partial_with_observed_state",
+        "test_12_resume_100_is_idempotent"
+      ]
+    },
+    {
+      "id": "D05",
+      "name": "Güvenli durma ve yetki sınırı",
+      "weight": 20,
+      "requirements": [
+        "Yalnız kanıtlı 100'de aşama incelemesi",
+        "12'lik azami çağrı sınırı",
+        "Mac owner/issuer yetkisinin doğmaması",
+        "GitHub ve OSi'ye yazmadan durma"
+      ],
+      "evidenceTests": [
+        "test_03_limited_cycles_continue",
+        "test_04_no_owner_issuer_or_field_pass",
+        "test_24_same_100_checks_also_require_test",
+        "test_29_forbid_other_execution_scope"
+      ]
+    }
+  ],
+  "originalDesignDiagnostic": 92,
+  "targetDesignScore": 100,
+  "acceptanceNotes": "Beş alandaki 20/20 kaynak ve kontrollü yerel test kanıtı, GitHub öncesi DÖM mimari/mühendislik kabulüne aittir. Bağımsız Mac kullanıcısı, GitHub CI, DoneCheck veya ürün finişi değildir.",
+  "noNewEngineInGithub": true,
+  "implementation": "dom/engine.py",
+  "unitTests": "dom/test_engine.py",
+  "nextActivityWhenUserExplicitlyApproves": "GH_REGISTER_AND_RUN_TESTS",
+  "stopAt": "BEFORE_GITHUB_WRITE_OR_ACTIONS",
+  "historicalFiveDomainInternalDiagnostics": {
+    "D01": 20,
+    "D02": 18,
+    "D03": 17,
+    "D04": 17,
+    "D05": 20
+  },
+  "repairedPreparationTargetByDomain": {
+    "D01": 20,
+    "D02": 20,
+    "D03": 20,
+    "D04": 20,
+    "D05": 20
+  },
+  "changeLog": [
+    "D01: source pin now checked against real source bytes at task entry, each cycle and test exit",
+    "D02: executable real state repairs and resimulation; reject noop and loss of proven gains",
+    "D03: external sha256sum subprocess and separate in-process output verifier; fail closed",
+    "D04: chained journal, verified checkpoint state digest, restart reconciliation, replay no duplicate work",
+    "D05: only sandbox runner in pre-Github; never self-issue official stage PASS / owner / DoneCheck",
+    "Final independent hardening: refuse out-of-order T02/A01–A06 stage start without externally reviewed predecessor acceptance",
+    "Final independent hardening: file-descriptor SHA, no symlink/hardlink, journal record integrity checks",
+    "Final independent hardening: POSIX interprocess one-writer lock and released-lock recovery",
+    "Final independent hardening: separate 21 negative tests, total 59 ×3"
+  ],
+  "finalCounterAssessment": {
+    "rule": "100 only when five local engineering areas have independently executed baseline and adversarial subprocess tests in three rounds",
+    "scope": "LOCAL_DISPOSABLE_AND_GITHUB_HANDOFF_PREPARATION_ONLY",
+    "testCountPerRound": 59,
+    "expectedRounds": 3,
+    "authoritativeTenRealCapabilities": "NOT_CLAIMED",
+    "ownerOrIssuerSignature": "NOT_GENERATED",
+    "sourceAuthenticity": "ACTUAL_FILE_BYTES_DIGEST_REQUIRED",
+    "singleWriter": "POSIX_FLOCK_NONBLOCKING",
+    "predecessorAcceptance": "EXTERNAL_AUTHORIZED_VERIFIER_FOR_7_SUCCESSOR_GATES",
+    "nativeMacExecution": "NOT_EXECUTED"
+  }
+}

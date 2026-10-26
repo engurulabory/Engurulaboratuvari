@@ -1,0 +1,41 @@
+name: ENGURU Zulfikar V1.4.1 Current Source Seal V2
+on:
+  pull_request:
+    paths:
+      - 'governance/enguru-suzgeci/zulfikar-v12/v141/**'
+      - '.github/workflows/enguru-zulfikar-v141-*'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  current-source-integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fail-closed exact HEAD source SHA256 seal verification
+        run: |
+          python3 -B governance/enguru-suzgeci/zulfikar-v12/v141/verify_github_source_seal_v2.py
+          cd governance/enguru-suzgeci/zulfikar-v12/v141
+          python3 -B -m unittest -q test_source_seal_v2
+      - name: Run actual three-round engineering regression and scope controls
+        working-directory: governance/enguru-suzgeci/zulfikar-v12/v141
+        run: |
+          python3 -B preflight.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('evidence/pre_github_readiness_report.json').read_text())
+          assert x['realLocalUnittestExecutions']==378
+          assert x['architectureDesignControlsPassed']==x['architectureDesignControlsRequired']==10
+          assert len(x['threeRealLocalTestRounds'])==3
+          assert all(r['pass'] and r['tests']==126 for r in x['threeRealLocalTestRounds'])
+          assert x['productVerifiedFinish']=='NOT_ISSUED'
+          print('CURRENT_SEAL_SHA_AND_378_REAL_TESTS_PASS; OWNER_AND_MAC_FIELD_HOLD')
+          PY

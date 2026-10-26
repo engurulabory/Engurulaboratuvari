@@ -2,6 +2,27 @@
 
 Bu depo ENGÜRÜ ürün, proje ve iş oturumlarının ortak çalışma talimatının **tek kaynak adresidir**.
 
+## Zülfikar™ V1.3.1 — Evrensel 100/100 kabul şemsiyesi
+
+**Tüm ENGÜRÜ proje, yönetim ve İCRA oturumları için üst çalışma ilkesi:**
+[Zülfikar V1.3.1 Evrensel 100 Kabul İlkesi](governance/enguru-suzgeci/zulfikar-v12/ZULFIKAR_V131_EVRENSEL_100_KABUL_ILKESI_V1.json).
+Kaynağı oturum başında oku ve ilgili projenin kendi canonical sözleşmesini ve tek owner yetkisini koru.
+
+**Kullanıcı hedefi → tek kalıcı hedef → temel mimari → ölç → eksik/gereksinim/ihtiyaç tespiti → simülasyon → onarım → gerçek test → yeniden ölç → karşıt simülasyon → kanıtlanmış 100/100.**
+1–99 aralığındaki puanlar yalnız iç teşhis ve iyileştirme döngüsünün girdisidir: **nihai kabul puanı olarak gösterilmez**.
+Her aşamada yalnız özgün kabul kontrolü **100/100 + geçerli kanıt** olduğunda o aşamanın kapsamıyla sınırlı PASS verilir. Simülasyon 100, gerçek iş veya owner kabulü yerine geçmez.
+
+**Ayrı kabul kapıları:** Hedef/mimari, hazırlık, gerçek icra ve ürünün yetkili finişi. Hazırlık 100/100 yalnız hazırlık PASS'idir; gerçek sonuç ve ürün Verified Finish mevcut DoneCheck v1.2 ve Human Threshold™ kapsamında ayrıca kanıtlanır.
+Kaynak/izin/kanıt erişimi sınırlıysa sonucu `DEVAM_IYILESTIRME` veya `YETKILI_KANIT_BEKLENIYOR` olarak belirt, kazanımları koru; 100 üretmek için ölçüt veya kanıt icat etme.
+
+**Zülfikar tek otorite:** Zülfikar'ın özgün altı alanlı kabul sözleşmesi `governance/enguru-suzgeci/zulfikar-v12/ZULFIKAR_V131_OPERATIONAL_SCORECARD_V1.json` korunur.
+Bu evrensel yöntem ikinci puan cetveli değildir. Tarihsel 91 yalnız teşhis kaydıdır, kabul hükmü değildir. Mevcut Work ve Mac Engineer yürütücülerini kullan; ikinci motor/issuer/yazıcı açma; ücretli API zorunluluğu oluşturma.
+
+**Zülfikar son 10 yetenek kapsamı:** Altı alanlı mimari omurga; simülasyon; saha araştırması ve puanlama; iyileştirme döngüsü; uçtan uca gerçek iş bitirme; yetkili finiş; hedef–sonuç bağı; ana bağlamın korunması; iç teknik çalışma; yönetişim.
+Bu on yetenek, aynı altı alanlı özgün kabul kaynağındaki `canonicalClosure.tenCapabilityMap` üzerinden kaynaklara, gerçek görevlere ve ayrı kanıtlara bağlanır. İlk hedef/mimari hazırlığı 100/100 olduğunda sonraki adımlara dayanak sağlanır; **sonraki yeteneklerin PASS sonucu kendi test, yetki ve gerçek kanıtına bağlıdır**. Her adımda 1–99 yalnız iyileştirme teşhisidir.
+
+**Zülfikar V1.3.1 döngü mimarisi:** `governance/enguru-suzgeci/zulfikar-v12/zulfikar_v131_iterative_loop.py`. Hedef kilidi → mimari → simülasyon → puanlama → eksik tespiti → onarım → gerçek test → yeniden simülasyon → yeniden puanlama. Kanıtlı 100/100 aşama kabulüyle dur; önceki kazanımları koru. Gerçek Mac ve insan yetkisi kendi kabul zincirindedir.
+
 ## 1. Evrensel kanıtlı tamamlama
 
 Önce [ENGÜRÜ Evrensel Kanıtlı Tamamlama Talimatı™ V3](governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md) metnini oku. Sonra [SHA-256 kilit kaydı](governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_V3_LOCK.json) ile kaynak bütünlüğünü doğrula. V3 **bütün ENGÜRÜ İCRA oturumlarının genel çalışma disiplini**; ürünün kendi yetkili canonical sözleşmesi ve insan onayları önceliklidir.

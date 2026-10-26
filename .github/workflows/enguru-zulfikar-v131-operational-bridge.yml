@@ -1,0 +1,307 @@
+name: ENGURU Zulfikar V1.3.1 Operational Bridge Truth
+
+on:
+  pull_request:
+    paths:
+      - 'governance/enguru-suzgeci/zulfikar-v12/**'
+      - '.github/workflows/enguru-zulfikar-v131-operational-bridge.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-bound-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Source code syntax and exact SHA receipt
+        run: |
+          python -m py_compile governance/enguru-suzgeci/zulfikar-v12/zulfikar_v131_operational_bridge.py
+          sha256sum governance/enguru-suzgeci/zulfikar-v12/zulfikar_v131_operational_bridge.py
+      - name: Three separate negative/positive registry test rounds
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: |
+          for cycle in 1 2 3; do
+            echo "ZULFIKAR_V131_OPERATIONAL_ROUND=$cycle"
+            python -B -m unittest -v test_zulfikar_v131_operational_bridge
+          done
+          echo "STATE=PASS_GITHUB_EXISTING_HANDLER_PREFLIGHT_ONLY_OSI_FIELD_HOLD"
+      - name: Three rounds private receipt byte intake with truthful acceptance
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: |
+          python -m py_compile zulfikar_v131_field_evidence_intake.py
+          sha256sum zulfikar_v131_field_evidence_intake.py
+          for cycle in 1 2 3; do
+            echo "ZULFIKAR_V131_FIELD_INTAKE_ROUND=$cycle"
+            python -B -m unittest -v test_zulfikar_v131_field_evidence_intake
+          done
+          echo "STATE=PASS_SHA_INTAKE_TESTS_ONLY_REAL_FIELD_HOLD"
+      - name: Execute real isolated GitHub ENGINE task, recover and separately verify (3 rounds)
+        run: |
+          for cycle in 1 2 3; do
+            echo "ZULFIKAR_REAL_GITHUB_ENGINE_ROUND=$cycle"
+            python -B tools/enguru_method_github_pilot_v1.py > "$RUNNER_TEMP/z131_real_github_${cycle}.json"
+            python - "$RUNNER_TEMP/z131_real_github_${cycle}.json" <<'PY'
+          import json,sys
+          x=json.load(open(sys.argv[1]))
+          assert x["status"]=="PASS_GITHUB_REAL_ENGINE_PILOT"
+          assert x["passed"]==x["checked"]==6
+          assert x["test_scope"]=="REAL_GITHUB_RUNNER_TEMP_SQLITE_AND_ARTIFACTS"
+          assert x["independent_verification_mechanism"]=="SEPARATE_EXECUTABLE_SAME_PRODUCER_TEAM"
+          assert x["native_mac_osi_field"]=="HOLD"
+          assert x["human_threshold"]=="HOLD"
+          assert x["verified_finish"]=="HOLD"
+          print("REAL_GITHUB_ENGINE_DISPOSABLE_TASK=PASS; REAL_MAC_PRODUCT_FIELD=HOLD")
+          PY
+          done
+      - name: Ten exact-source GitHub bridge gates (not real operations)
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: |
+          python -B zulfikar_v131_bridge_score.py > "$RUNNER_TEMP/z131_bridge_score.json"
+          python - "$RUNNER_TEMP/z131_bridge_score.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1]))
+          assert r['score']==100 and len(r['checks'])==10
+          assert all(x is True for x in r['checks'].values())
+          assert r['actualTaskExecution']=='NOT_RUN'
+          assert r['osiField']=='HOLD'
+          assert r['officialVerifiedFinish']=='HOLD'
+          print('BRIDGE_GITHUB_SOURCE_AND_CLI=100/100; REAL_OPERATIONS=HOLD')
+          PY
+      - name: Zulfikar V1.3.1 three preparation dimensions 100 evidence gate
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: |
+          for cycle in 1 2 3; do
+            echo "PREPARED_VERIFIED_FINISH_SIM_CYCLE=$cycle"
+            python -B -m unittest -v test_zulfikar_v131_prepared_finish
+          done
+          python -B zulfikar_v131_prepared_finish.py > "$RUNNER_TEMP/z131_preparation.json"
+          python - "$RUNNER_TEMP/z131_preparation.json" <<'PY'
+          import json,sys
+          p=json.load(open(sys.argv[1]))
+          domains=p["domains"]
+          assert set(domains)=={"OPERATIONAL_PREPARATION","E2E_FINISH_PREPARATION","CROSS_PROJECT_PREPARATION"}
+          assert all(x["score"]==100 and len(x["checks"])==10 and all(x["checks"].values()) for x in domains.values())
+          assert p["preparationScore"]==100
+          assert p["decision"]=="GITHUB_PREPARED_FINISH_CANDIDATE_REQUIRES_EXACT_HEAD_CI"
+          assert p["canonicalProductVerifiedFinish"]=="HOLD"
+          assert p["actualMacTaskExecution"]=="NOT_RUN"
+          assert p["githubExactHeadCI"]=="EXTERNAL_GITHUB_ACTIONS_VERIFICATION_REQUIRED"
+          print("ZULFIKAR_PREPARATION=3x100/100_SOURCE_PASS_FIELD_HOLD")
+          PY
+      - name: Single six-domain acceptance and Goal2 lock - three adversarial rounds
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: |
+          python -m py_compile zulfikar_v131_single_acceptance.py
+          for cycle in 1 2 3; do
+            echo "ZULFIKAR_SINGLE_ACCEPTANCE_ROUND=$cycle"
+            python -B -m unittest -v test_zulfikar_v131_single_acceptance
+          done
+          python -B zulfikar_v131_single_acceptance.py --mode status > "$RUNNER_TEMP/z131_single_authority.json"
+          python - "$RUNNER_TEMP/z131_single_authority.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1]))
+          assert r['contractValid'] is True
+          assert len(r['sixDomains'])==6
+          assert [d['recordedScore'] for d in r['sixDomains']]==[100,100,100,98,90,65]
+          assert r['historicalDiagnosticScore']==91
+          assert r['acceptedOperationalScore'] is None
+          assert r['operationalDecision']=='CONTINUE_IMPROVEMENT_AWAIT_AUTHORIZED_EVIDENCE'
+          assert len(r['operations'])==3
+          assert len(r['existingExecutorPaths'])==3
+          assert all(x['binding']['matchingExistingRegistry'] for x in r['existingExecutorPaths'])
+          assert all(x['binding']['actualHandlerInvoked'] is False for x in r['existingExecutorPaths'])
+          assert r['goal1']=='HOLD_REAL_TASK_AND_OWNER_AUTHORITY'
+          assert r['goal2']=='LOCKED_UNTIL_GOAL1_VERIFIED_FINISH'
+          assert r['officialVerifiedFinish']=='HOLD'
+          print('SINGLE_SCORECARD_CONTRACT=PASS_SOURCE_ONLY; GOAL1_FIELD=HOLD; GOAL2=LOCKED')
+          PY
+      - name: Universal 100-only umbrella — test all diagnostics 1–99 and fake 100, three rounds
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: |
+          python -m py_compile zulfikar_v131_universal_100_gate.py
+          for cycle in 1 2 3; do
+            echo "ZULFIKAR_UNIVERSAL_ACCEPTANCE_ROUND=$cycle"
+            python -B -m unittest -v test_zulfikar_v131_universal_100_gate
+          done
+          python -B zulfikar_v131_universal_100_gate.py > "$RUNNER_TEMP/z131_universal_policy.json"
+          python - "$RUNNER_TEMP/z131_universal_policy.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1]))
+          assert r['codePolicyDiagnostic']==100 and len(r['controls'])==10
+          assert all(x is True for x in r['controls'].values())
+          assert r['policyDecision']=='GITHUB_POLICY_100_CANDIDATE_EXACT_HEAD_CI_REQUIRED'
+          assert r['operationalAcceptedScore'] is None
+          assert r['legacy91']=='HISTORICAL_DIAGNOSTIC_ONLY'
+          assert r['productVerifiedFinish']=='AWAIT_AUTHORIZED_EVIDENCE'
+          print('ZULFIKAR_UNIVERSAL_POLICY_GITHUB=100/100; 1_TO_99=ITERATE; FIELD=AWAIT_AUTHORIZED_EVIDENCE')
+          PY
+      - name: Ten capability source/evidence routing and bounded repair loop (3 rounds)
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: |
+          python -m py_compile zulfikar_v131_ten_capabilities.py
+          for cycle in 1 2 3; do
+            echo "ZULFIKAR_TEN_CAPABILITY_ROUND=$cycle"
+            python -B -m unittest -v test_zulfikar_v131_ten_capabilities
+          done
+          python -B zulfikar_v131_ten_capabilities.py > "$RUNNER_TEMP/z131_ten_capability_sources.json"
+          python - "$RUNNER_TEMP/z131_ten_capability_sources.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1]))
+          assert r['checksPassed']==r['checksRequired']==10
+          assert r['sourceRoutesDecision']=='TEN_SOURCE_ROUTES_VERIFIED_CI_REVIEW_REQUIRED'
+          assert r['fullyVerifiedCapabilityCount']==0
+          assert r['verifiedFullCapabilityPass'] is False
+          assert r['acceptedOverallScore'] is None
+          assert r['firstStage100CannotAutoAcceptLaterStages'] is True
+          assert r['officialVerifiedFinish']=='AWAIT_AUTHORIZED_DONECHECK_HUMAN_THRESHOLD'
+          print('TEN_CAPABILITY_SOURCE_ROUTES=10/10; REAL_CAPABILITY_FINISH=PENDING')
+          PY
+      - name: Executable goal-locked Zulfikar repair and real subprocess loop ×3
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: |
+          python -m py_compile zulfikar_v131_iterative_loop.py
+          for cycle in 1 2 3; do
+            echo "ZULFIKAR_REAL_ITERATION_ROUND=$cycle"
+            python -B -m unittest -v test_zulfikar_v131_iterative_loop
+          done
+          echo "ZULFIKAR_LOOP=REAL_DISPOSABLE_TEST_PASS; FIELD_AUTHORITY=UNCHANGED"
+      - name: Audit weighted overall readiness without false 100
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: |
+          python - <<'PY'
+          import json
+          x=json.load(open('ZULFIKAR_V131_OPERATIONAL_SCORECARD_V1.json'))
+          ds=x['domains']
+          assert sum(d['weight'] for d in ds)==100
+          assert len({d['id'] for d in ds})==6
+          a=sum(d['weight']*d['baseline'] for d in ds)/100
+          b=sum(d['weight']*d['review'] for d in ds)/100
+          assert a==87.5 and b==91.25
+          assert x['roundedPreviousOverall88']==88
+          assert x['roundedCurrentOverall']==91
+          pilot=x['canonicalClosure']['realGithubRunnerPilot']
+          assert pilot['state']=='PASS_GITHUB_DISPOSABLE_RUNTIME_ONLY'
+          assert pilot['rounds']==3 and pilot['checksPerRound']==6
+          assert pilot['actualGithubExecution'] is True
+          assert pilot['isThreeDifferentMacUserProjects'] is False
+          assert pilot['productVerifiedFinish']=='HOLD'
+          assert x['overallOperationalVerdict']=='CONTINUE_REAL_EVIDENCE_NOT_ACCEPTED'
+          assert x['acceptedOperationalScore'] is None
+          assert x['historicalDiagnosticBeforeCurrentPolicy']['score']==91
+          assert x['allSixDimensionsPass'] is False
+          assert x['allSixDimensions100'] is False
+          assert [d['verdict'] for d in ds].count('PASS_SCOPE_LIMITED')==3
+          assert [d['verdict'] for d in ds].count('HOLD_UNDER_100')==3
+          assert x['realMacFieldVerdict']=='HOLD'
+          assert x['verifiedFinishVerdict']=='HOLD'
+          assert x['targetWeightedOverall']==100
+          m=x['managementFinalTarget']
+          assert m['target']=='ALL_SIX_DOMAINS_100_OF_100'
+          assert {g['id'] for g in m['threeClosureGates']}=={'GOVERNANCE','PORTABILITY','E2E_REAL'}
+          assert all(g['to']==100 for g in m['threeClosureGates'])
+          assert m['noAutomaticPromotion'] is True
+          assert x['horizon']['macOsiOperationalAcceptance']=='HOLD'
+          assert x['horizon']['realTaskPassesObservedInThisCampaign']==0
+          print('OPERATIONAL_HISTORY_DIAGNOSTIC=91; ACCEPTED_OPERATIONAL_SCORE=NONE; IMPROVEMENT_CONTINUES; MAC_FIELD_AUTHORITY=PENDING')
+          PY
+      - name: Refuse paper-only field finish and fake peer acceptance
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: |
+          python - <<'PY'
+          import json
+          f=json.load(open('ZULFIKAR_V131_REAL_100_FIELD_HANDOFF_V1.json'))
+          assert f['verifiedFinish']=='HOLD'
+          assert f['acceptanceThreshold']['targetGeneralOperational']=='100/100'
+          assert f['acceptanceThreshold']['generalOperational'].startswith('91/100')
+          assert len(f['threeDifferentTaskFamilies'])==3
+          assert all(t['realTaskOutputAccepted'] is False for t in f['threeDifferentTaskFamilies'])
+          assert f['recoveryEvidence']['durableCheckpointCountObserved']==0
+          assert f['peerComparison']['status']=='HOLD_NOT_EXECUTED'
+          assert f['peerComparison']['claimOfSuperiority'] is False
+          assert f['authorityCannotBeGeneratedByManifest'] is True
+          assert len(f['allTaskProofFields'])==14
+          assert all(f['prohibit'].values())
+          print('ZULFIKAR_OPERATIONAL_100_FIELD_GATE=HOLD_NEEDS_REAL_TASK_EVIDENCE')
+          PY
+      - name: Guard three distinct GitHub source observations versus real Mac delivery
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: |
+          python - <<'PY'
+          import json
+          o=json.load(open('ZULFIKAR_V131_CROSS_PRODUCT_GITHUB_OBSERVATION_V1.json'))
+          rows=o['observations']
+          assert len(rows)==3 and len({r['pr'] for r in rows})==3
+          assert all(r['CI']['success']==r['CI']['total']==6 for r in rows)
+          assert all(r['ownerProductAcceptance']=='HOLD' for r in rows)
+          assert all(r['operationalTaskAccepted'] is False for r in rows)
+          assert o['heterogeneousRealMacTasksAccepted']==0
+          assert o['realOperationalTransferVerdict']=='HOLD'
+          assert o['verifiedFinish']=='HOLD'
+          print('CROSS_PRODUCT_GITHUB_SOURCE=3/3; REAL_MAC_TASKS=0/3; OPERATIONAL_HOLD')
+          PY
+      - name: Preserve prior V1.3.1 verified goal and GitHub code gates
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: |
+          python -B zulfikar_v1_3_gates.py goal > "$RUNNER_TEMP/z131_goal.json"
+          python -B zulfikar_v1_3_gates.py infra > "$RUNNER_TEMP/z131_infra.json"
+          python - "$RUNNER_TEMP/z131_goal.json" "$RUNNER_TEMP/z131_infra.json" <<'PY'
+          import json,sys
+          a,b=[json.load(open(x)) for x in sys.argv[1:]]
+          assert a['assessment']['score']==100
+          assert b['assessment']['score']==100
+          assert b['osi_infrastructure']=='HOLD_NOT_EXECUTED'
+          assert b['official_finish']=='HOLD'
+          print('EXISTING_ZULFIKAR_V131_GITHUB=100/100; OSI=HOLD')
+          PY
+      - name: Export source-only GitHub evidence
+        run: |
+          python - <<'PY'
+          import hashlib,json,os,pathlib
+          files={
+            'bridgeScore':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_bridge_score.json',
+            'goal':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_goal.json',
+            'infra':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_infra.json',
+            'preparation':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_preparation.json',
+            'singleAuthority':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_single_authority.json',
+            'githubEngine1':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_real_github_1.json',
+            'githubEngine2':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_real_github_2.json',
+            'githubEngine3':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_real_github_3.json',
+            'universalPolicy':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_universal_policy.json',
+            'tenCapabilityRoutes':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_ten_capability_sources.json'
+          }
+          evidence={
+            'schema':'enguru.zulfikar.github-run-provenance/v1',
+            'githubRunId':os.environ['GITHUB_RUN_ID'],
+            'headSha':os.environ['GITHUB_SHA'],
+            'files':{k:hashlib.sha256(v.read_bytes()).hexdigest() for k,v in files.items()},
+            'scope':'GITHUB_CODE_GATE_ONLY',
+            'realMacExecution':'NOT_RUN',
+            'actualUserGoalOutcome':'NOT_MEASURED',
+            'verifiedFinish':'HOLD'
+          }
+          outfile=pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_run_provenance.json'
+          outfile.write_text(json.dumps(evidence,sort_keys=True,indent=2)+'\n',encoding='utf8')
+          print('GITHUB_EVIDENCE_SHA256='+hashlib.sha256(outfile.read_bytes()).hexdigest())
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: zulfikar-v131-github-review-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/z131_bridge_score.json
+            ${{ runner.temp }}/z131_goal.json
+            ${{ runner.temp }}/z131_infra.json
+            ${{ runner.temp }}/z131_preparation.json
+            ${{ runner.temp }}/z131_single_authority.json
+            ${{ runner.temp }}/z131_real_github_1.json
+            ${{ runner.temp }}/z131_real_github_2.json
+            ${{ runner.temp }}/z131_real_github_3.json
+            ${{ runner.temp }}/z131_universal_policy.json
+            ${{ runner.temp }}/z131_ten_capability_sources.json
+            ${{ runner.temp }}/z131_run_provenance.json
+          retention-days: 14
