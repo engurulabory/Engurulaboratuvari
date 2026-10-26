@@ -6,6 +6,9 @@ on:
       - 'governance/plive/SESSIZ_ORMAN_COCKPIT_UX_CONTRACT_V1.md'
       - 'governance/plive/SESSIZ_ORMAN_SCREEN_FIXTURE_V1.json'
       - 'tests/test_pilive_sessiz_orman_ux_contract_v1.py'
+      - 'tests/test_pilive_sessiz_orman_zulfikar_score_v2.py'
+      - 'governance/plive/SESSIZ_ORMAN_ZULFIKAR_V13_SCORECARD_V2.json'
+      - 'governance/plive/SESSIZ_ORMAN_ZULFIKAR_V13_V2_DESIGN_REVIEW.md'
       - '.github/workflows/pilive-sessiz-orman-ux-v1.yml'
   workflow_dispatch:
 
