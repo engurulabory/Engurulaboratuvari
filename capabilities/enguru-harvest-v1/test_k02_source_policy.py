@@ -22,9 +22,9 @@ class K02SourcePolicyTests(unittest.TestCase):
         s["candidates"][0]["source_archive_sha256"]="a"*64
         self.assertEqual(reconcile(s,L)["state"],"HOLD")
     def test_does_not_promote_license_receipt(self):
-        l=copy.deepcopy(L)
-        l["observations"][0]["redistribution_approval"]="PASS"
-        self.assertEqual(reconcile(S,l)["state"],"HOLD")
+        legal_observations=copy.deepcopy(L)
+        legal_observations["observations"][0]["redistribution_approval"]="PASS"
+        self.assertEqual(reconcile(S,legal_observations)["state"],"HOLD")
     def test_missing_source(self):
         s=copy.deepcopy(S)
         s["candidates"].pop()
@@ -35,9 +35,9 @@ class K02SourcePolicyTests(unittest.TestCase):
         self.assertEqual(reconcile(s,L)["state"],"HOLD")
     def test_malformed_records(self):
         self.assertEqual(reconcile({},L)["state"],"HOLD")
-        l=copy.deepcopy(L)
-        l["observations"][2]={"repository":[]}
-        self.assertEqual(reconcile(S,l)["state"],"HOLD")
+        legal_observations=copy.deepcopy(L)
+        legal_observations["observations"][2]={"repository":[]}
+        self.assertEqual(reconcile(S,legal_observations)["state"],"HOLD")
 
 if __name__=="__main__":
     unittest.main()
