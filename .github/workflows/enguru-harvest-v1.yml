@@ -81,6 +81,15 @@ jobs:
           test "$(git -C "${{ runner.temp }}/anthropic-skills-source" rev-parse HEAD)" = "dbd4588f9e1033efb41dad4bef2f7947c8993d44"
           cd capabilities/enguru-harvest-v1
           python -B run_anthropic_skills_trial.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Run P05 exact upstream Everything server over stdio
+        timeout-minutes: 4
+        run: |
+          cd capabilities/enguru-harvest-v1
+          npm install --no-save --ignore-scripts --package-lock=false --no-audit --no-fund '@modelcontextprotocol/server-everything@2.0.1' '@modelcontextprotocol/client@2.4.0' 'zod@4.2.0'
+          node mcp_reference_stdio_trial.mjs
       - name: Preserve real runner receipts
         if: always()
         uses: actions/upload-artifact@v4
@@ -92,6 +101,7 @@ jobs:
             capabilities/enguru-harvest-v1/promptfoo-eval-output.json
             capabilities/enguru-harvest-v1/promptfoo-offline-receipt.json
             capabilities/enguru-harvest-v1/mcp-typescript-receipt.json
+            capabilities/enguru-harvest-v1/mcp-reference-stdio-receipt.json
             capabilities/enguru-harvest-v1/anthropic-skills-structural-receipt.json
             capabilities/enguru-harvest-v1/mcp-typescript-npm-tree.json
             ${{ runner.temp }}/harvest-mcp-install-report.json
