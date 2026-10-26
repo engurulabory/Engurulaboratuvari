@@ -45,7 +45,7 @@ public struct Portfolio: Decodable {
     public let sourcePins: [String: String]
     public let projectionDigest: String
     public let projects: [ProjectRow]
-    public struct Classification: Decodable { public let projectId: String; public let productionArea: String?; public let productionFacet: String? }
+    public struct Classification: Decodable { public let projectId: String; public let state: String?; public let worklist: String?; public let productionArea: String?; public let productionFacet: String? }
     public let sourceClassification: [String: Classification]?
     public let sourceReadAt: String
     public let adapterBuiltAt: String

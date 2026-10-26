@@ -142,7 +142,7 @@ def portfolio_read(home, workdir):
                 'revisionBefore':rev_before,'revisionAfter':rev_after,'facts':facts}
     snapshot=adapter.build_portfolio(registry,facts,revision_before=rev_before,revision_after=rev_after,
        pins_before=before['pins'],pins_after=after['pins'],source_read_at=started,adapter_built_at=now())
-    snapshot['sourceClassification']={key:{field:entry[field] for field in ('projectId','productionArea','productionFacet') if field in entry} for key,entry in entries.items()}
+    snapshot['sourceClassification']={key:{field:entry[field] for field in ('projectId','state','worklist','productionArea','productionFacet') if field in entry} for key,entry in entries.items()}
     return {'state':'PASS_NATIVE_PORTFOLIO_CAPTURE_ONLY','executed':True,'snapshot':snapshot,
        'sourceManifestBefore':before,'sourceManifestAfter':after,'sourceFiles':len(before['pins']),
        'coreFacts':facts,'allProjectKeys':sorted(entries),

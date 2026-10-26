@@ -1,0 +1,31 @@
+{
+  "schema": "enguru.pilive.three-screen-regression/v1",
+  "scope": "ISOLATED_PREPARATION_NOT_REAL_USER_TASK_ACCEPTANCE",
+  "pythonRounds": [
+    {
+      "tests": 236,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "tests": 236,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "tests": 236,
+      "failures": 0,
+      "errors": 0
+    }
+  ],
+  "swiftTestsExpectedPerRound": 17,
+  "newPythonFieldTests": 5,
+  "newSwiftProjectEvidenceTests": 3,
+  "dom": "Exact pinned existing engine; disposable wire qualification 7 tests x3; no stage authority",
+  "preservedNativeReceiptSha256": "e5e53e1a3a65f0c6ca0fde1884c76b2f2868efa656f4dff9e9ebbbd457b615a9",
+  "nativeThreeScreenJourney": "NOT_EXECUTED",
+  "independentVisualReview": "HOLD",
+  "U01_U12": "HOLD_FULL_ACCEPTANCE",
+  "officialP02": "HOLD",
+  "verifiedFinish": "HOLD"
+}

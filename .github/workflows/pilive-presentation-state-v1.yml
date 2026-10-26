@@ -25,6 +25,7 @@ jobs:
           python3 -m unittest discover -s tests -p 'test_pilive_native_portfolio_review_v1.py' -v
           python3 -m unittest discover -s tests -p 'test_pilive_screen_wire_v1.py' -v
           python3 -m unittest discover -s tests -p 'test_pilive_live_reader_v1.py' -v
+          python3 -m unittest discover -s tests -p 'test_pilive_field_journey_v1.py' -v
           python3 - <<'PY'
           import sys
           from pathlib import Path

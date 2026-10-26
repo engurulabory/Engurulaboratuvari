@@ -43,6 +43,7 @@ private func readPacket() throws -> Data {
     @Published var verificationNotes: [String: String] = [:]
     private var packet: Data?
     private var recorded = false
+    private var lastRenderedSourceReadAt: String?
     @Published private(set) var uiRenderedAt: String?
     func refresh() {
         guard !isLoading else { return }
@@ -75,11 +76,13 @@ private func readPacket() throws -> Data {
     }
     func tick() { model.store.tick(now: Date()); model.synchronize() }
     func recordVisibleFrame() {
-        guard !recorded, !isLoading, let packet, let snapshot = model.screen.portfolio,
-              NSApp.windows.contains(where: { $0.isVisible }),
+        guard !isLoading, let packet, let snapshot = model.screen.portfolio,
+              lastRenderedSourceReadAt != snapshot.sourceReadAt,
+              NSApp.windows.contains(where: { $0.isVisible && !$0.isMiniaturized && $0.title.contains("PiLive") }),
               let directory = Bundle.main.object(forInfoDictionaryKey: "SessionDirectory") as? String else { return }
         let format = ISO8601DateFormatter(); format.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-        let rendered = format.string(from: Date()); uiRenderedAt = rendered
+        let rendered = format.string(from: Date()); uiRenderedAt = rendered; lastRenderedSourceReadAt = snapshot.sourceReadAt
+        if recorded { return }
         let receipt: [String: Any] = ["schema": "enguru.pilive.visible-frame/v1", "uiRenderedAt": rendered,
             "sourceReadAt": snapshot.sourceReadAt, "adapterBuiltAt": snapshot.adapterBuiltAt,
             "sourceRevision": snapshot.sourceRevision, "projectionDigest": snapshot.projectionDigest,
@@ -92,11 +95,20 @@ private func readPacket() throws -> Data {
             recorded = true
         } catch { readerMessage = "HOLD · Görünür ekran makbuzu yazılamadı" }
     }
+    func fieldEvent(task: String, journeyId: String, projectId: String, lock: FieldSourceLock) throws -> [String: Any] {
+        guard !isLoading, model.screen.availability == .fresh, let p = model.screen.portfolio,
+              let row = p.projects.first(where: { $0.projectId == projectId }), let packet,
+              lastRenderedSourceReadAt == p.sourceReadAt, let rendered = uiRenderedAt else { throw PresentationHold.invalidSource }
+        try lock.requireSameSource(p)
+        return try FieldCapture.event(task: task, journeyId: journeyId, packet: packet, portfolio: p,
+            row: row, renderedAt: rendered, selectedDigest: lock.digest)
+    }
+
 }
 
 @main struct PiLiveApp: App {
     var body: some Scene {
-        WindowGroup("ENGÜRÜ PiLive™") { CockpitRoot() }
+        WindowGroup("ENGÜRÜ PiLive™ · Saha V2") { CockpitRoot() }
             .defaultSize(width: 1200, height: 800)
             .commands {
                 CommandGroup(after: .newItem) {
@@ -114,6 +126,18 @@ private struct Cockpit: View {
     @ObservedObject var model: SwiftUIState
     @State private var search = ""
     @State private var selectedProject: ProjectRow?
+    @State private var selectedDigest: String?
+    @State private var projectOpenerId: String?
+    @State private var scopedEvidence = false
+    @State private var fieldId: String?
+    @State private var fieldLock: FieldSourceLock?
+    @State private var fieldStep = 0
+    @State private var fieldEvents: [[String: Any]] = []
+    @State private var fieldMessage = ""
+    @State private var fieldStarted: Date?
+    @State private var evidenceClosedWithEscape = false
+    @State private var restoredFocusTarget: String?
+    @State private var fieldCompleted = false
     @FocusState private var focus: String?
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     private let tick = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -143,11 +167,13 @@ private struct Cockpit: View {
                         Text(model.screen.accessibilityAnnouncement).font(.callout)
                     }
                     Spacer()
+                    Button("Saha görevi") { startField() }.frame(minHeight: 44).disabled(live.isLoading || model.screen.portfolio == nil || fieldId != nil)
                     if live.isLoading { ProgressView().accessibilityLabel("Kaynak okunuyor") }
                     Button { live.refresh() } label: { Label("Yenile", systemImage: "arrow.clockwise") }.frame(minWidth: 70, minHeight: 44)
                     Button { model.openEvidence() } label: { Label("Kanıt", systemImage: "checkmark.seal") }.frame(minWidth: 70, minHeight: 44).focused($focus, equals: "evidence.button")
                 }
                 Text("\(live.readerMessage) · \(model.screen.availability.rawValue) · Kaynak yaşı: \(age)").font(.callout).foregroundStyle(jade).accessibilityLabel("Kaynak durumu: \(model.screen.availability.rawValue), yaş \(age)")
+                if fieldId != nil { fieldPanel }
                 ScrollView {
                     VStack(alignment: .leading, spacing: 20) {
                         switch model.selected {
@@ -165,10 +191,17 @@ private struct Cockpit: View {
         .onReceive(refresh) { _ in live.refresh() }
         .onReceive(NotificationCenter.default.publisher(for: .init("PiLiveRefresh"))) { _ in live.refresh() }
         .onChange(of: model.focusTarget) { focus = $0 }
+        .onChange(of: focus) { target in
+            if evidenceClosedWithEscape, target == "project." + (projectOpenerId ?? "UNKNOWN") { restoredFocusTarget = target }
+        }
         .sheet(isPresented: Binding(get: { model.evidenceIsOpen }, set: { if !$0 { model.escape() } })) {
             evidence.padding(28).frame(minWidth: 660, minHeight: 480).onExitCommand { model.escape() }
         }
-        .sheet(item: $selectedProject) { row in projectDetail(row).padding(28).frame(minWidth: 600, minHeight: 360) }
+        .sheet(item: $selectedProject, onDismiss: { scopedEvidence = false; focus = "project." + (projectOpenerId ?? "UNKNOWN") }) { row in
+            Group { if scopedEvidence { evidence } else { projectDetail(row) } }
+                .padding(28).frame(minWidth: 760, minHeight: 620)
+                .onExitCommand { closeScopedEvidence(escape: true) }
+        }
     }
     private var age: String { model.screen.sourceAgeSeconds.map { "\(Int($0)) sn" } ?? "Bilinmiyor" }
     private func label(_ s: Screen) -> String { switch s { case .overview: return "Genel Durum"; case .now: return "Şimdi"; case .projects: return "Projeler" } }
@@ -197,12 +230,18 @@ private struct Cockpit: View {
     private var projectList: some View {
         VStack(alignment: .leading, spacing: 18) {
             TextField("Proje ara", text: $search).textFieldStyle(.roundedBorder).accessibilityLabel("Canonical proje adı veya kimliğiyle ara")
-            ForEach(model.screen.projectGroups(search: search), id: \.name) { group in
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 120))], spacing: 10) {
+                ForEach(Array(model.screen.projectGroups(search: search).prefix(5)), id: \.name) { group in
+                    VStack(alignment: .leading) { Text(group.name).font(.headline); Text(group.countText).font(.callout) }
+                        .frame(maxWidth: .infinity, minHeight: 52, alignment: .leading).padding(12).background(surface, in: RoundedRectangle(cornerRadius: 10))
+                }
+            }
+            ForEach(model.screen.projectGroups(search: search).filter { !$0.rows.isEmpty || $0.name == "Kaynak eşlemesi bekleniyor" }, id: \.name) { group in
                 card("\(group.name) · \(group.countText)") {
                     ForEach(group.rows) { row in
-                        Button { selectedProject = row } label: {
+                        Button { projectOpenerId = row.projectId; selectedDigest = model.screen.projectionDigest; scopedEvidence = false; selectedProject = row } label: {
                             HStack { Text(row.key).lineLimit(nil); Spacer(); Text(row.counterText) }.frame(minHeight: 44).contentShape(Rectangle())
-                        }.buttonStyle(.plain).accessibilityLabel(row.accessibilityLabel)
+                        }.buttonStyle(.plain).accessibilityLabel(row.accessibilityLabel).focused($focus, equals: "project." + row.projectId)
                     }
                 }
             }
@@ -217,18 +256,44 @@ private struct Cockpit: View {
             if row.status == "HOLD" { Text("HOLD · \(row.reason)").foregroundStyle(.yellow) }
         }.accessibilityElement(children: .combine)
     }
-    private func projectDetail(_ row: ProjectRow) -> some View {
+    private func projectDetail(_ original: ProjectRow) -> some View {
         VStack(alignment: .leading, spacing: 18) {
-            Text(row.key).font(.title).accessibilityAddTraits(.isHeader)
-            Text(row.projectId).textSelection(.enabled); projectSummary(row)
-            Text("Sonraki hareket: \(row.nextAction ?? "N/A")")
-            Button("Kapat") { selectedProject = nil }.keyboardShortcut(.cancelAction)
+            if let p = model.screen.portfolio, p.projectionDigest == selectedDigest,
+               let row = p.projects.first(where: { $0.projectId == original.projectId }) {
+                Text(row.key).font(.title).accessibilityAddTraits(.isHeader)
+                Text(row.projectId).textSelection(.enabled); projectSummary(row)
+                if !fieldMessage.isEmpty { Text(fieldMessage).foregroundStyle(.yellow) }
+                Text("Sonraki hareket: \(row.nextAction ?? "N/A")")
+                if fieldId != nil && fieldStep == 1 && row.projectId == "ENGURU_PROGRESS_CORE" {
+                    Button("Proje görevini doğrula") { captureField(task: "FJ.PROJECTS", projectId: row.projectId) }.frame(minHeight: 44).disabled(live.isLoading)
+                }
+                Button("Bu projenin kanıtı") { scopedEvidence = true }.frame(minHeight: 44)
+                    .accessibilityLabel("\(row.key) projesinin kaynak kanıtını aç")
+            } else { Text("HOLD · Kaynak değişti. Ayrıntıyı kapatıp projeyi yeniden seç.") }
+            Button("Kapat") { closeScopedEvidence(escape: false) }.keyboardShortcut(.cancelAction)
         }
+    }
+    private func closeScopedEvidence(escape: Bool) {
+        if scopedEvidence && escape && fieldStep == 3 { evidenceClosedWithEscape = true }
+        selectedProject = nil; scopedEvidence = false
     }
     private var evidence: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                HStack { Text("Kanıt Çekmecesi").font(.title).accessibilityAddTraits(.isHeader); Spacer(); Button("Kapat") { model.escape() }.keyboardShortcut(.cancelAction) }
+                HStack { Text("Kanıt Çekmecesi").font(.title).accessibilityAddTraits(.isHeader); Spacer(); Button("Kapat") { if scopedEvidence { closeScopedEvidence(escape: false) } else { model.escape() } } }
+                if scopedEvidence, let selectedProject {
+                    if let context = try? model.screen.portfolio?.projectEvidence(projectId: selectedProject.projectId, selectedDigest: selectedDigest ?? "") {
+                        Text("Proje: \(context.row.projectId)").font(.headline).textSelection(.enabled)
+                        if !fieldMessage.isEmpty { Text(fieldMessage).foregroundStyle(.yellow) }
+                        projectSummary(context.row)
+                        ForEach(context.pins.keys.sorted(), id: \.self) { path in Text("\(path)\n\(context.pins[path] ?? "")").font(.callout.monospaced()).textSelection(.enabled) }
+                        Text(live.verificationNotes[context.row.key] ?? "N/A")
+                        if fieldId != nil && fieldStep == 2 && context.row.projectId == "ENGURU_PROGRESS_CORE" {
+                            Button("Kanıt görevini doğrula") { captureField(task: "FJ.EVIDENCE", projectId: context.row.projectId) }.frame(minHeight: 44).disabled(live.isLoading)
+                        }
+                        if fieldStep == 3 { Text("Şimdi Escape tuşuyla kapat; sonra ana ekranda kaydı tamamla.") }
+                    } else { Text("HOLD · Proje/kaynak eşliği değişti; kanıt yeniden seçilmeli.") }
+                }
                 Text("Kaynak revision: \(model.screen.sourceRevision ?? "Bilinmiyor")")
                 Text("Projection digest: \(model.screen.projectionDigest ?? "Bilinmiyor")")
                 Text("Kaynak okuma: \(model.screen.portfolio?.sourceReadAt ?? "Bilinmiyor")")
@@ -237,9 +302,58 @@ private struct Cockpit: View {
                 Text("Kaynak yaşı: \(age) · \(model.screen.availability.rawValue)")
                 Text("Bu ekran gözlemi kullanıcı estetik veya resmî P02 kabulü üretmez.")
                 Text("Tarihsel V3.1 imza doğrulaması: HOLD · build kökeni ayrı kapıda")
-                Text("Visual Cockpit kaynak olgusu: \(live.verificationNotes["visual-cockpit-premium-v1"] ?? "N/A")")
-                ForEach((model.screen.portfolio?.sourcePins ?? [:]).keys.sorted(), id: \.self) { key in Text("\(key)\n\(model.screen.portfolio?.sourcePins[key] ?? "")").font(.caption.monospaced()).textSelection(.enabled) }
+                if !scopedEvidence { Text("Visual Cockpit kaynak olgusu: \(live.verificationNotes["visual-cockpit-premium-v1"] ?? "N/A")") }
+                if !scopedEvidence { ForEach((model.screen.portfolio?.sourcePins ?? [:]).keys.sorted(), id: \.self) { key in Text("\(key)\n\(model.screen.portfolio?.sourcePins[key] ?? "")").font(.caption.monospaced()).textSelection(.enabled) } }
             }
         }
     }
+    private var fieldPanel: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Üç ekran saha görevi · \(fieldStep)/3").font(.headline)
+            Text(fieldStep == 0 ? "Şimdi: P02 0/12, aktif P02.S01.01 ve küresel HOLD durumunu oku." : fieldStep == 1 ? "Projeler: progress-core ara, seç, 44/44 ve finiş HOLD durumunu doğrula." : fieldStep == 2 ? "Seçili projenin Bu projenin kanıtı düğmesine bas; ENGURU_PROGRESS_CORE ve kendi State/Worklist SHA'larını doğrula." : "Escape ile kanıtı kapat. Odak proje satırına döndüyse kaydı tamamla.")
+            if !fieldMessage.isEmpty { Text(fieldMessage).foregroundStyle(.yellow) }
+            if fieldStep == 0 { Button("Şimdi görevini doğrula") { captureField(task: "FJ.NOW", projectId: "ENGURU_PLIVE_P02_USER_SCREEN") }.disabled(live.isLoading) }
+            Button("Saha görevini yeniden başlat") { restartField() }.disabled(fieldCompleted)
+            if fieldStep == 3 { Button("Odak döndü · Kaydı tamamla") { finishField() }.disabled(!evidenceClosedWithEscape || fieldCompleted) }
+        }.padding(12).background(surface, in: RoundedRectangle(cornerRadius: 10))
+    }
+    private func restartField() {
+        if let id = fieldId, let dir = Bundle.main.object(forInfoDictionaryKey: "SessionDirectory") as? String {
+            let partial: [String: Any] = ["journeyId": id, "events": fieldEvents, "state": "HOLD_INTERRUPTED_RESTART", "verifiedFinish": "HOLD"]
+            if let raw = try? JSONSerialization.data(withJSONObject: partial, options: [.sortedKeys]) {
+                try? raw.write(to: URL(fileURLWithPath: dir).appendingPathComponent("FIELD_PARTIAL_" + UUID().uuidString + ".json"), options: .withoutOverwriting)
+            }
+        }
+        fieldId = nil; evidenceClosedWithEscape = false; restoredFocusTarget = nil; startField()
+    }
+    private func startField() {
+        guard let p = model.screen.portfolio, model.screen.availability == .fresh else { return }
+        fieldId = "PILIVE.FIELD.3SCREEN." + UUID().uuidString; fieldLock = FieldSourceLock(p)
+        fieldStarted = Date(); fieldEvents = []; fieldStep = 0; fieldMessage = ""; model.navigate(.now)
+    }
+    private func captureField(task: String, projectId: String) {
+        guard let id = fieldId, let lock = fieldLock else { return }
+        do {
+            let event = try live.fieldEvent(task: task, journeyId: id, projectId: projectId, lock: lock)
+            fieldEvents.append(event); fieldStep += 1; fieldMessage = ""
+            if fieldStep == 1 { model.navigate(.projects) }
+        } catch { fieldMessage = "HOLD · Kaynak/ekran eşliği veya tazelik bekleniyor; yenileme bitince tekrar dene." }
+    }
+    private func finishField() {
+        guard !fieldCompleted, let id = fieldId, fieldEvents.count == 3, evidenceClosedWithEscape,
+              let dir = Bundle.main.object(forInfoDictionaryKey: "SessionDirectory") as? String,
+              let start = fieldStarted else { return }
+        let value: [String: Any] = ["schema": "enguru.pilive.field-journey/v1", "journeyId": id,
+            "events": fieldEvents, "elapsedSeconds": Date().timeIntervalSince(start),
+            "escapeObserved": true, "focusReturn": "USER_CONFIRMED_PROJECT_ROW",
+            "focusBindingTarget": restoredFocusTarget ?? focus ?? "UNKNOWN", "state": "CAPTURE_REQUIRES_INDEPENDENT_REVIEW",
+            "productAcceptance": "HOLD", "verifiedFinish": "HOLD"]
+        do {
+            try JSONSerialization.data(withJSONObject: value, options: [.sortedKeys, .prettyPrinted])
+                .write(to: URL(fileURLWithPath: dir).appendingPathComponent("FIELD_JOURNEY.json"), options: .withoutOverwriting)
+            fieldCompleted = true
+            fieldMessage = "Görev kaydı korundu. Terminal çıktısındaki saha ZIP'ini Work'e yükle."
+        } catch { fieldMessage = "HOLD · Saha kaydı yazılamadı." }
+    }
+
 }

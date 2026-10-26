@@ -127,6 +127,27 @@ final class PresentationTests: XCTestCase {
         let data = try changed { p in p["sourceClassification"] = ["academy": ["projectId": "OTHER", "productionArea": "CORE"]] }
         XCTAssertThrowsError(try Portfolio.decode(data, trust: trust(data), now: now()))
     }
+    func testSelectedProjectEvidenceIsNotP02Evidence() throws {
+        let data = try changed { p in p["sourceClassification"] = ["progress-core": ["projectId": "ENGURU_PROGRESS_CORE", "state": "governance/progress-core/ENGURU_PROGRESS_CORE_STATE_V1.json", "worklist": "governance/progress-core/ENGURU_PROGRESS_CORE_WORKLIST_V1.json"]] }
+        let p = try Portfolio.decode(data, trust: trust(data), now: now())
+        let evidence = try p.projectEvidence(projectId: "ENGURU_PROGRESS_CORE", selectedDigest: p.projectionDigest)
+        XCTAssertEqual(evidence.row.done, 44); XCTAssertEqual(evidence.row.finish, "HOLD")
+        XCTAssertEqual(evidence.pins.count, 2)
+        XCTAssertFalse(evidence.pins.keys.contains { $0.contains("plive-p02") })
+        XCTAssertThrowsError(try p.projectEvidence(projectId: "UNKNOWN", selectedDigest: p.projectionDigest))
+        XCTAssertThrowsError(try p.projectEvidence(projectId: "ENGURU_PROGRESS_CORE", selectedDigest: "old"))
+    }
+    func testMissingSourceMappingIsVisibleHoldAndCannotInventEvidence() throws {
+        let data = try bytes(); let p = try Portfolio.decode(data, trust: trust(data), now: now())
+        XCTAssertThrowsError(try p.projectEvidence(projectId: "ENGURU_PROGRESS_CORE", selectedDigest: p.projectionDigest))
+        XCTAssertEqual(p.projects.count, 15)
+    }
+    func testJourneySourceLockRejectsChangedSourceButAllowsNewReadTime() throws {
+        let data = try bytes(); let p = try Portfolio.decode(data, trust: trust(data), now: now())
+        let lock = FieldSourceLock(p); try lock.requireSameSource(p)
+        let altered = try changed { $0["sourceRevision"] = String(repeating: "a", count: 40) }
+        XCTAssertThrowsError(try Portfolio.decode(altered, trust: trust(data), now: now()))
+    }
     func testSwiftUIObservableBridge() async {
         await MainActor.run {
             let bridge = SwiftUIState(store: PresentationStore())

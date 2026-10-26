@@ -152,3 +152,7 @@ Kaynak UX PR245 @ c780002c66ad916d2c3c0a587085a32e2f0b68a8; 11 boyut/110 şart h
 ## UI01–UI05 — canlı read-only ekran adayı
 
 Mevcut collector→wire→SwiftUI state→gerçek dört görünüm bağlandı. SourceClassification yalnız gerçek registry metadata'sını taşır; eksik alan görünür unclassified, global odak HOLD. Native aday source/test/build/signing/visible-frame devri eklendi; eski app/canonical korunur. Python 231×3, DÖM wire qualification 7×3; macOS CI executable/state kanıtı ayrı doğrulanır. Bir sonraki tek hareket SHA-kilitli --build-and-open ile gerçek Mac adayını gözlemek; U01–U12 ve ayrı P02 kabulü saha kanıtını bekler. Ayrıntı LIVE_APP_ENGINEERING_V1.md ve LIVE_APP_GATE_HANDOFF_V1.json.
+
+## FJ.NOW / FJ.PROJECTS / FJ.EVIDENCE / FJ.RETURN
+
+Önceki gerçek Mac görünür-frame kabulü e5e53e1a… korunur. Kaynak incelemesinde eksik proje→kendi kanıtı bağlantısı, eski ayrıntı satırı ve ilk okumada kalan render timestamp tespit edildi; izole adayda onarıldı. Kaynaklı State/Worklist pinleri collector metadata'sına bağlandı. Üç kullanıcı onayı, kendi pencere/sheet PNG'leri ve Escape/focus dönüşü aynı journeyId altında toplanır; ayrı Python doğrulayıcı source/row/time/image eşliğini sınar. Python236×3 PASS; Swift17×3 ve executable derleme CI'de sınanır. Gerçek saha akışı/bağımsız piksel incelemesi henüz HOLD. Sonraki tek hareket SHA-kilitli V2 --field-journey; original app/binary, canonical ve kas korunur.
