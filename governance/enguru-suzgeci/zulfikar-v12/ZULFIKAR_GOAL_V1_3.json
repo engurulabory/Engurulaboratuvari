@@ -1,5 +1,5 @@
 {
-  "schema": "enguru.zulfikar.goal-contract/v1.3",
+  "schema": "enguru.zulfikar.goal-contract/v1.3.1",
   "goal_id": "ZULFIKAR-OPERATIONAL-GITHUB-V13",
   "single_goal": "ENGÜRÜ Zülfikar yönteminin hedefi ve teknik altyapıyı kaynak, kanıt ve insan yetkisiyle sınırlı olarak GitHub'da çalışan bir inceleme ürünü haline getirmek.",
   "user_value": "Aynı hedef ve kanıt üzerinden yazılım mühendisliği işleri güvenilir ve ölçülebilir biçimde bitirilsin.",
@@ -13,7 +13,11 @@
   "authority": {
     "scope": "SINGLE_GOAL",
     "owner_review": "HUMAN_THRESHOLD",
-    "issuer": "EXISTING_CANONICAL_ONLY"
+    "issuer": "EXISTING_CANONICAL_ONLY",
+    "review_mode": "SOLO_OWNER_AUTOMATED_CI",
+    "owner_id": "engurulabory",
+    "peer_review_required": false,
+    "decision_scope": "GITHUB_TECHNICAL_ACCEPTANCE_ONLY"
   },
   "canonical": {
     "v3_sha256": "11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc",
@@ -24,7 +28,7 @@
       "id": "C01",
       "acceptance": "Tek amaç ve özgün hedef",
       "verifier": "goal_gate.H01",
-      "authority": "Independent reviewer",
+      "authority": "Automated GitHub CI",
       "evidence_source": "source contract and GitHub CI observation for C01",
       "state": "HOLD_PENDING_REAL_EVIDENCE"
     },
@@ -32,7 +36,7 @@
       "id": "C02",
       "acceptance": "Kullanıcı değeri ve ölçüm",
       "verifier": "goal_gate.H02",
-      "authority": "Independent reviewer",
+      "authority": "Automated GitHub CI",
       "evidence_source": "source contract and GitHub CI observation for C02",
       "state": "HOLD_PENDING_REAL_EVIDENCE"
     },
@@ -40,7 +44,7 @@
       "id": "C03",
       "acceptance": "Sabit kabul ID",
       "verifier": "goal_gate.H03",
-      "authority": "Independent reviewer",
+      "authority": "Automated GitHub CI",
       "evidence_source": "source contract and GitHub CI observation for C03",
       "state": "HOLD_PENDING_REAL_EVIDENCE"
     },
@@ -56,7 +60,7 @@
       "id": "C05",
       "acceptance": "Bağımlılık DAG",
       "verifier": "goal_gate.H05",
-      "authority": "Independent reviewer",
+      "authority": "Automated GitHub CI",
       "evidence_source": "source contract and GitHub CI observation for C05",
       "state": "HOLD_PENDING_REAL_EVIDENCE"
     },
@@ -64,7 +68,7 @@
       "id": "C06",
       "acceptance": "Risk ve yanıt",
       "verifier": "goal_gate.H06",
-      "authority": "Independent reviewer",
+      "authority": "Automated GitHub CI",
       "evidence_source": "source contract and GitHub CI observation for C06",
       "state": "HOLD_PENDING_REAL_EVIDENCE"
     },
@@ -72,7 +76,7 @@
       "id": "C07",
       "acceptance": "Karşıt örnek ve hata kapısı",
       "verifier": "goal_gate.H07",
-      "authority": "Independent reviewer",
+      "authority": "Automated GitHub CI",
       "evidence_source": "source contract and GitHub CI observation for C07",
       "state": "HOLD_PENDING_REAL_EVIDENCE"
     },
@@ -80,7 +84,7 @@
       "id": "C08",
       "acceptance": "Kanıt ve bağımsız doğrulama",
       "verifier": "goal_gate.H08",
-      "authority": "Independent reviewer",
+      "authority": "Automated GitHub CI",
       "evidence_source": "source contract and GitHub CI observation for C08",
       "state": "HOLD_PENDING_REAL_EVIDENCE"
     },
@@ -88,7 +92,7 @@
       "id": "C09",
       "acceptance": "Canonical kaynak SHA-256 eşliği",
       "verifier": "goal_gate.H09",
-      "authority": "Independent reviewer",
+      "authority": "Automated GitHub CI",
       "evidence_source": "source contract and GitHub CI observation for C09",
       "state": "HOLD_PENDING_REAL_EVIDENCE"
     },
@@ -165,6 +169,10 @@
     },
     {
       "case_id": "INCOMPLETE_DEPENDENCIES",
+      "expected": "HOLD"
+    },
+    {
+      "case_id": "FORGED_PEER_REVIEW",
       "expected": "HOLD"
     }
   ],
