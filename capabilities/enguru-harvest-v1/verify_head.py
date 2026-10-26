@@ -20,6 +20,9 @@ SOURCES=(
     "UPSTREAM_GITHUB_PINS_30.json","test_upstream_github_pins.py",
     "ZULFIKAR_V131_100_GATE_CONTRACT.json","zulfikar_finish_gate.py","test_zulfikar_finish_gate.py",
     "READINESS_AUDIT_V2.json","test_readiness_audit_v2.py",
+    "READINESS_AUDIT_V3.json","test_readiness_audit_v3.py",
+    "build_github_osi_handoff.py","test_github_osi_handoff.py",
+    "ZULFIKAR_100_FINIS_VE_SINIRLAR.md",
     "test_upstream_hypothesis.py","run_real_upstream_trials.py",
     "run_second_upstream_trials.py","run_lm_eval_fixture.py","promptfooconfig.json","check_promptfoo_receipt.py","mcp_typescript_trial.mjs","mcp_reference_stdio_trial.mjs","run_anthropic_skills_trial.py",
 )
