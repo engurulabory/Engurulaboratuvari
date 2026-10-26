@@ -65,14 +65,14 @@ def run(goal,state,assess,simulate,repair,real_test,verify_test,max_rounds=3):
         try:
             if digest(goal)!=frozen_goal_digest:
                 return hold("GOAL_IDENTITY_CHANGED",frozen_goal_digest,history)
+            simulation=simulate(copy.deepcopy(current),copy.deepcopy(frozen_goal))
+            if not isinstance(simulation,dict) or simulation.get("status")!="PASS_SIMULATION":
+                return hold("SIMULATION_FAILED",frozen_goal_digest,history)
             before_checks=assess(copy.deepcopy(current),copy.deepcopy(frozen_goal))
             before_score=score(before_checks,ids)
             prior_closed={key for key,v in before_checks.items() if v is True}
             if not previous_verified.issubset(prior_closed):
                 return hold("PREVIOUS_ACHIEVEMENT_REGRESSION",frozen_goal_digest,history)
-            simulation=simulate(copy.deepcopy(current),copy.deepcopy(frozen_goal))
-            if not isinstance(simulation,dict) or simulation.get("status")!="PASS_SIMULATION":
-                return hold("SIMULATION_FAILED",frozen_goal_digest,history)
             gaps=sorted(key for key,v in before_checks.items() if not v)
             entry={"round":iteration,"phases":list(PHASES),"goalDigest":frozen_goal_digest,
                    "before":{"diagnostic":before_score,"openChecks":gaps},
