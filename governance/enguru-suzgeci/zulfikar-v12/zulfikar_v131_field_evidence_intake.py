@@ -63,7 +63,7 @@ def format_receipt(record,plan):
         errors.append("NO_EXECUTION_CLAIM")
     if record.get("testReturnCode") != 0 or type(record.get("testReturnCode")) is not int:
         errors.append("NO_TEST_EXIT_ZERO_CLAIM")
-    if record.get("testCount",0)<=0 or type(record.get("testCount")) is not int:
+    if type(record.get("testCount")) is not int or record["testCount"]<=0:
         errors.append("NO_TEST_COUNT_CLAIM")
     if record.get("independentReviewState") != "EXTERNAL_REVIEW_REQUIRED":
         errors.append("CLAIMED_INDEPENDENT_REVIEW")
@@ -98,10 +98,11 @@ def audit_manifest(manifest,root:Path):
             errs.append("UNKNOWN_TASK_FAMILY")
         if not isinstance(task_id,str) or not IDENTITY.fullmatch(task_id):
             errs.append("INVALID_TASK_ID")
-        if family in family_ids or task_id in task_ids:
-            errs.append("DUPLICATE_FAMILY_OR_TASK")
-        family_ids.add(family)
-        task_ids.add(task_id)
+        if isinstance(family,str) and isinstance(task_id,str):
+            if family in family_ids or task_id in task_ids:
+                errs.append("DUPLICATE_FAMILY_OR_TASK")
+            family_ids.add(family)
+            task_ids.add(task_id)
         if not isinstance(t.get("sourceHead"),str) or not SHA40.fullmatch(t["sourceHead"]):
             errs.append("INVALID_EXPECTED_HEAD")
         pin=t.get("receiptSha256")
