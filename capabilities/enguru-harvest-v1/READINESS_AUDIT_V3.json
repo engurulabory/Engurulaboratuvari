@@ -1,0 +1,113 @@
+{
+  "schema": "enguru.harvest.zulfikar-v1.3.1-stage2-score/v3",
+  "as_of": "2026-10-26",
+  "scoring_method": "fixed signed-off weights from V1, no retroactive change; awards GitHub-only reproducible packaging and source pin verification, not Mac field proof",
+  "github": {
+    "baseline": 63,
+    "current": 65,
+    "target": 100,
+    "actual_acceptance": "HOLD",
+    "weights": [
+      [
+        "goal_canonical",
+        10,
+        10
+      ],
+      [
+        "exact_ci",
+        20,
+        20
+      ],
+      [
+        "unit_sims",
+        12,
+        12
+      ],
+      [
+        "real_engineering_performance",
+        8,
+        12
+      ],
+      [
+        "upstream_tool_trials",
+        9,
+        12
+      ],
+      [
+        "source_license_security",
+        6,
+        12
+      ],
+      [
+        "real_user_tasks",
+        0,
+        10
+      ],
+      [
+        "owner_donecheck",
+        0,
+        12
+      ]
+    ]
+  },
+  "osi": {
+    "baseline": 55,
+    "current": 60,
+    "target": 100,
+    "stage": "GITHUB_ONLY_PRE_FIELD",
+    "field_execution": 0,
+    "weights": [
+      [
+        "handoff_architecture",
+        20,
+        20
+      ],
+      [
+        "safe_package_and_rollback",
+        15,
+        15
+      ],
+      [
+        "github_evidence_trace",
+        15,
+        15
+      ],
+      [
+        "source_license_security_handoff",
+        10,
+        15
+      ],
+      [
+        "mac_local_compatibility",
+        0,
+        15
+      ],
+      [
+        "mac_sqlite_field_evidence",
+        0,
+        10
+      ],
+      [
+        "owner_field_entry",
+        0,
+        10
+      ]
+    ]
+  },
+  "design_coverage": {
+    "github": 100,
+    "osi": 100,
+    "three_simulations": "3x10 LOGICAL PASS ONLY",
+    "real_verified_finish": "HOLD"
+  },
+  "proofs": {
+    "source_commit_readme_pairs": 30,
+    "github_bundle": "SHA-256 receipt required from exact-head CI",
+    "mac_executed": false,
+    "source_legal_approval": "HOLD",
+    "user_benefit": "HOLD",
+    "owner_decision": "HOLD",
+    "official_skill_adoptions": 0
+  },
+  "freeze_rule": "The score changes only after an exact-head CI receipt and at-source evidence; design 100 does not promote evidence score."
+}
