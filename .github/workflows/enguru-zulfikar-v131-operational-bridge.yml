@@ -133,6 +133,12 @@ jobs:
           assert a==87.5 and b==91.25
           assert x['roundedPreviousOverall88']==88
           assert x['roundedCurrentOverall']==91
+          pilot=x['canonicalClosure']['realGithubRunnerPilot']
+          assert pilot['state']=='PASS_GITHUB_DISPOSABLE_RUNTIME_ONLY'
+          assert pilot['rounds']==3 and pilot['checksPerRound']==6
+          assert pilot['actualGithubExecution'] is True
+          assert pilot['isThreeDifferentMacUserProjects'] is False
+          assert pilot['productVerifiedFinish']=='HOLD'
           assert x['overallOperationalVerdict']=='HOLD_91_100'
           assert x['allSixDimensionsPass'] is False
           assert x['allSixDimensions100'] is False
@@ -208,7 +214,10 @@ jobs:
             'goal':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_goal.json',
             'infra':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_infra.json',
             'preparation':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_preparation.json',
-            'singleAuthority':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_single_authority.json'
+            'singleAuthority':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_single_authority.json',
+            'githubEngine1':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_real_github_1.json',
+            'githubEngine2':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_real_github_2.json',
+            'githubEngine3':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_real_github_3.json'
           }
           evidence={
             'schema':'enguru.zulfikar.github-run-provenance/v1',
@@ -233,5 +242,8 @@ jobs:
             ${{ runner.temp }}/z131_infra.json
             ${{ runner.temp }}/z131_preparation.json
             ${{ runner.temp }}/z131_single_authority.json
+            ${{ runner.temp }}/z131_real_github_1.json
+            ${{ runner.temp }}/z131_real_github_2.json
+            ${{ runner.temp }}/z131_real_github_3.json
             ${{ runner.temp }}/z131_run_provenance.json
           retention-days: 14
