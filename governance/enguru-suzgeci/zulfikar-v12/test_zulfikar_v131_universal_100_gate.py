@@ -17,13 +17,14 @@ class UmbrellaTests(unittest.TestCase):
     def setUpClass(cls):
         cls.p,_=bridge.source_read(bridge.ROOT,policy.POLICY_PATH)
         cls.s,_=bridge.source_read(bridge.ROOT,policy.SCORECARD_PATH)
+        cls.goal,_=bridge.source_read(bridge.ROOT,policy.GOAL_PATH)
         cls.agents=bridge.read_no_symlink(bridge.ROOT,"AGENTS.md",100000).decode("utf-8")
 
     def decide(self,stage,value,evidence="EXACT_HEAD_CI"):
         return policy.classify(stage,value,evidence)
 
     def test_policy_source_is_all_ten_controls(self):
-        c=policy.controls(self.p,self.s,self.agents)
+        c=policy.controls(self.p,self.s,self.agents,self.goal)
         self.assertEqual(len(c),10,c)
         self.assertTrue(all(c.values()),c)
 
@@ -83,45 +84,50 @@ class UmbrellaTests(unittest.TestCase):
     def test_false_threshold_rejected(self):
         p=copy.deepcopy(self.p)
         p["acceptanceUniverse"]["passThreshold"]=91
-        self.assertFalse(policy.controls(p,self.s,self.agents)["U04_ONLY_100_ACCEPTED"])
+        self.assertFalse(policy.controls(p,self.s,self.agents,self.goal)["U04_ONLY_100_ACCEPTED"])
 
     def test_fake_diagnostic_authority_rejected(self):
         p=copy.deepcopy(self.p)
         p["acceptanceUniverse"]["diagnosticRange"]["authority"]="FINAL_PASS"
-        self.assertFalse(policy.controls(p,self.s,self.agents)["U05_1_TO_99_DIAGNOSTIC_ONLY"])
+        self.assertFalse(policy.controls(p,self.s,self.agents,self.goal)["U05_1_TO_99_DIAGNOSTIC_ONLY"])
 
     def test_six_stages_no_extra_stages(self):
         p=copy.deepcopy(self.p)
         p["eightStages"].append("NEW_STAGE")
-        self.assertFalse(policy.controls(p,self.s,self.agents)["U02_EIGHT_STAGES_UNCHANGED"])
+        self.assertFalse(policy.controls(p,self.s,self.agents,self.goal)["U02_EIGHT_STAGES_UNCHANGED"])
 
     def test_loop_cannot_drop_repair(self):
         p=copy.deepcopy(self.p)
         p["loop"].remove("REPAIR")
-        self.assertFalse(policy.controls(p,self.s,self.agents)["U03_ITERATIVE_LOOP_LOCKED"])
+        self.assertFalse(policy.controls(p,self.s,self.agents,self.goal)["U03_ITERATIVE_LOOP_LOCKED"])
 
     def test_self_reported_pass_rule_cannot_expand(self):
         p=copy.deepcopy(self.p)
         p["stageRoles"]["PRODUCT_FINISH"]["auth"]="SELF_REPORTED"
-        self.assertFalse(policy.controls(p,self.s,self.agents)["U09_OWNER_DONECHECK_PRESERVED"])
+        self.assertFalse(policy.controls(p,self.s,self.agents,self.goal)["U09_OWNER_DONECHECK_PRESERVED"])
 
     def test_historical91_is_never_auto_promoted_to100(self):
         s=copy.deepcopy(self.s)
         s["acceptedOperationalScore"]=100
-        self.assertFalse(policy.controls(self.p,s,self.agents)["U08_CANONICAL_91_IS_HISTORY"])
+        self.assertFalse(policy.controls(self.p,s,self.agents,self.goal)["U08_CANONICAL_91_IS_HISTORY"])
 
     def test_historical_status_cannot_be_called_current_pass(self):
         s=copy.deepcopy(self.s)
         s["overallOperationalVerdict"]="PASS"
-        self.assertFalse(policy.controls(self.p,s,self.agents)["U08_CANONICAL_91_IS_HISTORY"])
+        self.assertFalse(policy.controls(self.p,s,self.agents,self.goal)["U08_CANONICAL_91_IS_HISTORY"])
 
     def test_scope_must_include_global_agents(self):
-        self.assertFalse(policy.controls(self.p,self.s,"SOURCE WITHOUT POLICY")["U10_GLOBAL_START_AND_SAFE_END"])
+        self.assertFalse(policy.controls(self.p,self.s,"SOURCE WITHOUT POLICY",self.goal)["U10_GLOBAL_START_AND_SAFE_END"])
 
     def test_premature_product_stop_rejected(self):
         p=copy.deepcopy(self.p)
         p["completionSequence"][-1]="PASS_FROM_PREPARATION"
-        self.assertFalse(policy.controls(p,self.s,self.agents)["U10_GLOBAL_START_AND_SAFE_END"])
+        self.assertFalse(policy.controls(p,self.s,self.agents,self.goal)["U10_GLOBAL_START_AND_SAFE_END"])
+
+    def test_existing_goal_pointer_is_required(self):
+        g=copy.deepcopy(self.goal)
+        g["universalUmbrella"]["policyRef"]="NOT_CANONICAL"
+        self.assertFalse(policy.controls(self.p,self.s,self.agents,g)["U01_USER_GOAL_LOCKED"])
 
     def test_full_policy_cli_source_bound(self):
         proc=subprocess.run([sys.executable,"-B",str(HERE/"zulfikar_v131_universal_100_gate.py")],
