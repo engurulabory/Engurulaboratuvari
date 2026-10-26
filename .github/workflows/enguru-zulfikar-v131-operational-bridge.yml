@@ -41,6 +41,24 @@ jobs:
             python -B -m unittest -v test_zulfikar_v131_field_evidence_intake
           done
           echo "STATE=PASS_SHA_INTAKE_TESTS_ONLY_REAL_FIELD_HOLD"
+      - name: Execute real isolated GitHub ENGINE task, recover and separately verify (3 rounds)
+        run: |
+          for cycle in 1 2 3; do
+            echo "ZULFIKAR_REAL_GITHUB_ENGINE_ROUND=$cycle"
+            python -B tools/enguru_method_github_pilot_v1.py > "$RUNNER_TEMP/z131_real_github_${cycle}.json"
+            python - "$RUNNER_TEMP/z131_real_github_${cycle}.json" <<'PY'
+          import json,sys
+          x=json.load(open(sys.argv[1]))
+          assert x["status"]=="PASS_GITHUB_REAL_ENGINE_PILOT"
+          assert x["passed"]==x["checked"]==6
+          assert x["test_scope"]=="REAL_GITHUB_RUNNER_TEMP_SQLITE_AND_ARTIFACTS"
+          assert x["independent_verification_mechanism"]=="SEPARATE_EXECUTABLE_SAME_PRODUCER_TEAM"
+          assert x["native_mac_osi_field"]=="HOLD"
+          assert x["human_threshold"]=="HOLD"
+          assert x["verified_finish"]=="HOLD"
+          print("REAL_GITHUB_ENGINE_DISPOSABLE_TASK=PASS; REAL_MAC_PRODUCT_FIELD=HOLD")
+          PY
+          done
       - name: Ten exact-source GitHub bridge gates (not real operations)
         working-directory: governance/enguru-suzgeci/zulfikar-v12
         run: |
