@@ -24,6 +24,7 @@ jobs:
       - name: Static Python syntax and declarative twin contract
         run: |
           python -m py_compile tools/enguru_osi_twin_probe_v1.py
+          sha256sum tools/enguru_osi_twin_probe_v1.py
           python - <<'PY'
           import json
           p='governance/osi/OSI_TWIN_CONTRACT_V1.json'
