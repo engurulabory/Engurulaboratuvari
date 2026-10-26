@@ -31,6 +31,20 @@ jobs:
             python -B -m unittest -v test_zulfikar_v131_operational_bridge
           done
           echo "STATE=PASS_GITHUB_EXISTING_HANDLER_PREFLIGHT_ONLY_OSI_FIELD_HOLD"
+      - name: Ten exact-source GitHub bridge gates (not real operations)
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: |
+          python -B zulfikar_v131_bridge_score.py > "$RUNNER_TEMP/z131_bridge_score.json"
+          python - "$RUNNER_TEMP/z131_bridge_score.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1]))
+          assert r['score']==100 and len(r['checks'])==10
+          assert all(x is True for x in r['checks'].values())
+          assert r['actualTaskExecution']=='NOT_RUN'
+          assert r['osiField']=='HOLD'
+          assert r['officialVerifiedFinish']=='HOLD'
+          print('BRIDGE_GITHUB_SOURCE_AND_CLI=100/100; REAL_OPERATIONS=HOLD')
+          PY
       - name: Preserve prior V1.3.1 verified goal and GitHub code gates
         working-directory: governance/enguru-suzgeci/zulfikar-v12
         run: |
