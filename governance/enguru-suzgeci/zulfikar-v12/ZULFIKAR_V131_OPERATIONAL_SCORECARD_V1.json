@@ -404,7 +404,9 @@
           ],
           "preparationSourceFiles": [
             "governance/enguru-suzgeci/zulfikar-v12/zulfikar_v131_universal_100_gate.py",
-            "governance/enguru-suzgeci/zulfikar-v12/test_zulfikar_v131_universal_100_gate.py"
+            "governance/enguru-suzgeci/zulfikar-v12/test_zulfikar_v131_universal_100_gate.py",
+            "governance/enguru-suzgeci/zulfikar-v12/zulfikar_v131_iterative_loop.py",
+            "governance/enguru-suzgeci/zulfikar-v12/test_zulfikar_v131_iterative_loop.py"
           ],
           "acceptanceRequirement": "Hata→uygulanmış onarım→yeniden deneme→kaynaklı gerçek test→gerekiyorsa tekrar",
           "realFieldRequirement": "Döngüde sahte 100 ve sonsuz güvenlik dışı koşular engellenir",
@@ -553,7 +555,8 @@
         "githubRuntimeOneTaskFamilyRepeated": 3,
         "actualHeterogeneousMacTasksAccepted": 0
       },
-      "nextAuthorizedRealTask": "P02.S01.01 native PiLive source→binary→visible UI receipt via existing Work and Mac owner"
+      "nextAuthorizedRealTask": "P02.S01.01 native PiLive source→binary→visible UI receipt via existing Work and Mac owner",
+      "loopArchitectureRef": "governance/enguru-suzgeci/zulfikar-v12/ZULFIKAR_V131_EVRENSEL_100_KABUL_ILKESI_V1.json"
     }
   },
   "historicalDiagnosticBeforeCurrentPolicy": {
