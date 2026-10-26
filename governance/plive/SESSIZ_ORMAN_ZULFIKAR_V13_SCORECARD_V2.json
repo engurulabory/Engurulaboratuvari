@@ -1,0 +1,313 @@
+{
+  "schema": "enguru.pilive.zulfikar-v13-unified-scorecard/v2",
+  "date": "2026-10-26",
+  "scope": "DESIGN_QUALITY_AND_TARGET_NOT_FIELD_ACCEPTANCE",
+  "scoreMethod": "Subjective rubric score 0–100. Controls listed and tested separately; listing ten criteria does not mean ten PASS. Owner acceptance and native field hold.",
+  "reviewSource": "PiLive PR241 @64afbf862a393fcb2972f1f2dcbeb98649885fb8; UX PR245",
+  "targetScoreEveryDimension": 100,
+  "prototypeV2": {
+    "file": "ENGURU_PILIVE_SESSIZ_ORMAN_V2_G1D03V.html",
+    "sha256": "3a918b2c27d2e70e9b245f55b33708669fc21ce0ec20e026e8d0dbb7cb89d3be",
+    "githubContentStatus": "ARTIFACT_HASH_RECORDED_BYTES_IN_CONVERSATION_OUTPUT_NOT_GITHUB_FILE",
+    "viewportWidths": [
+      320,
+      390,
+      690,
+      1024,
+      1440
+    ],
+    "testCycles": 3,
+    "passingViewportRuns": 15,
+    "knownResult": "PASS_DESIGN_BROWSER_CASES_ONLY",
+    "realNativeUi": "NOT_EXECUTED"
+  },
+  "dimensions": [
+    {
+      "id": "AESTHETIC",
+      "label": "Sanatsal estetik ve ürün kimliği",
+      "baseline": {
+        "V1Preview": 73,
+        "V1WrittenContract": 86
+      },
+      "v2PrototypeProvisional": 88,
+      "target100": 100,
+      "conditionsToActuallyAttain100": [
+        "Koyu grafit/orman konsepti tutarlı",
+        "Tek yeşim vurgu hiyerarşisi",
+        "Özgün emin baykuş rehber dili",
+        "Sistem SF yazı ailesi kullanımı",
+        "Başlık/sayaç tipografisi dengesi",
+        "P02 sayaç ritmi sıkışmasız",
+        "Görsel ağırlık ve boşluk dengesi",
+        "Dört görünüm aynı tasarım DNA'sı",
+        "Motion sade ve Reduce Motion uyumlu",
+        "Owner gerçek final estetik onayı"
+      ],
+      "status": "PARTIAL_EVIDENCE_HOLD_OWNER_OR_FIELD"
+    },
+    {
+      "id": "ACCESS",
+      "label": "Erişim ve gezinme",
+      "baseline": {
+        "V1Preview": 68,
+        "V1WrittenContract": 89
+      },
+      "v2PrototypeProvisional": 94,
+      "target100": 100,
+      "conditionsToActuallyAttain100": [
+        "Genel Durum tek giriş",
+        "Şimdi tek dokunuş",
+        "Projeler tek dokunuş",
+        "Kanıt tek eylem",
+        "Geri dönüş odağı korunur",
+        "Klavyeden sayfa değişir",
+        "Ana odak başlığı otomatik odaklanır",
+        "Proje araması çalışır",
+        "Boş arama sonucu görünür",
+        "Gerçek Mac kullanıcı 2/1 etkileşim görevi"
+      ],
+      "status": "PARTIAL_EVIDENCE_HOLD_OWNER_OR_FIELD"
+    },
+    {
+      "id": "ACCESSIBILITY",
+      "label": "Erişilebilirlik",
+      "baseline": {
+        "V1Preview": 52,
+        "V1WrittenContract": 82
+      },
+      "v2PrototypeProvisional": 84,
+      "target100": 100,
+      "conditionsToActuallyAttain100": [
+        "Semantik region ve başlıklar",
+        "Butonların erişilebilir adları",
+        "Durumlar salt renge bağlı değildir",
+        "aria-live sayfa duyurusu",
+        "Kanıt dialog inert/focus koruması",
+        "Escape/odak dönüşü",
+        "Aa kontrast ve okunabilir puntolar",
+        "320/390 mobil taşma yok",
+        "Reduce Motion",
+        "Gerçek VoiceOver/Dynamic Type/AA native testi"
+      ],
+      "status": "PARTIAL_EVIDENCE_HOLD_OWNER_OR_FIELD"
+    },
+    {
+      "id": "GOVERNANCE",
+      "label": "Yönetişim ve veri güvenilirliği",
+      "baseline": {
+        "V1Preview": 92,
+        "V1WrittenContract": 95
+      },
+      "v2PrototypeProvisional": 96,
+      "target100": 100,
+      "conditionsToActuallyAttain100": [
+        "Tek Progress Core otoritesi",
+        "15/15 kaynaklı projeler",
+        "14/15 qualified sayaç kapsamı",
+        "Visual Cockpit oranı N/A",
+        "P02 0/12 ayrı resmî HOLD",
+        "Progress Core 44/44 bitiş HOLD",
+        "SHA revizyon/digest gösterimi",
+        "Önizleme/live ayrımı",
+        "Yetenek/durum simülasyonundan resmî PASS üretilmez",
+        "Owner/DoneCheck/issuer bağımsızlığı"
+      ],
+      "status": "PARTIAL_EVIDENCE_HOLD_OWNER_OR_FIELD"
+    },
+    {
+      "id": "TECHNICAL",
+      "label": "Teknik iç işleyiş",
+      "baseline": {
+        "V1Preview": 49,
+        "V1WrittenContract": 85
+      },
+      "v2PrototypeProvisional": 65,
+      "target100": 100,
+      "conditionsToActuallyAttain100": [
+        "HTML üç ekran navigation",
+        "15 satırlı deterministic render",
+        "Arama filtre mantığı",
+        "Dialog aç/kapa",
+        "Focus restoration ve inert",
+        "Responsive yerleşim",
+        "Source-bound manifest",
+        "Tazelik/STALE/OFFLINE veri sözleşmesi",
+        "Gerçek SwiftUI + Core adapter bağı",
+        "Exact source→toolchain→binary imza doğrulaması"
+      ],
+      "status": "PARTIAL_EVIDENCE_HOLD_OWNER_OR_FIELD"
+    },
+    {
+      "id": "E2E",
+      "label": "Uçtan uca tamamlama hazırlığı",
+      "baseline": {
+        "V1Preview": 38,
+        "V1WrittenContract": 82
+      },
+      "v2PrototypeProvisional": 55,
+      "target100": 100,
+      "conditionsToActuallyAttain100": [
+        "Hedef ve kabul ID'leri mevcut",
+        "Tasarım iki biçim hedefi",
+        "Tek kaynak veri kontratı",
+        "Regression/mock test çıkışı",
+        "Erişilebilirlik sahası tanımlı",
+        "Finder native aç/kapa planı",
+        "100 proje performans planı",
+        "Independent GUI/reviewer planı",
+        "U01–U12 gerçek 12/12",
+        "Ayrı P02 DoneCheck/HT Verified Finish"
+      ],
+      "status": "DESIGN_REVIEW_PARTIAL"
+    },
+    {
+      "id": "GENERAL",
+      "label": "Genel tasarım olgunluğu",
+      "baseline": {
+        "V1Preview": 62,
+        "V1WrittenContract": 87
+      },
+      "v2PrototypeProvisional": 82,
+      "target100": 100,
+      "conditionsToActuallyAttain100": [
+        "Tüm dört görünüm kapsanmış",
+        "A/B tasarım kararı açık",
+        "Kaynaklı veri fixtürü",
+        "Stale/offline/error durum matrisi",
+        "Tek ürün vaadi korunur",
+        "Tipografi/token seti",
+        "V2 tarayıcı üç tur",
+        "Sözleşme exact SHA kayıtlı",
+        "Yaratıcı final kullanıcı onayı",
+        "Gerçek ürün fonksiyon saha kabulü"
+      ],
+      "status": "PARTIAL_EVIDENCE_HOLD_OWNER_OR_FIELD"
+    },
+    {
+      "id": "PROCESS_SIMPLE",
+      "label": "İşleyiş sadeliği",
+      "baseline": {
+        "V1Preview": 64,
+        "V1WrittenContract": 88
+      },
+      "v2PrototypeProvisional": 85,
+      "target100": 100,
+      "conditionsToActuallyAttain100": [
+        "Tek kaynaklı okuma",
+        "Tek aktif Work mühendislik yazıcısı",
+        "Tek ekran veri sözleşmesi",
+        "İkinci sayaç yok",
+        "15 proje aynı adaptörden",
+        "HOLD/N/A ayrı",
+        "Kullanıcıya salt-okunur ana yüzey",
+        "Yeni çekirdek yok",
+        "Tek kaynak revizyon bağı",
+        "Gerçek Mac çalışma ve bakım sınaması"
+      ],
+      "status": "PARTIAL_EVIDENCE_HOLD_OWNER_OR_FIELD"
+    },
+    {
+      "id": "SURFACE_SIMPLE",
+      "label": "İlk görünür yüzey sadeliği",
+      "baseline": {
+        "V1Preview": 70,
+        "V1WrittenContract": 90
+      },
+      "v2PrototypeProvisional": 93,
+      "target100": 100,
+      "conditionsToActuallyAttain100": [
+        "İlk üç sinyal 15/14/1",
+        "Tek ana P02 kartı",
+        "Progress Core ayrı küçük kart",
+        "Visual Cockpit N/A küçük kart",
+        "Üstte resmî HOLD",
+        "Net tek bir başlık",
+        "Kanıt ayrıntıları çekmecede",
+        "Gereksiz grafik yok",
+        "320–1440 taşmasız",
+        "Gerçek kullanıcı 5 saniye ilk bakış testi"
+      ],
+      "status": "PARTIAL_EVIDENCE_HOLD_OWNER_OR_FIELD"
+    },
+    {
+      "id": "USABILITY",
+      "label": "Kullanıcı deneyimi ve kullanım",
+      "baseline": {
+        "V1Preview": 63,
+        "V1WrittenContract": 88
+      },
+      "v2PrototypeProvisional": 88,
+      "target100": 100,
+      "conditionsToActuallyAttain100": [
+        "Üç sayfa hızlı geçiş",
+        "Proje araması",
+        "15 proje tekilliği",
+        "Kanıta tek tıklama",
+        "Klavye Escape",
+        "Odağa geri dönüş",
+        "Görülebilir hata/HOLD",
+        "Dar ekran etkileşim",
+        "Gerçek Mac klavye/VoiceOver görevleri",
+        "Kullanıcı görevi ön-son ölçüm"
+      ],
+      "status": "PARTIAL_EVIDENCE_HOLD_OWNER_OR_FIELD"
+    },
+    {
+      "id": "SERVICE",
+      "label": "Tamamlanmış hizmet kalitesi",
+      "baseline": {
+        "V1Preview": 0,
+        "V1WrittenContract": 0
+      },
+      "v2PrototypeProvisional": 0,
+      "target100": 100,
+      "conditionsToActuallyAttain100": [
+        "SwiftUI final UI bağı",
+        "Bağımsız native uygulama açılışı",
+        "Güncel kurulu binary imzası PASS",
+        "Kaynak/adapter/UI parity",
+        "U01–U12 kabul PASS",
+        "Erişilebilirlik AA/VoiceOver",
+        "Native 100 proje performansı",
+        "Gerçek iş/restart/recovery",
+        "Bağımsız GUI + Human Threshold",
+        "PiLive standalone + modal ikinci saha kapısı"
+      ],
+      "status": "HOLD_REAL_SERVICE"
+    }
+  ],
+  "stages": {
+    "G1D02": "PASS_STATIC_PROTO_PREP",
+    "G1D03": "PASS_DESIGN_CONTRACT_AND_15_BROWSER_CASES",
+    "G1D03V": "PROTOTYPE_V2_CANDIDATE_OWNER_VISUAL_HOLD",
+    "G1D04": "HOLD_OWNER_AESTHETIC",
+    "G3": "HOLD_REAL_SWIFTUI",
+    "U01_U12": "HOLD_REAL_MAC_USER_ACCEPTANCE",
+    "officialP02": "HOLD",
+    "OSI_UNIFIED_V1": "PARKED_HOLD_IN_PR244"
+  },
+  "zulfikarSimulations": [
+    {
+      "round": 1,
+      "focus": "truth, identity, math, simplicity, negative inputs",
+      "outcome": "PASS_15_PROJECT_SET_AND_14_QUALIFIED_COUNTERS_ONLY"
+    },
+    {
+      "round": 2,
+      "focus": "navigation, dialog, keyboard, focus, search, no fictional official pass",
+      "outcome": "PASS_STATIC_BROWSER_INTERACTIONS"
+    },
+    {
+      "round": 3,
+      "focus": "5 viewport widths × 3 cycles, no horizontal overflow, screen capture and mobile",
+      "outcome": "PASS_BROWSER_LAYOUT_ONLY"
+    }
+  ],
+  "strictMeaning": "110/110 acceptance conditions declared across 11 dimensions is requirement-mapping completeness, not achieved quality or verified service.",
+  "designConditionsDefined": 110,
+  "designConditionsTarget": 110,
+  "verifiedFinish": "HOLD",
+  "humanThreshold": "HOLD",
+  "realSwiftUI": "HOLD",
+  "productAcceptance": "HOLD"
+}
