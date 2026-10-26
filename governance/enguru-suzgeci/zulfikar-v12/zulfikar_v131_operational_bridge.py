@@ -12,6 +12,7 @@ import json
 import os
 from pathlib import Path
 import re
+import stat
 import subprocess
 import sys
 
@@ -29,17 +30,49 @@ def canonical_hash(value):
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()
 
 
+def read_no_symlink(root: Path, relative: str, limit: int) -> bytes:
+    """Read a regular file through O_NOFOLLOW directory fds, bounded and fstat checked.
+
+    This proves one file's captured bytes, not multi-file snapshot atomicity.
+    """
+    p=Path(relative)
+    if p.is_absolute() or not p.parts or any(x in (".","..") for x in p.parts):
+        raise ValueError("UNSAFE_RELATIVE_PATH")
+    root_abs=root.absolute()
+    if any(part.is_symlink() for part in (root_abs, *root_abs.parents)):
+        raise ValueError("SYMLINKED_ROOT")
+    flags=os.O_RDONLY | getattr(os,"O_DIRECTORY",0) | getattr(os,"O_NOFOLLOW",0)
+    fd=os.open(root_abs,flags)
+    try:
+        for part in p.parts[:-1]:
+            nextfd=os.open(part,flags,dir_fd=fd)
+            os.close(fd)
+            fd=nextfd
+        leaf=os.open(p.parts[-1],os.O_RDONLY | getattr(os,"O_NOFOLLOW",0) |
+                     getattr(os,"O_NONBLOCK",0),dir_fd=fd)
+        with os.fdopen(leaf,"rb") as stream:
+            before=os.fstat(stream.fileno())
+            if not stat.S_ISREG(before.st_mode) or before.st_size>limit:
+                raise ValueError("FILE_NOT_REGULAR_OR_OVERSIZE")
+            data=stream.read(limit+1)
+            after=os.fstat(stream.fileno())
+            if (len(data)>limit or
+                 (before.st_dev,before.st_ino,before.st_size,before.st_mtime_ns)
+                 != (after.st_dev,after.st_ino,after.st_size,after.st_mtime_ns)):
+                raise ValueError("FILE_CHANGED_DURING_READ")
+            return data
+    finally:
+        os.close(fd)
+
+
 def source_read(root: Path, relative: str):
-    """Read bytes only when they match the checkout's tracked immutable HEAD."""
-    path=root / relative
-    if path.is_symlink() or not path.is_file():
-        raise ValueError("UNTRUSTED_REGISTRY_PATH")
-    local=path.read_bytes()
-    if len(local)>2_000_000:
-        raise ValueError("OVERSIZE_REGISTRY")
-    cmd=subprocess.run(["git","-C",str(root),"show","HEAD:"+relative],
+    """Source SHA must match immutable, tracked checkout HEAD bytes exactly."""
+    local=read_no_symlink(root,relative,2_000_000)
+    before=head_sha(root)
+    cmd=subprocess.run(["git","-C",str(root),"show",before+":"+relative],
                        capture_output=True,timeout=12,check=False)
-    if cmd.returncode or cmd.stdout!=local:
+    after=head_sha(root)
+    if cmd.returncode or before!=after or cmd.stdout!=local:
         raise ValueError("REGISTRY_SOURCE_DRIFT")
     return json.loads(local.decode("utf-8")), hashlib.sha256(local).hexdigest()
 
@@ -143,6 +176,9 @@ def assess(mission, binding, actions, actual_head, registry_hashes):
       "newCoreCreated":False,"newActionCreated":False,"newIssuerCreated":False,
       "sourceWrites":0,"remotePushes":0,
       "checkpointPersisted":False,"actualUserBenefit":"NOT_MEASURED",
+      "ownerIdentityAuthenticated":False, "singleWriterLockObserved":False,
+      "actualHandlerInvoked":False, "realWorkIdExistsInCanonicalSource":"NOT_CHECKED",
+      "manifestClaimsAreNotAuthorization":True,
       "independentExternalBenchmark":"NOT_RUN",
       "osiRuntime":"HOLD_NOT_OBSERVED",
       "officialVerifiedFinish":"HOLD",
@@ -158,13 +194,13 @@ def main(argv=None):
     p.add_argument("--input",required=True,help="Manifest JSON file; read-only")
     ns=p.parse_args(argv)
     try:
-        path=Path(ns.input)
-        if path.is_symlink() or not path.is_file() or path.stat().st_size>120000:
-            raise ValueError("UNSAFE_MANIFEST")
-        mission=json.loads(path.read_text(encoding="utf-8"))
+        path=Path(ns.input).absolute()
+        mission=json.loads(read_no_symlink(path.parent,path.name,120000).decode("utf-8"))
         head=head_sha(ROOT)
         binding,bhash=source_read(ROOT,BINDING_PATH)
         actions,ahash=source_read(ROOT,ACTION_PATH)
+        if head_sha(ROOT)!=head:
+            raise ValueError("MULTI_FILE_HEAD_DRIFT")
         result=assess(mission,binding,actions,head,{BINDING_PATH:bhash,ACTION_PATH:ahash})
         ret=0 if not result["holds"] else 2
     except (ValueError,OSError,UnicodeError,subprocess.TimeoutExpired,TypeError):
