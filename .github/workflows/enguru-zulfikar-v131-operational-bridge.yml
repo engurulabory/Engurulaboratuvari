@@ -55,6 +55,27 @@ jobs:
           assert r['officialVerifiedFinish']=='HOLD'
           print('BRIDGE_GITHUB_SOURCE_AND_CLI=100/100; REAL_OPERATIONS=HOLD')
           PY
+      - name: Zulfikar V1.3.1 three preparation dimensions 100 evidence gate
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: |
+          for cycle in 1 2 3; do
+            echo "PREPARED_VERIFIED_FINISH_SIM_CYCLE=$cycle"
+            python -B -m unittest -v test_zulfikar_v131_prepared_finish
+          done
+          python -B zulfikar_v131_prepared_finish.py > "$RUNNER_TEMP/z131_preparation.json"
+          python - "$RUNNER_TEMP/z131_preparation.json" <<'PY'
+          import json,sys
+          p=json.load(open(sys.argv[1]))
+          domains=p["domains"]
+          assert set(domains)=={"OPERATIONAL_PREPARATION","E2E_FINISH_PREPARATION","CROSS_PROJECT_PREPARATION"}
+          assert all(x["score"]==100 and len(x["checks"])==10 and all(x["checks"].values()) for x in domains.values())
+          assert p["preparationScore"]==100
+          assert p["decision"]=="GITHUB_PREPARED_FINISH_CANDIDATE_REQUIRES_EXACT_HEAD_CI"
+          assert p["canonicalProductVerifiedFinish"]=="HOLD"
+          assert p["actualMacTaskExecution"]=="NOT_RUN"
+          assert p["githubExactHeadCI"]=="EXTERNAL_GITHUB_ACTIONS_VERIFICATION_REQUIRED"
+          print("ZULFIKAR_PREPARATION=3x100/100_SOURCE_PASS_FIELD_HOLD")
+          PY
       - name: Audit weighted overall readiness without false 100
         working-directory: governance/enguru-suzgeci/zulfikar-v12
         run: |
