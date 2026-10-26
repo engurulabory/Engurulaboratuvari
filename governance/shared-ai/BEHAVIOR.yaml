@@ -108,7 +108,6 @@ response_evidence:
   exclude:
     - private_chain_of_thought
 
-
 tool_runtime:
   discovery: true
   registered_tools_only: true
@@ -136,7 +135,6 @@ citations:
   machine_readable_rendering: true
   require_known_provenance_for_grounded_profile: true
 
-
 intent_grounding_governance:
   intent_required: true
   success_criteria_required: true
@@ -150,7 +148,6 @@ intent_grounding_governance:
   secret_data_local_only: true
   zero_cost_default: true
 
-
 replanning_multitool_recovery:
   max_replans: 1
   contradiction_replan: true
@@ -163,7 +160,6 @@ replanning_multitool_recovery:
     declared_only: true
     human_threshold_rejection_retryable: false
   provider_failure_route_re_evaluation: true
-
 
 execution_observation:
   unified_internal_envelope: true
@@ -184,7 +180,6 @@ execution_observation:
     - tool_capability_mismatch
   side_effects_separate_from_generation: true
   consequential_completion_evidence_required: true
-
 
 output_discipline:
   instruction_style: ACTION_ORIENTED
@@ -209,3 +204,15 @@ multimodal_normalization:
     speech: audio
   normalize_before_routing: true
   unsupported_provider_capability: HOLD_OR_REROUTE
+
+chatgpt_teaching_package:
+  role: "adapter under canonical ENGÜRÜ Language Governance™ authority"
+  new_core: false
+  canonical_boot: "governance/chatgpt/ENGURU_CHATGPT_CANONICAL_BOOT_V1.md"
+  boot_chain: "CANONICAL BOOT → GOVERNANCE LOAD → PROJECT CONTRACT → CURRENT TRUTH → BOOT RECEIPT → EXECUTION"
+  master_instruction: "governance/chatgpt/ENGURU_LANGUAGE_GOVERNANCE_CHATGPT_MASTER_INSTRUCTION_V1.md"
+  transformation_corpus: "governance/chatgpt/ENGURU_LANGUAGE_GOVERNANCE_TRANSFORMATION_CORPUS_V1.md"
+  pre_send_linter_contract: "governance/chatgpt/ENGURU_LANGUAGE_GOVERNANCE_PRE_SEND_LINTER_CONTRACT_V1.md"
+  pre_send_linter_reference: "tools/enguru_language_pre_send_linter.py"
+  teaching_model: "Core Instructions + Few-shot Corpus + Project Contract + Pre-Send Linter"
+  semantic_authority: "governance/ENGURU_LANGUAGE_GOVERNANCE_V1.md"
