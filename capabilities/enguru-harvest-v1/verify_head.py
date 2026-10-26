@@ -12,6 +12,7 @@ SOURCES=(
     "run_three_simulations.py","OSI_HANDOFF_PREPARATION.md","ACCEPTANCE_MATRIX.md","TECHNICAL_TRIAL_LEDGER_V1.md","README.md",
     "root_license_observations.json","license_gate.py","test_license_gate.py",
     "external_skill_proof_plan.json","test_external_skill_plan.py",
+    "upstream_execution_coverage.json","test_upstream_execution_coverage.py",
     "test_upstream_hypothesis.py","run_real_upstream_trials.py",
     "run_second_upstream_trials.py","run_lm_eval_fixture.py","promptfooconfig.json","check_promptfoo_receipt.py","mcp_typescript_trial.mjs","mcp_reference_stdio_trial.mjs","run_anthropic_skills_trial.py",
 )
