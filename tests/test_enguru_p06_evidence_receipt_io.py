@@ -61,8 +61,7 @@ class TestP06ReceiptOutputAuthority(unittest.TestCase):
         wrong = self.home/'Enguru'/'Projects'/'Engurulaboratuvari'/'canonical.json'
         task = self.home/'bad-task.json'; task.write_text('{}')
         with patch.object(native, 'write_new_json', side_effect=lambda p,d: write_new_json(p,d,evidence_root=self.root)):
-            with self.assertRaisesRegex(ValueError,'OUT_OF_SCOPE'):
-                native.main([str(task),str(wrong)])
+            self.assertEqual(native.main([str(task),str(wrong)]),2)
         self.assertFalse(wrong.exists())
 
     def test_steward_output_uses_shared_guard(self):

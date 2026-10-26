@@ -9,9 +9,9 @@ from __future__ import annotations
 import hashlib, importlib.util, json, os, subprocess, sys
 from pathlib import Path
 if __package__:
-    from .enguru_evidence_receipt_io import write_new_json
+    from .enguru_evidence_receipt_io import write_or_reconcile_json as write_new_json, read_receipt_json
 else:
-    from enguru_evidence_receipt_io import write_new_json
+    from enguru_evidence_receipt_io import write_or_reconcile_json as write_new_json, read_receipt_json
 
 ROOT=Path(__file__).resolve().parents[1]
 GOV=ROOT/'governance/mac-engineer'
@@ -114,10 +114,32 @@ def main(argv):
     receipt={'STATE':'HOLD','CLAIM':'UNVERIFIED','EVIDENCE':[],'OPEN_DIFFERENCE':[],
              'NEXT_ACTION':'CORRECT_TASK_INPUT','canonicalPilotAccepted':False}
     try:
-        receipt=execute(load(task_file));rc=0
+        task=load(task_file)
+        task_sha=hashlib.sha256(json.dumps(task,sort_keys=True,ensure_ascii=False,allow_nan=False).encode()).hexdigest()
+        source_head=githead()
+        try:
+            previous=read_receipt_json(output)
+        except FileNotFoundError:
+            previous=None
+        if previous is not None:
+            if (previous.get('receiptTaskSha256')!=task_sha or previous.get('SOURCE_HEAD')!=source_head
+                    or previous.get('canonicalPilotAccepted') is not False):
+                raise ValueError('EVIDENCE_REPLAY_TASK_OR_SOURCE_MISMATCH')
+            # Retry durability without calling the native handler a second time.
+            write_new_json(output,previous)
+            print('STATE='+str(previous.get('STATE','HOLD')))
+            print('RECEIPT_MODE=REVALIDATED_NO_NEW_TASK_EXECUTION')
+            return 0 if previous.get('STATE')=='PASS' else 2
+        receipt=execute(task);rc=0
+        receipt['receiptTaskSha256']=task_sha
+        receipt['SOURCE_HEAD']=source_head
     except Exception as ex:
         receipt['CLAIM']=type(ex).__name__+':'+str(ex);rc=2
-    write_new_json(output, receipt)
+    try:
+        write_new_json(output, receipt)
+    except (OSError,ValueError) as ex:
+        print('STATE=HOLD\nREASON=EVIDENCE_OUTPUT_AUTHORITY:'+type(ex).__name__)
+        return 2
     print('STATE='+receipt['STATE']);print('PILOT='+str(receipt.get('PILOT_ID','HOLD')))
     return rc
 if __name__=='__main__':raise SystemExit(main(sys.argv[1:]))

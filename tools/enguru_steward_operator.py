@@ -15,9 +15,9 @@ import sys
 from typing import Any
 
 try:
-    from tools.enguru_evidence_receipt_io import write_new_json
+    from tools.enguru_evidence_receipt_io import write_or_reconcile_json as write_new_json
 except ModuleNotFoundError:
-    from enguru_evidence_receipt_io import write_new_json
+    from enguru_evidence_receipt_io import write_or_reconcile_json as write_new_json
 
 
 ROOT = Path(__file__).resolve().parents[1]
