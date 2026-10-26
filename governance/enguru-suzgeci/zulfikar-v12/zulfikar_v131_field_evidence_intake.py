@@ -18,7 +18,7 @@ SCHEMA="enguru.zulfikar.field-evidence-bundle/v1"
 RECEIPT_SCHEMA="enguru.zulfikar.external-task-observation/v1"
 SHA256=re.compile(r"^[a-f0-9]{64}$")
 SHA40=re.compile(r"^[a-f0-9]{40}$")
-IDENTITY=re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$")
+IDENTITY=re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.:-_]{0,127}$")
 FAMILIES=frozenset({"NATIVE_SWIFTUI_PRODUCT","LOCAL_RECOVERY_IDEMPOTENCY","WEB_BUILD_TEST_REPAIR"})
 MAX_MANIFEST=120_000
 MAX_RECEIPT=1_000_000
@@ -94,7 +94,7 @@ def audit_manifest(manifest,root:Path):
             continue
         family=t.get("family")
         task_id=t.get("taskId")
-        if family not in FAMILIES:
+        if not isinstance(family,str) or family not in FAMILIES:
             errs.append("UNKNOWN_TASK_FAMILY")
         if not isinstance(task_id,str) or not IDENTITY.fullmatch(task_id):
             errs.append("INVALID_TASK_ID")
