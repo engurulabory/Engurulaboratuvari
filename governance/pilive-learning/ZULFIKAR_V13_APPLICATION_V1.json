@@ -52,13 +52,13 @@
       "state": "HOLD"
     }
   },
-  "latestNativeReceiptSha256": "39c28d1c41777c14decc7a67d034d13c34f242a7b4c261c2a524fd766c54b808",
+  "latestNativeReceiptSha256": "0b5aae55274fd0d8f5bf06c4aff4b7ed44595436655530a587b2703743f04fd5",
   "mainMutation": false,
   "methodPr": 242,
   "methodPublication": "OPEN_REVIEW_BRANCH; NOT_MAIN",
   "methodSourceCommit": "5720cd0de67f959d44ea8ace42a3a716753077f1",
   "nativeWrites": 0,
-  "nextAction": "Run the single portfolio package after GitHub exact-head CI: all tests, all discovered Core project API reads, expanded source hash brackets, current binary/toolchain/signature metadata. Preserve unique AudiV13 original and Desktop copy.",
+  "nextAction": "WAIT_FINAL_SCREEN_CONTRACT_THEN_BIND_SWIFTUI",
   "oracleInput": {
     "Z02_EVENT": {
       "cause_status": "UNKNOWN",
@@ -154,8 +154,21 @@
     "state": "SIMULATED_HOLD"
   },
   "oracleScope": "OFFLINE_POLICY_REVIEW_ONLY; NOT_NATIVE_VERIFIER",
-  "pendingReceiptSchema": "enguru.pilive.native-portfolio-observation/v1",
+  "pendingReceiptSchema": null,
   "schema": "enguru.pilive.zulfikar-v13-application/v1",
   "scope": "Advisory evaluation of declared PiLive evidence. No external authority or product acceptance issued.",
-  "verifiedFinish": "HOLD"
+  "verifiedFinish": "HOLD",
+  "latestNativePortfolioReview": {
+    "receiptSha256": "0b5aae55274fd0d8f5bf06c4aff4b7ed44595436655530a587b2703743f04fd5",
+    "nativeTests": 218,
+    "projects": 15,
+    "sourceBoundObservations": 15,
+    "qualifiedCounters": 14,
+    "stableSourcePins": 48,
+    "exactModelReplay": "PASS",
+    "signatureVerification": "HOLD_RETURN_CODE_1",
+    "historicalBuildBinding": "HOLD",
+    "uiExecution": "NOT_EXECUTED",
+    "humanAcceptance": "HOLD"
+  }
 }

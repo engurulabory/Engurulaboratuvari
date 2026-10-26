@@ -131,3 +131,16 @@ Yönetim gerçek Mac 203/203, 15/15 key/projectId ve P02 read-only PASS'i kabul 
 U01/U02/U03/U04/U05/U09/U10/U12 alt şartları ilerletilir. Sessiz Orman Cockpit™ görsel sözleşmesi beklenir; gerçek SwiftUI, U06/U07/U08/U11, tüm U kabulü ve ayrı resmî P02/Verified Finish HOLD kalır. Mevcut canonical writer, kas ve kurulu app değiştirilmez.
 
 Core API hatalarında bounded stderr yalnız özel makbuza alınır; ekran modeline ve public özete taşınmaz. Böylece proje HOLD nedeni sonraki inceleme için kaybolmaz.
+
+## 26 Ekim — gerçek native portföy kaynak incelemesi
+
+- [x] Makbuz SHA `0b5aae55274fd0d8f5bf06c4aff4b7ed44595436655530a587b2703743f04fd5`, paket kaynağı `daee6cef9ad340acfdc2624c54b509addb55012d` ve manifest eşleşti; gerçek Mac 218/218 PASS.
+- [x] 15/15 canonical key/projectId eşliği, 8/8 güvenilen pin ve 48/48 önce/sonra kaynak SHA eşliği doğrulandı.
+- [x] 15 kaynaklı Core API olgusu; 14 qualified sayaç. Tüm model ve projectionDigest aynen yeniden üretildi. Registry replay bağları benzersiz state/worklist digest eşliğinden kuruldu; ham registry çıktısı makbuzda tutulmamış.
+- [x] Visual Cockpit: 26 beyan / 24 kanıt / 2 doğrulanmamış iş; doğru HOLD/N/A ve P04.03 odağı korunuyor. Canonical onarım kendi owner kapsamındadır.
+- [x] P02 0/12, yüzde 0, P02.S01.01 ve resmî HOLD; Core 44/44 teknik toplamı ile finiş HOLD ayrımı korunuyor.
+- [x] Swift 6.4 ve mevcut binary SHA gözlendi. Strict codesign dönüş kodu 1: imza doğrulaması HOLD; tarihsel build kökeni HOLD. Yeniden imzalama yapılmadı.
+
+U01 güncel binary/toolchain alt gözlemi PASS; tarihsel build bağı açık. U02/U03/U04 kaynaklı satır, sayaç ve aktif odak alt verisi PASS; UI açık. U05 kimlik tekilliği PASS; beş alan sınıflaması açık. U09 kaynak/API/model zamanı PASS; render zamanı açık. U10 gerçek native model replay PASS; UI/restart açık. U12 receipt/paket/Core/model izi PASS; bağımsız GUI ve yetkili kabul açık. U06/U07/U08/U11 ekran/saha şartları HOLD.
+
+**Sonraki tek hareket:** Nihai Sessiz Orman Cockpit™ ekran sözleşmesi geldiğinde doğrulanmış veri sınırını SwiftUI'ya bağlamak. Yeni portföy gözlemi gerekmiyor. P02 0/12, DoneCheck 0/4, saha/G3/Human Threshold ve Verified Finish ayrı HOLD.

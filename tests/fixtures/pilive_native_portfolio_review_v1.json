@@ -1,0 +1,674 @@
+{
+  "expectedProjectionDigest": "b051e49b654bc606af40c884c70185972a484573d0b291ec72438a6812498632",
+  "facts": {
+    "academy": {
+      "sourceReadAt": "2026-10-26T06:03:56.871496+00:00",
+      "summary": {
+        "activeItem": "NONE",
+        "activePackage": "NONE",
+        "declaredPass": 29,
+        "nextAction": "VERIFIED_FINISH_COMPLETE",
+        "project": "academy",
+        "projectId": "ENGURU_SOFTWARE_ENGINEERING_ACADEMY",
+        "stateDigest": "3dee0c8ae2baeb0713010c35371339096d9330f4c801d700b81e97a014133e64",
+        "total": 29,
+        "verifiedFinish": "LOCKED",
+        "worklistDigest": "4f6050c719cb963d9298d59cb8bf524a3b6367a426693aa755eef1539ea7826a"
+      },
+      "verify": {
+        "countedPass": 29,
+        "declaredPass": 29,
+        "deterministicProjection": "PASS",
+        "evidenceQualification": "PASS",
+        "evidencedPass": 29,
+        "finishState": "VERIFIED",
+        "itemSetAgreement": "PASS",
+        "progressIntegrity": "PASS",
+        "project": "academy",
+        "singleActiveItem": "PASS",
+        "singleActivePackage": "PASS",
+        "state": "PASS",
+        "stateDrift": "NONE",
+        "unverifiedPass": 0,
+        "worklist": "PASS"
+      }
+    },
+    "ai-role-capability-integration": {
+      "sourceReadAt": "2026-10-26T06:03:56.954687+00:00",
+      "summary": {
+        "activeItem": "AI.R01.01",
+        "activePackage": "AI.R01",
+        "declaredPass": 0,
+        "nextAction": "PARKED — P02 canlı çalışma ve kanıtlı sayaç hedefi öncelikli; sonraki insan kararıyla rol kapsamına dön",
+        "project": "ai-role-capability-integration",
+        "projectId": "ENGURU_AI_ROLE_CAPABILITY_INTEGRATION",
+        "stateDigest": "b423aa32f211861a14cae0d9550c3b292fc934dab634c0df0cc1776150d15d1b",
+        "total": 8,
+        "verifiedFinish": "HOLD",
+        "worklistDigest": "0cc6492799c234831b0049e3d174e63a5bdb1270fd45908efa800dc5f4f86f81"
+      },
+      "verify": {
+        "countedPass": 0,
+        "declaredPass": 0,
+        "deterministicProjection": "PASS",
+        "evidenceQualification": "PASS",
+        "evidencedPass": 0,
+        "finishState": "HOLD",
+        "itemSetAgreement": "PASS",
+        "progressIntegrity": "PASS",
+        "project": "ai-role-capability-integration",
+        "singleActiveItem": "PASS",
+        "singleActivePackage": "PASS",
+        "state": "PASS",
+        "stateDrift": "NONE",
+        "unverifiedPass": 0,
+        "worklist": "PASS"
+      }
+    },
+    "ana-pilot": {
+      "sourceReadAt": "2026-10-26T06:03:57.028487+00:00",
+      "summary": {
+        "activeItem": "NONE",
+        "activePackage": "NONE",
+        "declaredPass": 128,
+        "nextAction": "CAMPAIGN_COMPLETE",
+        "project": "ana-pilot",
+        "projectId": "ANA_PILOT_OPERATING_ARCHITECTURE_V01",
+        "stateDigest": "5dec23f57a756e92b8823e6d1839aaeaad53730dc657fb98ae1b6064b53ac234",
+        "total": 128,
+        "verifiedFinish": "PASS",
+        "worklistDigest": "4b10196a206ce627a71f09ef2da6ae3a0a0c54c718ec56087d9a3688d1e39a81"
+      },
+      "verify": {
+        "countedPass": 128,
+        "declaredPass": 128,
+        "deterministicProjection": "PASS",
+        "evidenceQualification": "PASS",
+        "evidencedPass": 128,
+        "finishState": "VERIFIED",
+        "itemSetAgreement": "PASS",
+        "progressIntegrity": "PASS",
+        "project": "ana-pilot",
+        "singleActiveItem": "PASS",
+        "singleActivePackage": "PASS",
+        "state": "PASS",
+        "stateDrift": "NONE",
+        "unverifiedPass": 0,
+        "worklist": "PASS"
+      }
+    },
+    "enguru-contract-standard-v11-pilot": {
+      "sourceReadAt": "2026-10-26T06:03:57.102822+00:00",
+      "summary": {
+        "activeItem": "P01_SCHEMA",
+        "activePackage": "P01",
+        "declaredPass": 0,
+        "nextAction": "UNAVAILABLE",
+        "project": "enguru-contract-standard-v11-pilot",
+        "projectId": "ENGURU_CONTRACT_STANDARD_V11_PILOT",
+        "stateDigest": "6a839e3f5f28070447719918f9d43fa355625019e9a581164bc396e4b91b3cd5",
+        "total": 2,
+        "verifiedFinish": "HOLD",
+        "worklistDigest": "ffd6b348343ee09c54d0a9b617ee57ad23e3be57c16b3abe376a2c9ed6f5d6d4"
+      },
+      "verify": {
+        "countedPass": 0,
+        "declaredPass": 0,
+        "deterministicProjection": "PASS",
+        "evidenceQualification": "PASS",
+        "evidencedPass": 0,
+        "finishState": "HOLD",
+        "itemSetAgreement": "PASS",
+        "progressIntegrity": "PASS",
+        "project": "enguru-contract-standard-v11-pilot",
+        "singleActiveItem": "PASS",
+        "singleActivePackage": "PASS",
+        "state": "PASS",
+        "stateDrift": "NONE",
+        "unverifiedPass": 0,
+        "worklist": "PASS"
+      }
+    },
+    "mac-engineer-product-harbor01": {
+      "sourceReadAt": "2026-10-26T06:03:57.182101+00:00",
+      "summary": {
+        "activeItem": "ME.P03.01_INDEPENDENT_G2",
+        "activePackage": "ME.P03",
+        "declaredPass": 12,
+        "nextAction": "ME_P03_INDEPENDENT_CURRENT_HEAD_P06_G2_G3_G4_ACCEPTANCE",
+        "project": "mac-engineer-product-harbor01",
+        "projectId": "ENGURU_MAC_ENGINEER_PRODUCT_HARBOR01_V26",
+        "stateDigest": "589d783da862e482faf40c32126aa88c0b6ba7d00d1a9a9f04e8fd400946e0b9",
+        "total": 23,
+        "verifiedFinish": "HOLD",
+        "worklistDigest": "37ccfa863956073b31ba944958077bdcaa5a7869284f4e453e4fd790cf1325c1"
+      },
+      "verify": {
+        "countedPass": 12,
+        "declaredPass": 12,
+        "deterministicProjection": "PASS",
+        "evidenceQualification": "PASS",
+        "evidencedPass": 12,
+        "finishState": "HOLD",
+        "itemSetAgreement": "PASS",
+        "progressIntegrity": "PASS",
+        "project": "mac-engineer-product-harbor01",
+        "singleActiveItem": "PASS",
+        "singleActivePackage": "PASS",
+        "state": "PASS",
+        "stateDrift": "NONE",
+        "unverifiedPass": 0,
+        "worklist": "PASS"
+      }
+    },
+    "mac-engineer-product-harbor01-osi-local": {
+      "sourceReadAt": "2026-10-26T06:03:57.261454+00:00",
+      "summary": {
+        "activeItem": "ME.P03.01_LOCAL_G2_AUTHORITY",
+        "activePackage": "ME.P03",
+        "declaredPass": 12,
+        "nextAction": "LOCAL_G2_REAL_8_GATE_FIELD_AND_LIFECYCLE_CROSS_PROJECT_BINDING",
+        "project": "mac-engineer-product-harbor01-osi-local",
+        "projectId": "ENGURU_MAC_ENGINEER_PRODUCT_HARBOR01_OSI_LOCAL_V26",
+        "stateDigest": "087540f67e369ae7bbe3be4bc3b557aa19caf7056f7561fe4b2c27945ef60eae",
+        "total": 24,
+        "verifiedFinish": "HOLD",
+        "worklistDigest": "f1c750fbf670a45ddfd1dffd209b3d2e2b9e28d0a29ee6273af211f2677450ac"
+      },
+      "verify": {
+        "countedPass": 12,
+        "declaredPass": 12,
+        "deterministicProjection": "PASS",
+        "evidenceQualification": "PASS",
+        "evidencedPass": 12,
+        "finishState": "HOLD",
+        "itemSetAgreement": "PASS",
+        "progressIntegrity": "PASS",
+        "project": "mac-engineer-product-harbor01-osi-local",
+        "singleActiveItem": "PASS",
+        "singleActivePackage": "PASS",
+        "state": "PASS",
+        "stateDrift": "NONE",
+        "unverifiedPass": 0,
+        "worklist": "PASS"
+      }
+    },
+    "mac-engineer-quality-baseline-v1": {
+      "sourceReadAt": "2026-10-26T06:03:57.340272+00:00",
+      "summary": {
+        "activeItem": "QB.P05.01_HUMAN_PERCEPTION_BASELINE",
+        "activePackage": "QB.P05",
+        "declaredPass": 27,
+        "nextAction": "COMPLETE_PRESENTATION_PRODUCT_READINESS_THEN_REENTER_QB_P05_HUMAN_PERCEPTION",
+        "project": "mac-engineer-quality-baseline-v1",
+        "projectId": "ENGURU_MAC_ENGINEER_QUALITY_BASELINE_V1",
+        "stateDigest": "537937c1fdddd62993f83d004dba8fbf06c24fc9399d7dd7126409e29e206b78",
+        "total": 34,
+        "verifiedFinish": "HOLD",
+        "worklistDigest": "84135974735231b6f75a548d5255f42d76ff65a1850cdc95bd320e3b74d60385"
+      },
+      "verify": {
+        "countedPass": 27,
+        "declaredPass": 27,
+        "deterministicProjection": "PASS",
+        "evidenceQualification": "PASS",
+        "evidencedPass": 27,
+        "finishState": "HOLD",
+        "itemSetAgreement": "PASS",
+        "progressIntegrity": "PASS",
+        "project": "mac-engineer-quality-baseline-v1",
+        "singleActiveItem": "PASS",
+        "singleActivePackage": "PASS",
+        "state": "PASS",
+        "stateDrift": "NONE",
+        "unverifiedPass": 0,
+        "worklist": "PASS"
+      }
+    },
+    "operator-fabric-100": {
+      "sourceReadAt": "2026-10-26T06:03:57.411457+00:00",
+      "summary": {
+        "activeItem": "C1.P08.01_SCORECARD_BASELINE",
+        "activePackage": "C1.P08",
+        "declaredPass": 70,
+        "nextAction": "C1_P08_PERFORMANCE_VERIFIED_FINISH",
+        "project": "operator-fabric-100",
+        "projectId": "ENGURU_OPERATOR_FABRIC_PERFORMANCE_100_V1",
+        "stateDigest": "24bcb5178e29e838ae5081a3d31f9016f584e2a9b274e33587b2f88a78656dd2",
+        "total": 80,
+        "verifiedFinish": "HOLD",
+        "worklistDigest": "e6f59c2218e6ad844a6f9f57e70d676390929a6d6809fc4cbb14ed108aa0366d"
+      },
+      "verify": {
+        "countedPass": 70,
+        "declaredPass": 70,
+        "deterministicProjection": "PASS",
+        "evidenceQualification": "PASS",
+        "evidencedPass": 70,
+        "finishState": "HOLD",
+        "itemSetAgreement": "PASS",
+        "progressIntegrity": "PASS",
+        "project": "operator-fabric-100",
+        "singleActiveItem": "PASS",
+        "singleActivePackage": "PASS",
+        "state": "PASS",
+        "stateDrift": "NONE",
+        "unverifiedPass": 0,
+        "worklist": "PASS"
+      }
+    },
+    "osi-foundation-100": {
+      "sourceReadAt": "2026-10-26T06:03:57.489643+00:00",
+      "summary": {
+        "activeItem": "F100.P06.01_BUILDER_SOURCE_PROVENANCE",
+        "activePackage": "F100.P06",
+        "declaredPass": 116,
+        "nextAction": "START_F100.P06.01_BUILDER_SOURCE_PROVENANCE",
+        "project": "osi-foundation-100",
+        "projectId": "ENGURU_OSI_FOUNDATION_100",
+        "stateDigest": "45d8422d59f5a5c718c03053affcfdf8629a6cac25ff8fddae778c542c220974",
+        "total": 134,
+        "verifiedFinish": "HOLD",
+        "worklistDigest": "31150b1c8a07edceb5a2cf59d9d305972d5a2f29b1b3351f94b2db00fb6f7276"
+      },
+      "verify": {
+        "countedPass": 116,
+        "declaredPass": 116,
+        "deterministicProjection": "PASS",
+        "evidenceQualification": "PASS",
+        "evidencedPass": 116,
+        "finishState": "HOLD",
+        "itemSetAgreement": "PASS",
+        "progressIntegrity": "PASS",
+        "project": "osi-foundation-100",
+        "singleActiveItem": "PASS",
+        "singleActivePackage": "PASS",
+        "state": "PASS",
+        "stateDrift": "NONE",
+        "unverifiedPass": 0,
+        "worklist": "PASS"
+      }
+    },
+    "plive-p01-authorized-field": {
+      "sourceReadAt": "2026-10-26T06:03:57.565122+00:00",
+      "summary": {
+        "activeItem": "NONE",
+        "activePackage": "NONE",
+        "declaredPass": 2,
+        "nextAction": "P01 accepted and verified; P02 requires separate human approval",
+        "project": "plive-p01-authorized-field",
+        "projectId": "ENGURU_PLIVE_P01_AUTHORIZED_FIELD",
+        "stateDigest": "68bc45cc41ed365d50b2e1b0476ecaaabfd0ccdfd21af54868276709cb877608",
+        "total": 2,
+        "verifiedFinish": "LOCKED",
+        "worklistDigest": "b2c7ed323ea34cb440c879ce6d880254ff8726cf029d23787d4849077cbed1ef"
+      },
+      "verify": {
+        "countedPass": 2,
+        "declaredPass": 2,
+        "deterministicProjection": "PASS",
+        "evidenceQualification": "PASS",
+        "evidencedPass": 2,
+        "finishState": "VERIFIED",
+        "itemSetAgreement": "PASS",
+        "progressIntegrity": "PASS",
+        "project": "plive-p01-authorized-field",
+        "singleActiveItem": "PASS",
+        "singleActivePackage": "PASS",
+        "state": "PASS",
+        "stateDrift": "NONE",
+        "unverifiedPass": 0,
+        "worklist": "PASS"
+      }
+    },
+    "plive-p02-user-screen": {
+      "sourceReadAt": "2026-10-26T06:03:57.642809+00:00",
+      "summary": {
+        "activeItem": "P02.S01.01",
+        "activePackage": "P02.S01",
+        "declaredPass": 0,
+        "nextAction": "P02 kayıt otoritesi → Şimdi güncel iş kimliği → G03/G04 gerçek saha kabulü",
+        "project": "plive-p02-user-screen",
+        "projectId": "ENGURU_PLIVE_P02_USER_SCREEN",
+        "stateDigest": "ad29d034c8a97be75d69d972fca1c6e7ee207e7f7f1339e79b74e1ce6c40f432",
+        "total": 12,
+        "verifiedFinish": "HOLD",
+        "worklistDigest": "4021dc7486363bc7baf503860969ea23324eabcbd4e3551930a20d79784532d2"
+      },
+      "verify": {
+        "countedPass": 0,
+        "declaredPass": 0,
+        "deterministicProjection": "PASS",
+        "evidenceQualification": "PASS",
+        "evidencedPass": 0,
+        "finishState": "HOLD",
+        "itemSetAgreement": "PASS",
+        "progressIntegrity": "PASS",
+        "project": "plive-p02-user-screen",
+        "singleActiveItem": "PASS",
+        "singleActivePackage": "PASS",
+        "state": "PASS",
+        "stateDrift": "NONE",
+        "unverifiedPass": 0,
+        "worklist": "PASS"
+      }
+    },
+    "progress-core": {
+      "sourceReadAt": "2026-10-26T06:03:57.713442+00:00",
+      "summary": {
+        "activeItem": "NONE",
+        "activePackage": "NONE",
+        "declaredPass": 44,
+        "nextAction": "RETURN_TO_ANA_PILOT_P01_05_CHAT_RUNTIME",
+        "project": "progress-core",
+        "projectId": "ENGURU_PROGRESS_CORE",
+        "stateDigest": "96fd0442988f7e43877451d90a7092ca2a5f87c0d30076a49c6bbb39eb1563d1",
+        "total": 44,
+        "verifiedFinish": "HOLD",
+        "worklistDigest": "d278107ee57d432a8d25c9a746ada845fb6d80774a627b82494306a63ec128b3"
+      },
+      "verify": {
+        "countedPass": 44,
+        "declaredPass": 44,
+        "deterministicProjection": "PASS",
+        "evidenceQualification": "PASS",
+        "evidencedPass": 44,
+        "finishState": "HOLD",
+        "itemSetAgreement": "PASS",
+        "progressIntegrity": "PASS",
+        "project": "progress-core",
+        "singleActiveItem": "PASS",
+        "singleActivePackage": "PASS",
+        "state": "PASS",
+        "stateDrift": "NONE",
+        "unverifiedPass": 0,
+        "worklist": "PASS"
+      }
+    },
+    "suzgec-c03": {
+      "sourceReadAt": "2026-10-26T06:03:57.790576+00:00",
+      "summary": {
+        "activeItem": "NONE",
+        "activePackage": "NONE",
+        "declaredPass": 2,
+        "nextAction": "VERIFIED_FINISH_LOCKED",
+        "project": "suzgec-c03",
+        "projectId": "ENGURU_SUZGEC_C03",
+        "stateDigest": "e6aeec7bb575496229e4438ab3590a5b19ae5478e6caf54cc232e3d2d6f88b97",
+        "total": 2,
+        "verifiedFinish": "LOCKED",
+        "worklistDigest": "ae09c322e5d00b547171e1028c8003edf7464ff4fd693166b81a4f9bb38c9e62"
+      },
+      "verify": {
+        "countedPass": 2,
+        "declaredPass": 2,
+        "deterministicProjection": "PASS",
+        "evidenceQualification": "PASS",
+        "evidencedPass": 2,
+        "finishState": "VERIFIED",
+        "itemSetAgreement": "PASS",
+        "progressIntegrity": "PASS",
+        "project": "suzgec-c03",
+        "singleActiveItem": "PASS",
+        "singleActivePackage": "PASS",
+        "state": "PASS",
+        "stateDrift": "NONE",
+        "unverifiedPass": 0,
+        "worklist": "PASS"
+      }
+    },
+    "suzgec_v24": {
+      "sourceReadAt": "2026-10-26T06:03:57.868875+00:00",
+      "summary": {
+        "activeItem": "T01_REAL_TASK_PRODUCER",
+        "activePackage": "T01",
+        "declaredPass": 0,
+        "nextAction": "Bind actual OSi task, v2.4 issuer, DoneCheck and Progress; then execute approved eight pilots",
+        "project": "suzgec_v24",
+        "projectId": "ENGURU_SUZGEC_V24",
+        "stateDigest": "f167d0b866f00a2155e9661ed5abce1e09154b38029839b7f307a2bfecc7c9cd",
+        "total": 11,
+        "verifiedFinish": "HOLD",
+        "worklistDigest": "32cb3b723da8d643af70a1a0a7ed56af2c7b20ed7f814390b20ca2f591c6614e"
+      },
+      "verify": {
+        "countedPass": 0,
+        "declaredPass": 0,
+        "deterministicProjection": "PASS",
+        "evidenceQualification": "PASS",
+        "evidencedPass": 0,
+        "finishState": "HOLD",
+        "itemSetAgreement": "PASS",
+        "progressIntegrity": "PASS",
+        "project": "suzgec_v24",
+        "singleActiveItem": "PASS",
+        "singleActivePackage": "PASS",
+        "state": "PASS",
+        "stateDrift": "NONE",
+        "unverifiedPass": 0,
+        "worklist": "PASS"
+      }
+    },
+    "visual-cockpit-premium-v1": {
+      "sourceReadAt": "2026-10-26T06:03:57.939267+00:00",
+      "summary": {
+        "activeItem": "P04.03_HUMAN_THRESHOLD",
+        "activePackage": "P04",
+        "declaredPass": 26,
+        "nextAction": "P04.03_HUMAN_THRESHOLD",
+        "project": "visual-cockpit-premium-v1",
+        "projectId": "ENGURU_MAC_ENGINEER_PREMIUM_VISUAL_COCKPIT_V1",
+        "stateDigest": "cfb6529d2c16e9d20decc01b0b90faf6802af39cee0d37d3ca24ccb0c0157a04",
+        "total": 40,
+        "verifiedFinish": "HOLD",
+        "worklistDigest": "b0ffe0ef6ebaeb0da1ff19b5004dd304dd1aa83e1cb8b75b20708831a69962c1"
+      },
+      "verify": {
+        "countedPass": 24,
+        "declaredPass": 26,
+        "deterministicProjection": "PASS",
+        "evidenceQualification": "PASS",
+        "evidencedPass": 24,
+        "finishState": "HOLD",
+        "itemSetAgreement": "PASS",
+        "progressIntegrity": "HOLD",
+        "project": "visual-cockpit-premium-v1",
+        "singleActiveItem": "PASS",
+        "singleActivePackage": "PASS",
+        "state": "PASS",
+        "stateDrift": "NONE",
+        "unverifiedPass": 2,
+        "worklist": "PASS"
+      }
+    }
+  },
+  "identity": {
+    "adapter_built_at": "2026-10-26T06:03:58.007429+00:00",
+    "pins_after": {
+      "governance/ai-role-capability-integration/ENGURU_AI_ROLE_CAPABILITY_WORK_CONTRACT_V1.json": "f0c8e734ab27653da765e868d8d3058e9fbfff9de44381db9fd463d2d6a81e24",
+      "governance/ai-role-capability-integration/STATE_V1.json": "b423aa32f211861a14cae0d9550c3b292fc934dab634c0df0cc1776150d15d1b",
+      "governance/ai-role-capability-integration/WORKLIST_V1.json": "0cc6492799c234831b0049e3d174e63a5bdb1270fd45908efa800dc5f4f86f81",
+      "governance/ana-pilot/ANA_PILOT_OPERATING_ARCHITECTURE_V01_STATE.json": "5dec23f57a756e92b8823e6d1839aaeaad53730dc657fb98ae1b6064b53ac234",
+      "governance/ana-pilot/ANA_PILOT_OPERATING_ARCHITECTURE_V01_WORKLIST.json": "4b10196a206ce627a71f09ef2da6ae3a0a0c54c718ec56087d9a3688d1e39a81",
+      "governance/contract-standard-v11-pilot/STATE_V1.json": "6a839e3f5f28070447719918f9d43fa355625019e9a581164bc396e4b91b3cd5",
+      "governance/contract-standard-v11-pilot/WORKLIST_V1.json": "ffd6b348343ee09c54d0a9b617ee57ad23e3be57c16b3abe376a2c9ed6f5d6d4",
+      "governance/contract-standard-v11-pilot/WORK_CONTRACT_V1.json": "db82a14b4b27a05a3e5159eba04184e77026a5aecf5386dcd8ce01287e6bda9b",
+      "governance/mac-engineer/harbor01-progress/HARBOR01_PRODUCT_STATE_V1.json": "589d783da862e482faf40c32126aa88c0b6ba7d00d1a9a9f04e8fd400946e0b9",
+      "governance/mac-engineer/harbor01-progress/HARBOR01_PRODUCT_WORKLIST_V1.json": "37ccfa863956073b31ba944958077bdcaa5a7869284f4e453e4fd790cf1325c1",
+      "governance/mac-engineer/harbor01-progress/HARBOR01_PRODUCT_WORK_CONTRACT_V1.json": "d2fb3a013229e259b6b5b643a309a97be150ba5127743526a413968feb37e82e",
+      "governance/mac-engineer/harbor01-progress/local/HARBOR01_LOCAL_PRODUCT_STATE_V2.json": "087540f67e369ae7bbe3be4bc3b557aa19caf7056f7561fe4b2c27945ef60eae",
+      "governance/mac-engineer/harbor01-progress/local/HARBOR01_LOCAL_PRODUCT_WORKLIST_V2.json": "f1c750fbf670a45ddfd1dffd209b3d2e2b9e28d0a29ee6273af211f2677450ac",
+      "governance/mac-engineer/harbor01-progress/local/HARBOR01_LOCAL_PRODUCT_WORK_CONTRACT_V2.json": "b834a2fd2ec024b612c9b06298a8d68b246584732848aad809b9037edb987a72",
+      "governance/mac-engineer/quality-benchmark-baseline/ENGURU_MAC_ENGINEER_QUALITY_BASELINE_STATE_V1.json": "537937c1fdddd62993f83d004dba8fbf06c24fc9399d7dd7126409e29e206b78",
+      "governance/mac-engineer/quality-benchmark-baseline/ENGURU_MAC_ENGINEER_QUALITY_BASELINE_WORKLIST_V1.json": "84135974735231b6f75a548d5255f42d76ff65a1850cdc95bd320e3b74d60385",
+      "governance/mac-engineer/quality-benchmark-baseline/ENGURU_MAC_ENGINEER_QUALITY_BASELINE_WORK_CONTRACT_V1.json": "3738ba6ef33880a95bca9728f997403edfffb8ec04ebbd01349ed9a70464a4af",
+      "governance/mac-engineer/visual-cockpit-premium/VISUAL_COCKPIT_PREMIUM_STATE_V1.json": "cfb6529d2c16e9d20decc01b0b90faf6802af39cee0d37d3ca24ccb0c0157a04",
+      "governance/mac-engineer/visual-cockpit-premium/VISUAL_COCKPIT_PREMIUM_WORKLIST_V1.json": "b0ffe0ef6ebaeb0da1ff19b5004dd304dd1aa83e1cb8b75b20708831a69962c1",
+      "governance/operator-fabric/OPERATOR_FABRIC_100_STATE_V1.json": "24bcb5178e29e838ae5081a3d31f9016f584e2a9b274e33587b2f88a78656dd2",
+      "governance/operator-fabric/OPERATOR_FABRIC_100_WORKLIST_V1.json": "e6f59c2218e6ad844a6f9f57e70d676390929a6d6809fc4cbb14ed108aa0366d",
+      "governance/osi-foundation-100/ENGURU_OSI_FOUNDATION_100_STATE_V1.json": "45d8422d59f5a5c718c03053affcfdf8629a6cac25ff8fddae778c542c220974",
+      "governance/osi-foundation-100/ENGURU_OSI_FOUNDATION_100_WORKLIST_V1.json": "31150b1c8a07edceb5a2cf59d9d305972d5a2f29b1b3351f94b2db00fb6f7276",
+      "governance/osi-foundation-100/ENGURU_OSI_FOUNDATION_100_WORK_CONTRACT_V1.json": "1277eae9102378dbfbd992dfd2d11a0e0353cb06a934dac8eb4860137ef9dfb2",
+      "governance/plive-p01-authorized-field/PLIVE_P01_WORK_CONTRACT_V1.json": "3875e28b35ac0d7eadb6f2a973e5e9b150c057dfe6e7e7e166bca3c5c612072a",
+      "governance/plive-p01-authorized-field/STATE_V1.json": "68bc45cc41ed365d50b2e1b0476ecaaabfd0ccdfd21af54868276709cb877608",
+      "governance/plive-p01-authorized-field/WORKLIST_V1.json": "b2c7ed323ea34cb440c879ce6d880254ff8726cf029d23787d4849077cbed1ef",
+      "governance/plive-p02-user-screen/PLIVE_P02_WORK_CONTRACT_V1.json": "1dc9b0bae00a13672a142fb91f6b1fe603f151bcebaa64482e297029deda7512",
+      "governance/plive-p02-user-screen/STATE_V1.json": "ad29d034c8a97be75d69d972fca1c6e7ee207e7f7f1339e79b74e1ce6c40f432",
+      "governance/plive-p02-user-screen/WORKLIST_V1.json": "4021dc7486363bc7baf503860969ea23324eabcbd4e3551930a20d79784532d2",
+      "governance/progress-core/ENGURU_PROGRESS_CORE_EVIDENCE_POLICY_V1.json": "a3a7f1b2bd100890a6afa1e52be9bf7f87bd02724fcf0c50e522632b24a384ed",
+      "governance/progress-core/ENGURU_PROGRESS_CORE_PROJECT_REGISTRY_V1.json": "515748a88acffdd60be6afd4c837a2581a48a3bbeccd74c4a413ae3f986c4a80",
+      "governance/progress-core/ENGURU_PROGRESS_CORE_STATE_V1.json": "96fd0442988f7e43877451d90a7092ca2a5f87c0d30076a49c6bbb39eb1563d1",
+      "governance/progress-core/ENGURU_PROGRESS_CORE_WORKLIST_V1.json": "d278107ee57d432a8d25c9a746ada845fb6d80774a627b82494306a63ec128b3",
+      "governance/progress-core/ENGURU_WORK_CONTRACT_SCHEMA_V1.json": "c56ae2b4760539019cc49302272e8530702f44f8bc81ca725f471ebe724b188f",
+      "governance/software-engineering-academy/ENGURU_SOFTWARE_ENGINEERING_ACADEMY_STATE_V1.json": "3dee0c8ae2baeb0713010c35371339096d9330f4c801d700b81e97a014133e64",
+      "governance/software-engineering-academy/ENGURU_SOFTWARE_ENGINEERING_ACADEMY_WORKLIST_V1.json": "4f6050c719cb963d9298d59cb8bf524a3b6367a426693aa755eef1539ea7826a",
+      "governance/work-protocol/ENGURU_C03_NATIVE_PROGRESS_STATE_V1.json": "e6aeec7bb575496229e4438ab3590a5b19ae5478e6caf54cc232e3d2d6f88b97",
+      "governance/work-protocol/ENGURU_C03_NATIVE_PROGRESS_WORKLIST_V1.json": "ae09c322e5d00b547171e1028c8003edf7464ff4fd693166b81a4f9bb38c9e62",
+      "governance/work-protocol/ENGURU_C03_NATIVE_WORK_CONTRACT_V1.json": "7ff5fe2ada080cbeb4e0f36a87d31d13198bf28765eee37b751b8d7821ba8744",
+      "governance/work-protocol/ENGURU_SUZGEC_V24_FIELD_WORKLIST_V1.json": "32cb3b723da8d643af70a1a0a7ed56af2c7b20ed7f814390b20ca2f591c6614e",
+      "governance/work-protocol/ENGURU_SUZGEC_V24_FIELD_WORK_CONTRACT_V1.json": "cedb1466c3631abe4e5904805da292eb05ed9e77d3042b9478cbf6b96af32819",
+      "governance/work-protocol/ENGURU_SUZGEC_V24_FIELD_WORK_STATE_V1.json": "f167d0b866f00a2155e9661ed5abce1e09154b38029839b7f307a2bfecc7c9cd",
+      "governance/work-protocol/ENGURU_SUZGEC_V24_PILOT8_SCOPE_APPROVED_V1.json": "c438dfc846a21a3d381a653321c83b976082790692e45b033c4e0f0a2ff22aed",
+      "governance/work-protocol/ENGURU_WHOLE_PROJECT_EXECUTION_CONTRACT_V1.json": "c90d11e1ca3fdb40fd13b9832e19d0193f97529220c3e68e3add53af2ad9e2ee",
+      "tools/enguru_progress.py": "f3e2610c6e325f6fd620baa84ec412437a015109dde88ac38cab7f08b2a365b4",
+      "tools/enguru_progress_adapters.py": "2508089ed161070abe1d520325ff610fd6165c8a726db3ea2a456d772b6faa92",
+      "tools/enguru_progress_intelligence.py": "0e3ffb67091ef2c147287448a0855f205992083d541b1d7019e3305d92b0f8b0"
+    },
+    "pins_before": {
+      "governance/ai-role-capability-integration/ENGURU_AI_ROLE_CAPABILITY_WORK_CONTRACT_V1.json": "f0c8e734ab27653da765e868d8d3058e9fbfff9de44381db9fd463d2d6a81e24",
+      "governance/ai-role-capability-integration/STATE_V1.json": "b423aa32f211861a14cae0d9550c3b292fc934dab634c0df0cc1776150d15d1b",
+      "governance/ai-role-capability-integration/WORKLIST_V1.json": "0cc6492799c234831b0049e3d174e63a5bdb1270fd45908efa800dc5f4f86f81",
+      "governance/ana-pilot/ANA_PILOT_OPERATING_ARCHITECTURE_V01_STATE.json": "5dec23f57a756e92b8823e6d1839aaeaad53730dc657fb98ae1b6064b53ac234",
+      "governance/ana-pilot/ANA_PILOT_OPERATING_ARCHITECTURE_V01_WORKLIST.json": "4b10196a206ce627a71f09ef2da6ae3a0a0c54c718ec56087d9a3688d1e39a81",
+      "governance/contract-standard-v11-pilot/STATE_V1.json": "6a839e3f5f28070447719918f9d43fa355625019e9a581164bc396e4b91b3cd5",
+      "governance/contract-standard-v11-pilot/WORKLIST_V1.json": "ffd6b348343ee09c54d0a9b617ee57ad23e3be57c16b3abe376a2c9ed6f5d6d4",
+      "governance/contract-standard-v11-pilot/WORK_CONTRACT_V1.json": "db82a14b4b27a05a3e5159eba04184e77026a5aecf5386dcd8ce01287e6bda9b",
+      "governance/mac-engineer/harbor01-progress/HARBOR01_PRODUCT_STATE_V1.json": "589d783da862e482faf40c32126aa88c0b6ba7d00d1a9a9f04e8fd400946e0b9",
+      "governance/mac-engineer/harbor01-progress/HARBOR01_PRODUCT_WORKLIST_V1.json": "37ccfa863956073b31ba944958077bdcaa5a7869284f4e453e4fd790cf1325c1",
+      "governance/mac-engineer/harbor01-progress/HARBOR01_PRODUCT_WORK_CONTRACT_V1.json": "d2fb3a013229e259b6b5b643a309a97be150ba5127743526a413968feb37e82e",
+      "governance/mac-engineer/harbor01-progress/local/HARBOR01_LOCAL_PRODUCT_STATE_V2.json": "087540f67e369ae7bbe3be4bc3b557aa19caf7056f7561fe4b2c27945ef60eae",
+      "governance/mac-engineer/harbor01-progress/local/HARBOR01_LOCAL_PRODUCT_WORKLIST_V2.json": "f1c750fbf670a45ddfd1dffd209b3d2e2b9e28d0a29ee6273af211f2677450ac",
+      "governance/mac-engineer/harbor01-progress/local/HARBOR01_LOCAL_PRODUCT_WORK_CONTRACT_V2.json": "b834a2fd2ec024b612c9b06298a8d68b246584732848aad809b9037edb987a72",
+      "governance/mac-engineer/quality-benchmark-baseline/ENGURU_MAC_ENGINEER_QUALITY_BASELINE_STATE_V1.json": "537937c1fdddd62993f83d004dba8fbf06c24fc9399d7dd7126409e29e206b78",
+      "governance/mac-engineer/quality-benchmark-baseline/ENGURU_MAC_ENGINEER_QUALITY_BASELINE_WORKLIST_V1.json": "84135974735231b6f75a548d5255f42d76ff65a1850cdc95bd320e3b74d60385",
+      "governance/mac-engineer/quality-benchmark-baseline/ENGURU_MAC_ENGINEER_QUALITY_BASELINE_WORK_CONTRACT_V1.json": "3738ba6ef33880a95bca9728f997403edfffb8ec04ebbd01349ed9a70464a4af",
+      "governance/mac-engineer/visual-cockpit-premium/VISUAL_COCKPIT_PREMIUM_STATE_V1.json": "cfb6529d2c16e9d20decc01b0b90faf6802af39cee0d37d3ca24ccb0c0157a04",
+      "governance/mac-engineer/visual-cockpit-premium/VISUAL_COCKPIT_PREMIUM_WORKLIST_V1.json": "b0ffe0ef6ebaeb0da1ff19b5004dd304dd1aa83e1cb8b75b20708831a69962c1",
+      "governance/operator-fabric/OPERATOR_FABRIC_100_STATE_V1.json": "24bcb5178e29e838ae5081a3d31f9016f584e2a9b274e33587b2f88a78656dd2",
+      "governance/operator-fabric/OPERATOR_FABRIC_100_WORKLIST_V1.json": "e6f59c2218e6ad844a6f9f57e70d676390929a6d6809fc4cbb14ed108aa0366d",
+      "governance/osi-foundation-100/ENGURU_OSI_FOUNDATION_100_STATE_V1.json": "45d8422d59f5a5c718c03053affcfdf8629a6cac25ff8fddae778c542c220974",
+      "governance/osi-foundation-100/ENGURU_OSI_FOUNDATION_100_WORKLIST_V1.json": "31150b1c8a07edceb5a2cf59d9d305972d5a2f29b1b3351f94b2db00fb6f7276",
+      "governance/osi-foundation-100/ENGURU_OSI_FOUNDATION_100_WORK_CONTRACT_V1.json": "1277eae9102378dbfbd992dfd2d11a0e0353cb06a934dac8eb4860137ef9dfb2",
+      "governance/plive-p01-authorized-field/PLIVE_P01_WORK_CONTRACT_V1.json": "3875e28b35ac0d7eadb6f2a973e5e9b150c057dfe6e7e7e166bca3c5c612072a",
+      "governance/plive-p01-authorized-field/STATE_V1.json": "68bc45cc41ed365d50b2e1b0476ecaaabfd0ccdfd21af54868276709cb877608",
+      "governance/plive-p01-authorized-field/WORKLIST_V1.json": "b2c7ed323ea34cb440c879ce6d880254ff8726cf029d23787d4849077cbed1ef",
+      "governance/plive-p02-user-screen/PLIVE_P02_WORK_CONTRACT_V1.json": "1dc9b0bae00a13672a142fb91f6b1fe603f151bcebaa64482e297029deda7512",
+      "governance/plive-p02-user-screen/STATE_V1.json": "ad29d034c8a97be75d69d972fca1c6e7ee207e7f7f1339e79b74e1ce6c40f432",
+      "governance/plive-p02-user-screen/WORKLIST_V1.json": "4021dc7486363bc7baf503860969ea23324eabcbd4e3551930a20d79784532d2",
+      "governance/progress-core/ENGURU_PROGRESS_CORE_EVIDENCE_POLICY_V1.json": "a3a7f1b2bd100890a6afa1e52be9bf7f87bd02724fcf0c50e522632b24a384ed",
+      "governance/progress-core/ENGURU_PROGRESS_CORE_PROJECT_REGISTRY_V1.json": "515748a88acffdd60be6afd4c837a2581a48a3bbeccd74c4a413ae3f986c4a80",
+      "governance/progress-core/ENGURU_PROGRESS_CORE_STATE_V1.json": "96fd0442988f7e43877451d90a7092ca2a5f87c0d30076a49c6bbb39eb1563d1",
+      "governance/progress-core/ENGURU_PROGRESS_CORE_WORKLIST_V1.json": "d278107ee57d432a8d25c9a746ada845fb6d80774a627b82494306a63ec128b3",
+      "governance/progress-core/ENGURU_WORK_CONTRACT_SCHEMA_V1.json": "c56ae2b4760539019cc49302272e8530702f44f8bc81ca725f471ebe724b188f",
+      "governance/software-engineering-academy/ENGURU_SOFTWARE_ENGINEERING_ACADEMY_STATE_V1.json": "3dee0c8ae2baeb0713010c35371339096d9330f4c801d700b81e97a014133e64",
+      "governance/software-engineering-academy/ENGURU_SOFTWARE_ENGINEERING_ACADEMY_WORKLIST_V1.json": "4f6050c719cb963d9298d59cb8bf524a3b6367a426693aa755eef1539ea7826a",
+      "governance/work-protocol/ENGURU_C03_NATIVE_PROGRESS_STATE_V1.json": "e6aeec7bb575496229e4438ab3590a5b19ae5478e6caf54cc232e3d2d6f88b97",
+      "governance/work-protocol/ENGURU_C03_NATIVE_PROGRESS_WORKLIST_V1.json": "ae09c322e5d00b547171e1028c8003edf7464ff4fd693166b81a4f9bb38c9e62",
+      "governance/work-protocol/ENGURU_C03_NATIVE_WORK_CONTRACT_V1.json": "7ff5fe2ada080cbeb4e0f36a87d31d13198bf28765eee37b751b8d7821ba8744",
+      "governance/work-protocol/ENGURU_SUZGEC_V24_FIELD_WORKLIST_V1.json": "32cb3b723da8d643af70a1a0a7ed56af2c7b20ed7f814390b20ca2f591c6614e",
+      "governance/work-protocol/ENGURU_SUZGEC_V24_FIELD_WORK_CONTRACT_V1.json": "cedb1466c3631abe4e5904805da292eb05ed9e77d3042b9478cbf6b96af32819",
+      "governance/work-protocol/ENGURU_SUZGEC_V24_FIELD_WORK_STATE_V1.json": "f167d0b866f00a2155e9661ed5abce1e09154b38029839b7f307a2bfecc7c9cd",
+      "governance/work-protocol/ENGURU_SUZGEC_V24_PILOT8_SCOPE_APPROVED_V1.json": "c438dfc846a21a3d381a653321c83b976082790692e45b033c4e0f0a2ff22aed",
+      "governance/work-protocol/ENGURU_WHOLE_PROJECT_EXECUTION_CONTRACT_V1.json": "c90d11e1ca3fdb40fd13b9832e19d0193f97529220c3e68e3add53af2ad9e2ee",
+      "tools/enguru_progress.py": "f3e2610c6e325f6fd620baa84ec412437a015109dde88ac38cab7f08b2a365b4",
+      "tools/enguru_progress_adapters.py": "2508089ed161070abe1d520325ff610fd6165c8a726db3ea2a456d772b6faa92",
+      "tools/enguru_progress_intelligence.py": "0e3ffb67091ef2c147287448a0855f205992083d541b1d7019e3305d92b0f8b0"
+    },
+    "revision_after": "269854b8a42a27e9419eae65a3c9e349bdcc7300",
+    "revision_before": "269854b8a42a27e9419eae65a3c9e349bdcc7300",
+    "source_read_at": "2026-10-26T06:03:56.686417+00:00"
+  },
+  "receiptSha256": "0b5aae55274fd0d8f5bf06c4aff4b7ed44595436655530a587b2703743f04fd5",
+  "registry": {
+    "projects": {
+      "academy": {
+        "projectId": "ENGURU_SOFTWARE_ENGINEERING_ACADEMY",
+        "state": "governance/software-engineering-academy/ENGURU_SOFTWARE_ENGINEERING_ACADEMY_STATE_V1.json",
+        "worklist": "governance/software-engineering-academy/ENGURU_SOFTWARE_ENGINEERING_ACADEMY_WORKLIST_V1.json"
+      },
+      "ai-role-capability-integration": {
+        "projectId": "ENGURU_AI_ROLE_CAPABILITY_INTEGRATION",
+        "state": "governance/ai-role-capability-integration/STATE_V1.json",
+        "worklist": "governance/ai-role-capability-integration/WORKLIST_V1.json"
+      },
+      "ana-pilot": {
+        "projectId": "ANA_PILOT_OPERATING_ARCHITECTURE_V01",
+        "state": "governance/ana-pilot/ANA_PILOT_OPERATING_ARCHITECTURE_V01_STATE.json",
+        "worklist": "governance/ana-pilot/ANA_PILOT_OPERATING_ARCHITECTURE_V01_WORKLIST.json"
+      },
+      "enguru-contract-standard-v11-pilot": {
+        "projectId": "ENGURU_CONTRACT_STANDARD_V11_PILOT",
+        "state": "governance/contract-standard-v11-pilot/STATE_V1.json",
+        "worklist": "governance/contract-standard-v11-pilot/WORKLIST_V1.json"
+      },
+      "mac-engineer-product-harbor01": {
+        "projectId": "ENGURU_MAC_ENGINEER_PRODUCT_HARBOR01_V26",
+        "state": "governance/mac-engineer/harbor01-progress/HARBOR01_PRODUCT_STATE_V1.json",
+        "worklist": "governance/mac-engineer/harbor01-progress/HARBOR01_PRODUCT_WORKLIST_V1.json"
+      },
+      "mac-engineer-product-harbor01-osi-local": {
+        "projectId": "ENGURU_MAC_ENGINEER_PRODUCT_HARBOR01_OSI_LOCAL_V26",
+        "state": "governance/mac-engineer/harbor01-progress/local/HARBOR01_LOCAL_PRODUCT_STATE_V2.json",
+        "worklist": "governance/mac-engineer/harbor01-progress/local/HARBOR01_LOCAL_PRODUCT_WORKLIST_V2.json"
+      },
+      "mac-engineer-quality-baseline-v1": {
+        "projectId": "ENGURU_MAC_ENGINEER_QUALITY_BASELINE_V1",
+        "state": "governance/mac-engineer/quality-benchmark-baseline/ENGURU_MAC_ENGINEER_QUALITY_BASELINE_STATE_V1.json",
+        "worklist": "governance/mac-engineer/quality-benchmark-baseline/ENGURU_MAC_ENGINEER_QUALITY_BASELINE_WORKLIST_V1.json"
+      },
+      "operator-fabric-100": {
+        "projectId": "ENGURU_OPERATOR_FABRIC_PERFORMANCE_100_V1",
+        "state": "governance/operator-fabric/OPERATOR_FABRIC_100_STATE_V1.json",
+        "worklist": "governance/operator-fabric/OPERATOR_FABRIC_100_WORKLIST_V1.json"
+      },
+      "osi-foundation-100": {
+        "projectId": "ENGURU_OSI_FOUNDATION_100",
+        "state": "governance/osi-foundation-100/ENGURU_OSI_FOUNDATION_100_STATE_V1.json",
+        "worklist": "governance/osi-foundation-100/ENGURU_OSI_FOUNDATION_100_WORKLIST_V1.json"
+      },
+      "plive-p01-authorized-field": {
+        "projectId": "ENGURU_PLIVE_P01_AUTHORIZED_FIELD",
+        "state": "governance/plive-p01-authorized-field/STATE_V1.json",
+        "worklist": "governance/plive-p01-authorized-field/WORKLIST_V1.json"
+      },
+      "plive-p02-user-screen": {
+        "projectId": "ENGURU_PLIVE_P02_USER_SCREEN",
+        "state": "governance/plive-p02-user-screen/STATE_V1.json",
+        "worklist": "governance/plive-p02-user-screen/WORKLIST_V1.json"
+      },
+      "progress-core": {
+        "projectId": "ENGURU_PROGRESS_CORE",
+        "state": "governance/progress-core/ENGURU_PROGRESS_CORE_STATE_V1.json",
+        "worklist": "governance/progress-core/ENGURU_PROGRESS_CORE_WORKLIST_V1.json"
+      },
+      "suzgec-c03": {
+        "projectId": "ENGURU_SUZGEC_C03",
+        "state": "governance/work-protocol/ENGURU_C03_NATIVE_PROGRESS_STATE_V1.json",
+        "worklist": "governance/work-protocol/ENGURU_C03_NATIVE_PROGRESS_WORKLIST_V1.json"
+      },
+      "suzgec_v24": {
+        "projectId": "ENGURU_SUZGEC_V24",
+        "state": "governance/work-protocol/ENGURU_SUZGEC_V24_FIELD_WORK_STATE_V1.json",
+        "worklist": "governance/work-protocol/ENGURU_SUZGEC_V24_FIELD_WORKLIST_V1.json"
+      },
+      "visual-cockpit-premium-v1": {
+        "projectId": "ENGURU_MAC_ENGINEER_PREMIUM_VISUAL_COCKPIT_V1",
+        "state": "governance/mac-engineer/visual-cockpit-premium/VISUAL_COCKPIT_PREMIUM_STATE_V1.json",
+        "worklist": "governance/mac-engineer/visual-cockpit-premium/VISUAL_COCKPIT_PREMIUM_WORKLIST_V1.json"
+      }
+    },
+    "schema": "enguru.progress-core.project-registry/v1"
+  },
+  "schema": "enguru.pilive.reviewed-native-facts/v1",
+  "scope": "Whitelisted Core API results and relative path/SHA references only. Registry replay bindings reconstructed by unique state/worklist digest matches; raw registry was not retained in receipt. No canonical source contents or private diagnostics."
+}
