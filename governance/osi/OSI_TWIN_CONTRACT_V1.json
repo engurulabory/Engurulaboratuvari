@@ -1,0 +1,76 @@
+{
+  "schema": "enguru.osi.birlesik-sistem-mimarisi.twin/v1",
+  "title": "OSi Birleşik Sistem Mimarisi™ V1",
+  "state": "GITHUB_DESIGN_REVIEW_CANDIDATE_OSI_FIELD_HOLD",
+  "controlRepo": "engurulabory/Engurulaboratuvari",
+  "macEngineerProductRepo": "engurulabory/enguru-mac-engineer",
+  "roles": {
+    "OSi": "LOCAL_FACTORY",
+    "MacEngineer": "ENGINEERING_EXECUTION_MOTOR",
+    "ZEKU": "LEAD_PILOT",
+    "MainCockpit": "PRIMARY_WORK_INTERFACE",
+    "PiLive": "READ_ONLY_PROGRESS_AND_ALERT_OBSERVATION",
+    "ProgressCore": "EXISTING_SINGLE_SOURCE",
+    "DoneCheck": "EXISTING_OFFICIAL_GATE",
+    "HumanThreshold": "OWNER_AUTHORITY"
+  },
+  "pilotProfiles": [
+    "ZEKU",
+    "ATLAS",
+    "FORGE",
+    "ASTRA",
+    "NEURON",
+    "SENTINEL",
+    "FORMA"
+  ],
+  "pilivePresentations": [
+    "STANDALONE_MAC_APP",
+    "MAIN_COCKPIT_OPEN_CLOSE_MODAL"
+  ],
+  "sharedModelInvariant": "same canonical project set, source SHA/revision, projectionDigest for equivalent snapshot; render timestamps may differ",
+  "noNewProgressCore": true,
+  "noNewCounter": true,
+  "noNewIssuer": true,
+  "twinAxes": [
+    "repoBranchCommitDirty",
+    "sourceSha256",
+    "dependencyToolchain",
+    "sameInputOutputDigest",
+    "runtimeProvenance",
+    "securityAuthority",
+    "restartRollback",
+    "independentReceiptAndReview"
+  ],
+  "gitHubSnapshot": {
+    "controlMain": "8947cb6c240a12950be1f8be9e186d0ecbfa3022",
+    "macEngineerProductMain": "c6ef1555a48beeff94a85cab316c80b3fa60f9c5",
+    "pilivePR": 241,
+    "zulfikarPR": 242
+  },
+  "osiLiveReadback": "HOLD_PENDING_REAL_MAC_OBSERVATION",
+  "gates": [
+    "GITHUB_SOURCE_TEST_REVIEW",
+    "OSI_SHA_PARITY",
+    "REAL_NATIVE_RUN",
+    "PILIVE_STANDALONE_U01_U12",
+    "PILIVE_COCKPIT_MODAL_SEPARATE",
+    "INDEPENDENT_FIELD",
+    "DONECHECK",
+    "HUMAN_THRESHOLD",
+    "VERIFIED_FINISH",
+    "TEMP_GITHUB_EXECUTION_RETIREMENT"
+  ],
+  "workResponseOrder": [
+    "real_execution",
+    "technical_evidence_and_next_terminal",
+    "last_mini_manager_report_only"
+  ],
+  "cleanupPolicy": {
+    "deletionsNow": 0,
+    "eligibleAfterOwnerApproval": "temporary review branches and temporary working files",
+    "keep": "canonical product source and necessary audit/provenance, rebuild and rollback route"
+  },
+  "osiMutations": 0,
+  "productAcceptance": "HOLD",
+  "verifiedFinish": "HOLD"
+}
