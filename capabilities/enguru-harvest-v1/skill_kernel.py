@@ -67,7 +67,14 @@ def execute(operation, payload):
         ids=payload.get("identifiers")
         if not isinstance(ids,list) or not all(isinstance(x,str) and x for x in ids):
             return result("HOLD","INVALID_IDENTIFIERS")
-        dup=sorted({x for x in ids if ids.count(x)>1})
+        seen=set()
+        repeated=set()
+        for identifier in ids:
+            if identifier in seen:
+                repeated.add(identifier)
+            else:
+                seen.add(identifier)
+        dup=sorted(repeated)
         return result("HOLD" if dup else "UNIQUE","DUPLICATES" if dup else "NO_DUPLICATES",duplicates=dup)
     if operation == "license-triage":
         value=payload.get("license_status")
