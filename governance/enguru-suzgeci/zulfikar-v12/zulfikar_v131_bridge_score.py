@@ -61,7 +61,7 @@ def assess_github():
        "B07":hold(fake_owner,"HOLD_OWNER_ISSUER") and hold(fake_finish,"HOLD_PREMATURE_AUTHORITY"),
        "B08":hold(bad_dep,"HOLD_DEPENDENCY_PROVENANCE_REVIEW_REQUIRED") and hold(fake_resume,"HOLD_RESUME_PROOF_REQUIRED"),
        "B09":reg==bridge.assess(task,bindings,actions,head,sha) and reg["realTaskExecuted"] is False and reg["officialVerifiedFinish"]=="HOLD",
-       "B10":proc.returncode==0 and "Ran 27 tests" in proc.stderr and "OK" in proc.stderr,
+       "B10":proc.returncode==0 and "Ran 35 tests" in proc.stderr and "OK" in proc.stderr,
     }
     output={
       "schema":"enguru.zulfikar.bridge-github-score/v1.3.1",
