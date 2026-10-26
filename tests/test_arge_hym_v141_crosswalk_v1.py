@@ -26,10 +26,11 @@ def fixtures():
     pins={k:hashlib.sha256(v).hexdigest() for k,v in raw.items()}
     return h,c,raw,pins
 
-def evaluate(h=None,c=None,raw=None,pins=None):
+_MISSING=object()
+def evaluate(h=_MISSING,c=_MISSING,raw=None,pins=None):
     baseh,basec,braw,bpins=fixtures()
-    return m.assess(baseh if h is None else h,
-                    basec if c is None else c,
+    return m.assess(baseh if h is _MISSING else h,
+                    basec if c is _MISSING else c,
                     fetcher=lambda name:(braw if raw is None else raw)[name],
                     pins=bpins if pins is None else pins)
 
