@@ -141,6 +141,27 @@ jobs:
           assert r['productVerifiedFinish']=='AWAIT_AUTHORIZED_EVIDENCE'
           print('ZULFIKAR_UNIVERSAL_POLICY_GITHUB=100/100; 1_TO_99=ITERATE; FIELD=AWAIT_AUTHORIZED_EVIDENCE')
           PY
+      - name: Ten capability source/evidence routing and bounded repair loop (3 rounds)
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: |
+          python -m py_compile zulfikar_v131_ten_capabilities.py
+          for cycle in 1 2 3; do
+            echo "ZULFIKAR_TEN_CAPABILITY_ROUND=$cycle"
+            python -B -m unittest -v test_zulfikar_v131_ten_capabilities
+          done
+          python -B zulfikar_v131_ten_capabilities.py > "$RUNNER_TEMP/z131_ten_capability_sources.json"
+          python - "$RUNNER_TEMP/z131_ten_capability_sources.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1]))
+          assert r['checksPassed']==r['checksRequired']==10
+          assert r['sourceRoutesDecision']=='TEN_SOURCE_ROUTES_VERIFIED_CI_REVIEW_REQUIRED'
+          assert r['fullyVerifiedCapabilityCount']==0
+          assert r['verifiedFullCapabilityPass'] is False
+          assert r['acceptedOverallScore'] is None
+          assert r['firstStage100CannotAutoAcceptLaterStages'] is True
+          assert r['officialVerifiedFinish']=='AWAIT_AUTHORIZED_DONECHECK_HUMAN_THRESHOLD'
+          print('TEN_CAPABILITY_SOURCE_ROUTES=10/10; REAL_CAPABILITY_FINISH=PENDING')
+          PY
       - name: Audit weighted overall readiness without false 100
         working-directory: governance/enguru-suzgeci/zulfikar-v12
         run: |
@@ -242,7 +263,8 @@ jobs:
             'githubEngine1':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_real_github_1.json',
             'githubEngine2':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_real_github_2.json',
             'githubEngine3':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_real_github_3.json',
-            'universalPolicy':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_universal_policy.json'
+            'universalPolicy':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_universal_policy.json',
+            'tenCapabilityRoutes':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_ten_capability_sources.json'
           }
           evidence={
             'schema':'enguru.zulfikar.github-run-provenance/v1',
@@ -271,5 +293,6 @@ jobs:
             ${{ runner.temp }}/z131_real_github_2.json
             ${{ runner.temp }}/z131_real_github_3.json
             ${{ runner.temp }}/z131_universal_policy.json
+            ${{ runner.temp }}/z131_ten_capability_sources.json
             ${{ runner.temp }}/z131_run_provenance.json
           retention-days: 14
