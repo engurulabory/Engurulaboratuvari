@@ -33,6 +33,7 @@ SOURCES=(
     "PILOT_APPLICATION_PREP_V141.json","GITHUB_APPLICATION_PREP_V141.md",
     "OSI_PREFIELD_PREP_V141.md","TWO_PREPARATION_100_V141.json",
     "verify_two_preparations_v141.py","test_two_preparations_v141.py",
+    "osi_entry_preparation.json","osi_preflight_contract.py","test_osi_preflight_contract.py",
     "test_upstream_hypothesis.py","run_real_upstream_trials.py",
     "run_second_upstream_trials.py","run_lm_eval_fixture.py","promptfooconfig.json","check_promptfoo_receipt.py","mcp_typescript_trial.mjs","mcp_reference_stdio_trial.mjs","run_anthropic_skills_trial.py",
 )
