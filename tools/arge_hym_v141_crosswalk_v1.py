@@ -170,6 +170,7 @@ A01_RESPONSIBILITIES=("inventory","evidence_trace","authority","upstream",
 A01_LEVELS=("PUBLIC_SOURCE_CANDIDATES","ORIGINAL_MATRIX_HOLD","REAL_GRANT_HOLD",
             "PUBLIC_SOURCE_PARTIAL","CUSTOMER_DEPLOYMENT_HOLD","EXTERNAL_E5_HOLD",
             "FIELD_GUARANTEES_HOLD","TCO_MEASUREMENT_HOLD","BLOCK01_FINISH_HOLD")
+A01_IDENTITY_PIN="b476ec6f9a96c34e4ae7d50c7d4d5bf233946c4d19b71fa55df0e9d90d65e450"
 A01_FORBID=("CUSTOMER_DEPLOYMENT_PASS","E5_PASS","A03_REAL_GRANT_PASS",
             "A04_IMPLEMENTED_RUNTIME_PASS","DONECHECK_VERIFIED_FINISH",
             "MAC_OSI_FIELD_PASS")
@@ -242,6 +243,12 @@ def assess_a01_architecture(m,h,c,source_proof,foundations,method):
         for q in components))
     cases_ids=[x.get("case_id") for x in items if isinstance(x,dict)]
     domains=[x.get("domain") for x in items if isinstance(x,dict)]
+    case_identity=[[x.get("case_id"),x.get("domain"),x.get("customer"),x.get("technology")]
+                   for x in items if isinstance(x,dict)]
+    identity_digest=hashlib.sha256(
+        json.dumps(case_identity,ensure_ascii=False,separators=(",",":")).encode("utf8")
+    ).hexdigest() if all(all(isinstance(v,str) and v for v in row)
+                           for row in case_identity) and len(case_identity)==18 else None
     hold_cases=(len(items)==18 and all(isinstance(x,dict) and
         x.get("independent_e5")=="HOLD" and x.get("exact_customer_deployment_sha")=="HOLD"
         for x in items))
@@ -271,6 +278,11 @@ def assess_a01_architecture(m,h,c,source_proof,foundations,method):
           and m.get("criteria_ids")==[f"K{i:02d}" for i in range(1,14)]
           and m.get("domain_counts")==DOMAIN_3
           and cases_ids==[f"{i:02d}" for i in range(1,19)]
+          and identity_digest==A01_IDENTITY_PIN
+          and sources.get("original_case_identity_sha256")==A01_IDENTITY_PIN
+          and sources.get("identity_drift_policy")=="HOLD_REQUIRES_EXPLICIT_V19_SOURCE_RECONCILIATION"
+          and sources.get("original_case_identity_source")==
+              "ENGURU_ARGE_BLOCK01_18_CASE_RECONCILIATION_V428.json; source_audit asserts V19 CSV reconciliation; this check does not independently reread V19 CSV"
           and {domain:domains.count(domain) for domain in DOMAIN_3}==DOMAIN_3
           and len(domains)==18 and set(domains)==set(DOMAIN_3)
           and hold_cases and baseline.get("rows")==234 and baseline.get("cases")==18
@@ -299,6 +311,7 @@ def assess_a01_architecture(m,h,c,source_proof,foundations,method):
       "AD05_recovery_plan":(
           recovery.get("source_drift")=="HOLD_SOURCE_OR_CONTRACT_DRIFT and repeat exact-HEAD CI"
           and recovery.get("missing_case_or_K")=="HOLD_A01_ORIGINAL_MATRIX_INTEGRITY"
+          and recovery.get("customer_technology_swap")=="HOLD_A01_CASE_IDENTITY_SHA256"
           and recovery.get("authority_forgery")=="HOLD_EXISTING_ISSUER"
           and recovery.get("customer_or_E5_forgery")=="HOLD_EXTERNAL_EVIDENCE_MISSING"
           and recovery.get("failed_ci")=="HOLD_REPAIR_SOURCE_TEST_THEN_NEW_EXACT_HEAD_PROOF"
