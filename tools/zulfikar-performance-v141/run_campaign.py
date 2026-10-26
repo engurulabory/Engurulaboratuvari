@@ -101,15 +101,36 @@ def evidence(d):
 
 FUNCS=[cli,db,archive,loop,evidence]
 def run(output):
- output.mkdir(parents=True,exist_ok=True);results=[]
+ output.mkdir(parents=True,exist_ok=True);results=[];orchestrations=[]
  for i,fn in enumerate(FUNCS,1):
   with tempfile.TemporaryDirectory(prefix='zulfikar-real-') as tmp:
-   d=Path(tmp);b,f,r,checks=fn(d)
-   row={'taskId':f'R{i:02d}','family':fn.__name__,'BASELINE':b,'ADVERSARIAL':f,'REPAIR_RETEST':r,'semanticChecks':checks,'pass':all(checks) and f['faultObserved'],'scope':'DISPOSABLE_REAL_RUNTIME_ONLY','officialVerifiedFinish':'HOLD'}
-   # Preserve actual artifact bytes, not ephemeral paths alone.
+   d=Path(tmp);journal_dir=d/'coordinator';journal_dir.mkdir()
+   task_source=d/'task-contract.json'
+   plan=json.loads(Path(__file__).with_name('PLAN.json').read_text())
+   dump(task_source,plan['tasks'][i-1]);receipt=d/'task-result.json'
+   goal=Contract(f'ZF.R{i:02d}.COORDINATED',plan['tasks'][i-1]['outcome'],'T01',('measured_task_result',),h(task_source))
+   def evaluate(state,contract):
+    return {'measured_task_result':receipt.exists() and state.get('completed') is True and json.loads(receipt.read_text())['pass'] is True}
+   def repair(state,gaps,contract):
+    b,f,r,checks=fn(d)
+    row={'taskId':f'R{i:02d}','family':fn.__name__,'BASELINE':b,'ADVERSARIAL':f,'REPAIR_RETEST':r,'semanticChecks':checks,'pass':all(checks) and f['faultObserved'],'scope':'DISPOSABLE_REAL_RUNTIME_ONLY','officialVerifiedFinish':'HOLD'}
+    dump(receipt,row);return {'completed':True}
+   def test(state,contract):
+    observed=proc([sys.executable,'-B',str(Path(__file__).with_name('verify_task.py')),str(d),str(i)])
+    return {'processObserved':True,'exitCode':observed['exitCode'],'scope':'LOCAL_DISPOSABLE_PROOF','artifactSha256':h(receipt),'independentProcess':observed}
+   def verify(state,contract,proof):
+    check=proc(['sha256sum',str(receipt)])
+    return check['exitCode']==0 and check['stdout'].split()[0]==proof['artifactSha256'] and json.loads(receipt.read_text())['pass'] is True
+   orchestration=execute(goal,{'completed':False},LocalJournal(journal_dir),simulator=lambda *_:{'valid':True},evaluator=evaluate,repairer=repair,real_tester=test,independent_verifier=verify,source_probe=lambda c:h(task_source)==c['sourcePin'],source_file=task_source)
+   orchestrations.append(orchestration)
+   row=json.loads(receipt.read_text());row['domCoordinator']=orchestration
+   row['pass']=row['pass'] and orchestration.get('diagnostic')==100
    dest=output/f'R{i:02d}';dest.mkdir(exist_ok=True)
-   for p in d.iterdir():
-    if p.is_file() and not p.name.startswith('.'): (dest/p.name).write_bytes(p.read_bytes())
+   for artifact in d.iterdir():
+    if artifact.is_file() and not artifact.name.startswith('.'): (dest/artifact.name).write_bytes(artifact.read_bytes())
+   (dest/'coordinator').mkdir(exist_ok=True)
+   for artifact in journal_dir.iterdir():
+    if artifact.is_file() and not artifact.name.startswith('.'): (dest/'coordinator'/artifact.name).write_bytes(artifact.read_bytes())
    dump(output/f'R{i:02d}.json',row);results.append(row)
  summary={'tasks':5,'passed':sum(r['pass'] for r in results),'results':results,'sourceEngineSha256':h(DOM/'engine.py'),'planSha256':h(Path(__file__).with_name('PLAN.json')),'independentHumanAcceptance':'HOLD','verifiedFinish':'HOLD'}
  dump(output/'summary.json',summary)

@@ -7,6 +7,8 @@ assert [x['taskId'] for x in s['results']]==['R01','R02','R03','R04','R05']
 for r in s['results']:
  assert r['pass'] is True and all(r['semanticChecks']) and r['ADVERSARIAL']['faultObserved'] is True
  assert all(k in r for k in ('BASELINE','ADVERSARIAL','REPAIR_RETEST'))
+ assert r['domCoordinator']['diagnostic']==100 and r['domCoordinator']['stagePassIssued'] is False
+ assert all(x['realTestVerified'] is True for x in r['domCoordinator']['rounds'])
  for phase in ('BASELINE','REPAIR_RETEST'):
   assert r[phase]
 # Independently invoke repaired CLI rather than accepting the recorded claim.
