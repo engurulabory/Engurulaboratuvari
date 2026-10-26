@@ -200,7 +200,7 @@ class SingleAuthorityTests(unittest.TestCase):
                 p=root/f"receipt_{i}.json"
                 item=json.loads(p.read_text(encoding="utf8"))
                 item["taskId"]=task_id
-                bytes_=(json.dumps(item,sort_keys=True)+"\\n").encode("utf8")
+                bytes_=json.dumps(item,sort_keys=True).encode("utf8")
                 p.write_bytes(bytes_)
                 bundle["tasks"][i-1]["taskId"]=task_id
                 bundle["tasks"][i-1]["receiptSha256"]=hashlib.sha256(bytes_).hexdigest()
