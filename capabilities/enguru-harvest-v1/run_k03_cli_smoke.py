@@ -3,16 +3,32 @@
 GitHub runner installs into ephemeral isolated temp root with npm scripts disabled.
 This is a CLI *smoke test*, not an authorized Codex/Claude agent task.
 """
+import errno
 import json
 import os
+import shutil
 import subprocess
 from pathlib import Path
 
 HERE=Path(__file__).resolve().parent
 def run(command, timeout=50):
-    cp=subprocess.run(command,text=True,capture_output=True,timeout=timeout,
-                      env={k:v for k,v in os.environ.items() if k in ("PATH","HOME","LANG","LC_ALL","TERM","CI")})
-    return {"returncode":cp.returncode,"stdout":cp.stdout[-600:],"stderr":cp.stderr[-500:]}
+    env={k:v for k,v in os.environ.items() if k in ("PATH","HOME","LANG","LC_ALL","TERM","CI")}
+    try:
+        cp=subprocess.run(command,text=True,capture_output=True,timeout=timeout,env=env)
+    except OSError as exc:
+        # Deprecated npm Claude CLI can ship a JS entrypoint without a shebang
+        # on Linux. Explicit Node invocation is equivalent to npm's wrapper.
+        if exc.errno==errno.ENOEXEC and command[0]=="claude":
+            file=shutil.which("claude",path=env.get("PATH"))
+            if file:
+                command=["node",file,*command[1:]]
+                cp=subprocess.run(command,text=True,capture_output=True,timeout=timeout,env=env)
+            else:
+                raise
+        else:
+            raise
+    return {"returncode":cp.returncode,"stdout":cp.stdout[-600:],
+            "stderr":cp.stderr[-500:],"invoked_with_node":command[0]=="node"}
 
 def main():
     out={"schema":"enguru.harvest.k03-cli-smoke/v1","scope":"GITHUB_EPHEMERAL_VERSION_ONLY",
