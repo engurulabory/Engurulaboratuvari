@@ -102,7 +102,7 @@ class A04RemoteSourceTests(unittest.TestCase):
                         location=url.replace(parsed.path.split("/")[3],
                                              "f"*40,1)
                     elif mode=="other-file":
-                        location=url.rsplit("/",1)[0]+"/SECURITY.md"
+                        location=url+"-SPOOFED"
                     elif mode=="same-host-userinfo":
                         location=url.replace("raw.githubusercontent.com",
                                              "attacker@raw.githubusercontent.com",1)
