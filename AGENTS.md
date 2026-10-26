@@ -18,6 +18,9 @@ Kaynak/izin/kanıt erişimi sınırlıysa sonucu `DEVAM_IYILESTIRME` veya `YETKI
 **Zülfikar tek otorite:** Zülfikar'ın özgün altı alanlı kabul sözleşmesi `governance/enguru-suzgeci/zulfikar-v12/ZULFIKAR_V131_OPERATIONAL_SCORECARD_V1.json` korunur.
 Bu evrensel yöntem ikinci puan cetveli değildir. Tarihsel 91 yalnız teşhis kaydıdır, kabul hükmü değildir. Mevcut Work ve Mac Engineer yürütücülerini kullan; ikinci motor/issuer/yazıcı açma; ücretli API zorunluluğu oluşturma.
 
+**Zülfikar son 10 yetenek kapsamı:** Altı alanlı mimari omurga; simülasyon; saha araştırması ve puanlama; iyileştirme döngüsü; uçtan uca gerçek iş bitirme; yetkili finiş; hedef–sonuç bağı; ana bağlamın korunması; iç teknik çalışma; yönetişim.
+Bu on yetenek, aynı altı alanlı özgün kabul kaynağındaki `canonicalClosure.tenCapabilityMap` üzerinden kaynaklara, gerçek görevlere ve ayrı kanıtlara bağlanır. İlk hedef/mimari hazırlığı 100/100 olduğunda sonraki adımlara dayanak sağlanır; **sonraki yeteneklerin PASS sonucu kendi test, yetki ve gerçek kanıtına bağlıdır**. Her adımda 1–99 yalnız iyileştirme teşhisidir.
+
 ## 1. Evrensel kanıtlı tamamlama
 
 Önce [ENGÜRÜ Evrensel Kanıtlı Tamamlama Talimatı™ V3](governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md) metnini oku. Sonra [SHA-256 kilit kaydı](governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_V3_LOCK.json) ile kaynak bütünlüğünü doğrula. V3 **bütün ENGÜRÜ İCRA oturumlarının genel çalışma disiplini**; ürünün kendi yetkili canonical sözleşmesi ve insan onayları önceliklidir.
