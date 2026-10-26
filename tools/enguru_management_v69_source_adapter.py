@@ -30,8 +30,27 @@ def reconcile(tasks_bytes, gate_bytes, source_ref, source_commit):
                       "dependencies":t.get("dependencies",[]),"source_commit":source_commit,
                       "evidence":"REQUIRES_INDEPENDENT_TASK_RECEIPT","verifier":"NOT_CONFIRMED","authority":"OWNER_RESERVED",
                       "management_state":"OBSERVED_ONLY"})
-    if any(not isinstance(x["dependencies"],list) or any(d not in seen for d in x["dependencies"]) for x in tasks):
+    if any(not isinstance(x["dependencies"],list) or
+           any(not isinstance(d,str) or d not in seen for d in x["dependencies"]) or
+           len(set(x["dependencies"])) != len(x["dependencies"]) for x in tasks):
         return {"state":"HOLD_GUVENLI_DUR","reason":"DEPENDENCY_CONTRACT_INVALID"}
+    # Kahn traversal also handles large real worklists without recursion limits.
+    pending = {x["task_id"]: len(x["dependencies"]) for x in tasks}
+    children = {key: [] for key in pending}
+    for x in tasks:
+        for dependency in x["dependencies"]:
+            children[dependency].append(x["task_id"])
+    ready = [key for key,count in pending.items() if count == 0]
+    visited = 0
+    while ready:
+        key = ready.pop()
+        visited += 1
+        for child in children[key]:
+            pending[child] -= 1
+            if pending[child] == 0:
+                ready.append(child)
+    if visited != len(tasks):
+        return {"state":"HOLD_GUVENLI_DUR","reason":"DEPENDENCY_CYCLE"}
     return {"state":"PASS_SOURCE_BOUND_MANAGEMENT_INVENTORY","task_count":len(tasks),
             "tasks":tasks,"source_ref":source_ref,"source_commit":source_commit,
             "tasks_sha256":sha256(tasks_bytes),"gate_sha256":sha256(gate_bytes),

@@ -15,6 +15,26 @@ def valid():
     return json.dumps(t).encode(),json.dumps(g).encode()
 
 class AdapterTests(unittest.TestCase):
+    def test_cycle_and_duplicate_dependency_hold(self):
+        t,g=valid();x=json.loads(t);other={**x['tasks'][0],'id':'TASK_B','dependencies':['TASK_A']}
+        x['tasks'][0]['dependencies']=['TASK_B'];x['tasks'].append(other)
+        self.assertEqual(m.reconcile(json.dumps(x).encode(),g,'main',COMMIT)['reason'],'DEPENDENCY_CYCLE')
+        x['tasks'][0]['dependencies']=['TASK_B','TASK_B'];x['tasks'][1]['dependencies']=[]
+        self.assertEqual(m.reconcile(json.dumps(x).encode(),g,'main',COMMIT)['reason'],'DEPENDENCY_CONTRACT_INVALID')
+
+    def test_malformed_dependency_hold(self):
+        t,g=valid();x=json.loads(t)
+        for deps in (None,'TASK_A',[{}],[1]):
+            x['tasks'][0]['dependencies']=deps
+            self.assertEqual(m.reconcile(json.dumps(x).encode(),g,'main',COMMIT)['reason'],'DEPENDENCY_CONTRACT_INVALID')
+
+    def test_long_valid_dag_without_recursion_limit(self):
+        t,g=valid();template=json.loads(t)['tasks'][0]
+        tasks=[{**template,'id':f'TASK_{i}','dependencies':[] if i==0 else [f'TASK_{i-1}']} for i in range(1500)]
+        result=m.reconcile(json.dumps({'tasks':tasks}).encode(),g,'main',COMMIT)
+        self.assertEqual(result['task_count'],1500)
+        self.assertEqual(result['independently_accepted'],0)
+
     def test_source_bound_inventory(self):
         t,g=valid();r=m.reconcile(t,g,"main",COMMIT)
         self.assertEqual(r["state"],"PASS_SOURCE_BOUND_MANAGEMENT_INVENTORY")
