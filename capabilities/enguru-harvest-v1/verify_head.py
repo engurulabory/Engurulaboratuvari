@@ -27,6 +27,7 @@ SOURCES=(
     "test_zulfikar_v141_reuse.py","ZULFIKAR_V141_EXECUTION_AND_GATES.md",
     "V141_SESSION_ACCEPTANCE_V1.json","test_v141_session_acceptance.py",
     "run_a05_real_github_tasks.py","test_a05_real_github_tasks.py",
+    "verify_live_upstream_license_pins.py","test_live_upstream_license_pins.py",
     "test_upstream_hypothesis.py","run_real_upstream_trials.py",
     "run_second_upstream_trials.py","run_lm_eval_fixture.py","promptfooconfig.json","check_promptfoo_receipt.py","mcp_typescript_trial.mjs","mcp_reference_stdio_trial.mjs","run_anthropic_skills_trial.py",
 )
