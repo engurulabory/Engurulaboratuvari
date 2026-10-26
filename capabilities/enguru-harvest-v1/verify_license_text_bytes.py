@@ -24,7 +24,7 @@ PATHS={"LICENSE","LICENSE.md","LICENSE.txt","LICENSE-MIT"}
 MAX_BYTES=250_000
 
 def blob_sha(raw):
-    return hashlib.sha1(b"blob "+str(len(raw)).encode("ascii")+b"\\0"+raw).hexdigest()
+    return hashlib.sha1(b"blob "+str(len(raw)).encode("ascii")+bytes([0])+raw).hexdigest()
 
 def classify_risk(repository, text):
     # These are provisional risk flags, not SPDX determinations.
@@ -63,7 +63,7 @@ def validate_license_bytes(pin, license_row, response):
     if response.get("encoding")!="base64" or not isinstance(response.get("content"),str):
         return {"state":"HOLD_FILE_ENCODING"}
     try:
-        raw=base64.b64decode(response["content"],validate=True)
+        raw=base64.b64decode("".join(response["content"].split()),validate=True)
         decoded=raw.decode("utf-8")
     except (ValueError,UnicodeDecodeError,binascii.Error):
         return {"state":"HOLD_LICENSE_BYTES"}
