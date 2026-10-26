@@ -1,0 +1,43 @@
+name: PiLive SwiftUI presentation state
+on:
+  pull_request:
+    paths:
+      - 'swift/PiLivePresentation/**'
+      - 'tools/pilive_screen_wire_v1.py'
+      - 'tests/test_pilive_screen_wire_v1.py'
+      - 'tests/test_pilive_native_portfolio_review_v1.py'
+      - 'tests/fixtures/pilive_native_portfolio_review_v1.json'
+      - '.github/workflows/pilive-presentation-state-v1.yml'
+permissions:
+  contents: read
+jobs:
+  swift-state:
+    runs-on: macos-15
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify native transport fixture and reviewed regression
+        run: |
+          python3 -m unittest discover -s tests -p 'test_pilive_native_portfolio_review_v1.py' -v
+          python3 -m unittest discover -s tests -p 'test_pilive_screen_wire_v1.py' -v
+          python3 - <<'PY'
+          import sys
+          from pathlib import Path
+          sys.path.insert(0, 'tests')
+          from test_pilive_screen_wire_v1 import native_model
+          from tools.pilive_screen_wire_v1 import export_wire
+          assert export_wire(native_model()) == Path('swift/PiLivePresentation/Tests/PiLivePresentationTests/Fixtures/native-wire.json').read_bytes()
+          PY
+      - name: Record CI toolchain (not installed OSi binary provenance)
+        run: swift --version
+      - name: Three adversarial Swift state rounds
+        working-directory: swift/PiLivePresentation
+        run: |
+          set -e
+          for cycle in 1 2 3; do
+            echo "SWIFT_STATE_CYCLE=$cycle"
+            swift test
+          done

@@ -144,3 +144,7 @@ Core API hatalarında bounded stderr yalnız özel makbuza alınır; ekran model
 U01 güncel binary/toolchain alt gözlemi PASS; tarihsel build bağı açık. U02/U03/U04 kaynaklı satır, sayaç ve aktif odak alt verisi PASS; UI açık. U05 kimlik tekilliği PASS; beş alan sınıflaması açık. U09 kaynak/API/model zamanı PASS; render zamanı açık. U10 gerçek native model replay PASS; UI/restart açık. U12 receipt/paket/Core/model izi PASS; bağımsız GUI ve yetkili kabul açık. U06/U07/U08/U11 ekran/saha şartları HOLD.
 
 **Sonraki tek hareket:** Nihai Sessiz Orman Cockpit™ ekran sözleşmesi geldiğinde doğrulanmış veri sınırını SwiftUI'ya bağlamak. Yeni portföy gözlemi gerekmiyor. P02 0/12, DoneCheck 0/4, saha/G3/Human Threshold ve Verified Finish ayrı HOLD.
+
+## SwiftUI durum hazırlığı — VM01–VM06
+
+Kaynak UX PR245 @ c780002c66ad916d2c3c0a587085a32e2f0b68a8; 11 boyut/110 şart hedefi korunuyor. VM01 transport, VM02 revision/pin/digest/tam-wire-SHA doğrulama, VM03 atomic state/cache/tazelik/request generation, VM04 dört ekran state'i, VM05 SwiftUI ObservableObject/erişilebilir ad/focus intent, VM06 karşıt testler oluşturuldu. Python 224/224 ×3 PASS. Swift derleme/testi macOS CI'de doğrulanacak; nihai native UI ve G1.D04 HOLD. Ayrıntı SWIFTUI_STATE_PREPARATION_V1.md. Sonraki hareket: exact-head macOS Swift test kanıtı, ardından kabul edilmiş final ekran sözleşmesiyle görsel entegrasyon.
