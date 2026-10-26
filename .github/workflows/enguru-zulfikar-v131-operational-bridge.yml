@@ -45,6 +45,25 @@ jobs:
           assert r['officialVerifiedFinish']=='HOLD'
           print('BRIDGE_GITHUB_SOURCE_AND_CLI=100/100; REAL_OPERATIONS=HOLD')
           PY
+      - name: Audit weighted overall readiness without false 100
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: |
+          python - <<'PY'
+          import json
+          x=json.load(open('ZULFIKAR_V131_OPERATIONAL_SCORECARD_V1.json'))
+          ds=x['domains']
+          assert sum(d['weight'] for d in ds)==100
+          assert len({d['id'] for d in ds})==6
+          a=sum(d['weight']*d['baseline'] for d in ds)/100
+          b=sum(d['weight']*d['review'] for d in ds)/100
+          assert a==87.5 and b==91.25
+          assert x['roundedPreviousOverall88']==88
+          assert x['roundedCurrentOverall']==91
+          assert x['targetWeightedOverall']==100
+          assert x['horizon']['macOsiOperationalAcceptance']=='HOLD'
+          assert x['horizon']['realTaskPassesObservedInThisCampaign']==0
+          print('OPERATIONAL_READINESS_JUDGMENT=91/100; GITHUB_BRIDGE_GATE=100/100; MAC=HOLD')
+          PY
       - name: Preserve prior V1.3.1 verified goal and GitHub code gates
         working-directory: governance/enguru-suzgeci/zulfikar-v12
         run: |
