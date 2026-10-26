@@ -129,6 +129,16 @@ class UmbrellaTests(unittest.TestCase):
         g["universalUmbrella"]["policyRef"]="NOT_CANONICAL"
         self.assertFalse(policy.controls(self.p,self.s,self.agents,g)["U01_USER_GOAL_LOCKED"])
 
+    def test_working_loop_must_stop_at_verified_100(self):
+        p=copy.deepcopy(self.p)
+        p["loopArchitecture"]["stopAtVerified100"]=False
+        self.assertFalse(policy.controls(p,self.s,self.agents,self.goal)["U03_ITERATIVE_LOOP_LOCKED"])
+
+    def test_working_loop_cannot_skip_real_test(self):
+        p=copy.deepcopy(self.p)
+        p["loopArchitecture"]["orderedPhases"].remove("REAL_TEST")
+        self.assertFalse(policy.controls(p,self.s,self.agents,self.goal)["U03_ITERATIVE_LOOP_LOCKED"])
+
     def test_full_policy_cli_source_bound(self):
         proc=subprocess.run([sys.executable,"-B",str(HERE/"zulfikar_v131_universal_100_gate.py")],
                              capture_output=True,text=True,cwd=HERE,timeout=30)
