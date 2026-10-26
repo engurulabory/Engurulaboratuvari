@@ -78,3 +78,35 @@ jobs:
           assert b['official_finish']=='HOLD'
           print('EXISTING_ZULFIKAR_V131_GITHUB=100/100; OSI=HOLD')
           PY
+      - name: Export source-only GitHub evidence
+        run: |
+          python - <<'PY'
+          import hashlib,json,os,pathlib
+          files={
+            'bridgeScore':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_bridge_score.json',
+            'goal':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_goal.json',
+            'infra':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_infra.json'
+          }
+          evidence={
+            'schema':'enguru.zulfikar.github-run-provenance/v1',
+            'githubRunId':os.environ['GITHUB_RUN_ID'],
+            'headSha':os.environ['GITHUB_SHA'],
+            'files':{k:hashlib.sha256(v.read_bytes()).hexdigest() for k,v in files.items()},
+            'scope':'GITHUB_CODE_GATE_ONLY',
+            'realMacExecution':'NOT_RUN',
+            'actualUserGoalOutcome':'NOT_MEASURED',
+            'verifiedFinish':'HOLD'
+          }
+          outfile=pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_run_provenance.json'
+          outfile.write_text(json.dumps(evidence,sort_keys=True,indent=2)+'\n',encoding='utf8')
+          print('GITHUB_EVIDENCE_SHA256='+hashlib.sha256(outfile.read_bytes()).hexdigest())
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: zulfikar-v131-github-review-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/z131_bridge_score.json
+            ${{ runner.temp }}/z131_goal.json
+            ${{ runner.temp }}/z131_infra.json
+            ${{ runner.temp }}/z131_run_provenance.json
+          retention-days: 14
