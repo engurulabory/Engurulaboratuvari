@@ -6,6 +6,7 @@ Human Threshold, DoneCheck, or canonical VERIFIED_FINISH.
 """
 from __future__ import annotations
 import json
+import hashlib
 from pathlib import Path
 import subprocess
 import sys
@@ -26,6 +27,19 @@ PHASES=("SOURCE_IDENTITY","OWNER_SCOPE_CHECK","REGISTERED_PREFLIGHT","HANDOFF_EX
 PROOF_FIELDS=("taskId","contractId","sourceHead","preStateSha256","registeredHandler","authorityRecord",
               "testCommandAndExit","postStateSha256","actualOutputDigest","workReceiptSha256",
               "independentVerify","noFalsePass","idempotencyEvidence","ownerDecision")
+
+
+def tracked_digest(relative,head):
+    """Hash committed file bytes of any type, incl .py and .json; no JSON parsing."""
+    p=Path(relative)
+    if p.is_absolute() or any(x in ("..",".") for x in p.parts) or not p.parts or p.parts[0]!="governance":
+        raise ValueError("UNTRUSTED_PIN_PATH")
+    data=bridge.read_no_symlink(ROOT,relative,2_000_000)
+    cmd=subprocess.run(["git","-C",str(ROOT),"show",head+":"+relative],
+                       capture_output=True,timeout=15,check=False)
+    if cmd.returncode!=0 or cmd.stdout!=data or bridge.head_sha(ROOT)!=head:
+        raise ValueError("SOURCE_PIN_DRIFT")
+    return hashlib.sha256(data).hexdigest()
 
 
 def score_domain(checks):
@@ -142,8 +156,7 @@ def main():
     head=bridge.head_sha(ROOT)
     sources={}
     for name in config.get("technicalSources",[]):
-        _,digest=bridge.source_read(ROOT,name)
-        sources[name]=digest
+        sources[name]=tracked_digest(name,head)
     bindings,sha_binding=bridge.source_read(ROOT,bridge.BINDING_PATH)
     actions,sha_actions=bridge.source_read(ROOT,bridge.ACTION_PATH)
     hashes={bridge.BINDING_PATH:sha_binding,bridge.ACTION_PATH:sha_actions}
