@@ -16,6 +16,7 @@ SOURCES=(
     "WORK_PACKAGES_ZULFIKAR_V13.json","test_work_packages.py","run_k01_real_benchmark.py","test_k01_benchmark.py",
     "run_k03_cli_smoke.py","test_k03_cli_contract.py",
     "k02_source_policy.py","test_k02_source_policy.py","K01_K05_BUTUNLESIK_FINIS_RAPORU.md",
+    "READINESS_SCORECARD_V1.json","test_readiness_scorecard.py","KALAN_ISLER_VE_OSI_ONCESI_PUANLAMA.md",
     "test_upstream_hypothesis.py","run_real_upstream_trials.py",
     "run_second_upstream_trials.py","run_lm_eval_fixture.py","promptfooconfig.json","check_promptfoo_receipt.py","mcp_typescript_trial.mjs","mcp_reference_stdio_trial.mjs","run_anthropic_skills_trial.py",
 )
