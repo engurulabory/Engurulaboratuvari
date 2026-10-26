@@ -4,7 +4,6 @@ This is a machine-verifiable REVIEW WORKLIST, never a legal opinion, grant,
 source adoption or permission to copy/redistribute proprietary skill assets.
 Consumes the prior GitHub-runner's 29 real license fulltext byte receipt.
 """
-import hashlib
 import json
 import re
 from pathlib import Path
