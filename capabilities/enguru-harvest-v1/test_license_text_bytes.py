@@ -95,7 +95,7 @@ class LicenseBytesTests(unittest.TestCase):
     def test_forged_license_registry_holds(self):
         registry=copy.deepcopy(REG)
         registry["observations"][0]["repository"]="forged/owner"
-        self.assertEqual(reconcile(PINS,registry,lambda p,l:None)["state"],"HOLD_REPOSITORY_SETS")
+        self.assertEqual(reconcile(PINS,registry,lambda pin,license_row:None)["state"],"HOLD_REPOSITORY_SETS")
 
 if __name__=="__main__":
     unittest.main()
