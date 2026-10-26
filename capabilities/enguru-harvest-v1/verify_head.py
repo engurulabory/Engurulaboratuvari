@@ -13,6 +13,8 @@ SOURCES=(
     "root_license_observations.json","license_gate.py","test_license_gate.py",
     "external_skill_proof_plan.json","test_external_skill_plan.py",
     "upstream_execution_coverage.json","test_upstream_execution_coverage.py",
+    "WORK_PACKAGES_ZULFIKAR_V13.json","run_k01_real_benchmark.py","test_k01_benchmark.py",
+    "run_k03_cli_smoke.py","test_k03_cli_contract.py",
     "test_upstream_hypothesis.py","run_real_upstream_trials.py",
     "run_second_upstream_trials.py","run_lm_eval_fixture.py","promptfooconfig.json","check_promptfoo_receipt.py","mcp_typescript_trial.mjs","mcp_reference_stdio_trial.mjs","run_anthropic_skills_trial.py",
 )
