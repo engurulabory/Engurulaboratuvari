@@ -9,7 +9,7 @@ BASE="capabilities/enguru-harvest-v1/"
 SOURCES=(
     "goal.json","source_candidates.json","harvest.py","evidence_gate.py",
     "skill_kernel.py","test_harvest.py","test_evidence_gate.py","test_skill_kernel.py",
-    "run_three_simulations.py","OSI_HANDOFF_PREPARATION.md","ACCEPTANCE_MATRIX.md","README.md",
+    "run_three_simulations.py","OSI_HANDOFF_PREPARATION.md","ACCEPTANCE_MATRIX.md","TECHNICAL_TRIAL_LEDGER_V1.md","README.md",
     "root_license_observations.json","license_gate.py","test_license_gate.py",
     "external_skill_proof_plan.json","test_external_skill_plan.py",
     "test_upstream_hypothesis.py","run_real_upstream_trials.py",
