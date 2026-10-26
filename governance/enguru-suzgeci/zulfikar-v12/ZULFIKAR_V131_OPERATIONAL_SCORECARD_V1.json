@@ -146,5 +146,162 @@
     ],
     "completionVerdict": "When each closure gate is independently evidenced and scored 100, all 6/6 dimensions shall be 100/100. Only then evaluate overall PASS, DoneCheck, Human Threshold and VERIFIED_FINISH with their real evidence; until then HOLD.",
     "noAutomaticPromotion": true
+  },
+  "canonicalClosure": {
+    "schema": "enguru.zulfikar.single-authority-closure/v1.3.1",
+    "authorityRole": "SOLE_SIX_DOMAIN_OPERATIONS_ACCEPTANCE_SOURCE",
+    "goal1": "REPAIR_SINGLE_CONTRACT_AND_PROVE_CLOSED_LOOP_REAL_EXECUTION_BEFORE_GOAL2",
+    "goal2": "RAISE_EACH_CAPABILITY_TO_EVIDENCED_100_AFTER_GOAL1_ACCEPTED",
+    "goal2State": "LOCKED_UNTIL_GOAL1_HUMAN_AUTHORIZED_VERIFIED_FINISH",
+    "currentState": "GOAL1_REAL_FIELD_HOLD",
+    "protected": {
+      "zeroAdditionalPaidServices": true,
+      "oneHumanOwner": true,
+      "oneActiveEngineeringWriter": true,
+      "noSecondCore": true,
+      "noSecondIssuer": true,
+      "mainMutationWithoutReview": false,
+      "macRuntimeMutationWithoutOwner": false
+    },
+    "authoritativeDomains": [
+      "GOAL",
+      "GITHUB_ENGINE",
+      "TEST_CI",
+      "GOVERNANCE",
+      "PORTABILITY",
+      "E2E_REAL"
+    ],
+    "deprecatedAsAcceptanceAuthorities": [
+      "ZULFIKAR_V131_PREPARED_FINISH_CONTRACT_V1.json",
+      "ZULFIKAR_V131_PEER_GAP_TO_100_V1.md"
+    ],
+    "previousPreparationEvidence": {
+      "scope": "PREPARED_VERIFIED_FINISH_GITHUB",
+      "domains": {
+        "OPERATIONAL_PREPARATION": 100,
+        "E2E_FINISH_PREPARATION": 100,
+        "CROSS_PROJECT_PREPARATION": 100
+      },
+      "counts": "78 TEST METHODS x THREE ROUNDS PASS, six GitHub workflows at source commit be3762660cbf88e681fabcbe19d71919870da6f6",
+      "productFinishProof": false
+    },
+    "closureOperations": [
+      {
+        "id": "ZF.G1.01",
+        "dimension": "GOVERNANCE",
+        "targetScore": 100,
+        "current": 98,
+        "executor": "EXISTING_OWNER_HUMAN_THRESHOLD",
+        "task": "Bind real Mac owner identity, scope, live issuer grant and independent verification to source-pinned task",
+        "requiredEvidence": [
+          "realMacSourceAndRuntimeIdentity",
+          "ownerAuthenticatedAuthorization",
+          "issuerGrantRegisteredInCanonical",
+          "scopeBoundSignature",
+          "independentEvidenceReconciliation"
+        ],
+        "acceptance": "OWNER_MAC_SCOPE_EVIDENCED_AND_INDEPENDENTLY_ACCEPTED",
+        "sourceStatus": "HOLD_REAL_OWNER_AUTHORITY",
+        "authorization": "HUMAN_ONLY",
+        "completion": "HOLD"
+      },
+      {
+        "id": "ZF.G1.02",
+        "dimension": "PORTABILITY",
+        "targetScore": 100,
+        "current": 90,
+        "executor": "EXISTING_MAC_ENGINEER_AND_WORK",
+        "task": "Execute three heterogeneous tasks with independently verified real outputs; freeze task cohort before results",
+        "requiredEvidence": [
+          "threeDistinctTaskFamilyManifests",
+          "threeExactSourceHeads",
+          "threeExistingScopedHandlerOrWorkGrants",
+          "threeActualOutputDigests",
+          "threeIndependentVerifications",
+          "threeTaskOwnerDecisions"
+        ],
+        "acceptance": "THREE_REAL_DISTINCT_TASKS_PASS",
+        "sourceStatus": "HOLD_THREE_REAL_TASKS",
+        "authorization": "OWNER_TASK_SCOPED",
+        "completion": "HOLD"
+      },
+      {
+        "id": "ZF.G1.03",
+        "dimension": "E2E_REAL",
+        "targetScore": 100,
+        "current": 65,
+        "executor": "EXISTING_MAC_ENGINEER_AND_WORK",
+        "task": "Complete authorized source→execution→test→user-visible outcome→restart/recovery→equal-peer benchmark→DoneCheck",
+        "requiredEvidence": [
+          "sourceAndTaskRevisionChain",
+          "actualHandlerExecutionReceipt",
+          "runtimeUserVisibleOutcome",
+          "realRestartCheckpointAndIdempotency",
+          "equalBudgetRealPeerTrials",
+          "independentReview",
+          "realDoneCheckReceipt",
+          "humanThresholdAcceptance"
+        ],
+        "acceptance": "REAL_USER_TASK_OUTCOME_INDEPENDENTLY_VERIFIED_AND_OWNER_ACCEPTED",
+        "sourceStatus": "HOLD_REAL_RUNTIME_AND_DONECHECK",
+        "authorization": "HUMAN_THRESHOLD_FOR_FINAL",
+        "completion": "HOLD"
+      }
+    ],
+    "pilotProfiles": [
+      {
+        "family": "NATIVE_SWIFTUI_PRODUCT",
+        "project": "ENGURU_PLIVE_P02_USER_SCREEN",
+        "taskId": "P02.S01.01",
+        "githubPR": 241,
+        "capability": "BUILD",
+        "action": "PACKAGE08_CAP07_BUILD_FIELD_PROOF",
+        "scopeNote": "Registry BUILD action proves bounded disposable build support only, NOT PiLive production binary or owner install authority",
+        "runtimeStatus": "HOLD_APP_FIELD"
+      },
+      {
+        "family": "LOCAL_RECOVERY_IDEMPOTENCY",
+        "project": "ENGURU_MAC_ENGINEER",
+        "taskId": "ZF.RECOVERY.01",
+        "githubPR": null,
+        "capability": "OPERATOR_CONTINUE_DISPATCH",
+        "action": "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF",
+        "scopeNote": "Actual Mac owner authorized restart/recovery evidence required; preflight is read-only",
+        "runtimeStatus": "HOLD_OWNER_RESTART"
+      },
+      {
+        "family": "WEB_BUILD_TEST_REPAIR",
+        "project": "ENGURU_WEBSITE_FACTORY",
+        "taskId": "ZF.WEB.01",
+        "githubPR": null,
+        "capability": "TEST_REGRESSION",
+        "action": "PACKAGE08_CAP08_TEST_REGRESSION_FIELD_PROOF",
+        "scopeNote": "Bounded test proof only; website-source mutation needs project-specific authorization",
+        "runtimeStatus": "HOLD_SOURCE_SCOPE"
+      }
+    ],
+    "phaseSequence": [
+      "SOURCE_RECONCILE",
+      "OWNER_SCOPE",
+      "EXISTING_ACTION_PREFLIGHT",
+      "EXISTING_EXECUTOR_ACTUAL_TASK",
+      "TEST_REPAIR_AND_RECOVERY",
+      "INDEPENDENT_EVIDENCE_VERIFICATION",
+      "EXISTING_DONECHECK_AND_HUMAN_THRESHOLD",
+      "EACH_SIX_DOMAIN_SCORE_AT_100",
+      "GOAL1_OFFICIAL_VERIFIED_FINISH",
+      "UNLOCK_GOAL2"
+    ],
+    "evidenceClaimsPolicy": "Evidence path, checksum or manifest claims alone never authenticate real execution, owner signature, reviewer independence, or product acceptance. Reconcile trusted runtime and human issuer through existing authority.",
+    "strictFinish": {
+      "allSixDomains100": false,
+      "allThreeClosureOperationsAccepted": false,
+      "realMacTaskPasses": 0,
+      "requiredRealMacTasks": 3,
+      "ownerAccepted": false,
+      "existingDoneCheck": "HOLD",
+      "officialVerifiedFinish": "HOLD"
+    },
+    "oneNextAction": "After current PiLive Work authorized handoff, independently inspect exact actual Mac source→binary→GUI and owner receipt for candidate native task 1; never infer user acceptance from GitHub CI."
   }
 }
