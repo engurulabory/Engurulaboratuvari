@@ -76,9 +76,14 @@ def assess_solo_github_preparation(handoff: Mapping[str, Any]) -> dict[str, Any]
             valid_queue = False
             break
         queued.extend(item["scope"])
-    valid_queue = (valid_queue and len(queued) == len(original_ids)
+    valid_queue = (valid_queue and all(isinstance(x, str) for x in queued)
+                   and len(queued) == len(original_ids)
                    and len(set(queued)) == 40
                    and set(queued) == set(original_ids))
+    pins = owner.get("pins")
+    pins = pins if isinstance(pins, Mapping) else {}
+    verifier_text = policy.get("mechanical_verifier")
+    verifier_text = verifier_text if isinstance(verifier_text, str) else ""
     readonly_fields = (
         "main_writes", "production_code_writes", "osi_actions",
         "external_customer_evidence_reads", "actual_owner_grants_created",
@@ -103,7 +108,7 @@ def assess_solo_github_preparation(handoff: Mapping[str, Any]) -> dict[str, Any]
                  and policy.get("decision_scope") ==
                  "GITHUB_RESEARCH_AND_TECHNICAL_PREPARATION_ONLY"
                  and policy.get("ready_to_automatically_merge") is False
-                 and policy.get("mechanical_verifier", "").startswith(
+                 and verifier_text.startswith(
                      "GitHub Actions exact-head CI")),
         "GS05": (a03.get("decision") ==
                  "HOLD_REAL_A03_OWNER_ISSUER_REVIEWER_AUTHORITY"
@@ -125,9 +130,9 @@ def assess_solo_github_preparation(handoff: Mapping[str, Any]) -> dict[str, Any]
                  "AUTHORIZED_PRIVATE_STORE"
                  and policy.get("outside_customer_e5") ==
                  "REQUIRES_GENUINE_INDEPENDENT_CUSTOMER_USE_EVIDENCE"),
-        "GS08": (owner.get("pins", {}).get("universal_v3_sha256") ==
+        "GS08": (pins.get("universal_v3_sha256") ==
                  "11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc"
-                 and owner.get("pins", {}).get("V19_18x13_sha256") ==
+                 and pins.get("V19_18x13_sha256") ==
                  "3906f7bd6ae07d26547babc172d1337cfdfeff85244ece95efb76c3cb448df08"
                  and policy.get("official_donecheck_issuer") ==
                  "EXISTING_CANONICAL_ONLY"),
