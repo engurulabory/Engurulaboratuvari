@@ -64,6 +64,12 @@ jobs:
           cd capabilities/enguru-harvest-v1
           npx --yes --package promptfoo@0.125.0 promptfoo eval --config promptfooconfig.json --output promptfoo-eval-output.json
           python -B check_promptfoo_receipt.py
+      - name: Execute actual MCP TypeScript v2 tool integration fixture
+        run: |
+          cd capabilities/enguru-harvest-v1
+          npm install --no-save --ignore-scripts --package-lock=false --no-audit --no-fund '@modelcontextprotocol/server@2.4.0' '@modelcontextprotocol/client@2.4.0' 'zod@4.1.12'
+          node mcp_typescript_trial.mjs
+          npm ls --all --json > mcp-typescript-npm-tree.json || true
       - name: Preserve real runner receipts
         if: always()
         uses: actions/upload-artifact@v4
@@ -74,6 +80,8 @@ jobs:
             capabilities/enguru-harvest-v1/second-upstream-trial-receipt.json
             capabilities/enguru-harvest-v1/promptfoo-eval-output.json
             capabilities/enguru-harvest-v1/promptfoo-offline-receipt.json
+            capabilities/enguru-harvest-v1/mcp-typescript-receipt.json
+            capabilities/enguru-harvest-v1/mcp-typescript-npm-tree.json
             ${{ runner.temp }}/harvest-mcp-install-report.json
             ${{ runner.temp }}/harvest-pip-install-report.json
           if-no-files-found: warn
