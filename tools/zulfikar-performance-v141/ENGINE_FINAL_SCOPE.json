@@ -18,6 +18,9 @@
     {"id":"ENGINE-RESILIENCE","statement":"Actual checkpoint/replay counterexamples and original engineering regressions pass without fabricated new task processes."},
     {"id":"ENGINE-FINISH-GUARD","statement":"Existing proof and completion guards reject wrong sources, same-session acceptance, open work and premature official finish."}
   ],
+  "requiredExternalCriteria": [
+    {"id":"ENGINE-PEER","statement":"The original equal-source, equal-task, equal-tool-and-time-budget comparison is executed by an authorized separate peer; real output and budget records are independently reconciled."}
+  ],
   "requiredHumanCriteria": [
     {"id":"ENGINE-INDEPENDENT-REVIEW","statement":"An authenticated different reviewer/session reviews this exact engine HEAD, original goal, criteria and evidence package."},
     {"id":"ENGINE-HUMAN-ACCEPTANCE","statement":"Existing authorized owner/reviewer accepts this engine task through DoneCheck and Human Threshold; required source adoption decision and durable audit receipt are recorded."}

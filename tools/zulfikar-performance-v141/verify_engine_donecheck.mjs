@@ -40,6 +40,7 @@ const task={id:scope.taskId,title:'Zulfikar V1.4.1 engineering engine final',
  requestText:scope.goal,description:'Engine-only acceptance; separate product adoption/field tasks excluded by explicit owner decision.',
  status:'awaiting_review',createdAt:now};
 const criteria=[...scope.technicalCriteria.map(c=>({...c,kind:'objective'})),
+ ...scope.requiredExternalCriteria.map(c=>({...c,kind:'objective'})),
  ...scope.requiredHumanCriteria.map(c=>({...c,kind:'subjective'}))].map(c=>({...c,taskId:task.id,required:true,
  verificationInstruction:'Review exact engine HEAD '+head+' and source-pinned real evidence; human authority is separate.'}));
 const files=[base+'ENGINE_FINAL_SCOPE.json',base+'verify_engine_donecheck.mjs',
@@ -55,16 +56,18 @@ const evidence=scope.technicalCriteria.map(c=>({id:'ENGINE_E_'+c.id,taskId:task.
  observedAt:now,verificationRef:'https://github.com/engurulabory/Engurulaboratuvari/actions/runs/'+run}}));
 const input={task,criteria,aiOutput:'Engine technical acceptance candidate; independent review and final human authority remain unverified.',
  evidence,verifiedAt:now,policy:{requireEvidenceProvenance:true,trustedProducerIds:[producerId]}};
-const machine=core.verifyTask({...input,criteria:criteria.filter(c=>c.kind==='objective'),resultId:'ZF_ENGINE_TECH_'+run});
+const technicalIds=new Set(scope.technicalCriteria.map(c=>c.id));
+const technicalCriteria=criteria.filter(c=>technicalIds.has(c.id));
+const machine=core.verifyTask({...input,criteria:technicalCriteria,resultId:'ZF_ENGINE_TECH_'+run});
 const full=core.verifyTask({...input,resultId:'ZF_ENGINE_FULL_'+run});
 assert.equal(machine.outcome,'pass');assert.equal(machine.criteria.length,4);
-assert.equal(full.outcome,'inconclusive');assert.equal(full.criteria.length,6);
-assert.equal(full.criteria.filter(c=>c.outcome==='inconclusive').length,2);
+assert.equal(full.outcome,'inconclusive');assert.equal(full.criteria.length,7);
+assert.equal(full.criteria.filter(c=>c.outcome==='inconclusive').length,3);
 // Real negative use of the existing core: an untrusted assertion cannot close a criterion.
-const refused=core.verifyTask({...input,criteria:criteria.filter(c=>c.kind==='objective'),
+const refused=core.verifyTask({...input,criteria:technicalCriteria,
  evidence:evidence.map(e=>({...e,provenance:{...e.provenance,producerId:'untrusted-producer'}})),resultId:'ZF_ENGINE_NEGATIVE_'+run});
 assert.equal(refused.outcome,'inconclusive');
-const missing=core.verifyTask({...input,criteria:criteria.filter(c=>c.kind==='objective'),evidence:evidence.slice(1),resultId:'ZF_ENGINE_MISSING_'+run});
+const missing=core.verifyTask({...input,criteria:technicalCriteria,evidence:evidence.slice(1),resultId:'ZF_ENGINE_MISSING_'+run});
 assert.equal(missing.outcome,'inconclusive');
 const report={schema:'enguru.zulfikar.engine-final-existing-donecheck/v1',task,criteria,sourceHead:head,
  donecheckSource:'4181f48df5ea0c060d9aa9f40a471c554b44b53d',githubRunId:Number(run),filePins,
@@ -76,4 +79,4 @@ const report={schema:'enguru.zulfikar.engine-final-existing-donecheck/v1',task,c
  productAdoptionOrFieldAcceptanceClaimed:false};
 fs.writeFileSync(root+'/engine-donecheck.json',JSON.stringify(report,null,2)+'\n',{flag:'wx'});
 console.log(JSON.stringify({taskId:task.id,head,machine:machine.outcome,full:full.outcome,
- machineCriteria:machine.criteria.length,humanCriteriaPending:2,officialVerifiedFinish:'HOLD'}));
+ machineCriteria:machine.criteria.length,externalCriteriaPending:1,humanCriteriaPending:2,officialVerifiedFinish:'HOLD'}));
