@@ -175,7 +175,11 @@
     "case_ids_consecutive": true,
     "public_references_only_are_NOT_E5": true,
     "K_per_case": 13,
-    "admission": "original 234 evidence cells HOLD until real independently authenticated proof"
+    "admission": "original 234 evidence cells HOLD until real independently authenticated proof",
+    "original_case_identity_sha256": "b476ec6f9a96c34e4ae7d50c7d4d5bf233946c4d19b71fa55df0e9d90d65e450",
+    "original_case_identity_encoding": "UTF8_JSON_ARRAY_OF_ORDERED_CASE_ID_DOMAIN_CUSTOMER_TECHNOLOGY_NO_SPACES",
+    "original_case_identity_source": "ENGURU_ARGE_BLOCK01_18_CASE_RECONCILIATION_V428.json; source_audit asserts V19 CSV reconciliation; this check does not independently reread V19 CSV",
+    "identity_drift_policy": "HOLD_REQUIRES_EXPLICIT_V19_SOURCE_RECONCILIATION"
   },
   "securityBoundaries": {
     "human_owner": "engurulabory",
@@ -205,6 +209,7 @@
     "failed_ci": "HOLD_REPAIR_SOURCE_TEST_THEN_NEW_EXACT_HEAD_PROOF",
     "no_change_to_original_main": true,
     "no_new_writer": true,
-    "preserve_prior_task_counts": true
+    "preserve_prior_task_counts": true,
+    "customer_technology_swap": "HOLD_A01_CASE_IDENTITY_SHA256"
   }
 }
