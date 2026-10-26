@@ -18,15 +18,15 @@ import urllib.parse
 import urllib.request
 
 REPO="engurulabory/Engurulaboratuvari"
-Z13_HEAD="5720cd0de67f959d44ea8ace42a3a716753077f1"
+Z13_HEAD="28db999ba676e4764ae1b644950865674661d0b8"
 PREFIX="governance/enguru-suzgeci/zulfikar-v12/"
 FILES={
  "zulfikar_v1_2_engine.py":"a5a20b8fedbd3e13ddd5fcc4eed8e59dc388bc61",
  "test_zulfikar_v1_2.py":"a11f5c451e5566cd9a22a7bb605466118143907f",
  "zulfikar_v1_2_five_gate.py":"b5c28b388870dc4ec3cdb6d51ea340f6d5472391",
- "zulfikar_v1_3_gates.py":"d2722d3965cd74e24675867e4436d2929eba582f",
- "test_zulfikar_v1_3_gates.py":"12c82bea34e6a179e4cd90728c36c4d9353b5433",
- "ZULFIKAR_GOAL_V1_3.json":"bc53e003f19cb59ef9413bcf6ef21580220f8481",
+ "zulfikar_v1_3_gates.py":"150282b92a495835b153a3d3464227f6021d9ddd",
+ "test_zulfikar_v1_3_gates.py":"7d4c64e0224f17ce95355d08c3536c6f4014cb09",
+ "ZULFIKAR_GOAL_V1_3.json":"bad011340762b6b3c55f199fde65e772f6377fea",
 }
 V3_PATH="governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md"
 V3_LOCK="governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_V3_LOCK.json"
@@ -88,7 +88,7 @@ def read_canonical(root):
 
 def evaluate(root,fetcher=fetch,runner=subprocess.run):
     receipt={
-        "schema":"enguru.hym2.zulfikar-v13-exact-pinned-reuse/v1",
+        "schema":"enguru.hym2.zulfikar-v13.1-exact-pinned-reuse/v2",
         "state":"HOLD","owner":"ONE_HUMAN_OWNER","original_40_official":"0/40",
         "original_V47_github_readiness":"50/100_HOLD",
         "hym2_goal_design_theory":"SEPARATE_PRIOR_CI_EVIDENCE",
@@ -99,7 +99,18 @@ def evaluate(root,fetcher=fetch,runner=subprocess.run):
     try:
         files=verify_source(fetcher)
         v3,lock=read_canonical(root)
-        with tempfile.TemporaryDirectory(prefix="hym2-zulfikar-v13-") as tmp:
+        # SOURCE PIN denotes authentic GitHub merged release bytes, not a
+        # source-created temporary working-tree provenance claim.
+        contract=json.loads(files["ZULFIKAR_GOAL_V1_3.json"])
+        policy=contract.get("authority",{}) if isinstance(contract,dict) else {}
+        if (contract.get("schema")!="enguru.zulfikar.goal-contract/v1.3.1"
+            or policy.get("review_mode")!="SOLO_OWNER_AUTOMATED_CI"
+            or policy.get("owner_id")!="engurulabory"
+            or policy.get("peer_review_required") is not False
+            or policy.get("issuer")!="EXISTING_CANONICAL_ONLY"
+            or policy.get("decision_scope")!="GITHUB_TECHNICAL_ACCEPTANCE_ONLY"):
+            raise ValueError("Z13_MERGED_OWNER_POLICY_DRIFT")
+        with tempfile.TemporaryDirectory(prefix="hym2-zulfikar-v131-") as tmp:
             base=pathlib.Path(tmp)
             src=base/PREFIX
             src.mkdir(parents=True)
@@ -108,6 +119,18 @@ def evaluate(root,fetcher=fetch,runner=subprocess.run):
             for name,contents in ((V3_PATH,v3),(V3_LOCK,lock)):
                 p=base/name;p.parent.mkdir(parents=True,exist_ok=True)
                 p.write_bytes(contents)
+            # R02 TA05 requires an ACTUAL committed Git HEAD; six pinned
+            # upstream blobs are committed to a disposable repo. This local
+            # HEAD proves copied-byte integrity only; upstream identity is
+            # proved separately by their pinned GitHub blob SHA-1 above.
+            git_steps=(["git","-C",str(base),"init","-q"],
+                       ["git","-C",str(base),"add","."],
+                       ["git","-C",str(base),"-c","user.name=ENGURU Evidence Test",
+                        "-c","user.email=fixture@example.invalid",
+                        "commit","-q","-m","temporary pinned-source byte fixture"])
+            for argv in git_steps:
+                subprocess.run(argv,capture_output=True,text=True,
+                               timeout=30,check=True)
             results={}
             for command in ("goal","infra","status"):
                 process=runner(
@@ -137,6 +160,9 @@ def evaluate(root,fetcher=fetch,runner=subprocess.run):
             "state":"PASS_Z13_PINNED_OPERATIONAL_ADAPTER_ONLY",
             "zulfikar_V13_commit":Z13_HEAD,
             "source_blob_count":len(files),
+            "source_release":"GITHUB_MERGED_ZULFIKAR_V1_3_1",
+            "checkout_integrity":"TEMP_GIT_HEAD_EQUALS_PINNED_BLOBS",
+            "solo_owner_github_policy":"VALIDATED",
             "verified_byte_sha256":{k:hashlib.sha256(v).hexdigest() for k,v in files.items()},
             "z13_goal_specification":goal["assessment"]["score"],
             "z13_infra_github_code":infra["assessment"]["score"],
@@ -146,7 +172,7 @@ def evaluate(root,fetcher=fetch,runner=subprocess.run):
             "next":"LOCATE_V47_ORIGINAL_RUBRIC_THEN_CLOSE_ACTUAL_SOURCE_PREPARATION_GAPS",
         })
     except (OSError,ValueError,KeyError,TypeError,UnicodeError,subprocess.TimeoutExpired,
-            json.JSONDecodeError) as e:
+            json.JSONDecodeError,subprocess.CalledProcessError) as e:
         receipt["hold_reason"]=type(e).__name__+":"+str(e)[:180]
     return receipt
 
