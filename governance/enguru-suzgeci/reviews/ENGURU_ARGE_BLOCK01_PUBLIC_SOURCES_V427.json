@@ -1,0 +1,344 @@
+{
+  "schema": "enguru.arge.block01.public-source-review/v1",
+  "date": "2026-10-23",
+  "scope": "A01-A09",
+  "sources": [
+    {
+      "case": "Bookshop.org / Meilisearch",
+      "url": "https://aws.amazon.com/solutions/case-studies/meilisearch-case-study/",
+      "provenance": "AWS third-party testimonial of Meilisearch",
+      "claim": "AWS reports Bookshop.org search conversion +43%",
+      "classification": "THIRD_PARTY_CORROBORATION",
+      "e5": "HOLD_NOT_INDEPENDENT_PRIMARY_CUSTOMER_ATTESTATION",
+      "g01_g03": "HOLD_NO_LIVE_ENGURU_TEST",
+      "k12": "HOLD_NO_ENGURU_COST_BASIS"
+    },
+    {
+      "case": "Resend / Supabase",
+      "url": "https://supabase.com/customers/resend",
+      "provenance": "Supabase vendor customer story with customer quotes",
+      "claim": "5,000+ paying customers and millions of daily emails, according to published story",
+      "classification": "VENDOR_CUSTOMER_CASE",
+      "e5": "HOLD_NEEDS_INDEPENDENT_CUSTOMER_VALIDATION",
+      "g01_g03": "HOLD_NO_LIVE_ENGURU_TEST",
+      "k12": "HOLD_NO_ENGURU_COST_BASIS"
+    },
+    {
+      "case": "OpenFGA authorization",
+      "url": "https://github.com/openfga",
+      "provenance": "OpenFGA upstream open-source organization",
+      "claim": "ReBAC/ABAC authorization engine project exists",
+      "classification": "UPSTREAM_CAPABILITY_NOT_HEADSPACE_DEPLOYMENT",
+      "e5": "HOLD_NO_INDEPENDENT_HEADSPACE_PROOF_IN_THIS_TURN",
+      "g01_g03": "HOLD_NO_LIVE_ENGURU_TEST",
+      "k12": "HOLD_NO_ENGURU_COST_BASIS"
+    }
+  ],
+  "task_links": {
+    "A01": "18 unique cases in six domains; customer/technology identity and public source URL candidates; canonical reviewer HOLD",
+    "A02": "234 V19 K01-K13 source cells: exact V19 baseline SHA preserved; each cell needs independent evidence/review",
+    "A03": "K01-K13 and E5 canonical contract and exact-scope owner/issuer signed authority: HOLD",
+    "A04": "18 upstream release/date/license/CVE/SBOM evidence and canonical Kasifi identity: partial source research / HOLD",
+    "A05": "18 customer actual installed versions, classification and exact customer deployment SHA: 0/18, UNKNOWN requires explicit record",
+    "A06": "18 independent E5 decisions and verifier attestation: 0/18, independent authority HOLD",
+    "A07": "G01 external effect, G02 relational authorization, G03 temporal provenance attacks and oracles: GitHub research only / field HOLD",
+    "A08": "K12 18-case sourced five-year TCO, +/-20% sensitivity and independent measured ENGURU ROI: HOLD",
+    "A09": "A01-A08 signed, independent and DoneCheck owner final: HOLD"
+  },
+  "decision": "RESEARCH_SOURCE_CANDIDATES_ONLY",
+  "official": "0/9",
+  "field": "0/100",
+  "comment": "Source evidence is not equivalent to independent E5 nor task acceptance; preserve 6-block plan.",
+  "reverified_primary_sources": [
+    {
+      "case_id": "02",
+      "url": "https://medusajs.com/blog/matt-sleeps",
+      "publication_date": "2024-02-01",
+      "role": "VENDOR_CASE_WITH_NAMED_IMPLEMENTATION_PARTNER",
+      "claim": "Matt Sleeps uses Medusa according to Medusa's case study",
+      "limits": "Supplier assertion; independent E5 and customer deployment SHA HOLD"
+    },
+    {
+      "case_id": "07",
+      "url": "https://restate.dev/use-cases/replit",
+      "role": "COUNTERCLAIM_NEWER_VENDOR_CASE_WITH_REPLIT_EXEC_QUOTE",
+      "claim": "Replit moved Replit Agent durable execution from Temporal to Restate",
+      "limits": "Migration date and deployment artifacts not independently audited; current Temporal use HOLD"
+    },
+    {
+      "case_id": "08",
+      "url": "https://docs.fga.dev/openfga-vs-auth0-fga",
+      "role": "AUTH0_PRODUCT_LINEAGE_FIRST_PARTY_DOCS",
+      "claim": "Auth0 FGA is based on OpenFGA",
+      "limits": "This is product lineage, not independent adopter E5"
+    },
+    {
+      "case_id": "14",
+      "url": "https://www.linkedin.com/blog/engineering/ai/practical-text-to-sql-for-data-analytics",
+      "publication_date": "2024-12-09",
+      "role": "CUSTOMER_FIRST_PARTY_ENGINEERING",
+      "claim": "LinkedIn SQL Bot names LangChain and LangGraph",
+      "limits": "First-party use account is not independent E5 or deployment SHA"
+    },
+    {
+      "case_id": "15",
+      "url": "https://www.langchain.com/blog/building-langgraph",
+      "publication_date": "2025-09-04",
+      "role": "VENDOR_GENERAL_ADOPTER_CLAIM",
+      "claim": "LangChain names Uber among production adopters",
+      "limits": "No customer-specific independent Uber deployment proof"
+    },
+    {
+      "case_id": "17",
+      "url": "https://www.langchain.com/blog/customers-vodafone-italy",
+      "publication_date": "2025-12-16",
+      "role": "VENDOR_DEDICATED_NAMED_CUSTOMER_CASE",
+      "claim": "Fastweb+Vodafone Super TOBi and Super Agent use LangGraph according to supplier",
+      "limits": "Supplier-reported performance metrics; independently audited E5/production SHA HOLD"
+    }
+  ],
+  "evidence_date": "2026-10-23",
+  "e5_independently_verified": 0,
+  "deployment_pins_independently_verified": 0,
+  "upstream_license_pins": [
+    {
+      "technology": "Meilisearch",
+      "repository": "meilisearch/meilisearch",
+      "ref": "main",
+      "file": "LICENSE",
+      "git_blob_sha1": "edcaeebc4e866b1ebefc330c103560e41639601b",
+      "observed_license": "MIT_AND_BUSL_1_1_EDITION_SPECIFIC",
+      "evidence_scope": "Root LICENSE notes MIT community portions and Enterprise Business Source License 1.1; actual customer edition not established"
+    },
+    {
+      "technology": "Medusa",
+      "repository": "medusajs/medusa",
+      "ref": "develop",
+      "file": "LICENSE",
+      "git_blob_sha1": "2bc747bf4b0a88864584b033fdeab86012a44c79",
+      "observed_license": "MIT_EXCEPT_ENTERPRISE_EDITION",
+      "evidence_scope": "Root LICENSE excludes explicitly identified Enterprise Edition materials from MIT; actual customer edition not established"
+    },
+    {
+      "technology": "Saleor",
+      "repository": "saleor/saleor",
+      "ref": "main",
+      "file": "LICENSE",
+      "git_blob_sha1": "715b42cd6fe5d7073984ff7004b49dc8304adbcc",
+      "observed_license": "BSD_3_CLAUSE_REPOSITORY_ROOT",
+      "evidence_scope": "Observed repository root license only; customer deployed exact release and add-on licenses unverified"
+    },
+    {
+      "technology": "Supabase",
+      "repository": "supabase/supabase",
+      "ref": "master",
+      "file": "LICENSE",
+      "git_blob_sha1": "49ea124025275674563eeff03af0f653ca49fdc0",
+      "observed_license": "APACHE_2_0_MONOREPO_ROOT",
+      "evidence_scope": "Umbrella repository root license only; individual Supabase components may have distinct licensing"
+    },
+    {
+      "technology": "Temporal",
+      "repository": "temporalio/temporal",
+      "ref": "main",
+      "file": "LICENSE",
+      "git_blob_sha1": "3349f76795f4409cba6ae18ea56adf9fbd8346f3",
+      "observed_license": "MIT_TEMPORAL_SERVER",
+      "evidence_scope": "Temporal server repository licensing; customer installed version/Temporal Cloud service terms not established"
+    },
+    {
+      "technology": "OpenFGA",
+      "repository": "openfga/openfga",
+      "ref": "main",
+      "file": "LICENSE",
+      "git_blob_sha1": "4959a5e50d66e62e675d8d033d66cca0f390458d",
+      "observed_license": "APACHE_2_0_OPENFGA_REPOSITORY",
+      "evidence_scope": "OpenFGA upstream license; Auth0 FGA managed offering and customer license terms distinct"
+    },
+    {
+      "technology": "LangGraph",
+      "repository": "langchain-ai/langgraph",
+      "ref": "main",
+      "file": "LICENSE",
+      "git_blob_sha1": "fc0602feecdd6748623c852ab534e1ca612673c7",
+      "observed_license": "MIT_LANGGRAPH_REPOSITORY",
+      "evidence_scope": "LangGraph upstream root license; hosted services/enterprise contractual scope separate"
+    }
+  ],
+  "upstream_license_review_scope": "GitHub API source reads on 2026-10-23, observed full root LICENSE blobs. Hashes are Git blob SHA-1 content identities, NOT SHA-256 release pins or production installed versions. All 18 customer exact release/edition/SBOM/CVE checks remain HOLD.",
+  "upstream_license_blob_pin_count": 7,
+  "upstream_technology_count": 7,
+  "a04_upstream_dependency_evidence": [
+    {
+      "technology": "Meilisearch",
+      "repository": "meilisearch/meilisearch",
+      "ref": "main",
+      "path": "Cargo.lock",
+      "git_blob_sha1": "d018e8060a179a9d53c350d78ee04005422abc22",
+      "type": "DEPENDENCY_LOCKFILE",
+      "verified_scope": "UPSTREAM_BRANCH_FILE_ONLY",
+      "sbom_status": "HOLD_NO_VERIFIED_SIGNED_SBOM",
+      "cve_status": "HOLD_CUSTOMER_VERSION_UNRESOLVED",
+      "customer_release_status": "HOLD_EXACT_DEPLOYED_RELEASE_UNAVAILABLE"
+    },
+    {
+      "technology": "Medusa",
+      "repository": "medusajs/medusa",
+      "ref": "develop",
+      "path": "yarn.lock",
+      "git_blob_sha1": "660081e74b9be3799b3a0f25d5631df4e1cf0658",
+      "type": "DEPENDENCY_LOCKFILE",
+      "verified_scope": "UPSTREAM_BRANCH_FILE_ONLY",
+      "sbom_status": "HOLD_NO_VERIFIED_SIGNED_SBOM",
+      "cve_status": "HOLD_CUSTOMER_VERSION_UNRESOLVED",
+      "customer_release_status": "HOLD_EXACT_DEPLOYED_RELEASE_UNAVAILABLE"
+    },
+    {
+      "technology": "Saleor",
+      "repository": "saleor/saleor",
+      "ref": "main",
+      "path": "uv.lock",
+      "git_blob_sha1": "a71a6f59ffdec55dae1e5975a083abf969a89130",
+      "type": "DEPENDENCY_LOCKFILE",
+      "verified_scope": "UPSTREAM_BRANCH_FILE_ONLY",
+      "sbom_status": "HOLD_NO_VERIFIED_SIGNED_SBOM",
+      "cve_status": "HOLD_CUSTOMER_VERSION_UNRESOLVED",
+      "customer_release_status": "HOLD_EXACT_DEPLOYED_RELEASE_UNAVAILABLE"
+    },
+    {
+      "technology": "Supabase",
+      "repository": "supabase/supabase",
+      "ref": "master",
+      "path": "pnpm-lock.yaml",
+      "git_blob_sha1": "57212ada2d941ca4f1ad02d6d23c043072969191",
+      "type": "GIT_BLOB_ONLY_LARGE_FILE_CONTENT_UNINSPECTED",
+      "verified_scope": "UPSTREAM_BRANCH_FILE_ONLY",
+      "sbom_status": "HOLD_NO_VERIFIED_SIGNED_SBOM",
+      "cve_status": "HOLD_CUSTOMER_VERSION_UNRESOLVED",
+      "customer_release_status": "HOLD_EXACT_DEPLOYED_RELEASE_UNAVAILABLE"
+    },
+    {
+      "technology": "Temporal",
+      "repository": "temporalio/temporal",
+      "ref": "main",
+      "path": "go.sum",
+      "git_blob_sha1": "7bb84062f0806238f63f3a71ccc70375a98f8968",
+      "type": "DEPENDENCY_CHECKSUM_MANIFEST",
+      "verified_scope": "UPSTREAM_BRANCH_FILE_ONLY",
+      "sbom_status": "HOLD_NO_VERIFIED_SIGNED_SBOM",
+      "cve_status": "HOLD_CUSTOMER_VERSION_UNRESOLVED",
+      "customer_release_status": "HOLD_EXACT_DEPLOYED_RELEASE_UNAVAILABLE"
+    },
+    {
+      "technology": "OpenFGA",
+      "repository": "openfga/openfga",
+      "ref": "main",
+      "path": "go.sum",
+      "git_blob_sha1": "46f0cd6c60028577eb92bf5a4be0af82c705edaa",
+      "type": "DEPENDENCY_CHECKSUM_MANIFEST",
+      "verified_scope": "UPSTREAM_BRANCH_FILE_ONLY",
+      "sbom_status": "HOLD_NO_VERIFIED_SIGNED_SBOM",
+      "cve_status": "HOLD_CUSTOMER_VERSION_UNRESOLVED",
+      "customer_release_status": "HOLD_EXACT_DEPLOYED_RELEASE_UNAVAILABLE"
+    },
+    {
+      "technology": "LangGraph",
+      "repository": "langchain-ai/langgraph",
+      "ref": "main",
+      "path": "libs/langgraph/pyproject.toml",
+      "git_blob_sha1": "6aac18d6162e9f516e3f66113ce064f5da698b9a",
+      "type": "PYTHON_PACKAGE_MANIFEST_NOT_LOCKFILE",
+      "verified_scope": "UPSTREAM_BRANCH_FILE_ONLY",
+      "sbom_status": "HOLD_NO_VERIFIED_SIGNED_SBOM",
+      "cve_status": "HOLD_CUSTOMER_VERSION_UNRESOLVED",
+      "customer_release_status": "HOLD_EXACT_DEPLOYED_RELEASE_UNAVAILABLE"
+    }
+  ],
+  "a04_upstream_security_policies": [
+    {
+      "technology": "Meilisearch",
+      "repository": "meilisearch/meilisearch",
+      "ref": "main",
+      "path": "SECURITY.md",
+      "git_blob_sha1": "374dc4198126b988baa3e6343fb8c64f9d2f9aa0",
+      "supported_versions_statement": "Latest stable release only; actual customer version UNKNOWN"
+    },
+    {
+      "technology": "Saleor",
+      "repository": "saleor/saleor",
+      "ref": "main",
+      "path": "SECURITY.md",
+      "git_blob_sha1": "1ed76fffcebfbf73747e291dd418468eba298ae1",
+      "supported_versions_statement": "Report requires affected version and environment; actual customer version UNKNOWN"
+    }
+  ],
+  "a04_enterprise_licensing_documents": [
+    {
+      "technology": "Meilisearch",
+      "path": "LICENSE-EE",
+      "git_blob_sha1": "87510480d5d8653a1a1583285c5ba5208b22826e",
+      "terms": "Business Source License 1.1 enterprise production use requires commercial agreement; actual customer edition UNKNOWN"
+    },
+    {
+      "technology": "Medusa",
+      "path": "ENTERPRISE-LICENSE.md",
+      "git_blob_sha1": "56ec107aaf946c18f88955a031ba1dec9396111d",
+      "terms": "Enterprise materials excluded from MIT and require separate commercial agreement; customer edition UNKNOWN"
+    }
+  ],
+  "a04_source_manifest_pins_verified": 7,
+  "a04_sbom_independently_verified": 0,
+  "a04_customer_cve_applicability_verified": 0,
+  "a04_release_sha256_verified": 0,
+  "a04_scope_judgment": "UPSTREAM_LICENSE_PLUS_DEPENDENCY_MANIFEST_PINS_ONLY__CUSTOMER_RELEASE_SBOM_CVE_E5_HOLD",
+  "a04_kasifi_source_reconciliation": {
+    "scope": "AR_KASIFI_DISCOVERY_RESEARCH_DESIGN_CANDIDATE",
+    "design_filename": "ENGURU_KASIFI_V42_40_IS_ESLESTIRME_V1.json",
+    "design_source_version": "V4.2",
+    "design_source_sha256": "047dd97c5816cd73f6c7b82eb2a3a6b18698a779fd9fb30b970ee06a100067a3",
+    "design_status": "PROPOSED_8_CAPABILITIES_REQUIRES_CANONICAL_RECONCILIATION",
+    "prior_candidate_decision": "Kaşif/Kasif/Kashif exact identity unresolved; external candidate profiles are HARVEST_ADAY only",
+    "repo_search_2026_10_23": "No exact kasifi/Kâşifi repository found in scoped engurulabory name search and Engurulaboratuvari code index",
+    "canonical_implementation_repo": "HOLD_NOT_ESTABLISHED",
+    "canonical_implementation_path": "HOLD_NOT_ESTABLISHED",
+    "canonical_source_sha256": "HOLD_NOT_ESTABLISHED",
+    "accepted_authority": "HOLD_OWNER_SOURCE_CONFIRMATION",
+    "effect_on_A04": "HOLD; design capability crosswalk alone is not source provenance or authority",
+    "actual_source_review": {
+      "candidate_design_issue": "https://github.com/engurulabory/enguru-website-factory/issues/251",
+      "issue_scope": "PRECONSTRUCTION_HOLD / RESEARCH_DESIGN_ACTIVE / OSi_PROTECTED",
+      "explicit_authority_limit": "Issue #251: design and preparatory AR capability only; not canonical implementation, working core, deployment or construction authorization",
+      "related_earlier_labory_issue": "https://github.com/engurulabory/Engurulaboratuvari/issues/186",
+      "canonical_implementation_status": "HOLD_REAL_AUTHORITY_SOURCE",
+      "donecheck_authority_repo": "https://github.com/engurulabory/donecheck",
+      "donecheck_reviewer_auth_file": "src/runtime/node/reviewer-attestation.ts",
+      "donecheck_finish_file": "src/runtime/node/verified-finish-runtime.ts",
+      "donecheck_precondition": "automated verification outcome pass + cryptographically authorized human accepted + append-only audit ledger",
+      "source_classification": "DESIGN_CANDIDATE_NOT_ACTUAL_DEPLOYED_KASIFI",
+      "official_a04_status": "HOLD"
+    }
+  },
+  "a05_a06_donecheck_real_api": {
+    "repo": "engurulabory/donecheck",
+    "core": "src/donecheck-core.ts",
+    "reviewer_validation": "src/domain/donecheck/human-review-validation.ts",
+    "reviewer_attestation": "src/runtime/node/reviewer-attestation.ts",
+    "finish_runtime": "src/runtime/node/verified-finish-runtime.ts",
+    "supported_attestation_scheme": "ed25519",
+    "review_signing_schema": "donecheck.reviewer-attestation/v1",
+    "finish_receipt_schema": "donecheck.verified-finish/v1",
+    "required_real_inputs": [
+      "verified_machine_result_pass",
+      "valid_human_review_accepted",
+      "independently_trusted_reviewer_authority",
+      "valid_reviewer_ed25519_attestation",
+      "durable_audit_ledger"
+    ],
+    "distinctions": [
+      "File SHA256 match is an untrusted evidence-intake candidate",
+      "DoneCheck reviewer attestation does not independently authenticate external customers or third-party E5 witnesses",
+      "Actual customer and independent E5 authentication require separate owner/trust-chain verification"
+    ],
+    "official_state": "HOLD_NO_REAL_CUSTOMER_E5_SIGNATURE_OR_REVIEWER_AUTHORITY"
+  }
+}

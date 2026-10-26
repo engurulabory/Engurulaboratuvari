@@ -1,0 +1,214 @@
+{
+  "schema": "enguru.arge.block01.evidence-provenance/v1",
+  "block": "BLOCK01",
+  "version": "V4.25",
+  "principle": "Evidence provenance cannot be inferred from task status, fixture PASS or PR CI",
+  "required_categories": {
+    "A01": [
+      "canonical_case_inventory",
+      "source_revision"
+    ],
+    "A02": [
+      "case_by_k01_k13_matrix",
+      "cell_source_links"
+    ],
+    "A03": [
+      "authorized_acceptance_contract",
+      "task_scope_signed_owner_issuer_grant"
+    ],
+    "A04": [
+      "kasifi_canonical_repo_commit",
+      "license_security_review"
+    ],
+    "A05": [
+      "e5_independent_evidence_18_cases",
+      "source_freshness"
+    ],
+    "A06": [
+      "g01_external_effect_test",
+      "g02_relational_auth_test",
+      "g03_temporal_truth_test"
+    ],
+    "A07": [
+      "baseline_and_competitor_benchmark",
+      "capability_gap_independent_review"
+    ],
+    "A08": [
+      "k12_actual_roi_tco_data",
+      "value_preservation_decision"
+    ],
+    "A09": [
+      "combined_research_report",
+      "independent_reviewer_attestation",
+      "donecheck_human_authority"
+    ]
+  },
+  "verified_sources": {},
+  "unverified_categories": [
+    {
+      "task_id": "A01",
+      "category": "canonical_case_inventory",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A01",
+      "category": "source_revision",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A02",
+      "category": "case_by_k01_k13_matrix",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A02",
+      "category": "cell_source_links",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A03",
+      "category": "authorized_acceptance_contract",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A03",
+      "category": "task_scope_signed_owner_issuer_grant",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A04",
+      "category": "kasifi_canonical_repo_commit",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A04",
+      "category": "license_security_review",
+      "state": "HOLD_PARTIAL_RESEARCH_SOURCE_VERIFIED"
+    },
+    {
+      "task_id": "A05",
+      "category": "e5_independent_evidence_18_cases",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A05",
+      "category": "source_freshness",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A06",
+      "category": "g01_external_effect_test",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A06",
+      "category": "g02_relational_auth_test",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A06",
+      "category": "g03_temporal_truth_test",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A07",
+      "category": "baseline_and_competitor_benchmark",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A07",
+      "category": "capability_gap_independent_review",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A08",
+      "category": "k12_actual_roi_tco_data",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A08",
+      "category": "value_preservation_decision",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A09",
+      "category": "combined_research_report",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A09",
+      "category": "independent_reviewer_attestation",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    },
+    {
+      "task_id": "A09",
+      "category": "donecheck_human_authority",
+      "state": "HOLD_SOURCE_NOT_VERIFIED"
+    }
+  ],
+  "acceptance": "HOLD",
+  "osi": "NOT_STARTED",
+  "source_rule": "Public-source license/security byte provenance may be PARTIAL_SOURCE_VERIFIED only with pinned Git blob evidence and successful exact-head real CI. Source evidence never promotes task acceptance, signed grants, customer E5, deployment, DoneCheck, or Human Threshold.",
+  "partial_research_source_proofs": {
+    "A04.license_security_review": {
+      "state": "PASS_SCOPED_SOURCE_PROVENANCE_ONLY",
+      "scope": "SEVEN_UPSTREAM_REPOS_SOURCE_ONLY_NOT_CUSTOMER_PRODUCT",
+      "source_pins_manifest": "governance/enguru-suzgeci/reviews/ENGURU_ARGE_BLOCK01_A04_UPSTREAM_LICENSE_PINS_V1.json",
+      "source_pins_manifest_git_blob_sha1": "86dbf7a09997854019448a3a8266f1de1885694f",
+      "source_counts": {
+        "upstream_repos": 7,
+        "license_and_security_files_byte_match": 13,
+        "dependency_seed_files_byte_match": 7
+      },
+      "source_scoped_osv": {
+        "component_candidates_queried": 3559,
+        "package_advisory_matches": 216,
+        "distinct_advisory_ids": 188,
+        "classified_metadata_ids": 188,
+        "disposable_patch_regression": "PASS_PROXY_ADDR_2_0_7_TO_2_0_8"
+      },
+      "exact_pr_head_tested": "0f84e7181a5dc15d6a9212c458d786c4be1f57ed",
+      "exact_ci_url": "https://github.com/engurulabory/Engurulaboratuvari/actions/runs/40206547243",
+      "source_proof_refs": [
+        "tools/arge_block01_a04_live_verify_v1.py",
+        "tools/arge_block01_a04_dependency_seeds_v1.py",
+        "tools/arge_block01_a04_osv_source_review_v1.py",
+        "tools/arge_block01_a04_osv_triage_v1.py",
+        "tests/hym2_a04_proxy_addr_207_208_runtime.cjs"
+      ],
+      "original_acceptance_remaining": {
+        "kasifi_canonical_source": "HOLD",
+        "official_A04": "HOLD",
+        "real_installed_version": "HOLD",
+        "customer_deployment_sbom": "HOLD",
+        "legal_license_clearance": "HOLD",
+        "customer_e5": "HOLD_0_OF_18",
+        "mac_osi_field": "HOLD",
+        "donecheck_human": "HOLD"
+      },
+      "provenance_boundary": "Git blob SHA1 source identity, source-byte SHA256 and exact PR CI are technical proof only; they do not grant owner authority or prove deployment.",
+      "owner": "SINGLE_HUMAN_OWNER; HUMAN_ACCEPTANCE_IN_OWN_CANONICAL_GATE"
+    }
+  },
+  "a04_canonical_scope_boundary": {
+    "status": "HOLD_OWNER_PRIVATE_CANONICAL_OR_EXPLICIT_RESEARCH_SCOPE",
+    "public_review_contract": "ONLY_NONSECRET_STATUS_REFERENCES_AND_BOUNDED_EVIDENCE",
+    "canonical_scope": "A04 kasifi_canonical_repo_commit OR AUTHORIZED_RESEARCH_ONLY_OWNER_SCOPE_DECISION",
+    "private_source_provenance": "OWNER_PRIVATE_SOURCE_ATTESTATION_REQUIRED",
+    "owner_scope_decision": "HOLD_EXPLICIT_DECISION_PENDING",
+    "independent_verification": "HOLD_NO_AUTHORIZED_PRIVATE_ATTESTATION",
+    "allowed_public_metadata": [
+      "A04",
+      "HOLD",
+      "owner_review_required",
+      "non_secret_source_digest_if_owner_approved"
+    ],
+    "permitted_public_evidence": "RESEARCH_SOURCE_PARTIAL_ONLY",
+    "actual_kasifi_runtime": "HOLD_NOT_ESTABLISHED",
+    "release_or_osi_authority": "HOLD",
+    "official_a04": "HOLD",
+    "official_all_tasks": "0/40",
+    "owner_authority": "SINGLE_HUMAN_OWNER",
+    "boundary_rule": "Owner-private Factory source payload, tokens, grants and private implementation remain in their authorized private context. An owner-approved minimal public digest is optional, and its presence alone never changes official acceptance."
+  }
+}

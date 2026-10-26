@@ -1,0 +1,272 @@
+{
+  "schema": "enguru.arge.b01-m01.github-prep-gate-management/v1",
+  "date": "2026-10-24",
+  "purpose": "Distinguish 100/100 management design rehearsal from the still 50/100 historically reported GitHub readiness, define auditable evidence gaps without changing canonical acceptance gates.",
+  "governance": {
+    "repository": "engurulabory/Engurulaboratuvari",
+    "review_pr": 207,
+    "review_branch": "review/arge-a03-trust-evidence-v419",
+    "exact_parent_head": "a0d53488f75152060c3a22f9de42fb25dfb045ef",
+    "universal_v3_sha256": "11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc",
+    "canonical_issue": 205,
+    "management_only": true,
+    "application_execution_separate": true
+  },
+  "work_scope": {
+    "single_active_package": "B01-M01",
+    "active_original_ids": [
+      "A03",
+      "A04",
+      "A05",
+      "A06"
+    ],
+    "retained_block_ids": [
+      "A01",
+      "A02",
+      "A03",
+      "A04",
+      "A05",
+      "A06",
+      "A07",
+      "A08",
+      "A09"
+    ],
+    "remaining_original_ids_kept": true,
+    "total_original_ids": 40,
+    "blocks": 6,
+    "case_ids": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18"
+    ],
+    "baseline_cells": 234,
+    "baseline_sha256": "3906f7bd6ae07d26547babc172d1337cfdfeff85244ece95efb76c3cb448df08"
+  },
+  "score_accounting": {
+    "management_design": "100/100_self_evaluated",
+    "github_preparation_last_authoritative_record": "50/100",
+    "github_preparation_original_rubric": "V4.7 5/10 reported; V4.11 relocates live OSi preflight to AFTER authorized transfer",
+    "proposed_gate_register": "10 new management traceability descriptions; NOT a replacement authoritative 5/10 measurement; no promotion from documentation alone",
+    "field": "0/100",
+    "block01_official": "0/9",
+    "overall_official": "0/40",
+    "customer_deployments": "0/18",
+    "independent_e5": "0/18",
+    "independent_pr_reviews": 0
+  },
+  "proposed_readiness_trace_gates": [
+    {
+      "gate_id": "GH01",
+      "canonical_task_scope": "A01-A09",
+      "required_acceptance": "Canonical ENGÜRÜ V3 content hash and exact current PR source remain traceable",
+      "source_or_expected_evidence": "main AGENTS.md, V3 lock, PR #207 parent HEAD",
+      "management_state": "GITHUB_SOURCE_OBSERVED",
+      "officially_scored": false
+    },
+    {
+      "gate_id": "GH02",
+      "canonical_task_scope": "A01-A09",
+      "required_acceptance": "Original 40/6 scope and B01 A01-A09 IDs preserved",
+      "source_or_expected_evidence": "Issue #205 six-block plan",
+      "management_state": "GITHUB_SOURCE_OBSERVED",
+      "officially_scored": false
+    },
+    {
+      "gate_id": "GH03",
+      "canonical_task_scope": "A01/A02",
+      "required_acceptance": "V19 18 cases × 13 fields source identity and baseline SHA accounted",
+      "source_or_expected_evidence": "V428 18-case reconciliation; original V19 SHA",
+      "management_state": "GITHUB_SOURCE_OBSERVED",
+      "officially_scored": false
+    },
+    {
+      "gate_id": "GH04",
+      "canonical_task_scope": "A03-A06",
+      "required_acceptance": "Existing original PR CI and owner boundary controls rerunnable at exact head",
+      "source_or_expected_evidence": "PR #207 4/4 workflows success at parent HEAD",
+      "management_state": "GITHUB_SOURCE_OBSERVED",
+      "officially_scored": false
+    },
+    {
+      "gate_id": "GH05",
+      "canonical_task_scope": "A05/A06",
+      "required_acceptance": "Private evidence structure+hash validation and adversarial handling identified without signing claims",
+      "source_or_expected_evidence": "A05/A06 private intake V1, 19 adversarial tests in past CI",
+      "management_state": "GITHUB_SOURCE_OBSERVED",
+      "officially_scored": false
+    },
+    {
+      "gate_id": "GH06",
+      "canonical_task_scope": "A03",
+      "required_acceptance": "Task-specific signed owner/issuer grant, revocation, trust root, validated scoped authority",
+      "source_or_expected_evidence": "Authorized real issuer/grant and scope-specific human decision",
+      "management_state": "HOLD_REQUIRED_INDEPENDENT_AUTHORITY",
+      "officially_scored": false
+    },
+    {
+      "gate_id": "GH07",
+      "canonical_task_scope": "A04",
+      "required_acceptance": "Actual canonical Kâşifi source authority or authorized research/preconstruction-only scope exemption explicitly tied to A04",
+      "source_or_expected_evidence": "Canonical owner decision + source/version, or signed scope decision",
+      "management_state": "HOLD_REQUIRED_INDEPENDENT_AUTHORITY",
+      "officially_scored": false
+    },
+    {
+      "gate_id": "GH08",
+      "canonical_task_scope": "A03/A09",
+      "required_acceptance": "Reviewer separate from producer accepts source-diff and appropriate authority",
+      "source_or_expected_evidence": "PR #207 actual submitted independent review, matching identity/scope",
+      "management_state": "HOLD_REQUIRED_INDEPENDENT_AUTHORITY",
+      "officially_scored": false
+    },
+    {
+      "gate_id": "GH09",
+      "canonical_task_scope": "A03-A09",
+      "required_acceptance": "Exact OSi transfer plan including idempotency, rollback, task IDs, field entry preflight procedure, private evidence handoff, pinning, simulation and failure paths independently verified",
+      "source_or_expected_evidence": "Draft transfer packet + independent approved source pin/replay",
+      "management_state": "HOLD_REQUIRED_INDEPENDENT_AUTHORITY",
+      "officially_scored": false
+    },
+    {
+      "gate_id": "GH10",
+      "canonical_task_scope": "A03/A09",
+      "required_acceptance": "Canonical DoneCheck v1.2/Human Threshold trust pathway is reconciled to real owner roles without asserting field completion",
+      "source_or_expected_evidence": "Actual issuer/reviewer authority source, validated workflow and owner acceptance",
+      "management_state": "HOLD_REQUIRED_INDEPENDENT_AUTHORITY",
+      "officially_scored": false
+    }
+  ],
+  "scope_disambiguation": {
+    "github_preparation": "Pre-field plans, exact artifacts, reviewer/authority, secure handoff. Live field execution NOT a GH gate.",
+    "live_osi_preflight": "Deferred to separate authorized application executor after 100/100 GitHub readiness and actual OSi_TRANSFER_PACKET",
+    "external_case_evidence": "A05 customer deployment and A06 E5 case-level truth stays 0/18 until actual private customer and independent signer inputs. Design handoff may specify these inputs without claiming they exist.",
+    "kasifi": "Factory #251 defines AR Kâşifi as PRECONSTRUCTION_HOLD / RESEARCH_DESIGN_ACTIVE; its scope must be decided by real owner. Do not pretend implemented runtime.",
+    "proof_level": "Git blob SHA-1, document SHA-256, cryptographic signature validity and actual permission are separate."
+  },
+  "classified_case_attention": [
+    {
+      "id": "07",
+      "reason": "Temporal prior adopter claim conflicts with newer Restate migration report",
+      "next": "Time-scoped customer-confirmed actual current deployment or keep historical"
+    },
+    {
+      "id": "08",
+      "reason": "Auth0 FGA built on OpenFGA is product lineage, not independent external adopter",
+      "next": "Owner-approved exact scope decision; retain case ID"
+    },
+    {
+      "id": "12",
+      "reason": "Temporal Cloud supplier/platform reference is not external installed customer evidence",
+      "next": "Customer-specific evidence or canonical scope decision"
+    },
+    {
+      "id": "15",
+      "reason": "Uber LangGraph claim traced to vendor, not Uber owner first-party deployment",
+      "next": "Signed customer witness and independent E5"
+    }
+  ],
+  "management_method": [
+    "READ_EXACT_PIN",
+    "COMBINE_ORIGINAL_DEPENDENCIES",
+    "SIMULATE_END_TO_END",
+    "SCORE_WITH_FIXED_CRITERIA",
+    "COMPLETE_ACCESSIBLE_GAPS",
+    "SATISFY_REQUIREMENTS",
+    "CORRECT_VERIFIED_ERRORS",
+    "RESCORE",
+    "RESIMULATE",
+    "HANDOFF_ONLY_IF_MANAGEMENT_SCORE_100_AND_REAL_EXTERNAL_AUTHORITY_SEPARATELY_VALID"
+  ],
+  "external_authority_queue": [
+    {
+      "order": 1,
+      "scope": "A03",
+      "responsible": "canonical owner+issuer",
+      "required": "Authentic authorized task-specific grant/trust-root/revocation; reviewer identity",
+      "state": "HOLD"
+    },
+    {
+      "order": 2,
+      "scope": "A04",
+      "responsible": "Kâşifi canonical source owner",
+      "required": "Runtime source/version/authorization OR explicit research-only scope decision",
+      "state": "HOLD"
+    },
+    {
+      "order": 3,
+      "scope": "A03/A09",
+      "responsible": "distinct reviewer",
+      "required": "Submitted independent review on pinned PR diff",
+      "state": "HOLD"
+    },
+    {
+      "order": 4,
+      "scope": "A05",
+      "responsible": "18 separate actual customer authorized source owners",
+      "required": "Release/edition, installed manifest/SBOM + signed provenance in PRIVATE evidence store",
+      "state": "HOLD_0_OF_18"
+    },
+    {
+      "order": 5,
+      "scope": "A06",
+      "responsible": "authorized independent observers per case",
+      "required": "Same-manifest linked independent signed real-use E5 evidence in PRIVATE evidence store",
+      "state": "HOLD_0_OF_18"
+    }
+  ],
+  "operational_boundaries": {
+    "main_writes": 0,
+    "production_code_writes": 0,
+    "osi_operations": 0,
+    "official_donecheck_ledgers": 0,
+    "customer_secrets_in_github": 0,
+    "real_owner_grants_claimed": 0,
+    "real_case_e5_claimed": 0,
+    "official_finishes_claimed": 0
+  },
+  "next_decision": "Management maintains 50/100 official GitHub readiness until authority gate evidence and independent evaluation; GH01-GH05 are management evidence examples, GH06-GH10 candidate missing requirements, not canonical rescore or automatic upgrade.",
+  "state": "MANAGEMENT_GATE_RECONCILIATION_DESIGN_ONLY__EXTERNAL_AUTHORITY_HOLD__OFFICIAL_HOLD",
+  "management_simulation": {
+    "model": "deterministic conditional source/authority role logic, NOT independent real acceptance",
+    "score": "100/100 self-evaluation",
+    "rounds": [
+      {
+        "round": 1,
+        "score": 100,
+        "negative_count": 30,
+        "negative_pass": 30,
+        "fail": []
+      },
+      {
+        "round": 2,
+        "score": 100,
+        "negative_count": 30,
+        "negative_pass": 30,
+        "fail": []
+      },
+      {
+        "round": 3,
+        "score": 100,
+        "negative_count": 30,
+        "negative_pass": 30,
+        "fail": []
+      }
+    ],
+    "total_adversarial_passed": 90
+  }
+}

@@ -18,11 +18,33 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Canonical 5×100 source/history/refs verification requires full Git ancestry
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+
+      - name: HYM2 Hedef 1 theory design three independent simulations on real Git source
+        run: |
+          python -B -m tools.arge_hym2_h1_five_axis_v1 | tee "$RUNNER_TEMP/hym2-h1-five-axis-receipt.json"
+          python -B - "$RUNNER_TEMP/hym2-h1-five-axis-receipt.json" <<'PY'
+          import json, sys
+          report=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert report["state"]=="PASS_GITHUB_PREPARATION_5X100"
+          assert report["scores"]==dict.fromkeys(
+              ("THEORY","DESIGN","SIM1","SIM2","SIM3"),100)
+          assert report["originalBlocks"]==6
+          assert report["originalTaskCount"]==40
+          assert len(report["h1Tasks"])==9
+          assert report["a03RealSignedGrant"]=="HOLD"
+          assert report["a04CveSbomAndLegal"]=="HOLD"
+          assert report["gates"]["VERIFIED_FINISH"]=="HOLD"
+          assert report["verifiedFinish"]=="HOLD"
+          assert report["osiField"]=="NOT_EXECUTED"
+          PY
+          cat "$RUNNER_TEMP/hym2-h1-five-axis-receipt.json"
 
       - name: System truth / order / simplicity
         run: python tools/labory_final_gate.py
@@ -212,6 +234,451 @@ jobs:
 
       - name: Repository Steward scheduled runner smoke
         run: node steward/run-scheduled-cycle.mjs
+
+      - name: A03 authority preflight review-only tests
+        run: python -m unittest discover -s tests -p 'test_arge_a03_preflight_v419.py' -v
+
+      - name: HYM2 A03 Zulfikar V1.3.1 solo-owner GitHub scope (not official grant)
+        run: |
+          python -B - <<'PY'
+          import json
+          from pathlib import Path
+          from tools.arge_a03_preflight_v419 import assess_solo_github_preparation
+          source=Path("governance/enguru-suzgeci/reviews/ENGURU_ARGE_B01_M01_A03_A04_MANAGEMENT_DECISION_HANDOFF_V1.json")
+          result=assess_solo_github_preparation(json.loads(source.read_text(encoding="utf8")))
+          assert result["state"]=="PASS_SOLO_GITHUB_SCOPE_SPEC_ONLY"
+          assert result["score"]==result["denominator"]==100
+          assert len(result["passed_ids"])==10
+          assert result["a03_official"]==result["a04_official"]=="HOLD"
+          assert result["verified_finish"]=="HOLD"
+          print(json.dumps({"scope":result["scope"],"result":result["state"],
+             "technicalSpecification":result["score"],"A03Official":result["a03_official"],
+             "A04Official":result["a04_official"],"VerifiedFinish":result["verified_finish"]},
+             sort_keys=True))
+          PY
+
+
+      - name: HYM Zulfikar V1.4.1 pinned method and three adversarial families
+        run: |
+          python -B -m unittest discover -s tests -p 'test_arge_hym_v141_crosswalk_v1.py' -v
+          python -B -m unittest discover -s tests -p 'test_arge_hym_v141_foundations_v1.py' -v
+          python -B -m unittest discover -s tests -p 'test_arge_hym_v141_a01_architecture_v1.py' -v
+
+      - name: HYM Zulfikar V1.4.1 real source SHA and eight-stage boundary
+        run: |
+          python -B -m tools.arge_hym_v141_crosswalk_v1 > "$RUNNER_TEMP/HYM_ZULFIKAR_V141_METHOD.json"
+          python -B - "$RUNNER_TEMP/HYM_ZULFIKAR_V141_METHOD.json" <<'PY'
+          import json,sys
+          j=json.load(open(sys.argv[1],encoding="utf8"))
+          assert j["state"]=="PASS_METHOD_SOURCE_CROSSWALK_ONLY"
+          assert j["crosswalkScore"]==100 and len(j["passed"])==10
+          assert len(j["stageAcceptance"])==8
+          assert all(x.startswith("HOLD_") for x in j["stageAcceptance"].values())
+          assert j["namespace"]["methodA03"]=="ZF.V141.A03"
+          assert j["namespace"]["originalA03"]=="HYM.A03"
+          assert j["official"]=="0/40" and j["verifiedFinish"]=="HOLD"
+          assert j["sourceInventory"]["state"]=="PASS_GIT_HEAD_SOURCE_BYTES_ONLY"
+          assert len(j["sourceInventory"]["files"])==7
+          foundation=j["foundationReadiness"]
+          assert foundation["state"]=="PASS_T01_T02_GITHUB_SOURCE_PREPARATION_ONLY"
+          assert foundation["T01"]["score"]==foundation["T02"]["score"]==100
+          assert all(foundation["stagesAccepted"][s]=="HOLD" for s in ("T01","T02"))
+          assert foundation["originalOfficial"]=="0/40"
+          assert foundation["independentE5"]=="0/18"
+          assert foundation["verifiedFinish"]=="HOLD"
+          architecture=j["a01ArchitectureReadiness"]
+          assert j["a01DesignProof"]["state"]=="PASS_GIT_HEAD_DESIGN_BYTES_ONLY"
+          assert architecture["state"]=="PASS_A01_ARCHITECTURE_SOURCE_PREPARATION_ONLY"
+          assert architecture["score"]==100 and len(architecture["checks"])==5
+          assert architecture["original_a01"]==architecture["method_a01"]=="HOLD"
+          assert architecture["verified_finish"]=="HOLD" and architecture["original_total"]=="0/40"
+          print(json.dumps({"methodSource":j["methodHead"],
+                            "crosswalk":j["crosswalkScore"],
+                            "stageAcceptance":"HOLD_UNTIL_REAL_STAGE_EVIDENCE",
+                            "official":j["official"]},sort_keys=True))
+          PY
+
+      - name: Ar-Ge Block 01 nine-task adversarial tests
+        run: python -m unittest discover -s tests -p 'test_arge_block01_v423.py' -v
+
+      - name: Ar-Ge Block 01 exit evidence replay
+        run: python -m unittest discover -s tests -p 'test_arge_block01_exit_v424.py' -v
+
+      - name: Ar-Ge Block 01 provenance inventory tests
+        run: python -m unittest discover -s tests -p 'test_arge_block01_provenance_v425.py' -v
+
+      - name: HYM2 Zulfikar source-bound goal design theory and 3 simulation families
+        run: python -B -m unittest discover -s tests -p 'test_arge_hym2_zulfikar_phase_reconciliation_v1.py' -v
+
+      - name: HYM2 Zulfikar project-specific 3x100 scoped diagnosis with original 50 HOLD
+        run: |
+          python -B -m tools.arge_hym2_zulfikar_phase_reconciliation_v1 \
+            --receipt "$RUNNER_TEMP/HYM2_ZULFIKAR_PHASE_DIAGNOSIS_V1.json"
+          python -B - "$RUNNER_TEMP/HYM2_ZULFIKAR_PHASE_DIAGNOSIS_V1.json" <<'PY'
+          import json,sys
+          x=json.load(open(sys.argv[1],encoding="utf8"))
+          assert x["state"]=="PASS_SCOPED_GOAL_DESIGN_THEORY_EVIDENCE_ONLY"
+          assert all(v["score"]==100 and v["total"]==10 for v in x["goal_design_theory"].values())
+          assert x["three_simulations"]["state"]=="PASS_THREE_DISTINCT_SIMULATION_FAMILIES"
+          assert x["three_simulations"]["passed"]==9
+          assert len(x["original_40_work_ids"])==40
+          assert len(x["original_blocks"])==6
+          assert x["legacy_github_preparation"]=="50/100_HOLD"
+          assert x["official_progress"]=="0/40" and x["verified_finish"]=="HOLD"
+          print(json.dumps({"scope":"GOAL_DESIGN_THEORY_PRE_FIELD_SOURCE_EVIDENCE",
+             "scores":{k:v["score"] for k,v in x["goal_design_theory"].items()},
+             "adversarialSimulations":9,"githubTechnicalCI":"THIS_STEP_RUN_SUCCESS",
+             "originalGithubReadiness":x["legacy_github_preparation"],
+             "official":x["official_progress"]},sort_keys=True))
+          PY
+
+      - name: Upload HYM2 Zulfikar stage deadlock diagnosis (NOT canonical release)
+        uses: actions/upload-artifact@v4
+        with:
+          name: hym2-zulfikar-stage-boundary-proof
+          path: ${{ runner.temp }}/HYM2_ZULFIKAR_PHASE_DIAGNOSIS_V1.json
+          retention-days: 3
+          if-no-files-found: error
+
+      - name: HYM2 Zulfikar V1.3 source-pinned reuse offline adversarial tests
+        run: python -B -m unittest discover -s tests -p 'test_arge_hym2_zulfikar_v13_reuse.py' -v
+
+      - name: HYM2 Zulfikar V1.3 real pinned goal and executable GitHub infrastructure gates
+        run: |
+          python -B -m tools.arge_hym2_zulfikar_v13_reuse \
+            --output "$RUNNER_TEMP/HYM2_ZULFIKAR_V13_REUSE_RECEIPT.json"
+          python -B - "$RUNNER_TEMP/HYM2_ZULFIKAR_V13_REUSE_RECEIPT.json" <<'PY'
+          import json,sys
+          a=json.load(open(sys.argv[1],encoding="utf8"))
+          assert a["state"]=="PASS_Z13_PINNED_OPERATIONAL_ADAPTER_ONLY"
+          assert a["source_blob_count"]==6
+          assert a["z13_goal_specification"]==a["z13_infra_github_code"]==100
+          assert a["original_V47_github_readiness"]=="50/100_HOLD"
+          assert a["original_40_official"]=="0/40"
+          assert a["osi_handoff"]==a["product_acceptance"]==a["verified_finish"]=="HOLD"
+          assert a["new_core"]==a["main_writes"]==a["product_code_writes"]==0
+          print(json.dumps({"source":"ZULFIKAR_V13_EXACT_PR242_PIN",
+            "v13_goal":100,"v13_github_code":100,
+            "hym2_original_V47":"50/100_HOLD","hym2_official":"0/40"},sort_keys=True))
+          PY
+
+      - name: Upload HYM2 Zulfikar V1.3 verified adapter receipt (NOT original V4.7 clearance)
+        uses: actions/upload-artifact@v4
+        with:
+          name: hym2-zulfikar-v13-real-source-gate
+          path: ${{ runner.temp }}/HYM2_ZULFIKAR_V13_REUSE_RECEIPT.json
+          retention-days: 3
+          if-no-files-found: error
+
+      - name: HYM2 Hedef 1 Zulfikar V1.2 original 40 task adversarial integration tests
+        run: python -B -m unittest discover -s tests -p 'test_arge_hym2_zulfikar_v12_bridge.py' -v
+
+      - name: HYM2 Hedef 1 real pinned Zulfikar V1.2 oracle and 40 task crosswalk
+        run: |
+          python -B tools/arge_hym2_zulfikar_v12_bridge.py \
+            --receipt "$RUNNER_TEMP/HYM2_H1_ZULFIKAR_V12_CROSSWALK_RECEIPT.json"
+          python -B - "$RUNNER_TEMP/HYM2_H1_ZULFIKAR_V12_CROSSWALK_RECEIPT.json" <<'PY'
+          import json,sys
+          x=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert x["state"]=="PASS_PINNED_ZULFIKAR_ADVISORY_INTEGRATION_ONLY"
+          assert len(x["zulfikar_source_pins"])==2
+          assert x["preservation"]["original_task_count"]==40
+          assert x["preservation"]["original_block_count"]==6
+          assert x["preservation"]["official_tasks"]=="0/40"
+          assert len(x["k01_k04_advisory_crosswalk"])==40
+          assert x["h1_zulfikar_live_advisory_checks"]["assessment_state"]=="SIMULATED_HOLD"
+          assert x["h1_zulfikar_live_advisory_checks"]["owner_official_decision"]=="HOLD"
+          assert x["h1_a03"]=="HOLD_REAL_OWNER_SCOPE_GRANT"
+          assert x["h1_a04"]=="HOLD_CANONICAL_KASIFI_OR_OWNER_RESEARCH_SCOPE"
+          assert x["verified_finish"]==x["mac_osi_handoff"]=="HOLD"
+          print(json.dumps({"state":x["state"],
+                            "zulfikar_ref":x["zulfikar_source_commit"],
+                            "original_tasks":40,
+                            "official":"0/40",
+                            "field":"HOLD"},sort_keys=True))
+          PY
+
+      - name: Upload HYM2 Hedef 1 Zulfikar real pinned source crosswalk (NOT authority)
+        uses: actions/upload-artifact@v4
+        with:
+          name: hym2-h1-zulfikar-v12-source-advisory
+          path: ${{ runner.temp }}/HYM2_H1_ZULFIKAR_V12_CROSSWALK_RECEIPT.json
+          retention-days: 3
+          if-no-files-found: error
+
+      - name: Ar-Ge Block 01 full 18 case reconciliation
+        run: python -m unittest discover -s tests -p 'test_arge_block01_18_cases_v428.py' -v
+
+      - name: Ar-Ge Block 01 K12 five-year cost calculation tests
+        run: python -m unittest discover -s tests -p 'test_arge_block01_k12_tco_v1.py' -v
+
+      - name: Ar-Ge Block 01 K12 18-case evidence intake tests
+        run: python -m unittest discover -s tests -p 'test_arge_block01_k12_batch_v1.py' -v
+
+      - name: Ar-Ge Block 01 original task identity regression
+        run: python -m unittest discover -s tests -p 'test_arge_block01_task_semantics_v1.py' -v
+
+      - name: Ar-Ge Block 01 A07 G01 real BillingCore fault replay
+        run: python -m unittest discover -s tests -p 'test_arge_block01_a07_runtime_v1.py' -v
+
+      - name: Ar-Ge Block 01 G01 SQLite restart-safe adversarial tests
+        run: python -m unittest discover -s tests -p 'test_arge_block01_g01_sqlite_v1.py' -v
+
+      - name: Ar-Ge Block 01 G03 source-time and conflict adversarial tests
+        run: python -m unittest discover -s tests -p 'test_arge_block01_g03_temporal_v1.py' -v
+
+      - name: Ar-Ge Block 01 G02 actual evidence access gap characterization
+        run: python -m unittest discover -s tests -p 'test_arge_block01_g02_existing_gap_v1.py' -v
+
+      - name: Ar-Ge Block 01 pinned production billing boundary
+        run: python -m unittest discover -s tests -p 'test_arge_block01_product_boundary_v1.py' -v
+
+      - name: Ar-Ge Block 01 A04 upstream Git/license provenance test
+        run: python -m unittest discover -s tests -p 'test_arge_block01_a04_upstream_pins_v1.py' -v
+
+      - name: HYM2 Hedef 1 A04 real upstream-byte verifier adversarial tests
+        run: python -B -m unittest discover -s tests -p 'test_arge_block01_a04_live_verify_v1.py' -v
+
+      - name: HYM2 Hedef 1 A04 live pinned upstream license and security source verification
+        run: |
+          python -B tools/arge_block01_a04_live_verify_v1.py \
+            --manifest governance/enguru-suzgeci/reviews/ENGURU_ARGE_BLOCK01_A04_UPSTREAM_LICENSE_PINS_V1.json \
+            > "$RUNNER_TEMP/hym2-a04-live-source-receipt.json"
+          python -B - "$RUNNER_TEMP/hym2-a04-live-source-receipt.json" <<'PY'
+          import json, sys
+          result=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert result["state"]=="PASS_PINNED_PUBLIC_BYTES_ONLY"
+          assert result["checked"]==result["matched"]==result["expected"]==13
+          assert len(result["files"])==13
+          assert all(row["state"]=="PASS_PINNED_BYTES" and len(row["bytes_sha256"])==64 for row in result["files"])
+          assert result["a04_official"]==result["verified_finish"]=="HOLD"
+          assert result["cve"]==result["sbom"]==result["legal_clearance"]=="HOLD"
+          assert result["independent_e5"]=="HOLD_0_OF_18"
+          PY
+          cat "$RUNNER_TEMP/hym2-a04-live-source-receipt.json"
+
+      - name: HYM2 Hedef 1 A04 seven dependency-seed adversarial tests
+        run: python -B -m unittest discover -s tests -p 'test_arge_block01_a04_dependency_seeds_v1.py' -v
+
+      - name: HYM2 Hedef 1 A04 live dependency source bytes not SBOM-CVE clearance
+        run: |
+          python -B tools/arge_block01_a04_dependency_seeds_v1.py \
+            --manifest governance/enguru-suzgeci/reviews/ENGURU_ARGE_A04_DEPENDENCY_SEEDS_V1.json \
+            --upstream governance/enguru-suzgeci/reviews/ENGURU_ARGE_BLOCK01_A04_UPSTREAM_LICENSE_PINS_V1.json \
+            > "$RUNNER_TEMP/hym2-a04-dependency-seeds.json"
+          python -B - "$RUNNER_TEMP/hym2-a04-dependency-seeds.json" <<'PY'
+          import json, sys
+          receipt=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert receipt["state"]=="PASS_7_PINNED_DEPENDENCY_SEEDS_ONLY"
+          assert receipt["matched"]==receipt["checked"]==receipt["expected"]==7
+          assert len(receipt["sources"])==7
+          assert all(x["state"]=="PASS_SOURCE_BYTES" and len(x["observed_file_sha256"])==64
+                     for x in receipt["sources"])
+          assert receipt["security_policies_with_pinned_files"]==3
+          assert receipt["standard_path_policy_gaps"]==4
+          for field in ("complete_sbom","exact_version_cve_review","legal_clearance",
+                        "a04_official","verified_finish"):
+              assert receipt[field]=="HOLD"
+          PY
+          cat "$RUNNER_TEMP/hym2-a04-dependency-seeds.json"
+
+      - name: HYM2 Hedef 1 A04 source-scoped candidate CycloneDX adversarial tests
+        run: python -B -m unittest discover -s tests -p 'test_arge_block01_a04_sbom_candidates_v1.py' -v
+
+      - name: HYM2 Hedef 1 A04 real pinned source CycloneDX candidate with exact SHA256
+        run: |
+          if ! python -B -m tools.arge_block01_a04_sbom_candidates_v1 \
+            --manifest governance/enguru-suzgeci/reviews/ENGURU_ARGE_A04_DEPENDENCY_SEEDS_V1.json \
+            --upstream governance/enguru-suzgeci/reviews/ENGURU_ARGE_BLOCK01_A04_UPSTREAM_LICENSE_PINS_V1.json \
+            --output-cdx "$RUNNER_TEMP/HYM2_H1_A04_SOURCE_SCOPED_CDX_CANDIDATE.json" \
+            > "$RUNNER_TEMP/HYM2_H1_A04_CANDIDATE_RECEIPT.json"; then
+            python -B - "$RUNNER_TEMP/HYM2_H1_A04_CANDIDATE_RECEIPT.json" <<'PY'
+          import json,sys
+          d=json.load(open(sys.argv[1],encoding="utf-8"))
+          print(json.dumps({"state":d.get("state"),"verified":d.get("source_count_verified"),
+                            "sources":[{"technology":x.get("technology"),"state":x.get("state"),
+                                        "error":x.get("error_reason"),"error_type":x.get("error_type")}
+                                       for x in d.get("source_summary",[]) if x.get("state")!="PASS_SOURCE_PARSED"]},
+                           sort_keys=True))
+          PY
+            exit 2
+          fi
+          python -B - "$RUNNER_TEMP/HYM2_H1_A04_CANDIDATE_RECEIPT.json" "$RUNNER_TEMP/HYM2_H1_A04_SOURCE_SCOPED_CDX_CANDIDATE.json" <<'PY'
+          import hashlib, json, pathlib,sys
+          receipt=json.loads(pathlib.Path(sys.argv[1]).read_text())
+          raw=pathlib.Path(sys.argv[2]).read_bytes()
+          bom=json.loads(raw)
+          assert receipt["state"]=="PASS_SOURCE_SCOPED_COMPONENT_CANDIDATES_ONLY"
+          assert receipt["source_count_verified"]==7
+          assert receipt["candidate_components_with_version"]==len(bom["components"]) > 100
+          assert receipt["candidate_sbom_sha256"]==hashlib.sha256(raw).hexdigest()
+          assert len(receipt["unresolved_declarations"]) > 0
+          assert bom["bomFormat"]=="CycloneDX" and bom["specVersion"]=="1.5"
+          assert all(x["bom-ref"] and x["purl"] and x["version"] for x in bom["components"])
+          for k in ("complete_sbom","customer_installation_sbom","cve_advisory_review",
+                    "legal_license_clearance","a04_official","verified_finish"):
+              assert receipt[k]=="HOLD"
+          print(json.dumps({
+              "scope":"SOURCE_SCOPED_CANDIDATE_ONLY",
+              "pinned_sources":receipt["source_count_verified"],
+              "source_components":len(bom["components"]),
+              "unresolved_ranges":len(receipt["unresolved_declarations"]),
+              "candidate_bytes_sha256":receipt["candidate_sbom_sha256"],
+              "complete_sbom":receipt["complete_sbom"],
+              "cve_advisory_review":receipt["cve_advisory_review"],
+              "a04_official":receipt["a04_official"],
+          },sort_keys=True))
+          PY
+
+      - name: Upload HYM2 A04 source-scoped candidate (NOT product SBOM)
+        uses: actions/upload-artifact@v4
+        with:
+          name: hym2-a04-source-cdx-candidate
+          path: |
+            ${{ runner.temp }}/HYM2_H1_A04_SOURCE_SCOPED_CDX_CANDIDATE.json
+            ${{ runner.temp }}/HYM2_H1_A04_CANDIDATE_RECEIPT.json
+          retention-days: 3
+          if-no-files-found: error
+
+      - name: HYM2 Hedef 1 A04 OSV advisory snapshot offline adversarial tests
+        run: python -B -m unittest discover -s tests -p 'test_arge_block01_a04_osv_source_review_v1.py' -v
+
+      - name: HYM2 Hedef 1 A04 real OSV advisory batch review source-only
+        run: |
+          if ! python -B -m tools.arge_block01_a04_osv_source_review_v1 \
+            --cdx "$RUNNER_TEMP/HYM2_H1_A04_SOURCE_SCOPED_CDX_CANDIDATE.json" \
+            --source-receipt "$RUNNER_TEMP/HYM2_H1_A04_CANDIDATE_RECEIPT.json" \
+            --output "$RUNNER_TEMP/HYM2_H1_A04_OSV_SOURCE_SNAPSHOT.json" \
+            --batch-size 400 > "$RUNNER_TEMP/HYM2_H1_A04_OSV_SOURCE_SUMMARY.json"; then
+              cat "$RUNNER_TEMP/HYM2_H1_A04_OSV_SOURCE_SUMMARY.json"
+              exit 2
+          fi
+          python -B - "$RUNNER_TEMP/HYM2_H1_A04_OSV_SOURCE_SUMMARY.json" \
+                        "$RUNNER_TEMP/HYM2_H1_A04_OSV_SOURCE_SNAPSHOT.json" <<'PY'
+          import json,sys,pathlib
+          summary=json.loads(pathlib.Path(sys.argv[1]).read_text())
+          scan=json.loads(pathlib.Path(sys.argv[2]).read_text())
+          assert summary["state"]=="PASS_OSV_SOURCE_SNAPSHOT_ONLY"
+          assert summary["query_coverage"]==summary["eligible_source_components"] > 100
+          assert len(scan["observations"])==summary["query_coverage"]
+          assert summary["source_candidate_sha256"]==scan["source_candidate_sha256"]
+          assert summary["cve_security_clearance"]==summary["complete_sbom"]=="HOLD"
+          assert summary["license_legal_clearance"]==summary["a04_official"]=="HOLD"
+          assert summary["verified_finish"]=="HOLD"
+          print(json.dumps({
+              "state":summary["state"],"query_coverage":summary["query_coverage"],
+              "advisory_matches":summary["advisory_matches"],
+              "affected_package_candidates":summary["affected_package_candidates"],
+              "unresolved_ranges":summary["unresolved_range_count"],
+              "osv_batch_requests":summary["batch_requests_with_pagination"],
+              "clearance":summary["cve_security_clearance"],"A04":summary["a04_official"]
+          },sort_keys=True))
+          PY
+
+      - name: Upload HYM2 A04 source-scoped OSV advisory snapshot (NOT security clearance)
+        uses: actions/upload-artifact@v4
+        with:
+          name: hym2-a04-osv-source-advisory-snapshot
+          path: |
+            ${{ runner.temp }}/HYM2_H1_A04_OSV_SOURCE_SNAPSHOT.json
+            ${{ runner.temp }}/HYM2_H1_A04_OSV_SOURCE_SUMMARY.json
+          retention-days: 3
+          if-no-files-found: error
+
+      - name: HYM2 Hedef 1 A04 public OSV advisory metadata triage adversarial tests
+        run: python -B -m unittest discover -s tests -p 'test_arge_block01_a04_osv_triage_v1.py' -v
+
+      - name: HYM2 Hedef 1 A04 live advisory metadata and fix-event evidence
+        run: |
+          if ! python -B -m tools.arge_block01_a04_osv_triage_v1 \
+            --snapshot "$RUNNER_TEMP/HYM2_H1_A04_OSV_SOURCE_SNAPSHOT.json" \
+            --summary "$RUNNER_TEMP/HYM2_H1_A04_OSV_SOURCE_SUMMARY.json" \
+            --output "$RUNNER_TEMP/HYM2_H1_A04_TRIAGE_DETAIL.json" \
+            --workers 6 > "$RUNNER_TEMP/HYM2_H1_A04_TRIAGE_RECEIPT.json"; then
+              cat "$RUNNER_TEMP/HYM2_H1_A04_TRIAGE_RECEIPT.json"
+              exit 2
+          fi
+          python -B - "$RUNNER_TEMP/HYM2_H1_A04_TRIAGE_RECEIPT.json" \
+                        "$RUNNER_TEMP/HYM2_H1_A04_TRIAGE_DETAIL.json" <<'PY'
+          import json,hashlib,pathlib,sys
+          receipt=json.loads(pathlib.Path(sys.argv[1]).read_text())
+          raw=pathlib.Path(sys.argv[2]).read_bytes()
+          triage=json.loads(raw)
+          assert receipt["state"]=="PASS_PUBLIC_OSV_METADATA_TRIAGE_ONLY"
+          assert receipt["advisory_matches"]==receipt["source_advisory_total"]
+          assert receipt["advisory_ids_total"]==receipt["metadata_records_observed"]
+          assert receipt["affected_package_total"]==receipt["matched_source_components"]
+          assert len(triage["priority_queue"])==receipt["affected_package_total"]
+          assert receipt["security_clearance"]=="HOLD"
+          assert receipt["actual_deployed_sbom"]=="HOLD"
+          assert receipt["license_legal"]=="HOLD"
+          assert receipt["a03_official"]==receipt["a04_official"]==receipt["verified_finish"]=="HOLD"
+          print(json.dumps({
+              "state":receipt["state"],
+              "source_advisory_matches":receipt["source_advisory_total"],
+              "distinct_advisory_ids":receipt["advisory_ids_total"],
+              "metadata_records":receipt["metadata_records_observed"],
+              "affected_source_candidates":receipt["affected_package_total"],
+              "severity":receipt["explicit_severity_distribution"],
+              "upstream":receipt["upstream_match_counts"],
+              "triage_detail_sha256":hashlib.sha256(raw).hexdigest(),
+              "authority":"HOLD",
+              "risk_clearance":"HOLD"
+          },sort_keys=True))
+          PY
+
+      - name: Upload HYM2 A04 triage (source candidates; NOT deployed risk clearance)
+        uses: actions/upload-artifact@v4
+        with:
+          name: hym2-a04-public-advisory-metadata-triage
+          path: |
+            ${{ runner.temp }}/HYM2_H1_A04_TRIAGE_DETAIL.json
+            ${{ runner.temp }}/HYM2_H1_A04_TRIAGE_RECEIPT.json
+          retention-days: 3
+          if-no-files-found: error
+
+      - name: HYM2 Hedef 1 A04 proxy-addr source graph offline adversarial regression
+        run: python -B -m unittest discover -s tests -p 'test_arge_block01_a04_proxy_addr_path_v1.py' -v
+
+      - name: HYM2 Hedef 1 A04 real proxy-addr Express pinned graph and patched range proof
+        run: |
+          python -B -m tools.arge_block01_a04_proxy_addr_path_v1 \
+            --receipt "$RUNNER_TEMP/HYM2_H1_A04_PROXY_ADDR_SOURCE_RECEIPT.json"
+          python -B - "$RUNNER_TEMP/HYM2_H1_A04_PROXY_ADDR_SOURCE_RECEIPT.json" <<'PY'
+          import json,sys
+          receipt=json.load(open(sys.argv[1],encoding="utf-8"))
+          assert receipt["state"]=="PASS_SOURCE_FIX_COMPATIBILITY_ONLY"
+          assert receipt["sources_verified"]==receipt["expected_sources"]==7
+          assert len(receipt["source_trust_proxy_configs"])==3
+          assert receipt["application_default_directly_uses_cidr"] is False
+          assert receipt["resolved_proxy_addr"]=="2.0.7"
+          assert receipt["fixed_version"]=="2.0.8"
+          assert receipt["patch_in_existing_express_selector"] is True
+          assert len(receipt["source_paths"])==2
+          for field in ("medusa_installation_proven",
+                        "application_proxy_trust_config_proven",
+                        "real_customer_exposure",
+                        "regression_for_real_installation",
+                        "a04_official","verified_finish"):
+              assert receipt[field]=="HOLD"
+          PY
+
+      - name: HYM2 Hedef 1 A04 disposable proxy-addr 2.0.7 vs 2.0.8 npm behavior regression
+        run: |
+          npm install --prefix "$RUNNER_TEMP/hym2-proxy-old" \
+            --no-save --no-audit --no-fund --ignore-scripts --no-package-lock \
+            proxy-addr@2.0.7
+          npm install --prefix "$RUNNER_TEMP/hym2-proxy-fixed" \
+            --no-save --no-audit --no-fund --ignore-scripts --no-package-lock \
+            proxy-addr@2.0.8
+          node tests/hym2_a04_proxy_addr_207_208_runtime.cjs \
+            "$RUNNER_TEMP/hym2-proxy-old" "$RUNNER_TEMP/hym2-proxy-fixed"
+
+      - name: Ar-Ge Block 01 A01-A06 dated public provenance regression
+        run: python -m unittest discover -s tests -p 'test_arge_block01_a01_a06_public_provenance_v1.py' -v
+
+      - name: Ar-Ge Block 01 A05-A06 external evidence 18-case intake
+        run: python -m unittest discover -s tests -p 'test_arge_block01_a05_a06_evidence_intake_v1.py' -v
 
       - name: Final state
         run: echo 'ENGURU LABORY REPOSITORY FINAL GATE = PASS' >> "$GITHUB_STEP_SUMMARY"
