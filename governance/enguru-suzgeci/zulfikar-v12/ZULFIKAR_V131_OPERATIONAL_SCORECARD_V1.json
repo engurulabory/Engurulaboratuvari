@@ -1,0 +1,92 @@
+{
+  "schema": "enguru.zulfikar.operational-readiness-rubric/v1",
+  "date": "2026-10-26",
+  "kind": "WEIGHTED_ENGINEERING_JUDGMENT_NOT_OFFICIAL_OR_PEER_BENCHMARK",
+  "weightsFixedBeforeOfficialFieldAcceptance": true,
+  "domains": [
+    {
+      "id": "GOAL",
+      "name": "Hedef ve kabul tanımı",
+      "weight": 10,
+      "baseline": 100,
+      "review": 100,
+      "evidence": "Existing goal gate 10/10 on GitHub",
+      "missing": []
+    },
+    {
+      "id": "GITHUB_ENGINE",
+      "name": "GitHub kod/CLI altyapısı",
+      "weight": 10,
+      "baseline": 100,
+      "review": 100,
+      "evidence": "Existing infra 10/10 GitHub",
+      "missing": []
+    },
+    {
+      "id": "TEST_CI",
+      "name": "GitHub kaynak/test/CI doğrulaması",
+      "weight": 10,
+      "baseline": 100,
+      "review": 100,
+      "evidence": "6/6 CI success, 27×3 bridge tests",
+      "missing": []
+    },
+    {
+      "id": "GOVERNANCE",
+      "name": "Güvenlik ve tek sahip yönetişimi",
+      "weight": 25,
+      "baseline": 95,
+      "review": 98,
+      "evidence": "Registry/issuer/HT/dry-run/source SHA checked, unverified deps and resume HOLD",
+      "missing": [
+        "Owner native permission certificate"
+      ]
+    },
+    {
+      "id": "PORTABILITY",
+      "name": "Farklı projelerde uygulanabilirlik",
+      "weight": 30,
+      "baseline": 80,
+      "review": 90,
+      "evidence": "Three different preflight action profiles in existing Mac Engineer registry, no invented new core",
+      "missing": [
+        "Three heterogeneous real task outputs"
+      ]
+    },
+    {
+      "id": "E2E_REAL",
+      "name": "Gerçek görevi otonom uçtan uca bitirme",
+      "weight": 15,
+      "baseline": 65,
+      "review": 65,
+      "evidence": "No new real job execution; field remains HOLD",
+      "missing": [
+        "Real Mac task evidence",
+        "3/3 real task transfer",
+        "restart/recovery",
+        "peer trials and user outcomes"
+      ]
+    }
+  ],
+  "weightedBaseline": 87.5,
+  "roundedPreviousOverall88": 88,
+  "weightedAfterBridge": 91.25,
+  "roundedCurrentOverall": 91,
+  "targetEveryDomain": 100,
+  "targetWeightedOverall": 100,
+  "newVerifiedGitHubBridge": {
+    "codeSourceGateScore": 100,
+    "testsPerRound": 27,
+    "rounds": 3,
+    "githubWorkflowSuccess": 6,
+    "realTaskExecution": false
+  },
+  "horizon": {
+    "realTasksRequired": 3,
+    "realTaskPassesObservedInThisCampaign": 0,
+    "peerTrialsObserved": 0,
+    "macOsiOperationalAcceptance": "HOLD",
+    "ownerOfficialFinish": "HOLD"
+  },
+  "scoringRule": "Source-level tests may raise governance/portable preflight judgment but not end-to-end real execution domain. No automatic 100 without actual OS field and independent real task evidence."
+}
