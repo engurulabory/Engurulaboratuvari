@@ -25,5 +25,6 @@ jobs:
           for cycle in 1 2 3; do
             echo "DESIGN_CONTRACT_SIMULATION_CYCLE=$cycle"
             python -B -m unittest discover -s tests -p test_pilive_sessiz_orman_ux_contract_v1.py -v
+            python -B -m unittest discover -s tests -p test_pilive_sessiz_orman_zulfikar_score_v2.py -v
           done
           echo "STATE=PASS_DESIGN_CONTRACT_ONLY_OWNER_AESTHETIC_HOLD"
