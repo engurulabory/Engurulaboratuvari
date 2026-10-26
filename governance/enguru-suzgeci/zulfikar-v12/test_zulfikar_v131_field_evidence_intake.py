@@ -161,5 +161,38 @@ class EvidenceIntakeTests(unittest.TestCase):
         self.assertIn("RECEIPT_PIN_MISMATCH",self.verdict()["holds"])
 
 
+    def test_same_sha_valid_bytes_but_fake_finished_claim_are_separate(self):
+        self.mutate_receipt(1,lambda x:x.update(officialVerifiedFinish="PASS"))
+        result=self.verdict()
+        row=result["reviewedTasks"][0]
+        self.assertTrue(row["bytePinMatched"])
+        self.assertFalse(row["semanticReviewEligible"])
+        self.assertFalse(row["actualExecutionVerified"])
+        self.assertEqual(result["claimedTaskObservationsWithMatchingBytes"],3)
+        self.assertEqual(result["semanticallyEligibleTaskClaims"],2)
+        self.assertEqual(result["independentlyVerifiedRealTaskCount"],0)
+
+    def test_matching_pin_does_not_override_wrong_task(self):
+        self.mutate_receipt(1,lambda x:x.update(taskId="FORGED.TASK"))
+        row=self.verdict()["reviewedTasks"][0]
+        self.assertTrue(row["bytePinMatched"])
+        self.assertFalse(row["semanticReviewEligible"])
+        self.assertIn("TASK_ID_MISMATCH",row["holds"])
+
+    def test_corrupt_bytes_are_not_a_semantic_pass(self):
+        p=self.root/"receipt_1.json"
+        p.write_bytes(p.read_bytes()+b"corrupt")
+        row=self.verdict()["reviewedTasks"][0]
+        self.assertFalse(row["bytePinMatched"])
+        self.assertFalse(row["semanticReviewEligible"])
+        self.assertFalse(row["actualExecutionVerified"])
+
+    def test_plain_receipt_cannot_authenticate_real_mac(self):
+        result=self.verdict()
+        self.assertEqual(result["semanticallyEligibleTaskClaims"],3)
+        self.assertEqual(result["independentlyVerifiedRealTaskCount"],0)
+        self.assertEqual(result["verifiedFinish"],"HOLD")
+
+
 if __name__=="__main__":
     unittest.main(verbosity=2)
