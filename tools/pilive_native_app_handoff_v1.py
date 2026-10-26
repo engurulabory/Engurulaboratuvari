@@ -23,10 +23,15 @@ READER_FILES=['tools/pilive_native_learning_probe_v1.py','tools/pilive_portfolio
               'tools/pilive_core_snapshot_adapter_v1.py','tools/pilive_screen_wire_v1.py',
               'tools/pilive_live_reader_v1.py']
 
+class NativeCommandHold(ValueError):
+    def __init__(self, argv, result):
+        super().__init__('HOLD_COMMAND_'+Path(argv[0]).name)
+        self.diagnostic={'argv':argv,'returncode':result.returncode,'outputTail':(result.stdout+result.stderr)[-6000:],'visibility':'PRIVATE_RECEIPT_ONLY'}
+
 def run_command(argv, timeout=240):
     result=subprocess.run(argv,capture_output=True,text=True,timeout=timeout)
     output=result.stdout+result.stderr
-    if result.returncode:raise ValueError('HOLD_COMMAND_'+Path(argv[0]).name)
+    if result.returncode:raise NativeCommandHold(argv,result)
     return {'argv':argv,'returncode':0,'outputSha256':safe.digest(output.encode()),'output':output}
 
 def reader_resources(source, destination):
@@ -67,10 +72,12 @@ def build_and_open(source, home):
             if safe.digest(safe.read_file(source,path))!=pin:raise ValueError('HOLD_DELIVERED_SOURCE_DRIFT')
         package=source/'swift/PiLivePresentation'
         version=run_command(['/usr/bin/xcrun','swift','--version']);receipt['buildToolchain']=version['output'].strip()
+        print('STEP=NATIVE_SWIFT_TESTS',flush=True)
         tests=run_command(['/usr/bin/xcrun','swift','test','--package-path',str(package)],timeout=600);recipe.append({k:v for k,v in tests.items() if k!='output'})
         counts=[int(x) for x in re.findall(r'Executed (\d+) tests, with 0 failures',tests['output'])]
         if not counts or max(counts)==0:raise ValueError('HOLD_NATIVE_TEST_COUNT')
         receipt['nativeSwiftTests']=max(counts)
+        print('STEP=BUILD_RELEASE_CANDIDATE',flush=True)
         build=run_command(['/usr/bin/xcrun','swift','build','--package-path',str(package),'-c','release'],timeout=600);recipe.append({k:v for k,v in build.items() if k!='output'})
         binary_folder=run_command(['/usr/bin/xcrun','swift','build','--package-path',str(package),'-c','release','--show-bin-path'])['output'].strip()
         app=session/'ENGURU-PiLive-V4-READONLY.app';macos=app/'Contents/MacOS';macos.mkdir(parents=True);resources=app/'Contents/Resources';resources.mkdir()
@@ -82,14 +89,20 @@ def build_and_open(source, home):
         sign=run_command(['/usr/bin/codesign','--force','--sign','-','--timestamp=none',str(app)]);recipe.append({k:v for k,v in sign.items() if k!='output'})
         verify=run_command(['/usr/bin/codesign','--verify','--strict',str(app)]);recipe.append({k:v for k,v in verify.items() if k!='output'})
         receipt.update(buildRecipe=recipe,readerManifestSha256=reader_pin,preSigningBinarySha256=unsigned_sha,binarySha256=safe.digest((macos/'PiLive').read_bytes()),signature='ADHOC_ONLY_NOT_OWNER_AUTHORITY',signatureVerification='PASS_STRICT_LOCAL_CANDIDATE',appPath=str(app))
+        print('STEP=OPEN_ISOLATED_CANDIDATE',flush=True)
         run_command(['/usr/bin/open','-n',str(app)]);receipt['appLaunches']=1
-        end=time.monotonic()+45;frame_path=session/'VISIBLE_FRAME.json'
+        end=time.monotonic()+120;frame_path=session/'VISIBLE_FRAME.json'
         while time.monotonic()<end and not frame_path.exists():time.sleep(0.5)
         if not frame_path.exists():raise ValueError('HOLD_VISIBLE_FRAME_NOT_OBSERVED')
         raw=safe.read_file(session,'VISIBLE_FRAME.json',4*1024*1024);frame=json.loads(raw)
         verdict=validate_frame(frame,receipt['binarySha256']);receipt.update(verdict);receipt['visibleFrame']=frame;receipt['visibleFrameSha256']=safe.digest(raw)
         if safe.digest((macos/'PiLive').read_bytes())!=receipt['binarySha256']:raise ValueError('HOLD_BINARY_DRIFT')
     except Exception as exc:
+        if isinstance(exc,NativeCommandHold):receipt['privateDiagnostic']=exc.diagnostic
+        failure=session/'READER_FAILURE.json'
+        if failure.exists():
+            try:receipt['privateReaderFailure']=json.loads(safe.read_file(session,'READER_FAILURE.json',4*1024*1024))
+            except (OSError,ValueError):pass
         receipt['state']='HOLD_BUILD_OR_FIELD';receipt['reason']=str(exc) if re.fullmatch('HOLD_[A-Z_a-z0-9]+',str(exc)) else type(exc).__name__
     safe.save(home,receipt)
     print('STATE='+receipt['state']);print('APP_LAUNCHES='+str(receipt['appLaunches']));print('PRODUCT_ACCEPTANCE=HOLD; VERIFIED_FINISH=HOLD')

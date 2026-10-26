@@ -6,7 +6,9 @@ from pathlib import Path
 import tempfile
 import unittest
 from tools.pilive_live_reader_v1 import packet
-from tools.pilive_native_app_handoff_v1 import reader_resources,validate_frame
+from tools.pilive_native_app_handoff_v1 import reader_resources,validate_frame,run_command,NativeCommandHold
+from unittest.mock import patch
+from types import SimpleNamespace
 from tools.pilive_reader_entry_v1 import validate
 from test_pilive_screen_wire_v1 import native_model
 
@@ -26,6 +28,19 @@ class LiveReaderTests(unittest.TestCase):
         for field,value in [('projectionDigest','0'*64),('projectIds',[]),('qualifiedCounters',15),('windowVisible',False),('uiRenderedAt','2000-01-01T00:00:00Z'),('humanAcceptance','ACCEPTED'),('verifiedFinish','VERIFIED')]:
             f=self.frame();f[field]=value
             with self.subTest(field=field),self.assertRaises(ValueError):validate_frame(f,'a'*64)
+    def test_packaged_reader_resources_pin_every_executed_source(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder).resolve()/'reader'
+            pin=reader_resources(Path(__file__).resolve().parents[1],root)
+            self.assertEqual(len(validate(root,pin)),6)
+            (root/'launch_reader.py').write_text('changed')
+            with self.assertRaises(ValueError):validate(root,pin)
+    def test_native_command_failure_keeps_private_diagnostic(self):
+        failed=SimpleNamespace(returncode=2,stdout='',stderr='specific native compiler diagnostic')
+        with patch('tools.pilive_native_app_handoff_v1.subprocess.run',return_value=failed):
+            with self.assertRaises(NativeCommandHold) as caught:run_command(['/usr/bin/xcrun','swift','test'])
+        self.assertIn('specific native',caught.exception.diagnostic['outputTail'])
+        self.assertEqual(caught.exception.diagnostic['visibility'],'PRIVATE_RECEIPT_ONLY')
     def test_reader_manifest_tamper_and_symlink_hold(self):
         with tempfile.TemporaryDirectory() as folder:
             root=Path(folder).resolve();(root/'data.py').write_text('safe')

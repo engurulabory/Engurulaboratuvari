@@ -32,10 +32,10 @@ def qualify(method_file):
                 p=subprocess.run([sys.executable,'-B','-m','unittest','discover','-s','tests','-p','test_pilive_live_reader_v1.py','-q'],cwd=source.parents[1],capture_output=True,timeout=45)
                 artifact.write_bytes(p.stdout+p.stderr)
                 return {'processObserved':True,'exitCode':p.returncode,'scope':'LOCAL_DISPOSABLE_PROOF','artifactSha256':hashlib.sha256(artifact.read_bytes()).hexdigest()}
-            def verify(state,c,result):return hashlib.sha256(artifact.read_bytes()).hexdigest()==result['artifactSha256'] and b'Ran 5 tests' in artifact.read_bytes() and all(assess(state,c).values())
+            def verify(state,c,result):return hashlib.sha256(artifact.read_bytes()).hexdigest()==result['artifactSha256'] and b'Ran 7 tests' in artifact.read_bytes() and all(assess(state,c).values())
             result=module.execute(contract,start,module.LocalJournal(folder),lambda s,c:{'valid':True},assess,repair,test,verify,lambda c:hashlib.sha256(source.read_bytes()).hexdigest()==c['sourcePin'],source_file=source,max_rounds=3)
             if result['state']!='STAGE_100_CANDIDATE_EXTERNAL_REVIEW_REQUIRED' or result['stagePassIssued'] or result['acceptedScore'] is not None:raise ValueError('HOLD_DOM_QUALIFICATION')
-            rounds.append({'cycle':index+1,'realSubprocessTests':5,'state':result['state'],'journalHeadSha256':result['journalHeadSha256'],'diagnostic':result['diagnostic'],'officialStagePass':False})
+            rounds.append({'cycle':index+1,'realSubprocessTests':7,'state':result['state'],'journalHeadSha256':result['journalHeadSha256'],'diagnostic':result['diagnostic'],'officialStagePass':False})
     return {'schema':'enguru.pilive.dom-wire-qualification/v1','methodSourceSha256':PIN,'scope':'DISPOSABLE_WIRE_RECOVERY_ADAPTER_ONLY_NOT_PILIVE_T01_ACCEPTANCE','rounds':rounds,'canonicalWrites':0,'productAcceptance':'HOLD','verifiedFinish':'HOLD'}
 
 if __name__=='__main__':print(json.dumps(qualify(sys.argv[1]),sort_keys=True))

@@ -15,3 +15,9 @@ Görünür NSWindow ve kaynak doğrulanmış modelden sonra UI frame event'i kay
 U01 source/recipe/toolchain/signing/binary zinciri native makbuzda; U02–U06/U09/U10 view bağlantısı native parity bekler. U07 G1.D04, U08 gerçek erişilebilirlik, U11 100 proje/30 açılış/100 yenileme, U12 bağımsız GUI ve ayrı resmî P02 12/12+4/4+7/7+G3+HT+Verified Finish HOLD.
 
 Zülfikar PR246 4780d96ccb16ca4a922846ab48918262c7845f47; engine SHA aae470e41a59de981c0c34b81a25ed094f52db6eed8dc0d101124984dd903230. DÖM LOCAL_DISPOSABLE_PROOF kapsamı korunur; üretim yetkisi doğurmaz. Mevcut Work döngüsü kaynak/kimlik, hata/erişilebilirlik ve drift/geri dönüş turlarını yürütür. Sekiz kapı LIVE_APP_GATE_HANDOFF_V1.json içinde; özgün şartlar tam kapanmadan 100 veya aşama PASS verilmez.
+
+## Üç tur ve onarılan gerçek fark
+
+Python 231/231 ×3 PASS. Swift state 14 test ×3, gerçek executable release build ve ad-hoc strict verify macOS CI'de doğrulanır. DÖM exact kaynak, yalnız bozulmuş disposable wire'ın mevcut captured-Core modelinden geri kazanımını koordine etti: 7 gerçek reader/handoff regresyonu ×3, diagnostic 100 adayı; acceptedScore null ve stagePassIssued false. PiLive T01 veya ürün kabulüne aktarılmaz.
+
+İkinci denetim: Swift JSONSerialization'ın 100.0 gibi sayıları yeniden yazması packet baytlarını değiştirebilir; UI frame bu nedenle özgün reader packet byte'larını base64 taşır. Komut ve source hatalarının özel teşhisleri yeni private makbuzda korunur. Package reader kaynaklarının tümü manifest testiyle doğrulanır.

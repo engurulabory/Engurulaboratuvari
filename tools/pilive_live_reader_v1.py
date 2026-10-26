@@ -16,7 +16,10 @@ def packet(observation):
 def main():
     try:
         with tempfile.TemporaryDirectory(prefix='enguru-pilive-read-') as temp:
-            result=packet(collector.portfolio_read(Path.home(),Path(temp).resolve()))
+            observation=collector.portfolio_read(Path.home(),Path(temp).resolve())
+            if observation.get('state')!='PASS_NATIVE_PORTFOLIO_CAPTURE_ONLY':
+                print(json.dumps({'state':'HOLD_READER_SOURCE','observation':observation}));return 2
+            result=packet(observation)
         raw=json.dumps(result,ensure_ascii=False,allow_nan=False).encode()
         if len(raw)>4*1024*1024:raise ValueError('HOLD_OUTPUT_LIMIT')
         sys.stdout.buffer.write(raw);return 0

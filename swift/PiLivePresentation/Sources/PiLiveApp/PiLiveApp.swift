@@ -8,6 +8,15 @@ private struct ReaderPacket: Decodable {
     struct Identity: Decodable { let revision: String; let pins: [String: String]; let digest: String; let wireSha256: String }
     let wire: String
     let identity: Identity
+    struct Observation: Decodable {
+        struct Fact: Decodable {
+            struct Summary: Decodable { let declaredPass: Int? }
+            struct Verify: Decodable { let evidencedPass: Int?; let unverifiedPass: Int? }
+            let summary: Summary?; let verify: Verify?
+        }
+        let coreFacts: [String: Fact]?
+    }
+    let observation: Observation
 }
 private func readPacket() throws -> Data {
     guard let resources = Bundle.main.resourceURL,
@@ -23,7 +32,7 @@ private func readPacket() throws -> Data {
     DispatchQueue.global().asyncAfter(deadline: .now() + 110, execute: deadline)
     let data = pipe.fileHandleForReading.readDataToEndOfFile()
     process.waitUntilExit(); deadline.cancel()
-    guard process.terminationStatus == 0, data.count <= 4 * 1024 * 1024 else { throw ReaderFailure.failed }
+    guard data.count <= 4 * 1024 * 1024 else { throw ReaderFailure.failed }
     return data
 }
 
@@ -31,6 +40,7 @@ private func readPacket() throws -> Data {
     let model = SwiftUIState(store: PresentationStore(staleAfter: 60))
     @Published var isLoading = false
     @Published var readerMessage = "Kaynak okunuyor"
+    @Published var verificationNotes: [String: String] = [:]
     private var packet: Data?
     private var recorded = false
     @Published private(set) var uiRenderedAt: String?
@@ -39,14 +49,22 @@ private func readPacket() throws -> Data {
         isLoading = true
         let request = model.store.beginRefresh()
         Task {
+            var attempted: Data?
             do {
                 let bytes = try await Task.detached(priority: .userInitiated) { try readPacket() }.value
+                attempted = bytes
                 let p = try JSONDecoder().decode(ReaderPacket.self, from: bytes)
                 guard let wire = Data(base64Encoded: p.wire) else { throw ReaderFailure.failed }
                 let identity = SourceIdentity(revision: p.identity.revision, pins: p.identity.pins, digest: p.identity.digest, wireSha256: p.identity.wireSha256)
                 try model.store.accept(wire, trust: identity, request: request, now: Date())
+                verificationNotes = (p.observation.coreFacts ?? [:]).mapValues { f in
+                    "Beyan: \(f.summary?.declaredPass.map(String.init) ?? "N/A") · Kanıtlı: \(f.verify?.evidencedPass.map(String.init) ?? "N/A") · Doğrulanmamış: \(f.verify?.unverifiedPass.map(String.init) ?? "N/A")"
+                }
                 packet = bytes; readerMessage = "Kaynak doğrulandı"
             } catch {
+                if let attempted, let directory = Bundle.main.object(forInfoDictionaryKey: "SessionDirectory") as? String {
+                    try? attempted.write(to: URL(fileURLWithPath: directory).appendingPathComponent("READER_FAILURE.json"), options: .withoutOverwriting)
+                }
                 // A failed source refresh must not present last-good counters as current.
                 // The store clears current data; offline cache requires explicit classification.
                 try? model.store.accept(Data(), trust: SourceIdentity(revision: "", pins: [:], digest: "", wireSha256: ""), request: request, now: Date())
@@ -219,6 +237,7 @@ private struct Cockpit: View {
                 Text("Kaynak yaşı: \(age) · \(model.screen.availability.rawValue)")
                 Text("Bu ekran gözlemi kullanıcı estetik veya resmî P02 kabulü üretmez.")
                 Text("Tarihsel V3.1 imza doğrulaması: HOLD · build kökeni ayrı kapıda")
+                Text("Visual Cockpit kaynak olgusu: \(live.verificationNotes["visual-cockpit-premium-v1"] ?? "N/A")")
                 ForEach((model.screen.portfolio?.sourcePins ?? [:]).keys.sorted(), id: \.self) { key in Text("\(key)\n\(model.screen.portfolio?.sourcePins[key] ?? "")").font(.caption.monospaced()).textSelection(.enabled) }
             }
         }

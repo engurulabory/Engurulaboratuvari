@@ -148,3 +148,7 @@ U01 güncel binary/toolchain alt gözlemi PASS; tarihsel build bağı açık. U0
 ## SwiftUI durum hazırlığı — VM01–VM06
 
 Kaynak UX PR245 @ c780002c66ad916d2c3c0a587085a32e2f0b68a8; 11 boyut/110 şart hedefi korunuyor. VM01 transport, VM02 revision/pin/digest/tam-wire-SHA doğrulama, VM03 atomic state/cache/tazelik/request generation, VM04 dört ekran state'i, VM05 SwiftUI ObservableObject/erişilebilir ad/focus intent, VM06 karşıt testler oluşturuldu. Python 224/224 ×3 PASS. Swift derleme/testi macOS CI'de doğrulanacak; nihai native UI ve G1.D04 HOLD. Ayrıntı SWIFTUI_STATE_PREPARATION_V1.md. Sonraki hareket: exact-head macOS Swift test kanıtı, ardından kabul edilmiş final ekran sözleşmesiyle görsel entegrasyon.
+
+## UI01–UI05 — canlı read-only ekran adayı
+
+Mevcut collector→wire→SwiftUI state→gerçek dört görünüm bağlandı. SourceClassification yalnız gerçek registry metadata'sını taşır; eksik alan görünür unclassified, global odak HOLD. Native aday source/test/build/signing/visible-frame devri eklendi; eski app/canonical korunur. Python 231×3, DÖM wire qualification 7×3; macOS CI executable/state kanıtı ayrı doğrulanır. Bir sonraki tek hareket SHA-kilitli --build-and-open ile gerçek Mac adayını gözlemek; U01–U12 ve ayrı P02 kabulü saha kanıtını bekler. Ayrıntı LIVE_APP_ENGINEERING_V1.md ve LIVE_APP_GATE_HANDOFF_V1.json.
