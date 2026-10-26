@@ -162,6 +162,15 @@ jobs:
           assert r['officialVerifiedFinish']=='AWAIT_AUTHORIZED_DONECHECK_HUMAN_THRESHOLD'
           print('TEN_CAPABILITY_SOURCE_ROUTES=10/10; REAL_CAPABILITY_FINISH=PENDING')
           PY
+      - name: Executable goal-locked Zulfikar repair and real subprocess loop ×3
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: |
+          python -m py_compile zulfikar_v131_iterative_loop.py
+          for cycle in 1 2 3; do
+            echo "ZULFIKAR_REAL_ITERATION_ROUND=$cycle"
+            python -B -m unittest -v test_zulfikar_v131_iterative_loop
+          done
+          echo "ZULFIKAR_LOOP=REAL_DISPOSABLE_TEST_PASS; FIELD_AUTHORITY=UNCHANGED"
       - name: Audit weighted overall readiness without false 100
         working-directory: governance/enguru-suzgeci/zulfikar-v12
         run: |
