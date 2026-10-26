@@ -66,6 +66,8 @@ def run(goal,state,assess,simulate,repair,real_test,verify_test,max_rounds=3):
             if digest(goal)!=frozen_goal_digest:
                 return hold("GOAL_IDENTITY_CHANGED",frozen_goal_digest,history)
             simulation=simulate(copy.deepcopy(current),copy.deepcopy(frozen_goal))
+            if digest(goal)!=frozen_goal_digest:
+                return hold("GOAL_IDENTITY_CHANGED",frozen_goal_digest,history)
             if not isinstance(simulation,dict) or simulation.get("status")!="PASS_SIMULATION":
                 return hold("SIMULATION_FAILED",frozen_goal_digest,history)
             before_checks=assess(copy.deepcopy(current),copy.deepcopy(frozen_goal))
