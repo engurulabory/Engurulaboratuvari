@@ -1,0 +1,157 @@
+{
+  "authority": "Only official canonical DoneCheck + required Human Threshold may issue VERIFIED_FINISH",
+  "base_score": [
+    10,
+    9,
+    9,
+    9,
+    9,
+    10,
+    10,
+    9,
+    10,
+    8
+  ],
+  "bench_selection": [
+    "OpenAI Codex",
+    "Claude Code",
+    "Cursor",
+    "GitHub Copilot",
+    "Devin",
+    "OpenHands",
+    "Replit Agent",
+    "Kiro",
+    "Cline",
+    "Lovable"
+  ],
+  "benchmark_state": "FEATURE_REFERENCES_ONLY / REAL_PEER_TRIALS_NOT_MEASURED",
+  "canonical_repository": "engurulabory/Engurulaboratuvari",
+  "closure_ids": [
+    "Z02_EVENT",
+    "Z03_TRANSFER",
+    "Z04_LINEAGE",
+    "Z05_BENCHMARK",
+    "Z08_IMPACT",
+    "Z10_CONCURRENCY",
+    "Z10_SAFE_FIN"
+  ],
+  "date": "2026-10-25",
+  "existing_suzgec_eight_stages": true,
+  "main_snapshot": "8947cb6c240a12950be1f8be9e186d0ecbfa3022",
+  "new_core_created": false,
+  "new_owner_created": false,
+  "packages": {
+    "K01": {
+      "closure_ids": [
+        "Z02_EVENT",
+        "Z03_TRANSFER"
+      ],
+      "observables": [
+        "event id, outcome taxonomy, source/evidence, unproven cause classified",
+        "three distinct frozen comparable downstream tasks with baseline/after and independent review"
+      ],
+      "purpose": "Success/failure Muscle + measurable learning transfer",
+      "real_acceptance": "3/3 separately verified task transfers and regression-free outcome"
+    },
+    "K02": {
+      "closure_ids": [
+        "Z04_LINEAGE",
+        "Z10_CONCURRENCY"
+      ],
+      "observables": [
+        "9-hop trace + original control IDs + source SHA + claims",
+        "exact snapshot, scoped lease, one writer, replay and rollback"
+      ],
+      "purpose": "End-to-end Consistency Muscle and single-writer Work/GitHub/OSi lineage",
+      "real_acceptance": "one real end-to-end project with verified chain and a deliberate source-drift test"
+    },
+    "K03": {
+      "closure_ids": [
+        "Z05_BENCHMARK"
+      ],
+      "observables": [
+        "frozen identical task/input/rubric, budget normalization, disclosed environment",
+        ">=5 paired trials, actual peer output evidence, blinded judge"
+      ],
+      "purpose": "Versioned comparable peer benchmark and verified gap closure",
+      "real_acceptance": "peer execution and objectively scored results, NOT_MEASURED until completed"
+    },
+    "K04": {
+      "closure_ids": [
+        "Z08_IMPACT",
+        "Z10_SAFE_FIN"
+      ],
+      "observables": [
+        "real-user before/after matched cohort, source and privacy evidence",
+        "all K1-K7 gates, evidence+second look and needed Human Threshold"
+      ],
+      "purpose": "User impact + advisory FIN Veri̇ci without new issuer",
+      "real_acceptance": "real impact observed and existing DoneCheck+Human Threshold evaluated externally"
+    }
+  },
+  "proof_mapping": {
+    "Z02_EVENT": {
+      "fixed_scope": "10 categories / 93-point original baseline / 7 missing elements",
+      "negative_case": "bad:Z02_EVENT",
+      "oracle": "check_z02_event",
+      "positive_case": "good:Z02_EVENT"
+    },
+    "Z03_TRANSFER": {
+      "fixed_scope": "10 categories / 93-point original baseline / 7 missing elements",
+      "negative_case": "bad:Z03_TRANSFER",
+      "oracle": "check_z03_transfer",
+      "positive_case": "good:Z03_TRANSFER"
+    },
+    "Z04_LINEAGE": {
+      "fixed_scope": "10 categories / 93-point original baseline / 7 missing elements",
+      "negative_case": "bad:Z04_LINEAGE",
+      "oracle": "check_z04_lineage",
+      "positive_case": "good:Z04_LINEAGE"
+    },
+    "Z05_BENCHMARK": {
+      "fixed_scope": "10 categories / 93-point original baseline / 7 missing elements",
+      "negative_case": "bad:Z05_BENCHMARK",
+      "oracle": "check_z05_benchmark",
+      "positive_case": "good:Z05_BENCHMARK"
+    },
+    "Z08_IMPACT": {
+      "fixed_scope": "10 categories / 93-point original baseline / 7 missing elements",
+      "negative_case": "bad:Z08_IMPACT",
+      "oracle": "check_z08_impact",
+      "positive_case": "good:Z08_IMPACT"
+    },
+    "Z10_CONCURRENCY": {
+      "fixed_scope": "10 categories / 93-point original baseline / 7 missing elements",
+      "negative_case": "bad:Z10_CONCURRENCY",
+      "oracle": "check_z10_concurrency",
+      "positive_case": "good:Z10_CONCURRENCY"
+    },
+    "Z10_SAFE_FIN": {
+      "fixed_scope": "10 categories / 93-point original baseline / 7 missing elements",
+      "negative_case": "bad:Z10_SAFE_FIN",
+      "oracle": "check_z10_safe_fin",
+      "positive_case": "good:Z10_SAFE_FIN"
+    }
+  },
+  "real_field_scores_must_remain_separate": true,
+  "scope": "DESIGN_ONLY / LOCAL_OFFLINE_VALIDATOR",
+  "scoring_maximum": 100,
+  "sha256_canonical_v3_lock": "11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc",
+  "source_blob_sha1_pins": {
+    "AGENTS.md": "59dc8054896b932413d25abf10c6244e5899126d",
+    "governance/enguru-suzgeci/ENGURU_CALISMA_YONTEMLERI_ATLASI_V1.md": "acf55d6292bc0ae91407afec686c146ac9d2dbf3",
+    "governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md": "7f47f3c6d3ee5c5138e53b67ae46cced37cb1a61",
+    "governance/enguru-suzgeci/ENGURU_GITHUB_METHOD_ENTRY_V2.md": "391b66aac526eb8b01d6a73437c8afcc171bc707",
+    "governance/enguru-suzgeci/learning/ENGURU_MK_KALICI_AMAC_HEDEF_KABUL_V3.md": "d93adb31787ff6e6ac9b9bfda99311198da3e54c"
+  },
+  "title": "ENGURU Zulfikar integrated design acceptance contract V1.2",
+  "untested_real_world": [
+    "main/new PR CI",
+    "Work session handoff",
+    "native Mac OSi",
+    "user impact",
+    "external agent trials",
+    "issuer and reviewer signatures"
+  ],
+  "valid_scores_only_after_test": "YES"
+}
