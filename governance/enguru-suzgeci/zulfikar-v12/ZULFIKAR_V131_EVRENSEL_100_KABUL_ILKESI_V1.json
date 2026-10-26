@@ -108,5 +108,32 @@
     "realFieldVerifiedFinish": "WAITING_ON_MAC_OWNER_REAL_TASK_EVIDENCE",
     "goal2": "LOCKED_UNTIL_GOAL1_AUTHORIZED_FINISH"
   },
-  "status": "POLICY_REVIEW_DRAFT_NEEDS_EXACT_HEAD_CI"
+  "status": "POLICY_REVIEW_DRAFT_NEEDS_EXACT_HEAD_CI",
+  "loopArchitecture": {
+    "mode": "TARGET_LOCKED_EVIDENCE_BOUND_REPEATING_LOOP",
+    "goal": "Continue protected goal-specific improvement until current stage independently verified 100/100; stop after verified stage acceptance, not after simulation.",
+    "controller": "governance/enguru-suzgeci/zulfikar-v12/zulfikar_v131_iterative_loop.py",
+    "test": "governance/enguru-suzgeci/zulfikar-v12/test_zulfikar_v131_iterative_loop.py",
+    "orderedPhases": [
+      "GOAL_LOCK",
+      "ARCHITECTURE",
+      "SIMULATION",
+      "ASSESS",
+      "GAP_ANALYSIS",
+      "REPAIR",
+      "REAL_TEST",
+      "RESIMULATION",
+      "REASSESS",
+      "EVIDENCE"
+    ],
+    "nextCycle": "Re-assess remaining gaps; keep verified achievements; authorize another bounded iteration while below 100.",
+    "testMode": "DISPOSABLE_SUBPROCESS_WORKSPACE_ONLY",
+    "realHandlerAuthority": "EXISTING_WORK_OR_MAC_ENGINEER_WITH_OWNER_SCOPE",
+    "realProductFinishAuthority": "EXISTING_DONECHECK_V12_HUMAN_THRESHOLD",
+    "stage100Decision": "EXTERNAL_CI_OR_OWNER_EVIDENCE_REQUIRED_BEFORE_STAGE_PASS",
+    "noNewExecutor": true,
+    "noNumericFinalBelow100": true,
+    "stopAtVerified100": true,
+    "historical91": "DIAGNOSTIC_ONLY"
+  }
 }
