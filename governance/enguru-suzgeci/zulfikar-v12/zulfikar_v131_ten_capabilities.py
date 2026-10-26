@@ -63,6 +63,8 @@ def simulate_repair_loop(initial, patches, max_rounds=3):
         patch=patches[index]
         if not isinstance(patch,dict) or any(k not in state or type(v) is not bool for k,v in patch.items()):
             return {"decision":"INVALID_PATCH","history":history,"acceptedScore":None}
+        if any(state[k] is True and v is False for k,v in patch.items()):
+            return {"decision":"REGRESSION_GUARD","history":history,"acceptedScore":None}
         # Tests may repair false checks; real score never changes based on claims.
         state.update(patch)
     return {"decision":"CONTINUE_IMPROVEMENT","history":history,"acceptedScore":None}
