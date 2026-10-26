@@ -10,7 +10,7 @@ class ReplayRegression(unittest.TestCase):
   self.fx=test_engine.CycleTests();self.fx.setUp();self.addCleanup(self.fx.doCleanups)
   self.fx.drive();self.fx.state['checks']={k:True for k in self.fx.goal.criteria}
  def test_output_changed_after_checkpoint(self):
-  self.fx.record.write_text('{"A":false}')
+  self.fx.record.write_text('{"A":false,"B":true,"C":true,"D":true}')
   self.assertEqual(self.fx.drive()['reason'],'REPLAY_ARTIFACT_OR_CRITERIA_CHANGED')
  def test_current_semantics_no_longer_complete(self):
   r=self.fx.drive(evaluator=lambda *_:{k:False for k in self.fx.goal.criteria})
@@ -32,4 +32,18 @@ class ReplayRegression(unittest.TestCase):
  def test_no_new_authority_from_replay(self):
   r=self.fx.drive();self.assertIsNone(r['acceptedScore']);self.assertFalse(r['stagePassIssued'])
   self.assertEqual(r['productVerifiedFinish'],'NOT_ISSUED')
+ def test_replay_assessment_mutates_output(self):
+  def assessor(*_):
+   self.fx.record.write_text('changed after claimed assessment')
+   return {k:True for k in self.fx.goal.criteria}
+  self.assertEqual(self.fx.drive(evaluator=assessor)['reason'],'REPLAY_ARTIFACT_OR_CRITERIA_CHANGED')
+ def test_assessment_mutates_output_before_first_checkpoint(self):
+  # A new existing engine journal, no replay shortcut.
+  self.fx.journal.path.unlink();self.fx.journal=LocalJournal(self.fx.root)
+  calls=[0]
+  def assessor(*args):
+   calls[0]+=1
+   if calls[0]>1:self.fx.record.write_text('tampered before commit')
+   return {k:True for k in self.fx.goal.criteria}
+  self.assertEqual(self.fx.drive(evaluator=assessor)['reason'],'ARTIFACT_CHANGED_BEFORE_CHECKPOINT')
 if __name__=='__main__':unittest.main()

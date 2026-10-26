@@ -264,9 +264,9 @@ def _execute_inside_writer(contract, start_state, journal, simulator, evaluator,
             # Recheck persisted output through the existing separate verifier.
             replay_run = {"processObserved": True, "exitCode": 0,
                 "scope": contract.scope, "artifactSha256": previous.get("artifactSha256")}
-            if (independent_verifier(copy.deepcopy(start_state), copy.deepcopy(c),
-                                     copy.deepcopy(replay_run)) is not True or
-                assess(evaluator(copy.deepcopy(start_state), copy.deepcopy(c)), contract.criteria) != 100):
+            if (assess(evaluator(copy.deepcopy(start_state), copy.deepcopy(c)), contract.criteria) != 100 or
+                independent_verifier(copy.deepcopy(start_state), copy.deepcopy(c),
+                                     copy.deepcopy(replay_run)) is not True):
                 return stop("REPLAY_ARTIFACT_OR_CRITERIA_CHANGED", [], pinned)
             if (actual_source_digest(Path(source_file)) != contract.source_pin or
                 source_probe(copy.deepcopy(c)) is not True):
@@ -322,6 +322,12 @@ def _execute_inside_writer(contract, start_state, journal, simulator, evaluator,
             record.update({"afterDiagnostic": current_score, "remaining": [k for k in contract.criteria if not after[k]],
                            "artifactSha256": run["artifactSha256"], "sourcePin": contract.source_pin,
                            "contractSha256": pinned, "gate": contract.stage})
+            if actual_source_digest(Path(source_file)) != contract.source_pin or source_probe(copy.deepcopy(c)) is not True:
+                return stop("SOURCE_CHANGED_BEFORE_CHECKPOINT", rounds + [record], pinned)
+            # Simulation/assessment callbacks may have touched the artifact after
+            # its initial verification. Revalidate before recording a checkpoint.
+            if independent_verifier(copy.deepcopy(candidate), copy.deepcopy(c), copy.deepcopy(run)) is not True:
+                return stop("ARTIFACT_CHANGED_BEFORE_CHECKPOINT", rounds + [record], pinned)
             if actual_source_digest(Path(source_file)) != contract.source_pin or source_probe(copy.deepcopy(c)) is not True:
                 return stop("SOURCE_CHANGED_BEFORE_CHECKPOINT", rounds + [record], pinned)
             journal_head = journal.append({"contractSha256": pinned, "gate": contract.stage,

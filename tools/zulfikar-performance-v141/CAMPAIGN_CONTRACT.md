@@ -17,7 +17,7 @@ Tek hedef `ZF.PERFORMANCE.20261026`; görev grubu ve kabul ölçütleri PLAN.jso
 
 ## Kanıt ve puan disiplini
 
-İlk koşuda dört aile geçti, R04 eski kontrol noktasından değişmiş gerçek çıktıyı 100 adayı olarak döndürdü. Onarım, aynı DÖM içinde yeniden başlatma sırasında hash, güncel kabul ölçütleri, kaynak ve günlük doğrulaması ekler. Görev icrası tekrarlanmaz. Önceki V2 mühür baytları BASELINE_SOURCE_SEAL_V2.json içinde aynen korunur; güncel V2 R1 yalnız değişen iki kaynağın hash'ini ve revizyon bağını içerir.
+İlk koşuda dört aile geçti, R04 eski kontrol noktasından değişmiş gerçek çıktıyı 100 adayı olarak döndürdü. Onarım, aynı DÖM içinde yeniden başlatma sırasında hash, güncel kabul ölçütleri, kaynak ve günlük doğrulaması ekler. İkinci gerçek karşıt örnek, değerlendirme adımındaki çıktı değişiminin kontrol noktası öncesinde tekrar doğrulanmasını gerektirdi; son doğrulama eklendi. Görev icrası tekrarlanmaz. Önceki V2 mühür baytları BASELINE_SOURCE_SEAL_V2.json içinde aynen korunur; güncel V2 R2 yalnız değişen iki kaynağın hash'ini ve revizyon bağını içerir.
 
 İlk/son dört hedef ölçümü yalnız bu sabit beş teknik sınavın iç teşhisidir: gerçek görev sonucu, kanıt geçerliliği, döngü dayanıklılığı ve finiş güvenilirliği. Aynı görevdeki tekrarlar yeni bağımsız görev veya yeni kabul sayılmaz. Üç GitHub tekrarı aynı beş ailenin yeniden üretilebilirliğidir. Her tekrarın kendi başlangıç/hata/onarım evreleri vardır. Genel operasyonel puan cetveli altı alanlı özgün ZULFIKAR_V131_OPERATIONAL_SCORECARD_V1.json olarak korunur; 91.25 tarihsel ağırlıklı teşhis bu kampanyayla resmî 100'e dönüştürülmez.
 

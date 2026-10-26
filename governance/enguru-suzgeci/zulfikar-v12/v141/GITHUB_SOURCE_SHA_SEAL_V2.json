@@ -26,7 +26,7 @@
     },
     {
       "path": "governance/enguru-suzgeci/zulfikar-v12/v141/dom/engine.py",
-      "sha256": "b8e7202e5458c4bd8ba150aca2416bf511c5b9bb310b44e62d1aed427c937d2c"
+      "sha256": "b303b7aadfab2156316b6f37b1f3d77200b5f6ae2330e32c5913a586e8313838"
     },
     {
       "path": "governance/enguru-suzgeci/zulfikar-v12/v141/dom/proof_chain.py",
@@ -38,7 +38,7 @@
     },
     {
       "path": "governance/enguru-suzgeci/zulfikar-v12/v141/dom/test_engine.py",
-      "sha256": "003f0403d4cf19a5e47cfad0802207ab5d847db068a1a0256aa020cb39c135b0"
+      "sha256": "5200e7a7f0c590083d22459fdfa404769aab2ecbd926c1547e9c28e5e8a10970"
     },
     {
       "path": "governance/enguru-suzgeci/zulfikar-v12/v141/dom/test_final_hardening.py",
@@ -90,7 +90,7 @@
   "ownerDoneCheck": "NOT_ISSUED",
   "productVerifiedFinish": "HOLD",
   "mainMerge": "FORBIDDEN_WITHOUT_OWNER_AUTHORITY",
-  "repairRevision": "R1_REPLAY_ARTIFACT_FRESHNESS_20261026",
+  "repairRevision": "R2_REPLAY_AND_CHECKPOINT_ARTIFACT_FRESHNESS_20261026",
   "previousSealSha256": "11a7c440696b4346d433b6cce3cc46bb2d895d0799c58f45a31e9d619756eff4",
-  "repairScope": "Replay validates actual artifact and criteria without duplicate task execution; original 18 controls and 126 tests preserved"
+  "repairScope": "Replay and pre-checkpoint artifact freshness verification; no duplicate task execution; original 126 tests preserved"
 }

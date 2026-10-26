@@ -23,7 +23,7 @@ jobs:
         run: python3 -B tools/zulfikar-performance-v141/check_preparation.py
       - name: Current source seal 18 files
         run: python3 -B governance/enguru-suzgeci/zulfikar-v12/v141/verify_github_source_seal_v2.py
-      - name: Six new replay counterexamples
+      - name: Eight replay and checkpoint counterexamples
         run: python3 -B tools/zulfikar-performance-v141/test_replay_regressions.py
       - name: Five real tasks each with baseline fault and repair phases
         run: |

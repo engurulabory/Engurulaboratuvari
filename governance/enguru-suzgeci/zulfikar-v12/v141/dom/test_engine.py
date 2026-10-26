@@ -89,7 +89,7 @@ class CycleTests(unittest.TestCase):
     def test_05_real_subprocess_four_times(self):
         self.drive()
         self.assertEqual(self.calls.count("real-test"), 4)
-        self.assertEqual(self.calls.count("verify"), 4)
+        self.assertEqual(self.calls.count("verify"), 8)
 
     def test_06_journal_is_hash_chained(self):
         self.drive()
@@ -134,7 +134,7 @@ class CycleTests(unittest.TestCase):
         count=len(self.calls)
         r=self.drive()
         self.assertTrue(r["replayedVerifiedCheckpoint"])
-        self.assertEqual(self.calls[count:], ["verify", "assess"])
+        self.assertEqual(self.calls[count:], ["assess", "verify"])
 
     def test_13_rejected_simulation(self):
         r=self.drive(simulator=lambda *_:{"valid":False})
