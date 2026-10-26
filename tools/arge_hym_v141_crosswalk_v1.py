@@ -90,6 +90,10 @@ def assess_foundations(h,c,inventory,method,root=ROOT):
     a04=h.get("A04",{})
     e=h.get("A05_A06",{})
     base=c.get("baseline",{})
+    if (not all(isinstance(x,dict) for x in (p,a,g,count,a03,a04,e,base))
+        or not isinstance(q,list)
+        or not isinstance(method.get("stageAcceptance"),dict)):
+        return out
     # Source and authority are observed in CI, never inferred from self-PASS.
     files=inventory.get("files",{})
     t01={
@@ -147,7 +151,9 @@ def assess_foundations(h,c,inventory,method,root=ROOT):
          count.get("overall_official")=="0/40" and
          a.get("official_donecheck_issuer")=="EXISTING_CANONICAL_ONLY" and
          method.get("verifiedFinish")=="HOLD" and
-         all(v.startswith("HOLD_") for v in method.get("stageAcceptance",{}).values()),
+         set(method["stageAcceptance"])==set(STAGES) and
+         all(isinstance(v,str) and v.startswith("HOLD_")
+             for v in method["stageAcceptance"].values()),
     }
     out["T01"]={"checks":t01,"score":20*sum(x is True for x in t01.values()),
                 "state":"PASS_SOURCE_PREP_ONLY" if all(x is True for x in t01.values()) else "HOLD"}
