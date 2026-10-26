@@ -13,7 +13,7 @@ SOURCES=(
     "root_license_observations.json","license_gate.py","test_license_gate.py",
     "external_skill_proof_plan.json","test_external_skill_plan.py",
     "upstream_execution_coverage.json","test_upstream_execution_coverage.py",
-    "WORK_PACKAGES_ZULFIKAR_V13.json","run_k01_real_benchmark.py","test_k01_benchmark.py",
+    "WORK_PACKAGES_ZULFIKAR_V13.json","test_work_packages.py","run_k01_real_benchmark.py","test_k01_benchmark.py",
     "run_k03_cli_smoke.py","test_k03_cli_contract.py",
     "k02_source_policy.py","test_k02_source_policy.py","K01_K05_BUTUNLESIK_FINIS_RAPORU.md",
     "test_upstream_hypothesis.py","run_real_upstream_trials.py",
