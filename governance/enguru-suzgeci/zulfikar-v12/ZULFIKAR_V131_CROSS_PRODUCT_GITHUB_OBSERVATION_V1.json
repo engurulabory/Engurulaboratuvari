@@ -1,0 +1,58 @@
+{
+  "schema": "enguru.zulfikar.v131-crossproduct-source-observation/v1",
+  "date": "2026-10-26",
+  "scope": "GITHUB_REVIEW_BRANCH_REAL_SOURCE_AND_CI_OBSERVATIONS_NOT_OSI_TASK_FINISH",
+  "sourceOfObservation": "GitHub PR metadata and exact commit workflow runs",
+  "observations": [
+    {
+      "project": "PILIVE_V4",
+      "pr": 241,
+      "head": "bcec47379e936ee53683f47cfb89c03bca57967b",
+      "kind": "NATIVE_SWIFTUI_STATE_PREPARATION",
+      "CI": {
+        "success": 6,
+        "total": 6,
+        "macosStateCI": true
+      },
+      "realNativeHardwareExecution": "HOLD_NEW_SWIFTUI_MAC_OWNER_TEST",
+      "ownerProductAcceptance": "HOLD",
+      "operationalTaskAccepted": false
+    },
+    {
+      "project": "OSI_UNIFIED_FACTORY_V1",
+      "pr": 244,
+      "head": "bf0fe4bd03d9564a85c1c235b580293bab0eb3c4",
+      "kind": "FACTORY_ARCHITECTURE_READ_ONLY_SOURCE_PROBE",
+      "CI": {
+        "success": 6,
+        "total": 6,
+        "macosStateCI": false
+      },
+      "realNativeHardwareExecution": "HOLD_FACTORY_FIELD",
+      "ownerProductAcceptance": "HOLD",
+      "operationalTaskAccepted": false
+    },
+    {
+      "project": "ZULFIKAR_V131",
+      "pr": 246,
+      "head": "1aecbea72fe24f452da1266af11adb5845b5701c",
+      "kind": "ENGINEERING_SECURITY_REPAIR_AND_RECEIPT_INTAKE",
+      "CI": {
+        "success": 6,
+        "total": 6,
+        "macosStateCI": false
+      },
+      "realNativeHardwareExecution": "HOLD_TASK_DISPATCH",
+      "ownerProductAcceptance": "HOLD",
+      "operationalTaskAccepted": false
+    }
+  ],
+  "crossProjectSourceCIObserved": 3,
+  "heterogeneousRealMacTasksAccepted": 0,
+  "realOperationalTransferVerdict": "HOLD",
+  "qualityScope": "Source-level repositories/PRs only, unequal task scope and test budgets, not a benchmark",
+  "falsePassPrevented": true,
+  "ownerScope": "EXISTING_HUMAN_THRESHOLD_ONLY",
+  "verifiedFinish": "HOLD",
+  "nextAction": "Continue same PiLive Work user-facing SwiftUI delivery; inspect next real Mac source-to-binary and GUI receipt before any real-task PASS"
+}
