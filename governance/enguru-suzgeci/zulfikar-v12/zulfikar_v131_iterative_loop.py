@@ -82,7 +82,10 @@ def run(goal,state,assess,simulate,repair,real_test,verify_test,max_rounds=3):
                    "afterRealTest":None,"afterResimulation":None,"afterAssessment":None}
             if gaps:
                 proposed=repair(copy.deepcopy(current),tuple(gaps),copy.deepcopy(frozen_goal))
-                if not isinstance(proposed,dict) or proposed==current:
+                if not isinstance(proposed,dict):
+                    history.append(entry)
+                    return hold("INVALID_SOURCE_OR_OPERATOR_RESULT",frozen_goal_digest,history)
+                if proposed==current:
                     history.append(entry)
                     return hold("NO_AUTHORIZED_REPAIR_OR_PROGRESS",frozen_goal_digest,history)
                 candidate=copy.deepcopy(proposed)
