@@ -111,22 +111,29 @@ def audit_manifest(manifest,root:Path):
             errs.append("INVALID_RECEIPT_SHA_PIN")
         if not isinstance(filename,str) or not IDENTITY.fullmatch(filename) or not filename.endswith(".json"):
             errs.append("INVALID_RECEIPT_FILENAME")
+        byte_match=False
+        semantic_eligible=False
         if not errs:
             try:
                 data=read_no_symlink(root,filename,MAX_RECEIPT)
-                if sha256(data)!=pin:
+                byte_match=(sha256(data)==pin)
+                if not byte_match:
                     errs.append("RECEIPT_PIN_MISMATCH")
                 else:
                     receipt=load_json(data)
                     if not isinstance(receipt,dict) or receipt.get("schema")!=RECEIPT_SCHEMA:
                         errs.append("INVALID_RECEIPT_SCHEMA")
                     else:
-                        errs.extend(format_receipt(receipt,t))
+                        semantic_errors=format_receipt(receipt,t)
+                        errs.extend(semantic_errors)
+                        semantic_eligible=(not semantic_errors)
             except (OSError,ValueError,UnicodeError):
                 errs.append("RECEIPT_UNREADABLE_OR_INVALID")
         checked.append({"taskId":task_id if isinstance(task_id,str) else None,
                         "family":family if isinstance(family,str) else None,
-                        "bytePinMatched":not errs,
+                        "bytePinMatched":byte_match,
+                        "semanticReviewEligible":semantic_eligible and not errs,
+                        "actualExecutionVerified":False,
                         "holds":sorted(set(errs))})
         errors.extend(errs)
     if family_ids!=FAMILIES:
@@ -138,6 +145,7 @@ def audit_manifest(manifest,root:Path):
        "evidenceByteReconciliation":"CANDIDATE_REVIEW_ONLY" if not errors else "HOLD",
        "holds":sorted(set(errors)), "reviewedTasks":checked,
        "claimedTaskObservationsWithMatchingBytes":sum(1 for c in checked if c["bytePinMatched"]),
+       "semanticallyEligibleTaskClaims":sum(1 for c in checked if c["semanticReviewEligible"]),
        "independentlyVerifiedRealTaskCount":0,
        "ownerIdentityCryptographicallyAuthenticated":False,
        "registeredHandlerExecutionAuthenticated":False,
