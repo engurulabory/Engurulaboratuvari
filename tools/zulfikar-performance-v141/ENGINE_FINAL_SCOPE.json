@@ -1,0 +1,30 @@
+{
+  "kind": "USER_GOAL_SCOPE_RECONCILIATION_NOT_A_NEW_ACCEPTANCE_AUTHORITY",
+  "ownerDecision": "Yonetim Emri 07 — Muhendislik Motorunun Gercek Finali",
+  "taskId": "ZULFIKAR_V141_ENGINE_FINAL_20261026",
+  "goal": "Zulfikar V1.4.1 motorunun gercek kaynakli muhendislik, onarim, dayaniklilik, kanit ve finis yetenegini kabul etmek",
+  "canonicalSources": [
+    "governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md",
+    "governance/enguru-suzgeci/zulfikar-v12/v141/architecture/zulfikar_v141_8_gate_architecture.json",
+    "governance/enguru-suzgeci/zulfikar-v12/v141/dom/completion_guard.py"
+  ],
+  "existingOperationalContract": "governance/enguru-suzgeci/zulfikar-v12/ZULFIKAR_V131_OPERATIONAL_SCORECARD_V1.json",
+  "scopeReconciliation": "Latest explicit owner goal governs this engine-final task. Original six-domain field/operations contract remains unchanged and applies to its own operational goal; no field PASS or numeric promotion is claimed here.",
+  "preservedTechnicalEvidence": ["five isolated real task families", "three existing-source repairs", "checkpoint and replay repairs", "original regressions and exact-head GitHub CI"],
+  "outOfThisEngineGoal": ["S01-S03 product adoption and release", "PiLive and other product field acceptance", "new products", "Mac installation"],
+  "technicalCriteria": [
+    {"id":"ENGINE-SOURCE","statement":"Exact engine source and 18-file seal match; existing canonical byte locks are valid."},
+    {"id":"ENGINE-REAL-WORK","statement":"Five real task families and three existing-source repairs pass original output and regression verifiers."},
+    {"id":"ENGINE-RESILIENCE","statement":"Actual checkpoint/replay counterexamples and original engineering regressions pass without fabricated new task processes."},
+    {"id":"ENGINE-FINISH-GUARD","statement":"Existing proof and completion guards reject wrong sources, same-session acceptance, open work and premature official finish."}
+  ],
+  "requiredHumanCriteria": [
+    {"id":"ENGINE-INDEPENDENT-REVIEW","statement":"An authenticated different reviewer/session reviews this exact engine HEAD, original goal, criteria and evidence package."},
+    {"id":"ENGINE-HUMAN-ACCEPTANCE","statement":"Existing authorized owner/reviewer accepts this engine task through DoneCheck and Human Threshold; required source adoption decision and durable audit receipt are recorded."}
+  ],
+  "finishAuthority": "Existing DoneCheck v1.2 recordVerifiedFinish plus Human Threshold only",
+  "machinePassMeaning": "Technical evidence only; does not grant reviewer trust, canonical enrollment, source merge, signature or Verified Finish",
+  "independentReview": "HOLD_UNTIL_AUTHENTIC_DECISION",
+  "officialVerifiedFinish": "HOLD",
+  "threeActualCounterRounds": ["source and evidence integrity", "checkpoint and replay durability", "completion and premature-finish refusal"]
+}

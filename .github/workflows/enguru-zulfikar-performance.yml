@@ -57,3 +57,40 @@ jobs:
           name: zulfikar-five-real-task-evidence
           path: evidence/performance/
           retention-days: 30
+      - name: Three actual engine-only counter-review rounds
+        run: |
+          mkdir -p evidence/engine-final
+          python3 -B -m unittest discover -s governance/enguru-suzgeci/zulfikar-v12/v141/dom -p 'test_proof_chain.py' -v > evidence/engine-final/round-1-source.log 2>&1
+          python3 -B tools/zulfikar-performance-v141/second-exam/test_engine_race.py > evidence/engine-final/round-2-resilience.log 2>&1
+          python3 -B -m unittest discover -s governance/enguru-suzgeci/zulfikar-v12/v141/dom -p 'test_completion_guard.py' -v > evidence/engine-final/round-3-finish.log 2>&1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Read exact existing DoneCheck v1.2 core
+        uses: actions/checkout@v5
+        with:
+          repository: engurulabory/donecheck
+          ref: 4181f48df5ea0c060d9aa9f40a471c554b44b53d
+          path: donecheck-v12
+          persist-credentials: false
+      - name: Prepare existing DoneCheck runtime in disposable runner directory
+        run: |
+          mkdir -p "$RUNNER_TEMP/zulfikar-donecheck-build"
+          cp -R donecheck-v12/src "$RUNNER_TEMP/zulfikar-donecheck-build/src"
+          cd "$RUNNER_TEMP/zulfikar-donecheck-build"
+          npm init -y >/dev/null
+          npm install --no-save --no-package-lock --ignore-scripts --no-audit --no-fund zod@3.25.76 esbuild@0.25.12
+          ./node_modules/.bin/esbuild src/donecheck-core.ts --bundle --platform=node --format=esm --outfile="$RUNNER_TEMP/zulfikar-donecheck-core.mjs"
+      - name: Real DoneCheck for the engine's own technical and full acceptance task
+        env:
+          EXPECTED_ENGINE_HEAD: ${{ github.event.pull_request.head.sha }}
+          DONECHECK_CORE_BUNDLE: ${{ runner.temp }}/zulfikar-donecheck-core.mjs
+        run: node tools/zulfikar-performance-v141/verify_engine_donecheck.mjs
+      - name: Preserve engine-only three rounds and actual DoneCheck result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: zulfikar-engine-final-donecheck
+          path: evidence/engine-final/
+          if-no-files-found: error
+          retention-days: 90
