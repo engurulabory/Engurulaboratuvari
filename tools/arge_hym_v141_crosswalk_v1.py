@@ -247,7 +247,13 @@ def main():
     h=json.loads((ROOT/HANDOFF).read_text(encoding="utf8"))
     c=json.loads((ROOT/CASES).read_text(encoding="utf8"))
     result=assess(h,c)
+    source_inventory=proof_from_git()
+    foundations=assess_foundations(h,c,source_inventory,result)
+    result["sourceInventory"]=source_inventory
+    result["foundationReadiness"]=foundations
     print(json.dumps(result,sort_keys=True))
-    return 0 if result["state"]=="PASS_METHOD_SOURCE_CROSSWALK_ONLY" else 2
+    return 0 if (result["state"]=="PASS_METHOD_SOURCE_CROSSWALK_ONLY"
+                 and foundations["state"]==
+                     "PASS_T01_T02_GITHUB_SOURCE_PREPARATION_ONLY") else 2
 
 if __name__=="__main__":raise SystemExit(main())
