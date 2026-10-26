@@ -110,7 +110,7 @@ def inspect(contract,head,bindings,actions,hashes,goal_score,infra_score,bridge_
       "OP01_GOAL_SOURCE_100":goal_score==100,
       "OP02_GITHUB_INFRA_100":infra_score==100,
       "OP03_REGISTERED_ACTION_PREFLIGHT_100":bridge_score==100,
-      "OP04_REGISTRY_HEAD_BYTES_PINN":checked_sources and all(bridge.SHA256.fullmatch(v) for v in checked_sources.values()) and len(checked_sources)==len(contract.get("technicalSources",[])),
+      "OP04_REGISTRY_HEAD_BYTES_PINNED":checked_sources and all(bridge.SHA256.fullmatch(v) for v in checked_sources.values()) and len(checked_sources)==len(contract.get("technicalSources",[])),
       "OP05_THREE_PILOT_PATHS_RESOLVED":len(refs)==3 and all(x["real_binding"] for x in refs),
       "OP06_PRIVATE_RECEIPT_VERIFIER_READY":test_ok and intake.SCHEMA=="enguru.zulfikar.field-evidence-bundle/v1",
       "OP07_OWNER_SCOPE_AND_SINGLE_WRITER_GUARDS":hold(fake_owner,"HOLD_OWNER_ISSUER") and auth.get("oneEngineeringWriter") is True and auth.get("onlyExistingRegisteredHandlers") is True,
