@@ -163,7 +163,7 @@ def main():
     pins=json.loads((HERE/"UPSTREAM_GITHUB_PINS_30.json").read_text(encoding="utf-8"))
     licenses=json.loads((HERE/"root_license_observations.json").read_text(encoding="utf-8"))
     token=os.environ.get("GITHUB_TOKEN","")
-    result=reconcile(pins,licenses,lambda p,l:fetch_license(p,l,token))
+    result=reconcile(pins,licenses,lambda pin,license_row:fetch_license(pin,license_row,token))
     head=subprocess.check_output(["git","-C",str(HERE.parents[1]),"rev-parse","HEAD"],
                                  text=True).strip()
     result.update({"schema":"enguru.harvest.a05-license-fulltext-evidence/v1",
