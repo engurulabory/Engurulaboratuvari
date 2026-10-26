@@ -1,6 +1,7 @@
 """Real Git HEAD source-bound HYM V1.4.1 A01 architecture + three repair simulations."""
 import copy
 import json
+import hashlib
 import pathlib
 import subprocess
 import tempfile
@@ -88,6 +89,19 @@ class HYMArchitectureV141Tests(unittest.TestCase):
                 lambda x:x["cases"][0].update(independent_e5="PASS"),"AD03_source_bindings"),
             ("wrong_original_234","c",
                 lambda x:x["baseline"].update(rows=233),"AD03_source_bindings"),
+            ("swap_customers_same_domain","c",
+                lambda x: (
+                    x["cases"][0].update(customer=self.c["cases"][1]["customer"]),
+                    x["cases"][1].update(customer=self.c["cases"][0]["customer"])),
+                "AD03_source_bindings"),
+            ("swap_technologies_same_domain","c",
+                lambda x: (
+                    x["cases"][0].update(technology=self.c["cases"][1]["technology"]),
+                    x["cases"][1].update(technology=self.c["cases"][0]["technology"])),
+                "AD03_source_bindings"),
+            ("spoof_case_identity_digest","m",
+                lambda x:x["sourceBindings"].update(original_case_identity_sha256="f"*64),
+                "AD03_source_bindings"),
         ))
 
     def test_sim3_owner_issuer_field_finish_and_recovery(self):
@@ -102,7 +116,23 @@ class HYMArchitectureV141Tests(unittest.TestCase):
                 lambda x:x["A05_A06"].update(independent_e5="18/18"),"AD04_security_boundaries"),
             ("lost_recovery","m",
                 lambda x:x["recoveryPlan"].update(no_new_writer=False),"AD05_recovery_plan"),
+            ("remove_swap_recovery","m",
+                lambda x:x["recoveryPlan"].pop("customer_technology_swap"),"AD05_recovery_plan"),
         ))
+
+    def test_identity_hash_uses_original_v428_case_fields(self):
+        observed=[[r["case_id"],r["domain"],r["customer"],r["technology"]]
+                  for r in self.c["cases"]]
+        digest=hashlib.sha256(
+            json.dumps(observed,ensure_ascii=False,separators=(",",":")).encode("utf8")
+        ).hexdigest()
+        self.assertEqual(len(observed),18)
+        self.assertEqual(digest,m.A01_IDENTITY_PIN)
+        self.assertEqual(self.design["sourceBindings"]["original_case_identity_sha256"],digest)
+        # V428's original V19 comparison is an upstream claim; this test does
+        # not independently open the separately stored original CSV.
+        self.assertEqual(self.c["source_audit"]["v19_exact_case_identity"],
+                         "18/18_RECONCILED_FROM_ORIGINAL_CSV")
 
     def test_real_disposable_git_head_mutation_fails_closed(self):
         with tempfile.TemporaryDirectory(prefix="hym-v141-a01-git-") as wd:
