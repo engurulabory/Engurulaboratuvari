@@ -10,7 +10,7 @@ import unittest
 from pathlib import Path
 from urllib.parse import urlparse
 
-from tools.arge_block01_a04_live_verify_v1 import _blob_sha1, _entries, verify_upstream
+from tools.arge_block01_a04_live_verify_v1 import _blob_sha1, _entries, verify_upstream, _same_pinned_https_url
 
 MANIFEST = (Path(__file__).resolve().parents[1] / "governance" /
             "enguru-suzgeci" / "reviews" /
@@ -89,6 +89,38 @@ class A04RemoteSourceTests(unittest.TestCase):
         result = verify_upstream(fixture, fetch=redirect)
         self.assertEqual(result["state"], "HOLD")
         self.assertEqual(result["matched"], 0)
+
+    def test_sneaky_same_host_source_redirects_cannot_pass(self):
+        fixture, payloads = controlled_fixture()
+        for mode in ("http", "other-commit", "other-file", "same-host-userinfo", "added-query"):
+            with self.subTest(mode=mode):
+                def altered_fetch(url, timeout):
+                    parsed=urlparse(url)
+                    if mode=="http":
+                        location=url.replace("https://","http://",1)
+                    elif mode=="other-commit":
+                        location=url.replace(parsed.path.split("/")[3],
+                                             "f"*40,1)
+                    elif mode=="other-file":
+                        location=url.rsplit("/",1)[0]+"/SECURITY.md"
+                    elif mode=="same-host-userinfo":
+                        location=url.replace("raw.githubusercontent.com",
+                                             "attacker@raw.githubusercontent.com",1)
+                    else:
+                        location=url+"?untrusted=true"
+                    original,_=fake_fetch(payloads)(url,timeout)
+                    return original,location
+                outcome=verify_upstream(fixture,fetch=altered_fetch)
+                self.assertEqual(outcome["state"],"HOLD")
+                self.assertEqual(outcome["matched"],0)
+                self.assertEqual(outcome["a04_official"],"HOLD")
+
+    def test_raw_url_exact_origin_and_path(self):
+        url="https://raw.githubusercontent.com/example/repo/"+"a"*40+"/LICENSE"
+        self.assertTrue(_same_pinned_https_url(url,url))
+        self.assertFalse(_same_pinned_https_url(url,url.replace("https://","http://")))
+        self.assertFalse(_same_pinned_https_url(url,url+"?signature=unknown"))
+        self.assertFalse(_same_pinned_https_url(url,None))
 
     def test_roster_and_license_pin_requirements(self):
         original, payloads = controlled_fixture()
