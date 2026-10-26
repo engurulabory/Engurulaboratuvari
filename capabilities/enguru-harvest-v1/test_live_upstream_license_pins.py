@@ -8,7 +8,7 @@ from verify_live_upstream_license_pins import verify_all, inspect_response, fetc
 BASE=Path(__file__).resolve().parent
 PINS=json.loads((BASE/"UPSTREAM_GITHUB_PINS_30.json").read_text(encoding="utf-8"))
 LICENSES=json.loads((BASE/"root_license_observations.json").read_text(encoding="utf-8"))
-LIC={l["repository"]:l for l in LICENSES["observations"]}
+LIC={license_entry["repository"]:license_entry for license_entry in LICENSES["observations"]}
 
 def fixture_root(pin):
     lic=LIC[pin["repository"]]
