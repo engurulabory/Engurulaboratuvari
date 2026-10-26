@@ -26,6 +26,14 @@ class TestGoalGate(unittest.TestCase):
         self.assertEqual(got["assessment"]["score"],100)
         self.assertEqual(tuple(sorted(got["assessment"]["checks"])),GOAL_IDS)
         self.assertEqual(got["human_authority"],"HOLD")
+        self.assertEqual(self.baseline["authority"]["owner_id"],"engurulabory")
+        self.assertIs(self.baseline["authority"]["peer_review_required"],False)
+        self.assertEqual(self.baseline["authority"]["decision_scope"],"GITHUB_TECHNICAL_ACCEPTANCE_ONLY")
+        self.assertEqual(
+            {c["id"]:c["authority"] for c in self.baseline["controls"]},
+            {f"C{i:02d}": ("Human Threshold" if i in (4,10)
+                          else "Automated GitHub CI") for i in range(1,11)},
+        )
 
     def test_ten_fail_closed_goal_mutations(self):
         mutations=[
@@ -121,7 +129,8 @@ class TestGoalGate(unittest.TestCase):
         corruptions=[
             ("verifier_forged", "C01", "verifier", "fake.check.H01"),
             ("verifier_swapped", "C02", "verifier", "goal_gate.H01"),
-            ("reviewer_turned_owner", "C03", "authority", "Human Threshold"),
+            ("ci_turned_owner", "C03", "authority", "Human Threshold"),
+            ("ci_turned_fake_peer", "C03", "authority", "Independent reviewer"),
             ("human_turned_reviewer", "C04", "authority", "Independent reviewer"),
             ("last_human_turns_reviewer", "C10", "authority", "Independent reviewer"),
         ]
@@ -132,6 +141,27 @@ class TestGoalGate(unittest.TestCase):
                 verdict=goal_gate(modified)
                 self.assertEqual(verdict["verdict"],"HOLD_GOAL_SPECIFICATION")
                 self.assertIn("H03",verdict["assessment"]["open_ids"])
+
+    def test_solo_maintainer_scope_and_identity_fail_closed(self):
+        changes=[
+            ("owner_id_forged",lambda x:x["authority"].update(owner_id="stranger"),"H04"),
+            ("review_mode_removed",lambda x:x["authority"].pop("review_mode"),"H04"),
+            ("review_mode_peer_only",lambda x:x["authority"].update(review_mode="PEER_REQUIRED"),"H04"),
+            ("scope_forged",lambda x:x["authority"].update(decision_scope="VERIFIED_FINISH"),"H04"),
+            ("peer_requirement_changed",lambda x:x["authority"].update(peer_review_required=True),"H04"),
+            ("peer_requirement_nonboolean",lambda x:x["authority"].update(peer_review_required=0),"H04"),
+            ("canonical_issuer_forged",lambda x:x["authority"].update(issuer="SOLO_OWNER_ISSUER"),"H04"),
+            ("schema_drift",lambda x:x.update(schema="enguru.zulfikar.goal-contract/v1.3"),"H01"),
+            ("negative_case_removed",lambda x:x["negative_cases"].pop(),"H07"),
+        ]
+        for name,mutate,gate in changes:
+            with self.subTest(case=name):
+                altered=copy.deepcopy(self.baseline)
+                mutate(altered)
+                result=goal_gate(altered)
+                self.assertEqual(result["verdict"],"HOLD_GOAL_SPECIFICATION")
+                self.assertIn(gate,result["assessment"]["open_ids"])
+                self.assertEqual(result["human_authority"],"HOLD")
 
     def test_canonical_lock_requires_object_and_digest(self):
         with tempfile.TemporaryDirectory() as folder:
