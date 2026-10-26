@@ -102,6 +102,13 @@ class HYMArchitectureV141Tests(unittest.TestCase):
             ("spoof_case_identity_digest","m",
                 lambda x:x["sourceBindings"].update(original_case_identity_sha256="f"*64),
                 "AD03_source_bindings"),
+            ("forge_all_234_cell_acceptance","c",
+                lambda x:x["baseline"].update(all_234_original_verdicts="PASS"),"AD03_source_bindings"),
+            ("forge_18_independent_e5","c",
+                lambda x:x["baseline"].update(all_18_e5_original_status="PASS"),"AD03_source_bindings"),
+            ("forge_v19_baseline_reconciliation","c",
+                lambda x:x["source_audit"].update(v19_exact_case_identity="RECONCILED_WITHOUT_CSV"),
+                "AD03_source_bindings"),
         ))
 
     def test_sim3_owner_issuer_field_finish_and_recovery(self):
