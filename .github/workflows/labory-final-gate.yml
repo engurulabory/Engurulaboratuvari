@@ -232,6 +232,7 @@ jobs:
         run: |
           python -B -m unittest discover -s tests -p 'test_arge_hym_v141_crosswalk_v1.py' -v
           python -B -m unittest discover -s tests -p 'test_arge_hym_v141_foundations_v1.py' -v
+          python -B -m unittest discover -s tests -p 'test_arge_hym_v141_a01_architecture_v1.py' -v
 
       - name: HYM Zulfikar V1.4.1 real source SHA and eight-stage boundary
         run: |
@@ -255,6 +256,12 @@ jobs:
           assert foundation["originalOfficial"]=="0/40"
           assert foundation["independentE5"]=="0/18"
           assert foundation["verifiedFinish"]=="HOLD"
+          architecture=j["a01ArchitectureReadiness"]
+          assert j["a01DesignProof"]["state"]=="PASS_GIT_HEAD_DESIGN_BYTES_ONLY"
+          assert architecture["state"]=="PASS_A01_ARCHITECTURE_SOURCE_PREPARATION_ONLY"
+          assert architecture["score"]==100 and len(architecture["checks"])==5
+          assert architecture["original_a01"]==architecture["method_a01"]=="HOLD"
+          assert architecture["verified_finish"]=="HOLD" and architecture["original_total"]=="0/40"
           print(json.dumps({"methodSource":j["methodHead"],
                             "crosswalk":j["crosswalkScore"],
                             "stageAcceptance":"HOLD_UNTIL_REAL_STAGE_EVIDENCE",
