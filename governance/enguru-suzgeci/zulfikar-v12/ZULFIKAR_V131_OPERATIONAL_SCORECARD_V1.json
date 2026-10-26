@@ -11,7 +11,8 @@
       "baseline": 100,
       "review": 100,
       "evidence": "Existing goal gate 10/10 on GitHub",
-      "missing": []
+      "missing": [],
+      "verdict": "PASS_SCOPE_LIMITED"
     },
     {
       "id": "GITHUB_ENGINE",
@@ -20,7 +21,8 @@
       "baseline": 100,
       "review": 100,
       "evidence": "Existing infra 10/10 GitHub",
-      "missing": []
+      "missing": [],
+      "verdict": "PASS_SCOPE_LIMITED"
     },
     {
       "id": "TEST_CI",
@@ -29,7 +31,8 @@
       "baseline": 100,
       "review": 100,
       "evidence": "6/6 CI success, 27×3 bridge tests",
-      "missing": []
+      "missing": [],
+      "verdict": "PASS_SCOPE_LIMITED"
     },
     {
       "id": "GOVERNANCE",
@@ -40,7 +43,8 @@
       "evidence": "Registry/issuer/HT/dry-run/source SHA checked, unverified deps and resume HOLD",
       "missing": [
         "Owner native permission certificate"
-      ]
+      ],
+      "verdict": "HOLD_UNDER_100"
     },
     {
       "id": "PORTABILITY",
@@ -51,7 +55,8 @@
       "evidence": "Three different preflight action profiles in existing Mac Engineer registry, no invented new core",
       "missing": [
         "Three heterogeneous real task outputs"
-      ]
+      ],
+      "verdict": "HOLD_UNDER_100"
     },
     {
       "id": "E2E_REAL",
@@ -65,7 +70,8 @@
         "3/3 real task transfer",
         "restart/recovery",
         "peer trials and user outcomes"
-      ]
+      ],
+      "verdict": "HOLD_UNDER_100"
     }
   ],
   "weightedBaseline": 87.5,
@@ -88,5 +94,13 @@
     "macOsiOperationalAcceptance": "HOLD",
     "ownerOfficialFinish": "HOLD"
   },
-  "scoringRule": "Source-level tests may raise governance/portable preflight judgment but not end-to-end real execution domain. No automatic 100 without actual OS field and independent real task evidence."
+  "scoringRule": "Source-level tests may raise governance/portable preflight judgment but not end-to-end real execution domain. No automatic 100 without actual OS field and independent real task evidence.",
+  "overallOperationalVerdict": "HOLD_91_100",
+  "allSixDimensionsPass": false,
+  "allSixDimensions100": false,
+  "githubTechnicalScopeVerdict": "PASS_SOURCE_CLI_CI_ONLY",
+  "realMacFieldVerdict": "HOLD",
+  "verifiedFinishVerdict": "HOLD",
+  "passRule": "General operational PASS requires six dimensions 100/100, real-task and Mac field evidence, independent verification, and authorized Human Threshold/DoneCheck decision.",
+  "positiveLanguageRule": "Use tamamlanmış/kanıtlanmış/doğrulanmış/güvenli duruş. Avoid prohibited totalizing phrasing."
 }
