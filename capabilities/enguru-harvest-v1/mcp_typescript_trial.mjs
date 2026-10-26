@@ -23,7 +23,7 @@ try {
   assert.ok(tools.tools.some(t => t.name === 'sha256_text'), 'tool discovery');
   const expected = createHash('sha256').update('ENGURU', 'utf8').digest('hex');
   const output = await client.callTool({ name: 'sha256_text', arguments: { text: 'ENGURU' } });
-  assert.equal(output.isError, false, 'tool call success');
+  assert.notEqual(output.isError, true, 'tool call should not have an error');
   assert.ok(JSON.stringify(output).includes(expected), 'returned digest');
   let invalidRejected = false;
   try {
