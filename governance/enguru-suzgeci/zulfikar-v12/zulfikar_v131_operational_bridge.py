@@ -78,6 +78,10 @@ def ordered_errors(mission, binding, actions, actual_head):
         failures.append("HOLD_DEPENDENCY_EVIDENCE")
     elif len({x["workId"] for x in dependencies})!=len(dependencies) or any(x["workId"]==mission.get("workId") for x in dependencies):
         failures.append("HOLD_DEPENDENCY_COLLISION")
+    if isinstance(dependencies,list) and dependencies:
+        # SHA-shaped strings alone are claims; unverified external receipts do
+        # not establish dependency completion.
+        failures.append("HOLD_DEPENDENCY_PROVENANCE_REVIEW_REQUIRED")
     if mission.get("singleWriter") is not True or mission.get("writerCount")!=1 or type(mission.get("writerCount")) is not int:
         failures.append("HOLD_SINGLE_WRITER")
     if mission.get("remotePushRequested") is not False:
