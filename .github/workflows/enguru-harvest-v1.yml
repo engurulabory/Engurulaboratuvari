@@ -127,3 +127,45 @@ jobs:
           assert Path('.claude/skills/enguru-evidence-harvest/SKILL.md').exists()
           print('GITHUB_ENGINEERING_REGRESSION=PASS; EXTERNAL_PROVEN_SKILLS=0; OSi_FIELD=HOLD')
           PY
+
+  p12-offline-harness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check canonical P12 source identity
+        run: |
+          python -B capabilities/enguru-harvest-v1/verify_head.py
+      - name: Install exact upstream LM Evaluation Harness base only
+        timeout-minutes: 6
+        run: |
+          git clone --quiet --filter=blob:none https://github.com/EleutherAI/lm-evaluation-harness.git "${{ runner.temp }}/lm-eval-p12-source"
+          git -C "${{ runner.temp }}/lm-eval-p12-source" checkout --quiet d6de81643928d653435c431bae19945d41d32520
+          test "$(git -C "${{ runner.temp }}/lm-eval-p12-source" rev-parse HEAD)" = "d6de81643928d653435c431bae19945d41d32520"
+          python -m pip install --disable-pip-version-check --report "${{ runner.temp }}/p12-lm-eval-install.json" "${{ runner.temp }}/lm-eval-p12-source"
+      - name: Score two offline fixture rows with real lm-eval dummy backend
+        timeout-minutes: 4
+        env:
+          HF_DATASETS_OFFLINE: '1'
+          HF_HUB_OFFLINE: '1'
+          DO_NOT_TRACK: '1'
+        run: |
+          cd capabilities/enguru-harvest-v1
+          python -B run_lm_eval_fixture.py
+      - name: Preserve P12 real execution and installation provenance
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enguru-p12-lm-eval-${{ github.sha }}
+          path: |
+            capabilities/enguru-harvest-v1/lm-eval-harness-receipt.json
+            ${{ runner.temp }}/p12-lm-eval-install.json
+          if-no-files-found: warn
