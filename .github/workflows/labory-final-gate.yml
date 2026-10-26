@@ -229,7 +229,9 @@ jobs:
 
 
       - name: HYM Zulfikar V1.4.1 pinned method and three adversarial families
-        run: python -B -m unittest discover -s tests -p 'test_arge_hym_v141_crosswalk_v1.py' -v
+        run: |
+          python -B -m unittest discover -s tests -p 'test_arge_hym_v141_crosswalk_v1.py' -v
+          python -B -m unittest discover -s tests -p 'test_arge_hym_v141_foundations_v1.py' -v
 
       - name: HYM Zulfikar V1.4.1 real source SHA and eight-stage boundary
         run: |
