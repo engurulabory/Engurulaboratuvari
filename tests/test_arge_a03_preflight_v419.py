@@ -1,5 +1,8 @@
 """A03 advisory preflight adversarial tests: reject false positive readiness."""
 import unittest
+import copy
+import json
+from pathlib import Path
 from tools.arge_a03_preflight_v419 import assess_a03, GATES
 
 
@@ -124,6 +127,73 @@ class A03PreflightTests(unittest.TestCase):
         )
         self.assertEqual(self.assert_external_hold(case)["structural_preflight"],
                          "PASS_FORMAT_ONLY")
+
+
+class SoloOwnerGitHubScopeTests(unittest.TestCase):
+    """Owner-only GitHub CI is a preparation policy, not a forged external grant."""
+
+    @classmethod
+    def setUpClass(cls):
+        path=(Path(__file__).resolve().parents[1]/
+              "governance/enguru-suzgeci/reviews/"
+              "ENGURU_ARGE_B01_M01_A03_A04_MANAGEMENT_DECISION_HANDOFF_V1.json")
+        cls.record=json.loads(path.read_text(encoding="utf8"))
+
+    @staticmethod
+    def valid(record):
+        policy=record["solo_owner_github_preparation_v2"]
+        ids=[value for package in record["single_active_execution_queue"]
+             for value in package["scope"]]
+        original=record["preserved_scope"]
+        return (
+            policy["approved_owner"]=="engurulabory"
+            and policy["mode"]=="SOLO_OWNER_GITHUB_AUTOMATED_CI"
+            and policy["decision_scope"]=="GITHUB_RESEARCH_AND_TECHNICAL_PREPARATION_ONLY"
+            and policy["second_human_github_reviewer_required"] is False
+            and policy["official_donecheck_issuer"]=="EXISTING_CANONICAL_ONLY"
+            and policy["signed_issuer_grant"]=="REQUIRES_REAL_EXISTING_SOURCE_AND_SCOPE"
+            and policy["outside_customer_e5"]=="REQUIRES_GENUINE_INDEPENDENT_CUSTOMER_USE_EVIDENCE"
+            and policy["product_field"]=="HOLD"
+            and policy["ready_to_automatically_merge"] is False
+            and record["A03"]["real_owner_grant_ref"] is None
+            and record["A03"]["decision"]=="HOLD_REAL_A03_OWNER_ISSUER_REVIEWER_AUTHORITY"
+            and record["A04"]["canonical_runtime_source"] is None
+            and record["A04"]["decision"]=="HOLD_OWNER_CANONICAL_SCOPE"
+            and record["current_counters"]["overall_official"]=="0/40"
+            and record["current_counters"]["customer_deployments"]=="0/18"
+            and record["current_counters"]["independent_e5"]=="0/18"
+            and len(ids)==original["original_tasks"]==40
+            and len(set(ids))==40
+            and len(original["block01"])==9
+            and original["blocks"]==6
+            and original["cases"]==18
+            and original["cells"]==234
+        )
+
+    def test_current_single_owner_github_scope_passes_with_real_gates_hold(self):
+        self.assertTrue(self.valid(self.record))
+        self.assertEqual(self.record["preserved_scope"]["active_package"],"B01-M01")
+        self.assertEqual(self.record["preserved_scope"]["chosen"],
+                         ["A03","A04","A05","A06"])
+
+    def test_fake_acceptance_or_signer_drift_fails(self):
+        mutations=[
+            lambda r:r["solo_owner_github_preparation_v2"].update(decision_scope="OFFICIAL_VERIFIED_FINISH"),
+            lambda r:r["solo_owner_github_preparation_v2"].update(approved_owner="invented_reviewer"),
+            lambda r:r["solo_owner_github_preparation_v2"].update(second_human_github_reviewer_required=0),
+            lambda r:r["solo_owner_github_preparation_v2"].update(official_donecheck_issuer="SELF_ISSUED"),
+            lambda r:r["solo_owner_github_preparation_v2"].update(ready_to_automatically_merge=True),
+            lambda r:r["A03"].update(real_owner_grant_ref="invented-grant"),
+            lambda r:r["A04"].update(decision="PASS_UNPROVEN"),
+            lambda r:r["current_counters"].update(overall_official="40/40"),
+            lambda r:r["current_counters"].update(independent_e5="18/18"),
+            lambda r:r["single_active_execution_queue"][1]["scope"].append("A03"),
+        ]
+        for i,mutate in enumerate(mutations):
+            with self.subTest(case=i):
+                altered=copy.deepcopy(self.record)
+                mutate(altered)
+                self.assertFalse(self.valid(altered))
 
 
 if __name__ == "__main__":
