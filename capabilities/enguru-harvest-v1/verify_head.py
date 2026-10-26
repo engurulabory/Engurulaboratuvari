@@ -23,6 +23,8 @@ SOURCES=(
     "READINESS_AUDIT_V3.json","test_readiness_audit_v3.py",
     "build_github_osi_handoff.py","test_github_osi_handoff.py",
     "ZULFIKAR_100_FINIS_VE_SINIRLAR.md",
+    "ZULFIKAR_V141_SOURCE_REUSE.json","reuse_zulfikar_v141.py",
+    "test_zulfikar_v141_reuse.py","ZULFIKAR_V141_EXECUTION_AND_GATES.md",
     "test_upstream_hypothesis.py","run_real_upstream_trials.py",
     "run_second_upstream_trials.py","run_lm_eval_fixture.py","promptfooconfig.json","check_promptfoo_receipt.py","mcp_typescript_trial.mjs","mcp_reference_stdio_trial.mjs","run_anthropic_skills_trial.py",
 )
