@@ -29,12 +29,29 @@ def _blob_sha1(payload: bytes) -> str:
                         b"\0" + payload).hexdigest()
 
 
+def _same_pinned_https_url(expected: str, received: str) -> bool:
+    """Accept only the exact immutable raw GitHub https URL, including path."""
+    if not isinstance(received, str):
+        return False
+    try:
+        u = urllib.parse.urlparse(received)
+        return (u.scheme == "https"
+                and u.netloc == "raw.githubusercontent.com"
+                and u.username is None
+                and u.password is None
+                and u.query == ""
+                and u.fragment == ""
+                and received == expected)
+    except ValueError:
+        return False
+
+
 def _fetch(url: str, timeout: float) -> tuple[bytes, str]:
     request = urllib.request.Request(
         url, headers={"User-Agent": "ENGURU-A04-read-only-provenance/1"})
     with urllib.request.urlopen(request, timeout=timeout) as response:
         final_url = response.geturl()
-        if urllib.parse.urlparse(final_url).hostname != "raw.githubusercontent.com":
+        if not _same_pinned_https_url(url, final_url):
             raise ValueError("REDIRECTED_SOURCE")
         payload = response.read(MAX_BYTES + 1)
     if len(payload) > MAX_BYTES:
@@ -119,7 +136,7 @@ def verify_upstream(manifest: dict, *, fetch=_fetch, timeout: float = 12) -> dic
         item = {k: entry[k] for k in ("technology", "kind", "repository", "commit", "path", "expected_blob_sha1")}
         try:
             raw, actual_url = fetch(url, timeout)
-            if urllib.parse.urlparse(actual_url).hostname != "raw.githubusercontent.com":
+            if not _same_pinned_https_url(url, actual_url):
                 raise ValueError("UNTRUSTED_REDIRECT")
             if not isinstance(raw, bytes) or len(raw) > MAX_BYTES:
                 raise ValueError("INVALID_BYTES")
