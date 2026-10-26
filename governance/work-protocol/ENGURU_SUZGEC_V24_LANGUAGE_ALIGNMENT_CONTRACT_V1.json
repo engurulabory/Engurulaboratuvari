@@ -1,0 +1,170 @@
+{
+  "schema": "enguru.suzgec.v24.language-alignment-contract/v1",
+  "project": "ENGURU_SUZGEC",
+  "candidateVersion": "2.4",
+  "canonicalInstalledVersion": "2.3",
+  "state": "ENGINEERING_CANDIDATE_FIELD_ACCEPTANCE_HOLD",
+  "sourceAuthority": "OSi_CANONICAL",
+  "github": {
+    "repository": "engurulabory/Engurulaboratuvari",
+    "draftPR": 185,
+    "branch": "feat/suzgec-v23-foresight-20261015",
+    "baselineHead": "5c306f1f16878c437a4105df2feb9301eff4544d",
+    "sourceParityTotalAfterCandidate": 19
+  },
+  "eightStages": [
+    "Hakikati gör",
+    "Değeri koru",
+    "Eksikleri ve ihtiyaçları tespit et",
+    "Gerekli farkı üret",
+    "Eksikleri tamamla, ihtiyaçları karşıla",
+    "Kanıtla",
+    "Bir sonraki ihtiyaçları belirle",
+    "İlerlet"
+  ],
+  "governingNextAction": "Bütünsel düşün. Bütün yolu önceden gör. Ana hedefi ve kabul sınırlarını sabitle. Önceden simüle et. Aynı kaynaktan yürüt. Gerçekte kanıtla. Finişe ulaştır.",
+  "existingFinishGates": [
+    "T01",
+    "T02",
+    "T03",
+    "T04"
+  ],
+  "goalOutcomeAcceptance": [
+    "K01_GOAL_ACHIEVED",
+    "K02_SCOPE_COMPLETED",
+    "K03_RUNTIME_OPERABLE",
+    "K04_BEHAVIOR_VERIFIED",
+    "K05_EXISTING_VALUE_PRESERVED",
+    "K06_EVIDENCE_VERIFIED",
+    "K07_TECHNICAL_GATES_PASS"
+  ],
+  "languageRules": {
+    "canonicalIds": [
+      "L01",
+      "L02",
+      "L03",
+      "L04",
+      "L05",
+      "L06",
+      "L07",
+      "L08",
+      "L09",
+      "L10",
+      "L11",
+      "L12",
+      "L13",
+      "L14",
+      "L15",
+      "L16",
+      "L17",
+      "L18"
+    ],
+    "existingAutomaticLinterRules": [
+      "L01",
+      "L03",
+      "L04",
+      "L06",
+      "L10",
+      "L11",
+      "L13",
+      "L14",
+      "L15",
+      "L16",
+      "L17",
+      "L18"
+    ],
+    "semanticReviewRequiredRules": [
+      "L02",
+      "L05",
+      "L07",
+      "L08",
+      "L09",
+      "L12"
+    ],
+    "automatedLinterPath": "tools/enguru_language_pre_send_linter.py",
+    "automatedLinterSha256": "da1195239a41fd7da6fbca81930f6806dfd5f06ce8205c66c916ffaf48d5a587",
+    "meaningAndAuthorityReview": "HUMAN_AUTHORIZED_SEMANTIC_ACCEPTANCE_REQUIRED"
+  },
+  "engineeringWorklist": [
+    {
+      "id": "D01_CANONICAL_UNIVERSE",
+      "goal": "Tek canonical Dil Evreni ve L01–L18 yetki/kapsam sözleşmesi",
+      "acceptance": "SÖZLEŞME: 18 kural haritası, sekiz aşama, K01–K07, T01–T04 ve sürüm sınırları okunabilir ve kaynağa bağlı",
+      "state": "PENDING_OSi_FIELD"
+    },
+    {
+      "id": "D02_POSITIVE_STATE_LANGUAGE",
+      "goal": "Korunan değeri ve geçerli durumu esas alan dil hizalama",
+      "acceptance": "DAVRANIŞ: değiştirmez / dokunmaz / PASS değil gibi anlatım kaçakları gerçek ifadede HOLD; geçerli durum önerilir",
+      "state": "PENDING_OSi_FIELD"
+    },
+    {
+      "id": "D03_PRESEND_GATE",
+      "goal": "Mevcut pre-send linter ile çalıştırılabilir geçit",
+      "acceptance": "YÜRÜTME: kaynak SHA doğrulanır, mevcut linter gerçek metni tarar, HOLD fail-closed; OSi CLI kanıtı ayrı, ChatGPT/Work zorunlu geçit HOLD",
+      "state": "PENDING_OSi_FIELD"
+    },
+    {
+      "id": "D04_ADVERSARIAL_REGRESSION",
+      "goal": "Gerçek yanıt örnekleriyle karşıt sınama ve regresyon",
+      "acceptance": "KANIT: olumlu/olumsuz ifadeler, kod blokları, atıflar, sahte PASS ve eksik kaynak  test edilir",
+      "state": "PENDING_OSi_FIELD"
+    },
+    {
+      "id": "D05_CROSS_SURFACE_ACCEPTANCE",
+      "goal": "ChatGPT, Work ve OSi için Özgür saha kabulü",
+      "acceptance": "SAHA: her yüzeyde yetkili/gerçek yanıt pre-send gözlemi, bütün L01–L18 semantik karşıt kabul ve Human Threshold gerekli",
+      "state": "PENDING_OSi_FIELD"
+    }
+  ],
+  "surfaces": {
+    "OSi": {
+      "cliGate": "REQUIRES_REAL_FIELD_RUN",
+      "fullAutomaticL01L18": "HOLD_SEMANTIC_REVIEW"
+    },
+    "ChatGPT": {
+      "preSendRuntimeHook": "HOLD_SUPPORTED_INTEGRATION_REQUIRED"
+    },
+    "Work": {
+      "preSendRuntimeHook": "HOLD_SUPPORTED_INTEGRATION_REQUIRED"
+    }
+  },
+  "externalDependencies": {
+    "canonicalActiveTask": "HOLD_MISSING",
+    "v23ScopedProgressCoreProof": "HOLD_UNVERIFIED",
+    "v23AuthorizedDoneCheck": "HOLD_UNBOUND_V07_A10_ONLY",
+    "realE01PrecheckExecutePostcheck": "HOLD",
+    "githubCI": "PENDING"
+  },
+  "baselineSourceSha256": {
+    "governance/mac-engineer/OPERATOR_ACTION_REGISTRY_V1.json": "8ace6b42893e7929dd984f8be189d918cd04f9133a2d859361c92ca482d495ea",
+    "governance/work-protocol/ENGURU_SUZGEC_V23_GOAL_OUTCOME_POLICY_V1.json": "e0396663b41cc5d87f87014d35ae1bf6018113ff31c2e8ac6e63fe0e3c6c5d8a",
+    "governance/work-protocol/ENGURU_SUZGEC_V23_UPFRONT_FINISH_VISIBILITY_CONTRACT_V1.json": "1a6efd52ad42baecd20d8030672e0267eb2348888dce5b5ad2ca77e426ea879e",
+    "tests/test_enguru_language_pre_send_linter.py": "763ecf6ab6283efa0c003dfe651138bcec3d1af0eaa19f3319710e754f8295db",
+    "tests/test_enguru_pre_execution_simulation.py": "3ade3fa5c86ca6074c3a3445069e640b26ece5bee5d5a078d4b79d3447668489",
+    "tests/test_enguru_suzgec_v23_forecast.py": "1ea406a15395b2c21e744095de46bda171f7f5a3d3aa862f0b471628ea66db8c",
+    "tests/test_enguru_suzgec_v23_goal_acceptance.py": "93b5fdd2a1da59d62544450dfb1e738d2af76e4026e5f8dd6b7e10f976c3524c",
+    "tests/test_enguru_suzgec_v23_t01_binding.py": "d66a55328cfb27c4d0193568987dffe1ea3f5adffa4459c5820955fd12bc5e26",
+    "tools/enguru_package_execution_guard.py": "3f2c87bc521f0d577487dbca5620151575df4b3454a8fe5fc31668750096f319",
+    "tools/enguru_suzgec_v23_execution.py": "871d94f28add0441e00edef9f3ae6e24435d7177ff089bce2af4780c7a2a021a",
+    "tools/enguru_suzgec_v23_field_dispatch.py": "5236dd39aeb09a638a40550d083ec6e6ddf245276af9a5fb3b9baac709e6214e",
+    "tools/enguru_suzgec_v23_forecast.py": "5a0cd85cd71aff19f7e2c3f2de45f16c281d4a246cfdd927e80ef6421b1e4c77",
+    "tools/enguru_suzgec_v23_goal_acceptance.py": "0bddf80ded98478b0b49e46805c99c6ae739366392620d3d71e5f76e023afa84",
+    "tools/mac_engineer_operator.py": "0ce4956641ba105ee47914de187704c07f18ed4f0ed957f0cbf0c2bc5d768741",
+    "governance/work-protocol/ENGURU_SUZGEC_V23_GITHUB_OSi_PARITY_MANIFEST_V1.json": "30bcfc86baf48655028c40ba30376e94cddd63c6f10dfe8e8b6280a123c7ba71"
+  },
+  "acceptance": {
+    "D01": "CONTRACT_SOURCES_PINNED",
+    "D02": "REGRESSION_AND_REAL_LANGUAGE_OBSERVATION",
+    "D03": "LOCAL_LINTER_PASS_PLUS_SCOPED_HOOK_PROOF",
+    "D04": "ADVERSARIAL_TEST_PASS",
+    "D05": "ALL_3_SURFACES_REAL_FIELD_ACCEPTANCE_AND_HUMAN_THRESHOLD"
+  },
+  "projectTechnicalFinish": "HOLD",
+  "humanThreshold": "PENDING",
+  "p01": "SUSPENDED",
+  "verifiedFinish": "HOLD",
+  "newCore": false,
+  "newCanonicalStage": false,
+  "newFinishGate": false
+}

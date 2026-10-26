@@ -1,0 +1,70 @@
+{
+  "activeTaskAuthorization": "HOLD_REAL_AUTHORITY_AND_PRODUCER_REQUIRED",
+  "benchmarkRealPassed": 0,
+  "benchmarkRealTested": 0,
+  "nextAction": "Bind actual OSi task, v2.4 issuer, DoneCheck and Progress; then execute approved eight pilots",
+  "p01": "SUSPENDED",
+  "packages": {
+    "T01": {
+      "doneCheck": "HOLD",
+      "items": {
+        "T01_REAL_TASK_PRODUCER": {
+          "state": "ACTIVE"
+        }
+      },
+      "state": "ACTIVE"
+    },
+    "T02": {
+      "doneCheck": "HOLD",
+      "items": {
+        "B01-01": {
+          "state": "PENDING"
+        },
+        "B02-01": {
+          "state": "PENDING"
+        },
+        "B03-01": {
+          "state": "PENDING"
+        },
+        "B04-01": {
+          "state": "PENDING"
+        },
+        "B05-01": {
+          "state": "PENDING"
+        },
+        "B06-01": {
+          "state": "PENDING"
+        },
+        "B07-01": {
+          "state": "PENDING"
+        },
+        "B08-01": {
+          "state": "PENDING"
+        }
+      },
+      "state": "PENDING"
+    },
+    "T03": {
+      "doneCheck": "HOLD",
+      "items": {
+        "T03_DONECHECK_PROGRESS_CI": {
+          "state": "PENDING"
+        }
+      },
+      "state": "PENDING"
+    },
+    "T04": {
+      "doneCheck": "HOLD",
+      "items": {
+        "T04_HUMAN_THRESHOLD": {
+          "state": "PENDING"
+        }
+      },
+      "state": "PENDING"
+    }
+  },
+  "project": "suzgec_v24",
+  "schema": "enguru.suzgec.v24.progress-work-state/v1",
+  "taskId": "ENGURU_SUZGEC_V24_PILOT8_T01_T02",
+  "verifiedFinish": "HOLD"
+}

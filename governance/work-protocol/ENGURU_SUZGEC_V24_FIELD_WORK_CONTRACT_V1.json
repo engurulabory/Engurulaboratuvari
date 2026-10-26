@@ -1,0 +1,42 @@
+{
+  "approvedPilotIds": [
+    "B01-01",
+    "B02-01",
+    "B03-01",
+    "B04-01",
+    "B05-01",
+    "B06-01",
+    "B07-01",
+    "B08-01"
+  ],
+  "approvedScopeSha256": "c438dfc846a21a3d381a653321c83b976082790692e45b033c4e0f0a2ff22aed",
+  "authority": "OSi_CANONICAL_ENGINEERING_SCOPE_APPROVAL_B01_B08_ONLY",
+  "counterPolicy": "AUTO_FROM_WORK_CONTRACT",
+  "humanThreshold": "HUMAN_ONLY",
+  "objective": "Real OSi canonical work-contract discovery for eight approved pilot cases; evidence producer and technical closure HOLD until independently verified",
+  "p01": "SUSPENDED",
+  "progressBinding": {
+    "adapter": "WORK_CONTRACT_V1",
+    "evidenceMode": "STATE_HEAD_PLUS_PACKAGE_DONECHECK",
+    "evidencePolicy": {
+      "mode": "STATE_HEAD_PLUS_PACKAGE_DONECHECK",
+      "passRequires": [
+        "exact SOURCE_HEAD and SHA-256",
+        "authorized v2.4 field evidence producer",
+        "task-specific independent DoneCheck verification outcome pass",
+        "packageDoneCheck=PASS only after field evidence and task match",
+        "Progress Core project-scope verification and zero unverified PASS"
+      ]
+    },
+    "name": "suzgec_v24",
+    "projectId": "ENGURU_SUZGEC_V24",
+    "state": "governance/work-protocol/ENGURU_SUZGEC_V24_FIELD_WORK_STATE_V1.json",
+    "worklist": "governance/work-protocol/ENGURU_SUZGEC_V24_FIELD_WORKLIST_V1.json"
+  },
+  "realProducerAuthorization": "HOLD_UNBOUND",
+  "schema": "enguru.work-contract/v1",
+  "schemaContract": "governance/work-protocol/ENGURU_SUZGEC_V24_PILOT8_SCOPE_APPROVED_V1.json",
+  "state": "HOLD",
+  "verifiedFinish": "HOLD",
+  "workId": "ENGURU_SUZGEC_V24_T01_T02"
+}
