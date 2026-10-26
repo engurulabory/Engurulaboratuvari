@@ -22,7 +22,8 @@ jobs:
           python-version: '3.12'
       - name: Verify checkout source commit and canonical V3 pin
         run: |
-          python -B capabilities/enguru-harvest-v1/verify_head.py
+          python -B capabilities/enguru-harvest-v1/verify_head.py > "$RUNNER_TEMP/harvest-s03-exact-source.json"
+          cat "$RUNNER_TEMP/harvest-s03-exact-source.json"
       - name: Execute real Python regressions for 12 local operations
         run: |
           cd capabilities/enguru-harvest-v1
@@ -107,6 +108,25 @@ jobs:
           cd capabilities/enguru-harvest-v1
           python -B build_github_osi_handoff.py
           python -B -m unittest -q test_github_osi_handoff
+      # Owner Emri05: S03 exact-source candidate only; adoption and field authority HOLD.
+      - name: Revalidate exact candidate HEAD and reproducible ZIP receipt
+        env:
+          EXPECTED_SOURCE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          python -B - <<'PY'
+          import hashlib,json,os,subprocess,sys
+          from pathlib import Path
+          sys.path.insert(0,'capabilities/enguru-harvest-v1')
+          from build_github_osi_handoff import build,inspect
+          head=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          assert head==os.environ['EXPECTED_SOURCE_HEAD']
+          first=build();second=build()
+          assert first==second and first['github_head']==head
+          raw=(Path('capabilities/enguru-harvest-v1')/first['package_filename']).read_bytes()
+          assert hashlib.sha256(raw).hexdigest()==first['zip_sha256']
+          assert inspect(raw)['state']=='PASS_GITHUB_PACKAGE_INTEGRITY_ONLY'
+          print(json.dumps(first,sort_keys=True))
+          PY
       - name: Independently verify 30 pinned README and 29 LICENSE blobs at exact upstream commits
         timeout-minutes: 5
         env:
@@ -158,6 +178,7 @@ jobs:
             capabilities/enguru-harvest-v1/mcp-typescript-npm-tree.json
             ${{ runner.temp }}/harvest-mcp-install-report.json
             ${{ runner.temp }}/harvest-pip-install-report.json
+            ${{ runner.temp }}/harvest-s03-exact-source.json
           if-no-files-found: warn
       - name: Verify source inventory and target separation
         run: |

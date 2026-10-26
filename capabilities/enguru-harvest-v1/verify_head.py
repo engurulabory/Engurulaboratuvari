@@ -46,7 +46,7 @@ def git(*args):
 
 def check():
     commit=git("rev-parse","HEAD").decode().strip()
-    paths=[BASE+name for name in SOURCES]+[V3,*ADAPTERS]
+    paths=[BASE+name for name in SOURCES]+[BASE+'verify_head.py', '.github/workflows/enguru-harvest-v1.yml', V3,*ADAPTERS]
     files={}
     for path in paths:
         work=(ROOT/path).read_bytes()
