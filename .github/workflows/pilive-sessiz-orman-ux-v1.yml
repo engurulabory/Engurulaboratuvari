@@ -1,0 +1,29 @@
+name: PiLive Sessiz Orman V1 Design Truth Gate
+
+on:
+  pull_request:
+    paths:
+      - 'governance/plive/SESSIZ_ORMAN_COCKPIT_UX_CONTRACT_V1.md'
+      - 'governance/plive/SESSIZ_ORMAN_SCREEN_FIXTURE_V1.json'
+      - 'tests/test_pilive_sessiz_orman_ux_contract_v1.py'
+      - '.github/workflows/pilive-sessiz-orman-ux-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  design-contract-safety:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Three independent static fixture / safety checks
+        run: |
+          for cycle in 1 2 3; do
+            echo "DESIGN_CONTRACT_SIMULATION_CYCLE=$cycle"
+            python -B -m unittest discover -s tests -p test_pilive_sessiz_orman_ux_contract_v1.py -v
+          done
+          echo "STATE=PASS_DESIGN_CONTRACT_ONLY_OWNER_AESTHETIC_HOLD"
