@@ -1,0 +1,68 @@
+{
+  "schema": "enguru.harvest.v141-pilot-preparation/v1",
+  "task_count": 5,
+  "owner": "engurulabory",
+  "mandatory_paid_api": 0,
+  "osi_execution": 0,
+  "actual_user_receipts": 0,
+  "real_application_pass": false,
+  "mode": "PREPARE_ONLY",
+  "owner_approval": "HOLD",
+  "tasks": [
+    {
+      "id": "U01",
+      "title": "Kaynak kokenu ve lisans",
+      "runner": "verify_live_upstream_license_pins.py",
+      "inputs": "Repo commit + README/LICENSE tam source",
+      "remaining": "Lisans sureci sahada karar bekler",
+      "preparation_state": "PLANNED_WITH_EXISTING_GITHUB_RUNNER",
+      "real_owner_acceptance": "HOLD",
+      "baseline_comparison": "SAME_INPUT_SAME_HEAD",
+      "negative_test": "UNAUTHORIZED_ACTION_HOLD"
+    },
+    {
+      "id": "U02",
+      "title": "Beceri uyumu",
+      "runner": "run_second_upstream_trials.py",
+      "inputs": "Owner-yetkili skill kapsam ve arac izni",
+      "remaining": "Gercek ajan oturumu bekler",
+      "preparation_state": "PLANNED_WITH_EXISTING_GITHUB_RUNNER",
+      "real_owner_acceptance": "HOLD",
+      "baseline_comparison": "SAME_INPUT_SAME_HEAD",
+      "negative_test": "UNAUTHORIZED_ACTION_HOLD"
+    },
+    {
+      "id": "U03",
+      "title": "Cevrimdisi degerlendirme",
+      "runner": "check_promptfoo_receipt.py",
+      "inputs": "Sabit veri kumesi, kalite olcutu",
+      "remaining": "Gercek kullanici kalitesi bekler",
+      "preparation_state": "PLANNED_WITH_EXISTING_GITHUB_RUNNER",
+      "real_owner_acceptance": "HOLD",
+      "baseline_comparison": "SAME_INPUT_SAME_HEAD",
+      "negative_test": "UNAUTHORIZED_ACTION_HOLD"
+    },
+    {
+      "id": "U04",
+      "title": "MCP baglantisi",
+      "runner": "mcp_reference_stdio_trial.mjs",
+      "inputs": "Yetkili MCP protokol ve arac semasi",
+      "remaining": "Gercek kullanim kabulunu bekler",
+      "preparation_state": "PLANNED_WITH_EXISTING_GITHUB_RUNNER",
+      "real_owner_acceptance": "HOLD",
+      "baseline_comparison": "SAME_INPUT_SAME_HEAD",
+      "negative_test": "UNAUTHORIZED_ACTION_HOLD"
+    },
+    {
+      "id": "U05",
+      "title": "Kanita dayali devir",
+      "runner": "build_github_osi_handoff.py",
+      "inputs": "Canonical HEAD ve SHA256 kaynaklari",
+      "remaining": "Mac OSI alani ayrica yetki bekler",
+      "preparation_state": "PLANNED_WITH_EXISTING_GITHUB_RUNNER",
+      "real_owner_acceptance": "HOLD",
+      "baseline_comparison": "SAME_INPUT_SAME_HEAD",
+      "negative_test": "UNAUTHORIZED_ACTION_HOLD"
+    }
+  ]
+}

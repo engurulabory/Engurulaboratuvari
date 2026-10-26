@@ -1,0 +1,135 @@
+{
+  "schema": "enguru.harvest.zulfikar-v1.3.1-readiness-score/v1",
+  "as_of": "2026-10-26",
+  "record_scope": "Assessment against last confirmed exact-head evidence; rubric is analyst scoring, not canonical DoneCheck",
+  "verified_evidence_head": "0d714edaeaa0b4347766b31cd2e0d33c1d6ce489",
+  "verified_ci_url": "https://github.com/engurulabory/Engurulaboratuvari/actions/runs/40284992580",
+  "github": {
+    "state": "VERIFIED_FINISH_HOLD",
+    "readiness_score": 63,
+    "max": 100,
+    "actual_official_finish": false,
+    "criteria": [
+      [
+        "Goal, IDs, canonical mapping",
+        10,
+        10
+      ],
+      [
+        "Exact-head Github CI + provenance",
+        20,
+        20
+      ],
+      [
+        "Real unit tests + logical simulations",
+        12,
+        12
+      ],
+      [
+        "Measured task-level engineering gain",
+        8,
+        12
+      ],
+      [
+        "Upstream technical capability checks",
+        9,
+        12
+      ],
+      [
+        "Source license and security acceptance",
+        4,
+        12
+      ],
+      [
+        "Real user outcome and reproducible utility",
+        0,
+        10
+      ],
+      [
+        "Owner Human Threshold and official DoneCheck",
+        0,
+        12
+      ]
+    ]
+  },
+  "osi": {
+    "state": "PRE_FIELD_PREPARATION_ONLY",
+    "preflight_readiness_score": 55,
+    "max": 100,
+    "field_executed": false,
+    "criteria": [
+      [
+        "Handoff architecture and order",
+        20,
+        20
+      ],
+      [
+        "Safe scope and rollback planning",
+        12,
+        15
+      ],
+      [
+        "Github traceability into handoff",
+        15,
+        15
+      ],
+      [
+        "Legal security and provenance handoff",
+        8,
+        15
+      ],
+      [
+        "Actual Mac compatibility proof",
+        0,
+        15
+      ],
+      [
+        "Local ledger and canary test proof",
+        0,
+        10
+      ],
+      [
+        "Owner field entry authorization",
+        0,
+        10
+      ]
+    ]
+  },
+  "remaining_packages": [
+    {
+      "id": "K01",
+      "work": "True user task baseline/candidate effectiveness with repeated runs",
+      "status": "HOLD_REAL_USER_VALUE",
+      "note": "Five source-ID microbench repetitions are PASS and separate"
+    },
+    {
+      "id": "K02",
+      "work": "Source archive SHA, rights and security clearance on selected candidates",
+      "status": "HOLD_LICENSE_SECURITY",
+      "note": "30 observed public README blobs,29 root licenses; adoption 0"
+    },
+    {
+      "id": "K03",
+      "work": "Authorized real Codex/Claude agent runs, fix Claude nonrecommended npm path",
+      "status": "PARTIAL_CLI_HOLD",
+      "note": "Codex --version pass; Claude CLI failed; no agent runs"
+    },
+    {
+      "id": "K04",
+      "work": "Re-run all exact-head Github CI after review snapshot changes and reconcile Zulfikar simulations",
+      "status": "PASS_PRIOR_HEAD_REPEAT_FOR_NEW_HEAD",
+      "note": "Prior head 5/5 completed-success,73/73 Python tests,30/30 logical sims"
+    },
+    {
+      "id": "K05",
+      "work": "Single owner C04/C10 technical acceptance, valid canonical receipt, prepare OSi handoff",
+      "status": "HOLD_OWNER",
+      "note": "No second human peer reviewer required for GitHub technical scope in Zulfikar v1.3.1, but owner decision is required"
+    }
+  ],
+  "human_threshold": "HOLD",
+  "source_rights": "HOLD",
+  "external_official_proven": "0/12",
+  "osi_execution": 0,
+  "merge": 0
+}

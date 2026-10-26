@@ -1,0 +1,130 @@
+{
+  "schema": "enguru.harvest.zulfikar-v141-universal-session-gates/v1",
+  "session_method": "ENGURU_Suzgeci_8 + Pozitif_Dil + Canonical_V3 + ZULFIKAR_1.4.1_DOM_1.0",
+  "repo": "engurulabory/Engurulaboratuvari",
+  "pr": 243,
+  "last_verified_exact_head": "59e5b7043f55bf103d9dfa81354fce5d207f30fc",
+  "last_verified_run": "https://github.com/engurulabory/Engurulaboratuvari/actions/runs/40334891582",
+  "source_v141_commit": "8fbd40c8fde34e7f8d77d5079c4da86a1baa8dad",
+  "source_files_sha256_validated": 18,
+  "source_v141_real_test_executions": 378,
+  "harvest_real_regression_tests": 119,
+  "workflow_success": 5,
+  "workflow_required": 5,
+  "harvest_job_success": 4,
+  "harvest_job_required": 4,
+  "github_preparation_score": 65,
+  "osi_preparation_score": 60,
+  "github_acceptance_design_score": 100,
+  "osi_acceptance_design_score": 100,
+  "source_proven_external_skills": 0,
+  "source_external_skill_target": 12,
+  "official_verified_finish": "HOLD",
+  "human_threshold": "HOLD",
+  "mac_osi_execution": 0,
+  "main_merge": 0,
+  "official_current_gate": "T01",
+  "allow_auto_advance": false,
+  "stages": [
+    {
+      "id": "T01",
+      "name": "Temel atma",
+      "order": 1,
+      "acceptance": "Hedef kimliği, korunmuş haklar, kaynak ve mevcut kanıtlar uzlaştırılır.",
+      "technical_observation": "SOURCE_INVENTORY_AND_GOAL_OBSERVED",
+      "blocking_evidence": [
+        "HOLD_CANONICAL_STAGE_DECISION"
+      ],
+      "claimed_official_pass": false,
+      "independent_evidence_score_100": false
+    },
+    {
+      "id": "T02",
+      "name": "Hedef hazırlığı",
+      "order": 2,
+      "acceptance": "H01–H10, P01–P12, K01–K05 kaynaklı ölçülebilir kabul ve negatif örnekler.",
+      "technical_observation": "DESIGN_100_100_ONLY",
+      "blocking_evidence": [
+        "HOLD_STAGE_AUTHORITY"
+      ],
+      "claimed_official_pass": false,
+      "independent_evidence_score_100": false
+    },
+    {
+      "id": "A01",
+      "name": "Mimari",
+      "order": 3,
+      "acceptance": "Tek skill kernel; kaynak/provenans, beceri, test ve yetki ayrımı.",
+      "technical_observation": "DESIGN_100_100_ONLY",
+      "blocking_evidence": [
+        "HOLD_REAL_INTEGRATION_ACCEPTANCE"
+      ],
+      "claimed_official_pass": false,
+      "independent_evidence_score_100": false
+    },
+    {
+      "id": "A02",
+      "name": "Teori ve karşıt değerlendirme",
+      "order": 4,
+      "acceptance": "Mühürlü güncel V1.4.1, bağımsız negatif test ve gerçek 3×126 kaynak testi.",
+      "technical_observation": "PASS_GITHUB_LOGICAL_AND_TECHNICAL_ONLY",
+      "blocking_evidence": [
+        "HOLD_REAL_USER_OUTCOME"
+      ],
+      "claimed_official_pass": false,
+      "independent_evidence_score_100": false
+    },
+    {
+      "id": "A03",
+      "name": "Uçtan uca ve finiş sözleşmesi",
+      "order": 5,
+      "acceptance": "Gerçek kullanıcı sonucu + her P01–P12 için kabul kanıtı + DoneCheck ve Human Threshold.",
+      "technical_observation": "DESIGN_100_100_ONLY",
+      "blocking_evidence": [
+        "HOLD_OFFICIAL_PRODUCT_ACCEPTANCE"
+      ],
+      "claimed_official_pass": false,
+      "independent_evidence_score_100": false
+    },
+    {
+      "id": "A04",
+      "name": "GitHub mühendisliği",
+      "order": 6,
+      "acceptance": "PR #243 exact-head CI bütün workflow/job SUCCESS; güncel V1.4.1 V2 mühür 18/18 ve 378/378.",
+      "technical_observation": "PASS_EXACT_HEAD_CI_ONLY",
+      "blocking_evidence": [
+        "HOLD_OFFICIAL_STAGE_PROMOTION"
+      ],
+      "claimed_official_pass": false,
+      "independent_evidence_score_100": false
+    },
+    {
+      "id": "A05",
+      "name": "Gerçek görevler ve bağımsız doğrulama",
+      "order": 7,
+      "acceptance": "Beş heterojen yetkili kullanıcı görevi, 12 ayrı PROVEN, kıyaslanabilir ölçü, hak/güvenlik.",
+      "technical_observation": "HOLD_REAL_TASK_AND_SOURCE_RIGHTS",
+      "blocking_evidence": [
+        "HOLD_ACTUAL_AUTHORIZED_TASKS",
+        "HOLD_USER_BENEFIT",
+        "HOLD_EXTERNAL_SKILL_PROVEN_0_OF_12"
+      ],
+      "claimed_official_pass": false,
+      "independent_evidence_score_100": false
+    },
+    {
+      "id": "A06",
+      "name": "OSi öncesi hazırlık",
+      "order": 8,
+      "acceptance": "GitHub-only devir paketi, kaynak SHA, geri dönüş; gerçek Mac ve owner devri ayrı.",
+      "technical_observation": "PASS_GITHUB_PREFIELD_PACKAGE_ONLY",
+      "blocking_evidence": [
+        "HOLD_STAGE_PREDECESSOR_A05",
+        "HOLD_REAL_MAC_FIELD",
+        "HOLD_OWNER_FIELD_PERMISSION"
+      ],
+      "claimed_official_pass": false,
+      "independent_evidence_score_100": false
+    }
+  ]
+}

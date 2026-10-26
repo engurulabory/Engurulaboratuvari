@@ -1,0 +1,59 @@
+{
+  "schema": "enguru.harvest.zulfikar-v141-source-reuse/v1",
+  "source_repository": "engurulabory/Engurulaboratuvari",
+  "source_git_commit": "8fbd40c8fde34e7f8d77d5079c4da86a1baa8dad",
+  "source_seal_path": "governance/enguru-suzgeci/zulfikar-v12/v141/GITHUB_SOURCE_SHA_SEAL_V2.json",
+  "source_prefix": "governance/enguru-suzgeci/zulfikar-v12/v141/",
+  "archive_sha256": "9afeed3a6def9af6e76137b15e91e82ba617b0b1f2dac96f8aaf7e70fd3fe41e",
+  "source_ci_run": "https://github.com/engurulabory/Engurulaboratuvari/actions/runs/40371463288",
+  "source_ci_success_count": 9,
+  "source_ci_total": 9,
+  "allowed_mode": "TEMPORARY_GITHUB_RUNNER_COPIED_SOURCE_ONLY",
+  "github_merge": 0,
+  "osi_execution": 0,
+  "official_finish": "HOLD",
+  "owner_acceptance": "HOLD",
+  "authorization": "PR243_TECHNICAL_REUSE_ONLY",
+  "gates": [
+    {
+      "id": "T01",
+      "harvest": "Baseline: 65/100 GitHub, 60/100 OSi prefield",
+      "state": "TECHNICAL_SOURCE_BASELINE"
+    },
+    {
+      "id": "T02",
+      "harvest": "Harvest H01-H10, P01-P12, fixed acceptance outcomes",
+      "state": "DESIGN_CONTRACT_PASS"
+    },
+    {
+      "id": "A01",
+      "harvest": "Canonical architecture, one skill kernel, isolated cross-branch source read",
+      "state": "TECHNICAL_DESIGN_PASS"
+    },
+    {
+      "id": "A02",
+      "harvest": "Cross-branch source SHA, adverse tests, negative permissions, three independent simulations",
+      "state": "READY_FOR_CI"
+    },
+    {
+      "id": "A03",
+      "harvest": "Owner and DoneCheck source-bound finish contract",
+      "state": "FINISH_DESIGN_PASS_AUTHORITY_HOLD"
+    },
+    {
+      "id": "A04",
+      "harvest": "Exact-head PR243 CI plus current V1.4.1 378/378 CI and V2 SHA seal 18/18",
+      "state": "READY_FOR_CI"
+    },
+    {
+      "id": "A05",
+      "harvest": "Five real heterogeneous owner tasks, 12 external skill PROVEN, source rights",
+      "state": "HOLD_REAL_TASKS_AND_AUTHORITY"
+    },
+    {
+      "id": "A06",
+      "harvest": "GitHub-only SHA receipt, no Mac access or transfer",
+      "state": "PRE_FIELD_PREPARATION_ONLY"
+    }
+  ]
+}

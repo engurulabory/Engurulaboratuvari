@@ -1,0 +1,571 @@
+{
+  "schema": "enguru.harvest.zulfikar-v141-two-preparation-targets/v1",
+  "owner": "engurulabory",
+  "source_commit": "8fbd40c8fde34e7f8d77d5079c4da86a1baa8dad",
+  "method": "ZULFIKAR_V1.4.1_AND_DONGU_ONARIM_V1.0",
+  "base_historic_score": {
+    "github_application_evidence": 65,
+    "osi_prefield_evidence": 60
+  },
+  "tracks": {
+    "github": {
+      "target": "GITHUB_APPLICATION_PREPARATION",
+      "definition": "Prepared to execute scope-authorized GitHub application and real-user A05 pilots",
+      "score_type": "PREPARATION_VERIFIED_ONLY",
+      "stages": [
+        {
+          "id": "T01",
+          "order": 1,
+          "acceptance": "5 OF 5 INDEPENDENT GIT-HEAD PINNED PREPARATION EVIDENCES",
+          "required_evidence": [
+            {
+              "check_id": "GH-T01-01",
+              "source_path": "capabilities/enguru-harvest-v1/goal.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-T01-02",
+              "source_path": "capabilities/enguru-harvest-v1/UPSTREAM_GITHUB_PINS_30.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-T01-03",
+              "source_path": "capabilities/enguru-harvest-v1/root_license_observations.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-T01-04",
+              "source_path": "capabilities/enguru-harvest-v1/ZULFIKAR_V141_SOURCE_REUSE.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-T01-05",
+              "source_path": "governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            }
+          ],
+          "stage_pass_scope": "PREPARATION_ONLY"
+        },
+        {
+          "id": "T02",
+          "order": 2,
+          "acceptance": "5 OF 5 INDEPENDENT GIT-HEAD PINNED PREPARATION EVIDENCES",
+          "required_evidence": [
+            {
+              "check_id": "GH-T02-01",
+              "source_path": "capabilities/enguru-harvest-v1/ACCEPTANCE_MATRIX.md",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-T02-02",
+              "source_path": "capabilities/enguru-harvest-v1/external_skill_proof_plan.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-T02-03",
+              "source_path": "capabilities/enguru-harvest-v1/WORK_PACKAGES_ZULFIKAR_V13.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-T02-04",
+              "source_path": "capabilities/enguru-harvest-v1/PILOT_APPLICATION_PREP_V141.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-T02-05",
+              "source_path": "capabilities/enguru-harvest-v1/ZULFIKAR_V131_100_GATE_CONTRACT.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            }
+          ],
+          "stage_pass_scope": "PREPARATION_ONLY"
+        },
+        {
+          "id": "A01",
+          "order": 3,
+          "acceptance": "5 OF 5 INDEPENDENT GIT-HEAD PINNED PREPARATION EVIDENCES",
+          "required_evidence": [
+            {
+              "check_id": "GH-A01-01",
+              "source_path": "capabilities/enguru-harvest-v1/skill_kernel.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-A01-02",
+              "source_path": "capabilities/enguru-harvest-v1/verify_head.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-A01-03",
+              "source_path": "capabilities/enguru-harvest-v1/evidence_gate.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-A01-04",
+              "source_path": "capabilities/enguru-harvest-v1/k02_source_policy.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-A01-05",
+              "source_path": "capabilities/enguru-harvest-v1/ZULFIKAR_V141_SOURCE_REUSE.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            }
+          ],
+          "stage_pass_scope": "PREPARATION_ONLY"
+        },
+        {
+          "id": "A02",
+          "order": 4,
+          "acceptance": "5 OF 5 INDEPENDENT GIT-HEAD PINNED PREPARATION EVIDENCES",
+          "required_evidence": [
+            {
+              "check_id": "GH-A02-01",
+              "source_path": "capabilities/enguru-harvest-v1/run_three_simulations.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-A02-02",
+              "source_path": "capabilities/enguru-harvest-v1/test_evidence_gate.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-A02-03",
+              "source_path": "capabilities/enguru-harvest-v1/test_a05_license_scope_routing.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-A02-04",
+              "source_path": "capabilities/enguru-harvest-v1/test_zulfikar_v141_reuse.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-A02-05",
+              "source_path": "capabilities/enguru-harvest-v1/reuse_zulfikar_v141.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            }
+          ],
+          "stage_pass_scope": "PREPARATION_ONLY"
+        },
+        {
+          "id": "A03",
+          "order": 5,
+          "acceptance": "5 OF 5 INDEPENDENT GIT-HEAD PINNED PREPARATION EVIDENCES",
+          "required_evidence": [
+            {
+              "check_id": "GH-A03-01",
+              "source_path": "capabilities/enguru-harvest-v1/harvest.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-A03-02",
+              "source_path": "capabilities/enguru-harvest-v1/external_skill_proof_plan.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-A03-03",
+              "source_path": "capabilities/enguru-harvest-v1/PILOT_APPLICATION_PREP_V141.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-A03-04",
+              "source_path": "capabilities/enguru-harvest-v1/ZULFIKAR_V131_100_GATE_CONTRACT.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-A03-05",
+              "source_path": "capabilities/enguru-harvest-v1/V141_SESSION_ACCEPTANCE_V1.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            }
+          ],
+          "stage_pass_scope": "PREPARATION_ONLY"
+        },
+        {
+          "id": "A04",
+          "order": 6,
+          "acceptance": "5 OF 5 INDEPENDENT GIT-HEAD PINNED PREPARATION EVIDENCES",
+          "required_evidence": [
+            {
+              "check_id": "GH-A04-01",
+              "source_path": ".github/workflows/enguru-harvest-v1.yml",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-A04-02",
+              "source_path": "capabilities/enguru-harvest-v1/verify_head.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-A04-03",
+              "source_path": "capabilities/enguru-harvest-v1/verify_license_text_bytes.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-A04-04",
+              "source_path": "capabilities/enguru-harvest-v1/a05_license_scope_routing.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-A04-05",
+              "source_path": "capabilities/enguru-harvest-v1/TECHNICAL_TRIAL_LEDGER_V1.md",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            }
+          ],
+          "stage_pass_scope": "PREPARATION_ONLY"
+        },
+        {
+          "id": "A05",
+          "order": 7,
+          "acceptance": "5 OF 5 INDEPENDENT GIT-HEAD PINNED PREPARATION EVIDENCES",
+          "required_evidence": [
+            {
+              "check_id": "GH-A05-01",
+              "source_path": "capabilities/enguru-harvest-v1/PILOT_APPLICATION_PREP_V141.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-A05-02",
+              "source_path": "capabilities/enguru-harvest-v1/run_a05_real_github_tasks.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-A05-03",
+              "source_path": "capabilities/enguru-harvest-v1/external_skill_proof_plan.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-A05-04",
+              "source_path": "capabilities/enguru-harvest-v1/a05_license_scope_routing.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-A05-05",
+              "source_path": "capabilities/enguru-harvest-v1/test_a05_real_github_tasks.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            }
+          ],
+          "stage_pass_scope": "PREPARATION_ONLY"
+        },
+        {
+          "id": "A06",
+          "order": 8,
+          "acceptance": "5 OF 5 INDEPENDENT GIT-HEAD PINNED PREPARATION EVIDENCES",
+          "required_evidence": [
+            {
+              "check_id": "GH-A06-01",
+              "source_path": "capabilities/enguru-harvest-v1/build_github_osi_handoff.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-A06-02",
+              "source_path": "capabilities/enguru-harvest-v1/test_github_osi_handoff.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-A06-03",
+              "source_path": "capabilities/enguru-harvest-v1/OSI_HANDOFF_PREPARATION.md",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-A06-04",
+              "source_path": "capabilities/enguru-harvest-v1/ZULFIKAR_100_FINIS_VE_SINIRLAR.md",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "GH-A06-05",
+              "source_path": "capabilities/enguru-harvest-v1/READINESS_AUDIT_V3.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            }
+          ],
+          "stage_pass_scope": "PREPARATION_ONLY"
+        }
+      ]
+    },
+    "osi": {
+      "target": "OSI_PRE_FIELD_PREPARATION",
+      "definition": "Prepared with read-only Mac inventory, SHA package, rollback, field gates and owner-only authorization instructions",
+      "score_type": "PREPARATION_VERIFIED_ONLY",
+      "stages": [
+        {
+          "id": "T01",
+          "order": 1,
+          "acceptance": "5 OF 5 INDEPENDENT GIT-HEAD PINNED PREPARATION EVIDENCES",
+          "required_evidence": [
+            {
+              "check_id": "OSI-T01-01",
+              "source_path": "capabilities/enguru-harvest-v1/goal.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-T01-02",
+              "source_path": "capabilities/enguru-harvest-v1/UPSTREAM_GITHUB_PINS_30.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-T01-03",
+              "source_path": "capabilities/enguru-harvest-v1/OSI_HANDOFF_PREPARATION.md",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-T01-04",
+              "source_path": "capabilities/enguru-harvest-v1/osi_entry_preparation.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-T01-05",
+              "source_path": "capabilities/enguru-harvest-v1/ZULFIKAR_V141_SOURCE_REUSE.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            }
+          ],
+          "stage_pass_scope": "PREPARATION_ONLY"
+        },
+        {
+          "id": "T02",
+          "order": 2,
+          "acceptance": "5 OF 5 INDEPENDENT GIT-HEAD PINNED PREPARATION EVIDENCES",
+          "required_evidence": [
+            {
+              "check_id": "OSI-T02-01",
+              "source_path": "capabilities/enguru-harvest-v1/ZULFIKAR_V131_100_GATE_CONTRACT.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-T02-02",
+              "source_path": "capabilities/enguru-harvest-v1/ZULFIKAR_100_FINIS_VE_SINIRLAR.md",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-T02-03",
+              "source_path": "capabilities/enguru-harvest-v1/WORK_PACKAGES_ZULFIKAR_V13.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-T02-04",
+              "source_path": "capabilities/enguru-harvest-v1/PILOT_APPLICATION_PREP_V141.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-T02-05",
+              "source_path": "capabilities/enguru-harvest-v1/osi_entry_preparation.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            }
+          ],
+          "stage_pass_scope": "PREPARATION_ONLY"
+        },
+        {
+          "id": "A01",
+          "order": 3,
+          "acceptance": "5 OF 5 INDEPENDENT GIT-HEAD PINNED PREPARATION EVIDENCES",
+          "required_evidence": [
+            {
+              "check_id": "OSI-A01-01",
+              "source_path": "capabilities/enguru-harvest-v1/build_github_osi_handoff.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-A01-02",
+              "source_path": "capabilities/enguru-harvest-v1/test_github_osi_handoff.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-A01-03",
+              "source_path": "capabilities/enguru-harvest-v1/OSI_HANDOFF_PREPARATION.md",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-A01-04",
+              "source_path": "capabilities/enguru-harvest-v1/osi_preflight_contract.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-A01-05",
+              "source_path": "capabilities/enguru-harvest-v1/osi_entry_preparation.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            }
+          ],
+          "stage_pass_scope": "PREPARATION_ONLY"
+        },
+        {
+          "id": "A02",
+          "order": 4,
+          "acceptance": "5 OF 5 INDEPENDENT GIT-HEAD PINNED PREPARATION EVIDENCES",
+          "required_evidence": [
+            {
+              "check_id": "OSI-A02-01",
+              "source_path": "capabilities/enguru-harvest-v1/test_github_osi_handoff.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-A02-02",
+              "source_path": "capabilities/enguru-harvest-v1/test_osi_preflight_contract.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-A02-03",
+              "source_path": "capabilities/enguru-harvest-v1/zulfikar_finish_gate.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-A02-04",
+              "source_path": "capabilities/enguru-harvest-v1/test_zulfikar_finish_gate.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-A02-05",
+              "source_path": "capabilities/enguru-harvest-v1/osi_preflight_contract.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            }
+          ],
+          "stage_pass_scope": "PREPARATION_ONLY"
+        },
+        {
+          "id": "A03",
+          "order": 5,
+          "acceptance": "5 OF 5 INDEPENDENT GIT-HEAD PINNED PREPARATION EVIDENCES",
+          "required_evidence": [
+            {
+              "check_id": "OSI-A03-01",
+              "source_path": "capabilities/enguru-harvest-v1/OSI_HANDOFF_PREPARATION.md",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-A03-02",
+              "source_path": "capabilities/enguru-harvest-v1/ZULFIKAR_100_FINIS_VE_SINIRLAR.md",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-A03-03",
+              "source_path": "capabilities/enguru-harvest-v1/osi_entry_preparation.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-A03-04",
+              "source_path": "capabilities/enguru-harvest-v1/ZULFIKAR_V131_100_GATE_CONTRACT.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-A03-05",
+              "source_path": "capabilities/enguru-harvest-v1/GITHUB_APPLICATION_PREP_V141.md",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            }
+          ],
+          "stage_pass_scope": "PREPARATION_ONLY"
+        },
+        {
+          "id": "A04",
+          "order": 6,
+          "acceptance": "5 OF 5 INDEPENDENT GIT-HEAD PINNED PREPARATION EVIDENCES",
+          "required_evidence": [
+            {
+              "check_id": "OSI-A04-01",
+              "source_path": "capabilities/enguru-harvest-v1/verify_head.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-A04-02",
+              "source_path": "capabilities/enguru-harvest-v1/build_github_osi_handoff.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-A04-03",
+              "source_path": "capabilities/enguru-harvest-v1/READINESS_AUDIT_V3.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-A04-04",
+              "source_path": "capabilities/enguru-harvest-v1/UPSTREAM_GITHUB_PINS_30.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-A04-05",
+              "source_path": ".github/workflows/enguru-harvest-v1.yml",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            }
+          ],
+          "stage_pass_scope": "PREPARATION_ONLY"
+        },
+        {
+          "id": "A05",
+          "order": 7,
+          "acceptance": "5 OF 5 INDEPENDENT GIT-HEAD PINNED PREPARATION EVIDENCES",
+          "required_evidence": [
+            {
+              "check_id": "OSI-A05-01",
+              "source_path": "capabilities/enguru-harvest-v1/osi_entry_preparation.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-A05-02",
+              "source_path": "capabilities/enguru-harvest-v1/PILOT_APPLICATION_PREP_V141.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-A05-03",
+              "source_path": "capabilities/enguru-harvest-v1/test_osi_preflight_contract.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-A05-04",
+              "source_path": "capabilities/enguru-harvest-v1/OSI_HANDOFF_PREPARATION.md",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-A05-05",
+              "source_path": "capabilities/enguru-harvest-v1/KALAN_ISLER_VE_OSI_ONCESI_PUANLAMA.md",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            }
+          ],
+          "stage_pass_scope": "PREPARATION_ONLY"
+        },
+        {
+          "id": "A06",
+          "order": 8,
+          "acceptance": "5 OF 5 INDEPENDENT GIT-HEAD PINNED PREPARATION EVIDENCES",
+          "required_evidence": [
+            {
+              "check_id": "OSI-A06-01",
+              "source_path": "capabilities/enguru-harvest-v1/build_github_osi_handoff.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-A06-02",
+              "source_path": "capabilities/enguru-harvest-v1/test_github_osi_handoff.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-A06-03",
+              "source_path": "capabilities/enguru-harvest-v1/osi_preflight_contract.py",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-A06-04",
+              "source_path": "capabilities/enguru-harvest-v1/READINESS_AUDIT_V3.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            },
+            {
+              "check_id": "OSI-A06-05",
+              "source_path": "capabilities/enguru-harvest-v1/ZULFIKAR_V141_SOURCE_REUSE.json",
+              "required": "EXISTS_TRACKED_AND_SHA256_EQ_GIT_HEAD"
+            }
+          ],
+          "stage_pass_scope": "PREPARATION_ONLY"
+        }
+      ]
+    }
+  },
+  "required_transition": [
+    "GITHUB_PREPARATION_100",
+    "OSI_PREPARATION_100",
+    "OWNER_EXECUTION_AUTHORIZATION",
+    "REAL_RUNTIME_PROOF",
+    "OFFICIAL_DONECHECK"
+  ],
+  "official_verified_finish": "HOLD",
+  "real_user_acceptance": "HOLD",
+  "source_rights_acceptance": "HOLD",
+  "mac_execution": 0,
+  "main_merge": 0,
+  "measured_official_proven_skills": 0,
+  "mandatory_paid_api": 0,
+  "peer_reviewer_new_required": false,
+  "conditional_pass": "READINESS_FOR_OWNER_AUTHORIZED_EXECUTION_ONLY",
+  "expected_run_tests": "3 rounds and counter-test plus exact-head 5 CI workflows"
+}

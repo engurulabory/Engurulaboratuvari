@@ -1,0 +1,303 @@
+name: ENGURU Harvest V1 Gate
+on:
+  pull_request:
+    paths:
+      - 'capabilities/enguru-harvest-v1/**'
+      - '.github/workflows/enguru-harvest-v1.yml'
+      - '.agents/skills/enguru-evidence-harvest/**'
+      - '.claude/skills/enguru-evidence-harvest/**'
+  workflow_dispatch:
+jobs:
+  harvest:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify checkout source commit and canonical V3 pin
+        run: |
+          python -B capabilities/enguru-harvest-v1/verify_head.py
+      - name: Execute real Python regressions for 12 local operations
+        run: |
+          cd capabilities/enguru-harvest-v1
+          python -B -m unittest -v test_harvest test_evidence_gate test_skill_kernel test_license_gate test_external_skill_plan test_upstream_execution_coverage test_k01_benchmark test_k03_cli_contract test_k02_source_policy test_work_packages test_readiness_scorecard test_upstream_github_pins test_zulfikar_finish_gate test_readiness_audit_v2 test_github_osi_handoff test_readiness_audit_v3 test_zulfikar_v141_reuse test_v141_session_acceptance test_a05_real_github_tasks test_live_upstream_license_pins test_license_text_bytes test_a05_license_scope_routing test_two_preparations_v141 test_osi_preflight_contract
+      - name: Verify upstream root-license observation join
+        run: |
+          cd capabilities/enguru-harvest-v1
+          python -B license_gate.py
+      - name: Verify 30 pinned public GitHub source observations and 100-point acceptance design
+        run: |
+          cd capabilities/enguru-harvest-v1
+          python -B zulfikar_finish_gate.py
+      - name: Execute three Zulfikar-aligned logical simulations
+        run: |
+          cd capabilities/enguru-harvest-v1
+          python -B run_three_simulations.py
+      - name: Install pinned external trials with origin reports
+        run: |
+          python -m pip install --disable-pip-version-check --report ${{ runner.temp }}/harvest-pip-install-report.json 'hypothesis==6.170.9' 'ruff==0.16.8' 'uv==0.13.5'
+      - name: Execute real Hypothesis, Ruff and uv trials
+        run: |
+          cd capabilities/enguru-harvest-v1
+          python -B run_real_upstream_trials.py
+      - name: Install pinned Agent Skills reference and MCP v2
+        run: |
+          git clone --quiet https://github.com/agentskills/agentskills.git "${{ runner.temp }}/agent-skills-source"
+          git -C "${{ runner.temp }}/agent-skills-source" checkout --quiet 69ef37e9424c0a7ea9dd2293b559e43ec8176379
+          test "$(git -C "${{ runner.temp }}/agent-skills-source" rev-parse HEAD)" = "69ef37e9424c0a7ea9dd2293b559e43ec8176379"
+          python -m pip install --disable-pip-version-check --report "${{ runner.temp }}/harvest-mcp-install-report.json" "${{ runner.temp }}/agent-skills-source/skills-ref" 'mcp==2.3.0'
+      - name: Run real Agent Skills validation and in-process MCP protocol
+        run: |
+          cd capabilities/enguru-harvest-v1
+          python -B run_second_upstream_trials.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run pinned promptfoo offline echo provider evaluation
+        env:
+          PROMPTFOO_DISABLE_TELEMETRY: '1'
+          PROMPTFOO_DISABLE_UPDATE: '1'
+          CI: 'true'
+        run: |
+          cd capabilities/enguru-harvest-v1
+          npx --yes --package promptfoo@0.125.0 promptfoo eval --config promptfooconfig.json --output promptfoo-eval-output.json
+          python -B check_promptfoo_receipt.py
+      - name: Execute actual MCP TypeScript v2 tool integration fixture
+        run: |
+          cd capabilities/enguru-harvest-v1
+          npm install --no-save --ignore-scripts --package-lock=false --no-audit --no-fund '@modelcontextprotocol/server@2.4.0' '@modelcontextprotocol/client@2.4.0' 'zod@4.1.12'
+          node mcp_typescript_trial.mjs
+          npm ls --all --json > mcp-typescript-npm-tree.json || true
+      - name: Inspect exact upstream Anthropic SKILL.md without use authorization
+        env:
+          ENGURU_ANTHROPIC_SKILLS_CHECKOUT: ${{ runner.temp }}/anthropic-skills-source
+        run: |
+          git clone --quiet --filter=blob:none --sparse https://github.com/anthropics/skills.git "${{ runner.temp }}/anthropic-skills-source"
+          git -C "${{ runner.temp }}/anthropic-skills-source" fetch --quiet --depth 1 origin dbd4588f9e1033efb41dad4bef2f7947c8993d44
+          git -C "${{ runner.temp }}/anthropic-skills-source" checkout --quiet dbd4588f9e1033efb41dad4bef2f7947c8993d44
+          git -C "${{ runner.temp }}/anthropic-skills-source" sparse-checkout set skills/pdf skills/docx
+          test "$(git -C "${{ runner.temp }}/anthropic-skills-source" rev-parse HEAD)" = "dbd4588f9e1033efb41dad4bef2f7947c8993d44"
+          cd capabilities/enguru-harvest-v1
+          python -B run_anthropic_skills_trial.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Run P05 exact upstream Everything server over stdio
+        timeout-minutes: 4
+        run: |
+          cd capabilities/enguru-harvest-v1
+          npm install --no-save --ignore-scripts --package-lock=false --no-audit --no-fund '@modelcontextprotocol/server-everything@2.0.1' '@modelcontextprotocol/client@2.4.0' 'zod@4.2.0'
+          node mcp_reference_stdio_trial.mjs
+      - name: Verify 30-source quarantine before production adoption
+        run: |
+          cd capabilities/enguru-harvest-v1
+          python -B k02_source_policy.py
+      - name: Measure five paired real ENGURU source reconciliation tasks
+        run: |
+          cd capabilities/enguru-harvest-v1
+          python -B run_k01_real_benchmark.py
+      - name: Build SHA-256 pinned OSi PRE-FIELD artifact inside GitHub runner only
+        run: |
+          cd capabilities/enguru-harvest-v1
+          python -B build_github_osi_handoff.py
+          python -B -m unittest -q test_github_osi_handoff
+      - name: Independently verify 30 pinned README and 29 LICENSE blobs at exact upstream commits
+        timeout-minutes: 5
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          cd capabilities/enguru-harvest-v1
+          python -B verify_live_upstream_license_pins.py
+      - name: Independently verify actual contents of 29 pinned LICENSE files (Git SHA-1 + SHA-256)
+        timeout-minutes: 5
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          cd capabilities/enguru-harvest-v1
+          python -B verify_license_text_bytes.py
+      - name: Route 30 exact-commit source licenses through fail-closed use-rights review
+        run: |
+          cd capabilities/enguru-harvest-v1
+          python -B a05_license_scope_routing.py
+      - name: Verify two Zulfikar V1.4.1 100/100 preparation goals, eight gates each and three evidence rounds
+        run: |
+          cd capabilities/enguru-harvest-v1
+          python -B verify_two_preparations_v141.py
+      - name: Execute five real source-backed GitHub tasks in three evidence rounds
+        run: |
+          cd capabilities/enguru-harvest-v1
+          python -B run_a05_real_github_tasks.py
+      - name: Preserve real runner receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enguru-harvest-trials-${{ github.sha }}
+          path: |
+            capabilities/enguru-harvest-v1/upstream-tool-trial-receipt.json
+            capabilities/enguru-harvest-v1/k01-real-microbench-receipt.json
+            capabilities/enguru-harvest-v1/a05-real-github-tasks-receipt.json
+            capabilities/enguru-harvest-v1/a05-github-root-license-receipt.json
+            capabilities/enguru-harvest-v1/a05-license-fulltext-digests-receipt.json
+            capabilities/enguru-harvest-v1/a05-source-rights-routing-receipt.json
+            capabilities/enguru-harvest-v1/two-preparation-v141-receipt.json
+            capabilities/enguru-harvest-v1/k02-source-quarantine-receipt.json
+            capabilities/enguru-harvest-v1/osi-github-handoff-receipt.json
+            capabilities/enguru-harvest-v1/ENGURU_OSI_HAZIRLIK_*.zip
+            capabilities/enguru-harvest-v1/second-upstream-trial-receipt.json
+            capabilities/enguru-harvest-v1/promptfoo-eval-output.json
+            capabilities/enguru-harvest-v1/promptfoo-offline-receipt.json
+            capabilities/enguru-harvest-v1/mcp-typescript-receipt.json
+            capabilities/enguru-harvest-v1/mcp-reference-stdio-receipt.json
+            capabilities/enguru-harvest-v1/anthropic-skills-structural-receipt.json
+            capabilities/enguru-harvest-v1/mcp-typescript-npm-tree.json
+            ${{ runner.temp }}/harvest-mcp-install-report.json
+            ${{ runner.temp }}/harvest-pip-install-report.json
+          if-no-files-found: warn
+      - name: Verify source inventory and target separation
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          base=Path('capabilities/enguru-harvest-v1')
+          x=json.loads((base/'goal.json').read_text(encoding='utf-8'))
+          registry=json.loads((base/'source_candidates.json').read_text(encoding='utf-8'))
+          assert x['controls']==[f'H{i:02d}' for i in range(1,11)]
+          assert len(x['libraries'])==6
+          assert x['mandatory_paid_api']==0
+          assert x['osi_field']=='HOLD'
+          assert x['official_finish']=='HOLD'
+          assert registry['record_count']==30
+          assert len(registry['candidates'])==30
+          assert all(row['state']=='SOURCE_OBSERVED_ONLY' and row['license']=='UNVERIFIED' for row in registry['candidates'])
+          assert Path('.agents/skills/enguru-evidence-harvest/SKILL.md').exists()
+          assert Path('.claude/skills/enguru-evidence-harvest/SKILL.md').exists()
+          print('GITHUB_ENGINEERING_REGRESSION=PASS; EXTERNAL_PROVEN_SKILLS=0; OSi_FIELD=HOLD')
+          PY
+
+  p12-offline-harness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check canonical P12 source identity
+        run: |
+          python -B capabilities/enguru-harvest-v1/verify_head.py
+      - name: Install exact upstream LM Evaluation Harness base only
+        timeout-minutes: 6
+        run: |
+          git clone --quiet --filter=blob:none https://github.com/EleutherAI/lm-evaluation-harness.git "${{ runner.temp }}/lm-eval-p12-source"
+          git -C "${{ runner.temp }}/lm-eval-p12-source" checkout --quiet d6de81643928d653435c431bae19945d41d32520
+          test "$(git -C "${{ runner.temp }}/lm-eval-p12-source" rev-parse HEAD)" = "d6de81643928d653435c431bae19945d41d32520"
+          python -m pip install --disable-pip-version-check --report "${{ runner.temp }}/p12-lm-eval-install.json" "${{ runner.temp }}/lm-eval-p12-source"
+      - name: Score two offline fixture rows with real lm-eval dummy backend
+        timeout-minutes: 4
+        env:
+          HF_DATASETS_OFFLINE: '1'
+          HF_HUB_OFFLINE: '1'
+          DO_NOT_TRACK: '1'
+        run: |
+          cd capabilities/enguru-harvest-v1
+          python -B run_lm_eval_fixture.py
+      - name: Preserve P12 real execution and installation provenance
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enguru-p12-lm-eval-${{ github.sha }}
+          path: |
+            capabilities/enguru-harvest-v1/lm-eval-harness-receipt.json
+            ${{ runner.temp }}/p12-lm-eval-install.json
+          if-no-files-found: warn
+
+  k03-cli:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: K03 source identity gate
+        run: |
+          python -B capabilities/enguru-harvest-v1/verify_head.py
+      - name: Install isolated no-login CLI packages with recorded registry pins
+        timeout-minutes: 6
+        run: |
+          mkdir -p "${{ runner.temp }}/enguru-cli"
+          CODEX_VERSION="$(npm view @openai/codex version)"
+          CLAUDE_VERSION="$(npm view @anthropic-ai/claude-code version)"
+          [[ "$CODEX_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+ ]] && [[ "$CLAUDE_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+ ]]
+          printf 'codex=%s\nclaude=%s\n' "$CODEX_VERSION" "$CLAUDE_VERSION" > "${{ runner.temp }}/enguru-cli/registry-versions.txt"
+          npm view "@openai/codex@$CODEX_VERSION" dist.integrity >> "${{ runner.temp }}/enguru-cli/registry-versions.txt"
+          npm view "@anthropic-ai/claude-code@$CLAUDE_VERSION" dist.integrity >> "${{ runner.temp }}/enguru-cli/registry-versions.txt"
+          npm install --prefix "${{ runner.temp }}/enguru-cli" --ignore-scripts --no-audit --no-fund "@openai/codex@$CODEX_VERSION" "@anthropic-ai/claude-code@$CLAUDE_VERSION"
+          sha256sum "${{ runner.temp }}/enguru-cli/package-lock.json" > "${{ runner.temp }}/enguru-cli/package-lock.sha256"
+          echo "${{ runner.temp }}/enguru-cli/node_modules/.bin" >> "$GITHUB_PATH"
+      - name: Verify real Codex/Claude version binaries without agent execution
+        run: |
+          cd capabilities/enguru-harvest-v1
+          python -B run_k03_cli_smoke.py
+      - name: Preserve no-login CLI receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enguru-k03-cli-${{ github.sha }}
+          path: |
+            capabilities/enguru-harvest-v1/k03-cli-version-receipt.json
+            ${{ runner.temp }}/enguru-cli/registry-versions.txt
+            ${{ runner.temp }}/enguru-cli/package-lock.sha256
+          if-no-files-found: warn
+  
+  zulfikar-v141-source-reuse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify harvest exact source bytes and canonical V3
+        run: |
+          python -B capabilities/enguru-harvest-v1/verify_head.py
+      - name: Verify authentic V1.4.1 source contract and attack cases
+        run: |
+          cd capabilities/enguru-harvest-v1
+          python -B -m unittest -v test_zulfikar_v141_reuse
+      - name: Run original V1.4.1 three-round DÖM engine via pinned immutable source
+        run: |
+          cd capabilities/enguru-harvest-v1
+          python -B reuse_zulfikar_v141.py
+      - name: Preserve authentic source reuse proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enguru-harvest-zulfikar-v141-${{ github.sha }}
+          path: capabilities/enguru-harvest-v1/v141-source-reuse-receipt.json
+          if-no-files-found: warn

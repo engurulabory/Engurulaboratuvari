@@ -1,0 +1,135 @@
+{
+  "schema": "enguru.harvest.zulfikar-v1.3.1-work-packages/v1",
+  "goal": "Github technical preparation with byte-level proofs, honest capability improvement, cost 0; OSi execution 0.",
+  "baseline_head": "5177b7840c34df20894cbf8fdc6a11ddfbfb2cde",
+  "authority": {
+    "owner": "engurulabory",
+    "peer_review_required_for_github_technical": false,
+    "owner_decision": "HUMAN_THRESHOLD_HOLD_NOT_SELF_GRANTED",
+    "new_issuer": false,
+    "scope": "GITHUB_TECHNICAL_ACCEPTANCE_ONLY",
+    "external_skill_official_proven": 0
+  },
+  "state": "GITHUB_TECHNICAL_CI_PASS_PRODUCT_FINISH_HOLD",
+  "packs": [
+    {
+      "id": "K01",
+      "name": "Real engineering microbenchmark",
+      "dependencies": [],
+      "targets": [
+        "H02",
+        "H07",
+        "H08"
+      ],
+      "deliverables": [
+        "baseline/candidate five paired Github runner timings",
+        "quality parity against identical identifiers and adversarial IDs",
+        "retained SHA evidence"
+      ],
+      "acceptance": "CI success and measured improvement; user impact HOLD",
+      "state": "PASS_GITHUB_MICROBENCH_ONLY_USER_OUTCOME_HOLD"
+    },
+    {
+      "id": "K02",
+      "name": "Provenance license and cost",
+      "dependencies": [
+        "K01"
+      ],
+      "targets": [
+        "H04",
+        "H06",
+        "H09"
+      ],
+      "deliverables": [
+        "30 README pins,29 root license observations plus per-skill restrictions",
+        "no legal auto-promotion",
+        "zero mandatory paid API verification"
+      ],
+      "acceptance": "scope-specific technical source observation; redistribution HOLD until licensed",
+      "state": "PASS_30_30_SAFE_QUARANTINE_LEGAL_ACCEPTANCE_HOLD"
+    },
+    {
+      "id": "K03",
+      "name": "Codex Claude and interoperability",
+      "dependencies": [
+        "K02"
+      ],
+      "targets": [
+        "H03",
+        "H05",
+        "H07"
+      ],
+      "deliverables": [
+        "no-login CLI smoke only if safely authorized and available",
+        "actual authorized agent runs separately human-scoped",
+        "Agent Skills compatibility"
+      ],
+      "acceptance": "technical shell smoke != authorized agent execution",
+      "state": "PARTIAL_AGENT_SKILL_COMPAT_AND_CODEX_VERSION_PASS_CLAUDE_NPM_RUNTIME_HOLD"
+    },
+    {
+      "id": "K04",
+      "name": "Zulfikar 3 passes and exact Git HEAD",
+      "dependencies": [
+        "K01",
+        "K02",
+        "K03"
+      ],
+      "targets": [
+        "H01",
+        "H03",
+        "H07",
+        "H08",
+        "H09"
+      ],
+      "deliverables": [
+        "three logically scoped simulations",
+        "negative cases and actual tool execution",
+        "exact HEAD and canonical v3 SHA CI"
+      ],
+      "acceptance": "all required CI completed-success on same HEAD",
+      "state": "PASS_EXACT_HEAD_CI_5_5_AND_LOGICAL_SIM_30_30"
+    },
+    {
+      "id": "K05",
+      "name": "Owner technical decision and OSi handoff",
+      "dependencies": [
+        "K04"
+      ],
+      "targets": [
+        "H04",
+        "H05",
+        "H10"
+      ],
+      "deliverables": [
+        "single-owner acceptance matrix",
+        "GitHub technical prepared and official finish independently classified",
+        "OSI handoff design only"
+      ],
+      "acceptance": "Owner Human Threshold for GitHub technical scope; verified finish and OSi remain separate",
+      "state": "PASS_HANDOFF_DESIGN_ONLY_HOLD_OWNER_HUMAN_THRESHOLD"
+    }
+  ],
+  "completion_policy": {
+    "gitHubEngineering": "actual exact-head workflow+job success",
+    "githubTechnicalPrepared": "engineering CI and source matched, then recorded owner decision",
+    "githubVerifiedFinish": "official source+licensing+actual benefit+canonical authority, separate from CI",
+    "osiExecution": 0,
+    "mainMerge": 0
+  },
+  "last_verified_head": "0d714edaeaa0b4347766b31cd2e0d33c1d6ce489",
+  "last_verified_run": "https://github.com/engurulabory/Engurulaboratuvari/actions/runs/40284992580",
+  "last_verified": {
+    "workflow_success": 5,
+    "workflow_total": 5,
+    "job_success": 3,
+    "job_total": 3,
+    "stdlib_unittest_success": 73,
+    "stdlib_unittest_total": 73,
+    "real_external_technical_trials": 9,
+    "real_external_cases": 12,
+    "independently_proven_external_skills": 0,
+    "osi_execution": 0,
+    "owner_acceptance": "HOLD"
+  }
+}

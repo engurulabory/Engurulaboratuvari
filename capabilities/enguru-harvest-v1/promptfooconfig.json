@@ -1,0 +1,33 @@
+{
+  "description": "ENGURU P08 offline echo provider contract fixture",
+  "prompts": [
+    "ENGURU {{input}}"
+  ],
+  "providers": [
+    "echo"
+  ],
+  "tests": [
+    {
+      "vars": {
+        "input": "suzgec"
+      },
+      "assert": [
+        {
+          "type": "equals",
+          "value": "ENGURU suzgec"
+        }
+      ]
+    },
+    {
+      "vars": {
+        "input": "hasat"
+      },
+      "assert": [
+        {
+          "type": "contains",
+          "value": "ENGURU hasat"
+        }
+      ]
+    }
+  ]
+}

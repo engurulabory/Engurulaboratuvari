@@ -1,0 +1,142 @@
+{
+  "schema": "enguru.harvest.external-skill-proof-plan/v1",
+  "purpose": "12 independent upstream capability acceptance scenarios; none counted as PROVEN",
+  "github_milestone": "Independent source/license/runtime receipts on exact-head CI; OSi operations prohibited",
+  "cost_boundary": "No mandatory paid APIs; access/licensing checks precede execution",
+  "human_threshold": "Preserved",
+  "measured_proven": 0,
+  "cases": [
+    {
+      "id": "P01",
+      "repository": "openai/codex",
+      "capability": "Codex skill discovery and AGENTS.md precedence",
+      "real_task": "A controlled repository-level instruction fixture runs with Codex in an authorized zero-additional-cost runtime.",
+      "required_evidence": "Actual executable run, stdout/stderr, version, exact source SHA and reviewer",
+      "status": "HOLD_RUNTIME_AND_TERMS",
+      "source_sha256": null,
+      "actual_run_receipt": null,
+      "independent_review": null
+    },
+    {
+      "id": "P02",
+      "repository": "anthropics/claude-code",
+      "capability": "Claude Code SKILL.md discovery and project rules",
+      "real_task": "A controlled Claude skill fixture is discovered and executes one deterministic task within permitted account access.",
+      "required_evidence": "Actual session trace, account entitlement, source/license decision and independent review",
+      "status": "HOLD_RUNTIME_AND_TERMS",
+      "source_sha256": null,
+      "actual_run_receipt": null,
+      "independent_review": null
+    },
+    {
+      "id": "P03",
+      "repository": "agentskills/agentskills",
+      "capability": "Agent Skills spec interoperability",
+      "real_task": "Validate the same ENGURU skill metadata with an upstream-compatible validator on GitHub CI.",
+      "required_evidence": "Tool version pin, test log, fixture and reproducible acceptance",
+      "status": "HOLD_REAL_TOOL_EXECUTION",
+      "source_sha256": null,
+      "actual_run_receipt": null,
+      "independent_review": null
+    },
+    {
+      "id": "P04",
+      "repository": "anthropics/skills",
+      "capability": "Upstream skill structural compatibility",
+      "real_task": "Select a known upstream SKILL.md, verify its governing per-skill license, and compare accepted metadata fields.",
+      "required_evidence": "Per-skill license, content SHA and structured test log",
+      "status": "HOLD_LICENSE_AND_REAL_RUN",
+      "source_sha256": null,
+      "actual_run_receipt": null,
+      "independent_review": null
+    },
+    {
+      "id": "P05",
+      "repository": "modelcontextprotocol/servers",
+      "capability": "Local reference MCP server exchange",
+      "real_task": "Perform a local-only stdio handshake to a vetted reference server with isolated fixture payload.",
+      "required_evidence": "Pinned source, message transcript, test log, sandbox policy and review",
+      "status": "HOLD_SOURCE_EXECUTION",
+      "source_sha256": null,
+      "actual_run_receipt": null,
+      "independent_review": null
+    },
+    {
+      "id": "P06",
+      "repository": "modelcontextprotocol/python-sdk",
+      "capability": "MCP Python SDK client/server compatibility",
+      "real_task": "Run an in-process protocol exchange with matched protocol version and no network egress.",
+      "required_evidence": "Protocol version, source SHA, CI transcript, independent reviewer",
+      "status": "HOLD_REAL_TOOL_EXECUTION",
+      "source_sha256": null,
+      "actual_run_receipt": null,
+      "independent_review": null
+    },
+    {
+      "id": "P07",
+      "repository": "modelcontextprotocol/typescript-sdk",
+      "capability": "MCP TypeScript client/server compatibility",
+      "real_task": "Run a fixture in CI with explicit Node and protocol version pins.",
+      "required_evidence": "CI log, exact package hash, fixture protocol transcript",
+      "status": "HOLD_REAL_TOOL_EXECUTION",
+      "source_sha256": null,
+      "actual_run_receipt": null,
+      "independent_review": null
+    },
+    {
+      "id": "P08",
+      "repository": "promptfoo/promptfoo",
+      "capability": "Offline deterministic prompt evaluation",
+      "real_task": "Run a local provider fixture with reproducible candidate/baseline criteria and no paid API.",
+      "required_evidence": "Eval results, source/test SHA and sample count",
+      "status": "HOLD_REAL_TOOL_EXECUTION",
+      "source_sha256": null,
+      "actual_run_receipt": null,
+      "independent_review": null
+    },
+    {
+      "id": "P09",
+      "repository": "HypothesisWorks/hypothesis",
+      "capability": "Property-based test strengthening",
+      "real_task": "Execute seeded property tests against ENGURU evidence gates with shrinking counterexamples.",
+      "required_evidence": "Seed, pinned package version, CI tests and failures",
+      "status": "HOLD_REAL_TOOL_EXECUTION",
+      "source_sha256": null,
+      "actual_run_receipt": null,
+      "independent_review": null
+    },
+    {
+      "id": "P10",
+      "repository": "astral-sh/ruff",
+      "capability": "Reproducible Python static analysis",
+      "real_task": "Lint the ENGURU Harvest source on exact-head with a pinned Ruff release and configuration.",
+      "required_evidence": "Full lint report, repository SHA and policy-reviewed rules",
+      "status": "HOLD_REAL_TOOL_EXECUTION",
+      "source_sha256": null,
+      "actual_run_receipt": null,
+      "independent_review": null
+    },
+    {
+      "id": "P11",
+      "repository": "astral-sh/uv",
+      "capability": "Dependency lock and reproducibility",
+      "real_task": "Build or validate an isolated dependency lock for the candidate benchmark with a pinned tool.",
+      "required_evidence": "Lock digest, supply chain checks, version, CI report",
+      "status": "HOLD_REAL_TOOL_EXECUTION",
+      "source_sha256": null,
+      "actual_run_receipt": null,
+      "independent_review": null
+    },
+    {
+      "id": "P12",
+      "repository": "EleutherAI/lm-evaluation-harness",
+      "capability": "Model evaluation measurement contract",
+      "real_task": "Compare an offline deterministic mock evaluator to documented harness schema, then run a pinned harness fixture.",
+      "required_evidence": "Task hash, model fixture, scored outputs, runtime evidence",
+      "status": "HOLD_REAL_TOOL_EXECUTION",
+      "source_sha256": null,
+      "actual_run_receipt": null,
+      "independent_review": null
+    }
+  ]
+}
