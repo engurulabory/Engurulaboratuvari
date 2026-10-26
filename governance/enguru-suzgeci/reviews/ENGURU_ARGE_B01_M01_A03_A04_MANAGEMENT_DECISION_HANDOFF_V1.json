@@ -212,7 +212,9 @@
     "osi_field": "0/100",
     "block01_official": "0/9",
     "overall_official": "0/40",
-    "pr_reviews": 0
+    "pr_reviews": 0,
+    "git_hub_last_canonical": "50/100 (historical V4.7; retained pending original rubric reconciliation)",
+    "github_solo_owner_policy": "OWNER_SCOPE_DECISION_RECORDED__EXACT_HEAD_CI_PENDING"
   },
   "protected_operations": {
     "main_writes": 0,
@@ -224,5 +226,149 @@
     "donecheck_ledger_writes": 0,
     "official_finishes_created": 0
   },
-  "state": "MANAGEMENT_DECISION_DESIGN_READY__REAL_AUTHORITY_HOLD__APPLICATION_EXECUTION_HOLD"
+  "state": "B01_M01_SOLO_OWNER_GITHUB_SCOPE_ACCEPTED__REAL_A03_A04_CUSTOMER_E5_AUTHORITY_HOLD",
+  "solo_owner_github_preparation_v2": {
+    "recorded_at": "2026-10-26",
+    "approved_owner": "engurulabory",
+    "owner_basis": "User explicitly states sole account/repository owner and authorizes ChatGPT execution and zero unnecessary peer-review bureaucracy.",
+    "mode": "SOLO_OWNER_GITHUB_AUTOMATED_CI",
+    "decision_scope": "GITHUB_RESEARCH_AND_TECHNICAL_PREPARATION_ONLY",
+    "second_human_github_reviewer_required": false,
+    "mechanical_verifier": "GitHub Actions exact-head CI and separate readback of tracked sources, task identities, negative tests and SHA evidence",
+    "final_github_integrator": "engurulabory",
+    "official_donecheck_issuer": "EXISTING_CANONICAL_ONLY",
+    "signed_issuer_grant": "REQUIRES_REAL_EXISTING_SOURCE_AND_SCOPE",
+    "outside_customer_e5": "REQUIRES_GENUINE_INDEPENDENT_CUSTOMER_USE_EVIDENCE",
+    "a03_github_preparation": "OWNER_AND_AUTOMATED_CI_WITHOUT_SECOND_PERSON",
+    "a03_official_authority": "HOLD_TASK_SPECIFIC_REAL_GRANT_AND_HUMAN_THRESHOLD",
+    "a04_research_preconstruction_scope": "GITHUB_RESEARCH_ONLY_SOURCE_EVIDENCE_ALLOWED",
+    "a04_implemented_runtime": "HOLD_SOURCE_NOT_PROVEN",
+    "a04_official_source_and_dependency_acceptance": "HOLD_REAL_UPSTREAM_VERSION_DEPLOYMENT_SBOM_AND_SECURITY",
+    "product_field": "HOLD",
+    "official_counts_unchanged": {
+      "block01": "0/9",
+      "overall": "0/40",
+      "customer": "0/18",
+      "e5": "0/18"
+    },
+    "ready_to_automatically_merge": false,
+    "acceptance_boundary": "GitHub technical preparation and PR merge are distinct; only a real authorized owner GitHub merge can integrate. Original DoneCheck + OSi + E5 still require their own evidence.",
+    "evidence_provenance": {
+      "zulfikar_solo_merged_pr": 242,
+      "merge_sha": "28db999ba676e4764ae1b644950865674661d0b8",
+      "hym_review_pr": 207
+    }
+  },
+  "single_active_execution_queue": [
+    {
+      "id": "01",
+      "scope": [
+        "A01",
+        "A02"
+      ],
+      "task": "18 case and 234 K-fields original source/baseline pin reconciliation",
+      "state": "SOURCE_PREPARED_OFFICIAL_HOLD"
+    },
+    {
+      "id": "02",
+      "scope": [
+        "A03",
+        "A04"
+      ],
+      "task": "Owner-only GitHub technical authority boundary and real upstream/version/license/SBOM, research-only Kâşifi interpretation",
+      "state": "SOLO_GITHUB_SCOPE_DEFINED__OFFICIAL_EVIDENCE_HOLD"
+    },
+    {
+      "id": "03",
+      "scope": [
+        "A05",
+        "A06"
+      ],
+      "task": "Public source evidence classify; private real customer deployment and independent E5 only when genuinely available",
+      "state": "PUBLIC_PREPARED_CUSTOMER_E5_HOLD"
+    },
+    {
+      "id": "04",
+      "scope": [
+        "A07",
+        "A08"
+      ],
+      "task": "G01/G02/G03 adversarial boundaries and 5-year measured K12 TCO",
+      "state": "DESIGN_EVIDENCE_READY_REAL_FIELD_HOLD"
+    },
+    {
+      "id": "05",
+      "scope": [
+        "A09"
+      ],
+      "task": "Block01 technical exit, original 9 IDs and authorized AR to GE decision",
+      "state": "DEPENDS_ON_ORIGINAL_NINE_REAL_ACCEPTANCES"
+    },
+    {
+      "id": "06",
+      "scope": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09"
+      ],
+      "task": "Engineering R&D external peers, measured differences and cost",
+      "state": "QUEUED"
+    },
+    {
+      "id": "07",
+      "scope": [
+        "C01",
+        "C02",
+        "C03",
+        "D01",
+        "D02",
+        "D03",
+        "D04"
+      ],
+      "task": "Integrated engineering architecture and dependencies",
+      "state": "QUEUED"
+    },
+    {
+      "id": "08",
+      "scope": [
+        "C04",
+        "C05",
+        "C06",
+        "E01",
+        "E02",
+        "E03",
+        "E04"
+      ],
+      "task": "Research version acceptance and engineering systems integration",
+      "state": "QUEUED"
+    },
+    {
+      "id": "09",
+      "scope": [
+        "F01",
+        "F02",
+        "F03",
+        "F04"
+      ],
+      "task": "Real Mac OSi field verification after authorized handoff",
+      "state": "FUTURE_FIELD"
+    },
+    {
+      "id": "10",
+      "scope": [
+        "G01",
+        "G02",
+        "G03",
+        "G04"
+      ],
+      "task": "Canonical DoneCheck, human acceptance, verified finish",
+      "state": "FUTURE_AUTHORIZED_FINAL"
+    }
+  ]
 }
