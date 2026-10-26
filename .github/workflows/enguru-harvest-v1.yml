@@ -26,7 +26,7 @@ jobs:
       - name: Execute real Python regressions for 12 local operations
         run: |
           cd capabilities/enguru-harvest-v1
-          python -B -m unittest -v test_harvest test_evidence_gate test_skill_kernel test_license_gate test_external_skill_plan test_upstream_execution_coverage test_k01_benchmark test_k03_cli_contract test_k02_source_policy test_work_packages test_readiness_scorecard test_upstream_github_pins test_zulfikar_finish_gate test_readiness_audit_v2 test_github_osi_handoff test_readiness_audit_v3 test_zulfikar_v141_reuse test_v141_session_acceptance test_a05_real_github_tasks
+          python -B -m unittest -v test_harvest test_evidence_gate test_skill_kernel test_license_gate test_external_skill_plan test_upstream_execution_coverage test_k01_benchmark test_k03_cli_contract test_k02_source_policy test_work_packages test_readiness_scorecard test_upstream_github_pins test_zulfikar_finish_gate test_readiness_audit_v2 test_github_osi_handoff test_readiness_audit_v3 test_zulfikar_v141_reuse test_v141_session_acceptance test_a05_real_github_tasks test_live_upstream_license_pins
       - name: Verify upstream root-license observation join
         run: |
           cd capabilities/enguru-harvest-v1
@@ -107,6 +107,13 @@ jobs:
           cd capabilities/enguru-harvest-v1
           python -B build_github_osi_handoff.py
           python -B -m unittest -q test_github_osi_handoff
+      - name: Independently verify 30 pinned README and 29 LICENSE blobs at exact upstream commits
+        timeout-minutes: 5
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          cd capabilities/enguru-harvest-v1
+          python -B verify_live_upstream_license_pins.py
       - name: Execute five real source-backed GitHub tasks in three evidence rounds
         run: |
           cd capabilities/enguru-harvest-v1
@@ -120,6 +127,7 @@ jobs:
             capabilities/enguru-harvest-v1/upstream-tool-trial-receipt.json
             capabilities/enguru-harvest-v1/k01-real-microbench-receipt.json
             capabilities/enguru-harvest-v1/a05-real-github-tasks-receipt.json
+            capabilities/enguru-harvest-v1/a05-github-root-license-receipt.json
             capabilities/enguru-harvest-v1/k02-source-quarantine-receipt.json
             capabilities/enguru-harvest-v1/osi-github-handoff-receipt.json
             capabilities/enguru-harvest-v1/ENGURU_OSI_HAZIRLIK_*.zip
