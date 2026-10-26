@@ -1,0 +1,112 @@
+{
+  "schema": "enguru.zulfikar.v131-universal-100-acceptance/v1",
+  "version": "1.3.1",
+  "governingPurpose": "Kullanıcının özgün hedefini tek kalıcı hedef olarak koru; mimariyi oluştur; ölç, simüle et, eksikleri ve ihtiyaçları tamamla, gerçek test ve kanıtla yeniden değerlendir; ancak özgün aşamanın tüm şartları 100/100 doğrulanırsa PASS ver; gerçek ürün kapanışı için ayrıca yetkili DoneCheck ve Human Threshold gerekir.",
+  "scope": "ALL_ENGURU_GITHUB_WORK_PROJECT_SESSIONS_ON_EXPLICIT_SOURCE_LOAD",
+  "start": [
+    "USER_GOAL",
+    "FREEZE_ORIGINAL_PROJECT_ACCEPTANCE",
+    "PROTECT_EXISTING_ASSETS",
+    "IDENTIFY_SOURCE_AND_OWNER"
+  ],
+  "eightStages": [
+    "HAKIKATI_GOR",
+    "DEGERI_KORU",
+    "EKSIK_VE_IHTIYACI_TESPIT_ET",
+    "GEREKLI_FARKI_URET",
+    "EKSIKLERI_TAMAMLA",
+    "KANITLA",
+    "SONRAKI_IHTIYACI_BELIRLE",
+    "ILERLET"
+  ],
+  "loop": [
+    "ARCHITECT",
+    "ASSESS",
+    "DIAGNOSE",
+    "SIMULATE",
+    "REPAIR",
+    "TEST_REAL_WHEN_AUTHORIZED",
+    "REASSESS",
+    "COUNTER_TEST",
+    "REPEAT_UNTIL_VERIFIED_100"
+  ],
+  "acceptanceUniverse": {
+    "passThreshold": 100,
+    "passOnlyWhenVerified": true,
+    "diagnosticRange": {
+      "min": 1,
+      "max": 99,
+      "authority": "INTERNAL_DIAGNOSTIC_ONLY",
+      "neverFinalStatus": true
+    },
+    "zeroMeaning": "NO_VERIFIED_CONTROLS",
+    "below100Decision": "CONTINUE_IMPROVEMENT",
+    "blockedDecision": "AWAIT_AUTHORIZED_EVIDENCE",
+    "forbidStatements": [
+      "HOLD_91_100_AS_FINAL_USER_ACCEPTANCE",
+      "PAPER_ONLY_FULL_FINISH",
+      "SYNTHETIC_OR_SELF_AUTHORIZED_FIELD_PASS"
+    ]
+  },
+  "stageRoles": {
+    "GOAL_ARCHITECTURE": {
+      "decisionAt100": "PASS_GOAL_ARCHITECTURE_ONLY",
+      "auth": "SOURCE_AND_REQUIREMENTS_REVIEW"
+    },
+    "PREPARATION": {
+      "decisionAt100": "PASS_PREPARED_VERIFIED_FINISH_ONLY",
+      "auth": "EXACT_HEAD_GITHUB_CI_AND_FROZEN_CONTROLS"
+    },
+    "REAL_EXECUTION": {
+      "decisionAt100": "PASS_REAL_TASK_ONLY",
+      "auth": "ACTUAL_SCOPED_EXECUTOR_AND_INDEPENDENT_EVIDENCE"
+    },
+    "PRODUCT_FINISH": {
+      "decisionAt100": "VERIFIED_FINISH",
+      "auth": "EXISTING_DONECHECK_V12_PLUS_HUMAN_THRESHOLD"
+    }
+  },
+  "originalContractRule": "Existing six-domain ZULFIKAR_V131_OPERATIONAL_SCORECARD_V1.json remains sole authoritative acceptance/weights for Zulfikar operations; umbrella is a universal decision policy, not another operational scorecard.",
+  "truthRules": [
+    "ONE_ACTIVE_WRITER",
+    "ONE_HUMAN_OWNER",
+    "EXACT_SOURCE_HEAD_PER_PROJECT",
+    "BIND_REAL_EXISTING_HANDLER",
+    "NO_NEW_ENGINE",
+    "NO_NEW_ISSUER",
+    "ZERO_REQUIRED_PAID_API",
+    "SYNTHETIC_CANNOT_BE_FIELD_PROOF",
+    "SIGNATURE_AND_REVIEW_FROM_EXISTING_AUTHORITY",
+    "SOURCE_CI_CANNOT_AUTHENTICATE_MAC"
+  ],
+  "completionSequence": [
+    "USER_GOAL_100_SPECIFICATION",
+    "PREPARATION_100_GITHUB_VERIFIED",
+    "AUTHORIZED_REAL_WORK",
+    "REAL_TASK_AND_INDEPENDENT_TEST_100",
+    "PRODUCT_SCOPED_ACCEPTANCE_100",
+    "DONECHECK_V12",
+    "HUMAN_THRESHOLD",
+    "VERIFIED_FINISH",
+    "BITTI_DUR"
+  ],
+  "decisionModel": {
+    "onlyAcceptedNumericScore": 100,
+    "diagnosticReportedSeparately": true,
+    "notAcceptedLabel": "DEVAM_IYILESTIRME",
+    "blockedLabel": "YETKILI_KANIT_BEKLENIYOR",
+    "cannotAutopromoteFromPrepToField": true,
+    "cannotAutopromoteFromSimulationsToReal": true,
+    "noFiniteIterationCountGuarantee": true,
+    "repeatOnlyWithinAuthorizedSafeScope": true
+  },
+  "currentReference": {
+    "scope": "ZULFIKAR_V131",
+    "existingOperationalHistoricalDiagnostic": 91,
+    "interpretation": "HISTORICAL_ENGINEERING_DIAGNOSTIC_NOT_ACCEPTANCE_SCORE",
+    "githubPreparationStage": "3x100/100_EXACT_HEAD_CI_VERIFIED",
+    "realFieldVerifiedFinish": "WAITING_ON_MAC_OWNER_REAL_TASK_EVIDENCE",
+    "goal2": "LOCKED_UNTIL_GOAL1_AUTHORIZED_FINISH"
+  },
+  "status": "POLICY_REVIEW_DRAFT_NEEDS_EXACT_HEAD_CI"
+}
