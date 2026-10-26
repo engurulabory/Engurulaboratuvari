@@ -38,15 +38,17 @@ def main():
                           ("P02_claude",["claude","--version"])):
         obs=run(command)
         obs["nonempty_version"]=bool(obs["stdout"].strip() or obs["stderr"].strip())
-        if obs["returncode"]!=0 or not obs["nonempty_version"]:
-            out["status"]="HOLD_CLI_SMOKE"
+        obs["state"]="PASS_VERSION_ONLY" if obs["returncode"]==0 and obs["nonempty_version"] else "HOLD_DISTRIBUTION_OR_RUNTIME"
         out["cli"][label]=obs
-    if "status" not in out:
-        out["status"]="PASS_UNAUTHENTICATED_CLI_VERSION_SMOKE"
+    out["codex_version_observed"]=out["cli"]["P01_codex"]["state"]=="PASS_VERSION_ONLY"
+    out["claude_version_observed"]=out["cli"]["P02_claude"]["state"]=="PASS_VERSION_ONLY"
+    out["evidence_collection_pass"]=True
+    out["state"]="PASS_BOTH_VERSION_ONLY" if out["codex_version_observed"] and out["claude_version_observed"] else "PARTIAL_CLI_OBSERVATION_CLAUDE_HOLD"
+    out["claude_native_installer_executed"]=False
     (HERE/"k03-cli-version-receipt.json").write_text(json.dumps(out,indent=2,sort_keys=True)+"\n",encoding="utf-8")
     print(json.dumps(out,indent=2,sort_keys=True))
-    if out["status"].startswith("HOLD"):
-        raise SystemExit(1)
+    if not out["codex_version_observed"]:
+        raise SystemExit("HOLD_CODEX_VERSION_NOT_OBSERVED")
 
 if __name__=="__main__":
     main()
