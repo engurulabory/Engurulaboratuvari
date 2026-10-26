@@ -30,7 +30,7 @@
       "weight": 10,
       "baseline": 100,
       "review": 100,
-      "evidence": "6/6 CI success, 27×3 bridge tests",
+      "evidence": "Exact-head six of six CI success; 35/35 registry+security tests ×3, 22/22 local receipt intake tests ×3; synthetic data does not establish Mac operations",
       "missing": [],
       "verdict": "PASS_SCOPE_LIMITED"
     },
@@ -82,17 +82,34 @@
   "targetWeightedOverall": 100,
   "newVerifiedGitHubBridge": {
     "codeSourceGateScore": 100,
-    "testsPerRound": 27,
+    "testsPerRound": 57,
     "rounds": 3,
     "githubWorkflowSuccess": 6,
-    "realTaskExecution": false
+    "realTaskExecution": false,
+    "totalTestExecutions": 171,
+    "testFamilies": [
+      {
+        "name": "registered-action/authority security",
+        "tests": 35,
+        "rounds": 3
+      },
+      {
+        "name": "private 3-task SHA receipt intake",
+        "tests": 22,
+        "rounds": 3
+      }
+    ]
   },
   "horizon": {
     "realTasksRequired": 3,
     "realTaskPassesObservedInThisCampaign": 0,
     "peerTrialsObserved": 0,
     "macOsiOperationalAcceptance": "HOLD",
-    "ownerOfficialFinish": "HOLD"
+    "ownerOfficialFinish": "HOLD",
+    "crossProjectGithubSourceObservations": 3,
+    "independentMacTasksAcceptedInCampaign": 0,
+    "latestPr241ObservedHead": "bcec47379e936ee53683f47cfb89c03bca57967b",
+    "latestZulfikarEvidenceScope": "READ_ONLY_CROSS_PRODUCT_AND_PRIVATE_RECEIPT_INTAKE_NO_TASK_AUTHORITY"
   },
   "scoringRule": "Source-level tests may raise governance/portable preflight judgment but not end-to-end real execution domain. No automatic 100 without actual OS field and independent real task evidence.",
   "overallOperationalVerdict": "HOLD_91_100",
