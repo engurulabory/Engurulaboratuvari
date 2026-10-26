@@ -154,7 +154,7 @@ def calculate(doc, source_head, registry_hashes, bind,actions):
           "requiredEvidence":entry.get("requiredEvidence"),
           "authorization":entry.get("authorization"),
           "acceptedExternalEvidenceCount":0,
-          "nextProof":entry.get("requiredEvidence",[None])[0],
+          "nextProof":(entry.get("requiredEvidence") or [None])[0],
           "closed":False})
     return {
       "schema":"enguru.zulfikar.single-acceptance-live-status/v1.3.1",
