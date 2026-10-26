@@ -160,5 +160,21 @@ class SingleAuthorityTests(unittest.TestCase):
         self.assertEqual(result["threeHeterogeneousRealTasksAccepted"],0)
         self.assertFalse(result["realMacExecutionAuthenticated"])
 
+    def test_method_head_is_never_pilive_task_head(self):
+        o=self.accept()
+        candidate=o["existingExecutorPaths"][0]
+        self.assertEqual(candidate["zulfikarReviewHead"],self.head)
+        self.assertNotIn("sourceHead",candidate)
+        self.assertIsNone(candidate["taskProjectSourceHead"])
+        self.assertIs(candidate["taskProjectSourceHeadIndependentlyVerified"],False)
+
+    def test_no_task_family_is_given_fabricated_source_identity(self):
+        o=self.accept()
+        for item in o["existingExecutorPaths"]:
+            self.assertIsNone(item["taskProjectSourceHead"])
+            self.assertFalse(item["taskProjectSourceHeadIndependentlyVerified"])
+            self.assertFalse(item["binding"]["actualHandlerInvoked"])
+
+
 if __name__=="__main__":
     unittest.main(verbosity=2)
