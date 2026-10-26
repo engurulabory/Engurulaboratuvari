@@ -228,6 +228,28 @@ jobs:
           PY
 
 
+      - name: HYM Zulfikar V1.4.1 pinned method and three adversarial families
+        run: python -B -m unittest discover -s tests -p 'test_arge_hym_v141_crosswalk_v1.py' -v
+
+      - name: HYM Zulfikar V1.4.1 real source SHA and eight-stage boundary
+        run: |
+          python -B -m tools.arge_hym_v141_crosswalk_v1 > "$RUNNER_TEMP/HYM_ZULFIKAR_V141_METHOD.json"
+          python -B - "$RUNNER_TEMP/HYM_ZULFIKAR_V141_METHOD.json" <<'PY'
+          import json,sys
+          j=json.load(open(sys.argv[1],encoding="utf8"))
+          assert j["state"]=="PASS_METHOD_SOURCE_CROSSWALK_ONLY"
+          assert j["crosswalkScore"]==100 and len(j["passed"])==10
+          assert len(j["stageAcceptance"])==8
+          assert all(x.startswith("HOLD_") for x in j["stageAcceptance"].values())
+          assert j["namespace"]["methodA03"]=="ZF.V141.A03"
+          assert j["namespace"]["originalA03"]=="HYM.A03"
+          assert j["official"]=="0/40" and j["verifiedFinish"]=="HOLD"
+          print(json.dumps({"methodSource":j["methodHead"],
+                            "crosswalk":j["crosswalkScore"],
+                            "stageAcceptance":"HOLD_UNTIL_REAL_STAGE_EVIDENCE",
+                            "official":j["official"]},sort_keys=True))
+          PY
+
       - name: Ar-Ge Block 01 nine-task adversarial tests
         run: python -m unittest discover -s tests -p 'test_arge_block01_v423.py' -v
 
