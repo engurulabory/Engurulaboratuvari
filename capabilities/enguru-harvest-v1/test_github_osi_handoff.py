@@ -76,13 +76,15 @@ class HandoffTests(unittest.TestCase):
 
     def test_source_row_schema_controlled_hold(self):
         def change(raw):
-            doc=json.loads(raw);doc['sources'][SOURCES[0]]=[]
+            doc=json.loads(raw)
+            doc['sources'][SOURCES[0]]=[]
             return json.dumps(doc).encode()
         self.assertEqual(inspect(remake(self.data,{'HANDOFF_MANIFEST.json':change}))['state'],'HOLD_SOURCE_ENTRY_SCHEMA')
 
     def test_boolean_size_rejected(self):
         def change(raw):
-            doc=json.loads(raw);doc['sources'][SOURCES[0]]['size']=True
+            doc=json.loads(raw)
+            doc['sources'][SOURCES[0]]['size']=True
             return json.dumps(doc).encode()
         self.assertEqual(inspect(remake(self.data,{'HANDOFF_MANIFEST.json':change}))['state'],'HOLD_SOURCE_ENTRY_SCHEMA')
 
