@@ -1,0 +1,59 @@
+{
+  "schema": "enguru.pilive.stage-handoff/v1",
+  "goalId": "ENGURU_PLIVE_P02_USER_SCREEN",
+  "sourceBaseline": "bcec47379e936ee53683f47cfb89c03bca57967b",
+  "methodCommit": "4780d96ccb16ca4a922846ab48918262c7845f47",
+  "methodEngineSha256": "aae470e41a59de981c0c34b81a25ed094f52db6eed8dc0d101124984dd903230",
+  "stages": {
+    "T01": {
+      "evidenceScope": "V4 goal/source inventory/owner scope",
+      "stageOutcome": "HOLD_SCOPE_ACCEPTANCE"
+    },
+    "T02": {
+      "evidenceScope": "U01-U12 and P02 original S01-S04 conditions",
+      "stageOutcome": "HOLD_REQUIREMENT_ACCEPTANCE"
+    },
+    "A01": {
+      "evidenceScope": "Existing Core/reader/wire/state/views and rollback",
+      "stageOutcome": "HOLD_NATIVE_PARITY"
+    },
+    "A02": {
+      "evidenceScope": "Three adversarial source/error/recovery rounds",
+      "stageOutcome": "HOLD_EXACT_HEAD_TEST_EVIDENCE"
+    },
+    "A03": {
+      "evidenceScope": "U and official O distinct; no stage authority",
+      "stageOutcome": "HOLD_REAL_OUTCOME_ACCEPTANCE"
+    },
+    "A04": {
+      "evidenceScope": "PR241 source/test/readback/CI",
+      "stageOutcome": "HOLD_EXACT_HEAD_CI"
+    },
+    "A05": {
+      "evidenceScope": "Visible frame + independent real user tasks",
+      "stageOutcome": "HOLD_NATIVE_FIELD"
+    },
+    "A06": {
+      "evidenceScope": "Unique source/build/signing candidate and receipt pair",
+      "stageOutcome": "HOLD_MAC_BUILD_AND_OWNER_FIELD"
+    }
+  },
+  "preservedEvidence": {
+    "nativeTests": 218,
+    "projectIdentities": 15,
+    "qualifiedCounters": 14,
+    "sources": 48,
+    "corePins": 8,
+    "p02": "0/12",
+    "doneCheck": "0/4"
+  },
+  "ownerScope": "Explicit Terminal builds/opens only unique read-only candidate; no installed app/canonical modification",
+  "openGaps": [
+    "G1.D04",
+    "global canonical priority",
+    "area/facet where absent",
+    "real native accessibility/performance/user acceptance",
+    "P02 issuer/grant/writer/DoneCheck/HT"
+  ],
+  "stageOutcome": "CANDIDATE_ONLY; NO_RETROACTIVE_EIGHT_GATE_100"
+}

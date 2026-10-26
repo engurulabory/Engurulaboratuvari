@@ -63,6 +63,7 @@ jobs:
             python -m unittest discover -s tests -p 'test_pilive_portfolio_v1.py' -v
             python -m unittest discover -s tests -p 'test_pilive_native_portfolio_review_v1.py' -v
             python -m unittest discover -s tests -p 'test_pilive_screen_wire_v1.py' -v
+            python -m unittest discover -s tests -p 'test_pilive_live_reader_v1.py' -v
           done
 
   owner-comment-intake:

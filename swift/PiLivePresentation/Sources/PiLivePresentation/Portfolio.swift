@@ -45,6 +45,8 @@ public struct Portfolio: Decodable {
     public let sourcePins: [String: String]
     public let projectionDigest: String
     public let projects: [ProjectRow]
+    public struct Classification: Decodable { public let projectId: String; public let productionArea: String?; public let productionFacet: String? }
+    public let sourceClassification: [String: Classification]?
     public let sourceReadAt: String
     public let adapterBuiltAt: String
     public let uiRenderedAt: String?
@@ -103,6 +105,9 @@ public struct Portfolio: Decodable {
               p.factCoverage.projects == p.projects.count, p.factCoverage.qualifiedCounters == p.qualifiedCount,
               p.factCoverage.sourceBoundObservations == p.sourceObservations.count
         else { throw PresentationHold.invalidSource }
+        if let mappings = p.sourceClassification {
+            guard Set(mappings.keys).isSubset(of: Set(p.projects.map(\.key))), mappings.allSatisfy({ key, item in p.projects.contains { $0.key == key && $0.projectId == item.projectId } }) else { throw PresentationHold.invalidSource }
+        }
         for row in p.projects {
             guard matches(row.key, "^[a-z0-9][a-z0-9_-]{0,127}$"), matches(row.projectId, "^[A-Za-z0-9_.-]{1,128}$"),
                   row.officialAcceptance == "HOLD", !row.closed, ["HOLD", "VERIFIED"].contains(row.finish)

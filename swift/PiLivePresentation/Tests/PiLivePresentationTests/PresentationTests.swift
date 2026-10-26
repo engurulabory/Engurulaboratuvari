@@ -112,6 +112,21 @@ final class PresentationTests: XCTestCase {
             try s.accept(data, trust: expected, request: s.beginRefresh(), now: time); XCTAssertEqual(s.state.projectCount, 15)
         }
     }
+    func testSourceClassificationIsExactAndUnknownRemainsVisible() async throws {
+        let data = try changed { p in p["sourceClassification"] = ["plive-p02-user-screen": ["projectId": "ENGURU_PLIVE_P02_USER_SCREEN", "productionArea": "APP", "productionFacet": "COMMERCE"]] }
+        let expected = try trust(data); let time = now()
+        try await MainActor.run {
+            let store = PresentationStore(); try store.accept(data, trust: expected, request: store.beginRefresh(), now: time)
+            let groups = store.state.projectGroups()
+            XCTAssertEqual(groups.first { $0.name == "App" }!.rows.count, 1)
+            XCTAssertEqual(groups.last!.rows.count, 14)
+            XCTAssertEqual(groups.flatMap { $0.rows }.count, 15)
+        }
+    }
+    func testClassificationCannotChangeProjectIdentity() throws {
+        let data = try changed { p in p["sourceClassification"] = ["academy": ["projectId": "OTHER", "productionArea": "CORE"]] }
+        XCTAssertThrowsError(try Portfolio.decode(data, trust: trust(data), now: now()))
+    }
     func testSwiftUIObservableBridge() async {
         await MainActor.run {
             let bridge = SwiftUIState(store: PresentationStore())

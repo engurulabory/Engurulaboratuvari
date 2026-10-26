@@ -27,8 +27,14 @@ public struct ScreenState {
         let rows = (portfolio?.projects ?? []).filter {
             search.isEmpty || $0.key.localizedCaseInsensitiveContains(search) || $0.projectId.localizedCaseInsensitiveContains(search)
         }
-        return ["Motor", "Çekirdek", "Web", "App", "Agent"].map { ProjectGroup(name: $0, rows: [], countText: "N/A") }
-            + [ProjectGroup(name: "Kaynak eşlemesi bekleniyor", rows: rows, countText: String(rows.count))]
+        let areas = [("ENGINE", "Motor"), ("CORE", "Çekirdek"), ("WEB", "Web"), ("APP", "App"), ("AGENT", "Agent")]
+        let source = portfolio?.sourceClassification ?? [:]
+        let known = Set(areas.map { $0.0 })
+        return areas.map { code, label in
+            let members = rows.filter { source[$0.key]?.productionArea == code }
+            return ProjectGroup(name: label, rows: members, countText: members.isEmpty ? "N/A" : String(members.count))
+        } + [ProjectGroup(name: "Kaynak eşlemesi bekleniyor", rows: rows.filter { !known.contains(source[$0.key]?.productionArea ?? "") }, countText: String(rows.filter { !known.contains(source[$0.key]?.productionArea ?? "") }.count))]
+
     }
     public var accessibilityAnnouncement: String {
         "\(availability.rawValue)\(isCache ? " · son bilinen kayıt" : ""), \(projectCount.map(String.init) ?? "N/A") proje, \(qualifiedCount.map(String.init) ?? "N/A") doğrulanmış sayaç, resmî kabul HOLD"
