@@ -151,10 +151,13 @@ def main():
     infra=v13.infra_gate()["assessment"]["score"]
     technical=gate.assess_github()["score"]
     tests=run_unittests()
-    workflow,workflow_sha=bridge.source_read(ROOT,".github/workflows/enguru-zulfikar-v131-operational-bridge.yml")
-    # Workflow parsed as raw YAML by this version; use only a fixed, source-bound marker.
-    raw=bridge.read_no_symlink(ROOT,".github/workflows/enguru-zulfikar-v131-operational-bridge.yml",20_000)
-    read_only=(b"permissions:\n  contents: read" in raw and b"working-directory: governance/enguru-suzgeci/zulfikar-v12" in raw)
+    workflow_path=".github/workflows/enguru-zulfikar-v131-operational-bridge.yml"
+    raw=bridge.read_no_symlink(ROOT,workflow_path,20_000)
+    pinned=subprocess.run(["git","-C",str(ROOT),"show",head+":"+workflow_path],
+                          capture_output=True,timeout=15,check=False)
+    read_only=(pinned.returncode==0 and pinned.stdout==raw and
+          b"permissions:\n  contents: read" in raw and
+          b"working-directory: governance/enguru-suzgeci/zulfikar-v12" in raw)
     if bridge.head_sha(ROOT)!=head:
         raise ValueError("HEAD_CHANGED_IN_READINESS_ASSESSMENT")
     results=inspect(config,head,bindings,actions,hashes,goal,infra,technical,tests,sources,read_only)
