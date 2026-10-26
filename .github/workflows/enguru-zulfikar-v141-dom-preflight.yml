@@ -1,0 +1,36 @@
+name: ENGURU Zulfikar V1.4.1 DOM Pre-GitHub-to-CI Proof
+
+on:
+  pull_request:
+    paths:
+      - 'governance/enguru-suzgeci/zulfikar-v12/v141/**'
+      - '.github/workflows/enguru-zulfikar-v141-dom-preflight.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-bound-dom-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Real disposable engineering loop, 59 adversarial tests in three independent runs
+        working-directory: governance/enguru-suzgeci/zulfikar-v12/v141
+        run: |
+          python3 -B preflight.py
+          python3 - <<'PY'
+          import json,pathlib
+          report=json.loads(pathlib.Path('evidence/pre_github_readiness_report.json').read_text())
+          assert report['engineerPreparationScore']==100
+          assert report['architectureDesignControlsPassed']==report['architectureDesignControlsRequired']==10
+          assert report['realLocalUnittestExecutions']==177
+          assert all(r['pass'] and r['tests']==59 for r in report['threeRealLocalTestRounds'])
+          assert report['GitHubCommitOrCI']=='ACTION_RUNNER_TEST_SCOPE_ONLY'  # CI cannot establish Mac/owner authority
+          assert report['productVerifiedFinish']=='NOT_ISSUED'
+          print('DOM_EXACT_SOURCE_CI_TESTS_PASS; NATIVE_MAC_FIELD_NOT_ATTESTED')
+          PY

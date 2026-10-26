@@ -1,0 +1,62 @@
+{
+  "schema": "enguru.zulfikar.v141.github-source-sha-seal/v1",
+  "phase": "GITHUB_DRAFT_REVIEW_SOURCE_ONLY",
+  "archiveFilename": "ENGURU_ZULFIKAR_V141_FINAL_GITHUB_ONCESI_20261026.zip",
+  "archiveSha256": "366d906c3f44e86d834a311365c2bead51f82509faec7568c6374209b5c9224e",
+  "localStageManifestSha256": "404ac5956d09ca1b659ef701d495e545d1138dbc24366513c1d6af0b15f61c01",
+  "baseReviewParent": "d85e9fe8084b59d28577f0eba3f4a8f93a1b9e0c",
+  "repository": "engurulabory/Engurulaboratuvari",
+  "targetPullRequest": 246,
+  "stageFiles": [
+    {
+      "path": ".github/workflows/enguru-zulfikar-v141-dom-preflight.yml",
+      "sha256": "f2c9bd989c396c35615d758dc1de1ac00aeab46b4c11951d3e15d78b1316a676"
+    },
+    {
+      "path": "governance/enguru-suzgeci/zulfikar-v12/v141/FINAL_KABUL_RAPORU.md",
+      "sha256": "23d183c82c202f20a5abaf41299504a54ce7c1308a167f667b0e26b8d47e0b79"
+    },
+    {
+      "path": "governance/enguru-suzgeci/zulfikar-v12/v141/README.md",
+      "sha256": "6374c81d63e0277be8962838d3a63268eec5245a928d1b997fc08303b56d7d86"
+    },
+    {
+      "path": "governance/enguru-suzgeci/zulfikar-v12/v141/SON_ACIMASIZ_DENETIM.md",
+      "sha256": "0325685700f77db3afd3254b0902e15ad4962058ac0b55f2f8f73ba84d376352"
+    },
+    {
+      "path": "governance/enguru-suzgeci/zulfikar-v12/v141/architecture/dom_v10_design.json",
+      "sha256": "a3907e2916f3c67bcc023abd9e3d23b4bcc64102541fecab5a8841a45c825b69"
+    },
+    {
+      "path": "governance/enguru-suzgeci/zulfikar-v12/v141/architecture/zulfikar_v141_8_gate_architecture.json",
+      "sha256": "8281b324330d8b89c11c429e4e524ede4fcbe9ebe468063c410c822077525988"
+    },
+    {
+      "path": "governance/enguru-suzgeci/zulfikar-v12/v141/dom/engine.py",
+      "sha256": "aae470e41a59de981c0c34b81a25ed094f52db6eed8dc0d101124984dd903230"
+    },
+    {
+      "path": "governance/enguru-suzgeci/zulfikar-v12/v141/dom/test_engine.py",
+      "sha256": "6489072a5659df5cdeee8f6617ce4603999abc5c8914b3ce5c4c135302237af5"
+    },
+    {
+      "path": "governance/enguru-suzgeci/zulfikar-v12/v141/dom/test_final_hardening.py",
+      "sha256": "9cc22155f20a903f6de1e64a3ffdebdd73c41698a731573e5d7f8a4c66ef29bb"
+    },
+    {
+      "path": "governance/enguru-suzgeci/zulfikar-v12/v141/evidence/.gitkeep",
+      "sha256": "062e7bb1b3ad875d30cfb7da123e0f8feead34f17114fb049336a813f615cb52"
+    },
+    {
+      "path": "governance/enguru-suzgeci/zulfikar-v12/v141/preflight.py",
+      "sha256": "f8b8b7d98e14539ad7ae4b825ea44bbc124b68c4b656819178a033132ff9ee5d"
+    }
+  ],
+  "acceptanceScope": "GITHUB_SOURCE_AND_EXACT_HEAD_CI_ONLY",
+  "ownerDoneCheck": "NOT_ISSUED",
+  "actualMacOsi": "NOT_EXECUTED",
+  "PiLive": "PARKED_UNCHANGED",
+  "mainBranchChange": "NONE",
+  "verifiedFinish": "NOT_ISSUED"
+}
