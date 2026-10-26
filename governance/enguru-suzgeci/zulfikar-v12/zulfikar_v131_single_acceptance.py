@@ -11,6 +11,7 @@ from pathlib import Path
 import sys
 
 import zulfikar_v131_operational_bridge as preflight
+import zulfikar_v131_field_evidence_intake as field_intake
 
 ROOT=preflight.ROOT
 CONTRACT="governance/enguru-suzgeci/zulfikar-v12/ZULFIKAR_V131_OPERATIONAL_SCORECARD_V1.json"
@@ -192,6 +193,7 @@ def calculate(doc, source_head, registry_hashes, bind,actions):
 def main(argv=None):
     parser=argparse.ArgumentParser(description="Read-only canonical six-domain Zulfikar closure")
     parser.add_argument("--mode",choices=("status","plan"),default="status")
+    parser.add_argument("--field-bundle",help="Read-only private Mac receipt candidate folder; does not grant authority")
     args=parser.parse_args(argv)
     head=preflight.head_sha(ROOT)
     doc,sha=preflight.source_read(ROOT,CONTRACT)
@@ -204,8 +206,35 @@ def main(argv=None):
     if args.mode=="plan":
         # Task plans are proposals only. Owner must authorize actual execution.
         result["mode"]="READ_ONLY_EXISTING_OPERATOR_HANDOFF_PLAN"
+    field_hold=False
+    if args.field_bundle:
+        try:
+            folder=Path(args.field_bundle).absolute()
+            manifest=field_intake.load_json(preflight.read_no_symlink(folder,"manifest.json",120_000))
+            field=field_intake.audit_manifest(manifest,folder)
+            observed=[(t.get("family"),t.get("taskId")) for t in manifest.get("tasks",[]) if isinstance(t,dict)] if isinstance(manifest,dict) and isinstance(manifest.get("tasks"),list) else []
+            expected=[(t["family"],t["taskId"]) for t in result["existingExecutorPaths"]]
+            if observed!=expected:
+                field["holds"]=sorted(set(field.get("holds",[])+["FIELD_BUNDLE_TASK_SCOPE_MISMATCH"]))
+                field["evidenceByteReconciliation"]="HOLD"
+            field_hold=bool(field.get("holds"))
+            result["fieldEvidenceIntake"]=field
+        except (OSError,ValueError,TypeError,UnicodeError):
+            result["fieldEvidenceIntake"]={"evidenceByteReconciliation":"HOLD",
+                "holds":["FIELD_BUNDLE_UNTRUSTED"],
+                "verifiedFinish":"HOLD",
+                "independentlyVerifiedRealTaskCount":0}
+            field_hold=True
+    else:
+        result["fieldEvidenceIntake"]={"state":"NOT_PROVIDED",
+            "actualMacRuntimeAuthenticated":False,
+            "independentlyVerifiedRealTaskCount":0}
+    # A matching receipt bundle is only a candidate, never an owner grant or DoneCheck.
+    result["goal1"]="HOLD_REAL_TASK_AND_OWNER_AUTHORITY"
+    result["goal2"]="LOCKED_UNTIL_GOAL1_VERIFIED_FINISH"
+    result["officialVerifiedFinish"]="HOLD"
     print(json.dumps(result,sort_keys=True,ensure_ascii=False))
-    return 2 if result["faults"] else 0
+    return 2 if result["faults"] or field_hold else 0
 
 
 if __name__=="__main__":
