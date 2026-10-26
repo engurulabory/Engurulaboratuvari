@@ -27,7 +27,7 @@ GOAL_IDS = tuple(f"H{i:02d}" for i in range(1, 11))
 CONTROL_IDS = tuple(f"C{i:02d}" for i in range(1, 11))
 CONTROL_VERIFIERS = {f"C{i:02d}": f"goal_gate.H{i:02d}" for i in range(1, 11)}
 CONTROL_AUTHORITIES = {id_: ("Human Threshold" if id_ in ("C04", "C10")
-                            else "Independent reviewer") for id_ in CONTROL_IDS}
+                            else "Automated GitHub CI") for id_ in CONTROL_IDS}
 NEGATIVE_IDS = frozenset(("INVALID_GOAL", "MISSING_SOURCE",
                           "MISSING_AUTHORITY", "INCOMPLETE_DEPENDENCIES"))
 INFRA_IDS = tuple(f"TA{i:02d}" for i in range(1, 11))
@@ -116,14 +116,18 @@ def goal_gate(data):
     negatives = data.get("negative_cases") if isinstance(data.get("negative_cases"), list) else []
     canonical = data.get("canonical") if isinstance(data.get("canonical"), dict) else {}
     checks = {
-      "H01": data.get("goal_id") == "ZULFIKAR-OPERATIONAL-GITHUB-V13" and has_text(data.get("single_goal"),30),
+      "H01": data.get("schema")=="enguru.zulfikar.goal-contract/v1.3.1" and data.get("goal_id") == "ZULFIKAR-OPERATIONAL-GITHUB-V13" and has_text(data.get("single_goal"),30),
       "H02": has_text(data.get("user_value"),20) and all(has_text(metrics.get(k)) for k in ("metric","unit","baseline_source","target","observation")),
       "H03": valid_controls and all(
             has_text(c.get("acceptance"))
             and c.get("verifier") == CONTROL_VERIFIERS[c["id"]]
             and c.get("authority") == CONTROL_AUTHORITIES[c["id"]]
             for c in controls),
-      "H04": rights.get("scope")=="SINGLE_GOAL" and rights.get("owner_review")=="HUMAN_THRESHOLD" and rights.get("issuer")=="EXISTING_CANONICAL_ONLY",
+      "H04": rights.get("scope")=="SINGLE_GOAL" and rights.get("owner_review")=="HUMAN_THRESHOLD" and rights.get("issuer")=="EXISTING_CANONICAL_ONLY"
+             and rights.get("review_mode")=="SOLO_OWNER_AUTOMATED_CI"
+             and rights.get("owner_id")=="engurulabory"
+             and rights.get("peer_review_required") is False
+             and rights.get("decision_scope")=="GITHUB_TECHNICAL_ACCEPTANCE_ONLY",
       "H05": valid_controls and dag_ok(data.get("dependencies"),set(identities)),
       "H06": len(risks)>=3 and all(isinstance(x,dict) and all(has_text(x.get(k)) for k in ("risk","mitigation","negative_test")) for x in risks),
       "H07": len(negatives)>=4 and all(isinstance(x,dict) and has_text(x.get("case_id")) and x.get("expected")=="HOLD" for x in negatives)
