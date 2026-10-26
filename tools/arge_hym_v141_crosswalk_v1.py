@@ -215,7 +215,9 @@ def assess_a01_architecture(m,h,c,source_proof,foundations,method):
     counters=h.get("current_counters");real_a03=h.get("A03")
     real_a04=h.get("A04");e=h.get("A05_A06")
     items=c.get("cases");baseline=c.get("baseline");rollup=c.get("rollup")
-    if (not all(isinstance(x,dict) for x in
+    source_audit=c.get("source_audit")
+    if (not isinstance(source_audit,dict)
+        or not all(isinstance(x,dict) for x in
                 (arch,impl,sources,security,recovery,scope,counters,real_a03,
                  real_a04,e,baseline,rollup)) or not isinstance(items,list)):
         return out
@@ -287,6 +289,10 @@ def assess_a01_architecture(m,h,c,source_proof,foundations,method):
           and len(domains)==18 and set(domains)==set(DOMAIN_3)
           and hold_cases and baseline.get("rows")==234 and baseline.get("cases")==18
           and baseline.get("criteria")==13 and baseline.get("sha256")==V19_SHA
+          and baseline.get("all_234_original_verdicts")=="HOLD"
+          and baseline.get("all_18_e5_original_status")=="HOLD"
+          and source_audit.get("v19_exact_case_identity")=="18/18_RECONCILED_FROM_ORIGINAL_CSV"
+          and source_audit.get("v19_cells")=="234/234_BASELINE_ROWS"
           and sources.get("K_per_case")==13 and sources.get("actual_matrix_sha_required") is True
           and sources.get("case_ids_consecutive") is True
           and sources.get("public_references_only_are_NOT_E5") is True
