@@ -42,10 +42,14 @@
     "independentReceiptAndReview"
   ],
   "gitHubSnapshot": {
-    "controlMain": "8947cb6c240a12950be1f8be9e186d0ecbfa3022",
+    "controlMain": "28db999ba676e4764ae1b644950865674661d0b8",
     "macEngineerProductMain": "c6ef1555a48beeff94a85cab316c80b3fa60f9c5",
     "pilivePR": 241,
-    "zulfikarPR": 242
+    "zulfikarPR": 242,
+    "pilivePrHead": "64afbf862a393fcb2972f1f2dcbeb98649885fb8",
+    "zulfikarPr242Status": "MERGED_INTO_MAIN",
+    "originalControlMainObservation": "8947cb6c240a12950be1f8be9e186d0ecbfa3022",
+    "snapshotMeaning": "GITHUB_OBSERVED_2026_10_26; OSi real source parity requires new native receipt"
   },
   "osiLiveReadback": "HOLD_PENDING_REAL_MAC_OBSERVATION",
   "gates": [
