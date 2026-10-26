@@ -109,7 +109,9 @@ jobs:
           assert r['contractValid'] is True
           assert len(r['sixDomains'])==6
           assert [d['recordedScore'] for d in r['sixDomains']]==[100,100,100,98,90,65]
-          assert r['recordedOverall']==91
+          assert r['historicalDiagnosticScore']==91
+          assert r['acceptedOperationalScore'] is None
+          assert r['operationalDecision']=='CONTINUE_IMPROVEMENT_AWAIT_AUTHORIZED_EVIDENCE'
           assert len(r['operations'])==3
           assert len(r['existingExecutorPaths'])==3
           assert all(x['binding']['matchingExistingRegistry'] for x in r['existingExecutorPaths'])
