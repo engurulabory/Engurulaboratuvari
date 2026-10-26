@@ -323,6 +323,237 @@
       "existingDoneCheck": "HOLD",
       "ownerFieldApproval": "HOLD",
       "productVerifiedFinish": "HOLD"
+    },
+    "tenCapabilityMap": {
+      "schema": "enguru.zulfikar.v131-ten-capabilities-single-scorecard-map/v1",
+      "purpose": "Ten capability acceptance checks linked to existing six-domain authority; no second scorecard or autonomous issue of 100",
+      "sourceGoal": "ZULFIKAR_GOAL_V1_3.json",
+      "sourcePolicy": "ZULFIKAR_V131_EVRENSEL_100_KABUL_ILKESI_V1.json",
+      "capabilities": [
+        {
+          "id": "K01",
+          "code": "ALTI_ALANDA_MIMARI_OMURGA",
+          "name": "Altı alanda mimari omurga hazırlama",
+          "stage": "GOAL_ARCHITECTURE",
+          "existingDomainRefs": [
+            "GOAL",
+            "GITHUB_ENGINE",
+            "TEST_CI",
+            "GOVERNANCE",
+            "PORTABILITY",
+            "E2E_REAL"
+          ],
+          "preparationSourceFiles": [
+            "governance/enguru-suzgeci/zulfikar-v12/ZULFIKAR_GOAL_V1_3.json",
+            "governance/enguru-suzgeci/zulfikar-v12/ZULFIKAR_V131_OPERATIONAL_SCORECARD_V1.json"
+          ],
+          "acceptanceRequirement": "Özgün altı alan + tek hedef + ölçü/kabul + mimari tasarım kaynak/doğrulama",
+          "realFieldRequirement": "Hazırlık mimarisi kaynakça ve CI; gerçek ürün proje mimarisi özgün owner kararı",
+          "candidateSourceEvidence": "SOURCE_REVIEW_REQUIRED",
+          "realAuthority": "AWAIT_TRUSTED_RUNTIME_OR_OWNER",
+          "verifiedFull100": false,
+          "finalPassGranted": false
+        },
+        {
+          "id": "K02",
+          "code": "SIMULASYON_YETENEGI",
+          "name": "Simülasyon ve karşıt simülasyon",
+          "stage": "PREPARATION",
+          "existingDomainRefs": [
+            "TEST_CI"
+          ],
+          "preparationSourceFiles": [
+            "governance/enguru-suzgeci/zulfikar-v12/test_zulfikar_v131_universal_100_gate.py",
+            "governance/enguru-suzgeci/zulfikar-v12/test_zulfikar_v131_single_acceptance.py"
+          ],
+          "acceptanceRequirement": "Pozitif/negatif durumlar, üç bağımsız test turu, değişen kaynağa yeniden karşıt test",
+          "realFieldRequirement": "Saha olayları simülasyondan ayrı kanıtlanır",
+          "candidateSourceEvidence": "SOURCE_REVIEW_REQUIRED",
+          "realAuthority": "AWAIT_TRUSTED_RUNTIME_OR_OWNER",
+          "verifiedFull100": false,
+          "finalPassGranted": false
+        },
+        {
+          "id": "K03",
+          "code": "SAHA_ARASTIRMA_PUANLAMA",
+          "name": "Saha araştırması, araştırma ve puanlama",
+          "stage": "REAL_EXECUTION",
+          "existingDomainRefs": [
+            "PORTABILITY",
+            "E2E_REAL"
+          ],
+          "preparationSourceFiles": [
+            "governance/enguru-suzgeci/zulfikar-v12/ZULFIKAR_V131_PEER_GAP_TO_100_V1.md",
+            "governance/enguru-suzgeci/zulfikar-v12/ZULFIKAR_V131_CROSS_PRODUCT_GITHUB_OBSERVATION_V1.json"
+          ],
+          "acceptanceRequirement": "Özgün gerçek vaka kaynağı, izinli saha gözlemi, bağımsız muadil ve ölçüm",
+          "realFieldRequirement": "Gerçek saha araştırması, güncel vakalar ve muadil performans kanıtı",
+          "candidateSourceEvidence": "SOURCE_REVIEW_REQUIRED",
+          "realAuthority": "AWAIT_TRUSTED_RUNTIME_OR_OWNER",
+          "verifiedFull100": false,
+          "finalPassGranted": false
+        },
+        {
+          "id": "K04",
+          "code": "ITERATIF_DONGU",
+          "name": "Eksik–onarım–yeniden test döngüsü",
+          "stage": "PREPARATION",
+          "existingDomainRefs": [
+            "TEST_CI",
+            "GITHUB_ENGINE"
+          ],
+          "preparationSourceFiles": [
+            "governance/enguru-suzgeci/zulfikar-v12/zulfikar_v131_universal_100_gate.py",
+            "governance/enguru-suzgeci/zulfikar-v12/test_zulfikar_v131_universal_100_gate.py"
+          ],
+          "acceptanceRequirement": "Hata→uygulanmış onarım→yeniden deneme→kaynaklı gerçek test→gerekiyorsa tekrar",
+          "realFieldRequirement": "Döngüde sahte 100 ve sonsuz güvenlik dışı koşular engellenir",
+          "candidateSourceEvidence": "SOURCE_REVIEW_REQUIRED",
+          "realAuthority": "AWAIT_TRUSTED_RUNTIME_OR_OWNER",
+          "verifiedFull100": false,
+          "finalPassGranted": false
+        },
+        {
+          "id": "K05",
+          "code": "GERCEK_UCTAN_UCA_BITIRME",
+          "name": "Uçtan uca çalışıp gerçek iş bitirme",
+          "stage": "REAL_EXECUTION",
+          "existingDomainRefs": [
+            "E2E_REAL",
+            "PORTABILITY"
+          ],
+          "preparationSourceFiles": [
+            "governance/enguru-suzgeci/zulfikar-v12/zulfikar_v131_single_acceptance.py",
+            "governance/enguru-suzgeci/zulfikar-v12/ZULFIKAR_V131_REAL_100_FIELD_HANDOFF_V1.json"
+          ],
+          "acceptanceRequirement": "Kaynak→yetkili gerçek handler→ürün çıktısı→test→görünür kullanıcı sonucu→recovery",
+          "realFieldRequirement": "Üç ayrı yetkili görev ailesinde bağımsız ürün/saha sonucu",
+          "candidateSourceEvidence": "SOURCE_REVIEW_REQUIRED",
+          "realAuthority": "AWAIT_TRUSTED_RUNTIME_OR_OWNER",
+          "verifiedFull100": false,
+          "finalPassGranted": false
+        },
+        {
+          "id": "K06",
+          "code": "YETKILI_FINIS",
+          "name": "Finiş ve doğrulanmış bitiş",
+          "stage": "PRODUCT_FINISH",
+          "existingDomainRefs": [
+            "GOVERNANCE",
+            "E2E_REAL"
+          ],
+          "preparationSourceFiles": [
+            "governance/enguru-suzgeci/zulfikar-v12/ZULFIKAR_V131_OPERATIONAL_SCORECARD_V1.json",
+            "governance/enguru-suzgeci/zulfikar-v12/zulfikar_v131_single_acceptance.py"
+          ],
+          "acceptanceRequirement": "Mevcut DoneCheck v1.2 + yetkili Human Threshold + bağımsız imza/ledger",
+          "realFieldRequirement": "Resmî Verified Finish gerçek makbuzuyla verilir",
+          "candidateSourceEvidence": "SOURCE_REVIEW_REQUIRED",
+          "realAuthority": "AWAIT_TRUSTED_RUNTIME_OR_OWNER",
+          "verifiedFull100": false,
+          "finalPassGranted": false
+        },
+        {
+          "id": "K07",
+          "code": "HEDEF_SONUC_BAGI",
+          "name": "Hedef ve sonuç bağlama",
+          "stage": "REAL_EXECUTION",
+          "existingDomainRefs": [
+            "GOAL",
+            "E2E_REAL"
+          ],
+          "preparationSourceFiles": [
+            "governance/enguru-suzgeci/zulfikar-v12/ZULFIKAR_GOAL_V1_3.json",
+            "governance/enguru-suzgeci/zulfikar-v12/ZULFIKAR_V131_OPERATIONAL_SCORECARD_V1.json"
+          ],
+          "acceptanceRequirement": "Kullanıcı özgün hedef kimliği → görev → gerçek artefakt → kullanıcı sonucu ve kabul",
+          "realFieldRequirement": "Gerçek hedef/sonuç bağının owner tarafından kabulü",
+          "candidateSourceEvidence": "SOURCE_REVIEW_REQUIRED",
+          "realAuthority": "AWAIT_TRUSTED_RUNTIME_OR_OWNER",
+          "verifiedFull100": false,
+          "finalPassGranted": false
+        },
+        {
+          "id": "K08",
+          "code": "BAGLAM_VE_HEDEFI_KORUMA",
+          "name": "Ana bağlamı ve verilen hedefi koruma",
+          "stage": "PREPARATION",
+          "existingDomainRefs": [
+            "GOAL",
+            "GOVERNANCE"
+          ],
+          "preparationSourceFiles": [
+            "governance/enguru-suzgeci/zulfikar-v12/ZULFIKAR_V131_EVRENSEL_100_KABUL_ILKESI_V1.json",
+            "governance/enguru-suzgeci/zulfikar-v12/ZULFIKAR_GOAL_V1_3.json"
+          ],
+          "acceptanceRequirement": "Özgün goal ID, immutable kaynak pini, oturum devri, korunmuş karar, sapma reddi",
+          "realFieldRequirement": "Gerçek çok oturumlu devam testinde geçmiş bağlam ve yetki doğrulanır",
+          "candidateSourceEvidence": "SOURCE_REVIEW_REQUIRED",
+          "realAuthority": "AWAIT_TRUSTED_RUNTIME_OR_OWNER",
+          "verifiedFull100": false,
+          "finalPassGranted": false
+        },
+        {
+          "id": "K09",
+          "code": "TEKNIK_IC_ISLEYIS",
+          "name": "İç işleyiş ve teknik çalışma",
+          "stage": "PREPARATION",
+          "existingDomainRefs": [
+            "GITHUB_ENGINE",
+            "TEST_CI"
+          ],
+          "preparationSourceFiles": [
+            "governance/enguru-suzgeci/zulfikar-v12/zulfikar_v131_operational_bridge.py",
+            "governance/enguru-suzgeci/zulfikar-v12/zulfikar_v131_field_evidence_intake.py"
+          ],
+          "acceptanceRequirement": "Mevcut handler kayıtlarının başlık/SHA uzlaştırması, gerçek GitHub CI + güvenli başarısızlık",
+          "realFieldRequirement": "OSi çalışma ve kaynak/üretim doğrulaması ayrıca yapılır",
+          "candidateSourceEvidence": "SOURCE_REVIEW_REQUIRED",
+          "realAuthority": "AWAIT_TRUSTED_RUNTIME_OR_OWNER",
+          "verifiedFull100": false,
+          "finalPassGranted": false
+        },
+        {
+          "id": "K10",
+          "code": "YONETISIM",
+          "name": "Güvenlik ve yönetişim",
+          "stage": "PRODUCT_FINISH",
+          "existingDomainRefs": [
+            "GOVERNANCE"
+          ],
+          "preparationSourceFiles": [
+            "governance/enguru-suzgeci/zulfikar-v12/ZULFIKAR_V131_EVRENSEL_100_KABUL_ILKESI_V1.json",
+            "governance/enguru-suzgeci/zulfikar-v12/ZULFIKAR_V131_OPERATIONAL_SCORECARD_V1.json"
+          ],
+          "acceptanceRequirement": "Tek owner, tek yazar, mevcut issuer, izin kapsamı, audit, Human Threshold",
+          "realFieldRequirement": "Gerçek owner/issuer yetki kaydı ve DoneCheck kabul makbuzu",
+          "candidateSourceEvidence": "SOURCE_REVIEW_REQUIRED",
+          "realAuthority": "AWAIT_TRUSTED_RUNTIME_OR_OWNER",
+          "verifiedFull100": false,
+          "finalPassGranted": false
+        }
+      ],
+      "goalToOutcomeRule": "FIRST_STAGE_VERIFIED_100_IS_PREREQUISITE_NOT_SUFFICIENT_TO_GRANT_SUCCESSOR_100",
+      "stageDependency": [
+        "GOAL_ARCHITECTURE",
+        "PREPARATION",
+        "REAL_EXECUTION",
+        "PRODUCT_FINISH"
+      ],
+      "globalAcceptance": {
+        "allTenVerified": false,
+        "acceptedCapabilities": 0,
+        "productVerifiedFinish": "AWAIT_AUTHORIZED_EVIDENCE",
+        "sourceCIAndSimulationCannotAutopromoteRealWork": true,
+        "existingDoneCheckAndHumanRequired": true
+      },
+      "knownEvidence": {
+        "githubUniversalPolicyControls": 10,
+        "verifiedGithubSimulationRounds": 3,
+        "githubRuntimeOneTaskFamilyRepeated": 3,
+        "actualHeterogeneousMacTasksAccepted": 0
+      },
+      "nextAuthorizedRealTask": "P02.S01.01 native PiLive source→binary→visible UI receipt via existing Work and Mac owner"
     }
   },
   "historicalDiagnosticBeforeCurrentPolicy": {
