@@ -21,6 +21,7 @@ SEAL={
         "architecture/dom_v10_design.json","README.md","FINAL_KABUL_RAPORU.md",
         "SON_ACIMASIZ_DENETIM.md","evidence/.gitkeep")
   ]+[{"path":".github/workflows/enguru-zulfikar-v141-dom-preflight.yml","sha256":"b"*64}]
+}
 REPORT={
  "engineerPreparationScore":100,"architectureDesignControlsPassed":10,
  "architectureDesignControlsRequired":10,"realLocalUnittestExecutions":177,
