@@ -106,10 +106,12 @@ def verify_all(pins,licenses,fetcher):
     if pins.get("promotion_allowed") is not False:
         return _hold("SOURCE_PROMOTION")
     lookup={}
-    for l in lic:
-        if not isinstance(l,dict) or not isinstance(l.get("repository"),str) or l["repository"] in lookup:
+    for license_entry in lic:
+        if (not isinstance(license_entry,dict) or
+                not isinstance(license_entry.get("repository"),str) or
+                license_entry["repository"] in lookup):
             return _hold("INVALID_LICENSE_REGISTRY")
-        lookup[l["repository"]]=l
+        lookup[license_entry["repository"]]=license_entry
     if set(lookup)!={row.get("repository") for row in rows if isinstance(row,dict)}:
         return _hold("DIFFERENT_REPO_SETS")
     def worker(pin):
