@@ -53,7 +53,7 @@ def valid_contract(doc):
         if (sum(d.get("weight",0) for d in domains)!=100 or
             doc.get("weightedAfterBridge")!=91.25 or
             doc.get("roundedCurrentOverall")!=91 or
-            doc.get("overallOperationalVerdict")!="HOLD_91_100"):
+            doc.get("overallOperationalVerdict")!="CONTINUE_REAL_EVIDENCE_NOT_ACCEPTED"):
             faults.append("WEIGHTED_SCORE_AUTHORITY_DRIFT")
         if any(d.get("verdict")!=("PASS_SCOPE_LIMITED" if d.get("id") not in OPEN
                     else "HOLD_UNDER_100") for d in domains):
@@ -95,7 +95,7 @@ def valid_contract(doc):
         final.get("existingDoneCheck")!="HOLD" or final.get("officialVerifiedFinish")!="HOLD":
         faults.append("REAL_FINISH_UNJUSTIFIED")
     if c.get("goal2State")!="LOCKED_UNTIL_GOAL1_HUMAN_AUTHORIZED_VERIFIED_FINISH" or \
-       c.get("currentState")!="GOAL1_REAL_FIELD_HOLD":
+       c.get("currentState")!="G1_REAL_EVIDENCE_IN_PROGRESS":
         faults.append("PREMATURE_GOAL2_UNLOCK")
     if doc.get("allSixDimensions100") is not False or \
        doc.get("allSixDimensionsPass") is not False or \
@@ -169,7 +169,9 @@ def calculate(doc, source_head, registry_hashes, bind,actions):
       "target":"ALL_SIX_DOMAINS_100_100",
       "sixDomains":[{"id":d["id"],"recordedScore":d["review"],"target":100,
         "verdict":d["verdict"]} for d in doc.get("domains",[]) if isinstance(d,dict)],
-      "recordedOverall":91,
+      "historicalDiagnosticScore":91,
+      "acceptedOperationalScore":None,
+      "operationalDecision":"CONTINUE_IMPROVEMENT_AWAIT_AUTHORIZED_EVIDENCE",
       "goal1":"HOLD_REAL_TASK_AND_OWNER_AUTHORITY",
       "goal2":"LOCKED_UNTIL_GOAL1_VERIFIED_FINISH",
       "operations":operations,
@@ -187,7 +189,7 @@ def calculate(doc, source_head, registry_hashes, bind,actions):
       "preparedGithubScope":"PASS_SCOPED_HISTORICAL_SOURCE_CI",
       "officialVerifiedFinish":"HOLD",
       "nextSingleAction":"Upon actual PiLive Work completion, owner-authorized real Mac native source/binary/UI task evidence must be independently reconciled; then perform next authorized task in order.",
-      "message":"No further subjective scorecards; 91/65/90 remain HOLD until trusted external facts justify moving this single six-domain acceptance contract."}
+      "message":"One source, one 100-only acceptance: historical 91/65/90 are diagnostic; authorized field evidence required before stage PASS."}
 
 
 def main(argv=None):
