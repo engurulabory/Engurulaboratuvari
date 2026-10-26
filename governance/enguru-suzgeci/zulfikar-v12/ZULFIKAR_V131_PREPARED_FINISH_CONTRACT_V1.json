@@ -1,0 +1,153 @@
+{
+  "schema": "enguru.zulfikar.prepared-verified-finish-contract/v1.3.1",
+  "date": "2026-10-26",
+  "title": "Zülfikar V1.3.1 — üç hazırlık alanı 100/100; gerçek saha bağımsız",
+  "authority": {
+    "repository": "engurulabory/Engurulaboratuvari",
+    "onlyExistingRegisteredHandlers": true,
+    "oneEngineeringWriter": true,
+    "noNewCore": true,
+    "noNewIssuer": true,
+    "paidApiDependency": 0,
+    "ownerFieldApprovalRequired": true
+  },
+  "technicalSources": [
+    "governance/enguru-suzgeci/zulfikar-v12/ZULFIKAR_GOAL_V1_3.json",
+    "governance/enguru-suzgeci/zulfikar-v12/zulfikar_v1_3_gates.py",
+    "governance/enguru-suzgeci/zulfikar-v12/zulfikar_v131_operational_bridge.py",
+    "governance/enguru-suzgeci/zulfikar-v12/zulfikar_v131_bridge_score.py",
+    "governance/enguru-suzgeci/zulfikar-v12/zulfikar_v131_field_evidence_intake.py",
+    "governance/enguru-suzgeci/zulfikar-v12/ZULFIKAR_V131_REAL_100_FIELD_HANDOFF_V1.json",
+    "governance/enguru-suzgeci/zulfikar-v12/ZULFIKAR_V131_OPERATIONAL_SCORECARD_V1.json",
+    "governance/mac-engineer/CAPABILITY_EXECUTION_BINDING_V1.json",
+    "governance/mac-engineer/OPERATOR_ACTION_REGISTRY_V1.json"
+  ],
+  "domains": [
+    {
+      "id": "OPERATIONAL_PREPARATION",
+      "target": 100,
+      "baselineFieldAssessment": 91,
+      "method": "10 objective GitHub source-bound checks, 10 points each",
+      "controls": [
+        "OP01_GOAL_SOURCE_100",
+        "OP02_GITHUB_INFRA_100",
+        "OP03_REGISTERED_ACTION_PREFLIGHT_100",
+        "OP04_REGISTRY_HEAD_BYTES_PINNED",
+        "OP05_THREE_PILOT_PATHS_RESOLVED",
+        "OP06_PRIVATE_RECEIPT_VERIFIER_READY",
+        "OP07_OWNER_SCOPE_AND_SINGLE_WRITER_GUARDS",
+        "OP08_NO_FAKE_OPERATIONAL_PASS",
+        "OP09_REVIEW_BRANCH_ONLY_NO_REMOTE_PUSH",
+        "OP10_SUBPROCESS_NEGATIVE_TESTS"
+      ]
+    },
+    {
+      "id": "E2E_FINISH_PREPARATION",
+      "target": 100,
+      "baselineFieldAssessment": 65,
+      "method": "10 source-bound and negative boundary controls, 10 points each",
+      "controls": [
+        "E01_PHASE_ORDER_FROZEN",
+        "E02_SOURCE_HEAD_REQUIREMENT",
+        "E03_DEPENDENCY_RECONCILIATION",
+        "E04_HANDLER_SAFETY_BOUNDARY",
+        "E05_ERROR_RECOVERY_HOLD",
+        "E06_RECEIPT_SHA_BOUNDARY",
+        "E07_INDEPENDENT_REVIEW_REQUIRED",
+        "E08_DONECHECK_HUMAN_SCOPE_PRESERVED",
+        "E09_REAL_FIELD_NOT_AUTO_PROMOTED",
+        "E10_PRIVATE_INTAKE_NEGATIVE_TESTS"
+      ]
+    },
+    {
+      "id": "CROSS_PROJECT_PREPARATION",
+      "target": 100,
+      "baselineFieldAssessment": 90,
+      "method": "10 verified deployment profile controls, 10 points each",
+      "controls": [
+        "P01_THREE_FAMILIES_EXACT",
+        "P02_THREE_DISTINCT_REGISTERED_CAPABILITIES",
+        "P03_REGISTRY_HANDLER_AND_AUTHORITY_MATCH",
+        "P04_EACH_PREFLIGHT_READY_READ_ONLY",
+        "P05_EACH_FAKE_HEAD_REJECTED",
+        "P06_EACH_UNREGISTERED_ACTION_REJECTED",
+        "P07_SHARED_PROOF_FIELDS_DEFINED",
+        "P08_FAMILY_SCOPE_RECONCILED",
+        "P09_NO_DUPLICATE_EXECUTOR",
+        "P10_REPLAY_DETERMINISM"
+      ]
+    }
+  ],
+  "pilots": [
+    {
+      "family": "NATIVE_SWIFTUI_PRODUCT",
+      "project": "ENGURU_PLIVE_P02_USER_SCREEN",
+      "taskId": "P02.S01.01",
+      "githubPR": 241,
+      "capability": "BUILD",
+      "registeredAction": "PACKAGE08_CAP07_BUILD_FIELD_PROOF",
+      "context": "Native Mac compilation pilot; app UI requires independent visual and signed-binary field acceptance",
+      "ownerScope": "AFTER_PILIVE_WORK_HANDOFF"
+    },
+    {
+      "family": "LOCAL_RECOVERY_IDEMPOTENCY",
+      "project": "ENGURU_MAC_ENGINEER",
+      "taskId": "ZV131.RECOVERY.PILOT",
+      "githubPR": null,
+      "capability": "OPERATOR_CONTINUE_DISPATCH",
+      "registeredAction": "MAC_NATIVE_RESTART_RECOVERY_CONTINUITY_PROOF",
+      "context": "Authorized disposable Mac restart/recovery pilot; durable proof remains field HOLD",
+      "ownerScope": "AFTER_EXPLICIT_OWNER_MAC_AUTHORITY"
+    },
+    {
+      "family": "WEB_BUILD_TEST_REPAIR",
+      "project": "ENGURU_WEBSITE_FACTORY",
+      "taskId": "ZV131.WEB.PILOT",
+      "githubPR": null,
+      "capability": "TEST_REGRESSION",
+      "registeredAction": "PACKAGE08_CAP08_TEST_REGRESSION_FIELD_PROOF",
+      "context": "Distinct web/software CI and repair; actual website factory repository scope separately authorized",
+      "ownerScope": "AFTER_SOURCE_AND_OWNER_TASK_CONFIRMATION"
+    }
+  ],
+  "phaseSequence": [
+    "SOURCE_IDENTITY",
+    "OWNER_SCOPE_CHECK",
+    "REGISTERED_PREFLIGHT",
+    "HANDOFF_EXISTING_OPERATOR",
+    "REAL_TEST_AND_OUTPUT",
+    "SOURCE_OUTPUT_RECONCILIATION",
+    "RESTART_RECOVERY_IF_APPLICABLE",
+    "INDEPENDENT_REVIEW",
+    "DONECHECK_HUMAN_THRESHOLD",
+    "PRODUCT_VERIFIED_FINISH"
+  ],
+  "privateReceiptProofFields": [
+    "taskId",
+    "contractId",
+    "sourceHead",
+    "preStateSha256",
+    "registeredHandler",
+    "authorityRecord",
+    "testCommandAndExit",
+    "postStateSha256",
+    "actualOutputDigest",
+    "workReceiptSha256",
+    "independentVerify",
+    "noFalsePass",
+    "idempotencyEvidence",
+    "ownerDecision"
+  ],
+  "fieldBoundaries": {
+    "githubPreparedVerifiedFinishTarget": "100/100_CANDIDATE_BEFORE_EXACT_HEAD_CI",
+    "actualMacTasksAccepted": 0,
+    "realMacRuntime": "HOLD",
+    "independentPeerBenchmark": "HOLD",
+    "customerOutcome": "HOLD",
+    "officialProductVerifiedFinish": "HOLD",
+    "automaticOwnerSignature": false,
+    "syntheticProofEqualsReal": false
+  },
+  "method": "ENGURU_SUZGECI_8_STAGES_AND_ZULFIKAR_V1_3_1",
+  "declaration": "PREPARED_VERIFIED_FINISH is a stage-qualified preparation outcome only, NEVER canonical product VERIFIED_FINISH"
+}
