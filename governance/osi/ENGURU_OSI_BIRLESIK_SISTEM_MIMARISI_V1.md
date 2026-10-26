@@ -1,5 +1,7 @@
 # ENGÜRÜ OSi Birleşik Sistem Mimarisi™ V1
 
+> **2026-10-26 güncel GitHub uzlaştırması:** İlk kaynak gözleminden sonra Zülfikar PR #242 `main` üzerine birleşti. Güncel control main `28db999ba676e4764ae1b644950865674661d0b8`; ürün main `c6ef1555a48beeff94a85cab316c80b3fa60f9c5`; PiLive PR #241 çalışma HEAD'i `64afbf862a393fcb2972f1f2dcbeb98649885fb8`. Bu olayın ayrı kaydı [GITHUB_SOURCE_OBSERVATION_20261026_V1.json](GITHUB_SOURCE_OBSERVATION_20261026_V1.json). Aşağıdaki ilk tablo tarihsel gözlem olup bugünkü HEAD veya gerçek OSi okuması olarak kullanılmaz.
+
 **Tarih:** 2026-10-26 · **STATE:** `ARCHITECTURE_REVIEW_CANDIDATE / OSI_LIVE_READBACK_HOLD`
 **Karar:** Kullanıcı sistem adını ve GitHub ↔ Mac OSi **eşlenik ikiz** çalışma hedefini kabul etti. Bu belge proje/ürün yetkilerinin yerine geçmez.
 
