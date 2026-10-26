@@ -49,7 +49,7 @@ class CycleTests(unittest.TestCase):
         command = (["sha256sum", str(path)] if shutil.which("sha256sum") else
                    ["shasum", "-a", "256", str(path)])
         p = subprocess.run(command, capture_output=True, text=True, timeout=10)
-        return {"processObserved": True, "exitCode": p.returncode, "scope": "LOCAL_DISPOSABLE_PROOF", "artifactSha256": p.stdout.split()[0] if p.returncode == 0 else ""}
+        return {"processObserved": True, "exitCode": p.returncode, "scope": "LOCAL_DISPOSABLE_PROOF", "artifactSha256": p.stdout.split()[0] if p.returncode == 0 else "", "artifactPath": str(path)}
 
     def verify(self, state, goal, receipt):
         self.calls.append("verify")

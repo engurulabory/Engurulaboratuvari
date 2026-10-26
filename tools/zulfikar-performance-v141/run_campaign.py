@@ -74,7 +74,7 @@ def loop(d):
  def evaluator(s,c):return {'output':out.read_text()=='12' and s['value']=='12'}
  def repair(s,g,c):out.write_text('12');return {'value':'12'}
  def tester(s,c):
-  p=proc(['sha256sum',str(out)]);return {'processObserved':True,'exitCode':p['exitCode'],'scope':'LOCAL_DISPOSABLE_PROOF','artifactSha256':p['stdout'].split()[0]}
+  p=proc(['sha256sum',str(out)]);return {'processObserved':True,'exitCode':p['exitCode'],'scope':'LOCAL_DISPOSABLE_PROOF','artifactSha256':p['stdout'].split()[0],'artifactPath':str(out)}
  def verifier(s,c,r):return h(out)==r['artifactSha256'] and out.read_text()==s['value']
  def drive(st=state,**replace):
   kw=dict(simulator=lambda *_:{'valid':True},evaluator=evaluator,repairer=repair,real_tester=tester,independent_verifier=verifier,source_probe=lambda c:h(source)==c['sourcePin'])
@@ -117,7 +117,7 @@ def run(output):
     dump(receipt,row);return {'completed':True}
    def test(state,contract):
     observed=proc([sys.executable,'-B',str(Path(__file__).with_name('verify_task.py')),str(d),str(i)])
-    return {'processObserved':True,'exitCode':observed['exitCode'],'scope':'LOCAL_DISPOSABLE_PROOF','artifactSha256':h(receipt),'independentProcess':observed}
+    return {'processObserved':True,'exitCode':observed['exitCode'],'scope':'LOCAL_DISPOSABLE_PROOF','artifactSha256':h(receipt),'independentProcess':observed,'artifactPath':str(receipt)}
    def verify(state,contract,proof):
     check=proc(['sha256sum',str(receipt)])
     return check['exitCode']==0 and check['stdout'].split()[0]==proof['artifactSha256'] and json.loads(receipt.read_text())['pass'] is True

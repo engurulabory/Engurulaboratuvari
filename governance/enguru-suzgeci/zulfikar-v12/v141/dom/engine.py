@@ -173,6 +173,11 @@ class LocalJournal:
             os.fsync(fd)
         finally:
             os.close(fd)
+        directory_fd = os.open(self.folder, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+        try:
+            os.fsync(directory_fd)
+        finally:
+            os.close(directory_fd)
         self.events.append(entry)
         return entry["hash"]
 
@@ -196,6 +201,67 @@ def actual_source_digest(path: Path):
         return hashlib.sha256(b"".join(content)).hexdigest()
     finally:
         os.close(fd)
+
+
+def pin_artifact_snapshot(journal, artifact_path, expected):
+    """Commit evidence is a separate pinned byte snapshot, not a live pathname.
+
+    This is integrity/durability within the existing cooperative single writer;
+    it does not grant OS isolation against a privileged arbitrary writer.
+    """
+    if not isinstance(artifact_path, str) or not Path(artifact_path).is_absolute():
+        raise ValueError("ACTUAL_ARTIFACT_PATH_REQUIRED")
+    if actual_source_digest(Path(artifact_path)) != expected:
+        raise ValueError("LIVE_ARTIFACT_DIGEST_MISMATCH")
+    fd = journal._open_regular(Path(artifact_path), os.O_RDONLY)
+    try:
+        parts = []
+        size = 0
+        while True:
+            chunk = os.read(fd, 65536)
+            if not chunk:
+                break
+            size += len(chunk)
+            if size > 2_000_000:
+                raise ValueError("ARTIFACT_SNAPSHOT_TOO_LARGE")
+            parts.append(chunk)
+        data = b"".join(parts)
+    finally:
+        os.close(fd)
+    if hashlib.sha256(data).hexdigest() != expected:
+        raise ValueError("ARTIFACT_CHANGED_WHILE_SNAPSHOTTING")
+    name = "dom-artifact-" + expected + ".bin"
+    target = journal.folder / name
+    try:
+        fd = journal._open_regular(target, os.O_WRONLY | os.O_CREAT | os.O_EXCL)
+    except FileExistsError:
+        if actual_source_digest(target) != expected:
+            raise ValueError("ARTIFACT_SNAPSHOT_DRIFT")
+    else:
+        try:
+            offset = 0
+            while offset < len(data):
+                wrote = os.write(fd, data[offset:])
+                if wrote <= 0:
+                    raise ValueError("ARTIFACT_SNAPSHOT_SHORT_WRITE")
+                offset += wrote
+            os.fchmod(fd, 0o400)
+            os.fsync(fd)
+        finally:
+            os.close(fd)
+        directory_fd = os.open(journal.folder, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+        try:
+            os.fsync(directory_fd)
+        finally:
+            os.close(directory_fd)
+    return name
+
+
+def artifact_checkpoint_current(journal, run, snapshot_name):
+    expected = run.get("artifactSha256")
+    return (snapshot_name == "dom-artifact-" + str(expected) + ".bin" and
+            actual_source_digest(journal.folder / snapshot_name) == expected and
+            actual_source_digest(Path(run["artifactPath"])) == expected)
 
 
 def stop(reason, rounds, contract_hash=None, journal_hash=None):
@@ -262,8 +328,19 @@ def _execute_inside_writer(contract, start_state, journal, simulator, evaluator,
         if previous and previous.get("afterDiagnostic") == 100:
             # Idempotency skips task execution, not current evidence validation.
             # Recheck persisted output through the existing separate verifier.
-            replay_run = {"processObserved": True, "exitCode": 0,
-                "scope": contract.scope, "artifactSha256": previous.get("artifactSha256")}
+            history = previous.get("executionProof")
+            if (not isinstance(history, dict) or history.get("processObserved") is not True or
+                type(history.get("exitCode")) is not int or history["exitCode"] != 0 or
+                history.get("artifactSha256") != previous.get("artifactSha256") or
+                history.get("scope") != contract.scope or
+                not isinstance(history.get("artifactPath"), str)):
+                return stop("CHECKPOINT_PROCESS_PROOF_REQUIRED", [], pinned)
+            # Revalidation observes bytes now; it does not observe a new task process.
+            replay_run = {"processObserved": False, "exitCode": None,
+                "executionMode": "CHECKPOINT_REVALIDATION_NO_NEW_TASK_PROCESS",
+                "replayedProcessProof": copy.deepcopy(history),
+                "scope": contract.scope, "artifactSha256": previous.get("artifactSha256"),
+                "artifactPath": history["artifactPath"]}
             if (assess(evaluator(copy.deepcopy(start_state), copy.deepcopy(c)), contract.criteria) != 100 or
                 independent_verifier(copy.deepcopy(start_state), copy.deepcopy(c),
                                      copy.deepcopy(replay_run)) is not True):
@@ -273,11 +350,15 @@ def _execute_inside_writer(contract, start_state, journal, simulator, evaluator,
                 return stop("SOURCE_CHANGED_DURING_REPLAY_VERIFY", [], pinned)
             if journal.read() != journal.events:
                 return stop("JOURNAL_CHANGED_DURING_REPLAY_VERIFY", [], pinned)
+            if not artifact_checkpoint_current(journal, replay_run, previous.get("artifactSnapshot")):
+                return stop("REPLAY_ARTIFACT_OR_SNAPSHOT_CHANGED", [], pinned)
             return {"state": "STAGE_100_CANDIDATE_EXTERNAL_REVIEW_REQUIRED",
                     "contractSha256": pinned, "journalHeadSha256": journal.events[-1]["hash"],
                     "diagnostic": 100, "rounds": [], "acceptedScore": None,
                     "stagePassIssued": False, "productVerifiedFinish": "NOT_ISSUED",
-                    "executorAuthorityCreated": False, "replayedVerifiedCheckpoint": True}
+                    "executorAuthorityCreated": False, "replayedVerifiedCheckpoint": True,
+                    "processObserved": False, "executionMode": "CHECKPOINT_REVALIDATION_NO_NEW_TASK_PROCESS",
+                    "previousExecutionProof": copy.deepcopy(history)}
         # Resume is caller-supplied, reconciled to the prior checkpoint hash.
         state = copy.deepcopy(start_state)
         rounds = []
@@ -306,6 +387,7 @@ def _execute_inside_writer(contract, start_state, journal, simulator, evaluator,
                 type(run.get("exitCode")) is not int or run["exitCode"] != 0 or
                 run.get("scope") != "LOCAL_DISPOSABLE_PROOF" or
                 not isinstance(run.get("artifactSha256"), str) or len(run["artifactSha256"]) != 64 or
+                not isinstance(run.get("artifactPath"), str) or
                 independent_verifier(copy.deepcopy(candidate), c, copy.deepcopy(run)) is not True):
                 return stop("REAL_TEST_OR_INDEPENDENT_VERIFY_FAILED", rounds + [record], pinned)
             record["realTestVerified"] = True
@@ -330,15 +412,25 @@ def _execute_inside_writer(contract, start_state, journal, simulator, evaluator,
                 return stop("ARTIFACT_CHANGED_BEFORE_CHECKPOINT", rounds + [record], pinned)
             if actual_source_digest(Path(source_file)) != contract.source_pin or source_probe(copy.deepcopy(c)) is not True:
                 return stop("SOURCE_CHANGED_BEFORE_CHECKPOINT", rounds + [record], pinned)
+            snapshot = pin_artifact_snapshot(journal, run["artifactPath"], run["artifactSha256"])
+            execution_proof = {key: copy.deepcopy(run[key]) for key in
+                ("processObserved", "exitCode", "scope", "artifactSha256", "artifactPath")}
             journal_head = journal.append({"contractSha256": pinned, "gate": contract.stage,
                 "iteration": index + 1, "afterDiagnostic": current_score, "artifactSha256": run["artifactSha256"],
-                "scope": contract.scope, "stateSha256": sha(candidate), "externalAuthority": False})
+                "scope": contract.scope, "stateSha256": sha(candidate), "externalAuthority": False,
+                "artifactSnapshot": snapshot, "executionProof": execution_proof})
+            # Detect a writer changing the live output during journal publication.
+            # The pinned snapshot remains auditable even when the current output drifts.
+            if not artifact_checkpoint_current(journal, run, snapshot):
+                return stop("ARTIFACT_CHANGED_AT_CHECKPOINT", rounds + [record], pinned, journal_head)
             rounds.append(record)
             state = copy.deepcopy(candidate)
             verified_prior = now
             if current_score == 100:
                 if actual_source_digest(Path(source_file)) != contract.source_pin or source_probe(copy.deepcopy(c)) is not True:
                     return stop("SOURCE_CHANGED_DURING_REAL_TEST", rounds, pinned, journal_head)
+                if not artifact_checkpoint_current(journal, run, snapshot):
+                    return stop("ARTIFACT_CHANGED_AT_CHECKPOINT", rounds, pinned, journal_head)
                 return {"state": "STAGE_100_CANDIDATE_EXTERNAL_REVIEW_REQUIRED",
                         "contractSha256": pinned, "journalHeadSha256": journal_head,
                         "diagnostic": 100, "rounds": rounds, "acceptedScore": None,

@@ -1,0 +1,40 @@
+--- a/tools/enguru_evidence_receipt_io.py
++++ b/tools/enguru_evidence_receipt_io.py
+@@ -12,6 +12,9 @@
+ 
+ 
+ def write_new_json(path: Path, payload: dict, *, evidence_root: Path | None = None) -> Path:
++    if not isinstance(payload, dict):
++        raise ValueError('EVIDENCE_OBJECT_REQUIRED')
++    encoded = (json.dumps(payload, ensure_ascii=False, sort_keys=True, indent=2, allow_nan=False) + '\n').encode('utf-8')
+     root = (evidence_root or (Path.home() / 'Enguru/Evidence/MacEngineer')).expanduser()
+     dst = Path(path).expanduser()
+     if not dst.is_absolute():
+@@ -36,12 +39,15 @@
+             try:
+                 next_fd = os.open(component, flags, dir_fd=fd)
+             except FileNotFoundError:
+-                os.mkdir(component, mode=0o700, dir_fd=fd)
++                try:
++                    os.mkdir(component, mode=0o700, dir_fd=fd)
++                except FileExistsError:
++                    pass  # Another creator is checked by O_NOFOLLOW below.
++                os.fsync(fd)  # Persist the newly created child directory entry.
+                 next_fd = os.open(component, flags, dir_fd=fd)
+             opened.append(next_fd)
+             fd = next_fd
+         name = rel.name
+-        encoded = (json.dumps(payload, ensure_ascii=False, sort_keys=True, indent=2) + '\n').encode('utf-8')
+         temporary = '.' + name + '.' + secrets.token_hex(9) + '.tmp'
+         outfd = os.open(temporary, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW,
+                         0o600, dir_fd=fd)
+@@ -54,7 +60,9 @@
+             raise
+         # Hard-link publishes a complete file atomically, with no replacement.
+         os.link(temporary, name, src_dir_fd=fd, dst_dir_fd=fd, follow_symlinks=False)
++        os.fsync(fd)  # Publish the completed receipt durably before cleanup.
+         os.unlink(temporary, dir_fd=fd)
++        os.fsync(fd)
+         temporary = None
+         return dst
+     finally:

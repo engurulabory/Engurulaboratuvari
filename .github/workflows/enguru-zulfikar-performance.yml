@@ -33,6 +33,23 @@ jobs:
             python3 -B tools/zulfikar-performance-v141/run_campaign.py "evidence/performance/round-$round"
             python3 -B tools/zulfikar-performance-v141/verify_campaign.py "evidence/performance/round-$round"
           done
+      - name: Second exam checkpoint race and truthful process proof
+        run: python3 -B tools/zulfikar-performance-v141/second-exam/test_engine_race.py
+      - name: Three existing source software tasks with actual patches regression and replay
+        run: |
+          python3 -B tools/zulfikar-performance-v141/second-exam/run_real_work.py evidence/second-exam
+          git rev-parse HEAD > evidence/second-exam/source-commit.txt
+          python3 -B tools/zulfikar-performance-v141/second-exam/verify_package.py evidence/second-exam
+      - name: Package actual existing-source task evidence
+        if: always()
+        run: python3 -B tools/zulfikar-performance-v141/second-exam/package_evidence.py evidence/second-exam evidence/second-exam-evidence.zip
+      - name: Preserve second real source task evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: zulfikar-second-existing-source-evidence
+          path: evidence/second-exam-evidence.zip
+          retention-days: 30
       - name: Preserve actual task outputs and independent mechanism receipts
         if: always()
         uses: actions/upload-artifact@v4
