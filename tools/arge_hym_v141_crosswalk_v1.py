@@ -163,6 +163,159 @@ def assess_foundations(h,c,inventory,method,root=ROOT):
         out["state"]="PASS_T01_T02_GITHUB_SOURCE_PREPARATION_ONLY"
     return out
 
+A01_DESIGN_PATH="governance/enguru-suzgeci/reviews/ENGURU_HYM_ZULFIKAR_V141_A01_ARCHITECTURE_CONTRACT_V1.json"
+A01_TASKS=tuple(f"A{i:02d}" for i in range(1,10))
+A01_RESPONSIBILITIES=("inventory","evidence_trace","authority","upstream",
+                      "deployments","independent_e5","g01_g02_g03","k12_tco","exit")
+A01_LEVELS=("PUBLIC_SOURCE_CANDIDATES","ORIGINAL_MATRIX_HOLD","REAL_GRANT_HOLD",
+            "PUBLIC_SOURCE_PARTIAL","CUSTOMER_DEPLOYMENT_HOLD","EXTERNAL_E5_HOLD",
+            "FIELD_GUARANTEES_HOLD","TCO_MEASUREMENT_HOLD","BLOCK01_FINISH_HOLD")
+A01_FORBID=("CUSTOMER_DEPLOYMENT_PASS","E5_PASS","A03_REAL_GRANT_PASS",
+            "A04_IMPLEMENTED_RUNTIME_PASS","DONECHECK_VERIFIED_FINISH",
+            "MAC_OSI_FIELD_PASS")
+DOMAIN_3={"Web":3,"Uygulama":3,"Motor":3,"Çekirdek":3,"Ajan":3,"Ticari":3}
+
+def proof_single_git_file(root=ROOT, rel=A01_DESIGN_PATH):
+    """An additional commit-tied proof, without changing T01 seven-source gate."""
+    out={"state":"HOLD","path":rel}
+    try:
+        if rel!=A01_DESIGN_PATH:
+            raise ValueError("UNAUTHORIZED_SOURCE")
+        root=Path(root).resolve()
+        top=subprocess.run(["git","-C",str(root),"rev-parse","--show-toplevel"],
+                           check=True,capture_output=True,text=True,timeout=15)
+        if Path(top.stdout.strip()).resolve()!=root:
+            raise ValueError("NOT_GIT_ROOT")
+        f=root/rel
+        if f.is_symlink() or not f.is_file() or f.stat().st_nlink!=1 or f.stat().st_size>80000:
+            raise ValueError("UNSAFE_ARCHITECTURE_SOURCE")
+        blob=f.read_bytes()
+        actual=hashlib.sha1(b"blob "+str(len(blob)).encode()+b"\x00"+blob).hexdigest()
+        want=subprocess.run(["git","-C",str(root),"rev-parse","HEAD:"+rel],
+                            check=True,capture_output=True,text=True,timeout=15).stdout.strip()
+        if actual!=want:raise ValueError("ARCHITECTURE_GIT_HEAD_BYTES_DRIFT")
+        out.update({"state":"PASS_GIT_HEAD_DESIGN_BYTES_ONLY","sha256":hashlib.sha256(blob).hexdigest(),
+                    "blob_sha1":actual})
+    except (OSError,ValueError,subprocess.SubprocessError) as e:
+        out["reason"]=type(e).__name__+":"+str(e)[:140]
+    return out
+
+def assess_a01_architecture(m,h,c,source_proof,foundations,method):
+    """Five verified *architecture preparation* outputs; never official A01 PASS."""
+    out={"state":"HOLD_A01_DESIGN_SOURCE_PREPARATION","scope":"ZF.V141.A01_GITHUB_DESIGN_ONLY",
+         "score":0,"checks":{},"original_a01":"HOLD","method_a01":"HOLD",
+         "original_total":"0/40","customer_e5":"0/18","field":"HOLD",
+         "verified_finish":"HOLD"}
+    if not all(isinstance(x,dict) for x in (m,h,c,source_proof,foundations,method)):
+        return out
+    arch=m.get("architecture");impl=m.get("implementationPaths")
+    sources=m.get("sourceBindings");security=m.get("securityBoundaries")
+    recovery=m.get("recoveryPlan");scope=h.get("preserved_scope")
+    counters=h.get("current_counters");real_a03=h.get("A03")
+    real_a04=h.get("A04");e=h.get("A05_A06")
+    items=c.get("cases");baseline=c.get("baseline");rollup=c.get("rollup")
+    if (not all(isinstance(x,dict) for x in
+                (arch,impl,sources,security,recovery,scope,counters,real_a03,
+                 real_a04,e,baseline,rollup)) or not isinstance(items,list)):
+        return out
+    components=arch.get("components")
+    components=components if isinstance(components,list) else []
+    design_tasks=[q.get("original_task_id") for q in components if isinstance(q,dict)]
+    design_responsibilities=[q.get("responsibility") for q in components if isinstance(q,dict)]
+    design_levels=[q.get("present_evidence_level") for q in components if isinstance(q,dict)]
+    declared_sources=[q.get("source_path") for q in components if isinstance(q,dict)]
+    expected_sources=set(FOUNDATION_SOURCE_PATHS)
+    good_components=len(components)==9 and all(
+        isinstance(q,dict) and all(isinstance(q.get(k),str) and q[k].strip()
+            for k in ("original_task_id","responsibility","source_path","required_input",
+                      "expected_output","present_evidence_level","fail_closed_reason",
+                      "authority","proof_kind","next_task"))
+        for q in components)
+    transition_ok=(good_components and all(
+        components[i]["next_task"]==(A01_TASKS[i+1] if i<8 else "AR_TO_ENGINEERING_TRANSFER_HOLD")
+        for i in range(9)))
+    component_scope_ok=(good_components and all(
+        q["authority"]=="EXISTING_CANONICAL_DONECHECK_OWNER_HUMAN_THRESHOLD_ONLY"
+        and q["source_path"] in expected_sources
+        and q["proof_kind"]==("GITHUB_RESEARCH_SOURCES_ONLY" if q["original_task_id"] in
+                             ("A01","A02","A04") else "REAL_EXTERNAL_AUTHORITY_OR_FIELD_REQUIRED")
+        for q in components))
+    cases_ids=[x.get("case_id") for x in items if isinstance(x,dict)]
+    domains=[x.get("domain") for x in items if isinstance(x,dict)]
+    hold_cases=(len(items)==18 and all(isinstance(x,dict) and
+        x.get("independent_e5")=="HOLD" and x.get("exact_customer_deployment_sha")=="HOLD"
+        for x in items))
+    checks={
+      "AD01_architecture": (
+          m.get("schema")=="enguru.hym.zulfikar-v141.architecture-scoped-design/v1"
+          and m.get("method_stage")=="ZF.V141.A01" and m.get("original_task_prefix")=="HYM"
+          and arch.get("no_new_engine") is True
+          and design_tasks==list(A01_TASKS)
+          and design_responsibilities==list(A01_RESPONSIBILITIES)
+          and design_levels==list(A01_LEVELS) and transition_ok and component_scope_ok),
+      "AD02_implementation_paths":(
+          impl.get("entrypoint")=="tools/arge_hym_v141_crosswalk_v1.py"
+          and impl.get("output_mode")=="READ_ONLY_ADVISORY_SCOPED_SCORE"
+          and impl.get("source_integrity")=="GIT_HEAD_BLOB_AND_SHA256"
+          and impl.get("work_queue_path")==HANDOFF
+          and isinstance(impl.get("evidence_sources"),list)
+          and set(impl["evidence_sources"])==set(declared_sources)
+          and impl.get("evidence_matrix")==FOUNDATION_SOURCE_PATHS[5]
+          and "no canonical" in impl.get("rollback","").lower()
+          and source_proof.get("state")=="PASS_GIT_HEAD_DESIGN_BYTES_ONLY"
+          and isinstance(source_proof.get("sha256"),str)
+          and len(source_proof["sha256"])==64
+          and foundations.get("state")=="PASS_T01_T02_GITHUB_SOURCE_PREPARATION_ONLY"),
+      "AD03_source_bindings":(
+          m.get("case_count")==18 and m.get("original_evidence_cells")==234
+          and m.get("criteria_ids")==[f"K{i:02d}" for i in range(1,14)]
+          and m.get("domain_counts")==DOMAIN_3
+          and cases_ids==[f"{i:02d}" for i in range(1,19)]
+          and {domain:domains.count(domain) for domain in DOMAIN_3}==DOMAIN_3
+          and len(domains)==18 and set(domains)==set(DOMAIN_3)
+          and hold_cases and baseline.get("rows")==234 and baseline.get("cases")==18
+          and baseline.get("criteria")==13 and baseline.get("sha256")==V19_SHA
+          and sources.get("K_per_case")==13 and sources.get("actual_matrix_sha_required") is True
+          and sources.get("case_ids_consecutive") is True
+          and sources.get("public_references_only_are_NOT_E5") is True
+          and sources.get("root_repository")=="engurulabory/Engurulaboratuvari"
+          and sources.get("review_pr")==207
+          and rollup.get("independent_e5_pass")==0
+          and m.get("canonical_V3_sha256")==V3_SHA and m.get("V19_matrix_sha256")==V19_SHA),
+      "AD04_security_boundaries":(
+          security.get("human_owner")=="engurulabory"
+          and security.get("peer_reviewer_required_for_github") is False
+          and security.get("issuer")=="EXISTING_CANONICAL_ONLY"
+          and security.get("no_auto_merge") is True
+          and security.get("forbid_claims")==list(A01_FORBID)
+          and security.get("a03_real_grant")==security.get("a04_runtime")=="HOLD"
+          and security.get("customer_e5")==e.get("independent_e5")=="0/18"
+          and security.get("official_progress")==counters.get("overall_official")=="0/40"
+          and security.get("osi")==counters.get("osi_field")=="0/100"
+          and security.get("verified_finish")=="HOLD"
+          and real_a03.get("decision")=="HOLD_REAL_A03_OWNER_ISSUER_REVIEWER_AUTHORITY"
+          and real_a04.get("decision")=="HOLD_OWNER_CANONICAL_SCOPE"
+          and method.get("verifiedFinish")=="HOLD"),
+      "AD05_recovery_plan":(
+          recovery.get("source_drift")=="HOLD_SOURCE_OR_CONTRACT_DRIFT and repeat exact-HEAD CI"
+          and recovery.get("missing_case_or_K")=="HOLD_A01_ORIGINAL_MATRIX_INTEGRITY"
+          and recovery.get("authority_forgery")=="HOLD_EXISTING_ISSUER"
+          and recovery.get("customer_or_E5_forgery")=="HOLD_EXTERNAL_EVIDENCE_MISSING"
+          and recovery.get("failed_ci")=="HOLD_REPAIR_SOURCE_TEST_THEN_NEW_EXACT_HEAD_PROOF"
+          and recovery.get("no_change_to_original_main") is True
+          and recovery.get("no_new_writer") is True
+          and recovery.get("preserve_prior_task_counts") is True
+          and scope.get("original_tasks")==40 and scope.get("blocks")==6
+          and m.get("method_head")==HEAD and m.get("method_source_pr")==246
+          and all(method.get("stageAcceptance",{}).get(s)=="HOLD_STAGE_100_EVIDENCE_REQUIRED"
+                  for s in STAGES))
+    }
+    out["checks"]=checks
+    out["score"]=20*sum(val is True for val in checks.values())
+    if out["score"]==100:
+        out["state"]="PASS_A01_ARCHITECTURE_SOURCE_PREPARATION_ONLY"
+    return out
+
 def duplicate_guard(pairs):
     x={}
     for k,v in pairs:
