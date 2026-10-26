@@ -9,7 +9,7 @@ import tools.arge_hym2_zulfikar_v13_reuse as z
 
 class V13HYM2ReuseTests(unittest.TestCase):
     def test_v13_is_a_distinct_pinned_additive_source(self):
-        self.assertEqual(z.Z13_HEAD,"5720cd0de67f959d44ea8ace42a3a716753077f1")
+        self.assertEqual(z.Z13_HEAD,"28db999ba676e4764ae1b644950865674661d0b8")
         self.assertEqual(len(z.FILES),6)
         self.assertIn("zulfikar_v1_3_gates.py",z.FILES)
         self.assertIn("ZULFIKAR_GOAL_V1_3.json",z.FILES)
@@ -32,8 +32,22 @@ class V13HYM2ReuseTests(unittest.TestCase):
         self.assertEqual(receipt["verified_finish"],"HOLD")
         self.assertEqual(receipt["main_writes"],0)
 
-    def synthetic(self,values=None):
+    def synthetic(self,values=None,owner_override=None):
         files={name:("fixture:"+name).encode() for name in z.FILES}
+        owner_policy={
+            "schema":"enguru.zulfikar.goal-contract/v1.3.1",
+            "authority":{
+                "review_mode":"SOLO_OWNER_AUTOMATED_CI",
+                "owner_id":"engurulabory",
+                "peer_review_required":False,
+                "issuer":"EXISTING_CANONICAL_ONLY",
+                "decision_scope":"GITHUB_TECHNICAL_ACCEPTANCE_ONLY",
+            },
+        }
+        if owner_override is not None:
+            key,value=owner_override
+            owner_policy["authority"][key]=value
+        files["ZULFIKAR_GOAL_V1_3.json"]=json.dumps(owner_policy).encode()
         pins={name:z.blob_hash(contents) for name,contents in files.items()}
         def runner(command,**kwargs):
             k=command[-1]
@@ -60,6 +74,10 @@ class V13HYM2ReuseTests(unittest.TestCase):
         receipt=self.synthetic()
         self.assertEqual(receipt["state"],"PASS_Z13_PINNED_OPERATIONAL_ADAPTER_ONLY")
         self.assertEqual(receipt["z13_goal_specification"],100)
+        self.assertEqual(receipt["solo_owner_github_policy"],"VALIDATED")
+        self.assertEqual(receipt["checkout_integrity"],"TEMP_GIT_HEAD_EQUALS_PINNED_BLOBS")
+        self.assertEqual(receipt["zulfikar_V13_commit"],
+                         "28db999ba676e4764ae1b644950865674661d0b8")
         self.assertEqual(receipt["z13_infra_github_code"],100)
         self.assertEqual(receipt["original_V47_github_readiness"],"50/100_HOLD")
         self.assertEqual(receipt["original_40_official"],"0/40")
@@ -76,6 +94,21 @@ class V13HYM2ReuseTests(unittest.TestCase):
             with self.subTest(kind=kind,field=field):
                 receipt=self.synthetic((kind,field,value))
                 self.assertEqual(receipt["state"],"HOLD")
+                self.assertEqual(receipt["original_40_official"],"0/40")
+
+    def test_fake_peer_mode_or_canonical_issuer_rejected(self):
+        for name,modified in (
+            ("owner_id","other-person"),
+            ("peer_review_required",True),
+            ("review_mode","FAKE_PEER"),
+            ("issuer","NEW_ISSUER"),
+            ("decision_scope","VERIFIED_FINISH"),
+        ):
+            with self.subTest(name=name):
+                receipt=self.synthetic(owner_override=(name,modified))
+                self.assertEqual(receipt["state"],"HOLD")
+                self.assertIn("Z13_MERGED_OWNER_POLICY_DRIFT",
+                              receipt.get("hold_reason",""))
                 self.assertEqual(receipt["original_40_official"],"0/40")
 
     def test_wrong_goal_or_infra_denominator_fails_closed(self):
