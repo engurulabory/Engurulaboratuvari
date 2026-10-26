@@ -99,10 +99,9 @@ class LiveLoopTests(unittest.TestCase):
         self.assertEqual(len(self.last_patched),3)
 
     def test_goal_is_immutable_even_if_callback_mutates_user_dict(self):
-        base=self.simulate
         def corrupt(state,goal):
             self.goal["goalId"]="CORRUPTED"
-            return base(state,goal)
+            return {"status":"PASS_SIMULATION"}
         r=loop.run(self.goal,self.state,self.assess,corrupt,self.repair,self.real_test,self.verify,3)
         self.assertEqual(r["holdReason"],"GOAL_IDENTITY_CHANGED")
 
