@@ -1,0 +1,162 @@
+{
+  "schema": "enguru.zulfikar.v141-pregithub-final-engineering-review/v1",
+  "utc": "2026-10-26T16:31:49.542385+00:00",
+  "verificationScope": "PRE_GITHUB_PREPARATION_AND_DISPOSABLE_TESTS_ONLY",
+  "engineerPreparationScore": 100,
+  "status": "LOCAL_CODE_AND_ADVERSARIAL_PREPARATION_PASS__PRODUCT_FINISH_HOLD",
+  "architectureDesignControlsPassed": 10,
+  "architectureDesignControlsRequired": 10,
+  "architecture": {
+    "controls": {
+      "A01_exact_eight_gate_order": true,
+      "A02_two_separate_foundation_gates": true,
+      "A03_six_distinct_engineering_gates": true,
+      "A04_unique_scope_bound_acceptance": true,
+      "A05_five_distinct_required_outputs_per_gate": true,
+      "A06_all_ten_shared_capabilities": true,
+      "A07_original_user_goal_and_stop": true,
+      "A08_pilive_frozen": true,
+      "A09_field_and_issuer_kept_separate": true,
+      "A10_source_and_stage_guards_real": true
+    },
+    "gatesDefined": [
+      "T01",
+      "T02",
+      "A01",
+      "A02",
+      "A03",
+      "A04",
+      "A05",
+      "A06"
+    ],
+    "originalUserGoal": "ZF.V141.PREGH.2026-10-26",
+    "tenCapabilitiesReferenced": [
+      "K01_ARCHITECTURE",
+      "K02_SIMULATION",
+      "K03_RESEARCH_AND_SCORING",
+      "K04_ITERATION",
+      "K05_END_TO_END",
+      "K06_FINISH",
+      "K07_GOAL_OUTCOME",
+      "K08_CONTEXT_CONTINUITY",
+      "K09_TECHNICAL_ENGINEERING",
+      "K10_GOVERNANCE"
+    ]
+  },
+  "fiveEngineeringDomains": [
+    {
+      "id": "D01",
+      "name": "Hedef/kimlik ve bağlam bütünlüğü",
+      "points": 20,
+      "baselineCoverage": true,
+      "independentAdversarialCoverage": true,
+      "sourceRequirements": [
+        "Tek goalId, stage, acceptanceIds ve source SHA",
+        "Hedef kayması reddi",
+        "Aşamaların kaynak/öncelik sırası",
+        "Onay dışında yeni kapsam açılmaması"
+      ]
+    },
+    {
+      "id": "D02",
+      "name": "Eksik–onarım–yeniden değerlendirme",
+      "points": 20,
+      "baselineCoverage": true,
+      "independentAdversarialCoverage": true,
+      "sourceRequirements": [
+        "Simülasyon ve puanlama",
+        "Açık kriterleri onarma",
+        "Her onarımda yeniden test/simülasyon/puanlama",
+        "Regresyon ve ilerlemesiz işlem reddi"
+      ]
+    },
+    {
+      "id": "D03",
+      "name": "Gerçek test ve sonuç kanıtı",
+      "points": 20,
+      "baselineCoverage": true,
+      "independentAdversarialCoverage": true,
+      "sourceRequirements": [
+        "Ayrı gerçek işlem çalıştırma",
+        "Bağımsız hash/mekanizma kontrolü",
+        "Gerçek işlem başarısızlığında güvenli ret",
+        "Sahte PASS ve sentetik kanıt reddi"
+      ]
+    },
+    {
+      "id": "D04",
+      "name": "Döngü sürekliliği ve kalıcı kazanım",
+      "points": 20,
+      "baselineCoverage": true,
+      "independentAdversarialCoverage": true,
+      "sourceRequirements": [
+        "SHA zincirli makbuz defteri",
+        "Kaldığı durumdan kaynak tutarlı devam",
+        "100 sonucu tekrar çalıştırmayan idempotency",
+        "Çoklu yazar/değişmiş günlük reddi"
+      ]
+    },
+    {
+      "id": "D05",
+      "name": "Güvenli durma ve yetki sınırı",
+      "points": 20,
+      "baselineCoverage": true,
+      "independentAdversarialCoverage": true,
+      "sourceRequirements": [
+        "Yalnız kanıtlı 100'de aşama incelemesi",
+        "12'lik azami çağrı sınırı",
+        "Mac owner/issuer yetkisinin doğmaması",
+        "GitHub ve OSi'ye yazmadan durma"
+      ]
+    }
+  ],
+  "threeRealLocalTestRounds": [
+    {
+      "cycle": 1,
+      "tests": 126,
+      "distinctTests": 126,
+      "pass": true,
+      "logSha256": "d28e6e943348f33a2c8bfb5cc3ec38d47ad40e1e07f598f826b87b490d43f978"
+    },
+    {
+      "cycle": 2,
+      "tests": 126,
+      "distinctTests": 126,
+      "pass": true,
+      "logSha256": "0bd04f54103d58cb399587a4cec744ebc04b5e36ff5adca565650a597099c909"
+    },
+    {
+      "cycle": 3,
+      "tests": 126,
+      "distinctTests": 126,
+      "pass": true,
+      "logSha256": "4719b590da362a710d167f0ea5b23b642cd30ce3a0ca8984935d8c5be8763d42"
+    }
+  ],
+  "realLocalUnittestExecutions": 378,
+  "testedRealTaskMechanism": "ISOLATED_DISPOSABLE_ARTIFACT_AND_SEPARATE_OS_PROCESS",
+  "completionGuard": "ORIGINAL_CRITERIA_FRESH_REVIEW_REQUIRED_NO_LLM_SELF_ACCEPTANCE",
+  "crossSessionFieldReview": "NOT_AUTHENTICATED_OUTSIDE_LOCAL_SIMULATION",
+  "portableCommandAvailability": "SHA256SUM_ON_LINUX_SHASUM_ON_MAC_DESIGN_ONLY",
+  "sourceHashes": {
+    "dom/engine.py": "05ba3926809bfc1cf58055d3feaf0b5e995018045649bdcf92f050cb9cd6c657",
+    "dom/proof_chain.py": "6f2f83faa42b75f4a57a1c8d15d58baf69052d962b3fdcc744ccccf2a966cc8d",
+    "dom/completion_guard.py": "070dba8a686cf01705ac2df8af0f907d968c12d08ab116f5f539853638e0b8a8",
+    "dom/test_engine.py": "6489072a5659df5cdeee8f6617ce4603999abc5c8914b3ce5c4c135302237af5",
+    "dom/test_final_hardening.py": "9cc22155f20a903f6de1e64a3ffdebdd73c41698a731573e5d7f8a4c66ef29bb",
+    "dom/test_proof_chain.py": "58fac53c700c64aee83387f8a44eb59485e90582ad404864052ac93f1ae17219",
+    "dom/test_completion_guard.py": "e5778138551915288d9c0abdb64ec0857ce7c2ee0db89aefdc58e3d3c2e3fede",
+    "architecture/dom_v10_design.json": "a3907e2916f3c67bcc023abd9e3d23b4bcc64102541fecab5a8841a45c825b69",
+    "architecture/zulfikar_v141_8_gate_architecture.json": "8281b324330d8b89c11c429e4e524ede4fcbe9ebe468063c410c822077525988",
+    "preflight.py": "c79d0ac58d5701321ce49eb480dd63081386c1e57fdc0eb7261b2bf756614c2b"
+  },
+  "journalAuthority": "LOCAL_UNTRUSTED_UNTIL_EXTERNALLY_PINNED_AND_REVIEWED",
+  "tenFullRealCapabilities": "NO_PRODUCT_WIDE_100_ASSERTED",
+  "productFinishCapacityAcceptedScore": null,
+  "MacOwnerOrNativeField": "NOT_EXECUTED",
+  "GitHubCommitOrCI": "NOT_STARTED",
+  "productVerifiedFinish": "NOT_ISSUED",
+  "PiLive": "PARKED_UNCHANGED",
+  "next": "OWNER_AUTHORIZED_GITHUB_REGISTRATION_AND_CI_AFTER_APPROVAL",
+  "stop": "BEFORE_GITHUB_WRITE_OR_ACTIONS"
+}

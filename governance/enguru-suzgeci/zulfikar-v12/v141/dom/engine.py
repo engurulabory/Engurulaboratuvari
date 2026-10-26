@@ -329,3 +329,63 @@ def _execute_inside_writer(contract, start_state, journal, simulator, evaluator,
                     journal.events[-1]["hash"] if journal.events else None)
     except (ValueError, TypeError, KeyError, OSError, OverflowError, RecursionError) as exc:
         return stop("SAFE_FAILURE_" + type(exc).__name__, [], None)
+
+
+def audit_real_work_handoff(contract: Contract, workspace: Path,
+                            acceptance_requirements: dict, evidence_bindings: list,
+                            phase_runs: list, *, observed_working_result: bool = False,
+                            independent_review: dict | None = None,
+                            owner_decision: dict | None = None,
+                            donecheck: dict | None = None,
+                            existing_authority_verifier=None, completion_attestation=None,
+                            independent_session_verifier=None):
+    """V1.4.1 DÖM handoff audit within the existing engine.
+
+    Keeps local evidence, executed-task proofs, and official decisions distinct.
+    It never runs Work, writes to GitHub, issues owner decisions or claims PASS.
+    """
+    from proof_chain import audit_evidence, assess_three_phase_runs, finish_readiness
+    from completion_guard import audit_completion_claim
+    contract.validate()
+    # Missing or malformed evidence requirements must return an actionable HOLD,
+    # never a crash (especially when a model has omitted the contract entirely).
+    try:
+        evidence = audit_evidence(workspace, acceptance_requirements,
+                                  evidence_bindings, goal_id=contract.goal_id)
+    except (ValueError, TypeError, OSError):
+        evidence = {'state': 'EVIDENCE_HOLD', 'goalId': contract.goal_id,
+                    'criteriaTotal': len(contract.criteria), 'criteriaMet': 0,
+                    'invalid': [{'reason': 'ACCEPTANCE_REQUIREMENTS_OR_BINDINGS_INVALID'}],
+                    'acceptedScore': None, 'officialPassIssued': False}
+    # Supplied evidence criteria must be the exact original acceptance scope.
+    # A narrowed/substituted acceptance contract cannot produce a ready handoff.
+    if not isinstance(acceptance_requirements, dict) or set(acceptance_requirements) != set(contract.criteria):
+        evidence['state'] = 'EVIDENCE_HOLD'
+        evidence['originalCriteriaMismatch'] = {
+            'missing': sorted(set(contract.criteria) - set(acceptance_requirements or {}) if isinstance(acceptance_requirements, dict) else set(contract.criteria)),
+            'extra': sorted(set(acceptance_requirements or {}) - set(contract.criteria)) if isinstance(acceptance_requirements, dict) else []
+        }
+    phases = assess_three_phase_runs(workspace, phase_runs, goal_id=contract.goal_id)
+    completion = audit_completion_claim(workspace, contract, completion_attestation,
+        independent_session_verifier=independent_session_verifier)
+    finish = finish_readiness(contract.goal_id, evidence, phases,
+        observed_working_result=observed_working_result,
+        independent_review=independent_review, owner_decision=owner_decision,
+        donecheck=donecheck, existing_authority_verifier=existing_authority_verifier)
+    if completion['state'] != 'CROSS_SESSION_LOCAL_COMPLETENESS_CANDIDATE':
+        finish = {'state':'FINISH_HOLD','missing':sorted(set(
+            finish.get('missing', []) + ['CROSS_SESSION_COMPLETENESS_PROOF'])),
+            'acceptedScore':None,'verifiedFinishIssued':False}
+    return {'goalId': contract.goal_id, 'stage': contract.stage,
+            'contractSha256': sha(contract.record()),
+            'evidence': evidence, 'realExecution': phases, 'completion': completion,
+            'finish': finish,
+            'stagePassIssued': False, 'productVerifiedFinish': 'NOT_ISSUED',
+            'nextAction': ('EXTERNAL_OWNER_DONECHECK_VERIFY' if
+              completion['state'] == 'CROSS_SESSION_LOCAL_COMPLETENESS_CANDIDATE' and
+              evidence['state'] == 'EVIDENCE_READY_FOR_EXTERNAL_REVIEW' and
+              phases['state'] == 'THREE_PHASE_LOCAL_PROOF_CANDIDATE' and
+              observed_working_result is True and
+              set(finish.get('missing', [])) <= {'INDEPENDENT_REVIEW_RECORD', 'OWNER_DECISION_RECORD',
+                      'OFFICIAL_DONECHECK_RECORD', 'EXISTING_AUTHORITY_BRIDGE', 'AUTHORIZED_ACCEPTANCE_UNVERIFIED'}
+              else 'REPAIR_MISSING_REAL_EVIDENCE')}

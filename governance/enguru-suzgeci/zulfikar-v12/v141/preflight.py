@@ -21,7 +21,37 @@ GATES = ('T01','T02','A01','A02','A03','A04','A05','A06')
 NATIVE_SCOPE = 'PRE_GITHUB_PREPARATION_AND_DISPOSABLE_TESTS_ONLY'
 BASELINE_TESTS=38
 HARDENING_TESTS=21
-EXPECTED_TESTS=BASELINE_TESTS+HARDENING_TESTS
+TRUTH_CHAIN_TESTS = 34
+COMPLETION_GUARD_TESTS = 33
+EXPECTED_TESTS=BASELINE_TESTS+HARDENING_TESTS+TRUTH_CHAIN_TESTS+COMPLETION_GUARD_TESTS
+CRITICAL_NEW_TESTS = (
+    'test_a02_80_controls_on_39_unique_files_not_80_sources',
+    'test_a03_relabelled_same_source_cannot_fake_two_roots',
+    'test_b01_real_three_distinct_subprocess_observations',
+    'test_c05_authority_bridge_refuses_record',
+    'test_02_only_seven_of_ten_claimed_holds',
+    'test_04_70_percent_peer_review_catches_self_reported_100',
+    'test_07_without_external_verifier_is_hold',
+    'test_09_changed_actual_output_is_hold',
+    'test_13_independent_review_open_defect_holds',
+    'test_14_no_adversarial_negative_control_holds',
+    'test_17_happy_path_is_candidate_never_official_pass',
+    'test_21_reused_review_for_older_execution_checkpoint_refused',
+    'test_22_reviewer_receipt_must_bind_latest_checkpoint',
+    'test_23_existing_handoff_cannot_skip_fresh_review',
+    'test_25_changed_original_goal_bytes_are_hold',
+    'test_28_narrowed_evidence_acceptance_is_hold',
+    'test_29_substituted_evidence_criterion_is_hold',
+    'test_d01_claim_success_receipt_says_failure_is_hold',
+    'test_d02_claim_recovery_receipt_says_no_recovery_is_hold',
+    'test_d03_claim_exit_zero_receipt_exit_failure_is_hold',
+    'test_d04_claim_regression_clear_receipt_says_false_is_hold',
+    'test_30_external_verifier_mutates_goal_mid_review_is_hold',
+    'test_31_external_verifier_mutates_output_mid_review_is_hold',
+    'test_32_missing_entire_evidence_contract_is_hold_not_crash',
+    'test_33_malformed_evidence_list_is_hold_not_crash',
+)
+
 HARDENING_REQUIREMENTS = {
     'D01': ('test_39_predecessor_gate_missing_blocks_A01','test_41_predecessor_wrong_goal_blocks',
             'test_45_forged_source_probe_cannot_bypass_real_bytes','test_46_missing_source_path_blocks'),
@@ -88,7 +118,7 @@ def run():
         count=re.search(r'Ran\s+(\d+)\s+tests\s+in',text)
         names=set(re.findall(r'^(test_[A-Za-z0-9_]+)\s+\(',text,re.M))
         if (proc.returncode!=0 or count is None or int(count.group(1))!=EXPECTED_TESTS or
-            len(names)!=EXPECTED_TESTS or '\nOK\n' not in text or
+            len(names)!=EXPECTED_TESTS or not set(CRITICAL_NEW_TESTS).issubset(names) or '\nOK\n' not in text or
             '\nFAILED' in text or '\nERROR:' in text or
             (testnames is not None and testnames!=names)):
             raise RuntimeError(f'TEST_ROUND_FAILED_{cycle}_{proc.returncode}_{len(names)}')
@@ -106,7 +136,7 @@ def run():
     scored=sum(x['points'] for x in tested)
     if scored!=100:
         raise RuntimeError('INCOMPLETE_PRE_GITHUB_ENGINEERING_COVERAGE')
-    proof_files=['dom/engine.py','dom/test_engine.py','dom/test_final_hardening.py',
+    proof_files=['dom/engine.py','dom/proof_chain.py','dom/completion_guard.py','dom/test_engine.py','dom/test_final_hardening.py','dom/test_proof_chain.py','dom/test_completion_guard.py',
                  'architecture/dom_v10_design.json','architecture/zulfikar_v141_8_gate_architecture.json',
                  'preflight.py']
     result={
@@ -114,7 +144,7 @@ def run():
        'utc':dt.datetime.now(dt.timezone.utc).isoformat(),
        'verificationScope':NATIVE_SCOPE,
        'engineerPreparationScore':scored,
-       'status':'LOCAL_SOURCE_AND_TEST_PREPARATION_100_PASS',
+       'status':'LOCAL_CODE_AND_ADVERSARIAL_PREPARATION_PASS__PRODUCT_FINISH_HOLD',
        'architectureDesignControlsPassed':len(structure['controls']),
        'architectureDesignControlsRequired':10,
        'architecture':structure,
@@ -122,10 +152,13 @@ def run():
        'threeRealLocalTestRounds':rounds,
        'realLocalUnittestExecutions':sum(x['tests'] for x in rounds),
        'testedRealTaskMechanism':'ISOLATED_DISPOSABLE_ARTIFACT_AND_SEPARATE_OS_PROCESS',
+       'completionGuard':'ORIGINAL_CRITERIA_FRESH_REVIEW_REQUIRED_NO_LLM_SELF_ACCEPTANCE',
+       'crossSessionFieldReview':'NOT_AUTHENTICATED_OUTSIDE_LOCAL_SIMULATION',
        'portableCommandAvailability':'SHA256SUM_ON_LINUX_SHASUM_ON_MAC_DESIGN_ONLY',
        'sourceHashes':{p:digest(ROOT/p) for p in proof_files},
        'journalAuthority':'LOCAL_UNTRUSTED_UNTIL_EXTERNALLY_PINNED_AND_REVIEWED',
        'tenFullRealCapabilities':'NO_PRODUCT_WIDE_100_ASSERTED',
+       'productFinishCapacityAcceptedScore':None,
        'MacOwnerOrNativeField':'NOT_EXECUTED',
        'GitHubCommitOrCI':('ACTION_RUNNER_TEST_SCOPE_ONLY' if os.environ.get('GITHUB_ACTIONS')=='true' else 'NOT_STARTED'),
        'productVerifiedFinish':'NOT_ISSUED',
