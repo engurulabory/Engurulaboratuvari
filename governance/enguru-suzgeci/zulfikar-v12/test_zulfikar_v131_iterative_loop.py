@@ -72,12 +72,12 @@ class LiveLoopTests(unittest.TestCase):
         content=(Path(state["workspace"])/"task.json").read_bytes()
         return receipt.get("receiptSha256")==hashlib.sha256(content).hexdigest()
 
-    def run(self,rounds=3):
+    def drive_cycle(self,rounds=3):
         return loop.run(self.goal,self.state,self.assess,self.simulate,
                         self.repair,self.real_test,self.verify,max_rounds=rounds)
 
     def test_three_real_repair_and_test_rounds(self):
-        r=self.run()
+        r=self.drive_cycle()
         self.assertEqual(r["decision"],"STAGE_100_CANDIDATE_EXTERNAL_ACCEPTANCE_REQUIRED")
         self.assertEqual([h["afterAssessment"]["diagnostic"] for h in r["history"]],[33,66,100])
         self.assertEqual(len(self.last_patched),3)
@@ -86,16 +86,16 @@ class LiveLoopTests(unittest.TestCase):
         self.assertFalse(r["stagePassIssued"])
 
     def test_order_simulation_before_first_score_and_resimulation_after_real_test(self):
-        self.run(1)
+        self.drive_cycle(1)
         self.assertEqual(self.order[:8],["SIMULATE","ASSESS","REPAIR","REAL_TEST","VERIFY",
                                            "SIMULATE","ASSESS"])
 
     def test_real_subprocess_was_used_each_round(self):
-        r=self.run()
+        r=self.drive_cycle()
         self.assertEqual(sum(h["afterRealTest"]["actualSubprocessObserved"] is True for h in r["history"]),3)
 
     def test_no_more_repairs_after_candidate100(self):
-        self.run()
+        self.drive_cycle()
         self.assertEqual(len(self.last_patched),3)
 
     def test_goal_is_immutable_even_if_callback_mutates_user_dict(self):
@@ -106,7 +106,7 @@ class LiveLoopTests(unittest.TestCase):
         self.assertEqual(r["holdReason"],"GOAL_IDENTITY_CHANGED")
 
     def test_incomplete_rounds_continue_without_passing(self):
-        r=self.run(2)
+        r=self.drive_cycle(2)
         self.assertEqual(r["decision"],"CONTINUE_IMPROVEMENT")
         self.assertEqual(r["holdReason"],"ITERATION_LIMIT")
         self.assertEqual(len(r["history"]),2)
@@ -170,7 +170,7 @@ class LiveLoopTests(unittest.TestCase):
     def test_fake_acceptance_not_issued_even_if_initial_100(self):
         self.state["checks"]={k:True for k in self.goal["checkIds"]}
         self.target.write_text(json.dumps(self.state["checks"],sort_keys=True),encoding="utf8")
-        r=self.run()
+        r=self.drive_cycle()
         self.assertEqual(r["decision"],"STAGE_100_CANDIDATE_EXTERNAL_ACCEPTANCE_REQUIRED")
         self.assertEqual(len(r["history"]),1)
         self.assertFalse(r["history"][0]["repairApplied"])
@@ -178,31 +178,31 @@ class LiveLoopTests(unittest.TestCase):
 
     def test_product_stage_requires_real_owner(self):
         self.goal["stage"]="PRODUCT_FINISH"
-        r=self.run()
+        r=self.drive_cycle()
         self.assertEqual(r["officialVerifiedFinish"],"AWAIT_AUTHORIZED_DONECHECK_HUMAN_THRESHOLD")
         self.assertFalse(r["stagePassIssued"])
 
     def test_empty_goal_fails(self):
         self.goal["checkIds"]=[]
-        self.assertEqual(self.run()["holdReason"],"INVALID_GOAL_OR_HANDLERS")
+        self.assertEqual(self.drive_cycle()["holdReason"],"INVALID_GOAL_OR_HANDLERS")
 
     def test_duplicate_check_id_fails(self):
         self.goal["checkIds"]=["A","A"]
-        self.assertEqual(self.run()["holdReason"],"INVALID_GOAL_OR_HANDLERS")
+        self.assertEqual(self.drive_cycle()["holdReason"],"INVALID_GOAL_OR_HANDLERS")
 
     def test_bad_target_not_100_fails(self):
         self.goal["targetScore"]=99
-        self.assertEqual(self.run()["holdReason"],"INVALID_GOAL_OR_HANDLERS")
+        self.assertEqual(self.drive_cycle()["holdReason"],"INVALID_GOAL_OR_HANDLERS")
 
     def test_boolean_maxrounds_is_invalid(self):
-        self.assertEqual(self.run(True)["holdReason"],"INVALID_GOAL_OR_HANDLERS")
+        self.assertEqual(self.drive_cycle(True)["holdReason"],"INVALID_GOAL_OR_HANDLERS")
 
     def test_bad_stage_fails(self):
         self.goal["stage"]="FORGED_STAGE"
-        self.assertEqual(self.run()["holdReason"],"INVALID_GOAL_OR_HANDLERS")
+        self.assertEqual(self.drive_cycle()["holdReason"],"INVALID_GOAL_OR_HANDLERS")
 
     def test_beyond_budget_fails(self):
-        self.assertEqual(self.run(13)["holdReason"],"INVALID_GOAL_OR_HANDLERS")
+        self.assertEqual(self.drive_cycle(13)["holdReason"],"INVALID_GOAL_OR_HANDLERS")
 
     def test_regression_after_repair_is_rejected(self):
         self.state["checks"]["A"]=True
