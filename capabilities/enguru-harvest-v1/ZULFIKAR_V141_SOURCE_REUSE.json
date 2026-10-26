@@ -1,13 +1,13 @@
 {
   "schema": "enguru.harvest.zulfikar-v141-source-reuse/v1",
   "source_repository": "engurulabory/Engurulaboratuvari",
-  "source_git_commit": "4780d96ccb16ca4a922846ab48918262c7845f47",
-  "source_seal_path": "governance/enguru-suzgeci/zulfikar-v12/v141/GITHUB_SOURCE_SHA_SEAL_V1.json",
+  "source_git_commit": "8fbd40c8fde34e7f8d77d5079c4da86a1baa8dad",
+  "source_seal_path": "governance/enguru-suzgeci/zulfikar-v12/v141/GITHUB_SOURCE_SHA_SEAL_V2.json",
   "source_prefix": "governance/enguru-suzgeci/zulfikar-v12/v141/",
-  "archive_sha256": "366d906c3f44e86d834a311365c2bead51f82509faec7568c6374209b5c9224e",
-  "source_ci_run": "https://github.com/engurulabory/Engurulaboratuvari/actions/runs/40331904835",
-  "source_ci_success_count": 8,
-  "source_ci_total": 8,
+  "archive_sha256": "9afeed3a6def9af6e76137b15e91e82ba617b0b1f2dac96f8aaf7e70fd3fe41e",
+  "source_ci_run": "https://github.com/engurulabory/Engurulaboratuvari/actions/runs/40371463288",
+  "source_ci_success_count": 9,
+  "source_ci_total": 9,
   "allowed_mode": "TEMPORARY_GITHUB_RUNNER_COPIED_SOURCE_ONLY",
   "github_merge": 0,
   "osi_execution": 0,
@@ -42,7 +42,7 @@
     },
     {
       "id": "A04",
-      "harvest": "PR243 exact-head CI plus pinned V1.4.1 original preflight 177/177",
+      "harvest": "Exact-head PR243 CI plus current V1.4.1 378/378 CI and V2 SHA seal 18/18",
       "state": "READY_FOR_CI"
     },
     {

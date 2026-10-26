@@ -29,11 +29,11 @@ def validate_contract(data):
         raise ValueError("V141_REPOSITORY")
     if not isinstance(data.get("source_git_commit"),str) or SHA40.fullmatch(data["source_git_commit"]) is None:
         raise ValueError("V141_COMMIT_PIN")
-    if data.get("source_seal_path")!="governance/enguru-suzgeci/zulfikar-v12/v141/GITHUB_SOURCE_SHA_SEAL_V1.json":
+    if data.get("source_seal_path")!="governance/enguru-suzgeci/zulfikar-v12/v141/GITHUB_SOURCE_SHA_SEAL_V2.json":
         raise ValueError("V141_SEAL_PATH")
     if data.get("source_prefix")!="governance/enguru-suzgeci/zulfikar-v12/v141/":
         raise ValueError("V141_STAGE_PREFIX")
-    if data.get("archive_sha256")!="366d906c3f44e86d834a311365c2bead51f82509faec7568c6374209b5c9224e":
+    if data.get("archive_sha256")!="9afeed3a6def9af6e76137b15e91e82ba617b0b1f2dac96f8aaf7e70fd3fe41e":
         raise ValueError("V141_ARCHIVE_PIN")
     if (data.get("allowed_mode")!="TEMPORARY_GITHUB_RUNNER_COPIED_SOURCE_ONLY" or
         data.get("official_finish")!="HOLD" or data.get("owner_acceptance")!="HOLD" or
@@ -49,16 +49,16 @@ def validate_contract(data):
     return True
 
 def check_seal(seal, contract):
-    if not isinstance(seal,dict) or seal.get("schema")!="enguru.zulfikar.v141.github-source-sha-seal/v1":
+    if not isinstance(seal,dict) or seal.get("schema")!="enguru.zulfikar.v141.github-source-sha-seal/v2":
         raise ValueError("V141_SOURCE_SEAL")
-    if (seal.get("archiveSha256")!=contract["archive_sha256"] or
+    if (seal.get("sourcePackageSha256")!=contract["archive_sha256"] or
         seal.get("repository")!=contract["source_repository"] or
         seal.get("ownerDoneCheck")!="NOT_ISSUED" or
         seal.get("actualMacOsi")!="NOT_EXECUTED" or
         seal.get("verifiedFinish")!="NOT_ISSUED"):
         raise ValueError("V141_SOURCE_SEAL_AUTHORITY")
     rows=seal.get("stageFiles")
-    if not isinstance(rows,list) or len(rows)!=11:
+    if not isinstance(rows,list) or len(rows)!=18:
         raise ValueError("V141_SOURCE_FILE_COUNT")
     names=set()
     for item in rows:
@@ -72,7 +72,7 @@ def check_seal(seal, contract):
             p.startswith("/") or ".." in Path(p).parts):
             raise ValueError("V141_UNSAFE_FILE")
         names.add(p)
-    for required in ("preflight.py","dom/engine.py","dom/test_engine.py","dom/test_final_hardening.py"):
+    for required in ("preflight.py","dom/engine.py","dom/proof_chain.py","dom/completion_guard.py","dom/test_engine.py","dom/test_final_hardening.py","dom/test_proof_chain.py","dom/test_completion_guard.py","verify_github_source_seal_v2.py","test_source_seal_v2.py"):
         if contract["source_prefix"]+required not in names:
             raise ValueError("V141_ENGINE_MISSING")
     return rows
@@ -105,9 +105,9 @@ def evaluate_report(report):
     return (report.get("engineerPreparationScore")==100 and
         report.get("architectureDesignControlsPassed")==10 and
         report.get("architectureDesignControlsRequired")==10 and
-        report.get("realLocalUnittestExecutions")==177 and
+        report.get("realLocalUnittestExecutions")==378 and
         isinstance(rounds,list) and len(rounds)==3 and
-        all(isinstance(r,dict) and r.get("tests")==59 and r.get("pass") is True for r in rounds) and
+        all(isinstance(r,dict) and r.get("tests")==126 and r.get("pass") is True for r in rounds) and
         report.get("productVerifiedFinish")=="NOT_ISSUED" and
         report.get("GitHubCommitOrCI")=="ACTION_RUNNER_TEST_SCOPE_ONLY")
 
@@ -136,7 +136,7 @@ def main():
             "harvest_head":git("rev-parse","HEAD").decode().strip(),
             "zulfikar_source_commit":commit,
             "source_file_sha256_verified":files,
-            "source_archive_sha256_claim":seal["archiveSha256"],
+            "source_archive_sha256_claim":seal["sourcePackageSha256"],
             "original_preflight_exit":p.returncode,
             "three_rounds":report.get("threeRealLocalTestRounds",[]),
             "real_local_unittests":report.get("realLocalUnittestExecutions",0),

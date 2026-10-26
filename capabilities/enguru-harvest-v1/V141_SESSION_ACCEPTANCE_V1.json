@@ -5,9 +5,9 @@
   "pr": 243,
   "last_verified_exact_head": "59e5b7043f55bf103d9dfa81354fce5d207f30fc",
   "last_verified_run": "https://github.com/engurulabory/Engurulaboratuvari/actions/runs/40334891582",
-  "source_v141_commit": "4780d96ccb16ca4a922846ab48918262c7845f47",
-  "source_files_sha256_validated": 11,
-  "source_v141_real_test_executions": 177,
+  "source_v141_commit": "8fbd40c8fde34e7f8d77d5079c4da86a1baa8dad",
+  "source_files_sha256_validated": 18,
+  "source_v141_real_test_executions": 378,
   "harvest_real_regression_tests": 119,
   "workflow_success": 5,
   "workflow_required": 5,
@@ -66,7 +66,7 @@
       "id": "A02",
       "name": "Teori ve karşıt değerlendirme",
       "order": 4,
-      "acceptance": "Mühürlü V1.4.1 + bağımsız negatif test + 3×59 kaynak test.",
+      "acceptance": "Mühürlü güncel V1.4.1, bağımsız negatif test ve gerçek 3×126 kaynak testi.",
       "technical_observation": "PASS_GITHUB_LOGICAL_AND_TECHNICAL_ONLY",
       "blocking_evidence": [
         "HOLD_REAL_USER_OUTCOME"
@@ -90,7 +90,7 @@
       "id": "A04",
       "name": "GitHub mühendisliği",
       "order": 6,
-      "acceptance": "PR #243 exact-head CI bütün workflow/job SUCCESS; V1.4.1 pinned kaynak 11/11.",
+      "acceptance": "PR #243 exact-head CI bütün workflow/job SUCCESS; güncel V1.4.1 V2 mühür 18/18 ve 378/378.",
       "technical_observation": "PASS_EXACT_HEAD_CI_ONLY",
       "blocking_evidence": [
         "HOLD_OFFICIAL_STAGE_PROMOTION"

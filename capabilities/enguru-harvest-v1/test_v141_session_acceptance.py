@@ -12,10 +12,10 @@ class UniversalSessionV141Tests(unittest.TestCase):
         self.assertEqual(R["official_current_gate"],"T01")
         self.assertIs(R["allow_auto_advance"],False)
     def test_real_github_source_pinned(self):
-        self.assertEqual(R["source_v141_commit"],"4780d96ccb16ca4a922846ab48918262c7845f47")
+        self.assertEqual(R["source_v141_commit"],"8fbd40c8fde34e7f8d77d5079c4da86a1baa8dad")
         self.assertEqual(R["last_verified_exact_head"],"59e5b7043f55bf103d9dfa81354fce5d207f30fc")
         self.assertEqual((R["workflow_success"],R["harvest_job_success"]),(5,4))
-        self.assertEqual((R["source_files_sha256_validated"],R["source_v141_real_test_executions"]),(11,177))
+        self.assertEqual((R["source_files_sha256_validated"],R["source_v141_real_test_executions"]),(18,378))
         self.assertEqual(R["harvest_real_regression_tests"],119)
     def test_full_contract_without_claiming_full_proof(self):
         self.assertEqual((R["github_acceptance_design_score"],R["osi_acceptance_design_score"]),(100,100))

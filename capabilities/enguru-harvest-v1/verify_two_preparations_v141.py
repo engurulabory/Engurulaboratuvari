@@ -17,7 +17,7 @@ RECEIPT=HERE/"two-preparation-v141-receipt.json"
 GATES=("T01","T02","A01","A02","A03","A04","A05","A06")
 V3="governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md"
 V3_SHA="11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc"
-SOURCE_V141="4780d96ccb16ca4a922846ab48918262c7845f47"
+SOURCE_V141="8fbd40c8fde34e7f8d77d5079c4da86a1baa8dad"
 HEX40=re.compile(r"^[a-f0-9]{40}$")
 READ_MIN=10
 

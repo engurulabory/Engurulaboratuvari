@@ -10,7 +10,7 @@ T02 **Hedef hazırlığı:** H01–H10 kabul kimliği, P01–P12 farklı dış b
 
 A01 **Mimari/mühendislik:** tek `skill_kernel.py`; repo/haklar zinciri; SHA-256 ve GIT HEAD kapısı; dış API ve yetki izolasyonu; teknik CI ürün makbuzu ayrımı. Kaynaklar: `skill_kernel.py`, `verify_head.py`, `evidence_gate.py`, `k02_source_policy.py`, `ZULFIKAR_V141_SOURCE_REUSE.json`.
 
-A02 **Teori/karşıt:** üç simülasyon sözleşmesi, gerçek regresyon, negatif hak testi, kaynak kayması ve sahte PASS testleri, orijinal V1.4.1 DÖM 177 testinin GitHub runner'da source-locked tekrar yolu. Kaynaklar: `run_three_simulations.py`, `test_evidence_gate.py`, `test_a05_license_scope_routing.py`, `test_zulfikar_v141_reuse.py`, `reuse_zulfikar_v141.py`.
+A02 **Teori/karşıt:** üç simülasyon sözleşmesi, gerçek regresyon, negatif hak testi, kaynak kayması ve sahte PASS testleri, orijinal V1.4.1 DÖM 378 testinin GitHub runner'da source-locked tekrar yolu. Kaynaklar: `run_three_simulations.py`, `test_evidence_gate.py`, `test_a05_license_scope_routing.py`, `test_zulfikar_v141_reuse.py`, `reuse_zulfikar_v141.py`.
 
 A03 **Uçtan uca / finiş sözleşmesi:** kanıt akışı, 12 özgün becerinin PROVEN şartı, gerçek kullanıcı deneyi, canonical DoneCheck, Human Threshold ve tekrarlı gözlem. Kaynaklar: `harvest.py`, `external_skill_proof_plan.json`, `PILOT_APPLICATION_PREP_V141.json`, `ZULFIKAR_V131_100_GATE_CONTRACT.json`, `V141_SESSION_ACCEPTANCE_V1.json`.
 

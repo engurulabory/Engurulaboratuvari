@@ -1,7 +1,7 @@
 {
   "schema": "enguru.harvest.zulfikar-v141-two-preparation-targets/v1",
   "owner": "engurulabory",
-  "source_commit": "4780d96ccb16ca4a922846ab48918262c7845f47",
+  "source_commit": "8fbd40c8fde34e7f8d77d5079c4da86a1baa8dad",
   "method": "ZULFIKAR_V1.4.1_AND_DONGU_ONARIM_V1.0",
   "base_historic_score": {
     "github_application_evidence": 65,
