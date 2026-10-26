@@ -5,12 +5,12 @@
   "authority": {
     "owner": "engurulabory",
     "peer_review_required_for_github_technical": false,
-    "owner_decision": "HUMAN_THRESHOLD",
+    "owner_decision": "HUMAN_THRESHOLD_HOLD_NOT_SELF_GRANTED",
     "new_issuer": false,
     "scope": "GITHUB_TECHNICAL_ACCEPTANCE_ONLY",
     "external_skill_official_proven": 0
   },
-  "state": "IN_PROGRESS_REVIEW_BRANCH_ONLY",
+  "state": "TECHNICAL_WORK_PACKAGES_IMPLEMENTED_FINAL_CI_PENDING",
   "packs": [
     {
       "id": "K01",
@@ -27,7 +27,7 @@
         "retained SHA evidence"
       ],
       "acceptance": "CI success and measured improvement; user impact HOLD",
-      "state": "OPEN"
+      "state": "IMPLEMENTED_AWAITING_LATEST_CI"
     },
     {
       "id": "K02",
@@ -46,7 +46,7 @@
         "zero mandatory paid API verification"
       ],
       "acceptance": "scope-specific technical source observation; redistribution HOLD until licensed",
-      "state": "PARTIAL"
+      "state": "PASS_SAFE_QUARANTINE_WITH_LEGAL_HOLD"
     },
     {
       "id": "K03",
@@ -65,7 +65,7 @@
         "Agent Skills compatibility"
       ],
       "acceptance": "technical shell smoke != authorized agent execution",
-      "state": "PARTIAL"
+      "state": "PARTIAL_CODEX_CLI_PASS_CLAUDE_NPM_HOLD"
     },
     {
       "id": "K04",
@@ -88,7 +88,7 @@
         "exact HEAD and canonical v3 SHA CI"
       ],
       "acceptance": "all required CI completed-success on same HEAD",
-      "state": "PARTIAL"
+      "state": "LATEST_EXACT_HEAD_CI_PENDING"
     },
     {
       "id": "K05",
@@ -107,7 +107,14 @@
         "OSI handoff design only"
       ],
       "acceptance": "Owner Human Threshold for GitHub technical scope; verified finish and OSi remain separate",
-      "state": "HOLD_OWNER_DECISION"
+      "state": "HOLD_OWNER_HUMAN_THRESHOLD"
     }
-  ]
+  ],
+  "completion_policy": {
+    "gitHubEngineering": "actual exact-head workflow+job success",
+    "githubTechnicalPrepared": "engineering CI and source matched, then recorded owner decision",
+    "githubVerifiedFinish": "official source+licensing+actual benefit+canonical authority, separate from CI",
+    "osiExecution": 0,
+    "mainMerge": 0
+  }
 }
