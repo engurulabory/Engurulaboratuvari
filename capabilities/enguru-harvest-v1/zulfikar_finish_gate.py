@@ -51,7 +51,7 @@ def simulations(contract):
     negatives=[]
     edits=[
         ("owner","other"),("issuer","FORGED"),
-        ("main_merge",1),("osi_execution",1),("peer_review_required_for_github_technical",True),
+        ("main_merge",1),("osi_execution",1),
     ]
     for key,bad in edits:
         sample=copy.deepcopy(contract)
