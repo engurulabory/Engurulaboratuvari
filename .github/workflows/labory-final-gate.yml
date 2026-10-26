@@ -244,6 +244,15 @@ jobs:
           assert j["namespace"]["methodA03"]=="ZF.V141.A03"
           assert j["namespace"]["originalA03"]=="HYM.A03"
           assert j["official"]=="0/40" and j["verifiedFinish"]=="HOLD"
+          assert j["sourceInventory"]["state"]=="PASS_GIT_HEAD_SOURCE_BYTES_ONLY"
+          assert len(j["sourceInventory"]["files"])==7
+          foundation=j["foundationReadiness"]
+          assert foundation["state"]=="PASS_T01_T02_GITHUB_SOURCE_PREPARATION_ONLY"
+          assert foundation["T01"]["score"]==foundation["T02"]["score"]==100
+          assert all(foundation["stagesAccepted"][s]=="HOLD" for s in ("T01","T02"))
+          assert foundation["originalOfficial"]=="0/40"
+          assert foundation["independentE5"]=="0/18"
+          assert foundation["verifiedFinish"]=="HOLD"
           print(json.dumps({"methodSource":j["methodHead"],
                             "crosswalk":j["crosswalkScore"],
                             "stageAcceptance":"HOLD_UNTIL_REAL_STAGE_EVIDENCE",
