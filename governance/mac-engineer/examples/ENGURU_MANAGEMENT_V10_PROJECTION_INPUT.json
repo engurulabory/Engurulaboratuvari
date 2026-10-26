@@ -1,0 +1,58 @@
+{
+  "schema": "enguru.management.handoff/v1",
+  "source": {
+    "report": "ENGURU_DORT_HEDEF_V10_MAC_ENGINEER_20261021T100307647921Z.json",
+    "sha256": "ba0e7449aa7a2f41667b1ff26baf56f84a6637eefaa7d8ebe90e3e0bbe58f5ac"
+  },
+  "goals": {
+    "H1": {
+      "passed": 0,
+      "total": 4
+    },
+    "H2": {
+      "passed": 0,
+      "total": 4
+    },
+    "H3": {
+      "passed": 0,
+      "total": 4
+    },
+    "native": "HOLD",
+    "verifiedFinish": "HOLD"
+  },
+  "blockers": [
+    {
+      "id": "F01",
+      "status": "HOLD_AUTHORITY"
+    },
+    {
+      "id": "F02",
+      "status": "HOLD_AUTHORITY"
+    },
+    {
+      "id": "F03",
+      "status": "HOLD_AUTHORITY"
+    },
+    {
+      "id": "F04",
+      "status": "HOLD_EVIDENCE"
+    },
+    {
+      "id": "F05",
+      "status": "HOLD_EVIDENCE"
+    },
+    {
+      "id": "F06",
+      "status": "BLOCKED"
+    }
+  ],
+  "scope": {
+    "activeProduct": "ENGURU_MAC_ENGINEER",
+    "nativeProductIdentity": "PASS_TWO_CANONICAL_CONTRACTS",
+    "bundleId": "com.engurumaya.macengineer",
+    "nextProduct": "PLIVE",
+    "nativeBuild": "HOLD_REQUIRED_CANONICAL_SOURCE_MISSING",
+    "buildExecuted": false,
+    "h3Baseline": "V10 origin/main vs V9 other remote reference; same comparison base required"
+  }
+}

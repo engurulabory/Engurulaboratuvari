@@ -1,0 +1,1307 @@
+{
+  "schema": "enguru.b05-06.owner-scope-decision/v1",
+  "decision_id": "ENGURU_B05_06_OWNER_SCOPE_DECISION_20261022",
+  "original_control_id": "B05-06",
+  "original_condition": "Dirty-path ve korunacak farkların sahipliği çözüldü",
+  "owner_decision": "APPROVED_PRESERVE_IN_PLACE_ALL_138_PATHS",
+  "owner_approval_source": {
+    "kind": "EXPLICIT_USER_APPROVAL_IN_CHAT",
+    "literal_response": "onaylıyorum...",
+    "purpose": "All 138 inventoried dirty paths in both repositories are preserved in place and the user approves the B05-06 scoped ownership/preservation alignment",
+    "date": "2026-10-22",
+    "cryptographic_human_signature": "NOT_PRESENT",
+    "chat_to_github_identity_cryptographic_binding": "NOT_ESTABLISHED"
+  },
+  "authenticated_github_identity": "engurulabory",
+  "repo_administration": "CONNECTED_GITHUB_PROFILE_AND_ADMIN_PUSH_PERMISSIONS_CONFIRMED",
+  "proof": {
+    "owner_review_packet_sha256": "6864aab52e8043199a9feae5cea15d05dc56601ce7f7d42dcaa51867852aa1c6",
+    "inventory_sha256_reported_by_mac_and_packet": "fc1f5e14921f42addbca2549dbf14c6dd5a210b4b8c7b71ec880f8e934717044",
+    "inventory_original_bytes_currently_unavailable_for_independent_rehash": true,
+    "v30_field_observation_sha256": "d90ab55fb281d061a2e5c4946c1292ae03f74a5e563bd254c86902fc125dcfc8",
+    "control_github_pr_head_at_mac_measurement": "be214a862b7fbf287c81c81246859bebe4dffd44",
+    "product_github_pr_head_at_mac_measurement": "a512e1efbc5e6f9c64c8965b2cebbb474d8225d8",
+    "mac_self_test": "PASS_9_CHECKS",
+    "mac_sources_preserved": true,
+    "mac_mutations": 0
+  },
+  "scope": {
+    "repos": [
+      "engurulabory/Engurulaboratuvari",
+      "engurulabory/enguru-mac-engineer"
+    ],
+    "normal_dirty_status_records": 115,
+    "expanded_file_count": 138,
+    "control_file_count": 136,
+    "product_file_count": 2,
+    "tracked_modified": 13,
+    "untracked": 125,
+    "permitted_operations": [
+      "PRESERVE_IN_PLACE",
+      "OWNER_SCOPE_ATTESTATION"
+    ],
+    "excluded_operations": [
+      "PUSH_LOCAL_BRANCH",
+      "REBASE",
+      "RESET",
+      "MERGE_MAIN",
+      "SOURCE_FILE_REPLACEMENT",
+      "SIGN_APP",
+      "INSTALL_APP",
+      "ACT_AS_ED25519_REVIEWER",
+      "UPDATE_CANONICAL_LEDGER_WITHOUT_MANAGEMENT"
+    ],
+    "ignored_files_excluded": true,
+    "git_internals_excluded": true
+  },
+  "accepted_path_sha256": [
+    {
+      "repo": "control",
+      "path": ".DS_Store",
+      "sha256": "3e42d4fa9c35d4e44b95ebbbe8299e746cf13f8078caf603cc1925efd3355971",
+      "bytes": 14340,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/.DS_Store",
+      "sha256": "c56d9fe12f483eac93628b9a60dddf078210a3bfef043b87f0ea9ff00308e6b6",
+      "bytes": 14340,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/ai-role-capability-integration/ENGURU_AI_ROLE_CAPABILITY_WORK_CONTRACT_V1.json",
+      "sha256": "f0c8e734ab27653da765e868d8d3058e9fbfff9de44381db9fd463d2d6a81e24",
+      "bytes": 1160,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/ai-role-capability-integration/ROLE_CAPABILITY_CHARTER_V1.json",
+      "sha256": "299c8026788f9487ffefd99619687af40afb537a30ba5729c67ec708ec1e418a",
+      "bytes": 3350,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/ai-role-capability-integration/STATE_V1.json",
+      "sha256": "b423aa32f211861a14cae0d9550c3b292fc934dab634c0df0cc1776150d15d1b",
+      "bytes": 1510,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/ai-role-capability-integration/WORKLIST_V1.json",
+      "sha256": "0cc6492799c234831b0049e3d174e63a5bdb1270fd45908efa800dc5f4f86f81",
+      "bytes": 1432,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/chatgpt/ENGURU_CHATGPT_CANONICAL_BOOT_V1.md",
+      "sha256": "76c67ad813dad02df23a440e463866a2cd9369d19f3da2c9fefd4dc374ea7140",
+      "bytes": 9173,
+      "kind": "REGULAR",
+      "git_xy": " M",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/contract-standard-v11-pilot/TECHNICAL_FINISH_V1.json",
+      "sha256": "a3fffdaf6c0428a4c1078a5c2fdd5fc7a0f4a2f2be4ceaced5891470e84727c9",
+      "bytes": 2270,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/mac-engineer/OPERATOR_ACTION_REGISTRY_V1.json",
+      "sha256": "8ace6b42893e7929dd984f8be189d918cd04f9133a2d859361c92ca482d495ea",
+      "bytes": 21136,
+      "kind": "REGULAR",
+      "git_xy": " M",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/osi-foundation-100/ENGURU_OSI_AESTHETIC_BLIND_BENCHMARK_V1.json",
+      "sha256": "955797fcb9a6f7b8d596ea5d82f871789e16de30a4640025c8b20ff7d9537223",
+      "bytes": 11054,
+      "kind": "REGULAR",
+      "git_xy": " M",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/osi-foundation-100/Evidence/F100_P06_07_BLIND_BENCHMARK_COMMISSIONING_V1.json",
+      "sha256": "0d6568b2c2c899a74584d254689269ee8555fe8d83facb8e5b4e78303c945954",
+      "bytes": 1367,
+      "kind": "REGULAR",
+      "git_xy": " M",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/osi-foundation-100/Evidence/F100_P06_07_STATIC_RUBRIC_RECONCILIATION_V1.json",
+      "sha256": "ec370078fdeb89267e4c1c3459cecb1c222aa8fc5275962ee3b18b8126200862",
+      "bytes": 1053,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/plive-p01-authorized-field/P01_ACCEPTANCE_FINAL_BINDING_V1.json",
+      "sha256": "e8847241b32960950a381bd179f56a7bbca8902a490ea226f72f3fe5a1c98510",
+      "bytes": 1554,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/plive-p01-authorized-field/P01_PROGRESS_EVIDENCE.json",
+      "sha256": "54fe2e376be65a50961850a18f07bbe77d5c0e01785cdd50afb085127537c6aa",
+      "bytes": 148,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/plive-p01-authorized-field/P01_REGISTRATION_EVIDENCE.json",
+      "sha256": "8722e933d98c4118a12c89919aad4d430fadfdfc57efddb46cf8eb66935d8593",
+      "bytes": 173,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/plive-p01-authorized-field/PLIVE_P01_CRITERION_SIGNING_GRANT_V1_085b50e081c9.json",
+      "sha256": "085b50e081c918947c9c421dc6d07a79fd116aced90db7a8cd294f688c5d6b70",
+      "bytes": 1641,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/plive-p01-authorized-field/PLIVE_P01_INTERNAL_LOCAL_APP_SCOPE_V2_b695ae15d407.json",
+      "sha256": "b695ae15d407d020775807db0fc76c4dd569b26cac0da8395764efa6d018c4de",
+      "bytes": 2612,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/plive-p01-authorized-field/PLIVE_P01_SIGNED_ASSERTION_CONSUMER_V1.py",
+      "sha256": "55c8e4b27ae98bc1209a1064796df73b890c9982cd6d10bb3bd3f76e97996a52",
+      "bytes": 4029,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/plive-p01-authorized-field/PLIVE_P01_WORK_CONTRACT_V1.json",
+      "sha256": "3875e28b35ac0d7eadb6f2a973e5e9b150c057dfe6e7e7e166bca3c5c612072a",
+      "bytes": 1036,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/plive-p01-authorized-field/STATE_V1.json",
+      "sha256": "68bc45cc41ed365d50b2e1b0476ecaaabfd0ccdfd21af54868276709cb877608",
+      "bytes": 667,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/plive-p01-authorized-field/WORKLIST_V1.json",
+      "sha256": "b2c7ed323ea34cb440c879ce6d880254ff8726cf029d23787d4849077cbed1ef",
+      "bytes": 361,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/plive-p02-user-screen/ENGURU_PLIVE_P02_TEK_INSAN_GUVEN_G3_POLITIKASI_V1.md",
+      "sha256": "48f46754c4a94e28d66e7e6a272284afae60791d631f556d6826f6775744fb9e",
+      "bytes": 10518,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/plive-p02-user-screen/ENGURU_PLIVE_P02_TEK_INSAN_POLITIKA_KARARI_V1.json",
+      "sha256": "ef65263a26e48193ac36f8f3045ff69cc6e294322d3fdbc85b4c34eaaf1765a2",
+      "bytes": 4918,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/plive-p02-user-screen/PLIVE_ACTIVE_WORK_POLICY_CANDIDATE.json",
+      "sha256": "ec113fd9d62bf7c24ff2fff28ddd4d3d82bb66bcd1208b2124d12c939b9ee98a",
+      "bytes": 1007,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/plive-p02-user-screen/PLIVE_P02_WORK_CONTRACT_V1.json",
+      "sha256": "1dc9b0bae00a13672a142fb91f6b1fe603f151bcebaa64482e297029deda7512",
+      "bytes": 1058,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/plive-p02-user-screen/STATE_V1.json",
+      "sha256": "ad29d034c8a97be75d69d972fca1c6e7ee207e7f7f1339e79b74e1ce6c40f432",
+      "bytes": 1806,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/plive-p02-user-screen/WORKLIST_V1.json",
+      "sha256": "4021dc7486363bc7baf503860969ea23324eabcbd4e3551930a20d79784532d2",
+      "bytes": 1821,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/plive/ENGURU_PLIVE_100_TARGET_ACCEPTANCE_V1.json",
+      "sha256": "a3369d7822948acbc8d803ec6a49c81fb4867cdf749cbf24eae887654bdad194",
+      "bytes": 5374,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/plive/ENGURU_PLIVE_PROGRESS_FINISH_CONTRACT_V1.json",
+      "sha256": "ae64e50df085d27dd3b62d1e1a5acd326e1900f23240407828d1819e824c7037",
+      "bytes": 3230,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/.DS_Store",
+      "sha256": "f655949ba7c307a547e45407547f4cfd80f57fd34cc1b2fa064a0949f4f0d633",
+      "bytes": 10244,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/.ENGURU_C03_G5_PUBLISH_JOURNAL_V1.json",
+      "sha256": "fa8acc12296595e2fc326c52ccb3298cef74adcad93802241a4c7180f572860e",
+      "bytes": 1234,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/.ENGURU_C03_G5_STAGING_V1/contract.json",
+      "sha256": "7ff5fe2ada080cbeb4e0f36a87d31d13198bf28765eee37b751b8d7821ba8744",
+      "bytes": 919,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/.ENGURU_C03_G5_STAGING_V1/policy.json",
+      "sha256": "3f94e968e5221b17e2d293990b1f62982cb01ed7b38848ba3b95f23f5a2611b2",
+      "bytes": 906,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/.ENGURU_C03_G5_STAGING_V1/receipt.json",
+      "sha256": "9e936424ebc8ae69630524089186613d77bc81b667afefdf44b95cb5e378136a",
+      "bytes": 2022,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/.ENGURU_C03_G5_STAGING_V1/state.json",
+      "sha256": "e6aeec7bb575496229e4438ab3590a5b19ae5478e6caf54cc232e3d2d6f88b97",
+      "bytes": 1411,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/.ENGURU_C03_G5_STAGING_V1/successor.json",
+      "sha256": "3fa77d10edb12656b054f157c62169bb5e7bb7412b2eba7cdbeb8a194155254f",
+      "bytes": 9366,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/.ENGURU_C03_G5_STAGING_V1/worklist.json",
+      "sha256": "ae09c322e5d00b547171e1028c8003edf7464ff4fd693166b81a4f9bb38c9e62",
+      "bytes": 514,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/ENGURU_C03_NATIVE_PROGRESS_STATE_V1.json",
+      "sha256": "e6aeec7bb575496229e4438ab3590a5b19ae5478e6caf54cc232e3d2d6f88b97",
+      "bytes": 1411,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/ENGURU_C03_NATIVE_PROGRESS_WORKLIST_V1.json",
+      "sha256": "ae09c322e5d00b547171e1028c8003edf7464ff4fd693166b81a4f9bb38c9e62",
+      "bytes": 514,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/ENGURU_C03_NATIVE_VERIFIED_FINISH_RECEIPT_V1.json",
+      "sha256": "9e936424ebc8ae69630524089186613d77bc81b667afefdf44b95cb5e378136a",
+      "bytes": 2022,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/ENGURU_C03_NATIVE_WORK_CONTRACT_V1.json",
+      "sha256": "7ff5fe2ada080cbeb4e0f36a87d31d13198bf28765eee37b751b8d7821ba8744",
+      "bytes": 919,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/ENGURU_C03_SINGLE_OPERATOR_AUTHORITY_AMENDMENT_V1.json",
+      "sha256": "3f94e968e5221b17e2d293990b1f62982cb01ed7b38848ba3b95f23f5a2611b2",
+      "bytes": 906,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/ENGURU_GOAL_PROMISE_DELIVERY_CONTRACT_V1.json",
+      "sha256": "c30132e5b3aa0d42dcfa5e117d5a6aacba8d4046719dec6ef924cfa4b112113b",
+      "bytes": 2139,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/ENGURU_SUZGEC_FINAL_CLOSURE_WORKLIST_V2.json",
+      "sha256": "d076fb61f2420093b8b84f08928271ec119754a4224d56829b3ac3d6f1ca7063",
+      "bytes": 3544,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/ENGURU_SUZGEC_FINALIZATION_WORKLIST_V1.json",
+      "sha256": "e93b26abbd082aab8a98c2c361c05c892db7bcd4fa0289bd405b9c24ba22e128",
+      "bytes": 8588,
+      "kind": "REGULAR",
+      "git_xy": " M",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/ENGURU_SUZGEC_FINALIZATION_WORKLIST_V3.json",
+      "sha256": "3fa77d10edb12656b054f157c62169bb5e7bb7412b2eba7cdbeb8a194155254f",
+      "bytes": 9366,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/ENGURU_SUZGEC_V21_CROSS_SURFACE_ACCEPTANCE.json",
+      "sha256": "15b0f922f92f19dac5f7d587ee9d47f754306d8c74bb9c8eb883466fd2868590",
+      "bytes": 2353,
+      "kind": "REGULAR",
+      "git_xy": " M",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/ENGURU_SUZGEC_V23_GITHUB_OSi_PARITY_MANIFEST_V1.json",
+      "sha256": "30bcfc86baf48655028c40ba30376e94cddd63c6f10dfe8e8b6280a123c7ba71",
+      "bytes": 2128,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/ENGURU_SUZGEC_V23_GOAL_OUTCOME_POLICY_V1.json",
+      "sha256": "e0396663b41cc5d87f87014d35ae1bf6018113ff31c2e8ac6e63fe0e3c6c5d8a",
+      "bytes": 1239,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/ENGURU_SUZGEC_V23_UPFRONT_FINISH_VISIBILITY_CONTRACT_V1.json",
+      "sha256": "1a6efd52ad42baecd20d8030672e0267eb2348888dce5b5ad2ca77e426ea879e",
+      "bytes": 7871,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/ENGURU_SUZGEC_V24_FIELD_WORK_CONTRACT_V1.json",
+      "sha256": "cedb1466c3631abe4e5904805da292eb05ed9e77d3042b9478cbf6b96af32819",
+      "bytes": 1628,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/ENGURU_SUZGEC_V24_FIELD_WORK_STATE_V1.json",
+      "sha256": "f167d0b866f00a2155e9661ed5abce1e09154b38029839b7f307a2bfecc7c9cd",
+      "bytes": 1541,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/ENGURU_SUZGEC_V24_FIELD_WORKLIST_V1.json",
+      "sha256": "32cb3b723da8d643af70a1a0a7ed56af2c7b20ed7f814390b20ca2f591c6614e",
+      "bytes": 2713,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/ENGURU_SUZGEC_V24_FOUR_GOAL_ROADMAP_APPROVED_V1.json",
+      "sha256": "91954c9bb318e8482d527ed1ed9873d8469bd119fd0ab595f0fdbede08e1184d",
+      "bytes": 3493,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/ENGURU_SUZGEC_V24_LANGUAGE_ALIGNMENT_CONTRACT_V1.json",
+      "sha256": "2efb21eef1e2a283ad4a0bfc33272931967b144749107b8be716a856c24babc3",
+      "bytes": 23277,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/ENGURU_SUZGEC_V24_PILOT8_SCOPE_APPROVED_V1.json",
+      "sha256": "c438dfc846a21a3d381a653321c83b976082790692e45b033c4e0f0a2ff22aed",
+      "bytes": 53276,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/ENGURU_SUZGEC_V24_T01_READONLY_OPERATOR_AUTHORITY_V1.json",
+      "sha256": "f2907195f2d02d87b251b29293fb49b35f439bac3bc761b4e0602a2480ee9e1b",
+      "bytes": 5440,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/ENGURU_WHOLE_PROJECT_EXECUTION_CONTRACT_V1.json",
+      "sha256": "c90d11e1ca3fdb40fd13b9832e19d0193f97529220c3e68e3add53af2ad9e2ee",
+      "bytes": 3801,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/Evidence/C01_CLOSURE_20261008T112716291585Z.json",
+      "sha256": "f8863c45b6ac92de473a57b2d883e4314640653627fdca4d27ddfb85885b448b",
+      "bytes": 1053,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/Evidence/C01_FIELD_20261008T112226052420Z-observation.json",
+      "sha256": "211e0cb0d1c64f123ddc9467f16a0c1224af2208fe0f952a49eca926100eb74a",
+      "bytes": 1225,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/Evidence/C01_FIELD_20261008T112226052420Z-reconciliation.json",
+      "sha256": "a3c724db2aa60da5480e0173725c423b482e2edcca03d41e197dc9bb94df1590",
+      "bytes": 382,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/Evidence/C01_SCOPE_20261008T112507863875Z.json",
+      "sha256": "b0d53a6ec4ce75f7564d4746700663d5094e04d1161c09694bed67ecf0e3b200",
+      "bytes": 1066,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/Evidence/C02_CHAT_OBSERVATION_20261008T115254890960Z.json",
+      "sha256": "59a82f78f473c8ce93f874d038e2487928bd13c4b53d44fab5b02a976f11f63c",
+      "bytes": 1195,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/Evidence/C02_OSI_ACCEPTANCE_20261008T113748618015Z.json",
+      "sha256": "3773577bfef2fec007661ac03b99c916cf9646d524c87ed7fb1341552c00862d",
+      "bytes": 1269,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/Evidence/C02_OSI_SEMANTIC_20261008T113450291583Z.json",
+      "sha256": "634f7dc06e398aacd34261d2f968e1f74c0e59621da7bb6666b631823a0d45df",
+      "bytes": 2414,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/Evidence/C02_P04_ACCEPTANCE_20261008T115527827059Z.json",
+      "sha256": "00d8d75aced7e9096c14face1014a798573e09479a82d57176911b45f65f0580",
+      "bytes": 1559,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/Evidence/C02_RECONCILIATION_20261008T113052870414Z.json",
+      "sha256": "efea3670ea0185f9cf81cc0ec46b1221d4d56ff64f9e841955d00896ab08a317",
+      "bytes": 794,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/Evidence/C02_WORK_CHAT_RECONCILIATION_20261008T114821271657Z.json",
+      "sha256": "934fc3e64e045f3274e0af43a05b4ddc91abaa97c8acfbce6744392c602415c5",
+      "bytes": 1596,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/Evidence/C02_WORK_HANDOFF_20261008T114545894078Z.json",
+      "sha256": "6a9a730ad5fe4e52b46f119a3c3756fab0655299fa7fb8a4c95ddeb224d4fefd",
+      "bytes": 999,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/Evidence/preexecution-field-pilot-20261008T102759541852Z-observation.json",
+      "sha256": "36986ee16bec670d542c79ca4e0fc200e9726f4fea4dc0e3b04312779fd6343e",
+      "bytes": 401,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/Evidence/preexecution-field-pilot-20261008T102759541852Z-prediction.json",
+      "sha256": "c300b5f033b35f1b44868453363a1e8467264a9355b62d47fb8676a2bd31726f",
+      "bytes": 825,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/Evidence/preexecution-field-pilot-20261008T102759541852Z-reconciliation.json",
+      "sha256": "bf6a1aafb5b7896a1cd4e20eb80c964132c13a284e9e62f044edd525c5f7ee31",
+      "bytes": 737,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/Evidence/suzgec-p02-20261008T104940532918Z-observation.json",
+      "sha256": "2348c89c3091b4a50f05268f0691bb2467ff8b84d1d21d543e842218e8023635",
+      "bytes": 13094,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/Evidence/suzgec-p02-20261008T104940532918Z-prediction.json",
+      "sha256": "aff640289ae7d79b1b3212f1eb556c55f167c597d34b7214dc7f8ce042759068",
+      "bytes": 853,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/Evidence/suzgec-p02-20261008T104940532918Z-reconciliation.json",
+      "sha256": "f421f595a6e9bb90ff21db3cd04bd3e95532c2d18e4e3794da9965f3002ebdfd",
+      "bytes": 654,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/Evidence/suzgec-sorti01-20261008T094602686310Z-c007ec29-donecheck-input.json",
+      "sha256": "19180228ec63551993055483da5b0c088adceda6f6bd8dd149f99da1225b24b6",
+      "bytes": 2354,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/Evidence/suzgec-sorti01-20261008T094602686310Z-c007ec29-donecheck-result.json",
+      "sha256": "67b9c0072cfa84f650507e554380eb6b34b4c67334d465d7928706e8a66e357f",
+      "bytes": 1444,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/Evidence/suzgec-sorti01-20261008T094602686310Z-c007ec29-evidence.json",
+      "sha256": "b44f9800d29489f6a34adc58eec276246d0f5157cfc109dd0ef75ee70ae3f41c",
+      "bytes": 10890,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/Evidence/suzgec-sorti01-20261008T094602686310Z-c007ec29-human-acceptance-decision.json",
+      "sha256": "d251025300489dae426e46a9c0caaff2605f8c4ba2c43e718fd7ae0e23f6fd6c",
+      "bytes": 3215,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/Evidence/suzgec-sorti01-20261008T094602686310Z-c007ec29-human-review.json",
+      "sha256": "cba135bf98ae324187d4d0c9a4adff9272597663582dd93c26a7b164836fa3a2",
+      "bytes": 565,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "governance/work-protocol/Evidence/suzgec-sorti01-20261008T094602686310Z-c007ec29-reviewer-scope-authorization.json",
+      "sha256": "473233b6ab2318adda02144afb16b8b860e8c249eb8f3c60311978bf2b4545cc",
+      "bytes": 3434,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tests/__pycache__/test_enguru_central_alignment_binding.cpython-314.pyc",
+      "sha256": "a02f617185c1b8518355a140a86e0ecfd9509d30e459a569f3dd263d23cf6a85",
+      "bytes": 4005,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tests/__pycache__/test_osi_foundation_100_cockpit_contextual_detail.cpython-314.pyc",
+      "sha256": "c3cb54d90beb6d23469e9d35f370542e578baae0e37e633d8e9658313f5c391d",
+      "bytes": 6600,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tests/test_enguru_plive_progress_contract_v1.py",
+      "sha256": "dc442ecd07110634dfb8c72e38553d8c91a7867a12517a19a98f2ffc05210574",
+      "bytes": 5863,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tests/test_enguru_suzgec_v23_forecast.py",
+      "sha256": "1ea406a15395b2c21e744095de46bda171f7f5a3d3aa862f0b471628ea66db8c",
+      "bytes": 5212,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tests/test_enguru_suzgec_v23_goal_acceptance.py",
+      "sha256": "93b5fdd2a1da59d62544450dfb1e738d2af76e4026e5f8dd6b7e10f976c3524c",
+      "bytes": 9496,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tests/test_enguru_suzgec_v23_t01_binding.py",
+      "sha256": "d66a55328cfb27c4d0193568987dffe1ea3f5adffa4459c5820955fd12bc5e26",
+      "bytes": 1330,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tests/test_enguru_suzgec_v23.py",
+      "sha256": "f7bd0331b82e1b8093b2ba973a637d87485e89c0e6e1cdf4dca85ed7324fc319",
+      "bytes": 2426,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tests/test_enguru_suzgec_v24_delivery_inventory_scope.py",
+      "sha256": "9c52cb4e24588e44af4727baec9340b52a54f962ae2b19a57388e186f21c6d2a",
+      "bytes": 1103,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tests/test_enguru_suzgec_v24_dependency_inventory.py",
+      "sha256": "6e8def4b5c15e8e3983d8cb596e40c7918baaec75fa825b45658b9e2abb839ed",
+      "bytes": 1413,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tests/test_enguru_suzgec_v24_final_contract_lock.py",
+      "sha256": "2d7cb969453939f62bdedf4205f86cb2586f623b99ea38a97515ae33937f77d5",
+      "bytes": 3528,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tests/test_enguru_suzgec_v24_final_sequence_lock.py",
+      "sha256": "90c2de8a830debc2efc869a902abe864d4f52aa812c06ae314492e4ab69ac3e7",
+      "bytes": 1809,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tests/test_enguru_suzgec_v24_finish_verdict_stop.py",
+      "sha256": "99d801c67f82ffb6bc1e9fd97822728fec79b5d202d3bb93c5439de6a6017a0c",
+      "bytes": 15303,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tests/test_enguru_suzgec_v24_five_sortie_simulation.py",
+      "sha256": "1942133af6bed11dd1b6411f4630ec7cfa8b857a1549e9544037f15aa82ccc26",
+      "bytes": 1295,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tests/test_enguru_suzgec_v24_goal_acceptance_loop.py",
+      "sha256": "0ae02fa82a7e3c1814ee1a0cb7bd32159fb3a0a85750f5cef255f5273e5beeca",
+      "bytes": 2393,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tests/test_enguru_suzgec_v24_language_presend.py",
+      "sha256": "ec6877ad4c370084ecdd17010731236ebee62a02bb5c7690a95092efe07d0c2c",
+      "bytes": 4802,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tests/test_enguru_suzgec_v24_presend_source_binding.py",
+      "sha256": "bbcc4cc90af3bf51c1fd0ae6fa47034bb1bba4470477c463351c1f2859579b03",
+      "bytes": 2515,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tests/test_enguru_suzgec_v24_recovery_fixture.py",
+      "sha256": "4ae3e8237227c766d243b80b5cce1a8a04528be3e62bdf03b6f8925009b7abbc",
+      "bytes": 443,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tests/test_enguru_suzgec_v24_sorti03_decision_vectors.py",
+      "sha256": "a18a33a26d1b8992b8a3040eff8a5695a15361e789943f464aaf62c52026b8c8",
+      "bytes": 2469,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tests/test_enguru_suzgec_v24_source_preflight.py",
+      "sha256": "3a52ad991a717a4b8d4e36ec28449fe23360fa4220bae5e5d63e9206d836cb27",
+      "bytes": 2575,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tests/test_enguru_suzgec_v24_terminal_twin_parity.py",
+      "sha256": "20e539f33d6a4a94f78339154b5360126e75c9cfe6c1e38c55e77b84331bdeee",
+      "bytes": 1844,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tests/test_enguru_suzgec_v24_transitive_closure.py",
+      "sha256": "f9108c5248cada3d6f8c80b15e93fe343ac18c3ac6cce3c6401cca478dea3767",
+      "bytes": 1720,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tests/test_integration_v22.py",
+      "sha256": "15c0eaeb782b09f5a72982118307d79917d2d3dcc7b94d73323fcadc435b3519",
+      "bytes": 2039,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tests/test_osi_foundation_100_aesthetic_blind_benchmark.py",
+      "sha256": "dd25b3e3761545bd9bbf039789e1f92a7ed57178e91971787cb11b087c65f1cf",
+      "bytes": 7346,
+      "kind": "REGULAR",
+      "git_xy": " M",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tests/test_v22_bound_execution.py",
+      "sha256": "b15648957b3e971a7ab15c2d2217e87007417b370d6f6f6e02ba79f9a3441242",
+      "bytes": 1928,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tests/test_v22.py",
+      "sha256": "3a3759aee3964262cfc6e114e520016dfa99f0a4a7f0b3201445798ae940fedf",
+      "bytes": 3332,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/__pycache__/enguru_central_alignment_binding.cpython-314.pyc",
+      "sha256": "38e58569b9c10b61ae5593a51039b635e51ebb816c6cc986072fdbc5ddfc6ee5",
+      "bytes": 6607,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/enguru_goal_final_acceptance.py",
+      "sha256": "a77d302e03a8184327a1dc3808a045f2653c497bace15efd158d316ba67bcb54",
+      "bytes": 10711,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/enguru_holistic_finish_gate_v22.py",
+      "sha256": "6e704d95e9f1cd32eaa41071f3aaf0afec6e0315f28c41f6ecf7e043968e6ee9",
+      "bytes": 3615,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/enguru_p06_pilot_handler_adapter.py",
+      "sha256": "3d77ca05af736893145b317cbc5249584aab2e80155f5a413e86cb26f5eb3e6f",
+      "bytes": 6461,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/enguru_p06_seven_handlers.py",
+      "sha256": "2ea9134f00bfbc6c1c2d1666fb01f1be198f6d433633819c95623e2fc9d515a3",
+      "bytes": 5754,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/enguru_package_execution_guard.py",
+      "sha256": "3f2c87bc521f0d577487dbca5620151575df4b3454a8fe5fc31668750096f319",
+      "bytes": 10956,
+      "kind": "REGULAR",
+      "git_xy": " M",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/enguru_suzgec_v23_execution.py",
+      "sha256": "871d94f28add0441e00edef9f3ae6e24435d7177ff089bce2af4780c7a2a021a",
+      "bytes": 5995,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/enguru_suzgec_v23_field_dispatch.py",
+      "sha256": "5236dd39aeb09a638a40550d083ec6e6ddf245276af9a5fb3b9baac709e6214e",
+      "bytes": 11849,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/enguru_suzgec_v23_forecast.py",
+      "sha256": "5a0cd85cd71aff19f7e2c3f2de45f16c281d4a246cfdd927e80ef6421b1e4c77",
+      "bytes": 4935,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/enguru_suzgec_v23_goal_acceptance.py",
+      "sha256": "0bddf80ded98478b0b49e46805c99c6ae739366392620d3d71e5f76e023afa84",
+      "bytes": 7121,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/enguru_suzgec_v24_delivery_inventory.py",
+      "sha256": "f085c5ff6558f3e739d7ec1b73f055b4430bf5909106f84d69f2392d92fdb831",
+      "bytes": 2986,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/enguru_suzgec_v24_dependency_inventory.py",
+      "sha256": "b1e41ddf4f7ee2e33dc271e59503c28d0351739b228c2c6aa652f70c0d982f13",
+      "bytes": 1894,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/enguru_suzgec_v24_five_sortie_simulation.py",
+      "sha256": "53bfd29885af9e186e68e1eec971a44576342e4073752c4d17b68ee8a5d9e318",
+      "bytes": 2131,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/enguru_suzgec_v24_github_test_terminal.py",
+      "sha256": "d06b80038d720f0494e4a623b23c203517b75e93ba1dea49c5e9b79dcf26ba5d",
+      "bytes": 4391,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/enguru_suzgec_v24_goal_acceptance_loop.py",
+      "sha256": "e3fd6ba07ecedd727ce786872750c992e8e53490a7f6e9db4bef0099f4d07249",
+      "bytes": 3640,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/enguru_suzgec_v24_language_presend.py",
+      "sha256": "6624b15981190c300f4e3b5383b4916b4a2fe23ebfa6d14bc2467219da58f64e",
+      "bytes": 5587,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/enguru_suzgec_v24_presend_source_binding.py",
+      "sha256": "1738267925879fb0edef65dd5ac31e94d35148af0ffa55a6e6726c8df0862c40",
+      "bytes": 1811,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/enguru_suzgec_v24_readonly_operator.py",
+      "sha256": "7fef6a37f59e19ec280d398a16b1ab90cc8d0580b4760e1ac7631b34d7182e3d",
+      "bytes": 7776,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/enguru_suzgec_v24_recovery_fixture.py",
+      "sha256": "5028b411b436c187fb87ec681f05a8d1744446db954f1a60cdc40792e0b0ccd6",
+      "bytes": 3045,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/enguru_suzgec_v24_source_preflight.py",
+      "sha256": "a6524bc3f0434e34390164c42236a5ade3d1daa0cb1766398ebe4d8912a7885b",
+      "bytes": 2969,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/enguru_suzgec_v24_task_producer_bridge.py",
+      "sha256": "b2df3a21f1eb72ad92318647be70bfa1c9797ed078af29fc3d96e06dca4e7c31",
+      "bytes": 6839,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/enguru_suzgec_v24_terminal_twin_parity.py",
+      "sha256": "b49a3ad845030a8aabc2d2fd0f43427a5fdd29f5afb7df5ff8e4169113218196",
+      "bytes": 3733,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/enguru_suzgec_v24_transitive_closure.py",
+      "sha256": "3647522bf1b6400b0f0f320ffa5fc18b48d58db79dacdf9cabeec991e3b92aa8",
+      "bytes": 3785,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/enguru_v22_bound_execution.py",
+      "sha256": "805e99f9f15432436a9459f2988ac511b12ee66a497413a0663ae7c16a383425",
+      "bytes": 1885,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/enguru_whole_project_discovery.py",
+      "sha256": "e90a6b88ad669504d2d8fd498f5a7018b99ecfcc16dcf3597da61257a8150302",
+      "bytes": 4577,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/enguru_whole_project_execution.py",
+      "sha256": "7e1bd44f88915bace72648ea4ec5bce96ce861e110be1432edda657e369d6875",
+      "bytes": 3741,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/mac_engineer_contract_v11_technical_finish.py",
+      "sha256": "14049bcef4a1ba6a05dd0cf4447acbaeb7edf13847e11403eef836d581ac8983",
+      "bytes": 2131,
+      "kind": "REGULAR",
+      "git_xy": "??",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/mac_engineer_operator.py",
+      "sha256": "0ce4956641ba105ee47914de187704c07f18ed4f0ed957f0cbf0c2bc5d768741",
+      "bytes": 135199,
+      "kind": "REGULAR",
+      "git_xy": " M",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/osi_aesthetic_blind_benchmark.py",
+      "sha256": "302eda66407ccbdffe57609532a377a4221117e38f0dcf64f647c9866e8da134",
+      "bytes": 3616,
+      "kind": "REGULAR",
+      "git_xy": " M",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "control",
+      "path": "tools/osi_cockpit_contextual_detail.py",
+      "sha256": "b2de59c48b2545e9c123eb78e885a2cdd7c771137169b757d38b35dfe0aad6ef",
+      "bytes": 10871,
+      "kind": "REGULAR",
+      "git_xy": " M",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "product",
+      "path": "runtime/app.py",
+      "sha256": "d9f469607d7088057cad98a30813e9a8b5f4f37b92eaa714e885ef0a8fedbc79",
+      "bytes": 255419,
+      "kind": "REGULAR",
+      "git_xy": " M",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    },
+    {
+      "repo": "product",
+      "path": "runtime/static/index.html",
+      "sha256": "3b9ee4e1893effc2532f614704caa2eed6771d3b93cc5db84bf3a22da6259882",
+      "bytes": 245837,
+      "kind": "REGULAR",
+      "git_xy": " M",
+      "decision": "PRESERVE_IN_PLACE_OWNER_APPROVED"
+    }
+  ],
+  "management_handoff": {
+    "source_status": "OWNER_SCOPE_APPROVED",
+    "official_ledger_before": "25/100",
+    "official_acceptance_status": "AWAITING_INDEPENDENT_MANAGEMENT_REVIEW",
+    "next_step": "Management verifies original B05-06 conditions and owner authority source, authenticates receipt, decides PASS or exact HOLD; if PASS update 100-ID ledger 25 to 26 with CI verification; local 138 path originals remain unchanged."
+  }
+}

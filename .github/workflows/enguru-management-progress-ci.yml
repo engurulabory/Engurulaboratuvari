@@ -1,0 +1,175 @@
+name: ENGURU Management Progress Verification
+
+on:
+  pull_request:
+    paths:
+      - "governance/mac-engineer/ENGURU_MANAGEMENT_100_OPERATING_STANDARD_V1.md"
+      - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V9_PROJECTION_INPUT.json"
+      - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V10_PROJECTION_INPUT.json"
+      - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V12_PROJECTION_INPUT.json"
+      - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V13_PROJECTION_INPUT.json"
+      - "tools/enguru_management_progress_v1.py"
+      - "governance/mac-engineer/progress/ENGURU_TOPLU_KANIT_TOPLU_KABUL_AKISI_V2.md"
+      - "governance/mac-engineer/progress/ENGURU_100_BIRIM_FINIS_SAYACI_V1.json"
+      - "tools/enguru_batch_evidence_gate_v2.py"
+      - "tests/test_enguru_batch_evidence_gate_v2.py"
+      - "tests/test_enguru_management_progress_v1.py"
+      - ".github/workflows/enguru-management-progress-ci.yml"
+  push:
+    branches: [main]
+    paths:
+      - "governance/mac-engineer/ENGURU_MANAGEMENT_100_OPERATING_STANDARD_V1.md"
+      - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V9_PROJECTION_INPUT.json"
+      - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V10_PROJECTION_INPUT.json"
+      - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V12_PROJECTION_INPUT.json"
+      - "governance/mac-engineer/examples/ENGURU_MANAGEMENT_V13_PROJECTION_INPUT.json"
+      - "tools/enguru_management_progress_v1.py"
+      - "governance/mac-engineer/progress/ENGURU_TOPLU_KANIT_TOPLU_KABUL_AKISI_V2.md"
+      - "governance/mac-engineer/progress/ENGURU_100_BIRIM_FINIS_SAYACI_V1.json"
+      - "tools/enguru_batch_evidence_gate_v2.py"
+      - "tests/test_enguru_batch_evidence_gate_v2.py"
+      - "tests/test_enguru_management_progress_v1.py"
+      - ".github/workflows/enguru-management-progress-ci.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  verify-management-projection:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Regression and fail-closed tests
+        run: python3 -m unittest discover -s tests -p "test_enguru_management_progress_v1.py" -v
+      - name: V9 handoff CLI integration and invariants
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B tools/enguru_management_progress_v1.py \
+            --input governance/mac-engineer/examples/ENGURU_MANAGEMENT_V9_PROJECTION_INPUT.json \
+            > /tmp/enguru-management-v9-projection.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          result = json.loads(Path("/tmp/enguru-management-v9-projection.json").read_text())
+          assert result["state"] == "PROJECTION_ONLY_NOT_AUTHORITY"
+          assert result["officialAccepted"]["sum"] == 0
+          assert result["officialAccepted"]["percent"] == 0
+          assert result["blockers"]["closed"] == 0
+          assert result["blockers"]["closedPercent"] == 0
+          assert result["nextWork"]["primary"] == "F01"
+          assert result["nextWork"]["independentSupport"] == "F05_SCOPE_AND_SOURCE_PREPARATION"
+          assert result["terminalProjection"] == "HOLD_PENDING_AUTHORIZED_ACCEPTANCE"
+          assert result["canonicalOrOsiWrites"] == 0
+          print("STATE=PASS_READ_ONLY_V9_PROJECTION")
+      - name: V10 native Mac Engineer scope and projections
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B tools/enguru_management_progress_v1.py \
+            --input governance/mac-engineer/examples/ENGURU_MANAGEMENT_V10_PROJECTION_INPUT.json \
+            > /tmp/enguru-management-v10-projection.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          base = Path("governance/mac-engineer/examples/ENGURU_MANAGEMENT_V10_PROJECTION_INPUT.json")
+          source = json.loads(base.read_text(encoding="utf-8"))
+          result = json.loads(Path("/tmp/enguru-management-v10-projection.json").read_text())
+          assert source["scope"]["nativeProductIdentity"] == "PASS_TWO_CANONICAL_CONTRACTS"
+          assert source["scope"]["activeProduct"] == "ENGURU_MAC_ENGINEER"
+          assert source["scope"]["nextProduct"] == "PLIVE"
+          assert source["scope"]["buildExecuted"] is False
+          assert result["state"] == "PROJECTION_ONLY_NOT_AUTHORITY"
+          assert result["officialAccepted"]["percent"] == 0
+          assert result["blockers"]["closedPercent"] == 0
+          assert result["nextWork"]["primary"] == "F01"
+          assert result["nextWork"]["independentSupport"] == "F05_SCOPE_AND_SOURCE_PREPARATION"
+          assert result["terminalProjection"] == "HOLD_PENDING_AUTHORIZED_ACCEPTANCE"
+          print("STATE=PASS_V10_SCOPE_AND_ZERO_ACCEPTANCE_PROJECTION")
+          PY
+
+      - name: V12 compiler-failure projection and original acceptance boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B tools/enguru_management_progress_v1.py \
+            --input governance/mac-engineer/examples/ENGURU_MANAGEMENT_V12_PROJECTION_INPUT.json \
+            > /tmp/enguru-management-v12-projection.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root = Path("governance/mac-engineer/examples/ENGURU_MANAGEMENT_V12_PROJECTION_INPUT.json")
+          source = json.loads(root.read_text(encoding="utf-8"))
+          result = json.loads(Path("/tmp/enguru-management-v12-projection.json").read_text())
+          assert source["scope"]["swiftBuild"]["returnCode"] == 1
+          assert source["scope"]["f01"]["approvedCriteria"] == 0
+          assert source["scope"]["f01"]["proposedCriteria"] == 12
+          assert result["state"] == "PROJECTION_ONLY_NOT_AUTHORITY"
+          assert result["officialAccepted"]["sum"] == 0
+          assert result["blockers"]["closed"] == 0
+          assert result["terminalProjection"] == "HOLD_PENDING_AUTHORIZED_ACCEPTANCE"
+          print("STATE=PASS_V12_SCOPE_AND_HOLD_PROJECTION")
+          PY
+
+      - name: V13 successful SDK compilation still requires official acceptance
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B tools/enguru_management_progress_v1.py \
+            --input governance/mac-engineer/examples/ENGURU_MANAGEMENT_V13_PROJECTION_INPUT.json \
+            > /tmp/enguru-management-v13-projection.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          source = json.loads(Path("governance/mac-engineer/examples/ENGURU_MANAGEMENT_V13_PROJECTION_INPUT.json").read_text())
+          result = json.loads(Path("/tmp/enguru-management-v13-projection.json").read_text())
+          assert source["scope"]["isolatedBuild"] == "PASS"
+          assert source["scope"]["compilerRC"] == 0
+          assert source["scope"]["criteriaApproved"] == 0
+          assert source["scope"]["criteriaProposed"] == 12
+          assert result["state"] == "PROJECTION_ONLY_NOT_AUTHORITY"
+          assert result["officialAccepted"]["sum"] == 0
+          assert result["blockers"]["closed"] == 0
+          assert result["terminalProjection"] == "HOLD_PENDING_AUTHORIZED_ACCEPTANCE"
+          print("STATE=PASS_V13_TECHNICAL_BUILD_AND_OFFICIAL_HOLD")
+          PY
+
+      - name: V2 evidence-coverage fail-closed regression
+        run: python3 -m unittest discover -s tests -p "test_enguru_batch_evidence_gate_v2.py" -v
+      - name: V2 read-only packet CLI simulation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          ledger = json.loads(Path("governance/mac-engineer/progress/ENGURU_100_BIRIM_FINIS_SAYACI_V1.json").read_text())
+          row = next(x for x in ledger["checks"] if x["state"] == "HOLD")
+          demo = {"schema": "enguru.batch.evidence/v2",
+                  "baseline": ledger["verified_units"],
+                  "items": [{"id": row["id"], "original_condition": row["name"],
+                             "claim": "PASS_CANDIDATE",
+                             "real_execution": "DEMO_ONLY_NOT_REAL_FIELD_EVIDENCE",
+                             "source_head": "a" * 40, "evidence_sha256": "b" * 64,
+                             "positive_test": {"state": "PASS", "receipt_sha256": "c" * 64},
+                             "negative_test": {"state": "PASS", "receipt_sha256": "d" * 64},
+                             "owner": {"required": True, "state": "HOLD",
+                                       "receipt_sha256": None}}]}
+          Path("/tmp/enguru-batch-demo.json").write_text(json.dumps(demo))
+          PY
+          python3 -B tools/enguru_batch_evidence_gate_v2.py \
+            --ledger governance/mac-engineer/progress/ENGURU_100_BIRIM_FINIS_SAYACI_V1.json \
+            --packet /tmp/enguru-batch-demo.json > /tmp/enguru-batch-gate.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          r = json.loads(Path("/tmp/enguru-batch-gate.json").read_text())
+          assert r["state"] == "PRE_SEND_STRUCTURAL_CHECK_ONLY_NOT_AUTHORITY"
+          assert r["structurally_ready"] == 0 and r["needs_completion"] == 1
+          assert "OWNER_APPROVED_SCOPE_RECEIPT" in r["items"][0]["missing"]
+          assert r["official_pass_added"] == 0
+          print("STATE=PASS_V2_EVIDENCE_GATE_FAIL_CLOSED_DEMO")
+          PY

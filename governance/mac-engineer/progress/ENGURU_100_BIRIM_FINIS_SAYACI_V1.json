@@ -1,0 +1,723 @@
+{
+  "schema": "enguru.100-unit-verified-finish-tracker/v1",
+  "date": "2026-10-21",
+  "source_state": "22.10.2026 B05-04 owner explicitly approved separate parallel local/main/PR lineages; independent management scope PASS 26→27/100; exact evidence SHA 43b68bbd8781ef4c9f9d46655546fcbc87cb3070012d89bfa5eb9924587dc0b8 (Mac self-reported, not independently rehashed here); main merge/write/H1-H3 official HOLD.",
+  "measurement": "100 binary technical/control checkpoints; each checkpoint counted only with grounded evidence; NOT effort-time estimate and NOT official acceptance",
+  "target": "H1 4/4 -> H2 4/4 -> H3 4/4 -> Native OSi -> Verified Finish -> BITTI_DUR",
+  "total_units": 100,
+  "verified_units": 27,
+  "remaining_units": 73,
+  "official_h1_h2_h3": {
+    "passed": 0,
+    "total": 12
+  },
+  "fully_closed_f01_f06": {
+    "closed": 0,
+    "total": 6
+  },
+  "verified_finish": "HOLD",
+  "pr14": "https://github.com/engurulabory/enguru-mac-engineer/pull/14",
+  "pr191": "https://github.com/engurulabory/Engurulaboratuvari/pull/191",
+  "checks": [
+    {
+      "id": "B01-01",
+      "block": "01",
+      "name": "V13 F01 karar dosyasının SHA-256 bütünlüğü doğrulandı",
+      "state": "PASS_EVIDENCE",
+      "evidence": "V15 F01_DECISION_SHA256=PASS"
+    },
+    {
+      "id": "B01-02",
+      "block": "01",
+      "name": "V14 gerçek Mac devir raporunun SHA-256 bütünlüğü doğrulandı",
+      "state": "PASS_EVIDENCE",
+      "evidence": "V15 PREVIOUS_REPORT_SHA256=PASS"
+    },
+    {
+      "id": "B01-03",
+      "block": "01",
+      "name": "V15 yürütücü/paket SHA-256 doğrulaması tamamlandı",
+      "state": "PASS_EVIDENCE",
+      "evidence": "V15 ZIP_SHA256, PYTHON_SHA256 PASS"
+    },
+    {
+      "id": "B01-04",
+      "block": "01",
+      "name": "Orijinal yerel Git çalışma alanlarının korunması kanıtlandı",
+      "state": "PASS_EVIDENCE",
+      "evidence": "V15 GIT_WORKTREE_PRESERVATION=PASS"
+    },
+    {
+      "id": "B01-05",
+      "block": "01",
+      "name": "V15 arşivindeki Native uygulama SHA-256/Mach-O bütünlüğü doğrulandı",
+      "state": "PASS_EVIDENCE",
+      "evidence": "V15 F05_ARCHIVED_APP=PASS_SHA256_MACHO_BUNDLE"
+    },
+    {
+      "id": "B01-06",
+      "block": "01",
+      "name": "DoneCheck canonical origin otorite blob kimliği eşleşti",
+      "state": "PASS_EVIDENCE",
+      "evidence": "V15 F01_ORIGIN_MODEL_MATCH=PASS"
+    },
+    {
+      "id": "B01-07",
+      "block": "01",
+      "name": "Yerel ürün HEAD ile origin/main kapsam farkı kaynak düzeyinde açıklandı",
+      "state": "PASS_EVIDENCE",
+      "evidence": "V17 Mac handoff: local product HEAD vs origin/main source difference classified PASS; source report ENGURU_ENGINEER_V17_F01_F05_20261021T134648317060Z.json SHA256=e71df29b6d2ebee8d32061ea029c3b7eb47d228d47514bf8a083282411b9ae93"
+    },
+    {
+      "id": "B01-08",
+      "block": "01",
+      "name": "PR #14 stage nesnesinin yerel erişim durumu teknik nedeniyle sınıflandı",
+      "state": "PASS_EVIDENCE",
+      "evidence": "V16 gerçek Mac: F05_PR14_LOCAL_COMMIT=HOLD_MISSING_GIT_COMMIT_OBJECT; F05_HEAD_STAGE=HOLD — PR #14 kaynak commit nesnesinin yerel Git'te erişilememesi kesin sınıflandırıldı; canonical kabul ayrı HOLD."
+    },
+    {
+      "id": "B01-09",
+      "block": "01",
+      "name": "Aktif sürüm ve yetkili kaynak sahibi zinciri doğrulandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B01-10",
+      "block": "01",
+      "name": "F01–F06 için yetkili tek canonical kaynak snapshot tamamlandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B02-01",
+      "block": "02",
+      "name": "H1/H2/H3 için 4+4+4 teknik kriter adayı kayda alındı",
+      "state": "PASS_EVIDENCE",
+      "evidence": "V13 F01 HUMAN_THRESHOLD_DECISION"
+    },
+    {
+      "id": "B02-02",
+      "block": "02",
+      "name": "PR #191 içinde yetkili incelemeye uygunluk kararı kaydedildi",
+      "state": "PASS_EVIDENCE",
+      "evidence": "PR191 APPROVED_FOR_AUTHORIZED_REVIEW_ONLY"
+    },
+    {
+      "id": "B02-03",
+      "block": "02",
+      "name": "Kriter sözleşmesinin canonical owner kimliği doğrulandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B02-04",
+      "block": "02",
+      "name": "Reviewer ID ve açık anahtar yetki kaydı doğrulandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B02-05",
+      "block": "02",
+      "name": "12 kriterin yetkili kararına bağlı CRITERIA_SET_SHA üretildi",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B02-06",
+      "block": "02",
+      "name": "Kriterler yetkili branch/HEAD/blob/sürümle eşlendi",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B02-07",
+      "block": "02",
+      "name": "DoneCheck validator entrypoint 12 kriter sözleşmesine bağlandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B02-08",
+      "block": "02",
+      "name": "Mac runtime → Mandatory DoneCheck JSON adapter bağlantısı kanıtlandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B02-09",
+      "block": "02",
+      "name": "Progress Core™ kanıt projeksiyonu yetkili yola bağlandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B02-10",
+      "block": "02",
+      "name": "F01: AUTHORITY + VALIDATOR + MAC_BINDING üçlüsü PASS oldu",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B03-01",
+      "block": "03",
+      "name": "Önceki signer hazırlık kanıtı PASS olarak korundu",
+      "state": "PASS_EVIDENCE",
+      "evidence": "V15 H1 önceki signer hazırlığı PASS"
+    },
+    {
+      "id": "B03-02",
+      "block": "03",
+      "name": "Signer canonical kaynak yolu/kimliği yetkili kayda bağlandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B03-03",
+      "block": "03",
+      "name": "Secure Enclave P-256 anahtar kökeni ve owner kapsamı doğrulandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B03-04",
+      "block": "03",
+      "name": "Taze yetkili imza challenge kayda alındı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B03-05",
+      "block": "03",
+      "name": "Gerçek Secure Enclave P-256 imzası üretildi",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B03-06",
+      "block": "03",
+      "name": "Challenge ve imza bağımsız doğrulayıcıyla sınandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B03-07",
+      "block": "03",
+      "name": "Issuer/grant geçerliliği ve süresi doğrulandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B03-08",
+      "block": "03",
+      "name": "Signer kapsam sınırı ve permission yetkisi doğrulandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B03-09",
+      "block": "03",
+      "name": "Yetkili signer audit/receipt bütünlüğü doğrulandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B03-10",
+      "block": "03",
+      "name": "H1 dört kriterin resmî kabulü 4/4 oldu",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B04-01",
+      "block": "04",
+      "name": "Writer reliability izole 6/6 test PASS korundu",
+      "state": "PASS_EVIDENCE",
+      "evidence": "V15 H2 6/6 reliability PASS"
+    },
+    {
+      "id": "B04-02",
+      "block": "04",
+      "name": "H1 4/4 yetki bağı tamamlandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B04-03",
+      "block": "04",
+      "name": "Writer canonical entrypoint exact SHA doğrulandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B04-04",
+      "block": "04",
+      "name": "Yetkili writer grant ve hedef kaynak eşleşti",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B04-05",
+      "block": "04",
+      "name": "Yazılacak transaction kapsamı owner tarafından onaylandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B04-06",
+      "block": "04",
+      "name": "Atomik writer işlemi before/after SHA ile gerçekleşti",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B04-07",
+      "block": "04",
+      "name": "Tekrarlanan komut/idempotency testi geçti",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B04-08",
+      "block": "04",
+      "name": "Conflict/interruption/recovery karşıt testi geçti",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B04-09",
+      "block": "04",
+      "name": "Bağımsız canonical writer audit receipt doğrulandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B04-10",
+      "block": "04",
+      "name": "H2 dört kriterin resmî kabulü 4/4 oldu",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B05-01",
+      "block": "05",
+      "name": "Mevcut 13/13 Git syntax testi PASS korundu",
+      "state": "PASS_EVIDENCE",
+      "evidence": "V15 H3 13/13 syntax PASS"
+    },
+    {
+      "id": "B05-02",
+      "block": "05",
+      "name": "H2 4/4 yetki bağı tamamlandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B05-03",
+      "block": "05",
+      "name": "Kontrol/ürün Git remote ve kimlikleri doğrulandı",
+      "state": "PASS_EVIDENCE",
+      "evidence": "V26 exact Mac field JSON SHA256=a60ed0d02b7d641a5531f7ccad4405465d5408c057a9eb8cfceba487f57c409b; both local origin repo slugs PASS_ORIGIN_MATCH; preserved local control HEAD 269854b8a42a27e9419eae65a3c9e349bdcc7300 and product HEAD 26925c21c7816a90edc0eb047382aba8c696764c; Management review ENGURU_V26_B05_03_YONETIM_KABUL_KARARI_V1.md"
+    },
+    {
+      "id": "B05-04",
+      "block": "05",
+      "name": "Yetkili branch, base ve ancestry izleri doğrulandı",
+      "state": "PASS_EVIDENCE",
+      "evidence": "Owner scoped lineage approval in ENGURU_B05_04_OWNER_BRANCH_BASE_DECISION_20261022.json; decision GitHub commit e0bfa2bfdef6e55b62301da421810070d77dab7; Management acceptance ENGURU_B05_04_YONETIM_KABUL_V1.md; Mac isolated ancestry 2/2, self-test 13/13 reported, receipt SHA 43b68bbd8781ef4c9f9d46655546fcbc87cb3070012d89bfa5eb9924587dc0b8; 138 in-place preservation; no main promotion or H3 write grant."
+    },
+    {
+      "id": "B05-05",
+      "block": "05",
+      "name": "Local/remote exact HEAD mutabakatı sağlandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B05-06",
+      "block": "05",
+      "name": "Dirty-path ve korunacak farkların sahipliği çözüldü",
+      "state": "PASS_EVIDENCE",
+      "evidence": "Management ENGURU_B05_06_YONETIM_KABUL_V1.md; exact owner preservation decision d4cc4cc448586b082141389f77e9773095ae24a2 Git blob c2d5d671afeeca909dabaa58e3c25b8ae10ee493, unique 138/138 path SHA inventory (136 control,2 product) user scope PRESERVE_IN_PLACE; reported original Mac inventory SHA fc1f5e14921f42addbca2549dbf14c6dd5a210b4b8c7b71ec880f8e934717044 and packet SHA 6864aab52e8043199a9feae5cea15d05dc56601ce7f7d42dcaa51867852aa1c6; five CI workflows success; local inventory bytes independently un-rehashed."
+    },
+    {
+      "id": "B05-07",
+      "block": "05",
+      "name": "Gerekli exact commit CI kontrolleri PASS oldu",
+      "state": "PASS_EVIDENCE",
+      "evidence": "B05-07 Yönetim kabul ENGURU_B05_07_KABUL_V1.md; PR191 exact head f211a5c4bb28ec960ff29ed63eeb699eaa74a3fb 5 workflow completed/success: 39732638322,39732638423,39732638419,39732638340,39732638336; PR14 exact head 6144df906d3ecca95fa25408eeb7f47952f26e01 Product CI completed/success 39732694498. Yalnız required exact-commit CI teknik kabulü; H3 official 0/4 and owner approval HOLD."
+    },
+    {
+      "id": "B05-08",
+      "block": "05",
+      "name": "PR review/merge provenance kanıtı tamamlandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B05-09",
+      "block": "05",
+      "name": "Yetkili uzak eşitleme ve bağımsız Git receipt doğrulandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B05-10",
+      "block": "05",
+      "name": "H3 dört kriterin resmî kabulü 4/4 oldu",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B06-01",
+      "block": "06",
+      "name": "V13 Swift stdlib hatası SDK A/B deneyiyle giderildi",
+      "state": "PASS_EVIDENCE",
+      "evidence": "V13 SDK explicit -sdk RC=0"
+    },
+    {
+      "id": "B06-02",
+      "block": "06",
+      "name": "PR #14 ortak Swift SDK stage Git blob kimliği doğrulandı",
+      "state": "PASS_EVIDENCE",
+      "evidence": "PR14 c7674791990e918544782d223692198509b3708a"
+    },
+    {
+      "id": "B06-03",
+      "block": "06",
+      "name": "GitHub macOS ürün CI 90/90 ve gerçek Swift build PASS",
+      "state": "PASS_EVIDENCE",
+      "evidence": "GitHub Actions 39598242347 SUCCESS"
+    },
+    {
+      "id": "B06-04",
+      "block": "06",
+      "name": "V14 gerçek Mac üzerinde ortak SDK stage ile build PASS",
+      "state": "PASS_EVIDENCE",
+      "evidence": "V14 F05_SWIFT_BUILD=PASS_MAC_REAL_BUILD"
+    },
+    {
+      "id": "B06-05",
+      "block": "06",
+      "name": "V14 gerçek Mac 4/4 karşıt güvenlik testi PASS",
+      "state": "PASS_EVIDENCE",
+      "evidence": "V14 F05_NEGATIVE_TESTS=4/4_PASS"
+    },
+    {
+      "id": "B06-06",
+      "block": "06",
+      "name": "V14 executable Mach-O ve SHA-256 bağlı receipt PASS",
+      "state": "PASS_EVIDENCE",
+      "evidence": "V14 executable sha256=1d7fc13b..."
+    },
+    {
+      "id": "B06-07",
+      "block": "06",
+      "name": "Yetkili yerel HEAD ile stage source SHA eşleştirildi",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B06-08",
+      "block": "06",
+      "name": "Kalıcı canonical Native build entrypoint doğrulandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B06-09",
+      "block": "06",
+      "name": "Aktif Native Info.plist ve sürüm mutabakatı tamamlandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B06-10",
+      "block": "06",
+      "name": "Yetkili kaynak kabulünden sonra aynı stage regresyonu PASS",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B07-01",
+      "block": "07",
+      "name": "Yerel Git içindeki PR #14 stage blob erişim nedeni doğrulandı",
+      "state": "PASS_EVIDENCE",
+      "evidence": "V17 Mac handoff: PR14 local Git stage/object availability diagnosis PASS; B07-02 commit ancestry remains HOLD_MISSING_LOCAL_PR_COMMIT_OR_ORIGIN; report SHA256=e71df29b6d2ebee8d32061ea029c3b7eb47d228d47514bf8a083282411b9ae93"
+    },
+    {
+      "id": "B07-02",
+      "block": "07",
+      "name": "Yerel HEAD, origin/main ve PR #14 ancestry tam karşılaştırıldı",
+      "state": "PASS_EVIDENCE",
+      "evidence": "V19 gerçek Mac izolasyon raporu ENGURU_V19_F05_FORENSIC_20261021T143701623388Z.json; independently SHA256 verified 60a5491952f54555f556baf569f93c91e0efec98d24f8a6a56bfad196cef0159. Local 26925c21c781 vs main 5432b9b13549 vs PR14 a0cd947a2048; local↔main 185/0, local↔PR14 185/31, V16 PR14↔V19 0/6; merge-base 5432b9b13549; isolated fetch RC=0; source canonical owner review stays HOLD. Yönetim 21→22 approved as unique B07-02; V19 field report count_delta_authorized=0 prior to management update."
+    },
+    {
+      "id": "B07-03",
+      "block": "07",
+      "name": "Korunan dirty değişiklikler için uyuşma planı oluşturuldu",
+      "state": "PASS_EVIDENCE",
+      "evidence": "V17 Mac handoff: preserved dirty-path changes have a source reconciliation/review plan PASS, original worktree preserved; report SHA256=e71df29b6d2ebee8d32061ea029c3b7eb47d228d47514bf8a083282411b9ae93"
+    },
+    {
+      "id": "B07-04",
+      "block": "07",
+      "name": "Yetkili ürün owner kaynak inceleme kararı verdi",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B07-05",
+      "block": "07",
+      "name": "Stage kalıcı canonical kaynak sürümüne uygun şekilde alındı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B07-06",
+      "block": "07",
+      "name": "Kaynak farkları PR/review/CI ile kabul edildi",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B07-07",
+      "block": "07",
+      "name": "Native ikonun aday kaynakları ve lisansı doğrulandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B07-08",
+      "block": "07",
+      "name": "Yetkili ikon Git blob/provenance bağı tamamlandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B07-09",
+      "block": "07",
+      "name": "İlgili exact-main SHA ve kaynak paritesi kanıtlandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B07-10",
+      "block": "07",
+      "name": "SOURCE_REVIEW + ICON_PROVENANCE = PASS",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B08-01",
+      "block": "08",
+      "name": "Native saha işlemleri için owner/onay kapsamı doğrulandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B08-02",
+      "block": "08",
+      "name": "Native code-sign kimliği ve entitlement kanıtı tamamlandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B08-03",
+      "block": "08",
+      "name": "Yetkili gerçek Native code-sign işlemi PASS",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B08-04",
+      "block": "08",
+      "name": "Korunan kurulum/backup/rollback planı doğrulandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B08-05",
+      "block": "08",
+      "name": "Yetkili Native uygulama kurulumu PASS",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B08-06",
+      "block": "08",
+      "name": "Uygulama gerçek kullanıcı yolundan açıldı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B08-07",
+      "block": "08",
+      "name": "Gerçek runtime /api/status smoke PASS",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B08-08",
+      "block": "08",
+      "name": "Runtime Doctor ve kaynak bağları PASS",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B08-09",
+      "block": "08",
+      "name": "Gerçek mühendislik kullanıcı senaryosu PASS",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B08-10",
+      "block": "08",
+      "name": "NATIVE_FIELD_ACCEPTANCE=PASS",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B09-01",
+      "block": "09",
+      "name": "H1/H2/H3 yetkili receipt zinciri tek kanıtta toplandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B09-02",
+      "block": "09",
+      "name": "Resmî 12 kriter için kapsamlı Evidence üretildi",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B09-03",
+      "block": "09",
+      "name": "Mandatory DoneCheck JSON sözleşmesi doğrulandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B09-04",
+      "block": "09",
+      "name": "Evidence producer kaynak kimliği ve güven sınırı doğrulandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B09-05",
+      "block": "09",
+      "name": "DoneCheck verifyTask kriter bazlı sonuçları PASS",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B09-06",
+      "block": "09",
+      "name": "Progress Core™ yetkili projeksiyonu PASS",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B09-07",
+      "block": "09",
+      "name": "Native gerçek saha Evidence kaynağı bağlandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B09-08",
+      "block": "09",
+      "name": "Human Threshold reviewer kimliği kanıtlandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B09-09",
+      "block": "09",
+      "name": "Human Review Ed25519 attestation doğrulandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B09-10",
+      "block": "09",
+      "name": "Ürün düzeyi tam kabul kararı yetkili kayda bağlandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B10-01",
+      "block": "10",
+      "name": "Nihai exact canonical kaynak/HEAD snapshot doğrulandı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B10-02",
+      "block": "10",
+      "name": "Exact-main CI ve gerekiyorsa release authority PASS",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B10-03",
+      "block": "10",
+      "name": "Tarihsel v0.6 kilitli ürün provenance korundu",
+      "state": "PASS_EVIDENCE",
+      "evidence": "V27 real Mac SHA256 7823e1fba1b4e67d088ff4ed886afc956ae1ae5b7c74c6ecb377fff16fd426a9; v0.6 official PR165 merge 777904a957dfd475713dfd5de7b499c88247f4de, roadmap/session canonical lock blobs 9b62c0e4a8b85cf5764ef7bdfd98c783043f2860 / 221163508963881434bd1d491468c12544642618; preserved Mac backup v0.6 executable SHA 168d9560148bb61e20b05aa7abea2a0546f7b23568551e8724997fd2e2c5c784 matches historical canonical nativeExecutableSha256; Management ENGURU_V27_B10_03_HISTORICAL_LOCK_TEKNIK_KABULU_V1.md; technical historical provenance scope only."
+    },
+    {
+      "id": "B10-04",
+      "block": "10",
+      "name": "F01–F06 için tam kapanış kanıtı mutabık kılındı",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B10-05",
+      "block": "10",
+      "name": "H1/H2/H3 resmî 12/12 PASS elde edildi",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B10-06",
+      "block": "10",
+      "name": "Native ürün nihai yetkili kabulü PASS",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B10-07",
+      "block": "10",
+      "name": "DoneCheck recordVerifiedFinish() yetkili receipt üretti",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B10-08",
+      "block": "10",
+      "name": "Audit zinciri ve tam kaynak→kanıt izlenebilirliği PASS",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B10-09",
+      "block": "10",
+      "name": "Gerçek kullanıcı yeniden başlatma/kalıcılık kabulü PASS",
+      "state": "HOLD",
+      "evidence": null
+    },
+    {
+      "id": "B10-10",
+      "block": "10",
+      "name": "KALICI SABİT HEDEF: BITTI_DUR nihai hükmü kanıtlandı",
+      "state": "HOLD",
+      "evidence": null
+    }
+  ]
+}
