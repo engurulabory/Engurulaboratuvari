@@ -26,7 +26,7 @@ jobs:
       - name: Execute real Python regressions for 12 local operations
         run: |
           cd capabilities/enguru-harvest-v1
-          python -B -m unittest -v test_harvest test_evidence_gate test_skill_kernel test_license_gate test_external_skill_plan test_upstream_execution_coverage test_k01_benchmark test_k03_cli_contract test_k02_source_policy test_work_packages test_readiness_scorecard test_upstream_github_pins test_zulfikar_finish_gate test_readiness_audit_v2 test_github_osi_handoff test_readiness_audit_v3
+          python -B -m unittest -v test_harvest test_evidence_gate test_skill_kernel test_license_gate test_external_skill_plan test_upstream_execution_coverage test_k01_benchmark test_k03_cli_contract test_k02_source_policy test_work_packages test_readiness_scorecard test_upstream_github_pins test_zulfikar_finish_gate test_readiness_audit_v2 test_github_osi_handoff test_readiness_audit_v3 test_zulfikar_v141_reuse
       - name: Verify upstream root-license observation join
         run: |
           cd capabilities/enguru-harvest-v1
@@ -236,4 +236,37 @@ jobs:
             capabilities/enguru-harvest-v1/k03-cli-version-receipt.json
             ${{ runner.temp }}/enguru-cli/registry-versions.txt
             ${{ runner.temp }}/enguru-cli/package-lock.sha256
+          if-no-files-found: warn
+  
+  zulfikar-v141-source-reuse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify harvest exact source bytes and canonical V3
+        run: |
+          python -B capabilities/enguru-harvest-v1/verify_head.py
+      - name: Verify authentic V1.4.1 source contract and attack cases
+        run: |
+          cd capabilities/enguru-harvest-v1
+          python -B -m unittest -v test_zulfikar_v141_reuse
+      - name: Run original V1.4.1 three-round DÖM engine via pinned immutable source
+        run: |
+          cd capabilities/enguru-harvest-v1
+          python -B reuse_zulfikar_v141.py
+      - name: Preserve authentic source reuse proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enguru-harvest-zulfikar-v141-${{ github.sha }}
+          path: capabilities/enguru-harvest-v1/v141-source-reuse-receipt.json
           if-no-files-found: warn
