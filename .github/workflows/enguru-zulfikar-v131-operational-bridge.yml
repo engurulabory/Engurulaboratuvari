@@ -64,6 +64,25 @@ jobs:
           assert x['horizon']['realTaskPassesObservedInThisCampaign']==0
           print('OPERATIONAL_READINESS_JUDGMENT=91/100; GITHUB_BRIDGE_GATE=100/100; MAC=HOLD')
           PY
+      - name: Refuse paper-only field finish and fake peer acceptance
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: |
+          python - <<'PY'
+          import json
+          f=json.load(open('ZULFIKAR_V131_REAL_100_FIELD_HANDOFF_V1.json'))
+          assert f['verifiedFinish']=='HOLD'
+          assert f['acceptanceThreshold']['targetGeneralOperational']=='100/100'
+          assert f['acceptanceThreshold']['generalOperational'].startswith('91/100')
+          assert len(f['threeDifferentTaskFamilies'])==3
+          assert all(t['realTaskOutputAccepted'] is False for t in f['threeDifferentTaskFamilies'])
+          assert f['recoveryEvidence']['durableCheckpointCountObserved']==0
+          assert f['peerComparison']['status']=='HOLD_NOT_EXECUTED'
+          assert f['peerComparison']['claimOfSuperiority'] is False
+          assert f['authorityCannotBeGeneratedByManifest'] is True
+          assert len(f['allTaskProofFields'])==14
+          assert all(f['prohibit'].values())
+          print('ZULFIKAR_OPERATIONAL_100_FIELD_GATE=HOLD_NEEDS_REAL_TASK_EVIDENCE')
+          PY
       - name: Preserve prior V1.3.1 verified goal and GitHub code gates
         working-directory: governance/enguru-suzgeci/zulfikar-v12
         run: |
