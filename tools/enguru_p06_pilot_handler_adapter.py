@@ -7,9 +7,9 @@ execute actions. Only explicitly opted-in SENTINEL TEST_REGRESSION is executable
 from pathlib import Path
 import argparse, datetime, hashlib, json, os, subprocess, sys
 if __package__:
-    from .enguru_evidence_receipt_io import write_new_json
+    from .enguru_evidence_receipt_io import write_or_reconcile_json as write_new_json
 else:
-    from enguru_evidence_receipt_io import write_new_json
+    from enguru_evidence_receipt_io import write_or_reconcile_json as write_new_json
 
 PILOTS = ('ZEKU','ATLAS','FORGE','ASTRA','NEURON','SENTINEL','FORMA')
 CONTROL = Path(__file__).resolve().parents[1]

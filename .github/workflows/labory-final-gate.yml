@@ -30,6 +30,13 @@ jobs:
       - name: Shared AI static foundation gate
         run: python tools/shared_ai_foundation_gate.py
 
+      # Owner Emri05: S01 isolated candidate, listed paths only; acceptance remains HOLD.
+      - name: P06 immutable receipt and consumer reconciliation regressions
+        run: |
+          python -B -m unittest discover -s tests -p 'test_enguru_p06_evidence_receipt_io.py' -v
+          python -B -m unittest discover -s tests -p 'test_enguru_receipt_consumer_reconciliation.py' -v
+          python -B -m unittest discover -s tests -p 'test_enguru_p06_task_specific_policy.py' -v
+
       - name: Shared AI deterministic offline tests
         run: python -m unittest discover -s tests -p 'test_shared_ai_offline.py' -v
 
