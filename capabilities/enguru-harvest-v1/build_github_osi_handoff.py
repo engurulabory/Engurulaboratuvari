@@ -6,7 +6,6 @@ receipt. Never executes on Mac, never publishes/installs into a user device.
 import hashlib
 import io
 import json
-import os
 import re
 import subprocess
 import zipfile
