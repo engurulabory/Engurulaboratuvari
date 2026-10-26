@@ -53,6 +53,7 @@ def verify(seal: dict, source_reader, tracked_paths: set[str]) -> dict:
                         ".github/workflows/enguru-zulfikar-v141-source-seal-v2.yml"}
     if not required_workflows <= seen:
         raise ValueError("SEAL_WORKFLOW_GAP_HOLD")
+    # Detect newly added operational Python and workflow files, even if a previous seal still verifies.
     operational={p for p in tracked_paths if (p.startswith(PREFIX) and p.endswith(".py")) or
                  p.startswith(".github/workflows/enguru-zulfikar-v141-")}
     if not operational <= seen:
@@ -66,10 +67,10 @@ def _git(*args:str) -> bytes:
 
 
 def run() -> dict:
+    # HEAD is the checked-out immutable Git commit. No branch update or canonical mutation.
     tracked=set(_git("ls-tree","-r","--name-only","HEAD").decode().splitlines())
     seal=json.loads(_git("show", "HEAD:"+PREFIX+"GITHUB_SOURCE_SHA_SEAL_V2.json"))
     return verify(seal, lambda p: _git("show", "HEAD:"+p), tracked)
-
 
 if __name__ == "__main__":
     print(json.dumps(run(), sort_keys=True))
