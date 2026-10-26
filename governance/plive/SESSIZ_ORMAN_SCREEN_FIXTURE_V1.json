@@ -1,0 +1,79 @@
+{
+  "schema": "enguru.pilive.sessiz-orman.ui-design-fixture/v1",
+  "status": "DESIGN_REVIEW_CANDIDATE",
+  "sourceScope": "PR241 GitHub native review summary; historical captured Mac facts. NOT LIVE UI.",
+  "sourcePR": 241,
+  "sourceCommit": "64afbf862a393fcb2972f1f2dcbeb98649885fb8",
+  "nativeReceiptSha256": "0b5aae55274fd0d8f5bf06c4aff4b7ed44595436655530a587b2703743f04fd5",
+  "projectionDigest": "b051e49b654bc606af40c884c70185972a484573d0b291ec72438a6812498632",
+  "discovery": {
+    "projects": 15,
+    "qualifiedCounters": 14,
+    "sourceBoundObservations": 15,
+    "sourceFiles": 48,
+    "sourcePins": 8
+  },
+  "p02": {
+    "projectId": "ENGURU_PLIVE_P02_USER_SCREEN",
+    "done": 0,
+    "total": 12,
+    "percent": 0,
+    "activeItem": "P02.S01.01",
+    "officialAcceptance": "HOLD"
+  },
+  "progressCore": {
+    "projectId": "ENGURU_PROGRESS_CORE",
+    "done": 44,
+    "total": 44,
+    "percent": 100,
+    "finish": "HOLD"
+  },
+  "visualCockpit": {
+    "projectId": "ENGURU_MAC_ENGINEER_PREMIUM_VISUAL_COCKPIT_V1",
+    "declared": 26,
+    "evidenced": 24,
+    "unverified": 2,
+    "done": null,
+    "total": null,
+    "percent": null,
+    "progressIntegrity": "HOLD"
+  },
+  "categoryLabels": [
+    "Motor",
+    "Çekirdek",
+    "Web",
+    "App",
+    "Agent"
+  ],
+  "commerceClassification": "SOURCE_BOUND_FACET_ONLY",
+  "projectAreaAssignments": "N_A_SOURCE_NOT_OBSERVED",
+  "globalActiveFocus": "HOLD_CANONICAL_GLOBAL_SELECTION_NOT_PROVEN",
+  "timeSources": {
+    "sourceReadAt": null,
+    "adapterBuiltAt": null,
+    "uiRenderedAt": null
+  },
+  "historicalBinarySignature": {
+    "codesignStrictReturnCode": 1,
+    "verdict": "HOLD"
+  },
+  "uiPublication": "NOT_EXECUTED",
+  "macUserAcceptance": "HOLD",
+  "ownerAestheticAcceptance": "HOLD",
+  "officialP02Finish": "HOLD",
+  "duplicateCounterEngineAllowed": false,
+  "requirements": [
+    "U01",
+    "U02",
+    "U03",
+    "U04",
+    "U05",
+    "U06",
+    "U07",
+    "U08",
+    "U09",
+    "U10",
+    "U11",
+    "U12"
+  ]
+}
