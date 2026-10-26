@@ -53,7 +53,7 @@ def run_unittests():
          "test_zulfikar_v131_operational_bridge",
          "test_zulfikar_v131_field_evidence_intake"]
     r=subprocess.run(cmd,cwd=HERE,capture_output=True,text=True,timeout=120)
-    return (r.returncode==0 and "Ran 57 tests" in r.stderr and "OK" in r.stderr)
+    return (r.returncode==0 and "Ran 61 tests" in r.stderr and "OK" in r.stderr)
 
 
 def guarded(mission,bindings,actions,head,hashes):
