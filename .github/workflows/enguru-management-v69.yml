@@ -6,6 +6,8 @@ on:
       - 'tools/enguru_management_v69_source_adapter.py'
       - 'tests/test_enguru_management_v69_source_adapter.py'
       - 'tools/enguru_management_v69_*.py'
+      - 'tools/enguru_management_v69_*.mjs'
+      - 'tests/test_enguru_management_v69_*.mjs'
       - 'tests/test_enguru_management_v69_*.py'
       - 'tests/test_enguru_management_v69.py'
       - 'governance/management-v69/**'
@@ -41,6 +43,17 @@ jobs:
         run: python3 -m unittest discover -s tests -p 'test_enguru_management_v69_operation.py' -v
       - name: Source-bound historical receipt classification
         run: python3 tools/enguru_management_v69_operation.py
+      - name: Real source adapter tests
+        run: python3 -m unittest discover -s tests -p 'test_enguru_management_v69_source_adapter.py' -v
+      - name: Owner-scoped new candidate task and HEAD adversarial contract
+        run: node tests/test_enguru_management_v69_donecheck_scope.mjs
+      - name: Read-only real controller reconciliation
+        run: |
+          python3 tools/enguru_management_v69_source_adapter.py \
+            --tasks governance/controller/TASKS.json \
+            --gate governance/controller/ACTIVATION.json \
+            --source-ref "github-pr-checkout" \
+            --source-commit "$(git rev-parse HEAD)"
       - name: Live GitHub provenance verification (read-only)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -49,6 +62,7 @@ jobs:
             --output "$RUNNER_TEMP/enguru-management-v69-live-evidence.json"
           sha256sum "$RUNNER_TEMP/enguru-management-v69-live-evidence.json"
       - name: Preserve management evidence
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: enguru-management-v69-live-evidence
@@ -57,17 +71,9 @@ jobs:
           retention-days: 90
       - name: No-write management example
         run: python3 tools/enguru_management_v69.py --worklist governance/management-v69/EXAMPLE_TASKS.json
-      - name: Real source adapter tests
-        run: python3 -m unittest discover -s tests -p 'test_enguru_management_v69_source_adapter.py' -v
-      - name: Read-only real controller reconciliation
-        run: |
-          python3 tools/enguru_management_v69_source_adapter.py \
-            --tasks governance/controller/TASKS.json \
-            --gate governance/controller/ACTIVATION.json \
-            --source-ref "github-pr-checkout" \
-            --source-commit "$(git rev-parse HEAD)"
   donecheck_machine_verify:
-    if: github.event_name == 'pull_request' && github.event.pull_request.number == 203
+    # Owner Emri05 source grant; canonical enrollment and human review remain HOLD.
+    if: github.event_name == 'pull_request' && github.head_ref == 'review/management-s02-adoption-20261026'
     needs: verify
     runs-on: ubuntu-24.04
     timeout-minutes: 12
