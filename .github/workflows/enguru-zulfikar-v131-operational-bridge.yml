@@ -119,6 +119,26 @@ jobs:
           assert r['officialVerifiedFinish']=='HOLD'
           print('SINGLE_SCORECARD_CONTRACT=PASS_SOURCE_ONLY; GOAL1_FIELD=HOLD; GOAL2=LOCKED')
           PY
+      - name: Universal 100-only umbrella — test all diagnostics 1–99 and fake 100, three rounds
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: |
+          python -m py_compile zulfikar_v131_universal_100_gate.py
+          for cycle in 1 2 3; do
+            echo "ZULFIKAR_UNIVERSAL_ACCEPTANCE_ROUND=$cycle"
+            python -B -m unittest -v test_zulfikar_v131_universal_100_gate
+          done
+          python -B zulfikar_v131_universal_100_gate.py > "$RUNNER_TEMP/z131_universal_policy.json"
+          python - "$RUNNER_TEMP/z131_universal_policy.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1]))
+          assert r['codePolicyDiagnostic']==100 and len(r['controls'])==10
+          assert all(x is True for x in r['controls'].values())
+          assert r['policyDecision']=='GITHUB_POLICY_100_CANDIDATE_EXACT_HEAD_CI_REQUIRED'
+          assert r['operationalAcceptedScore'] is None
+          assert r['legacy91']=='HISTORICAL_DIAGNOSTIC_ONLY'
+          assert r['productVerifiedFinish']=='AWAIT_AUTHORIZED_EVIDENCE'
+          print('ZULFIKAR_UNIVERSAL_POLICY_GITHUB=100/100; 1_TO_99=ITERATE; FIELD=AWAIT_AUTHORIZED_EVIDENCE')
+          PY
       - name: Audit weighted overall readiness without false 100
         working-directory: governance/enguru-suzgeci/zulfikar-v12
         run: |
@@ -139,7 +159,9 @@ jobs:
           assert pilot['actualGithubExecution'] is True
           assert pilot['isThreeDifferentMacUserProjects'] is False
           assert pilot['productVerifiedFinish']=='HOLD'
-          assert x['overallOperationalVerdict']=='HOLD_91_100'
+          assert x['overallOperationalVerdict']=='CONTINUE_REAL_EVIDENCE_NOT_ACCEPTED'
+          assert x['acceptedOperationalScore'] is None
+          assert x['historicalDiagnosticBeforeCurrentPolicy']['score']==91
           assert x['allSixDimensionsPass'] is False
           assert x['allSixDimensions100'] is False
           assert [d['verdict'] for d in ds].count('PASS_SCOPE_LIMITED')==3
@@ -154,7 +176,7 @@ jobs:
           assert m['noAutomaticPromotion'] is True
           assert x['horizon']['macOsiOperationalAcceptance']=='HOLD'
           assert x['horizon']['realTaskPassesObservedInThisCampaign']==0
-          print('OPERATIONAL_READINESS_JUDGMENT=91/100; GITHUB_BRIDGE_GATE=100/100; MAC=HOLD')
+          print('OPERATIONAL_HISTORY_DIAGNOSTIC=91; ACCEPTED_OPERATIONAL_SCORE=NONE; IMPROVEMENT_CONTINUES; MAC_FIELD_AUTHORITY=PENDING')
           PY
       - name: Refuse paper-only field finish and fake peer acceptance
         working-directory: governance/enguru-suzgeci/zulfikar-v12
@@ -217,7 +239,8 @@ jobs:
             'singleAuthority':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_single_authority.json',
             'githubEngine1':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_real_github_1.json',
             'githubEngine2':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_real_github_2.json',
-            'githubEngine3':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_real_github_3.json'
+            'githubEngine3':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_real_github_3.json',
+            'universalPolicy':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_universal_policy.json'
           }
           evidence={
             'schema':'enguru.zulfikar.github-run-provenance/v1',
@@ -245,5 +268,6 @@ jobs:
             ${{ runner.temp }}/z131_real_github_1.json
             ${{ runner.temp }}/z131_real_github_2.json
             ${{ runner.temp }}/z131_real_github_3.json
+            ${{ runner.temp }}/z131_universal_policy.json
             ${{ runner.temp }}/z131_run_provenance.json
           retention-days: 14
