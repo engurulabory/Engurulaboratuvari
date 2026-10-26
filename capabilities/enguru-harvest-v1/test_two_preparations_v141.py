@@ -4,7 +4,7 @@ import json
 import unittest
 from pathlib import Path
 from verify_two_preparations_v141 import (
-    assess,contract_guard,domain_guard,git_reader,V3,GATES,
+    assess,contract_guard,git_reader,V3,GATES,
 )
 
 HERE=Path(__file__).resolve().parent
