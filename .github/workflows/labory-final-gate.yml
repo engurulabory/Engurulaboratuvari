@@ -208,6 +208,26 @@ jobs:
       - name: A03 authority preflight review-only tests
         run: python -m unittest discover -s tests -p 'test_arge_a03_preflight_v419.py' -v
 
+      - name: HYM2 A03 Zulfikar V1.3.1 solo-owner GitHub scope (not official grant)
+        run: |
+          python -B - <<'PY'
+          import json
+          from pathlib import Path
+          from tools.arge_a03_preflight_v419 import assess_solo_github_preparation
+          source=Path("governance/enguru-suzgeci/reviews/ENGURU_ARGE_B01_M01_A03_A04_MANAGEMENT_DECISION_HANDOFF_V1.json")
+          result=assess_solo_github_preparation(json.loads(source.read_text(encoding="utf8")))
+          assert result["state"]=="PASS_SOLO_GITHUB_SCOPE_SPEC_ONLY"
+          assert result["score"]==result["denominator"]==100
+          assert len(result["passed_ids"])==10
+          assert result["a03_official"]==result["a04_official"]=="HOLD"
+          assert result["verified_finish"]=="HOLD"
+          print(json.dumps({"scope":result["scope"],"result":result["state"],
+             "technicalSpecification":result["score"],"A03Official":result["a03_official"],
+             "A04Official":result["a04_official"],"VerifiedFinish":result["verified_finish"]},
+             sort_keys=True))
+          PY
+
+
       - name: Ar-Ge Block 01 nine-task adversarial tests
         run: python -m unittest discover -s tests -p 'test_arge_block01_v423.py' -v
 
