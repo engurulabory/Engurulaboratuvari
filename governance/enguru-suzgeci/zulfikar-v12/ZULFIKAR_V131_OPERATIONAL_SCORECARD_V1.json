@@ -109,7 +109,9 @@
     "crossProjectGithubSourceObservations": 3,
     "independentMacTasksAcceptedInCampaign": 0,
     "latestPr241ObservedHead": "bcec47379e936ee53683f47cfb89c03bca57967b",
-    "latestZulfikarEvidenceScope": "READ_ONLY_CROSS_PRODUCT_AND_PRIVATE_RECEIPT_INTAKE_NO_TASK_AUTHORITY"
+    "latestZulfikarEvidenceScope": "READ_ONLY_CROSS_PRODUCT_AND_PRIVATE_RECEIPT_INTAKE_NO_TASK_AUTHORITY",
+    "githubRunnerRealTaskPilotPasses": 3,
+    "githubRunnerRealTaskScope": "ONE_TASK_FAMILY_REPEATED_THREE_TIMES_NOT_THREE_HETEROGENEOUS_MAC_TASKS"
   },
   "scoringRule": "Source-level tests may raise governance/portable preflight judgment but not end-to-end real execution domain. No automatic 100 without actual OS field and independent real task evidence.",
   "overallOperationalVerdict": "HOLD_91_100",
@@ -302,6 +304,24 @@
       "existingDoneCheck": "HOLD",
       "officialVerifiedFinish": "HOLD"
     },
-    "oneNextAction": "After current PiLive Work authorized handoff, independently inspect exact actual Mac source→binary→GUI and owner receipt for candidate native task 1; never infer user acceptance from GitHub CI."
+    "oneNextAction": "After current PiLive Work authorized handoff, independently inspect exact actual Mac source→binary→GUI and owner receipt for candidate native task 1; never infer user acceptance from GitHub CI.",
+    "realGithubRunnerPilot": {
+      "state": "PASS_GITHUB_DISPOSABLE_RUNTIME_ONLY",
+      "sourceRunCommit": "fdf526e1ba86251aa4547cb488d89f9aecd5c65d",
+      "scope": "ENGINE_TEMP_SQLITE_ARTIFACT_TASK_THREE_SEPARATE_RUNS",
+      "linkedCanonicalSource": "tools/enguru_method_github_pilot_v1.py",
+      "rounds": 3,
+      "checksPerRound": 6,
+      "actualGithubExecution": true,
+      "artifactWrittenOnRunner": true,
+      "sqliteCheckpointAndReplay": true,
+      "separateMechanismVerifier": true,
+      "sourceDriftAndTamperRejected": true,
+      "isThreeDifferentMacUserProjects": false,
+      "nativeMacOSiExecutionAuthenticated": false,
+      "existingDoneCheck": "HOLD",
+      "ownerFieldApproval": "HOLD",
+      "productVerifiedFinish": "HOLD"
+    }
   }
 }
