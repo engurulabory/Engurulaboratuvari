@@ -52,6 +52,18 @@ jobs:
         run: |
           cd capabilities/enguru-harvest-v1
           python -B run_second_upstream_trials.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run pinned promptfoo offline echo provider evaluation
+        env:
+          PROMPTFOO_DISABLE_TELEMETRY: '1'
+          PROMPTFOO_DISABLE_UPDATE: '1'
+          CI: 'true'
+        run: |
+          cd capabilities/enguru-harvest-v1
+          npx --yes --package promptfoo@0.125.0 promptfoo eval --config promptfooconfig.json --output promptfoo-eval-output.json
+          python -B check_promptfoo_receipt.py
       - name: Preserve real runner receipts
         if: always()
         uses: actions/upload-artifact@v4
@@ -60,6 +72,8 @@ jobs:
           path: |
             capabilities/enguru-harvest-v1/upstream-tool-trial-receipt.json
             capabilities/enguru-harvest-v1/second-upstream-trial-receipt.json
+            capabilities/enguru-harvest-v1/promptfoo-eval-output.json
+            capabilities/enguru-harvest-v1/promptfoo-offline-receipt.json
             ${{ runner.temp }}/harvest-mcp-install-report.json
             ${{ runner.temp }}/harvest-pip-install-report.json
           if-no-files-found: warn
