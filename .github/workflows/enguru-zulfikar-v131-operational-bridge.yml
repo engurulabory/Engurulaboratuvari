@@ -1,0 +1,47 @@
+name: ENGURU Zulfikar V1.3.1 Operational Bridge Truth
+
+on:
+  pull_request:
+    paths:
+      - 'governance/enguru-suzgeci/zulfikar-v12/**'
+      - '.github/workflows/enguru-zulfikar-v131-operational-bridge.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-bound-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Source code syntax and exact SHA receipt
+        run: |
+          python -m py_compile governance/enguru-suzgeci/zulfikar-v12/zulfikar_v131_operational_bridge.py
+          sha256sum governance/enguru-suzgeci/zulfikar-v12/zulfikar_v131_operational_bridge.py
+      - name: Three separate negative/positive registry test rounds
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: |
+          for cycle in 1 2 3; do
+            echo "ZULFIKAR_V131_OPERATIONAL_ROUND=$cycle"
+            python -B -m unittest -v test_zulfikar_v131_operational_bridge
+          done
+          echo "STATE=PASS_GITHUB_EXISTING_HANDLER_PREFLIGHT_ONLY_OSI_FIELD_HOLD"
+      - name: Preserve prior V1.3.1 verified goal and GitHub code gates
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: |
+          python -B zulfikar_v1_3_gates.py goal > "$RUNNER_TEMP/z131_goal.json"
+          python -B zulfikar_v1_3_gates.py infra > "$RUNNER_TEMP/z131_infra.json"
+          python - "$RUNNER_TEMP/z131_goal.json" "$RUNNER_TEMP/z131_infra.json" <<'PY'
+          import json,sys
+          a,b=[json.load(open(x)) for x in sys.argv[1:]]
+          assert a['assessment']['score']==100
+          assert b['assessment']['score']==100
+          assert b['osi_infrastructure']=='HOLD_NOT_EXECUTED'
+          assert b['official_finish']=='HOLD'
+          print('EXISTING_ZULFIKAR_V131_GITHUB=100/100; OSI=HOLD')
+          PY
