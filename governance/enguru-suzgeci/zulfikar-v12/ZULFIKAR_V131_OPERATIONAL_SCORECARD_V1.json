@@ -119,5 +119,32 @@
   "realMacFieldVerdict": "HOLD",
   "verifiedFinishVerdict": "HOLD",
   "passRule": "General operational PASS requires six dimensions 100/100, real-task and Mac field evidence, independent verification, and authorized Human Threshold/DoneCheck decision.",
-  "positiveLanguageRule": "Use tamamlanmış/kanıtlanmış/doğrulanmış/güvenli duruş. Avoid prohibited totalizing phrasing."
+  "positiveLanguageRule": "Use tamamlanmış/kanıtlanmış/doğrulanmış/güvenli duruş. Avoid prohibited totalizing phrasing.",
+  "managementFinalTarget": {
+    "target": "ALL_SIX_DOMAINS_100_OF_100",
+    "scope": "SIX_OPERATIONAL_DIMENSIONS",
+    "condition": "THREE_REAL_OPEN_WORK_ITEMS_COMPLETED_WITH_INDEPENDENT_EVIDENCE_AND_SCOPED_OWNER_AUTHORITY",
+    "threeClosureGates": [
+      {
+        "id": "GOVERNANCE",
+        "from": 98,
+        "to": 100,
+        "evidence": "Real Mac owner identity, scope and permission/issuer authority record independently reconciled"
+      },
+      {
+        "id": "PORTABILITY",
+        "from": 90,
+        "to": 100,
+        "evidence": "Three distinct authorized engineering task families with independently verified real execution and outputs"
+      },
+      {
+        "id": "E2E_REAL",
+        "from": 65,
+        "to": 100,
+        "evidence": "Source-to-user outcome, durable restart/recovery, comparable real benchmark, independent review, authorized acceptance"
+      }
+    ],
+    "completionVerdict": "When each closure gate is independently evidenced and scored 100, all 6/6 dimensions shall be 100/100. Only then evaluate overall PASS, DoneCheck, Human Threshold and VERIFIED_FINISH with their real evidence; until then HOLD.",
+    "noAutomaticPromotion": true
+  }
 }
