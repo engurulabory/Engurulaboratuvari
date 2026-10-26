@@ -1,0 +1,26 @@
+{
+  "scope": "Linux isolated replay; no new Mac tests claimed",
+  "rounds": [
+    {
+      "cycle": 1,
+      "tests": 57,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "cycle": 2,
+      "tests": 57,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "cycle": 3,
+      "tests": 57,
+      "failures": 0,
+      "errors": 0
+    }
+  ],
+  "nativePriorTests": 137,
+  "nativeCurrentNewTests": "NOT_EXECUTED",
+  "productAcceptance": "HOLD"
+}

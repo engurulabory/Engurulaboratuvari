@@ -1,0 +1,72 @@
+name: PiLive SwiftUI presentation state
+on:
+  pull_request:
+    paths:
+      - 'swift/PiLivePresentation/**'
+      - 'tools/pilive_*'
+      - 'tests/test_pilive_*'
+      - 'tests/test_pilive_screen_wire_v1.py'
+      - 'tests/test_pilive_native_portfolio_review_v1.py'
+      - 'tests/fixtures/pilive_native_portfolio_review_v1.json'
+      - '.github/workflows/pilive-presentation-state-v1.yml'
+permissions:
+  contents: read
+jobs:
+  swift-state:
+    runs-on: macos-15
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify native transport fixture and reviewed regression
+        run: |
+          python3 -m unittest discover -s tests -p 'test_pilive_native_portfolio_review_v1.py' -v
+          python3 -m unittest discover -s tests -p 'test_pilive_screen_wire_v1.py' -v
+          python3 -m unittest discover -s tests -p 'test_pilive_live_reader_v1.py' -v
+          python3 -m unittest discover -s tests -p 'test_pilive_field_journey_v1.py' -v
+          python3 - <<'PY'
+          import sys
+          from pathlib import Path
+          sys.path.insert(0, 'tests')
+          from test_pilive_screen_wire_v1 import native_model
+          from tools.pilive_screen_wire_v1 import export_wire
+          assert export_wire(native_model()) == Path('swift/PiLivePresentation/Tests/PiLivePresentationTests/Fixtures/native-wire.json').read_bytes()
+          PY
+      - name: Read exact existing DOM method source in separate checkout
+        uses: actions/checkout@v4
+        with:
+          ref: 4780d96ccb16ca4a922846ab48918262c7845f47
+          path: .method-reference
+      - name: Existing DOM disposable PiLive wire qualification (no product stage authority)
+        run: python3 -B tools/pilive_dom_qualification_v1.py .method-reference/governance/enguru-suzgeci/zulfikar-v12/v141/dom/engine.py
+      - name: Record CI toolchain (not installed OSi binary provenance)
+        run: swift --version
+      - name: Three adversarial Swift state rounds
+        working-directory: swift/PiLivePresentation
+        run: |
+          set -e
+          for cycle in 1 2 3; do
+            echo "SWIFT_STATE_CYCLE=$cycle"
+            swift test
+          done
+      - name: Compile real SwiftUI executable and verify isolated ad-hoc bundle
+        working-directory: swift/PiLivePresentation
+        run: |
+          swift build -c release
+          APP="$RUNNER_TEMP/PiLive-CI.app"
+          mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
+          cp "$(swift build -c release --show-bin-path)/PiLive" "$APP/Contents/MacOS/PiLive"
+          export PILIVE_CI_APP="$APP"
+          python3 - <<'PY'
+          import os,plistlib,hashlib
+          from pathlib import Path
+          app=Path(os.environ['PILIVE_CI_APP'])
+          info={'CFBundleIdentifier':'local.enguru.pilive.ci','CFBundleName':'PiLive CI','CFBundleExecutable':'PiLive','CFBundlePackageType':'APPL','CFBundleVersion':'1'}
+          (app/'Contents/Info.plist').write_bytes(plistlib.dumps(info))
+          print('PRE_SIGNING_BINARY_SHA256='+hashlib.sha256((app/'Contents/MacOS/PiLive').read_bytes()).hexdigest())
+          PY
+          codesign --force --sign - --timestamp=none "$APP"
+          codesign --verify --strict "$APP"
+          shasum -a 256 "$APP/Contents/MacOS/PiLive"

@@ -1,0 +1,67 @@
+{
+  "acceptanceIds": [
+    "U01",
+    "U02",
+    "U05",
+    "U10",
+    "U12"
+  ],
+  "actualNewMacRun": "NOT_EXECUTED",
+  "adapterProjects": 15,
+  "after": "PASS_EXACT_CAPTURED_INPUT_REPLAY_ONLY",
+  "allTestRounds": [
+    {
+      "cycle": 1,
+      "errors": 0,
+      "failures": 0,
+      "tests": 203
+    },
+    {
+      "cycle": 2,
+      "errors": 0,
+      "failures": 0,
+      "tests": 203
+    },
+    {
+      "cycle": 3,
+      "errors": 0,
+      "failures": 0,
+      "tests": 203
+    }
+  ],
+  "before": "HOLD_PROJECT_KEY",
+  "boundaryRepair": "Add underscore to existing ASCII slug alphabet only; preserve prefix and length bounds; validate key types before deterministic sorting. No key normalization or canonical mutation.",
+  "canonicalWrites": 0,
+  "coreContractFinding": "validate_work_contract accepts nonempty name strings, preserves them through discovered project mapping and rejects key collisions. It imposes no lowercase-hyphen-only regex.",
+  "coreProjects": 15,
+  "coreSourceSha256": "f3e2610c6e325f6fd620baa84ec412437a015109dde88ac38cab7f08b2a365b4",
+  "nativeWrites": 0,
+  "otherProjectFacts": "Not read; fourteen projects remain visible with HOLD and unknown counters",
+  "p02": {
+    "activeItem": "P02.S01.01",
+    "closed": false,
+    "done": 0,
+    "finish": "HOLD",
+    "key": "plive-p02-user-screen",
+    "officialAcceptance": "HOLD",
+    "projectId": "ENGURU_PLIVE_P02_USER_SCREEN",
+    "total": 12
+  },
+  "projectIdsUnique": true,
+  "projectKeysPreserved": true,
+  "rawNativeContentExported": false,
+  "schema": "enguru.pilive.canonical-key-repair/v1",
+  "simulations": {
+    "SIM1": "Exact native 15-project captured input before/after replay; P02 unchanged 0/12",
+    "SIM2": "Eleven canonical-key regression methods cover malformed/unsafe/missing/extra/duplicate/drift cases; all PASS",
+    "SIM3": "Twenty deterministic project-order permutations, same digest; full regression suite repeated in three separate rounds"
+  },
+  "sourceReceiptSha256": "9b40348a36065af4302cba65d1117046ed7446670e94ee10eae648f4fbbbf858",
+  "sourceSha256": {
+    "tests/fixtures/pilive_core_keys_15_v1.json": "e142024b360a11e1727e53c6219b12da33a6ea5ef0963155e1508a5424053510",
+    "tests/test_pilive_canonical_keys_v1.py": "87c9958a608cf0102a815cffa927cfb249596869ab59ab9565b2503c34d4d70d",
+    "tools/pilive_core_snapshot_adapter_v1.py": "0f0208488cee2f2c20439a4e7929f12fa3c544dd984b079fafd84f062f9543e9"
+  },
+  "uiAcceptance": "HOLD",
+  "verifiedFinish": "HOLD"
+}

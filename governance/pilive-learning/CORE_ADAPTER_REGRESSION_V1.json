@@ -1,0 +1,27 @@
+{
+  "scope": "Linux isolated; current native adapter tests pending",
+  "newSnapshotTests": 20,
+  "rounds": [
+    {
+      "cycle": 1,
+      "tests": 85,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "cycle": 2,
+      "tests": 85,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "cycle": 3,
+      "tests": 85,
+      "failures": 0,
+      "errors": 0
+    }
+  ],
+  "priorMacTests": 137,
+  "newMacTests": "NOT_EXECUTED",
+  "productAcceptance": "HOLD"
+}

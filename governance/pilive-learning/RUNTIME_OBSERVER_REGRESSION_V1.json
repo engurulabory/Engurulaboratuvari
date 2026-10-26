@@ -1,0 +1,24 @@
+{
+  "scope": "BOUNDED_OBSERVER_ONLY_NOT_NATIVE_PRODUCT_ACCEPTANCE",
+  "rounds": [
+    {
+      "round": 1,
+      "tests": 12,
+      "state": "PASS",
+      "outputSha256": "78451467e923fdcc63517372a02a15098d6f6d32bb2ed9b39d5105432d7448a7"
+    },
+    {
+      "round": 2,
+      "tests": 12,
+      "state": "PASS",
+      "outputSha256": "a7aafc4a518a61b2468377b07853f742bd40210568c5c9c34954d219cf11c28a"
+    },
+    {
+      "round": 3,
+      "tests": 12,
+      "state": "PASS",
+      "outputSha256": "78451467e923fdcc63517372a02a15098d6f6d32bb2ed9b39d5105432d7448a7"
+    }
+  ],
+  "nativeExecution": "NOT_EXECUTED"
+}

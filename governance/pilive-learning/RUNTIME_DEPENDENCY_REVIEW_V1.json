@@ -1,0 +1,52 @@
+{
+  "acceptanceIds": [
+    "U01",
+    "U02",
+    "U05",
+    "U09",
+    "U10",
+    "U12"
+  ],
+  "adapterRepair": "Core registry() merged discovery consumed directly; each Core project retained once; qualified P02 facts projected with authority HOLD. Native dry-run pending.",
+  "captureScopeHold": [
+    "ValueError"
+  ],
+  "contentRecordsVerified": 4,
+  "corePins": {
+    "governance/plive-p02-user-screen/PLIVE_P02_WORK_CONTRACT_V1.json": "1dc9b0bae00a13672a142fb91f6b1fe603f151bcebaa64482e297029deda7512",
+    "governance/plive-p02-user-screen/STATE_V1.json": "ad29d034c8a97be75d69d972fca1c6e7ee207e7f7f1339e79b74e1ce6c40f432",
+    "governance/plive-p02-user-screen/WORKLIST_V1.json": "4021dc7486363bc7baf503860969ea23324eabcbd4e3551930a20d79784532d2",
+    "governance/progress-core/ENGURU_PROGRESS_CORE_EVIDENCE_POLICY_V1.json": "a3a7f1b2bd100890a6afa1e52be9bf7f87bd02724fcf0c50e522632b24a384ed",
+    "governance/progress-core/ENGURU_PROGRESS_CORE_PROJECT_REGISTRY_V1.json": "515748a88acffdd60be6afd4c837a2581a48a3bbeccd74c4a413ae3f986c4a80",
+    "tools/enguru_progress.py": "f3e2610c6e325f6fd620baa84ec412437a015109dde88ac38cab7f08b2a365b4",
+    "tools/enguru_progress_adapters.py": "2508089ed161070abe1d520325ff610fd6165c8a726db3ea2a456d772b6faa92",
+    "tools/enguru_progress_intelligence.py": "0e3ffb67091ef2c147287448a0855f205992083d541b1d7019e3305d92b0f8b0"
+  },
+  "currentCorePinsStable": true,
+  "currentCorePinsVerified": 8,
+  "globalAbsence": "NOT_CLAIMED",
+  "nativeTestsNew": "NOT_EXECUTED",
+  "nativeWrites": 0,
+  "newReceiptCopyReadback": "PASS_REPORTED_BY_APPROVED_WRITER; uploaded bytes match terminal SHA",
+  "observedAtUtc": "2026-10-25T18:49:20.253185+00:00",
+  "oldDesktopCopies": "NOT_OBSERVED_AT_EXACT_TOP_LEVEL; bounded scope only",
+  "parentReceiptSha256": "d91557b11abe20363f1a8ff89fb55267ec0549376c3c76839e2f80ea278349fa",
+  "priorOriginalsLocatedAndPinned": 3,
+  "rawNativeContentExported": false,
+  "receiptSha256": "150c772bbec5d536f884888e84f1e9ee47bb6b6b870cbfe7ec4263df1b6c88b7",
+  "requiredDependencyGap": [
+    "bridge.py",
+    "legacy_snapshot.py"
+  ],
+  "schema": "enguru.pilive.reviewed-runtime-dependency/v1",
+  "sourceSha256": {
+    "plive_v3_base_projection.py": "69b5ec52d5e6bf64e2151b09dfe7ba1d1674c74670311c286b1a6d2aebb98133",
+    "plive_v3_projection.py": "99baae22e7eb8489b38d976ed6c2aaa0190196526301f22bcd61f43fe4685fa8",
+    "snapshot.py": "1aa863bbe8c408cba698fd29bbe78bef35c4ccf1bf00319d15f5a39aa3e32015",
+    "snapshot_v52.py": "87dc579efb7f7a60541bc8439f9fc74e06983a10b7f829640d9403ac193c6edf"
+  },
+  "swiftBinaryBuildBinding": "HOLD_EXACT_BUILD_MANIFEST",
+  "uiExecution": "NOT_EXECUTED",
+  "unusedGuessedPath": "projection_v6.py absent under LiveProgress/v4; installed base reads snapshot_v52.py directly. Not a required dependency at that guessed path.",
+  "verifiedFinish": "HOLD"
+}

@@ -1,0 +1,27 @@
+{
+  "coreSourceRevision": "269854b8a42a27e9419eae65a3c9e349bdcc7300",
+  "managerDecision": "User accepted native adapter delivery; full product acceptance separate",
+  "nativeTestReturnCode": 0,
+  "nativeTests": 203,
+  "observedAtUtc": "2026-10-25T19:25:02.447927+00:00",
+  "otherProjectCounters": "14 HOLD_NOT_READ_IN_BASELINE",
+  "p02": {
+    "activeItem": "P02.S01.01",
+    "activePackage": "P02.S01",
+    "done": 0,
+    "finish": "HOLD",
+    "officialAcceptance": "HOLD",
+    "percent": 0.0,
+    "total": 12
+  },
+  "packageManifestSha256": "b065595afec64821af27c2ebd68395ccba7e0eb0d5db46e5956a8eb265392f96",
+  "packageSourceCommit": "6d2abb5b01737679baa449885d9c5d6fe647a8fc",
+  "projectKeysAndIdsUnique": 15,
+  "projectionDigest": "45b9b766f06fc74f1b39803764347c52e40992d652500b77087115b080e8cf68",
+  "rawNativeContentExported": false,
+  "receiptSha256": "39c28d1c41777c14decc7a67d034d13c34f242a7b4c261c2a524fd766c54b808",
+  "schema": "enguru.pilive.accepted-native-adapter-baseline/v1",
+  "sourcePinsVerified": 8,
+  "uiExecution": "NOT_EXECUTED",
+  "verifiedFinish": "HOLD"
+}

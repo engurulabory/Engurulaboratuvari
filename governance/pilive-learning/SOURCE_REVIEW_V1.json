@@ -1,0 +1,44 @@
+{
+  "contentRecordsVerified": 116,
+  "nativeExecution": "NOT_EXECUTED",
+  "officialAcceptance": "UNCHANGED_HOLD",
+  "parentSha256": "0dac03bf15579f28bccd3da5fc3daa36fb81c5d368b209216a0c32769d6327a8",
+  "schedules": [
+    {
+      "gapsSeconds": [
+        19355.0,
+        18751.0,
+        7086.0
+      ],
+      "officialAcceptance": "UNCHANGED_HOLD",
+      "runIds": [
+        40192428112,
+        40170785965,
+        40151655056,
+        40143916564
+      ],
+      "state": "HOLD_SCHEDULE_CONTINUITY",
+      "thresholdSeconds": 420,
+      "workflowId": 393938055
+    },
+    {
+      "gapsSeconds": [
+        11969.0,
+        19653.0,
+        17880.0
+      ],
+      "officialAcceptance": "UNCHANGED_HOLD",
+      "runIds": [
+        40205153075,
+        40190120626,
+        40168532595,
+        40150135534
+      ],
+      "state": "HOLD_SCHEDULE_CONTINUITY",
+      "thresholdSeconds": 420,
+      "workflowId": 392178296
+    }
+  ],
+  "sourceSha256": "bd64da51f2b708d55c358cf4307f2e746d8ddd33f5814690ed0ff3791652e1ed",
+  "state": "PASS_CAPTURE_INTEGRITY_ONLY"
+}

@@ -1,0 +1,27 @@
+{
+  "scope": "Linux isolated tests; Mac not re-executed",
+  "newProjectSetTests": 8,
+  "rounds": [
+    {
+      "cycle": 1,
+      "tests": 65,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "cycle": 2,
+      "tests": 65,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "cycle": 3,
+      "tests": 65,
+      "failures": 0,
+      "errors": 0
+    }
+  ],
+  "nativePriorTests": 137,
+  "nativeNewTests": "NOT_EXECUTED",
+  "productAcceptance": "HOLD"
+}

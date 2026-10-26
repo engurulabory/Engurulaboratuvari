@@ -1,0 +1,38 @@
+{
+  "acceptanceIds": [
+    "U02",
+    "U10",
+    "U12"
+  ],
+  "confirmedToolDefect": "Exception class only was printed and native validation diagnostics were lost before receipt save.",
+  "isolatedRounds": [
+    {
+      "cycle": 1,
+      "errors": 0,
+      "failures": 0,
+      "tests": 88
+    },
+    {
+      "cycle": 2,
+      "errors": 0,
+      "failures": 0,
+      "tests": 88
+    },
+    {
+      "cycle": 3,
+      "errors": 0,
+      "failures": 0,
+      "tests": 88
+    }
+  ],
+  "nativeFailureCause": "UNKNOWN_PENDING_EXACT_REASON",
+  "nativeReport": "User Terminal: STATE=HOLD_NATIVE_ADAPTER_PROBE; REASON=Hold",
+  "newNativeTests": "NOT_EXECUTED",
+  "newTests": 3,
+  "nextAction": "Read-only diagnostic using the same pinned V1 package; no full test replay or install.",
+  "priorNativeTests": 137,
+  "repair": "Retain allowlisted HOLD reason, private Core inputs, source pins/revisions, and completed test results in a HOLD receipt. Validation is unchanged.",
+  "schema": "enguru.pilive.native-hold-diagnostic-repair/v1",
+  "v1PackageSha256": "57ad83e0388ee520356321fc72836355f6b0b6bab3d81f5ec23f6508ee075e85",
+  "verifiedFinish": "HOLD"
+}

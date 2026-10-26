@@ -1,0 +1,37 @@
+{
+  "schema": "enguru.pilive.live-app-regression/v1",
+  "pythonRounds": [
+    {
+      "tests": 231,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "tests": 231,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "tests": 231,
+      "failures": 0,
+      "errors": 0
+    }
+  ],
+  "swiftTestsExpectedPerRound": 14,
+  "scope": "Source/state/real SwiftUI executable; native OSi UI pending",
+  "nativePreviousTests": 218,
+  "domQualification": {
+    "methodCommit": "4780d96ccb16ca4a922846ab48918262c7845f47",
+    "engineSha256": "aae470e41a59de981c0c34b81a25ed094f52db6eed8dc0d101124984dd903230",
+    "realReaderTestsPerRound": 7,
+    "rounds": 3,
+    "scope": "LOCAL_DISPOSABLE_WIRE_REPAIR_ONLY",
+    "stagePassIssued": false,
+    "acceptedScore": null
+  },
+  "canonicalWrites": 0,
+  "installedAppWrites": 0,
+  "nativeField": "NOT_EXECUTED",
+  "productAcceptance": "HOLD",
+  "verifiedFinish": "HOLD"
+}

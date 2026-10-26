@@ -1,0 +1,174 @@
+{
+  "gates": {
+    "Başarı Kası": {
+      "eventClassification": "PASS_METADATA_ONLY",
+      "evidence": "Actual native underscore repair repeat: 203 tests and 15 identities, P02 qualified read-only. Three-task transfer remains HOLD.",
+      "transfer": "HOLD_THREE_REAL_COMPARABLE_TASKS_AND_INDEPENDENT_REVIEW"
+    },
+    "FİN Verici": {
+      "authority": "EXISTING_CANONICAL_DONECHECK_AND_HUMAN_THRESHOLD_ONLY",
+      "reason": "U01-U12, independent GUI review, canonical P02 jobs/DoneCheck/field, G3 and Human Threshold remain open",
+      "state": "HOLD"
+    },
+    "Hedef": {
+      "activeEngineeringGoal": "Bind facts from every Core-discovered project into one source-bound screen data contract.",
+      "evidence": "governance/plive/ENGURU_PILIVE_URUN_HEDEFI_V4.md; latest user execution order",
+      "originalControls": [
+        "U01",
+        "U02",
+        "U03",
+        "U04",
+        "U05",
+        "U06",
+        "U07",
+        "U08",
+        "U09",
+        "U10",
+        "U11",
+        "U12"
+      ],
+      "score": "NOT_REASSESSED_IN_THIS_SOURCE_REPLAY",
+      "state": "SPECIFICATION_PRESERVED"
+    },
+    "Teknik Altyapı": {
+      "evidence": [
+        "NATIVE_REPEAT_SUCCESS_V1.json",
+        "RUNTIME_SOURCE_REVIEW_V1.json",
+        "PROJECT_SET_REPLAY_V1.json",
+        "RUNTIME_DEPENDENCY_REVIEW_V1.json",
+        "CORE_ADAPTER_REPLAY_V1.json",
+        "CORE_ADAPTER_REGRESSION_V1.json",
+        "NATIVE_PORTFOLIO_BASELINE_V1.json",
+        "PORTFOLIO_DATA_CONTRACT_V1.md",
+        "PORTFOLIO_CORE_REPLAY_V1.json",
+        "PORTFOLIO_REGRESSION_V1.json"
+      ],
+      "open": "Actual remaining fourteen project facts and broader native source brackets; UI integration and exact historical binary build manifest.",
+      "state": "PARTIAL_PASS_NATIVE_CHAIN_HOLD"
+    },
+    "Tutarlılık Kası": {
+      "evidence": "Actual native P02 snapshot and fifteen identity pairs verified; full portfolio API collector/model tested in isolation, new native receipt pending.",
+      "open": "Same-revision actual runtime/canonical/UI parity; nine-hop user-outcome/authority chain",
+      "state": "HOLD"
+    }
+  },
+  "latestNativeReceiptSha256": "0b5aae55274fd0d8f5bf06c4aff4b7ed44595436655530a587b2703743f04fd5",
+  "mainMutation": false,
+  "methodPr": 242,
+  "methodPublication": "OPEN_REVIEW_BRANCH; NOT_MAIN",
+  "methodSourceCommit": "5720cd0de67f959d44ea8ace42a3a716753077f1",
+  "nativeWrites": 0,
+  "nextAction": "WAIT_FINAL_SCREEN_CONTRACT_THEN_BIND_SWIFTUI",
+  "oracleInput": {
+    "Z02_EVENT": {
+      "cause_status": "UNKNOWN",
+      "event_id": "PILIVE-PROJECT-SET-REPLAY-V1",
+      "observed_at": "2026-10-25T17:44:27.002701+00:00",
+      "outcome": "PARTIAL",
+      "owner": "engurulabory",
+      "provenance_digest": "d91557b11abe20363f1a8ff89fb55267ec0549376c3c76839e2f80ea278349fa",
+      "source_uri": "urn:enguru:pilive:reviewed-source:d91557b11abe20363f1a8ff89fb55267ec0549376c3c76839e2f80ea278349fa",
+      "task_id": "ENGURU_PLIVE_P02_USER_SCREEN"
+    },
+    "Z03_TRANSFER": {
+      "cohort": []
+    },
+    "Z04_LINEAGE": {
+      "chain": []
+    },
+    "Z05_BENCHMARK": {},
+    "Z08_IMPACT": {},
+    "Z10_CONCURRENCY": {},
+    "Z10_SAFE_FIN": {
+      "field_evidence": false,
+      "field_required": true,
+      "human_authorization": false,
+      "human_threshold_required": true,
+      "verified_finish_claim": false
+    }
+  },
+  "oracleOutput": {
+    "eligible_for_automatic_signature": false,
+    "holds": {
+      "Z03_TRANSFER": [
+        "TRANSFER_REQUIRES_THREE_COMPARABLE_TASKS"
+      ],
+      "Z04_LINEAGE": [
+        "CHAIN_ORDER_OR_LENGTH_INVALID"
+      ],
+      "Z05_BENCHMARK": [
+        "BENCHMARK_ALL_TRIALS_ACCOUNTED_REQUIRED",
+        "BENCHMARK_BLINDED_GRADER_REQUIRED",
+        "BENCHMARK_CAPABILITY_PARITY_OR_LIMITATIONS_REPORTED_REQUIRED",
+        "BENCHMARK_ENVIRONMENT_DISCLOSED_REQUIRED",
+        "BENCHMARK_EQUALIZED_BUDGET_REQUIRED",
+        "BENCHMARK_INVALID_PAIR",
+        "BENCHMARK_METRIC_EQUIVALENCE_REQUIRED",
+        "BENCHMARK_MISSING_INPUT_MANIFEST_SHA",
+        "BENCHMARK_MISSING_RUBRIC_SHA",
+        "BENCHMARK_MISSING_TASK_MANIFEST_SHA",
+        "BENCHMARK_REAL_PEER_RUNS_REQUIRED",
+        "BENCHMARK_REQUIRES_FIVE_PAIRED_TRIALS",
+        "BENCHMARK_SAME_INPUTS_REQUIRED",
+        "BENCHMARK_SAME_TASK_REQUIRED",
+        "BENCHMARK_VERSIONS_PINNED_REQUIRED"
+      ],
+      "Z08_IMPACT": [
+        "IMPACT_INVALID_VALUES",
+        "IMPACT_MISSING_AFTER_EVIDENCE",
+        "IMPACT_MISSING_BASELINE_EVIDENCE",
+        "IMPACT_MISSING_METRIC",
+        "IMPACT_MISSING_OBSERVED_AT_AFTER",
+        "IMPACT_MISSING_OBSERVED_AT_BASELINE",
+        "IMPACT_MISSING_PRIVACY_REVIEW",
+        "IMPACT_MISSING_UNIT",
+        "IMPACT_MISSING_USER_GOAL",
+        "IMPACT_REAL_USER_NOT_OBSERVED",
+        "IMPACT_UNMATCHED_COHORT"
+      ],
+      "Z10_CONCURRENCY": [
+        "CONCURRENCY_LEASE_MISSING",
+        "CONCURRENCY_ONE_WRITER_REQUIRED",
+        "CONCURRENCY_REPLAY_UNVERIFIED",
+        "CONCURRENCY_ROLLBACK_UNSPECIFIED",
+        "CONCURRENCY_SOURCE_DRIFT",
+        "CONCURRENCY_WRITER_AUTHORIZATION_REQUIRED"
+      ],
+      "Z10_SAFE_FIN": [
+        "FIN_DUPLICATE_CONTROL_RISK",
+        "FIN_EVIDENCE_UNVERIFIED",
+        "FIN_FIELD_REQUIRED",
+        "FIN_HUMAN_DECISION_REQUIRED",
+        "FIN_K1_REMAINS_OPEN",
+        "FIN_K2_REMAINS_OPEN",
+        "FIN_K3_REMAINS_OPEN",
+        "FIN_K4_REMAINS_OPEN",
+        "FIN_K5_REMAINS_OPEN",
+        "FIN_K6_REMAINS_OPEN",
+        "FIN_K7_REMAINS_OPEN",
+        "FIN_SECOND_LOOK_REQUIRED"
+      ]
+    },
+    "next_action": "REPAIR_Z03_TRANSFER",
+    "official_verdict": "NOT_EVALUATED",
+    "state": "SIMULATED_HOLD"
+  },
+  "oracleScope": "OFFLINE_POLICY_REVIEW_ONLY; NOT_NATIVE_VERIFIER",
+  "pendingReceiptSchema": null,
+  "schema": "enguru.pilive.zulfikar-v13-application/v1",
+  "scope": "Advisory evaluation of declared PiLive evidence. No external authority or product acceptance issued.",
+  "verifiedFinish": "HOLD",
+  "latestNativePortfolioReview": {
+    "receiptSha256": "0b5aae55274fd0d8f5bf06c4aff4b7ed44595436655530a587b2703743f04fd5",
+    "nativeTests": 218,
+    "projects": 15,
+    "sourceBoundObservations": 15,
+    "qualifiedCounters": 14,
+    "stableSourcePins": 48,
+    "exactModelReplay": "PASS",
+    "signatureVerification": "HOLD_RETURN_CODE_1",
+    "historicalBuildBinding": "HOLD",
+    "uiExecution": "NOT_EXECUTED",
+    "humanAcceptance": "HOLD"
+  }
+}
