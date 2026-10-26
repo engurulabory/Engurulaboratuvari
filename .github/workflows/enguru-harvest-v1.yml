@@ -26,7 +26,7 @@ jobs:
       - name: Execute real Python regressions for 12 local operations
         run: |
           cd capabilities/enguru-harvest-v1
-          python -B -m unittest -v test_harvest test_evidence_gate test_skill_kernel test_license_gate test_external_skill_plan test_upstream_execution_coverage
+          python -B -m unittest -v test_harvest test_evidence_gate test_skill_kernel test_license_gate test_external_skill_plan test_upstream_execution_coverage test_k01_benchmark test_k03_cli_contract
       - name: Verify upstream root-license observation join
         run: |
           cd capabilities/enguru-harvest-v1
@@ -90,6 +90,10 @@ jobs:
           cd capabilities/enguru-harvest-v1
           npm install --no-save --ignore-scripts --package-lock=false --no-audit --no-fund '@modelcontextprotocol/server-everything@2.0.1' '@modelcontextprotocol/client@2.4.0' 'zod@4.2.0'
           node mcp_reference_stdio_trial.mjs
+      - name: Measure five paired real ENGURU source reconciliation tasks
+        run: |
+          cd capabilities/enguru-harvest-v1
+          python -B run_k01_real_benchmark.py
       - name: Preserve real runner receipts
         if: always()
         uses: actions/upload-artifact@v4
@@ -97,6 +101,7 @@ jobs:
           name: enguru-harvest-trials-${{ github.sha }}
           path: |
             capabilities/enguru-harvest-v1/upstream-tool-trial-receipt.json
+            capabilities/enguru-harvest-v1/k01-real-microbench-receipt.json
             capabilities/enguru-harvest-v1/second-upstream-trial-receipt.json
             capabilities/enguru-harvest-v1/promptfoo-eval-output.json
             capabilities/enguru-harvest-v1/promptfoo-offline-receipt.json
@@ -168,4 +173,51 @@ jobs:
           path: |
             capabilities/enguru-harvest-v1/lm-eval-harness-receipt.json
             ${{ runner.temp }}/p12-lm-eval-install.json
+          if-no-files-found: warn
+
+  k03-cli:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: K03 source identity gate
+        run: |
+          python -B capabilities/enguru-harvest-v1/verify_head.py
+      - name: Install isolated no-login CLI packages with recorded registry pins
+        timeout-minutes: 6
+        run: |
+          mkdir -p "${{ runner.temp }}/enguru-cli"
+          CODEX_VERSION="$(npm view @openai/codex version)"
+          CLAUDE_VERSION="$(npm view @anthropic-ai/claude-code version)"
+          [[ "$CODEX_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+ ]] && [[ "$CLAUDE_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+ ]]
+          printf 'codex=%s\nclaude=%s\n' "$CODEX_VERSION" "$CLAUDE_VERSION" > "${{ runner.temp }}/enguru-cli/registry-versions.txt"
+          npm view "@openai/codex@$CODEX_VERSION" dist.integrity >> "${{ runner.temp }}/enguru-cli/registry-versions.txt"
+          npm view "@anthropic-ai/claude-code@$CLAUDE_VERSION" dist.integrity >> "${{ runner.temp }}/enguru-cli/registry-versions.txt"
+          npm install --prefix "${{ runner.temp }}/enguru-cli" --ignore-scripts --no-audit --no-fund "@openai/codex@$CODEX_VERSION" "@anthropic-ai/claude-code@$CLAUDE_VERSION"
+          sha256sum "${{ runner.temp }}/enguru-cli/package-lock.json" > "${{ runner.temp }}/enguru-cli/package-lock.sha256"
+          echo "${{ runner.temp }}/enguru-cli/node_modules/.bin" >> "$GITHUB_PATH"
+      - name: Verify real Codex/Claude version binaries without agent execution
+        run: |
+          cd capabilities/enguru-harvest-v1
+          python -B run_k03_cli_smoke.py
+      - name: Preserve no-login CLI receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enguru-k03-cli-${{ github.sha }}
+          path: |
+            capabilities/enguru-harvest-v1/k03-cli-version-receipt.json
+            ${{ runner.temp }}/enguru-cli/registry-versions.txt
+            ${{ runner.temp }}/enguru-cli/package-lock.sha256
           if-no-files-found: warn
