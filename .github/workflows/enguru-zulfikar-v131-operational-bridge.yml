@@ -59,6 +59,13 @@ jobs:
           assert a==87.5 and b==91.25
           assert x['roundedPreviousOverall88']==88
           assert x['roundedCurrentOverall']==91
+          assert x['overallOperationalVerdict']=='HOLD_91_100'
+          assert x['allSixDimensionsPass'] is False
+          assert x['allSixDimensions100'] is False
+          assert [d['verdict'] for d in ds].count('PASS_SCOPE_LIMITED')==3
+          assert [d['verdict'] for d in ds].count('HOLD_UNDER_100')==3
+          assert x['realMacFieldVerdict']=='HOLD'
+          assert x['verifiedFinishVerdict']=='HOLD'
           assert x['targetWeightedOverall']==100
           assert x['horizon']['macOsiOperationalAcceptance']=='HOLD'
           assert x['horizon']['realTaskPassesObservedInThisCampaign']==0
