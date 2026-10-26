@@ -37,7 +37,7 @@ class LicenseBytesTests(unittest.TestCase):
         self.assertIs(r["legal_reuse_authorized"],False)
     def test_github_multiline_base64(self):
         x=copy.deepcopy(self.response)
-        x["content"]=x["content"][:15]+"\\n"+x["content"][15:]
+        x["content"]=x["content"][:15]+chr(10)+x["content"][15:]
         self.assertEqual(validate_license_bytes(self.pin,self.license,x)["state"],"PASS_LICENSE_BYTES_OBSERVED_ONLY")
     def test_same_metadata_different_bytes_fails(self):
         x=copy.deepcopy(self.response)
@@ -66,7 +66,7 @@ class LicenseBytesTests(unittest.TestCase):
         self.assertEqual(validate_license_bytes(self.pin,self.license,x)["state"],"HOLD_LICENSE_BLOB_INTEGRITY")
     def test_rejects_suspect_host(self):
         x=copy.deepcopy(self.pin)
-        x["repository"]="evil.example/path"
+        x["repository"]="https://evil.example/path"
         with self.assertRaises(ValueError):
             fetch_license(x,self.license,"")
     def test_license_scope_flags_not_clearance(self):
