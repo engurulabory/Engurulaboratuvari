@@ -163,7 +163,8 @@ jobs:
           files={
             'bridgeScore':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_bridge_score.json',
             'goal':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_goal.json',
-            'infra':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_infra.json'
+            'infra':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_infra.json',
+            'preparation':pathlib.Path(os.environ['RUNNER_TEMP'])/'z131_preparation.json'
           }
           evidence={
             'schema':'enguru.zulfikar.github-run-provenance/v1',
@@ -186,5 +187,6 @@ jobs:
             ${{ runner.temp }}/z131_bridge_score.json
             ${{ runner.temp }}/z131_goal.json
             ${{ runner.temp }}/z131_infra.json
+            ${{ runner.temp }}/z131_preparation.json
             ${{ runner.temp }}/z131_run_provenance.json
           retention-days: 14
