@@ -1,0 +1,51 @@
+{
+  "schema": "enguru.management-v69.block-simulation-receipt/v1",
+  "taskId": "ENGURU_MANAGEMENT_V69_PR_203",
+  "verificationResultId": "MGMT69_VR_GITHUB_RUN_39852715540",
+  "first_attempt": {
+    "tests": 50,
+    "passed": 49,
+    "failed": 1,
+    "cause": "adversarial test swap-index recalculation after partial mutation",
+    "repair": "precalculate both swap offsets and rerun test suite"
+  },
+  "first_repaired_attempt": {
+    "tests": 50,
+    "passed": 50,
+    "failed": 0
+  },
+  "final_independent_rounds": [
+    {
+      "round": 1,
+      "distinct_cases": 65,
+      "state": "PASS_ISOLATED",
+      "process_exit": 0,
+      "log_sha256": "87faf1c3e2b80f3ccacf9f2aa66a19be17b39314346db33efbd49d5ea5be048b"
+    },
+    {
+      "round": 2,
+      "distinct_cases": 65,
+      "state": "PASS_ISOLATED",
+      "process_exit": 0,
+      "log_sha256": "f3109e24ca552986871fb82bc5e35bcaa26447b839d66985a03bea477955666b"
+    }
+  ],
+  "rubric": {
+    "passed": 25,
+    "required": 25,
+    "score": 100,
+    "scope": "THEORETICAL_PLAN_AND_ISOLATED_REGRESSION_ONLY"
+  },
+  "headroom": {
+    "first_suite_cases": 50,
+    "final_suite_cases": 65,
+    "extra_fraction": 0.3
+  },
+  "source_sha256": {
+    "plan.json": "221fda3e79688b4598f9a8d581eda7475da565936473ca10dc40635d4b93ec57",
+    "verify_blocks.py": "8f84e9dea516c10bd59bde8640ef7e84ca38ed3977d304da7278efe78aefa342",
+    "test_blocks.py": "99e9c63823f5ddb8fc286d21ae9e282ace85846634cb6635e4f298b605b666b5"
+  },
+  "official_verified_finish": "HOLD_REAL_OSI_OWNER_ED25519_GRANT_AND_G3_G6_ACCEPTANCE",
+  "next_action": "ON_MAC_CONFIRM_REAL_EXISTING_SIGNER_POSSESSION_AND_CANONICAL_TASK_RESULT_OWNER_GRANT_FOR_G2"
+}
