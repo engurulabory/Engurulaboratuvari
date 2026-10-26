@@ -3,8 +3,9 @@ import io
 import json
 import unittest
 import zipfile
+from unittest.mock import patch
 from pathlib import Path
-from build_github_osi_handoff import build, inspect
+from build_github_osi_handoff import build, inspect, SOURCES, MAX_PACKAGE_BYTES
 
 ROOT=Path(__file__).resolve().parent
 
@@ -60,5 +61,41 @@ class HandoffTests(unittest.TestCase):
             self.assertEqual(m["mac_field_acceptance"],"HOLD")
             self.assertTrue(m["github_head"])
             self.assertIn("AGENTS.md",m["sources"])
+    def test_expanded_budget_rejected_before_member_read(self):
+        out=io.BytesIO()
+        with zipfile.ZipFile(out,'w',compression=zipfile.ZIP_DEFLATED) as z:
+            for name in [*SOURCES,'HANDOFF_MANIFEST.json']:
+                z.writestr(name,b'a'*(MAX_PACKAGE_BYTES//2))
+        self.assertLess(len(out.getvalue()),MAX_PACKAGE_BYTES)
+        with patch.object(zipfile.ZipFile,'read',side_effect=AssertionError('decompression must not start')):
+            self.assertEqual(inspect(out.getvalue())['state'],'HOLD_EXPANDED_PACKAGE_BUDGET')
+
+    def test_manifest_array_controlled_hold(self):
+        data=remake(self.data,{'HANDOFF_MANIFEST.json':lambda raw:b'[]'})
+        self.assertEqual(inspect(data)['state'],'HOLD_MANIFEST_TYPE')
+
+    def test_source_row_schema_controlled_hold(self):
+        def change(raw):
+            doc=json.loads(raw)
+            doc['sources'][SOURCES[0]]=[]
+            return json.dumps(doc).encode()
+        self.assertEqual(inspect(remake(self.data,{'HANDOFF_MANIFEST.json':change}))['state'],'HOLD_SOURCE_ENTRY_SCHEMA')
+
+    def test_boolean_size_rejected(self):
+        def change(raw):
+            doc=json.loads(raw)
+            doc['sources'][SOURCES[0]]['size']=True
+            return json.dumps(doc).encode()
+        self.assertEqual(inspect(remake(self.data,{'HANDOFF_MANIFEST.json':change}))['state'],'HOLD_SOURCE_ENTRY_SCHEMA')
+
+    def test_unsupported_compression_controlled_hold(self):
+        with patch.object(zipfile.ZipFile,'read',side_effect=NotImplementedError('unsupported compression')):
+            self.assertEqual(inspect(self.data)['state'],'HOLD_PACKAGE_PARSE')
+
+    def test_repeat_build_exact_head_same_zip(self):
+        repeated=build()
+        self.assertEqual(repeated['github_head'],self.receipt['github_head'])
+        self.assertEqual(repeated['zip_sha256'],self.receipt['zip_sha256'])
+        self.assertEqual(repeated['manifest_sha256'],self.receipt['manifest_sha256'])
 if __name__=="__main__":
     unittest.main()
