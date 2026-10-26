@@ -3,12 +3,9 @@
 GitHub runner installs into ephemeral isolated temp root with npm scripts disabled.
 This is a CLI *smoke test*, not an authorized Codex/Claude agent task.
 """
-import hashlib
 import json
 import os
-import re
 import subprocess
-import time
 from pathlib import Path
 
 HERE=Path(__file__).resolve().parent
