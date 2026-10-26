@@ -3,7 +3,7 @@ import unittest
 import copy
 import json
 from pathlib import Path
-from tools.arge_a03_preflight_v419 import assess_a03, GATES
+from tools.arge_a03_preflight_v419 import assess_a03, assess_solo_github_preparation, GATES
 
 
 def fixture():
@@ -196,6 +196,88 @@ class SoloOwnerGitHubScopeTests(unittest.TestCase):
                 altered=copy.deepcopy(self.record)
                 mutate(altered)
                 self.assertFalse(self.valid(altered))
+
+
+class ZulfikarSoloGitHubScopeSimulations(unittest.TestCase):
+    """Three independent 3-case adversarial families for the original A03 split."""
+
+    @classmethod
+    def setUpClass(cls):
+        p=(Path(__file__).resolve().parents[1]/
+           "governance/enguru-suzgeci/reviews/"
+           "ENGURU_ARGE_B01_M01_A03_A04_MANAGEMENT_DECISION_HANDOFF_V1.json")
+        cls.original=json.loads(p.read_text(encoding="utf8"))
+
+    def assert_hold_cases(self, family):
+        for name,mutator,gate in family:
+            with self.subTest(name=name):
+                doc=copy.deepcopy(self.original)
+                mutator(doc)
+                result=assess_solo_github_preparation(doc)
+                self.assertEqual(result["state"],"HOLD_SOLO_GITHUB_SCOPE_SPEC")
+                self.assertIn(gate,result["failed_ids"])
+                self.assertLess(result["score"],100)
+                self.assertEqual(result["a03_official"],"HOLD")
+                self.assertEqual(result["verified_finish"],"HOLD")
+
+    def test_original_positive_spec_100_official_remains_hold(self):
+        result=assess_solo_github_preparation(self.original)
+        self.assertEqual(result["score"],100)
+        self.assertEqual(len(result["passed_ids"]),10)
+        self.assertEqual(result["state"],"PASS_SOLO_GITHUB_SCOPE_SPEC_ONLY")
+        self.assertEqual(result["github_ci"],"REQUIRES_EXACT_HEAD_GITHUB_ACTIONS_EVIDENCE")
+        self.assertEqual(result["a03_official"],"HOLD")
+        self.assertEqual(result["a04_official"],"HOLD")
+        self.assertEqual(result["customer_e5"],"HOLD_0_OF_18")
+        self.assertEqual(result["verified_finish"],"HOLD")
+        self.assertEqual(assess_a03({})["official_acceptance"],False)
+
+    def test_sim1_source_and_original_40_task_identity(self):
+        self.assert_hold_cases([
+            ("canonical_v3_pin",lambda d:d["governance"]["pins"].update(
+                universal_v3_sha256="f"*64),"GS08"),
+            ("original_40_cardinality",lambda d:d["single_active_execution_queue"][0]["scope"].pop(),"GS02"),
+            ("case_18x13",lambda d:d["preserved_scope"].update(cells=233),"GS02"),
+        ])
+
+    def test_sim2_owner_and_scope_authority(self):
+        self.assert_hold_cases([
+            ("owner_spoof",lambda d:d["solo_owner_github_preparation_v2"].update(
+                approved_owner="invented_second_owner"),"GS03"),
+            ("issuer_claim",lambda d:d["solo_owner_github_preparation_v2"].update(
+                signed_issuer_grant="SELF_ISSUED"),"GS05"),
+            ("forced_peer_review",lambda d:d["solo_owner_github_preparation_v2"].update(
+                second_human_github_reviewer_required=True),"GS04"),
+        ])
+
+    def test_sim3_official_and_field_claim_boundary(self):
+        self.assert_hold_cases([
+            ("fake_a04_runtime",lambda d:d["A04"].update(
+                canonical_runtime_source="ASSUMED_PRODUCT"),"GS06"),
+            ("fake_customer_e5",lambda d:d["A05_A06"].update(
+                independent_e5="18/18"),"GS07"),
+            ("fake_donecheck_finish",lambda d:d["donecheck_human"].update(
+                real_final_state="PASS_UNPROVEN"),"GS10"),
+        ])
+
+    def test_malformed_shapes_fail_closed(self):
+        for value in (None,False,[],"x",{"solo_owner_github_preparation_v2":{"mechanical_verifier":[]}}):
+            with self.subTest(input=repr(value)):
+                result=assess_solo_github_preparation(value)
+                self.assertEqual(result["state"],"HOLD_SOLO_GITHUB_SCOPE_SPEC")
+                self.assertEqual(result["verified_finish"],"HOLD")
+
+    def test_unhashable_task_and_invalid_pin_types_fail_closed(self):
+        for section,change in (
+            ("scope",lambda d:d["single_active_execution_queue"][0]["scope"].append({})),
+            ("pin",lambda d:d["governance"].update(pins=[])),
+            ("verifier",lambda d:d["solo_owner_github_preparation_v2"].update(mechanical_verifier=[])),
+        ):
+            with self.subTest(section=section):
+                doc=copy.deepcopy(self.original)
+                change(doc)
+                self.assertEqual(assess_solo_github_preparation(doc)["state"],
+                                 "HOLD_SOLO_GITHUB_SCOPE_SPEC")
 
 
 if __name__ == "__main__":
