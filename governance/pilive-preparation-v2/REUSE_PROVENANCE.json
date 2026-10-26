@@ -1,0 +1,13 @@
+{
+  "schema": "enguru.pilive.reuse-provenance/v1",
+  "sourceRepository": "engurulabory/Engurulaboratuvari",
+  "sourcePR": 188,
+  "sourceCommit": "1e0685f2aab95522ec6101e9a5fda22a54051562",
+  "alsoPresentInPR189": "cd142dbe5d26ed443ecfc6b72b4408253cccf39e",
+  "scope": "Three unchanged design/model/test files only; draft branch ancestry is not merged. Historical wording retains its original scope; PLAN.json is current preparation scope.",
+  "files": {
+    "tools/plive_brain_v3_simulator.py": "97e94a8370d1339ba1500955a0227da1dc0de239f817c41b392c616faffdafe1",
+    "tests/test_plive_brain_architecture_v3.py": "1b023c8e846dc7bc6993ce6f085cc2255c98c1b8030d51e3a19dbdcbc3fc7af1",
+    "governance/plive/ENGURU_PLIVE_BRAIN_ARCHITECTURE_V3.json": "b2d7b505a320d28a5c9d9d7859542fa2da46475aca4d2519231fa6927e642b68"
+  }
+}

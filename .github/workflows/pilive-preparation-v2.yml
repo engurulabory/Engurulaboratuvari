@@ -1,0 +1,38 @@
+name: PiLive preparation V2
+
+on:
+  pull_request:
+    paths:
+      - 'tools/pilive_*'
+      - 'tools/plive_brain_v3_simulator.py'
+      - 'tests/test_pilive_*'
+      - 'tests/test_plive_brain_architecture_v3.py'
+      - 'governance/pilive-preparation-v2/**'
+      - 'governance/plive/ENGURU_PLIVE_BRAIN_ARCHITECTURE_V3.json'
+      - '.github/workflows/pilive-preparation-v2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  preparation-boundaries:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify unchanged universal V3
+        run: python3 -B tools/verify_enguru_universal_v3_lock.py
+      - name: Existing Brain V3 regression and new source/projection boundaries
+        run: |
+          python3 -B -m unittest discover -s tests -p 'test_plive_brain_architecture_v3.py' -v
+          python3 -B -m unittest discover -s tests -p 'test_pilive_preparation_v2.py' -v
+      - name: Existing general five-axis evaluator
+        run: python3 -B tools/enguru_ana_terazi_v1.py
+      - name: Existing Hybrid project regressions
+        run: python3 -B -m unittest discover -s tools/hybrid_handoff -p 'test_*.py' -v
+      - name: Explicit acceptance boundary
+        run: |
+          echo 'CI_SCOPE=PORTABLE_MODELS_AND_SOURCE_CAPTURE_TESTS'
+          echo 'PILIVE_GITHUB_PREPARED=HOLD_CANONICAL_SOURCE_AND_NATIVE_ADAPTER_ORACLE'
+          echo 'MAC_GUI=NOT_EXECUTED; P02_AUTHORITY=HOLD; CANONICAL_WRITES=0'
