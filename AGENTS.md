@@ -1,5 +1,10 @@
 # ENGÜRÜ — Ortak İCRA Başlangıcı
 
+## OSi Birleşik Sistem Mimarisi™ V1 — ortak oturum girişi (inceleme adayı)
+
+Bütün ENGÜRÜ yönetim/Work oturumları, ürünün özgün canonical kabulünü koruyarak [OSi Birleşik Sistem Mimarisi™ V1](governance/osi/ENGURU_OSI_BIRLESIK_SISTEM_MIMARISI_V1.md) ve [GitHub↔Mac eşlenik ikiz sözleşmesi](governance/osi/OSI_TWIN_CONTRACT_V1.json) kapsamını okusun. OSi Fabrika; Mac Engineer Ana Motor; ZEKÜ Ana Pilot; Ana Cockpit kullanıcı yüzeyi; PiLive tek Progress Core'a bağlı salt-okunur izleme ürünüdür ve hem standalone Mac uygulaması hem de Cockpit modalı olarak ayrı saha kabulü alır. GitHub gerçeği ile yerel Mac saha gerçeği ayrı kanıt kapılarında izlenir. Work önce icrayı/kanıtları verir, **MİNİ YÖNETİCİ RAPORU yanıtın son bölümüdür**. Bu başlık inceleme dalında mimari hazırlıktır; kullanıcı/owner native saha kabulü sayılmaz.
+
+
 Bu depo ENGÜRÜ ürün, proje ve iş oturumlarının ortak çalışma talimatının **tek kaynak adresidir**.
 
 ## 1. Evrensel kanıtlı tamamlama

@@ -1,0 +1,45 @@
+name: ENGURU OSi Unified Twin V1 Source Safety
+
+on:
+  pull_request:
+    paths:
+      - 'AGENTS.md'
+      - 'governance/osi/**'
+      - 'tools/enguru_osi_twin_probe_v1.py'
+      - 'tests/test_enguru_osi_twin_probe_v1.py'
+      - '.github/workflows/enguru-osi-unified-twin-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  readonly-twin-probe-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Static Python syntax and declarative twin contract
+        run: |
+          python -m py_compile tools/enguru_osi_twin_probe_v1.py
+          sha256sum tools/enguru_osi_twin_probe_v1.py
+          python - <<'PY'
+          import json
+          p='governance/osi/OSI_TWIN_CONTRACT_V1.json'
+          x=json.load(open(p, encoding='utf-8'))
+          assert x['noNewProgressCore'] is True
+          assert x['noNewCounter'] is True
+          assert x['noNewIssuer'] is True
+          assert x['cleanupPolicy']['deletionsNow'] == 0
+          assert x['osiMutations'] == 0
+          assert x['verifiedFinish'] == 'HOLD'
+          print('TWIN_CONTRACT=PASS_REVIEW_SCOPE_ONLY')
+          PY
+      - name: Three isolated test rounds (not real Mac field)
+        run: |
+          for cycle in 1 2 3; do
+            echo "CYCLE=$cycle"
+            python -B -m unittest discover -s tests -p test_enguru_osi_twin_probe_v1.py -v
+          done

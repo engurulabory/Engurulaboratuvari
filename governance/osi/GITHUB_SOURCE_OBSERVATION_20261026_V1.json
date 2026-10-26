@@ -1,0 +1,36 @@
+{
+  "schema": "enguru.osi.gitHub-source-observation/v1",
+  "observedDate": "2026-10-26",
+  "kind": "GITHUB_OBSERVED_ONLY_NOT_LIVE_OSI",
+  "controlMain": "28db999ba676e4764ae1b644950865674661d0b8",
+  "previousControlMain": "8947cb6c240a12950be1f8be9e186d0ecbfa3022",
+  "changeReason": "Zulfikar PR242 merged and v1.3 source available on main",
+  "zulfikar": {
+    "pr": 242,
+    "merged": true,
+    "mainSource": "governance/enguru-suzgeci/zulfikar-v12/zulfikar_v1_3_gates.py",
+    "nativeOsi": "HOLD"
+  },
+  "macEngineerProductMain": "c6ef1555a48beeff94a85cab316c80b3fa60f9c5",
+  "pilive": {
+    "pr": 241,
+    "head": "64afbf862a393fcb2972f1f2dcbeb98649885fb8",
+    "currentField": "HOLD_NEW_PORTFOLIO_REAL_MAC_READBACK"
+  },
+  "architecture": {
+    "pr": 244,
+    "baseBranch": "main",
+    "designReview": "OPEN_DRAFT",
+    "osiLive": "HOLD",
+    "sourceTwinParity": "HOLD"
+  },
+  "knownMacEvidence": {
+    "nativePILivePriorTestCount": 203,
+    "projectKeyPairCount": 15,
+    "receiptSha256": "39c28d1c41777c14decc7a67d034d13c34f242a7b4c261c2a524fd766c54b808",
+    "liveReperformedHere": false
+  },
+  "commitsObservedNotEquivalentToInstall": true,
+  "gitHubRemovalNow": false,
+  "verifiedFinish": "HOLD"
+}
