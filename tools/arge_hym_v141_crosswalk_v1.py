@@ -74,7 +74,7 @@ def proof_from_git(root=ROOT, paths=FOUNDATION_SOURCE_PATHS):
         result["reason"]=type(exc).__name__+":"+str(exc)[:180]
     return result
 
-def assess_foundations(h,c,inventory,method):
+def assess_foundations(h,c,inventory,method,root=ROOT):
     """Five T01 plus five T02 evidence checks; scoped preparation only."""
     out={"state":"HOLD_FOUNDATION_SOURCE_PREPARATION","scope":"T01_T02_GITHUB_PREPARATION_ONLY",
          "T01":{},"T02":{},"stagesAccepted":{"T01":"HOLD","T02":"HOLD"},
@@ -122,9 +122,9 @@ def assess_foundations(h,c,inventory,method):
     pub={}
     if set(files)==set(FOUNDATION_SOURCE_PATHS) and inventory.get("state")=="PASS_GIT_HEAD_SOURCE_BYTES_ONLY":
         try:
-            e_matrix=json.loads((ROOT/FOUNDATION_SOURCE_PATHS[5]).read_text(encoding="utf8"),
+            e_matrix=json.loads((Path(root)/FOUNDATION_SOURCE_PATHS[5]).read_text(encoding="utf8"),
                                 object_pairs_hook=duplicate_guard)
-            pub=json.loads((ROOT/FOUNDATION_SOURCE_PATHS[6]).read_text(encoding="utf8"),
+            pub=json.loads((Path(root)/FOUNDATION_SOURCE_PATHS[6]).read_text(encoding="utf8"),
                            object_pairs_hook=duplicate_guard)
         except (OSError,ValueError,TypeError):
             pass
