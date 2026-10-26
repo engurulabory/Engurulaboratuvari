@@ -176,5 +176,54 @@ class SingleAuthorityTests(unittest.TestCase):
             self.assertFalse(item["binding"]["actualHandlerInvoked"])
 
 
+    def test_private_bundle_scope_mismatch_is_hold(self):
+        import tempfile
+        import test_zulfikar_v131_field_evidence_intake as fixture
+        with tempfile.TemporaryDirectory() as td:
+            fixture.make_bundle(Path(td))
+            proc=subprocess.run([sys.executable,"-B",str(HERE/"zulfikar_v131_single_acceptance.py"),
+                "--field-bundle",td],cwd=HERE,text=True,capture_output=True,timeout=20)
+            self.assertEqual(proc.returncode,2,proc.stderr)
+            result=json.loads(proc.stdout)
+            self.assertIn("FIELD_BUNDLE_TASK_SCOPE_MISMATCH",
+                          result["fieldEvidenceIntake"]["holds"])
+            self.assertEqual(result["officialVerifiedFinish"],"HOLD")
+
+    def test_scope_matched_receipt_candidate_never_issues_owner_pass(self):
+        import tempfile,hashlib
+        import test_zulfikar_v131_field_evidence_intake as fixture
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td)
+            bundle=fixture.make_bundle(root)
+            accepted=("P02.S01.01","ZF.RECOVERY.01","ZF.WEB.01")
+            for i,task_id in enumerate(accepted,1):
+                p=root/f"receipt_{i}.json"
+                item=json.loads(p.read_text(encoding="utf8"))
+                item["taskId"]=task_id
+                bytes_=(json.dumps(item,sort_keys=True)+"\\n").encode("utf8")
+                p.write_bytes(bytes_)
+                bundle["tasks"][i-1]["taskId"]=task_id
+                bundle["tasks"][i-1]["receiptSha256"]=hashlib.sha256(bytes_).hexdigest()
+            (root/"manifest.json").write_text(json.dumps(bundle),encoding="utf8")
+            proc=subprocess.run([sys.executable,"-B",str(HERE/"zulfikar_v131_single_acceptance.py"),
+                "--field-bundle",td],cwd=HERE,text=True,capture_output=True,timeout=20)
+            self.assertEqual(proc.returncode,0,proc.stderr+proc.stdout[-500:])
+            result=json.loads(proc.stdout)
+            self.assertEqual(result["fieldEvidenceIntake"]["claimedTaskObservationsWithMatchingBytes"],3)
+            self.assertEqual(result["fieldEvidenceIntake"]["independentlyVerifiedRealTaskCount"],0)
+            self.assertEqual(result["goal2"],"LOCKED_UNTIL_GOAL1_VERIFIED_FINISH")
+            self.assertEqual(result["officialVerifiedFinish"],"HOLD")
+
+    def test_missing_private_bundle_is_safe_hold(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as td:
+            proc=subprocess.run([sys.executable,"-B",str(HERE/"zulfikar_v131_single_acceptance.py"),
+                "--field-bundle",td],cwd=HERE,text=True,capture_output=True,timeout=20)
+            self.assertEqual(proc.returncode,2,proc.stderr)
+            result=json.loads(proc.stdout)
+            self.assertIn("FIELD_BUNDLE_UNTRUSTED",result["fieldEvidenceIntake"]["holds"])
+            self.assertEqual(result["goal1"],"HOLD_REAL_TASK_AND_OWNER_AUTHORITY")
+
+
 if __name__=="__main__":
     unittest.main(verbosity=2)
