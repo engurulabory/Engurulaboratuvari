@@ -12,8 +12,8 @@ SEAL={
   "sourcePackageSha256":CONTRACT["archive_sha256"],
   "repository":CONTRACT["source_repository"],
   "ownerDoneCheck":"NOT_ISSUED",
-  "actualMacOsi":"NOT_EXECUTED",
-  "verifiedFinish":"NOT_ISSUED",
+  "macOsi":"HOLD_NOT_OBSERVED",
+  "productVerifiedFinish":"HOLD",
   "stageFiles":[
     {"path":CONTRACT["source_prefix"]+name,"sha256":"a"*64} for name in
        ("preflight.py","dom/engine.py","dom/proof_chain.py","dom/completion_guard.py","dom/test_engine.py","dom/test_final_hardening.py","dom/test_proof_chain.py","dom/test_completion_guard.py","verify_github_source_seal_v2.py","test_source_seal_v2.py","architecture/zulfikar_v141_8_gate_architecture.json","architecture/dom_v10_design.json","evidence/final_round_1.log","evidence/final_round_2.log","evidence/final_round_3.log","evidence/pre_github_readiness_report.json")
@@ -65,7 +65,7 @@ class SourceReuseTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             validate_contract(x)
     def test_bad_seal(self):
-        for field,value in (("ownerDoneCheck","PASS"),("actualMacOsi","PASS"),("verifiedFinish","PASS")):
+        for field,value in (("ownerDoneCheck","PASS"),("macOsi","PASS"),("productVerifiedFinish","PASS")):
             x={**SEAL,field:value}
             with self.assertRaises(ValueError):
                 check_seal(x,CONTRACT)

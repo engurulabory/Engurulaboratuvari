@@ -54,8 +54,8 @@ def check_seal(seal, contract):
     if (seal.get("sourcePackageSha256")!=contract["archive_sha256"] or
         seal.get("repository")!=contract["source_repository"] or
         seal.get("ownerDoneCheck")!="NOT_ISSUED" or
-        seal.get("actualMacOsi")!="NOT_EXECUTED" or
-        seal.get("verifiedFinish")!="NOT_ISSUED"):
+        seal.get("macOsi")!="HOLD_NOT_OBSERVED" or
+        seal.get("productVerifiedFinish")!="HOLD"):
         raise ValueError("V141_SOURCE_SEAL_AUTHORITY")
     rows=seal.get("stageFiles")
     if not isinstance(rows,list) or len(rows)!=18:
@@ -68,7 +68,7 @@ def check_seal(seal, contract):
         s=item.get("sha256")
         if (not isinstance(p,str) or p in names or not isinstance(s,str) or SHA64.fullmatch(s) is None or
             (not p.startswith(contract["source_prefix"]) and
-             p!=".github/workflows/enguru-zulfikar-v141-dom-preflight.yml") or
+             p not in (".github/workflows/enguru-zulfikar-v141-dom-preflight.yml", ".github/workflows/enguru-zulfikar-v141-source-seal-v2.yml")) or
             p.startswith("/") or ".." in Path(p).parts):
             raise ValueError("V141_UNSAFE_FILE")
         names.add(p)
