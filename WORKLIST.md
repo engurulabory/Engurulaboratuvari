@@ -1,5 +1,25 @@
 # ENGÜRÜ LAB™ — WORKLIST
 
+## OSi Birleşik Sistem Mimarisi™ V1 — FABRİKA BACKLOG (HOLD)
+
+**Karar 2026-10-26:** Ana mimari çerçevesi tanımlandı ve korunuyor. **BÜTÜNSEL MİMARİ KABULÜ = HOLD**. GitHub kaynak/CI/test başarısı mimari saha kabulü yerine geçmez. Bu iş **fabrika iş listesinde bekleyecek**; mevcut aktif ürün icrası **PiLive V4**'tür. Tarihsel Labory Strategic sequence korunur.
+
+**Yetkili inceleme adresi:** [PR #244](https://github.com/engurulabory/Engurulaboratuvari/pull/244) · `governance/osi/ENGURU_OSI_BIRLESIK_SISTEM_MIMARISI_V1.md` · `governance/osi/OSI_TWIN_CONTRACT_V1.json`.
+**Sabit roller:** OSi Fabrika; Mac Engineer Ana Motor; ZEKÜ Ana Pilot; Ana Cockpit çalışma yüzeyi; PiLive gerçek ilerleme/uyarı/kanıt gözlem ekranı. PiLive ayrı Mac uygulaması ve Cockpit içi modal; **tek mevcut Progress Core, iki ayrı sunum kabulü**.
+**Eşlenik ikiz:** GitHub kaynak/kanıt ve Mac OSi gerçek kaynak/runtime/işlev karşılaştırması; her iki doğrulama sonucu ayrı tutulur.
+
+- [x] `OSI.V1.GH01` — Mimari hedef, rol sınırları ve iki PiLive sunum biçimi PR #244 üzerinde tasarım adayı olarak kaynaklandırıldı.
+- [x] `OSI.V1.GH02` — İzole Mac-okuma aracı ve sözleşme; GitHub 6/6 CI, araç 8/8 × 3 kaynak testi PASS (**GitHub teknik kapsamı**).
+- [ ] `OSI.V1.MAC01` — Gerçek güncel Mac OSi salt-okunur saha envanteri ve özgün SHA orijinal/Masaüstü kopya.
+- [ ] `OSI.V1.TWIN01` — GitHub ↔ OSi exact HEAD/source SHA/dependency/runtime/provenance ve kirli worktree bağımsız eşliği.
+- [ ] `OSI.V1.E2E01` — ZEKÜ pilot → Mac Engineer motor → Ana Cockpit → Progress Core → PiLive uçtan uca gerçek görev ve yetki sınırları.
+- [ ] `OSI.V1.UI01` — PiLive standalone U01–U12 ve ayrı Ana Cockpit PiLive modal gerçek Mac/kullanıcı kabulü.
+- [ ] `OSI.V1.FIN01` — Bağımsız inceleme, DoneCheck, Human Threshold, Verified Finish; sonrasında yalnız owner onaylı geçici GitHub çalışma temizliği; canonical source/evidence/rollback kalır.
+
+**Aktif çalışma kapısı:** `OSI_V1_PARKED_HOLD / PILIVE_V4_ACTIVE`. PiLive PR #241 mühendisliği ve tasarım kararı kendi özgün ürün sözleşmesiyle devam eder. Bu iş listesi maddesi OSi mimarisi için PASS üretmez. PR #244 merge ve yerel değişiklik yalnız yetkili review adımında.
+
+---
+
 ## Strategic sequence — LOCKED
 1. **ENGÜRÜ LABORY VERIFIED FINISH**
 2. **ASTRA MAC RUNTIME**
