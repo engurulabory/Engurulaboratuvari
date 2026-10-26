@@ -14,6 +14,7 @@ import zulfikar_v131_operational_bridge as source
 ROOT=source.ROOT
 POLICY_PATH="governance/enguru-suzgeci/zulfikar-v12/ZULFIKAR_V131_EVRENSEL_100_KABUL_ILKESI_V1.json"
 SCORECARD_PATH="governance/enguru-suzgeci/zulfikar-v12/ZULFIKAR_V131_OPERATIONAL_SCORECARD_V1.json"
+GOAL_PATH="governance/enguru-suzgeci/zulfikar-v12/ZULFIKAR_GOAL_V1_3.json"
 PHASE_IDS=("GOAL_ARCHITECTURE","PREPARATION","REAL_EXECUTION","PRODUCT_FINISH")
 EIGHT=("HAKIKATI_GOR","DEGERI_KORU","EKSIK_VE_IHTIYACI_TESPIT_ET",
        "GEREKLI_FARKI_URET","EKSIKLERI_TAMAMLA","KANITLA",
@@ -46,9 +47,10 @@ def classify(stage, diagnostic, evidence_origin="NONE"):
             "diagnostic":100,"next":"VERIFY_EVIDENCE_IN_CURRENT_SCOPE"}
 
 
-def controls(policy,scorecard,agents):
+def controls(policy,scorecard,agents,goal):
     if not isinstance(policy,dict):policy={}
     if not isinstance(scorecard,dict):scorecard={}
+    goal=goal if isinstance(goal,dict) else {}
     stages=policy.get("stageRoles",{})
     universe=policy.get("acceptanceUniverse",{})
     diagnostic=universe.get("diagnosticRange",{})
@@ -61,7 +63,7 @@ def controls(policy,scorecard,agents):
         stage_keys=False
     outcomes=[classify("PREPARATION",i,"EXACT_HEAD_CI") for i in (0,1,20,30,50,70,91,98,99)]
     checks={
-      "U01_USER_GOAL_LOCKED":policy.get("governingPurpose","").startswith("Kullanıcının özgün hedefini") and "USER_GOAL" in policy.get("start",[]),
+      "U01_USER_GOAL_LOCKED":policy.get("governingPurpose","").startswith("Kullanıcının özgün hedefini") and "USER_GOAL" in policy.get("start",[]) and goal.get("universalUmbrella",{}).get("policyRef")==POLICY_PATH and goal.get("universalUmbrella",{}).get("neverSelfIssueRealFinish") is True,
       "U02_EIGHT_STAGES_UNCHANGED":tuple(policy.get("eightStages",[]))==EIGHT,
       "U03_ITERATIVE_LOOP_LOCKED":tuple(policy.get("loop",[]))==LOOP,
       "U04_ONLY_100_ACCEPTED":universe.get("passThreshold")==100 and universe.get("passOnlyWhenVerified") is True and decisions.get("onlyAcceptedNumericScore")==100,
@@ -79,17 +81,18 @@ def main():
     head=source.head_sha(ROOT)
     policy,policy_sha=source.source_read(ROOT,POLICY_PATH)
     score,score_sha=source.source_read(ROOT,SCORECARD_PATH)
+    goal,goal_sha=source.source_read(ROOT,GOAL_PATH)
     raw=source.read_no_symlink(ROOT,"AGENTS.md",100_000)
     tracked=subprocess.run(["git","-C",str(ROOT),"show",head+":AGENTS.md"],
         capture_output=True,timeout=10)
     if tracked.returncode!=0 or tracked.stdout!=raw or source.head_sha(ROOT)!=head:
         raise ValueError("AGENTS_SOURCE_DRIFT")
-    checks=controls(policy,score,raw.decode("utf-8"))
+    checks=controls(policy,score,raw.decode("utf-8"),goal)
     score100=sum(10 for v in checks.values() if v is True)
     result={
       "schema":"enguru.zulfikar.universal-100-policy-assessment/v1",
       "sourceHead":head,
-      "pins":{POLICY_PATH:policy_sha,SCORECARD_PATH:score_sha},
+      "pins":{POLICY_PATH:policy_sha,SCORECARD_PATH:score_sha,GOAL_PATH:goal_sha},
       "controls":checks,"codePolicyDiagnostic":score100,
       "policyDecision":"GITHUB_POLICY_100_CANDIDATE_EXACT_HEAD_CI_REQUIRED" if score100==100 else "CONTINUE_IMPROVEMENT",
       "legacy91":"HISTORICAL_DIAGNOSTIC_ONLY",
