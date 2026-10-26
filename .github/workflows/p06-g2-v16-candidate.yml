@@ -1,0 +1,26 @@
+name: P06 G2 v16 Candidate Security Tests
+on:
+  pull_request:
+    paths:
+      - 'tools/enguru_p06_authenticated_producer_adapter.mjs'
+      - 'tools/enguru_p06_producer_authority_candidate.mjs'
+      - 'tests/test_enguru_p06_producer_authority_candidate.mjs'
+      - 'tests/p06_v16_child_process.mjs'
+      - '.github/workflows/p06-g2-v16-candidate.yml'
+  workflow_dispatch:
+jobs:
+  candidate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Node syntax
+        run: |
+          node --check tools/enguru_p06_producer_authority_candidate.mjs
+          node --check tests/test_enguru_p06_producer_authority_candidate.mjs
+      - name: Synthetic replay and authority boundary tests
+        run: node --test tests/test_enguru_p06_producer_authority_candidate.mjs
