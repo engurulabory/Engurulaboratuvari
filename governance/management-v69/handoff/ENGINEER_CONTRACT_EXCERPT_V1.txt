@@ -1,0 +1,8 @@
+# Engineer PR #18 contract excerpt — review snapshot only
+source_repository=engurulabory/enguru-mac-engineer
+source_branch=feat/engineer-github-osi-handoff-v1
+source_blob_sha1=f5621c13916c497a081a63e8bdb84816311deb9a
+source_path=docs/ENGURU_ENGINEER_GITHUB_OSI_HANDOFF_V1.md
+required_fields=task_id, canonical_source_commit, canonical_source_sha256, required_evidence, executor_scope, rollback_plan, producer, independent_reviewer, owner_grant_ref, accepted_control_ids, open_control_ids, target_inventory_pin, exact_head, acceptance_state
+authority=REVIEW_ONLY
+live_equivalence=HOLD_UNTIL_INDEPENDENT_EXACT_BLOB_CHECK

@@ -9,6 +9,7 @@ on:
       - 'tests/test_enguru_management_v69_*.py'
       - 'tests/test_enguru_management_v69.py'
       - 'governance/management-v69/**'
+      - 'tools/management_v69_current_main_source_observe.py'
       - '.github/workflows/enguru-management-v69.yml'
   workflow_dispatch:
 permissions:
@@ -45,14 +46,30 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set +e
           python3 tools/enguru_management_v69_operation.py --live \
             --output "$RUNNER_TEMP/enguru-management-v69-live-evidence.json"
+          code=$?
+          set -e
+          if [ "$code" -eq 50 ]; then
+            python3 -c 'import json,sys; x=json.load(open(sys.argv[1])); assert x.get("state")=="HOLD_GUVENLI_DUR" and x.get("reason")=="CURRENT_MAIN_SOURCE_DRIFT", x' "$RUNNER_TEMP/enguru-management-v69-live-evidence.json"
+            echo "Historical receipt safely classified: current-main acceptance remains HOLD"
+            python3 tools/management_v69_current_main_source_observe.py --output "$RUNNER_TEMP/enguru-management-v69-current-source.json"
+          elif [ "$code" -ne 0 ]; then
+            exit "$code"
+          fi
           sha256sum "$RUNNER_TEMP/enguru-management-v69-live-evidence.json"
+          if [ "$code" -eq 50 ]; then
+            python3 -c 'import json,sys; x=json.load(open(sys.argv[1])); assert x.get("state")=="PASS_CURRENT_MAIN_SOURCE_OBSERVED" and x.get("official_finish")=="HOLD" and x.get("historical_receipt_reusable") is False, x' "$RUNNER_TEMP/enguru-management-v69-current-source.json"
+            sha256sum "$RUNNER_TEMP/enguru-management-v69-current-source.json"
+          fi
       - name: Preserve management evidence
         uses: actions/upload-artifact@v4
         with:
           name: enguru-management-v69-live-evidence
-          path: ${{ runner.temp }}/enguru-management-v69-live-evidence.json
+          path: |
+            ${{ runner.temp }}/enguru-management-v69-live-evidence.json
+            ${{ runner.temp }}/enguru-management-v69-current-source.json
           if-no-files-found: error
           retention-days: 90
       - name: No-write management example
