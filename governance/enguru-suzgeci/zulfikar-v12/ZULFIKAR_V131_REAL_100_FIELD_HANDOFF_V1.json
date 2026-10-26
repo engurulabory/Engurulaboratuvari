@@ -1,0 +1,111 @@
+{
+  "schema": "enguru.zulfikar.v131.operational-100-field-campaign/v1",
+  "title": "Zülfikar V1.3.1 — 100/100 gerçek operasyonel kabul kampanyası",
+  "state": "FIELD_CAMPAIGN_PLAN_ONLY_GITHUB_BRIDGE_PASS_REAL_OPERATIONS_HOLD",
+  "sourceOfMethod": "ENGURU_SUZGECI_V3_PLUS_ZULFIKAR_V131",
+  "protectedArchitecture": {
+    "factory": "OSI",
+    "executor": "EXISTING_MAC_ENGINEER",
+    "leadPilot": "ZEKU",
+    "sourceOfProgress": "EXISTING_PROGRESS_CORE",
+    "newEngine": false,
+    "newIssuer": false,
+    "paidApiDependency": 0
+  },
+  "acceptanceThreshold": {
+    "githubTechnicalCode": "100/100_OBSERVED",
+    "githubRealEngineeringEdits": "OBSERVED_CODE_PR_WITH_CI",
+    "generalOperational": "91/100_ENGINEERING_JUDGMENT",
+    "targetGeneralOperational": "100/100",
+    "authoritativeFieldFinish": "HOLD"
+  },
+  "prerequisites": [
+    "single_owner_explicit_task_scope",
+    "one_active_writer",
+    "real_mac_runtime_source_identity",
+    "prior_work_completion_or_handoff",
+    "registered_actual_handler",
+    "exact_receipt_sha256_and_private_mirror",
+    "pre_post_source_sha_pins",
+    "actual_runtime_result",
+    "independent_observation",
+    "existing_donecheck",
+    "human_threshold"
+  ],
+  "threeDifferentTaskFamilies": [
+    {
+      "taskFamily": "NATIVE_SWIFTUI_PRODUCT",
+      "candidate": "PiLive V4 real SwiftUI standalone screen source→binary→UI",
+      "userProject": "ENGURU_PLIVE_P02_USER_SCREEN",
+      "repoPR": 241,
+      "authority": "CURRENT_WORK_SCOPE_ONLY",
+      "status": "WORK_ACTIVE_EVIDENCE_NOT_YET_RECONCILED",
+      "realTaskOutputAccepted": false
+    },
+    {
+      "taskFamily": "LOCAL_RECOVERY_IDEMPOTENCY",
+      "candidate": "Mac Engineer registered restart/recovery action in approved disposable scope",
+      "authority": "EXISTING_ACTION_REGISTRY_HUMAN_SCOPE_REQUIRED",
+      "status": "HOLD_EXPLICIT_MAC_TASK_AUTHORITY",
+      "realTaskOutputAccepted": false
+    },
+    {
+      "taskFamily": "WEB_BUILD_TEST_REPAIR",
+      "candidate": "Different-source website factory or equivalent existing registered engineering task",
+      "authority": "EXISTING_SCOPE_TO_BE_RESOLVED",
+      "status": "HOLD_TASK_SOURCE_AND_AUTHORITY",
+      "realTaskOutputAccepted": false
+    }
+  ],
+  "allTaskProofFields": [
+    "taskId",
+    "contractId",
+    "sourceHead",
+    "preStateSha256",
+    "registeredHandler",
+    "authorityRecord",
+    "testCommandAndExit",
+    "postStateSha256",
+    "actualOutputDigest",
+    "workReceiptSha256",
+    "independentVerify",
+    "noFalsePass",
+    "idempotencyEvidence",
+    "ownerDecision"
+  ],
+  "recoveryEvidence": {
+    "durableCheckpointCountObserved": 0,
+    "targetAtLeast": 3,
+    "recoveryTestExecuted": false,
+    "idempotencyVerified": false,
+    "duplicateWriterObserved": false
+  },
+  "peerComparison": {
+    "status": "HOLD_NOT_EXECUTED",
+    "paidServicesRequired": 0,
+    "taskManifestFrozen": false,
+    "peerVersionPinned": false,
+    "minEqualBudgetPairedTrials": 5,
+    "userValueEvidence": false,
+    "claimOfSuperiority": false
+  },
+  "strictReadiness": {
+    "githubCodeBridgeGate": "PASS",
+    "actualDispatch": "HOLD",
+    "nativeMacTaskAcceptance": "HOLD",
+    "threeRealTasks": "0/3_IN_THIS_CAMPAIGN",
+    "checkpoint": "HOLD",
+    "independentPeerTrial": "HOLD",
+    "ownerAcceptedFinish": "HOLD"
+  },
+  "authorityCannotBeGeneratedByManifest": true,
+  "prohibit": {
+    "autoApprove": true,
+    "autoMerge": true,
+    "overwriteCanonical": true,
+    "installWithoutOwner": true,
+    "derive100FromGitHubOnly": true
+  },
+  "nextSingleHinge": "After existing PiLive Work task finishes, independently reconcile its actual Mac task receipt, source-to-binary, approval and product state; then begin one authorized task at a time",
+  "verifiedFinish": "HOLD"
+}
