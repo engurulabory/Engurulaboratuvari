@@ -1,0 +1,99 @@
+{
+  "schema": "enguru.harvest.readiness-audit/v2",
+  "date": "2026-10-26",
+  "baseline_github": 63,
+  "github_verified_readiness": 65,
+  "github_official": "HOLD",
+  "osi_baseline": 55,
+  "osi_current": 55,
+  "source_pin_scope": "30 exact remote Github repository commits and README Git blob identity verified live; not source archive digest",
+  "confirmed_real_source_pin_count": 30,
+  "legal_reuse_approved": 0,
+  "external_official_proven": 0,
+  "real_user_task_benchmark_accepted": 0,
+  "owner_verified_finish_decision": "HOLD",
+  "mac_execution": 0,
+  "discrete_rubric": {
+    "github": [
+      [
+        "goal_ids",
+        10,
+        10
+      ],
+      [
+        "exact_head_ci",
+        20,
+        20
+      ],
+      [
+        "unit_and_logical",
+        12,
+        12
+      ],
+      [
+        "engineering_real_microbenchmark",
+        8,
+        12
+      ],
+      [
+        "upstream_real_execution",
+        9,
+        12
+      ],
+      [
+        "source_provenance_license_security",
+        6,
+        12
+      ],
+      [
+        "real_user_value",
+        0,
+        10
+      ],
+      [
+        "owner_donecheck",
+        0,
+        12
+      ]
+    ],
+    "osi": [
+      [
+        "architecture",
+        20,
+        20
+      ],
+      [
+        "safe_scope_rollback",
+        12,
+        15
+      ],
+      [
+        "github_trace",
+        15,
+        15
+      ],
+      [
+        "source_reuse_handoff",
+        8,
+        15
+      ],
+      [
+        "real_mac_compat",
+        0,
+        15
+      ],
+      [
+        "sqlite_field",
+        0,
+        10
+      ],
+      [
+        "owner_field_entry",
+        0,
+        10
+      ]
+    ]
+  },
+  "status": "EVIDENCE_ASSESSED_ONLY",
+  "new_provenance_note": "README git SHA-1 is Git blob object identity; repository commit SHA is 40-character Git revision; neither establishes third-party legal approval."
+}
