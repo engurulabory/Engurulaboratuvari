@@ -32,7 +32,7 @@ def run_command(argv, timeout=240):
     result=subprocess.run(argv,capture_output=True,text=True,timeout=timeout)
     output=result.stdout+result.stderr
     if result.returncode:raise NativeCommandHold(argv,result)
-    return {'argv':argv,'returncode':0,'outputSha256':safe.digest(output.encode()),'output':output}
+    return {'argv':argv,'returncode':0,'outputSha256':safe.digest(output.encode()),'output':output,'stdout':result.stdout}
 
 def reader_resources(source, destination):
     destination.mkdir(parents=True)
@@ -73,21 +73,21 @@ def build_and_open(source, home):
         package=source/'swift/PiLivePresentation'
         version=run_command(['/usr/bin/xcrun','swift','--version']);receipt['buildToolchain']=version['output'].strip()
         print('STEP=NATIVE_SWIFT_TESTS',flush=True)
-        tests=run_command(['/usr/bin/xcrun','swift','test','--package-path',str(package)],timeout=600);recipe.append({k:v for k,v in tests.items() if k!='output'})
+        tests=run_command(['/usr/bin/xcrun','swift','test','--package-path',str(package)],timeout=600);recipe.append({k:v for k,v in tests.items() if k not in ('output','stdout')})
         counts=[int(x) for x in re.findall(r'Executed (\d+) tests, with 0 failures',tests['output'])]
         if not counts or max(counts)==0:raise ValueError('HOLD_NATIVE_TEST_COUNT')
         receipt['nativeSwiftTests']=max(counts)
         print('STEP=BUILD_RELEASE_CANDIDATE',flush=True)
-        build=run_command(['/usr/bin/xcrun','swift','build','--package-path',str(package),'-c','release'],timeout=600);recipe.append({k:v for k,v in build.items() if k!='output'})
-        binary_folder=run_command(['/usr/bin/xcrun','swift','build','--package-path',str(package),'-c','release','--show-bin-path'])['output'].strip()
+        build=run_command(['/usr/bin/xcrun','swift','build','--package-path',str(package),'-c','release'],timeout=600);recipe.append({k:v for k,v in build.items() if k not in ('output','stdout')})
+        binary_folder=run_command(['/usr/bin/xcrun','swift','build','--package-path',str(package),'-c','release','--show-bin-path'])['stdout'].strip()
         app=session/'ENGURU-PiLive-V4-READONLY.app';macos=app/'Contents/MacOS';macos.mkdir(parents=True);resources=app/'Contents/Resources';resources.mkdir()
         shutil.copyfile(Path(binary_folder)/'PiLive',macos/'PiLive');(macos/'PiLive').chmod(0o755)
         reader_pin=reader_resources(source,resources/'reader')
         info={'CFBundleIdentifier':'local.enguru.pilive.v4.candidate.'+uuid.uuid4().hex,'CFBundleName':'ENGURU PiLive V4','CFBundleExecutable':'PiLive','CFBundlePackageType':'APPL','CFBundleVersion':'1','CFBundleShortVersionString':'4.0','LSMinimumSystemVersion':'13.0','NSHighResolutionCapable':True,'PythonExecutable':sys.executable,'ReaderManifestSHA256':reader_pin,'SessionDirectory':str(session)}
         (app/'Contents/Info.plist').write_bytes(plistlib.dumps(info))
         unsigned_sha=safe.digest((macos/'PiLive').read_bytes())
-        sign=run_command(['/usr/bin/codesign','--force','--sign','-','--timestamp=none',str(app)]);recipe.append({k:v for k,v in sign.items() if k!='output'})
-        verify=run_command(['/usr/bin/codesign','--verify','--strict',str(app)]);recipe.append({k:v for k,v in verify.items() if k!='output'})
+        sign=run_command(['/usr/bin/codesign','--force','--sign','-','--timestamp=none',str(app)]);recipe.append({k:v for k,v in sign.items() if k not in ('output','stdout')})
+        verify=run_command(['/usr/bin/codesign','--verify','--strict',str(app)]);recipe.append({k:v for k,v in verify.items() if k not in ('output','stdout')})
         receipt.update(buildRecipe=recipe,readerManifestSha256=reader_pin,preSigningBinarySha256=unsigned_sha,binarySha256=safe.digest((macos/'PiLive').read_bytes()),signature='ADHOC_ONLY_NOT_OWNER_AUTHORITY',signatureVerification='PASS_STRICT_LOCAL_CANDIDATE',appPath=str(app))
         print('STEP=OPEN_ISOLATED_CANDIDATE',flush=True)
         run_command(['/usr/bin/open','-n',str(app)]);receipt['appLaunches']=1
