@@ -10,7 +10,7 @@
     "scope": "GITHUB_TECHNICAL_ACCEPTANCE_ONLY",
     "external_skill_official_proven": 0
   },
-  "state": "TECHNICAL_WORK_PACKAGES_IMPLEMENTED_FINAL_CI_PENDING",
+  "state": "GITHUB_TECHNICAL_CI_PASS_PRODUCT_FINISH_HOLD",
   "packs": [
     {
       "id": "K01",
@@ -27,7 +27,7 @@
         "retained SHA evidence"
       ],
       "acceptance": "CI success and measured improvement; user impact HOLD",
-      "state": "IMPLEMENTED_AWAITING_LATEST_CI"
+      "state": "PASS_GITHUB_MICROBENCH_ONLY_USER_OUTCOME_HOLD"
     },
     {
       "id": "K02",
@@ -46,7 +46,7 @@
         "zero mandatory paid API verification"
       ],
       "acceptance": "scope-specific technical source observation; redistribution HOLD until licensed",
-      "state": "PASS_SAFE_QUARANTINE_WITH_LEGAL_HOLD"
+      "state": "PASS_30_30_SAFE_QUARANTINE_LEGAL_ACCEPTANCE_HOLD"
     },
     {
       "id": "K03",
@@ -65,7 +65,7 @@
         "Agent Skills compatibility"
       ],
       "acceptance": "technical shell smoke != authorized agent execution",
-      "state": "PARTIAL_CODEX_CLI_PASS_CLAUDE_NPM_HOLD"
+      "state": "PARTIAL_AGENT_SKILL_COMPAT_AND_CODEX_VERSION_PASS_CLAUDE_NPM_RUNTIME_HOLD"
     },
     {
       "id": "K04",
@@ -88,7 +88,7 @@
         "exact HEAD and canonical v3 SHA CI"
       ],
       "acceptance": "all required CI completed-success on same HEAD",
-      "state": "LATEST_EXACT_HEAD_CI_PENDING"
+      "state": "PASS_EXACT_HEAD_CI_5_5_AND_LOGICAL_SIM_30_30"
     },
     {
       "id": "K05",
@@ -107,7 +107,7 @@
         "OSI handoff design only"
       ],
       "acceptance": "Owner Human Threshold for GitHub technical scope; verified finish and OSi remain separate",
-      "state": "HOLD_OWNER_HUMAN_THRESHOLD"
+      "state": "PASS_HANDOFF_DESIGN_ONLY_HOLD_OWNER_HUMAN_THRESHOLD"
     }
   ],
   "completion_policy": {
@@ -116,5 +116,20 @@
     "githubVerifiedFinish": "official source+licensing+actual benefit+canonical authority, separate from CI",
     "osiExecution": 0,
     "mainMerge": 0
+  },
+  "last_verified_head": "0d714edaeaa0b4347766b31cd2e0d33c1d6ce489",
+  "last_verified_run": "https://github.com/engurulabory/Engurulaboratuvari/actions/runs/40284992580",
+  "last_verified": {
+    "workflow_success": 5,
+    "workflow_total": 5,
+    "job_success": 3,
+    "job_total": 3,
+    "stdlib_unittest_success": 73,
+    "stdlib_unittest_total": 73,
+    "real_external_technical_trials": 9,
+    "real_external_cases": 12,
+    "independently_proven_external_skills": 0,
+    "osi_execution": 0,
+    "owner_acceptance": "HOLD"
   }
 }
