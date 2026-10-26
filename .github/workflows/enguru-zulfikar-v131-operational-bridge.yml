@@ -100,6 +100,22 @@ jobs:
           assert all(f['prohibit'].values())
           print('ZULFIKAR_OPERATIONAL_100_FIELD_GATE=HOLD_NEEDS_REAL_TASK_EVIDENCE')
           PY
+      - name: Guard three distinct GitHub source observations versus real Mac delivery
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: |
+          python - <<'PY'
+          import json
+          o=json.load(open('ZULFIKAR_V131_CROSS_PRODUCT_GITHUB_OBSERVATION_V1.json'))
+          rows=o['observations']
+          assert len(rows)==3 and len({r['pr'] for r in rows})==3
+          assert all(r['CI']['success']==r['CI']['total']==6 for r in rows)
+          assert all(r['ownerProductAcceptance']=='HOLD' for r in rows)
+          assert all(r['operationalTaskAccepted'] is False for r in rows)
+          assert o['heterogeneousRealMacTasksAccepted']==0
+          assert o['realOperationalTransferVerdict']=='HOLD'
+          assert o['verifiedFinish']=='HOLD'
+          print('CROSS_PRODUCT_GITHUB_SOURCE=3/3; REAL_MAC_TASKS=0/3; OPERATIONAL_HOLD')
+          PY
       - name: Preserve prior V1.3.1 verified goal and GitHub code gates
         working-directory: governance/enguru-suzgeci/zulfikar-v12
         run: |
