@@ -29,7 +29,8 @@ CONTROL_VERIFIERS = {f"C{i:02d}": f"goal_gate.H{i:02d}" for i in range(1, 11)}
 CONTROL_AUTHORITIES = {id_: ("Human Threshold" if id_ in ("C04", "C10")
                             else "Automated GitHub CI") for id_ in CONTROL_IDS}
 NEGATIVE_IDS = frozenset(("INVALID_GOAL", "MISSING_SOURCE",
-                          "MISSING_AUTHORITY", "INCOMPLETE_DEPENDENCIES"))
+                          "MISSING_AUTHORITY", "INCOMPLETE_DEPENDENCIES",
+                          "FORGED_PEER_REVIEW"))
 INFRA_IDS = tuple(f"TA{i:02d}" for i in range(1, 11))
 SRC = ("zulfikar_v1_2_engine.py","test_zulfikar_v1_2.py",
        "zulfikar_v1_2_five_gate.py","zulfikar_v1_3_gates.py",
@@ -130,7 +131,7 @@ def goal_gate(data):
              and rights.get("decision_scope")=="GITHUB_TECHNICAL_ACCEPTANCE_ONLY",
       "H05": valid_controls and dag_ok(data.get("dependencies"),set(identities)),
       "H06": len(risks)>=3 and all(isinstance(x,dict) and all(has_text(x.get(k)) for k in ("risk","mitigation","negative_test")) for x in risks),
-      "H07": len(negatives)>=4 and all(isinstance(x,dict) and has_text(x.get("case_id")) and x.get("expected")=="HOLD" for x in negatives)
+      "H07": len(negatives)>=5 and all(isinstance(x,dict) and has_text(x.get("case_id")) and x.get("expected")=="HOLD" for x in negatives)
              and len({x["case_id"] for x in negatives}) == len(negatives)
              and NEGATIVE_IDS.issubset({x["case_id"] for x in negatives}),
       "H08": valid_controls and all(has_text(c.get("evidence_source")) and c.get("state")=="HOLD_PENDING_REAL_EVIDENCE" for c in controls),
