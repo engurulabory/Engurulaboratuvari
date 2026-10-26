@@ -43,22 +43,6 @@ jobs:
         run: python3 -m unittest discover -s tests -p 'test_enguru_management_v69_operation.py' -v
       - name: Source-bound historical receipt classification
         run: python3 tools/enguru_management_v69_operation.py
-      - name: Live GitHub provenance verification (read-only)
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          python3 tools/enguru_management_v69_operation.py --live \
-            --output "$RUNNER_TEMP/enguru-management-v69-live-evidence.json"
-          sha256sum "$RUNNER_TEMP/enguru-management-v69-live-evidence.json"
-      - name: Preserve management evidence
-        uses: actions/upload-artifact@v4
-        with:
-          name: enguru-management-v69-live-evidence
-          path: ${{ runner.temp }}/enguru-management-v69-live-evidence.json
-          if-no-files-found: error
-          retention-days: 90
-      - name: No-write management example
-        run: python3 tools/enguru_management_v69.py --worklist governance/management-v69/EXAMPLE_TASKS.json
       - name: Real source adapter tests
         run: python3 -m unittest discover -s tests -p 'test_enguru_management_v69_source_adapter.py' -v
       - name: Owner-scoped new candidate task and HEAD adversarial contract
@@ -70,6 +54,23 @@ jobs:
             --gate governance/controller/ACTIVATION.json \
             --source-ref "github-pr-checkout" \
             --source-commit "$(git rev-parse HEAD)"
+      - name: Live GitHub provenance verification (read-only)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 tools/enguru_management_v69_operation.py --live \
+            --output "$RUNNER_TEMP/enguru-management-v69-live-evidence.json"
+          sha256sum "$RUNNER_TEMP/enguru-management-v69-live-evidence.json"
+      - name: Preserve management evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enguru-management-v69-live-evidence
+          path: ${{ runner.temp }}/enguru-management-v69-live-evidence.json
+          if-no-files-found: error
+          retention-days: 90
+      - name: No-write management example
+        run: python3 tools/enguru_management_v69.py --worklist governance/management-v69/EXAMPLE_TASKS.json
   donecheck_machine_verify:
     # Owner Emri05 source grant; canonical enrollment and human review remain HOLD.
     if: github.event_name == 'pull_request' && github.head_ref == 'review/management-s02-adoption-20261026'
