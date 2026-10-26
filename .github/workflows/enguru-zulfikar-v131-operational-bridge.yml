@@ -31,6 +31,16 @@ jobs:
             python -B -m unittest -v test_zulfikar_v131_operational_bridge
           done
           echo "STATE=PASS_GITHUB_EXISTING_HANDLER_PREFLIGHT_ONLY_OSI_FIELD_HOLD"
+      - name: Three rounds private receipt byte intake with truthful acceptance
+        working-directory: governance/enguru-suzgeci/zulfikar-v12
+        run: |
+          python -m py_compile zulfikar_v131_field_evidence_intake.py
+          sha256sum zulfikar_v131_field_evidence_intake.py
+          for cycle in 1 2 3; do
+            echo "ZULFIKAR_V131_FIELD_INTAKE_ROUND=$cycle"
+            python -B -m unittest -v test_zulfikar_v131_field_evidence_intake
+          done
+          echo "STATE=PASS_SHA_INTAKE_TESTS_ONLY_REAL_FIELD_HOLD"
       - name: Ten exact-source GitHub bridge gates (not real operations)
         working-directory: governance/enguru-suzgeci/zulfikar-v12
         run: |
