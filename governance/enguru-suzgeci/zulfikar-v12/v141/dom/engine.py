@@ -260,6 +260,19 @@ def _execute_inside_writer(contract, start_state, journal, simulator, evaluator,
         # A verified 100 checkpoint is idempotent and may only be promoted by
         # external stage authority. No repeat repairs or task execution.
         if previous and previous.get("afterDiagnostic") == 100:
+            # Idempotency skips task execution, not current evidence validation.
+            # Recheck persisted output through the existing separate verifier.
+            replay_run = {"processObserved": True, "exitCode": 0,
+                "scope": contract.scope, "artifactSha256": previous.get("artifactSha256")}
+            if (independent_verifier(copy.deepcopy(start_state), copy.deepcopy(c),
+                                     copy.deepcopy(replay_run)) is not True or
+                assess(evaluator(copy.deepcopy(start_state), copy.deepcopy(c)), contract.criteria) != 100):
+                return stop("REPLAY_ARTIFACT_OR_CRITERIA_CHANGED", [], pinned)
+            if (actual_source_digest(Path(source_file)) != contract.source_pin or
+                source_probe(copy.deepcopy(c)) is not True):
+                return stop("SOURCE_CHANGED_DURING_REPLAY_VERIFY", [], pinned)
+            if journal.read() != journal.events:
+                return stop("JOURNAL_CHANGED_DURING_REPLAY_VERIFY", [], pinned)
             return {"state": "STAGE_100_CANDIDATE_EXTERNAL_REVIEW_REQUIRED",
                     "contractSha256": pinned, "journalHeadSha256": journal.events[-1]["hash"],
                     "diagnostic": 100, "rounds": [], "acceptedScore": None,

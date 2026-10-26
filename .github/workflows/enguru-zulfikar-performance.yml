@@ -1,0 +1,42 @@
+name: ENGURU Zulfikar V141 Five Real Task Families
+on:
+  pull_request:
+    paths:
+      - 'tools/zulfikar-performance-v141/**'
+      - 'governance/enguru-suzgeci/zulfikar-v12/v141/**'
+      - '.github/workflows/enguru-zulfikar-performance.yml'
+permissions:
+  contents: read
+jobs:
+  real-task-repair-recovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: T01 T02 frozen preparation and canonical byte locks
+        run: python3 -B tools/zulfikar-performance-v141/check_preparation.py
+      - name: Current source seal 18 files
+        run: python3 -B governance/enguru-suzgeci/zulfikar-v12/v141/verify_github_source_seal_v2.py
+      - name: Six new replay counterexamples
+        run: python3 -B tools/zulfikar-performance-v141/test_replay_regressions.py
+      - name: Five real tasks each with baseline fault and repair phases
+        run: |
+          mkdir -p evidence/performance
+          git rev-parse HEAD > evidence/performance/source-commit.txt
+          for round in 1 2 3; do
+            python3 -B tools/zulfikar-performance-v141/run_campaign.py "evidence/performance/round-$round"
+            python3 -B tools/zulfikar-performance-v141/verify_campaign.py "evidence/performance/round-$round"
+          done
+      - name: Preserve actual task outputs and independent mechanism receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: zulfikar-five-real-task-evidence
+          path: evidence/performance/
+          retention-days: 30

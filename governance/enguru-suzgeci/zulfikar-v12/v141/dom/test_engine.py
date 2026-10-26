@@ -134,7 +134,7 @@ class CycleTests(unittest.TestCase):
         count=len(self.calls)
         r=self.drive()
         self.assertTrue(r["replayedVerifiedCheckpoint"])
-        self.assertEqual(len(self.calls),count)
+        self.assertEqual(self.calls[count:], ["verify", "assess"])
 
     def test_13_rejected_simulation(self):
         r=self.drive(simulator=lambda *_:{"valid":False})
