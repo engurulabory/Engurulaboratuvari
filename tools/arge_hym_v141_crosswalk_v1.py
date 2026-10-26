@@ -404,9 +404,15 @@ def main():
     foundations=assess_foundations(h,c,source_inventory,result)
     result["sourceInventory"]=source_inventory
     result["foundationReadiness"]=foundations
+    a01_design=json.loads((ROOT/A01_DESIGN_PATH).read_bytes(),
+                          object_pairs_hook=duplicate_guard)
+    a01_git=proof_single_git_file()
+    architecture=assess_a01_architecture(a01_design,h,c,a01_git,foundations,result)
+    result["a01DesignProof"]=a01_git
+    result["a01ArchitectureReadiness"]=architecture
     print(json.dumps(result,sort_keys=True))
     return 0 if (result["state"]=="PASS_METHOD_SOURCE_CROSSWALK_ONLY"
-                 and foundations["state"]==
-                     "PASS_T01_T02_GITHUB_SOURCE_PREPARATION_ONLY") else 2
+                 and foundations["state"]=="PASS_T01_T02_GITHUB_SOURCE_PREPARATION_ONLY"
+                 and architecture["state"]=="PASS_A01_ARCHITECTURE_SOURCE_PREPARATION_ONLY") else 2
 
 if __name__=="__main__":raise SystemExit(main())
