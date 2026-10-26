@@ -160,6 +160,8 @@ class SoloOwnerGitHubScopeTests(unittest.TestCase):
             and record["A04"]["canonical_runtime_source"] is None
             and record["A04"]["decision"]=="HOLD_OWNER_CANONICAL_SCOPE"
             and record["current_counters"]["overall_official"]=="0/40"
+            and record["current_counters"].get("independent_e5","0/18")=="0/18"
+            and record["current_counters"].get("customer_deployments","0/18")=="0/18"
             and record["A05_A06"]["customer_deployment"]=="0/18"
             and record["A05_A06"]["independent_e5"]=="0/18"
             and len(ids)==original["original_tasks"]==40
