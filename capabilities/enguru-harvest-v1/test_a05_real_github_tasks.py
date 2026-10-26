@@ -1,5 +1,4 @@
 """A05 real repository task quality, negative cases and authority scopes."""
-import copy
 import hashlib
 import json
 import unittest
