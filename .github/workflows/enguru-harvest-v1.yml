@@ -70,6 +70,17 @@ jobs:
           npm install --no-save --ignore-scripts --package-lock=false --no-audit --no-fund '@modelcontextprotocol/server@2.4.0' '@modelcontextprotocol/client@2.4.0' 'zod@4.1.12'
           node mcp_typescript_trial.mjs
           npm ls --all --json > mcp-typescript-npm-tree.json || true
+      - name: Inspect exact upstream Anthropic SKILL.md without use authorization
+        env:
+          ENGURU_ANTHROPIC_SKILLS_CHECKOUT: ${{ runner.temp }}/anthropic-skills-source
+        run: |
+          git clone --quiet --filter=blob:none --sparse https://github.com/anthropics/skills.git "${{ runner.temp }}/anthropic-skills-source"
+          git -C "${{ runner.temp }}/anthropic-skills-source" fetch --quiet --depth 1 origin dbd4588f9e1033efb41dad4bef2f7947c8993d44
+          git -C "${{ runner.temp }}/anthropic-skills-source" checkout --quiet dbd4588f9e1033efb41dad4bef2f7947c8993d44
+          git -C "${{ runner.temp }}/anthropic-skills-source" sparse-checkout set skills/pdf skills/docx
+          test "$(git -C "${{ runner.temp }}/anthropic-skills-source" rev-parse HEAD)" = "dbd4588f9e1033efb41dad4bef2f7947c8993d44"
+          cd capabilities/enguru-harvest-v1
+          python -B run_anthropic_skills_trial.py
       - name: Preserve real runner receipts
         if: always()
         uses: actions/upload-artifact@v4
@@ -81,6 +92,7 @@ jobs:
             capabilities/enguru-harvest-v1/promptfoo-eval-output.json
             capabilities/enguru-harvest-v1/promptfoo-offline-receipt.json
             capabilities/enguru-harvest-v1/mcp-typescript-receipt.json
+            capabilities/enguru-harvest-v1/anthropic-skills-structural-receipt.json
             capabilities/enguru-harvest-v1/mcp-typescript-npm-tree.json
             ${{ runner.temp }}/harvest-mcp-install-report.json
             ${{ runner.temp }}/harvest-pip-install-report.json
