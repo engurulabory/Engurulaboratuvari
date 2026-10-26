@@ -17,8 +17,7 @@ class PreparedFinishTests(unittest.TestCase):
         cls.hashes={bridge.BINDING_PATH:cls.bind_sha,bridge.ACTION_PATH:cls.action_sha}
         cls.source_sha={}
         for p in cls.contract["technicalSources"]:
-            _,digest=bridge.source_read(prep.ROOT,p)
-            cls.source_sha[p]=digest
+            cls.source_sha[p]=prep.tracked_digest(p,cls.head)
     def checks(self,c=None,bindings=None,actions=None,tests=True,read_only=True,pins=None,goal=100,infra=100,code=100):
         return prep.inspect(c if c is not None else self.contract,self.head,
               bindings if bindings is not None else self.bind,
