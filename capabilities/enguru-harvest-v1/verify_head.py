@@ -17,6 +17,9 @@ SOURCES=(
     "run_k03_cli_smoke.py","test_k03_cli_contract.py",
     "k02_source_policy.py","test_k02_source_policy.py","K01_K05_BUTUNLESIK_FINIS_RAPORU.md",
     "READINESS_SCORECARD_V1.json","test_readiness_scorecard.py","KALAN_ISLER_VE_OSI_ONCESI_PUANLAMA.md",
+    "UPSTREAM_GITHUB_PINS_30.json","test_upstream_github_pins.py",
+    "ZULFIKAR_V131_100_GATE_CONTRACT.json","zulfikar_finish_gate.py","test_zulfikar_finish_gate.py",
+    "READINESS_AUDIT_V2.json","test_readiness_audit_v2.py",
     "test_upstream_hypothesis.py","run_real_upstream_trials.py",
     "run_second_upstream_trials.py","run_lm_eval_fixture.py","promptfooconfig.json","check_promptfoo_receipt.py","mcp_typescript_trial.mjs","mcp_reference_stdio_trial.mjs","run_anthropic_skills_trial.py",
 )
