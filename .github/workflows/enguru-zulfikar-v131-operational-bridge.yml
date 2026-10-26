@@ -77,6 +77,11 @@ jobs:
           assert x['realMacFieldVerdict']=='HOLD'
           assert x['verifiedFinishVerdict']=='HOLD'
           assert x['targetWeightedOverall']==100
+          m=x['managementFinalTarget']
+          assert m['target']=='ALL_SIX_DOMAINS_100_OF_100'
+          assert {g['id'] for g in m['threeClosureGates']}=={'GOVERNANCE','PORTABILITY','E2E_REAL'}
+          assert all(g['to']==100 for g in m['threeClosureGates'])
+          assert m['noAutomaticPromotion'] is True
           assert x['horizon']['macOsiOperationalAcceptance']=='HOLD'
           assert x['horizon']['realTaskPassesObservedInThisCampaign']==0
           print('OPERATIONAL_READINESS_JUDGMENT=91/100; GITHUB_BRIDGE_GATE=100/100; MAC=HOLD')
