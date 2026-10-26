@@ -32,7 +32,7 @@ def run(out):
    p=Path(state['artifact']);row=json.loads(p.read_text()) if p.exists() else {'criteria':{}}
    return {k:row['criteria'].get(k) is True for k in c['criteria']}
   def repair(state,gaps,c):
-   head=prepare(ident,repaired,repaired=True);write(d/'repair-source.json',{'isolatedHead':head,'upstreamSource':task['source'],'upstreamCommit':next(x['commit'] for x in source_records if x['path']==task['source']),'patchSha256':digest(HERE/'patches'/f'{ident}.patch')})
+   head=prepare(ident,repaired,repaired=True);write(d/'repair-source.json',{'isolatedHead':head,'upstreamSource':task['source'],'upstreamCommit':next(x['commit'] for x in source_records if x['path']==task['source']),'patchSha256':digest(HERE/'patches'/f'{ident}.patch'),'sourceSha256Before':digest(baseline/task['source']),'sourceSha256After':digest(repaired/task['source'])})
    process=call([sys.executable,'-B',HERE/'task_checks.py',ident,repaired,d/'repair-output']);commands.append(process)
    write(d/'repair-process.json',process)
    return {'artifact':str(artifact.resolve()),'repaired':True}

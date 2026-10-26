@@ -1,5 +1,5 @@
 """Deterministic adversarial schedule at the journal commit boundary, real bytes."""
-import hashlib,json,os,sys,unittest
+import hashlib,json,os,subprocess,sys,unittest
 from pathlib import Path
 DOM=Path(os.environ['DOM_ENGINE_DIR']) if 'DOM_ENGINE_DIR' in os.environ else Path(__file__).resolve().parents[3]/'governance/enguru-suzgeci/zulfikar-v12/v141/dom'
 sys.path.insert(0,str(DOM))
@@ -22,7 +22,10 @@ class CheckpointTruth(unittest.TestCase):
   self.f.journal.path.unlink();self.f.journal=LocalJournal(self.f.root)
   append=self.f.journal.append
   def mutate(payload):
-   value=append(payload);self.f.record.write_text(json.dumps({k:False for k in self.f.goal.criteria}));return value
+   value=append(payload)
+   observed=subprocess.run([sys.executable,'-B','-c','import pathlib,sys;pathlib.Path(sys.argv[1]).write_text(sys.argv[2])',str(self.f.record),json.dumps({k:False for k in self.f.goal.criteria})],capture_output=True,text=True,timeout=10)
+   self.assertEqual(observed.returncode,0)
+   return value
   self.f.journal.append=mutate
   r=self.f.drive()
   self.assertNotEqual(r.get('diagnostic'),100)

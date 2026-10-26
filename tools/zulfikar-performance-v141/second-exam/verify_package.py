@@ -1,5 +1,5 @@
 """Read-only evidence verification for a later review session; no task execution or owner issuance."""
-import hashlib,json,sys,zipfile
+import hashlib,json,shutil,subprocess,sys,tempfile,zipfile
 from pathlib import Path
 HERE=Path(__file__).resolve().parent
 
@@ -10,6 +10,7 @@ def verify(root):
  assert summary['goalId']==plan['goalId'] and summary['tasksPassed']==3
  assert summary['initialMet']==6 and summary['finalMet']==summary['totalCriteria']==12
  assert summary['planSha256']==digest(HERE/'PLAN.json')
+ assert summary['sourceEngineSha256']==digest(HERE.parents[2]/'governance/enguru-suzgeci/zulfikar-v12/v141/dom/engine.py')
  assert summary['officialVerifiedFinish']=='HOLD'
  for task in plan['tasks']:
   d=root/task['id'];r=json.loads((d/'task-result.json').read_text());contract=json.loads((d/'fixed-task.json').read_text())
@@ -45,6 +46,15 @@ def verify(root):
    assert data['observations']['expandedAttack']['state']=='HOLD_EXPANDED_PACKAGE_BUDGET'
   source=d/'repaired-repo'/task['source']
   assert source.is_file()
+  metadata=json.loads((d/'repair-source.json').read_text())
+  upstream=HERE/'upstream'/('harvest' if task['id']=='S03' else 'core')
+  assert metadata['sourceSha256Before']==digest(upstream/task['source'])
+  assert metadata['sourceSha256After']==digest(source)
+  assert metadata['patchSha256']==contract['patchSha256']==digest(HERE/'patches'/f"{task['id']}.patch")
+  with tempfile.TemporaryDirectory(prefix='zulfikar-patch-review-') as temp:
+   expected=Path(temp);shutil.copytree(upstream,expected,dirs_exist_ok=True)
+   subprocess.run(['git','apply',str(HERE/'patches'/f"{task['id']}.patch")],cwd=expected,check=True,capture_output=True)
+   assert digest(expected/task['source'])==digest(source)
  result={'state':'PASS_SEPARATE_EVIDENCE_MECHANISM','tasks':3,'criteria':12,'independentHumanAcceptance':'HOLD','peerBenchmark':'HOLD_NO_PEER_EXECUTOR','officialVerifiedFinish':'HOLD'}
  print(json.dumps(result,sort_keys=True));return result
 if __name__=='__main__':verify(Path(sys.argv[1]))
