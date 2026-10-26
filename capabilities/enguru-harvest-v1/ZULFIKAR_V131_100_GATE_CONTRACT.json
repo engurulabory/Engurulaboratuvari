@@ -1,0 +1,203 @@
+{
+  "schema": "enguru.harvest.zulfikar-v1.3.1-finish-gates/v1",
+  "acceptance_design_max": 100,
+  "owner": "engurulabory",
+  "peer_review_required_for_github_technical": false,
+  "issuer": "EXISTING_CANONICAL_ONLY",
+  "osi_execution": 0,
+  "main_merge": 0,
+  "github": {
+    "name": "GITHUB_VERIFIED_FINISH",
+    "scope": "OFFICIAL_PRODUCT",
+    "state": "HOLD",
+    "controls": [
+      {
+        "id": "G01",
+        "points": 10,
+        "requirement": "Canonical V3 and exact-head CI",
+        "evidence": "git HEAD byte SHA+all required GitHub workflows",
+        "current": "OBSERVED_TECHNICAL_PASS",
+        "proof_sha256": null,
+        "approved": false
+      },
+      {
+        "id": "G02",
+        "points": 10,
+        "requirement": "Product and distinct acceptance IDs",
+        "evidence": "H01-H10, P01-P12, K01-K05 traced",
+        "current": "OBSERVED_DESIGN_PASS",
+        "proof_sha256": null,
+        "approved": false
+      },
+      {
+        "id": "G03",
+        "points": 10,
+        "requirement": "Ten independent evidence/source controls",
+        "evidence": "source pins+source artifact digests and negative drift checks",
+        "current": "HOLD_SOURCE_ARCHIVE",
+        "proof_sha256": null,
+        "approved": false
+      },
+      {
+        "id": "G04",
+        "points": 10,
+        "requirement": "Legal and security approval",
+        "evidence": "license and security decisions with source-scope receipts",
+        "current": "HOLD_AUTHORITY",
+        "proof_sha256": null,
+        "approved": false
+      },
+      {
+        "id": "G05",
+        "points": 10,
+        "requirement": "Mandatory paid API and cost",
+        "evidence": "real entitlement and runner budget records",
+        "current": "HOLD_COST_PROOF",
+        "proof_sha256": null,
+        "approved": false
+      },
+      {
+        "id": "G06",
+        "points": 10,
+        "requirement": "Reproducible task benefit",
+        "evidence": "5 matched *user* tasks before/after, equal quality and receipts",
+        "current": "HOLD_REAL_USER",
+        "proof_sha256": null,
+        "approved": false
+      },
+      {
+        "id": "G07",
+        "points": 10,
+        "requirement": "Twelve external skills proven",
+        "evidence": "P01-P12 per-skill real authorized tasks and review",
+        "current": "HOLD_PROVEN_0_OF_12",
+        "proof_sha256": null,
+        "approved": false
+      },
+      {
+        "id": "G08",
+        "points": 10,
+        "requirement": "Three real Zulfikar simulations",
+        "evidence": "SIM1/SIM2/SIM3 real scenario and evidence at exact HEAD",
+        "current": "HOLD_REAL_SIMULATION",
+        "proof_sha256": null,
+        "approved": false
+      },
+      {
+        "id": "G09",
+        "points": 10,
+        "requirement": "Canonical DoneCheck issuance",
+        "evidence": "real issuer decision and audit receipt",
+        "current": "HOLD_DONECHECK",
+        "proof_sha256": null,
+        "approved": false
+      },
+      {
+        "id": "G10",
+        "points": 10,
+        "requirement": "Owner Human Threshold",
+        "evidence": "explicit owner final accept in canonical scope",
+        "current": "HOLD_OWNER",
+        "proof_sha256": null,
+        "approved": false
+      }
+    ]
+  },
+  "osi": {
+    "name": "OSI_PREFIELD_READINESS",
+    "scope": "PRE_FIELD_ONLY",
+    "state": "HOLD",
+    "controls": [
+      {
+        "id": "O01",
+        "points": 10,
+        "requirement": "Exact GitHub technical source and receipts",
+        "evidence": "exact head SHA+signed/hashed handoff source manifest",
+        "current": "OBSERVED_TECHNICAL_PASS",
+        "proof_sha256": null,
+        "approved": false
+      },
+      {
+        "id": "O02",
+        "points": 10,
+        "requirement": "Verified GitHub product acceptance",
+        "evidence": "GITHUB_VERIFIED_FINISH official PASS requirement",
+        "current": "HOLD_GITHUB_FINISH",
+        "proof_sha256": null,
+        "approved": false
+      },
+      {
+        "id": "O03",
+        "points": 10,
+        "requirement": "Mac runtime compatibility evidence",
+        "evidence": "authorized read-only Mac local inventory and version acceptance",
+        "current": "HOLD_NO_OSI_ACCESS",
+        "proof_sha256": null,
+        "approved": false
+      },
+      {
+        "id": "O04",
+        "points": 10,
+        "requirement": "Trusted source usage and rights",
+        "evidence": "license, security, source archive pins and no paid API",
+        "current": "HOLD_SOURCE_RIGHTS",
+        "proof_sha256": null,
+        "approved": false
+      },
+      {
+        "id": "O05",
+        "points": 10,
+        "requirement": "Runtime and dependency offline plan",
+        "evidence": "source pin, pinned Python/Node version and zero API",
+        "current": "OBSERVED_DESIGN_PASS",
+        "proof_sha256": null,
+        "approved": false
+      },
+      {
+        "id": "O06",
+        "points": 10,
+        "requirement": "SQLite receipt and idempotent field",
+        "evidence": "real isolated Mac test and returned receipt",
+        "current": "HOLD_FIELD_TEST",
+        "proof_sha256": null,
+        "approved": false
+      },
+      {
+        "id": "O07",
+        "points": 10,
+        "requirement": "Backup and original-file preservation",
+        "evidence": "MAC original and SHA-matched copy receipt",
+        "current": "HOLD_MAC_COPY",
+        "proof_sha256": null,
+        "approved": false
+      },
+      {
+        "id": "O08",
+        "points": 10,
+        "requirement": "Rollback and safety",
+        "evidence": "design tested on GitHub; Mac field verification later",
+        "current": "HOLD_MAC_ROLLBACK",
+        "proof_sha256": null,
+        "approved": false
+      },
+      {
+        "id": "O09",
+        "points": 10,
+        "requirement": "Owner handoff decision",
+        "evidence": "explicit owner authorization at field threshold",
+        "current": "HOLD_OWNER",
+        "proof_sha256": null,
+        "approved": false
+      },
+      {
+        "id": "O10",
+        "points": 10,
+        "requirement": "All dependencies closed",
+        "evidence": "G01–G10 and O01–O09 exact evidence",
+        "current": "HOLD_DEPENDENCY",
+        "proof_sha256": null,
+        "approved": false
+      }
+    ]
+  }
+}
