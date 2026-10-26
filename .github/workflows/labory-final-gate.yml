@@ -215,3 +215,152 @@ jobs:
 
       - name: Final state
         run: echo 'ENGURU LABORY REPOSITORY FINAL GATE = PASS' >> "$GITHUB_STEP_SUMMARY"
+
+  gh69-base-exact-head:
+    name: GH69-BASE exact-HEAD canonical and adversarial verification
+    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && startsWith(github.event.pull_request.head.ref, 'feat/enguru-gh69-') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout immutable PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Exact HEAD and canonical V3 locked evidence
+        shell: bash
+        env:
+          EXPECTED_GH69_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$EXPECTED_GH69_HEAD"
+          test -f tests/test_enguru_management_v69_foundation.py
+          test -f governance/mac-engineer/ENGURU_MANAGEMENT_V69_FOUNDATION_ACCEPTANCE_V1.json
+          test -f governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md
+          python3 -B tools/verify_enguru_universal_v3_lock.py
+          python3 -B -m unittest discover -s tests -p 'test_enguru_universal_v3_lock.py' -v
+      - name: GH69-BASE exact-head 38 tests (all executed)
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B -m unittest discover -s tests -p 'test_enguru_management_v69_foundation.py' -v 2>&1 | tee /tmp/gh69-base-tests.log
+          grep -Eq '^Ran 38 tests in ' /tmp/gh69-base-tests.log
+          if grep -Eqi 'skipped=[1-9]' /tmp/gh69-base-tests.log; then
+            echo 'STATE=HOLD_GH69_TEST_SKIPPED'
+            exit 61
+          fi
+          echo 'STATE=PASS_GH69_EXACT_HEAD_TESTS'
+      - name: GH69 WP02-WP03 scoped attestation and ledger adversarial tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --test tests/test_enguru_management_v69_wp02_wp03_bridge.mjs 2>&1 | tee /tmp/gh69-wp02-wp03-test.log
+          grep -Eq '^# tests 44$' /tmp/gh69-wp02-wp03-test.log
+          grep -Eq '^# pass 44$' /tmp/gh69-wp02-wp03-test.log
+          grep -Eq '^# fail 0$' /tmp/gh69-wp02-wp03-test.log
+          grep -Eq '^# skipped 0$' /tmp/gh69-wp02-wp03-test.log
+      - name: Checkout bounded read-only original PR191 ledger SHA
+        uses: actions/checkout@v4
+        with:
+          ref: de63a9e34a9b05b6474c847019d8c682b5360d50
+          path: .gh69-pr191-evidence
+          persist-credentials: false
+          sparse-checkout: |
+            governance/mac-engineer/progress/ENGURU_100_BIRIM_FINIS_SAYACI_V1.json
+          sparse-checkout-cone-mode: false
+      - name: GH69 WP02-WP03 live pinned ledger and external trust HOLD
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/enguru_management_v69_wp02_wp03_bridge.mjs .gh69-pr191-evidence/governance/mac-engineer/progress/ENGURU_100_BIRIM_FINIS_SAYACI_V1.json > /tmp/gh69-wp02-wp03-real-ledger.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('/tmp/gh69-wp02-wp03-real-ledger.json').read_text())
+          assert x['state']=='HOLD_EXTERNAL_TRUST_ROOT', x
+          assert x['verifiedUnits']==27, x
+          assert x['officialPassAdded']==0 and x['verifiedFinish'] is False, x
+          assert x['ledgerBlobSha1']=='d54f48ce532a23e4e4b6eff1ef5f9c7c776e71fc',x
+          print('STATE=PASS_REAL_LEDGER_OBSERVED_EXTERNAL_AUTHORITY_SAFE_HOLD')
+          PY
+
+      - name: GH69 WP04-WP05 bounded journal 28 adversarial tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --test tests/test_enguru_management_v69_wp04_wp05_runtime.mjs 2>&1 | tee /tmp/gh69-wp0405-tests.log
+          grep -Eq '^# tests 28$' /tmp/gh69-wp0405-tests.log
+          grep -Eq '^# pass 28$' /tmp/gh69-wp0405-tests.log
+          grep -Eq '^# fail 0$' /tmp/gh69-wp0405-tests.log
+          grep -Eq '^# skipped 0$' /tmp/gh69-wp0405-tests.log
+      - name: GH69 WP04-WP05 actual pinned-ledger management-execution restart
+        shell: bash
+        env:
+          GH69_DISPOSABLE_ROOT: /tmp/gh69-${{ github.run_id }}-${{ github.run_attempt }}
+        run: |
+          set -euo pipefail
+          node tools/enguru_management_v69_wp04_wp05_runtime.mjs --pilot \
+            .gh69-pr191-evidence/governance/mac-engineer/progress/ENGURU_100_BIRIM_FINIS_SAYACI_V1.json \
+            "$GH69_DISPOSABLE_ROOT" > /tmp/gh69-wp0405-first.json
+          node tools/enguru_management_v69_wp04_wp05_runtime.mjs --pilot \
+            .gh69-pr191-evidence/governance/mac-engineer/progress/ENGURU_100_BIRIM_FINIS_SAYACI_V1.json \
+            "$GH69_DISPOSABLE_ROOT" > /tmp/gh69-wp0405-restart.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('/tmp/gh69-wp0405-first.json').read_text())
+          b=json.loads(Path('/tmp/gh69-wp0405-restart.json').read_text())
+          for x in (a,b):
+              assert x['state']=='PASS_REAL_BOUNDED_HANDOFF_EXTERNAL_AUTHORITY_HOLD',x
+              assert x['taskId']=='ENGURU-MGMT69-GH-FOUNDATION-01',x
+              assert x['events']==7 and x['finalState']=='HOLD_EXTERNAL_AUTHORITY',x
+              assert x['officialPassAdded']==0 and x['verifiedFinish'] is False,x
+              assert x['sourceLedgerBlob']=='d54f48ce532a23e4e4b6eff1ef5f9c7c776e71fc',x
+              assert x['donecheck']=='HOLD' and x['humanThreshold']=='PRESERVED',x
+          assert a['head']==b['head'],(a,b)
+          print('STATE=PASS_REAL_PINNED_LEDGER_DISPOSABLE_HANDOFF_RESTART_SAFE_HOLD')
+          PY
+      - name: GH69 WP02-WP05 source and handoff binder tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --test tests/test_enguru_management_v69_wp02_wp05_source_binding.mjs 2>&1 | tee /tmp/gh69-binder-tests.log
+          grep -Eq '^# tests 29$' /tmp/gh69-binder-tests.log
+          grep -Eq '^# pass 29$' /tmp/gh69-binder-tests.log
+          grep -Eq '^# fail 0$' /tmp/gh69-binder-tests.log
+          grep -Eq '^# skipped 0$' /tmp/gh69-binder-tests.log
+      - name: Checkout pinned DoneCheck v1.2 source
+        uses: actions/checkout@v4
+        with:
+          repository: engurulabory/donecheck
+          ref: 4181f48df5ea0c060d9aa9f40a471c554b44b53d
+          path: .gh69-donecheck-source
+          persist-credentials: false
+      - name: GH69 WP02-WP05 real original-ledger durable handoff and DoneCheck source
+        shell: bash
+        env:
+          GH69_DISPOSABLE_ROOT: /tmp/gh69-${{ github.run_id }}-${{ github.run_attempt }}
+        run: |
+          set -euo pipefail
+          node tools/enguru_management_v69_wp02_wp05_source_binding.mjs --readonly \
+            .gh69-pr191-evidence/governance/mac-engineer/progress/ENGURU_100_BIRIM_FINIS_SAYACI_V1.json \
+            "$GH69_DISPOSABLE_ROOT" .gh69-donecheck-source > /tmp/gh69-binder-real.json || { cat /tmp/gh69-binder-real.json; exit 2; }
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('/tmp/gh69-binder-real.json').read_text())
+          assert x['state']=='PASS_REAL_PINNED_SOURCE_AND_HANDOFF_EXTERNAL_AUTHORITY_HOLD',x
+          assert x['donecheckHead']=='4181f48df5ea0c060d9aa9f40a471c554b44b53d',x
+          assert x['ledgerBlob']=='d54f48ce532a23e4e4b6eff1ef5f9c7c776e71fc',x
+          assert x['events']==7 and len(x['donecheckBlobs'])==4,x
+          assert x['officialPassAdded']==0 and x['verifiedFinish'] is False,x
+          assert x['donecheckRuntimeInvoked'] is False,x
+          assert x['trustRoot'].startswith('HOLD_'),x
+          print('STATE=PASS_REAL_BOUND_SOURCE_AND_HANDOFF_OFFICIAL_AUTHORITY_HOLD')
+          PY
