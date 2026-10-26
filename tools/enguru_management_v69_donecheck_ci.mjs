@@ -56,6 +56,7 @@ export function scopedDiff(files) {
     'tests/test_enguru_management_v69_operation.py','tests/test_enguru_management_v69_source.py',
     'tests/test_enguru_management_v69_source_adapter.py',
     'tests/test_enguru_management_v69_donecheck_scope.mjs',
+    'governance/management-v69/OPERATION_OBSERVATION.json',
     '.github/workflows/enguru-management-v69.yml']);
   check(Array.isArray(files)&&files.length>0&&files.length<100,'PR_DIFF_SIZE');
   for(const f of files) {

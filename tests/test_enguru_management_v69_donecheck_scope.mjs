@@ -25,4 +25,5 @@ assert.throws(()=>runContract(event.pull_request,{...run,head_sha:'b'.repeat(40)
 assert.throws(()=>scopedDiff([{filename:'governance/management-v69/DONECHECK_TASK_REGISTRATION_PREP_V1.json'}]));negative++;
 assert.throws(()=>scopedDiff([{filename:'tools/enguru_management_v69_donecheck_ci.mjs',status:'renamed',previous_filename:'governance/controller/TASKS.json'}]));negative++;
 scopedDiff([{filename:'tests/test_enguru_management_v69_donecheck_scope.mjs',status:'added'}]);
+scopedDiff([{filename:'governance/management-v69/OPERATION_OBSERVATION.json',status:'modified'}]);
 console.log(JSON.stringify({state:'PASS_CANDIDATE_SCOPE_CONTRACT',negativeControls:negative,originalTaskUnchanged:true,independentAcceptance:'HOLD'}));
