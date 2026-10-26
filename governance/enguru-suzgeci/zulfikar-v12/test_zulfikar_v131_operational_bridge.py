@@ -141,5 +141,63 @@ class OperationalBridgeTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 bridge.source_read(root,rel)
 
+    def test_no_symlink_parent_directory_in_registry(self):
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td)
+            (root/"real").mkdir()
+            (root/"real"/"data.json").write_text('{"ok":true}',encoding="utf-8")
+            (root/"alias").symlink_to(root/"real",target_is_directory=True)
+            with self.assertRaises((OSError,ValueError)):
+                bridge.read_no_symlink(root,"alias/data.json",1000)
+
+    def test_no_symlink_leaf_in_registry(self):
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td)
+            (root/"source").write_text("private",encoding="utf-8")
+            (root/"alias").symlink_to(root/"source")
+            with self.assertRaises((OSError,ValueError)):
+                bridge.read_no_symlink(root,"alias",1000)
+
+    def test_path_escape_is_denied(self):
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td)
+            for relative in ("../secret","sub/../../secret","/etc/passwd"):
+                with self.subTest(relative=relative), self.assertRaises((OSError,ValueError)):
+                    bridge.read_no_symlink(root,relative,1000)
+
+    def test_no_fifo_as_registry_source(self):
+        import os
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td)
+            os.mkfifo(root/"pipe")
+            with self.assertRaises((OSError,ValueError)):
+                bridge.read_no_symlink(root,"pipe",1000)
+
+    def test_bounded_source_size(self):
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td)
+            (root/"oversize").write_bytes(b"0"*1025)
+            with self.assertRaises((OSError,ValueError)):
+                bridge.read_no_symlink(root,"oversize",1024)
+
+    def test_no_direct_operator_or_owner_authentication_in_preflight(self):
+        result=self.audit(mission())
+        self.assertIs(result["ownerIdentityAuthenticated"],False)
+        self.assertIs(result["singleWriterLockObserved"],False)
+        self.assertIs(result["actualHandlerInvoked"],False)
+        self.assertEqual(result["realWorkIdExistsInCanonicalSource"],"NOT_CHECKED")
+        self.assertIs(result["manifestClaimsAreNotAuthorization"],True)
+
+    def test_one_bounded_regular_file(self):
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td)
+            payload=b'{"known":"bytes"}'
+            (root/"valid").write_bytes(payload)
+            self.assertEqual(bridge.read_no_symlink(root,"valid",1024),payload)
+
+    def test_fake_source_revision_never_ready(self):
+        self.hold(lambda x:x.update(sourceHead="f"*40),"HOLD_EXACT_HEAD")
+
+
 if __name__=="__main__":
     unittest.main(verbosity=2)
