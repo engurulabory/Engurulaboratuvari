@@ -1,0 +1,31 @@
+{
+  "schema": "enguru.zulfikar.personal-use-technical-acceptance/v1",
+  "version": "1.0.0",
+  "date": "2026-10-27",
+  "ownerDecision": "Kişisel Kullanım Teknik Kapanışı — owner açık kapsam değişikliği",
+  "scope": "Engürü'nün kendi üretiminde kullanılacak motorun GitHub mühendislik aşaması; ticari ürün veya dış müşteri kabulü değil.",
+  "authority": "Mevcut owner kararı ve DoneCheck teknik kanıtları; yeni motor, issuer veya kabul otoritesi oluşturmaz.",
+  "baselineHead": "904ef5c6bf0b9247b25c774c9cca195262c16bc2",
+  "legacyContract": "tools/zulfikar-performance-v141/ENGINE_FINAL_SCOPE.json",
+  "legacyContractSha256": "f3651c49405860fd6f95631cd843fbf01c11587878a78b60f2ee34ec2a5ccf6e",
+  "legacyTaskId": "ZULFIKAR_V141_ENGINE_FINAL_20261026",
+  "criteria": [
+    {"id": "PERSONAL-REAL-WORK", "question": "Gerçek işi yapıyor mu?", "evidence": "Beş izole görev ailesi, üç gerçek kaynak onarımı, özgün 12/12 ölçüt ve gerçek çıktı makbuzları.", "legacyTechnicalCriteria": ["ENGINE-REAL-WORK"]},
+    {"id": "PERSONAL-CORRECTNESS", "question": "Doğru yapıyor mu?", "evidence": "378/378 regresyon, 34/34 + 6/6 + 33/33 karşıt sınama ve baseline exact HEAD 6/6 CI; değişen kontrollerde güncel CI.", "legacyTechnicalCriteria": ["ENGINE-SOURCE", "ENGINE-RESILIENCE"]},
+    {"id": "PERSONAL-PROVEN-CLOSURE", "question": "Bittiğini kanıtlıyor mu?", "evidence": "Kaynak eşliği, SHA-256, gerçek çıktı/journal/replay makbuzları ve mevcut DoneCheck teknik PASS / tam inconclusive ayrımı.", "legacyTechnicalCriteria": ["ENGINE-SOURCE", "ENGINE-FINISH-GUARD"]}
+  ],
+  "baselineCiRunIds": [40396782846, 40396686909, 40396686879, 40396686823, 40396686822, 40396686871],
+  "regressionJobId": 121831474567,
+  "artifacts": [
+    {"id": 12687365764, "directory": "performance", "sha256": "1527682a095115a4552c3c24d78f18f03889ad0f26ba6bfdcc88537f7200e297"},
+    {"id": 12687310888, "directory": "second-outer", "sha256": "1be4b678a3de47aa44f3fde44eb80b49335cfc5439c5f888fb158ec8eab0e00f"},
+    {"id": 12686133793, "directory": "engine", "sha256": "af0d296107dc8eadc9e74e598adb8dc5132a9d5738d638648f1c6bac9fb8cfa2"}
+  ],
+  "secondInnerSha256": "217f50481ce40a6ca744e94edf2ef211f8b6c9eeba8b93863d41de18558509a9",
+  "donecheck": {"sourceHead": "4181f48df5ea0c060d9aa9f40a471c554b44b53d", "reportSha256": "1dcf35798377612a7b69046ea50c5a1eeed5154f148498431f8071be31702cf5", "technicalResultId": "ZF_ENGINE_TECH_40396686823", "fullResultId": "ZF_ENGINE_FULL_40396686823", "technicalOutcome": "pass", "legacyFullOutcome": "inconclusive"},
+  "legacyExternalConditions": {"ENGINE-PEER": "HOLD", "ENGINE-INDEPENDENT-REVIEW": "HOLD", "ENGINE-HUMAN-ACCEPTANCE": "HOLD"},
+  "scopeChange": "Bu üç dış koşul yeni kişisel kullanım GitHub teknik aşamasının kabul koşulları değildir. Eski sözleşme ve eksik koşullar değiştirilmez; gerçekleşmiş veya PASS gösterilmez.",
+  "reuseRule": "Baseline ile tüm kaynaklar aynı kalır; yalnız bu sözleşme, tek sayfalık özet, kanıt uzlaştırma istemcisi ve mevcut CI bağlantısı değişebilir. Başka farkta eski kanıt bu yeni kişisel kabul için otomatik devralınmaz.",
+  "humanThreshold": "Güvenlik, ödeme, yayın, kritik dış işlem, imza, merge ve kurulum sınırları mevcut mekanizmada korunur; bu sözleşme bunlara yetki vermez.",
+  "closure": {"GITHUB_ENGINEERING_ACCEPTANCE": "PASS_ONLY_AFTER_SOURCE_EVIDENCE_AND_CURRENT_CI", "PERSONAL_USE_TECHNICAL_ACCEPTANCE": "PASS_ONLY_AFTER_THREE_CRITERIA", "MAC_OSI_FIELD_ACCEPTANCE": "NOT_TESTED", "LEGACY_VERIFIED_FINISH": "HOLD", "stop": "GitHub teknik aşaması kanıtla kapandığında BİTTİ_DUR; Mac OSi kişisel kullanım sınavı ayrı kapsamdır."}
+}

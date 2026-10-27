@@ -7,8 +7,60 @@ on:
       - '.github/workflows/enguru-zulfikar-performance.yml'
 permissions:
   contents: read
+  actions: read
 jobs:
+  preserved-source-scope:
+    runs-on: ubuntu-latest
+    outputs:
+      reuse: ${{ steps.scope.outputs.reuse }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - id: scope
+        name: Reuse only unchanged campaign sources for the owner-approved contract change
+        run: |
+          if [ -f tools/zulfikar-performance-v141/verify_personal_acceptance.py ]; then
+            echo "reuse=$(python3 -B tools/zulfikar-performance-v141/verify_personal_acceptance.py --classify)" >> "$GITHUB_OUTPUT"
+          else
+            echo 'reuse=false' >> "$GITHUB_OUTPUT"
+          fi
+  personal-use-technical-acceptance:
+    needs: preserved-source-scope
+    if: needs.preserved-source-scope.outputs.reuse == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Existing preparation locks and current 18-file source seal
+        run: |
+          python3 -B tools/zulfikar-performance-v141/check_preparation.py
+          python3 -B governance/enguru-suzgeci/zulfikar-v12/v141/verify_github_source_seal_v2.py
+      - name: Reconcile real retained outputs SHA manifests and existing DoneCheck results
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          EXPECTED_ENGINE_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: python3 -B tools/zulfikar-performance-v141/verify_personal_acceptance.py --verify
+      - name: Preserve personal-use technical receipt and original evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: zulfikar-personal-use-technical-acceptance
+          path: evidence/personal-use/
+          if-no-files-found: error
+          retention-days: 90
   real-task-repair-recovery:
+    needs: preserved-source-scope
+    if: needs.preserved-source-scope.outputs.reuse != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
