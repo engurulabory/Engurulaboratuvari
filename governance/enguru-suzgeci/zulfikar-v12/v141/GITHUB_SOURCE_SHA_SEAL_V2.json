@@ -26,7 +26,7 @@
     },
     {
       "path": "governance/enguru-suzgeci/zulfikar-v12/v141/dom/engine.py",
-      "sha256": "05ba3926809bfc1cf58055d3feaf0b5e995018045649bdcf92f050cb9cd6c657"
+      "sha256": "c4d01962e67f1d3defd3f94f224cc60ba4c1666a0875c5ea2e271d498c8f2202"
     },
     {
       "path": "governance/enguru-suzgeci/zulfikar-v12/v141/dom/proof_chain.py",
@@ -38,11 +38,11 @@
     },
     {
       "path": "governance/enguru-suzgeci/zulfikar-v12/v141/dom/test_engine.py",
-      "sha256": "6489072a5659df5cdeee8f6617ce4603999abc5c8914b3ce5c4c135302237af5"
+      "sha256": "69b8386f1b323b749b5d9570d60bee76aab86f0e2889bc0f5b7fc5e47b4080ee"
     },
     {
       "path": "governance/enguru-suzgeci/zulfikar-v12/v141/dom/test_final_hardening.py",
-      "sha256": "9cc22155f20a903f6de1e64a3ffdebdd73c41698a731573e5d7f8a4c66ef29bb"
+      "sha256": "482271c3dea631803695a62bbaf56655986500f51ed3c6b44c1c29622bbd5237"
     },
     {
       "path": "governance/enguru-suzgeci/zulfikar-v12/v141/dom/test_proof_chain.py",
@@ -89,5 +89,9 @@
   "macOsi": "HOLD_NOT_OBSERVED",
   "ownerDoneCheck": "NOT_ISSUED",
   "productVerifiedFinish": "HOLD",
-  "mainMerge": "FORBIDDEN_WITHOUT_OWNER_AUTHORITY"
+  "mainMerge": "FORBIDDEN_WITHOUT_OWNER_AUTHORITY",
+  "repairRevision": "R3_PINNED_SNAPSHOT_AND_TRUTHFUL_REPLAY_20261026",
+  "previousSealSha256": "11a7c440696b4346d433b6cce3cc46bb2d895d0799c58f45a31e9d619756eff4",
+  "repairScope": "Actual artifact snapshots and post-publication validation; persist historical task proof, never assert new task process on checkpoint revalidation",
+  "acceptedManagementBaseline": "a83f6f428b6a4373be60029cd99e18e9ebca501b"
 }

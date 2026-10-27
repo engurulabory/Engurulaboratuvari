@@ -1,0 +1,96 @@
+{
+  "schema": "enguru.zulfikar.v141.github-source-sha-seal/v2",
+  "supersedesForCurrentCode": "governance/enguru-suzgeci/zulfikar-v12/v141/GITHUB_SOURCE_SHA_SEAL_V1.json",
+  "supersessionScope": "CURRENT_EXECUTABLE_SOURCE_ONLY; V1 HISTORICAL_RETAINED",
+  "repository": "engurulabory/Engurulaboratuvari",
+  "sourceCommitBaseline": "8b9348c7279a77cf2ce5b08b6a62547929761969",
+  "sourcePackageSha256": "9afeed3a6def9af6e76137b15e91e82ba617b0b1f2dac96f8aaf7e70fd3fe41e",
+  "coverage": "LATEST_V141_EXECUTABLES_TESTS_EVIDENCE_CI",
+  "expectedSourceFiles": 18,
+  "stageFiles": [
+    {
+      "path": ".github/workflows/enguru-zulfikar-v141-dom-preflight.yml",
+      "sha256": "1810715d32ff80f40ebdcf75c357579cf733c430553772d9dc60a95b9cff3d4c"
+    },
+    {
+      "path": "governance/enguru-suzgeci/zulfikar-v12/v141/architecture/dom_v10_design.json",
+      "sha256": "a3907e2916f3c67bcc023abd9e3d23b4bcc64102541fecab5a8841a45c825b69"
+    },
+    {
+      "path": "governance/enguru-suzgeci/zulfikar-v12/v141/architecture/zulfikar_v141_8_gate_architecture.json",
+      "sha256": "8281b324330d8b89c11c429e4e524ede4fcbe9ebe468063c410c822077525988"
+    },
+    {
+      "path": "governance/enguru-suzgeci/zulfikar-v12/v141/dom/completion_guard.py",
+      "sha256": "070dba8a686cf01705ac2df8af0f907d968c12d08ab116f5f539853638e0b8a8"
+    },
+    {
+      "path": "governance/enguru-suzgeci/zulfikar-v12/v141/dom/engine.py",
+      "sha256": "b303b7aadfab2156316b6f37b1f3d77200b5f6ae2330e32c5913a586e8313838"
+    },
+    {
+      "path": "governance/enguru-suzgeci/zulfikar-v12/v141/dom/proof_chain.py",
+      "sha256": "6f2f83faa42b75f4a57a1c8d15d58baf69052d962b3fdcc744ccccf2a966cc8d"
+    },
+    {
+      "path": "governance/enguru-suzgeci/zulfikar-v12/v141/dom/test_completion_guard.py",
+      "sha256": "e5778138551915288d9c0abdb64ec0857ce7c2ee0db89aefdc58e3d3c2e3fede"
+    },
+    {
+      "path": "governance/enguru-suzgeci/zulfikar-v12/v141/dom/test_engine.py",
+      "sha256": "5200e7a7f0c590083d22459fdfa404769aab2ecbd926c1547e9c28e5e8a10970"
+    },
+    {
+      "path": "governance/enguru-suzgeci/zulfikar-v12/v141/dom/test_final_hardening.py",
+      "sha256": "9cc22155f20a903f6de1e64a3ffdebdd73c41698a731573e5d7f8a4c66ef29bb"
+    },
+    {
+      "path": "governance/enguru-suzgeci/zulfikar-v12/v141/dom/test_proof_chain.py",
+      "sha256": "58fac53c700c64aee83387f8a44eb59485e90582ad404864052ac93f1ae17219"
+    },
+    {
+      "path": "governance/enguru-suzgeci/zulfikar-v12/v141/evidence/final_round_1.log",
+      "sha256": "d28e6e943348f33a2c8bfb5cc3ec38d47ad40e1e07f598f826b87b490d43f978"
+    },
+    {
+      "path": "governance/enguru-suzgeci/zulfikar-v12/v141/evidence/final_round_2.log",
+      "sha256": "0bd04f54103d58cb399587a4cec744ebc04b5e36ff5adca565650a597099c909"
+    },
+    {
+      "path": "governance/enguru-suzgeci/zulfikar-v12/v141/evidence/final_round_3.log",
+      "sha256": "4719b590da362a710d167f0ea5b23b642cd30ce3a0ca8984935d8c5be8763d42"
+    },
+    {
+      "path": "governance/enguru-suzgeci/zulfikar-v12/v141/evidence/pre_github_readiness_report.json",
+      "sha256": "1a389f4e7a8b568854638af518dfc04d3aa39be25fd13a361f1fb9b404537934"
+    },
+    {
+      "path": "governance/enguru-suzgeci/zulfikar-v12/v141/preflight.py",
+      "sha256": "c79d0ac58d5701321ce49eb480dd63081386c1e57fdc0eb7261b2bf756614c2b"
+    },
+    {
+      "path": "governance/enguru-suzgeci/zulfikar-v12/v141/verify_github_source_seal_v2.py",
+      "sha256": "b24da7e0c395f2d12d5244a1816e763607fd19448fe5dd960207f798ab09f32d"
+    },
+    {
+      "path": ".github/workflows/enguru-zulfikar-v141-source-seal-v2.yml",
+      "sha256": "6aa109fe9fbc01380ba07546cce6f8c94a353379fdb33a6a6d585990206d92d1"
+    },
+    {
+      "path": "governance/enguru-suzgeci/zulfikar-v12/v141/test_source_seal_v2.py",
+      "sha256": "2cc53d08660080779dd7d840c243c129eef62171f15331cf75dc2d7da2e96cc0"
+    }
+  ],
+  "expectedRealTestsPerRound": 126,
+  "expectedRounds": 3,
+  "expectedExecutedTests": 378,
+  "architectureControls": 10,
+  "ciAcceptance": "EXACT_CHECKOUT_SOURCE_INTEGRITY_AND_ISOLATED_TESTS_ONLY",
+  "macOsi": "HOLD_NOT_OBSERVED",
+  "ownerDoneCheck": "NOT_ISSUED",
+  "productVerifiedFinish": "HOLD",
+  "mainMerge": "FORBIDDEN_WITHOUT_OWNER_AUTHORITY",
+  "repairRevision": "R2_REPLAY_AND_CHECKPOINT_ARTIFACT_FRESHNESS_20261026",
+  "previousSealSha256": "11a7c440696b4346d433b6cce3cc46bb2d895d0799c58f45a31e9d619756eff4",
+  "repairScope": "Replay and pre-checkpoint artifact freshness verification; no duplicate task execution; original 126 tests preserved"
+}

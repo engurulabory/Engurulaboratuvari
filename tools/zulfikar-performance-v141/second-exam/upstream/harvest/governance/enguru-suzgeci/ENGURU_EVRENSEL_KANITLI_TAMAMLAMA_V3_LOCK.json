@@ -1,0 +1,29 @@
+{
+  "schema": "enguru.universal.verifiable-finish.contract-lock/v1",
+  "canonical_scope": "ALL_ENGURU_PRODUCTS_PROJECTS_TASKS",
+  "version": "V3",
+  "status": "USER_APPROVED_SHA256_PINNED",
+  "date": "2026-10-22",
+  "source_repository": "engurulabory/Engurulaboratuvari",
+  "source_ref": "governance/universal-verified-finish-v3-20261022",
+  "canonical_path": "governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md",
+  "sha256": "11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc",
+  "git_blob_sha1": "7f47f3c6d3ee5c5138e53b67ae46cced37cb1a61",
+  "design": {
+    "target": "100/100",
+    "assessment": "SELF_EVALUATED_THEORETICAL_100_OF_100",
+    "independent_field_acceptance": "NOT_CLAIMED"
+  },
+  "authority": {
+    "user_explicitly_requested_shared_github_lock": true,
+    "repo_main_promotion": "GITHUB_PROTECTED_PR_REVIEW_AND_CI",
+    "protected_human_thresholds_preserved": true
+  },
+  "norms": {
+    "suzgec_stages": 8,
+    "acceptance_gates": "K1-K8_WITHIN_EXISTING_STAGES",
+    "authority_standards": "PRODUCT_SPECIFIC_CANONICAL_ACCEPTANCE_TAKES_PRECEDENCE",
+    "finish": "VERIFIED_FINISH_ONLY_AFTER_REAL_EXECUTION_EVIDENCE_INDEPENDENT_VERIFICATION_AND_REQUIRED_OWNER_APPROVAL"
+  },
+  "usage": "At the beginning of every independent execution session, resolve the current authoritative main-linked contract and compare this pinned SHA256; preserve local project evidence and ledger; report mismatch as HOLD_SOURCE_DRIFT."
+}

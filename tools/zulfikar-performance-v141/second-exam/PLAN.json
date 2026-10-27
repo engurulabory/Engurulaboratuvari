@@ -1,0 +1,16 @@
+{
+ "goalId":"ZF.SECOND.REAL.WORK.20261026",
+ "baselineCommit":"a83f6f428b6a4373be60029cd99e18e9ebca501b",
+ "scope":"EXISTING_SOURCE_REPAIR_IN_ISOLATED_OVERLAYS_AND_EXISTING_DOM",
+ "protected":["main","Mac OSi","PiLive","original other-product paths","canonical acceptance authority"],
+ "tasks":[
+  {"id":"S01","source":"tools/enguru_evidence_receipt_io.py","userValue":"Makbuz tüketicileri için standart JSON ve fsync ile kalıcı, üzerine yazılmayan kanıt","criteria":["finite_json_only","unchanged_existing_receipts","directory_durability","retry_and_regression"]},
+  {"id":"S02","source":"tools/enguru_management_v69_source_adapter.py","userValue":"İmkânsız bağımlılık döngülerini ve hatalı görev girdilerini yönetime doğru HOLD ile göstermek","criteria":["valid_inventory_preserved","dependency_cycles_hold","malformed_dependencies_hold","repeatable_cli_and_regression"]},
+  {"id":"S03","source":"capabilities/enguru-harvest-v1/build_github_osi_handoff.py","userValue":"Gerçek kaynak devir ZIP’inde açılmış veri bütçesi ve bozuk manifest için kontrollü kaynak kullanımı","criteria":["real_nine_source_package","expanded_budget_enforced","malformed_manifest_hold","repeatable_build_and_regression"]}
+ ],
+ "engineControls":["last_verify_checkpoint_race","replay_no_new_task_process_claim","pinned_artifact_snapshot","source_and_criteria_integrity","all_prior_tests"],
+ "phases":["real_baseline_and_fault","source_patch","real_regression_and_replay"],
+ "scoreRule":"12 frozen task criteria; each once. Engine controls reported separately. General operations remain original six-domain authority.",
+ "simulations":["Baseline existing source plus actual faults returns measured failures","Repair same source in isolated overlay and run actual upstream regression","Mutation between verifier and checkpoint; historical process proof never becomes a new observed task process"],
+ "stopConditions":["Unresolved technical defect requires repair","Different-session independent acceptance remains HOLD until authentic review","Equal-task peer comparison HOLD without separate model/tool access and equivalent budget","No merge or Mac transition"]
+}

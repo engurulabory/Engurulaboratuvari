@@ -1,0 +1,39 @@
+--- a/capabilities/enguru-harvest-v1/build_github_osi_handoff.py
++++ b/capabilities/enguru-harvest-v1/build_github_osi_handoff.py
+@@ -107,7 +107,14 @@
+             names=archive.namelist()
+             if sorted(names)!=sorted([*SOURCES,"HANDOFF_MANIFEST.json"]) or len(set(names))!=len(names):
+                 return {"state":"HOLD_PATHS"}
++            # Bound expanded bytes before decompressing or parsing any member.
++            infos = archive.infolist()
++            if (any(i.file_size > MAX_PACKAGE_BYTES or i.flag_bits & 1 for i in infos) or
++                    sum(i.file_size for i in infos) > MAX_PACKAGE_BYTES):
++                return {"state":"HOLD_EXPANDED_PACKAGE_BUDGET"}
+             manifest=json.loads(archive.read("HANDOFF_MANIFEST.json"))
++            if not isinstance(manifest, dict):
++                return {"state":"HOLD_MANIFEST_TYPE"}
+             if (manifest.get("schema")!="enguru.harvest.github-to-osi-packet/v1" or
+                     manifest.get("official_github_verified_finish")!="HOLD" or
+                     manifest.get("mac_field_acceptance")!="HOLD" or
+@@ -119,6 +126,12 @@
+             entries=manifest.get("sources")
+             if not isinstance(entries,dict) or set(entries)!=set(SOURCES):
+                 return {"state":"HOLD_SOURCE_LIST"}
++            if any(not isinstance(row, dict) or
++                   not isinstance(row.get("sha256"), str) or
++                   re.fullmatch("[0-9a-f]{64}", row["sha256"]) is None or
++                   type(row.get("size")) is not int or row["size"] < 0
++                   for row in entries.values()):
++                return {"state":"HOLD_SOURCE_ENTRY_SCHEMA"}
+             for name in SOURCES:
+                 info=archive.getinfo(name)
+                 if (name.startswith("/") or ".." in Path(name).parts or
+@@ -130,7 +143,7 @@
+             if entries[V3]["sha256"]!=V3_PIN:
+                 return {"state":"HOLD_V3_DIGEST"}
+             return {"state":"PASS_GITHUB_PACKAGE_INTEGRITY_ONLY","files":len(SOURCES)}
+-    except (ValueError,KeyError,TypeError,zipfile.BadZipFile,json.JSONDecodeError):
++    except (ValueError,KeyError,TypeError,RuntimeError,NotImplementedError,zipfile.BadZipFile,json.JSONDecodeError):
+         return {"state":"HOLD_PACKAGE_PARSE"}
+ 
+ if __name__=="__main__":

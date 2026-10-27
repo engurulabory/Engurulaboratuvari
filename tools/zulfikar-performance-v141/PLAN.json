@@ -1,0 +1,32 @@
+{
+  "id": "ZF.PERFORMANCE.20261026",
+  "goal": "V1.4.1 ve DÖM V1.0 gerçek görev icrası, kanıt, dayanıklılık ve finiş sınavı",
+  "sourceCommit": "8fbd40c8fde34e7f8d77d5079c4da86a1baa8dad",
+  "harvestCommit": "d9bb6751921170211921c22940f98d52cc152dd0",
+  "scope": "EXISTING_WORK_SUBPROCESS_AND_GITHUB_ACTIONS_DISPOSABLE_ONLY",
+  "protected": ["main", "PiLive PR 241", "Mac OSi", "canonical V3", "existing DoneCheck and Human Threshold"],
+  "executor": "Existing Work shell subprocess and existing GitHub Actions runner; harness is a test client of dom.engine, not a new executor authority",
+  "T01": ["goalIdentity", "sourceInventory", "ownerScope", "protectedAssets", "initialRisks"],
+  "T02": ["fixedGoalContract", "acceptanceIds", "testAndEvidenceNeeds", "dependencies", "stopConditions"],
+  "tasks": [
+    {"id":"R01","family":"CLI_CODE_REPAIR","outcome":"UTF-8 CLI computes integer total; empty list zero; negative values correct; malformed input rejected","fault":"Real source syntax fault, nonzero process observed; restore exact program then retest"},
+    {"id":"R02","family":"SQLITE_CRASH_RECOVERY","outcome":"Durable idempotent transaction; 3 rows, total 12, integrity_check ok, unique operation ID","fault":"Process exits 23 inside uncommitted transaction; restart rolls back and replays once"},
+    {"id":"R03","family":"ZIP_HANDOFF_INTEGRITY","outcome":"Deterministic archive, two payloads, pinned contents and safe relative paths","fault":"Byte tamper plus traversal archive; independent reader refuses; regenerate and compare digests"},
+    {"id":"R04","family":"DOM_SOURCE_RESTART","outcome":"Actual artifact repair through unchanged DÖM; source pin, journal, replay and artifact freshness","fault":"Source drift, forged subprocess proof and output mutation after checkpoint; none may return 100 candidate"},
+    {"id":"R05","family":"EVIDENCE_FINISH_GUARD","outcome":"Source-bound evidence reads real bytes; duplicate evidence and false finish rejected; official authority stays HOLD","fault":"Wrong SHA, duplicate roots, forged owner and self-scored completion; fresh correct technical evidence restores candidate only"}
+  ],
+  "phases": ["BASELINE", "ADVERSARIAL", "REPAIR_RETEST"],
+  "perTaskCriteria": ["actual_output", "independent_semantics", "fault_rejection", "durable_retest"],
+  "proof": "Parent process captures actual return codes/stdout/stderr; separate OS/Python verifier; immutable source SHA and final artifact manifest; GitHub exact HEAD separate runtime",
+  "scoreRule": "Four requested dimensions map to 5 frozen task controls each; 100 only all five pass in that limited scope; sole six-domain operational scorecard preserved",
+  "authority": "User authorized isolated GitHub tests and repairs; owner product acceptance and Mac field not granted",
+  "stop": "No unexplained technical failures may close; unavailable authentic independent reviewer, native Mac authority, canonical DoneCheck or original peer benchmark remain explicit HOLD",
+  "simulation": [
+    {"round":1,"case":"Normal tasks produce semantic artifacts; no authority promotion","expected":"technical candidate only"},
+    {"round":2,"case":"Fault, crash, source drift and wrong evidence","expected":"observable nonzero/HOLD then recovery"},
+    {"round":3,"case":"Restart from 100 checkpoint with changed output; model claims finish","expected":"revalidate output; independent final review and authority required"}
+  ],
+  "initialRisks": ["Idempotent checkpoint may trust stale artifact", "self-reported provenance is not authenticated independence", "historical preflight receipts are not current real product acceptance"],
+  "dependencies": ["Python stdlib", "POSIX flock", "sha256sum or shasum", "existing dom.engine and proof_chain", "GitHub App repository access"],
+  "preparationVerdict": "CANDIDATE_UNTIL_SOURCE_AND_PLAN_MACHINE_REVIEW"
+}

@@ -71,7 +71,7 @@ class HardenedLoopTests(unittest.TestCase):
         proc=subprocess.run([sys.executable,'-B','-c',
            'import hashlib,sys,pathlib;print(hashlib.sha256(pathlib.Path(sys.argv[1]).read_bytes()).hexdigest())',
            str(self.work)],capture_output=True,text=True,check=False,timeout=8)
-        return {'processObserved':True,'exitCode':proc.returncode,'scope':'LOCAL_DISPOSABLE_PROOF','artifactSha256':proc.stdout.strip()}
+        return {'processObserved':True,'exitCode':proc.returncode,'scope':'LOCAL_DISPOSABLE_PROOF','artifactSha256':proc.stdout.strip(),'artifactPath':str(self.work)}
 
     def verify(self,s,c,run):
         self.calls.append('INDEPENDENT_TEST_MECHANISM')
