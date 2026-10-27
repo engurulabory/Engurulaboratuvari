@@ -2,6 +2,18 @@
 
 Bu depo ENGÜRÜ ürün, proje ve iş oturumlarının ortak çalışma talimatının **tek kaynak adresidir**.
 
+## Öncelikli ana kural — ENGÜRÜ ANA KURAL™ (V1.0)
+
+**Kişisel üretim amacı:** ENGÜRÜ, kendi yerel Mac OSi ortamında **altı üretim alanında** gerçek ürün yapabilen motorları, çekirdekleri ve bütünleşik fabrikayı kurar. **GitHub** mühendislik, test ve kanıt alanıdır; **Mac OSi** gerçek yerel çalışma ve ürün üretim alanıdır. GitHub çalışmalarının hedefi satış değildir.
+
+**Kişisel motor/çekirdek teknik kabulü:** **Gerçek işi yapıyor mu? Doğru yapıyor mu? Bittiğini kanıtlıyor mu?** GitHub teknik kabulü ile Mac OSi saha kabulü ayrıdır. Kişisel kapsam için gereksiz ticari kabul, dış reviewer, muadil yarışması veya ek prosedür oluşturulmaz. Mevcut ürün sözleşmeleri kendiliğinden geçersiz olmaz; kapsam değişikliği yalnız açık owner kararıyla, sürümlü ve önceki kanıtlar korunarak yapılır.
+
+**ENGÜRÜ Sürekli Gelişim İlkesi™:** Kabul edilmiş sürümü koru; yeni ihtiyacı **mevcut hakikat + gerekli fark** olarak geliştir. Etkilenen testleri ve gerekli regresyonları kanıtla. **BİTTİ_DUR**, gelişimin değil tamamlanan sürüm/işin sınırıdır.
+
+**Güvenlik ve dış dünya eşiği:** Kaynak bütünlüğü, DoneCheck™, geri alma, güvenlik ve Human Threshold™ korunur. İmza, ödeme, yayın, merge, yetkili kurulum ve kritik dış işlemler kendi gerçek insan/yetki eşiğine tabidir. Mac OSi'de geliştirilen bir ürün satışa veya yayına çıkarken kendi ticari, hukuki, güvenlik ve yayın kabulü ayrıca uygulanır.
+
+**Üretim hattı:** GitHub'da kanıtla → Mac OSi'ye taşı → Yerelde çalıştır → Gerçek ürün üret → Doğrulanmış deneyimden öğren → Gerekli farkla geliştir.
+
 ## 1. Evrensel kanıtlı tamamlama
 
 Önce [ENGÜRÜ Evrensel Kanıtlı Tamamlama Talimatı™ V3](governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md) metnini oku. Sonra [SHA-256 kilit kaydı](governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_V3_LOCK.json) ile kaynak bütünlüğünü doğrula. V3 **bütün ENGÜRÜ İCRA oturumlarının genel çalışma disiplini**; ürünün kendi yetkili canonical sözleşmesi ve insan onayları önceliklidir.
