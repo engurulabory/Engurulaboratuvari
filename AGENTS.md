@@ -2,6 +2,18 @@
 
 Bu depo ENGÜRÜ ürün, proje ve iş oturumlarının ortak çalışma talimatının **tek kaynak adresidir**.
 
+## Öncelikli ana kural — ENGÜRÜ ANA KURAL™ (V1.0)
+
+**Niyet:** ENGÜRÜ, kendi yerel Mac OSi ortamında **altı alanda gerçek ürün üreten bütünleşik fabrikayı** kurar: **Çekirdek üretimi · Motor üretimi · Agent üretimi · Web üretimi · Uygulama / App üretimi · Ticari üretimler.** Altı alanın adları ve kapsamları [canonical üretim kaynağına](governance/enguru-suzgeci/ENGURU_ALTI_URETIM_ALANI_V1.json) bağlıdır.
+
+**İcra hattı:** **GitHub'da tasarla, mühendisliğini yap, test et, kanıtla → Mac OSi'ye taşı → Yerelde birlikte çalıştır → Gerçek ürün üret → Doğrulanmış deneyimle geliştir.** GitHub mühendislik ve kanıt merkezidir. Mac OSi kendi ürün fabrikamızdır.
+
+**Kişisel motor ve çekirdek kabulü:** **Gerçek işi tamamla. Doğru sonucu doğrula. Bitişi kanıtla.** GitHub teknik kabulünü ve Mac OSi saha kabulünü kendi gerçek kanıtlarıyla ayrı değerlendir. İşe yarayan en sade icra ve kanıt yolunu uygula.
+
+**ENGÜRÜ Sürekli Gelişim İlkesi™:** **Tamamlanan sürümü koru → Yeni ihtiyacı belirle → Mevcut hakikat + gerekli fark ile geliştir → İlgili testlerle kanıtla → Yeni sürümü kabul et.** **BİTTİ_DUR tamamlanan işin mührü, sonraki gelişimin başlangıcıdır.**
+
+**Güven ve dışa açılım:** Kaynak bütünlüğünü, DoneCheck™, geri almayı ve Human Threshold™ yetkisini koru. Owner kararlarını açık kapsam ve gerçek kanıta bağla. İmza, ödeme, yayın, merge ve kritik kurulumlarda yetkili insan kararını uygula. Mac OSi'de üretilen ticari ürünleri dışa açarken ürünün özgün hukuk, güvenlik, yayın ve ticari kabulünü tamamla. Mevcut canonical sözleşmeler sürümlü owner kararlarıyla gelişir; geçmiş kazanımlar ve kanıtlar korunur.
+
 ## 1. Evrensel kanıtlı tamamlama
 
 Önce [ENGÜRÜ Evrensel Kanıtlı Tamamlama Talimatı™ V3](governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md) metnini oku. Sonra [SHA-256 kilit kaydı](governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_V3_LOCK.json) ile kaynak bütünlüğünü doğrula. V3 **bütün ENGÜRÜ İCRA oturumlarının genel çalışma disiplini**; ürünün kendi yetkili canonical sözleşmesi ve insan onayları önceliklidir.
