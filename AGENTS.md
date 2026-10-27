@@ -4,15 +4,15 @@ Bu depo ENGÜRÜ ürün, proje ve iş oturumlarının ortak çalışma talimatı
 
 ## Öncelikli ana kural — ENGÜRÜ ANA KURAL™ (V1.0)
 
-**Kişisel üretim amacı:** ENGÜRÜ, kendi yerel Mac OSi ortamında **altı üretim alanında** gerçek ürün yapabilen motorları, çekirdekleri ve bütünleşik fabrikayı kurar. **GitHub** mühendislik, test ve kanıt alanıdır; **Mac OSi** gerçek yerel çalışma ve ürün üretim alanıdır. GitHub çalışmalarının hedefi satış değildir.
+**Niyet:** ENGÜRÜ, kendi yerel Mac OSi ortamında **altı alanda gerçek ürün üreten bütünleşik fabrikayı** kurar: **Çekirdek üretimi · Motor üretimi · Agent üretimi · Web üretimi · Uygulama / App üretimi · Ticari üretimler.** Altı alanın adları ve kapsamları [canonical üretim kaynağına](governance/enguru-suzgeci/ENGURU_ALTI_URETIM_ALANI_V1.json) bağlıdır.
 
-**Kişisel motor/çekirdek teknik kabulü:** **Gerçek işi yapıyor mu? Doğru yapıyor mu? Bittiğini kanıtlıyor mu?** GitHub teknik kabulü ile Mac OSi saha kabulü ayrıdır. Kişisel kapsam için gereksiz ticari kabul, dış reviewer, muadil yarışması veya ek prosedür oluşturulmaz. Mevcut ürün sözleşmeleri kendiliğinden geçersiz olmaz; kapsam değişikliği yalnız açık owner kararıyla, sürümlü ve önceki kanıtlar korunarak yapılır.
+**İcra hattı:** **GitHub'da tasarla, mühendisliğini yap, test et, kanıtla → Mac OSi'ye taşı → Yerelde birlikte çalıştır → Gerçek ürün üret → Doğrulanmış deneyimle geliştir.** GitHub mühendislik ve kanıt merkezidir. Mac OSi kendi ürün fabrikamızdır.
 
-**ENGÜRÜ Sürekli Gelişim İlkesi™:** Kabul edilmiş sürümü koru; yeni ihtiyacı **mevcut hakikat + gerekli fark** olarak geliştir. Etkilenen testleri ve gerekli regresyonları kanıtla. **BİTTİ_DUR**, gelişimin değil tamamlanan sürüm/işin sınırıdır.
+**Kişisel motor ve çekirdek kabulü:** **Gerçek işi tamamla. Doğru sonucu doğrula. Bitişi kanıtla.** GitHub teknik kabulünü ve Mac OSi saha kabulünü kendi gerçek kanıtlarıyla ayrı değerlendir. İşe yarayan en sade icra ve kanıt yolunu uygula.
 
-**Güvenlik ve dış dünya eşiği:** Kaynak bütünlüğü, DoneCheck™, geri alma, güvenlik ve Human Threshold™ korunur. İmza, ödeme, yayın, merge, yetkili kurulum ve kritik dış işlemler kendi gerçek insan/yetki eşiğine tabidir. Mac OSi'de geliştirilen bir ürün satışa veya yayına çıkarken kendi ticari, hukuki, güvenlik ve yayın kabulü ayrıca uygulanır.
+**ENGÜRÜ Sürekli Gelişim İlkesi™:** **Tamamlanan sürümü koru → Yeni ihtiyacı belirle → Mevcut hakikat + gerekli fark ile geliştir → İlgili testlerle kanıtla → Yeni sürümü kabul et.** **BİTTİ_DUR tamamlanan işin mührü, sonraki gelişimin başlangıcıdır.**
 
-**Üretim hattı:** GitHub'da kanıtla → Mac OSi'ye taşı → Yerelde çalıştır → Gerçek ürün üret → Doğrulanmış deneyimden öğren → Gerekli farkla geliştir.
+**Güven ve dışa açılım:** Kaynak bütünlüğünü, DoneCheck™, geri almayı ve Human Threshold™ yetkisini koru. Owner kararlarını açık kapsam ve gerçek kanıta bağla. İmza, ödeme, yayın, merge ve kritik kurulumlarda yetkili insan kararını uygula. Mac OSi'de üretilen ticari ürünleri dışa açarken ürünün özgün hukuk, güvenlik, yayın ve ticari kabulünü tamamla. Mevcut canonical sözleşmeler sürümlü owner kararlarıyla gelişir; geçmiş kazanımlar ve kanıtlar korunur.
 
 ## 1. Evrensel kanıtlı tamamlama
 
