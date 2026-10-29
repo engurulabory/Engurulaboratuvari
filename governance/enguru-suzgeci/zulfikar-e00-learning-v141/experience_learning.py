@@ -49,7 +49,8 @@ def experience_plan(event, source_file: Path):
             issues.append("INVALID_" + name)
     if event.get("schema") != SCHEMA or event.get("scope") != SCOPE:
         issues.append("SCHEMA_OR_SCOPE")
-    if event.get("kind") not in KINDS or event.get("need") not in NEEDS:
+    if (not isinstance(event.get("kind"), str) or event["kind"] not in KINDS or
+        not isinstance(event.get("need"), str) or event["need"] not in NEEDS):
         issues.append("INVALID_KIND_OR_NEED")
     pin = event.get("sourceSha256")
     if not isinstance(pin, str) or not SHA.fullmatch(pin):
