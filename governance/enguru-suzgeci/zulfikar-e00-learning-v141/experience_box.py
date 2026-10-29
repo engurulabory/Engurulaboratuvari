@@ -104,6 +104,16 @@ class ExperienceBox:
            id INTEGER PRIMARY KEY AUTOINCREMENT, event_id TEXT,
            action TEXT NOT NULL, previous TEXT, current TEXT NOT NULL,
            note TEXT NOT NULL, created TEXT NOT NULL);
+        CREATE TABLE IF NOT EXISTS diagnostics(
+           id INTEGER PRIMARY KEY AUTOINCREMENT, event_id TEXT NOT NULL,
+           cause TEXT NOT NULL, gap TEXT NOT NULL,
+           requirement TEXT NOT NULL, correction TEXT NOT NULL,
+           created TEXT NOT NULL);
+        CREATE TABLE IF NOT EXISTS attempts(
+           id INTEGER PRIMARY KEY AUTOINCREMENT, event_id TEXT NOT NULL,
+           batch_id TEXT NOT NULL, round INTEGER NOT NULL,
+           verdict TEXT NOT NULL, reason TEXT NOT NULL,
+           receipt_sha TEXT, created TEXT NOT NULL);
         """)
     @contextmanager
     def _transaction(self):
@@ -164,6 +174,21 @@ class ExperienceBox:
             self._state(eid,("NEW","RESEARCH","HOLD"),new,"TRIAGE",
                         "Candidate recipe recorded; requires real proof" if ready else "Solution research still required")
         return {"eventId":eid,"state":new,"solutionVerified":False}
+    def diagnose(self,eid,*,cause,gap,requirement,correction):
+        """Preserve WHY a failure occurred and WHAT will change before retest."""
+        fields=[text_value(x) for x in (cause,gap,requirement,correction)]
+        with self._transaction():
+            r=self._row(eid)
+            if r["state"] not in ("NEW","RESEARCH","HOLD"):
+                raise ValueError("DIAGNOSIS_NOT_ALLOWED")
+            self.db.execute(
+                "INSERT INTO diagnostics(event_id,cause,gap,requirement,correction,created) "
+                "VALUES (?,?,?,?,?,?)",(eid,*fields,now()))
+            self._log(eid,"FAILURE_DIAGNOSIS",r["state"],r["state"],
+                      "Cause, gap, requirement and corrective action preserved")
+        return {"eventId":eid,"state":r["state"],"diagnosisRecorded":True,
+                "officialPassIssued":False}
+
     def make_batch(self,event_ids):
         if type(event_ids) not in (list,tuple) or not 1<=len(event_ids)<=12 or len(set(event_ids))!=len(event_ids):
             raise ValueError("INVALID_BATCH_SIZE_OR_DUPLICATES")
@@ -193,12 +218,17 @@ class ExperienceBox:
             raise ValueError("BATCH_SOURCE_STATE_CHANGED")
         remaining={r["event_id"]:r for r in rows}
         receipts={}
+        records=[]
+        counts={r["event_id"]:0 for r in rows}
         for i in range(1,max_rounds+1):
             for eid,r in list(remaining.items()):
+                counts[eid]+=1
                 try:
                     proof=worker(json.loads(r["event_json"]),r["solution"],i)
-                except Exception:
+                    failure="EVIDENCE_INSUFFICIENT"
+                except Exception as exc:
                     proof={}
+                    failure="WORKER_ERROR_"+type(exc).__name__
                 verified=(type(proof) is dict and
                     proof.get("state")=="E00_ISOLATED_TEST_CANDIDATE" and
                     proof.get("realTestObserved") is True and
@@ -208,22 +238,76 @@ class ExperienceBox:
                 if verified:
                     receipts[eid]=proof["journalHeadSha256"]
                     del remaining[eid]
+                elif type(proof) is dict and isinstance(proof.get("reason"),str):
+                    failure=proof["reason"][:90] or failure
+                records.append((eid,bid,i,"CANDIDATE" if verified else "HOLD",
+                                "TECHNICAL_CANDIDATE" if verified else failure,
+                                receipts.get(eid),now()))
             if not remaining: break
         with self._transaction():
+            self.db.executemany(
+               "INSERT INTO attempts(event_id,batch_id,round,verdict,reason,receipt_sha,created) "
+               "VALUES (?,?,?,?,?,?,?)",records)
+            previous=b["attempts"]
             self.db.execute("UPDATE batches SET state=?, attempts=? WHERE id=?",
-                            ("CANDIDATE" if not remaining else "HOLD",i,bid))
+                            ("CANDIDATE" if not remaining else "HOLD",previous+i,bid))
             for r in rows:
                 eid=r["event_id"]
                 target="CANDIDATE" if eid in receipts else "HOLD"
                 self.db.execute("UPDATE cases SET attempts=attempts+?,test_sha=? WHERE event_id=?",
-                                (i,receipts.get(eid),eid))
+                                (counts[eid],receipts.get(eid),eid))
                 self._state(eid,("BATCHED",),target,"TEST_RESULT",
                             "DÖM isolated test evidence candidate" if target=="CANDIDATE"
-                            else "Stopped after bounded test attempts; no PASS")
+                            else "Unresolved failure preserved for diagnosis and next bounded cycle")
         return {"state":"ISOLATED_BATCH_CANDIDATE" if not remaining else "BATCH_HOLD",
                 "batchId":bid,"rounds":i,"tested":len(rows),
                 "candidate":len(receipts),"hold":len(remaining),
                 "officialPassIssued":False,"productVerifiedFinish":"NOT_ISSUED"}
+    def retry_batch(self,bid,corrections):
+        """Resume an unresolved package with fresh corrective actions.
+
+        At most three rounds per call. All old attempts stay in the durable
+        ledger. Previously successful candidates are retested before promotion.
+        """
+        if type(corrections) is not dict:
+            raise ValueError("CORRECTIONS_REQUIRED")
+        with self._transaction():
+            b=self.db.execute("SELECT * FROM batches WHERE id=?",(bid,)).fetchone()
+            if not b or b["state"]!="HOLD":
+                raise ValueError("ONLY_UNRESOLVED_BATCH_CAN_RETRY")
+            rows=list(self.db.execute("SELECT * FROM cases WHERE batch_id=?",(bid,)))
+            held={r["event_id"] for r in rows if r["state"]=="HOLD"}
+            if not held or set(corrections)!=held or any(
+                    r["state"] not in ("HOLD","CANDIDATE") for r in rows):
+                raise ValueError("UNRESOLVED_CASES_MUST_BE_CORRECTED")
+            for eid in sorted(held):
+                fix=corrections[eid]
+                if type(fix) is not dict or set(fix)!={"solution","solution_ref"}:
+                    raise ValueError("CORRECTION_FORMAT")
+                solution=text_value(fix["solution"])
+                ref=text_value(fix["solution_ref"])
+                old=self._row(eid)
+                if solution==old["solution"] and ref==old["solution_ref"]:
+                    raise ValueError("NO_CORRECTIVE_DIFFERENCE")
+                diag=self.db.execute(
+                    "SELECT * FROM diagnostics WHERE event_id=? ORDER BY id DESC LIMIT 1",
+                    (eid,)).fetchone()
+                if diag is None:
+                    raise ValueError("FAILURE_CAUSE_AND_REQUIREMENT_REQUIRED")
+                self.db.execute(
+                    "UPDATE cases SET solution=?, solution_ref=? WHERE event_id=?",
+                    (solution,ref,eid))
+            for r in rows:
+                # Prior candidate receipt remains in attempts ledger; no stale
+                # PASS can be reused in a new cycle without independent testing.
+                self.db.execute(
+                    "UPDATE cases SET test_sha=NULL WHERE event_id=?",(r["event_id"],))
+                self._state(r["event_id"],("HOLD","CANDIDATE"),"BATCHED",
+                            "Reopened with preserved history and fresh corrective change")
+            self.db.execute("UPDATE batches SET state='TESTING' WHERE id=?",(bid,))
+        return {"batchId":bid,"state":"TESTING","preservedAttempts":True,
+                "retestAllCases":True,"officialPassIssued":False}
+
     def archive_authorized(self,bid,*,commit_sha,ci_url,owner_verifier,source_verifier):
         """Record externally verified owner-controlled update; never execute it."""
         if not isinstance(commit_sha,str) or not COMMIT.fullmatch(commit_sha):
@@ -257,4 +341,6 @@ class ExperienceBox:
                 "active":sum(items[k] for k in ACTIVE),
                 "archived":items["ARCHIVED"],
                 "journalRecords":self.db.execute("SELECT count(*) FROM journal").fetchone()[0],
+                "failureDiagnoses":self.db.execute("SELECT count(*) FROM diagnostics").fetchone()[0],
+                "attemptRecords":self.db.execute("SELECT count(*) FROM attempts").fetchone()[0],
                 "officialVerifiedFinish":"NOT_ISSUED"}
