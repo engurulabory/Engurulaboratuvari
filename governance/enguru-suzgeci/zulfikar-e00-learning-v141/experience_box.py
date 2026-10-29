@@ -175,7 +175,7 @@ class ExperienceBox:
             goal,source,domain=(rows[0][k] for k in ("goal","source_sha","domain"))
             signature="|".join(sorted(event_ids))+":"+now()
             bid="E00B-"+hashlib.sha256(signature.encode()).hexdigest()[:24]
-            self.db.execute("INSERT INTO batches VALUES (?,?,?,?,?,?)",
+            self.db.execute("INSERT INTO batches(id,goal,source_sha,domain,state,attempts,created) VALUES (?,?,?,?,?,?,?)",
                             (bid,goal,source,domain,"TESTING",0,now()))
             for eid in event_ids:
                 self.db.execute("UPDATE cases SET batch_id=? WHERE event_id=?",(bid,eid))
