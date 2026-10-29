@@ -217,6 +217,118 @@ class BoxTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.box.archive_authorized(b,commit_sha="bad",ci_url="https://github.com",
                 owner_verifier=lambda _:True,source_verifier=lambda _:True)
+    def test_39_failure_diagnosis_preserves_cause_gap_need_correction(self):
+        b=self.batch();self.box.assess_batch(b,lambda *_:{},max_rounds=2)
+        r=self.box.diagnose("EV-001",cause="Stale checkpoint",
+            gap="Output digest differs",requirement="Current bytes match",
+            correction="Rebuild source-bound artifact and compare SHA")
+        self.assertTrue(r["diagnosisRecorded"])
+        self.assertEqual(self.box.summary()["failureDiagnoses"],1)
+        self.assertEqual(self.box.summary()["attemptRecords"],2)
+        self.assertEqual(self.box.summary()["states"]["HOLD"],1)
+
+    def test_40_retry_requires_cause_analysis(self):
+        b=self.batch();self.box.assess_batch(b,lambda *_:{},max_rounds=1)
+        with self.assertRaises(ValueError):
+            self.box.retry_batch(b,{"EV-001":{"solution":"New fix","solution_ref":"new/evidence"}})
+        self.assertEqual(self.box.summary()["states"]["HOLD"],1)
+
+    def test_41_retry_requires_meaningful_difference(self):
+        b=self.batch();self.box.assess_batch(b,lambda *_:{},max_rounds=1)
+        self.box.diagnose("EV-001",cause="Incorrect output",gap="Missing criterion",
+            requirement="Correct artifact",correction="Repair source and rerun")
+        with self.assertRaises(ValueError):
+            self.box.retry_batch(b,{"EV-001":{"solution":"Recheck bytes and run regression",
+                                           "solution_ref":"source/recovery-proof"}})
+        self.assertEqual(self.box.summary()["states"]["HOLD"],1)
+
+    def test_42_corrected_retry_then_verified_candidate(self):
+        b=self.batch()
+        first=self.box.assess_batch(b,lambda *_:{},max_rounds=3)
+        self.assertEqual(first["state"],"BATCH_HOLD")
+        self.box.diagnose("EV-001",cause="Old output mismatch",
+            gap="Failed SHA",requirement="Reverified bytes",
+            correction="New source-bound check")
+        self.box.retry_batch(b,{"EV-001":{"solution":"New source-bound byte repair",
+                                           "solution_ref":"fix/recovery-v2"}})
+        second=self.box.assess_batch(b,self.worker)
+        self.assertEqual(second["state"],"ISOLATED_BATCH_CANDIDATE")
+        summary=self.box.summary()
+        self.assertEqual(summary["attemptRecords"],4)
+        self.assertEqual(summary["failureDiagnoses"],1)
+        self.assertEqual(summary["states"]["CANDIDATE"],1)
+        self.assertEqual(summary["states"]["ARCHIVED"],0)
+
+    def test_43_failed_retry_stays_in_box_for_next_cycle(self):
+        b=self.batch();self.box.assess_batch(b,lambda *_:{},max_rounds=1)
+        self.box.diagnose("EV-001",cause="First reason",gap="First gap",
+            requirement="First fix required",correction="Change validator")
+        self.box.retry_batch(b,{"EV-001":{"solution":"Fix v2","solution_ref":"proof/v2"}})
+        self.box.assess_batch(b,lambda *_:{},max_rounds=1)
+        self.assertEqual(self.box.summary()["states"]["HOLD"],1)
+        self.box.diagnose("EV-001",cause="Second reason",gap="Second gap",
+            requirement="Second fix required",correction="Change patch")
+        self.box.retry_batch(b,{"EV-001":{"solution":"Fix v3","solution_ref":"proof/v3"}})
+        self.box.assess_batch(b,self.worker)
+        self.assertEqual(self.box.summary()["states"]["CANDIDATE"],1)
+        self.assertEqual(self.box.summary()["attemptRecords"],3)
+        self.assertEqual(self.box.summary()["failureDiagnoses"],2)
+
+    def test_44_partial_batch_retests_previously_passed_case(self):
+        a=self.ready()
+        e=dict(self.e,eventId="EV-002",kind="REGRESSION",description="Second failure")
+        self.ready(e)
+        bid=self.box.make_batch([a,"EV-002"])["batchId"]
+        prior=self.box.assess_batch(
+            bid,lambda ev,s,i:self.worker(ev,s,i) if ev["eventId"]==a else {},
+            max_rounds=1)
+        self.assertEqual((prior["candidate"],prior["hold"]),(1,1))
+        self.box.diagnose("EV-002",cause="Regressed source",gap="Second mismatch",
+            requirement="All criteria true",correction="Revalidate both cases")
+        self.box.retry_batch(bid,{"EV-002":{"solution":"Second fix","solution_ref":"proof/v2"}})
+        count=[]
+        def verified(ev,s,i):
+            count.append(ev["eventId"])
+            return self.worker(ev,s,i)
+        after=self.box.assess_batch(bid,verified,max_rounds=1)
+        self.assertEqual(after["candidate"],2)
+        self.assertEqual(set(count),{"EV-001","EV-002"})
+        self.assertEqual(self.box.summary()["attemptRecords"],4)
+
+    def test_45_no_premature_archive_on_failed_batch(self):
+        b=self.batch();self.box.assess_batch(b,lambda *_:{})
+        with self.assertRaises(ValueError):
+            self.box.archive_authorized(b,commit_sha="b"*40,ci_url="https://github.com",
+                owner_verifier=lambda _:True,source_verifier=lambda _:True)
+        self.assertEqual(self.box.summary()["archived"],0)
+
+    def test_46_archive_after_retry_and_external_approval(self):
+        b=self.batch();self.box.assess_batch(b,lambda *_:{},max_rounds=1)
+        self.box.diagnose("EV-001",cause="Broken check",gap="Wrong output",
+            requirement="Retest true",correction="Patch checker")
+        self.box.retry_batch(b,{"EV-001":{"solution":"Patch v2",
+                                           "solution_ref":"proof/final"}})
+        self.box.assess_batch(b,self.worker,max_rounds=1)
+        self.box.archive_authorized(b,commit_sha="b"*40,ci_url="https://github.com",
+            owner_verifier=lambda _:True,source_verifier=lambda _:True)
+        s=self.box.summary()
+        self.assertEqual(s["active"],0)
+        self.assertEqual(s["archived"],1)
+        self.assertEqual(s["attemptRecords"],2)
+        self.assertEqual(s["failureDiagnoses"],1)
+        self.assertGreaterEqual(s["journalRecords"],8)
+
+    def test_47_restart_reloads_failed_history_and_retry(self):
+        b=self.batch();self.box.assess_batch(b,lambda *_:{},max_rounds=2)
+        self.box.diagnose("EV-001",cause="Restart failure",gap="Journal gap",
+            requirement="Resume safely",correction="Fresh source checkpoint")
+        self.box.close();self.box=ExperienceBox(self.path)
+        self.assertEqual(self.box.summary()["attemptRecords"],2)
+        self.box.retry_batch(b,{"EV-001":{"solution":"Correct restart flow",
+                                           "solution_ref":"proof/restart"}})
+        self.box.assess_batch(b,self.worker,max_rounds=1)
+        self.assertEqual(self.box.summary()["states"]["CANDIDATE"],1)
+
     def test_38_sqlite_research_queue_survives_failure(self):
         self.insert();self.box.triage("EV-001")
         self.box.close()
