@@ -32,3 +32,26 @@ En az 18 sınama: kaynak kayması, bozuk şema, sahte boolean, sahte kriter, sah
 `governance/enguru-suzgeci/zulfikar-v12/v141/dom/engine.py` — mevcut **DÖM**. Motor kaynaklarının hiçbiri bu dalda yeniden yazılmaz. GitHub `main`, PR #247, gerçek Mac OSi, Cinema Factory kaynakları ve Human Threshold değiştirilmez.
 
 **Bitiş sınırı:** `E00_GITHUB_TECHNICAL_TESTS=PASS` yalnız ilgili PR exact-head CI geçtiğinde. `E00_MAC_FIELD=NOT_TESTED`, `E00_SELF_UPDATE_PRODUCTION=NOT_IMPLEMENTED`, `OFFICIAL_VERIFIED_FINISH=HOLD`.
+
+
+## E00-DVK — Durumdan Vazife Kutusu (çalışan izole teknik aday)
+
+`experience_box.py` SQLite WAL + FULL synchronous günlükleriyle **12 alan × 8 olay türü = 96 başlangıç sınıfını** destekler. Bu bir sınıflandırma haritasıdır; 96 gerçek yaşanmış olay veya sınanmış üretim sonucu değildir.
+
+**Kalıcı öğrenme sözleşmesi:**
+
+- Her olumlu/olumsuz deneyimin olay kimliği, kaynak SHA, açıklaması ve dersi korunur.
+- Başarısızlık tanısında **neden, açık koşul, gereksinim ve düzeltme** ayrı kayıtlanır.
+- Çözüm hazırsa `READY`, araştırma gerekiyorsa `RESEARCH`; aynı hedef/kaynak/alan için en fazla 12 olay tek geliştirme paketine alınır.
+- Her çevrim en çok üç tur gerçek izole test/karşıt denemedir; üç tur sonunda başarısızlık `HOLD` ve makbuz olarak korunur. **Bu sınır öğrenme kaydının ömrüne bir sınır koymaz.**
+- Yeni çevrim, önceki başarısızlıktan sonra **yeni teşhis ve gerçek çözüm farkı** olmadan başlatılamaz. Çevrim sınırı sayesinde sonsuz tek yürütme önlenir; ayrı yetkili çevrimler gerekçe ve kaynakla sürdürülebilir.
+- Paket kısmen başarıya ulaşsa bile önceki adaylar tekrar doğrulanır; eski PASS yeni koşula otomatik taşınmaz.
+- `attempts` ve `diagnostics` kayıtları korunur; yeniden başlatma ve araştırma kuyruğu kalıcılığı sınanır.
+- **Arşivleme** yalnız tüm paket teknik adayları + dış kaynak/insan doğrulamasından sonra bir kayıt hareketidir. Bu adaptör kod yayınlama, otomatik merge, gerçek üretimde kendini değiştirme veya resmî Verified Finish verme yetkisi taşımaz.
+- Arşivlenen geçmiş kalır; aynı deneyimin yeni olay kimliğiyle yeniden yaşanması yeni açık görev olabilir.
+
+**Günlük mini bildirge:** yaşanan hata → neden → açık gereksinimler → uygulanan küçük onarım → gerçek test ve karşıt test → sağlanan yeni yetenek → kaynak HEAD/CI → kalan HOLD/owner eşiği.
+
+**CI kapsamı:** `test_experience_learning.py` (18 senaryo) + `test_experience_box.py` (48 senaryo), üç kaynaklı CI tekrarı: **3 × 66 = 198 test yürütmesi** (aynı 66 senaryonun tekrarıdır). Bu rakam yalnız GitHub job gerçek başarıya ulaştığında PASS olarak ifade edilir. Ölçülmemiş gerçek Mac OSi sürekliliği/saha ürünü kabulü HOLD kalır.
+
+**Sınır:** Bu uygulamanın `archive_authorized` mekanizmasındaki dış doğrulayıcılar test adaptörüne enjekte edilen callback sözleşmesidir; gerçek güvenilir imza/issuer veya Mac operatör yetkisi değildir. Saha bağlantısı, resmi Human Threshold ve gerçek bağımsız kabul kendi aşamasında gerçekleşir.
