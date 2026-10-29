@@ -34,6 +34,12 @@ jobs:
               -p 'test_experience_learning.py' -v > "e00-ci-evidence/round-${round}.log" 2>&1
             grep -q 'Ran 18 tests' "e00-ci-evidence/round-${round}.log"
             grep -q 'OK' "e00-ci-evidence/round-${round}.log"
+            python3 -B -m unittest discover \
+              -s governance/enguru-suzgeci/zulfikar-e00-learning-v141 \
+              -p 'test_experience_box.py' -v > "e00-ci-evidence/box-round-${round}.log" 2>&1
+            grep -q 'Ran 38 tests' "e00-ci-evidence/box-round-${round}.log"
+            grep -q 'OK' "e00-ci-evidence/box-round-${round}.log"
+            tail -n 4 "e00-ci-evidence/box-round-${round}.log"
             tail -n 4 "e00-ci-evidence/round-${round}.log"
           done
       - name: Exact source identity and limited receipt
