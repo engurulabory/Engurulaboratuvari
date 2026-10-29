@@ -52,6 +52,6 @@ En az 18 sınama: kaynak kayması, bozuk şema, sahte boolean, sahte kriter, sah
 
 **Günlük mini bildirge:** yaşanan hata → neden → açık gereksinimler → uygulanan küçük onarım → gerçek test ve karşıt test → sağlanan yeni yetenek → kaynak HEAD/CI → kalan HOLD/owner eşiği.
 
-**CI kapsamı:** `test_experience_learning.py` (18 senaryo) + `test_experience_box.py` (48 senaryo), üç kaynaklı CI tekrarı: **3 × 66 = 198 test yürütmesi** (aynı 66 senaryonun tekrarıdır). Bu rakam yalnız GitHub job gerçek başarıya ulaştığında PASS olarak ifade edilir. Ölçülmemiş gerçek Mac OSi sürekliliği/saha ürünü kabulü HOLD kalır.
+**CI kapsamı:** `test_experience_learning.py` (18), `test_experience_box.py` (48) ve gerçek kutu→adaptör→DÖM zincirini çalıştıran `test_experience_integration.py` (3); üç kaynaklı CI tekrarı: **3 × 69 = 207 test yürütmesi** (aynı 69 senaryonun tekrarıdır). Bu rakam yalnız GitHub job gerçek başarıya ulaştığında PASS olarak ifade edilir. Ölçülmemiş gerçek Mac OSi sürekliliği/saha ürünü kabulü HOLD kalır.
 
 **Sınır:** Bu uygulamanın `archive_authorized` mekanizmasındaki dış doğrulayıcılar test adaptörüne enjekte edilen callback sözleşmesidir; gerçek güvenilir imza/issuer veya Mac operatör yetkisi değildir. Saha bağlantısı, resmi Human Threshold ve gerçek bağımsız kabul kendi aşamasında gerçekleşir.
