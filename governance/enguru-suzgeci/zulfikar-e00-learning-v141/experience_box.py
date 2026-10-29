@@ -6,7 +6,7 @@ records evidence candidates, and archives only after external verification.
 """
 from __future__ import annotations
 
-from collections import Counter
+from contextlib import contextmanager
 from datetime import datetime, timezone
 import hashlib
 import json
@@ -24,6 +24,7 @@ KINDS = ("SUCCESS", "FAILURE", "REGRESSION", "INTERRUPTION",
 OUTCOMES = ("POSITIVE", "NEGATIVE", "UNCERTAIN")
 ACTIVE = ("NEW", "READY", "RESEARCH", "BATCHED", "HOLD", "CANDIDATE", "OWNER_REVIEW")
 HEX = re.compile(r"^[a-f0-9]{64}$")
+COMMIT = re.compile(r"^[a-f0-9]{40}$")
 IDENT = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.:-]{2,90}$")
 FIELDS = frozenset(("eventId","goalId","sourceSha256","domain","kind",
                     "outcome","need","description","lesson"))
@@ -104,6 +105,16 @@ class ExperienceBox:
            action TEXT NOT NULL, previous TEXT, current TEXT NOT NULL,
            note TEXT NOT NULL, created TEXT NOT NULL);
         """)
+    @contextmanager
+    def _transaction(self):
+        self.db.execute("BEGIN IMMEDIATE")
+        try:
+            yield
+        except BaseException:
+            self.db.execute("ROLLBACK")
+            raise
+        else:
+            self.db.execute("COMMIT")
     def close(self):
         self.db.close()
     def _row(self,event_id):
@@ -124,7 +135,7 @@ class ExperienceBox:
         eid=e["eventId"]
         fp=case_fingerprint(e)
         canonical=json.dumps(e,sort_keys=True,ensure_ascii=False,separators=(",",":"))
-        with self.db:
+        with self._transaction():
             old=self.db.execute("SELECT event_json FROM cases WHERE event_id=?",(eid,)).fetchone()
             if old:
                 if old["event_json"]!=canonical: raise ValueError("IDENTITY_REUSE_WITH_DIFFERENT_EVENT")
@@ -139,7 +150,7 @@ class ExperienceBox:
             self._log(eid,"OBSERVED",None,"NEW","Unverified observation; no test PASS")
         return {"state":"NEW","eventId":eid}
     def triage(self,eid,*,solution=None,solution_ref=None):
-        with self.db:
+        with self._transaction():
             r=self._row(eid)
             if r["state"] not in ("NEW","RESEARCH","HOLD"): raise ValueError("TRIAGE_NOT_ALLOWED")
             ready=solution is not None
@@ -156,7 +167,7 @@ class ExperienceBox:
     def make_batch(self,event_ids):
         if type(event_ids) not in (list,tuple) or not 1<=len(event_ids)<=12 or len(set(event_ids))!=len(event_ids):
             raise ValueError("INVALID_BATCH_SIZE_OR_DUPLICATES")
-        with self.db:
+        with self._transaction():
             rows=[self._row(x) for x in event_ids]
             if any(r["state"]!="READY" for r in rows): raise ValueError("NOT_READY_FOR_BATCH")
             if len({(r["goal"],r["source_sha"],r["domain"]) for r in rows})!=1:
@@ -198,7 +209,7 @@ class ExperienceBox:
                     receipts[eid]=proof["journalHeadSha256"]
                     del remaining[eid]
             if not remaining: break
-        with self.db:
+        with self._transaction():
             self.db.execute("UPDATE batches SET state=?, attempts=? WHERE id=?",
                             ("CANDIDATE" if not remaining else "HOLD",i,bid))
             for r in rows:
@@ -215,7 +226,9 @@ class ExperienceBox:
                 "officialPassIssued":False,"productVerifiedFinish":"NOT_ISSUED"}
     def archive_authorized(self,bid,*,commit_sha,ci_url,owner_verifier,source_verifier):
         """Record externally verified owner-controlled update; never execute it."""
-        source_hash(commit_sha);text_value(ci_url)
+        if not isinstance(commit_sha,str) or not COMMIT.fullmatch(commit_sha):
+            raise ValueError("GIT_COMMIT_SHA_REQUIRED")
+        text_value(ci_url)
         if not callable(owner_verifier) or not callable(source_verifier):
             raise ValueError("AUTHORITY_VERIFIERS_REQUIRED")
         b=self.db.execute("SELECT * FROM batches WHERE id=?",(bid,)).fetchone()
@@ -224,7 +237,7 @@ class ExperienceBox:
                  "candidateCommitSha256":commit_sha,"ciUrl":ci_url}
         if owner_verifier(context) is not True or source_verifier(context) is not True:
             raise ValueError("OWNER_OR_SOURCE_VERIFICATION_HOLD")
-        with self.db:
+        with self._transaction():
             rows=list(self.db.execute("SELECT * FROM cases WHERE batch_id=?",(bid,)))
             if any(r["state"]!="CANDIDATE" or not r["test_sha"] for r in rows):
                 raise ValueError("MISSING_CASE_EVIDENCE")
