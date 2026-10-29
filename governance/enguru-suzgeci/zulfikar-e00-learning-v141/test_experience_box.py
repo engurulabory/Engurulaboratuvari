@@ -329,6 +329,24 @@ class BoxTests(unittest.TestCase):
         self.box.assess_batch(b,self.worker,max_rounds=1)
         self.assertEqual(self.box.summary()["states"]["CANDIDATE"],1)
 
+    def test_48_each_failure_cycle_requires_new_diagnosis(self):
+        b=self.batch()
+        self.box.assess_batch(b,lambda *_:{},max_rounds=1)
+        self.box.diagnose("EV-001",cause="First failure",gap="Wrong output",
+            requirement="Correct first issue",correction="Fix attempt 2")
+        self.box.retry_batch(b,{"EV-001":{"solution":"Fix attempt 2","solution_ref":"proof/2"}})
+        self.box.assess_batch(b,lambda *_:{},max_rounds=1)
+        with self.assertRaises(ValueError):
+            self.box.retry_batch(b,{"EV-001":{"solution":"Fix attempt 3","solution_ref":"proof/3"}})
+        self.assertEqual(self.box.summary()["states"]["HOLD"],1)
+        self.box.diagnose("EV-001",cause="Second failure",gap="New finding",
+            requirement="Correct second issue",correction="Fix attempt 3")
+        self.box.retry_batch(b,{"EV-001":{"solution":"Fix attempt 3","solution_ref":"proof/3"}})
+        self.box.assess_batch(b,self.worker,max_rounds=1)
+        self.assertEqual(self.box.summary()["states"]["CANDIDATE"],1)
+        self.assertEqual(self.box.summary()["failureDiagnoses"],2)
+        self.assertEqual(self.box.summary()["attemptRecords"],3)
+
     def test_38_sqlite_research_queue_survives_failure(self):
         self.insert();self.box.triage("EV-001")
         self.box.close()
