@@ -108,7 +108,7 @@ class ExperienceBox:
            id INTEGER PRIMARY KEY AUTOINCREMENT, event_id TEXT NOT NULL,
            cause TEXT NOT NULL, gap TEXT NOT NULL,
            requirement TEXT NOT NULL, correction TEXT NOT NULL,
-           created TEXT NOT NULL);
+           attempts_at_diagnosis INTEGER NOT NULL, created TEXT NOT NULL);
         CREATE TABLE IF NOT EXISTS attempts(
            id INTEGER PRIMARY KEY AUTOINCREMENT, event_id TEXT NOT NULL,
            batch_id TEXT NOT NULL, round INTEGER NOT NULL,
@@ -182,8 +182,8 @@ class ExperienceBox:
             if r["state"] not in ("NEW","RESEARCH","HOLD"):
                 raise ValueError("DIAGNOSIS_NOT_ALLOWED")
             self.db.execute(
-                "INSERT INTO diagnostics(event_id,cause,gap,requirement,correction,created) "
-                "VALUES (?,?,?,?,?,?)",(eid,*fields,now()))
+                "INSERT INTO diagnostics(event_id,cause,gap,requirement,correction,attempts_at_diagnosis,created) "
+                "VALUES (?,?,?,?,?,?,?)",(eid,*fields,r["attempts"],now()))
             self._log(eid,"FAILURE_DIAGNOSIS",r["state"],r["state"],
                       "Cause, gap, requirement and corrective action preserved")
         return {"eventId":eid,"state":r["state"],"diagnosisRecorded":True,
@@ -292,8 +292,8 @@ class ExperienceBox:
                 diag=self.db.execute(
                     "SELECT * FROM diagnostics WHERE event_id=? ORDER BY id DESC LIMIT 1",
                     (eid,)).fetchone()
-                if diag is None:
-                    raise ValueError("FAILURE_CAUSE_AND_REQUIREMENT_REQUIRED")
+                if diag is None or diag["attempts_at_diagnosis"]!=old["attempts"]:
+                    raise ValueError("FRESH_FAILURE_DIAGNOSIS_REQUIRED")
                 self.db.execute(
                     "UPDATE cases SET solution=?, solution_ref=? WHERE event_id=?",
                     (solution,ref,eid))
@@ -303,7 +303,7 @@ class ExperienceBox:
                 self.db.execute(
                     "UPDATE cases SET test_sha=NULL WHERE event_id=?",(r["event_id"],))
                 self._state(r["event_id"],("HOLD","CANDIDATE"),"BATCHED",
-                            "Reopened with preserved history and fresh corrective change")
+                            "RETRY_BATCH","Reopened with preserved history and fresh corrective change")
             self.db.execute("UPDATE batches SET state='TESTING' WHERE id=?",(bid,))
         return {"batchId":bid,"state":"TESTING","preservedAttempts":True,
                 "retestAllCases":True,"officialPassIssued":False}
