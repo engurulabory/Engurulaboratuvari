@@ -1,5 +1,148 @@
 # ENGURU_ULAK_YONETIM_ICRA_RAPORU
 
+**Rapor sürümü:** 1.7.0 — V014.MAC / Ortam engeli kaydı  
+**Tarih:** 30 Ekim 2026 — Europe/Istanbul  
+**Owner yetkisi:** YÖNETİM KARARI 37 / V014 üçüncü adayının kabul sınaması  
+**Kaynak commit:** `866e3830f463396c4b2106e2b19d39215b4994af`  
+**Yetkili dal:** `work/ulak-yonetim-icra-v012-20261030`
+
+## Güncel hüküm — sınav tamamlanmadı
+
+V014_MAC_EXECUTION=BLOCKED_ENVIRONMENT_UNAVAILABLE  
+MAC_DIRECT_ACCESS=UNAVAILABLE  
+PACKAGE_BUILD=NOT_PERFORMED  
+NEW_PACKAGE_SELF_TEST=NOT_TESTED  
+V014_REAL_MODEL_CASES_EXECUTED=0/40  
+MANAGER_PROFESSIONAL_ACCEPTANCE=HOLD  
+EXECUTOR_PROFESSIONAL_ACCEPTANCE=HOLD  
+ALL_15_PREINSTALL_AREAS=HOLD  
+MAC_PRODUCT_FIELD=NOT_TESTED  
+INSTALL=HOLD  
+DONECHECK_PRODUCT=HOLD  
+VERIFIED_FINISH=HOLD
+
+Bu kayıt gerçek Mac sınavının sonuç raporu değildir. Yetkili iş, paket hazırlama/gerçek sınav aşamasında somut araç engeline takıldı. Erişilebilir kaynak denetimi ve engel raporlaması tamamlandı; sınav hedefi açık kaldı. Rapor teslimi, sınavın tamamlandığı veya owner yetkisinin yetersiz olduğu anlamına gelmez.
+
+## Bu blokta gerçekten yapılan işler
+
+1. Yetkilendirilen commit ve mevcut çalışma dalındaki rapor GitHub üzerinden ayrı ayrı okundu; içerikleri ve blob SHA `af64f8d9e1726c1d63017ef962f0ead0e33b0a0b` eşleşti. Dal HEAD kaynak commit ile aynıydı. Repo yazma yetkisi admin olarak doğrulandı.
+2. Güncel main AGENTS.md, canonical V3, Kalıcı Çalışma Disiplini V1 ve iki kilit kaydı okundu. Kaynakların Git blob kimlikleri önceki doğrulanmış kayıtlarla aynı: V3 `7f47f3c6d3ee5c5138e53b67ae46cced37cb1a61`, Disiplin V1 `2f6013eb050148df1452497676b281b0dc17c7f6`. Yöntem hizası gerçek motor çalıştırması değildir.
+3. V014 raporunun UTF-8 içerik SHA-256 değeri `bc743ed82f509c41668928c2319f78eadd17b6ac0706c39aa624e7b9be705234` yeniden hesaplandı. Rapora gömülü 12 kaynak/makbuz ekinin SHA-256 değerleri yeniden hesaplandı ve kayıtlarıyla 12/12 eşleşti. Bu mekanik hesaplar JavaScript çalışma alanında yapıldı; Python, paket güvenliği veya Mac testleri değildir. Hash yordamı boş string ve abc bilinen SHA-256 değerleriyle kontrol edildi.
+4. V014 rol bağlamının gerçek ek baytları SHA-256 `3dd5c63de73ea0ed8127305e237b8fe8de715fd44377ed8cc795f1491a487c06` olarak doğrulandı; owner pin değeriyle aynı.
+5. Yerel yürütme aracına yalnız çalışma dizini sorgusu gönderildi. Araç `No usable execution environment is available. Wait for an environment to become available before using this tool.` döndürdü. Kullanıcı ortam kaydında da yürütme ortamı unavailable. Kabuk komutu çalışmadı; bu deneme Mac erişimi veya bir test yürütmesi sayılmadı.
+6. Bağlı araçlarda doğrudan Mac dosya/Terminal oturumu bulunmuyor. Önceki kullanıcı makbuzları tarihsel gerçek Mac kanıtıdır; bu oturumda canlı Mac erişimini kanıtlamaz.
+
+## Kaynak eşliği ve korunan sınırlar
+
+| Kaynak / kapı | Güncel kanıt ve hüküm |
+|---|---|
+| Özgün40 vaka | Korunan kayıt SHA `2db70257410da6fcbe31ce0d5edead0d1c3b4ab38131d976a9a368099ae11e32`. Bu blokta vaka arşivinin dosya baytları yeniden materyalize edilmedi; yeni paket içinde hash kontrolü henüz yapılmadı. |
+| V014 rol bağlamı | Yukarıdaki owner pin ile gerçek kaynak ekinin hash eşliği PASS. Metin değiştirilmedi. |
+| Yerel model | `qwen3:14b`; korunan son digest `bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8`. Canlı Ollama sorgusu yapılmadı; güncel Mac digest doğrulaması NOT_TESTED. |
+| V014 test kaynakları/makbuzları | Ek hashleri eşleşti; önceki51/51 gerçek fixturetesti ve34/34 collectorregresyonu kaynaklarıyla korunur. Bu blokta yeniden çalıştırılmadı. |
+| Pozitif doğru işlem yolu | Önceki SQLite same-ID stable-result, conflict rollback, bağımsız başarı makbuzuyla completion ve temizfixture worktree testleri korunur. Bunlar yeni Mac/Qwen yetkinlik sınavı değildir. |
+| Paket güvenliği ve kendi testleri | Yeni paket üretilmedi; bütünlük/endpoint/digest/dosya erişimi/self-test/regresyon NOT_TESTED. Paket hazır/PASS hükmü yok. |
+| Model kodu | Yalnız veri olma sınırı korunur; yeni model çağrısı ve model-kod yürütmesi yok. |
+| Dış işlemler | Yeni model indirme, ücretli API, bulut model, kurulum, ödeme, merge/yayın işlemi yok. Eski Ulak/PiLive/kullanıcı verilerine erişim veya değişiklik yok. |
+| Onarım bütçesi | V014 üçüncü aday korunur; dördüncü tur ve yeni mimari açılmadı. |
+
+## 40 özgün vakanın V014.MAC durumu
+
+Her satır yeni V014.MAC sınavını ifade eder. Önceki V013 sonuçları tarihsel bölümde aynen korunur. Yeni20+20yanıt yok; eskiyanıtları yeni sınav sayan bir payda kullanılmadı.
+
+| Vaka ID | V014.MAC gerçek sınav | Profesyonel kabul |
+|---|---|---|
+| M-P01 | NOT_TESTED | HOLD |
+| M-P02 | NOT_TESTED | HOLD |
+| M-P03 | NOT_TESTED | HOLD |
+| M-P04 | NOT_TESTED | HOLD |
+| M-P05 | NOT_TESTED | HOLD |
+| M-P06 | NOT_TESTED | HOLD |
+| M-P07 | NOT_TESTED | HOLD |
+| M-P08 | NOT_TESTED | HOLD |
+| M-P09 | NOT_TESTED | HOLD |
+| M-P10 | NOT_TESTED | HOLD |
+| M-N01 | NOT_TESTED | HOLD |
+| M-N02 | NOT_TESTED | HOLD |
+| M-N03 | NOT_TESTED | HOLD |
+| M-N04 | NOT_TESTED | HOLD |
+| M-N05 | NOT_TESTED | HOLD |
+| M-N06 | NOT_TESTED | HOLD |
+| M-N07 | NOT_TESTED | HOLD |
+| M-N08 | NOT_TESTED | HOLD |
+| M-N09 | NOT_TESTED | HOLD |
+| M-N10 | NOT_TESTED | HOLD |
+| E-P01 | NOT_TESTED | HOLD |
+| E-P02 | NOT_TESTED | HOLD |
+| E-P03 | NOT_TESTED | HOLD |
+| E-P04 | NOT_TESTED | HOLD |
+| E-P05 | NOT_TESTED | HOLD |
+| E-P06 | NOT_TESTED | HOLD |
+| E-P07 | NOT_TESTED | HOLD |
+| E-P08 | NOT_TESTED | HOLD |
+| E-P09 | NOT_TESTED | HOLD |
+| E-P10 | NOT_TESTED | HOLD |
+| E-N01 | NOT_TESTED | HOLD |
+| E-N02 | NOT_TESTED | HOLD |
+| E-N03 | NOT_TESTED | HOLD |
+| E-N04 | NOT_TESTED | HOLD |
+| E-N05 | NOT_TESTED | HOLD |
+| E-N06 | NOT_TESTED | HOLD |
+| E-N07 | NOT_TESTED | HOLD |
+| E-N08 | NOT_TESTED | HOLD |
+| E-N09 | NOT_TESTED | HOLD |
+| E-N10 | NOT_TESTED | HOLD |
+
+## 15 alan / 75 koşul ve DoneCheck™
+
+34 karar,15 alan,75 özgün koşul,V0.6 tasarım ve önceki V013/V014 kazanımları kaynakta korunur. Hiçbir koşula yeni PASS atanmadı. Mevcut defter: yazılı kapsam75/75; kurulum öncesi kabul0/75/HOLD; Mac ürün saha0/75/NOT_TESTED. Bunlar yeni bir başarısızlık puanı değildir.
+
+| Alan | Kurulum öncesi kabul | Mac ürün saha |
+|---|---|---|
+| Hedef gücü | HOLD | NOT_TESTED |
+| Yalınlık ve sadelik | HOLD | NOT_TESTED |
+| Mimari bütünlük | HOLD | NOT_TESTED |
+| Güvenlik tasarımı | HOLD | NOT_TESTED |
+| Yönetici görevleri | HOLD | NOT_TESTED |
+| Yönetici sorumluluk/yetki | HOLD | NOT_TESTED |
+| Yönetici profesyonel yetenek | HOLD | NOT_TESTED |
+| İcracı görevleri | HOLD | NOT_TESTED |
+| İcracı sorumluluk/yetki | HOLD | NOT_TESTED |
+| İcracı profesyonel yetenek | HOLD | NOT_TESTED |
+| Teknik altyapı ve ekran | HOLD | NOT_TESTED |
+| Ekran sadeliği ve kolaylık | HOLD | NOT_TESTED |
+| Ekran yerleşimi | HOLD | NOT_TESTED |
+| Görsel estetik | HOLD | NOT_TESTED |
+| Yaratıcı çalışma deneyimi | HOLD | NOT_TESTED |
+
+**Gerçek işi yapıyor mu?** Kaynak ve kimlik denetimi yapıldı; paket üretimi ve gerçek sınav yapılmadı.  
+**Doğru yapıyor mu?** Kaynak eşliği mekanik olarak doğrulandı; yeni paket/model/kod güvenliği ve mesleki doğruluk henüz sınanmadı.  
+**Bittiğini kanıtlıyor mu?** Hayır. Yetkili V014.MAC hedefi tamamlanmadı; DoneCheck™ ve profesyonel kabul HOLD.
+
+## Açık işler ve yönetim için önerilen hareket
+
+- Somut engel yetki değil, paket oluşturma ve test çalıştırma ortamının kullanılamaması. Aynı owner kararının yeniden verilmesi gerekmiyor.
+- Aynı V014.MAC kapsamında kullanılabilir yürütme ortamı sağlandığında pinnedkaynaklardan paket oluşturma, kaynak/dosya/endpoint denetimi ve gerçek self-test/regresyon kanıtı tamamlanmalı.
+- Ardından doğrudan Mac erişimi hâlâ yoksa, test edilmiş paket ve yalnız yetkilendirilen tek Terminal bloğu owner'a teslim edilmeli. Bu aşamada doğrulanmış paket dosyası bulunmadığından Terminal bloğu üretilmedi.
+- Gerçek40 Mac makbuzu gelince özgünoracle karşılaştırması,21 önceki bulguda düzelme/regresyon, olumlu yetkili işlem ve güvenlik kapıları ayrı değerlendirilmelidir. Üçüncü adayın kabul sınaması korunur; yeni onarım turu otomatik açılmaz.
+
+Bu öneriler sonraki ürün/görev bloğu değildir; mevcut yetkili sınavın kapanmamış bağımlılıklarıdır. Sonraki ortam/çalışma hareketi yönetim incelemesinde kalır.
+
+## İCRA SONUÇ BİLDİRGESİ™ — V014.MAC / Engelli icra kaydı
+
+- Kaynakcommit/dal/izin doğrulandı;12/12 ekhashi ve V014 rolbağlamı pin eşliği PASS.
+- Yeni paket, yeni paketselftesti ve gerçekMac40 sınavı gerçekleştirilemedi; somut neden yürütme ortamı unavailable.
+- Yönetici/İcracı profesyonel kabulü HOLD;40/40 V014.MAC vaka NOT_TESTED. Önceki51/51 ve34/34 yeni test gibi sayılmadı.
+- 15 alan/75 koşul mevcut HOLD sınırında; Mac ürün saha NOT_TESTED; kurulum HOLD; DoneCheck™/VERIFIED_FINISH HOLD.
+- GitHub'da yalnız bu rapor güncellenir. Commit SHA, tekdosyafarkı, exactgeriokuma ve main korunumu dış teslim makbuzunda doğrulanır.
+- **RAPOR_TESLIM_EDILDI / YONETIM_KARARI_BEKLENIYOR** yalnız bu engel raporunun teslimidir; V014.MAC sınavının bittiği hükmü değildir.
+
+## Korunmuş V014 kaydı — tarihsel kaynak
+
+Aşağıdaki V1.6.0 metni ve kaynak ekleri korunmuştur. V014.MAC güncel engel ve kabul durumu yukarıdadır; tarihsel testler kendi kaynak/ortam kapsamındadır.
+
+### Tarihsel ENGURU_ULAK_YONETIM_ICRA_RAPORU
+
 **Rapor sürümü:** 1.6.0 — V014  
 **Raporlama sözleşmesi:** Kontrollü Duruş V1.2 + owner V014 Profesyonel Yetkinlik ve Deterministik Güvenlik Onarımı  
 **Güncelleme:** 2026-10-30T21:36:41+03:00  
