@@ -26,8 +26,12 @@ test_two_real_http_stub_role_requests_digest_and_separation (test_integration.In
 test_wrong_model_and_malformed_reply_hold (test_integration.Integrations.test_wrong_model_and_malformed_reply_hold) ... ok
 test_evidence_allowlist_never_exports_key_or_database (test_packaging.Packaging.test_evidence_allowlist_never_exports_key_or_database) ... ok
 test_native_source_uses_readonly_projection_and_existing_python (test_packaging.Packaging.test_native_source_uses_readonly_projection_and_existing_python) ... ok
+test_missing_sdk_records_hold_without_download (test_toolchain.Toolchain.test_missing_sdk_records_hold_without_download) ... ok
+test_probe_failure_remains_hold_with_full_diagnostics (test_toolchain.Toolchain.test_probe_failure_remains_hold_with_full_diagnostics) ... ok
+test_probe_timeout_does_not_claim_pass (test_toolchain.Toolchain.test_probe_timeout_does_not_claim_pass) ... ok
+test_sdk_target_and_language_passed_to_probe (test_toolchain.Toolchain.test_sdk_target_and_language_passed_to_probe) ... ok
 
 ----------------------------------------------------------------------
-Ran 28 tests in 1.375s
+Ran 32 tests in 1.466s
 
 OK

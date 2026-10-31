@@ -1,10 +1,10 @@
 {
   "schema": "enguru.v015.real-tests/v1",
-  "timestamp": "2026-10-31T07:05:05.179479+00:00",
+  "timestamp": "2026-10-31T07:19:14.734450+00:00",
   "host": "Linux",
   "machine": "x86_64",
   "scope": "CLOSED_FIXTURE_BROKER_REAL_CODE_HTTP_STUB_NOT_QWEN",
-  "tests": 28,
+  "tests": 32,
   "passed_ids": [
     "test_archive.ArchiveTests.test_nonmatching_manifest_rejected",
     "test_archive.ArchiveTests.test_path_escape_is_rejected_before_write",
@@ -33,12 +33,16 @@
     "test_integration.Integrations.test_two_real_http_stub_role_requests_digest_and_separation",
     "test_integration.Integrations.test_wrong_model_and_malformed_reply_hold",
     "test_packaging.Packaging.test_evidence_allowlist_never_exports_key_or_database",
-    "test_packaging.Packaging.test_native_source_uses_readonly_projection_and_existing_python"
+    "test_packaging.Packaging.test_native_source_uses_readonly_projection_and_existing_python",
+    "test_toolchain.Toolchain.test_missing_sdk_records_hold_without_download",
+    "test_toolchain.Toolchain.test_probe_failure_remains_hold_with_full_diagnostics",
+    "test_toolchain.Toolchain.test_probe_timeout_does_not_claim_pass",
+    "test_toolchain.Toolchain.test_sdk_target_and_language_passed_to_probe"
   ],
   "failures": 0,
   "errors": 0,
   "success": true,
-  "source_manifest_sha256": "bbda3c9d67c62766e14bf9d77bebffc284da658caceefb7bcb13566a937ce74a",
+  "source_manifest_sha256": "e6505f13309b728dea814f796ee4391ef7e5a7a899a254706843e144e9d77eec",
   "source_files": {
     "README.md": "fae5a1fb3d3a518285dfb3545402c56e7d347c8966ee90ffc10d59c39a39de4b",
     "cli.py": "f8da09b55935691c4321d239e2ac2077a55945a64da7ddd3b43b9cc71d363d7c",
@@ -82,21 +86,23 @@
     "tests/test_core.py": "fe5d2e640b22c860ecae44215a66488dfd7cbc0336b6320466e2f198cf5e07e3",
     "tests/test_integration.py": "a7d6e6be3eb9ad23e39cc17d9157d5ff27124769e4672287a954d14e9a913e38",
     "tests/test_packaging.py": "542b37e4bc3e03ab14485661ae9679f639fbb8abb243a2859ab73b5fa62d7664",
-    "tools/mac_evidence.py": "63192ce0b46c9d277f3650df8eeb67939114bf52e2d1e78eda58da82f9fed474",
-    "tools/mac_install.py": "1a14f5880b2f3a46e7f0e1332c20e94f81484e9b3b21666638e88ec9f3017dfb",
+    "tests/test_toolchain.py": "7813188fa902d514796eb9f7ef401db6173334000211cfc8a2ed1f9df6f10899",
+    "tools/mac_evidence.py": "1480972a0c8ef97c2b7f168199107a274d4dfe910f22f010cf9b06e7c03bdbbd",
+    "tools/mac_install.py": "c73d7063e2b86378ba182772c50b80fee5b308c06641006ade0611dae4019746",
     "tools/mac_rollback.py": "2fdafec512e01ab05cc29758af9107a188c0dc084e375dc4a6140d236c86b4b3",
+    "tools/mac_toolchain.py": "3e74b3775818b162581ce5fa2b6df9bc50dd0570171a27dfb094459b1998f95d",
     "tools/package_io.py": "22cb07e32032076a1a18235d686b874039faed4e5562a21d489ac6310045c41a",
     "tools/run_checks.py": "3d4e0e6954459cc2e5eeff48f39dfcde32d333cdc86ef4173792d45fe896297b",
-    "tools/seal_sources.py": "3fef3aba8489429e7e023559ac257907e02bf47f10c4a7b918e9d808c9446fbf",
+    "tools/seal_sources.py": "7b648e16ab3db8e9093e97ba2bb19913c9437210ba1408d164cf9b0d5227a1b7",
     "tools/validate.py": "af3b6cfb39e55b2b8710e3bdbe4bcf22547fff7342ed36e4707fd9c1c5941404"
   },
   "canonical": {
     "contract_pins": "PASS",
     "criteria_text_exact": 75,
     "areas": 15,
-    "source_files_verified": 49
+    "source_files_verified": 51
   },
-  "test_log_sha256": "6aa51ee79c01cd29fb443adc854cc4c564ccbb62f61a026f2c85381a07b2e873",
+  "test_log_sha256": "82b8823b327ffe0449c481ef45439733cc8c773aec129d0f3c400e86e53a6045",
   "live_model_calls": 0,
   "swiftui_compile": "NOT_TESTED",
   "mac_app_field": "NOT_TESTED",

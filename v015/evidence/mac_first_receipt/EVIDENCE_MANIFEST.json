@@ -1,0 +1,13 @@
+{
+  "schema": "enguru.v015.mac-evidence/v1",
+  "sha256": {
+    "MAC_INSTALL_RECEIPT.json": "c60f8e5c3498c5d97ef6c1998e1d7fc7967d15a19db135380646fd3b737ee14d",
+    "MAC_SWIFT_BUILD.log": "c568c42b5b0a821141bc56379df9b79a5dc678fa63d69de011a65772abbf9326",
+    "MAC_SELF_TEST.log": "15864afd6443f6d598584609fecf6911db57441f9040472530af71cdd90b5ffa",
+    "SOURCE_MANIFEST.json": "bbda3c9d67c62766e14bf9d77bebffc284da658caceefb7bcb13566a937ce74a",
+    "evidence/V015_TEST_RECEIPT.json": "df262f57515ff8e74952008d9f97191b32976985dede77950ab08f7c1397d7fd",
+    "evidence/V015_TEST_LOG.txt": "657fb69a76cbac2944680b5e4d90f9419dbaa64406b6742fe925a1deee25d991"
+  },
+  "private_key_included": false,
+  "product_verified_finish": "HOLD"
+}

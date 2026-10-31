@@ -1,0 +1,22 @@
+{
+  "schema": "enguru.v015.mac-first-review/v1",
+  "evidence_library_id": "libfile_5516dac3d79081918b88abf5e018bada",
+  "zip_sha256": "e6198cad04c7ec2bd5773f1ce814280476fe93d7ac048e33a4c3f78272baed1d",
+  "zip_crc": "PASS",
+  "members": 7,
+  "manifest_checks": "6/6_PASS",
+  "source_manifest_sha256": "bbda3c9d67c62766e14bf9d77bebffc284da658caceefb7bcb13566a937ce74a",
+  "source_commit": "2edc7736e8f574e5f340b7ba596cc6eb96e47bd2",
+  "source_files_bound": 49,
+  "mac_real_tests": 28,
+  "tests_scope": "DARWIN_ARM64_REAL_CORE_WITH_STUB_ROLES_NOT_REAL_QWEN",
+  "mac_compile_exit": 1,
+  "mac_compile": "BLOCKED",
+  "compiler_message": "unable to load standard library for target 'arm64-apple-macosx26.0'",
+  "install": "NOT_PERFORMED",
+  "field": "NOT_TESTED",
+  "live_qwen_calls": 0,
+  "root_cause_confirmed": "Compiler failed to load target standard library. Previous invocation omitted explicit SDK; actual SDK/toolchain identity absent in original evidence.",
+  "repair_hypothesis": "Explicit xcrun macosx SDK and matching compiler, arm64 macOS13 deployment target, Swift5 mode, import/typecheck preflight. Not yet verified on Mac.",
+  "product_verified_finish": "HOLD"
+}

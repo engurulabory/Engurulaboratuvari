@@ -84,9 +84,9 @@
     },
     {
       "id": "V015.G09",
-      "state": "NOT_TESTED",
+      "state": "BLOCKED",
       "scoped_engineering_evidence": "Mac build/isolated install/field receipt source prepared",
-      "remaining": "Actual SwiftUI compile,accessibility,V0.6 visual equivalence,owner field acceptance",
+      "remaining": "First actual Mac build failed loading stdlib; revised SDK/target probe NOT_TESTED on Mac; field and owner acceptance pending",
       "evidence": [
         "evidence/V015_TEST_RECEIPT.json",
         "evidence/pilot/PROJECTION.json"

@@ -1,0 +1,15 @@
+{
+  "schema": "enguru.v015.mac-install/v1",
+  "started": "2026-10-31T07:17:23.306770+00:00",
+  "scope": "/Users/abdal/Desktop/AudiV13/ENGURU_V015_20261031_101723_262769",
+  "old_ulak": "UNTOUCHED",
+  "pilive": "UNTOUCHED",
+  "downloads": 0,
+  "compile": "HOLD",
+  "install": "NOT_PERFORMED",
+  "field": "NOT_TESTED",
+  "verified_finish": "HOLD",
+  "self_test_exit": 0,
+  "compile_exit": 1,
+  "error": "RuntimeError: SWIFT_BUILD_HOLD_SEE_LOG"
+}

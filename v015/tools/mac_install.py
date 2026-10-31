@@ -16,6 +16,7 @@ import subprocess
 import sys
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from validate import validate,ROOT
+from mac_toolchain import prepare
 
 
 def main():
@@ -41,13 +42,12 @@ def main():
         receipt['self_test_exit']=checks.returncode
         if checks.returncode!=0:raise RuntimeError('MAC_SELF_TEST_HOLD')
         # Existing toolchain only: no xcode-select --install, pip, model pull.
-        check=subprocess.run(['/usr/bin/xcrun','--find','swiftc'],capture_output=True,text=True,timeout=15)
-        if check.returncode!=0:raise RuntimeError('EXISTING_XCODE_TOOLCHAIN_REQUIRED')
+        compiler,flags=prepare(ROOT)
         app=ROOT/'ENGURU Ulak V015.app'
         if app.exists():raise RuntimeError('APP_ALREADY_EXISTS_HOLD')
         resources=app/'Contents'/'Resources';binary=app/'Contents'/'MacOS'/'Ulak'
         resources.mkdir(parents=True,mode=0o700);binary.parent.mkdir(mode=0o700)
-        build=subprocess.run([check.stdout.strip(),'-O','-parse-as-library',str(ROOT/'native/Ulak.swift'),
+        build=subprocess.run([compiler,*flags,'-O','-parse-as-library',str(ROOT/'native/Ulak.swift'),
             '-o',str(binary)],capture_output=True,text=True,timeout=240)
         (ROOT/'MAC_SWIFT_BUILD.log').write_text(build.stdout+'\n'+build.stderr)
         receipt['compile_exit']=build.returncode

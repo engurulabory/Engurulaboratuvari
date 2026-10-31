@@ -7,7 +7,7 @@ import zipfile
 ROOT=Path(__file__).resolve().parents[1]
 
 def collect():
-    names=['MAC_INSTALL_RECEIPT.json','MAC_FIELD_RESULT.json','MAC_SWIFT_BUILD.log','MAC_SELF_TEST.log',
+    names=['MAC_INSTALL_RECEIPT.json','MAC_FIELD_RESULT.json','MAC_SWIFT_BUILD.log','MAC_SELF_TEST.log','MAC_TOOLCHAIN.json','MAC_TOOLCHAIN_PROBE.swift',
            'SOURCE_MANIFEST.json','evidence/V015_TEST_RECEIPT.json','evidence/V015_TEST_LOG.txt']
     jobs=ROOT/'profile'/'jobs'
     if jobs.is_dir() and not jobs.is_symlink():
