@@ -40,7 +40,7 @@ if platform.system() != 'Darwin' or platform.machine() != 'arm64':
     sys.exit('STATE=HOLD — Gerçek arm64 Mac ortamı gerekli.')
 if sys.version_info < (3, 9):
     sys.exit('STATE=HOLD — Mevcut Python 3.9 veya üzeri gerekli; indirme yapılmadı.')
-EXPECTED = '889cbac4656a91af17fe52e878beba17f1fef4d9cab611104290f013f8c085d4'
+EXPECTED = '88129529a2920e1d217752c3c38f51ffff84420aa095755b4906c3125ec46697'
 def safe_read(path):
     if any(p.is_symlink() for p in path.parents):
         raise RuntimeError('SYMLINK_PARENT_HOLD')

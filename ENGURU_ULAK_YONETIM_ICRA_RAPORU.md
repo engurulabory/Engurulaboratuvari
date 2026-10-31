@@ -1,5 +1,63 @@
 # ENGURU_ULAK_YONETIM_ICRA_RAPORU
 
+**Rapor sürümü:** 1.9.1 — Aynı V015 / İlk gerçek Mac makbuzu ve SDK onarımı  
+**Tarih:** 31 Ekim 2026 — Europe/Istanbul  
+**Yetki:** Owner39/40 bütünleşik V015, erişilebilir hataları aynı kapsamda onar/yeniden test et  
+**Dal:** work/v015-github-01-20261031
+
+## Güncel hakikat
+
+MAC_CORE_TESTS=28/28_PASS_ACTUAL_DARWIN_ARM64_WITH_STUB_ROLES
+FIRST_MAC_COMPILE=BLOCKED_EXIT_1
+FIRST_MAC_INSTALL=NOT_PERFORMED
+FIRST_MAC_LIVE_QWEN_PILOT=NOT_EXECUTED
+SDK_REPAIR_LOCAL_REGRESSION=32/32_PASS
+SDK_REPAIR_GITHUB_CI=PASS
+SDK_REPAIR_REAL_MAC_BUILD=NOT_TESTED
+ORIGINAL_75_ACCEPTANCE=HOLD
+PROFESSIONAL_ACCEPTANCE=HOLD
+VERIFIED_FINISH=HOLD
+STATE=UPDATED_SAME_V015_PACKAGE_DELIVERED / MAC_MAKBUZU_BEKLENIYOR
+
+## Gerçek Mac kanıtının doğrulanması
+
+Owner'ın yüklediği [ENGURU_V015_MAC_KANIT_20261031_101723_262769.zip](https://chatgpt.com/library?file_id=libfile_5516dac3d79081918b88abf5e018bada&account_id=personal) SHA256 `e6198cad04c7ec2bd5773f1ce814280476fe93d7ac048e33a4c3f78272baed1d` yerelbaytlardan hesaplandı. Arşiv7benzersizüye/CRC PASS,6dosyanınmanifesthashi6/6PASS. TestlogSHA ve kaynakmanifestSHA makbuzla eşleşti. Manifest51yeni kaynağa değil, ilk teslimin49dosyasına/bbda3c9d...SHA'sına aittir; kaynakcommit2edc7736... ile eşleştirildi. Bu önceki28Linux sonucunun kopyası değildir: testhostDarwin/arm64,28/28 yöntem,0failure/0error ve gerçek Mac dosya/SQLite/process/test akışı.
+
+Kanıt açıkça stubrole/HTTP testleri kapsamındadır. CanlıQwen görevi derleme sonrasında olduğu için çalışmadı. SwiftUI compilerexit1; kurulumNOT_PERFORMED,fieldNOT_TESTED. EskiUlak/PiLive UNTOUCHED makbuzu korunur; tam disk forensic incelemesi iddiası yok.
+
+## Hata ve güvenli onarım
+
+Gerçek log: `unable to load standard library for target 'arm64-apple-macosx26.0'`.
+
+Doğrulanan neden sınırı: compiler hedefin standardlibrary'sini yükleyemedi; önceki çağrım SDK'yı açıkça geçmiyordu. İlk makbuzda SDK/Swift sürümleri olmadığı için asıl makinedeki SDK sürümünü veya tek kesin iç nedeni uydurmuyorum. Açık SDK seçiminin bu Mac'te hatayı kapattığı henüz kanıtlanmadı.
+
+AynıV015 onarımı: `xcrun --sdk macosx` ile mevcutcompiler veSDK yolu/sürümü; açık `-sdk`, ürünminimumuyla uyumlu `-target arm64-apple-macosx13.0`, `-swift-version 5`; önce Foundation+SwiftUI import/typecheck ön sınaması, ardından tamappcompile. İndirme veya xcode-select değişikliği yok. Tümkomut/exit/stdout/stderr `MAC_TOOLCHAIN.json` içinde; başarısız önsınama HOLD kalır veappkurulmaz.
+
+Teknik kaynak: [Swift resmi derleme rehberi](https://github.com/swiftlang/swift/blob/main/docs/HowToGuides/GettingStarted.md), SDKframeworklerinde açıkSDK seçimi; [Swift SourceKit SDK bulma kodu](https://github.com/swiftlang/sourcekit-lsp/blob/main/Sources/SKTestSupport/DefaultSDKPath.swift). Bunlar yerelMacsonucu değildir.
+
+4yeni test: doğruSDK/target/languageflags; eksikSDK; önsınamahatası; timeout. Mevcut28 dahil32/32 gerçekLinux regresyonu PASS; toolchainprosesleri bu4testte mock, gerçekSwiftcompile değiller. GitHub CI [41180215263](https://github.com/engurulabory/Engurulaboratuvari/actions/runs/41180215263), job124475899051, exactsourcecommit `4167ee4402fc2b4323f8e171780c186b5dc224a7` üzerinde32/32PASS; log okundu. Kaynak/test/manifest baytları doğrulandı.
+
+## Tek ürün / aynı paket kimliği
+
+[ENGURU_OSI_UCLU_YEREL_ZEKA_V015_FINAL.zip](https://chatgpt.com/library?file_id=libfile_6ec18bd05d488191ab848a39ef66d0f6&account_id=personal) aynı dosya kimliğiyle güncellendi; V016/V017 veya ayrıhazırlıkpaketi yok.
+
+- YeniSHA256 `88129529a2920e1d217752c3c38f51ffff84420aa095755b4906c3125ec46697`;1235715bayt,74üye. CRC/herdosyaSHA ve gerçek yeni alana açma/bayteşliği PASS.
+- Yeni kaynakmanifestSHA `e6505f13309b728dea814f796ee4391ef7e5a7a899a254706843e144e9d77eec`;51sealedkaynak. İlkMac28makbuzu kendi49kaynakpininde tarihsel korunur.
+- ÖncekiZIP/SHA889cbac4... kaynakgeçmişinde korunur; yeniTerminalbloğu yalnız yeni88129529...SHA'sını kabul eder. MevcutMac'teki başarısızalanın üzerine yazılmaz; yineyeniAudiV13alanı/ayrı.app.
+- Yeni paket/başlangıçkodunun gerçekMac icrası henüz yapılmadı. Son teslimde tek güncelblok verilir ve aynıV015'in yeniMacmakbuzu beklenir.
+
+## Dokuz kapı ve75koşul
+
+G01–G08 önceki kısmi mühendislik kabul sınırındaHOLD; Mac28 gerçekcoretest kazanımı ilgili kısmi kanıtlara eklendi. G09 son gerçekcompileengeli nedeniyleBLOCKED; onarım sonrasıMacbuildNOT_TESTED.75özgünID/metin/alan ve34kararlar/V0.6kaynaklar aynı; tam75kabulHOLD. CanlıQwen profesyonel kabulü,HOLD; üretilenQwenprogramı yürütmeNOT_TESTED. Yeni4promptonarımı yok; değişiklikSDK/builder ve makbuzdur.
+
+DoneCheck™: gerçekMaccore28PASS; gerçekappbuild başarısız; yerel/CIonarım32PASS; gerçekMacçözümkanıtı açık; ürünVERIFIED_FINISHHOLD. Sonraki gereklihareket tek güncelpaket/tekblok ile gerçekMacmakbuzu; aynıV015devamı. main/öncekiürünkaynakları/eskialanlar korunur.
+
+## Tarihsel1.9.0 ve önceki kayıtlar
+
+Aşağıdaki önceki paketSHA/CI/test/kabuller kendi tarihselkapsamındadır; güncelpaket veMacsonucu yukarıdadır.
+
+# ENGURU_ULAK_YONETIM_ICRA_RAPORU
+
 **Rapor sürümü:** 1.9.0 — V015 bütünleşik ürün adayı  
 **Tarih:** 31 Ekim 2026 — Europe/Istanbul  
 **Owner kapsamı:** Karar39 + ara duruşu değiştiren Karar40  

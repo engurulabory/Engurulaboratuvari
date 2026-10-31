@@ -1,1 +1,18 @@
-{"schema":"enguru.v015.single-package-delivery/v1","package":"ENGURU_OSI_UCLU_YEREL_ZEKA_V015_FINAL.zip","sha256":"889cbac4656a91af17fe52e878beba17f1fef4d9cab611104290f013f8c085d4","bytes":1221265,"members":64,"library_file_id":"libfile_6ec18bd05d488191ab848a39ef66d0f6","source_commit":"2edc7736e8f574e5f340b7ba596cc6eb96e47bd2","source_manifest_sha256":"bbda3c9d67c62766e14bf9d77bebffc284da658caceefb7bcb13566a937ce74a","ci_run":41179367480,"ci_conclusion":"success","tests_v015":28,"legacy_v014_rerun":51,"zip_crc":"PASS","actual_extraction":"PASS","swiftui_compile":"NOT_TESTED","mac_install":"NOT_PERFORMED","mac_field":"NOT_TESTED","professional_acceptance":"HOLD","original75_acceptance":"HOLD","product_verified_finish":"HOLD","next":"AWAIT_REAL_MAC_RECEIPT_SAME_V015_NO_NEW_VERSION_PROGRAM"}
+{
+  "package": "ENGURU_OSI_UCLU_YEREL_ZEKA_V015_FINAL.zip",
+  "sha256": "88129529a2920e1d217752c3c38f51ffff84420aa095755b4906c3125ec46697",
+  "bytes": 1235715,
+  "members": 74,
+  "zip_crc": "PASS",
+  "actual_extraction": "PASS",
+  "source_commit": "4167ee4402fc2b4323f8e171780c186b5dc224a7",
+  "source_manifest_sha256": "e6505f13309b728dea814f796ee4391ef7e5a7a899a254706843e144e9d77eec",
+  "new_tests": 32,
+  "ci_run": 41180215263,
+  "mac_build": "REPAIR_NOT_TESTED",
+  "product_finish": "HOLD",
+  "library_file_id": "libfile_6ec18bd05d488191ab848a39ef66d0f6",
+  "same_v015": true,
+  "previous_package_sha256": "889cbac4656a91af17fe52e878beba17f1fef4d9cab611104290f013f8c085d4",
+  "first_mac_evidence_sha256": "e6198cad04c7ec2bd5773f1ce814280476fe93d7ac048e33a4c3f78272baed1d"
+}
