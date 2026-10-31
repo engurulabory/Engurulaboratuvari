@@ -8,7 +8,7 @@
 
 ## V015 gerçek mühendislik ve kabul sınırı
 
-STATE=INTEGRATED_CANDIDATE_MAC_RECEIPT_PENDING
+STATE=PACKAGE_DELIVERED / MAC_MAKBUZU_BEKLENIYOR
 PRODUCT_VERIFIED_FINISH=HOLD
 MAC_SWIFTUI_COMPILE=NOT_TESTED
 MAC_INSTALL=NOT_PERFORMED
@@ -60,17 +60,32 @@ Tam gate sözleşmeleri gevşetilmedi; kısmi mühendislik testleri gate-final P
 
 İki V0.6 PNG ve owner görsel kabul kaydı `v015/design` içine aynı baytlarla alındı. Canlı SwiftUI görünümünde koyuyeşil,sakin tipografi,katlanırkuyruk/kanıt,ikirol,teksohbet ve verifiedyüzde korunur. Görsel karakterin canlıasset eşdeğerliği,kontrast/VoiceOver,Macderleme veownerestetik kabulü açık. Referans resim gerçek uygulama screenshot'ı değildir.
 
-MevcutUl ak/PiLive/SQLite/yedekler okunmadı veya değiştirilmedi. Mac kurulum akışı yalnız yeni AudiV13 alanında ayrı.app oluşturur; eskiappüzerine yazmaz. Geri alma yeniappkapat/eskiuygulamayıaç modelidir; silme veyaDBrestore yok. MevcutXcode+Python gerektirir; modelpull/pip/Xcodeinstall,ödeme,merge/yayın yok.
+Mevcut Ulak/PiLive/SQLite/yedekler okunmadı veya değiştirilmedi. Mac kurulum akışı yalnız yeni AudiV13 alanında ayrı.app oluşturur; eskiappüzerine yazmaz. Geri alma yeniappkapat/eskiuygulamayıaç modelidir; silme veyaDBrestore yok. MevcutXcode+Python gerektirir; modelpull/pip/Xcodeinstall,ödeme,merge/yayın yok.
 
 ## Tek teslim ve açık işler
 
 Aynı V015 ürünü için tek `ENGURU_OSI_UCLU_YEREL_ZEKA_V015_FINAL.zip` hazırlanır. FINAL dosya adı paketleme adıdır; ürün TAM BİTTİ hükmü değildir. Genel üretim görevleri,Cockpit/PiLiveyüzeyi,generictoolisolation,75özgünkanıt veMackabulü açıktır. Mac erişimi bulunmadığından tek doğrulanmış adaypaket ve tek scopedTerminalbloğu sonrası gerçek makbuz beklenir. Kurulumownerstart eylemi genel kritik yetki sağlamaz.
 
-CI=SOURCE_COMMIT_PENDING; gerçek run sonucu teslim kaydında güncellenecek. Bu kayıttaki kaynak kodu,manifest ve yereltestler kayda alınır; kaynakcommit ileCIprovenance ayrı doğrulanır. main ve önceki V014dalı korunur. Sonraki kaynak değişikliği varsa yeniden ilgili regresyon gerekir.
+CI=PASS_SOURCE_COMMIT_2edc7736e8f574e5f340b7ba596cc6eb96e47bd2; run41179367480/regression job124473426960 completed/success,28/28 test logu okundu. Bu kayıttaki kaynak kodu,manifest ve yereltestler kayda alınır; kaynakcommit ileCIprovenance ayrı doğrulanır. main ve önceki V014dalı korunur. Sonraki kaynak değişikliği varsa yeniden ilgili regresyon gerekir.
 
 ## DoneCheck™
 
-Gerçek iş: dar olumlu pilot çalıştı; ürünadayı kaynakları üretildi. Doğru sonuç:28gerçekt est+51yenidenregresyon kaynak-eşliPASS. Kanıtlıbitiş: darpilotPASS; genelürün/75koşul/Mac/ownerfinalHOLD. Araonay için ürün bölünmedi; tekV015programında saha bağımlılığına kadar ilerlenir.
+Gerçek iş: dar olumlu pilot çalıştı; ürünadayı kaynakları üretildi. Doğru sonuç:28 gerçek test+51yenidenregresyon kaynak-eşliPASS. Kanıtlıbitiş: darpilotPASS; genelürün/75koşul/Mac/ownerfinalHOLD. Araonay için ürün bölünmedi; tekV015programında saha bağımlılığına kadar ilerlenir.
+
+## Tek paket teslim makbuzu ve gerçek sonraki hareket
+
+[ENGURU_OSI_UCLU_YEREL_ZEKA_V015_FINAL.zip](https://chatgpt.com/library?file_id=libfile_6ec18bd05d488191ab848a39ef66d0f6&account_id=personal)
+
+- ZIP SHA256 `889cbac4656a91af17fe52e878beba17f1fef4d9cab611104290f013f8c085d4`;1221265bayt,64üye,CRC ve herüyehashi/baytı PASS. Gerçek arşiv özel yeni testalanına açılıp herdosya karşılaştırıldı.
+- Kaynakcommit `2edc7736e8f574e5f340b7ba596cc6eb96e47bd2`; kaynakmanifestSHA `bbda3c9d67c62766e14bf9d77bebffc284da658caceefb7bcb13566a937ce74a`;49sealed kaynakdosyası. [CI run41179367480](https://github.com/engurulabory/Engurulaboratuvari/actions/runs/41179367480) exactsourcecheckout ve28/28 regresyonPASS; log gerçekokundu. CI Macderlemesi veyaQwenmodelçağrısı değildir.
+- Son rapor/teslim kaydı kaynakcommit sonrasıdır. Çekirdek,fixture,test,native vemanifest baytları aynı kalır; CI hükmü test edilmiş kaynakcommitine aittir, son raporcommitinde yeniCIçalıştı denmez.
+- Bir Terminalbloğu SHA ile paketi seçer; test edilmiş strict extractor fonksiyonunu kullanır. Başlangıç kodu AST sınamasından geçti; bütünü gerçekMac'te henüz çalıştırılmadı. `ENGURU_V015_MAC_BOOTSTRAP.py` aynı kodun sürümlü kaydıdır. Bu kod yalnız yeniAudiV13alanı/ayrı.app/sınırlılocalpilot veDesktopkanıtkopyası kapsamındadır. Sıfırmodelindirme/ödeme/sistemayarınıdeğiştirme. Gerçek kurulum owner'ın bu tekbloğu başlatmasıyla kapsamlı olarak yetkilendirilir; başka kritik işlemler için genel yetki oluşmaz.
+- MevcutPython veXcode yoksa HOLD makbuzu üretilir; kurulumaraçları veya model otomatik indirilmez. Macderleme/codegen/rolbağlantısıgeçmediyse ürünPASS verilmez. Başarısız akışın makbuzu da ZIP'e alınır; authority.key veveritabanı export edilmez.
+- DoğrudanMac erişimi yok. Tekpaket/tekblok tesliminden sonra gerçekMacmakbuzu beklenir. Yönetim kararı40 gereğince araGitHubblokduruşu yerine aynıV015'in saha bağımlılığına gelindi. YeniV016/V017,ayrıhazırlıkZIP'i veya dördüncüpromptonarımı açılmadı.
+
+**Kesin bitiş ayrımı:** paket bütünlüğüPASS; darpilotPASS; CI28/28PASS; genelGitHubürünkapılarıkısmi/HOLD; SwiftUIbuildNOT_TESTED; gerçekMacürünsahaNOT_TESTED;75özgünürünkabulüHOLD; ownerfinal/VERIFIED_FINISHHOLD. Paket adıFINAL ürün TAM BİTTİ hükmü değildir.
+
+**Açıklar:** README ve9kapı matrisi tam sınırlamayı taşır: genel görev icrası/generictoolizolation/bağımlıçokişuzlaştırması/CockpitPiLiveportföy/V0.6canlıkarakter/VoiceOvervekontrast/75kanıt veownerfinalaçık. Bu açıkları tam ürün gibi pazarlayan veya kurulumla kapanmış sayan hüküm yok. Macmakbuzu aynıV015devamında incelenir; ilk makbuz tüm75koşulu otomatik kapatmaz.
 
 ## Tarihsel V014.MAC ve önceki kaynaklar — korunmuş kayıt
 
