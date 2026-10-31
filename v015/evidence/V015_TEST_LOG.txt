@@ -1,0 +1,33 @@
+test_nonmatching_manifest_rejected (test_archive.ArchiveTests.test_nonmatching_manifest_rejected) ... ok
+test_path_escape_is_rejected_before_write (test_archive.ArchiveTests.test_path_escape_is_rejected_before_write) ... ok
+test_verified_package_extracts_exact_bytes_new_area_only (test_archive.ArchiveTests.test_verified_package_extracts_exact_bytes_new_area_only) ... ok
+test_wrong_sha_does_not_create_directory (test_archive.ArchiveTests.test_wrong_sha_does_not_create_directory) ... ok
+test_actual_kill_and_restart_no_replay (test_core.Adversarial.test_actual_kill_and_restart_no_replay) ... ok
+test_conflicting_repeat_preserves_original (test_core.Adversarial.test_conflicting_repeat_preserves_original) ... ok
+test_double_active_claim_real_two_connections (test_core.Adversarial.test_double_active_claim_real_two_connections) ... ok
+test_event_tampering_update_and_delete_denied (test_core.Adversarial.test_event_tampering_update_and_delete_denied) ... ok
+test_evidence_free_done_rejected (test_core.Adversarial.test_evidence_free_done_rejected) ... ok
+test_fake_success_receipt_rejected (test_core.Adversarial.test_fake_success_receipt_rejected) ... ok
+test_model_raw_shell_and_path_injection_rejected (test_core.Adversarial.test_model_raw_shell_and_path_injection_rejected) ... ok
+test_repair_budget_and_duplicate_json_and_endpoint (test_core.Adversarial.test_repair_budget_and_duplicate_json_and_endpoint) ... ok
+test_source_tamper_after_done_rejected (test_core.Adversarial.test_source_tamper_after_done_rejected) ... ok
+test_symlink_and_hardlink_rejected (test_core.Adversarial.test_symlink_and_hardlink_rejected) ... ok
+test_unknown_external_effect_does_not_replay (test_core.Adversarial.test_unknown_external_effect_does_not_replay) ... ok
+test_weights_types_unknown_and_wrong_percentage (test_core.Adversarial.test_weights_types_unknown_and_wrong_percentage) ... ok
+test_wrong_expired_and_forged_authority (test_core.Adversarial.test_wrong_expired_and_forged_authority) ... ok
+test_wrong_source_sha_rejected (test_core.Adversarial.test_wrong_source_sha_rejected) ... ok
+test_natural_command_to_real_red_green_independent_test_and_projection (test_core.Positive.test_natural_command_to_real_red_green_independent_test_and_projection) ... ok
+test_pause_resume_controls_queue_without_replay (test_core.Positive.test_pause_resume_controls_queue_without_replay) ... ok
+test_readonly_snapshot_does_not_run_tools (test_core.Positive.test_readonly_snapshot_does_not_run_tools) ... ok
+test_same_command_stable_no_reexecution (test_core.Positive.test_same_command_stable_no_reexecution) ... ok
+test_canonical_sources_and_75_criterion_text (test_integration.Integrations.test_canonical_sources_and_75_criterion_text) ... ok
+test_pause_at_pre_action_boundary_and_live_recovery_denied (test_integration.Integrations.test_pause_at_pre_action_boundary_and_live_recovery_denied) ... ok
+test_two_real_http_stub_role_requests_digest_and_separation (test_integration.Integrations.test_two_real_http_stub_role_requests_digest_and_separation) ... ok
+test_wrong_model_and_malformed_reply_hold (test_integration.Integrations.test_wrong_model_and_malformed_reply_hold) ... ok
+test_evidence_allowlist_never_exports_key_or_database (test_packaging.Packaging.test_evidence_allowlist_never_exports_key_or_database) ... ok
+test_native_source_uses_readonly_projection_and_existing_python (test_packaging.Packaging.test_native_source_uses_readonly_projection_and_existing_python) ... ok
+
+----------------------------------------------------------------------
+Ran 28 tests in 1.375s
+
+OK

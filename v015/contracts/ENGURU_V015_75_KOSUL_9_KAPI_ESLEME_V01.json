@@ -1,0 +1,1332 @@
+{
+  "acceptance": {
+    "crosswalk_integrity": "75/75_MAPPED_IN_THIS_FILE",
+    "engineering_gates_9": "0/9_ACCEPTED",
+    "mac_field_75": "0/75_NOT_TESTED",
+    "mac_product": "NOT_TESTED",
+    "preinstall_75": "0/75_PASS_EVIDENCE_HOLD",
+    "v015_implementation": "NOT_STARTED",
+    "verified_finish": "HOLD",
+    "written_75_source": "75/75_SOURCE_READ_AND_MAPPED"
+  },
+  "date": "2026-10-30",
+  "fixed_source": {
+    "github_v014_mac_report_commit": "04d67c9bf9981a900dc2f9931deb577d2518683f",
+    "original_75_file": "sources/acceptance_75_LOCKED.json",
+    "original_75_sha256": "a0ea2e161c639b079947301a6001021e43ff198aabca5105ed69586da2789756",
+    "owner_34_mapping_draft_sha256": "6ca4d1375608ed681f3ae06376a005a1344d82eb0cd7759bc05c24f6588a5589",
+    "source_package": "ENGURU_ULAK_V081_KURULUM_ONCESI_HAZIRLIK_PAKETI.zip",
+    "v08_75_ledger_sha256": "db3aee647310e2cb3a53fdb34d9f5a3cf0192c7c3d98f9d08d453c8158524c40",
+    "v08_interface_sha256": "986ee46bb55df6d3205284a6e17a80c2a7f59bdbe3676a7972dd77526cb8882a"
+  },
+  "gate_count": 9,
+  "gates": [
+    {
+      "adversarial_test": "Yanlış HEAD, eksik kaynak, eskitilmiş evidence ve sahte makbuzun reddi.",
+      "design_state": "SPECIFIED_NOT_INDEPENDENTLY_ACCEPTED",
+      "id": "V015.G01",
+      "mac_field_state": "NOT_TESTED",
+      "positive_test": "Pinned HEAD ve gerçek dosya SHA eşliğiyle yetkili read-only kaynak keşfi; Mac/GitHub senkronunda drift raporu.",
+      "preinstall_state": "HOLD",
+      "primary_ids": [
+        "HG05",
+        "GU04",
+        "YY03",
+        "YY04",
+        "IS05"
+      ],
+      "purpose": "GitHub canonical mühendislik kaynağı, Mac yerel saha kopyası, task/plan/source/scope SHA kimlikleri ve değişmez provenance.",
+      "required_artifacts": [
+        "SourceManifest",
+        "VersionPin",
+        "DriftReceipt"
+      ],
+      "required_evidence": "GitHub SHA, gerçek yerel dosya SHA, manifest ve drift regresyon makbuzları.",
+      "title": "Kaynak ve kimlik sürekliliği"
+    },
+    {
+      "adversarial_test": "Döngü, bilinmeyen blok, 10100 ağırlık, yanlış deneme sayısı veya owner kararı olmadan kapsam değişimi reddi.",
+      "design_state": "SPECIFIED_NOT_INDEPENDENTLY_ACCEPTED",
+      "id": "V015.G02",
+      "mac_field_state": "NOT_TESTED",
+      "positive_test": "Türkçe user command → typed UserCommand → kabul ölçütlü, sıralı DAG ve sabit plan.",
+      "preinstall_state": "HOLD",
+      "primary_ids": [
+        "HG01",
+        "HG02",
+        "YG01",
+        "YG02",
+        "YG03",
+        "YG04",
+        "YG05",
+        "YY01",
+        "YY02"
+      ],
+      "purpose": "Yönetici planı önerir; çekirdek plan kimliğini, bağımlılık DAG ve toplam 10000 baz puanını mühürler.",
+      "required_artifacts": [
+        "UserCommand",
+        "PlanCandidate",
+        "SealedVersionedTaskPlan"
+      ],
+      "required_evidence": "Şema validasyonu, DAG/weight karşıt testleri, sürüm ve owner-diff makbuzları.",
+      "title": "Görev ve plan sözleşmesi"
+    },
+    {
+      "adversarial_test": "Sahte/expired grant, prompt injection, path traversal, symlink kök kaçışı, yanlış task ya da model tarafından uydurulmuş grant reddi.",
+      "design_state": "SPECIFIED_NOT_INDEPENDENTLY_ACCEPTED",
+      "id": "V015.G03",
+      "mac_field_state": "NOT_TESTED",
+      "positive_test": "Gerçek task/scope/plan/source/expiry/nonce ile geçerli owner onayı için kontrollü izin.",
+      "preinstall_state": "HOLD",
+      "primary_ids": [
+        "HG03",
+        "GU01",
+        "GU02",
+        "GU05",
+        "YS01",
+        "IS03"
+      ],
+      "purpose": "Human Threshold ve en az yetki: modelin serbest metni, README ve araç yanıtı yetki üretmez.",
+      "required_artifacts": [
+        "CapabilityGrant",
+        "OwnerApproval",
+        "PolicyDecision"
+      ],
+      "required_evidence": "Model dışı trusted facts ile pre-action broker karar testleri ve olumsuz yetki makbuzları.",
+      "title": "Yetki ve güven sınırı"
+    },
+    {
+      "adversarial_test": "Eşzamanlı çift claim, çelişkide REPLACE, UNKNOWN effect replay, tamamlanmamış işlemi DONE sayma, belirsiz yeniden yürütme reddi.",
+      "design_state": "SPECIFIED_NOT_INDEPENDENTLY_ACCEPTED",
+      "id": "V015.G04",
+      "mac_field_state": "NOT_TESTED",
+      "positive_test": "Aynı command/payload kararlı sonuç, farklı payload conflict, bağımsız yerel işlerin ilerlemesi, restart sonrası tutarlı kayıt.",
+      "preinstall_state": "HOLD",
+      "primary_ids": [
+        "YA02",
+        "YA04",
+        "MA03",
+        "MA05",
+        "YS04",
+        "YS05",
+        "IS02",
+        "IY02"
+      ],
+      "purpose": "SQLite WAL single-writer, FIFO+dependency, tek aktif claim, idempotency, kesinti ve UNKNOWN dış etki uzlaştırması.",
+      "required_artifacts": [
+        "TaskLedger",
+        "EventCheckpoint",
+        "RecoveryDecision"
+      ],
+      "required_evidence": "Gerçek SQLite kalıcılık/atomiklik/çok-işçi/öldür-yeniden-başlat/UNKNOWN testleri.",
+      "title": "Kalıcı görev defteri ve kurtarma"
+    },
+    {
+      "adversarial_test": "Kök dışı yazma, kullanıcı dosyası değişimi, yetkisiz shell, merge/publish/delete ve kaynak kaymasında icra engeli.",
+      "design_state": "SPECIFIED_NOT_INDEPENDENTLY_ACCEPTED",
+      "id": "V015.G05",
+      "mac_field_state": "NOT_TESTED",
+      "positive_test": "İzolasyonda gerçek Python dosyası onarımı, Git worktree oluşturma ve yetkili test komutu; doğru stdout/exit makbuzu.",
+      "preinstall_state": "HOLD",
+      "primary_ids": [
+        "GU03",
+        "IG01",
+        "IG02",
+        "IG03",
+        "IG05",
+        "IY03",
+        "IY05"
+      ],
+      "purpose": "Model önerisinin typed proposal olarak brokerden geçmesi; yalnız allowlist sandbox/worktree veya yetkili yerel araç; tool receipts.",
+      "required_artifacts": [
+        "ToolProposal",
+        "ExecutionPermit",
+        "OperationReceipt"
+      ],
+      "required_evidence": "Isolated gerçek tool invocation, izin ve path karşıt testleri, before/after SHA.",
+      "title": "Güvenli ve gerçek araç icrası"
+    },
+    {
+      "adversarial_test": "Beklenen sonucu değiştirme, sahte ran_tests, tekrar eden aynı hipotez, yorumla kod eksiltme ve 4. tur reddi.",
+      "design_state": "SPECIFIED_NOT_INDEPENDENTLY_ACCEPTED",
+      "id": "V015.G06",
+      "mac_field_state": "NOT_TESTED",
+      "positive_test": "Özgün beklenen fixture ve gerçek test komutuyla green, bağımsız test ve regresyon raporları.",
+      "preinstall_state": "HOLD",
+      "primary_ids": [
+        "IG04",
+        "IS01",
+        "IY01",
+        "IY04"
+      ],
+      "purpose": "Kodun üretimi ile gerçek test icrası ayrılır; en fazla üç farklı kanıtlı onarım turu, iki tekrarda yeni teşhis için HOLD.",
+      "required_artifacts": [
+        "TestPlan",
+        "TestReceipt",
+        "RepairCheckpoint"
+      ],
+      "required_evidence": "Kırmızı/yeşil, karşıt ve regresyon testleri; exit/stdout/stderr ve source SHA kayıtları.",
+      "title": "Bağımsız test ve kontrollü onarım"
+    },
+    {
+      "adversarial_test": "Verified filtresi kaldırılması, sahte PASS, SHA var ama test fail, yüzde >100, model DONE ifadesi, eski makbuz reddi.",
+      "design_state": "SPECIFIED_NOT_INDEPENDENTLY_ACCEPTED",
+      "id": "V015.G07",
+      "mac_field_state": "NOT_TESTED",
+      "positive_test": "Tam task/plan/source/receipt ile doğrulanan blok ilerler, kanıtlı 10000/10000 sonrası bütün DoneCheck koşulları ayrı değerlendirilir.",
+      "preinstall_state": "HOLD",
+      "primary_ids": [
+        "HG04",
+        "MA04",
+        "YS02",
+        "YS03",
+        "IS04",
+        "TU02",
+        "TU05",
+        "YD01"
+      ],
+      "purpose": "VerifiedReceipt, fail-closed verifier, append-only kanıt ve baz puandan gerçek ilerleme; owner final ayrı.",
+      "required_artifacts": [
+        "VerifiedReceipt",
+        "ProofLedger",
+        "DoneCheckResult"
+      ],
+      "required_evidence": "Provenance ve test makbuzları, karşıt proof drift, güvenilir yüzde ve owner gate testleri.",
+      "title": "Kanıt, ilerleme ve DoneCheck"
+    },
+    {
+      "adversarial_test": "UI/metin doğrudan DB/kanıt yazamaz; PiLive/Ana Cockpit görev icra komutu üretemez; yanlış rol/plan mesajı reddi.",
+      "design_state": "SPECIFIED_NOT_INDEPENDENTLY_ACCEPTED",
+      "id": "V015.G08",
+      "mac_field_state": "NOT_TESTED",
+      "positive_test": "UserCommand → SealedPlan → ToolPermit → VerifiedReceipt → ReadOnlyProjection uçtan uca, pozitif yetkili görev.",
+      "preinstall_state": "HOLD",
+      "primary_ids": [
+        "YA01",
+        "MA01",
+        "MA02",
+        "YY05",
+        "TU01",
+        "YD03"
+      ],
+      "purpose": "Tek yerel modelde ayrık iki rol, tek broker ve bağımsız verifier; Cockpit/PiLive/Ulak farklı ürün yüzeylerini korur.",
+      "required_artifacts": [
+        "TypedIPC",
+        "RoleAdapter",
+        "ReadOnlyTaskProjection"
+      ],
+      "required_evidence": "Event ordering, typed schema, rol izolasyonu, bağımlı hizmet ve pozitif E2E pilot.",
+      "title": "Yönetici–İcracı–Çekirdek–Ulak bütünleşmesi"
+    },
+    {
+      "adversarial_test": "Yanlış yüzde ve sahte DONE gösterimi, küçük pencerede taşma, VoiceOver/kontrast eksikliği, eski Ulak/PiLive verisine dokunma.",
+      "design_state": "SPECIFIED_NOT_INDEPENDENTLY_ACCEPTED",
+      "id": "V015.G09",
+      "mac_field_state": "NOT_TESTED",
+      "positive_test": "Native derleme, oturum/uyku/kesinti, kullanıcı görevi, %/HOLD/DoneCheck gösterimi, masaüstü erişilebilirlik ve owner kabulü.",
+      "preinstall_state": "HOLD",
+      "primary_ids": [
+        "YA03",
+        "YA05",
+        "TU03",
+        "TU04",
+        "KU01",
+        "KU02",
+        "KU03",
+        "KU04",
+        "KU05",
+        "YR01",
+        "YR02",
+        "YR03",
+        "YR04",
+        "YR05",
+        "VG01",
+        "VG02",
+        "VG03",
+        "VG04",
+        "VG05",
+        "YD02",
+        "YD04",
+        "YD05"
+      ],
+      "purpose": "Gerçek Mac-native SwiftUI, V0.6 görsel kimlik, erişilebilir Ulak, eskilerin korunumu ve gerçek owner kabulü.",
+      "required_artifacts": [
+        "MacAppBuild",
+        "FieldReceipt",
+        "OwnerAcceptance"
+      ],
+      "required_evidence": "Native SwiftUI build, Mac üzerinde gerçek görev + restart, görsel V0.6 karşılaştırma, owner saha makbuzu.",
+      "title": "Mac OSi, Ulak deneyimi ve saha kabulü"
+    }
+  ],
+  "governance": {
+    "install": "HOLD",
+    "old_ulak_delete": "HOLD",
+    "owner_decision_38": "Architecture direction accepted in conversation; no canonical GitHub commit yet",
+    "owner_decisions_34_registry": "SOURCE_MAP_DRAFT_NOT_OWNER_SIGNED",
+    "owner_final": "ONLY after 9 gate evidence + 75 per-ID evidence + real Mac field + owner decision",
+    "plan_lock": "Owner authority required for changes in original criteria, weights, authority scope",
+    "work": "CONTROLLED_STOP"
+  },
+  "groups_count": 15,
+  "locked_goal": "Tek emir → profesyonel Yönetici → yetkili İcracı → bağımsız kanıt → vizyoner Ulak ekranı",
+  "non_destructive_rules": [
+    "V015 kapı kimlikleri V015.G01..V015.G09; owner karar kimlikleri OWN.K01..OWN.K34; V0.8 hazırlık kapıları V08.G01..V08.G09 ayrı ad uzaylarıdır.",
+    "15 alan ve 75 özgün ID aynen korunur; 9 V015 gate yalnız ikincil mühendislik sınıflamasıdır.",
+    "Owner 34 kararının eşleme sicili DRAFT; owner-signed canonical registry değildir.",
+    "V0.6 owner visual remains authority; V0.7.1 visual HOLD.",
+    "Mac Ulak ve PiLive SQLite/backup korunur.",
+    "Mac saha ve owner kabul olmadan ürün verified finish olmaz.",
+    "V014 51/51 testleri fixture scope, gerçek ürün kabulü değildir.",
+    "Work/GitHub write/merge/install yetkisi bu taslakla açılmaz."
+  ],
+  "original_controls_count": 75,
+  "per_criterion": [
+    {
+      "area": "Hedef gücü",
+      "evidence_required_original": "Bölüm 1; gerçek pilot teslim/DoneCheck",
+      "id": "HG01",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G02",
+      "requirement_original": "Tek net hedef ve gerçek sonuç",
+      "secondary_gates": [],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Hedef gücü",
+      "evidence_required_original": "Bölüm 3-4; end-to-end gerçek görev",
+      "id": "HG02",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G02",
+      "requirement_original": "Kullanıcı niyeti → blok → çıktı",
+      "secondary_gates": [
+        "V015.G08"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Hedef gücü",
+      "evidence_required_original": "Bölüm 4-5; negatif test",
+      "id": "HG03",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G03",
+      "requirement_original": "Sıralı tam otomasyon + human gate",
+      "secondary_gates": [
+        "V015.G05"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Hedef gücü",
+      "evidence_required_original": "Bölüm 4; yanlış proof testi",
+      "id": "HG04",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G07",
+      "requirement_original": "Kanıt ve yüzde bağı",
+      "secondary_gates": [
+        "V015.G09"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Hedef gücü",
+      "evidence_required_original": "Bölüm 1; üçlü kabul muhasebesi",
+      "id": "HG05",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G01",
+      "requirement_original": "Hazırlık/teknik/saha sınırları",
+      "secondary_gates": [
+        "V015.G09"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Yalınlık",
+      "evidence_required_original": "Bölüm 4; UX saha testi",
+      "id": "YA01",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G08",
+      "requirement_original": "Tek uygulama, tek sohbet",
+      "secondary_gates": [
+        "V015.G09"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Yalınlık",
+      "evidence_required_original": "Bölüm 4; kuyruk testi",
+      "id": "YA02",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G04",
+      "requirement_original": "Tek aktif iş, FIFO",
+      "secondary_gates": [
+        "V015.G08"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Yalınlık",
+      "evidence_required_original": "Bölüm 4; UX testi",
+      "id": "YA03",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G09",
+      "requirement_original": "Minimal ekran, katlanır kanıt",
+      "secondary_gates": [
+        "V015.G08"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Yalınlık",
+      "evidence_required_original": "Bölüm 4; yaşam döngüsü testi",
+      "id": "YA04",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G04",
+      "requirement_original": "Duraklat/devam/güvenli dur",
+      "secondary_gates": [
+        "V015.G09"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Yalınlık",
+      "evidence_required_original": "Bölüm 2; oturum/sleep saha testi",
+      "id": "YA05",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G09",
+      "requirement_original": "Arka plan otomatizasyonu",
+      "secondary_gates": [
+        "V015.G04"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Mimari",
+      "evidence_required_original": "Bölüm 2-3; rol izolasyonu",
+      "id": "MA01",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G08",
+      "requirement_original": "Yönetici/İcracı ayrı yetki/bağlam",
+      "secondary_gates": [
+        "V015.G03"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Mimari",
+      "evidence_required_original": "Bölüm 2; donanım preflight",
+      "id": "MA02",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G08",
+      "requirement_original": "Tek yerel model adaptörü",
+      "secondary_gates": [
+        "V015.G01"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Mimari",
+      "evidence_required_original": "Bölüm 4; eşzamanlılık testi",
+      "id": "MA03",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G04",
+      "requirement_original": "Tek yazıcı, tek gerçek veritabanı",
+      "secondary_gates": [
+        "V015.G07"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Mimari",
+      "evidence_required_original": "Bölüm 2-4; sahte kanıt testi",
+      "id": "MA04",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G07",
+      "requirement_original": "Bağımsız doğrulayıcı",
+      "secondary_gates": [
+        "V015.G05"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Mimari",
+      "evidence_required_original": "Bölüm 1,4; failover saha testi",
+      "id": "MA05",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G04",
+      "requirement_original": "Kurtarma + Zülfikar yedeği",
+      "secondary_gates": [
+        "V015.G09"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Güvenlik",
+      "evidence_required_original": "Bölüm 3,5; allowlist kontrolü",
+      "id": "GU01",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G03",
+      "requirement_original": "En az yetki, izinli kaynaklar",
+      "secondary_gates": [
+        "V015.G05"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Güvenlik",
+      "evidence_required_original": "Bölüm 5; süresi dolan token testi",
+      "id": "GU02",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G03",
+      "requirement_original": "İnsan eşiği kapsam/nonce/SHA",
+      "secondary_gates": [
+        "V015.G05"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Güvenlik",
+      "evidence_required_original": "Bölüm 3,5; rollback testi",
+      "id": "GU03",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G05",
+      "requirement_original": "Yalıtılmış düzenleme ve geri alma",
+      "secondary_gates": [
+        "V015.G09"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Güvenlik",
+      "evidence_required_original": "Bölüm 4,5; kaynak kayması testi",
+      "id": "GU04",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G01",
+      "requirement_original": "Kaynak/proof doğruluğu",
+      "secondary_gates": [
+        "V015.G07"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Güvenlik",
+      "evidence_required_original": "Bölüm 4-5; saldırı testleri",
+      "id": "GU05",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G03",
+      "requirement_original": "Gizlilik, prompt enjeksiyonu ve audit",
+      "secondary_gates": [
+        "V015.G05"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Yönetici görev",
+      "evidence_required_original": "Bölüm 3; 10 görev sınavı",
+      "id": "YG01",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G02",
+      "requirement_original": "Doğal emir → açık hedef",
+      "secondary_gates": [
+        "V015.G08"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Yönetici görev",
+      "evidence_required_original": "Bölüm 3; plan şema testi",
+      "id": "YG02",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G02",
+      "requirement_original": "Bağımlı uygulanabilir bloklara ayırma",
+      "secondary_gates": [
+        "V015.G04"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Yönetici görev",
+      "evidence_required_original": "Bölüm 4; scope değişimi testi",
+      "id": "YG03",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G02",
+      "requirement_original": "Sabit ağırlık/scope sürümü",
+      "secondary_gates": [
+        "V015.G07"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Yönetici görev",
+      "evidence_required_original": "Bölüm 1,3; stres matrisi",
+      "id": "YG04",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G02",
+      "requirement_original": "Ön simülasyon ve karşıt sınama",
+      "secondary_gates": [
+        "V015.G06"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Yönetici görev",
+      "evidence_required_original": "Bölüm 3; plan→receipt eşliği",
+      "id": "YG05",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G02",
+      "requirement_original": "İcracıya kesin yetkili devir",
+      "secondary_gates": [
+        "V015.G03"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Yönetici sorumluluk",
+      "evidence_required_original": "Bölüm 3,5; kritik onay testi",
+      "id": "YS01",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G03",
+      "requirement_original": "Human Threshold koruması",
+      "secondary_gates": [
+        "V015.G02"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Yönetici sorumluluk",
+      "evidence_required_original": "Bölüm 4; kanıt saldırısı",
+      "id": "YS02",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G07",
+      "requirement_original": "Yanlış beyanı PASS saymama",
+      "secondary_gates": [],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Yönetici sorumluluk",
+      "evidence_required_original": "Bölüm 4; finiş negatif testi",
+      "id": "YS03",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G07",
+      "requirement_original": "Gerçek DoneCheck kuralı",
+      "secondary_gates": [
+        "V015.G09"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Yönetici sorumluluk",
+      "evidence_required_original": "Bölüm 4; HOLD senaryosu",
+      "id": "YS04",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G04",
+      "requirement_original": "Güvenli kuyruk ilerlemesi",
+      "secondary_gates": [
+        "V015.G07"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Yönetici sorumluluk",
+      "evidence_required_original": "Bölüm 1,3; üç onarım sınırı",
+      "id": "YS05",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G04",
+      "requirement_original": "Durma kararı/öğrenme ve kanıt",
+      "secondary_gates": [
+        "V015.G06"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Yönetici yetenek",
+      "evidence_required_original": "Bölüm 3; 10/10 gerçek görev",
+      "id": "YY01",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G02",
+      "requirement_original": "Planlama doğruluk sınavı",
+      "secondary_gates": [
+        "V015.G06"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Yönetici yetenek",
+      "evidence_required_original": "Bölüm 3; 10/10 karşıt görev",
+      "id": "YY02",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G02",
+      "requirement_original": "Risk/bağımlılık analizi sınavı",
+      "secondary_gates": [
+        "V015.G03"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Yönetici yetenek",
+      "evidence_required_original": "Bölüm 3; sürümlü fixture",
+      "id": "YY03",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G01",
+      "requirement_original": "Kaynak keşif/araç seçimi",
+      "secondary_gates": [
+        "V015.G02"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Yönetici yetenek",
+      "evidence_required_original": "Bölüm 3-5; exact SHA sınavı",
+      "id": "YY04",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G01",
+      "requirement_original": "GitHub+Mac durum uzlaştırma",
+      "secondary_gates": [
+        "V015.G09"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Yönetici yetenek",
+      "evidence_required_original": "Bölüm 4; gerçek UX deneyi",
+      "id": "YY05",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G08",
+      "requirement_original": "Kararların okunur raporlanması",
+      "secondary_gates": [
+        "V015.G09"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "İcracı görev",
+      "evidence_required_original": "Bölüm 3; gerçek worktree testi",
+      "id": "IG01",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G05",
+      "requirement_original": "Yalıtılmış üretim",
+      "secondary_gates": [
+        "V015.G03"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "İcracı görev",
+      "evidence_required_original": "Bölüm 3,5; allowlist testi",
+      "id": "IG02",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G05",
+      "requirement_original": "İzinli Mac araçlarının icrası",
+      "secondary_gates": [
+        "V015.G03"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "İcracı görev",
+      "evidence_required_original": "Bölüm 3,5; branch/head testi",
+      "id": "IG03",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G05",
+      "requirement_original": "Yetkili GitHub iş akışı",
+      "secondary_gates": [
+        "V015.G01"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "İcracı görev",
+      "evidence_required_original": "Bölüm 1,3; 3 onarım testi",
+      "id": "IG04",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G06",
+      "requirement_original": "Test ve onarım döngüsü",
+      "secondary_gates": [
+        "V015.G07"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "İcracı görev",
+      "evidence_required_original": "Bölüm 3-4; DoneCheck testi",
+      "id": "IG05",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G05",
+      "requirement_original": "Çıktı+receipt+rollback üretimi",
+      "secondary_gates": [
+        "V015.G07"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "İcracı sorumluluk",
+      "evidence_required_original": "Bölüm 4; false-positive testi",
+      "id": "IS01",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G06",
+      "requirement_original": "Hatalı/eksik testle PASS yasak",
+      "secondary_gates": [
+        "V015.G07"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "İcracı sorumluluk",
+      "evidence_required_original": "Bölüm 4; crash/idempotency testi",
+      "id": "IS02",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G04",
+      "requirement_original": "Tekrarsız ve duruma bağlı icra",
+      "secondary_gates": [
+        "V015.G05"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "İcracı sorumluluk",
+      "evidence_required_original": "Bölüm 5; güvenlik testi",
+      "id": "IS03",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G03",
+      "requirement_original": "Sır koruma ve izin sınırı",
+      "secondary_gates": [
+        "V015.G01"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "İcracı sorumluluk",
+      "evidence_required_original": "Bölüm 2-4; digest testi",
+      "id": "IS04",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G07",
+      "requirement_original": "Bağımsız verifier'a kanıt devri",
+      "secondary_gates": [
+        "V015.G05"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "İcracı sorumluluk",
+      "evidence_required_original": "Bölüm 3-4; stale SHA testi",
+      "id": "IS05",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G01",
+      "requirement_original": "Açık durum/kaynak eşliği",
+      "secondary_gates": [
+        "V015.G07"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "İcracı yetenek",
+      "evidence_required_original": "Bölüm 3; 10 gerçek görev",
+      "id": "IY01",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G06",
+      "requirement_original": "Swift/Python kod çözümleme ve onarım",
+      "secondary_gates": [
+        "V015.G05"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "İcracı yetenek",
+      "evidence_required_original": "Bölüm 3-4; fiziksel kesinti testi",
+      "id": "IY02",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G04",
+      "requirement_original": "SQLite ve kurtarma becerisi",
+      "secondary_gates": [],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "İcracı yetenek",
+      "evidence_required_original": "Bölüm 3; GitHub saha testi",
+      "id": "IY03",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G05",
+      "requirement_original": "Git worktree/commit/branch kanıtı",
+      "secondary_gates": [
+        "V015.G01"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "İcracı yetenek",
+      "evidence_required_original": "Bölüm 3; benchmark",
+      "id": "IY04",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G06",
+      "requirement_original": "Test/regresyon ve hata analizi",
+      "secondary_gates": [
+        "V015.G07"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "İcracı yetenek",
+      "evidence_required_original": "Bölüm 3-5; rollback/stop saha testi",
+      "id": "IY05",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G05",
+      "requirement_original": "Geri alma ve güvenli durma",
+      "secondary_gates": [
+        "V015.G09"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Teknik altyapı ve ekran",
+      "evidence_required_original": "Yerel IPC sözleşmesi + yanlış statü karşıt testi",
+      "id": "TU01",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G08",
+      "requirement_original": "Ulak, görev durumunu SQLite/tek hakikat kaydından sürümlenmiş IPC snapshot'ıyla okur; model metnini doğrudan statü olarak sunmaz.",
+      "secondary_gates": [
+        "V015.G09"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Teknik altyapı ve ekran",
+      "evidence_required_original": "Plan+receipt testleri; yüzde regresyonu",
+      "id": "TU02",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G07",
+      "requirement_original": "Yüzde, kilitli 10000 baz puanlı blok planında yalnız bağımsız doğrulanmış PASS ile artar.",
+      "secondary_gates": [
+        "V015.G09"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Teknik altyapı ve ekran",
+      "evidence_required_original": "UI reconnect ve Mac restart gerçek testleri",
+      "id": "TU03",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G09",
+      "requirement_original": "Bağlantı/süreç kesintisi ve yeniden bağlanmada ekran aynı görev/plan sürümünü gösterir.",
+      "secondary_gates": [
+        "V015.G04"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Teknik altyapı ve ekran",
+      "evidence_required_original": "Ekran durum matrisi + karşıt test",
+      "id": "TU04",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G09",
+      "requirement_original": "`HOLD/BLOCKED/RECOVERING/AWAITING_OWNER` durumları ayrı ve anlaşılır görünür; kanıt yokken DONE görünmez.",
+      "secondary_gates": [
+        "V015.G08"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Teknik altyapı ve ekran",
+      "evidence_required_original": "Yetkili kullanıcı erişim ve gizlilik testleri",
+      "id": "TU05",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G07",
+      "requirement_original": "`Kanıtları Gör` eylemi gerçek kaynak/test/DoneCheck referanslarını açar; gizli bilgiler maskelenir.",
+      "secondary_gates": [
+        "V015.G09"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Ekran sadeliği ve kolaylık",
+      "evidence_required_original": "İlk kullanım görev testi",
+      "id": "KU01",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G09",
+      "requirement_original": "Açılışta tek sohbet kutusu, kanıtlı yüzde, aktif iş, kuyruk ve DoneCheck okunur.",
+      "secondary_gates": [
+        "V015.G08"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Ekran sadeliği ve kolaylık",
+      "evidence_required_original": "3 kontrolün izin/durum testi",
+      "id": "KU02",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G09",
+      "requirement_original": "Duraklat/Devam Et/Güvenli Durdur bağlama göre doğru etkinleşir; riskli hareket açıklaması vardır.",
+      "secondary_gates": [
+        "V015.G04"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Ekran sadeliği ve kolaylık",
+      "evidence_required_original": "5 görevlik kullanılabilirlik sınavı",
+      "id": "KU03",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G09",
+      "requirement_original": "Terminal gerektirmeyen normal kullanım; hata mesajları anlaşılır Türkçe ve tek sonraki hareket içerir.",
+      "secondary_gates": [
+        "V015.G05"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Ekran sadeliği ve kolaylık",
+      "evidence_required_original": "macOS erişilebilirlik incelemesi",
+      "id": "KU04",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G09",
+      "requirement_original": "Klavye erişimi, VoiceOver etiketleri, dinamik yazı ve azaltılmış hareket desteklenir.",
+      "secondary_gates": [
+        "V015.G08"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Ekran sadeliği ve kolaylık",
+      "evidence_required_original": "Owner görev akışı ve tıklama adedi incelemesi",
+      "id": "KU05",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G09",
+      "requirement_original": "Teknik ayrıntılar isteğe bağlıdır; günlük kullanıcıya gereksiz karar/onay yükü çıkarılmaz.",
+      "secondary_gates": [
+        "V015.G03"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Ekran yerleşimi",
+      "evidence_required_original": "SwiftUI önizleme/yerleşim incelemesi",
+      "id": "YR01",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G09",
+      "requirement_original": "Üst çubukta ürün/bağlantı/görev durumu; ilk görünür alan kanıtlı ilerleme kartıdır.",
+      "secondary_gates": [
+        "V015.G08"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Ekran yerleşimi",
+      "evidence_required_original": "Mac pencere ekran görüntüsü + kullanıcı doğrulaması",
+      "id": "YR02",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G09",
+      "requirement_original": "Aktif blok, kanıtlı yüzde, kalan yüzde ve durum aynı bakışta görülür.",
+      "secondary_gates": [
+        "V015.G07"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Ekran yerleşimi",
+      "evidence_required_original": "0/1/5 kuyruk senaryosu",
+      "id": "YR03",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G09",
+      "requirement_original": "Kuyruk tek satırda özetlenir; açılır detay vardır, kalıcı geniş panel kullanılmaz.",
+      "secondary_gates": [
+        "V015.G04"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Ekran yerleşimi",
+      "evidence_required_original": "Pencere boyutu ve klavye testi",
+      "id": "YR04",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G09",
+      "requirement_original": "Sohbet alanı ana alan olarak kalır; yazma alanı her durumda kolay erişilir.",
+      "secondary_gates": [
+        "V015.G08"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Ekran yerleşimi",
+      "evidence_required_original": "Çoklu pencere ve font ölçeği regresyonu",
+      "id": "YR05",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G09",
+      "requirement_original": "Standart/küçük Mac pencere, yüksek yazı ölçeği ve uzun Türkçe metinde taşma olmaz.",
+      "secondary_gates": [
+        "V015.G08"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Görsel estetik",
+      "evidence_required_original": "Tasarım tokenları + owner estetik kabulü",
+      "id": "VG01",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G09",
+      "requirement_original": "Premium, minimal Mac-native kimlik; Engürü koyu yeşili ve ölçülü cam katmanları.",
+      "secondary_gates": [
+        "V015.G08"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Görsel estetik",
+      "evidence_required_original": "Görsel hiyerarşi değerlendirmesi",
+      "id": "VG02",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G09",
+      "requirement_original": "Güçlü tipografik hiyerarşi: sonuç > aktif iş > kuyruk; gösteriş amaçlı dikkat dağıtıcı bileşen yok.",
+      "secondary_gates": [
+        "V015.G08"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Görsel estetik",
+      "evidence_required_original": "Asset kaynak ve görünüm incelemesi",
+      "id": "VG03",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G09",
+      "requirement_original": "Baykuş amblemi kontrollü ölçekte ve hakları doğrulanmış varlıkla kullanılır.",
+      "secondary_gates": [
+        "V015.G03"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Görsel estetik",
+      "evidence_required_original": "Ölçülmüş kontrast ve VoiceOver testleri",
+      "id": "VG04",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G09",
+      "requirement_original": "Metin için hedef kontrast en az 4.5:1, ilgili büyük metin ve bileşenler için erişilebilirlik kuralları; yalnız renge bağımlı durum gösterimi yok.",
+      "secondary_gates": [
+        "V015.G08"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Görsel estetik",
+      "evidence_required_original": "Gerçek SwiftUI önizlemesi + owner incelemesi",
+      "id": "VG05",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G09",
+      "requirement_original": "Animasyon yalnız anlamlı geçişlerde, azaltılmış hareket tercihiyle uyumlu; kullanıcı/owner gerçek ekranı beğeni ve işlev açısından onaylar.",
+      "secondary_gates": [
+        "V015.G08"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Yaratıcı deneyim",
+      "evidence_required_original": "Olay haritası, imzalı kanıt ve sahte ilerleme testi",
+      "id": "YD01",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G07",
+      "requirement_original": "Durum mesajları yalnız doğrulanmış olay kaydıyla değişir; model metni statüyü belirlemez.",
+      "secondary_gates": [
+        "V015.G09"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Yaratıcı deneyim",
+      "evidence_required_original": "SwiftUI/erişilebilirlik önizlemesi, reduce-motion testi",
+      "id": "YD02",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G09",
+      "requirement_original": "Durum değişimi hafif ve anlamlı animasyonlarla sunulur; azaltılmış hareket seçeneği desteklenir.",
+      "secondary_gates": [
+        "V015.G08"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Yaratıcı deneyim",
+      "evidence_required_original": "Ekran görüntüsü, kontrast, ikon ve VoiceOver kontrolü",
+      "id": "YD03",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G08",
+      "requirement_original": "Yönetici, İcracı ve Ulak aynı ekranda ayrı renk zorunluluğu olmaksızın tanınır.",
+      "secondary_gates": [
+        "V015.G09"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Yaratıcı deneyim",
+      "evidence_required_original": "Senaryo metinleri, yerelleştirme ve kullanıcı incelemesi",
+      "id": "YD04",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G09",
+      "requirement_original": "HOLD/BLOCKED/RECOVERING bilgilendirmeleri olumlu, kesin Türkçe ve tek somut hareket içerir.",
+      "secondary_gates": [
+        "V015.G07"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    },
+    {
+      "area": "Yaratıcı deneyim",
+      "evidence_required_original": "Gerçek görsel önizleme, beş görevlik kullanıcı sınaması, owner kabulü",
+      "id": "YD05",
+      "implementation_evidence": "NOT_TESTED_AS_PRODUCT",
+      "original_state_field": "NOT_TESTED",
+      "original_state_preinstall": "HOLD_VERIFICATION",
+      "primary_gate": "V015.G09",
+      "requirement_original": "Premium sakin deneyim ve gerçek kullanıcı başarı ölçütleri owner tarafından görünür önizlemede kabul edilir.",
+      "secondary_gates": [
+        "V015.G08"
+      ],
+      "v015_design_state": "MAPPED_NOT_ACCEPTED"
+    }
+  ],
+  "schema": "enguru.osi.triple-intelligence.v015.acceptance-crosswalk-draft/v0.1",
+  "stage": "MANAGEMENT_DESIGN_SOURCE_ALIGNED_OWNER_CANONICAL_FINAL_HOLD"
+}

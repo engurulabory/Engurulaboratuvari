@@ -1,0 +1,154 @@
+{
+  "schema": "enguru.ulak.preinstall.interface/v0.8",
+  "date": "2026-10-30",
+  "target": "Ulak Yerel Mac OSi kurulum-oncesi 100/100 hazırlık; kurulum/saha ayrıca",
+  "frozen_decisions": 34,
+  "frozen_areas": 15,
+  "frozen_criteria": 75,
+  "visual_authority": "V0.6 Owner Desktop+iPad PNG: kabul edilmiş görsel karakter; V0.7.1 aday = HOLD",
+  "source_names": {
+    "Cockpit": "Ana Cockpit",
+    "PiLive": "PiLive",
+    "Ulak": "ENGÜRÜ Ulak"
+  },
+  "screens": {
+    "Cockpit": {
+      "purpose": "Fabrikanın tüm yapı ve motorlarının genel görünümü; modalleri açar.",
+      "writes_job_state": false,
+      "produces_commands": false,
+      "shows_factory_aggregate": true,
+      "can_open_PiLive_modal": true
+    },
+    "PiLive": {
+      "purpose": "Bütün işlerin kanıtlı sayısal takibi; Cockpit içinden modal olarak açılır ve kapanır.",
+      "writes_job_state": false,
+      "produces_commands": false,
+      "shows_factory_aggregate": true,
+      "on_close": "Cockpit içinde genel özet görünür"
+    },
+    "Ulak": {
+      "purpose": "Üretim/onarım/kanıt ekranı: tek sohbet ve tek aktif iş.",
+      "writes_job_state": "Yetkili İcracı üzerinden; UI doğrudan yazmaz",
+      "produces_commands": true,
+      "shows_factory_aggregate": false,
+      "shows_current_task_progress_only": true,
+      "queue": "varsayılan kapalı modal",
+      "donecheck": "kanıt ve owner kapısı; varsayılan kapalı modal"
+    }
+  },
+  "roles": {
+    "Yönetici": {
+      "input": "typed UserCommand, scoped capabilities, fixed acceptance",
+      "output": "VersionedTaskPlan, simulation, safety decision",
+      "writes": "TaskPlan only, no tool shell access",
+      "authority": "Planlama; insan yetkisi üretmez"
+    },
+    "İcracı": {
+      "input": "VersionedTaskPlan+explicit allowed capabilities",
+      "output": "OperationReceipt, tests, source SHA, recovery checkpoint",
+      "writes": "Yalnız izinli sandbox/worktree, kritik adımda owner",
+      "authority": "Tool broker izinli eylemler; model metni ayrı yetki sayılmaz"
+    },
+    "Ulak": {
+      "input": "ReadonlyTaskProjection, queue, verifier results",
+      "output": "UserCommand request, visible result",
+      "writes": "Event broker üzerinden imzalı kullanıcı isteği; kanıt defterine doğrudan yazmaz",
+      "authority": "UI; owner imza taklidi yapmaz"
+    },
+    "Doğrulayıcı": {
+      "input": "test output and hashes under independent trust boundary",
+      "output": "VerifiedReceipt+DoneCheck state",
+      "writes": "audit ledger; own access control",
+      "authority": "Model beyanını gerçek kanıt kabul etmez; 3. kullanıcı rolü değildir"
+    }
+  },
+  "typed_messages": {
+    "UserCommand": [
+      "command_id",
+      "user_text",
+      "created_at",
+      "owner_scope_id",
+      "source_ui",
+      "idempotency_key"
+    ],
+    "VersionedTaskPlan": [
+      "task_id",
+      "plan_version",
+      "plan_sha256",
+      "scope_sha256",
+      "source_sha256",
+      "blocks",
+      "weights_total_10000",
+      "dependencies",
+      "capability_allowlist",
+      "human_threshold_actions"
+    ],
+    "ExecutionEvent": [
+      "event_id",
+      "seq",
+      "task_id",
+      "plan_sha256",
+      "block_id",
+      "kind",
+      "state",
+      "at",
+      "receipt_sha256"
+    ],
+    "VerifiedReceipt": [
+      "task_id",
+      "block_id",
+      "plan_sha256",
+      "source_sha256",
+      "output_sha256",
+      "test_result",
+      "verifier_id",
+      "verification_at"
+    ],
+    "TaskProjection": [
+      "task_id",
+      "active_block",
+      "done_weight",
+      "total_weight",
+      "completion_percent",
+      "queue_state",
+      "donecheck_state",
+      "last_event_seq"
+    ],
+    "OwnerApproval": [
+      "owner_identity",
+      "task_id",
+      "plan_sha256",
+      "scope_sha256",
+      "action",
+      "resource",
+      "expires_at",
+      "nonce",
+      "signature"
+    ]
+  },
+  "runtime": {
+    "target": "Mac M5 Pro, 24GB; Ollama qwen3:14b already installed; no paid API requirement",
+    "role_model": "Tek yerel model, iki ayrı rol sözleşmesi, ayrılmış tool allowlist; model yanıtları yetki değildir",
+    "swiftui": "Mac native GUI; Desktop yatay; iPad dikey yalnız tasarım referansı, gerçek iPad çalışma kanalı ayrı kabul gerektirir",
+    "worker": "single active job, FIFO + dependencies, safe HOLD/independent proceed, 3 repair loops maximum",
+    "store": "SQLite WAL single-writer, idempotent commands, append-only external evidence where required, restart reconcile unknown effects",
+    "model_endpoint": "localhost Ollama; external network unavailable does not block independent local tasks",
+    "sleep": "only while active job, beginActivity idleSystemSleepDisabled; release token on finish; display can sleep; Mac lid/system real sleep does not continue processing",
+    "git": "authorized repo/ref/worktree + exact HEAD; human threshold for merge, publish and destructive operations",
+    "aesthetic_engine": "GitHub Aesthetic engine optional / NOT_DEPENDENCY: no operational proof in this scope",
+    "old_ulak": "Read-only review; never overwrite/kill/delete old Ulak, PiLive SQLite/backup and jobs until separately authorized",
+    "screen_update": "trusted task projection from verified event stream; no guessed percentage; preview values visually labelled SAMPLE"
+  },
+  "finish_truth": {
+    "progress_100": "All locked block weights verified",
+    "donecheck_pass": "progress + all required evidence + independent verification + required owner gates",
+    "never_equate": [
+      "model said done",
+      "source hash exists",
+      "UI 100% gauge"
+    ],
+    "owner_install_permission": "distinct gate after PREINSTALL_TECHNICAL_READY"
+  },
+  "install": "HOLD",
+  "delete_old_ulak": "HOLD"
+}

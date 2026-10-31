@@ -1,0 +1,16 @@
+{
+  "scope": "LEGACY_V014_REEXECUTED_NOW_NOT_PRODUCT_ACCEPTANCE",
+  "tests": 51,
+  "success": true,
+  "failures": 0,
+  "errors": 0,
+  "source_sha256": {
+    "run_audit.py": "a13747269a6837ea05eec9d3ea382080e0a7007c2facf4684cbb7e236f90fe38",
+    "test_worktree.py": "46c1dc0f034c7afae2352fd2c535ce8cba5617a17fea6fb29383e8253785ccf0",
+    "worktree_fixture.py": "575aa5a08a730f9ebf20a3685259bf3bbed56578d160a6ea5e43c4e0586220f7",
+    "deterministic_verifier.py": "8ed2588ff6997937204eacf0b74b27d60f20ef790bc998aff169070d7b4c08bd",
+    "test_v014.py": "c754e4daa5bc7c0f836d8dc725b7b4c064755a1d108e398c0414559721e8b517",
+    "reference_engine.py": "71112b6a773b927623d21396abe49dc7a3e7fa51626d10612e2a74d6284ddf74"
+  },
+  "log_sha256": "6c12d71940c0aec256dcb784987c80fab4eda9a208b44ff5037bcf3bfb3e6a84"
+}

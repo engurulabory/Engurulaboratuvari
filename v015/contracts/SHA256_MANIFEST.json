@@ -1,0 +1,34 @@
+{
+  "files": {
+    "ENGURU_V015_75_KOSUL_9_KAPI_ESLEME_V01.json": {
+      "sha256": "b47fefb07edfffc510f83ac4486f21029acb4e577d0fd6bc7062314671cb7f4e",
+      "size_bytes": 51611
+    },
+    "ENGURU_V015_MIMARI_VE_KABUL_SOZLESMESI_V01.md": {
+      "sha256": "afa7ddebe89c28ab25a5fc4946a590706137d11e58dac996d8b7b389cffb7c42",
+      "size_bytes": 22717
+    },
+    "ENGURU_V015_SOZLESME_STATIK_DOGRULAMA_MAKBUZU.json": {
+      "sha256": "a2557f55e1c46f775c271b5f11874c39ce541b76433abf03e2c095808b946ced",
+      "size_bytes": 1313
+    },
+    "SOURCES/OWNER_34_DECISIONS_SOURCE_MAP_DRAFT.json": {
+      "sha256": "6ca4d1375608ed681f3ae06376a005a1344d82eb0cd7759bc05c24f6588a5589",
+      "size_bytes": 9556
+    },
+    "SOURCES/ULAK_V08_75_DUAL_GATE_LEDGER.json": {
+      "sha256": "db3aee647310e2cb3a53fdb34d9f5a3cf0192c7c3d98f9d08d453c8158524c40",
+      "size_bytes": 47523
+    },
+    "SOURCES/ULAK_V08_INTERFACE_CONTRACT.json": {
+      "sha256": "986ee46bb55df6d3205284a6e17a80c2a7f59bdbe3676a7972dd77526cb8882a",
+      "size_bytes": 5781
+    },
+    "SOURCES/acceptance_75_LOCKED.json": {
+      "sha256": "a0ea2e161c639b079947301a6001021e43ff198aabca5105ed69586da2789756",
+      "size_bytes": 30786
+    }
+  },
+  "schema": "enguru.v015.owner-review-bundle-manifest/v1",
+  "status": "DESIGN_DRAFT_NO_WORK_AUTHORIZATION"
+}

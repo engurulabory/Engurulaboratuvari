@@ -1,0 +1,23 @@
+name: V015 Integrated Candidate
+on:
+  push:
+    branches: ["work/v015-github-01-20261031"]
+    paths: ["v015/**", ".github/workflows/enguru-v015-integrated.yml"]
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Exact source checkout
+        run: |
+          git init .
+          git remote add origin "https://github.com/$GITHUB_REPOSITORY.git"
+          git fetch --depth=1 origin "$GITHUB_SHA"
+          git checkout --detach FETCH_HEAD
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+      - name: Immutable source and integrated regression
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: python3 -B v015/tools/run_checks.py

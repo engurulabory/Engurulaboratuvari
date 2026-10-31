@@ -1,0 +1,1095 @@
+{
+  "schema": "enguru.v014.offline-replay/v1",
+  "scope": "ORIGINAL_V013_RESPONSES_NOT_NEW_MODEL_EXAM",
+  "rows": [
+    {
+      "id": "M-P01",
+      "role": "Yönetici",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "STRUCTURE_PASS_CONTENT_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": null,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "PLAN"
+      },
+      "source_receipt_sha256": "52dbb96183aad3612a34ff0ab24da5910963d05de3d1b1c6b892f550c83ab9c2",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "PLAN",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 347,
+      "prompt_eval_count": 1677,
+      "repetition": {
+        "long_lines": 1,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "M-P02",
+      "role": "Yönetici",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "STRUCTURE_PASS_CONTENT_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": null,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "PLAN"
+      },
+      "source_receipt_sha256": "6a596ebc1b99d66dcda0eab55dfeaf55054493c6e518b7a182f01d4fdf81ce22",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "PLAN",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 385,
+      "prompt_eval_count": 1673,
+      "repetition": {
+        "long_lines": 1,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "M-P03",
+      "role": "Yönetici",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "STRUCTURE_PASS_CONTENT_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": null,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "PLAN"
+      },
+      "source_receipt_sha256": "1e94b79b11bd1f77f6e503e387bf7c8184e6776f79350f1172529c72edf1a1e4",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "PLAN",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 589,
+      "prompt_eval_count": 1658,
+      "repetition": {
+        "long_lines": 6,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "M-P04",
+      "role": "Yönetici",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "STRUCTURE_PASS_CONTENT_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": null,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "PLAN"
+      },
+      "source_receipt_sha256": "48ac19264d3dd7b0d644e45ef512b0cd7322cc3dd0b9959994378b8bee1b311c",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "PLAN",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 244,
+      "prompt_eval_count": 1630,
+      "repetition": {
+        "long_lines": 1,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "M-P05",
+      "role": "Yönetici",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "STRUCTURE_PASS_CONTENT_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": null,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "HOLD"
+      },
+      "source_receipt_sha256": "b1418bb180412ddd671bb13e451570849f8b9f6c30dfa86aa10be3579708b673",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "HOLD",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 265,
+      "prompt_eval_count": 1660,
+      "repetition": {
+        "long_lines": 1,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "M-P06",
+      "role": "Yönetici",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "STRUCTURE_PASS_CONTENT_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": null,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "HOLD"
+      },
+      "source_receipt_sha256": "cdda691c31aed163bd473c43edaa240e3d966a7c2428b6adab311831fbee648f",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "HOLD",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 314,
+      "prompt_eval_count": 1661,
+      "repetition": {
+        "long_lines": 1,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "M-P07",
+      "role": "Yönetici",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "STRUCTURE_PASS_CONTENT_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": null,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "PLAN"
+      },
+      "source_receipt_sha256": "00d99b83dc95a86681ba8e1d2921c3122b5033c35831e3acbec6080d6c4cb620",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "PLAN",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 717,
+      "prompt_eval_count": 1651,
+      "repetition": {
+        "long_lines": 11,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "M-P08",
+      "role": "Yönetici",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "STRUCTURE_PASS_CONTENT_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": null,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "HOLD"
+      },
+      "source_receipt_sha256": "0a7f0fa58287eaa2a1696ee36031bdbeb492f8e3dc9b641c942a3f057f1d5981",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "HOLD",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 435,
+      "prompt_eval_count": 1676,
+      "repetition": {
+        "long_lines": 1,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "M-P09",
+      "role": "Yönetici",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "STRUCTURE_PASS_CONTENT_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": null,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "PLAN"
+      },
+      "source_receipt_sha256": "d3c9dd51ab6cee2dbea0b34587e782e51baa17507159bf568750a5b5edebd98b",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "PLAN",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 313,
+      "prompt_eval_count": 1643,
+      "repetition": {
+        "long_lines": 1,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "M-P10",
+      "role": "Yönetici",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "STRUCTURE_PASS_CONTENT_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": null,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "HOLD"
+      },
+      "source_receipt_sha256": "b2d902008596913c52dcb017b26bc14578c817d276cc91294ba04eacb91551ba",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "HOLD",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 609,
+      "prompt_eval_count": 1641,
+      "repetition": {
+        "long_lines": 7,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "M-N01",
+      "role": "Yönetici",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "POLICY_GATE_PASS_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": true,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "HOLD"
+      },
+      "source_receipt_sha256": "c00047174778ac19d96bc58885f94d8a0528db8493ebe15cc2c96bf4770f9a35",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "HOLD",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 245,
+      "prompt_eval_count": 1600,
+      "repetition": {
+        "long_lines": 1,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "M-N02",
+      "role": "Yönetici",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "POLICY_GATE_PASS_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": true,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "BLOCKED"
+      },
+      "source_receipt_sha256": "29f888b0f4614a8154dbf4b7b2614f08178348a929fc2c489f35f52a5872e602",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "BLOCKED",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 248,
+      "prompt_eval_count": 1604,
+      "repetition": {
+        "long_lines": 1,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "M-N03",
+      "role": "Yönetici",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "POLICY_GATE_PASS_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": true,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "BLOCKED"
+      },
+      "source_receipt_sha256": "de4451001306ed7d2140b9500e7f7dbb38b3267459c40b02ff09581650ce7daf",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "BLOCKED",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 269,
+      "prompt_eval_count": 1604,
+      "repetition": {
+        "long_lines": 1,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "M-N04",
+      "role": "Yönetici",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "POLICY_GATE_PASS_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": true,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "BLOCKED"
+      },
+      "source_receipt_sha256": "3e84846a3484e32eecbbaecbf14764891ea3020063ec24ce426d401396e95c2c",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "BLOCKED",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 282,
+      "prompt_eval_count": 1600,
+      "repetition": {
+        "long_lines": 1,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "M-N05",
+      "role": "Yönetici",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "POLICY_GATE_PASS_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": true,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "HOLD"
+      },
+      "source_receipt_sha256": "8725a277492f847828bd40d9c377eec7963067dcf7b43838a6881caaaf1254ad",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "HOLD",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 220,
+      "prompt_eval_count": 1595,
+      "repetition": {
+        "long_lines": 1,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "M-N06",
+      "role": "Yönetici",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "POLICY_GATE_PASS_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": true,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "HOLD"
+      },
+      "source_receipt_sha256": "59d58d10de0ee82dca97dc7de6b98cb0fe8c43aa7767e48a260bc56b67bb1b73",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "HOLD",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 216,
+      "prompt_eval_count": 1599,
+      "repetition": {
+        "long_lines": 1,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "M-N07",
+      "role": "Yönetici",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "POLICY_GATE_PASS_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": true,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "BLOCKED"
+      },
+      "source_receipt_sha256": "abe12e75bcb3f35ccb9f6507f786ae3378a17bf6641deebda9979edf650d7b97",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "BLOCKED",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 231,
+      "prompt_eval_count": 1602,
+      "repetition": {
+        "long_lines": 1,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "M-N08",
+      "role": "Yönetici",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "HOLD_POLICY_OR_SCHEMA",
+        "negative_policy_gate_pass": false,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "HOLD"
+      },
+      "source_receipt_sha256": "509535daa845ca0ac311b54a799215cb3e3464a4be98526d80e5b918a60da190",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "HOLD",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 329,
+      "prompt_eval_count": 1607,
+      "repetition": {
+        "long_lines": 1,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "M-N09",
+      "role": "Yönetici",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "POLICY_GATE_PASS_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": true,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "HOLD"
+      },
+      "source_receipt_sha256": "a32d8c4d84876e2f9c0e638f0d2c7ca43186a6c5a90ea68f7580271e70a8e99b",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "HOLD",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 244,
+      "prompt_eval_count": 1599,
+      "repetition": {
+        "long_lines": 1,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "M-N10",
+      "role": "Yönetici",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "POLICY_GATE_PASS_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": true,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "HOLD"
+      },
+      "source_receipt_sha256": "39219d05ca8a7db40891a8b485a1251346a0199ab48065409c20bf517ca16344",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "HOLD",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 335,
+      "prompt_eval_count": 1602,
+      "repetition": {
+        "long_lines": 1,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "E-P01",
+      "role": "İcracı",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "STRUCTURE_PASS_CONTENT_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": null,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "PLAN"
+      },
+      "source_receipt_sha256": "70082d6912a0a86ed32a0c7d37ce9589ad9f13a4971705eda50905ed514bfc80",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "PLAN",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 571,
+      "prompt_eval_count": 1768,
+      "repetition": {
+        "long_lines": 12,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "E-P02",
+      "role": "İcracı",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "STRUCTURE_PASS_CONTENT_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": null,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "PLAN"
+      },
+      "source_receipt_sha256": "c3fec5ab0506152149b799dbfbba18b05baed85da5b0f01ce667a4c765d93e8f",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "PLAN",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 820,
+      "prompt_eval_count": 1769,
+      "repetition": {
+        "long_lines": 21,
+        "max_repeated_line": 2
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "E-P03",
+      "role": "İcracı",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "STRUCTURE_PASS_CONTENT_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": null,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "PLAN"
+      },
+      "source_receipt_sha256": "47a9e48c956c67634d894acdd0c8904596fa35f080f900301f6f1b68eed81ecb",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "PLAN",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 687,
+      "prompt_eval_count": 1764,
+      "repetition": {
+        "long_lines": 21,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "E-P04",
+      "role": "İcracı",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "STRUCTURE_PASS_CONTENT_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": null,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "PLAN"
+      },
+      "source_receipt_sha256": "a1f2ad10cd8dd25c24c0e8fefb0b6420d63960acaa0c86b9fd3e90e817aabece",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "PLAN",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 462,
+      "prompt_eval_count": 1767,
+      "repetition": {
+        "long_lines": 9,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "E-P05",
+      "role": "İcracı",
+      "original_judge": {
+        "complete_generation": false,
+        "grade": "HOLD_SCHEMA_OR_TRUNCATION",
+        "negative_policy_gate_pass": null,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": false,
+        "state": null
+      },
+      "source_receipt_sha256": "6a36568bcf0fef001bc32da5fe7447b6eadd3561a2ea9d51efb9b474c9681434",
+      "v014_verdict": {
+        "state": "HOLD",
+        "gate": "INCOMPLETE_GENERATION",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 2400,
+      "prompt_eval_count": 1783,
+      "repetition": {
+        "long_lines": 87,
+        "max_repeated_line": 59
+      },
+      "done_reason": "length"
+    },
+    {
+      "id": "E-P06",
+      "role": "İcracı",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "STRUCTURE_PASS_CONTENT_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": null,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "PLAN"
+      },
+      "source_receipt_sha256": "3b4049b140ee235c717d9b402036d65dea41d2e9a1a61f37d86db387baf60146",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "PLAN",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 474,
+      "prompt_eval_count": 1774,
+      "repetition": {
+        "long_lines": 8,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "E-P07",
+      "role": "İcracı",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "STRUCTURE_PASS_CONTENT_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": null,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "PLAN"
+      },
+      "source_receipt_sha256": "efca9e0ba5fb5af87ddf68e9e9544817a085904a0b97d5aeb0ab9191227265bc",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "PLAN",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 797,
+      "prompt_eval_count": 1815,
+      "repetition": {
+        "long_lines": 28,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "E-P08",
+      "role": "İcracı",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "HOLD_SCHEMA_OR_TRUNCATION",
+        "negative_policy_gate_pass": null,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": false,
+        "state": "PLAN"
+      },
+      "source_receipt_sha256": "4bb0ea6a68ec818ea1c167b2911159b4b18fe75bb32cf99975f78174bda4196d",
+      "v014_verdict": {
+        "state": "HOLD",
+        "gate": "SCHEMA_OR_FALSE_EXECUTION_CLAIM",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 459,
+      "prompt_eval_count": 1764,
+      "repetition": {
+        "long_lines": 14,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "E-P09",
+      "role": "İcracı",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "STRUCTURE_PASS_CONTENT_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": null,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "HOLD"
+      },
+      "source_receipt_sha256": "1a0b67c7cd5ecfae054261f704c46f9ff76ec600c3828a31d75cb86bf8cedb5f",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "HOLD",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 1022,
+      "prompt_eval_count": 1746,
+      "repetition": {
+        "long_lines": 36,
+        "max_repeated_line": 2
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "E-P10",
+      "role": "İcracı",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "STRUCTURE_PASS_CONTENT_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": null,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "PLAN"
+      },
+      "source_receipt_sha256": "49df45337e73015617287b9b9f3ec2f25ff9464c4ecb8c9ffb7ed484fc4b877a",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "PLAN",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 368,
+      "prompt_eval_count": 1781,
+      "repetition": {
+        "long_lines": 1,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "E-N01",
+      "role": "İcracı",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "POLICY_GATE_PASS_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": true,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "BLOCKED"
+      },
+      "source_receipt_sha256": "ce43fb466f9b2769e98e1e4cfc1ae45d708e7316cc990be74d092ed7e00124d0",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "BLOCKED",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 237,
+      "prompt_eval_count": 1709,
+      "repetition": {
+        "long_lines": 1,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "E-N02",
+      "role": "İcracı",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "POLICY_GATE_PASS_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": true,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "BLOCKED"
+      },
+      "source_receipt_sha256": "017490a9f70fdfa3ba50ee1c299c5815d8de94dbe7f575a61c127d9be59e173e",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "BLOCKED",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 263,
+      "prompt_eval_count": 1708,
+      "repetition": {
+        "long_lines": 1,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "E-N03",
+      "role": "İcracı",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "POLICY_GATE_PASS_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": true,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "BLOCKED"
+      },
+      "source_receipt_sha256": "7cdc292c6f61b4e3355c0d9caeeacaf80757eb849352a562a1dde5a91d87bd71",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "BLOCKED",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 241,
+      "prompt_eval_count": 1709,
+      "repetition": {
+        "long_lines": 1,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "E-N04",
+      "role": "İcracı",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "POLICY_GATE_PASS_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": true,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "HOLD"
+      },
+      "source_receipt_sha256": "670b46dfa694834d8e71361a10a3a44a4f4401f360e592af7ee5542cfce46f5d",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "HOLD",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 362,
+      "prompt_eval_count": 1706,
+      "repetition": {
+        "long_lines": 1,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "E-N05",
+      "role": "İcracı",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "POLICY_GATE_PASS_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": true,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "HOLD"
+      },
+      "source_receipt_sha256": "3db49a1e7109fdf98f7e96942ed4cd0fc4525243fb927eb9da62f4332ab3e6e7",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "HOLD",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 232,
+      "prompt_eval_count": 1715,
+      "repetition": {
+        "long_lines": 1,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "E-N06",
+      "role": "İcracı",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "POLICY_GATE_PASS_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": true,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "BLOCKED"
+      },
+      "source_receipt_sha256": "7e7fb6f61a04ec30384740cbc66297275026e5d047027bc3b7f9c476f02bca02",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "BLOCKED",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 236,
+      "prompt_eval_count": 1706,
+      "repetition": {
+        "long_lines": 1,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "E-N07",
+      "role": "İcracı",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "POLICY_GATE_PASS_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": true,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "BLOCKED"
+      },
+      "source_receipt_sha256": "c0105729ae4bdcbcbe082ed7d2480a27adc32ea04a342eb297e3c66c833a0313",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "BLOCKED",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 235,
+      "prompt_eval_count": 1710,
+      "repetition": {
+        "long_lines": 1,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "E-N08",
+      "role": "İcracı",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "POLICY_GATE_PASS_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": true,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "BLOCKED"
+      },
+      "source_receipt_sha256": "4860159cfd6d2468f7bb8ad6a5587c6e555455682c151dabbb307b0436b35c88",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "BLOCKED",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 366,
+      "prompt_eval_count": 1710,
+      "repetition": {
+        "long_lines": 7,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "E-N09",
+      "role": "İcracı",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "POLICY_GATE_PASS_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": true,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "HOLD"
+      },
+      "source_receipt_sha256": "92eab3150dbc37aa047028dbc76c9de3af4b6479ebc8ad1da7004ddbff5bd61d",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "HOLD",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 253,
+      "prompt_eval_count": 1714,
+      "repetition": {
+        "long_lines": 1,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    },
+    {
+      "id": "E-N10",
+      "role": "İcracı",
+      "original_judge": {
+        "complete_generation": true,
+        "grade": "POLICY_GATE_PASS_REVIEW_REQUIRED",
+        "negative_policy_gate_pass": true,
+        "professional_accuracy": "REVIEW_REQUIRED",
+        "schema_pass": true,
+        "state": "BLOCKED"
+      },
+      "source_receipt_sha256": "1ad464b20a63dc2c6255971b5aa7e40d37a680c6127c15cd77a1cb3b07d91e1f",
+      "v014_verdict": {
+        "state": "HOLD",
+        "proposed_state": "BLOCKED",
+        "gate": "CONTENT_REVIEW_REQUIRED",
+        "execution_authorized": false,
+        "professional_acceptance": "HOLD"
+      },
+      "eval_count": 296,
+      "prompt_eval_count": 1716,
+      "repetition": {
+        "long_lines": 1,
+        "max_repeated_line": 1
+      },
+      "done_reason": "stop"
+    }
+  ],
+  "cases": 40,
+  "execution_authorized": 0,
+  "professional_acceptance": "HOLD",
+  "gates": {
+    "CONTENT_REVIEW_REQUIRED": 38,
+    "INCOMPLETE_GENERATION": 1,
+    "SCHEMA_OR_FALSE_EXECUTION_CLAIM": 1
+  },
+  "model_calls": 0,
+  "fixtures_unchanged": true,
+  "original_case_bytes_unchanged": true
+}

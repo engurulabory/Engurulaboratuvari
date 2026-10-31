@@ -1,0 +1,322 @@
+{
+  "schema": "enguru.ulak.owner-decisions-draft/v0.8.1",
+  "source": "current conversation decisions 01-34; derived transcription, not independently signed",
+  "authority": "DRAFT_UNVERIFIED_OWNER_SIGNED_CANONICAL",
+  "subsequent_constraints": [
+    "V0.6 accepted visual authority",
+    "V0.7.1 visual HOLD",
+    "Cockpit aggregate, PiLive read-only modal, Ulak sole execution chat"
+  ],
+  "items": [
+    {
+      "decision_id": "K01",
+      "description": "Mac OSi ve GitHub yetkili alanlarda icra",
+      "acceptance_area_prefixes": [
+        "MA",
+        "GU"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K02",
+      "description": "Güvenli işlerde otomasyon, kritik işlemde owner Human Threshold",
+      "acceptance_area_prefixes": [
+        "GU",
+        "YA"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K03",
+      "description": "Ulak tek doğal Türkçe sohbet girişidir",
+      "acceptance_area_prefixes": [
+        "YA",
+        "KU"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K04",
+      "description": "Tek yerel model, ayrı Yönetici ve İcracı profesyonel rolleri",
+      "acceptance_area_prefixes": [
+        "MA",
+        "YY",
+        "IY"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K05",
+      "description": "Aşamalı görev, tekrarlı test ve kanıtlı bitiş",
+      "acceptance_area_prefixes": [
+        "HG",
+        "YG",
+        "IG"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K06",
+      "description": "Tek aktif görev ve sıralı kalıcı kuyruk",
+      "acceptance_area_prefixes": [
+        "MA",
+        "YA"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K07",
+      "description": "Görev/kuyruk/DoneCheck tek ekranda, ayrıntı istekle açılır",
+      "acceptance_area_prefixes": [
+        "KU",
+        "YR"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K08",
+      "description": "Mac/GitHub kapsam bazlı allowlist ve yeni alan owner onayı",
+      "acceptance_area_prefixes": [
+        "GU",
+        "IS"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K09",
+      "description": "Kesinti sonrası checkpoint, doğrulama ve güvenli devam",
+      "acceptance_area_prefixes": [
+        "MA",
+        "IS"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K10",
+      "description": "Aktif işte ekran uyuyabilir, sistem uykusu önlenir",
+      "acceptance_area_prefixes": [
+        "TU",
+        "GU"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K11",
+      "description": "Yeni Ulak sıfırdan ayrı; eski Ulak yalnız salt okunur referans",
+      "acceptance_area_prefixes": [
+        "GU",
+        "MA"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K12",
+      "description": "İcracı sonucu Yönetici+bağımsız DoneCheck ile doğrulanır",
+      "acceptance_area_prefixes": [
+        "YS",
+        "GU"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K13",
+      "description": "Ortak kalıcı görev hafızası; ayrı roller ve yetki sınırları",
+      "acceptance_area_prefixes": [
+        "MA",
+        "YS"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K14",
+      "description": "En fazla 3 kontrollü hata-onarım-test turu; sonra HOLD",
+      "acceptance_area_prefixes": [
+        "IG",
+        "GU"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K15",
+      "description": "Yalıtılmış çalışma alanı, test ve geri alma",
+      "acceptance_area_prefixes": [
+        "IG",
+        "IS"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K16",
+      "description": "HOLD olan görev ayrılır, yalnız bağımsız işler sırayla ilerler",
+      "acceptance_area_prefixes": [
+        "YG",
+        "YA"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K17",
+      "description": "İnternet yokken yerel işler sürer; GitHub işleri WAIT",
+      "acceptance_area_prefixes": [
+        "MA",
+        "IS"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K18",
+      "description": "Tek uygulama ve tek Ulak sohbet yüzeyi; arka plan rolleri",
+      "acceptance_area_prefixes": [
+        "YA",
+        "YR"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K19",
+      "description": "İlerleme yalnız kanıtlanmış blok ağırlıklarından",
+      "acceptance_area_prefixes": [
+        "HG",
+        "TU"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K20",
+      "description": "Başlangıçta kilitli yüzde paydası, owner onaylı kapsam sürümü",
+      "acceptance_area_prefixes": [
+        "YG",
+        "GU"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K21",
+      "description": "Güvenli plan+ön simülasyon PASS ise otomatik icra",
+      "acceptance_area_prefixes": [
+        "YG",
+        "IG"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K22",
+      "description": "İlk örnek PiLive üzerinde teori senaryosu; gerçek PiLive icrası yok",
+      "acceptance_area_prefixes": [
+        "HG",
+        "YG"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K23",
+      "description": "Karşıt SIM2 yanlış sonuç/sahte kanıt ve yetki",
+      "acceptance_area_prefixes": [
+        "GU",
+        "YS"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K24",
+      "description": "SIM3 Mac uyku/kesinti/kuyruk kurtarma",
+      "acceptance_area_prefixes": [
+        "MA",
+        "IS"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K25",
+      "description": "Model dışı deterministik doğrulayıcı çekirdeği",
+      "acceptance_area_prefixes": [
+        "GU",
+        "TU"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K26",
+      "description": "Zülfikar gerçek motor doğrulanırsa kullan, değilse güvenli çekirdek",
+      "acceptance_area_prefixes": [
+        "MA",
+        "GU"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K27",
+      "description": "Ulak güvenli Duraklat/Devam Et/Güvenli Durdur",
+      "acceptance_area_prefixes": [
+        "KU",
+        "IS"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K28",
+      "description": "Yönetici ve İcracı için ayrı gerçek profesyonel sınav",
+      "acceptance_area_prefixes": [
+        "YY",
+        "IY"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K29",
+      "description": "Mac içeriği ve eski Ulak ilk keşfi salt okunur",
+      "acceptance_area_prefixes": [
+        "GU",
+        "TU"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K30",
+      "description": "Teknik ekran uyumu, kolaylık, yerleşim, estetik dört ek hedef",
+      "acceptance_area_prefixes": [
+        "TU",
+        "KU",
+        "YR",
+        "VG"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K31",
+      "description": "Üstte kanıtlı ilerleme, altta erişilebilir geniş sohbet",
+      "acceptance_area_prefixes": [
+        "YR",
+        "KU"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K32",
+      "description": "Gerçek duruma bağlı kısa Yönetici/İcracı/Ulak durum mesajları",
+      "acceptance_area_prefixes": [
+        "YD",
+        "KU"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K33",
+      "description": "Sakin premium seçkin görsel kimlik",
+      "acceptance_area_prefixes": [
+        "VG",
+        "YD"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    },
+    {
+      "decision_id": "K34",
+      "description": "Yalnız gerçek olay kayıtlarına bağlı hareket ve güncellemeler",
+      "acceptance_area_prefixes": [
+        "YD",
+        "TU"
+      ],
+      "state": "USER_CHAT_ACCEPTED_SOURCE_MAPPING_NEEDS_OWNER_REGISTRY"
+    }
+  ]
+}

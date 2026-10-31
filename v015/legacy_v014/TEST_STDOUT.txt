@@ -1,0 +1,56 @@
+test_active_is_next_unfinished_block (test_v014.ArithmeticAndPlan.test_active_is_next_unfinished_block) ... ok
+test_contract_is_concrete_missing_source_hold (test_v014.ArithmeticAndPlan.test_contract_is_concrete_missing_source_hold) ... ok
+test_dag_branching_allowed_cycle_and_unknown_rejected (test_v014.ArithmeticAndPlan.test_dag_branching_allowed_cycle_and_unknown_rejected) ... ok
+test_e00_expected_output_remains_15_not_observed_100 (test_v014.ArithmeticAndPlan.test_e00_expected_output_remains_15_not_observed_100) ... ok
+test_progress_fixture (test_v014.ArithmeticAndPlan.test_progress_fixture) ... ok
+test_progress_rejects_wrong_total_and_types (test_v014.ArithmeticAndPlan.test_progress_rejects_wrong_total_and_types) ... ok
+test_progress_unknown_and_duplicates_rejected (test_v014.ArithmeticAndPlan.test_progress_unknown_and_duplicates_rejected) ... ok
+test_remaining_all_valid_inputs (test_v014.ArithmeticAndPlan.test_remaining_all_valid_inputs) ... ok
+test_remaining_bad_inputs (test_v014.ArithmeticAndPlan.test_remaining_bad_inputs) ... ok
+test_two_unchanged_attempts_stop_without_invented_third (test_v014.ArithmeticAndPlan.test_two_unchanged_attempts_stop_without_invented_third) ... ok
+test_unique_empty (test_v014.ArithmeticAndPlan.test_unique_empty) ... ok
+test_unique_order (test_v014.ArithmeticAndPlan.test_unique_order) ... ok
+test_unique_repeats (test_v014.ArithmeticAndPlan.test_unique_repeats) ... ok
+test_unique_single (test_v014.ArithmeticAndPlan.test_unique_single) ... ok
+test_bad_json_stop_rejected (test_v014.GuardAndEnvelope.test_bad_json_stop_rejected) ... ok
+test_critical_actions_require_pre_action_grant (test_v014.GuardAndEnvelope.test_critical_actions_require_pre_action_grant) ... ok
+test_duplicate_keys_and_extra_fields_rejected (test_v014.GuardAndEnvelope.test_duplicate_keys_and_extra_fields_rejected) ... ok
+test_failure_and_source_drift_cannot_pass (test_v014.GuardAndEnvelope.test_failure_and_source_drift_cannot_pass) ... ok
+test_false_claim_invalid_types_nonfinite_rejected (test_v014.GuardAndEnvelope.test_false_claim_invalid_types_nonfinite_rejected) ... ok
+test_no_favorable_label_can_authorize_unsafe_next_action (test_v014.GuardAndEnvelope.test_no_favorable_label_can_authorize_unsafe_next_action) ... ok
+test_numbered_comment_repetition_diagnostic (test_v014.GuardAndEnvelope.test_numbered_comment_repetition_diagnostic) ... ok
+test_owner_cannot_override_data_authority_boundary (test_v014.GuardAndEnvelope.test_owner_cannot_override_data_authority_boundary) ... ok
+test_recovery_source_effect_gate (test_v014.GuardAndEnvelope.test_recovery_source_effect_gate) ... ok
+test_truncated_json_rejected_even_if_parseable (test_v014.GuardAndEnvelope.test_truncated_json_rejected_even_if_parseable) ... ok
+test_unknown_and_incomplete_actions_blocked (test_v014.GuardAndEnvelope.test_unknown_and_incomplete_actions_blocked) ... ok
+test_unknown_effect_no_replay_even_with_owner (test_v014.GuardAndEnvelope.test_unknown_effect_no_replay_even_with_owner) ... ok
+test_valid_json_is_still_not_authority (test_v014.GuardAndEnvelope.test_valid_json_is_still_not_authority) ... ok
+test_changed_file_rejected (test_v014.ManifestTests.test_changed_file_rejected) ... ok
+test_hash_match_does_not_imply_test_success (test_v014.ManifestTests.test_hash_match_does_not_imply_test_success) ... ok
+test_missing_file_rejected (test_v014.ManifestTests.test_missing_file_rejected) ... ok
+test_symlink_and_hardlink_rejected (test_v014.ManifestTests.test_symlink_and_hardlink_rejected) ... ok
+test_unknown_manifest_member_rejected (test_v014.ManifestTests.test_unknown_manifest_member_rejected) ... ok
+test_addition_bug_is_detected (test_v014.ReproducedDefects.test_addition_bug_is_detected) ... ok
+test_claim_return_is_not_verified_success (test_v014.ReproducedDefects.test_claim_return_is_not_verified_success) ... ok
+test_replace_loses_old_payload (test_v014.ReproducedDefects.test_replace_loses_old_payload) ... ok
+test_unknown_block_silent_filter_is_wrong (test_v014.ReproducedDefects.test_unknown_block_silent_filter_is_wrong) ... ok
+test_conflict_rolls_back_preserving_original (test_v014.SQLiteSafety.test_conflict_rolls_back_preserving_original) ... ok
+test_contract_drift_cannot_reuse_command (test_v014.SQLiteSafety.test_contract_drift_cannot_reuse_command) ... ok
+test_crash_reopen_does_not_replay_claim (test_v014.SQLiteSafety.test_crash_reopen_does_not_replay_claim) ... ok
+test_eight_job_dag_first_three_claims (test_v014.SQLiteSafety.test_eight_job_dag_first_three_claims) ... ok
+test_failed_or_forged_receipt_cannot_complete (test_v014.SQLiteSafety.test_failed_or_forged_receipt_cannot_complete) ... ok
+test_failed_serialization_does_not_start_transaction (test_v014.SQLiteSafety.test_failed_serialization_does_not_start_transaction) ... ok
+test_fifo_deps_network_hold_permission (test_v014.SQLiteSafety.test_fifo_deps_network_hold_permission) ... ok
+test_receipt_hash_binds_every_field (test_v014.SQLiteSafety.test_receipt_hash_binds_every_field) ... ok
+test_same_id_payload_returns_stable_job (test_v014.SQLiteSafety.test_same_id_payload_returns_stable_job) ... ok
+test_two_workers_race_one_claim (test_v014.SQLiteSafety.test_two_workers_race_one_claim) ... ok
+test_verified_complete_then_duplicate_no_reexecution (test_v014.SQLiteSafety.test_verified_complete_then_duplicate_no_reexecution) ... ok
+test_clean_exact_sha_creates_detached_worktree_preserves_root (test_worktree.WorktreeTests.test_clean_exact_sha_creates_detached_worktree_preserves_root) ... ok
+test_existing_target_symlink_and_bad_sha_rejected (test_worktree.WorktreeTests.test_existing_target_symlink_and_bad_sha_rejected) ... ok
+test_untracked_staged_deleted_modified_ignored_all_hold (test_worktree.WorktreeTests.test_untracked_staged_deleted_modified_ignored_all_hold) ... ok
+test_wrong_sha_holds_without_worktree (test_worktree.WorktreeTests.test_wrong_sha_holds_without_worktree) ... ok
+
+----------------------------------------------------------------------
+Ran 51 tests in 0.594s
+
+OK

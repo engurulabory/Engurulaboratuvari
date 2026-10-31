@@ -1,0 +1,420 @@
+{
+  "schema": "enguru.owner34.source-review/v015.1",
+  "source_sha256": "6ca4d1375608ed681f3ae06376a005a1344d82eb0cd7759bc05c24f6588a5589",
+  "decision_count": 34,
+  "authority": "DRAFT_SOURCE_NOT_SIGNED_CANONICAL; existing owner directives retained, no added ceremony",
+  "items": [
+    {
+      "id": "OWN.K01",
+      "description": "Mac OSi ve GitHub yetkili alanlarda icra",
+      "source_prefixes": [
+        "MA",
+        "GU"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K02",
+      "description": "Güvenli işlerde otomasyon, kritik işlemde owner Human Threshold",
+      "source_prefixes": [
+        "GU",
+        "YA"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K03",
+      "description": "Ulak tek doğal Türkçe sohbet girişidir",
+      "source_prefixes": [
+        "YA",
+        "KU"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K04",
+      "description": "Tek yerel model, ayrı Yönetici ve İcracı profesyonel rolleri",
+      "source_prefixes": [
+        "MA",
+        "YY",
+        "IY"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K05",
+      "description": "Aşamalı görev, tekrarlı test ve kanıtlı bitiş",
+      "source_prefixes": [
+        "HG",
+        "YG",
+        "IG"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K06",
+      "description": "Tek aktif görev ve sıralı kalıcı kuyruk",
+      "source_prefixes": [
+        "MA",
+        "YA"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K07",
+      "description": "Görev/kuyruk/DoneCheck tek ekranda, ayrıntı istekle açılır",
+      "source_prefixes": [
+        "KU",
+        "YR"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K08",
+      "description": "Mac/GitHub kapsam bazlı allowlist ve yeni alan owner onayı",
+      "source_prefixes": [
+        "GU",
+        "IS"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K09",
+      "description": "Kesinti sonrası checkpoint, doğrulama ve güvenli devam",
+      "source_prefixes": [
+        "MA",
+        "IS"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K10",
+      "description": "Aktif işte ekran uyuyabilir, sistem uykusu önlenir",
+      "source_prefixes": [
+        "TU",
+        "GU"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K11",
+      "description": "Yeni Ulak sıfırdan ayrı; eski Ulak yalnız salt okunur referans",
+      "source_prefixes": [
+        "GU",
+        "MA"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K12",
+      "description": "İcracı sonucu Yönetici+bağımsız DoneCheck ile doğrulanır",
+      "source_prefixes": [
+        "YS",
+        "GU"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K13",
+      "description": "Ortak kalıcı görev hafızası; ayrı roller ve yetki sınırları",
+      "source_prefixes": [
+        "MA",
+        "YS"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K14",
+      "description": "En fazla 3 kontrollü hata-onarım-test turu; sonra HOLD",
+      "source_prefixes": [
+        "IG",
+        "GU"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K15",
+      "description": "Yalıtılmış çalışma alanı, test ve geri alma",
+      "source_prefixes": [
+        "IG",
+        "IS"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K16",
+      "description": "HOLD olan görev ayrılır, yalnız bağımsız işler sırayla ilerler",
+      "source_prefixes": [
+        "YG",
+        "YA"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K17",
+      "description": "İnternet yokken yerel işler sürer; GitHub işleri WAIT",
+      "source_prefixes": [
+        "MA",
+        "IS"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K18",
+      "description": "Tek uygulama ve tek Ulak sohbet yüzeyi; arka plan rolleri",
+      "source_prefixes": [
+        "YA",
+        "YR"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K19",
+      "description": "İlerleme yalnız kanıtlanmış blok ağırlıklarından",
+      "source_prefixes": [
+        "HG",
+        "TU"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K20",
+      "description": "Başlangıçta kilitli yüzde paydası, owner onaylı kapsam sürümü",
+      "source_prefixes": [
+        "YG",
+        "GU"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K21",
+      "description": "Güvenli plan+ön simülasyon PASS ise otomatik icra",
+      "source_prefixes": [
+        "YG",
+        "IG"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K22",
+      "description": "İlk örnek PiLive üzerinde teori senaryosu; gerçek PiLive icrası yok",
+      "source_prefixes": [
+        "HG",
+        "YG"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K23",
+      "description": "Karşıt SIM2 yanlış sonuç/sahte kanıt ve yetki",
+      "source_prefixes": [
+        "GU",
+        "YS"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K24",
+      "description": "SIM3 Mac uyku/kesinti/kuyruk kurtarma",
+      "source_prefixes": [
+        "MA",
+        "IS"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K25",
+      "description": "Model dışı deterministik doğrulayıcı çekirdeği",
+      "source_prefixes": [
+        "GU",
+        "TU"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K26",
+      "description": "Zülfikar gerçek motor doğrulanırsa kullan, değilse güvenli çekirdek",
+      "source_prefixes": [
+        "MA",
+        "GU"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K27",
+      "description": "Ulak güvenli Duraklat/Devam Et/Güvenli Durdur",
+      "source_prefixes": [
+        "KU",
+        "IS"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K28",
+      "description": "Yönetici ve İcracı için ayrı gerçek profesyonel sınav",
+      "source_prefixes": [
+        "YY",
+        "IY"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K29",
+      "description": "Mac içeriği ve eski Ulak ilk keşfi salt okunur",
+      "source_prefixes": [
+        "GU",
+        "TU"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K30",
+      "description": "Teknik ekran uyumu, kolaylık, yerleşim, estetik dört ek hedef",
+      "source_prefixes": [
+        "TU",
+        "KU",
+        "YR",
+        "VG"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K31",
+      "description": "Üstte kanıtlı ilerleme, altta erişilebilir geniş sohbet",
+      "source_prefixes": [
+        "YR",
+        "KU"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K32",
+      "description": "Gerçek duruma bağlı kısa Yönetici/İcracı/Ulak durum mesajları",
+      "source_prefixes": [
+        "YD",
+        "KU"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K33",
+      "description": "Sakin premium seçkin görsel kimlik",
+      "source_prefixes": [
+        "VG",
+        "YD"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    },
+    {
+      "id": "OWN.K34",
+      "description": "Yalnız gerçek olay kayıtlarına bağlı hareket ve güncellemeler",
+      "source_prefixes": [
+        "YD",
+        "TU"
+      ],
+      "prefixes_resolve_to_original_75": true,
+      "signed_registry": "HOLD_UNVERIFIED",
+      "implementation_acceptance": "HOLD",
+      "design_refs": "design/V06_OWNER_ACCEPTANCE.md and contracts/SOURCES/ULAK_V08_INTERFACE_CONTRACT.json"
+    }
+  ]
+}

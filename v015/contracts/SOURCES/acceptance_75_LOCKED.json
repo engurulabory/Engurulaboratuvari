@@ -1,0 +1,893 @@
+{
+  "schema": "enguru.osi.triple-local-intelligence.preinstall-ledger/v0.3",
+  "date": "2026-10-30",
+  "locked_goal": "Tek emir → profesyonel Yönetici → yetkili İcracı → bağımsız kanıt → vizyoner Ulak ekranı",
+  "scoring": {
+    "DOCUMENTATION_COVERAGE": "5/5 unique criteria specified per group = 100/100 WRITTEN ONLY",
+    "PREINSTALL_EVIDENCE": "PASS only if its unique criterion is independently verified at preinstall level",
+    "FIELD_ACCEPTANCE": "requires local Mac app/real tasks and owner, separate from preinstall"
+  },
+  "design_coverage": {
+    "unique_controls": 75,
+    "groups": 15,
+    "per_group": {
+      "Hedef gücü": {
+        "written": 5,
+        "denominator": 5,
+        "score": 100,
+        "type": "written_requirement_coverage_only",
+        "acceptance": "HOLD_VERIFICATION"
+      },
+      "Yalınlık": {
+        "written": 5,
+        "denominator": 5,
+        "score": 100,
+        "type": "written_requirement_coverage_only",
+        "acceptance": "HOLD_VERIFICATION"
+      },
+      "Mimari": {
+        "written": 5,
+        "denominator": 5,
+        "score": 100,
+        "type": "written_requirement_coverage_only",
+        "acceptance": "HOLD_VERIFICATION"
+      },
+      "Güvenlik": {
+        "written": 5,
+        "denominator": 5,
+        "score": 100,
+        "type": "written_requirement_coverage_only",
+        "acceptance": "HOLD_VERIFICATION"
+      },
+      "Yönetici görev": {
+        "written": 5,
+        "denominator": 5,
+        "score": 100,
+        "type": "written_requirement_coverage_only",
+        "acceptance": "HOLD_VERIFICATION"
+      },
+      "Yönetici sorumluluk": {
+        "written": 5,
+        "denominator": 5,
+        "score": 100,
+        "type": "written_requirement_coverage_only",
+        "acceptance": "HOLD_VERIFICATION"
+      },
+      "Yönetici yetenek": {
+        "written": 5,
+        "denominator": 5,
+        "score": 100,
+        "type": "written_requirement_coverage_only",
+        "acceptance": "HOLD_VERIFICATION"
+      },
+      "İcracı görev": {
+        "written": 5,
+        "denominator": 5,
+        "score": 100,
+        "type": "written_requirement_coverage_only",
+        "acceptance": "HOLD_VERIFICATION"
+      },
+      "İcracı sorumluluk": {
+        "written": 5,
+        "denominator": 5,
+        "score": 100,
+        "type": "written_requirement_coverage_only",
+        "acceptance": "HOLD_VERIFICATION"
+      },
+      "İcracı yetenek": {
+        "written": 5,
+        "denominator": 5,
+        "score": 100,
+        "type": "written_requirement_coverage_only",
+        "acceptance": "HOLD_VERIFICATION"
+      },
+      "Teknik altyapı ve ekran": {
+        "written": 5,
+        "denominator": 5,
+        "score": 100,
+        "type": "written_requirement_coverage_only",
+        "acceptance": "HOLD_VERIFICATION"
+      },
+      "Ekran sadeliği ve kolaylık": {
+        "written": 5,
+        "denominator": 5,
+        "score": 100,
+        "type": "written_requirement_coverage_only",
+        "acceptance": "HOLD_VERIFICATION"
+      },
+      "Ekran yerleşimi": {
+        "written": 5,
+        "denominator": 5,
+        "score": 100,
+        "type": "written_requirement_coverage_only",
+        "acceptance": "HOLD_VERIFICATION"
+      },
+      "Görsel estetik": {
+        "written": 5,
+        "denominator": 5,
+        "score": 100,
+        "type": "written_requirement_coverage_only",
+        "acceptance": "HOLD_VERIFICATION"
+      },
+      "Yaratıcı deneyim": {
+        "written": 5,
+        "denominator": 5,
+        "score": 100,
+        "type": "written_requirement_coverage_only",
+        "acceptance": "HOLD_VERIFICATION"
+      }
+    }
+  },
+  "controls": [
+    {
+      "id": "HG01",
+      "area": "Hedef gücü",
+      "requirement": "Tek net hedef ve gerçek sonuç",
+      "evidence_required": "Bölüm 1; gerçek pilot teslim/DoneCheck",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "HG02",
+      "area": "Hedef gücü",
+      "requirement": "Kullanıcı niyeti → blok → çıktı",
+      "evidence_required": "Bölüm 3-4; end-to-end gerçek görev",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "HG03",
+      "area": "Hedef gücü",
+      "requirement": "Sıralı tam otomasyon + human gate",
+      "evidence_required": "Bölüm 4-5; negatif test",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "HG04",
+      "area": "Hedef gücü",
+      "requirement": "Kanıt ve yüzde bağı",
+      "evidence_required": "Bölüm 4; yanlış proof testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "HG05",
+      "area": "Hedef gücü",
+      "requirement": "Hazırlık/teknik/saha sınırları",
+      "evidence_required": "Bölüm 1; üçlü kabul muhasebesi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YA01",
+      "area": "Yalınlık",
+      "requirement": "Tek uygulama, tek sohbet",
+      "evidence_required": "Bölüm 4; UX saha testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YA02",
+      "area": "Yalınlık",
+      "requirement": "Tek aktif iş, FIFO",
+      "evidence_required": "Bölüm 4; kuyruk testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YA03",
+      "area": "Yalınlık",
+      "requirement": "Minimal ekran, katlanır kanıt",
+      "evidence_required": "Bölüm 4; UX testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YA04",
+      "area": "Yalınlık",
+      "requirement": "Duraklat/devam/güvenli dur",
+      "evidence_required": "Bölüm 4; yaşam döngüsü testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YA05",
+      "area": "Yalınlık",
+      "requirement": "Arka plan otomatizasyonu",
+      "evidence_required": "Bölüm 2; oturum/sleep saha testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "MA01",
+      "area": "Mimari",
+      "requirement": "Yönetici/İcracı ayrı yetki/bağlam",
+      "evidence_required": "Bölüm 2-3; rol izolasyonu",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "MA02",
+      "area": "Mimari",
+      "requirement": "Tek yerel model adaptörü",
+      "evidence_required": "Bölüm 2; donanım preflight",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "MA03",
+      "area": "Mimari",
+      "requirement": "Tek yazıcı, tek gerçek veritabanı",
+      "evidence_required": "Bölüm 4; eşzamanlılık testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "MA04",
+      "area": "Mimari",
+      "requirement": "Bağımsız doğrulayıcı",
+      "evidence_required": "Bölüm 2-4; sahte kanıt testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "MA05",
+      "area": "Mimari",
+      "requirement": "Kurtarma + Zülfikar yedeği",
+      "evidence_required": "Bölüm 1,4; failover saha testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "GU01",
+      "area": "Güvenlik",
+      "requirement": "En az yetki, izinli kaynaklar",
+      "evidence_required": "Bölüm 3,5; allowlist kontrolü",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "GU02",
+      "area": "Güvenlik",
+      "requirement": "İnsan eşiği kapsam/nonce/SHA",
+      "evidence_required": "Bölüm 5; süresi dolan token testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "GU03",
+      "area": "Güvenlik",
+      "requirement": "Yalıtılmış düzenleme ve geri alma",
+      "evidence_required": "Bölüm 3,5; rollback testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "GU04",
+      "area": "Güvenlik",
+      "requirement": "Kaynak/proof doğruluğu",
+      "evidence_required": "Bölüm 4,5; kaynak kayması testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "GU05",
+      "area": "Güvenlik",
+      "requirement": "Gizlilik, prompt enjeksiyonu ve audit",
+      "evidence_required": "Bölüm 4-5; saldırı testleri",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YG01",
+      "area": "Yönetici görev",
+      "requirement": "Doğal emir → açık hedef",
+      "evidence_required": "Bölüm 3; 10 görev sınavı",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YG02",
+      "area": "Yönetici görev",
+      "requirement": "Bağımlı uygulanabilir bloklara ayırma",
+      "evidence_required": "Bölüm 3; plan şema testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YG03",
+      "area": "Yönetici görev",
+      "requirement": "Sabit ağırlık/scope sürümü",
+      "evidence_required": "Bölüm 4; scope değişimi testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YG04",
+      "area": "Yönetici görev",
+      "requirement": "Ön simülasyon ve karşıt sınama",
+      "evidence_required": "Bölüm 1,3; stres matrisi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YG05",
+      "area": "Yönetici görev",
+      "requirement": "İcracıya kesin yetkili devir",
+      "evidence_required": "Bölüm 3; plan→receipt eşliği",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YS01",
+      "area": "Yönetici sorumluluk",
+      "requirement": "Human Threshold koruması",
+      "evidence_required": "Bölüm 3,5; kritik onay testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YS02",
+      "area": "Yönetici sorumluluk",
+      "requirement": "Yanlış beyanı PASS saymama",
+      "evidence_required": "Bölüm 4; kanıt saldırısı",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YS03",
+      "area": "Yönetici sorumluluk",
+      "requirement": "Gerçek DoneCheck kuralı",
+      "evidence_required": "Bölüm 4; finiş negatif testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YS04",
+      "area": "Yönetici sorumluluk",
+      "requirement": "Güvenli kuyruk ilerlemesi",
+      "evidence_required": "Bölüm 4; HOLD senaryosu",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YS05",
+      "area": "Yönetici sorumluluk",
+      "requirement": "Durma kararı/öğrenme ve kanıt",
+      "evidence_required": "Bölüm 1,3; üç onarım sınırı",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YY01",
+      "area": "Yönetici yetenek",
+      "requirement": "Planlama doğruluk sınavı",
+      "evidence_required": "Bölüm 3; 10/10 gerçek görev",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YY02",
+      "area": "Yönetici yetenek",
+      "requirement": "Risk/bağımlılık analizi sınavı",
+      "evidence_required": "Bölüm 3; 10/10 karşıt görev",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YY03",
+      "area": "Yönetici yetenek",
+      "requirement": "Kaynak keşif/araç seçimi",
+      "evidence_required": "Bölüm 3; sürümlü fixture",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YY04",
+      "area": "Yönetici yetenek",
+      "requirement": "GitHub+Mac durum uzlaştırma",
+      "evidence_required": "Bölüm 3-5; exact SHA sınavı",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YY05",
+      "area": "Yönetici yetenek",
+      "requirement": "Kararların okunur raporlanması",
+      "evidence_required": "Bölüm 4; gerçek UX deneyi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "IG01",
+      "area": "İcracı görev",
+      "requirement": "Yalıtılmış üretim",
+      "evidence_required": "Bölüm 3; gerçek worktree testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "IG02",
+      "area": "İcracı görev",
+      "requirement": "İzinli Mac araçlarının icrası",
+      "evidence_required": "Bölüm 3,5; allowlist testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "IG03",
+      "area": "İcracı görev",
+      "requirement": "Yetkili GitHub iş akışı",
+      "evidence_required": "Bölüm 3,5; branch/head testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "IG04",
+      "area": "İcracı görev",
+      "requirement": "Test ve onarım döngüsü",
+      "evidence_required": "Bölüm 1,3; 3 onarım testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "IG05",
+      "area": "İcracı görev",
+      "requirement": "Çıktı+receipt+rollback üretimi",
+      "evidence_required": "Bölüm 3-4; DoneCheck testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "IS01",
+      "area": "İcracı sorumluluk",
+      "requirement": "Hatalı/eksik testle PASS yasak",
+      "evidence_required": "Bölüm 4; false-positive testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "IS02",
+      "area": "İcracı sorumluluk",
+      "requirement": "Tekrarsız ve duruma bağlı icra",
+      "evidence_required": "Bölüm 4; crash/idempotency testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "IS03",
+      "area": "İcracı sorumluluk",
+      "requirement": "Sır koruma ve izin sınırı",
+      "evidence_required": "Bölüm 5; güvenlik testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "IS04",
+      "area": "İcracı sorumluluk",
+      "requirement": "Bağımsız verifier'a kanıt devri",
+      "evidence_required": "Bölüm 2-4; digest testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "IS05",
+      "area": "İcracı sorumluluk",
+      "requirement": "Açık durum/kaynak eşliği",
+      "evidence_required": "Bölüm 3-4; stale SHA testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "IY01",
+      "area": "İcracı yetenek",
+      "requirement": "Swift/Python kod çözümleme ve onarım",
+      "evidence_required": "Bölüm 3; 10 gerçek görev",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "IY02",
+      "area": "İcracı yetenek",
+      "requirement": "SQLite ve kurtarma becerisi",
+      "evidence_required": "Bölüm 3-4; fiziksel kesinti testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "IY03",
+      "area": "İcracı yetenek",
+      "requirement": "Git worktree/commit/branch kanıtı",
+      "evidence_required": "Bölüm 3; GitHub saha testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "IY04",
+      "area": "İcracı yetenek",
+      "requirement": "Test/regresyon ve hata analizi",
+      "evidence_required": "Bölüm 3; benchmark",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "IY05",
+      "area": "İcracı yetenek",
+      "requirement": "Geri alma ve güvenli durma",
+      "evidence_required": "Bölüm 3-5; rollback/stop saha testi",
+      "source": "V0.1",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "TU01",
+      "area": "Teknik altyapı ve ekran",
+      "requirement": "Ulak, görev durumunu SQLite/tek hakikat kaydından sürümlenmiş IPC snapshot'ıyla okur; model metnini doğrudan statü olarak sunmaz.",
+      "evidence_required": "Yerel IPC sözleşmesi + yanlış statü karşıt testi",
+      "source": "V0.2",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "TU02",
+      "area": "Teknik altyapı ve ekran",
+      "requirement": "Yüzde, kilitli 10000 baz puanlı blok planında yalnız bağımsız doğrulanmış PASS ile artar.",
+      "evidence_required": "Plan+receipt testleri; yüzde regresyonu",
+      "source": "V0.2",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "TU03",
+      "area": "Teknik altyapı ve ekran",
+      "requirement": "Bağlantı/süreç kesintisi ve yeniden bağlanmada ekran aynı görev/plan sürümünü gösterir.",
+      "evidence_required": "UI reconnect ve Mac restart gerçek testleri",
+      "source": "V0.2",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "TU04",
+      "area": "Teknik altyapı ve ekran",
+      "requirement": "`HOLD/BLOCKED/RECOVERING/AWAITING_OWNER` durumları ayrı ve anlaşılır görünür; kanıt yokken DONE görünmez.",
+      "evidence_required": "Ekran durum matrisi + karşıt test",
+      "source": "V0.2",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "TU05",
+      "area": "Teknik altyapı ve ekran",
+      "requirement": "`Kanıtları Gör` eylemi gerçek kaynak/test/DoneCheck referanslarını açar; gizli bilgiler maskelenir.",
+      "evidence_required": "Yetkili kullanıcı erişim ve gizlilik testleri",
+      "source": "V0.2",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "KU01",
+      "area": "Ekran sadeliği ve kolaylık",
+      "requirement": "Açılışta tek sohbet kutusu, kanıtlı yüzde, aktif iş, kuyruk ve DoneCheck okunur.",
+      "evidence_required": "İlk kullanım görev testi",
+      "source": "V0.2",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "KU02",
+      "area": "Ekran sadeliği ve kolaylık",
+      "requirement": "Duraklat/Devam Et/Güvenli Durdur bağlama göre doğru etkinleşir; riskli hareket açıklaması vardır.",
+      "evidence_required": "3 kontrolün izin/durum testi",
+      "source": "V0.2",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "KU03",
+      "area": "Ekran sadeliği ve kolaylık",
+      "requirement": "Terminal gerektirmeyen normal kullanım; hata mesajları anlaşılır Türkçe ve tek sonraki hareket içerir.",
+      "evidence_required": "5 görevlik kullanılabilirlik sınavı",
+      "source": "V0.2",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "KU04",
+      "area": "Ekran sadeliği ve kolaylık",
+      "requirement": "Klavye erişimi, VoiceOver etiketleri, dinamik yazı ve azaltılmış hareket desteklenir.",
+      "evidence_required": "macOS erişilebilirlik incelemesi",
+      "source": "V0.2",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "KU05",
+      "area": "Ekran sadeliği ve kolaylık",
+      "requirement": "Teknik ayrıntılar isteğe bağlıdır; günlük kullanıcıya gereksiz karar/onay yükü çıkarılmaz.",
+      "evidence_required": "Owner görev akışı ve tıklama adedi incelemesi",
+      "source": "V0.2",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YR01",
+      "area": "Ekran yerleşimi",
+      "requirement": "Üst çubukta ürün/bağlantı/görev durumu; ilk görünür alan kanıtlı ilerleme kartıdır.",
+      "evidence_required": "SwiftUI önizleme/yerleşim incelemesi",
+      "source": "V0.2",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YR02",
+      "area": "Ekran yerleşimi",
+      "requirement": "Aktif blok, kanıtlı yüzde, kalan yüzde ve durum aynı bakışta görülür.",
+      "evidence_required": "Mac pencere ekran görüntüsü + kullanıcı doğrulaması",
+      "source": "V0.2",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YR03",
+      "area": "Ekran yerleşimi",
+      "requirement": "Kuyruk tek satırda özetlenir; açılır detay vardır, kalıcı geniş panel kullanılmaz.",
+      "evidence_required": "0/1/5 kuyruk senaryosu",
+      "source": "V0.2",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YR04",
+      "area": "Ekran yerleşimi",
+      "requirement": "Sohbet alanı ana alan olarak kalır; yazma alanı her durumda kolay erişilir.",
+      "evidence_required": "Pencere boyutu ve klavye testi",
+      "source": "V0.2",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YR05",
+      "area": "Ekran yerleşimi",
+      "requirement": "Standart/küçük Mac pencere, yüksek yazı ölçeği ve uzun Türkçe metinde taşma olmaz.",
+      "evidence_required": "Çoklu pencere ve font ölçeği regresyonu",
+      "source": "V0.2",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "VG01",
+      "area": "Görsel estetik",
+      "requirement": "Premium, minimal Mac-native kimlik; Engürü koyu yeşili ve ölçülü cam katmanları.",
+      "evidence_required": "Tasarım tokenları + owner estetik kabulü",
+      "source": "V0.2",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "VG02",
+      "area": "Görsel estetik",
+      "requirement": "Güçlü tipografik hiyerarşi: sonuç > aktif iş > kuyruk; gösteriş amaçlı dikkat dağıtıcı bileşen yok.",
+      "evidence_required": "Görsel hiyerarşi değerlendirmesi",
+      "source": "V0.2",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "VG03",
+      "area": "Görsel estetik",
+      "requirement": "Baykuş amblemi kontrollü ölçekte ve hakları doğrulanmış varlıkla kullanılır.",
+      "evidence_required": "Asset kaynak ve görünüm incelemesi",
+      "source": "V0.2",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "VG04",
+      "area": "Görsel estetik",
+      "requirement": "Metin için hedef kontrast en az 4.5:1, ilgili büyük metin ve bileşenler için erişilebilirlik kuralları; yalnız renge bağımlı durum gösterimi yok.",
+      "evidence_required": "Ölçülmüş kontrast ve VoiceOver testleri",
+      "source": "V0.2",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "VG05",
+      "area": "Görsel estetik",
+      "requirement": "Animasyon yalnız anlamlı geçişlerde, azaltılmış hareket tercihiyle uyumlu; kullanıcı/owner gerçek ekranı beğeni ve işlev açısından onaylar.",
+      "evidence_required": "Gerçek SwiftUI önizlemesi + owner incelemesi",
+      "source": "V0.2",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YD01",
+      "area": "Yaratıcı deneyim",
+      "requirement": "Durum mesajları yalnız doğrulanmış olay kaydıyla değişir; model metni statüyü belirlemez.",
+      "evidence_required": "Olay haritası, imzalı kanıt ve sahte ilerleme testi",
+      "source": "V0.3",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YD02",
+      "area": "Yaratıcı deneyim",
+      "requirement": "Durum değişimi hafif ve anlamlı animasyonlarla sunulur; azaltılmış hareket seçeneği desteklenir.",
+      "evidence_required": "SwiftUI/erişilebilirlik önizlemesi, reduce-motion testi",
+      "source": "V0.3",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YD03",
+      "area": "Yaratıcı deneyim",
+      "requirement": "Yönetici, İcracı ve Ulak aynı ekranda ayrı renk zorunluluğu olmaksızın tanınır.",
+      "evidence_required": "Ekran görüntüsü, kontrast, ikon ve VoiceOver kontrolü",
+      "source": "V0.3",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YD04",
+      "area": "Yaratıcı deneyim",
+      "requirement": "HOLD/BLOCKED/RECOVERING bilgilendirmeleri olumlu, kesin Türkçe ve tek somut hareket içerir.",
+      "evidence_required": "Senaryo metinleri, yerelleştirme ve kullanıcı incelemesi",
+      "source": "V0.3",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    },
+    {
+      "id": "YD05",
+      "area": "Yaratıcı deneyim",
+      "requirement": "Premium sakin deneyim ve gerçek kullanıcı başarı ölçütleri owner tarafından görünür önizlemede kabul edilir.",
+      "evidence_required": "Gerçek görsel önizleme, beş görevlik kullanıcı sınaması, owner kabulü",
+      "source": "V0.3",
+      "documented": true,
+      "preinstall_evidence": "HOLD_VERIFICATION",
+      "field_evidence": "NOT_TESTED"
+    }
+  ],
+  "gates": {
+    "P01_written_inventory": "PASS_WRITTEN_ONLY",
+    "P02_theoretical_consistency": "PASS_SYNTHETIC_ONLY",
+    "P03_SIM1": "PASS_SYNTHETIC_ONLY",
+    "P04_SIM2": "PASS_SYNTHETIC_ONLY",
+    "P05_SIM3": "PASS_SYNTHETIC_ONLY",
+    "P06_independent_review": "HOLD",
+    "P07_owner_install_authority": "HOLD",
+    "P08_Mac_readonly_inventory": "PARTIAL_PASS",
+    "P09_real_model_professional_exam": "HOLD",
+    "P10_UI_preview_accessibility": "NOT_TESTED",
+    "P11_source_dependency_bridge_old_Ulak": "HOLD"
+  },
+  "install": "HOLD",
+  "deletion": "HOLD",
+  "zulfikar_real_engine": "NOT_TESTED",
+  "notes": [
+    "The 15×100 figures are documentation-coverage scores, not verified engineering or product scores.",
+    "Actual initial Qwen3:14b tests are two small observed outputs and are insufficient for professional level acceptance."
+  ]
+}

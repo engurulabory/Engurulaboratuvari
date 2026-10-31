@@ -1,0 +1,8 @@
+{
+  "host": "Linux",
+  "machine": "x86_64",
+  "mac_exam": "NOT_EXECUTED",
+  "model_calls": 0,
+  "reason": "This runtime is Linux, not the authorized Mac OSi; no Mac session/control capability exposed.",
+  "round": "3/3 engineering candidate; real model validation pending, no automatic fourth round."
+}

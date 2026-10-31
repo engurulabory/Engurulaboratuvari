@@ -1,0 +1,764 @@
+{
+  "schema": "enguru.ulak.preinstall.acceptance-index/v0.8",
+  "date": "2026-10-30",
+  "denominator": 75,
+  "areas": 15,
+  "scoring": {
+    "WRITTEN": "definition documented, 75/75 historically",
+    "PREINSTALL": "evidence from design + independent preinstall validation; not field testing",
+    "FIELD": "real Mac OSi finished app + genuine runtime + owner acceptance"
+  },
+  "source": "sources/acceptance_75_LOCKED.json",
+  "items": [
+    {
+      "id": "HG01",
+      "area": "Hedef gücü",
+      "requirement": "Tek net hedef ve gerçek sonuç",
+      "preinstall_evidence_target": "V0.8 hedef-sonuç zinciri + SIM1 kanıtlı ilerleme ve teknik/saha muhasebesi — özgün ölçüt: Tek net hedef ve gerçek sonuç",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 1; gerçek pilot teslim/DoneCheck",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "HG02",
+      "area": "Hedef gücü",
+      "requirement": "Kullanıcı niyeti → blok → çıktı",
+      "preinstall_evidence_target": "V0.8 hedef-sonuç zinciri + SIM1 kanıtlı ilerleme ve teknik/saha muhasebesi — özgün ölçüt: Kullanıcı niyeti → blok → çıktı",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 3-4; end-to-end gerçek görev",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "HG03",
+      "area": "Hedef gücü",
+      "requirement": "Sıralı tam otomasyon + human gate",
+      "preinstall_evidence_target": "V0.8 hedef-sonuç zinciri + SIM1 kanıtlı ilerleme ve teknik/saha muhasebesi — özgün ölçüt: Sıralı tam otomasyon + human gate",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 4-5; negatif test",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "HG04",
+      "area": "Hedef gücü",
+      "requirement": "Kanıt ve yüzde bağı",
+      "preinstall_evidence_target": "V0.8 hedef-sonuç zinciri + SIM1 kanıtlı ilerleme ve teknik/saha muhasebesi — özgün ölçüt: Kanıt ve yüzde bağı",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 4; yanlış proof testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "HG05",
+      "area": "Hedef gücü",
+      "requirement": "Hazırlık/teknik/saha sınırları",
+      "preinstall_evidence_target": "V0.8 hedef-sonuç zinciri + SIM1 kanıtlı ilerleme ve teknik/saha muhasebesi — özgün ölçüt: Hazırlık/teknik/saha sınırları",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 1; üçlü kabul muhasebesi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "YA01",
+      "area": "Yalınlık",
+      "requirement": "Tek uygulama, tek sohbet",
+      "preinstall_evidence_target": "V0.7.1 önizleme kuyruk/modal/sohbet erişimi ve V0.8 tek iş sözleşmesi; SwiftUI karşıt test ayrı — özgün ölçüt: Tek uygulama, tek sohbet",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 4; UX saha testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "YA02",
+      "area": "Yalınlık",
+      "requirement": "Tek aktif iş, FIFO",
+      "preinstall_evidence_target": "V0.7.1 önizleme kuyruk/modal/sohbet erişimi ve V0.8 tek iş sözleşmesi; SwiftUI karşıt test ayrı — özgün ölçüt: Tek aktif iş, FIFO",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 4; kuyruk testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "YA03",
+      "area": "Yalınlık",
+      "requirement": "Minimal ekran, katlanır kanıt",
+      "preinstall_evidence_target": "V0.7.1 önizleme kuyruk/modal/sohbet erişimi ve V0.8 tek iş sözleşmesi; SwiftUI karşıt test ayrı — özgün ölçüt: Minimal ekran, katlanır kanıt",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 4; UX testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "YA04",
+      "area": "Yalınlık",
+      "requirement": "Duraklat/devam/güvenli dur",
+      "preinstall_evidence_target": "V0.7.1 önizleme kuyruk/modal/sohbet erişimi ve V0.8 tek iş sözleşmesi; SwiftUI karşıt test ayrı — özgün ölçüt: Duraklat/devam/güvenli dur",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 4; yaşam döngüsü testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "YA05",
+      "area": "Yalınlık",
+      "requirement": "Arka plan otomatizasyonu",
+      "preinstall_evidence_target": "V0.7.1 önizleme kuyruk/modal/sohbet erişimi ve V0.8 tek iş sözleşmesi; SwiftUI karşıt test ayrı — özgün ölçüt: Arka plan otomatizasyonu",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 2; oturum/sleep saha testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "MA01",
+      "area": "Mimari",
+      "requirement": "Yönetici/İcracı ayrı yetki/bağlam",
+      "preinstall_evidence_target": "V0.8 typed mesajlar ve ayrı rol/tek kaynak durum modeli + SIM1/SIM3; bağımsız mimari inceleme ayrı — özgün ölçüt: Yönetici/İcracı ayrı yetki/bağlam",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 2-3; rol izolasyonu",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "MA02",
+      "area": "Mimari",
+      "requirement": "Tek yerel model adaptörü",
+      "preinstall_evidence_target": "V0.8 typed mesajlar ve ayrı rol/tek kaynak durum modeli + SIM1/SIM3; bağımsız mimari inceleme ayrı — özgün ölçüt: Tek yerel model adaptörü",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 2; donanım preflight",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "MA03",
+      "area": "Mimari",
+      "requirement": "Tek yazıcı, tek gerçek veritabanı",
+      "preinstall_evidence_target": "V0.8 typed mesajlar ve ayrı rol/tek kaynak durum modeli + SIM1/SIM3; bağımsız mimari inceleme ayrı — özgün ölçüt: Tek yazıcı, tek gerçek veritabanı",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 4; eşzamanlılık testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "MA04",
+      "area": "Mimari",
+      "requirement": "Bağımsız doğrulayıcı",
+      "preinstall_evidence_target": "V0.8 typed mesajlar ve ayrı rol/tek kaynak durum modeli + SIM1/SIM3; bağımsız mimari inceleme ayrı — özgün ölçüt: Bağımsız doğrulayıcı",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 2-4; sahte kanıt testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "MA05",
+      "area": "Mimari",
+      "requirement": "Kurtarma + Zülfikar yedeği",
+      "preinstall_evidence_target": "V0.8 typed mesajlar ve ayrı rol/tek kaynak durum modeli + SIM1/SIM3; bağımsız mimari inceleme ayrı — özgün ölçüt: Kurtarma + Zülfikar yedeği",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 1,4; failover saha testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "GU01",
+      "area": "Güvenlik",
+      "requirement": "En az yetki, izinli kaynaklar",
+      "preinstall_evidence_target": "SIM2 sahte kanıt/yanlış scope/owner karşıt testi; izinli path, OS isolation ve güvenlik uzman incelemesi açık — özgün ölçüt: En az yetki, izinli kaynaklar",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 3,5; allowlist kontrolü",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "GU02",
+      "area": "Güvenlik",
+      "requirement": "İnsan eşiği kapsam/nonce/SHA",
+      "preinstall_evidence_target": "SIM2 sahte kanıt/yanlış scope/owner karşıt testi; izinli path, OS isolation ve güvenlik uzman incelemesi açık — özgün ölçüt: İnsan eşiği kapsam/nonce/SHA",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 5; süresi dolan token testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "GU03",
+      "area": "Güvenlik",
+      "requirement": "Yalıtılmış düzenleme ve geri alma",
+      "preinstall_evidence_target": "SIM2 sahte kanıt/yanlış scope/owner karşıt testi; izinli path, OS isolation ve güvenlik uzman incelemesi açık — özgün ölçüt: Yalıtılmış düzenleme ve geri alma",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 3,5; rollback testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "GU04",
+      "area": "Güvenlik",
+      "requirement": "Kaynak/proof doğruluğu",
+      "preinstall_evidence_target": "SIM2 sahte kanıt/yanlış scope/owner karşıt testi; izinli path, OS isolation ve güvenlik uzman incelemesi açık — özgün ölçüt: Kaynak/proof doğruluğu",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 4,5; kaynak kayması testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "GU05",
+      "area": "Güvenlik",
+      "requirement": "Gizlilik, prompt enjeksiyonu ve audit",
+      "preinstall_evidence_target": "SIM2 sahte kanıt/yanlış scope/owner karşıt testi; izinli path, OS isolation ve güvenlik uzman incelemesi açık — özgün ölçüt: Gizlilik, prompt enjeksiyonu ve audit",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 4-5; saldırı testleri",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "YG01",
+      "area": "Yönetici görev",
+      "requirement": "Doğal emir → açık hedef",
+      "preinstall_evidence_target": "20 Yönetici gerçek model sınavı; sürümlü plan, sabit payda ve bağımlılık DAG bağımsız oracle incelemesi — özgün ölçüt: Doğal emir → açık hedef",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 3; 10 görev sınavı",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "YG02",
+      "area": "Yönetici görev",
+      "requirement": "Bağımlı uygulanabilir bloklara ayırma",
+      "preinstall_evidence_target": "20 Yönetici gerçek model sınavı; sürümlü plan, sabit payda ve bağımlılık DAG bağımsız oracle incelemesi — özgün ölçüt: Bağımlı uygulanabilir bloklara ayırma",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 3; plan şema testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "YG03",
+      "area": "Yönetici görev",
+      "requirement": "Sabit ağırlık/scope sürümü",
+      "preinstall_evidence_target": "20 Yönetici gerçek model sınavı; sürümlü plan, sabit payda ve bağımlılık DAG bağımsız oracle incelemesi — özgün ölçüt: Sabit ağırlık/scope sürümü",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 4; scope değişimi testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "YG04",
+      "area": "Yönetici görev",
+      "requirement": "Ön simülasyon ve karşıt sınama",
+      "preinstall_evidence_target": "20 Yönetici gerçek model sınavı; sürümlü plan, sabit payda ve bağımlılık DAG bağımsız oracle incelemesi — özgün ölçüt: Ön simülasyon ve karşıt sınama",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 1,3; stres matrisi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "YG05",
+      "area": "Yönetici görev",
+      "requirement": "İcracıya kesin yetkili devir",
+      "preinstall_evidence_target": "20 Yönetici gerçek model sınavı; sürümlü plan, sabit payda ve bağımlılık DAG bağımsız oracle incelemesi — özgün ölçüt: İcracıya kesin yetkili devir",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 3; plan→receipt eşliği",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "YS01",
+      "area": "Yönetici sorumluluk",
+      "requirement": "Human Threshold koruması",
+      "preinstall_evidence_target": "20 Yönetici risk/sorumluluk sınavı; Human Threshold ve DoneCheck karşıt kabul makbuzu — özgün ölçüt: Human Threshold koruması",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 3,5; kritik onay testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "YS02",
+      "area": "Yönetici sorumluluk",
+      "requirement": "Yanlış beyanı PASS saymama",
+      "preinstall_evidence_target": "20 Yönetici risk/sorumluluk sınavı; Human Threshold ve DoneCheck karşıt kabul makbuzu — özgün ölçüt: Yanlış beyanı PASS saymama",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 4; kanıt saldırısı",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "YS03",
+      "area": "Yönetici sorumluluk",
+      "requirement": "Gerçek DoneCheck kuralı",
+      "preinstall_evidence_target": "20 Yönetici risk/sorumluluk sınavı; Human Threshold ve DoneCheck karşıt kabul makbuzu — özgün ölçüt: Gerçek DoneCheck kuralı",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 4; finiş negatif testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "YS04",
+      "area": "Yönetici sorumluluk",
+      "requirement": "Güvenli kuyruk ilerlemesi",
+      "preinstall_evidence_target": "20 Yönetici risk/sorumluluk sınavı; Human Threshold ve DoneCheck karşıt kabul makbuzu — özgün ölçüt: Güvenli kuyruk ilerlemesi",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 4; HOLD senaryosu",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "YS05",
+      "area": "Yönetici sorumluluk",
+      "requirement": "Durma kararı/öğrenme ve kanıt",
+      "preinstall_evidence_target": "20 Yönetici risk/sorumluluk sınavı; Human Threshold ve DoneCheck karşıt kabul makbuzu — özgün ölçüt: Durma kararı/öğrenme ve kanıt",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 1,3; üç onarım sınırı",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "YY01",
+      "area": "Yönetici yetenek",
+      "requirement": "Planlama doğruluk sınavı",
+      "preinstall_evidence_target": "Yönetici 20/20 gerçek profesyonel sınav kanıtı + bağımsız değerlendirici — özgün ölçüt: Planlama doğruluk sınavı",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 3; 10/10 gerçek görev",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "YY02",
+      "area": "Yönetici yetenek",
+      "requirement": "Risk/bağımlılık analizi sınavı",
+      "preinstall_evidence_target": "Yönetici 20/20 gerçek profesyonel sınav kanıtı + bağımsız değerlendirici — özgün ölçüt: Risk/bağımlılık analizi sınavı",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 3; 10/10 karşıt görev",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "YY03",
+      "area": "Yönetici yetenek",
+      "requirement": "Kaynak keşif/araç seçimi",
+      "preinstall_evidence_target": "Yönetici 20/20 gerçek profesyonel sınav kanıtı + bağımsız değerlendirici — özgün ölçüt: Kaynak keşif/araç seçimi",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 3; sürümlü fixture",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "YY04",
+      "area": "Yönetici yetenek",
+      "requirement": "GitHub+Mac durum uzlaştırma",
+      "preinstall_evidence_target": "Yönetici 20/20 gerçek profesyonel sınav kanıtı + bağımsız değerlendirici — özgün ölçüt: GitHub+Mac durum uzlaştırma",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 3-5; exact SHA sınavı",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "YY05",
+      "area": "Yönetici yetenek",
+      "requirement": "Kararların okunur raporlanması",
+      "preinstall_evidence_target": "Yönetici 20/20 gerçek profesyonel sınav kanıtı + bağımsız değerlendirici — özgün ölçüt: Kararların okunur raporlanması",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 4; gerçek UX deneyi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "IG01",
+      "area": "İcracı görev",
+      "requirement": "Yalıtılmış üretim",
+      "preinstall_evidence_target": "İcracı 20 gerçek yetenek sınavı; izole tool-broker planı ve kaynak/test makbuzu tasarımı — özgün ölçüt: Yalıtılmış üretim",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 3; gerçek worktree testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "IG02",
+      "area": "İcracı görev",
+      "requirement": "İzinli Mac araçlarının icrası",
+      "preinstall_evidence_target": "İcracı 20 gerçek yetenek sınavı; izole tool-broker planı ve kaynak/test makbuzu tasarımı — özgün ölçüt: İzinli Mac araçlarının icrası",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 3,5; allowlist testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "IG03",
+      "area": "İcracı görev",
+      "requirement": "Yetkili GitHub iş akışı",
+      "preinstall_evidence_target": "İcracı 20 gerçek yetenek sınavı; izole tool-broker planı ve kaynak/test makbuzu tasarımı — özgün ölçüt: Yetkili GitHub iş akışı",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 3,5; branch/head testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "IG04",
+      "area": "İcracı görev",
+      "requirement": "Test ve onarım döngüsü",
+      "preinstall_evidence_target": "İcracı 20 gerçek yetenek sınavı; izole tool-broker planı ve kaynak/test makbuzu tasarımı — özgün ölçüt: Test ve onarım döngüsü",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 1,3; 3 onarım testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "IG05",
+      "area": "İcracı görev",
+      "requirement": "Çıktı+receipt+rollback üretimi",
+      "preinstall_evidence_target": "İcracı 20 gerçek yetenek sınavı; izole tool-broker planı ve kaynak/test makbuzu tasarımı — özgün ölçüt: Çıktı+receipt+rollback üretimi",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 3-4; DoneCheck testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "IS01",
+      "area": "İcracı sorumluluk",
+      "requirement": "Hatalı/eksik testle PASS yasak",
+      "preinstall_evidence_target": "İcracı 20 gerçek sınav + regresyon/replay/secret-scope karşıt kabul planı — özgün ölçüt: Hatalı/eksik testle PASS yasak",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 4; false-positive testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "IS02",
+      "area": "İcracı sorumluluk",
+      "requirement": "Tekrarsız ve duruma bağlı icra",
+      "preinstall_evidence_target": "İcracı 20 gerçek sınav + regresyon/replay/secret-scope karşıt kabul planı — özgün ölçüt: Tekrarsız ve duruma bağlı icra",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 4; crash/idempotency testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "IS03",
+      "area": "İcracı sorumluluk",
+      "requirement": "Sır koruma ve izin sınırı",
+      "preinstall_evidence_target": "İcracı 20 gerçek sınav + regresyon/replay/secret-scope karşıt kabul planı — özgün ölçüt: Sır koruma ve izin sınırı",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 5; güvenlik testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "IS04",
+      "area": "İcracı sorumluluk",
+      "requirement": "Bağımsız verifier'a kanıt devri",
+      "preinstall_evidence_target": "İcracı 20 gerçek sınav + regresyon/replay/secret-scope karşıt kabul planı — özgün ölçüt: Bağımsız verifier'a kanıt devri",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 2-4; digest testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "IS05",
+      "area": "İcracı sorumluluk",
+      "requirement": "Açık durum/kaynak eşliği",
+      "preinstall_evidence_target": "İcracı 20 gerçek sınav + regresyon/replay/secret-scope karşıt kabul planı — özgün ölçüt: Açık durum/kaynak eşliği",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 3-4; stale SHA testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "IY01",
+      "area": "İcracı yetenek",
+      "requirement": "Swift/Python kod çözümleme ve onarım",
+      "preinstall_evidence_target": "İcracı 20/20 gerçek profesyonel sınav + gerçek kod çalıştırma sınaması için ayrı yalıtım kabulü — özgün ölçüt: Swift/Python kod çözümleme ve onarım",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 3; 10 gerçek görev",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "IY02",
+      "area": "İcracı yetenek",
+      "requirement": "SQLite ve kurtarma becerisi",
+      "preinstall_evidence_target": "İcracı 20/20 gerçek profesyonel sınav + gerçek kod çalıştırma sınaması için ayrı yalıtım kabulü — özgün ölçüt: SQLite ve kurtarma becerisi",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 3-4; fiziksel kesinti testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "IY03",
+      "area": "İcracı yetenek",
+      "requirement": "Git worktree/commit/branch kanıtı",
+      "preinstall_evidence_target": "İcracı 20/20 gerçek profesyonel sınav + gerçek kod çalıştırma sınaması için ayrı yalıtım kabulü — özgün ölçüt: Git worktree/commit/branch kanıtı",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 3; GitHub saha testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "IY04",
+      "area": "İcracı yetenek",
+      "requirement": "Test/regresyon ve hata analizi",
+      "preinstall_evidence_target": "İcracı 20/20 gerçek profesyonel sınav + gerçek kod çalıştırma sınaması için ayrı yalıtım kabulü — özgün ölçüt: Test/regresyon ve hata analizi",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 3; benchmark",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "IY05",
+      "area": "İcracı yetenek",
+      "requirement": "Geri alma ve güvenli durma",
+      "preinstall_evidence_target": "İcracı 20/20 gerçek profesyonel sınav + gerçek kod çalıştırma sınaması için ayrı yalıtım kabulü — özgün ölçüt: Geri alma ve güvenli durma",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Bölüm 3-5; rollback/stop saha testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "TU01",
+      "area": "Teknik altyapı ve ekran",
+      "requirement": "Ulak, görev durumunu SQLite/tek hakikat kaydından sürümlenmiş IPC snapshot'ıyla okur; model metnini doğrudan statü olarak sunmaz.",
+      "preinstall_evidence_target": "Typed Event -> Readonly projection; SIM1/SIM2/SIM3 ve gerçek SwiftUI IPC tasarımı — özgün ölçüt: Ulak, görev durumunu SQLite/tek hakikat kaydından sürümlenmiş IPC snapshot'ıyla okur; model metnini doğrudan statü olarak sunmaz.",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Yerel IPC sözleşmesi + yanlış statü karşıt testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "TU02",
+      "area": "Teknik altyapı ve ekran",
+      "requirement": "Yüzde, kilitli 10000 baz puanlı blok planında yalnız bağımsız doğrulanmış PASS ile artar.",
+      "preinstall_evidence_target": "Typed Event -> Readonly projection; SIM1/SIM2/SIM3 ve gerçek SwiftUI IPC tasarımı — özgün ölçüt: Yüzde, kilitli 10000 baz puanlı blok planında yalnız bağımsız doğrulanmış PASS ile artar.",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Plan+receipt testleri; yüzde regresyonu",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "TU03",
+      "area": "Teknik altyapı ve ekran",
+      "requirement": "Bağlantı/süreç kesintisi ve yeniden bağlanmada ekran aynı görev/plan sürümünü gösterir.",
+      "preinstall_evidence_target": "Typed Event -> Readonly projection; SIM1/SIM2/SIM3 ve gerçek SwiftUI IPC tasarımı — özgün ölçüt: Bağlantı/süreç kesintisi ve yeniden bağlanmada ekran aynı görev/plan sürümünü gösterir.",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "UI reconnect ve Mac restart gerçek testleri",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "TU04",
+      "area": "Teknik altyapı ve ekran",
+      "requirement": "`HOLD/BLOCKED/RECOVERING/AWAITING_OWNER` durumları ayrı ve anlaşılır görünür; kanıt yokken DONE görünmez.",
+      "preinstall_evidence_target": "Typed Event -> Readonly projection; SIM1/SIM2/SIM3 ve gerçek SwiftUI IPC tasarımı — özgün ölçüt: `HOLD/BLOCKED/RECOVERING/AWAITING_OWNER` durumları ayrı ve anlaşılır görünür; kanıt yokken DONE görünmez.",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Ekran durum matrisi + karşıt test",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "TU05",
+      "area": "Teknik altyapı ve ekran",
+      "requirement": "`Kanıtları Gör` eylemi gerçek kaynak/test/DoneCheck referanslarını açar; gizli bilgiler maskelenir.",
+      "preinstall_evidence_target": "Typed Event -> Readonly projection; SIM1/SIM2/SIM3 ve gerçek SwiftUI IPC tasarımı — özgün ölçüt: `Kanıtları Gör` eylemi gerçek kaynak/test/DoneCheck referanslarını açar; gizli bilgiler maskelenir.",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Yetkili kullanıcı erişim ve gizlilik testleri",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "KU01",
+      "area": "Ekran sadeliği ve kolaylık",
+      "requirement": "Açılışta tek sohbet kutusu, kanıtlı yüzde, aktif iş, kuyruk ve DoneCheck okunur.",
+      "preinstall_evidence_target": "V0.6 V0.7.1 karşılaştırması, erişilebilirlik planı; owner onayı ve SwiftUI prototip ayrı — özgün ölçüt: Açılışta tek sohbet kutusu, kanıtlı yüzde, aktif iş, kuyruk ve DoneCheck okunur.",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "İlk kullanım görev testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "KU02",
+      "area": "Ekran sadeliği ve kolaylık",
+      "requirement": "Duraklat/Devam Et/Güvenli Durdur bağlama göre doğru etkinleşir; riskli hareket açıklaması vardır.",
+      "preinstall_evidence_target": "V0.6 V0.7.1 karşılaştırması, erişilebilirlik planı; owner onayı ve SwiftUI prototip ayrı — özgün ölçüt: Duraklat/Devam Et/Güvenli Durdur bağlama göre doğru etkinleşir; riskli hareket açıklaması vardır.",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "3 kontrolün izin/durum testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "KU03",
+      "area": "Ekran sadeliği ve kolaylık",
+      "requirement": "Terminal gerektirmeyen normal kullanım; hata mesajları anlaşılır Türkçe ve tek sonraki hareket içerir.",
+      "preinstall_evidence_target": "V0.6 V0.7.1 karşılaştırması, erişilebilirlik planı; owner onayı ve SwiftUI prototip ayrı — özgün ölçüt: Terminal gerektirmeyen normal kullanım; hata mesajları anlaşılır Türkçe ve tek sonraki hareket içerir.",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "5 görevlik kullanılabilirlik sınavı",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "KU04",
+      "area": "Ekran sadeliği ve kolaylık",
+      "requirement": "Klavye erişimi, VoiceOver etiketleri, dinamik yazı ve azaltılmış hareket desteklenir.",
+      "preinstall_evidence_target": "V0.6 V0.7.1 karşılaştırması, erişilebilirlik planı; owner onayı ve SwiftUI prototip ayrı — özgün ölçüt: Klavye erişimi, VoiceOver etiketleri, dinamik yazı ve azaltılmış hareket desteklenir.",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "macOS erişilebilirlik incelemesi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "KU05",
+      "area": "Ekran sadeliği ve kolaylık",
+      "requirement": "Teknik ayrıntılar isteğe bağlıdır; günlük kullanıcıya gereksiz karar/onay yükü çıkarılmaz.",
+      "preinstall_evidence_target": "V0.6 V0.7.1 karşılaştırması, erişilebilirlik planı; owner onayı ve SwiftUI prototip ayrı — özgün ölçüt: Teknik ayrıntılar isteğe bağlıdır; günlük kullanıcıya gereksiz karar/onay yükü çıkarılmaz.",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Owner görev akışı ve tıklama adedi incelemesi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Independent verifiable preinstall evidence"
+    },
+    {
+      "id": "YR01",
+      "area": "Ekran yerleşimi",
+      "requirement": "Üst çubukta ürün/bağlantı/görev durumu; ilk görünür alan kanıtlı ilerleme kartıdır.",
+      "preinstall_evidence_target": "V0.6 Owner görsel referansı, Desktop/iPad yerleşim ölçüsü; V0.7.1 hizalama HOLD, bağımsız görsel tekrar şart — özgün ölçüt: Üst çubukta ürün/bağlantı/görev durumu; ilk görünür alan kanıtlı ilerleme kartıdır.",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "SwiftUI önizleme/yerleşim incelemesi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "YR02",
+      "area": "Ekran yerleşimi",
+      "requirement": "Aktif blok, kanıtlı yüzde, kalan yüzde ve durum aynı bakışta görülür.",
+      "preinstall_evidence_target": "V0.6 Owner görsel referansı, Desktop/iPad yerleşim ölçüsü; V0.7.1 hizalama HOLD, bağımsız görsel tekrar şart — özgün ölçüt: Aktif blok, kanıtlı yüzde, kalan yüzde ve durum aynı bakışta görülür.",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Mac pencere ekran görüntüsü + kullanıcı doğrulaması",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "YR03",
+      "area": "Ekran yerleşimi",
+      "requirement": "Kuyruk tek satırda özetlenir; açılır detay vardır, kalıcı geniş panel kullanılmaz.",
+      "preinstall_evidence_target": "V0.6 Owner görsel referansı, Desktop/iPad yerleşim ölçüsü; V0.7.1 hizalama HOLD, bağımsız görsel tekrar şart — özgün ölçüt: Kuyruk tek satırda özetlenir; açılır detay vardır, kalıcı geniş panel kullanılmaz.",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "0/1/5 kuyruk senaryosu",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "YR04",
+      "area": "Ekran yerleşimi",
+      "requirement": "Sohbet alanı ana alan olarak kalır; yazma alanı her durumda kolay erişilir.",
+      "preinstall_evidence_target": "V0.6 Owner görsel referansı, Desktop/iPad yerleşim ölçüsü; V0.7.1 hizalama HOLD, bağımsız görsel tekrar şart — özgün ölçüt: Sohbet alanı ana alan olarak kalır; yazma alanı her durumda kolay erişilir.",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Pencere boyutu ve klavye testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "YR05",
+      "area": "Ekran yerleşimi",
+      "requirement": "Standart/küçük Mac pencere, yüksek yazı ölçeği ve uzun Türkçe metinde taşma olmaz.",
+      "preinstall_evidence_target": "V0.6 Owner görsel referansı, Desktop/iPad yerleşim ölçüsü; V0.7.1 hizalama HOLD, bağımsız görsel tekrar şart — özgün ölçüt: Standart/küçük Mac pencere, yüksek yazı ölçeği ve uzun Türkçe metinde taşma olmaz.",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Çoklu pencere ve font ölçeği regresyonu",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "VG01",
+      "area": "Görsel estetik",
+      "requirement": "Premium, minimal Mac-native kimlik; Engürü koyu yeşili ve ölçülü cam katmanları.",
+      "preinstall_evidence_target": "V0.6 2/2 kaynak SHA; estetik owner kabulü yalnız V0.6 karakter için; son uygulama ekranı HOLD — özgün ölçüt: Premium, minimal Mac-native kimlik; Engürü koyu yeşili ve ölçülü cam katmanları.",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Tasarım tokenları + owner estetik kabulü",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "VG02",
+      "area": "Görsel estetik",
+      "requirement": "Güçlü tipografik hiyerarşi: sonuç > aktif iş > kuyruk; gösteriş amaçlı dikkat dağıtıcı bileşen yok.",
+      "preinstall_evidence_target": "V0.6 2/2 kaynak SHA; estetik owner kabulü yalnız V0.6 karakter için; son uygulama ekranı HOLD — özgün ölçüt: Güçlü tipografik hiyerarşi: sonuç > aktif iş > kuyruk; gösteriş amaçlı dikkat dağıtıcı bileşen yok.",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Görsel hiyerarşi değerlendirmesi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "VG03",
+      "area": "Görsel estetik",
+      "requirement": "Baykuş amblemi kontrollü ölçekte ve hakları doğrulanmış varlıkla kullanılır.",
+      "preinstall_evidence_target": "V0.6 2/2 kaynak SHA; estetik owner kabulü yalnız V0.6 karakter için; son uygulama ekranı HOLD — özgün ölçüt: Baykuş amblemi kontrollü ölçekte ve hakları doğrulanmış varlıkla kullanılır.",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Asset kaynak ve görünüm incelemesi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "VG04",
+      "area": "Görsel estetik",
+      "requirement": "Metin için hedef kontrast en az 4.5:1, ilgili büyük metin ve bileşenler için erişilebilirlik kuralları; yalnız renge bağımlı durum gösterimi yok.",
+      "preinstall_evidence_target": "V0.6 2/2 kaynak SHA; estetik owner kabulü yalnız V0.6 karakter için; son uygulama ekranı HOLD — özgün ölçüt: Metin için hedef kontrast en az 4.5:1, ilgili büyük metin ve bileşenler için erişilebilirlik kuralları; yalnız renge bağımlı durum gösterimi yok.",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Ölçülmüş kontrast ve VoiceOver testleri",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "VG05",
+      "area": "Görsel estetik",
+      "requirement": "Animasyon yalnız anlamlı geçişlerde, azaltılmış hareket tercihiyle uyumlu; kullanıcı/owner gerçek ekranı beğeni ve işlev açısından onaylar.",
+      "preinstall_evidence_target": "V0.6 2/2 kaynak SHA; estetik owner kabulü yalnız V0.6 karakter için; son uygulama ekranı HOLD — özgün ölçüt: Animasyon yalnız anlamlı geçişlerde, azaltılmış hareket tercihiyle uyumlu; kullanıcı/owner gerçek ekranı beğeni ve işlev açısından onaylar.",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Gerçek SwiftUI önizlemesi + owner incelemesi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "YD01",
+      "area": "Yaratıcı deneyim",
+      "requirement": "Durum mesajları yalnız doğrulanmış olay kaydıyla değişir; model metni statüyü belirlemez.",
+      "preinstall_evidence_target": "Read-only event projection + azaltılmış hareket ve Türkçe durum makbuzu; gerçek SwiftUI/owner kullanımı HOLD — özgün ölçüt: Durum mesajları yalnız doğrulanmış olay kaydıyla değişir; model metni statüyü belirlemez.",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Olay haritası, imzalı kanıt ve sahte ilerleme testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "YD02",
+      "area": "Yaratıcı deneyim",
+      "requirement": "Durum değişimi hafif ve anlamlı animasyonlarla sunulur; azaltılmış hareket seçeneği desteklenir.",
+      "preinstall_evidence_target": "Read-only event projection + azaltılmış hareket ve Türkçe durum makbuzu; gerçek SwiftUI/owner kullanımı HOLD — özgün ölçüt: Durum değişimi hafif ve anlamlı animasyonlarla sunulur; azaltılmış hareket seçeneği desteklenir.",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "SwiftUI/erişilebilirlik önizlemesi, reduce-motion testi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "YD03",
+      "area": "Yaratıcı deneyim",
+      "requirement": "Yönetici, İcracı ve Ulak aynı ekranda ayrı renk zorunluluğu olmaksızın tanınır.",
+      "preinstall_evidence_target": "Read-only event projection + azaltılmış hareket ve Türkçe durum makbuzu; gerçek SwiftUI/owner kullanımı HOLD — özgün ölçüt: Yönetici, İcracı ve Ulak aynı ekranda ayrı renk zorunluluğu olmaksızın tanınır.",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Ekran görüntüsü, kontrast, ikon ve VoiceOver kontrolü",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "YD04",
+      "area": "Yaratıcı deneyim",
+      "requirement": "HOLD/BLOCKED/RECOVERING bilgilendirmeleri olumlu, kesin Türkçe ve tek somut hareket içerir.",
+      "preinstall_evidence_target": "Read-only event projection + azaltılmış hareket ve Türkçe durum makbuzu; gerçek SwiftUI/owner kullanımı HOLD — özgün ölçüt: HOLD/BLOCKED/RECOVERING bilgilendirmeleri olumlu, kesin Türkçe ve tek somut hareket içerir.",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Senaryo metinleri, yerelleştirme ve kullanıcı incelemesi",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    },
+    {
+      "id": "YD05",
+      "area": "Yaratıcı deneyim",
+      "requirement": "Premium sakin deneyim ve gerçek kullanıcı başarı ölçütleri owner tarafından görünür önizlemede kabul edilir.",
+      "preinstall_evidence_target": "Read-only event projection + azaltılmış hareket ve Türkçe durum makbuzu; gerçek SwiftUI/owner kullanımı HOLD — özgün ölçüt: Premium sakin deneyim ve gerçek kullanıcı başarı ölçütleri owner tarafından görünür önizlemede kabul edilir.",
+      "preinstall_state": "HOLD_VERIFICATION",
+      "field_evidence_target": "Gerçek görsel önizleme, beş görevlik kullanıcı sınaması, owner kabulü",
+      "field_state": "NOT_TESTED",
+      "required_authority": "Owner visual if VG/YR/YD; independent technical reviewer if security or architecture; separate Mac exam where role capability"
+    }
+  ]
+}

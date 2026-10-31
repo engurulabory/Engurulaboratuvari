@@ -1,0 +1,96 @@
+{
+  "schema": "enguru.v015.gates/v1",
+  "product_verified_finish": "HOLD",
+  "items": [
+    {
+      "id": "V015.G01",
+      "state": "HOLD",
+      "scoped_engineering_evidence": "Exact source/contract pins,75 texts,fixture drift checks",
+      "remaining": "Mac/Git state reconciliation and full source continuity",
+      "evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "evidence/pilot/PROJECTION.json"
+      ]
+    },
+    {
+      "id": "V015.G02",
+      "state": "HOLD",
+      "scoped_engineering_evidence": "Immutable typed plan,DAG,10000 weights and strict JSON",
+      "remaining": "General manager plan generation beyond fixed unique_jobs pilot",
+      "evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "evidence/pilot/PROJECTION.json"
+      ]
+    },
+    {
+      "id": "V015.G03",
+      "state": "HOLD",
+      "scoped_engineering_evidence": "Scoped signed local grant,expiry/source/resource and model separation",
+      "remaining": "Generic tool authority adapter and OS-level same-UID isolation",
+      "evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "evidence/pilot/PROJECTION.json"
+      ]
+    },
+    {
+      "id": "V015.G04",
+      "state": "HOLD",
+      "scoped_engineering_evidence": "WAL,idempotency,atomic one-active FIFO,kill/restart HOLD",
+      "remaining": "General dependent multi-task executor,checkpoint reconciliation completion",
+      "evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "evidence/pilot/PROJECTION.json"
+      ]
+    },
+    {
+      "id": "V015.G05",
+      "state": "HOLD",
+      "scoped_engineering_evidence": "Closed trusted fixture gateway,true red/green tool run",
+      "remaining": "Generic safe tool sandbox and model-produced code execution",
+      "evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "evidence/pilot/PROJECTION.json"
+      ]
+    },
+    {
+      "id": "V015.G06",
+      "state": "HOLD",
+      "scoped_engineering_evidence": "Independent pinned test rerun,repair-budget checks",
+      "remaining": "General autonomous source repair and all original professional benchmarks",
+      "evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "evidence/pilot/PROJECTION.json"
+      ]
+    },
+    {
+      "id": "V015.G07",
+      "state": "HOLD",
+      "scoped_engineering_evidence": "Receipt signatures,source/test binding,event chain,scoped progress",
+      "remaining": "All75 per-ID proof closure and owner final",
+      "evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "evidence/pilot/PROJECTION.json"
+      ]
+    },
+    {
+      "id": "V015.G08",
+      "state": "HOLD",
+      "scoped_engineering_evidence": "Two role HTTP adapters,native JSON IPC and readonly projection",
+      "remaining": "Live Qwen+SwiftUI Mac integration and Cockpit/PiLive portfolio surface",
+      "evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "evidence/pilot/PROJECTION.json"
+      ]
+    },
+    {
+      "id": "V015.G09",
+      "state": "NOT_TESTED",
+      "scoped_engineering_evidence": "Mac build/isolated install/field receipt source prepared",
+      "remaining": "Actual SwiftUI compile,accessibility,V0.6 visual equivalence,owner field acceptance",
+      "evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "evidence/pilot/PROJECTION.json"
+      ]
+    }
+  ]
+}

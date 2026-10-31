@@ -1,0 +1,22 @@
+{
+  "schema": "enguru.owner-scope/v015.1",
+  "authority_source": "Explicit owner messages in this Work session on 2026-10-31, not a cryptographic signature",
+  "owner_decision_39": "V015 V0.1 architecture and acceptance contract approved; actual engineering authorized",
+  "owner_decision_40": "Supersedes intermediate stop: integrated product, single FINAL.zip, single Mac block; await Mac receipts; no fourth model-prompt repair round",
+  "main_head": "28db999ba676e4764ae1b644950865674661d0b8",
+  "prior_report_commit": "04d67c9bf9981a900dc2f9931deb577d2518683f",
+  "branch": "work/v015-github-01-20261031",
+  "package_sha256": "49f500a09a9227773f988a89d0391b3f31fd34bfe6bf80b65595299a342099a8",
+  "protected": [
+    "old Ulak",
+    "PiLive",
+    "SQLite",
+    "backups",
+    "main",
+    "merge",
+    "publish",
+    "payment"
+  ],
+  "installation": "only exact isolated owner-start action; no blanket critical permission",
+  "product_finish": "75 original per-ID evidence + Mac field + independent verifier + owner final"
+}

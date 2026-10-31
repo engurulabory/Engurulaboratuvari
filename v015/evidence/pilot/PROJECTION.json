@@ -1,0 +1,28 @@
+{
+  "scope": "REAL_CODE_AND_TOOL_EXECUTION_WITH_STUB_ROLE_PROVIDER_NOT_QWEN_NOT_MAC",
+  "projection": {
+    "schema": "enguru.readonly.projection/v015.1",
+    "task_id": "v015-positive-pilot",
+    "plan_sha256": "a6200a4cbdc9b66b201c1c12d9d263291ed294bf55d0d5824a26f73c38ea9e99",
+    "source_sha256": "ef823dfb5567bad9387440a55bc14fcd52caff5abe852ce1fc5f82314d2fd700",
+    "state": "DONE",
+    "effect": "APPLIED_VERIFIED",
+    "done_weight": 10000,
+    "total_weight": 10000,
+    "completion_percent": 100.0,
+    "remaining_percent": 0.0,
+    "active_block": null,
+    "last_event_seq": 5,
+    "last_verified_event": "VERIFIED",
+    "donecheck": "PASS_SCOPED_PILOT",
+    "product_verified_finish": "HOLD",
+    "mac_field": "NOT_TESTED",
+    "evidence": "/workspace/scratch/5b4228c93ae3/v015/test-temporary/V015_REAL_PILOT_rmpva_3j/profile/jobs/0e9db4dc3a87351d7f63fbf0ef5dea8111c177ed4d14e6c05b51e35c70d40129/operation.json",
+    "queue": [
+      {
+        "command": "v015-positive-pilot",
+        "state": "DONE"
+      }
+    ]
+  }
+}

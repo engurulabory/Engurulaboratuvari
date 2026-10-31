@@ -1,0 +1,982 @@
+{
+  "schema": "enguru.v015.per-id-evidence/v1",
+  "original_denominator": 75,
+  "new_full_criteria_pass": 0,
+  "items": [
+    {
+      "id": "HG01",
+      "area": "Hedef gücü",
+      "requirement_original": "Tek net hedef ve gerçek sonuç",
+      "primary_gate": "V015.G02",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "HG02",
+      "area": "Hedef gücü",
+      "requirement_original": "Kullanıcı niyeti → blok → çıktı",
+      "primary_gate": "V015.G02",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "HG03",
+      "area": "Hedef gücü",
+      "requirement_original": "Sıralı tam otomasyon + human gate",
+      "primary_gate": "V015.G03",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "HG04",
+      "area": "Hedef gücü",
+      "requirement_original": "Kanıt ve yüzde bağı",
+      "primary_gate": "V015.G07",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "HG05",
+      "area": "Hedef gücü",
+      "requirement_original": "Hazırlık/teknik/saha sınırları",
+      "primary_gate": "V015.G01",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YA01",
+      "area": "Yalınlık",
+      "requirement_original": "Tek uygulama, tek sohbet",
+      "primary_gate": "V015.G08",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YA02",
+      "area": "Yalınlık",
+      "requirement_original": "Tek aktif iş, FIFO",
+      "primary_gate": "V015.G04",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YA03",
+      "area": "Yalınlık",
+      "requirement_original": "Minimal ekran, katlanır kanıt",
+      "primary_gate": "V015.G09",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YA04",
+      "area": "Yalınlık",
+      "requirement_original": "Duraklat/devam/güvenli dur",
+      "primary_gate": "V015.G04",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YA05",
+      "area": "Yalınlık",
+      "requirement_original": "Arka plan otomatizasyonu",
+      "primary_gate": "V015.G09",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "MA01",
+      "area": "Mimari",
+      "requirement_original": "Yönetici/İcracı ayrı yetki/bağlam",
+      "primary_gate": "V015.G08",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "MA02",
+      "area": "Mimari",
+      "requirement_original": "Tek yerel model adaptörü",
+      "primary_gate": "V015.G08",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "MA03",
+      "area": "Mimari",
+      "requirement_original": "Tek yazıcı, tek gerçek veritabanı",
+      "primary_gate": "V015.G04",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "MA04",
+      "area": "Mimari",
+      "requirement_original": "Bağımsız doğrulayıcı",
+      "primary_gate": "V015.G07",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "MA05",
+      "area": "Mimari",
+      "requirement_original": "Kurtarma + Zülfikar yedeği",
+      "primary_gate": "V015.G04",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "GU01",
+      "area": "Güvenlik",
+      "requirement_original": "En az yetki, izinli kaynaklar",
+      "primary_gate": "V015.G03",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "GU02",
+      "area": "Güvenlik",
+      "requirement_original": "İnsan eşiği kapsam/nonce/SHA",
+      "primary_gate": "V015.G03",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "GU03",
+      "area": "Güvenlik",
+      "requirement_original": "Yalıtılmış düzenleme ve geri alma",
+      "primary_gate": "V015.G05",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "GU04",
+      "area": "Güvenlik",
+      "requirement_original": "Kaynak/proof doğruluğu",
+      "primary_gate": "V015.G01",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "GU05",
+      "area": "Güvenlik",
+      "requirement_original": "Gizlilik, prompt enjeksiyonu ve audit",
+      "primary_gate": "V015.G03",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YG01",
+      "area": "Yönetici görev",
+      "requirement_original": "Doğal emir → açık hedef",
+      "primary_gate": "V015.G02",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YG02",
+      "area": "Yönetici görev",
+      "requirement_original": "Bağımlı uygulanabilir bloklara ayırma",
+      "primary_gate": "V015.G02",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YG03",
+      "area": "Yönetici görev",
+      "requirement_original": "Sabit ağırlık/scope sürümü",
+      "primary_gate": "V015.G02",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YG04",
+      "area": "Yönetici görev",
+      "requirement_original": "Ön simülasyon ve karşıt sınama",
+      "primary_gate": "V015.G02",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YG05",
+      "area": "Yönetici görev",
+      "requirement_original": "İcracıya kesin yetkili devir",
+      "primary_gate": "V015.G02",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YS01",
+      "area": "Yönetici sorumluluk",
+      "requirement_original": "Human Threshold koruması",
+      "primary_gate": "V015.G03",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YS02",
+      "area": "Yönetici sorumluluk",
+      "requirement_original": "Yanlış beyanı PASS saymama",
+      "primary_gate": "V015.G07",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YS03",
+      "area": "Yönetici sorumluluk",
+      "requirement_original": "Gerçek DoneCheck kuralı",
+      "primary_gate": "V015.G07",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YS04",
+      "area": "Yönetici sorumluluk",
+      "requirement_original": "Güvenli kuyruk ilerlemesi",
+      "primary_gate": "V015.G04",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YS05",
+      "area": "Yönetici sorumluluk",
+      "requirement_original": "Durma kararı/öğrenme ve kanıt",
+      "primary_gate": "V015.G04",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YY01",
+      "area": "Yönetici yetenek",
+      "requirement_original": "Planlama doğruluk sınavı",
+      "primary_gate": "V015.G02",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YY02",
+      "area": "Yönetici yetenek",
+      "requirement_original": "Risk/bağımlılık analizi sınavı",
+      "primary_gate": "V015.G02",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YY03",
+      "area": "Yönetici yetenek",
+      "requirement_original": "Kaynak keşif/araç seçimi",
+      "primary_gate": "V015.G01",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YY04",
+      "area": "Yönetici yetenek",
+      "requirement_original": "GitHub+Mac durum uzlaştırma",
+      "primary_gate": "V015.G01",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YY05",
+      "area": "Yönetici yetenek",
+      "requirement_original": "Kararların okunur raporlanması",
+      "primary_gate": "V015.G08",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "IG01",
+      "area": "İcracı görev",
+      "requirement_original": "Yalıtılmış üretim",
+      "primary_gate": "V015.G05",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "IG02",
+      "area": "İcracı görev",
+      "requirement_original": "İzinli Mac araçlarının icrası",
+      "primary_gate": "V015.G05",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "IG03",
+      "area": "İcracı görev",
+      "requirement_original": "Yetkili GitHub iş akışı",
+      "primary_gate": "V015.G05",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "IG04",
+      "area": "İcracı görev",
+      "requirement_original": "Test ve onarım döngüsü",
+      "primary_gate": "V015.G06",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "IG05",
+      "area": "İcracı görev",
+      "requirement_original": "Çıktı+receipt+rollback üretimi",
+      "primary_gate": "V015.G05",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "IS01",
+      "area": "İcracı sorumluluk",
+      "requirement_original": "Hatalı/eksik testle PASS yasak",
+      "primary_gate": "V015.G06",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "IS02",
+      "area": "İcracı sorumluluk",
+      "requirement_original": "Tekrarsız ve duruma bağlı icra",
+      "primary_gate": "V015.G04",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "IS03",
+      "area": "İcracı sorumluluk",
+      "requirement_original": "Sır koruma ve izin sınırı",
+      "primary_gate": "V015.G03",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "IS04",
+      "area": "İcracı sorumluluk",
+      "requirement_original": "Bağımsız verifier'a kanıt devri",
+      "primary_gate": "V015.G07",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "IS05",
+      "area": "İcracı sorumluluk",
+      "requirement_original": "Açık durum/kaynak eşliği",
+      "primary_gate": "V015.G01",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "IY01",
+      "area": "İcracı yetenek",
+      "requirement_original": "Swift/Python kod çözümleme ve onarım",
+      "primary_gate": "V015.G06",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "IY02",
+      "area": "İcracı yetenek",
+      "requirement_original": "SQLite ve kurtarma becerisi",
+      "primary_gate": "V015.G04",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "IY03",
+      "area": "İcracı yetenek",
+      "requirement_original": "Git worktree/commit/branch kanıtı",
+      "primary_gate": "V015.G05",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "IY04",
+      "area": "İcracı yetenek",
+      "requirement_original": "Test/regresyon ve hata analizi",
+      "primary_gate": "V015.G06",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "IY05",
+      "area": "İcracı yetenek",
+      "requirement_original": "Geri alma ve güvenli durma",
+      "primary_gate": "V015.G05",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "TU01",
+      "area": "Teknik altyapı ve ekran",
+      "requirement_original": "Ulak, görev durumunu SQLite/tek hakikat kaydından sürümlenmiş IPC snapshot'ıyla okur; model metnini doğrudan statü olarak sunmaz.",
+      "primary_gate": "V015.G08",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "TU02",
+      "area": "Teknik altyapı ve ekran",
+      "requirement_original": "Yüzde, kilitli 10000 baz puanlı blok planında yalnız bağımsız doğrulanmış PASS ile artar.",
+      "primary_gate": "V015.G07",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "TU03",
+      "area": "Teknik altyapı ve ekran",
+      "requirement_original": "Bağlantı/süreç kesintisi ve yeniden bağlanmada ekran aynı görev/plan sürümünü gösterir.",
+      "primary_gate": "V015.G09",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "TU04",
+      "area": "Teknik altyapı ve ekran",
+      "requirement_original": "`HOLD/BLOCKED/RECOVERING/AWAITING_OWNER` durumları ayrı ve anlaşılır görünür; kanıt yokken DONE görünmez.",
+      "primary_gate": "V015.G09",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "TU05",
+      "area": "Teknik altyapı ve ekran",
+      "requirement_original": "`Kanıtları Gör` eylemi gerçek kaynak/test/DoneCheck referanslarını açar; gizli bilgiler maskelenir.",
+      "primary_gate": "V015.G07",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "KU01",
+      "area": "Ekran sadeliği ve kolaylık",
+      "requirement_original": "Açılışta tek sohbet kutusu, kanıtlı yüzde, aktif iş, kuyruk ve DoneCheck okunur.",
+      "primary_gate": "V015.G09",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "KU02",
+      "area": "Ekran sadeliği ve kolaylık",
+      "requirement_original": "Duraklat/Devam Et/Güvenli Durdur bağlama göre doğru etkinleşir; riskli hareket açıklaması vardır.",
+      "primary_gate": "V015.G09",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "KU03",
+      "area": "Ekran sadeliği ve kolaylık",
+      "requirement_original": "Terminal gerektirmeyen normal kullanım; hata mesajları anlaşılır Türkçe ve tek sonraki hareket içerir.",
+      "primary_gate": "V015.G09",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "KU04",
+      "area": "Ekran sadeliği ve kolaylık",
+      "requirement_original": "Klavye erişimi, VoiceOver etiketleri, dinamik yazı ve azaltılmış hareket desteklenir.",
+      "primary_gate": "V015.G09",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "KU05",
+      "area": "Ekran sadeliği ve kolaylık",
+      "requirement_original": "Teknik ayrıntılar isteğe bağlıdır; günlük kullanıcıya gereksiz karar/onay yükü çıkarılmaz.",
+      "primary_gate": "V015.G09",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YR01",
+      "area": "Ekran yerleşimi",
+      "requirement_original": "Üst çubukta ürün/bağlantı/görev durumu; ilk görünür alan kanıtlı ilerleme kartıdır.",
+      "primary_gate": "V015.G09",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YR02",
+      "area": "Ekran yerleşimi",
+      "requirement_original": "Aktif blok, kanıtlı yüzde, kalan yüzde ve durum aynı bakışta görülür.",
+      "primary_gate": "V015.G09",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YR03",
+      "area": "Ekran yerleşimi",
+      "requirement_original": "Kuyruk tek satırda özetlenir; açılır detay vardır, kalıcı geniş panel kullanılmaz.",
+      "primary_gate": "V015.G09",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YR04",
+      "area": "Ekran yerleşimi",
+      "requirement_original": "Sohbet alanı ana alan olarak kalır; yazma alanı her durumda kolay erişilir.",
+      "primary_gate": "V015.G09",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YR05",
+      "area": "Ekran yerleşimi",
+      "requirement_original": "Standart/küçük Mac pencere, yüksek yazı ölçeği ve uzun Türkçe metinde taşma olmaz.",
+      "primary_gate": "V015.G09",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "VG01",
+      "area": "Görsel estetik",
+      "requirement_original": "Premium, minimal Mac-native kimlik; Engürü koyu yeşili ve ölçülü cam katmanları.",
+      "primary_gate": "V015.G09",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "VG02",
+      "area": "Görsel estetik",
+      "requirement_original": "Güçlü tipografik hiyerarşi: sonuç > aktif iş > kuyruk; gösteriş amaçlı dikkat dağıtıcı bileşen yok.",
+      "primary_gate": "V015.G09",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "VG03",
+      "area": "Görsel estetik",
+      "requirement_original": "Baykuş amblemi kontrollü ölçekte ve hakları doğrulanmış varlıkla kullanılır.",
+      "primary_gate": "V015.G09",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "VG04",
+      "area": "Görsel estetik",
+      "requirement_original": "Metin için hedef kontrast en az 4.5:1, ilgili büyük metin ve bileşenler için erişilebilirlik kuralları; yalnız renge bağımlı durum gösterimi yok.",
+      "primary_gate": "V015.G09",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "VG05",
+      "area": "Görsel estetik",
+      "requirement_original": "Animasyon yalnız anlamlı geçişlerde, azaltılmış hareket tercihiyle uyumlu; kullanıcı/owner gerçek ekranı beğeni ve işlev açısından onaylar.",
+      "primary_gate": "V015.G09",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YD01",
+      "area": "Yaratıcı deneyim",
+      "requirement_original": "Durum mesajları yalnız doğrulanmış olay kaydıyla değişir; model metni statüyü belirlemez.",
+      "primary_gate": "V015.G07",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YD02",
+      "area": "Yaratıcı deneyim",
+      "requirement_original": "Durum değişimi hafif ve anlamlı animasyonlarla sunulur; azaltılmış hareket seçeneği desteklenir.",
+      "primary_gate": "V015.G09",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YD03",
+      "area": "Yaratıcı deneyim",
+      "requirement_original": "Yönetici, İcracı ve Ulak aynı ekranda ayrı renk zorunluluğu olmaksızın tanınır.",
+      "primary_gate": "V015.G08",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YD04",
+      "area": "Yaratıcı deneyim",
+      "requirement_original": "HOLD/BLOCKED/RECOVERING bilgilendirmeleri olumlu, kesin Türkçe ve tek somut hareket içerir.",
+      "primary_gate": "V015.G09",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    },
+    {
+      "id": "YD05",
+      "area": "Yaratıcı deneyim",
+      "requirement_original": "Premium sakin deneyim ve gerçek kullanıcı başarı ölçütleri owner tarafından görünür önizlemede kabul edilir.",
+      "primary_gate": "V015.G09",
+      "preinstall": "HOLD",
+      "mac_field": "NOT_TESTED",
+      "candidate_evidence": [
+        "evidence/V015_TEST_RECEIPT.json",
+        "SOURCE_MANIFEST.json"
+      ],
+      "acceptance_reason": "Partial fixed-pilot engineering evidence is not the full original per-ID acceptance; see gate limitations."
+    }
+  ]
+}
