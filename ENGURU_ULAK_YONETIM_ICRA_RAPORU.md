@@ -3623,3 +3623,31 @@ Bu bölümün özgün metni `ba0f6ccbb4d1003ea67aed3c88442a5fff0848ce` commit'in
 | `audit/QWEN40_V013_CONTENT_REVIEW.json` | `41d03f93e198b78b58d9869cba684a4d379a9d1de3dd7b15ef2d3d8e62eb1944` |
 | `audit/QWEN40_V013_SEMANTIC_PROBES.json` | `ebfac3b7d3644fc6efa8cca68a34163aa6355f00e3bd50b961d034a2aecb9c73` |
 
+
+
+## V015 — HTML tasarım ve akış onay adayı / 2026-10-31
+
+Owner, mevcut native ekranın kabul edilen V0.6 tasarımını karşılamadığını ve dar unique_jobs pilotunun bütün ürünün icrası olmadığını bildirdi. Bu geri bildirim kabul edildi. Sonraki talimat: kabul koşullarına yönelik HTML sonucu sun; OSi yüklemesi onaydan sonra değerlendirilsin. Bu blok yalnız bu görsel/akış adayını üretmiştir; ürün kodu veya kurulum paketi değiştirilmemiştir.
+
+- Kaynak HEAD: `9becaa49d909f28e092e04490e06e85beaf7f403`; son ürün kodu: `4167ee4402fc2b4323f8e171780c186b5dc224a7`.
+- Çıktı: [ENGURU_V015_ULAK_HTML_ONAY_ADAYI.html](https://chatgpt.com/library?file_id=libfile_24cacd18fe988191bf804927cfe77355&account_id=personal), 1.966.776 bayt.
+- HTML SHA-256: `c5c3191bd20887c7d11b42f84d17cc59cfd73b68f6734416a4992f56fed10aaf`.
+- Özgün 75 koşul kaynağı: `a0ea2e161c639b079947301a6001021e43ff198aabca5105ed69586da2789756`. ID, alan, gereklilik ve gereken kanıt metinleri korunarak gömüldü. 15 alan ve dokuz kapı görünür. 34 karar için yeni yetki veya kabul iddiası yoktur.
+- V0.6 desktop referansı: `8f7aa57ff1b1d2c7e17c8caa6a2f388d7e6db5b872ca4d478b4e1bebaabbdea1`. Baykuş, aynı değişmemiş görselin CSS görünüm alanıyla gösterilir; bağımsız native varlık/estetik kabulü bekler.
+- Gerçek Mac makbuzu SHA: `1310f930524469e171dc9d3c82b2d673b58541596da988f9e01915529f8ce805`. HTML'deki son gerçek kanıt modu önceki makbuzun özetidir; yeni Mac yürütmesi değildir.
+
+### Bu blokta yapılan doğrulama
+
+Masaüstü tarayıcıda gerçek HTML açıldı ve görsel olarak incelendi. 75/75 koşul listesi ve VG03 araması (1/75) doğrulandı. Duraklatma yüzdeyi 15'te korudu, Devam Et yeniden etkinleştirdi, Güvenli Durdur RECOVERING görünümüne geçti. Duraklatmanın yanlış kaynak kayması mesajını göstermesi bulundu ve ayrı DURAKLATILDI görünümüyle düzeltildi; tekrar kontrolde doğru mesaj ve değişmeyen yüzde doğrulandı. Gerçek kanıt modunda senaryo kontrolleri devre dışı doğrulandı. Bunlar HTML etkileşim kontrolleridir; native/Mac saha testleri değildir. Tarayıcı günlüklerinde uzantı metadata hataları görüldü; uygulama hatası olarak sayılmadı.
+
+### Kabul ve DoneCheck™
+
+- HTML görsel/akış onay adayı: TESLİME HAZIR; owner tasarım onayı BEKLENİYOR.
+- Yönetici profesyonel kabulü: HOLD. İcracı profesyonel kabulü: HOLD.
+- 15 alanın tamamı / 75 özgün koşulun nihai ürün kabulü: HOLD.
+- Dokuz kapının bütün ürün kabulü: HOLD; mevcut dar kapsam kanıtları önceki kayıtlarda korunur.
+- Yeni regresyon, CI, gerçek model sınavı veya Mac kurulumu: NOT_PERFORMED (bu blokta).
+- DoneCheck™: HTML çıktısı ve sınırlı etkileşim kanıtı mevcut; VERIFIED_FINISH=HOLD.
+- Açık işler: HTML owner incelemesi; ardından aynı V015 kapsamında genel görev yeteneği, native tasarım eşliği, kalan özgün kabul kanıtları ve yetkili Mac saha doğrulaması. HTML onayı bu açıkları PASS yapmaz veya kendiliğinden kurulum yetkisi oluşturmaz.
+- Durum: HTML_ONAYI_BEKLENIYOR / OSI_YUKLEMESI_BEKLIYOR. Yeni Terminal bloğu veya kurulum başlatılmadı.
+
