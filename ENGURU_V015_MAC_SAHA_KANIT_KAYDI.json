@@ -1,0 +1,119 @@
+{
+  "schema": "enguru.v015.mac-second-independent-review/v1",
+  "evidence_zip_sha256": "1310f930524469e171dc9d3c82b2d673b58541596da988f9e01915529f8ce805",
+  "evidence_library_id": "libfile_21400faa4a9081919e1261bb69d3acc2",
+  "source_commit": "4167ee4402fc2b4323f8e171780c186b5dc224a7",
+  "source_manifest_sha256": "e6505f13309b728dea814f796ee4391ef7e5a7a899a254706843e144e9d77eec",
+  "archive_members": 14,
+  "manifest_hash_checks_passed": 13,
+  "source_files_bound": 51,
+  "plan_recomputed_exact": true,
+  "task": "mac-field-unique-jobs-v015",
+  "plan_sha256": "b227ef7b549cc0d83b249745857d78d862b8da9f2fa5bbc4f257afc37ecf202c",
+  "fixture_source_sha256": "ef823dfb5567bad9387440a55bc14fcd52caff5abe852ce1fc5f82314d2fd700",
+  "mac_selftests": 32,
+  "mac_selftests_scope": "Real Darwin/arm64 code/SQLite/process/HTTP-stub regression, not32 model tasks",
+  "swift_compile": "PASS_RECEIPT_EXIT_0",
+  "app_creation": "PASS_ISOLATED_RECEIPT",
+  "reported_app_binary_sha256": "09c6a845bee275ac35a276c78ed634d3f28e1adbf430c4cef8f9b1d4ea216171",
+  "binary_bytes_independently_checked": false,
+  "pilot": "PASS_SCOPED_UNIQUE_JOBS",
+  "operation_source": "Reviewer-authored release-pinned patch, not model-generated code",
+  "model_path": "Source-pinned CLI invokes LocalRoles with digest checks; no fallback to fixture provider. Successful field result is source-aligned runtime evidence; raw model exchanges and separate model identity receipt were not exported.",
+  "signature_verification": "NOT_PERFORMED_PRIVATE_KEY_NOT_EXPORTED",
+  "independent_local_rerun": [
+    {
+      "phase": "red",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "test_empty (__main__.Acceptance.test_empty) ... ok\ntest_order (__main__.Acceptance.test_order) ... FAIL\ntest_repeat (__main__.Acceptance.test_repeat) ... ok\ntest_single (__main__.Acceptance.test_single) ... ok\n\n======================================================================\nFAIL: test_order (__main__.Acceptance.test_order)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/V015_PINNED_REVIEW_vrnp6gbm/test_unique_jobs.py\", line 13, in test_order\n    self.assertEqual(unique_jobs(values+values), values)\nAssertionError: Lists differ: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,[71 chars], 31] != [31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 2[71 chars]1, 0]\n\nFirst differing element 0:\n0\n31\n\n- [0,\n+ [31,\n+  30,\n+  29,\n+  28,\n+  27,\n+  26,\n+  25,\n+  24,\n+  23,\n+  22,\n+  21,\n+  20,\n+  19,\n+  18,\n+  17,\n+  16,\n+  15,\n+  14,\n+  13,\n+  12,\n+  11,\n+  10,\n+  9,\n+  8,\n+  7,\n+  6,\n+  5,\n+  4,\n+  3,\n+  2,\n   1,\n+  0]\n-  2,\n-  3,\n-  4,\n-  5,\n-  6,\n-  7,\n-  8,\n-  9,\n-  10,\n-  11,\n-  12,\n-  13,\n-  14,\n-  15,\n-  16,\n-  17,\n-  18,\n-  19,\n-  20,\n-  21,\n-  22,\n-  23,\n-  24,\n-  25,\n-  26,\n-  27,\n-  28,\n-  29,\n-  30,\n-  31]\n\n----------------------------------------------------------------------\nRan 4 tests in 0.001s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "phase": "green",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_empty (__main__.Acceptance.test_empty) ... ok\ntest_order (__main__.Acceptance.test_order) ... ok\ntest_repeat (__main__.Acceptance.test_repeat) ... ok\ntest_single (__main__.Acceptance.test_single) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK\n"
+    }
+  ],
+  "ui_visible_interaction": "NOT_TESTED",
+  "general_professional_acceptance": "HOLD",
+  "original75": "HOLD",
+  "product_verified_finish": "HOLD",
+  "toolchain": {
+    "target": "arm64-apple-macosx13.0",
+    "commands": [
+      {
+        "argv": [
+          "/usr/bin/xcrun",
+          "--sdk",
+          "macosx",
+          "--find",
+          "swiftc"
+        ],
+        "exit": 0,
+        "stdout": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/usr/bin/xcrun",
+          "--sdk",
+          "macosx",
+          "--show-sdk-path"
+        ],
+        "exit": 0,
+        "stdout": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/usr/bin/xcrun",
+          "--sdk",
+          "macosx",
+          "--show-sdk-version"
+        ],
+        "exit": 0,
+        "stdout": "27.0\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+          "--version"
+        ],
+        "exit": 0,
+        "stdout": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx26.0\n",
+        "stderr": "swift-driver version: 1.168.6 "
+      },
+      {
+        "argv": [
+          "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+          "-sdk",
+          "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+          "-target",
+          "arm64-apple-macosx13.0",
+          "-swift-version",
+          "5",
+          "-typecheck",
+          "/Users/abdal/Desktop/AudiV13/ENGURU_V015_20261031_102512_110415/MAC_TOOLCHAIN_PROBE.swift"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "state": "PASS_SCOPED_IMPORT_TYPECHECK",
+    "compiler": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+    "sdk": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+    "sdk_version": "27.0",
+    "compiler_version": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx26.0",
+    "flags": [
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+      "-target",
+      "arm64-apple-macosx13.0",
+      "-swift-version",
+      "5"
+    ]
+  }
+}

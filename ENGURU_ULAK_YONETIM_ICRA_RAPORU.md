@@ -1,5 +1,90 @@
 # ENGURU_ULAK_YONETIM_ICRA_RAPORU
 
+**Rapor sürümü:** 1.9.2 — Aynı V015 / Gerçek Mac derlemesi ve olumlu pilot  
+**Tarih:** 31 Ekim 2026 — Europe/Istanbul  
+**Yetki:** Owner39/40, tek bütünleşik V015'in Mac makbuz değerlendirmesi  
+**Kaynak commit:** `4167ee4402fc2b4323f8e171780c186b5dc224a7`  
+**Önceki teslim commit:** `fe8955ca9282501a602ed80df7d8be4fb4f5a61f`  
+**Dal:** `work/v015-github-01-20261031`
+
+## Güncel durum — dar gerçek Mac pilotu PASS, ürün kabulü HOLD
+
+MAC_CORE_REGRESSION=32/32_PASS_DARWIN_ARM64  
+MAC_SDK_IMPORT_PROBE=PASS_RECEIPT  
+MAC_NATIVE_SWIFTUI_COMPILE=PASS_RECEIPT_EXIT_0  
+MAC_ISOLATED_APP_CREATED=PASS_RECEIPT  
+MAC_UNIQUE_JOBS_PILOT=PASS_SCOPED_PILOT  
+MAC_UI_VISIBLE_INTERACTION=NOT_TESTED  
+GENERAL_MANAGER_PROFESSIONAL_ACCEPTANCE=HOLD  
+GENERAL_EXECUTOR_PROFESSIONAL_ACCEPTANCE=HOLD  
+ORIGINAL_75_FULL_ACCEPTANCE=HOLD  
+VERIFIED_FINISH=HOLD  
+STATE=MAC_RECEIPT_RECORDED / VISUAL_AND_USER_FIELD_EVIDENCE_PENDING
+
+Tek ürünün Mac akışı bu kez çıkış0 ile tamamlandı. Bu tek başına tam ürün kabulü değildir: geçerli gerçek sonuçlar aşağıdaki dosya/plan/çıktı eşliğiyle sınırlandırılır. Yeni paket veya Terminal bloğu üretilmedi; aynı V015'in mevcut Mac makbuzu incelendi. Saha/owner bağımlılıkları nedeniyle ürün TAM BİTTİ hükmü verilmez.
+
+## Kaynak ve arşiv eşliği
+
+Owner'ın yüklediği [ENGURU_V015_MAC_KANIT_20261031_102512_110415.zip](https://chatgpt.com/library?file_id=libfile_21400faa4a9081919e1261bb69d3acc2&account_id=personal) SHA256:
+
+`1310f930524469e171dc9d3c82b2d673b58541596da988f9e01915529f8ce805`
+
+Yerelbaytlardan hesaplandı; TerminaldekiSHA ile eşleşti.14benzersizüye,CRC PASS; manifestteki13dosyanınhashi13/13PASS. Testloghashi,fieldresulthashi,source/test/outputhashleri ayrı uzlaştırıldı. KaynakmanifestSHA `e6505f13309b728dea814f796ee4391ef7e5a7a899a254706843e144e9d77eec`;51kaynak dosyası öncekiGitHubCI kaynaklarıyla eşleşir. Bu sayı75ürünkoşulunun kabul sayısı değildir.
+
+## Gerçek Mac sonuçları
+
+|Kapı|Makbuz/bağımsız kontrol|Kabul sınırı|
+|---|---|---|
+|Core regresyon|Darwin/arm64 üzerinde32/32;self_test_exit0|Gerçek dosya/SQLite/process/HTTPstub testleri;32gerçekQwen görevi değildir|
+|SDK/Swift önsınama|macOSSDK27.0,Swift6.4,explicit targetarm64macOS13,Swift5mode;Foundation+SwiftUI typecheckexit0|Cihaz makbuzundaki araçkimlikleridir; bu Work ortamındaSDKkurulmadı|
+|Native derleme|compile_exit0;derlemelogunda hata yok|Compiler makbuzuPASS; binary baytları buZIP'te yok|
+|Ayrı uygulama|PASS_ISOLATED_APP_CREATED|YeniAudiV13alanında.app üretimi; eskiappüzerine yazma yok|
+|Uygulama binarySHA|09c6a845bee275ac35a276c78ed634d3f28e1adbf430c4cef8f9b1d4ea216171|Macinstaller tarafından hesaplanmış değer; Work binarybaytlarını yeniden hashlemedi|
+|Olumlu pilot|field_exit0,oktrue,DONE,APPLIED_VERIFIED,last_eventVERIFIED|Yalnız fixed unique_jobs görevi|
+|Özgün hata|red_exit1;order testiFAIL|Hata gerçekten yeniden üretildi|
+|Onarılmış kaynak|green_exit0;4/4testOK|Aynı sabit acceptanceharness; beklenen sonuç değişmedi|
+|Pilot ilerleme|10000/10000;%100;kalan0|PASS_SCOPED_PILOT; genel ürünfinişi değildir|
+|Görünür uygulama/kullanıcıakışı|NOT_TESTED|open işleminin başarılı dönüşü pencere ve etkileşim kabulü değildir|
+
+Bu kanıt, önceki standardlibrary yükleme engelinin yeni açıkSDK/target çağrısıyla bu cihazdaki derleme akışında kapandığını gösterir. Makinedeki tek içneden/versiyon uyuşmazlığının ayrıntısı ayrıca varsayılmaz. Önceki başarısızmakbuz korunur; yeni derleme başarı makbuzu eski kaydı silmez.
+
+## Pilot kimliği ve bağımsız doğrulama
+
+- Task `mac-field-unique-jobs-v015`.
+- PlanSHA `b227ef7b549cc0d83b249745857d78d862b8da9f2fa5bbc4f257afc37ecf202c`.
+- FixturekaynakSHA `ef823dfb5567bad9387440a55bc14fcd52caff5abe852ce1fc5f82314d2fd700`.
+- ÇıktıSHA `a4eedb4f3f3691a1c7acb827adba91fc82cb328f1a49f3993b2bf96826eb0cbc`.
+- AcceptanceharnessSHA `26b524067640dee1f9aea5ef910edd3b76edfe17abb2c7e49ef35fc012c3a9d7`.
+- Task/plan/source/scopehashleri operation veprojectionarasında eşleşti. Plan mevcut kaynak,izoleprofilkökü ve10000ağırlıklıB1ile yeniden hesaplandı;exactmatch.
+- Upload edilen before/fixed/test üç dosyası release-pinned reviewer kaynaklarıyla3/3birebir. Work yalnız bu doğrulanmış reviewer kaynaklarını izole geçici alanda yeniden sınadı: redexit1,greenexit0; yeni bağımsız Linuxkontrolü. Bu Qwen'in serbest ürettiği kod yürütmesi değildir.
+- OperationHMAC alanı var; privatekey güvenli biçimdeexport edilmediği için WorkHMAC doğrulaması yapmadı/PASS ilan etmedi. Arşiv/çıktıhashkontrolü kriptografikcihazattestation veya bağımsızownersignature değildir.
+
+## Yerel iki rol ve profesyonel yeterlilik ayrımı
+
+PinnedCLI buMacpilotunda LocalRoles kullanır; digestkontrolü/ikiayrısystemprompt/typedproposal kapıları geçmeden broker çağrısına ulaşmaz ve testprovider'a fallback içermez. Kaynak-eşli başarılı fieldresult, bu yerelQwen yolunun tamamlandığına ilişkin yürütme kanıtıdır. **Ham modelyanıtları,ayrıHTTP/modelsessionmakbuzu bu ZIP'teexport edilmedi; bağımsız yeni40profesyonelsınavı veya rawmodeldigesttekrarkontrolü yapılmış sayılmaz.**
+
+Gerçek üretilen/onarılan kod, deterministik incelenmişpatch'tir. Model yalnız typed öneri üretir; codegenmesleki başarısı iddia edilmez. Yönetici/İcracı genel profesyonel kabulüHOLD;V014.MAC17/10/13matrisi kendi tarihselkapsamında korunur.
+
+## Dokuzkapı ve75koşul
+
+G01–G08 için daha önceki kısmi mühendislik kanıtları korunur;32gerçekMacregresyonu ve darolumlupilot bunlara ek kanıttır. Her kapının tam sözleşmesiHOLD. G09'un **derleme engeli kapandı**; gatefinalHOLD: görünürNativeUI,V0.6karakter/yerleşim,VoiceOver/kontrast,kullanıcıgörevleri/uyku/restart veownerestetikkabulü tam kanıtlanmadı. ÖncekiG09BLOCKED durumu tarihsel; güncel G09derlemealtkapısıPASS/gatefinalHOLD.
+
+75özgünID/metin/alan/kanıtpaydası ve34mimarikarar,V0.6referansları değişmedi. Hiçbir özgünkoşula yalnız bupilot nedeniyle toplucaPASS verilmedi; tam75ürünkabulüHOLD. Genelgörev icrası,generictoolisolation,bağımlıçokişreconciliation veCockpit/PiLiveyüzeyi önceki açık durumundadır. Macpilotun başarısı bu kalanürünmühendisliğini bitmiş saydırmaz.
+
+## DoneCheck™ ve tek sonraki gerekli kanıt
+
+**Gerçek işi yapıyor mu?** Evet, belirli unique_jobs pilotu Mac'te gerçekred→patch→green→verified→projection akışını tamamladı; nativeappderlendi/ayrıoluşturuldu.  
+**Doğru yapıyor mu?**32Macregresyonu,13hashkontrolü,plan/sourceeşliği ve bağımsız tekrar test bu dar kapsamı destekler.  
+**Bittiğini kanıtlıyor mu?**Dar pilotPASS; ürün75koşul,genelprofesyonellik,görünürsaha veownerfinalHOLD.
+
+YeniTerminal veya paket gerektiren birhata bu makbuzda görülmedi. Sonraki somut sahakanıtı, açılanUlakpenceresinin görünümü ve gerçek kullanıcıetkileşimi; owner'ın ekran görüntüsü/gözlemi gerekir. Work doğrudan nativeMacekranını görmediği için estetik/kullanılabilirlik/sahaacceptancePASS atanmaz. AynıV015kapsamı sürer; yeniV016/V017/program açılmaz.
+
+Tam inceleme ve yeniden çalıştırma çıktıları `ENGURU_V015_MAC_SAHA_KANIT_KAYDI.json` içindedir. Rapor/kanıtkaydı tek dalda commit ve exactgeriokuma ile doğrulanır. Kaynak kodu değişmediği için yeniCI/regresyon yürütülmüş gibi sayılmaz;CI32/32 hükmü4167ee44... kaynağında geçerlidir.
+
+## Önceki 1.9.1 ve tarihsel kayıtlar — korunmuştur
+
+# ENGURU_ULAK_YONETIM_ICRA_RAPORU
+
 **Rapor sürümü:** 1.9.1 — Aynı V015 / İlk gerçek Mac makbuzu ve SDK onarımı  
 **Tarih:** 31 Ekim 2026 — Europe/Istanbul  
 **Yetki:** Owner39/40 bütünleşik V015, erişilebilir hataları aynı kapsamda onar/yeniden test et  
