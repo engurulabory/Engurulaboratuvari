@@ -1,0 +1,14 @@
+{
+  "algorithm": "ready_jobs -> minimum(duration,input_index) -> execute_in_shadow_budget -> repeat",
+  "claim": "Bazı bağımlılık ve bütçe yapılarında kısa uygun işleri öncelemek tamamlanan hedef değerini artırabilir.",
+  "epistemic_level": "K4",
+  "falsifier": "Aynı girdide hedef değeri azalırsa evrensel üstünlük iddiası çürür.",
+  "id": "H01",
+  "reflection": "48:29 büyüme benzetmesi üzerine tefekkürden esinlenir; kısa işi öncelemek ayetin bildirdiği algoritma değildir.",
+  "religious_truth_claim": false,
+  "source_records": [
+    "R07"
+  ],
+  "status": "EXPERIMENTAL",
+  "validation": "SYNTHETIC_TESTED_MIXED_NO_GENERAL_SUPERIORITY"
+}

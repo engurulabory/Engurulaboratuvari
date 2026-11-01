@@ -1,0 +1,127 @@
+{
+  "version": "1.0",
+  "date": "2026-11-01",
+  "MANIFESTO_ACCEPTANCE": "PASS",
+  "CORE_TECHNICAL_ACCEPTANCE": "PASS",
+  "LOCAL_RUNTIME_ACCEPTANCE": "NOT_TESTED",
+  "REAL_BENEFIT_ACCEPTANCE": "NOT_TESTED",
+  "END_TO_END_VERIFIED_FINISH": "HOLD",
+  "TECHNICAL_SCOPE": "Linux-tested deterministic candidate-extraction MVP; human semantic review pending; no universal planning benefit demonstrated",
+  "LINUX_RUNTIME": "PASS",
+  "MAC_OSI_RUNTIME": "NOT_TESTED",
+  "GITHUB_CI": "PENDING_EXTERNAL_RECEIPT",
+  "ZULFIKAR_EXECUTOR": "NOT_RUN_METHOD_ALIGNMENT_ONLY",
+  "controls": [
+    {
+      "CONTROL_ID": "M01",
+      "STATE": "PASS",
+      "EVIDENCE": "MANIFESTO.md (content acceptance scoped to user instruction)"
+    },
+    {
+      "CONTROL_ID": "M02",
+      "STATE": "PASS",
+      "EVIDENCE": "MANIFESTO.md (content acceptance scoped to user instruction)"
+    },
+    {
+      "CONTROL_ID": "M03",
+      "STATE": "PASS",
+      "EVIDENCE": "MANIFESTO.md (content acceptance scoped to user instruction)"
+    },
+    {
+      "CONTROL_ID": "M04",
+      "STATE": "PASS",
+      "EVIDENCE": "MANIFESTO.md (content acceptance scoped to user instruction)"
+    },
+    {
+      "CONTROL_ID": "T01",
+      "STATE": "PASS",
+      "EVIDENCE": "evidence/SOURCE_ACQUISITION.json; fetih_core/data/source_lock.json; tests/test_core.py"
+    },
+    {
+      "CONTROL_ID": "T02",
+      "STATE": "PASS",
+      "EVIDENCE": "evidence/SOURCE_ACQUISITION.json; fetih_core/data/source_lock.json; tests/test_core.py"
+    },
+    {
+      "CONTROL_ID": "T03",
+      "STATE": "PASS",
+      "EVIDENCE": "record.schema.json; evidence/SCHEMA_VALIDATION.json; runtime validator"
+    },
+    {
+      "CONTROL_ID": "T04",
+      "STATE": "PASS",
+      "EVIDENCE": "evidence/TEST_LOG.txt; evidence/LINUX_INSTALL_RECEIPT.json; evidence/EXAMPLE_EXPORT.json"
+    },
+    {
+      "CONTROL_ID": "T05",
+      "STATE": "PASS",
+      "EVIDENCE": "evidence/TEST_LOG.txt; evidence/LINUX_INSTALL_RECEIPT.json; evidence/EXAMPLE_EXPORT.json"
+    },
+    {
+      "CONTROL_ID": "T06",
+      "STATE": "PASS",
+      "EVIDENCE": "evidence/TEST_LOG.txt; evidence/LINUX_INSTALL_RECEIPT.json; evidence/EXAMPLE_EXPORT.json"
+    },
+    {
+      "CONTROL_ID": "T07",
+      "STATE": "PASS",
+      "EVIDENCE": "evidence/TEST_LOG.txt; evidence/LINUX_INSTALL_RECEIPT.json; evidence/EXAMPLE_EXPORT.json"
+    },
+    {
+      "CONTROL_ID": "T08",
+      "STATE": "PASS",
+      "EVIDENCE": "evidence/TEST_LOG.txt; evidence/LINUX_INSTALL_RECEIPT.json; evidence/EXAMPLE_EXPORT.json"
+    },
+    {
+      "CONTROL_ID": "T09",
+      "STATE": "PASS",
+      "EVIDENCE": "evidence/TEST_LOG.txt; evidence/LINUX_INSTALL_RECEIPT.json; evidence/EXAMPLE_EXPORT.json"
+    },
+    {
+      "CONTROL_ID": "T10",
+      "STATE": "PASS",
+      "EVIDENCE": "evidence/LINUX_INSTALL_RECEIPT.json (Linux only; Mac separately NOT_TESTED)"
+    },
+    {
+      "CONTROL_ID": "T11",
+      "STATE": "PASS",
+      "EVIDENCE": "README.md; source code and evidence/REPAIR_LOG.md"
+    },
+    {
+      "CONTROL_ID": "B01",
+      "STATE": "PASS",
+      "EVIDENCE": "experiment/protocol.json; evidence/PRE_EXECUTION_LOCK.json"
+    },
+    {
+      "CONTROL_ID": "B02",
+      "STATE": "NOT_TESTED",
+      "EVIDENCE": "Real example/authorization and observed human effort absent; synthetic only"
+    },
+    {
+      "CONTROL_ID": "B03",
+      "STATE": "NOT_TESTED",
+      "EVIDENCE": "Real example/authorization and observed human effort absent; synthetic only"
+    },
+    {
+      "CONTROL_ID": "B04",
+      "STATE": "NOT_TESTED",
+      "EVIDENCE": "Real example/authorization and observed human effort absent; synthetic only"
+    },
+    {
+      "CONTROL_ID": "B05",
+      "STATE": "NOT_TESTED",
+      "EVIDENCE": "Real example/authorization and observed human effort absent; synthetic only"
+    },
+    {
+      "CONTROL_ID": "B06",
+      "STATE": "NOT_TESTED",
+      "EVIDENCE": "Real example/authorization and observed human effort absent; synthetic only"
+    }
+  ],
+  "fixed_denominator": 21,
+  "passed_controls": 16,
+  "real_benefit_cases": 0,
+  "synthetic_cases": 5,
+  "next": "Owner decision for Mac install; then authorized real shadow experiment",
+  "authority": "Current task authorizes research engineering branch; main merge, real data and Mac install remain separate owner decisions."
+}

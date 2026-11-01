@@ -1,0 +1,72 @@
+[
+  {
+    "concept": "fetih",
+    "id": "R01",
+    "interpretation": "Fetih kavramı; Hudeybiye ve Mekke fethi yorumları bağlamında incelenir.",
+    "needle": "فتح",
+    "related_concept": "imkân",
+    "relationship_type": "bağlam",
+    "source_verse": "48:1",
+    "tafsir_id": "4691"
+  },
+  {
+    "concept": "sekînet",
+    "id": "R02",
+    "interpretation": "Sekînet ile imanın artışı arasındaki bağın aday kaydı.",
+    "needle": "سكين",
+    "related_concept": "iman",
+    "relationship_type": "bağlam",
+    "source_verse": "48:4",
+    "tafsir_id": "4691"
+  },
+  {
+    "concept": "biat",
+    "id": "R03",
+    "interpretation": "Hudeybiye biatı ve sekînet; tarihsel bağlam korunur.",
+    "needle": "الشجرة",
+    "related_concept": "sekînet",
+    "relationship_type": "bağlam",
+    "source_verse": "48:18",
+    "tafsir_id": "4712"
+  },
+  {
+    "concept": "engelleme",
+    "id": "R04",
+    "interpretation": "Tarafların ellerinin çekilmesi; teknik güvenlik politikası bu ifadeden doğrudan türetilmez.",
+    "needle": "كف",
+    "related_concept": "çatışmanın sınırlandırılması",
+    "relationship_type": "eylem",
+    "source_verse": "48:24",
+    "tafsir_id": "4702"
+  },
+  {
+    "concept": "bilgi sınırı",
+    "id": "R05",
+    "interpretation": "Tanınmayan müminlerin zarar görmesi riski; bilinmeyeni modelin bildiği varsayılmaz.",
+    "needle": "لم تعلموهم",
+    "related_concept": "zarar riski",
+    "relationship_type": "koşul",
+    "source_verse": "48:25",
+    "tafsir_id": "4702"
+  },
+  {
+    "concept": "bilgi sınırı",
+    "id": "R06",
+    "interpretation": "Ayetin ilahî bilgi ve vaat bağlamı korunur; yazılıma gayb bilgisi atfedilmez.",
+    "needle": "فعلم ما لم تعلموا",
+    "related_concept": "yakın fetih",
+    "relationship_type": "süreç",
+    "source_verse": "48:27",
+    "tafsir_id": "4718"
+  },
+  {
+    "concept": "gelişim benzetmesi",
+    "id": "R07",
+    "interpretation": "Ekin benzetmesinin aşamalı gelişim yönü için insan incelemesine açık kavram adayı.",
+    "needle": "فاستغلظ",
+    "related_concept": "güçlenme",
+    "relationship_type": "süreç",
+    "source_verse": "48:29",
+    "tafsir_id": "4720"
+  }
+]

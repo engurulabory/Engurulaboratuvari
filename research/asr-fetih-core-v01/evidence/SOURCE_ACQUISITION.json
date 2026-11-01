@@ -1,0 +1,9 @@
+{
+  "comparison": "29/29 base-script agreement, exact glyph strings differ",
+  "normalization": "NFKD comparison only; remove combining marks, tatweel, spaces, rub-el-hizb marker; map wasla to alef. Original remains verbatim.",
+  "governance_pins": {
+    "V3": "11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc",
+    "V1": "6e288ae18e8249d3a3a954891a75fbec20da23349e371faac07b5cc6e294c50c"
+  },
+  "source_verification": "Publisher identity, version, verse sequence and second-channel base-script match; independent scholarly certification not claimed."
+}

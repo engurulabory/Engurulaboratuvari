@@ -1,0 +1,40 @@
+test_browser_origin_rejected (test_core.APITests.test_browser_origin_rejected) ... ok
+test_export_parity (test_core.APITests.test_export_parity) ... ok
+test_external_binding_rejected (test_core.APITests.test_external_binding_rejected) ... ok
+test_invalid_queries (test_core.APITests.test_invalid_queries) ... ok
+test_long_uri (test_core.APITests.test_long_uri) ... ok
+test_missing_route_and_verse (test_core.APITests.test_missing_route_and_verse) ... ok
+test_no_writes (test_core.APITests.test_no_writes) ... ok
+test_rebinding_host_rejected (test_core.APITests.test_rebinding_host_rejected) ... ok
+test_repeated_request_determinism (test_core.APITests.test_repeated_request_determinism) ... ok
+test_routes (test_core.APITests.test_routes) ... ok
+test_verse_query (test_core.APITests.test_verse_query) ... ok
+test_advantage_and_counterexample (test_core.ExperimentTests.test_advantage_and_counterexample) ... ok
+test_boolean_nonfinite_duplicate_rejected (test_core.ExperimentTests.test_boolean_nonfinite_duplicate_rejected) ... ok
+test_cycles_and_unknown_dependencies (test_core.ExperimentTests.test_cycles_and_unknown_dependencies) ... ok
+test_human_time_not_fabricated (test_core.ExperimentTests.test_human_time_not_fabricated) ... ok
+test_independent_feasibility (test_core.ExperimentTests.test_independent_feasibility) ... ok
+test_plan_does_not_mutate (test_core.ExperimentTests.test_plan_does_not_mutate) ... ok
+test_zero_budget (test_core.ExperimentTests.test_zero_budget) ... ok
+test_29_verse_identity (test_core.SourceTests.test_29_verse_identity) ... ok
+test_determinism (test_core.SourceTests.test_determinism) ... ok
+test_duplicate_json_key (test_core.SourceTests.test_duplicate_json_key) ... ok
+test_extra_and_missing_fields (test_core.SourceTests.test_extra_and_missing_fields) ... ok
+test_generated_hypothesis_requires_grounding (test_core.SourceTests.test_generated_hypothesis_requires_grounding) ... ok
+test_graph_query (test_core.SourceTests.test_graph_query) ... ok
+test_human_queue (test_core.SourceTests.test_human_queue) ... ok
+test_hypothesis_trace (test_core.SourceTests.test_hypothesis_trace) ... ok
+test_missing_source (test_core.SourceTests.test_missing_source) ... ok
+test_model_trace (test_core.SourceTests.test_model_trace) ... ok
+test_nonfinite_json (test_core.SourceTests.test_nonfinite_json) ... ok
+test_record_adversarial_mutations (test_core.SourceTests.test_record_adversarial_mutations) ... ok
+test_source_verbatim (test_core.SourceTests.test_source_verbatim) ... ok
+test_symlink_source (test_core.SourceTests.test_symlink_source) ... ok
+test_tamper_each_pinned_file (test_core.SourceTests.test_tamper_each_pinned_file) ... ok
+test_unknown_graph (test_core.SourceTests.test_unknown_graph) ... ok
+test_unsupported_interpretation (test_core.SourceTests.test_unsupported_interpretation) ... ok
+
+----------------------------------------------------------------------
+Ran 35 tests in 0.759s
+
+OK

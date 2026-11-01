@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "frozen_before_execution": true,
+  "problem": "Sınırlı süre ve kaynakla proje eylem sıralaması; salt gözlem",
+  "A": "Uygun hazır işler arasında giriş sırası; bağımlılık ve bütçe kontrolü",
+  "B": "Aynı uygunluk koşulları; en küçük iş süresi, sonra giriş sırası",
+  "hypothesis": "H01: Küçük ve geri alınabilir adımı öncelemek bazı bütçelerde tamamlanan yararlı iş sayısını artırabilir. K4 mühendislik varsayımıdır; ayetin algoritmik anlamı değildir.",
+  "inputs": "Aynı iş listesi, bağımlılıklar, süre ve kaynak bütçesi",
+  "metrics": ["goal_value", "dependency_errors", "human_effort_seconds", "resource_used", "runtime_ns", "corrections", "net_benefit"],
+  "real_acceptance": {"minimum_real_cases": 5, "owner_authorization_record_required": true, "human_time_observed_required": true, "dependency_errors_max": 0, "safety_violations_max": 0, "goal_value_must_not_decrease_any_case": true, "mean_net_benefit_min": 0.10, "human_effort_increase_max_ratio": 0.0},
+  "net_benefit_formula": "(goal_value_B-goal_value_A)/max(1,goal_value_A)",
+  "synthetic_acceptance": "Ön sınama sonuçları artış veya düşüşle raporlanır; gerçek fayda PASS üretmez.",
+  "order": "Sıralı yürütme, aynı süreç; süre farkları performans genellemesi değildir.",
+  "privacy": "Gerçek kullanıcı verisi ve dış eylem sıfır. Gerçek kayıtlar için ayrı owner yetkisi."
+}

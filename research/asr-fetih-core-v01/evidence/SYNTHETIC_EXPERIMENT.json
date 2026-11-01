@@ -1,0 +1,388 @@
+{
+  "protocol_sha256": "fe6503f995696961e5dd79ccd0c7deeba01cf8ca457f7d5e6d7ca0409c45ff6e",
+  "type": "SYNTHETIC_PRETEST",
+  "cases": [
+    {
+      "case": {
+        "id": "S01",
+        "jobs": [
+          {
+            "id": "a",
+            "duration": 8,
+            "value": 1,
+            "dependencies": [],
+            "resource": 1
+          },
+          {
+            "id": "b",
+            "duration": 2,
+            "value": 1,
+            "dependencies": [],
+            "resource": 1
+          },
+          {
+            "id": "c",
+            "duration": 2,
+            "value": 1,
+            "dependencies": [],
+            "resource": 1
+          }
+        ],
+        "budget": 8,
+        "resource": 3
+      },
+      "A": {
+        "method": "A",
+        "order": [
+          "a"
+        ],
+        "goal_value": 1,
+        "planned_time_used": 8,
+        "resource_used": 1,
+        "runtime_ns": 10081,
+        "human_effort_seconds": null,
+        "corrections": null,
+        "dependency_errors": 0,
+        "execution": "SYNTHETIC_SHADOW_ONLY"
+      },
+      "B": {
+        "method": "B",
+        "order": [
+          "b",
+          "c"
+        ],
+        "goal_value": 2,
+        "planned_time_used": 4,
+        "resource_used": 2,
+        "runtime_ns": 5687,
+        "human_effort_seconds": null,
+        "corrections": null,
+        "dependency_errors": 0,
+        "execution": "SYNTHETIC_SHADOW_ONLY"
+      },
+      "independent_feasibility": {
+        "A": {
+          "goal_value": 1,
+          "dependency_errors": 0,
+          "duration": 8,
+          "resource": 1
+        },
+        "B": {
+          "goal_value": 2,
+          "dependency_errors": 0,
+          "duration": 4,
+          "resource": 2
+        }
+      },
+      "net_benefit": 1.0
+    },
+    {
+      "case": {
+        "id": "S02",
+        "jobs": [
+          {
+            "id": "high",
+            "duration": 8,
+            "value": 10,
+            "dependencies": [],
+            "resource": 1
+          },
+          {
+            "id": "low1",
+            "duration": 2,
+            "value": 1,
+            "dependencies": [],
+            "resource": 1
+          },
+          {
+            "id": "low2",
+            "duration": 2,
+            "value": 1,
+            "dependencies": [],
+            "resource": 1
+          }
+        ],
+        "budget": 8,
+        "resource": 3
+      },
+      "A": {
+        "method": "A",
+        "order": [
+          "high"
+        ],
+        "goal_value": 10,
+        "planned_time_used": 8,
+        "resource_used": 1,
+        "runtime_ns": 3133,
+        "human_effort_seconds": null,
+        "corrections": null,
+        "dependency_errors": 0,
+        "execution": "SYNTHETIC_SHADOW_ONLY"
+      },
+      "B": {
+        "method": "B",
+        "order": [
+          "low1",
+          "low2"
+        ],
+        "goal_value": 2,
+        "planned_time_used": 4,
+        "resource_used": 2,
+        "runtime_ns": 3795,
+        "human_effort_seconds": null,
+        "corrections": null,
+        "dependency_errors": 0,
+        "execution": "SYNTHETIC_SHADOW_ONLY"
+      },
+      "independent_feasibility": {
+        "A": {
+          "goal_value": 10,
+          "dependency_errors": 0,
+          "duration": 8,
+          "resource": 1
+        },
+        "B": {
+          "goal_value": 2,
+          "dependency_errors": 0,
+          "duration": 4,
+          "resource": 2
+        }
+      },
+      "net_benefit": -0.8
+    },
+    {
+      "case": {
+        "id": "S03",
+        "jobs": [
+          {
+            "id": "a",
+            "duration": 2,
+            "value": 1,
+            "dependencies": [],
+            "resource": 1
+          },
+          {
+            "id": "b",
+            "duration": 3,
+            "value": 1,
+            "dependencies": [
+              "a"
+            ],
+            "resource": 1
+          },
+          {
+            "id": "c",
+            "duration": 1,
+            "value": 1,
+            "dependencies": [],
+            "resource": 1
+          }
+        ],
+        "budget": 6,
+        "resource": 3
+      },
+      "A": {
+        "method": "A",
+        "order": [
+          "a",
+          "b",
+          "c"
+        ],
+        "goal_value": 3,
+        "planned_time_used": 6,
+        "resource_used": 3,
+        "runtime_ns": 4628,
+        "human_effort_seconds": null,
+        "corrections": null,
+        "dependency_errors": 0,
+        "execution": "SYNTHETIC_SHADOW_ONLY"
+      },
+      "B": {
+        "method": "B",
+        "order": [
+          "c",
+          "a",
+          "b"
+        ],
+        "goal_value": 3,
+        "planned_time_used": 6,
+        "resource_used": 3,
+        "runtime_ns": 4136,
+        "human_effort_seconds": null,
+        "corrections": null,
+        "dependency_errors": 0,
+        "execution": "SYNTHETIC_SHADOW_ONLY"
+      },
+      "independent_feasibility": {
+        "A": {
+          "goal_value": 3,
+          "dependency_errors": 0,
+          "duration": 6,
+          "resource": 3
+        },
+        "B": {
+          "goal_value": 3,
+          "dependency_errors": 0,
+          "duration": 6,
+          "resource": 3
+        }
+      },
+      "net_benefit": 0.0
+    },
+    {
+      "case": {
+        "id": "S04",
+        "jobs": [
+          {
+            "id": "a",
+            "duration": 5,
+            "value": 5,
+            "dependencies": [],
+            "resource": 1
+          },
+          {
+            "id": "b",
+            "duration": 1,
+            "value": 1,
+            "dependencies": [],
+            "resource": 1
+          },
+          {
+            "id": "c",
+            "duration": 1,
+            "value": 1,
+            "dependencies": [],
+            "resource": 1
+          }
+        ],
+        "budget": 5,
+        "resource": 1
+      },
+      "A": {
+        "method": "A",
+        "order": [
+          "a"
+        ],
+        "goal_value": 5,
+        "planned_time_used": 5,
+        "resource_used": 1,
+        "runtime_ns": 2272,
+        "human_effort_seconds": null,
+        "corrections": null,
+        "dependency_errors": 0,
+        "execution": "SYNTHETIC_SHADOW_ONLY"
+      },
+      "B": {
+        "method": "B",
+        "order": [
+          "b"
+        ],
+        "goal_value": 1,
+        "planned_time_used": 1,
+        "resource_used": 1,
+        "runtime_ns": 2094,
+        "human_effort_seconds": null,
+        "corrections": null,
+        "dependency_errors": 0,
+        "execution": "SYNTHETIC_SHADOW_ONLY"
+      },
+      "independent_feasibility": {
+        "A": {
+          "goal_value": 5,
+          "dependency_errors": 0,
+          "duration": 5,
+          "resource": 1
+        },
+        "B": {
+          "goal_value": 1,
+          "dependency_errors": 0,
+          "duration": 1,
+          "resource": 1
+        }
+      },
+      "net_benefit": -0.8
+    },
+    {
+      "case": {
+        "id": "S05",
+        "jobs": [
+          {
+            "id": "prereq",
+            "duration": 4,
+            "value": 1,
+            "dependencies": [],
+            "resource": 1
+          },
+          {
+            "id": "goal",
+            "duration": 1,
+            "value": 10,
+            "dependencies": [
+              "prereq"
+            ],
+            "resource": 1
+          },
+          {
+            "id": "small",
+            "duration": 2,
+            "value": 1,
+            "dependencies": [],
+            "resource": 1
+          }
+        ],
+        "budget": 5,
+        "resource": 3
+      },
+      "A": {
+        "method": "A",
+        "order": [
+          "prereq",
+          "goal"
+        ],
+        "goal_value": 11,
+        "planned_time_used": 5,
+        "resource_used": 2,
+        "runtime_ns": 4650,
+        "human_effort_seconds": null,
+        "corrections": null,
+        "dependency_errors": 0,
+        "execution": "SYNTHETIC_SHADOW_ONLY"
+      },
+      "B": {
+        "method": "B",
+        "order": [
+          "small"
+        ],
+        "goal_value": 1,
+        "planned_time_used": 2,
+        "resource_used": 1,
+        "runtime_ns": 2241,
+        "human_effort_seconds": null,
+        "corrections": null,
+        "dependency_errors": 0,
+        "execution": "SYNTHETIC_SHADOW_ONLY"
+      },
+      "independent_feasibility": {
+        "A": {
+          "goal_value": 11,
+          "dependency_errors": 0,
+          "duration": 5,
+          "resource": 2
+        },
+        "B": {
+          "goal_value": 1,
+          "dependency_errors": 0,
+          "duration": 2,
+          "resource": 1
+        }
+      },
+      "net_benefit": -0.9090909090909091
+    }
+  ],
+  "mean_net_benefit": -0.3018181818181819,
+  "real_examples": 0,
+  "owner_authorization_for_real_data": null,
+  "human_effort_seconds": null,
+  "real_benefit_acceptance": "NOT_TESTED",
+  "conclusion": "Universal superiority falsified by explicit counterexamples; shortest-first is not a general project strategy."
+}
