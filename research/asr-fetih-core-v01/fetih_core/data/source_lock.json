@@ -1,0 +1,13 @@
+{
+  "files": {
+    "TANZIL_LICENSE.txt": "72493509d507314f60c018fd33aa57d9064a0de42be8926745e4953f59925c62",
+    "comparison.json": "9fac5851143e877ceb4c96f2dc16534090b6e98a547b819144bbffa5053e6b9d",
+    "hypothesis.json": "39bbbaf2c6289d228a0e2efcb19f600a1172f42af704fc6c2199566c5f4e5c73",
+    "rules.json": "cfadeda018614d38695cf6d5ee0260997033fc30a1ea7542912943347ef0ff24",
+    "sources.json": "2c27e4bf699fffdcb6378cbbbc7b7f010cb1d7045e30e58a61e5734adf737f6b",
+    "tafsir_index.json": "4ef697246e214d7687334912126718491a297fd1344a916f9455470ccf22a10f",
+    "verses.json": "61dbead619c7b8ba525365a8e4d4f18773a778afc8fedcbc8e8fde6831a065a4"
+  },
+  "trust_boundary": "Hash pins detect local drift; simultaneous replacement of code and pins is not authenticated publisher proof.",
+  "version": "1.0"
+}

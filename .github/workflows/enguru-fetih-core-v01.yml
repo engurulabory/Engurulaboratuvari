@@ -1,0 +1,28 @@
+name: FETIH CORE v0.1 source and runtime
+on:
+  pull_request:
+    paths:
+      - 'research/asr-fetih-core-v01/**'
+      - '.github/workflows/enguru-fetih-core-v01.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fetih-core:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Isolated install, source integrity, tests and real localhost API
+        working-directory: research/asr-fetih-core-v01
+        run: python3 -B install_and_test.py --target "$RUNNER_TEMP/fetih-core-installed"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fetih-core-v01-real-runtime
+          path: |
+            ${{ runner.temp }}/fetih-core-installed/RUNTIME_RECEIPT.json
+            ${{ runner.temp }}/fetih-core-installed/test_log.txt
+            ${{ runner.temp }}/fetih-core-installed/export.json

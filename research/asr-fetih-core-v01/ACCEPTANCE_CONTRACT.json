@@ -1,0 +1,203 @@
+{
+  "version": "1.0",
+  "fixed_controls": [
+    {
+      "CONTROL_ID": "M01",
+      "REQUIREMENT": "Ana hedef açık",
+      "PASS_CONDITION": "Ana hedef açık; ilgili gerçek çıktı ile doğrulama",
+      "REQUIRED_EVIDENCE": "kaynak, test ve makbuz",
+      "VERIFIER": "otomatik mekanik sınama + gerektiğinde owner",
+      "AUTHORITY": "owner; kritik dış etki için ayrı açık yetki",
+      "STATE": "HOLD"
+    },
+    {
+      "CONTROL_ID": "M02",
+      "REQUIREMENT": "Kaynak yorum mühendislik sınırları",
+      "PASS_CONDITION": "Kaynak yorum mühendislik sınırları; ilgili gerçek çıktı ile doğrulama",
+      "REQUIRED_EVIDENCE": "kaynak, test ve makbuz",
+      "VERIFIER": "otomatik mekanik sınama + gerektiğinde owner",
+      "AUTHORITY": "owner; kritik dış etki için ayrı açık yetki",
+      "STATE": "HOLD"
+    },
+    {
+      "CONTROL_ID": "M03",
+      "REQUIREMENT": "İlk ürün yalnız Fetih",
+      "PASS_CONDITION": "İlk ürün yalnız Fetih; ilgili gerçek çıktı ile doğrulama",
+      "REQUIRED_EVIDENCE": "kaynak, test ve makbuz",
+      "VERIFIER": "otomatik mekanik sınama + gerektiğinde owner",
+      "AUTHORITY": "owner; kritik dış etki için ayrı açık yetki",
+      "STATE": "HOLD"
+    },
+    {
+      "CONTROL_ID": "M04",
+      "REQUIREMENT": "Ölçülebilir insan faydası",
+      "PASS_CONDITION": "Ölçülebilir insan faydası; ilgili gerçek çıktı ile doğrulama",
+      "REQUIRED_EVIDENCE": "kaynak, test ve makbuz",
+      "VERIFIER": "otomatik mekanik sınama + gerektiğinde owner",
+      "AUTHORITY": "owner; kritik dış etki için ayrı açık yetki",
+      "STATE": "HOLD"
+    },
+    {
+      "CONTROL_ID": "T01",
+      "REQUIREMENT": "Arapça kaynak metin doğrulanmış",
+      "PASS_CONDITION": "Arapça kaynak metin doğrulanmış; ilgili gerçek çıktı ile doğrulama",
+      "REQUIRED_EVIDENCE": "kaynak, test ve makbuz",
+      "VERIFIER": "otomatik mekanik sınama + gerektiğinde owner",
+      "AUTHORITY": "owner; kritik dış etki için ayrı açık yetki",
+      "STATE": "HOLD"
+    },
+    {
+      "CONTROL_ID": "T02",
+      "REQUIREMENT": "Ayet ve çıkarım izlenebilir",
+      "PASS_CONDITION": "Ayet ve çıkarım izlenebilir; ilgili gerçek çıktı ile doğrulama",
+      "REQUIRED_EVIDENCE": "kaynak, test ve makbuz",
+      "VERIFIER": "otomatik mekanik sınama + gerektiğinde owner",
+      "AUTHORITY": "owner; kritik dış etki için ayrı açık yetki",
+      "STATE": "HOLD"
+    },
+    {
+      "CONTROL_ID": "T03",
+      "REQUIREMENT": "Şema doğrulanmış",
+      "PASS_CONDITION": "Şema doğrulanmış; ilgili gerçek çıktı ile doğrulama",
+      "REQUIRED_EVIDENCE": "kaynak, test ve makbuz",
+      "VERIFIER": "otomatik mekanik sınama + gerektiğinde owner",
+      "AUTHORITY": "owner; kritik dış etki için ayrı açık yetki",
+      "STATE": "HOLD"
+    },
+    {
+      "CONTROL_ID": "T04",
+      "REQUIREMENT": "Çıkarım ve grafik çalışıyor",
+      "PASS_CONDITION": "Çıkarım ve grafik çalışıyor; ilgili gerçek çıktı ile doğrulama",
+      "REQUIRED_EVIDENCE": "kaynak, test ve makbuz",
+      "VERIFIER": "otomatik mekanik sınama + gerektiğinde owner",
+      "AUTHORITY": "owner; kritik dış etki için ayrı açık yetki",
+      "STATE": "HOLD"
+    },
+    {
+      "CONTROL_ID": "T05",
+      "REQUIREMENT": "JSON dışa aktarımı",
+      "PASS_CONDITION": "JSON dışa aktarımı; ilgili gerçek çıktı ile doğrulama",
+      "REQUIRED_EVIDENCE": "kaynak, test ve makbuz",
+      "VERIFIER": "otomatik mekanik sınama + gerektiğinde owner",
+      "AUTHORITY": "owner; kritik dış etki için ayrı açık yetki",
+      "STATE": "HOLD"
+    },
+    {
+      "CONTROL_ID": "T06",
+      "REQUIREMENT": "API gerçek istekleri",
+      "PASS_CONDITION": "API gerçek istekleri; ilgili gerçek çıktı ile doğrulama",
+      "REQUIRED_EVIDENCE": "kaynak, test ve makbuz",
+      "VERIFIER": "otomatik mekanik sınama + gerektiğinde owner",
+      "AUTHORITY": "owner; kritik dış etki için ayrı açık yetki",
+      "STATE": "HOLD"
+    },
+    {
+      "CONTROL_ID": "T07",
+      "REQUIREMENT": "Sınanabilir hipotez",
+      "PASS_CONDITION": "Sınanabilir hipotez; ilgili gerçek çıktı ile doğrulama",
+      "REQUIRED_EVIDENCE": "kaynak, test ve makbuz",
+      "VERIFIER": "otomatik mekanik sınama + gerektiğinde owner",
+      "AUTHORITY": "owner; kritik dış etki için ayrı açık yetki",
+      "STATE": "HOLD"
+    },
+    {
+      "CONTROL_ID": "T08",
+      "REQUIREMENT": "Birim bütünleşme karşıt test",
+      "PASS_CONDITION": "Birim bütünleşme karşıt test; ilgili gerçek çıktı ile doğrulama",
+      "REQUIRED_EVIDENCE": "kaynak, test ve makbuz",
+      "VERIFIER": "otomatik mekanik sınama + gerektiğinde owner",
+      "AUTHORITY": "owner; kritik dış etki için ayrı açık yetki",
+      "STATE": "HOLD"
+    },
+    {
+      "CONTROL_ID": "T09",
+      "REQUIREMENT": "Deterministik tekrar",
+      "PASS_CONDITION": "Deterministik tekrar; ilgili gerçek çıktı ile doğrulama",
+      "REQUIRED_EVIDENCE": "kaynak, test ve makbuz",
+      "VERIFIER": "otomatik mekanik sınama + gerektiğinde owner",
+      "AUTHORITY": "owner; kritik dış etki için ayrı açık yetki",
+      "STATE": "HOLD"
+    },
+    {
+      "CONTROL_ID": "T10",
+      "REQUIREMENT": "Gerçek kurulum ve kullanım",
+      "PASS_CONDITION": "Gerçek kurulum ve kullanım; ilgili gerçek çıktı ile doğrulama",
+      "REQUIRED_EVIDENCE": "kaynak, test ve makbuz",
+      "VERIFIER": "otomatik mekanik sınama + gerektiğinde owner",
+      "AUTHORITY": "owner; kritik dış etki için ayrı açık yetki",
+      "STATE": "HOLD"
+    },
+    {
+      "CONTROL_ID": "T11",
+      "REQUIREMENT": "Kod kurulum test sınırlar belgeli",
+      "PASS_CONDITION": "Kod kurulum test sınırlar belgeli; ilgili gerçek çıktı ile doğrulama",
+      "REQUIRED_EVIDENCE": "kaynak, test ve makbuz",
+      "VERIFIER": "otomatik mekanik sınama + gerektiğinde owner",
+      "AUTHORITY": "owner; kritik dış etki için ayrı açık yetki",
+      "STATE": "HOLD"
+    },
+    {
+      "CONTROL_ID": "B01",
+      "REQUIREMENT": "Karşılaştırma önceden sabit",
+      "PASS_CONDITION": "Karşılaştırma önceden sabit; ilgili gerçek çıktı ile doğrulama",
+      "REQUIRED_EVIDENCE": "ön kayıt ve izinli gözlem ölçümleri",
+      "VERIFIER": "otomatik mekanik sınama + gerektiğinde owner",
+      "AUTHORITY": "owner; kritik dış etki için ayrı açık yetki",
+      "STATE": "HOLD"
+    },
+    {
+      "CONTROL_ID": "B02",
+      "REQUIREMENT": "Gerçek örnek ve yetki",
+      "PASS_CONDITION": "Gerçek örnek ve yetki; ilgili gerçek çıktı ile doğrulama",
+      "REQUIRED_EVIDENCE": "ön kayıt ve izinli gözlem ölçümleri",
+      "VERIFIER": "otomatik mekanik sınama + gerektiğinde owner",
+      "AUTHORITY": "owner; kritik dış etki için ayrı açık yetki",
+      "STATE": "HOLD"
+    },
+    {
+      "CONTROL_ID": "B03",
+      "REQUIREMENT": "Aynı koşullar",
+      "PASS_CONDITION": "Aynı koşullar; ilgili gerçek çıktı ile doğrulama",
+      "REQUIRED_EVIDENCE": "ön kayıt ve izinli gözlem ölçümleri",
+      "VERIFIER": "otomatik mekanik sınama + gerektiğinde owner",
+      "AUTHORITY": "owner; kritik dış etki için ayrı açık yetki",
+      "STATE": "HOLD"
+    },
+    {
+      "CONTROL_ID": "B04",
+      "REQUIREMENT": "İnsan emeği zaman hata fayda ölçülmüş",
+      "PASS_CONDITION": "İnsan emeği zaman hata fayda ölçülmüş; ilgili gerçek çıktı ile doğrulama",
+      "REQUIRED_EVIDENCE": "ön kayıt ve izinli gözlem ölçümleri",
+      "VERIFIER": "otomatik mekanik sınama + gerektiğinde owner",
+      "AUTHORITY": "owner; kritik dış etki için ayrı açık yetki",
+      "STATE": "HOLD"
+    },
+    {
+      "CONTROL_ID": "B05",
+      "REQUIREMENT": "Gerçek sonuç raporlanmış",
+      "PASS_CONDITION": "Gerçek sonuç raporlanmış; ilgili gerçek çıktı ile doğrulama",
+      "REQUIRED_EVIDENCE": "ön kayıt ve izinli gözlem ölçümleri",
+      "VERIFIER": "otomatik mekanik sınama + gerektiğinde owner",
+      "AUTHORITY": "owner; kritik dış etki için ayrı açık yetki",
+      "STATE": "HOLD"
+    },
+    {
+      "CONTROL_ID": "B06",
+      "REQUIREMENT": "Önceden sabit fayda güvenlik eşikleri",
+      "PASS_CONDITION": "Önceden sabit fayda güvenlik eşikleri; ilgili gerçek çıktı ile doğrulama",
+      "REQUIRED_EVIDENCE": "ön kayıt ve izinli gözlem ölçümleri",
+      "VERIFIER": "otomatik mekanik sınama + gerektiğinde owner",
+      "AUTHORITY": "owner; kritik dış etki için ayrı açık yetki",
+      "STATE": "HOLD"
+    }
+  ],
+  "local_runtime_target": "Mac OSi, ayrıca Linux temiz kurulum kanıtı",
+  "preflight": {
+    "source_unavailable": "kaynak kapısı HOLD, bağımsız modüller sınanır",
+    "semantic_automation": "aday üretimi, insan doğrulaması",
+    "malformed_input": "reddet",
+    "package_tamper": "reddet",
+    "real_data_unavailable": "sentetik ön sınama; gerçek fayda NOT_TESTED",
+    "rollback": "yalıtılmış venv ve çıktı klasörünü kaldır; eski projeye yazma"
+  }
+}

@@ -1,0 +1,156 @@
+[
+  {
+    "coverage": [
+      "48:1-29"
+    ],
+    "id": "tanzil-uthmani-1.1",
+    "kind": "arabic",
+    "notes": "Exact source strings; first ayah includes basmala per publisher export. No source normalization in stored text.",
+    "publisher": "Tanzil Project",
+    "raw_sha256": "bf4f57b968d03f4131c070b1e285da9be0e0a108a21c910e872801ca273312c8",
+    "retrieved_at": "2026-11-01T14:14:36.727462+00:00",
+    "status": "RETRIEVED_PINNED",
+    "url": "https://tanzil.net/pub/download/index.php?quranType=uthmani&outType=txt-2&agree=true",
+    "version": "Uthmani 1.1"
+  },
+  {
+    "coverage": [
+      "48:1-29"
+    ],
+    "id": "alquran-uthmani",
+    "kind": "comparison",
+    "notes": "Separate delivery channel; editorial independence not established. Orthographic/recitation marks differ; base-script comparison only.",
+    "publisher": "AlQuran Cloud",
+    "raw_sha256": "5d1038a27c66e433c6e1d0a0f0bb1dae8504df6eb078c89398f68f1918581a48",
+    "status": "RETRIEVED_PINNED",
+    "url": "https://api.alquran.cloud/v1/surah/48/quran-uthmani",
+    "version": "quran-uthmani"
+  },
+  {
+    "coverage": [
+      "48:1-29"
+    ],
+    "id": "diyanet-tefsir-48",
+    "kind": "tafsir",
+    "notes": "Public website client response decoded using its shipped client implementation. Full copyrighted commentary not redistributed. Record IDs/ranges retained.",
+    "publisher": "Diyanet İşleri Başkanlığı",
+    "raw_sha256": "228ea67136baab223d911c0a873d891e9a69fbec96a0c943dbe5aa6fc141a3c2",
+    "status": "RETRIEVED_READ",
+    "url": "https://kuran.diyanet.gov.tr/api/v2/tefsir/sure/48/1",
+    "version": "DİB Tefsiri, kaynak_id=1"
+  },
+  {
+    "coverage": [
+      "103:1-3"
+    ],
+    "id": "diyanet-asr-context",
+    "kind": "manifesto_context",
+    "notes": "Manifesto only; not part of core verse corpus.",
+    "publisher": "Diyanet İşleri Başkanlığı",
+    "raw_sha256": "81b05223bee10a042a86cd298f2390a56f6738e9ebbd0dac25dbdea8e520818b",
+    "status": "RETRIEVED_READ",
+    "url": "https://kuran.diyanet.gov.tr/api/v2/tefsir/sure/103/1",
+    "version": "DİB Tefsiri, kaynak_id=1"
+  },
+  {
+    "catalogue": [
+      {
+        "aciklama": null,
+        "ad": "Kuran Yolu",
+        "aktif": true,
+        "dil": {
+          "ad": "Türkçe",
+          "id": 1,
+          "kod": "tr"
+        },
+        "id": 1
+      },
+      {
+        "aciklama": null,
+        "ad": "Elmalılı Hamdi Yazır",
+        "aktif": true,
+        "dil": {
+          "ad": "Türkçe",
+          "id": 1,
+          "kod": "tr"
+        },
+        "id": 2
+      },
+      {
+        "aciklama": null,
+        "ad": "Diyanet Vakfı",
+        "aktif": true,
+        "dil": {
+          "ad": "Türkçe",
+          "id": 1,
+          "kod": "tr"
+        },
+        "id": 3
+      },
+      {
+        "aciklama": null,
+        "ad": "Diyanet İşleri Başkanlığı",
+        "aktif": true,
+        "dil": {
+          "ad": "Türkçe",
+          "id": 1,
+          "kod": "tr"
+        },
+        "id": 4
+      },
+      {
+        "aciklama": null,
+        "ad": "The Holy Quran with English Translation",
+        "aktif": true,
+        "dil": {
+          "ad": "English",
+          "id": 3,
+          "kod": "en"
+        },
+        "id": 5
+      },
+      {
+        "aciklama": null,
+        "ad": "Der Heilige Koran  Deutsche Übersetzung",
+        "aktif": true,
+        "dil": {
+          "ad": "Deutsch",
+          "id": 4,
+          "kod": "de"
+        },
+        "id": 6
+      },
+      {
+        "aciklama": null,
+        "ad": "Священный Коран – Русский перевод ",
+        "aktif": true,
+        "dil": {
+          "ad": "Русский",
+          "id": 5,
+          "kod": "ru"
+        },
+        "id": 7
+      },
+      {
+        "aciklama": null,
+        "ad": "El Sagrado Corán – Traducción al Español",
+        "aktif": true,
+        "dil": {
+          "ad": "Español",
+          "id": 6,
+          "kod": "es"
+        },
+        "id": 8
+      }
+    ],
+    "coverage": [],
+    "id": "diyanet-meal-catalogue",
+    "kind": "translation_identity",
+    "notes": "Only source identities read. Full meal text not acquired or used as verified extraction input.",
+    "publisher": "Diyanet İşleri Başkanlığı",
+    "raw_sha256": "b88a6b1e902880b5541e2da4ae08979249c8fb0455a7e4bc89bd18a65d52fa1e",
+    "status": "CATALOGUE_IDENTITY_ONLY",
+    "url": "https://kuran.diyanet.gov.tr/api/v2/meal/kaynaklar",
+    "version": "Live catalogue retrieved 2026-11-01"
+  }
+]

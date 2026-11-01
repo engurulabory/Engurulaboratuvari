@@ -1,0 +1,77 @@
+{
+  "status": "PASS",
+  "scope": "ISOLATED_INSTALL_AND_LOCALHOST_RUNTIME",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "source_code_sha256": {
+    "fetih_core/__init__.py": "9d0e893943229b58589a2182020d9e29ec3e1d50318fcfe022ef04c4be477dfe",
+    "fetih_core/__main__.py": "7c64a9c47c228bbb6823fa10e343b3bcdad287451b6e052f8296c000b3cbf6c2",
+    "fetih_core/api.py": "d1bf2910c37706de3c086acf70b2790aa16c849a9c5c6095f02f4ee82df5a42b",
+    "fetih_core/core.py": "ad24a8e65ae709329b503c52c51b02fddf94ebfc86bda84305010fa3a98b10d6",
+    "fetih_core/data/TANZIL_LICENSE.txt": "72493509d507314f60c018fd33aa57d9064a0de42be8926745e4953f59925c62",
+    "fetih_core/data/comparison.json": "9fac5851143e877ceb4c96f2dc16534090b6e98a547b819144bbffa5053e6b9d",
+    "fetih_core/data/hypothesis.json": "39bbbaf2c6289d228a0e2efcb19f600a1172f42af704fc6c2199566c5f4e5c73",
+    "fetih_core/data/rules.json": "cfadeda018614d38695cf6d5ee0260997033fc30a1ea7542912943347ef0ff24",
+    "fetih_core/data/source_lock.json": "efb3840d1d31477e5cc7795b1d1dca9474089d14bd415ee6dd4f120a3ac8b7c6",
+    "fetih_core/data/sources.json": "2c27e4bf699fffdcb6378cbbbc7b7f010cb1d7045e30e58a61e5734adf737f6b",
+    "fetih_core/data/tafsir_index.json": "4ef697246e214d7687334912126718491a297fd1344a916f9455470ccf22a10f",
+    "fetih_core/data/verses.json": "61dbead619c7b8ba525365a8e4d4f18773a778afc8fedcbc8e8fde6831a065a4",
+    "fetih_core/experiment.py": "758e119833f593e9d01e9520c2951ab75de761753e4d8e0e9bb9aef4340ba1d2"
+  },
+  "tested_manifest_sha256": "8ba42e48d262a44a0b70b763d8ab15c9e5e6808128367f498c661058b0060a81",
+  "manifest_files": 33,
+  "source_verify": {
+    "human_review": "HOLD",
+    "records": 7,
+    "source_integrity": "PASS",
+    "verses": 29
+  },
+  "tests_exit_code": 0,
+  "requests": [
+    {
+      "route": "/health",
+      "status": 200,
+      "sha256": "11c632f99150f6086e3d2c1d7187d72c0e460be7be32172f891d7c6c662f4e9d"
+    },
+    {
+      "route": "/verses?id=48%3A25",
+      "status": 200,
+      "sha256": "b5b57b7e5aeba08bd4ebb60abef41efc9eae4594459bb93a90f2a22093aeca70"
+    },
+    {
+      "route": "/concepts",
+      "status": 200,
+      "sha256": "6604814e10c6349e282b2b0fbfc8363640d110f86e3a40023c86e80a74b1844d"
+    },
+    {
+      "route": "/graph",
+      "status": 200,
+      "sha256": "e112cf7600509aebf8227e766818eabcdbf97931f1ea2417f927ce3e561d926b"
+    },
+    {
+      "route": "/models",
+      "status": 200,
+      "sha256": "f2d393dfe34d0fe2ad3f93b93d758ca95daa267827b69f1e34a1f61282ac6a0e"
+    },
+    {
+      "route": "/hypotheses",
+      "status": 200,
+      "sha256": "73e9abaaba9c17b3edf3d02ce215fcb520f9ca1b0aee378140d1a01179e93592"
+    },
+    {
+      "route": "/review-queue",
+      "status": 200,
+      "sha256": "6604814e10c6349e282b2b0fbfc8363640d110f86e3a40023c86e80a74b1844d"
+    },
+    {
+      "route": "/export",
+      "status": 200,
+      "sha256": "9d3cfcec0c058581ae2b3897c2e5e32af705203ef7213b438dd6dacb6d28bacf"
+    }
+  ],
+  "export_sha256": "0e955ac1d2d5e64245a1930e12a8045e6c1c027d8b2b8fd521f7cb5e2c0b8646",
+  "human_effort_seconds": null,
+  "real_benefit": "NOT_TESTED",
+  "mac_field": "NOT_TESTED",
+  "rollback": "Remove only this newly created target directory after retaining receipts. Source package and old projects remain separate."
+}
