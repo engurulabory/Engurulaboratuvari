@@ -72,6 +72,13 @@ async function refreshProjects(){const data=await api('/api/desk/projects');
 // H1 İş 05: the pre-existing project-SHA conversation API is now visible on the
 // same engineering desk. All model/user text is displayed via textContent.
 let chatPending=false;
+// Keep the selected project's completion state separate from in-flight replies
+// belonging to an earlier selection. A new selection resets the visible status.
+let visibleChatProjectKey='';
+function sameActiveChatProject(project){
+ const active=activeChatProject();
+ return !!(active && project && active.id===project.id && active.sha===project.sha);
+}
 function activeChatProject(){
  const opt=$('project-list').selectedOptions[0];
  return opt?.value && opt.dataset.sha ? {id:opt.value,sha:opt.dataset.sha}:null;
@@ -98,15 +105,20 @@ function showChatHistory(messages){
 }
 async function refreshChatHistory(){
  const project=activeChatProject();
+ const key=project ? project.id+'@'+project.sha : '';
+ if(key!==visibleChatProjectKey){
+  visibleChatProjectKey=key;
+  setText('chat-result',project?'Bu proje için yeni bir sohbet isteği bekleniyor.':'Önce bir proje seç.');
+ }
  if(!project){setText('chat-project-status','Önce bir proje seç.');$('chat-history').replaceChildren();return;}
  setText('chat-project-status','Proje: '+project.id+' · SHA '+project.sha.slice(0,16)+'…');
  try{
   const res=await api('/api/desk/history?project_id='+encodeURIComponent(project.id));
   // An in-flight older project's response must not overwrite the new selection.
-  if(activeChatProject()?.id!==project.id)return;
+  if(!sameActiveChatProject(project))return;
   if(res.project_id!==project.id||res.source!=='H1_SQLITE')throw Error('HOLD_HISTORY_PROJECT_SCOPE');
   showChatHistory(res.messages||[]);
- }catch(e){setText('chat-result','HOLD · Geçmiş: '+e.message);}
+ }catch(e){if(sameActiveChatProject(project))setText('chat-result','HOLD · Geçmiş: '+e.message);}
 }
 async function sendProjectChat(){
  if(chatPending)return;
@@ -119,10 +131,13 @@ async function sendProjectChat(){
   const response=await api('/api/desk/project-chat',{project_id:project.id,project_sha256:project.sha,
     message_id:crypto.randomUUID(),text:content,requested_action:'ADVISE_ONLY'});
   if(response.project_id!==project.id||response.project_sha256!==project.sha)throw Error('HOLD_CHAT_SCOPE');
+  // Saving to the original project is valid; displaying its result under a
+  // subsequently selected project is not. Preserve the new project's draft.
+  if(!sameActiveChatProject(project))return;
   setText('chat-result','Kaynaklı öneri SQLite içinde kaydedildi · '+response.state+' · İcra: '+response.execution_state);
   $('chat-message').value='';
   await refreshChatHistory();
- }catch(e){setText('chat-result','HOLD · '+e.message+' · Aynı isteği otomatik tekrarlamıyoruz.');}
+ }catch(e){if(sameActiveChatProject(project))setText('chat-result','HOLD · '+e.message+' · Aynı isteği otomatik tekrarlamıyoruz.');}
  finally{chatPending=false;$('chat-send').disabled=false;}
 }
 async function refresh(){

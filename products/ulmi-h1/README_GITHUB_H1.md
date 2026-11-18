@@ -21,6 +21,23 @@ bash START_H1.sh
 
 Uygulama yalnız `127.0.0.1` üzerinde HTML + Python + SQLite olarak çalışır. Model erişimi isteğe bağlı ayrı yetki sınırındadır. Github Pages sadece statik önizleme için uygundur.
 
+## Projeler arası sohbet eşzamanlılığı (iş 05)
+
+Gerçek HTML çalışma masasında proje değiştirme sırasında önceki projeye ait
+gecikmiş sohbet yanıtı, hata bildirimi ve taslak metin güvenle ayrılır.
+Aynı kaynak üzerinde gerçek Chromium DOM + kontrollü API ile negatif ve
+regresyon denetimi:
+
+```bash
+# GitHub tarayıcı runner'ında önceden kurulu Playwright Chromium kullanılır.
+python3 -B tools/test_project_chat_switch_race.py --output /tmp/ulmi-project-switch.json
+# Kurulu sistem Chromium'u bulunan izinli izole ortamda:
+python3 -B tools/test_project_chat_switch_race.py --browser /usr/bin/chromium --output /tmp/ulmi-project-switch.json
+```
+
+Bu çalışma **API MOCK / PASS_SCOPED_RENDERED_DOM** testidir; gerçek
+HTTP–SQLite tarayıcı E2E, Qwen, Pilot A/B/C ve owner kabulünün yerini almaz.
+
 ## Kanıt ve kabul
 
 GitHub Actions `ulmi-h1.yml`, teknik testleri ve izinli Chromium tarayıcı testini birbirinden ayrı işler olarak çalıştırır. Runner üzerindeki test sonucu, gerçek Qwen yürütmesi, özgün Pilot A/B/C, bağımsız DoneCheck veya owner UAT sonucunun yerine geçmez.

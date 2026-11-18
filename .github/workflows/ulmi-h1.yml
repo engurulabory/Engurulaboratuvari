@@ -71,5 +71,7 @@ jobs:
         run: |
           python -m pip install 'playwright>=1.55,<2' 'requests>=2.31,<3'
           python -m playwright install --with-deps chromium
+      - name: Project switch pending-chat race — mock API boundary
+        run: python -B tools/test_project_chat_switch_race.py --output "${{ runner.temp }}/ulmi-h1-project-switch.json"
       - name: Real Chromium H1 browser E2E (independent of owner UAT)
         run: python -B tools/browser_h1_e2e.py
