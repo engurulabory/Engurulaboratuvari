@@ -197,7 +197,7 @@ def execute(output: Path, seconds: int, commit: str, *, browser: bool = False):
         'github_repository': 'engurulabory/Engurulaboratuvari',
         'github_commit_reference': commit,
         'github_commit_binding': git_binding,
-        'github_actions_acceptance': 'HOLD_ACCOUNT_BILLING_LOCK',
+        'github_actions_acceptance': 'HOLD_PLATFORM_RUNNER_UNAVAILABLE',
         'github_actions_bypass_method': 'ALTERNATE_INDEPENDENT_RUNNER_NOT_PLATFORM_OVERRIDE',
         'no_additional_paid_service_started_by_runner': True,
         'billing_or_entitlement_changed': False,

@@ -47,13 +47,12 @@ politikalarının sonucu kendi HOLD sınırında korunur. Gerçek Qwen, özgün
 Pilot A/B/C yetkisi, bağımsız DoneCheck ve owner UAT ayrı kanıtlara bağlıdır.
 
 
-## Sıfır yeni ücretli hizmet · Actions hesap kilidi için bağımsız teknik hat
+## Sıfır yeni ücretli hizmet · Actions çalıştırma sınırında bağımsız teknik hat
 
-18 Kasım 2026 hesap arayüzü, GitHub Actions işlerindeki **ödeme kaynaklı hesap
-kilidini** doğrulamıştır. `engineering` ve `browser` işleri testlere başlamadan
-durmuştur. Bu bir ULMi ürün testi sonucu değildir. Banka–GitHub mevcut destek
-süreci ayrı ilerler; yeni ödeme, hesap/runner değişikliği ve ücretli servis bu
-mühendislik hatlarının önkoşulu yapılmaz.
+GitHub Actions `engineering` ve `browser` işleri runner atanıp testler
+başlamadan durmuş olabilir. Bu bir ULMi ürün testi sonucu değildir.
+Hesaba özgü destek, ödeme veya erişim ayrıntıları ürün kaynağından ayrı
+yönetilir; yeni ödeme, runner veya ücretli servis mühendislik şartı olmaz.
 
 GitHub'ın erişilebilir kaynak/branch/PR/commit işlevlerini kullan. Testleri ve
 SHA makbuzlu deterministik ürünü mevcut izinli Python çalışma ortamında **tek
@@ -72,7 +71,7 @@ ortamı yetkili ve erişilebilir olduğunda ayrıca `--browser` kullanılabilir.
 **Truth Boundary:** Gerçek bir Git deposu ve temiz ürün ağacı varsa çalıştırıcı
 HEAD eşliğini denetler. Başka ortamda geçen commit yalnız referanstır; GitHub
 blob kimlikleri ayrıca karşılaştırılır. Makbuzun sonucu
-`PASS_SCOPED_LOCAL_EXTERNAL_CI`, `GITHUB_ACTIONS=HOLD_ACCOUNT_BILLING_LOCK`
+`PASS_SCOPED_LOCAL_EXTERNAL_CI`, `GITHUB_ACTIONS=HOLD_PLATFORM_RUNNER_UNAVAILABLE`
 olarak ayrılır. Ürün 11/11 teknik finişi, bağımsız DoneCheck, gerçek Qwen, Pilot
 A/B/C ve owner UAT kabulü kendi gerçek kanıtını gerektirir. **H2 PARKED**.
 
