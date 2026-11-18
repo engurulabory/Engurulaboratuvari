@@ -78,3 +78,30 @@ A/B/C ve owner UAT kabulü kendi gerçek kanıtını gerektirir. **H2 PARKED**.
 Kullanılan GitHub kaynakları kamuya açık depodadır; hesap ödeme ekranları,
 finansal bilgiler, gerçek API anahtarları veya yerel özel günlükler PR'a
 aktarılmaz. Yerel kanıt makbuzu Hafıza Sarayı'na, özeti PR'a bağlanır.
+
+## Ayrı kanıt: Chromium gerçek DOM testi (HTTP/API sentetik)
+
+GitHub Actions erişimi ayrı HOLD iken, mevcut izinli Chromium ile **orijinal
+`PRODUCT/index.html`, `style.css`, `app.js`** kaynakları çevrimdışı, sentetik
+API üzerinde gerçek tarayıcı DOM etkileşimleriyle doğrulanabilir. Bu yöntem,
+yönetilen ortamın engellediği `127.0.0.1` gezinmesini aşma girişimi değildir.
+
+```bash
+python3 -B products/ulmi-h1/tools/test_browser_dom_isolated.py \
+  --output /tmp/ulmi-h1-browser-dom.json \
+  --screenshot /tmp/ulmi-h1-browser-dom-MOCK.png
+python3 -B products/ulmi-h1/tools/probe_real_model_pilots.py \
+  --output /tmp/ulmi-h1-real-model-pilot-readiness.json
+```
+
+İlk komut gerçek Chromium DOM/render, proje seçimi, sohbetin `ADVISE_ONLY`
+sınırı, metin/XSS işleme ve ayrı onay akışını ölçer. Ekran görüntüsünün üstüne
+**API MOCK** ibaresi konur. `PASS_SCOPED_RENDERED_DOM_MOCK_API`, gerçek
+HTTP+SQLite tarayıcı uçtan uca kabulü, gerçek Qwen veya owner UAT değildir.
+
+İkinci komut yalnız yerel `127.0.0.1:11434/api/tags` adresini **salt-okunur**
+sorgular; model çıktı kalitesini veya mühendislik görevini çalıştırmaz.
+Özgün Pilot A/B/C kontratının SHA-256'sını ve 3×8 kriterini doğrular; ayrı
+owner icra yetkisi yoksa `HOLD_NO_OWNER_EXECUTION_GRANT` verir. H2 kurulumu
+`PARKED` kalır. Her iki testin makbuzu aynı Emir 01 özgün iş kimliklerine
+bağlanır; puan, resmî çentik, Verified Finish veya yayın yetkisi üretmez.
