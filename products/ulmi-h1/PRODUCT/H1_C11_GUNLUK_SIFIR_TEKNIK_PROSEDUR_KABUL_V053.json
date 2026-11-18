@@ -1,0 +1,31 @@
+{
+  "schema": "enguru.muhendis-osi.h1-c11-zero-daily-procedure/v0.5.3",
+  "product_id": "ENGURU_MUHENDIS_OSI",
+  "previous_verified": "V0.5.2_OWNER_SAFARI_PASS_SCOPED_33_OF_33_PLUS_MAC_READBACK_15_OF_15",
+  "candidate": "V0.5.3_H1_C11_ONE_CLICK",
+  "target": "H1-C11_SINGLE_CLICK_OPEN_NO_DAILY_TERMINAL_PORT_OR_FOLDER_SELECTION",
+  "scope": "H1_ISOLATED_SAFARI_PILOT",
+  "goal_2": "PARKED",
+  "new_paid_required_api": 0,
+  "owner_daily_technical_procedures_target": 0,
+  "safety": {
+    "same_source_service_reuse": true,
+    "foreign_loopback_service_reuse": false,
+    "source_sha_required": true,
+    "no_shell_code_execution_from_ai": true,
+    "new_mac_osi_install": false,
+    "old_workspace_migrated": false,
+    "persistent_shared_os_services": false
+  },
+  "checks": [
+    {"id":"C11-A","expected":"Finder çift tıklaması ile uygulama açılır, Terminal veya klasör seçimi gerektirmez","isolated":"PASS_SCOPED_APP_WRAPPER","mac_owner":"NOT_TESTED"},
+    {"id":"C11-B","expected":"Kaynak SHA doğrulanır ve yalnız aynı klasör kimlikli hizmet yeniden kullanılır","isolated":"PASS_SCOPED","mac_owner":"NOT_TESTED"},
+    {"id":"C11-C","expected":"Başka hizmet meşgulse güvenli boş port bulunur; eski hizmet korunur","isolated":"PASS_SCOPED_REAL_HTTP","mac_owner":"NOT_TESTED"},
+    {"id":"C11-D","expected":"Safari'de HTML görev, izinli dosya, test, SHA ve makbuz zinciri çalışır","isolated":"PASS_SCOPED_HTTP_AND_PREVIOUS_SAFARI","mac_owner":"NOT_TESTED_V053"},
+    {"id":"C11-E","expected":"İkinci Finder açılışı aynı kayıtları gösterir, teknik komut istenmez","isolated":"PASS_SCOPED_REAL_HTTP","mac_owner":"NOT_TESTED"}
+  ],
+  "verdict": "PASS_SCOPED_ISOLATED_IMPLEMENTATION_MAC_H1_C11_NOT_TESTED",
+  "h1_html_prototype": "HOLD",
+  "mac_osi": "PARKED",
+  "official_donecheck": "NOT_TESTED"
+}

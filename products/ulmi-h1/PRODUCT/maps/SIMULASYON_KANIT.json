@@ -1,0 +1,891 @@
+{
+  "schema": "enguru.ustamimar.maps.design-simulation-evidence/v1",
+  "date": "2026-11-13",
+  "test_environment": "THIS_CONTAINER_PYTHON_ISOLATED",
+  "verifier_independent": false,
+  "method": "ZULFIKAR_V141_INSPIRED_THREE_PHASE_DESIGN_POLICY_TEST_NOT_MAC_RUNTIME",
+  "actual_structural_unit_tests": {
+    "run": 21,
+    "failures": 0,
+    "errors": 0,
+    "pass": true
+  },
+  "design_coverage_rubric": {
+    "basis": "10 self-authored structural fields x 10 each per map and panel",
+    "per_map": {
+      "H00": {
+        "score": 100,
+        "possible": 100,
+        "result": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY"
+      },
+      "H01": {
+        "score": 100,
+        "possible": 100,
+        "result": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY"
+      },
+      "H02": {
+        "score": 100,
+        "possible": 100,
+        "result": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY"
+      },
+      "H03": {
+        "score": 100,
+        "possible": 100,
+        "result": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY"
+      },
+      "H04": {
+        "score": 100,
+        "possible": 100,
+        "result": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY"
+      },
+      "H05": {
+        "score": 100,
+        "possible": 100,
+        "result": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY"
+      },
+      "H06": {
+        "score": 100,
+        "possible": 100,
+        "result": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY"
+      },
+      "H07": {
+        "score": 100,
+        "possible": 100,
+        "result": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY"
+      },
+      "H08": {
+        "score": 100,
+        "possible": 100,
+        "result": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY"
+      }
+    },
+    "panel": {
+      "score": 100,
+      "possible": 100
+    }
+  },
+  "three_round_synthetic_simulations": {
+    "total": 90,
+    "pass": 90,
+    "results": [
+      {
+        "round": 1,
+        "map": "H00",
+        "sim": "SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "H00",
+        "sim": "SIM2",
+        "expected": "BLOCKED_SCOPE",
+        "actual": "BLOCKED_SCOPE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "H00",
+        "sim": "SIM3",
+        "expected": "HOLD_RECONCILE",
+        "actual": "HOLD_RECONCILE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "H01",
+        "sim": "SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "H01",
+        "sim": "SIM2",
+        "expected": "BLOCKED_SCOPE",
+        "actual": "BLOCKED_SCOPE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "H01",
+        "sim": "SIM3",
+        "expected": "HOLD_RECONCILE",
+        "actual": "HOLD_RECONCILE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "H02",
+        "sim": "SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "H02",
+        "sim": "SIM2",
+        "expected": "BLOCKED_SCOPE",
+        "actual": "BLOCKED_SCOPE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "H02",
+        "sim": "SIM3",
+        "expected": "HOLD_RECONCILE",
+        "actual": "HOLD_RECONCILE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "H03",
+        "sim": "SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "H03",
+        "sim": "SIM2",
+        "expected": "BLOCKED_SCOPE",
+        "actual": "BLOCKED_SCOPE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "H03",
+        "sim": "SIM3",
+        "expected": "HOLD_RECONCILE",
+        "actual": "HOLD_RECONCILE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "H04",
+        "sim": "SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "H04",
+        "sim": "SIM2",
+        "expected": "BLOCKED_SCOPE",
+        "actual": "BLOCKED_SCOPE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "H04",
+        "sim": "SIM3",
+        "expected": "HOLD_RECONCILE",
+        "actual": "HOLD_RECONCILE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "H05",
+        "sim": "SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "H05",
+        "sim": "SIM2",
+        "expected": "BLOCKED_SCOPE",
+        "actual": "BLOCKED_SCOPE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "H05",
+        "sim": "SIM3",
+        "expected": "HOLD_RECONCILE",
+        "actual": "HOLD_RECONCILE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "H06",
+        "sim": "SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "H06",
+        "sim": "SIM2",
+        "expected": "BLOCKED_SCOPE",
+        "actual": "BLOCKED_SCOPE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "H06",
+        "sim": "SIM3",
+        "expected": "HOLD_RECONCILE",
+        "actual": "HOLD_RECONCILE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "H07",
+        "sim": "SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "H07",
+        "sim": "SIM2",
+        "expected": "BLOCKED_SCOPE",
+        "actual": "BLOCKED_SCOPE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "H07",
+        "sim": "SIM3",
+        "expected": "HOLD_RECONCILE",
+        "actual": "HOLD_RECONCILE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "H08",
+        "sim": "SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "H08",
+        "sim": "SIM2",
+        "expected": "BLOCKED_SCOPE",
+        "actual": "BLOCKED_SCOPE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "H08",
+        "sim": "SIM3",
+        "expected": "HOLD_RECONCILE",
+        "actual": "HOLD_RECONCILE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "ANA_PANO",
+        "sim": "P-SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "ANA_PANO",
+        "sim": "P-SIM2",
+        "expected": "FALSE_FINISH_REJECTED",
+        "actual": "FALSE_FINISH_REJECTED",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 1,
+        "map": "ANA_PANO",
+        "sim": "P-SIM3",
+        "expected": "PARKED_NO_MAC_INSTALL_GO",
+        "actual": "PARKED_NO_MAC_INSTALL_GO",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "H00",
+        "sim": "SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "H00",
+        "sim": "SIM2",
+        "expected": "BLOCKED_SCOPE",
+        "actual": "BLOCKED_SCOPE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "H00",
+        "sim": "SIM3",
+        "expected": "HOLD_RECONCILE",
+        "actual": "HOLD_RECONCILE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "H01",
+        "sim": "SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "H01",
+        "sim": "SIM2",
+        "expected": "BLOCKED_SCOPE",
+        "actual": "BLOCKED_SCOPE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "H01",
+        "sim": "SIM3",
+        "expected": "HOLD_RECONCILE",
+        "actual": "HOLD_RECONCILE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "H02",
+        "sim": "SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "H02",
+        "sim": "SIM2",
+        "expected": "BLOCKED_SCOPE",
+        "actual": "BLOCKED_SCOPE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "H02",
+        "sim": "SIM3",
+        "expected": "HOLD_RECONCILE",
+        "actual": "HOLD_RECONCILE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "H03",
+        "sim": "SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "H03",
+        "sim": "SIM2",
+        "expected": "BLOCKED_SCOPE",
+        "actual": "BLOCKED_SCOPE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "H03",
+        "sim": "SIM3",
+        "expected": "HOLD_RECONCILE",
+        "actual": "HOLD_RECONCILE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "H04",
+        "sim": "SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "H04",
+        "sim": "SIM2",
+        "expected": "BLOCKED_SCOPE",
+        "actual": "BLOCKED_SCOPE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "H04",
+        "sim": "SIM3",
+        "expected": "HOLD_RECONCILE",
+        "actual": "HOLD_RECONCILE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "H05",
+        "sim": "SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "H05",
+        "sim": "SIM2",
+        "expected": "BLOCKED_SCOPE",
+        "actual": "BLOCKED_SCOPE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "H05",
+        "sim": "SIM3",
+        "expected": "HOLD_RECONCILE",
+        "actual": "HOLD_RECONCILE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "H06",
+        "sim": "SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "H06",
+        "sim": "SIM2",
+        "expected": "BLOCKED_SCOPE",
+        "actual": "BLOCKED_SCOPE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "H06",
+        "sim": "SIM3",
+        "expected": "HOLD_RECONCILE",
+        "actual": "HOLD_RECONCILE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "H07",
+        "sim": "SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "H07",
+        "sim": "SIM2",
+        "expected": "BLOCKED_SCOPE",
+        "actual": "BLOCKED_SCOPE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "H07",
+        "sim": "SIM3",
+        "expected": "HOLD_RECONCILE",
+        "actual": "HOLD_RECONCILE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "H08",
+        "sim": "SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "H08",
+        "sim": "SIM2",
+        "expected": "BLOCKED_SCOPE",
+        "actual": "BLOCKED_SCOPE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "H08",
+        "sim": "SIM3",
+        "expected": "HOLD_RECONCILE",
+        "actual": "HOLD_RECONCILE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "ANA_PANO",
+        "sim": "P-SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "ANA_PANO",
+        "sim": "P-SIM2",
+        "expected": "FALSE_FINISH_REJECTED",
+        "actual": "FALSE_FINISH_REJECTED",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 2,
+        "map": "ANA_PANO",
+        "sim": "P-SIM3",
+        "expected": "PARKED_NO_MAC_INSTALL_GO",
+        "actual": "PARKED_NO_MAC_INSTALL_GO",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "H00",
+        "sim": "SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "H00",
+        "sim": "SIM2",
+        "expected": "BLOCKED_SCOPE",
+        "actual": "BLOCKED_SCOPE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "H00",
+        "sim": "SIM3",
+        "expected": "HOLD_RECONCILE",
+        "actual": "HOLD_RECONCILE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "H01",
+        "sim": "SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "H01",
+        "sim": "SIM2",
+        "expected": "BLOCKED_SCOPE",
+        "actual": "BLOCKED_SCOPE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "H01",
+        "sim": "SIM3",
+        "expected": "HOLD_RECONCILE",
+        "actual": "HOLD_RECONCILE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "H02",
+        "sim": "SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "H02",
+        "sim": "SIM2",
+        "expected": "BLOCKED_SCOPE",
+        "actual": "BLOCKED_SCOPE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "H02",
+        "sim": "SIM3",
+        "expected": "HOLD_RECONCILE",
+        "actual": "HOLD_RECONCILE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "H03",
+        "sim": "SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "H03",
+        "sim": "SIM2",
+        "expected": "BLOCKED_SCOPE",
+        "actual": "BLOCKED_SCOPE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "H03",
+        "sim": "SIM3",
+        "expected": "HOLD_RECONCILE",
+        "actual": "HOLD_RECONCILE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "H04",
+        "sim": "SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "H04",
+        "sim": "SIM2",
+        "expected": "BLOCKED_SCOPE",
+        "actual": "BLOCKED_SCOPE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "H04",
+        "sim": "SIM3",
+        "expected": "HOLD_RECONCILE",
+        "actual": "HOLD_RECONCILE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "H05",
+        "sim": "SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "H05",
+        "sim": "SIM2",
+        "expected": "BLOCKED_SCOPE",
+        "actual": "BLOCKED_SCOPE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "H05",
+        "sim": "SIM3",
+        "expected": "HOLD_RECONCILE",
+        "actual": "HOLD_RECONCILE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "H06",
+        "sim": "SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "H06",
+        "sim": "SIM2",
+        "expected": "BLOCKED_SCOPE",
+        "actual": "BLOCKED_SCOPE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "H06",
+        "sim": "SIM3",
+        "expected": "HOLD_RECONCILE",
+        "actual": "HOLD_RECONCILE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "H07",
+        "sim": "SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "H07",
+        "sim": "SIM2",
+        "expected": "BLOCKED_SCOPE",
+        "actual": "BLOCKED_SCOPE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "H07",
+        "sim": "SIM3",
+        "expected": "HOLD_RECONCILE",
+        "actual": "HOLD_RECONCILE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "H08",
+        "sim": "SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "H08",
+        "sim": "SIM2",
+        "expected": "BLOCKED_SCOPE",
+        "actual": "BLOCKED_SCOPE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "H08",
+        "sim": "SIM3",
+        "expected": "HOLD_RECONCILE",
+        "actual": "HOLD_RECONCILE",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "ANA_PANO",
+        "sim": "P-SIM1",
+        "expected": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "actual": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "ANA_PANO",
+        "sim": "P-SIM2",
+        "expected": "FALSE_FINISH_REJECTED",
+        "actual": "FALSE_FINISH_REJECTED",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      },
+      {
+        "round": 3,
+        "map": "ANA_PANO",
+        "sim": "P-SIM3",
+        "expected": "PARKED_NO_MAC_INSTALL_GO",
+        "actual": "PARKED_NO_MAC_INSTALL_GO",
+        "pass": true,
+        "scope": "SYNTHETIC_POLICY"
+      }
+    ]
+  },
+  "authentic_product_acceptance": {
+    "HTML_PROTOTYPE_PASS": "HOLD_NOT_EXECUTED",
+    "MAC_WORKING_PRODUCT": "PARKED_NOT_TESTED",
+    "MAC_INSTALL_GO": "NOT_GRANTED",
+    "4H_56": "0/56_PREVIOUS_STATE",
+    "INDEPENDENT_DONECHECK": "NOT_TESTED"
+  },
+  "new_functional_gain_id": 0
+}

@@ -1,0 +1,218 @@
+{
+  "schema": "enguru.muhendis-osi.h1-acceptance-v2",
+  "date": "2026-11-13",
+  "product_id": "ENGURU_MUHENDIS_OSI",
+  "scope": "HEDEF_1_REAL_HTML_PROTOTYPE",
+  "product_name": "ENGÜRÜ Mühendis OSi™",
+  "owner_decision": "WHEN_REAL_SAME_BROWSER_E2E_AND_ALL_MANDATORY_GATES_PASS_THEN_HTML_PROTOTYPE_PASS",
+  "goal_1": "ACTIVE",
+  "goal_2": "PARKED_MAC_OSI",
+  "mac_install_go": "NOT_GRANTED",
+  "offline": "MANDATORY",
+  "no_live_chatgpt_or_github": true,
+  "zero_new_paid_api_required": true,
+  "zero_manual_daily_procedures_required": true,
+  "single_owner_approval_preserved": true,
+  "pass_logic": "ALL 12 H1-Cxx PASS + genuine single-session browser net evidence + real output file/SHA/test/DB + negative/regression + independent evidence readback + conditional owner acceptance",
+  "status": "CONTRACT_PREPARED_REAL_BROWSER_GATE_HOLD",
+  "denominator": 12,
+  "formal_4h_unchanged": {
+    "H01": 8,
+    "H02": 12,
+    "DG02": 12,
+    "DG03": 12,
+    "DG04": 12,
+    "formal_pass": 0,
+    "total": 56
+  },
+  "originals_preserved": [
+    "R01-R14",
+    "W01-W15",
+    "UM-01..UM-18",
+    "H00-H08",
+    "HFS-S1..S5",
+    "M01..M06",
+    "GAIN-CORE-PALACE-CHAT-001",
+    "GAIN-CORE-LEARN-001",
+    "GAIN-BLD-001"
+  ],
+  "controls": [
+    {
+      "control_id": "H1-C01",
+      "title": "Gerçek HTML açılışı",
+      "expected_result": "Tek tarayıcı oturumunda yerel HTTP üzerinden Mühendis OSi HTML yüklenir; JS/CSS API ile aynı gerçek origin kullanır.",
+      "related_map_ids": [
+        "H01",
+        "H08"
+      ],
+      "proof_required": "GET /, CSP, tarayıcı oturum kimliği, ekran ve ağ izleri",
+      "verifier": "DOCUMENTED_REPRODUCIBLE_CHECK + OWNER_CONDITIONAL_ACCEPTANCE",
+      "status": "HOLD_BROWSER_COMPOSITE",
+      "authorization": "OWNER_CONDITIONAL_H1_PASS_AFTER_REAL_EVIDENCE"
+    },
+    {
+      "control_id": "H1-C02",
+      "title": "HTML üzerinden gerçek görev",
+      "expected_result": "Görev kullanıcı ekranındaki etkileşimle oluşturulur; benzersiz task_id, hedef ve kaynak/iş kapsamı kaydedilir.",
+      "related_map_ids": [
+        "H01",
+        "H02",
+        "H06"
+      ],
+      "proof_required": "Gerçek tarayıcı tıklaması + POST /api/scaffold veya /api/plan + DB kimliği",
+      "verifier": "DOCUMENTED_REPRODUCIBLE_CHECK + OWNER_CONDITIONAL_ACCEPTANCE",
+      "status": "HOLD_BROWSER_COMPOSITE",
+      "authorization": "OWNER_CONDITIONAL_H1_PASS_AFTER_REAL_EVIDENCE"
+    },
+    {
+      "control_id": "H1-C03",
+      "title": "Plan ve owner onayı",
+      "expected_result": "Plan/çıktı/izin sınırı HTML’de görünür; dosya yazımı yalnız owner onayı sonrasında başlar.",
+      "related_map_ids": [
+        "H01",
+        "H02",
+        "H07"
+      ],
+      "proof_required": "Plan öncesi hiç dosya yok; onay düğmesi ve izinli yürütme izi",
+      "verifier": "DOCUMENTED_REPRODUCIBLE_CHECK + OWNER_CONDITIONAL_ACCEPTANCE",
+      "status": "HOLD_BROWSER_COMPOSITE",
+      "authorization": "OWNER_CONDITIONAL_H1_PASS_AFTER_REAL_EVIDENCE"
+    },
+    {
+      "control_id": "H1-C04",
+      "title": "Tarayıcıdan gerçek API isteği",
+      "expected_result": "Aynı tarayıcı oturumunda JS fetch POST /api/execute gerçek HTTP isteği yapar; API köprüsü veya mock kullanılmaz.",
+      "related_map_ids": [
+        "H01",
+        "H03",
+        "H06"
+      ],
+      "proof_required": "Tek oturum ağ kaydı, HTTP durum kodu, token/Origin eşliği, bridge_used=false",
+      "verifier": "DOCUMENTED_REPRODUCIBLE_CHECK + OWNER_CONDITIONAL_ACCEPTANCE",
+      "status": "HOLD_BROWSER_COMPOSITE",
+      "authorization": "OWNER_CONDITIONAL_H1_PASS_AFTER_REAL_EVIDENCE"
+    },
+    {
+      "control_id": "H1-C05",
+      "title": "Gerçek dosya ve SHA",
+      "expected_result": "Yürütücü yalnız izinli workspace içinde gerçek dosya oluşturur; SHA-256 geri okuma birebir eşleşir.",
+      "related_map_ids": [
+        "H03",
+        "H05",
+        "H07"
+      ],
+      "proof_required": "Dosyanın gerçek baytları, path, output_sha256 ve readback_sha256",
+      "verifier": "DOCUMENTED_REPRODUCIBLE_CHECK + OWNER_CONDITIONAL_ACCEPTANCE",
+      "status": "PASS_SCOPED_PREVIOUS_API_OR_STRUCTURAL_ONLY",
+      "authorization": "OWNER_CONDITIONAL_H1_PASS_AFTER_REAL_EVIDENCE"
+    },
+    {
+      "control_id": "H1-C06",
+      "title": "Gerçek fonksiyonel test",
+      "expected_result": "Üretilen en az bir Python işi ayrı süreçte davranış testlerini, bir HTML işi gerçek tarayıcı etkileşimini geçirir.",
+      "related_map_ids": [
+        "H03",
+        "H04",
+        "H05",
+        "H08"
+      ],
+      "proof_required": "Gerçek exit code, test sayısı, ekran davranışı; sentetik PASS reddedilir",
+      "verifier": "DOCUMENTED_REPRODUCIBLE_CHECK + OWNER_CONDITIONAL_ACCEPTANCE",
+      "status": "PASS_SCOPED_PREVIOUS_API_OR_STRUCTURAL_ONLY",
+      "authorization": "OWNER_CONDITIONAL_H1_PASS_AFTER_REAL_EVIDENCE"
+    },
+    {
+      "control_id": "H1-C07",
+      "title": "HTML makbuzu ve doğruluk",
+      "expected_result": "Gerçek görev makbuzu aynı HTML oturumunda görünür; görev, çıktı yolu, SHA, test yöntemi ve sonuç eşleşir.",
+      "related_map_ids": [
+        "H01",
+        "H06",
+        "H08"
+      ],
+      "proof_required": "Ekran görüntüsü, DOM öğeleri, iş ID ve kaydedilen makbuz eşliği",
+      "verifier": "DOCUMENTED_REPRODUCIBLE_CHECK + OWNER_CONDITIONAL_ACCEPTANCE",
+      "status": "HOLD_BROWSER_COMPOSITE",
+      "authorization": "OWNER_CONDITIONAL_H1_PASS_AFTER_REAL_EVIDENCE"
+    },
+    {
+      "control_id": "H1-C08",
+      "title": "Kalıcılık ve güvenli tekrar",
+      "expected_result": "Sayfa yenileme ve görev yeniden görüntülemede sonuç kalır; ikinci icra mükerrer dış etki üretmez.",
+      "related_map_ids": [
+        "H06",
+        "H07"
+      ],
+      "proof_required": "Aynı task_id, SQLite readback, dosya sayısı ve SHA değişmez",
+      "verifier": "DOCUMENTED_REPRODUCIBLE_CHECK + OWNER_CONDITIONAL_ACCEPTANCE",
+      "status": "PASS_SCOPED_PREVIOUS_API_OR_STRUCTURAL_ONLY",
+      "authorization": "OWNER_CONDITIONAL_H1_PASS_AFTER_REAL_EVIDENCE"
+    },
+    {
+      "control_id": "H1-C09",
+      "title": "Olumsuz, karşıt ve kurtarma testleri",
+      "expected_result": "Yetkisiz host/token/origin, izin dışı yol, mükerrer yazma, kesinti ve bozulmuş kanıt güvenle reddedilir.",
+      "related_map_ids": [
+        "H03",
+        "H05",
+        "H07",
+        "H08"
+      ],
+      "proof_required": "Somut ret kodları, bozulma/yetkisiz etki 0, kurtarma HOLD/RECONCILE",
+      "verifier": "DOCUMENTED_REPRODUCIBLE_CHECK + OWNER_CONDITIONAL_ACCEPTANCE",
+      "status": "PASS_SCOPED_PREVIOUS_API_OR_STRUCTURAL_ONLY",
+      "authorization": "OWNER_CONDITIONAL_H1_PASS_AFTER_REAL_EVIDENCE"
+    },
+    {
+      "control_id": "H1-C10",
+      "title": "Dokuz harita ve Ana Pano bağlantısı",
+      "expected_result": "H00–H08 gerçek görev durumunu gösterir; özgün 4H 56 kabul koşulu otomatik yükseltilmez.",
+      "related_map_ids": [
+        "H00",
+        "H01",
+        "H02",
+        "H03",
+        "H04",
+        "H05",
+        "H06",
+        "H07",
+        "H08"
+      ],
+      "proof_required": "Dokuz harita API/DOM kontrolü, pano DB eşliği, 4H=0/56 resmî",
+      "verifier": "DOCUMENTED_REPRODUCIBLE_CHECK + OWNER_CONDITIONAL_ACCEPTANCE",
+      "status": "PASS_SCOPED_PREVIOUS_API_OR_STRUCTURAL_ONLY",
+      "authorization": "OWNER_CONDITIONAL_H1_PASS_AFTER_REAL_EVIDENCE"
+    },
+    {
+      "control_id": "H1-C11",
+      "title": "Sıfır yeni ücret ve sıfır günlük prosedür",
+      "expected_result": "0 zorunlu yeni ücretli API/hizmet, 0 bulut hesabı; tek HTML ekranından görev/onay/kanıt; günlük terminal/manuel servis komutu 0.",
+      "related_map_ids": [
+        "H00",
+        "H01",
+        "H07"
+      ],
+      "proof_required": "Bağımlılık ve ağ taraması + kullanıcı akışı; owner onayı bir prosedür açığı değildir",
+      "verifier": "DOCUMENTED_REPRODUCIBLE_CHECK + OWNER_CONDITIONAL_ACCEPTANCE",
+      "status": "PASS_SCOPED_PREVIOUS_API_OR_STRUCTURAL_ONLY",
+      "authorization": "OWNER_CONDITIONAL_H1_PASS_AFTER_REAL_EVIDENCE"
+    },
+    {
+      "control_id": "H1-C12",
+      "title": "Bağımsız kanıt ve otomatik olumlu kabul",
+      "expected_result": "Gerçek tarayıcı kanıtı, içerik manifesti, ayrı salt-okunur karşı denetim ve owner koşullu kabulü eşleştiğinde HTML_PROTOTYPE=PASS.",
+      "related_map_ids": [
+        "H05",
+        "H06",
+        "H08"
+      ],
+      "proof_required": "Ayrı doğrulama makbuzu, manifest SHA, açık ID=0, model/ürün sınırı korunur",
+      "verifier": "DOCUMENTED_REPRODUCIBLE_CHECK + OWNER_CONDITIONAL_ACCEPTANCE",
+      "status": "HOLD_BROWSER_COMPOSITE",
+      "authorization": "OWNER_CONDITIONAL_H1_PASS_AFTER_REAL_EVIDENCE"
+    }
+  ],
+  "prior_contract": "ENGURU_USTAMIMAR_H1_KESIN_KABUL_SOZLESMESI_V10",
+  "goal2": "PARKED",
+  "truth_boundary": "NO_REAL_BROWSER_OR_OLLAMA_CLAIM_FROM_SYNTHETIC_TEST"
+}

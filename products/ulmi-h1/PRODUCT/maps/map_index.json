@@ -1,0 +1,475 @@
+{
+  "schema": "enguru.muhendis-osi.h1-nine-maps-panel-projection/v2",
+  "product_id": "ENGURU_MUHENDIS_OSI",
+  "maps": [
+    {
+      "id": "H00",
+      "name": "Ana Sistem ve Yerleşim",
+      "purpose": "Tek yazılım ve sistem mühendisliği ürününün rolünü, çalışan altyapısını, izinlerini ve bağımlılıklarını gösterir.",
+      "ids": [
+        "R01",
+        "R07",
+        "R09",
+        "R10",
+        "UM-05",
+        "UM-10",
+        "W01",
+        "W03",
+        "W04"
+      ],
+      "simulations": [
+        {
+          "id": "H00-SIM1",
+          "type": "normal",
+          "fixture": "9 harita tek H00 omurgasında H08 panosuyla bağlanır; yalnız H1 HTML hedefi ACTIVE.",
+          "expected": "PASS_DESIGN_RULE_ONLY"
+        },
+        {
+          "id": "H00-SIM2",
+          "type": "adversarial",
+          "fixture": "Yanıltıcı gerçek çalıştırma veya GitHub canlı erişimi iddiası gösterilirse mimari denetim FAIL.",
+          "expected": "SAFE_REJECT"
+        },
+        {
+          "id": "H00-SIM3",
+          "type": "interruption_repair",
+          "fixture": "V1.2 ürün sınırına dön; tek uygulama, tek yürütücü kuralına göre bağı onar.",
+          "expected": "HOLD_OR_RECOVERY_NOT_FAKE_FINISH"
+        }
+      ],
+      "engineering_links": [
+        "Q01",
+        "Q02"
+      ],
+      "design_doc": "architecture/H00_MUHENDIS_V2.md",
+      "runtime_acceptance": "HOLD_OR_PASS_SCOPED_PREVIOUS_EVIDENCE",
+      "design_acceptance": "TO_BE_MEASURED_BY_V2_TESTS"
+    },
+    {
+      "id": "H01",
+      "name": "HTML Ekranı ve Kullanıcı Deneyimi",
+      "purpose": "HTML ekranında gerçek görevi alma, plan/onay, çıktı, test ve yeniden açma akışını gösterir.",
+      "ids": [
+        "R01",
+        "R02",
+        "UM-02",
+        "UM-18",
+        "W07",
+        "W09",
+        "W15"
+      ],
+      "simulations": [
+        {
+          "id": "H01-SIM1",
+          "type": "normal",
+          "fixture": "Dar görev girildiğinde plan ve izinli eylem görünür, makbuz olmadan PASS görünmez.",
+          "expected": "PASS_DESIGN_RULE_ONLY"
+        },
+        {
+          "id": "H01-SIM2",
+          "type": "adversarial",
+          "fixture": "API başarısız yanıtında görsel PASS yazılmaz ve ilgili açık neden görünür.",
+          "expected": "SAFE_REJECT"
+        },
+        {
+          "id": "H01-SIM3",
+          "type": "interruption_repair",
+          "fixture": "Yeniden bağlantı/yenileme sonrası task_id ile eski makbuzlara geri dönülür.",
+          "expected": "HOLD_OR_RECOVERY_NOT_FAKE_FINISH"
+        }
+      ],
+      "engineering_links": [
+        "Y01",
+        "Y02",
+        "Q03"
+      ],
+      "design_doc": "architecture/H01_MUHENDIS_V2.md",
+      "runtime_acceptance": "HOLD_OR_PASS_SCOPED_PREVIOUS_EVIDENCE",
+      "design_acceptance": "TO_BE_MEASURED_BY_V2_TESTS"
+    },
+    {
+      "id": "H02",
+      "name": "Beyin ve Karar Mimarisi",
+      "purpose": "Yerel model önerisini mühendislik görevi, kaynak, sınır ve izin açısından değerlendirir.",
+      "ids": [
+        "R02",
+        "R06",
+        "R08",
+        "R12",
+        "UM-03",
+        "UM-10",
+        "UM-12",
+        "W02",
+        "W08"
+      ],
+      "simulations": [
+        {
+          "id": "H02-SIM1",
+          "type": "normal",
+          "fixture": "Gerekli kaynak varsa plan oluşturulur ve scoped onaya gönderilir.",
+          "expected": "PASS_DESIGN_RULE_ONLY"
+        },
+        {
+          "id": "H02-SIM2",
+          "type": "adversarial",
+          "fixture": "Modelin özgün dosyadaki kötü niyetli talimatı yetki olarak kabul edilmez.",
+          "expected": "SAFE_REJECT"
+        },
+        {
+          "id": "H02-SIM3",
+          "type": "interruption_repair",
+          "fixture": "Kırık plan geçersiz şema olarak HOLD; deterministik başlangıç planıyla onarım adımı önerilir.",
+          "expected": "HOLD_OR_RECOVERY_NOT_FAKE_FINISH"
+        }
+      ],
+      "engineering_links": [
+        "Y03",
+        "KMP01",
+        "Q04"
+      ],
+      "design_doc": "architecture/H02_MUHENDIS_V2.md",
+      "runtime_acceptance": "HOLD_OR_PASS_SCOPED_PREVIOUS_EVIDENCE",
+      "design_acceptance": "TO_BE_MEASURED_BY_V2_TESTS"
+    },
+    {
+      "id": "H03",
+      "name": "Yürütücü ve Araç Mimarisi",
+      "purpose": "Tek izole yürütücü ile dosya, kod, test, gerçek çalışma alanı ve SHA geri okumasını yürütür.",
+      "ids": [
+        "R03",
+        "R04",
+        "R08",
+        "R09",
+        "R10",
+        "R11",
+        "UM-04",
+        "UM-05",
+        "UM-06",
+        "UM-07",
+        "W03",
+        "W07",
+        "W08",
+        "W09"
+      ],
+      "simulations": [
+        {
+          "id": "H03-SIM1",
+          "type": "normal",
+          "fixture": "İzinli workspace içinde kod/dosya üretilir ve geri okunur.",
+          "expected": "PASS_DESIGN_RULE_ONLY"
+        },
+        {
+          "id": "H03-SIM2",
+          "type": "adversarial",
+          "fixture": "Symlink escape, overwrite, süresiz shell ve yanlış SHA fail-closed reddedilir.",
+          "expected": "SAFE_REJECT"
+        },
+        {
+          "id": "H03-SIM3",
+          "type": "interruption_repair",
+          "fixture": "Kademeli staging + rollback; belirsiz yan etki HOLD_RECONCILE.",
+          "expected": "HOLD_OR_RECOVERY_NOT_FAKE_FINISH"
+        }
+      ],
+      "engineering_links": [
+        "Y04",
+        "Y05",
+        "Y06",
+        "Q05"
+      ],
+      "design_doc": "architecture/H03_MUHENDIS_V2.md",
+      "runtime_acceptance": "HOLD_OR_PASS_SCOPED_PREVIOUS_EVIDENCE",
+      "design_acceptance": "TO_BE_MEASURED_BY_V2_TESTS"
+    },
+    {
+      "id": "H04",
+      "name": "Yetenek Haritası",
+      "purpose": "Yazılım ve sistem mühendisinin atomik yeteneklerini ve gerçek test durumlarını ayrıştırır.",
+      "ids": [
+        "R01",
+        "R11",
+        "UM-01",
+        "UM-03",
+        "UM-04",
+        "UM-06",
+        "UM-08",
+        "UM-12",
+        "UM-18",
+        "W02",
+        "W05",
+        "W09"
+      ],
+      "simulations": [
+        {
+          "id": "H04-SIM1",
+          "type": "normal",
+          "fixture": "32 WC tekil tasarım izi ayrı gereksinime ve P sırasına bağlı.",
+          "expected": "PASS_DESIGN_RULE_ONLY"
+        },
+        {
+          "id": "H04-SIM2",
+          "type": "adversarial",
+          "fixture": "Canlı bulut tarayıcı özelliği OFFLINE hedefe PASS olarak yazılamaz.",
+          "expected": "SAFE_REJECT"
+        },
+        {
+          "id": "H04-SIM3",
+          "type": "interruption_repair",
+          "fixture": "Belirsiz muadil alanı CANDIDATE/NOT_TESTED tut, gerektiğinde kapsam dışına ayrıştır.",
+          "expected": "HOLD_OR_RECOVERY_NOT_FAKE_FINISH"
+        }
+      ],
+      "engineering_links": [
+        "Y07",
+        "Y08",
+        "KMP02"
+      ],
+      "design_doc": "architecture/H04_MUHENDIS_V2.md",
+      "runtime_acceptance": "HOLD_OR_PASS_SCOPED_PREVIOUS_EVIDENCE",
+      "design_acceptance": "TO_BE_MEASURED_BY_V2_TESTS"
+    },
+    {
+      "id": "H05",
+      "name": "Yeterlilik Haritası",
+      "purpose": "Mühendislik yetkinlikleri ile kanıtlanmış yeterlilik seviyesini ayrı ölçütlerde yönetir.",
+      "ids": [
+        "R11",
+        "R12",
+        "R14",
+        "UM-06",
+        "UM-08",
+        "UM-09",
+        "UM-11",
+        "UM-18",
+        "W09",
+        "W12",
+        "W13"
+      ],
+      "simulations": [
+        {
+          "id": "H05-SIM1",
+          "type": "normal",
+          "fixture": "İki ayrı gerçek iş ve üçlü test için kanıt zorunludur.",
+          "expected": "PASS_DESIGN_RULE_ONLY"
+        },
+        {
+          "id": "H05-SIM2",
+          "type": "adversarial",
+          "fixture": "Bozuk test makbuzu veya yanlış SHA PASS veremez.",
+          "expected": "SAFE_REJECT"
+        },
+        {
+          "id": "H05-SIM3",
+          "type": "interruption_repair",
+          "fixture": "RED→kök neden→onarılan kod→GREEN→karşıt→regresyon.",
+          "expected": "HOLD_OR_RECOVERY_NOT_FAKE_FINISH"
+        }
+      ],
+      "engineering_links": [
+        "KMP02",
+        "KMP03",
+        "KMP04",
+        "Q06"
+      ],
+      "design_doc": "architecture/H05_MUHENDIS_V2.md",
+      "runtime_acceptance": "HOLD_OR_PASS_SCOPED_PREVIOUS_EVIDENCE",
+      "design_acceptance": "TO_BE_MEASURED_BY_V2_TESTS"
+    },
+    {
+      "id": "H06",
+      "name": "Görev, Süreklilik ve Finiş",
+      "purpose": "Görev→teşhis→onay→değişiklik→regresyon→SHA→finiş zincirini kesintiye dayanıklı kurar.",
+      "ids": [
+        "R02",
+        "R05",
+        "R12",
+        "UM-01",
+        "UM-09",
+        "UM-10",
+        "UM-18",
+        "W07",
+        "W10",
+        "W12",
+        "W14"
+      ],
+      "simulations": [
+        {
+          "id": "H06-SIM1",
+          "type": "normal",
+          "fixture": "Tam görev, tek job ve bağlı kanıt ile VERIFYING sonrası doğrulama.",
+          "expected": "PASS_DESIGN_RULE_ONLY"
+        },
+        {
+          "id": "H06-SIM2",
+          "type": "adversarial",
+          "fixture": "Aynı idempotency_key yeni yan etki oluşturmaz; yetkisiz geçiş reddedilir.",
+          "expected": "SAFE_REJECT"
+        },
+        {
+          "id": "H06-SIM3",
+          "type": "interruption_repair",
+          "fixture": "Süreç çökmesi kalıcı defterden devam, belirsiz etki uzlaştırma HOLD.",
+          "expected": "HOLD_OR_RECOVERY_NOT_FAKE_FINISH"
+        }
+      ],
+      "engineering_links": [
+        "KMP05",
+        "Y09",
+        "Y10",
+        "Q07"
+      ],
+      "design_doc": "architecture/H06_MUHENDIS_V2.md",
+      "runtime_acceptance": "HOLD_OR_PASS_SCOPED_PREVIOUS_EVIDENCE",
+      "design_acceptance": "TO_BE_MEASURED_BY_V2_TESTS"
+    },
+    {
+      "id": "H07",
+      "name": "Güvenlik, Hafıza ve Kurtarma",
+      "purpose": "Tek owner, izinli araç, köken, SQLite görev defteri, veri geri okuma, restore ve Hafıza Sarayı sürekliliğini korur.",
+      "ids": [
+        "R03",
+        "R07",
+        "R13",
+        "R14",
+        "UM-11",
+        "UM-12",
+        "UM-13",
+        "UM-14",
+        "UM-15",
+        "UM-16",
+        "UM-17",
+        "W05",
+        "W10",
+        "W11"
+      ],
+      "simulations": [
+        {
+          "id": "H07-SIM1",
+          "type": "normal",
+          "fixture": "Kaynaklı veri izole workspace içine kayıpsız içe alınır ve SHA geri okunur.",
+          "expected": "PASS_DESIGN_RULE_ONLY"
+        },
+        {
+          "id": "H07-SIM2",
+          "type": "adversarial",
+          "fixture": "Sahte otorite, çakışmalı CAS veya şüpheli kaynak fail-closed; K03/K04 tam PASS edilmez.",
+          "expected": "SAFE_REJECT"
+        },
+        {
+          "id": "H07-SIM3",
+          "type": "interruption_repair",
+          "fixture": "Bağımsız şifreli yedekten izole restore ile bütünlük; owner cutover ayrı.",
+          "expected": "HOLD_OR_RECOVERY_NOT_FAKE_FINISH"
+        }
+      ],
+      "engineering_links": [
+        "KMP06",
+        "Y11",
+        "Q08",
+        "Q09"
+      ],
+      "design_doc": "architecture/H07_MUHENDIS_V2.md",
+      "runtime_acceptance": "HOLD_OR_PASS_SCOPED_PREVIOUS_EVIDENCE",
+      "design_acceptance": "TO_BE_MEASURED_BY_V2_TESTS"
+    },
+    {
+      "id": "H08",
+      "name": "Kalite, Muadil Kıyas ve İki Aşamalı Kabul",
+      "purpose": "H1-C01..H1-C12 gerçek HTML kapılarıyla tasarım puanı ve ürün kabulünü birbirinden ayırır.",
+      "ids": [
+        "R14",
+        "UM-11",
+        "UM-18",
+        "W01",
+        "W02",
+        "W06",
+        "W12",
+        "W13",
+        "W14",
+        "W15"
+      ],
+      "simulations": [
+        {
+          "id": "H08-SIM1",
+          "type": "normal",
+          "fixture": "Yalnız gereken ID ve bağımsız kanıt varsa ilgili hedef PASS.",
+          "expected": "PASS_DESIGN_RULE_ONLY"
+        },
+        {
+          "id": "H08-SIM2",
+          "type": "adversarial",
+          "fixture": "Simülasyon makbuzu gerçek Mac veya HTML icrası yerine geçemez.",
+          "expected": "SAFE_REJECT"
+        },
+        {
+          "id": "H08-SIM3",
+          "type": "interruption_repair",
+          "fixture": "Eksik özgün ID ve kaynak drift açık durumda tutulur; hatalı PASS geri çekilir.",
+          "expected": "HOLD_OR_RECOVERY_NOT_FAKE_FINISH"
+        }
+      ],
+      "engineering_links": [
+        "Y12",
+        "Q10"
+      ],
+      "design_doc": "architecture/H08_MUHENDIS_V2.md",
+      "runtime_acceptance": "HOLD_OR_PASS_SCOPED_PREVIOUS_EVIDENCE",
+      "design_acceptance": "TO_BE_MEASURED_BY_V2_TESTS"
+    }
+  ],
+  "goal_1": {
+    "state": "ACTIVE",
+    "acceptance": "HOLD_HTML_PRODUCT"
+  },
+  "goal_2": {
+    "state": "PARKED",
+    "acceptance": "NOT_TESTED_MAC"
+  },
+  "four_h": {
+    "H01": 8,
+    "H02": 12,
+    "DG02": 12,
+    "DG03": 12,
+    "DG04": 12
+  },
+  "saray": {
+    "K03": "HOLD",
+    "K04": "HOLD"
+  },
+  "design_receipt": "PASS_SCOPED_THEORY_DESIGN_AND_SIMULATION",
+  "former_product_id": "ENGURU_USTAMIMAR_OSI",
+  "product_name": "ENGÜRÜ Mühendis OSi™",
+  "active_target": "H1_HTML_PROTOTYPE",
+  "name_decision": "OWNER_NEW_ROLE_ACCEPTED_2026_11_13",
+  "engineering_v2": {
+    "functional_title": "İleri Seviye Yazılım ve Sistem Mühendisi",
+    "capabilities_declared": 12,
+    "competences_defined": 6,
+    "qualifications_defined": 10,
+    "h1_controls_defined": 12,
+    "h1_formal_pass": 0,
+    "h1_acceptance_state": "HOLD",
+    "design_grade": "PASS_SCOPED_DESIGN_TESTED",
+    "general_code_repair": "NOT_TESTED_GENERAL",
+    "direct_browser_e2e": "HOLD_BROWSER_POLICY",
+    "paid_api_required": 0,
+    "daily_manual_procedure": "HOLD_NOT_PROVEN_ZERO"
+  },
+  "extension_h1_ext_01": {
+    "control_id": "H1-EXT-01",
+    "capability_id": "PY_DIAGNOSTIC_V1",
+    "version": "1.0.0",
+    "map_ids": [
+      "H03",
+      "H04",
+      "H05",
+      "H06",
+      "H08"
+    ],
+    "status": "PASS_SCOPED_MODULE_API_AND_BROWSER_DOM_BRIDGE",
+    "html_product": "HOLD_DIRECT_BROWSER",
+    "mac": "PARKED",
+    "no_new_paid_api": true,
+    "single_executor": true
+  }
+}

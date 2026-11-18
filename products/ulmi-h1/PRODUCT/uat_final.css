@@ -1,0 +1,14 @@
+/* ULMi H1 UAT: CSP-compliant, no inline styles. */
+body { margin:0; background:#f2f6f3; color:#16332c; }
+.uat-main { max-width:1050px; margin:0 auto; padding:28px 20px; font:16px/1.6 system-ui,sans-serif; }
+.uat-main h1 { font-size:clamp(1.7rem,3.2vw,2.7rem); }
+.uat-eyebrow { letter-spacing:.12em; }
+.uat-card { border:1px solid #b7cfc3; border-radius:12px; padding:18px; background:#f6faf8; }
+.uat-actions { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+.uat-actions button, .uat-actions a { padding:10px 14px; border-radius:8px; min-height:44px; }
+.uat-actions button:disabled { cursor:default; opacity:.58; }
+.uat-summary { white-space:pre-wrap; word-break:break-word; max-height:450px; overflow:auto; padding:14px; background:#ecf2ef; }
+#steps li { margin:.5rem 0; }
+#steps .pass { color:#176142; }
+#steps .hold { color:#9b2323; }
+.uat-main footer { margin-top:2rem; border-top:1px solid #c7d8d1; }

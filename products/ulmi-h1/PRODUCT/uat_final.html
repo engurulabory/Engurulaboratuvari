@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="enguru-token" content="__ENGURU_CSRF__">
+<title>ULMi H1 · Gerçek Tarayıcı UAT-FINAL</title>
+<link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/uat_final.css"><script defer src="/uat_final.js"></script></head>
+<body><main class="uat-main">
+<header><p class="uat-eyebrow">ENGÜRÜ MAYA · TRUTH FIRST™</p><h1>ULMi H1 · Gerçek tarayıcı kabulü</h1>
+<p>Gerçek tarayıcıdaki yerel HTML, HTTP, mevcut yürütücü, SQLite, dosya ve SHA-256 zincirini tek oturumda gözlemler. Yalnızca kullanıcı başlatınca en çok üç yeni çıktı dosyası ve bir deneme proje kaydı oluşturur.</p>
+<p><strong>Gerçek sınır:</strong> Bu ekranın kendi makbuzu bağımsız DoneCheck veya owner nihai kabulü değildir. Bu kabul yalnız çalışan H1 HTML ürününe aittir.</p>
+</header>
+<section aria-label="İzinli kullanıcı eylemi" class="uat-card">
+<h2>Tek koşu · açık onay</h2><p>Bu düğmeye basman, yalnızca bu H1 örneğinin <code>workspace/</code> alanında bir Python örneği, bir güvenilir HTML örneği ve bir proje bağlı görev panosu oluşturulmasına; alt süreçte güvenilir testlerin çalışmasına izin verir. Kaynak veya üretim dosyaları üzerine yazılmaz. İzole test ortamının dışına yetki verilmez.</p>
+<div class="uat-actions">
+<button type="button" id="run" class="uat-primary">Gerçek tarayıcı UAT koşusunu başlat</button>
+<button type="button" id="reload" disabled>Sayfayı yenile ve kalıcılığı doğrula</button>
+<button type="button" id="download" disabled>Gerçek gözlem JSON'unu indir</button>
+<a href="/">Mühendislik masasına dön</a>
+</div><p id="state" role="status" aria-live="polite">Hazır · Kullanıcı onayı bekleniyor.</p></section>
+<section aria-label="Test sonucu"><h2>Canlı tarayıcı denetimleri</h2><ol id="steps" aria-live="polite"></ol>
+<pre id="summary" class="uat-summary">Henüz görev icra edilmedi.</pre></section>
+<iframe id="trusted-fixture" hidden sandbox="allow-scripts allow-same-origin" title="Sabit SHA doğrulamalı HTML işlev testi"></iframe>
+<footer><p>Görünen PASS yalnız gerçek tarayıcı oturumu ve bu görevin teknik kapsamıdır. 12/12, A/B/C ve owner kararının yerini tutmaz.</p></footer>
+</main></body></html>

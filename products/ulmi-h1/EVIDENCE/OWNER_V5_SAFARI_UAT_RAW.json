@@ -1,0 +1,566 @@
+{
+  "schema": "enguru.ulmi.h1.real-browser-user-observation-v1",
+  "started_at": "2026-11-17T19:27:47.051Z",
+  "phase": "BROWSER_OBSERVATION_PASS_SCOPED",
+  "origin": "http://127.0.0.1:18990",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6.2 Safari/605.1.15",
+  "bridge_used": false,
+  "mock_used": false,
+  "http": [
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/scaffold",
+      "status": 403
+    },
+    {
+      "method": "GET",
+      "path": "/api/file",
+      "status": 400
+    },
+    {
+      "method": "POST",
+      "path": "/api/scaffold",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/files",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/execute",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/task",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/file",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/verify",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/execute",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/scaffold",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/files",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/execute",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/task",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/file",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/verify",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/execute",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/desk/projects/save",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/desk/projects",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/desk/project-board/plan",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/files",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/execute",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/task",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/file",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/verify",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/execute",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/tasks",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/task",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/verify",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/task",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/verify",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/task",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/verify",
+      "status": 200
+    }
+  ],
+  "checks": [
+    {
+      "id": "Real browser loopback origin",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.051Z",
+      "note": "http://127.0.0.1:18990"
+    },
+    {
+      "id": "H1 live HTTP status",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.054Z",
+      "note": "200"
+    },
+    {
+      "id": "Correct H1 network",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.054Z",
+      "note": "ULMI-H1-V3-REAL-PROJECT-BOUND-BOARD-CANDIDATE"
+    },
+    {
+      "id": "Bad CSRF token denied; no task",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.056Z",
+      "note": "403"
+    },
+    {
+      "id": "Path traversal denied",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.058Z",
+      "note": "400"
+    },
+    {
+      "id": "PYTHON plan HTTP",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.063Z",
+      "note": "200"
+    },
+    {
+      "id": "PYTHON READY before execute",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.063Z",
+      "note": "READY"
+    },
+    {
+      "id": "PYTHON pre-write file list",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.065Z",
+      "note": "200"
+    },
+    {
+      "id": "PYTHON pre-write file absent",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.065Z",
+      "note": "muhendis_python_35ae3fdaf8.py"
+    },
+    {
+      "id": "PYTHON approved execute HTTP",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.133Z",
+      "note": "200"
+    },
+    {
+      "id": "PYTHON real scoped execution",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.133Z",
+      "note": "PASS_SCOPED"
+    },
+    {
+      "id": "PYTHON SQLite row",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.137Z",
+      "note": "200"
+    },
+    {
+      "id": "PYTHON task state",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.137Z",
+      "note": "PASS_SCOPED"
+    },
+    {
+      "id": "PYTHON read actual source",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.139Z",
+      "note": "200"
+    },
+    {
+      "id": "PYTHON browser SHA-256",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.140Z",
+      "note": "ab82f013128f5772643794af58db22247fe6f045e4a9ead632e9c9a3d5721b4c"
+    },
+    {
+      "id": "PYTHON server readback",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.142Z",
+      "note": "200"
+    },
+    {
+      "id": "PYTHON independent browser-vs-server digest",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.142Z",
+      "note": "PASS_SCOPED_READBACK"
+    },
+    {
+      "id": "PYTHON functional test",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.142Z",
+      "note": "trusted Python unittest subprocess, 3 gerçek test"
+    },
+    {
+      "id": "PYTHON idempotent replay",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.144Z",
+      "note": "200"
+    },
+    {
+      "id": "PYTHON replay no second effect",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.144Z",
+      "note": "true"
+    },
+    {
+      "id": "Real Python subprocess 3 tests",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.144Z",
+      "note": "3 unittest"
+    },
+    {
+      "id": "HTML plan HTTP",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.147Z",
+      "note": "200"
+    },
+    {
+      "id": "HTML READY before execute",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.147Z",
+      "note": "READY"
+    },
+    {
+      "id": "HTML pre-write file list",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.148Z",
+      "note": "200"
+    },
+    {
+      "id": "HTML pre-write file absent",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.148Z",
+      "note": "muhendis_html_d19e4542bb.html"
+    },
+    {
+      "id": "HTML approved execute HTTP",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.151Z",
+      "note": "200"
+    },
+    {
+      "id": "HTML real scoped execution",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.151Z",
+      "note": "PASS_SCOPED"
+    },
+    {
+      "id": "HTML SQLite row",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.152Z",
+      "note": "200"
+    },
+    {
+      "id": "HTML task state",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.152Z",
+      "note": "PASS_SCOPED"
+    },
+    {
+      "id": "HTML read actual source",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.154Z",
+      "note": "200"
+    },
+    {
+      "id": "HTML browser SHA-256",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.154Z",
+      "note": "6f9647844f856b1e8c504862e3ddbe4493f62cae7359849fdade1714f67314b4"
+    },
+    {
+      "id": "HTML server readback",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.156Z",
+      "note": "200"
+    },
+    {
+      "id": "HTML independent browser-vs-server digest",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.156Z",
+      "note": "PASS_SCOPED_READBACK"
+    },
+    {
+      "id": "HTML functional test",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.156Z",
+      "note": "HTML yapısı kontrol edildi; gerçek buton testi ayrı tarayıcıda gerekir."
+    },
+    {
+      "id": "HTML idempotent replay",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.158Z",
+      "note": "200"
+    },
+    {
+      "id": "HTML replay no second effect",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.158Z",
+      "note": "true"
+    },
+    {
+      "id": "Trusted HTML DOM initial",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.166Z",
+      "note": "Görev hazır"
+    },
+    {
+      "id": "Trusted HTML real button interaction",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.166Z",
+      "note": "Görev tamamlandı"
+    },
+    {
+      "id": "Project SQLite write",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.169Z",
+      "note": "200"
+    },
+    {
+      "id": "Project SQLite readback",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.170Z",
+      "note": "200"
+    },
+    {
+      "id": "Project SHA and row persisted",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.170Z",
+      "note": "0b35e6e0-12af-45b1-94ab-b8373c34d3cf"
+    },
+    {
+      "id": "PROJECT_BOARD plan HTTP",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.176Z",
+      "note": "200"
+    },
+    {
+      "id": "PROJECT_BOARD READY before execute",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.176Z",
+      "note": "READY"
+    },
+    {
+      "id": "PROJECT_BOARD pre-write file list",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.178Z",
+      "note": "200"
+    },
+    {
+      "id": "PROJECT_BOARD pre-write file absent",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.178Z",
+      "note": "proje_gorev_panosu_ded2626890b6.py"
+    },
+    {
+      "id": "PROJECT_BOARD approved execute HTTP",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.782Z",
+      "note": "200"
+    },
+    {
+      "id": "PROJECT_BOARD real scoped execution",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.783Z",
+      "note": "PASS_SCOPED"
+    },
+    {
+      "id": "PROJECT_BOARD SQLite row",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.788Z",
+      "note": "200"
+    },
+    {
+      "id": "PROJECT_BOARD task state",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.788Z",
+      "note": "PASS_SCOPED"
+    },
+    {
+      "id": "PROJECT_BOARD read actual source",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.792Z",
+      "note": "200"
+    },
+    {
+      "id": "PROJECT_BOARD browser SHA-256",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.793Z",
+      "note": "b8f1c26c29ef702cf664c1fe48cd06923f2e591eb2d36f3db1649f5e22fd93c5"
+    },
+    {
+      "id": "PROJECT_BOARD server readback",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.798Z",
+      "note": "200"
+    },
+    {
+      "id": "PROJECT_BOARD independent browser-vs-server digest",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.798Z",
+      "note": "PASS_SCOPED_READBACK"
+    },
+    {
+      "id": "PROJECT_BOARD functional test",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.798Z",
+      "note": "Generated HTTP+HTML+SQLite task-board, 6 real subprocess unittest"
+    },
+    {
+      "id": "PROJECT_BOARD idempotent replay",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.802Z",
+      "note": "200"
+    },
+    {
+      "id": "PROJECT_BOARD replay no second effect",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.802Z",
+      "note": "true"
+    },
+    {
+      "id": "Generated app six real subprocess tests",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.802Z",
+      "note": "6 unittest"
+    },
+    {
+      "id": "Task list after execution",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.805Z",
+      "note": "200"
+    },
+    {
+      "id": "Three real tasks in SQLite",
+      "status": "PASS",
+      "time": "2026-11-17T19:27:47.806Z",
+      "note": "3"
+    },
+    {
+      "id": "Browser reload; three SQLite receipts and SHA verified",
+      "status": "PASS",
+      "time": "2026-11-17T19:28:00.009Z",
+      "note": "1d6611fe-1244-466d-a016-2ff4467cc7d5,4604e928-800e-4c5a-a99f-9b103554731c,18957b50-3a87-4b2e-9820-f70eb0f432f3"
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "1d6611fe-1244-466d-a016-2ff4467cc7d5",
+      "kind": "PYTHON",
+      "path": "muhendis_python_35ae3fdaf8.py",
+      "sha256": "ab82f013128f5772643794af58db22247fe6f045e4a9ead632e9c9a3d5721b4c",
+      "method": "trusted Python unittest subprocess, 3 gerçek test"
+    },
+    {
+      "task_id": "4604e928-800e-4c5a-a99f-9b103554731c",
+      "kind": "HTML",
+      "path": "muhendis_html_d19e4542bb.html",
+      "sha256": "6f9647844f856b1e8c504862e3ddbe4493f62cae7359849fdade1714f67314b4",
+      "method": "HTML yapısı kontrol edildi; gerçek buton testi ayrı tarayıcıda gerekir."
+    },
+    {
+      "task_id": "18957b50-3a87-4b2e-9820-f70eb0f432f3",
+      "kind": "PROJECT_BOARD",
+      "path": "proje_gorev_panosu_ded2626890b6.py",
+      "sha256": "b8f1c26c29ef702cf664c1fe48cd06923f2e591eb2d36f3db1649f5e22fd93c5",
+      "method": "Generated HTTP+HTML+SQLite task-board, 6 real subprocess unittest"
+    }
+  ],
+  "owner_final": "NOT_ISSUED",
+  "independent_donecheck": "NOT_EXECUTED",
+  "h2": "PARKED",
+  "finished_at": "2026-11-17T19:27:47.806Z",
+  "reloaded_at": "2026-11-17T19:28:00.010Z"
+}

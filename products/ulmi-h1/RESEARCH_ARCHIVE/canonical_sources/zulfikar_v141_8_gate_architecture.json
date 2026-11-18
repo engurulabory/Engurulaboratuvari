@@ -1,0 +1,208 @@
+{
+  "id": "ENGURU_ZULFIKAR_V1_4_1",
+  "name": "ENGÜRÜ Zülfikar™ V1.4.1 — Sekiz Kapılı Kanıtlı Tamamlama Mimarisi",
+  "preGitHubState": "SOURCE_AND_DESIGN_PREPARED_LOCAL_ONLY",
+  "oneFixedUserGoal": "USER_GOAL_TO_EVIDENCED_100_PER_STAGE",
+  "governingAuthority": "Mevcut ENGÜRÜ Süzgeci V3 + DoneCheck v1.2 + Human Threshold + tek insan owner",
+  "universalIteration": "dom/engine.py",
+  "coreTenSharedCapabilities": [
+    "K01_ARCHITECTURE",
+    "K02_SIMULATION",
+    "K03_RESEARCH_AND_SCORING",
+    "K04_ITERATION",
+    "K05_END_TO_END",
+    "K06_FINISH",
+    "K07_GOAL_OUTCOME",
+    "K08_CONTEXT_CONTINUITY",
+    "K09_TECHNICAL_ENGINEERING",
+    "K10_GOVERNANCE"
+  ],
+  "stageHandoffRequired": [
+    "goalId",
+    "goalRevisionSha256",
+    "sourceSha256",
+    "acceptanceContract",
+    "preservedEvidence",
+    "requiredEvidence",
+    "ownerScope",
+    "openGaps",
+    "independentVerification",
+    "stageOutcome"
+  ],
+  "gates": [
+    {
+      "id": "T01",
+      "name": "Temel atma",
+      "purpose": "Kullanıcı özgün hedefini tespit et; değer, kaynak, yetki, ihtiyaç ve korunmuş kazanımları keşfet",
+      "requiredOutputs": [
+        "goalIdentity",
+        "sourceInventory",
+        "ownerScope",
+        "protectedAssets",
+        "initialRisks"
+      ],
+      "acceptance": "TEMEL_100_SOURCE_AND_NEED_REVIEW",
+      "preGithubStatus": "ARCHITECTURE_DEFINED_NOT_REAL_USER_RUN"
+    },
+    {
+      "id": "T02",
+      "name": "Hedef hazırlığı",
+      "purpose": "Hedefi ölçülebilir uygulanabilir kabul koşulları ve sınırlarıyla 100/100 hazırlamak",
+      "requiredOutputs": [
+        "fixedGoalContract",
+        "acceptanceIds",
+        "testAndEvidenceNeeds",
+        "dependencies",
+        "stopConditions"
+      ],
+      "acceptance": "HEDEF_100_VERIFIED_REQUIREMENTS",
+      "preGithubStatus": "ARCHITECTURE_DEFINED_NOT_REAL_USER_RUN"
+    },
+    {
+      "id": "A01",
+      "name": "Mimari ve mühendislik tasarımı",
+      "purpose": "Gerçekleştirilebilir bileşenler, işleyiş, güvenlik ve hata geri kazanım tasarımı",
+      "requiredOutputs": [
+        "architecture",
+        "implementationPaths",
+        "sourceBindings",
+        "securityBoundaries",
+        "recoveryPlan"
+      ],
+      "acceptance": "ARCHITECTURE_100_VERIFIED",
+      "preGithubStatus": "BLUEPRINT_PREPARED"
+    },
+    {
+      "id": "A02",
+      "name": "Teori ve karşıt değerlendirme",
+      "purpose": "Varsayım, alternatif, kapasite, hata senaryosu, bağımsız karşıt tasarım",
+      "requiredOutputs": [
+        "assumptions",
+        "counterCases",
+        "simulations",
+        "riskMitigations",
+        "theoryVerdict"
+      ],
+      "acceptance": "THEORY_100_VERIFIED",
+      "preGithubStatus": "BLUEPRINT_PREPARED"
+    },
+    {
+      "id": "A03",
+      "name": "Uçtan uca işleyiş ve finiş sözleşmesi",
+      "purpose": "Gerçek iş akışı, kullanıcı sonucu, bağımsız kanıt ve yetkili finiş kapısı",
+      "requiredOutputs": [
+        "realTaskFlow",
+        "productOutcomeContract",
+        "independentProofContract",
+        "doneCheckBoundary",
+        "humanThresholdBoundary"
+      ],
+      "acceptance": "E2E_FINISH_CONTRACT_100_VERIFIED",
+      "preGithubStatus": "BLUEPRINT_PREPARED"
+    },
+    {
+      "id": "A04",
+      "name": "GitHub mühendislik uygulaması",
+      "purpose": "Yetkili kaynak, gerçek kod, PR, kaynak SHA, CI ve regresyon kanıtı",
+      "requiredOutputs": [
+        "authorizedGitHubChange",
+        "sourceSha",
+        "realCI",
+        "review",
+        "mergeDecision"
+      ],
+      "acceptance": "GITHUB_EXECUTION_100_VERIFIED",
+      "preGithubStatus": "STOP_BEFORE_GITHUB_REGISTRATION"
+    },
+    {
+      "id": "A05",
+      "name": "Gerçek görev pilotları",
+      "purpose": "Yetkili heterojen görevleri ürün sonucuna bağla; ayrı bağımsız test et",
+      "requiredOutputs": [
+        "scopedTaskManifests",
+        "realRuntimeReceipts",
+        "recoverability",
+        "independentVerification",
+        "realUserOutcome"
+      ],
+      "acceptance": "REAL_TASK_100_WITH_AUTHORITY",
+      "preGithubStatus": "NOT_EXECUTED_OWNER_SCOPE_REQUIRED"
+    },
+    {
+      "id": "A06",
+      "name": "Mac OSi öncesi bütünleşik hazırlık",
+      "purpose": "Kaynak devri, yerel kurulum önkoşulları, rollback ve saha görev sırası hazırlığı",
+      "requiredOutputs": [
+        "sourceHandoff",
+        "ownerPermissions",
+        "localInstallPlan",
+        "rollback",
+        "fieldAcceptancePlan"
+      ],
+      "acceptance": "OSI_PREPARATION_100_VERIFIED",
+      "preGithubStatus": "DESIGNED_NOT_RUN"
+    }
+  ],
+  "iterationForEveryGate": [
+    "simulasyon",
+    "puanlama",
+    "eksikTespiti",
+    "onarim",
+    "gercekTest",
+    "yenidenSimulasyon",
+    "yenidenPuanlama",
+    "kalanIsler",
+    "tekrarVeyaKanıtli100"
+  ],
+  "transitionRule": "ONLY_CURRENT_GATE_EVIDENCED_100_PASS_ALLOWS_NEXT_GATE",
+  "preserveEarlierGains": true,
+  "finalPreparationCondition": "T01_T02_A01_A02_A03_A04_A05_A06_ALL_EIGHT_100_WITH_SCOPE_EVIDENCE",
+  "endState": "OSI_READY_VERIFIED_PREPARATION_BITTI_DUR_NOT_MAC_FIELD_PRODUCT_FINISH",
+  "frozenPilive": {
+    "state": "PARKED_UNTIL_EXPLICIT_USER_RESUME",
+    "prohibitEditingPiLive": true
+  },
+  "prohibitBeforeApproval": [
+    "GitHubPush",
+    "GitHubPRUpdate",
+    "GitHubActionsRun",
+    "GitHubMerge",
+    "MacOSiInstall",
+    "OfficialDoneCheckIssuance"
+  ],
+  "handoffTarget": "OWNER_EXPLICIT_GITHUB_REGISTRATION_AND_WORKFLOW_TEST_STAGE",
+  "phaseNow": "STOP_BEFORE_GITHUB",
+  "userGoalContract": {
+    "id": "ZF.V141.PREGH.2026-10-26",
+    "userGoal": "Önce Döngü Onarım™ V1.0 mühendisliğini iç değerlendirme 92/100 seviyesinden GitHub öncesi yerel kanıtlı hazırlık 100/100 seviyesine taşı; yerel çalışır testlerle doğrula; V1.4.1 T01+T02+A01–A06 mimarisini kayıtlı ve GitHub aktarımına hazır teslim et; GitHub kayıt/test aşamasından önce dur.",
+    "protectedProjects": [
+      "PiLive V4: frozen, no PR or Mac edits"
+    ],
+    "stopEvent": "NEXT_ACTION_IS_GITHUB_REGISTRATION_AND_CI",
+    "ownerAuthority": "ONE_HUMAN_OWNER_UNCHANGED",
+    "testScope": "LOCAL_DISPOSABLE_ONLY",
+    "requiredEvidence": [
+      "5x20 DOM quality controls",
+      "3 local test rounds",
+      "8-gate source contract",
+      "SHA manifest",
+      "explicit GitHub handoff hold"
+    ]
+  },
+  "gateExecutionGuard": {
+    "controller": "dom/engine.py",
+    "firstGate": "T01",
+    "predecessorRequiredFor": [
+      "T02",
+      "A01",
+      "A02",
+      "A03",
+      "A04",
+      "A05",
+      "A06"
+    ],
+    "invariant": "ONE_GOAL_ID_NEXT_GATE_ONLY_AFTER_EXACT_PREVIOUS_GATE_AUTHORIZED_100_AND_INDEPENDENT_VERIFIER",
+    "testingProof": "test_final_hardening.py::test_58_every_successor_gate_rejects_missing_predecessor",
+    "status": "LOCAL_PRE_GITHUB_PROOF_ONLY"
+  }
+}

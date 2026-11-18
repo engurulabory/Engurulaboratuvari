@@ -1,0 +1,32 @@
+{
+  "schema": "enguru.muhendis.h1.worklist-v1",
+  "catalog_id": "H1_PILOT_WORKLIST",
+  "revision": 1,
+  "source_claim": "LOCAL_DEMO_NOT_SARAY_ACCEPTED",
+  "items": [
+    {
+      "work_id": "H1_DEMO_PYTHON_001",
+      "title": "Python örneğini üret ve test et",
+      "category": "Python ve test",
+      "description": "Güvenilir hesaplama modülünü oluştur; üç gerçek davranış testini, SHA ve SQLite makbuzunu doğrula.",
+      "kind": "PYTHON_TEST_EXAMPLE",
+      "input": ""
+    },
+    {
+      "work_id": "H1_DEMO_HTML_002",
+      "title": "HTML görev kartı oluştur ve tarayıcıda sınay",
+      "category": "HTML ve arayüz",
+      "description": "Güvenilir etkileşimli HTML kartını oluştur, tarayıcıda düğmeye basıp gerçek davranışı doğrula.",
+      "kind": "HTML_EXAMPLE",
+      "input": ""
+    },
+    {
+      "work_id": "H1_DEMO_DIAG_003",
+      "title": "Python sözdizimi hatasını teşhis et",
+      "category": "Kod teşhisi",
+      "description": "Kaynağı çalıştırmadan statik AST teşhisi yap; hatalı satırı içeren Markdown makbuzu üret.",
+      "kind": "PYTHON_STATIC_DIAG",
+      "input": "def hesapla(a, b)\n    return a + b"
+    }
+  ]
+}
