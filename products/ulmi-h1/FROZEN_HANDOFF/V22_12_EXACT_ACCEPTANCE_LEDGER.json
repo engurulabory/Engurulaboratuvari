@@ -1,0 +1,296 @@
+{
+  "schema": "enguru.ulmi.h1.v7.exact-source-v22-12-status-v1",
+  "date": "2026-11-18",
+  "source_contract_sha256": "069c03b0f299e76ef46e26a25eb4284474ae5219353185a88386ee5df9f39304",
+  "pilot_ABC_sha256": "5beb10d407dc550d7f979062fef6bdcfd451791103d5b02fc1c2d05a1786d79b",
+  "rows": [
+    {
+      "original_id": "01",
+      "stage": "T01",
+      "gate": "G06",
+      "original_requirement": "Yedi yöntem rolünün kaynak/SHA kimliği",
+      "original_positive_oracle": "Her kaynak için commit, SHA-256 ve kök sahipliği; V3 ayrı tam metin",
+      "original_negative_oracle": "SHA/branch drift veya belirsiz yetkide HOLD",
+      "required_completion_evidence": "SHA-kilitli kaynak defteri, özgün Pilot A bayt okuması",
+      "original_authority": "OWNER_CONSEQUENTIAL_GRANT_NOT_ISSUED",
+      "scoped_proofs": [
+        {
+          "path": "EVIDENCE/W01_W11_FINAL/PRESERVED_V71_W01_GITHUB_EXACT_BLOB_PARITY.json",
+          "sha256": "18ae4d5a59b09500d72eb064372c9e8a1d972c6e5238046cce0cc233927ad19f",
+          "source_scope": "SCOPED_AUTHOR_OR_HISTORICAL_PRESERVED"
+        }
+      ],
+      "scoped_engineering": "PASS_SCOPED",
+      "fully_verified_original_technical": "NOT_ESTABLISHED",
+      "official_original_acceptance": "HOLD",
+      "remaining_original_condition": "Read-only source prep is 6/6 and 8 roles; current authoritative source/producer authority and exact Pilot A readback still open.",
+      "external_dependency": "OWNER_OR_PRODUCER_PERMISSION"
+    },
+    {
+      "original_id": "02",
+      "stage": "T02",
+      "gate": "G02",
+      "original_requirement": "Gereksinim, kapsam ve beklenen sonuçların sabitlenmesi",
+      "original_positive_oracle": "Her iş tek işlev+pozitif/negatif oracle ve teslim kanıtı",
+      "original_negative_oracle": "Mükerrer ID, boş oracle, iş kapsamı taşması HOLD",
+      "required_completion_evidence": "Çalıştırılabilir 12/12 iş denetimi",
+      "original_authority": "OWNER_CONSEQUENTIAL_GRANT_NOT_ISSUED",
+      "scoped_proofs": [
+        {
+          "path": "EVIDENCE/W01_W11_FINAL/reconcile_v22_12_original_tasks.py.log",
+          "sha256": "98d56c861045e3e1c777590d628fb2ac4c7f15ab894b8e405ee4a5c81255c57c",
+          "source_scope": "SCOPED_AUTHOR_OR_HISTORICAL_PRESERVED"
+        }
+      ],
+      "scoped_engineering": "PASS_SCOPED",
+      "fully_verified_original_technical": "NOT_ESTABLISHED",
+      "official_original_acceptance": "HOLD",
+      "remaining_original_condition": "Executable source/ID/oracle 16/16 scope passed; original owner acceptance gate is open.",
+      "external_dependency": "OWNER_ACCEPTANCE"
+    },
+    {
+      "original_id": "03",
+      "stage": "T02",
+      "gate": "G04",
+      "original_requirement": "Pilot A 8/8 ve B/C oracle ile owner inceleme bağı",
+      "original_positive_oracle": "24 özgün pilot testinin beklenen kanıtı ve kaynak bağlantıları",
+      "original_negative_oracle": "Owner review adayından grant türetmeyi reddet",
+      "required_completion_evidence": "Pilot A inceleme kartı; 24/24 tasarlanmış oracle, 0/24 gerçek icra",
+      "original_authority": "OWNER_CONSEQUENTIAL_GRANT_NOT_ISSUED",
+      "scoped_proofs": [
+        {
+          "path": "ORIGINALS/PILOT_ABC_IMMUTABLE_SOURCE.json",
+          "sha256": "5beb10d407dc550d7f979062fef6bdcfd451791103d5b02fc1c2d05a1786d79b",
+          "source_scope": "SCOPED_AUTHOR_OR_HISTORICAL_PRESERVED"
+        }
+      ],
+      "scoped_engineering": "PASS_SCOPED",
+      "fully_verified_original_technical": "NOT_ESTABLISHED",
+      "official_original_acceptance": "HOLD",
+      "remaining_original_condition": "Pilot A/B/C separate execution permissions missing; 24 designed oracles are not 24 real executions.",
+      "external_dependency": "SEPARATE_OWNER_PILOT_GRANTS"
+    },
+    {
+      "original_id": "04",
+      "stage": "A01",
+      "gate": "G06",
+      "original_requirement": "Yöntemlerin V2.1 runtime içine SHA-kilitli bağlanması",
+      "original_positive_oracle": "Bağlı kaynak SHA tam, birleşik bağlam 32KB limitini güvenle ele al",
+      "original_negative_oracle": "Eksik V3, kaynak enjeksiyonu, bağlam taşması, değişmiş SHA HOLD",
+      "required_completion_evidence": "Kaynak paket, gerçek H1 context test makbuzu",
+      "original_authority": "OWNER_CONSEQUENTIAL_GRANT_NOT_ISSUED",
+      "scoped_proofs": [
+        {
+          "path": "EVIDENCE/W01_W11_FINAL/test_w04_archived_owner_source_bundle.py.log",
+          "sha256": "098e2f1dff35003c6366534375290609cce47c28e3d76eac346a7c25b6782c0b",
+          "source_scope": "SCOPED_AUTHOR_OR_HISTORICAL_PRESERVED"
+        },
+        {
+          "path": "EVIDENCE/W01_W11_FINAL/test_w04_role_context_contract.py.log",
+          "sha256": "7ce60cc18569d392ed94eb31cca240820845cee62093e12926b5e40e19e7516e",
+          "source_scope": "SCOPED_AUTHOR_OR_HISTORICAL_PRESERVED"
+        }
+      ],
+      "scoped_engineering": "PASS_SCOPED",
+      "fully_verified_original_technical": "NOT_ESTABLISHED",
+      "official_original_acceptance": "HOLD",
+      "remaining_original_condition": "Archived 8-role/6-source and 32768-byte context/symlink/FIFO tests pass; live role identity and producer authority still open.",
+      "external_dependency": "LIVE_OWNER_SOURCE_AND_MODEL"
+    },
+    {
+      "original_id": "05",
+      "stage": "A01",
+      "gate": "G08",
+      "original_requirement": "Emin–Maya V1.9 ile H1 konuşma rotası",
+      "original_positive_oracle": "Uçtan uca proje→mesaj→kaynaklı yanıt→görünür kanıt",
+      "original_negative_oracle": "Başka proje konuşması ve XSS/bozuk iletişim HOLD",
+      "required_completion_evidence": "Gerçek HTML+HTTP izole UAT, Safari ayrı",
+      "original_authority": "OWNER_CONSEQUENTIAL_GRANT_NOT_ISSUED",
+      "scoped_proofs": [
+        {
+          "path": "EVIDENCE/W01_W11_FINAL/run_v7_model_provenance_e2e.py.log",
+          "sha256": "8e75507d3c5a25419740b7b87a7c016dcd978600a1b137f11a1bbde06c097536",
+          "source_scope": "SCOPED_AUTHOR_OR_HISTORICAL_PRESERVED"
+        }
+      ],
+      "scoped_engineering": "PASS_SCOPED",
+      "fully_verified_original_technical": "NOT_ESTABLISHED",
+      "official_original_acceptance": "HOLD",
+      "remaining_original_condition": "HTML plan UI and real synthetic HTTP tests pass; real Qwen answer and current build browser UAT open.",
+      "external_dependency": "REAL_MAC_QWEN_AND_SAFARI"
+    },
+    {
+      "original_id": "06",
+      "stage": "A01",
+      "gate": "G07",
+      "original_requirement": "Mevcut H1 plan/AI ve Shared AI otorite ayrımı",
+      "original_positive_oracle": "Yanıt kaynağı seçimi kayıtlı ve yanıltıcı olmadan görünür",
+      "original_negative_oracle": "Model route bypass ve paid/provider değiştirme HOLD",
+      "required_completion_evidence": "A/B rota kontrolü + regresyon",
+      "original_authority": "OWNER_CONSEQUENTIAL_GRANT_NOT_ISSUED",
+      "scoped_proofs": [
+        {
+          "path": "EVIDENCE/W01_W11_FINAL/run_v7_shared_ai_source_boundary.py.log",
+          "sha256": "a74de399488f4397a728c4da4836aa4357c8498ea8edbb0dacb631f2f615a566",
+          "source_scope": "SCOPED_AUTHOR_OR_HISTORICAL_PRESERVED"
+        }
+      ],
+      "scoped_engineering": "PASS_SCOPED",
+      "fully_verified_original_technical": "NOT_ESTABLISHED",
+      "official_original_acceptance": "HOLD",
+      "remaining_original_condition": "Strict Ollama and Shared AI routes pass synthetic real HTTP; actual trustworthy provider identity and A/B comparison open.",
+      "external_dependency": "REAL_MAC_SHARED_AI_QWEN"
+    },
+    {
+      "original_id": "07",
+      "stage": "A02",
+      "gate": "G05",
+      "original_requirement": "Oturum CSRF replay ve test modu güvenliği",
+      "original_positive_oracle": "Sahte token ve replay 0 yetki; restart sonrası tekrara izin yok",
+      "original_negative_oracle": "Test env zorlanması, restart replay, 10000+ set reset saldırısı HOLD",
+      "required_completion_evidence": "Kalıcı idempotency test, yetki suite",
+      "original_authority": "OWNER_CONSEQUENTIAL_GRANT_NOT_ISSUED",
+      "scoped_proofs": [
+        {
+          "path": "EVIDENCE/W01_W11_FINAL/W07_W08_BATCH_TIMEOUT_DIAGNOSTIC.log",
+          "sha256": "4292e8df72e4427c4f4f9c464e48fcd70a9556ebc53e96bd12d2c27492a12cb1",
+          "source_scope": "SCOPED_AUTHOR_OR_HISTORICAL_PRESERVED"
+        },
+        {
+          "path": "EVIDENCE/V22_W07_10001_REAL_HTTP_ATTACK_RECEIPT.json",
+          "sha256": "9a41375288f7b3daa58ff72512a0b53b1ccfe2ddfe9e6c1d1bae2a6b41aaac43",
+          "source_scope": "SCOPED_AUTHOR_OR_HISTORICAL_PRESERVED"
+        }
+      ],
+      "scoped_engineering": "PASS_SCOPED",
+      "fully_verified_original_technical": "NOT_ESTABLISHED",
+      "official_original_acceptance": "HOLD",
+      "remaining_original_condition": "Duplicate Host/Origin/token, idempotency, bad framing and 10001 real HTTP denials scoped; authenticated producer/owner pilot gate and independent reviewer open.",
+      "external_dependency": "AUTHENTICATED_PRODUCER_OWNER_REVIEW"
+    },
+    {
+      "original_id": "08",
+      "stage": "A02",
+      "gate": "G09",
+      "original_requirement": "Kurtarma, zaman aşımı, kota, rollback",
+      "original_positive_oracle": "Tek talepte tek sonuç, no write, kaynak geri dönüş SHA",
+      "original_negative_oracle": "Aşırı istek, incomplete body, broken source/memory HOLD",
+      "required_completion_evidence": "Restart/kurtarma ve SHA readback testleri",
+      "original_authority": "OWNER_CONSEQUENTIAL_GRANT_NOT_ISSUED",
+      "scoped_proofs": [
+        {
+          "path": "EVIDENCE/W01_W11_FINAL/W08_AFTER_RACE_REPAIR_GREEN.log",
+          "sha256": "0b5b12008ca627989b170be16a4190dacc1721882b488e4cc0172a2116fc4609",
+          "source_scope": "SCOPED_AUTHOR_OR_HISTORICAL_PRESERVED"
+        },
+        {
+          "path": "EVIDENCE/W01_W11_FINAL/run_v4_http_rollback_e2e.py.log",
+          "sha256": "7cb2a68858ae9e6db7e8873ad75674e65fe8eb2ca67965e330ff05b7ecd4d2fe",
+          "source_scope": "SCOPED_AUTHOR_OR_HISTORICAL_PRESERVED"
+        }
+      ],
+      "scoped_engineering": "PASS_SCOPED",
+      "fully_verified_original_technical": "NOT_ESTABLISHED",
+      "official_original_acceptance": "HOLD",
+      "remaining_original_condition": "Actual restart, quota, rollback and new fd-pinned readback pass; original independent authorized recovery and owner gate open.",
+      "external_dependency": "INDEPENDENT_AUTHORITY_RECOVERY_REVIEW"
+    },
+    {
+      "original_id": "09",
+      "stage": "A02",
+      "gate": "G09",
+      "original_requirement": "Türkçe mühendislik kalite, kaynak doğruluğu ve saldırı oraklı",
+      "original_positive_oracle": "Gerçek qwen ile Türkçe ve kaynak destekli cevap; bağımsız gözlem",
+      "original_negative_oracle": "Prompt injection, uydurma SHA/DoneCheck, sahte owner karar HOLD",
+      "required_completion_evidence": "Kalite test seti + model yanıt makbuzu + bağımsız eleştiri",
+      "original_authority": "OWNER_CONSEQUENTIAL_GRANT_NOT_ISSUED",
+      "scoped_proofs": [
+        {
+          "path": "EVIDENCE/W01_W11_FINAL/run_v7_model_provenance_e2e.py.log",
+          "sha256": "8e75507d3c5a25419740b7b87a7c016dcd978600a1b137f11a1bbde06c097536",
+          "source_scope": "SCOPED_AUTHOR_OR_HISTORICAL_PRESERVED"
+        }
+      ],
+      "scoped_engineering": "PASS_SCOPED",
+      "fully_verified_original_technical": "NOT_ESTABLISHED",
+      "official_original_acceptance": "HOLD",
+      "remaining_original_condition": "Source/advice boundaries pass scoped; real Turkish Qwen engineering answer and independent adversarial critique open.",
+      "external_dependency": "REAL_QWEN_AND_INDEPENDENT_REVIEW"
+    },
+    {
+      "original_id": "10",
+      "stage": "A03",
+      "gate": "G09",
+      "original_requirement": "Üç turlu gerçek entegre olumlu/karşıt/regresyon",
+      "original_positive_oracle": "Üç tur eski+yenisi ve saldırı regresyonu ayrı log",
+      "original_negative_oracle": "Şablon test/sonuç tekrarından ürün PASS çıkarılmasını reddet",
+      "required_completion_evidence": "Bağımsız orkestrasyon logları ve kaynak SHA",
+      "original_authority": "OWNER_CONSEQUENTIAL_GRANT_NOT_ISSUED",
+      "scoped_proofs": [
+        {
+          "path": "EVIDENCE/W01_W11_FINAL/run_final_e2e.py.log",
+          "sha256": "3a0c208146f580667e9b023f8a094ab7a63769041cbdc769f4f3b154d567f30d",
+          "source_scope": "SCOPED_AUTHOR_OR_HISTORICAL_PRESERVED"
+        }
+      ],
+      "scoped_engineering": "PASS_SCOPED",
+      "fully_verified_original_technical": "NOT_ESTABLISHED",
+      "official_original_acceptance": "HOLD",
+      "remaining_original_condition": "Three real HTTP technical E2E (49/49); three separately attested real owner Safari/browser sessions open.",
+      "external_dependency": "THREE_REAL_OWNER_BROWSER_RUNS"
+    },
+    {
+      "original_id": "11",
+      "stage": "A06",
+      "gate": "G10",
+      "original_requirement": "Deterministik kaynak ve transfer hazırlık paketi",
+      "original_positive_oracle": "Tek ZIP, manifest, detaylı kurulum/geri alma ve source diff",
+      "original_negative_oracle": "Eksik dosya, bozuk SHA ve mevcut V055 yerine yazma HOLD",
+      "required_completion_evidence": "SHA readback + bağımsız açılabilirlik ve geri üretim",
+      "original_authority": "OWNER_CONSEQUENTIAL_GRANT_NOT_ISSUED",
+      "scoped_proofs": [
+        {
+          "path": "EVIDENCE/W01_W11_FINAL/run_v7_source_build_identity_e2e.py.log",
+          "sha256": "5eee6339b332539f465f7558c5cf5ff28ba6bdc132857861f7a18b1c63ac51d5",
+          "source_scope": "SCOPED_AUTHOR_OR_HISTORICAL_PRESERVED"
+        }
+      ],
+      "scoped_engineering": "PASS_SCOPED",
+      "fully_verified_original_technical": "NOT_ESTABLISHED",
+      "official_original_acceptance": "HOLD",
+      "remaining_original_condition": "Deterministic frozen source/manifest ZIP and self-contained regressions prepared; owner Mac handoff and independent transfer gate open.",
+      "external_dependency": "MAC_TRANSFER_AND_OWNER_REVIEW"
+    },
+    {
+      "original_id": "12",
+      "stage": "A06",
+      "gate": "G10",
+      "original_requirement": "Bağımsız hazırlık DoneCheck ve owner hazırlık kararı",
+      "original_positive_oracle": "Yalnız 12/12 şart ve ayrı reviewer+owner onayı ile PRE_MAC_PREP_FINAL PASS",
+      "original_negative_oracle": "Üretici self-PASS, sahte imza, gerçek Mac izni uydurma HOLD",
+      "required_completion_evidence": "Bağımsız prep makbuzu ve owner son karar",
+      "original_authority": "OWNER_CONSEQUENTIAL_GRANT_NOT_ISSUED",
+      "scoped_proofs": [],
+      "scoped_engineering": "HOLD_NOT_EXECUTED",
+      "fully_verified_original_technical": "NOT_ESTABLISHED",
+      "official_original_acceptance": "HOLD",
+      "remaining_original_condition": "Independent authorized DoneCheck, exact SHA owner final, and verified finish absent.",
+      "external_dependency": "INDEPENDENT_DONECHECK_AND_OWNER"
+    }
+  ],
+  "original_12": 12,
+  "new_full_original_closures": 0,
+  "formal_accepted_original": "0/12",
+  "historical_technical_claim": "4/12_PRESERVED_UNRECONCILED",
+  "current_full_original_technical_count": "NOT_ESTABLISHED",
+  "v5_safari_scoped": "60/60_ONE_RUN_PRESERVED",
+  "frozen_v7_browser": "NOT_EXECUTED",
+  "real_qwen_mac": "NOT_EXECUTED",
+  "pilot_ABC_original": "0/8 EACH FORMAL",
+  "independent_donecheck": "NOT_EXECUTED",
+  "owner_final": "NOT_ISSUED",
+  "verified_finish": "HOLD",
+  "human_threshold": "HOLD_REQUIRED",
+  "H2": "PARKED",
+  "independent_reviewer_executed": false
+}

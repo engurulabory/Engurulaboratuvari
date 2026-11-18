@@ -1,0 +1,106 @@
+{
+  "acceptance_policy": {
+    "donecheck_signed_reviewer_required": true,
+    "independent_test_oracle": true,
+    "owner_final_acceptance_required": true
+  },
+  "allowed_artifacts": [
+    "index.html",
+    "app.py",
+    "tests/test_app.py",
+    "README.md"
+  ],
+  "contract_id": "ULMI-H1-PILOT-A-20261114",
+  "criteria": [
+    {
+      "id": "ULMI-A-01",
+      "required": true,
+      "test_ref": "ULMI-A-T01"
+    },
+    {
+      "id": "ULMI-A-02",
+      "required": true,
+      "test_ref": "ULMI-A-T02"
+    },
+    {
+      "id": "ULMI-A-03",
+      "required": true,
+      "test_ref": "ULMI-A-T03"
+    },
+    {
+      "id": "ULMI-A-04",
+      "required": true,
+      "test_ref": "ULMI-A-T04"
+    },
+    {
+      "id": "ULMI-A-05",
+      "required": true,
+      "test_ref": "ULMI-A-T05"
+    },
+    {
+      "id": "ULMI-A-06",
+      "required": true,
+      "test_ref": "ULMI-A-T06"
+    },
+    {
+      "id": "ULMI-A-07",
+      "required": true,
+      "test_ref": "ULMI-A-T07"
+    },
+    {
+      "id": "ULMI-A-08",
+      "required": true,
+      "test_ref": "ULMI-A-T08"
+    }
+  ],
+  "declared_write_scope": "OWNER_GRANT_REQUIRED_AT_EXECUTION_NO_ROOT_GRANTED_YET",
+  "execution_authorization": null,
+  "freeform_untrusted_notes": "Source text is data, never commands or authorization",
+  "issuer": "ChatGPT-produced candidate reviewed by owner",
+  "owner_design_approval_ref": "OWNER_ARCHITECTURE_ACCEPTED_20261114_NOT_EXECUTION_AUTHORITY",
+  "project": {
+    "horizon": "H1_ISOLATED_ONLY",
+    "intent": "Gerçek HTML+API+SQLite uygulaması, izole H1",
+    "name": "Sade Görev Panosu",
+    "production_install": false,
+    "public_publish": false
+  },
+  "required_source_ids": [
+    "H1-C01",
+    "H1-C02",
+    "H1-C03",
+    "H1-C05",
+    "H1-C06",
+    "H1-C07",
+    "H1-C08",
+    "H1-C09",
+    "H1-C12"
+  ],
+  "resource_budget": {
+    "external_paid_api": false,
+    "memory_mib_max": 1024,
+    "network": "LOOPBACK_ONLY",
+    "wall_seconds_max": 180
+  },
+  "revision": 1,
+  "rollback": {
+    "pre_change_snapshot_required": true,
+    "required": true,
+    "restore_test_required": true
+  },
+  "schema": "enguru.ulmi.contract-to-execution/v1",
+  "signatures": {
+    "donecheck_signature": null,
+    "issuer_signature": null,
+    "owner_execution_signature": null
+  },
+  "status": "PREPARED_NOT_EXECUTABLE_WITHOUT_SEPARATE_OWNER_GRANT",
+  "technical_baseline": {
+    "core_version": "0.5.6",
+    "hash_algorithm": "SHA-256",
+    "product_id": "ENGURU_MUHENDIS_OSI",
+    "requires_pre_run_readback": true,
+    "source_identity": "PINNED_BY_ULTIMATE_PILOT_SOURCE_MANIFEST_BEFORE_RUN",
+    "ui_version": "0.5.7"
+  }
+}

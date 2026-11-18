@@ -1,0 +1,19 @@
+{
+  "product": "ENGURU_MUHENDIS_OSI",
+  "version": "V0.5.4",
+  "goal1": "ACTIVE",
+  "goal2": "PARKED",
+  "h1_c11_mac_field": "NOT_TESTED",
+  "source": "V0.5.3.1_USER_REPORTED_SILENT_FINDER_EXIT",
+  "launcher": "NATIVE_ARM64_MACHO",
+  "owner_daily_technical_commands_target": 0,
+  "constraints": [
+    "ONE_OWNER",
+    "LOOPBACK_ONLY",
+    "NO_NEW_PAID_API",
+    "NO_GITHUB_WRITE",
+    "NO_MAC_OSI_INSTALL",
+    "NO_AUTO_MIGRATION_OLD_WORKSPACES",
+    "NO_UNAUTHORIZED_WRITE"
+  ]
+}

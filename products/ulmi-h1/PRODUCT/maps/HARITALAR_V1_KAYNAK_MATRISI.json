@@ -1,0 +1,1264 @@
+{
+  "schema": "enguru.ustamimar.nine-maps-and-main-acceptance-panel/v1",
+  "product_id": "ENGURU_USTAMIMAR_OSI",
+  "product_name": "ENGÜRÜ UstaMimar OSi™",
+  "version": "HARITALAR_V1_20261113",
+  "date": "2026-11-13",
+  "owner_decision": "OWNER_ACCEPTED_NINE_MAP_MODEL_AND_EXECUTION_PREP_REQUEST",
+  "state": "SCOPED_THEORY_DESIGN_AND_STRUCTURAL_SIMULATION",
+  "source_pins": {
+    "USTAMIMAR_V1_CONTRACT": {
+      "file": "ENGURU_USTAMIMAR_OSI_TEMEL_IS_KABUL_SOZLESMESI_V1_20261113.md",
+      "sha256": "80acbd5c566c16a992aa056c24ef22050eeed26c9bcf38485e0208d695aa846c"
+    },
+    "USTAMIMAR_UM_V1": {
+      "file": "ENGURU_USTAMIMAR_OSI_UM_KABUL_MATRISI_V1_20261113.json",
+      "sha256": "ac3c5493bc1b24cd40c041f772687e69a59bd8863eaa5f1dd5fcd5f0de90d9f9"
+    },
+    "USTAMIMAR_V11_ALIGNMENT": {
+      "file": "ENGURU_USTAMIMAR_OSI_V11_SAGLAM_TEMEL_HIZALAMA_KAYDI_20261113.md",
+      "sha256": "0d3f9496bf2fe9491ba5e4e627079742371ea56f6293338fcef5cb05abb639a6"
+    },
+    "USTAMIMAR_V12_OWNER": {
+      "file": "ENGURU_USTAMIMAR_OSI_V12_OWNER_URUN_KIMLIGI_VE_CALISIRLIK_KARARI_20261113.md",
+      "sha256": "5b187e6f4fade8a0416232abaf9bf989a996fdfd455813eaf54fc8873da1a08b"
+    },
+    "GITHUB_AGENTS": {
+      "repo": "engurulabory/Engurulaboratuvari",
+      "file": "AGENTS.md",
+      "git_blob_sha1": "59dc8054896b932413d25abf10c6244e5899126d"
+    },
+    "GITHUB_V3": {
+      "repo": "engurulabory/Engurulaboratuvari",
+      "file": "governance/enguru-suzgeci/ENGURU_EVRENSEL_KANITLI_TAMAMLAMA_TALIMATI_V3.md",
+      "git_blob_sha1": "7f47f3c6d3ee5c5138e53b67ae46cced37cb1a61",
+      "lock_declared_sha256": "11edc63cc3b3549d050e916f3efe67cd431bb7394ed318452cf5871c7cc727cc",
+      "sha256_byte_match": "NOT_RECOMPUTED_IN_THIS_TURN"
+    },
+    "GITHUB_DONECHECK": {
+      "repo": "engurulabory/Engurulaboratuvari",
+      "file": "governance/mac-engineer/DONECHECK_AUTHORITY_MODEL_V1.md",
+      "git_blob_sha1": "a3fa94c6a65ae768259dea40f066e09ede5ace63"
+    },
+    "PILOT_V01": {
+      "file": "ENGURU_TEK_USTA_LOCAL_PILOT_V01.zip",
+      "sha256": "30ec5687b38049ac001aef21bfdcfc028c7ebc0b579bef646b5e97eca46a3677",
+      "prior_test": "12/12_PASS_SCOPED_ISOLATED"
+    },
+    "METHOD_V141": {
+      "file": "FINAL_KABUL_RAPORU.md",
+      "origin": "Saray Library, 26 Ekim 2026",
+      "status": "PRE_GITHUB_SCOPED_V141_REPORT_NOT_LIVE_RUNTIME"
+    }
+  },
+  "goals": {
+    "TARGET_1": {
+      "name": "HTML üzerinde gerçek çalışan prototip",
+      "state": "ACTIVE",
+      "accepted_only_if": "HTML_PROTOTYPE_PASS: gerçek HTTP HTML kullanıcı akışı + gerçek yerel yürütücü + kod/dosya test + persistence + scoped owner + independent verifier; henüz PASS değil"
+    },
+    "TARGET_2": {
+      "name": "Kabul edilmiş HTML prototipi Yerel Mac OSi içinde çalıştırmak",
+      "state": "PARKED",
+      "activation_requires": "Hedef 1 kanıtlı kabul, pre-mac hazırlık, ayrı OWNER_MAC_INSTALL_GO",
+      "field_state": "NOT_TESTED"
+    }
+  },
+  "execution_contract": {
+    "single_owner": true,
+    "single_executor": true,
+    "single_task_ledger": true,
+    "single_primary_hafiza_sarayi": true,
+    "no_live_chatgpt": true,
+    "no_live_github": true,
+    "no_required_paid_api": true,
+    "offline_first": true,
+    "builder_is_separate_factory": true
+  },
+  "preserved": {
+    "original_R": [
+      "R01",
+      "R02",
+      "R03",
+      "R04",
+      "R05",
+      "R06",
+      "R07",
+      "R08",
+      "R09",
+      "R10",
+      "R11",
+      "R12",
+      "R13",
+      "R14"
+    ],
+    "original_W": [
+      "W01",
+      "W02",
+      "W03",
+      "W04",
+      "W05",
+      "W06",
+      "W07",
+      "W08",
+      "W09",
+      "W10",
+      "W11",
+      "W12",
+      "W13",
+      "W14",
+      "W15"
+    ],
+    "original_UM": [
+      "UM-01",
+      "UM-02",
+      "UM-03",
+      "UM-04",
+      "UM-05",
+      "UM-06",
+      "UM-07",
+      "UM-08",
+      "UM-09",
+      "UM-10",
+      "UM-11",
+      "UM-12",
+      "UM-13",
+      "UM-14",
+      "UM-15",
+      "UM-16",
+      "UM-17",
+      "UM-18"
+    ],
+    "original_WC": [
+      "WC-01",
+      "WC-02",
+      "WC-03",
+      "WC-04",
+      "WC-05",
+      "WC-06",
+      "WC-07",
+      "WC-08",
+      "WC-09",
+      "WC-10",
+      "WC-11",
+      "WC-12",
+      "WC-13",
+      "WC-14",
+      "WC-15",
+      "WC-16",
+      "WC-17",
+      "WC-18",
+      "WC-19",
+      "WC-20",
+      "WC-21",
+      "WC-22",
+      "WC-23",
+      "WC-24",
+      "WC-25",
+      "WC-26",
+      "WC-27",
+      "WC-28",
+      "WC-29",
+      "WC-30",
+      "WC-31",
+      "WC-32"
+    ],
+    "original_4H": {
+      "H01": [
+        "H01-01",
+        "H01-02",
+        "H01-03",
+        "H01-04",
+        "H01-05",
+        "H01-06",
+        "H01-07",
+        "H01-08"
+      ],
+      "H02": [
+        "H02-01",
+        "H02-02",
+        "H02-03",
+        "H02-04",
+        "H02-05",
+        "H02-06",
+        "H02-07",
+        "H02-08",
+        "H02-09",
+        "H02-10",
+        "H02-11",
+        "H02-12"
+      ],
+      "DG02": [
+        "DG02-01",
+        "DG02-02",
+        "DG02-03",
+        "DG02-04",
+        "DG02-05",
+        "DG02-06",
+        "DG02-07",
+        "DG02-08",
+        "DG02-09",
+        "DG02-10",
+        "DG02-11",
+        "DG02-12"
+      ],
+      "DG03": [
+        "DG03-01",
+        "DG03-02",
+        "DG03-03",
+        "DG03-04",
+        "DG03-05",
+        "DG03-06",
+        "DG03-07",
+        "DG03-08",
+        "DG03-09",
+        "DG03-10",
+        "DG03-11",
+        "DG03-12"
+      ],
+      "DG04": [
+        "DG04-01",
+        "DG04-02",
+        "DG04-03",
+        "DG04-04",
+        "DG04-05",
+        "DG04-06",
+        "DG04-07",
+        "DG04-08",
+        "DG04-09",
+        "DG04-10",
+        "DG04-11",
+        "DG04-12"
+      ]
+    },
+    "original_4H_count": 56,
+    "HFS_subtasks": [
+      "HFS-S1",
+      "HFS-S2",
+      "HFS-S3",
+      "HFS-S4",
+      "HFS-S5"
+    ],
+    "mac_steps": [
+      "M01",
+      "M02",
+      "M03",
+      "M04",
+      "M05",
+      "M06"
+    ],
+    "existing_gain_ids": [
+      "GAIN-CORE-PALACE-CHAT-001",
+      "GAIN-CORE-LEARN-001",
+      "GAIN-BLD-001"
+    ],
+    "mac_install_go": "NOT_GRANTED",
+    "build_go": "NOT_GRANTED"
+  },
+  "maps": [
+    {
+      "id": "H00",
+      "name": "Ana Sistem ve Yerleşim",
+      "purpose": "Tek ürünün sınırlarını, üç OSi kimliğini ve bağımlılık ilişkisini sabitlemek.",
+      "question": "UstaMimar ana Mac OSi içinde nereye oturur, hangi birimlerdir?",
+      "owner": "Owner",
+      "layers": [
+        "ENGÜRÜ Yerel Mac OSi = ana yerel ortam",
+        "ENGÜRÜ UstaMimar OSi™ = kişisel mühendislik uygulaması",
+        "ENGÜRÜ Builder OSi™ = ayrı fabrika; ilk hedefin bağımlılığı değil"
+      ],
+      "inputs": [
+        "V1.2 owner ürün kimliği",
+        "mevcut V0.1 izole pilot ve Mac Engineer kaynak kanıtı"
+      ],
+      "outputs": [
+        "tek ürün/tek yürütücü mimari kararı",
+        "bileşen–sorumluluk–veri sınırı şeması"
+      ],
+      "interfaces": [
+        "H01 HTML -> H06 görev zarfı",
+        "H02 karar -> H03 araç çağrısı",
+        "H07 güvenlik -> tüm modüller",
+        "H08 kabul -> H00 görünür durum"
+      ],
+      "ids": [
+        "R01",
+        "R07",
+        "R09",
+        "R10",
+        "UM-05",
+        "UM-10",
+        "W01",
+        "W03",
+        "W04"
+      ],
+      "risks": [
+        "Builder ile UstaMimar karıştırılması",
+        "V0.1 server.py ikinci ana üretim motoruna dönüşmesi"
+      ],
+      "positive": "9 harita tek H00 omurgasında H08 panosuyla bağlanır; Hedef 1 ACTIVE, Hedef 2 PARKED.",
+      "negative": "Yanlışlıkla Hedef 2 ACTIVE veya GitHub canlı erişimi gösterilirse mimari denetim FAIL.",
+      "recovery": "V1.2 ürün sınırına dön; tek uygulama, tek yürütücü kuralına göre bağı onar.",
+      "success": "9 haritada ürün kimliği aynı, iki hedef ayrılmış, Builder hiçbir zaman tek yürütücü olarak gösterilmiyor.",
+      "diagram": "flowchart TD\n  O[\"Tek Owner\"] --> M[\"ENGÜRÜ Yerel Mac OSi · ana ortam\"]\n  M --> U[\"UstaMimar OSi · kişisel mühendis\"]\n  M -.-> B[\"Builder OSi · ayrı fabrika\"]\n  U --> E[\"H01 HTML Ekranı\"]\n  U --> X[\"Tek yürütücü + yerel model\"]\n  U --> K[\"H08 Ana Kabul Panosu\"]",
+      "links_out": [
+        "H01",
+        "H02",
+        "H03",
+        "H08"
+      ],
+      "native_groups": [
+        "H01",
+        "H02",
+        "DG02",
+        "DG03",
+        "DG04"
+      ],
+      "goal1": "ACTIVE_HTML_PROTOTYPE_PREPARATION",
+      "goal2": "PARKED_LOCAL_MAC_OSI",
+      "design_score": 100,
+      "design_status": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+      "technical_status": "NOT_IMPLEMENTED_AS_PRODUCT",
+      "simulations": [
+        {
+          "id": "H00-SIM1",
+          "type": "normal",
+          "fixture": "9 harita tek H00 omurgasında H08 panosuyla bağlanır; Hedef 1 ACTIVE, Hedef 2 PARKED.",
+          "expected": "PASS_DESIGN_RULE_ONLY"
+        },
+        {
+          "id": "H00-SIM2",
+          "type": "adversarial",
+          "fixture": "Yanlışlıkla Hedef 2 ACTIVE veya GitHub canlı erişimi gösterilirse mimari denetim FAIL.",
+          "expected": "SAFE_REJECT"
+        },
+        {
+          "id": "H00-SIM3",
+          "type": "interruption_repair",
+          "fixture": "V1.2 ürün sınırına dön; tek uygulama, tek yürütücü kuralına göre bağı onar.",
+          "expected": "HOLD_OR_RECOVERY_NOT_FAKE_FINISH"
+        }
+      ],
+      "file": "haritalar/H00_HARITA.md"
+    },
+    {
+      "id": "H01",
+      "name": "HTML Ekranı ve Kullanıcı Deneyimi",
+      "purpose": "Tek ekranla görev-plan-onay-ilerleme-sonuç-devam etkileşimini erişilebilir tasarlamak.",
+      "question": "Tek kullanıcı hangi ekranda hangi gerçek işi görür?",
+      "owner": "Owner + UI",
+      "layers": [
+        "görev girişi / hedef / izinli çalışma alanı",
+        "plan görüntüsü / açık onay ve iptal",
+        "canlı durum / çıktı yolu / SHA / test makbuzu / devam"
+      ],
+      "inputs": [
+        "H06 görev durumu salt okunur API",
+        "H08 kabul verisi salt okunur görünümü"
+      ],
+      "outputs": [
+        "görsel görev ekranı ve geri bildirim",
+        "açılır ayrıntılı test makbuzları"
+      ],
+      "interfaces": [
+        "GET /api/task/{id} (tasarım; mevcut canlı rota değildir)",
+        "POST /api/task/{id}/approve (tasarım; owner token ile)",
+        "GET /api/dashboard (salt okunur özet, tasarım)"
+      ],
+      "ids": [
+        "R01",
+        "R02",
+        "UM-02",
+        "UM-18",
+        "W07",
+        "W09",
+        "W15"
+      ],
+      "risks": [
+        "yalnız HTML file:// ile yerel dosya yazabileceği sanılması",
+        "görev tamamlanmadan yeşil durum gösterilmesi"
+      ],
+      "positive": "Dar görev girildiğinde plan ve izinli eylem görünür, makbuz olmadan PASS görünmez.",
+      "negative": "API başarısız yanıtında görsel PASS yazılmaz ve ilgili açık neden görünür.",
+      "recovery": "Yeniden bağlantı/yenileme sonrası task_id ile eski makbuzlara geri dönülür.",
+      "success": "Klavye, ekran okuyucu, hata mesajı ve işin sonucu ölçülür; gerçek Safari kabulü W15 bekler.",
+      "diagram": "flowchart LR\n  I[\"Görev\"] --> P[\"Plan\"] --> A[\"Onay\"] --> T[\"İcra Durumu\"] --> R[\"Çıktı ve Kanıt\"] --> S[\"Devam\"]\n  T -->|\"HOLD / dur\"| S",
+      "links_out": [
+        "H02",
+        "H06"
+      ],
+      "native_groups": [
+        "H01",
+        "H02",
+        "DG02",
+        "DG03",
+        "DG04"
+      ],
+      "goal1": "ACTIVE_HTML_PROTOTYPE_PREPARATION",
+      "goal2": "PARKED_LOCAL_MAC_OSI",
+      "design_score": 100,
+      "design_status": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+      "technical_status": "NOT_IMPLEMENTED_AS_PRODUCT",
+      "simulations": [
+        {
+          "id": "H01-SIM1",
+          "type": "normal",
+          "fixture": "Dar görev girildiğinde plan ve izinli eylem görünür, makbuz olmadan PASS görünmez.",
+          "expected": "PASS_DESIGN_RULE_ONLY"
+        },
+        {
+          "id": "H01-SIM2",
+          "type": "adversarial",
+          "fixture": "API başarısız yanıtında görsel PASS yazılmaz ve ilgili açık neden görünür.",
+          "expected": "SAFE_REJECT"
+        },
+        {
+          "id": "H01-SIM3",
+          "type": "interruption_repair",
+          "fixture": "Yeniden bağlantı/yenileme sonrası task_id ile eski makbuzlara geri dönülür.",
+          "expected": "HOLD_OR_RECOVERY_NOT_FAKE_FINISH"
+        }
+      ],
+      "file": "haritalar/H01_HARITA.md"
+    },
+    {
+      "id": "H02",
+      "name": "Beyin ve Karar Mimarisi",
+      "purpose": "Yerel modelin önerisini görev/sözleşme/otorite kontrolüyle sınırlayarak karar üretmek.",
+      "question": "Usta nasıl düşünüyor ve riskli kararı kim veriyor?",
+      "owner": "Tek Usta karar katmanı + owner",
+      "layers": [
+        "K01–K03 hedef ve bağlam",
+        "K04–K06 hazırlık ve plan",
+        "K07–K09 inşa kontrolü",
+        "K10–K12 finiş ve seçici öğrenim"
+      ],
+      "inputs": [
+        "görev zarfı, kabul ID ve kaynak SHA",
+        "çevrimdışı Ollama/Qwen model yanıtı"
+      ],
+      "outputs": [
+        "yapılandırılmış plan ve risk sınıfı",
+        "yetkilendirilmeyi bekleyen araç isteği"
+      ],
+      "interfaces": [
+        "plan.task_id = görev zarfı task_id",
+        "model_output = öneri; authority_ref üretmez",
+        "plan -> H07 kontrol -> H03 araç"
+      ],
+      "ids": [
+        "R02",
+        "R06",
+        "R08",
+        "R12",
+        "UM-03",
+        "UM-10",
+        "UM-12",
+        "W02",
+        "W08"
+      ],
+      "risks": [
+        "prompt injection ile sahte owner yetkisi",
+        "modelin uydurduğu kaynak veya test"
+      ],
+      "positive": "Gerekli kaynak varsa plan oluşturulur ve scoped onaya gönderilir.",
+      "negative": "Modelin özgün dosyadaki kötü niyetli talimatı yetki olarak kabul edilmez.",
+      "recovery": "Kırık plan geçersiz şema olarak HOLD; deterministik başlangıç planıyla onarım adımı önerilir.",
+      "success": "Model hiçbir koşulda kendi yetkisini veya bağımsız kabulünü üretmez.",
+      "diagram": "flowchart TD\n  G[\"Görev ve köken\"] --> C[\"K01–K06 hedef/hazırlık\"] --> L[\"Ollama/Qwen · plan adayı\"] --> V{\"Kaynak, şema, yetki?\"}\n  V -->|Evet| X[\"H03 izinli araç talebi\"]\n  V -->|Hayır| H[\"HOLD / owner kararı\"]\n  X --> D[\"K10–K12 sonuç ve öğrenim\"]",
+      "links_out": [
+        "H03",
+        "H07"
+      ],
+      "native_groups": [
+        "H01",
+        "H02",
+        "DG02",
+        "DG03",
+        "DG04"
+      ],
+      "goal1": "ACTIVE_HTML_PROTOTYPE_PREPARATION",
+      "goal2": "PARKED_LOCAL_MAC_OSI",
+      "design_score": 100,
+      "design_status": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+      "technical_status": "NOT_IMPLEMENTED_AS_PRODUCT",
+      "simulations": [
+        {
+          "id": "H02-SIM1",
+          "type": "normal",
+          "fixture": "Gerekli kaynak varsa plan oluşturulur ve scoped onaya gönderilir.",
+          "expected": "PASS_DESIGN_RULE_ONLY"
+        },
+        {
+          "id": "H02-SIM2",
+          "type": "adversarial",
+          "fixture": "Modelin özgün dosyadaki kötü niyetli talimatı yetki olarak kabul edilmez.",
+          "expected": "SAFE_REJECT"
+        },
+        {
+          "id": "H02-SIM3",
+          "type": "interruption_repair",
+          "fixture": "Kırık plan geçersiz şema olarak HOLD; deterministik başlangıç planıyla onarım adımı önerilir.",
+          "expected": "HOLD_OR_RECOVERY_NOT_FAKE_FINISH"
+        }
+      ],
+      "file": "haritalar/H02_HARITA.md"
+    },
+    {
+      "id": "H03",
+      "name": "Yürütücü ve Araç Mimarisi",
+      "purpose": "Gerçek dosya ve kod işini mevcut tek yerel yürütücü ile yapmak.",
+      "question": "Plan nasıl gerçek dosyaya, teste ve kanıta dönüşür?",
+      "owner": "Güvenli tool broker",
+      "layers": [
+        "V0.1 izole arayüz yeniden kullanım adayı",
+        "Mac Engineer canlı süreç–kaynak SHA doğrulaması",
+        "tek executor adaptörü / izolasyon / tool allowlist"
+      ],
+      "inputs": [
+        "owner yetkili görev zarfı ve plan",
+        "izinli dosya/komut argümanları"
+      ],
+      "outputs": [
+        "diskte gerçek çıktı, önce/sonra SHA",
+        "komut exit code, stdout/stderr, test makbuzu"
+      ],
+      "interfaces": [
+        "job_id↔task_id↔contract_sha256",
+        "subprocess runner: allowlist+timeout; genel shell yetkisi yok",
+        "her yan etki H06 checkpoint ile tekil"
+      ],
+      "ids": [
+        "R03",
+        "R04",
+        "R08",
+        "R09",
+        "R10",
+        "R11",
+        "UM-04",
+        "UM-05",
+        "UM-06",
+        "UM-07",
+        "W03",
+        "W07",
+        "W08",
+        "W09"
+      ],
+      "risks": [
+        "ikinci üretim motoru",
+        "kapsam dışı dosya yazımı veya kör patch"
+      ],
+      "positive": "İzinli workspace içinde kod/dosya üretilir ve geri okunur.",
+      "negative": "Symlink escape, overwrite, süresiz shell ve yanlış SHA fail-closed reddedilir.",
+      "recovery": "Kademeli staging + rollback; belirsiz yan etki HOLD_RECONCILE.",
+      "success": "İki farklı gerçek mühendislik işinde çıktı + test + geri okuma, Hedef 1 bağımsız kanıtla.",
+      "diagram": "flowchart TD\n  Z[\"H06 Yetkili görev\"] --> T[\"Tek tool broker\"]\n  T --> D[\"İzinli dosya\"]\n  T --> C[\"Sınırlı komut ve test\"]\n  T --> B[\"Yerel HTML tarayıcı testi\"]\n  D --> R[\"SHA + geri okuma\"]\n  C --> R\n  B --> R\n  R --> V[\"Ayrı doğrulayıcı\"]",
+      "links_out": [
+        "H04",
+        "H05",
+        "H06"
+      ],
+      "native_groups": [
+        "H01",
+        "H02",
+        "DG02",
+        "DG03",
+        "DG04"
+      ],
+      "goal1": "ACTIVE_HTML_PROTOTYPE_PREPARATION",
+      "goal2": "PARKED_LOCAL_MAC_OSI",
+      "design_score": 100,
+      "design_status": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+      "technical_status": "NOT_IMPLEMENTED_AS_PRODUCT",
+      "simulations": [
+        {
+          "id": "H03-SIM1",
+          "type": "normal",
+          "fixture": "İzinli workspace içinde kod/dosya üretilir ve geri okunur.",
+          "expected": "PASS_DESIGN_RULE_ONLY"
+        },
+        {
+          "id": "H03-SIM2",
+          "type": "adversarial",
+          "fixture": "Symlink escape, overwrite, süresiz shell ve yanlış SHA fail-closed reddedilir.",
+          "expected": "SAFE_REJECT"
+        },
+        {
+          "id": "H03-SIM3",
+          "type": "interruption_repair",
+          "fixture": "Kademeli staging + rollback; belirsiz yan etki HOLD_RECONCILE.",
+          "expected": "HOLD_OR_RECOVERY_NOT_FAKE_FINISH"
+        }
+      ],
+      "file": "haritalar/H03_HARITA.md"
+    },
+    {
+      "id": "H04",
+      "name": "Yetenek Haritası",
+      "purpose": "32 muadil başlığın ve 18 UM izinin gerçek araçla yapılabilirliğini ve önceliğini ayırmak.",
+      "question": "Usta neleri gerçekten yapabilir; neler sıradadır?",
+      "owner": "Yetenek kataloğu (tek defter)",
+      "layers": [
+        "P0 çekirdek çok adımlı iş, kod, dosya, test, finiş",
+        "P1 Safari, belge/tablo/sunum, yerel arama",
+        "P2 ses/medya ve çevrimdışı kapsam dışı bulut olanakları"
+      ],
+      "inputs": [
+        "WC-01..WC-32 tarihsel tasarım referansı",
+        "UM-01..UM-18 tasarım izleri"
+      ],
+      "outputs": [
+        "capability_id→araç→kanıt→dürüst durum matrisi",
+        "P0/P1/P2 sıralaması"
+      ],
+      "interfaces": [
+        "UM-01..18 ↔ kaynak R ve W eşleşmesi",
+        "muadil kanıt yoksa comparator_state NOT_TESTED"
+      ],
+      "ids": [
+        "R01",
+        "R11",
+        "UM-01",
+        "UM-03",
+        "UM-04",
+        "UM-06",
+        "UM-08",
+        "UM-12",
+        "UM-18",
+        "W02",
+        "W05",
+        "W09"
+      ],
+      "risks": [
+        "muadil özel yetenekleri yerel eşdeğer ilan etmek",
+        "tasarım kapsamının gerçek işlev sayılması"
+      ],
+      "positive": "32 WC tekil tasarım izi ayrı gereksinime ve P sırasına bağlı.",
+      "negative": "Canlı bulut tarayıcı özelliği OFFLINE hedefe PASS olarak yazılamaz.",
+      "recovery": "Belirsiz muadil alanı CANDIDATE/NOT_TESTED tut, gerektiğinde kapsam dışına ayrıştır.",
+      "success": "32 WC ve 18 UM eksiksiz eşlenir; gerçek araçsız yetenek PASS alamaz.",
+      "diagram": "flowchart TD\n  W[\"Muadil yetenek havuzu · 32 WC\"] --> P0[\"P0 · görev, kod, test, süreklilik\"]\n  W --> P1[\"P1 · Safari, belge, tablo, sunum\"]\n  W --> P2[\"P2 · ses / bulut / çoklu cihaz\"]\n  P0 --> U[\"UM-01…18 kanıt izleri\"]\n  P1 --> U\n  P2 --> H[\"OFFLINE kapsam filtresi\"]",
+      "links_out": [
+        "H05",
+        "H08"
+      ],
+      "native_groups": [
+        "H01",
+        "H02",
+        "DG02",
+        "DG03",
+        "DG04"
+      ],
+      "goal1": "ACTIVE_HTML_PROTOTYPE_PREPARATION",
+      "goal2": "PARKED_LOCAL_MAC_OSI",
+      "design_score": 100,
+      "design_status": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+      "technical_status": "NOT_IMPLEMENTED_AS_PRODUCT",
+      "simulations": [
+        {
+          "id": "H04-SIM1",
+          "type": "normal",
+          "fixture": "32 WC tekil tasarım izi ayrı gereksinime ve P sırasına bağlı.",
+          "expected": "PASS_DESIGN_RULE_ONLY"
+        },
+        {
+          "id": "H04-SIM2",
+          "type": "adversarial",
+          "fixture": "Canlı bulut tarayıcı özelliği OFFLINE hedefe PASS olarak yazılamaz.",
+          "expected": "SAFE_REJECT"
+        },
+        {
+          "id": "H04-SIM3",
+          "type": "interruption_repair",
+          "fixture": "Belirsiz muadil alanı CANDIDATE/NOT_TESTED tut, gerektiğinde kapsam dışına ayrıştır.",
+          "expected": "HOLD_OR_RECOVERY_NOT_FAKE_FINISH"
+        }
+      ],
+      "file": "haritalar/H04_HARITA.md"
+    },
+    {
+      "id": "H05",
+      "name": "Yeterlilik Haritası",
+      "purpose": "Yetenek iddialarını gerçek kullanıcı işi, karşıt test ve bağımsız doğrulamaya bağlamak.",
+      "question": "Beceri ne ölçüde tekrarlanabilir ve güvenilir?",
+      "owner": "Yetkinlik oracle + ayrı verifier",
+      "layers": [
+        "doğru işlev ve kalite",
+        "yetkisiz işlem 0 / sahte PASS 0",
+        "kesinti, dayanıklılık ve ölçülmüş kaynak bütçesi",
+        "doğrulama üreticiden ayrı"
+      ],
+      "inputs": [
+        "UM-01..18 ve ilgili özgün 56 ID",
+        "H03 gerçek test makbuzları"
+      ],
+      "outputs": [
+        "yeterlilik id / ölçüt / metrik / kanıt",
+        "PASS_SCOPED/HOLD/NOT_TESTED"
+      ],
+      "interfaces": [
+        "acceptance_id, threshold, actual, evidence_sha, verifier_ref",
+        "ürün 56 özgün ID paydası bozulmaz"
+      ],
+      "ids": [
+        "R11",
+        "R12",
+        "R14",
+        "UM-06",
+        "UM-08",
+        "UM-09",
+        "UM-11",
+        "UM-18",
+        "W09",
+        "W12",
+        "W13"
+      ],
+      "risks": [
+        "tek geçişli demo başarıya eşdeğer sanılması",
+        "öz doğrulama bağımsız reviewer sayılması"
+      ],
+      "positive": "İki ayrı gerçek iş ve üçlü test için kanıt zorunludur.",
+      "negative": "Bozuk test makbuzu veya yanlış SHA PASS veremez.",
+      "recovery": "RED→kök neden→onarılan kod→GREEN→karşıt→regresyon.",
+      "success": "Her özgün ID ayrı delil taşır; eksik kanıtta tüm ürün PASS olmaz.",
+      "diagram": "flowchart LR\n  Y[\"Yetenek\"] --> G[\"Gerçek görev\"] --> P[\"Pozitif\"] --> N[\"Negatif\"] --> K[\"Kurtarma\"] --> V[\"Bağımsız doğrulama\"] --> A{\"Kabul?\"}",
+      "links_out": [
+        "H06",
+        "H08"
+      ],
+      "native_groups": [
+        "H01",
+        "H02",
+        "DG02",
+        "DG03",
+        "DG04"
+      ],
+      "goal1": "ACTIVE_HTML_PROTOTYPE_PREPARATION",
+      "goal2": "PARKED_LOCAL_MAC_OSI",
+      "design_score": 100,
+      "design_status": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+      "technical_status": "NOT_IMPLEMENTED_AS_PRODUCT",
+      "simulations": [
+        {
+          "id": "H05-SIM1",
+          "type": "normal",
+          "fixture": "İki ayrı gerçek iş ve üçlü test için kanıt zorunludur.",
+          "expected": "PASS_DESIGN_RULE_ONLY"
+        },
+        {
+          "id": "H05-SIM2",
+          "type": "adversarial",
+          "fixture": "Bozuk test makbuzu veya yanlış SHA PASS veremez.",
+          "expected": "SAFE_REJECT"
+        },
+        {
+          "id": "H05-SIM3",
+          "type": "interruption_repair",
+          "fixture": "RED→kök neden→onarılan kod→GREEN→karşıt→regresyon.",
+          "expected": "HOLD_OR_RECOVERY_NOT_FAKE_FINISH"
+        }
+      ],
+      "file": "haritalar/H05_HARITA.md"
+    },
+    {
+      "id": "H06",
+      "name": "Görev, Süreklilik ve Finiş",
+      "purpose": "Tek işin durum makinesini, kesintiden devam ve doğru kapanışını belirlemek.",
+      "question": "Görev nerede başladı, nerede kaldı, nasıl doğrulandı?",
+      "owner": "Tek SQLite görev defteri",
+      "layers": [
+        "tek task_id, idempotency_key ve sözleşme SHA",
+        "checkpoint/restart/atomik durum",
+        "HOLD_RECONCILE + güvenli devam",
+        "finish/next_action + makbuz"
+      ],
+      "inputs": [
+        "H01 görev ve owner onayı",
+        "H02 plan, H03 araç çıktısı"
+      ],
+      "outputs": [
+        "tek görev/jobu bağlayan kanıt zinciri",
+        "ilerleme / açık durum / sonraki hareket"
+      ],
+      "interfaces": [
+        "DRAFT→SOURCE_CHECK→PLAN_READY→OWNER_APPROVED→RUNNING→VERIFYING",
+        "PASS_SCOPED veya HOLD/BLOCKED/CANCELLED; UNKNOWN→HOLD_RECONCILE"
+      ],
+      "ids": [
+        "R02",
+        "R05",
+        "R12",
+        "UM-01",
+        "UM-09",
+        "UM-10",
+        "UM-18",
+        "W07",
+        "W10",
+        "W12",
+        "W14"
+      ],
+      "risks": [
+        "restart ardından mükerrer dış etki",
+        "erken PASS ve checkpoint yok"
+      ],
+      "positive": "Tam görev, tek job ve bağlı kanıt ile VERIFYING sonrası doğrulama.",
+      "negative": "Aynı idempotency_key yeni yan etki oluşturmaz; yetkisiz geçiş reddedilir.",
+      "recovery": "Süreç çökmesi kalıcı defterden devam, belirsiz etki uzlaştırma HOLD.",
+      "success": "Yeniden başlama sonrası görev kaybı 0 ve mükerrer dış etki 0 hedefi gerçek testte kanıtlanır.",
+      "diagram": "stateDiagram-v2\n [*] --> DRAFT\n DRAFT --> SOURCE_CHECK\n SOURCE_CHECK --> PLAN_READY\n PLAN_READY --> OWNER_APPROVED\n OWNER_APPROVED --> RUNNING\n RUNNING --> VERIFYING\n RUNNING --> HOLD_RECONCILE\n VERIFYING --> PASS_SCOPED\n VERIFYING --> HOLD\n HOLD_RECONCILE --> HOLD\n HOLD --> [*]\n PASS_SCOPED --> [*]",
+      "links_out": [
+        "H07",
+        "H08"
+      ],
+      "native_groups": [
+        "H01",
+        "H02",
+        "DG02",
+        "DG03",
+        "DG04"
+      ],
+      "goal1": "ACTIVE_HTML_PROTOTYPE_PREPARATION",
+      "goal2": "PARKED_LOCAL_MAC_OSI",
+      "design_score": 100,
+      "design_status": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+      "technical_status": "NOT_IMPLEMENTED_AS_PRODUCT",
+      "simulations": [
+        {
+          "id": "H06-SIM1",
+          "type": "normal",
+          "fixture": "Tam görev, tek job ve bağlı kanıt ile VERIFYING sonrası doğrulama.",
+          "expected": "PASS_DESIGN_RULE_ONLY"
+        },
+        {
+          "id": "H06-SIM2",
+          "type": "adversarial",
+          "fixture": "Aynı idempotency_key yeni yan etki oluşturmaz; yetkisiz geçiş reddedilir.",
+          "expected": "SAFE_REJECT"
+        },
+        {
+          "id": "H06-SIM3",
+          "type": "interruption_repair",
+          "fixture": "Süreç çökmesi kalıcı defterden devam, belirsiz etki uzlaştırma HOLD.",
+          "expected": "HOLD_OR_RECOVERY_NOT_FAKE_FINISH"
+        }
+      ],
+      "file": "haritalar/H06_HARITA.md"
+    },
+    {
+      "id": "H07",
+      "name": "Güvenlik, Hafıza ve Kurtarma",
+      "purpose": "Yetki sınırı ve Saray göçünü bir tek güvenilir kayıt çizgisine bağlamak.",
+      "question": "Kazanımlar nasıl korunur, eski kayıplar nasıl görünür tutulur?",
+      "owner": "Owner + korumalı kayıt/adaptör",
+      "layers": [
+        "allowlist/origin/CSRF ve prompt injection ret",
+        "HFS-S1 köken, HFS-S2 DAG/CAS",
+        "HFS-S3 manifestli import, HFS-S4 şifreli yedek/restore",
+        "HFS-S5 tek yazar/başlatma ve seçici K12"
+      ],
+      "inputs": [
+        "owner tarafından elle içeri aktarılan kaynağı doğrulanmış dosyalar",
+        "H06 görevin yetki, hash ve durum zinciri"
+      ],
+      "outputs": [
+        "Saray göç denemesi ve SHA manifesti",
+        "kurtarma kanıtı ve kaynak eksiği HOLD"
+      ],
+      "interfaces": [
+        "K03 5 eksik özgün sohbet / K04 tarihsel DAG açıklığı",
+        "22 benzersiz gain_id korunur",
+        "CAS + parent_sha + version, double-writer ret"
+      ],
+      "ids": [
+        "R03",
+        "R07",
+        "R13",
+        "R14",
+        "UM-11",
+        "UM-12",
+        "UM-13",
+        "UM-14",
+        "UM-15",
+        "UM-16",
+        "UM-17",
+        "W05",
+        "W10",
+        "W11"
+      ],
+      "risks": [
+        "eksik orijinal sohbeti uydurarak tamamlamak",
+        "ana indeksi kör yazmak, ikinci ana hafıza başlatmak"
+      ],
+      "positive": "Kaynaklı veri izole workspace içine kayıpsız içe alınır ve SHA geri okunur.",
+      "negative": "Sahte otorite, çakışmalı CAS veya şüpheli kaynak fail-closed; K03/K04 tam PASS edilmez.",
+      "recovery": "Bağımsız şifreli yedekten izole restore ile bütünlük; owner cutover ayrı.",
+      "success": "Göç tam kabul için kaynak+22 ID+DAG+manifest+backup+restore+restart+tek yazar+owner; eksikte HOLD.",
+      "diagram": "flowchart TD\n  S[\"Elle sağlanan kanıtlı Saray kaynağı\"] --> K[\"K03 köken / K04 DAG-CAS\"] --> M[\"SHA manifest\"] --> I[\"İzole içe aktarım\"] --> R[\"Geri okuma\"]\n  I --> B[\"Şifreli yedek\"] --> T[\"İzole geri yükleme\"] --> R\n  R --> O{\"Owner geçiş kararı?\"}\n  O -->|Hayır| H[\"HOLD / kaynak korunur\"]\n  O -->|Evet ve saha kanıtı| C[\"Tek canonical yerel Saray\"]",
+      "links_out": [
+        "H08"
+      ],
+      "native_groups": [
+        "H01",
+        "H02",
+        "DG02",
+        "DG03",
+        "DG04"
+      ],
+      "goal1": "ACTIVE_HTML_PROTOTYPE_PREPARATION",
+      "goal2": "PARKED_LOCAL_MAC_OSI",
+      "design_score": 100,
+      "design_status": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+      "technical_status": "NOT_IMPLEMENTED_AS_PRODUCT",
+      "simulations": [
+        {
+          "id": "H07-SIM1",
+          "type": "normal",
+          "fixture": "Kaynaklı veri izole workspace içine kayıpsız içe alınır ve SHA geri okunur.",
+          "expected": "PASS_DESIGN_RULE_ONLY"
+        },
+        {
+          "id": "H07-SIM2",
+          "type": "adversarial",
+          "fixture": "Sahte otorite, çakışmalı CAS veya şüpheli kaynak fail-closed; K03/K04 tam PASS edilmez.",
+          "expected": "SAFE_REJECT"
+        },
+        {
+          "id": "H07-SIM3",
+          "type": "interruption_repair",
+          "fixture": "Bağımsız şifreli yedekten izole restore ile bütünlük; owner cutover ayrı.",
+          "expected": "HOLD_OR_RECOVERY_NOT_FAKE_FINISH"
+        }
+      ],
+      "file": "haritalar/H07_HARITA.md"
+    },
+    {
+      "id": "H08",
+      "name": "Kalite, Muadil Kıyas ve İki Aşamalı Kabul",
+      "purpose": "Dokuz haritayı özgün ID’lere ve iki ayrı teslim hedefine bağlamak.",
+      "question": "Hedef 1 gerçekten ne zaman PASS, Hedef 2 ne zaman açılabilir?",
+      "owner": "Ana Kabul Panosu / bağımsız denetçi / owner",
+      "layers": [
+        "Hedef 1 ACTIVE: izole çalışan HTML prototip",
+        "Hedef 2 PARKED: Mac OSi; owner MAC_INSTALL_GO bekler",
+        "56 özgün 4H + 18 UM iz + 32 WC tasarım kıyası",
+        "SIM1/SIM2/SIM3 ve DoneCheck/owner ayrımı"
+      ],
+      "inputs": [
+        "H00..H07 haritaları ve kanıtları",
+        "kaynak SHA / görev/test/verifier makbuzu"
+      ],
+      "outputs": [
+        "aktif Hedef 1 kabul özeti",
+        "Hedef 2 ayrı park durumu ve açma şartı"
+      ],
+      "interfaces": [
+        "map_state per map; target1_state/target2_state ayrı",
+        "PASS_SCOPED_DESIGN ≠ HTML_PROTOTYPE_PASS ≠ MAC_WORKING_PRODUCT",
+        "BUILD_GO ve MAC_INSTALL_GO ayrı owner yetkileri"
+      ],
+      "ids": [
+        "R14",
+        "UM-11",
+        "UM-18",
+        "W01",
+        "W02",
+        "W06",
+        "W12",
+        "W13",
+        "W14",
+        "W15"
+      ],
+      "risks": [
+        "100/100 yapısal harita puanını çalışan HTML saymak",
+        "Hedef 2 hazır olmadan Mac’e geçiş"
+      ],
+      "positive": "Yalnız gereken ID ve bağımsız kanıt varsa ilgili hedef PASS.",
+      "negative": "Simülasyon makbuzu gerçek Mac veya HTML icrası yerine geçemez.",
+      "recovery": "Eksik özgün ID ve kaynak drift açık durumda tutulur; hatalı PASS geri çekilir.",
+      "success": "H1 ve H2 ayrı durumlar; H2 açıkça PARKED; sadece owner yetkisiyle saha açılır.",
+      "diagram": "flowchart TD\n  M[\"H00..H07 harita kanıtları\"] --> P[\"Ana Kabul Panosu\"]\n  P --> H1{\"HEDEF 1 HTML prototip\"}\n  H1 -->|\"gerçek prototip testi\"| A[\"HTML_PROTOTYPE_PASS adayı\"]\n  H1 -->|\"eksik kanıt\"| H[\"HOLD / açık ID\"]\n  P --> H2[\"HEDEF 2 MAC · PARKED\"]\n  H2 -.-> G[\"OWNER MAC_INSTALL_GO ayrı\"]",
+      "links_out": [
+        "H00"
+      ],
+      "native_groups": [
+        "H01",
+        "H02",
+        "DG02",
+        "DG03",
+        "DG04"
+      ],
+      "goal1": "ACTIVE_HTML_PROTOTYPE_PREPARATION",
+      "goal2": "PARKED_LOCAL_MAC_OSI",
+      "design_score": 100,
+      "design_status": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+      "technical_status": "NOT_IMPLEMENTED_AS_PRODUCT",
+      "simulations": [
+        {
+          "id": "H08-SIM1",
+          "type": "normal",
+          "fixture": "Yalnız gereken ID ve bağımsız kanıt varsa ilgili hedef PASS.",
+          "expected": "PASS_DESIGN_RULE_ONLY"
+        },
+        {
+          "id": "H08-SIM2",
+          "type": "adversarial",
+          "fixture": "Simülasyon makbuzu gerçek Mac veya HTML icrası yerine geçemez.",
+          "expected": "SAFE_REJECT"
+        },
+        {
+          "id": "H08-SIM3",
+          "type": "interruption_repair",
+          "fixture": "Eksik özgün ID ve kaynak drift açık durumda tutulur; hatalı PASS geri çekilir.",
+          "expected": "HOLD_OR_RECOVERY_NOT_FAKE_FINISH"
+        }
+      ],
+      "file": "haritalar/H08_HARITA.md"
+    }
+  ],
+  "edges": {
+    "H00": [
+      "H01",
+      "H02",
+      "H03",
+      "H08"
+    ],
+    "H01": [
+      "H02",
+      "H06"
+    ],
+    "H02": [
+      "H03",
+      "H07"
+    ],
+    "H03": [
+      "H04",
+      "H05",
+      "H06"
+    ],
+    "H04": [
+      "H05",
+      "H08"
+    ],
+    "H05": [
+      "H06",
+      "H08"
+    ],
+    "H06": [
+      "H07",
+      "H08"
+    ],
+    "H07": [
+      "H08"
+    ],
+    "H08": [
+      "H00"
+    ]
+  },
+  "rubric": [
+    [
+      "G01",
+      "Tek hedef, sorumluluk ve aktif/askıda sınırı"
+    ],
+    [
+      "G02",
+      "Kaynak ve korunacak canonical sürüm kimliği"
+    ],
+    [
+      "G03",
+      "Bileşen, bağımlılık ve ikinci motor engeli"
+    ],
+    [
+      "G04",
+      "Girdi ve çıktı veri sözleşmesi"
+    ],
+    [
+      "G05",
+      "Gerçek şema/akış gösterimi"
+    ],
+    [
+      "G06",
+      "Pozitif senaryo ve gözlenebilir sonuç"
+    ],
+    [
+      "G07",
+      "Olumsuz ve karşıt senaryo/ret kararı"
+    ],
+    [
+      "G08",
+      "Kesinti, onarım ve kurtarma senaryosu"
+    ],
+    [
+      "G09",
+      "Özgün R/UM/W/4H kanıt bağlantısı"
+    ],
+    [
+      "G10",
+      "Tasarım başarısı ile gerçek saha kabulünün ayrılması"
+    ]
+  ],
+  "comparators": {
+    "ChatGPT Work": {
+      "take": [
+        "çok adımlı görev, izleme ve teslim",
+        "kaynak kullanımı ve dosya işleme",
+        "belge/rapor üretimi"
+      ],
+      "not_promised": [
+        "bulut tarayıcı",
+        "Mac kapalıyken görev devamı",
+        "bulut plan/kredi eşdeğerliği"
+      ],
+      "source_kind": "historical structured capability comparison - real matched bench NOT_TESTED",
+      "source_urls": [
+        "https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex"
+      ],
+      "target_ids": [
+        "WC-01",
+        "WC-02",
+        "WC-13",
+        "WC-14",
+        "WC-26",
+        "WC-27"
+      ],
+      "native_um": [
+        "UM-01",
+        "UM-02",
+        "UM-09",
+        "UM-18"
+      ],
+      "source_scope": "documented role, not local run",
+      "real_peer_benchmark_state": "NOT_TESTED",
+      "requires_vendor_installation": false
+    },
+    "Claude Code": {
+      "take": [
+        "çok dosyalı kod tabanı kavrama",
+        "hedefli değişiklik/diff",
+        "test komutu/onarım döngüsü"
+      ],
+      "not_promised": [
+        "Claude model muhakeme eşitliği",
+        "vendor bağlı servisler"
+      ],
+      "source_kind": "candidate role capability; no live peer run",
+      "source_urls": [
+        "https://docs.anthropic.com/en/docs/claude-code/getting-started"
+      ],
+      "target_ids": [
+        "WC-09",
+        "WC-10",
+        "WC-13",
+        "WC-30"
+      ],
+      "native_um": [
+        "UM-04",
+        "UM-06",
+        "UM-07"
+      ],
+      "source_scope": "candidate functional idea, actual peer run NOT_TESTED",
+      "real_peer_benchmark_state": "NOT_TESTED",
+      "requires_vendor_installation": false
+    },
+    "OpenAI Codex": {
+      "take": [
+        "proje bağlamı ve kod iş akışı",
+        "düzenleme ve otomatik test",
+        "görev/devam yapısı"
+      ],
+      "not_promised": [
+        "bulut icra ve çoklu hesap senkronizasyonu"
+      ],
+      "source_kind": "candidate role capability; no live peer run",
+      "source_urls": [
+        "https://developers.openai.com/blog/run-long-horizon-tasks-with-codex",
+        "https://developers.openai.com/learn/codex"
+      ],
+      "target_ids": [
+        "WC-01",
+        "WC-09",
+        "WC-10",
+        "WC-27",
+        "WC-30"
+      ],
+      "native_um": [
+        "UM-05",
+        "UM-06",
+        "UM-09"
+      ],
+      "source_scope": "candidate workflow idea, actual peer run NOT_TESTED",
+      "real_peer_benchmark_state": "NOT_TESTED",
+      "requires_vendor_installation": false
+    },
+    "Aider": {
+      "take": [
+        "ilgili dosyaları seçen proje haritası",
+        "küçük denetlenebilir değişiklik",
+        "testle sürülen onarım"
+      ],
+      "not_promised": [
+        "gelişmiş vendor agent özerkliği"
+      ],
+      "source_kind": "candidate role capability; no live peer run",
+      "source_urls": [
+        "https://aider.chat/docs/repomap.html",
+        "https://aider.chat/docs/git.html"
+      ],
+      "target_ids": [
+        "WC-10",
+        "WC-13",
+        "WC-30"
+      ],
+      "native_um": [
+        "UM-06",
+        "UM-09"
+      ],
+      "source_scope": "documented repository map/git rollback pattern; actual peer run NOT_TESTED",
+      "real_peer_benchmark_state": "NOT_TESTED",
+      "requires_vendor_installation": false
+    }
+  },
+  "work_lanes": {
+    "W01-W02": "Hedef/ana mimari ve ad kabulü; karşılaştırma metriklerini dondur",
+    "W03-W06": "Kaynak, canlı yürütücü uyumu, tehdit modelleme, owner BUILD_GO ayrı",
+    "W07-W10": "İzole HTML→gerçek yürütücü, model, kod, test ve kesinti",
+    "W11": "HFS-S1..S5 Saray uzmanlığı, izole aktarım/restore denemeleri",
+    "W12-W14": "Üçlü gerçek görev testleri, ayrı verifier, pre-Mac paket",
+    "W15": "YALNIZ Hedef2 owner MAC_INSTALL_GO sonrası gerçek Mac saha M01..M06"
+  },
+  "dashboard": {
+    "name": "UstaMimar Ana Kabul Panosu",
+    "role": "Tek kaynaklı salt okunur kabul projeksiyonu; yeni owner/DoneCheck otoritesi değildir",
+    "input_fields": [
+      "task_id",
+      "contract_ref",
+      "contract_sha256",
+      "map_id",
+      "original_acceptance_ids",
+      "source_sha256",
+      "artifact_sha256",
+      "test_receipt",
+      "verifier_ref",
+      "owner_authority_state",
+      "environment",
+      "claim_scope"
+    ],
+    "output_fields": [
+      "per_map_design_status",
+      "per_map_runtime_status",
+      "target1_status",
+      "target2_status",
+      "open_original_ids",
+      "next_single_action"
+    ],
+    "initial": {
+      "map_design": "PASS_SCOPED_DESIGN_SELF_CHECKED_ONLY",
+      "target1": "HOLD_REAL_HTML_PROTOTYPE",
+      "target2": "PARKED",
+      "mac_field": "NOT_TESTED",
+      "4h_real_accepted": "0/56_PREVIOUS_SOURCE_STATE",
+      "saray_K03_K04": "HOLD",
+      "new_functional_gain_id": 0
+    },
+    "finish_rule": "only actual evidence + distinct independent verifier + original acceptance + required owner thresholds"
+  }
+}

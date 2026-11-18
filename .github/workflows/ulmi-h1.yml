@@ -1,0 +1,77 @@
+name: ULMi H1 · Source and Engineering
+on:
+  push:
+    branches:
+      - 'work/ulmi-h1-*'
+    paths:
+      - 'products/ulmi-h1/**'
+      - '.github/workflows/ulmi-h1.yml'
+  pull_request:
+    paths:
+      - 'products/ulmi-h1/**'
+      - '.github/workflows/ulmi-h1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ulmi-h1-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  engineering:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: products/ulmi-h1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install test prerequisites
+        run: python -m pip install 'requests>=2.31,<3'
+      - name: Original V22 and pilot A/B/C integrity
+        run: python -B tools/verify_contracts.py
+      - name: Real HTTP SQLite and security regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p EVIDENCE
+          for script in TESTS/test_r2_project_chat_real_http.py TESTS/run_project_bound_e2e.py TESTS/run_generated_taskboard_e2e.py TESTS/run_final_e2e.py TESTS/run_v4_safe_rollback.py TESTS/run_v7_shared_ai_source_boundary.py TESTS/reconcile_v22_12_original_tasks.py; do
+            echo "RUN $script"
+            python -B "$script"
+          done
+      - name: Source-only archive adversarial tests
+        run: python -B tools/test_release_integrity.py
+      - name: W07 W08 real HTTP restart security
+        run: python -B TESTS/run_v7_w07_w08_real_http_and_restart.py --product PRODUCT --output "${{ runner.temp }}/ulmi-h1-w07w08.json"
+      - name: Two-build deterministic H1 technical package
+        run: python -B tools/build_release.py '${{ runner.temp }}/ulmi-h1-technical.zip'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ulmi-h1-technical-candidate-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/ulmi-h1-technical.zip
+            ${{ runner.temp }}/ulmi-h1-technical.receipt.json
+            ${{ runner.temp }}/ulmi-h1-w07w08.json
+          retention-days: 7
+          if-no-files-found: error
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: products/ulmi-h1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install browser runner
+        run: |
+          python -m pip install 'playwright>=1.55,<2' 'requests>=2.31,<3'
+          python -m playwright install --with-deps chromium
+      - name: Project switch pending-chat race — mock API boundary
+        run: python -B tools/test_project_chat_switch_race.py --output "${{ runner.temp }}/ulmi-h1-project-switch.json"
+      - name: Real Chromium H1 browser E2E (independent of owner UAT)
+        run: python -B tools/browser_h1_e2e.py

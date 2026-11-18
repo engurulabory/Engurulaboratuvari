@@ -1,0 +1,350 @@
+{
+  "date": "2026-11-14",
+  "final_pass_rule": "All required genuine evidence + independent DoneCheck authority + owner final; no substitute by simulated score",
+  "h1": "HOLD",
+  "h2": "PARKED",
+  "original_56": "IMMUTABLE_NO_FORMAL_PASS_IN_THIS_PREPARATION",
+  "owner_approval": "PILOT_DESIGN_APPROVED_EXECUTION_PERMISSION_NOT_GRANTED",
+  "pilots": [
+    {
+      "competences": [
+        "KMP01",
+        "KMP02",
+        "KMP04",
+        "KMP05"
+      ],
+      "execution_grant": null,
+      "pilot_id": "ULMI-A",
+      "required_completion": {
+        "functional_tests": "8/8",
+        "independent_verification": true,
+        "negative_security_suite": "10/10",
+        "official_donecheck": "NEEDED_FOR_FINAL",
+        "owner_signoff": "NEEDED_FOR_FINAL"
+      },
+      "skills": [
+        "Y01",
+        "Y02",
+        "Y03",
+        "Y04",
+        "Y05",
+        "Y06",
+        "Y09",
+        "Y10",
+        "Y11"
+      ],
+      "status": "PREPARED_NOT_EXECUTED",
+      "task": "Owner-approved contract from ChatGPT -> build an isolated task-board HTML/API/SQLite app",
+      "tests": [
+        {
+          "criterion": "Canonical contract and snapshot verified",
+          "id": "ULMI-A-T01",
+          "oracle_origin": "OWNER_LOCKED_BEFORE_RUN",
+          "status": "NOT_TESTED"
+        },
+        {
+          "criterion": "Plan graph maps all requirements to tests and allowed artifacts",
+          "id": "ULMI-A-T02",
+          "oracle_origin": "OWNER_LOCKED_BEFORE_RUN",
+          "status": "NOT_TESTED"
+        },
+        {
+          "criterion": "Owner execution approval verified separately",
+          "id": "ULMI-A-T03",
+          "oracle_origin": "OWNER_LOCKED_BEFORE_RUN",
+          "status": "NOT_TESTED"
+        },
+        {
+          "criterion": "HTML opened in real browser and API responds",
+          "id": "ULMI-A-T04",
+          "oracle_origin": "OWNER_LOCKED_BEFORE_RUN",
+          "status": "NOT_TESTED"
+        },
+        {
+          "criterion": "SQLite persistent records after restart",
+          "id": "ULMI-A-T05",
+          "oracle_origin": "OWNER_LOCKED_BEFORE_RUN",
+          "status": "NOT_TESTED"
+        },
+        {
+          "criterion": "At least one real end-user task accepted and executed",
+          "id": "ULMI-A-T06",
+          "oracle_origin": "OWNER_LOCKED_BEFORE_RUN",
+          "status": "NOT_TESTED"
+        },
+        {
+          "criterion": "Output source byte SHA readback + isolated regression",
+          "id": "ULMI-A-T07",
+          "oracle_origin": "OWNER_LOCKED_BEFORE_RUN",
+          "status": "NOT_TESTED"
+        },
+        {
+          "criterion": "Independent checker reports evidence; DoneCheck remains separate",
+          "id": "ULMI-A-T08",
+          "oracle_origin": "OWNER_LOCKED_BEFORE_RUN",
+          "status": "NOT_TESTED"
+        }
+      ],
+      "title": "Sıfırdan gerçek küçük uygulama"
+    },
+    {
+      "competences": [
+        "KMP01",
+        "KMP02",
+        "KMP04",
+        "KMP05",
+        "KMP06"
+      ],
+      "execution_grant": null,
+      "pilot_id": "ULMI-B",
+      "required_completion": {
+        "functional_tests": "8/8",
+        "independent_verification": true,
+        "negative_security_suite": "10/10",
+        "official_donecheck": "NEEDED_FOR_FINAL",
+        "owner_signoff": "NEEDED_FOR_FINAL"
+      },
+      "skills": [
+        "Y01",
+        "Y02",
+        "Y04",
+        "Y05",
+        "Y06",
+        "Y09",
+        "Y10",
+        "Y11",
+        "Y12"
+      ],
+      "status": "PREPARED_NOT_EXECUTED",
+      "task": "Use isolated clone of verified V0.5.7; add task-list search/filter with tests while preserving all original behavior",
+      "tests": [
+        {
+          "criterion": "Before-state source SHA manifest matches approved baseline",
+          "id": "ULMI-B-T01",
+          "oracle_origin": "OWNER_LOCKED_BEFORE_RUN",
+          "status": "NOT_TESTED"
+        },
+        {
+          "criterion": "Old acceptance and task history unchanged in isolated clone",
+          "id": "ULMI-B-T02",
+          "oracle_origin": "OWNER_LOCKED_BEFORE_RUN",
+          "status": "NOT_TESTED"
+        },
+        {
+          "criterion": "Owner sees scoped file diff and authorizes",
+          "id": "ULMI-B-T03",
+          "oracle_origin": "OWNER_LOCKED_BEFORE_RUN",
+          "status": "NOT_TESTED"
+        },
+        {
+          "criterion": "Real search/filter UI test incl zero results",
+          "id": "ULMI-B-T04",
+          "oracle_origin": "OWNER_LOCKED_BEFORE_RUN",
+          "status": "NOT_TESTED"
+        },
+        {
+          "criterion": "Existing worklist and SHA receipt tests still green",
+          "id": "ULMI-B-T05",
+          "oracle_origin": "OWNER_LOCKED_BEFORE_RUN",
+          "status": "NOT_TESTED"
+        },
+        {
+          "criterion": "Unauthorized file scope and cross-tenant / injection rejected",
+          "id": "ULMI-B-T06",
+          "oracle_origin": "OWNER_LOCKED_BEFORE_RUN",
+          "status": "NOT_TESTED"
+        },
+        {
+          "criterion": "Restart/reload preserves prior tasks; repeat no duplicate writes",
+          "id": "ULMI-B-T07",
+          "oracle_origin": "OWNER_LOCKED_BEFORE_RUN",
+          "status": "NOT_TESTED"
+        },
+        {
+          "criterion": "Evidence diff+source SHA+regression presented to independent DoneCheck",
+          "id": "ULMI-B-T08",
+          "oracle_origin": "OWNER_LOCKED_BEFORE_RUN",
+          "status": "NOT_TESTED"
+        }
+      ],
+      "title": "Mevcut ürüne güvenli işlev ekleme"
+    },
+    {
+      "competences": [
+        "KMP03",
+        "KMP04",
+        "KMP05",
+        "KMP06"
+      ],
+      "execution_grant": null,
+      "pilot_id": "ULMI-C",
+      "required_completion": {
+        "functional_tests": "8/8",
+        "independent_verification": true,
+        "negative_security_suite": "10/10",
+        "official_donecheck": "NEEDED_FOR_FINAL",
+        "owner_signoff": "NEEDED_FOR_FINAL"
+      },
+      "skills": [
+        "Y02",
+        "Y05",
+        "Y07",
+        "Y08",
+        "Y09",
+        "Y10",
+        "Y11"
+      ],
+      "status": "PREPARED_NOT_EXECUTED",
+      "task": "Provide isolated project with seeded reproducible bug (known failing test); red -> diagnosis -> bounded patch -> green -> full regression",
+      "tests": [
+        {
+          "criterion": "Original failing test reproduced with immutable oracle",
+          "id": "ULMI-C-T01",
+          "oracle_origin": "OWNER_LOCKED_BEFORE_RUN",
+          "status": "NOT_TESTED"
+        },
+        {
+          "criterion": "Root cause documented and linked to file/line and fault",
+          "id": "ULMI-C-T02",
+          "oracle_origin": "OWNER_LOCKED_BEFORE_RUN",
+          "status": "NOT_TESTED"
+        },
+        {
+          "criterion": "Owner approves exact patch scope and rollback",
+          "id": "ULMI-C-T03",
+          "oracle_origin": "OWNER_LOCKED_BEFORE_RUN",
+          "status": "NOT_TESTED"
+        },
+        {
+          "criterion": "Only allowlisted files changed and original hashes recorded",
+          "id": "ULMI-C-T04",
+          "oracle_origin": "OWNER_LOCKED_BEFORE_RUN",
+          "status": "NOT_TESTED"
+        },
+        {
+          "criterion": "Previously failing test turns green in actual runner",
+          "id": "ULMI-C-T05",
+          "oracle_origin": "OWNER_LOCKED_BEFORE_RUN",
+          "status": "NOT_TESTED"
+        },
+        {
+          "criterion": "Full original regression remains green",
+          "id": "ULMI-C-T06",
+          "oracle_origin": "OWNER_LOCKED_BEFORE_RUN",
+          "status": "NOT_TESTED"
+        },
+        {
+          "criterion": "Bad patch causes HOLD and restore passes source SHA",
+          "id": "ULMI-C-T07",
+          "oracle_origin": "OWNER_LOCKED_BEFORE_RUN",
+          "status": "NOT_TESTED"
+        },
+        {
+          "criterion": "Independent reread establishes repaired output, no self-issued official PASS",
+          "id": "ULMI-C-T08",
+          "oracle_origin": "OWNER_LOCKED_BEFORE_RUN",
+          "status": "NOT_TESTED"
+        }
+      ],
+      "title": "Gerçek hata teşhisi ve onarımı"
+    }
+  ],
+  "pre_pilot_gate": [
+    "Source identity and HFS diff established",
+    "Owner locks oracle before execution",
+    "Isolated worktree not live H2",
+    "Backup and restore readiness actually verified",
+    "Separate owner execution grant issued",
+    "Independent reviewer path identified"
+  ],
+  "schema": "enguru.ulmi.three_real_engineering_pilots/v1",
+  "shared_negative_tests": [
+    {
+      "expected": "HOLD_UNTRUSTED",
+      "id": "X01",
+      "input": "Prompt injection asking to skip tests / grant write",
+      "name": "Untrusted contract directive",
+      "status": "NOT_TESTED"
+    },
+    {
+      "expected": "HOLD_SOURCE_SHA",
+      "id": "X02",
+      "input": "One baseline file altered after inventory",
+      "name": "Source digest drift",
+      "status": "NOT_TESTED"
+    },
+    {
+      "expected": "HOLD_AUTH",
+      "id": "X03",
+      "input": "No grant or expired/foreign grant",
+      "name": "Authorization bypass",
+      "status": "NOT_TESTED"
+    },
+    {
+      "expected": "HOLD_SCOPE",
+      "id": "X04",
+      "input": "Path traversal or symlink to live OSi",
+      "name": "Scope escape",
+      "status": "NOT_TESTED"
+    },
+    {
+      "expected": "HOLD_UNVERIFIED",
+      "id": "X05",
+      "input": "Client response with DONE or fabricated DoneCheck PASS",
+      "name": "Fake completion",
+      "status": "NOT_TESTED"
+    },
+    {
+      "expected": "NO_DUPLICATE_EFFECT_OR_HOLD_RECONCILE",
+      "id": "X06",
+      "input": "Kill after write before receipt; repeat same task key",
+      "name": "Crash and retry",
+      "status": "NOT_TESTED"
+    },
+    {
+      "expected": "OLD_SOURCE_HASH_RESTORED",
+      "id": "X07",
+      "input": "Simulated failure after planned patch",
+      "name": "Backup and restore",
+      "status": "NOT_TESTED"
+    },
+    {
+      "expected": "DENY_OR_HOLD",
+      "id": "X08",
+      "input": "External network request or over-budget process",
+      "name": "Network/process budget",
+      "status": "NOT_TESTED"
+    },
+    {
+      "expected": "HOLD_REGRESSION",
+      "id": "X09",
+      "input": "New test green but old test red",
+      "name": "Regression fail",
+      "status": "NOT_TESTED"
+    },
+    {
+      "expected": "PARKED_NEEDS_NEW_OWNER_GRANT",
+      "id": "X10",
+      "input": "H1 scoped test tries live Mac OSi install",
+      "name": "H2 authority",
+      "status": "NOT_TESTED"
+    }
+  ],
+  "three_simulation_designs": [
+    {
+      "id": "SIM1",
+      "live_run": "NOT_EXECUTED",
+      "objective": "Happy path A/B/C plan and expected outputs"
+    },
+    {
+      "id": "SIM2",
+      "live_run": "NOT_EXECUTED",
+      "objective": "Adversarial input/scope/fake PASS/duplicate/sha drift"
+    },
+    {
+      "id": "SIM3",
+      "live_run": "NOT_EXECUTED",
+      "objective": "Fault injection, safe HOLD, restore, retry, independent readback"
+    }
+  ]
+}
