@@ -10,6 +10,7 @@ Bu klasördeki `PRODUCT/` ve `TESTS/` dosyaları, 18 Kasım 2026 tarihli R2 tekn
 cd products/ulmi-h1
 python3 -m pip install 'requests>=2.31,<3'
 python3 -B tools/verify_contracts.py
+python3 -B tools/test_release_integrity.py
 python3 -B TESTS/test_r2_project_chat_real_http.py
 python3 -B TESTS/run_project_bound_e2e.py
 python3 -B TESTS/run_generated_taskboard_e2e.py
@@ -25,3 +26,22 @@ Uygulama yalnız `127.0.0.1` üzerinde HTML + Python + SQLite olarak çalışır
 GitHub Actions `ulmi-h1.yml`, teknik testleri ve izinli Chromium tarayıcı testini birbirinden ayrı işler olarak çalıştırır. Runner üzerindeki test sonucu, gerçek Qwen yürütmesi, özgün Pilot A/B/C, bağımsız DoneCheck veya owner UAT sonucunun yerine geçmez.
 
 Korunan başlangıç durumu: tarihsel 4/12 scoped; resmî V22 0/12 HOLD; Emir 01 özgün 11/11 technical full HOLD; H2 PARKED. Teknik kod ve test kazanımları SHA ve commit ile ilerletilir. `main` birleştirme/yayın için owner yetkisi esastır.
+
+## CI başlatma ve paket bütünlüğü sınırı
+
+GitHub Actions runner tahsisi başlamadan başarısız olduğunda, işin test adımları
+çalışmış kabul edilmez. Olayı `HOLD_GITHUB_RUNNER_PRESTART` olarak kaydet;
+aynı commit'in kaynak eşdeğerinde `tools/verify_contracts.py`,
+`tools/test_release_integrity.py` ve gerçek HTTP/SQLite regresyonlarını ayrıca
+çalıştır. Bu yerel sonuçları GitHub CI PASS'i yerine kullanma.
+
+`tools/build_release.py`, yalnız kaynak dosyalarını, iç SHA-256 manifestini ve
+çalışma yönergelerini teslim eder. `__pycache__`, `.pyc` ve benzeri geçici
+dosyaları paket dışında tutar; dahil edilen alandaki sembolik bağlantıları
+güvenli biçimde reddeder. İki üretim aynı baytlardan oluşur.
+
+Gerçek tarayıcı testi GitHub runner üzerinde Playwright Chromium kullanır.
+İzinli ve bağımsız yerel ortamda kurulu Chromium ile çalıştırılacaksa
+`ULMI_CHROMIUM_EXECUTABLE=/usr/bin/chromium` tanımlanabilir; yönetilen tarayıcı
+politikalarının sonucu kendi HOLD sınırında korunur. Gerçek Qwen, özgün
+Pilot A/B/C yetkisi, bağımsız DoneCheck ve owner UAT ayrı kanıtlara bağlıdır.

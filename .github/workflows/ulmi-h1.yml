@@ -41,6 +41,10 @@ jobs:
             echo "RUN $script"
             python -B "$script"
           done
+      - name: Source-only archive adversarial tests
+        run: python -B tools/test_release_integrity.py
+      - name: W07 W08 real HTTP restart security
+        run: python -B TESTS/run_v7_w07_w08_real_http_and_restart.py --product PRODUCT --output "${{ runner.temp }}/ulmi-h1-w07w08.json"
       - name: Two-build deterministic H1 technical package
         run: python -B tools/build_release.py '${{ runner.temp }}/ulmi-h1-technical.zip'
       - uses: actions/upload-artifact@v4
@@ -49,6 +53,7 @@ jobs:
           path: |
             ${{ runner.temp }}/ulmi-h1-technical.zip
             ${{ runner.temp }}/ulmi-h1-technical.receipt.json
+            ${{ runner.temp }}/ulmi-h1-w07w08.json
           retention-days: 7
           if-no-files-found: error
   browser:
