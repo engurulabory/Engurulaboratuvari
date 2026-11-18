@@ -45,3 +45,37 @@ Gerçek tarayıcı testi GitHub runner üzerinde Playwright Chromium kullanır.
 `ULMI_CHROMIUM_EXECUTABLE=/usr/bin/chromium` tanımlanabilir; yönetilen tarayıcı
 politikalarının sonucu kendi HOLD sınırında korunur. Gerçek Qwen, özgün
 Pilot A/B/C yetkisi, bağımsız DoneCheck ve owner UAT ayrı kanıtlara bağlıdır.
+
+
+## Sıfır yeni ücretli hizmet · Actions hesap kilidi için bağımsız teknik hat
+
+18 Kasım 2026 hesap arayüzü, GitHub Actions işlerindeki **ödeme kaynaklı hesap
+kilidini** doğrulamıştır. `engineering` ve `browser` işleri testlere başlamadan
+durmuştur. Bu bir ULMi ürün testi sonucu değildir. Banka–GitHub mevcut destek
+süreci ayrı ilerler; yeni ödeme, hesap/runner değişikliği ve ücretli servis bu
+mühendislik hatlarının önkoşulu yapılmaz.
+
+GitHub'ın erişilebilir kaynak/branch/PR/commit işlevlerini kullan. Testleri ve
+SHA makbuzlu deterministik ürünü mevcut izinli Python çalışma ortamında **tek
+komutla** oluştur:
+
+```bash
+python3 -B products/ulmi-h1/tools/run_portable_ci.py --output /tmp/ulmi-h1-proof --git-commit-reference "$(git rev-parse HEAD)"
+```
+
+Bu komut mevcut GitHub klonunun kökünden başlatılabilir; çalıştırıcı kaynak ZIP'ini
+iki kez üretip karşılaştırır, güvenli temiz klasörde açar, 10 gerçek test koşusu
+çalıştırır ve log SHA-256 ile `ULMI_H1_PORTABLE_CI_RECEIPT.json` üretir. CI için
+ayrı abonelik, token veya GitHub Actions runner'ı gerekmez. Gerçek tarayıcı
+ortamı yetkili ve erişilebilir olduğunda ayrıca `--browser` kullanılabilir.
+
+**Truth Boundary:** Gerçek bir Git deposu ve temiz ürün ağacı varsa çalıştırıcı
+HEAD eşliğini denetler. Başka ortamda geçen commit yalnız referanstır; GitHub
+blob kimlikleri ayrıca karşılaştırılır. Makbuzun sonucu
+`PASS_SCOPED_LOCAL_EXTERNAL_CI`, `GITHUB_ACTIONS=HOLD_ACCOUNT_BILLING_LOCK`
+olarak ayrılır. Ürün 11/11 teknik finişi, bağımsız DoneCheck, gerçek Qwen, Pilot
+A/B/C ve owner UAT kabulü kendi gerçek kanıtını gerektirir. **H2 PARKED**.
+
+Kullanılan GitHub kaynakları kamuya açık depodadır; hesap ödeme ekranları,
+finansal bilgiler, gerçek API anahtarları veya yerel özel günlükler PR'a
+aktarılmaz. Yerel kanıt makbuzu Hafıza Sarayı'na, özeti PR'a bağlanır.
