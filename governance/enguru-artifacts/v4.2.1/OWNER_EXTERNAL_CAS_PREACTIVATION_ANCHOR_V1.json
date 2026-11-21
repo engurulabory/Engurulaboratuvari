@@ -1,0 +1,57 @@
+{
+  "authority_boundary": {
+    "D03": "HOLD_AUTH",
+    "M02": "HOLD_0_OF_32",
+    "M03": "NOT_GRANTED",
+    "VerifiedFinish": "HOLD",
+    "allowCriterionAcceptance": false,
+    "allowedIds": [],
+    "independent_oracle_key": "NOT_REGISTERED",
+    "liveAuthorized": false,
+    "official_signed_owner_external_anchor": "NOT_PRESENT",
+    "owner_directive": "User requested continue on safeguarded external Owner CAS anchoring; no live activation authorization",
+    "requested_scope": "EXTERNAL_PREACTIVATION_REFERENCE_ONLY",
+    "trusted_live_root": "HOLD_NOT_AUTHORIZED_AND_NOT_ON_PROTECTED_MAIN"
+  },
+  "canonical_v421_sha256": "5f5ec92ed1a3ba7078c6e24873eda309453f22275b6285047c738a069db2075d",
+  "cas": {
+    "expected_previous_version": 0,
+    "local_epoch": 0,
+    "local_signed_version": 1,
+    "previous_cas_sha256": null,
+    "receipt_state": "PENDING_ANCHOR",
+    "registry_state": "PENDING_OWNER_TRUST",
+    "signed_nonce": "b702d56be5b7754c1ab3642f5b4d281408a982835e3eaa0f",
+    "signed_receipt_idempotency": "223e9d6de27f5ea4bdc82a1384dae30225e01844c2c9be3f32987f6db5761043"
+  },
+  "date_turkiye": "2026-11-21",
+  "event": "EXTERNAL_CROSS_PIN_FOR_VERIFIED_MAC_OWNER_KEY_AND_SIGNED_PENDING_CAS",
+  "external_registry": {
+    "branch": "review/artifacts-v421-d03d04-one-owner-20261121",
+    "branch_protected": "NO: main-only GitHub ruleset 22452401",
+    "expected_first_external_revision": 1,
+    "externally_immutable_commit_ref": "TO_BE_RECORDED_AFTER_COMMIT",
+    "previous_external_revision": 0,
+    "provider": "GitHub",
+    "record_type": "REVIEW_BRANCH_PUBLIC_DIGEST_ANCHOR",
+    "repository": "engurulabory/Engurulaboratuvari"
+  },
+  "gain_id": "GAIN-CORE-PALACE-CHAT-001",
+  "mac_public_evidence_zip_sha256": "057bf198a38cde70fa63c9bebaaa2d79e3f2cf31979ccde961b02c19b1b850db",
+  "mac_report_file_sha256": "f0f6f28bf8b7283d8548f2c249641bbd4d801c58461121a2f3014f9bae6e844b",
+  "owner_public_pem_sha256": "87ac55d32ddb75fb679fbc267859fb3f854b3598670ba95d99c2956cacca9e05",
+  "owner_public_spki_sha256": "f9ab241201e5fb341dee6cfd0e3dbadfeb4ada3fcc3c3471230c8ba926b1a8b5",
+  "private_key_and_passphrase": "NEVER_READ_NEVER_STORED",
+  "purpose": "A content-addressed remote audit pin and reviewer-visible first CAS version. Not protected official authority; requires approved merge to protected main, signed CAS high-watermark and independent machine-oracle root for official criterion acceptance.",
+  "schema": "enguru.artifacts.v4.2.1.owner-public-external-cas-preactivation-anchor/v1",
+  "signed_receipt_file_sha256": "4f84700377b31f503f87ad5877ab3f84edb8bd7aaa21a4d7b0a60efe942b7d53",
+  "signed_registry_file_sha256": "88f32265d8522a58767610a9133716ca2593bb72daac279de9383e42394ad81f",
+  "source_public_evidence_library_file_id": "libfile_57399101f11c81918649501de9cd74e9",
+  "verification": {
+    "canonical_sha256": "MATCH",
+    "fingerprint_vs_previous_external_reference": "MATCH",
+    "mac_report_sha256": "MATCH",
+    "signature_receipt": "ED25519_VALIDATED_FROM_REAL_BYTES",
+    "signature_registry": "ED25519_VALIDATED_FROM_REAL_BYTES"
+  }
+}

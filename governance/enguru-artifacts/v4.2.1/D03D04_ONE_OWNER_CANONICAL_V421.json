@@ -1,0 +1,96 @@
+{
+  "D03": {
+    "enforcement": [
+      "PINNED_OWNER_PUBLIC_KEY_FROM_AUTHORIZED_CAS",
+      "VERSIONED_SIGNED_POLICY_SHA",
+      "ED25519_SIGNATURE_ON_GRANT_AND_CRITERION_PROOFS",
+      "AUTHENTICATED_REGISTRY_WITH_REVOCATION",
+      "SCOPE_AND_TIME_WINDOW",
+      "CAS_VERSION_NONCE",
+      "REAL_BYTES_SHA_TEST_LOG_AND_REEXECUTABLE_ORACLE",
+      "FAIL_CLOSED_ON_UNKNOWN_OR_MISMATCHED_INPUTS"
+    ],
+    "human_owner_count": 1,
+    "model": "SINGLE_OWNER_AUTOMATED_EVIDENCE_V1",
+    "roles": [
+      "EVIDENCE_PRODUCER",
+      "TRUSTED_DETERMINISTIC_ORACLE",
+      "SOLE_HUMAN_OWNER"
+    ],
+    "self_review_claim": "NEVER_INDEPENDENT_HUMAN_REVIEW",
+    "separate_human_reviewer": "NOT_REQUIRED_FOR_THIS_VERSIONED_ROUTE"
+  },
+  "D04": {
+    "M01": "CLOSED_VERIFIED",
+    "M02": "32/32 original criterion receipts and W1 scoped accepted; official authorized single owner route, no automatic promotion from fixture",
+    "M03": "OWNER_BUILD_GO distinct grant mandatory",
+    "M04": "REAL_RED_REPAIR_GREEN_REGRESSION_RECOVERY",
+    "M05": "56 original 4H criteria, T01–T12, AC-V42-01..06, authorized DoneCheck, separate sole Owner final product approval",
+    "original_denominators": {
+      "4H": 56,
+      "DG02": 12,
+      "H01": 8,
+      "H02": 12,
+      "M02": 32
+    }
+  },
+  "activation": {
+    "D03_60min_live_grant": "NOT_STARTED",
+    "GitHub_main_merge": "NOT_AUTHORIZED_BY_THIS_APPROVAL",
+    "M03_owner_build_go": "NOT_GRANTED",
+    "active_trusted_owner_key": "NOT_REGISTERED_AS_OFFICIAL_OWNER",
+    "canonical_policy": "OWNER_APPROVED_VERSIONED",
+    "cas_live_receipt": "NOT_PRESENT",
+    "formal_M02": "HOLD_0_OF_32",
+    "mac_runtime": "NOT_ACTIVATED",
+    "signed_owner_grant": "NOT_PRESENT"
+  },
+  "donecheck": {
+    "legacy": "DoneCheck v1.2 recordVerifiedFinish reviewer path unchanged",
+    "new_route": "donecheck.single-owner-criterion-acceptance/v1; separate event type and receipt, never labels reviewer/human_review_authorized",
+    "no_reviewer_impersonation": true,
+    "trust": "Third-party oracle evidence + owner-signed final decision; evidence PASS not equivalent to human or official acceptance"
+  },
+  "effective_requirements": [
+    "VERSIONED_CANONICAL_SHA_AND_OWNER_DECISION_READBACK",
+    "AUTHORIZED_INDEPENDENTLY_PINNED_OWNER_SIGNING_ROOT_AND_CAS",
+    "OFFICIAL_ONE_OWNER_CODE_AND_REAL_MAC_INTEGRATION_TESTS",
+    "ACTUAL_PER_CRITERION_EVIDENCE",
+    "W1_AND_32_ORIGINAL_ACCEPTANCE_M02"
+  ],
+  "gain_id": "GAIN-CORE-PALACE-CHAT-001",
+  "owner_approval": {
+    "approval_time": "NOT_CLAIMED_SIGNED",
+    "approved_scope": "D03/D04 versioned single-owner authorized acceptance path only",
+    "decision": "OWNER_APPROVED_CANONICAL_VERSION_CHANGE",
+    "source": "ChatGPT conversation 2026-11-21 explicit owner confirmation: onaylıyorum"
+  },
+  "parent": {
+    "immutable": true,
+    "name": "ENGURU_ARTIFACTS_V42_FINAL_OWNER_KABUL_SOZLESMESI_20261121.md",
+    "sha256": "ddd194b31210d6d832a8d26df07d9fae4965f8e6a40dfc5ed2f0a3957d2ddb00"
+  },
+  "permission_boundary": {
+    "granted": [
+      "VERSIONED_CANONICAL_POLICY_AUTHORING_AND_RECORDING",
+      "ISOLATED_TESTS_AND_CODE_ON_REVIEW_BRANCH"
+    ],
+    "withheld": [
+      "D03_LIVE_ACTIVATION",
+      "M03_OWNER_BUILD_GO",
+      "M05_FINAL_ACCEPTANCE",
+      "PRODUCTION_RELEASE_OR_MERGE",
+      "EXISTING_AUDIT_LEDGER_MUTATION",
+      "PRIVATE_KEY_EXPORT"
+    ]
+  },
+  "provenance": {
+    "mac_v2_test_log_sha256": "601538f9f1171b11206360a2e6a7dc9ef5dbfc32a665b4ffa3531a94042e861a",
+    "mac_v2_test_report_sha256": "d6d4d0b0d8630868c763049a77f93e92084c758b6741d26031349ecb2909918b",
+    "mac_v2_tests": "23/23 PASS_SCOPED_REAL_PINNED_DONECHECK_COMPATIBILITY",
+    "single_owner_directive_sha256": "e2e00a39d338a90a15073c73eb6da42cda4ab0eb96c6aff18fca0e242d94717c",
+    "three_moves_owner_decision_sha256": "4efaa9088f7e66f33503ade4f6b1be62b46695c6fb2407e9ce8ec3500e4090f5"
+  },
+  "schema": "enguru.artifacts.v42.d03d04.one-owner-canonical/v4.2.1",
+  "version": "4.2.1"
+}
