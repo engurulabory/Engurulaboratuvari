@@ -1,0 +1,7 @@
+{
+  "file": "D03D04_ONE_OWNER_CANONICAL_V421.json",
+  "schema": "enguru.canonical.sha256-lock/v1",
+  "sha256": "5f5ec92ed1a3ba7078c6e24873eda309453f22275b6285047c738a069db2075d",
+  "source_parent_sha256": "ddd194b31210d6d832a8d26df07d9fae4965f8e6a40dfc5ed2f0a3957d2ddb00",
+  "status": "OWNER_APPROVED_VERSIONED_NO_LIVE_ACTIVATION"
+}
